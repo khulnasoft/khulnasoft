@@ -1,0 +1,24 @@
+{
+  "folders": [
+    {
+      "name": "project-root",
+      "path": "./"
+    },
+    {
+      "name": "test-client",
+      "path": "app"
+    },
+    {
+      "name": "supabase-functions",
+      "path": "khulnasoft/functions"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "node_modules/": true,
+      "app/": true,
+      "khulnasoft/functions/": true
+    },
+    "deno.importMap": "./khulnasoft/functions/import_map.json"
+  }
+}
