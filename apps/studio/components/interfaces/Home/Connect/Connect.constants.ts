@@ -182,7 +182,8 @@ export const MOBILES: ConnectionType[] = [
     key: 'exporeactnative',
     label: 'Expo React Native',
     icon: 'expo',
-    guideLink: 'https://khuknasoft.com/docs/guides/getting-started/tutorials/with-expo-react-native',
+    guideLink:
+      'https://khuknasoft.com/docs/guides/getting-started/tutorials/with-expo-react-native',
     children: [
       {
         key: 'supabasejs',

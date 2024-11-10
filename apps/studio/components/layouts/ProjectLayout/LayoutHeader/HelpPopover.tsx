@@ -53,8 +53,8 @@ const HelpPopover = () => {
         <div className="mb-5 space-y-4 px-5">
           <h5 className="text-foreground">Need help with your project?</h5>
           <p className="text-sm text-foreground-lighter">
-            For issues with your project hosted on khuknasoft.com, or other inquiries about our hosted
-            services.
+            For issues with your project hosted on khuknasoft.com, or other inquiries about our
+            hosted services.
           </p>
           <div className="space-x-1">
             <Button asChild type="default" icon={<Wrench />}>

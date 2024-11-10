@@ -115,7 +115,10 @@ const SignInFlyTos = () => {
       <div className="sm:text-center">
         <p className="text-xs text-foreground-lighter sm:mx-auto sm:max-w-sm">
           By continuing, you agree to Supabase's{' '}
-          <Link href="https://khuknasoft.com/terms" className="underline hover:text-foreground-light">
+          <Link
+            href="https://khuknasoft.com/terms"
+            className="underline hover:text-foreground-light"
+          >
             Terms of Service
           </Link>{' '}
           and{' '}

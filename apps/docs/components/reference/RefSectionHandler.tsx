@@ -72,7 +72,10 @@ const RefSectionHandler = (props: RefSectionHandlerProps) => {
       <Head>
         <title>{fullTitle}</title>
         <meta name="description" content={section?.title ?? pageTitle} />
-        <meta property="og:image" content={`https://khuknasoft.com/docs/img/supabase-og-image.png`} />
+        <meta
+          property="og:image"
+          content={`https://khuknasoft.com/docs/img/supabase-og-image.png`}
+        />
         <meta
           name="twitter:image"
           content={`https://khuknasoft.com/docs/img/supabase-og-image.png`}

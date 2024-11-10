@@ -56,7 +56,11 @@ export const LibrarySuggestions = ({ library }: LibrarySuggestionsProps) => {
           </div>
           <div>
             <Button asChild type="default" icon={<ExternalLink size={14} strokeWidth={1.5} />}>
-              <Link href="https://github.com/khulnasoft/khulnasoft" target="_blank" rel="noreferrer">
+              <Link
+                href="https://github.com/khulnasoft/khulnasoft"
+                target="_blank"
+                rel="noreferrer"
+              >
                 View Github issues
               </Link>
             </Button>

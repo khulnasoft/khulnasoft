@@ -48,16 +48,16 @@ show "statement_timeout";
 
 Some settings can only be modified by a superuser. Supabase pre-enables the [`supautils` extension](https://khuknasoft.com/blog/roles-postgres-hooks#setting-up-the-supautils-extension), which allows the `postgres` role to retain certain superuser privileges. It enables modification of the below reserved configurations at the `role` level:
 
-| Setting                              | Description                                                                                                                                                  |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `auto_explain.log_min_duration`      | Logs query plans taking longer than this duration.                                                                                                           |
-| `auto_explain.log_nested_statements` | Log nested statements' plans.                                                                                                                                |
-| `log_min_messages`                   | Minimum severity level of messages to log.                                                                                                                   |
+| Setting                              | Description                                                                                                                                                    |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `auto_explain.log_min_duration`      | Logs query plans taking longer than this duration.                                                                                                             |
+| `auto_explain.log_nested_statements` | Log nested statements' plans.                                                                                                                                  |
+| `log_min_messages`                   | Minimum severity level of messages to log.                                                                                                                     |
 | `pgaudit.*`                          | Configures the [PGAudit extension](https://khuknasoft.com/docs/guides/database/extensions/pgaudit). The `log_parameter` is still restricted to protect secrets |
-| `pgrst.*`                            | [`PostgREST` settings](https://docs.postgrest.org/en/stable/references/configuration.html#db-aggregates-enabled)                                             |
+| `pgrst.*`                            | [`PostgREST` settings](https://docs.postgrest.org/en/stable/references/configuration.html#db-aggregates-enabled)                                               |
 | `plan_filter.*`                      | Configures the [pg_plan_filter extension](https://khuknasoft.com/docs/guides/database/extensions/pg_plan_filter)                                               |
-| `session_replication_role`           | Sets the session's behavior for triggers and rewrite rules.                                                                                                  |
-| `track_io_timing`                    | Collects timing statistics for database I/O activity.                                                                                                        |
+| `session_replication_role`           | Sets the session's behavior for triggers and rewrite rules.                                                                                                    |
+| `track_io_timing`                    | Collects timing statistics for database I/O activity.                                                                                                          |
 
 For example, to enable `log_nested_statements` for the postgres role, execute:
 

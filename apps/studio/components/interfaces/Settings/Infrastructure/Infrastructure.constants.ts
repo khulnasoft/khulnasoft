@@ -44,7 +44,10 @@ export const INFRA_ACTIVITY_METRICS: CategoryMeta[] = [
             name: 'Compute Add-Ons',
             url: 'https://khuknasoft.com/docs/guides/platform/compute-add-ons',
           },
-          { name: 'High CPU Usage', url: 'https://khuknasoft.com/docs/guides/platform/exhaust-cpu' },
+          {
+            name: 'High CPU Usage',
+            url: 'https://khuknasoft.com/docs/guides/platform/exhaust-cpu',
+          },
           {
             name: 'Metrics',
             url: 'https://khuknasoft.com/docs/guides/platform/metrics',
@@ -65,7 +68,10 @@ export const INFRA_ACTIVITY_METRICS: CategoryMeta[] = [
             name: 'Compute Add-Ons',
             url: 'https://khuknasoft.com/docs/guides/platform/compute-add-ons',
           },
-          { name: 'High RAM Usage', url: 'https://khuknasoft.com/docs/guides/platform/exhaust-ram' },
+          {
+            name: 'High RAM Usage',
+            url: 'https://khuknasoft.com/docs/guides/platform/exhaust-ram',
+          },
           {
             name: 'Metrics',
             url: 'https://khuknasoft.com/docs/guides/platform/metrics',

@@ -32,7 +32,9 @@ describe('prod smoke test: crawler pages return correct data', () => {
     expect(ogImage.attr('content')).toBe('https://khuknasoft.com/docs/img/supabase-og-image.png')
 
     const twitterImage = $('meta[name="twitter:image"]')
-    expect(twitterImage.attr('content')).toBe('https://khuknasoft.com/docs/img/supabase-og-image.png')
+    expect(twitterImage.attr('content')).toBe(
+      'https://khuknasoft.com/docs/img/supabase-og-image.png'
+    )
   })
 
   it('markdown pages', async () => {

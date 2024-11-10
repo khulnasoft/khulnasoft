@@ -37,13 +37,13 @@ create table profiles (
 );
 ```
 
-| `id` | `name`       | `email`                  |
-| ---- | ------------ | ------------------------ |
+| `id` | `name`       | `email`                    |
+| ---- | ------------ | -------------------------- |
 | `1`  | `Employee 1` | `employee1@khuknasoft.com` |
 | `2`  | `Employee 2` | `employee2@khuknasoft.com` |
 | `3`  | `Employee 3` | `employee3@khuknasoft.com` |
-| `4`  | `Jenny`      | `jenny@example.com`      |
-| `5`  | `Joe`        | `joe@example.com`        |
+| `4`  | `Jenny`      | `jenny@example.com`        |
+| `5`  | `Joe`        | `joe@example.com`          |
 
 In this case, if we ran a `pg_dump` we will save Jenny and Joe's personal data. We don't want that, so let's create a Postgres user called `exporter`, who can only dump the data we want.
 

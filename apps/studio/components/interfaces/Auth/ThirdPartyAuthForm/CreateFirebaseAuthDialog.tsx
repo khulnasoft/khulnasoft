@@ -204,7 +204,10 @@ export const CreateFirebaseAuthIntegrationDialog = ({
                 Cancel
               </Button>
               <Button onClick={() => onClose()} asChild>
-                <a href="https://forms.khuknasoft.com/third-party-auth-with-firebase" target="_blank">
+                <a
+                  href="https://forms.khuknasoft.com/third-party-auth-with-firebase"
+                  target="_blank"
+                >
                   Register interest
                 </a>
               </Button>
