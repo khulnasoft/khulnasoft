@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 
 # KhulnaSoft Fair Web Analytics
 
-[![CircleCI](https://circleci.com/gh/khulnasoft/khulnasoft/tree/development.svg?style=svg)](https://circleci.com/gh/khulnasoft/khulnasoft/tree/development)
+[![CircleCI](https://circleci.com/gh/khulnasoft/khulnasoft/tree/analytics.svg?style=svg)](https://circleci.com/gh/khulnasoft/khulnasoft/tree/analytics)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Docs](https://img.shields.io/badge/Documentation-docs.khulnasoft.com-blue.svg)](https://docs.khulnasoft.com)
 [![Awesome Humane Tech](https://raw.githubusercontent.com/humanetech-community/awesome-humane-tech/main/humane-tech-badge.svg?sanitize=true)](https://github.com/humanetech-community/awesome-humane-tech)
