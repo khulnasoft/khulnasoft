@@ -1,0 +1,34 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: KhulnaSoft
+Upstream-Contact: KhulnaSoft <admin@khulnasoft.com>
+Source: https://github.com/khulnasoft/khulnasoft
+
+# License for GitHub to pick up and display, AUTHORS file
+Files: LICENSE AUTHORS NOTICE
+Copyright: 2020 KhulnaSoft Authors <admin@khulnasoft.com>
+License: Apache-2.0
+
+# package managers
+Files: */package.json */package-lock.json */cypress.json */go.mod */go.sum */Gemfile */Gemfile.lock */manifest.json
+Copyright: 2020 KhulnaSoft Authors <admin@khulnasoft.com>
+License: Apache-2.0
+
+# text files
+Files: banner.txt */robots.txt extension/checksums.txt extension/.web-extension-id
+Copyright: 2020 KhulnaSoft Authors <admin@khulnasoft.com>
+License: Apache-2.0
+
+# test site for local development
+Files: test-site/*
+Copyright: 2020 KhulnaSoft Authors <admin@khulnasoft.com>
+License: Apache-2.0
+
+# unit test fixtures
+Files: packages/__fixtures__/* script/__fixtures__/* server/router/testdata/* server/public/testdata/* server/config/testdata/*
+Copyright: 2020 KhulnaSoft Authors <admin@khulnasoft.com>
+License: Apache-2.0
+
+# l10n related files
+Files: locales/* extension/_locales/*/messages.json
+Copyright: 2020 KhulnaSoft Authors <admin@khulnasoft.com>
+License: Apache-2.0

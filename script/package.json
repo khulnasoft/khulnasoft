@@ -1,0 +1,61 @@
+{
+  "name": "script",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "budo index.js --pushstate --port $PORT",
+    "test": "npm run server & (VAULT_HOST=http://localhost:9876 npm run mochify; status=$?; exit $status)",
+    "mochify": "mochify --chrome $(which google-chrome) --allow-chrome-as-root src/{,**}/*.test.js",
+    "server": "ws -d __fixtures__ -p 9876",
+    "pretest": "dependency-check package.json --unused --no-dev",
+    "posttest": "standard",
+    "fix": "standard --fix",
+    "build": "gulp",
+    "extract-strings": "extract-strings index.js $(find src -name '*.js')",
+    "licenses": "npm-license-crawler --production --onlyDirectDependencies --omitVersion --csv dependencies.csv"
+  },
+  "dependencies": {
+    "history-events": "^1.0.4",
+    "khulnasoft": "file:./../packages",
+    "on-idle": "^3.1.4"
+  },
+  "devDependencies": {
+    "@khulnasoft/l10nify": "^0.4.0",
+    "browserify": "^16.2.3",
+    "budo": "^11.7.0",
+    "dependency-check": "^4.1.0",
+    "envify": "^4.1.0",
+    "gulp": "^4.0.2",
+    "gulp-append-prepend": "^1.0.8",
+    "gulp-clean": "^0.4.0",
+    "linguas-file": "^2.0.0",
+    "local-web-server": "^4.0.0",
+    "mochify": "^9.2.0",
+    "npm-license-crawler": "^0.2.1",
+    "standard": "^14.3.1",
+    "tinyify": "^2.5.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "overrides": {
+    "colors@>1.4.0": "1.4.0"
+  },
+  "browserify": {
+    "transform": [
+      "envify",
+      "@khulnasoft/l10nify"
+    ]
+  },
+  "standard": {
+    "globals": [
+      "__"
+    ],
+    "ignore": [
+      "dist/**/*.*"
+    ],
+    "env": [
+      "mocha"
+    ]
+  }
+}

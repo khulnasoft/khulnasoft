@@ -1,0 +1,14 @@
+# Copyright 2020 - KhulnaSoft Authors <admin@khulnasoft.com>
+# SPDX-License-Identifier: Apache-2.0
+
+FROM ruby:2.7
+
+RUN gem install bundler -v 2.4.22
+
+WORKDIR /repo
+COPY ./docs/Gemfile /repo
+COPY ./docs/Gemfile.lock /repo
+RUN bundle install
+
+COPY ./docs /repo
+RUN JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_override.yml

@@ -1,0 +1,431 @@
+# Copyright 2020-2022 - KhulnaSoft Authors <admin@khulnasoft.com>
+# SPDX-License-Identifier: Apache-2.0
+
+version: 2.1
+
+jobs:
+  server:
+    executor: golang
+    working_directory: ~/khulnasoft/server
+    steps:
+      - checkout:
+          path: ~/khulnasoft
+      - restore_cache:
+          key: khulnasoft-server-v2-{{ checksum "go.mod" }}
+      - run:
+          name: Download modules
+          command: go mod download
+      - save_cache:
+          paths:
+            - /go/pkg/mod
+          key: khulnasoft-server-v2-{{ checksum "go.mod" }}
+      - run:
+          name: Run tests
+          command: make test
+
+  vault:
+    executor: node
+    working_directory: ~/khulnasoft/vault
+    steps:
+      - test_node_app
+
+  script:
+    executor: node
+    working_directory: ~/khulnasoft/script
+    steps:
+      - test_node_app
+
+  auditorium:
+    executor: node
+    working_directory: ~/khulnasoft/auditorium
+    steps:
+      - test_node_app
+
+  packages:
+    executor: node
+    working_directory: ~/khulnasoft/packages
+    steps:
+      - test_node_app
+
+  reuse:
+    executor: python
+    working_directory: ~/khulnasoft
+    steps:
+      - checkout:
+          path: ~/khulnasoft
+      - run:
+          name: Install tool
+          command: pip install --user fsfe-reuse
+      - run:
+          name: Check for REUSE compliance
+          command: reuse lint
+
+  build:
+    executor: python
+    working_directory: ~/khulnasoft
+    environment:
+      DOCKER_LOGIN: khulnasoft
+      DOCKER_BUILDKIT: '1'
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: docker24
+      - run:
+          name: Set revision
+          command: |
+            if [ -z "$CIRCLE_TAG" ]; then
+              echo 'export KHULNASOFT_GIT_REVISION=$(git rev-parse --short HEAD)' >> $BASH_ENV
+            else
+              echo 'export KHULNASOFT_GIT_REVISION=$CIRCLE_TAG' >> $BASH_ENV
+            fi
+      - run:
+          name: Build binaries
+          command: |
+            if [ -z "$CIRCLE_TAG" ] && [ "${CIRCLE_BRANCH}" != "development" ]; then
+              SKIP_LOCALES="1" make build
+            else
+              TARGETS=linux/amd64,windows/amd64,linux/arm-7,linux/arm64 make build
+              # Darwin builds cannot be statically linked right now
+              # so we override the default LDFLAGS value
+              TARGETS=darwin/amd64 LDFLAGS='' make build
+            fi
+      - persist_to_workspace:
+          root: ~/khulnasoft
+          paths:
+            - bin/*
+
+  integration_sqlite:
+    executor: node
+    environment: &integration_env
+      CYPRESS_BASE_URL: http://localhost:3000
+      CYPRESS_OPERATOR_USERNAME: circle@khulnasoft.com
+      CYPRESS_OPERATOR_PASSWORD: secret5ecrets0secret
+      CYPRESS_ACCOUNT_ID: 9b63c4d8-65c0-438c-9d30-cc4b01173393
+      CYPRESS_RUN_LIGHTHOUSE_AUDIT: 1
+      KHULNASOFT_SERVER_PORT: 3000
+      KHULNASOFT_DATABASE_CONNECTIONSTRING: /tmp/khulnasoft.sqlite3
+    working_directory: ~/khulnasoft
+    steps:
+      - run_integration_tests
+
+  integration_postgres:
+    environment:
+      <<: *integration_env
+      KHULNASOFT_DATABASE_DIALECT_FILE: /tmp/dialect_secret
+      KHULNASOFT_DATABASE_CONNECTIONSTRING: postgres://circle:test@localhost:5432/circle_test?sslmode=disable
+    executor: node-postgres
+    working_directory: ~/khulnasoft
+    steps:
+      - wait_for:
+          service: Postgres
+          port: 5432
+      - run:
+          name: Populate secret file
+          command: echo -n "postgres" > /tmp/dialect_secret
+      - run_integration_tests
+
+  integration_mysql:
+    environment:
+      <<: *integration_env
+      KHULNASOFT_DATABASE_DIALECT: mysql
+      KHULNASOFT_DATABASE_CONNECTIONSTRING: root:test@tcp(localhost:3306)/circle_test?parseTime=true
+    executor: node-mysql
+    working_directory: ~/khulnasoft
+    steps:
+      - wait_for:
+          service: MySQL
+          retries: 20
+          port: 3306
+      - run_integration_tests
+
+  release:
+    executor: python
+    environment:
+      DOCKER_LOGIN: khulnasoft
+      DOCKER_BUILDKIT: '1'
+      DOCKER_CLI_EXPERIMENTAL: enabled
+    working_directory: ~/khulnasoft
+    steps:
+      - checkout
+      - setup_remote_docker
+      - install_mc
+      - attach_workspace:
+          at: ~/khulnasoft
+      - run:
+          name: Set image tag
+          command: |
+            if [ -z "$CIRCLE_TAG" ]; then
+              echo 'export DOCKER_IMAGE_TAGS=(development)' >> $BASH_ENV
+            else
+              echo 'export DOCKER_IMAGE_TAGS=($CIRCLE_TAG latest)' >> $BASH_ENV
+            fi
+      - run:
+          name: Download and import signing key
+          command: |
+            mc cp khulnasoft/secrets/signing-key.asc /tmp
+            gpg --import /tmp/signing-key.asc
+      - run:
+          name: Package tarball
+          working_directory: ~/khulnasoft/bin
+          command: |
+            md5sum $(find . -perm -111 -type f) > checksums.txt
+
+            for artifact in $(find . -perm -111 -type f); do
+              gpg --armor --detach-sign $artifact
+            done
+
+            cp ~/khulnasoft/{LICENSE,README.md} .
+
+            mkdir -p /tmp/artifacts
+            for tag in "${DOCKER_IMAGE_TAGS[@]}"; do
+              tar -czvf /tmp/artifacts/khulnasoft-$tag.tar.gz $(ls -A)
+            done
+      - run:
+          name: Upload tarballs to storage.khulnasoft.com
+          command: |
+            for tag in "${DOCKER_IMAGE_TAGS[@]}"; do
+              mc cp /tmp/artifacts/khulnasoft-$tag.tar.gz khulnasoft/binaries/khulnasoft-$tag.tar.gz
+            done
+      - docker/install-docker-credential-helper
+      - docker/configure-docker-credentials-store
+      - run:
+          name: Push khulnasoft/khulnasoft to Docker Hub
+          command: |
+            echo "$DOCKER_ACCESSTOKEN" | docker login --username $DOCKER_LOGIN --password-stdin
+            # This is required for building ARM: https://gitlab.alpinelinux.org/alpine/aports/-/issues/12406
+            docker run --rm --privileged linuxkit/binfmt:v0.8
+            docker context create docker-khulnasoft
+            docker buildx create docker-khulnasoft --name docker-khulnasoft --use
+            docker buildx inspect --bootstrap
+            for tag in "${DOCKER_IMAGE_TAGS[@]}"; do
+              docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -f ./build/Dockerfile -t khulnasoft/khulnasoft:$tag . --push
+            done
+      - store_artifacts:
+          path: /tmp/artifacts
+
+  release_docs:
+    executor: python
+    working_directory: ~/khulnasoft
+    steps:
+      - checkout
+      - setup_remote_docker
+      - install_mc
+      - run:
+          name: Build and deploy versioned docs site
+          command: |
+            if [ -z "$CIRCLE_TAG" ]; then
+              echo "khulnasoft_version: development" >> ./docs/_override.yml
+              echo "baseurl: v/development" >> ./docs/_override.yml
+              make build-docs
+              mc mirror --remove --overwrite ./docs-site/ khulnasoft/docs/v/development/
+            else
+              mc cp ./docs/robots.txt khulnasoft/docs
+
+              # a tagged build gets built an deployed twice:
+              # - once as the root version in /
+              # - once as the tagged version in /$TAG/
+
+              echo "khulnasoft_version: $CIRCLE_TAG" >> ./docs/_override.yml
+              make build-docs
+              mc mirror --remove --overwrite --exclude 'v/*' ./docs-site/ khulnasoft/docs/
+
+              echo "baseurl: v/$CIRCLE_TAG" >> ./docs/_override.yml
+              make build-docs
+              mc mirror --remove --overwrite ./docs-site/ khulnasoft/docs/v/$CIRCLE_TAG/
+            fi
+
+workflows:
+  version: 2
+  test_build_push:
+    jobs:
+      - server: &all_tags_filter
+          filters:
+            tags:
+              only: /.*/
+      - vault: *all_tags_filter
+      - script: *all_tags_filter
+      - auditorium: *all_tags_filter
+      - packages: *all_tags_filter
+      - reuse: *all_tags_filter
+      - build: *all_tags_filter
+      - integration_sqlite: &integration_filter
+          <<: *all_tags_filter
+          requires:
+            - build
+      - integration_postgres: *integration_filter
+      - integration_mysql: *integration_filter
+      - release: &default_release_job
+          context: Storage
+          requires:
+            - server
+            - vault
+            - script
+            - auditorium
+            - packages
+            - reuse
+            - integration_postgres
+            - integration_mysql
+            - integration_sqlite
+            - build
+          filters:
+            tags:
+              only: /^v.*/ # tagged release from any branch
+            branches:
+              only:
+                - development
+      - release_docs: *default_release_job
+
+commands:
+  wait_for:
+    description: Wait for a service on a port to be ready
+    parameters:
+      service:
+        type: string
+        default: service
+      retries:
+        type: integer
+        default: 10
+      port:
+        type: integer
+    steps:
+      - run:
+          name: Waiting for << parameters.service >> to be ready
+          command: |
+            for i in `seq 1 << parameters.retries >>`;
+            do
+              nc -z localhost << parameters.port >> && echo Success && exit 0
+              echo -n .
+              sleep 1
+            done
+            echo Failed waiting for << parameters.service >> && exit 1
+
+  run_integration_tests:
+    parameters:
+      cypress_version:
+        type: string
+        description: The version of Cypress to use
+        default: '4.5.0'
+    steps:
+      - browser-tools/install-browser-tools
+      - checkout
+      - downgrade_npm
+      - attach_workspace:
+          at: ~/khulnasoft
+      - run:
+          name: Setup application
+          command: |
+            cp ./bin/khulnasoft-linux-amd64 ./khulnasoft
+            touch khulnasoft.env
+            ./khulnasoft setup \
+              -email $CYPRESS_OPERATOR_USERNAME \
+              -name circle \
+              -password $CYPRESS_OPERATOR_PASSWORD \
+              -populate \
+              -forceid $CYPRESS_ACCOUNT_ID
+      - run:
+          name: Serve application
+          command:  ./khulnasoft
+          background: true
+      - wait_for:
+          service: KhulnaSoft
+          port: 3000
+      - restore_cache:
+          key: khulnasoft-integration-cy<< parameters.cypress_version >>-{{ checksum "./integration/package.json" }}
+      - run:
+          name: Install cypress and dependencies
+          working_directory: ~/khulnasoft/integration
+          command: |
+            sudo apt-get install libxss1
+            mkdir -p ~/.npm-global
+            npm config set prefix '~/.npm-global'
+            npm install cypress@<< parameters.cypress_version >> -g
+            npm ci
+            echo 'export PATH=~/.npm-global/bin/:$PATH' >> $BASH_ENV
+      - save_cache:
+          paths:
+            - ~/khulnasoft/integration/node_modules
+            - ~/.cache/Cypress
+            - ~/.npm-global
+          key: khulnasoft-integration-cy<< parameters.cypress_version >>-{{ checksum "./integration/package.json" }}-{{ epoch }}
+      - run:
+          working_directory: ~/khulnasoft/integration
+          name: Run integration tests
+          command: npm t
+      - store_artifacts:
+          path: ~/khulnasoft/integration/cypress/screenshots
+
+  test_node_app:
+    description: Run unit tests for a Node.js based subapp
+    parameters:
+      checkout:
+        type: string
+        default: ~/khulnasoft
+    steps:
+      - checkout:
+          path: << parameters.checkout >>
+      - downgrade_npm
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - run:
+          name: Run tests
+          command: npm t
+
+  install_mc:
+    description: Install MinIO client
+    steps:
+      - run:
+          name: Download client
+          working_directory: '~'
+          command: |
+            curl https://dl.min.io/client/mc/release/linux-amd64/mc -o mc
+            chmod +x mc
+            sudo mv mc /usr/local/bin/mc
+            command -v mc
+
+  downgrade_npm:
+    description: Downgrade npm to version 6
+    steps:
+      - run:
+          name: Install npm 6 globally
+          command: sudo npm i -g npm@6
+
+orbs:
+  docker: circleci/docker@2.1.4
+  browser-tools: circleci/browser-tools@1.4.8
+
+x-docker-pull-creds: &docker-pull-creds
+  username: khulnasoft
+  password: $DOCKER_ACCESSTOKEN
+
+executors:
+  golang:
+    docker:
+      - image: cimg/go:1.22
+        auth: *docker-pull-creds
+  node:
+    docker:
+      - image: cimg/node:16.13-browsers
+        auth: *docker-pull-creds
+  node-postgres:
+    docker:
+      - image: cimg/node:16.13-browsers
+        auth: *docker-pull-creds
+      - image: cimg/postgres:15.0
+        auth: *docker-pull-creds
+        environment:
+          POSTGRES_USER: circle
+          POSTGRES_PASSWORD: test
+  node-mysql:
+    docker:
+      - image: cimg/node:16.13-browsers
+        auth: *docker-pull-creds
+      - image: cimg/mysql:5.7.38
+        auth: *docker-pull-creds
+        environment:
+          MYSQL_DATABASE: circle_test
+          MYSQL_ROOT_PASSWORD: test
+  python:
+    docker:
+      - image: cimg/python:3.7
+        auth: *docker-pull-creds

@@ -1,0 +1,40 @@
+# Copyright 2020 - KhulnaSoft Authors <admin@khulnasoft.com>
+# SPDX-License-Identifier: Apache-2.0
+
+name: Update khulnasoft/khulnasoft_ynh
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  update_heroku:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ORG_REPO_TOKEN }}
+          repository: khulnasoft/khulnasoft_ynh
+
+      - name: Make changes to pull request
+        run: |
+          sudo apt-get install moreutils
+          stripped_version=$(echo ${{ github.event.release.tag_name }} | cut -c 2-)
+          jq ".version = \"${stripped_version}~ynh1\"" manifest.json | sponge manifest.json
+          sed -i "1cSOURCE_VERSION=${{ github.event.release.tag_name }}" conf/app.src
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.ORG_REPO_TOKEN }}
+          commit-message: Update version to ${{ github.event.release.tag_name }}
+          committer: KhulnaSoft Bot <admin@khulnasoft.com>
+          author: ${{ github.actor }} <admin@khulnasoft.com>
+          branch: bump-version-${{ github.event.release.tag_name }}
+          title: Update version to ${{ github.event.release.tag_name }}
+          body: |
+            Update version to [${{ github.event.release.tag_name }}][1]
+
+            [1]: https://github.com/${{ github.repository }}/releases/${{ github.event.release.tag_name }}
+          draft: false

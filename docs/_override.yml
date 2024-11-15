@@ -1,0 +1,5 @@
+# Copyright 2020 - KhulnaSoft Authors <admin@khulnasoft.com>
+# SPDX-License-Identifier: Apache-2.0
+
+# This file is supposed to be empty and will be populated with
+# config overrides at build time.

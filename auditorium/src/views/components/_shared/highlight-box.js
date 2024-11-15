@@ -1,0 +1,20 @@
+/**
+ * Copyright 2020 - KhulnaSoft Authors <admin@khulnasoft.com>
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/** @jsx h */
+const { h } = require('preact')
+
+const HighlightBox = (props) => {
+  const { children, ...otherProps } = props
+  return (
+    <div class='mw8 center'>
+      <p class='dib pa2 br2 ma0 mt3 ml3 ml0-ns mr3 mr0-ns bg-light-yellow' {...otherProps}>
+        {children}
+      </p>
+    </div>
+  )
+}
+
+module.exports = HighlightBox

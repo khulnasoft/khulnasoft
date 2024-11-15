@@ -1,35 +1,59 @@
-# CONTRIBUTING.md
+<!--
+Copyright 2020-2021 - KhulnaSoft Authors <admin@khulnasoft.com>
+SPDX-License-Identifier: Apache-2.0
+-->
 
-Thank you for contributing to Supabase! We’re a big, exciting open source project and we’d love to have you contribute! Here’s some resources and guidance to help you get started:
+# Contributing to KhulnaSoft
 
-[1. Getting Started](#getting-started)
-[2. Issues](#issues)
-[3. Pull Requests](#pull-requests)
+## Did you find a bug?
 
-## Getting Started
+- In case the bug is a security issue, please do not report it publicly. Instead,
+refer to our [Security document](SECURITY.md) for information on how to disclose the issue in private.
+- Please check if there is a similar issue on the GitHub issue tracker of this
+repository before opening a new one.
+- If you are able to do so, providing any artifacts (code snippets,
+screenshots, other recordings) that help us reproduce and fix the issue are much appreciated.
 
-To ensure a positive and inclusive environment, please read our [code of conduct](https://github.com/supabase/.github/blob/main/CODE_OF_CONDUCT.md) before contributing. For help setting up the code in this repo, please follow our [DEVELOPERS.md](https://github.com/khulnasoft/khulnasoft/blob/master/DEVELOPERS.md) file. For the [docs](https://khuknasoft.com/docs) site, follow this [CONTRIBUTING.md](https://github.com/khulnasoft/khulnasoft/blob/master/apps/docs/CONTRIBUTING.md) guide.
+## Do you want to translate KhulnaSoft into your language?
 
-## Issues
+KhulnaSoft can be localized into any language and we are actively looking to grow the number of supported locales. Right now, English, German and French are supported, and we'd love to have Spanish or Portuguese versions too. If you would like to contribute by translating KhulnaSoft into one of these or any other language, send us an email to <admin@khulnasoft.com> and we'll send you an invite to our translation tool. Thank you!
 
-If you find a bug, please create an Issue and we’ll triage it.
+## Do you want to submit a Pull Request?
 
-- Please search [existing Issues](https://github.com/khulnasoft/khulnasoft/issues) before creating a new one.
-- Please include a clear description of the problem along with steps to reproduce it. Exact steps with screenshots and urls really help here.
+We're happy to accept contributions from everyone. You can check our [product roadmap][], [this repository's issue tracker][issues], our [blog][] or our [Twitter][twitter] to see what we are currently working on and where we currently need help.
 
-## Pull Requests
+[blog]: https://www.khulnasoft.com/blog/
+[twitter]: https://twitter.com/khulnasoft
+[product roadmap]: https://github.com/khulnasoft/khulnasoft/projects/1
+[issues]: https://github.com/khulnasoft/khulnasoft/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
 
-We actively welcome your Pull Requests! A couple of things to keep in mind before you submit:
+### You want to fix a bug
 
-- If you’re fixing an Issue, make sure someone else hasn’t already created a PR fixing the same issue. Likewise, make sure to link your PR to the related Issue(s).
-- We will always try to accept the first viable PR that resolves the Issue.
-- If you're new, we encourage you to take a look at issues tagged with [good first issue](https://github.com/khulnasoft/khulnasoft/labels/good%20first%20issue).
-- If you’re submitting a new feature, make sure you have opened a [Discussion](https://github.com/orgs/supabase/discussions/new/choose) to discuss the new feature before opening a PR. We’d love to accept your hard work, but unfortunately if a feature hasn’t gone through a proper design process, your PR will be closed.
-- Please use the PR message template and provide detailed context for quicker review. PRs without clear problem statements will be closed.
+- If you want to fix a bug you found on the issue tracker, please make sure the
+issue has a `Help wanted` label before trying to fix it.
+- Open a Pull Request and we will take care of reviewing, merging and releasing your fix as soon as possible. Thank you!
 
-Prior to submitting your PR, please conduct the following pre-flight checks:
+### You have an idea for a feature and want to work on it
 
-- Run `npm run build` locally to ensure that your code builds successfully without having to wait on us to approve Vercel Preview deploys.
-- Ensure that the Prettier tests run successfully on your PR.
+- Open an issue in the GitHub issue tracker describing on what you are planning
+to add.
+- We will get back to you and discuss when and how we can possibly add your
+feature.
+- After we agree on the when and how, we will assign the issue to you. When you are done, create a PR and we will review, merge and include it in the next release it when ready.
 
-Running these before you create the PR will help reduce back and forth with the team.
+### You want to contribute to our ongoing work
+
+If you want to become a regular contributor to KhulnaSoft and become part of our
+continuous development cycle, please get in touch with us at
+<admin@khulnasoft.com> and we'll get back to you so we can discuss possible
+options.
+
+## Do you need help running KhulnaSoft?
+
+We have dedicated [documentation][docs] on running KhulnaSoft available. If this does not cover what you are looking for or you are stuck, feel free to open an issue on this repository or email us at <admin@khulnasoft.com>.
+
+[docs]: https://docs.khulnasoft.com/running-khulnasoft/
+
+## Don't want to use GitHub?
+
+In case you would prefer not to use GitHub (e.g. because you don't have an account), you can still contribute. Just send us an email with details at <admin@khulnasoft.com> and we'll figure out how to get you on board.

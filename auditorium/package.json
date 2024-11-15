@@ -1,0 +1,110 @@
+{
+  "name": "auditorium",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "budo index.js --pushstate --port $PORT -- --entry ./register-dev-locales.js --global-transform aliasify",
+    "test": "npm run mochify",
+    "mochify": "mochify --chrome $(which google-chrome) --global-transform aliasify --allow-chrome-as-root src/{,**}/*.test.js",
+    "posttest": "standard",
+    "fix": "standard --fix",
+    "build": "gulp",
+    "extract-strings": "extract-strings index.js $(find src -name '*.js')",
+    "licenses": "npm-license-crawler --production --onlyDirectDependencies --omitVersion --csv dependencies.csv"
+  },
+  "aliasify": {
+    "aliases": {
+      "react": "preact/compat",
+      "react-dom": "preact/compat"
+    }
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "date-fns": "^2.16.1",
+    "escape-html": "^1.0.3",
+    "i18n-iso-countries": "^7.4.0",
+    "khulnasoft": "file:./../packages",
+    "plotly.js-basic-dist": "^1.51.2",
+    "preact": "^10.7.1",
+    "preact-router": "^4.0.1",
+    "prism-themes": "^1.6.0",
+    "prismjs": "^1.27.0",
+    "react-copy-to-clipboard": "^5.0.2",
+    "react-datepicker": "^3.3.0",
+    "react-plotly.js": "^2.4.0",
+    "react-redux": "^7.2.4",
+    "react-simple-code-editor": "^0.11.0",
+    "redux": "^4.1.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "underscore": "^1.13.1",
+    "url-polyfill": "^1.1.12",
+    "zxcvbn": "^4.4.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@csstools/postcss-sass": "^4.0.0",
+    "@khulnasoft/l10nify": "^0.4.0",
+    "aliasify": "^2.1.0",
+    "babel-preset-preact": "^2.0.0",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
+    "budo": "^11.7.0",
+    "envify": "^4.1.0",
+    "gulp": "^4.0.2",
+    "gulp-append-prepend": "^1.0.8",
+    "gulp-clean": "^0.4.0",
+    "gulp-rev": "^9.0.0",
+    "linguas-file": "^2.0.0",
+    "mochify": "^9.2.0",
+    "npm-license-crawler": "^0.2.1",
+    "redux-mock-store": "^1.5.4",
+    "sheetify": "^8.0.0",
+    "sheetify-postcss": "^2.0.0",
+    "sinon": "^8.1.1",
+    "standard": "^14.3.1",
+    "tinyify": "^2.5.1",
+    "urify": "^2.1.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "overrides": {
+    "colors@>1.4.0": "1.4.0"
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "urify/transform",
+      "envify",
+      "@khulnasoft/l10nify",
+      [
+        "sheetify",
+        {
+          "transform": [
+            [
+              "sheetify-postcss",
+              {
+                "plugins": [
+                  "@csstools/postcss-sass"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "standard": {
+    "globals": [
+      "__"
+    ],
+    "ignore": [
+      "dist/**/*.*"
+    ],
+    "env": [
+      "mocha"
+    ]
+  }
+}

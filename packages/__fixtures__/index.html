@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>createVault test fixture</title>
+</head>
+<body>
+  <script type="text/javascript">
+    window.addEventListener('message', function (event) {
+      if (event.data.please === 'respond') {
+        event.source.postMessage({
+          hey: 'there'
+        }, '*')
+      }
+      if (event.data.expectResponse) {
+        event.ports[0].postMessage({
+          value: event.data.value
+        })
+      }
+    })
+  </script>
+</body>
+</html>

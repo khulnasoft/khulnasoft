@@ -1,0 +1,26 @@
+/**
+ * Copyright 2022 - KhulnaSoft Authors <admin@khulnasoft.com>
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+.ma-1 {
+  margin: -0.5em;
+}
+.ma-2 {
+  margin: -1em;
+}
+.ma-3 {
+  margin: -2em;
+}
+.ma-4 {
+  margin: -4em;
+}
+.margin-filterIcon {
+  margin-top: 0.15em;
+}
+.margin-header {
+  margin-top: 0.15em;
+}
+@media screen and (max-width: 30em) {
+  .margin-header {  margin-top: 0.5em; }
+}

@@ -1,0 +1,19 @@
+# Copyright 2020 - KhulnaSoft Authors <admin@khulnasoft.com>
+# SPDX-License-Identifier: Apache-2.0
+
+FROM golang:1.22
+
+RUN apt-get update \
+  && apt-get install -y \
+  gettext \
+  sqlite3 \
+  && rm -rf /var/lib/apt/lists/*
+
+ENV GOCACHE /data/cache
+
+WORKDIR /khulnasoft
+# this is used for hot-reloading applications on change
+# configuration is found in the application directories
+# themselves
+RUN go install github.com/markbates/refresh@latest
+RUN git config --global --add safe.directory /khulnasoft

@@ -1,0 +1,10 @@
+Copyright 2020-2022 - KhulnaSoft Authors <admin@khulnasoft.com>
+SPDX-License-Identifier: Apache-2.0
+///////////////////////////////////////////////////////////////////////
+License information about 3rd party JavaScript included in this
+bundle can found at /NOTICE.txt under the same domain as this file.
+///////////////////////////////////////////////////////////////////////
+KhulnaSoft is a fair alternative to common web analytics tools.
+Find out more about why we are building KhulnaSoft at https://www.khulnasoft.com.
+All source code is available at https://github.com/khulnasoft/khulnasoft.
+///////////////////////////////////////////////////////////////////////

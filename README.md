@@ -1,287 +1,235 @@
-<p align="center">
-<img src="https://user-images.githubusercontent.com/8291514/213727234-cda046d6-28c6-491a-b284-b86c5cede25d.png#gh-light-mode-only">
-<img src="https://user-images.githubusercontent.com/8291514/213727225-56186826-bee8-43b5-9b15-86e839d89393.png#gh-dark-mode-only">
-</p>
+<!--
+Copyright 2020-2024 - KhulnaSoft Fair Web Analytics Authors <admin@khulnasoft.com>
+SPDX-License-Identifier: Apache-2.0
+-->
 
-# Supabase
+<a href="https://www.khulnasoft.com/">
+  <img src="https://khulnasoft.github.io/press-kit/avatars/avatar-OFWA-header.svg" alt="KhulnaSoft Fair Web Analytics logo" title="KhulnaSoft Fair Web Analytics" width="60px"/>
+</a>
 
-[Supabase](https://khuknasoft.com) is an open source Firebase alternative. We're building the features of Firebase using enterprise-grade open source tools.
+# KhulnaSoft Fair Web Analytics
 
-- [x] Hosted Postgres Database. [Docs](https://khuknasoft.com/docs/guides/database)
-- [x] Authentication and Authorization. [Docs](https://khuknasoft.com/docs/guides/auth)
-- [x] Auto-generated APIs.
-  - [x] REST. [Docs](https://khuknasoft.com/docs/guides/api)
-  - [x] GraphQL. [Docs](https://khuknasoft.com/docs/guides/graphql)
-  - [x] Realtime subscriptions. [Docs](https://khuknasoft.com/docs/guides/realtime)
-- [x] Functions.
-  - [x] Database Functions. [Docs](https://khuknasoft.com/docs/guides/database/functions)
-  - [x] Edge Functions [Docs](https://khuknasoft.com/docs/guides/functions)
-- [x] File Storage. [Docs](https://khuknasoft.com/docs/guides/storage)
-- [x] AI + Vector/Embeddings Toolkit. [Docs](https://khuknasoft.com/docs/guides/ai)
-- [x] Dashboard
+[![CircleCI](https://circleci.com/gh/khulnasoft/khulnasoft/tree/development.svg?style=svg)](https://circleci.com/gh/khulnasoft/khulnasoft/tree/development)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Docs](https://img.shields.io/badge/Documentation-docs.khulnasoft.com-blue.svg)](https://docs.khulnasoft.com)
+[![Awesome Humane Tech](https://raw.githubusercontent.com/humanetech-community/awesome-humane-tech/main/humane-tech-badge.svg?sanitize=true)](https://github.com/humanetech-community/awesome-humane-tech)
+[![REUSE status](https://api.reuse.software/badge/github.com/khulnasoft/khulnasoft)](https://api.reuse.software/info/github.com/khulnasoft/khulnasoft)
 
-![Supabase Dashboard](https://raw.githubusercontent.com/supabase/supabase/master/apps/www/public/images/github/supabase-dashboard.png)
+__Let your users access their data.  
+Gain valuable insights at the same time.  
+Open, lightweight, self hosted and free.__
 
-Watch "releases" of this repo to get notified of major updates.
+## Contents
 
-<kbd><img src="https://raw.githubusercontent.com/supabase/supabase/d5f7f413ab356dc1a92075cb3cee4e40a957d5b1/web/static/watch-repo.gif" alt="Watch this repo"/></kbd>
+__Software__
+- [Core features](#core-features)
+- [How it works](#how-it-works)
+- [Essential metrics](#essential-metrics)
+- [Objectives](#objectives)
+- [Localize](#localize)
+- [Customize](#customize)
+- [Test drive](#test-drive)
+- [License](#license)
 
-## Documentation
+__Community__
+- [Feedback and contributions welcome](#feedback-and-contributions-welcome)
+- [Kind support](#kind-support)
+- [Who's using KhulnaSoft Fair Web Analytics?](#whos-using-khulnasoft)
+- [Links](#links)
 
-For full documentation, visit [khuknasoft.com/docs](https://khuknasoft.com/docs)
+## Core features
 
-To see how to Contribute, visit [Getting Started](./DEVELOPERS.md)
+__Secure & free__  
+Our code is open source.
+All usage data is encrypted end-to-end.
+KhulnaSoft Fair Web Analytics will always be available for free.
 
-## Community & Support
+__Self hosted__  
+Comply with GDPR guidelines.
+No ads, no third parties involved.
+KhulnaSoft Fair Web Analytics uses first-party cookies only.
 
-- [Community Forum](https://github.com/khulnasoft/khulnasoft/discussions). Best for: help with building, discussion about database best practices.
-- [GitHub Issues](https://github.com/khulnasoft/khulnasoft/issues). Best for: bugs and errors you encounter using Supabase.
-- [Email Support](https://khuknasoft.com/docs/support#business-support). Best for: problems with your database or infrastructure.
-- [Discord](https://discord.khuknasoft.com). Best for: sharing your applications and hanging out with the community.
+__Fair & by choice__  
+Opt-in only.
+Users must actively give their consent to data collection.
+They have full access to their data.
 
 ## How it works
 
-Supabase is a combination of open source tools. We’re building the features of Firebase using enterprise-grade, open source products. If the tools and communities exist, with an MIT, Apache 2, or equivalent open license, we will use and support that tool. If the tool doesn't exist, we build and open source it ourselves. Supabase is not a 1-to-1 mapping of Firebase. Our aim is to give developers a Firebase-like developer experience using open source tools.
+__Your job__
+- Self host KhulnaSoft Fair Web Analytics while protecting your users' data.  
+- Integrate the code snippet into pages you want to track.  
+- Make your users aware of the access to their data.  
+- Improve your services with fair and transparent insights.  
 
-**Architecture**
+__Benefits for your users__
+- Opt in to data collection or decide to not participate at all.  
+- Review own data with detailed explanations of metrics and terms.  
+- Only delete usage data or opt out completely at any time.  
 
-Supabase is a [hosted platform](https://khuknasoft.com/dashboard). You can sign up and start using Supabase without installing anything.
-You can also [self-host](https://khuknasoft.com/docs/guides/hosting/overview) and [develop locally](https://khuknasoft.com/docs/guides/local-development).
+__What you see__  
+Data of all pages where your installation is active.
+For example:
 
-![Architecture](apps/docs/public/img/supabase-architecture.svg)
+![Example A](https://khulnasoft.github.io/press-kit/khulnasoft-material/gfx-GitHub-Example-A.svg)
 
-- [Postgres](https://www.postgresql.org/) is an object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
-- [Realtime](https://github.com/supabase/realtime) is an Elixir server that allows you to listen to PostgreSQL inserts, updates, and deletes using websockets. Realtime polls Postgres' built-in replication functionality for database changes, converts changes to JSON, then broadcasts the JSON over websockets to authorized clients.
-- [PostgREST](http://postgrest.org/) is a web server that turns your PostgreSQL database directly into a RESTful API
-- [GoTrue](https://github.com/supabase/gotrue) is a JWT based API for managing users and issuing JWT tokens.
-- [Storage](https://github.com/supabase/storage-api) provides a RESTful interface for managing Files stored in S3, using Postgres to manage permissions.
-- [pg_graphql](http://github.com/supabase/pg_graphql/) a PostgreSQL extension that exposes a GraphQL API
-- [postgres-meta](https://github.com/supabase/postgres-meta) is a RESTful API for managing your Postgres, allowing you to fetch tables, add roles, and run queries, etc.
-- [Kong](https://github.com/Kong/kong) is a cloud-native API gateway.
+__What your users see__  
+Data of all pages a user has visited where your installation is active. For example:
 
-#### Client libraries
+![Example B](https://khulnasoft.github.io/press-kit/khulnasoft-material/gfx-GitHub-Example-B.svg)
 
-Our approach for client libraries is modular. Each sub-library is a standalone implementation for a single external system. This is one of the ways we support existing tools.
+__More features__
+- Easily analyze multiple websites within one installation.
+- All website accounts can be shared within teams.
+- User data is only stored for 6 months and then deleted.  
+- A detailed documentation on how to run KhulnaSoft Fair Web Analytics is available.  
 
-<table style="table-layout:fixed; white-space: nowrap;">
-  <tr>
-    <th>Language</th>
-    <th>Client</th>
-    <th colspan="5">Feature-Clients (bundled in Supabase client)</th>
-  </tr>
-  <!-- notranslate -->
-  <tr>
-    <th></th>
-    <th>Supabase</th>
-    <th><a href="https://github.com/postgrest/postgrest" target="_blank" rel="noopener noreferrer">PostgREST</a></th>
-    <th><a href="https://github.com/supabase/gotrue" target="_blank" rel="noopener noreferrer">GoTrue</a></th>
-    <th><a href="https://github.com/supabase/realtime" target="_blank" rel="noopener noreferrer">Realtime</a></th>
-    <th><a href="https://github.com/supabase/storage-api" target="_blank" rel="noopener noreferrer">Storage</a></th>
-    <th>Functions</th>
-  </tr>
-  <!-- TEMPLATE FOR NEW ROW -->
-  <!-- START ROW
-  <tr>
-    <td>lang</td>
-    <td><a href="https://github.com/supabase-community/supabase-lang" target="_blank" rel="noopener noreferrer">supabase-lang</a></td>
-    <td><a href="https://github.com/supabase-community/postgrest-lang" target="_blank" rel="noopener noreferrer">postgrest-lang</a></td>
-    <td><a href="https://github.com/supabase-community/gotrue-lang" target="_blank" rel="noopener noreferrer">gotrue-lang</a></td>
-    <td><a href="https://github.com/supabase-community/realtime-lang" target="_blank" rel="noopener noreferrer">realtime-lang</a></td>
-    <td><a href="https://github.com/supabase-community/storage-lang" target="_blank" rel="noopener noreferrer">storage-lang</a></td>
-  </tr>
-  END ROW -->
-  <!-- /notranslate -->
-  <th colspan="7">⚡️ Official ⚡️</th>
-  <!-- notranslate -->
-  <tr>
-    <td>JavaScript (TypeScript)</td>
-    <td><a href="https://github.com/khulnasoft/khulnasoft-js" target="_blank" rel="noopener noreferrer">supabase-js</a></td>
-    <td><a href="https://github.com/supabase/postgrest-js" target="_blank" rel="noopener noreferrer">postgrest-js</a></td>
-    <td><a href="https://github.com/supabase/gotrue-js" target="_blank" rel="noopener noreferrer">gotrue-js</a></td>
-    <td><a href="https://github.com/supabase/realtime-js" target="_blank" rel="noopener noreferrer">realtime-js</a></td>
-    <td><a href="https://github.com/supabase/storage-js" target="_blank" rel="noopener noreferrer">storage-js</a></td>
-    <td><a href="https://github.com/khulnasoft/functions-js" target="_blank" rel="noopener noreferrer">functions-js</a></td>
-  </tr>
-    <tr>
-    <td>Flutter</td>
-    <td><a href="https://github.com/khulnasoft/khulnasoft-flutter" target="_blank" rel="noopener noreferrer">supabase-flutter</a></td>
-    <td><a href="https://github.com/supabase/postgrest-dart" target="_blank" rel="noopener noreferrer">postgrest-dart</a></td>
-    <td><a href="https://github.com/supabase/gotrue-dart" target="_blank" rel="noopener noreferrer">gotrue-dart</a></td>
-    <td><a href="https://github.com/supabase/realtime-dart" target="_blank" rel="noopener noreferrer">realtime-dart</a></td>
-    <td><a href="https://github.com/supabase/storage-dart" target="_blank" rel="noopener noreferrer">storage-dart</a></td>
-    <td><a href="https://github.com/khulnasoft/functions-dart" target="_blank" rel="noopener noreferrer">functions-dart</a></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td><a href="https://github.com/khulnasoft/khulnasoft-swift" target="_blank" rel="noopener noreferrer">supabase-swift</a></td>
-    <td><a href="https://github.com/khulnasoft/khulnasoft-swift/tree/main/Sources/PostgREST" target="_blank" rel="noopener noreferrer">postgrest-swift</a></td>
-    <td><a href="https://github.com/khulnasoft/khulnasoft-swift/tree/main/Sources/Auth" target="_blank" rel="noopener noreferrer">auth-swift</a></td>
-    <td><a href="https://github.com/khulnasoft/khulnasoft-swift/tree/main/Sources/Realtime" target="_blank" rel="noopener noreferrer">realtime-swift</a></td>
-    <td><a href="https://github.com/khulnasoft/khulnasoft-swift/tree/main/Sources/Storage" target="_blank" rel="noopener noreferrer">storage-swift</a></td>
-    <td><a href="https://github.com/khulnasoft/khulnasoft-swift/tree/main/Sources/Functions" target="_blank" rel="noopener noreferrer">functions-swift</a></td>
-  </tr>
-  <tr>
-    <td>Python</td>
-    <td><a href="https://github.com/khulnasoft/khulnasoft-py" target="_blank" rel="noopener noreferrer">supabase-py</a></td>
-    <td><a href="https://github.com/supabase/postgrest-py" target="_blank" rel="noopener noreferrer">postgrest-py</a></td>
-    <td><a href="https://github.com/supabase/gotrue-py" target="_blank" rel="noopener noreferrer">gotrue-py</a></td>
-    <td><a href="https://github.com/supabase/realtime-py" target="_blank" rel="noopener noreferrer">realtime-py</a></td>
-    <td><a href="https://github.com/supabase/storage-py" target="_blank" rel="noopener noreferrer">storage-py</a></td>
-    <td><a href="https://github.com/khulnasoft/functions-py" target="_blank" rel="noopener noreferrer">functions-py</a></td>
-  </tr>
-  <!-- /notranslate -->
-  <th colspan="7">💚 Community 💚</th>
-  <!-- notranslate -->
-  <tr>
-    <td>C#</td>
-    <td><a href="https://github.com/supabase-community/supabase-csharp" target="_blank" rel="noopener noreferrer">supabase-csharp</a></td>
-    <td><a href="https://github.com/supabase-community/postgrest-csharp" target="_blank" rel="noopener noreferrer">postgrest-csharp</a></td>
-    <td><a href="https://github.com/supabase-community/gotrue-csharp" target="_blank" rel="noopener noreferrer">gotrue-csharp</a></td>
-    <td><a href="https://github.com/supabase-community/realtime-csharp" target="_blank" rel="noopener noreferrer">realtime-csharp</a></td>
-    <td><a href="https://github.com/supabase-community/storage-csharp" target="_blank" rel="noopener noreferrer">storage-csharp</a></td>
-    <td><a href="https://github.com/supabase-community/functions-csharp" target="_blank" rel="noopener noreferrer">functions-csharp</a></td>
-  </tr>
-  <tr>
-    <td>Go</td>
-    <td>-</td>
-    <td><a href="https://github.com/supabase-community/postgrest-go" target="_blank" rel="noopener noreferrer">postgrest-go</a></td>
-    <td><a href="https://github.com/supabase-community/gotrue-go" target="_blank" rel="noopener noreferrer">gotrue-go</a></td>
-    <td>-</td>
-    <td><a href="https://github.com/supabase-community/storage-go" target="_blank" rel="noopener noreferrer">storage-go</a></td>
-    <td><a href="https://github.com/supabase-community/functions-go" target="_blank" rel="noopener noreferrer">functions-go</a></td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>-</td>
-    <td>-</td>
-    <td><a href="https://github.com/supabase-community/gotrue-java" target="_blank" rel="noopener noreferrer">gotrue-java</a></td>
-    <td>-</td>
-    <td><a href="https://github.com/supabase-community/storage-java" target="_blank" rel="noopener noreferrer">storage-java</a></td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>Kotlin</td>
-    <td><a href="https://github.com/supabase-community/supabase-kt" target="_blank" rel="noopener noreferrer">supabase-kt</a></td>
-    <td><a href="https://github.com/supabase-community/supabase-kt/tree/master/Postgrest" target="_blank" rel="noopener noreferrer">postgrest-kt</a></td>
-    <td><a href="https://github.com/supabase-community/supabase-kt/tree/master/Auth" target="_blank" rel="noopener noreferrer">auth-kt</a></td>
-    <td><a href="https://github.com/supabase-community/supabase-kt/tree/master/Realtime" target="_blank" rel="noopener noreferrer">realtime-kt</a></td>
-    <td><a href="https://github.com/supabase-community/supabase-kt/tree/master/Storage" target="_blank" rel="noopener noreferrer">storage-kt</a></td>
-    <td><a href="https://github.com/supabase-community/supabase-kt/tree/master/Functions" target="_blank" rel="noopener noreferrer">functions-kt</a></td>
-  </tr>
-  <tr>
-    <td>Ruby</td>
-    <td><a href="https://github.com/supabase-community/supabase-rb" target="_blank" rel="noopener noreferrer">supabase-rb</a></td>
-    <td><a href="https://github.com/supabase-community/postgrest-rb" target="_blank" rel="noopener noreferrer">postgrest-rb</a></td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>Rust</td>
-    <td>-</td>
-    <td><a href="https://github.com/supabase-community/postgrest-rs" target="_blank" rel="noopener noreferrer">postgrest-rs</a></td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>Godot Engine (GDScript)</td>
-    <td><a href="https://github.com/supabase-community/godot-engine.supabase" target="_blank" rel="noopener noreferrer">supabase-gdscript</a></td>
-    <td><a href="https://github.com/supabase-community/postgrest-gdscript" target="_blank" rel="noopener noreferrer">postgrest-gdscript</a></td>
-    <td><a href="https://github.com/supabase-community/gotrue-gdscript" target="_blank" rel="noopener noreferrer">gotrue-gdscript</a></td>
-    <td><a href="https://github.com/supabase-community/realtime-gdscript" target="_blank" rel="noopener noreferrer">realtime-gdscript</a></td>
-    <td><a href="https://github.com/supabase-community/storage-gdscript" target="_blank" rel="noopener noreferrer">storage-gdscript</a></td>
-    <td><a href="https://github.com/supabase-community/functions-gdscript" target="_blank" rel="noopener noreferrer">functions-gdscript</a></td>
-  </tr>
-  <!-- /notranslate -->
-</table>
+## Essential metrics
 
-<!--- Remove this list if you're translating to another language, it's hard to keep updated across multiple files-->
-<!--- Keep only the link to the list of translation files-->
+All important statistics that help you to improve your service.  
+Filter collected data by URL, Location, Referrer, UTM parameters, as well as Landing Pages and Exit Pages.
+![Essential metrics](https://khulnasoft.github.io/press-kit/khulnasoft-material/gfx-GitHub-Metrics.svg)
 
-## Badges
+## Objectives
 
-![Made with Supabase](./apps/www/public/badge-made-with-supabase.svg)
+__Privacy friendly__  
+Collection of usage data is opt in, users that do not actively opt in will never leave a trace.
+After opt in, KhulnaSoft Fair Web Analytics collects the minimal amount of data needed to generate meaningful statistics for operators.
+No IPs, User-Agent strings or similar are being collected or even looked at.
 
-```md
-[![Made with Supabase](https://khuknasoft.com/badge-made-with-supabase.svg)](https://khuknasoft.com)
+__Secure__  
+Data in KhulnaSoft Fair Web Analytics is encrypted End-To-End.
+Clients encrypt usage data before it leaves the browser and there is no way for the server storing this data to decrypt it.
+Attackers have no means to compromise an instance, accidental data leaks cannot expose user data.
+
+__Self hosted and lightweight__  
+You can run KhulnaSoft Fair Web Analytics on-premises, or in any other deployment scenario that fits your need.
+All you need to do is download a single binary file or pull a Docker image, and run it on your server.
+KhulnaSoft Fair Web Analytics will automatically install and renew SSL certificates for you if you want it to.
+If you do not want to deploy a dedicated database, you can use SQLite to store data directly on the server.
+
+__Transparent and fair__  
+KhulnaSoft Fair Web Analytics treats the user as a party of equal importance in the collection of usage data.
+Users have access to the same set of tools for analyzing their own data and they can delete their data at any time.
+
+## Localize
+
+__KhulnaSoft Fair Web Analytics is currently available in English, French, German, Portuguese, Spanish and Vietnamese.__
+Our consent banner and the Auditorium for operators as well as users can be displayed in the respective locale.  
+
+If you want to support fair web analytics by contributing Italian, Dutch, Polish or other language versions, don't hesitate to [request an invite.][]
+
+[request an invite.]: mailto:admin@khulnasoft.com
+
+## Customize
+
+Our consent banner is customizable in __color, shape and basic font specifications__ to match your design. [Learn more.][]
+
+[Learn more.]: https://docs.khulnasoft.com/running-khulnasoft/customizing-consent-banner/
+
+## Test drive
+
+Give KhulnaSoft Fair Web Analytics a test drive right now. Open your terminal and type:
+
+```sh
+curl https://demo.khulnasoft.com | bash
 ```
 
-```html
-<a href="https://khuknasoft.com">
-  <img
-    width="168"
-    height="30"
-    src="https://khuknasoft.com/badge-made-with-supabase.svg"
-    alt="Made with Supabase"
-  />
+This creates an ephemeral one-off installation that is populated with random data and is running on `http://localhost:9876`.
+There, you can log in using the account `demo@khulnasoft.com` and password `demo`.
+
+## License
+
+Work in this repository is licensed under multiple licences.
+
+- All original source code is licensed under [Apache-2.0][license-apache].
+- All documentation is licensed under [Apache-2.0][license-apache].
+- The KhulnaSoft Fair Web Analytics icon and logo are licensed as [CC-BY-NC-ND-4.0][license-cc].
+
+See the [NOTICE][notice] file for license information on works that get bundled by KhulnaSoft Fair Web Analytics.
+
+[license-apache]: https://github.com/khulnasoft/khulnasoft/blob/development/LICENSES/Apache-2.0.txt
+[license-cc]: https://github.com/khulnasoft/khulnasoft/blob/development/LICENSES/CC-BY-NC-ND-4.0.txt
+[notice]: https://github.com/khulnasoft/khulnasoft/blob/development/NOTICE
+
+## Feedback and contributions welcome
+
+Found an issue or want to add something? Please do not hesitate to file an issue or open a pull request (or send an email in case you don't want to use GitHub).
+For details on how to get started head over to our [contributing guidelines.](https://github.com/khulnasoft/khulnasoft/blob/development/CONTRIBUTING.md)
+
+---
+
+This repository contains all source code needed to work on KhulnaSoft Fair Web Analytics, both on the server as well as on the client.
+The development setup requires `docker` and the `compose` plugin to be installed.
+
+After cloning the repository
+
+```
+$ git clone git@github.com:khulnasoft/khulnasoft.git
+```
+
+you can build the containers and install dependencies using:
+
+```sh
+$ make setup
+```
+
+Next seed the database for the `server` application:
+
+```sh
+$ make bootstrap
+```
+
+You can test your setup by starting the application:
+
+```sh
+$ make up
+```
+
+which should enable you to access <http://localhost:8080/auditorium/> and use the `Auditorium`
+
+Run the tests for all subapplications using
+
+```sh
+$ make test
+```
+
+Detailed instructions on how to get started with development can be found at our [dedicated docs site][dev-docs].
+
+[dev-docs]: https://docs.khulnasoft.com/developing-khulnasoft/
+
+---
+
+The documentation site at <https://docs.khulnasoft.com> is also part of this repository.
+To run this site locally, you can:
+
+```sh
+make setup-docs
+make docs
+```
+
+This will serve the documentation site on <https://localhost:4000>.
+
+## Kind support
+
+[![NLnet Foundation](https://khulnasoft.github.io/press-kit/external-material/nlnet-logo.svg)](https://nlnet.nl/)
+
+We are happy to work with [NLnet Foundation,](https://nlnet.nl/) which has supported our efforts as part of its [Next Generation Internet](https://nlnet.nl/NGI/) initiative.
+
+<a href="https://www.browserstack.com/">
+  <img src="https://khulnasoft.github.io/press-kit/external-material/browserstack-logo.svg" width="160">
 </a>
-```
 
-![Made with Supabase (dark)](./apps/www/public/badge-made-with-supabase-dark.svg)
+Cross-Browser testing provided by [BrowserStack](https://www.browserstack.com/).
 
-```md
-[![Made with Supabase](https://khuknasoft.com/badge-made-with-supabase-dark.svg)](https://khuknasoft.com)
-```
+## Who's using KhulnaSoft Fair Web Analytics?
 
-```html
-<a href="https://khuknasoft.com">
-  <img
-    width="168"
-    height="30"
-    src="https://khuknasoft.com/badge-made-with-supabase-dark.svg"
-    alt="Made with Supabase"
-  />
-</a>
-```
+We're happy to feature you in this README.
+Send a PR adding your site or app to this section.
 
-## Translations
+- [All Quiet](https://allquiet.app) - Incident escalation made easy  
 
-- [Arabic | العربية](/i18n/README.ar.md)
-- [Albanian / Shqip](/i18n/README.sq.md)
-- [Bangla / বাংলা](/i18n/README.bn.md)
-- [Bulgarian / Български](/i18n/README.bg.md)
-- [Catalan / Català](/i18n/README.ca.md)
-- [Czech / čeština](/i18n/README.cs.md)
-- [Danish / Dansk](/i18n/README.da.md)
-- [Dutch / Nederlands](/i18n/README.nl.md)
-- [English](https://github.com/khulnasoft/khulnasoft)
-- [Estonian / eesti keel](/i18n/README.et.md)
-- [Finnish / Suomalainen](/i18n/README.fi.md)
-- [French / Français](/i18n/README.fr.md)
-- [German / Deutsch](/i18n/README.de.md)
-- [Greek / Ελληνικά](/i18n/README.el.md)
-- [Gujarati / ગુજરાતી](/i18n/README.gu.md)
-- [Hebrew / עברית](/i18n/README.he.md)
-- [Hindi / हिंदी](/i18n/README.hi.md)
-- [Hungarian / Magyar](/i18n/README.hu.md)
-- [Nepali / नेपाली](/i18n/README.ne.md)
-- [Indonesian / Bahasa Indonesia](/i18n/README.id.md)
-- [Italiano / Italian](/i18n/README.it.md)
-- [Japanese / 日本語](/i18n/README.jp.md)
-- [Korean / 한국어](/i18n/README.ko.md)
-- [Lithuanian / lietuvių](/i18n/README.lt.md)
-- [Latvian / latviski](/i18n/README.lv.md)
-- [Malay / Bahasa Malaysia](/i18n/README.ms.md)
-- [Norwegian (Bokmål) / Norsk (Bokmål)](/i18n/README.nb.md)
-- [Persian / فارسی](/i18n/README.fa.md)
-- [Polish / Polski](/i18n/README.pl.md)
-- [Portuguese / Português](/i18n/README.pt.md)
-- [Portuguese (Brazilian) / Português Brasileiro](/i18n/README.pt-br.md)
-- [Romanian / Română](/i18n/README.ro.md)
-- [Russian / Pусский](/i18n/README.ru.md)
-- [Serbian / Srpski](/i18n/README.sr.md)
-- [Sinhala / සිංහල](/i18n/README.si.md)
-- [Slovak / slovenský](/i18n/README.sk.md)
-- [Slovenian / Slovenščina](/i18n/README.sl.md)
-- [Spanish / Español](/i18n/README.es.md)
-- [Simplified Chinese / 简体中文](/i18n/README.zh-cn.md)
-- [Swedish / Svenska](/i18n/README.sv.md)
-- [Thai / ไทย](/i18n/README.th.md)
-- [Traditional Chinese / 繁體中文](/i18n/README.zh-tw.md)
-- [Turkish / Türkçe](/i18n/README.tr.md)
-- [Ukrainian / Українська](/i18n/README.uk.md)
-- [Vietnamese / Tiếng Việt](/i18n/README.vi-vn.md)
-- [List of translations](/i18n/languages.md) <!--- Keep only this -->
+## Links
+[Website](https://www.khulnasoft.com/)  
+[Docs](https://docs.khulnasoft.com/)  
+[Mastodon](https://fosstodon.org/@khulnasoft)

@@ -1,0 +1,21 @@
+# Copyright 2020 - KhulnaSoft Authors <admin@khulnasoft.com>
+# SPDX-License-Identifier: Apache-2.0
+
+version: '3'
+
+services:
+  integration:
+    image: cypress/included:4.5.0
+    entrypoint: []
+    working_dir: /khulnasoft/integration
+    network_mode: host
+    environment:
+      CYPRESS_OPERATOR_USERNAME: develop@khulnasoft.com
+      CYPRESS_OPERATOR_PASSWORD: development
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
+    volumes:
+      - .:/khulnasoft
+      - integrationdeps:/khulnasoft/integration/node_modules
+
+volumes:
+  integrationdeps:

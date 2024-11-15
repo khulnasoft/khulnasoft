@@ -1,48 +1,147 @@
-REPO_DIR=$(shell pwd)
+# Copyright 2020 - KhulnaSoft Authors <admin@khulnasoft.com>
+# SPDX-License-Identifier: Apache-2.0
 
+.PHONY: help
+help: # @HELP Print this message
 help:
-	@echo "\SCRIPTS\n"
-	@echo "make github.contributors  	# pull a list of all contributors"
-	@echo "make github.issues			# pull a list of all issue creators"
-	@echo "make github.repos			# pull a list of our repos"
-	@echo "make github.traction			# get a history of stargazers for our individual repos"
+	@echo "TARGETS:"
+	@grep -E '^.*: *# *@HELP' $(MAKEFILE_LIST)    \
+	    | awk '                                   \
+	        BEGIN {FS = ": *# *@HELP"};           \
+	        { printf "  %-20s %s\n", $$1, $$2 };  \
+	    '
 
-github.contributors.%:
-	curl -sS https://api.github.com/repos/supabase/$*/contributors \
-	| jq -r 'map_values({ username: .login }) \
-	| unique \
-	| sort_by(.username)' \
-	> $(REPO_DIR)/web/src/data/contributors/$*.json
+.PHONY: setup
+setup: # @HELP Build the development containers and install app dependencies
+setup: dev-build update
+	@echo "Successfully built containers and installed dependencies."
+	@echo "If this is your initial setup, you can run 'make bootstrap' next"
+	@echo "to create seed the database."
 
-.PHONY: github.rcontributorsepos
-github.contributors: \
-	github.contributors.supabase \
-	github.contributors.supabase-js \
-	github.contributors.supabase-py \
-	github.contributors.supabase-flutter \
-	github.contributors.supabase-dart
+.PHONY: bootstrap
+bootstrap: # @HELP Set up and seed databases - **Important**: this deletes any existing data
+bootstrap:
+	@echo "Bootstrapping Server service ..."
+	@docker compose run --rm server make setup
 
-github.issues:
-	curl -sS https://api.github.com/repos/supabase/supabase/issues \
-	| jq -r 'map_values({username: .user.login, avatar_url: .user.avatar_url}) \
-	| unique \
-	| sort_by(.username)' \
-	> $(REPO_DIR)/web/src/data/contributors/issues.json
+LOCALE ?= en
 
-.PHONY: github.repos
-github.repos: \
-	github.repos.supabase \
-	github.repos.realtime  \
-	github.repos.postgres \
-	github.repos.postgres-meta
+.PHONY: up
+up: # @HELP Start the development server
+up:
+	@LOCALE=${LOCALE} docker compose up
 
-github.repos.%:
-	curl -sS https://api.github.com/repos/supabase/$* \
-	> $(REPO_DIR)/web/src/data/repos/$*.json
+.PHONY: down
+down: # @HELP Tear down the development containers
+down:
+	@docker compose down
 
-github.traction:
-	cd "$(REPO_DIR)"/web && \
-	npm run traction
+.PHONY: extract-strings
+extract-strings: # @HELP Extract user facing strings for localization from source code
+extract-strings:
+	@docker build -t khulnasoft/messages -f build/Dockerfile.messages .
+	@docker create --entrypoint=bash -it --name messages khulnasoft/messages
+	@docker cp messages:/root/locales/ ./
+	@docker rm messages
 
-dev:
-	vercel dev --listen 8080 --local-config vercel-local.json
+.PHONY: test
+test: # @HELP Run unit tests for all subapps
+test:
+	@docker compose run --rm script npm test
+	@docker compose run --rm vault npm test
+	@docker compose run --rm auditorium npm test
+	@docker compose run --rm server make test
+
+.PHONY: integration
+integration: # @HELP Run integration tests
+integration:
+	@docker compose \
+		-p khulnasoft_integration \
+		-f docker-compose.integration.yml run --rm \
+		integration npm t
+
+.PHONY: dev-build
+dev-build: # @HELP Build the Docker images for local development
+dev-build:
+	@docker compose build
+
+.PHONY: update
+update: # @HELP Install and/or update dependencies for the subapp containers
+update:
+	@echo "Installing / updating dependencies ..."
+	@docker compose run --rm script npm ci
+	@docker compose run --rm vault npm ci
+	@docker compose run --rm auditorium npm ci
+	@docker compose run --rm server go mod download -x
+
+
+.PHONY: migrate
+migrate: # @HELP Apply pending migrations to the development database
+migrate:
+	@docker compose run --rm server make migrate
+
+.PHONY: secret
+secret: # @HELP Create an application secret
+secret:
+	@docker compose run server make secret
+
+TARGETS ?= linux/amd64
+LDFLAGS ?= -static
+KHULNASOFT_GIT_REVISION ?= none
+
+.PHONY: build
+build: # @HELP Build the application binary
+build:
+	@docker build \
+		--build-arg ldflags=${LDFLAGS} \
+		--build-arg targets=${TARGETS} \
+		--build-arg rev=${KHULNASOFT_GIT_REVISION} \
+		--build-arg skip_locales=${SKIP_LOCALES} \
+		-t khulnasoft/build -f build/Dockerfile.build .
+	@mkdir -p bin
+	@docker create --entrypoint=bash -it --name binary khulnasoft/build
+	@docker cp binary:/build/. ./bin
+	@docker rm binary
+
+DOCKERFILE ?= Dockerfile
+DOCKER_IMAGE_TAG ?= local
+
+.PHONY: build-docker
+build-docker: # @HELP Build the docker image
+build-docker:
+	@docker build -t khulnasoft/khulnasoft:${DOCKER_IMAGE_TAG} -f build/${DOCKERFILE} .
+
+.PHONY: build-extension
+build-extension: # @HELP Build the browser extension
+build-extension:
+	@docker build \
+		--build-arg api_key=${API_KEY} \
+		--build-arg api_secret=${API_SECRET} \
+		-t khulnasoft/extension -f build/Dockerfile.extension .
+	@mkdir -p bin
+	@docker create --entrypoint=ash -it --name extension khulnasoft/extension
+	@docker cp extension:/build/. ./bin
+	@docker rm extension
+
+.PHONY: setup-docs
+setup-docs: # @HELP Setup the development environment for working on the docs site
+setup-docs:
+	@docker compose -p khulnasoft_docs -f docker-compose.docs.yml build
+	@docker compose -p khulnasoft_docs -f docker-compose.docs.yml run --rm \
+		docs_jekyll bundle install
+	@docker compose -p khulnasoft_docs -f docker-compose.docs.yml run --rm \
+		docs_jekyll bundle exec just-the-docs rake search:init
+
+.PHONY: docs
+docs: # @HELP Run the development environment for the docs site
+docs:
+	@docker compose -p khulnasoft_docs -f docker-compose.docs.yml up
+
+.PHONY: build-docs
+build-docs: # @HELP Build the static assets for the docs site
+build-docs:
+	@docker build -t khulnasoft/docs -f build/Dockerfile.docs .
+	@rm -rf docs-site && mkdir docs-site
+	@docker create --entrypoint=bash -it --name assets khulnasoft/docs
+	@docker cp assets:/repo/_site/. ./docs-site/
+	@docker rm assets

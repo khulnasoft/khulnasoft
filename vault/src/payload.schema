@@ -1,0 +1,49 @@
+{
+  "type": ["object", "null"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["PAGEVIEW"]
+    },
+    "pageload": {
+      "type": ["number", "null"]
+    },
+    "isMobile": {
+      "type": "boolean"
+    },
+    "sessionId": {
+      "type": ["string", "null"]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 36
+    },
+    "referrer": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 2000
+        },
+        {
+          "type": "string",
+          "maxLength": 0
+        }
+      ]
+    },
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "maxLength": 2000
+    },
+    "rawHref": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "maxLength": 2000
+    },
+    "geo": {
+      "type": ["string", "null"]
+     }
+  }
+}
