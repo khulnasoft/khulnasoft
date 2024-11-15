@@ -67,12 +67,9 @@ __What you see__
 Data of all pages where your installation is active.
 For example:
 
-![Example A](https://khulnasoft.github.io/press-kit/khulnasoft-material/gfx-GitHub-Example-A.svg)
-
 __What your users see__  
 Data of all pages a user has visited where your installation is active. For example:
 
-![Example B](https://khulnasoft.github.io/press-kit/khulnasoft-material/gfx-GitHub-Example-B.svg)
 
 __More features__
 - Easily analyze multiple websites within one installation.
@@ -84,7 +81,6 @@ __More features__
 
 All important statistics that help you to improve your service.  
 Filter collected data by URL, Location, Referrer, UTM parameters, as well as Landing Pages and Exit Pages.
-![Essential metrics](https://khulnasoft.github.io/press-kit/khulnasoft-material/gfx-GitHub-Metrics.svg)
 
 ## Objectives
 
@@ -208,13 +204,7 @@ This will serve the documentation site on <https://localhost:4000>.
 
 ## Kind support
 
-[![NLnet Foundation](https://khulnasoft.github.io/press-kit/external-material/nlnet-logo.svg)](https://nlnet.nl/)
-
 We are happy to work with [NLnet Foundation,](https://nlnet.nl/) which has supported our efforts as part of its [Next Generation Internet](https://nlnet.nl/NGI/) initiative.
-
-<a href="https://www.browserstack.com/">
-  <img src="https://khulnasoft.github.io/press-kit/external-material/browserstack-logo.svg" width="160">
-</a>
 
 Cross-Browser testing provided by [BrowserStack](https://www.browserstack.com/).
 

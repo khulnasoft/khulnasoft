@@ -1,7 +1,7 @@
 # Copyright 2020-2021 - KhulnaSoft Authors <admin@khulnasoft.com>
 # SPDX-License-Identifier: Apache-2.0
 
-FROM node:16-alpine as auditorium
+FROM node:16-alpine AS auditorium
 RUN apk add git
 RUN apk add --no-cache --virtual .gyp python3 make g++
 RUN npm i -g npm@6
@@ -18,7 +18,7 @@ WORKDIR /code/auditorium
 RUN cp -a /code/deps/node_modules /code/auditorium/
 RUN npm run --silent extract-strings > auditorium.po
 
-FROM node:16-alpine as script
+FROM node:16-alpine AS script
 RUN apk add git
 RUN apk add --no-cache --virtual .gyp python3 make g++
 RUN npm i -g npm@6
@@ -37,7 +37,7 @@ WORKDIR /code/script
 RUN cp -a /code/deps/node_modules /code/script/
 RUN npm run --silent extract-strings > script.po
 
-FROM node:16-alpine as vault
+FROM node:16-alpine AS vault
 RUN apk add git
 RUN apk add --no-cache --virtual .gyp python3 make g++
 RUN npm i -g npm@6
@@ -56,7 +56,7 @@ WORKDIR /code/vault
 RUN cp -a /code/deps/node_modules /code/vault/
 RUN npm run --silent extract-strings > vault.po
 
-FROM node:16-alpine as packages
+FROM node:16-alpine AS packages
 RUN apk add git
 RUN apk add --no-cache --virtual .gyp python3 make g++
 RUN npm i -g npm@6

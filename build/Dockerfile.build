@@ -1,7 +1,7 @@
 # Copyright 2020-2021 - KhulnaSoft Authors <admin@khulnasoft.com>
 # SPDX-License-Identifier: Apache-2.0
 
-FROM node:16-alpine as khulnasoft_node
+FROM node:16-alpine AS khulnasoft_node
 RUN apk add git
 RUN apk add --no-cache --virtual .gyp python3 make g++
 RUN npm i -g npm@6
@@ -10,7 +10,7 @@ ENV ADBLOCK true
 ENV DISABLE_OPENCOLLECTIVE true
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
-FROM khulnasoft_node as auditorium
+FROM khulnasoft_node AS auditorium
 ARG skip_locales
 ENV SKIP_LOCALES=$skip_locales
 COPY ./auditorium/package.json ./auditorium/package-lock.json /code/deps/
@@ -25,7 +25,7 @@ ENV NODE_ENV production
 RUN npm run build
 RUN npm run licenses
 
-FROM khulnasoft_node as script
+FROM khulnasoft_node AS script
 ARG skip_locales
 ENV SKIP_LOCALES=$skip_locales
 COPY ./script/package.json ./script/package-lock.json /code/deps/
@@ -40,7 +40,7 @@ ENV NODE_ENV production
 RUN npm run build
 RUN npm run licenses
 
-FROM khulnasoft_node as vault
+FROM khulnasoft_node AS vault
 ARG skip_locales
 ENV SKIP_LOCALES=$skip_locales
 COPY ./vault/package.json ./vault/package-lock.json /code/deps/
@@ -56,7 +56,7 @@ RUN npm run build
 RUN npm run licenses
 
 # packages does not have a build step but we need to derive license information
-FROM khulnasoft_node as packages
+FROM khulnasoft_node AS packages
 COPY ./packages/package.json ./packages/package-lock.json /code/deps/
 WORKDIR /code/deps
 RUN npm ci
@@ -80,7 +80,7 @@ RUN go mod download
 RUN echo "repository,version,licenses" > dependencies.csv
 RUN license_finder report | tail -n +2 >> dependencies.csv
 
-FROM python:3.8-alpine as notice
+FROM python:3.8-alpine AS notice
 
 WORKDIR /code
 COPY ./create_notice.py ./NOTICE /code/
@@ -98,7 +98,7 @@ RUN python ./create_notice.py \
   --client auditorium.csv \
   --server server.csv >> NOTICE
 
-FROM techknowlogick/xgo:go-1.22.x as compiler
+FROM techknowlogick/xgo:go-1.22.x AS compiler
 
 ARG rev
 ENV GIT_REVISION=$rev
