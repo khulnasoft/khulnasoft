@@ -3,10 +3,6 @@ Copyright 2020-2024 - KhulnaSoft Fair Web Analytics Authors <admin@khulnasoft.co
 SPDX-License-Identifier: Apache-2.0
 -->
 
-<a href="https://www.khulnasoft.com/">
-  <img src="https://khulnasoft.github.io/press-kit/avatars/avatar-OFWA-header.svg" alt="KhulnaSoft Fair Web Analytics logo" title="KhulnaSoft Fair Web Analytics" width="60px"/>
-</a>
-
 # KhulnaSoft Fair Web Analytics
 
 [![CircleCI](https://circleci.com/gh/khulnasoft/khulnasoft/tree/development.svg?style=svg)](https://circleci.com/gh/khulnasoft/khulnasoft/tree/development)
