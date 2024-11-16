@@ -29,7 +29,7 @@ WORKDIR /code/deps
 ENV ADBLOCK true
 ENV DISABLE_OPENCOLLECTIVE true
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-RUN npm cache clean --force && npm install
+RUN npm ci
 COPY ./script /code/script
 COPY ./banner.txt /code/banner.txt
 COPY ./locales /code/script/locales
