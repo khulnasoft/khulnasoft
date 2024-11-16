@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 FROM node:16-alpine AS khulnasoft_node
-RUN apk add git && \
-    apk add --no-cache --virtual .gyp python3 make g++ && \
+RUN apk add git
+RUN apk add --no-cache --virtual .gyp python3 make g++ && \
     npm i -g npm@6
 COPY ./packages /code/packages
 ENV ADBLOCK true
@@ -15,7 +15,7 @@ ARG skip_locales
 ENV SKIP_LOCALES=$skip_locales
 COPY ./auditorium/package.json ./auditorium/package-lock.json /code/deps/
 WORKDIR /code/deps
-RUN npm ci
+RUN npm cache clean --force && npm install
 COPY ./auditorium /code/auditorium
 COPY ./banner.txt /code/banner.txt
 COPY ./locales /code/auditorium/locales
@@ -30,7 +30,7 @@ ARG skip_locales
 ENV SKIP_LOCALES=$skip_locales
 COPY ./script/package.json ./script/package-lock.json /code/deps/
 WORKDIR /code/deps
-RUN npm ci
+RUN npm cache clean --force && npm install
 COPY ./script /code/script
 COPY ./banner.txt /code/banner.txt
 COPY ./locales /code/script/locales
@@ -45,7 +45,7 @@ ARG skip_locales
 ENV SKIP_LOCALES=$skip_locales
 COPY ./vault/package.json ./vault/package-lock.json /code/deps/
 WORKDIR /code/deps
-RUN npm ci
+RUN npm cache clean --force && npm install
 COPY ./vault /code/vault
 COPY ./banner.txt /code/banner.txt
 COPY ./locales /code/vault/locales
@@ -59,7 +59,7 @@ RUN npm run licenses
 FROM khulnasoft_node AS packages
 COPY ./packages/package.json ./packages/package-lock.json /code/deps/
 WORKDIR /code/deps
-RUN npm ci
+RUN npm cache clean --force && npm install
 WORKDIR /code/packages
 RUN cp -a /code/deps/node_modules /code/packages/
 ENV NODE_ENV production

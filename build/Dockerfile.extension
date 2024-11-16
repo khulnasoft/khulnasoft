@@ -3,9 +3,9 @@
 
 FROM node:16-alpine AS khulnasoft_node
 
-RUN apk add git && \
-    AS khulnasoft_node && \
-    npm i -g npm@6
+RUN apk add git
+RUN apk add --no-cache --virtual .gyp python3 make g++
+RUN npm i -g npm@6
 COPY ./packages /code/packages
 ENV ADBLOCK true
 ENV DISABLE_OPENCOLLECTIVE true
