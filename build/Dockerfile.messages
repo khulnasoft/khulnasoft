@@ -20,7 +20,7 @@ RUN npm run --silent extract-strings > auditorium.po
 
 FROM node:16-alpine AS script
 RUN apk add git
-RUN apk add --no-cache --virtual .gyp python3 make g++
+RUN AS khulnasoft_node
 RUN npm i -g npm@6
 
 COPY ./script/package.json ./script/package-lock.json /code/deps/
