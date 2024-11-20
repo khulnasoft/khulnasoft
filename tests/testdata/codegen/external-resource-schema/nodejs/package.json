@@ -1,0 +1,21 @@
+{
+    "name": "@khulnasoft/example",
+    "version": "${VERSION}",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@khulnasoft/aws": "^4.19.0",
+        "@khulnasoft/kubernetes": "^3.7.0",
+        "@khulnasoft/khulnasoft": "^3.136.0",
+        "@khulnasoft/random": "^4.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^14",
+        "typescript": "^4.3.5"
+    },
+    "khulnasoft": {
+        "resource": true,
+        "name": "example"
+    }
+}

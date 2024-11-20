@@ -1,0 +1,15 @@
+{
+  "emittedFiles": [
+    "khulnasoft_cloudinit/README.md",
+    "khulnasoft_cloudinit/__init__.py",
+    "khulnasoft_cloudinit/_inputs.py",
+    "khulnasoft_cloudinit/_utilities.py",
+    "khulnasoft_cloudinit/config.py",
+    "khulnasoft_cloudinit/get_config.py",
+    "khulnasoft_cloudinit/outputs.py",
+    "khulnasoft_cloudinit/provider.py",
+    "khulnasoft_cloudinit/khulnasoft-plugin.json",
+    "khulnasoft_cloudinit/py.typed",
+    "pyproject.toml"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "emittedFiles": [
+    "khulnasoft_typedDictExample/README.md",
+    "khulnasoft_typedDictExample/__init__.py",
+    "khulnasoft_typedDictExample/_inputs.py",
+    "khulnasoft_typedDictExample/_utilities.py",
+    "khulnasoft_typedDictExample/component.py",
+    "khulnasoft_typedDictExample/my_function.py",
+    "khulnasoft_typedDictExample/outputs.py",
+    "khulnasoft_typedDictExample/provider.py",
+    "khulnasoft_typedDictExample/khulnasoft-plugin.json",
+    "khulnasoft_typedDictExample/py.typed",
+    "pyproject.toml"
+  ]
+}

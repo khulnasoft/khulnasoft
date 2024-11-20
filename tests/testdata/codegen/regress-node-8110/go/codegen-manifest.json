@@ -1,0 +1,13 @@
+{
+  "emittedFiles": [
+    "my8110/doc.go",
+    "my8110/exampleFunc.go",
+    "my8110/init.go",
+    "my8110/internal/khulnasoftUtilities.go",
+    "my8110/internal/khulnasoftVersion.go",
+    "my8110/provider.go",
+    "my8110/khulnasoft-plugin.json",
+    "my8110/khulnasoftEnums.go",
+    "my8110/khulnasoftTypes.go"
+  ]
+}

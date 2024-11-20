@@ -1,0 +1,11 @@
+{
+	"name": "l2-resource-primitives",
+	"devDependencies": {
+		"@types/node": "^14"
+	},
+	"dependencies": {
+		"typescript": "^4.0.0",
+		"@khulnasoft/khulnasoft": "ROOT/artifacts/khulnasoft-khulnasoft-CORE.VERSION.tgz",
+		"@khulnasoft/primitive": "ROOT/artifacts/khulnasoft-primitive-7.0.0.tgz"
+	}
+}

@@ -1,0 +1,16 @@
+{
+  "emittedFiles": [
+    "khulnasoft_myedgeorder/README.md",
+    "khulnasoft_myedgeorder/__init__.py",
+    "khulnasoft_myedgeorder/_enums.py",
+    "khulnasoft_myedgeorder/_inputs.py",
+    "khulnasoft_myedgeorder/_utilities.py",
+    "khulnasoft_myedgeorder/list_configurations.py",
+    "khulnasoft_myedgeorder/list_product_families.py",
+    "khulnasoft_myedgeorder/outputs.py",
+    "khulnasoft_myedgeorder/provider.py",
+    "khulnasoft_myedgeorder/khulnasoft-plugin.json",
+    "khulnasoft_myedgeorder/py.typed",
+    "setup.py"
+  ]
+}

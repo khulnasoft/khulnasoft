@@ -1,0 +1,11 @@
+{
+  "emittedFiles": [
+    "mypkg/doc.go",
+    "mypkg/funcWithSecrets.go",
+    "mypkg/init.go",
+    "mypkg/internal/khulnasoftUtilities.go",
+    "mypkg/internal/khulnasoftVersion.go",
+    "mypkg/provider.go",
+    "mypkg/khulnasoft-plugin.json"
+  ]
+}

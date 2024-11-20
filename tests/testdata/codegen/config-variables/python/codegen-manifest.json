@@ -1,0 +1,14 @@
+{
+  "emittedFiles": [
+    "khulnasoft_example/README.md",
+    "khulnasoft_example/__init__.py",
+    "khulnasoft_example/_utilities.py",
+    "khulnasoft_example/config/__init__.py",
+    "khulnasoft_example/config/__init__.pyi",
+    "khulnasoft_example/config/vars.py",
+    "khulnasoft_example/provider.py",
+    "khulnasoft_example/khulnasoft-plugin.json",
+    "khulnasoft_example/py.typed",
+    "setup.py"
+  ]
+}

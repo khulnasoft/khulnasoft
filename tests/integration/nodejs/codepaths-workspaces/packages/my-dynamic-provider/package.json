@@ -1,0 +1,9 @@
+{
+  "name": "my-dynamic-provider",
+  "main": "index.ts",
+  "version": "1.0.0",
+  "dependencies": {
+    "@khulnasoft/khulnasoft": "latest",
+    "is-finite": "^2.0.0"
+  }
+}

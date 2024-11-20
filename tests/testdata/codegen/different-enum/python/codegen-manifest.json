@@ -1,0 +1,19 @@
+{
+  "emittedFiles": [
+    "khulnasoft_plant/README.md",
+    "khulnasoft_plant/__init__.py",
+    "khulnasoft_plant/_enums.py",
+    "khulnasoft_plant/_inputs.py",
+    "khulnasoft_plant/_utilities.py",
+    "khulnasoft_plant/outputs.py",
+    "khulnasoft_plant/provider.py",
+    "khulnasoft_plant/khulnasoft-plugin.json",
+    "khulnasoft_plant/py.typed",
+    "khulnasoft_plant/tree/__init__.py",
+    "khulnasoft_plant/tree/v1/__init__.py",
+    "khulnasoft_plant/tree/v1/_enums.py",
+    "khulnasoft_plant/tree/v1/nursery.py",
+    "khulnasoft_plant/tree/v1/rubber_tree.py",
+    "setup.py"
+  ]
+}

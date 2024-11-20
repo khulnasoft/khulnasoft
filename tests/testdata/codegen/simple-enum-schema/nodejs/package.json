@@ -1,0 +1,19 @@
+{
+    "name": "@khulnasoft/plant",
+    "version": "0.0.1",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@khulnasoft/khulnasoft": "^3.12"
+    },
+    "devDependencies": {
+        "@types/node": "^14",
+        "typescript": "^3.7.0"
+    },
+    "khulnasoft": {
+        "resource": true,
+        "name": "plant",
+        "version": "0.0.1"
+    }
+}

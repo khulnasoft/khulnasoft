@@ -1,0 +1,7 @@
+{
+    "name": "lsjafas",
+    "main": "index.js",
+    "dependencies": {
+        "@khulnasoft/khulnasoft": "^3.73.0"
+    }
+}

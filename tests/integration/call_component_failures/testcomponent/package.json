@@ -1,0 +1,14 @@
+{
+    "name": "khulnasoft-resource-testcomponent",
+    "main": "index.js",
+    "devDependencies": {
+        "@types/node": "ts3.9",
+        "typescript": "^3.0.0"
+    },
+    "dependencies": {
+        "@grpc/grpc-js": "^1.11.0"
+    },
+    "peerDependencies": {
+        "@khulnasoft/khulnasoft": "latest"
+    }
+}

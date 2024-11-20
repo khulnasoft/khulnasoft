@@ -1,0 +1,16 @@
+{
+    "name": "",
+    "version": "",
+    "dependencies": {
+        "@khulnasoft/azure-native": "^1.29.0",
+        "@khulnasoft/khulnasoft": "latest",
+        "@khulnasoft/random": "^4.11.2"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.14",
+        "typescript": "^4.5.5"
+    },
+    "khulnasoft": {
+        "resource": false
+    }
+}

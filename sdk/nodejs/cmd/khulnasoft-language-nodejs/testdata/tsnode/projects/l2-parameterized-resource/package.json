@@ -1,0 +1,11 @@
+{
+	"name": "l2-parameterized-resource",
+	"devDependencies": {
+		"@types/node": "^14"
+	},
+	"dependencies": {
+		"typescript": "^4.0.0",
+		"@khulnasoft/khulnasoft": "ROOT/artifacts/khulnasoft-khulnasoft-CORE.VERSION.tgz",
+		"@khulnasoft/subpackage": "ROOT/artifacts/khulnasoft-subpackage-2.0.0.tgz"
+	}
+}

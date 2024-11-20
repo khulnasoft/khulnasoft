@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "name": "example",
+  "language": {
+    "go": {
+      "internalDependencies": [
+        "github.com/khulnasoft/khulnasoft-random/sdk/v4/go/random",
+        "github.com/khulnasoft/khulnasoft-tls/sdk/v4/go/tls"
+      ],
+      "importBasePath": "internal-dependencies-go/example"
+    }
+  }
+}

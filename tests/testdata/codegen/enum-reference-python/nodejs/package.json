@@ -1,0 +1,21 @@
+{
+    "name": "@khulnasoft/example",
+    "version": "${VERSION}",
+    "scripts": {
+        "build": "tsc",
+        "install": "node scripts/install-khulnasoft-plugin.js resource example 3.2.1"
+    },
+    "dependencies": {
+        "@khulnasoft/google-native": "^0.20.0",
+        "@khulnasoft/khulnasoft": "^3.12"
+    },
+    "devDependencies": {
+        "@types/node": "ts3.7",
+        "typescript": "^3.7.0"
+    },
+    "khulnasoft": {
+        "resource": true,
+        "name": "example",
+        "version": "3.2.1"
+    }
+}

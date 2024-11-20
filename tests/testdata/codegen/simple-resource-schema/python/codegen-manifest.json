@@ -1,0 +1,19 @@
+{
+  "emittedFiles": [
+    "khulnasoft_example/README.md",
+    "khulnasoft_example/__init__.py",
+    "khulnasoft_example/_inputs.py",
+    "khulnasoft_example/_utilities.py",
+    "khulnasoft_example/arg_function.py",
+    "khulnasoft_example/bar_resource.py",
+    "khulnasoft_example/foo_resource.py",
+    "khulnasoft_example/other_resource.py",
+    "khulnasoft_example/outputs.py",
+    "khulnasoft_example/provider.py",
+    "khulnasoft_example/khulnasoft-plugin.json",
+    "khulnasoft_example/py.typed",
+    "khulnasoft_example/resource.py",
+    "khulnasoft_example/type_uses.py",
+    "setup.py"
+  ]
+}

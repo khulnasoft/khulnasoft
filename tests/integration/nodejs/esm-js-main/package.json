@@ -1,0 +1,12 @@
+{
+    "name": "esm-js-main",
+    "license": "Apache-2.0",
+    "type": "module",
+    "main": "src/main.js",
+    "peerDependencies": {
+        "@khulnasoft/khulnasoft": "latest"
+    },
+    "dependencies": {
+        "@khulnasoft/aws": "^4.33.0"
+    }
+}

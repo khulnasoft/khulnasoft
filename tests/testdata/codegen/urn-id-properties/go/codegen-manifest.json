@@ -1,0 +1,13 @@
+{
+  "emittedFiles": [
+    "urnid/doc.go",
+    "urnid/init.go",
+    "urnid/internal/khulnasoftUtilities.go",
+    "urnid/internal/khulnasoftVersion.go",
+    "urnid/provider.go",
+    "urnid/khulnasoft-plugin.json",
+    "urnid/khulnasoftTypes.go",
+    "urnid/res.go",
+    "urnid/test.go"
+  ]
+}

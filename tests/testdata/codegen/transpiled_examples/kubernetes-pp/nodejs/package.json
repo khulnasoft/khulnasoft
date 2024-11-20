@@ -1,0 +1,15 @@
+{
+    "name": "",
+    "version": "",
+    "dependencies": {
+        "@khulnasoft/kubernetes": "^3.7.2",
+        "@khulnasoft/khulnasoft": "latest"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.14",
+        "typescript": "^4.5.5"
+    },
+    "khulnasoft": {
+        "resource": false
+    }
+}

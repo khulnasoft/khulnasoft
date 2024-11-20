@@ -1,0 +1,12 @@
+{
+  "emittedFiles": [
+    "nestedTypes/doc.go",
+    "nestedTypes/init.go",
+    "nestedTypes/internal/khulnasoftUtilities.go",
+    "nestedTypes/internal/khulnasoftVersion.go",
+    "nestedTypes/provider.go",
+    "nestedTypes/khulnasoft-plugin.json",
+    "nestedTypes/khulnasoftTypes.go",
+    "nestedTypes/resource.go"
+  ]
+}

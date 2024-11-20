@@ -1,0 +1,15 @@
+import khulnasoft
+from khulnasoft import Input
+from typing import Optional, Dict, TypedDict, Any
+import khulnasoft_random as random
+
+class AnotherComponent(khulnasoft.ComponentResource):
+    def __init__(self, name: str, opts: Optional[khulnasoft.ResourceOptions] = None):
+        super().__init__("components:index:AnotherComponent", name, {}, opts)
+
+        first_password = random.RandomPassword(f"{name}-firstPassword",
+            length=16,
+            special=True,
+            opts = khulnasoft.ResourceOptions(parent=self))
+
+        self.register_outputs()

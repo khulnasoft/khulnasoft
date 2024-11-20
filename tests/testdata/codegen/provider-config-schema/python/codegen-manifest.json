@@ -1,0 +1,19 @@
+{
+  "emittedFiles": [
+    "khulnasoft_configstation/README.md",
+    "khulnasoft_configstation/__init__.py",
+    "khulnasoft_configstation/_enums.py",
+    "khulnasoft_configstation/_utilities.py",
+    "khulnasoft_configstation/config/__init__.py",
+    "khulnasoft_configstation/config/__init__.pyi",
+    "khulnasoft_configstation/config/_inputs.py",
+    "khulnasoft_configstation/config/outputs.py",
+    "khulnasoft_configstation/config/vars.py",
+    "khulnasoft_configstation/func_with_all_optional_inputs.py",
+    "khulnasoft_configstation/outputs.py",
+    "khulnasoft_configstation/provider.py",
+    "khulnasoft_configstation/khulnasoft-plugin.json",
+    "khulnasoft_configstation/py.typed",
+    "setup.py"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "test-protect",
+  "devDependencies": {
+    "@types/node": "^10.0.0"
+  },
+  "peerDependencies": {
+    "@khulnasoft/khulnasoft": "^3.0.0"
+  }
+}

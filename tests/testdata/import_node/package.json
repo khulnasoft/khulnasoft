@@ -1,0 +1,11 @@
+{
+  "name": "import_node",
+  "main": "index.ts",
+  "devDependencies": {
+    "@types/node": "^16"
+  },
+  "dependencies": {
+    "@khulnasoft/khulnasoft": "^3.19.0",
+    "@khulnasoft/random": "4.12.0"
+  }
+}

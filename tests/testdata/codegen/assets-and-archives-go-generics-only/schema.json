@@ -1,0 +1,92 @@
+{
+    "version": "0.0.1",
+    "name": "example",
+    "types": {
+      "example:index:TypeWithAssets": {
+        "properties": {
+          "plainAsset": {
+            "$ref": "khulnasoft.json#/Asset",
+            "plain": true
+          },
+          "plainArchive": {
+            "$ref": "khulnasoft.json#/Archive",
+            "plain": true
+          },
+          "asset": {
+            "$ref": "khulnasoft.json#/Asset"
+          },
+          "archive": {
+            "$ref": "khulnasoft.json#/Archive"
+          }
+        },
+        "required": ["asset", "plainArchive"],
+        "type": "object"
+      }
+    },
+    "resources": {
+      "example:index:ResourceWithAssets": {
+        "properties": {
+            "asset": {
+              "$ref": "khulnasoft.json#/Asset"
+            },
+            "archive": {
+              "$ref": "khulnasoft.json#/Archive"
+            },
+            "nested": {
+                "$ref": "#/types/example:index:TypeWithAssets"
+            }
+        },
+        "required": ["asset", "archive"],
+        "inputProperties": {
+            "source": {
+                "$ref": "khulnasoft.json#/Asset"
+            },
+            "archive": {
+                "$ref": "khulnasoft.json#/Archive"
+            },
+            "nested": {
+                "$ref": "#/types/example:index:TypeWithAssets"
+            }
+        },
+        
+        "requiredInputs": ["source"],
+        "type": "object"
+      }
+    },
+    "functions": {
+      "example::GetAssets": {
+        "inputs": {
+          "properties": {
+            "source": {
+                "$ref": "khulnasoft.json#/Asset"
+            },
+            "archive": {
+                "$ref": "khulnasoft.json#/Archive"
+            }
+          },
+          "required": ["source", "archive"],
+          "type": "object"
+        },
+        "outputs": {
+            "type": "object",
+            "required": ["source", "archive"],
+            "properties": {
+                "source": {
+                    "$ref": "khulnasoft.json#/Asset"
+                },
+                "archive": {
+                    "$ref": "khulnasoft.json#/Archive"
+                }
+            }
+        }
+      }
+    },
+    "language": {
+      "go": {
+        "importBasePath": "assets-and-archives-go-generics-only/example",
+        "generateExtraInputTypes": true,
+        "generics": "generics-only"
+      }
+    }
+  }
+  

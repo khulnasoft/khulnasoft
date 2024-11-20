@@ -1,0 +1,17 @@
+{
+  "emittedFiles": [
+    "example/argFunction.go",
+    "example/barResource.go",
+    "example/doc.go",
+    "example/fooResource.go",
+    "example/init.go",
+    "example/otherResource.go",
+    "example/provider.go",
+    "example/khulnasoft-plugin.json",
+    "example/khulnasoftTypes.go",
+    "example/resource.go",
+    "example/typeUses.go",
+    "example/utilities/khulnasoftUtilities.go",
+    "example/utilities/khulnasoftVersion.go"
+  ]
+}

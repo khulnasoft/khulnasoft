@@ -1,0 +1,15 @@
+{
+  "emittedFiles": [
+    "configstation/config/config.go",
+    "configstation/config/khulnasoftTypes.go",
+    "configstation/doc.go",
+    "configstation/funcWithAllOptionalInputs.go",
+    "configstation/init.go",
+    "configstation/internal/khulnasoftUtilities.go",
+    "configstation/internal/khulnasoftVersion.go",
+    "configstation/provider.go",
+    "configstation/khulnasoft-plugin.json",
+    "configstation/khulnasoftEnums.go",
+    "configstation/khulnasoftTypes.go"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+	"name": "l2-provider-grpc-config-schema-secret",
+	"devDependencies": {
+		"@types/node": "^14"
+	},
+	"dependencies": {
+		"typescript": "^4.0.0",
+		"@khulnasoft/khulnasoft": "ROOT/artifacts/khulnasoft-khulnasoft-CORE.VERSION.tgz",
+		"@khulnasoft/config-grpc": "ROOT/artifacts/khulnasoft-config-grpc-1.0.0.tgz"
+	}
+}

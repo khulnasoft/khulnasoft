@@ -1,0 +1,13 @@
+{
+  "emittedFiles": [
+    "khulnasoft_repro/README.md",
+    "khulnasoft_repro/__init__.py",
+    "khulnasoft_repro/_utilities.py",
+    "khulnasoft_repro/foo.py",
+    "khulnasoft_repro/outputs.py",
+    "khulnasoft_repro/provider.py",
+    "khulnasoft_repro/khulnasoft-plugin.json",
+    "khulnasoft_repro/py.typed",
+    "setup.py"
+  ]
+}

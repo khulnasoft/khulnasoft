@@ -1,0 +1,12 @@
+{
+  "emittedFiles": [
+    "mongodbatlas/doc.go",
+    "mongodbatlas/getCustomDbRoles.go",
+    "mongodbatlas/init.go",
+    "mongodbatlas/internal/khulnasoftUtilities.go",
+    "mongodbatlas/internal/khulnasoftVersion.go",
+    "mongodbatlas/provider.go",
+    "mongodbatlas/khulnasoft-plugin.json",
+    "mongodbatlas/khulnasoftTypes.go"
+  ]
+}

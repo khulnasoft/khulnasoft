@@ -1,0 +1,574 @@
+{
+  "name": "typetests",
+  "version": "0.0.1",
+  "meta": {
+    "moduleFormat": "(.*)"
+  },
+  "language": {
+    "nodejs": {}
+  },
+  "config": {},
+  "types": {
+    "typetests::object": {
+      "type": "object"
+    },
+    "typetests::plainCollections": {
+      "description": "Tests for singly-nested plain collections",
+      "properties": {
+        "array": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "plain": true,
+          "language": {
+            "explanation": "Because the collection is marked as plain, we should see a plain type regardless of inputShape.",
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "ImmutableArray<Input<string>>",
+                  "plain": "ImmutableArray<string>"
+                },
+                "go": {
+                  "input": "[]khulnasoft.StringInput",
+                  "plain": "[]string"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<string>[] | undefined",
+                  "plain": "string[] | undefined"
+                },
+                "python": {
+                  "input": "Optional[Sequence[khulnasoft.Input[str]]]",
+                  "plain": "Optional[Sequence[str]]"
+                }
+              }
+            }
+          }
+        },
+        "map": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "InputMap<string>",
+                  "plain": "ImmutableDictionary<string, string>?"
+                },
+                "go": {
+                  "input": "khulnasoft.StringMapInput",
+                  "plain": "map[string]string"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<{[key: string]: khulnasoft.Input<string>}> | undefined",
+                  "plain": "{[key: string]: string} | undefined"
+                },
+                "python": {
+                  "input": "Optional[khulnasoft.Input[Mapping[str, khulnasoft.Input[str]]]]",
+                  "plain": "Optional[Mapping[str, str]]"
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "typetests::primitives": {
+      "description": "Tests name generation for the primitive schame types. See https://pkg.go.dev/github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema#Type for a complete list",
+      "properties": {
+        "any": {
+          "$ref": "khulnasoft.json#/Any",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<object>?",
+                  "plain": "object?"
+                },
+                "go": {
+                  "input": "khulnasoft.Input",
+                  "plain": "interface{}"
+                },
+                "nodejs": {
+                  "input": "any | undefined",
+                  "plain": "any | undefined"
+                },
+                "python": {
+                  "input": "Optional[Any]",
+                  "plain": "Optional[Any]"
+                }
+              }
+            }
+          }
+        },
+        "archive": {
+          "$ref": "khulnasoft.json#/Archive",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<Archive>?",
+                  "plain": "Archive?"
+                },
+                "go": {
+                  "input": "khulnasoft.ArchiveInput",
+                  "plain": "khulnasoft.Archive"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<khulnasoft.asset.Archive> | undefined",
+                  "plain": "khulnasoft.asset.Archive | undefined"
+                },
+                "python": {
+                  "input": "Optional[khulnasoft.Input[khulnasoft.Archive]]",
+                  "plain": "Optional[khulnasoft.Archive]"
+                }
+              }
+            }
+          }
+        },
+        "asset": {
+          "$ref": "khulnasoft.json#/Asset",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<AssetOrArchive>?",
+                  "plain": "AssetOrArchive?"
+                },
+                "go": {
+                  "input": "khulnasoft.AssetOrArchiveInput",
+                  "plain": "khulnasoft.AssetOrArchive"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<khulnasoft.asset.Asset | khulnasoft.asset.Archive> | undefined",
+                  "plain": "khulnasoft.asset.Asset | khulnasoft.asset.Archive | undefined"
+                },
+                "python": {
+                  "input": "Optional[khulnasoft.Input[Union[khulnasoft.Asset, khulnasoft.Archive]]]",
+                  "plain": "Optional[Union[khulnasoft.Asset, khulnasoft.Archive]]"
+                }
+              }
+            }
+          }
+        },
+        "boolean": {
+          "type": "boolean",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<bool>?",
+                  "plain": "bool?"
+                },
+                "go": {
+                  "input": "khulnasoft.BoolPtrInput",
+                  "plain": "*bool"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<boolean> | undefined",
+                  "plain": "boolean | undefined"
+                },
+                "python": {
+                  "input": "Optional[khulnasoft.Input[bool]]",
+                  "plain": "Optional[bool]"
+                }
+              }
+            }
+          }
+        },
+        "integer": {
+          "type": "integer",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<int>?",
+                  "plain": "int?"
+                },
+                "go": {
+                  "input": "khulnasoft.IntPtrInput",
+                  "plain": "*int"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<number> | undefined",
+                  "plain": "number | undefined"
+                },
+                "python": {
+                  "input": "Optional[khulnasoft.Input[int]]",
+                  "plain": "Optional[int]"
+                }
+              }
+            }
+          }
+        },
+        "json": {
+          "$ref": "khulnasoft.json#/Json",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "InputJson?",
+                  "plain": "System.Text.Json.JsonElement?"
+                },
+                "go": {
+                  "input": "khulnasoft.Input",
+                  "plain": "interface{}"
+                },
+                "nodejs": {
+                  "input": "any | undefined",
+                  "plain": "any | undefined"
+                },
+                "python": {
+                  "input": "Optional[Any]",
+                  "plain": "Optional[Any]"
+                }
+              }
+            }
+          }
+        },
+        "number": {
+          "type": "number",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<double>?",
+                  "plain": "double?"
+                },
+                "go": {
+                  "input": "khulnasoft.Float64PtrInput",
+                  "plain": "*float64"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<number> | undefined",
+                  "plain": "number | undefined"
+                },
+                "python": {
+                  "input": "Optional[khulnasoft.Input[float]]",
+                  "plain": "Optional[float]"
+                }
+              }
+            }
+          }
+        },
+        "requiredAny": {
+          "$ref": "khulnasoft.json#/Any",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<object>",
+                  "plain": "object"
+                },
+                "go": {
+                  "input": "khulnasoft.Input",
+                  "plain": "interface{}"
+                },
+                "nodejs": {
+                  "input": "any",
+                  "plain": "any"
+                },
+                "python": {
+                  "input": "Any",
+                  "plain": "Any"
+                }
+              }
+            }
+          }
+        },
+        "requiredArchive": {
+          "$ref": "khulnasoft.json#/Archive",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<Archive>",
+                  "plain": "Archive"
+                },
+                "go": {
+                  "input": "khulnasoft.ArchiveInput",
+                  "plain": "khulnasoft.Archive"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<khulnasoft.asset.Archive>",
+                  "plain": "khulnasoft.asset.Archive"
+                },
+                "python": {
+                  "input": "khulnasoft.Input[khulnasoft.Archive]",
+                  "plain": "khulnasoft.Archive"
+                }
+              }
+            }
+          }
+        },
+        "requiredAsset": {
+          "$ref": "khulnasoft.json#/Asset",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<AssetOrArchive>",
+                  "plain": "AssetOrArchive"
+                },
+                "go": {
+                  "input": "khulnasoft.AssetOrArchiveInput",
+                  "plain": "khulnasoft.AssetOrArchive"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<khulnasoft.asset.Asset | khulnasoft.asset.Archive>",
+                  "plain": "khulnasoft.asset.Asset | khulnasoft.asset.Archive"
+                },
+                "python": {
+                  "input": "khulnasoft.Input[Union[khulnasoft.Asset, khulnasoft.Archive]]",
+                  "plain": "Union[khulnasoft.Asset, khulnasoft.Archive]"
+                }
+              }
+            }
+          }
+        },
+        "requiredBoolean": {
+          "type": "boolean",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<bool>",
+                  "plain": "bool"
+                },
+                "go": {
+                  "input": "khulnasoft.BoolInput",
+                  "plain": "bool"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<boolean>",
+                  "plain": "boolean"
+                },
+                "python": {
+                  "input": "khulnasoft.Input[bool]",
+                  "plain": "bool"
+                }
+              }
+            }
+          }
+        },
+        "requiredInteger": {
+          "type": "integer",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<int>",
+                  "plain": "int"
+                },
+                "go": {
+                  "input": "khulnasoft.IntInput",
+                  "plain": "int"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<number>",
+                  "plain": "number"
+                },
+                "python": {
+                  "input": "khulnasoft.Input[int]",
+                  "plain": "int"
+                }
+              }
+            }
+          }
+        },
+        "requiredJson": {
+          "$ref": "khulnasoft.json#/Json",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "InputJson",
+                  "plain": "System.Text.Json.JsonElement"
+                },
+                "go": {
+                  "input": "khulnasoft.Input",
+                  "plain": "interface{}"
+                },
+                "nodejs": {
+                  "input": "any",
+                  "plain": "any"
+                },
+                "python": {
+                  "input": "Any",
+                  "plain": "Any"
+                }
+              }
+            }
+          }
+        },
+        "requiredNumber": {
+          "type": "number",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<double>",
+                  "plain": "double"
+                },
+                "go": {
+                  "input": "khulnasoft.Float64Input",
+                  "plain": "float64"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<number>",
+                  "plain": "number"
+                },
+                "python": {
+                  "input": "khulnasoft.Input[float]",
+                  "plain": "float"
+                }
+              }
+            }
+          }
+        },
+        "requiredString": {
+          "type": "string",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<string>",
+                  "plain": "string"
+                },
+                "go": {
+                  "input": "khulnasoft.StringInput",
+                  "plain": "string"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<string>",
+                  "plain": "string"
+                },
+                "python": {
+                  "input": "khulnasoft.Input[str]",
+                  "plain": "str"
+                }
+              }
+            }
+          }
+        },
+        "string": {
+          "type": "string",
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "Input<string>?",
+                  "plain": "string?"
+                },
+                "go": {
+                  "input": "khulnasoft.StringPtrInput",
+                  "plain": "*string"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<string> | undefined",
+                  "plain": "string | undefined"
+                },
+                "python": {
+                  "input": "Optional[khulnasoft.Input[str]]",
+                  "plain": "Optional[str]"
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object",
+      "required": [
+        "requiredAny",
+        "requiredArchive",
+        "requiredAsset",
+        "requiredBoolean",
+        "requiredInteger",
+        "requiredJson",
+        "requiredNumber",
+        "requiredString"
+      ]
+    },
+    "typetests:regressions:inputObject": {
+      "description": "Regression test for bad input types for {\"type\": \"object\"}",
+      "properties": {
+        "object": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "InputMap<string>",
+                  "plain": "ImmutableDictionary<string, string>?"
+                },
+                "go": {
+                  "input": "khulnasoft.StringMapInput",
+                  "plain": "map[string]string"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<{[key: string]: khulnasoft.Input<string>}> | undefined",
+                  "plain": "{[key: string]: string} | undefined"
+                },
+                "python": {
+                  "input": "Optional[khulnasoft.Input[Mapping[str, khulnasoft.Input[str]]]]",
+                  "plain": "Optional[Mapping[str, str]]"
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "typetests:regressions:khulnasoft/khulnasoft/7454": {
+      "description": "Regression test for khulnasoft/khulnasoft#7454",
+      "properties": {
+        "inputUnion": {
+          "oneOf": [
+            {
+              "$ref": "#/types/typetests::object"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "khulnasoft.json#/Json"
+              }
+            }
+          ],
+          "language": {
+            "test": {
+              "expected": {
+                "dotnet": {
+                  "input": "InputUnion<ObjectArgs, ImmutableArray<System.Text.Json.JsonElement>>?",
+                  "plain": "Union<Object, ImmutableArray<System.Text.Json.JsonElement>>?"
+                },
+                "go": {
+                  "input": "khulnasoft.Input",
+                  "plain": "interface{}"
+                },
+                "nodejs": {
+                  "input": "khulnasoft.Input<outputs.ObjectArgs | any[]> | undefined",
+                  "plain": "outputs.Object | any[] | undefined"
+                },
+                "python": {
+                  "input": "Optional[Any]",
+                  "plain": "Optional[Any]"
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "provider": {
+    "type": "object"
+  }
+}

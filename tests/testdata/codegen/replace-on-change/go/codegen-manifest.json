@@ -1,0 +1,16 @@
+{
+  "emittedFiles": [
+    "example/cat.go",
+    "example/doc.go",
+    "example/dog.go",
+    "example/god.go",
+    "example/init.go",
+    "example/internal/khulnasoftUtilities.go",
+    "example/internal/khulnasoftVersion.go",
+    "example/noRecursive.go",
+    "example/provider.go",
+    "example/khulnasoft-plugin.json",
+    "example/khulnasoftTypes.go",
+    "example/toyStore.go"
+  ]
+}

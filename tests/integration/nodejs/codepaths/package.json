@@ -1,0 +1,9 @@
+{
+    "name": "test-codepaths",
+    "description": "Basic test case for codepaths",
+    "main": "index.ts",
+    "dependencies": {
+        "@khulnasoft/khulnasoft": "latest",
+        "semver": "^7.6.0"
+    }
+}

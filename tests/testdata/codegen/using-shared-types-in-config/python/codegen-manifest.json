@@ -1,0 +1,18 @@
+{
+  "emittedFiles": [
+    "khulnasoft_credentials/README.md",
+    "khulnasoft_credentials/__init__.py",
+    "khulnasoft_credentials/_enums.py",
+    "khulnasoft_credentials/_inputs.py",
+    "khulnasoft_credentials/_utilities.py",
+    "khulnasoft_credentials/config/__init__.py",
+    "khulnasoft_credentials/config/__init__.pyi",
+    "khulnasoft_credentials/config/vars.py",
+    "khulnasoft_credentials/outputs.py",
+    "khulnasoft_credentials/provider.py",
+    "khulnasoft_credentials/khulnasoft-plugin.json",
+    "khulnasoft_credentials/py.typed",
+    "khulnasoft_credentials/user.py",
+    "setup.py"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "@khulnasoft/xyz",
+    "version": "${VERSION}",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@khulnasoft/aws": "^3.7.0",
+        "@khulnasoft/khulnasoft": "^3.12"
+    },
+    "devDependencies": {
+        "@types/node": "^14",
+        "typescript": "^3.7.0"
+    },
+    "khulnasoft": {
+        "resource": true,
+        "name": "xyz"
+    }
+}

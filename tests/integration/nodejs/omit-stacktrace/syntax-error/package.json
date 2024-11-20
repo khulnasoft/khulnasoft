@@ -1,0 +1,10 @@
+{
+    "name": "syntax-error",
+    "license": "Apache-2.0",
+    "peerDependencies": {
+        "@khulnasoft/khulnasoft": "^3.0.0"
+    },
+    "resolutions": {
+        "@types/node": "4.0.29"
+    }
+}

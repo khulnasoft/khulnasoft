@@ -1,0 +1,14 @@
+{
+  "emittedFiles": [
+    "legacy_names/doc.go",
+    "legacy_names/example_resource.go",
+    "legacy_names/http_module/khulnasoftTypes.go",
+    "legacy_names/init.go",
+    "legacy_names/internal/khulnasoftUtilities.go",
+    "legacy_names/internal/khulnasoftVersion.go",
+    "legacy_names/provider.go",
+    "legacy_names/khulnasoft-plugin.json",
+    "legacy_names/khulnasoftEnums.go",
+    "legacy_names/khulnasoftTypes.go"
+  ]
+}

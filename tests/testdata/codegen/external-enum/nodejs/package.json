@@ -1,0 +1,20 @@
+{
+    "name": "@khulnasoft/example",
+    "version": "0.0.1",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@khulnasoft/google-native": "^0.20.0",
+        "@khulnasoft/khulnasoft": "^3.12"
+    },
+    "devDependencies": {
+        "@types/node": "ts3.7",
+        "typescript": "^3.7.0"
+    },
+    "khulnasoft": {
+        "resource": true,
+        "name": "example",
+        "version": "0.0.1"
+    }
+}

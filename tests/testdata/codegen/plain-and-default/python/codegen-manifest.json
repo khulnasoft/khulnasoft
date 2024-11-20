@@ -1,0 +1,13 @@
+{
+  "emittedFiles": [
+    "khulnasoft_foobar/README.md",
+    "khulnasoft_foobar/__init__.py",
+    "khulnasoft_foobar/_enums.py",
+    "khulnasoft_foobar/_utilities.py",
+    "khulnasoft_foobar/module_resource.py",
+    "khulnasoft_foobar/provider.py",
+    "khulnasoft_foobar/khulnasoft-plugin.json",
+    "khulnasoft_foobar/py.typed",
+    "setup.py"
+  ]
+}

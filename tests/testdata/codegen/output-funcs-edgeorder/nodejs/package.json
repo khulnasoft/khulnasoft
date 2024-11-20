@@ -1,0 +1,19 @@
+{
+    "name": "@khulnasoft/myedgeorder",
+    "version": "${VERSION}",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@khulnasoft/khulnasoft": "^3.136.0"
+    },
+    "devDependencies": {
+        "@types/node": "ts4.3",
+        "ts-node": "latest",
+        "typescript": "^4.3.5"
+    },
+    "khulnasoft": {
+        "resource": true,
+        "name": "myedgeorder"
+    }
+}

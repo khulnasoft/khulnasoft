@@ -1,0 +1,12 @@
+{
+  "emittedFiles": [
+    "component.go",
+    "doc.go",
+    "init.go",
+    "internal/khulnasoftUtilities.go",
+    "internal/khulnasoftVersion.go",
+    "provider.go",
+    "khulnasoft-plugin.json",
+    "khulnasoftTypes.go"
+  ]
+}

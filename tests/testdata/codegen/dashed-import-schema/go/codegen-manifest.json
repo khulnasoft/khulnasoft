@@ -1,0 +1,16 @@
+{
+  "emittedFiles": [
+    "plant-provider/doc.go",
+    "plant-provider/init.go",
+    "plant-provider/internal/khulnasoftUtilities.go",
+    "plant-provider/internal/khulnasoftVersion.go",
+    "plant-provider/provider.go",
+    "plant-provider/khulnasoft-plugin.json",
+    "plant-provider/khulnasoftEnums.go",
+    "plant-provider/khulnasoftTypes.go",
+    "plant-provider/tree/v1/init.go",
+    "plant-provider/tree/v1/nursery.go",
+    "plant-provider/tree/v1/khulnasoftEnums.go",
+    "plant-provider/tree/v1/rubberTree.go"
+  ]
+}

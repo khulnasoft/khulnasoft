@@ -1,0 +1,12 @@
+{
+  "emittedFiles": [
+    "foo/deeply/nested/module/init.go",
+    "foo/deeply/nested/module/resource.go",
+    "foo/doc.go",
+    "foo/init.go",
+    "foo/internal/khulnasoftUtilities.go",
+    "foo/internal/khulnasoftVersion.go",
+    "foo/provider.go",
+    "foo/khulnasoft-plugin.json"
+  ]
+}

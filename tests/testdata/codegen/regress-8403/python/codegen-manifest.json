@@ -1,0 +1,13 @@
+{
+  "emittedFiles": [
+    "khulnasoft_mongodbatlas/README.md",
+    "khulnasoft_mongodbatlas/__init__.py",
+    "khulnasoft_mongodbatlas/_utilities.py",
+    "khulnasoft_mongodbatlas/get_custom_db_roles.py",
+    "khulnasoft_mongodbatlas/outputs.py",
+    "khulnasoft_mongodbatlas/provider.py",
+    "khulnasoft_mongodbatlas/khulnasoft-plugin.json",
+    "khulnasoft_mongodbatlas/py.typed",
+    "setup.py"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "emittedFiles": [
+    "khulnasoft_foo/README.md",
+    "khulnasoft_foo/__init__.py",
+    "khulnasoft_foo/_utilities.py",
+    "khulnasoft_foo/component.py",
+    "khulnasoft_foo/crd_k8s_amazonaws_com/__init__.py",
+    "khulnasoft_foo/crd_k8s_amazonaws_com/v1alpha1/__init__.py",
+    "khulnasoft_foo/crd_k8s_amazonaws_com/v1alpha1/_inputs.py",
+    "khulnasoft_foo/crd_k8s_amazonaws_com/v1alpha1/outputs.py",
+    "khulnasoft_foo/provider.py",
+    "khulnasoft_foo/khulnasoft-plugin.json",
+    "khulnasoft_foo/py.typed",
+    "setup.py"
+  ]
+}

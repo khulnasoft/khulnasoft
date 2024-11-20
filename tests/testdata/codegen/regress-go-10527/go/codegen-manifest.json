@@ -1,0 +1,13 @@
+{
+  "emittedFiles": [
+    "world/doc.go",
+    "world/init.go",
+    "world/internal/khulnasoftUtilities.go",
+    "world/internal/khulnasoftVersion.go",
+    "world/provider.go",
+    "world/khulnasoft-plugin.json",
+    "world/khulnasoftTypes.go",
+    "world/universe.go",
+    "world/worldMap.go"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "@khulnasoft/mypkg",
+    "version": "${VERSION}",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@khulnasoft/khulnasoft": "^3.136.0"
+    },
+    "devDependencies": {
+        "@types/mocha": "latest",
+        "@types/node": "ts4.3",
+        "mocha": "latest",
+        "ts-node": "latest",
+        "typescript": "^4.3.5"
+    },
+    "khulnasoft": {
+        "resource": true,
+        "name": "mypkg"
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "nodejs-dynamic-provider-config",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@khulnasoft/khulnasoft": "latest",
+    "typescript": "^5"
+  }
+}

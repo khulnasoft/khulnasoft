@@ -1,0 +1,12 @@
+{
+  "emittedFiles": [
+    "khulnasoft_registrygeoreplication/README.md",
+    "khulnasoft_registrygeoreplication/__init__.py",
+    "khulnasoft_registrygeoreplication/_utilities.py",
+    "khulnasoft_registrygeoreplication/provider.py",
+    "khulnasoft_registrygeoreplication/khulnasoft-plugin.json",
+    "khulnasoft_registrygeoreplication/py.typed",
+    "khulnasoft_registrygeoreplication/registry_geo_replication.py",
+    "setup.py"
+  ]
+}

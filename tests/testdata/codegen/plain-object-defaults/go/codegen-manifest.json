@@ -1,0 +1,16 @@
+{
+  "emittedFiles": [
+    "example/doc.go",
+    "example/foo.go",
+    "example/funcWithAllOptionalInputs.go",
+    "example/init.go",
+    "example/internal/khulnasoftUtilities.go",
+    "example/internal/khulnasoftVersion.go",
+    "example/mod1/khulnasoftTypes.go",
+    "example/mod2/khulnasoftTypes.go",
+    "example/moduleTest.go",
+    "example/provider.go",
+    "example/khulnasoft-plugin.json",
+    "example/khulnasoftTypes.go"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "@khulnasoft/alpha",
+    "version": "3.0.0-alpha.1+exp.sha.5114f85",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@khulnasoft/khulnasoft": "ROOT/artifacts/khulnasoft-khulnasoft-CORE.VERSION.tgz"
+    },
+    "devDependencies": {
+        "@types/node": "^14",
+        "typescript": "^4.3.5"
+    },
+    "khulnasoft": {
+        "resource": true,
+        "name": "alpha",
+        "version": "3.0.0-alpha.1+exp.sha.5114f85"
+    }
+}

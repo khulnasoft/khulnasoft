@@ -1,0 +1,15 @@
+{
+  "emittedFiles": [
+    "khulnasoft_typedDictDisabledExample/README.md",
+    "khulnasoft_typedDictDisabledExample/__init__.py",
+    "khulnasoft_typedDictDisabledExample/_inputs.py",
+    "khulnasoft_typedDictDisabledExample/_utilities.py",
+    "khulnasoft_typedDictDisabledExample/component.py",
+    "khulnasoft_typedDictDisabledExample/my_function.py",
+    "khulnasoft_typedDictDisabledExample/outputs.py",
+    "khulnasoft_typedDictDisabledExample/provider.py",
+    "khulnasoft_typedDictDisabledExample/khulnasoft-plugin.json",
+    "khulnasoft_typedDictDisabledExample/py.typed",
+    "setup.py"
+  ]
+}

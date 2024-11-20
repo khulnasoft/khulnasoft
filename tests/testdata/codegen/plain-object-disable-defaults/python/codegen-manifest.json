@@ -1,0 +1,20 @@
+{
+  "emittedFiles": [
+    "khulnasoft_example/README.md",
+    "khulnasoft_example/__init__.py",
+    "khulnasoft_example/_inputs.py",
+    "khulnasoft_example/_utilities.py",
+    "khulnasoft_example/foo.py",
+    "khulnasoft_example/func_with_all_optional_inputs.py",
+    "khulnasoft_example/mod1/__init__.py",
+    "khulnasoft_example/mod1/_inputs.py",
+    "khulnasoft_example/mod2/__init__.py",
+    "khulnasoft_example/mod2/_inputs.py",
+    "khulnasoft_example/module_test.py",
+    "khulnasoft_example/outputs.py",
+    "khulnasoft_example/provider.py",
+    "khulnasoft_example/khulnasoft-plugin.json",
+    "khulnasoft_example/py.typed",
+    "setup.py"
+  ]
+}

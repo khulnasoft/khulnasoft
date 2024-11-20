@@ -1,0 +1,11 @@
+{
+	"name": "l2-resource-asset-archive",
+	"devDependencies": {
+		"@types/node": "^14"
+	},
+	"dependencies": {
+		"typescript": "^4.0.0",
+		"@khulnasoft/khulnasoft": "ROOT/artifacts/khulnasoft-khulnasoft-CORE.VERSION.tgz",
+		"@khulnasoft/asset-archive": "ROOT/artifacts/khulnasoft-asset-archive-5.0.0.tgz"
+	}
+}

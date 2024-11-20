@@ -1,0 +1,6 @@
+{
+  "name": "oom",
+  "peerDependencies": {
+    "@khulnasoft/khulnasoft": "^3.0.0"
+  }
+}

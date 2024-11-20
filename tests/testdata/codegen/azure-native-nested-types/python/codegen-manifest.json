@@ -1,0 +1,14 @@
+{
+  "emittedFiles": [
+    "khulnasoft_azure_native/README.md",
+    "khulnasoft_azure_native/__init__.py",
+    "khulnasoft_azure_native/_utilities.py",
+    "khulnasoft_azure_native/documentdb/__init__.py",
+    "khulnasoft_azure_native/documentdb/outputs.py",
+    "khulnasoft_azure_native/documentdb/sql_resource_sql_container.py",
+    "khulnasoft_azure_native/provider.py",
+    "khulnasoft_azure_native/khulnasoft-plugin.json",
+    "khulnasoft_azure_native/py.typed",
+    "setup.py"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "emittedFiles": [
+    "myedgeorder/doc.go",
+    "myedgeorder/init.go",
+    "myedgeorder/internal/khulnasoftUtilities.go",
+    "myedgeorder/internal/khulnasoftVersion.go",
+    "myedgeorder/listConfigurations.go",
+    "myedgeorder/listProductFamilies.go",
+    "myedgeorder/provider.go",
+    "myedgeorder/khulnasoft-plugin.json",
+    "myedgeorder/khulnasoftEnums.go",
+    "myedgeorder/khulnasoftTypes.go"
+  ]
+}

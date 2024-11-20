@@ -1,0 +1,13 @@
+{
+  "emittedFiles": [
+    "khulnasoft_my8110/README.md",
+    "khulnasoft_my8110/__init__.py",
+    "khulnasoft_my8110/_enums.py",
+    "khulnasoft_my8110/_utilities.py",
+    "khulnasoft_my8110/example_func.py",
+    "khulnasoft_my8110/provider.py",
+    "khulnasoft_my8110/khulnasoft-plugin.json",
+    "khulnasoft_my8110/py.typed",
+    "setup.py"
+  ]
+}
