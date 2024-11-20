@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from pulumi import ComponentResource, CustomResource
+from khulnasoft import ComponentResource, CustomResource
 
 
 class MyResource(CustomResource):

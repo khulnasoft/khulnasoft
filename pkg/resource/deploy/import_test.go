@@ -23,12 +23,12 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/gsync"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/urn"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/urn"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -43,7 +43,7 @@ func TestImportDeployment(t *testing.T) {
 				Snapshot: &Snapshot{
 					Resources: []*resource.State{
 						{
-							URN:    "urn:pulumi:stack::project::type::oldName",
+							URN:    "urn:khulnasoft:stack::project::type::oldName",
 							Custom: true,
 						},
 					},

@@ -27,8 +27,8 @@ import (
 	"github.com/golang/glog"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/python"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 type methodDocArgs struct {
@@ -163,7 +163,7 @@ func (mod *modContext) genMethodGo(f *schema.Function, resourceName, methodName 
 			OptionalFlag: "*",
 			Type: propertyType{
 				Name: "Context",
-				Link: "https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context",
+				Link: "https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context",
 			},
 		},
 	}

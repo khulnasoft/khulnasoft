@@ -8,11 +8,11 @@ import (
 	"reflect"
 
 	"external-resource-schema/example/internal"
-	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-random/sdk/v4/go/random"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
-func ArgFunction(ctx *pulumi.Context, args *ArgFunctionArgs, opts ...pulumi.InvokeOption) (*ArgFunctionResult, error) {
+func ArgFunction(ctx *khulnasoft.Context, args *ArgFunctionArgs, opts ...khulnasoft.InvokeOption) (*ArgFunctionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ArgFunctionResult
 	err := ctx.Invoke("example::argFunction", args, &rv, opts...)
@@ -23,15 +23,15 @@ func ArgFunction(ctx *pulumi.Context, args *ArgFunctionArgs, opts ...pulumi.Invo
 }
 
 type ArgFunctionArgs struct {
-	Name *random.RandomPet `pulumi:"name"`
+	Name *random.RandomPet `khulnasoft:"name"`
 }
 
 type ArgFunctionResult struct {
-	Age *int `pulumi:"age"`
+	Age *int `khulnasoft:"age"`
 }
 
-func ArgFunctionOutput(ctx *pulumi.Context, args ArgFunctionOutputArgs, opts ...pulumi.InvokeOption) ArgFunctionResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func ArgFunctionOutput(ctx *khulnasoft.Context, args ArgFunctionOutputArgs, opts ...khulnasoft.InvokeOption) ArgFunctionResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (ArgFunctionResultOutput, error) {
 			args := v.(ArgFunctionArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -41,23 +41,23 @@ func ArgFunctionOutput(ctx *pulumi.Context, args ArgFunctionOutputArgs, opts ...
 				return ArgFunctionResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(ArgFunctionResultOutput)
+			output := khulnasoft.ToOutput(rv).(ArgFunctionResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(ArgFunctionResultOutput), nil
+				return khulnasoft.ToSecret(output).(ArgFunctionResultOutput), nil
 			}
 			return output, nil
 		}).(ArgFunctionResultOutput)
 }
 
 type ArgFunctionOutputArgs struct {
-	Name random.RandomPetInput `pulumi:"name"`
+	Name random.RandomPetInput `khulnasoft:"name"`
 }
 
 func (ArgFunctionOutputArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*ArgFunctionArgs)(nil)).Elem()
 }
 
-type ArgFunctionResultOutput struct{ *pulumi.OutputState }
+type ArgFunctionResultOutput struct{ *khulnasoft.OutputState }
 
 func (ArgFunctionResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ArgFunctionResult)(nil)).Elem()
@@ -71,10 +71,10 @@ func (o ArgFunctionResultOutput) ToArgFunctionResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o ArgFunctionResultOutput) Age() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ArgFunctionResult) *int { return v.Age }).(pulumi.IntPtrOutput)
+func (o ArgFunctionResultOutput) Age() khulnasoft.IntPtrOutput {
+	return o.ApplyT(func(v ArgFunctionResult) *int { return v.Age }).(khulnasoft.IntPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(ArgFunctionResultOutput{})
+	khulnasoft.RegisterOutputType(ArgFunctionResultOutput{})
 }

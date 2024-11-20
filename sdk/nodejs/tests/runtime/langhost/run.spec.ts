@@ -312,7 +312,7 @@ describe("rpc", () => {
                 assert.deepStrictEqual(res, {
                     data: {
                         [runtime.specialSigKey]: runtime.specialAssetSig,
-                        __pulumiAsset: true,
+                        __khulnasoftAsset: true,
                         path: "./testdata.txt",
                     },
                 });
@@ -415,34 +415,34 @@ describe("rpc", () => {
                 assert.deepStrictEqual(res, {
                     archive: {
                         "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
-                        __pulumiArchive: true,
+                        __khulnasoftArchive: true,
                         assets: {
                             archive: {
                                 "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
-                                __pulumiArchive: true,
+                                __khulnasoftArchive: true,
                                 assets: {},
                             },
                             asset: {
                                 "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
-                                __pulumiAsset: true,
+                                __khulnasoftAsset: true,
                                 text: "foo",
                             },
                         },
                     },
                     archiveP: {
                         "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
-                        __pulumiArchive: true,
+                        __khulnasoftArchive: true,
                         assets: {
                             foo: {
                                 "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
-                                __pulumiAsset: true,
+                                __khulnasoftAsset: true,
                                 text: "bar",
                             },
                         },
                     },
                     assetP: {
                         "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
-                        __pulumiAsset: true,
+                        __khulnasoftAsset: true,
                         text: "baz",
                     },
                 });
@@ -569,7 +569,7 @@ describe("rpc", () => {
             expectResourceCount: 1,
             showRootResourceRegistration: true,
             registerResource: (ctx, dryrun, t, name, res, deps, custom, protect, parent) => {
-                if (t === "pulumi:pulumi:Stack") {
+                if (t === "khulnasoft:khulnasoft:Stack") {
                     ctx.stackUrn = makeUrn(t, name);
                     return { urn: makeUrn(t, name), id: undefined, props: undefined };
                 }
@@ -584,7 +584,7 @@ describe("rpc", () => {
                 res: any,
                 outputs: any | undefined,
             ) => {
-                assert.strictEqual(t, "pulumi:pulumi:Stack");
+                assert.strictEqual(t, "khulnasoft:khulnasoft:Stack");
                 assert.deepStrictEqual(outputs, {
                     a: {
                         x: 99,
@@ -603,7 +603,7 @@ describe("rpc", () => {
             expectResourceCount: 2,
             showRootResourceRegistration: true,
             registerResource: (ctx, dryrun, t, name, res, deps, custom, protect, parent) => {
-                if (t === "pulumi:pulumi:Stack") {
+                if (t === "khulnasoft:khulnasoft:Stack") {
                     ctx.stackUrn = makeUrn(t, name);
                     return { urn: makeUrn(t, name), id: undefined, props: undefined };
                 }
@@ -620,7 +620,7 @@ describe("rpc", () => {
             skipRootResourceEndpoints: true,
             showRootResourceRegistration: true,
             registerResource: (ctx, dryrun, t, name, res, deps, custom, protect, parent) => {
-                if (t === "pulumi:pulumi:Stack") {
+                if (t === "khulnasoft:khulnasoft:Stack") {
                     ctx.stackUrn = makeUrn(t, name);
                     return { urn: makeUrn(t, name), id: undefined, props: undefined };
                 }
@@ -1074,7 +1074,7 @@ describe("rpc", () => {
             expectResourceCount: 1,
             showRootResourceRegistration: true,
             registerResource: (ctx, dryrun, t, name, res, deps, custom, protect, parent) => {
-                if (t === "pulumi:pulumi:Stack") {
+                if (t === "khulnasoft:khulnasoft:Stack") {
                     ctx.stackUrn = makeUrn(t, name);
                     return { urn: makeUrn(t, name), id: undefined, props: undefined };
                 }
@@ -1089,7 +1089,7 @@ describe("rpc", () => {
                 res: any,
                 outputs: any | undefined,
             ) => {
-                assert.strictEqual(t, "pulumi:pulumi:Stack");
+                assert.strictEqual(t, "khulnasoft:khulnasoft:Stack");
                 assert.deepStrictEqual(outputs, {
                     m: { a: { b: 1 } },
                     n: { a: { b: 1 } },
@@ -1106,7 +1106,7 @@ describe("rpc", () => {
             expectResourceCount: 1,
             showRootResourceRegistration: true,
             registerResource: (ctx, dryrun, t, name, res, deps, custom, protect, parent) => {
-                if (t === "pulumi:pulumi:Stack") {
+                if (t === "khulnasoft:khulnasoft:Stack") {
                     ctx.stackUrn = makeUrn(t, name);
                     return { urn: makeUrn(t, name), id: undefined, props: undefined };
                 }
@@ -1121,7 +1121,7 @@ describe("rpc", () => {
                 res: any,
                 outputs: any | undefined,
             ) => {
-                assert.strictEqual(t, "pulumi:pulumi:Stack");
+                assert.strictEqual(t, "khulnasoft:khulnasoft:Stack");
                 assert.deepStrictEqual(outputs, {
                     a: {
                         x: 99,
@@ -1140,7 +1140,7 @@ describe("rpc", () => {
             expectResourceCount: 1,
             showRootResourceRegistration: true,
             registerResource: (ctx, dryrun, t, name, res, deps, custom, protect, parent) => {
-                if (t === "pulumi:pulumi:Stack") {
+                if (t === "khulnasoft:khulnasoft:Stack") {
                     ctx.stackUrn = makeUrn(t, name);
                     return { urn: makeUrn(t, name), id: undefined, props: undefined };
                 }
@@ -1155,7 +1155,7 @@ describe("rpc", () => {
                 res: any,
                 outputs: any | undefined,
             ) => {
-                assert.strictEqual(t, "pulumi:pulumi:Stack");
+                assert.strictEqual(t, "khulnasoft:khulnasoft:Stack");
                 assert.deepStrictEqual(outputs, {
                     a: {
                         x: 99,
@@ -1174,7 +1174,7 @@ describe("rpc", () => {
             expectResourceCount: 1,
             showRootResourceRegistration: true,
             registerResource: (ctx, dryrun, t, name, res, deps, custom, protect, parent) => {
-                if (t === "pulumi:pulumi:Stack") {
+                if (t === "khulnasoft:khulnasoft:Stack") {
                     ctx.stackUrn = makeUrn(t, name);
                     return { urn: makeUrn(t, name), id: undefined, props: undefined };
                 }
@@ -1189,7 +1189,7 @@ describe("rpc", () => {
                 res: any,
                 outputs: any | undefined,
             ) => {
-                assert.strictEqual(t, "pulumi:pulumi:Stack");
+                assert.strictEqual(t, "khulnasoft:khulnasoft:Stack");
                 assert.deepStrictEqual(outputs, {
                     a: {
                         x: 99,
@@ -1208,7 +1208,7 @@ describe("rpc", () => {
             expectResourceCount: 2,
             showRootResourceRegistration: true,
             registerResource: (ctx: any, dryrun: boolean, t: string, name: string, res: any) => {
-                if (t === "pulumi:pulumi:Stack") {
+                if (t === "khulnasoft:khulnasoft:Stack") {
                     ctx.stackUrn = makeUrn(t, name);
                     return { urn: makeUrn(t, name), id: undefined, props: undefined };
                 }
@@ -1225,7 +1225,7 @@ describe("rpc", () => {
                 res: any,
                 outputs: any | undefined,
             ) => {
-                assert.strictEqual(t, "pulumi:pulumi:Stack");
+                assert.strictEqual(t, "khulnasoft:khulnasoft:Stack");
                 assert.deepStrictEqual(outputs, {});
             },
         },
@@ -1234,7 +1234,7 @@ describe("rpc", () => {
             expectResourceCount: 2,
             showRootResourceRegistration: true,
             registerResource: (ctx: any, dryrun: boolean, t: string, name: string, res: any) => {
-                if (t === "pulumi:pulumi:Stack") {
+                if (t === "khulnasoft:khulnasoft:Stack") {
                     ctx.stackUrn = makeUrn(t, name);
                     return { urn: makeUrn(t, name), id: undefined, props: undefined };
                 }
@@ -1251,7 +1251,7 @@ describe("rpc", () => {
                 res: any,
                 outputs: any | undefined,
             ) => {
-                assert.strictEqual(t, "pulumi:pulumi:Stack");
+                assert.strictEqual(t, "khulnasoft:khulnasoft:Stack");
                 assert.deepStrictEqual(outputs, { a: 1 });
             },
         },
@@ -1260,7 +1260,7 @@ describe("rpc", () => {
             expectResourceCount: 2,
             showRootResourceRegistration: true,
             registerResource: (ctx: any, dryrun: boolean, t: string, name: string, res: any) => {
-                if (t === "pulumi:pulumi:Stack") {
+                if (t === "khulnasoft:khulnasoft:Stack") {
                     ctx.stackUrn = makeUrn(t, name);
                     return { urn: makeUrn(t, name), id: undefined, props: undefined };
                 }
@@ -1277,7 +1277,7 @@ describe("rpc", () => {
                 res: any,
                 outputs: any | undefined,
             ) => {
-                assert.strictEqual(t, "pulumi:pulumi:Stack");
+                assert.strictEqual(t, "khulnasoft:khulnasoft:Stack");
                 assert.deepStrictEqual(outputs, { a: 1 });
             },
         },
@@ -1288,7 +1288,7 @@ describe("rpc", () => {
                 return { urn: makeUrn(t, name), id: name === "p" ? "1" : undefined, props: undefined };
             },
             invoke: (ctx: any, tok: string, args: any, version: string, provider: string) => {
-                assert.strictEqual(provider, "pulumi:providers:test::p::1");
+                assert.strictEqual(provider, "khulnasoft:providers:test::p::1");
                 assert.strictEqual(tok, "test:index:echo");
                 assert.deepStrictEqual(args, {
                     a: "hello",
@@ -1318,7 +1318,7 @@ describe("rpc", () => {
                 return { urn: makeUrn(t, name), id: name === "p" ? "1" : undefined, props: undefined };
             },
             invoke: (ctx: any, tok: string, args: any, version: string, provider: string) => {
-                assert.strictEqual(provider, "pulumi:providers:test::p::1");
+                assert.strictEqual(provider, "khulnasoft:providers:test::p::1");
                 assert.strictEqual(tok, "test:index:echo");
                 assert.deepStrictEqual(args, {
                     a: "hello",
@@ -1337,7 +1337,7 @@ describe("rpc", () => {
                 return { urn: makeUrn(t, name), id: name === "p" ? "1" : undefined, props: undefined };
             },
             invoke: (ctx: any, tok: string, args: any, version: string, provider: string) => {
-                assert.strictEqual(provider, "pulumi:providers:test::p::1");
+                assert.strictEqual(provider, "khulnasoft:providers:test::p::1");
                 assert.strictEqual(tok, "test:index:echo");
                 assert.deepStrictEqual(args, {
                     a: "hello",
@@ -1371,7 +1371,7 @@ describe("rpc", () => {
                 return { urn: makeUrn(t, name), id: name === "p" ? "1" : undefined, props: undefined };
             },
             invoke: (ctx: any, tok: string, args: any, version: string, provider: string) => {
-                assert.strictEqual(provider, "pulumi:providers:test::p::1");
+                assert.strictEqual(provider, "khulnasoft:providers:test::p::1");
                 assert.strictEqual(tok, "test:index:echo");
                 assert.deepStrictEqual(args, {
                     a: "hello",
@@ -1491,7 +1491,7 @@ describe("rpc", () => {
                 providers?: any,
             ) => {
                 if (name === "singular" || name === "map" || name === "array") {
-                    assert.strictEqual(provider, "pulumi:providers:test::myprovider::1");
+                    assert.strictEqual(provider, "khulnasoft:providers:test::myprovider::1");
                     assert.deepStrictEqual(Object.keys(providers), ["test"]);
                 }
                 if (name === "foo-singular" || name === "foo-map" || name === "foo-array") {
@@ -1852,7 +1852,7 @@ function parentDefaultsRegisterResource(
     parent?: string,
     provider?: string,
 ) {
-    if (custom && !t.startsWith("pulumi:providers:")) {
+    if (custom && !t.startsWith("khulnasoft:providers:")) {
         let expectProtect = false;
         let expectProviderName = "";
 
@@ -2010,12 +2010,12 @@ async function createMockEngineAsync(
 function serveLanguageHostProcess(engineAddr: string): { proc: childProcess.ChildProcess; addr: Promise<string> } {
     // A quick note about this:
     //
-    // Normally, `pulumi-language-nodejs` launches `./node-modules/@pulumi/pulumi/cmd/run` which is
+    // Normally, `khulnasoft-language-nodejs` launches `./node-modules/@khulnasoft/khulnasoft/cmd/run` which is
     // responsible for setting up some state and then running the actual user program.  However, in this case,
     // we don't have a folder structure like the above because we are setting the package as we've built it,
     // not it installed in another application.
     //
-    // `pulumi-language-nodejs` allows us to set `PULUMI_LANGUAGE_NODEJS_RUN_PATH` in the environment, and
+    // `khulnasoft-language-nodejs` allows us to set `PULUMI_LANGUAGE_NODEJS_RUN_PATH` in the environment, and
     // when set, it will use that path instead of the default value. For our tests here, we set it and point
     // at the just built version of run.
     //
@@ -2023,7 +2023,7 @@ function serveLanguageHostProcess(engineAddr: string): { proc: childProcess.Chil
     // directory which is changed by by the pwd option.
 
     process.env.PULUMI_LANGUAGE_NODEJS_RUN_PATH = path.normalize(path.join(__dirname, "..", "..", "..", "cmd", "run"));
-    const proc = childProcess.spawn("pulumi-language-nodejs", [engineAddr]);
+    const proc = childProcess.spawn("khulnasoft-language-nodejs", [engineAddr]);
 
     // Hook the first line so we can parse the address.  Then we hook the rest to print for debugging purposes, and
     // hand back the resulting process object plus the address we plucked out.

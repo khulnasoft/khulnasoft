@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-unknown/sdk/go/unknown"
-	"github.com/pulumi/pulumi-unknown/sdk/go/unknown/eks"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-unknown/sdk/go/unknown"
+	"github.com/khulnasoft/khulnasoft-unknown/sdk/go/unknown/eks"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		data, err := unknown.GetData(ctx, map[string]interface{}{
 			"input": "hello",
 		}, nil)

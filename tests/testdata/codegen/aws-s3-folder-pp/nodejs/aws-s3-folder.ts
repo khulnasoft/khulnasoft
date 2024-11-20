@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 import * as fs from "fs";
 
 // Create a bucket and expose a website index document
@@ -13,7 +13,7 @@ for (const range of fs.readdirSync(siteDir).map((v, k) => ({key: k, value: v})))
     files.push(new aws.s3.BucketObject(`files-${range.key}`, {
         bucket: siteBucket.id,
         key: range.value,
-        source: new pulumi.asset.FileAsset(`${siteDir}/${range.value}`),
+        source: new khulnasoft.asset.FileAsset(`${siteDir}/${range.value}`),
         contentType: range.value,
     }, {
     deletedWith: siteBucket,
@@ -23,13 +23,13 @@ for (const range of fs.readdirSync(siteDir).map((v, k) => ({key: k, value: v})))
 // Set the access policy for the bucket so all objects are readable
 const bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
     bucket: siteBucket.id,
-    policy: pulumi.jsonStringify({
+    policy: khulnasoft.jsonStringify({
         Version: "2012-10-17",
         Statement: [{
             Effect: "Allow",
             Principal: "*",
             Action: ["s3:GetObject"],
-            Resource: [pulumi.interpolate`arn:aws:s3:::${siteBucket.id}/*`],
+            Resource: [khulnasoft.interpolate`arn:aws:s3:::${siteBucket.id}/*`],
         }],
     }),
 });

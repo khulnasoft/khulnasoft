@@ -1,7 +1,7 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as azure from "@pulumi/azure";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as azure from "@khulnasoft/azure";
 
-const config = new pulumi.Config();
+const config = new khulnasoft.Config();
 // The name of the storage account
 const storageAccountNameParam = config.require("storageAccountNameParam");
 // The name of the resource group

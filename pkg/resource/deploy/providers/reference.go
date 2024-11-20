@@ -19,14 +19,14 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // A provider reference is (URN, ID) tuple that refers to a particular provider instance. A provider reference's
-// string representation is <URN> "::" <ID>. The URN's type portion must be of the form "pulumi:providers:<pkg>".
+// string representation is <URN> "::" <ID>. The URN's type portion must be of the form "khulnasoft:providers:<pkg>".
 
 // UnknownID is a distinguished token used to indicate that a provider's ID is not known (e.g. because we are
 // performing a preview).
@@ -43,7 +43,7 @@ func IsProviderType(typ tokens.Type) bool {
 	if !tokens.Token(typ).HasModuleMember() {
 		return false
 	}
-	return typ.Module() == "pulumi:providers" && typ.Name() != ""
+	return typ.Module() == "khulnasoft:providers" && typ.Name() != ""
 }
 
 // IsDefaultProvider returns true if this URN refers to a default Pulumi provider.
@@ -53,7 +53,7 @@ func IsDefaultProvider(urn resource.URN) bool {
 
 // MakeProviderType returns the provider type token for the given package.
 func MakeProviderType(pkg tokens.Package) tokens.Type {
-	return tokens.Type("pulumi:providers:" + pkg)
+	return tokens.Type("khulnasoft:providers:" + pkg)
 }
 
 // GetProviderPackage returns the provider package for the given type token.
@@ -67,8 +67,8 @@ func validateURN(urn resource.URN) error {
 		return fmt.Errorf("%s is not a valid URN", urn)
 	}
 	typ := urn.Type()
-	if typ.Module() != "pulumi:providers" {
-		return fmt.Errorf("invalid module in type: expected 'pulumi:providers', got '%v'", typ.Module())
+	if typ.Module() != "khulnasoft:providers" {
+		return fmt.Errorf("invalid module in type: expected 'khulnasoft:providers', got '%v'", typ.Module())
 	}
 	if typ.Name() == "" {
 		return errors.New("provider URNs must specify a type name")
@@ -106,14 +106,14 @@ const denyDefaultProviderID resource.ID = "denydefaultprovider"
 // DenyDefaultProvider represent a default provider that cannot be created.
 func NewDenyDefaultProvider(name string) Reference {
 	return mustNewReference(
-		resource.NewURN("denied", "denied", "denied", "pulumi:providers:denied", name),
+		resource.NewURN("denied", "denied", "denied", "khulnasoft:providers:denied", name),
 		denyDefaultProviderID)
 }
 
 // Retrieves the package of the denied provider.
 //
 // For example, if a reference to:
-// "urn:pulumi:stack::project::pulumi:providers:aws::default_4_35_0"
+// "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_4_35_0"
 // was denied, then GetDeniedDefaultProviderPkg would return "aws".
 //
 // Panics if called on a provider that is not a DenyDefaultProvider.

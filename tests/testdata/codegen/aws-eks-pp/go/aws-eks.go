@@ -4,23 +4,23 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/eks"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/ec2"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/eks"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/iam"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		// VPC
 		eksVpc, err := ec2.NewVpc(ctx, "eksVpc", &ec2.VpcArgs{
-			CidrBlock:          pulumi.String("10.100.0.0/16"),
-			InstanceTenancy:    pulumi.String("default"),
-			EnableDnsHostnames: pulumi.Bool(true),
-			EnableDnsSupport:   pulumi.Bool(true),
-			Tags: pulumi.StringMap{
-				"Name": pulumi.String("pulumi-eks-vpc"),
+			CidrBlock:          khulnasoft.String("10.100.0.0/16"),
+			InstanceTenancy:    khulnasoft.String("default"),
+			EnableDnsHostnames: khulnasoft.Bool(true),
+			EnableDnsSupport:   khulnasoft.Bool(true),
+			Tags: khulnasoft.StringMap{
+				"Name": khulnasoft.String("khulnasoft-eks-vpc"),
 			},
 		})
 		if err != nil {
@@ -28,8 +28,8 @@ func main() {
 		}
 		eksIgw, err := ec2.NewInternetGateway(ctx, "eksIgw", &ec2.InternetGatewayArgs{
 			VpcId: eksVpc.ID(),
-			Tags: pulumi.StringMap{
-				"Name": pulumi.String("pulumi-vpc-ig"),
+			Tags: khulnasoft.StringMap{
+				"Name": khulnasoft.String("khulnasoft-vpc-ig"),
 			},
 		})
 		if err != nil {
@@ -39,12 +39,12 @@ func main() {
 			VpcId: eksVpc.ID(),
 			Routes: ec2.RouteTableRouteArray{
 				&ec2.RouteTableRouteArgs{
-					CidrBlock: pulumi.String("0.0.0.0/0"),
+					CidrBlock: khulnasoft.String("0.0.0.0/0"),
 					GatewayId: eksIgw.ID(),
 				},
 			},
-			Tags: pulumi.StringMap{
-				"Name": pulumi.String("pulumi-vpc-rt"),
+			Tags: khulnasoft.StringMap{
+				"Name": khulnasoft.String("khulnasoft-vpc-rt"),
 			},
 		})
 		if err != nil {
@@ -57,13 +57,13 @@ func main() {
 		var vpcSubnet []*ec2.Subnet
 		for key0, val0 := range zones.Names {
 			__res, err := ec2.NewSubnet(ctx, fmt.Sprintf("vpcSubnet-%v", key0), &ec2.SubnetArgs{
-				AssignIpv6AddressOnCreation: pulumi.Bool(false),
+				AssignIpv6AddressOnCreation: khulnasoft.Bool(false),
 				VpcId:                       eksVpc.ID(),
-				MapPublicIpOnLaunch:         pulumi.Bool(true),
-				CidrBlock:                   pulumi.Sprintf("10.100.%v.0/24", key0),
-				AvailabilityZone:            pulumi.String(val0),
-				Tags: pulumi.StringMap{
-					"Name": pulumi.Sprintf("pulumi-sn-%v", val0),
+				MapPublicIpOnLaunch:         khulnasoft.Bool(true),
+				CidrBlock:                   khulnasoft.Sprintf("10.100.%v.0/24", key0),
+				AvailabilityZone:            khulnasoft.String(val0),
+				Tags: khulnasoft.StringMap{
+					"Name": khulnasoft.Sprintf("khulnasoft-sn-%v", val0),
 				},
 			})
 			if err != nil {
@@ -82,35 +82,35 @@ func main() {
 			}
 			rta = append(rta, __res)
 		}
-		var splat0 pulumi.StringArray
+		var splat0 khulnasoft.StringArray
 		for _, val0 := range vpcSubnet {
 			splat0 = append(splat0, val0.ID())
 		}
 		subnetIds := splat0
 		eksSecurityGroup, err := ec2.NewSecurityGroup(ctx, "eksSecurityGroup", &ec2.SecurityGroupArgs{
 			VpcId:       eksVpc.ID(),
-			Description: pulumi.String("Allow all HTTP(s) traffic to EKS Cluster"),
-			Tags: pulumi.StringMap{
-				"Name": pulumi.String("pulumi-cluster-sg"),
+			Description: khulnasoft.String("Allow all HTTP(s) traffic to EKS Cluster"),
+			Tags: khulnasoft.StringMap{
+				"Name": khulnasoft.String("khulnasoft-cluster-sg"),
 			},
 			Ingress: ec2.SecurityGroupIngressArray{
 				&ec2.SecurityGroupIngressArgs{
-					CidrBlocks: pulumi.StringArray{
-						pulumi.String("0.0.0.0/0"),
+					CidrBlocks: khulnasoft.StringArray{
+						khulnasoft.String("0.0.0.0/0"),
 					},
-					FromPort:    pulumi.Int(443),
-					ToPort:      pulumi.Int(443),
-					Protocol:    pulumi.String("tcp"),
-					Description: pulumi.String("Allow pods to communicate with the cluster API Server."),
+					FromPort:    khulnasoft.Int(443),
+					ToPort:      khulnasoft.Int(443),
+					Protocol:    khulnasoft.String("tcp"),
+					Description: khulnasoft.String("Allow pods to communicate with the cluster API Server."),
 				},
 				&ec2.SecurityGroupIngressArgs{
-					CidrBlocks: pulumi.StringArray{
-						pulumi.String("0.0.0.0/0"),
+					CidrBlocks: khulnasoft.StringArray{
+						khulnasoft.String("0.0.0.0/0"),
 					},
-					FromPort:    pulumi.Int(80),
-					ToPort:      pulumi.Int(80),
-					Protocol:    pulumi.String("tcp"),
-					Description: pulumi.String("Allow internet access to pods"),
+					FromPort:    khulnasoft.Int(80),
+					ToPort:      khulnasoft.Int(80),
+					Protocol:    khulnasoft.String("tcp"),
+					Description: khulnasoft.String("Allow internet access to pods"),
 				},
 			},
 		})
@@ -135,21 +135,21 @@ func main() {
 		}
 		json0 := string(tmpJSON0)
 		eksRole, err := iam.NewRole(ctx, "eksRole", &iam.RoleArgs{
-			AssumeRolePolicy: pulumi.String(json0),
+			AssumeRolePolicy: khulnasoft.String(json0),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = iam.NewRolePolicyAttachment(ctx, "servicePolicyAttachment", &iam.RolePolicyAttachmentArgs{
 			Role:      eksRole.ID(),
-			PolicyArn: pulumi.String("arn:aws:iam::aws:policy/AmazonEKSServicePolicy"),
+			PolicyArn: khulnasoft.String("arn:aws:iam::aws:policy/AmazonEKSServicePolicy"),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = iam.NewRolePolicyAttachment(ctx, "clusterPolicyAttachment", &iam.RolePolicyAttachmentArgs{
 			Role:      eksRole.ID(),
-			PolicyArn: pulumi.String("arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"),
+			PolicyArn: khulnasoft.String("arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"),
 		})
 		if err != nil {
 			return err
@@ -172,42 +172,42 @@ func main() {
 		}
 		json1 := string(tmpJSON1)
 		ec2Role, err := iam.NewRole(ctx, "ec2Role", &iam.RoleArgs{
-			AssumeRolePolicy: pulumi.String(json1),
+			AssumeRolePolicy: khulnasoft.String(json1),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = iam.NewRolePolicyAttachment(ctx, "workerNodePolicyAttachment", &iam.RolePolicyAttachmentArgs{
 			Role:      ec2Role.ID(),
-			PolicyArn: pulumi.String("arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"),
+			PolicyArn: khulnasoft.String("arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = iam.NewRolePolicyAttachment(ctx, "cniPolicyAttachment", &iam.RolePolicyAttachmentArgs{
 			Role:      ec2Role.ID(),
-			PolicyArn: pulumi.String("arn:aws:iam::aws:policy/AmazonEKSCNIPolicy"),
+			PolicyArn: khulnasoft.String("arn:aws:iam::aws:policy/AmazonEKSCNIPolicy"),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = iam.NewRolePolicyAttachment(ctx, "registryPolicyAttachment", &iam.RolePolicyAttachmentArgs{
 			Role:      ec2Role.ID(),
-			PolicyArn: pulumi.String("arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"),
+			PolicyArn: khulnasoft.String("arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"),
 		})
 		if err != nil {
 			return err
 		}
 		eksCluster, err := eks.NewCluster(ctx, "eksCluster", &eks.ClusterArgs{
 			RoleArn: eksRole.Arn,
-			Tags: pulumi.StringMap{
-				"Name": pulumi.String("pulumi-eks-cluster"),
+			Tags: khulnasoft.StringMap{
+				"Name": khulnasoft.String("khulnasoft-eks-cluster"),
 			},
 			VpcConfig: &eks.ClusterVpcConfigArgs{
-				PublicAccessCidrs: pulumi.StringArray{
-					pulumi.String("0.0.0.0/0"),
+				PublicAccessCidrs: khulnasoft.StringArray{
+					khulnasoft.String("0.0.0.0/0"),
 				},
-				SecurityGroupIds: pulumi.StringArray{
+				SecurityGroupIds: khulnasoft.StringArray{
 					eksSecurityGroup.ID(),
 				},
 				SubnetIds: subnetIds,
@@ -218,23 +218,23 @@ func main() {
 		}
 		_, err = eks.NewNodeGroup(ctx, "nodeGroup", &eks.NodeGroupArgs{
 			ClusterName:   eksCluster.Name,
-			NodeGroupName: pulumi.String("pulumi-eks-nodegroup"),
+			NodeGroupName: khulnasoft.String("khulnasoft-eks-nodegroup"),
 			NodeRoleArn:   ec2Role.Arn,
 			SubnetIds:     subnetIds,
-			Tags: pulumi.StringMap{
-				"Name": pulumi.String("pulumi-cluster-nodeGroup"),
+			Tags: khulnasoft.StringMap{
+				"Name": khulnasoft.String("khulnasoft-cluster-nodeGroup"),
 			},
 			ScalingConfig: &eks.NodeGroupScalingConfigArgs{
-				DesiredSize: pulumi.Int(2),
-				MaxSize:     pulumi.Int(2),
-				MinSize:     pulumi.Int(1),
+				DesiredSize: khulnasoft.Int(2),
+				MaxSize:     khulnasoft.Int(2),
+				MinSize:     khulnasoft.Int(1),
 			},
 		})
 		if err != nil {
 			return err
 		}
 		ctx.Export("clusterName", eksCluster.Name)
-		ctx.Export("kubeconfig", pulumi.All(eksCluster.Endpoint, eksCluster.CertificateAuthority, eksCluster.Name).ApplyT(func(_args []interface{}) (string, error) {
+		ctx.Export("kubeconfig", khulnasoft.All(eksCluster.Endpoint, eksCluster.CertificateAuthority, eksCluster.Name).ApplyT(func(_args []interface{}) (string, error) {
 			endpoint := _args[0].(string)
 			certificateAuthority := _args[1].(eks.ClusterCertificateAuthority)
 			name := _args[2].(string)
@@ -282,7 +282,7 @@ func main() {
 			}
 			json2 := string(tmpJSON2)
 			return json2, nil
-		}).(pulumi.StringOutput))
+		}).(khulnasoft.StringOutput))
 		return nil
 	})
 }

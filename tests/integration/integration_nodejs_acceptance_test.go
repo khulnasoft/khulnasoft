@@ -28,8 +28,8 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
 )
 
 // TestEmptyNodeJS simply tests that we can run an empty NodeJS project.
@@ -38,7 +38,7 @@ import (
 func TestEmptyNodeJS(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir:          filepath.Join("empty", "nodejs"),
-		Dependencies: []string{"@pulumi/pulumi"},
+		Dependencies: []string{"@khulnasoft/khulnasoft"},
 		Quick:        true,
 	})
 }
@@ -89,7 +89,7 @@ func optsForConstructNode(
 ) *integration.ProgramTestOptions {
 	return &integration.ProgramTestOptions{
 		Dir:            filepath.Join("construct_component", "nodejs"),
-		Dependencies:   []string{"@pulumi/pulumi"},
+		Dependencies:   []string{"@khulnasoft/khulnasoft"},
 		LocalProviders: localProviders,
 		Secrets: map[string]string{
 			"secret": "this super secret is encrypted",
@@ -144,8 +144,8 @@ func TestConstructComponentConfigureProviderNode(t *testing.T) {
 	}
 
 	// NOTE: this test can be quite awkward about dependencies. Specifically, the component, the
-	// component's node SDK, and the test program need to agree on the version of pulumi-tls
-	// dependency, and when there are discrepancies two versions of pulumi-tls may be installed
+	// component's node SDK, and the test program need to agree on the version of khulnasoft-tls
+	// dependency, and when there are discrepancies two versions of khulnasoft-tls may be installed
 	// at the same time breaking assumptions. This is currently achieved as follows:
 	//
 	// ${componentSDK} has a direct node "x.y.z" reference not a floating one "^x.y.z".
@@ -153,9 +153,9 @@ func TestConstructComponentConfigureProviderNode(t *testing.T) {
 
 	const testDir = "construct_component_configure_provider"
 	runComponentSetup(t, testDir)
-	pulumiRoot, err := filepath.Abs("../..")
+	khulnasoftRoot, err := filepath.Abs("../..")
 	require.NoError(t, err)
-	componentSDK := filepath.Join(pulumiRoot, "pkg/codegen/testing/test/testdata/methods-return-plain-resource/nodejs")
+	componentSDK := filepath.Join(khulnasoftRoot, "pkg/codegen/testing/test/testdata/methods-return-plain-resource/nodejs")
 
 	// The test relies on artifacts (Node package) from a codegen test. Ensure the SDK is generated.
 	cmd := exec.Command("go", "test", "-test.v", "-run", "TestGeneratePackage/methods-return-plain-resource")
@@ -163,7 +163,7 @@ func TestConstructComponentConfigureProviderNode(t *testing.T) {
 	stderr := &bytes.Buffer{}
 	cmd.Stdout = stdout
 	cmd.Stderr = stderr
-	cmd.Dir = filepath.Join(pulumiRoot, "pkg", "codegen", "nodejs")
+	cmd.Dir = filepath.Join(khulnasoftRoot, "pkg", "codegen", "nodejs")
 	cmd.Env = os.Environ()
 	cmd.Env = append(cmd.Env, "PULUMI_ACCEPT=1")
 	err = cmd.Run()
@@ -171,13 +171,13 @@ func TestConstructComponentConfigureProviderNode(t *testing.T) {
 		" test has generated the Node SDK:\n%s\n%s\n",
 		stdout.String(), stderr.String())
 
-	t.Logf("yarn run tsc # precompile @pulumi/metaprovider")
+	t.Logf("yarn run tsc # precompile @khulnasoft/metaprovider")
 	cmd2 := exec.Command("yarn", "run", "tsc")
 	cmd2.Dir = filepath.Join(componentSDK)
 	err = cmd2.Run()
 	require.NoError(t, err)
 
-	t.Logf("yarn link # prelink @pulumi/metaprovider")
+	t.Logf("yarn link # prelink @khulnasoft/metaprovider")
 	cmd3 := exec.Command("yarn", "link")
 	cmd3.Dir = filepath.Join(componentSDK, "bin")
 	err = cmd3.Run()
@@ -188,8 +188,8 @@ func TestConstructComponentConfigureProviderNode(t *testing.T) {
 		NoParallel: true,
 		Dir:        filepath.Join(testDir, "nodejs"),
 		Dependencies: []string{
-			"@pulumi/pulumi",
-			"@pulumi/metaprovider",
+			"@khulnasoft/khulnasoft",
+			"@khulnasoft/metaprovider",
 		},
 	})
 	integration.ProgramTest(t, &opts)
@@ -201,8 +201,8 @@ func TestNewNodejsUsesNpmByDefault(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "new", "typescript", "--force", "--non-interactive", "--yes", "--generate-only")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "new", "typescript", "--force", "--non-interactive", "--yes", "--generate-only")
 
 	expected := map[string]interface{}{
 		"packagemanager": "npm",
@@ -216,8 +216,8 @@ func TestNewNodejsRuntimeOptions(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "new", "typescript", "--force", "--non-interactive", "--yes", "--generate-only",
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "new", "typescript", "--force", "--non-interactive", "--yes", "--generate-only",
 		"--name", "test_project",
 		"--description", "Testing that the packagemanager option is set correctly",
 		"--stack", "test",

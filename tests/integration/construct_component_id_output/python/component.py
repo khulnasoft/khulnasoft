@@ -2,15 +2,15 @@
 
 from typing import Any, Optional
 
-import pulumi
+import khulnasoft
 
-class Component(pulumi.ComponentResource):
-    def __init__(self, name: str, id: pulumi.Input[str], opts: Optional[pulumi.ResourceOptions] = None):
+class Component(khulnasoft.ComponentResource):
+    def __init__(self, name: str, id: khulnasoft.Input[str], opts: Optional[khulnasoft.ResourceOptions] = None):
         props = dict()
         props["id"] = id
         super().__init__("testcomponent:index:Component", name, props, opts, True)
 
     @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "id")
+    @khulnasoft.getter
+    def id(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "id")

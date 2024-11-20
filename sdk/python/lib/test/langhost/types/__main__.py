@@ -14,33 +14,33 @@
 
 from typing import Optional
 
-import pulumi
+import khulnasoft
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class AdditionalArgs:
-    first_value: pulumi.Input[str] = pulumi.property("firstValue")
-    second_value: Optional[pulumi.Input[float]] = pulumi.property("secondValue")
+    first_value: khulnasoft.Input[str] = khulnasoft.property("firstValue")
+    second_value: Optional[khulnasoft.Input[float]] = khulnasoft.property("secondValue")
 
     def __init__(
         self,
-        first_value: pulumi.Input[str],
-        second_value: Optional[pulumi.Input[float]] = None,
+        first_value: khulnasoft.Input[str],
+        second_value: Optional[khulnasoft.Input[float]] = None,
     ):
-        pulumi.set(self, "first_value", first_value)
-        pulumi.set(self, "second_value", second_value)
+        khulnasoft.set(self, "first_value", first_value)
+        khulnasoft.set(self, "second_value", second_value)
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class Additional(dict):
-    first_value: str = pulumi.property("firstValue")
-    second_value: Optional[float] = pulumi.property("secondValue")
+    first_value: str = khulnasoft.property("firstValue")
+    second_value: Optional[float] = khulnasoft.property("secondValue")
 
 
-class AdditionalResource(pulumi.CustomResource):
-    additional: pulumi.Output[Additional]
+class AdditionalResource(khulnasoft.CustomResource):
+    additional: khulnasoft.Output[Additional]
 
-    def __init__(self, name: str, additional: pulumi.InputType[AdditionalArgs]):
+    def __init__(self, name: str, additional: khulnasoft.InputType[AdditionalArgs]):
         super().__init__(
             "test:index:AdditionalResource", name, {"additional": additional}
         )
@@ -94,33 +94,33 @@ CAMEL_TO_SNAKE_CASE_TABLE = {
 }
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class ExtraArgs:
-    first_value: pulumi.Input[str] = pulumi.property("firstValue")
-    second_value: Optional[pulumi.Input[float]] = pulumi.property("secondValue")
+    first_value: khulnasoft.Input[str] = khulnasoft.property("firstValue")
+    second_value: Optional[khulnasoft.Input[float]] = khulnasoft.property("secondValue")
 
     def __init__(
         self,
-        first_value: pulumi.Input[str],
-        second_value: Optional[pulumi.Input[float]] = None,
+        first_value: khulnasoft.Input[str],
+        second_value: Optional[khulnasoft.Input[float]] = None,
     ):
-        pulumi.set(self, "first_value", first_value)
-        pulumi.set(self, "second_value", second_value)
+        khulnasoft.set(self, "first_value", first_value)
+        khulnasoft.set(self, "second_value", second_value)
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class Extra(dict):
-    first_value: str = pulumi.property("firstValue")
-    second_value: Optional[float] = pulumi.property("secondValue")
+    first_value: str = khulnasoft.property("firstValue")
+    second_value: Optional[float] = khulnasoft.property("secondValue")
 
     def _translate_property(self, prop):
         return CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
-class ExtraResource(pulumi.CustomResource):
-    extra: pulumi.Output[Extra]
+class ExtraResource(khulnasoft.CustomResource):
+    extra: khulnasoft.Output[Extra]
 
-    def __init__(self, name: str, extra: pulumi.InputType[ExtraArgs]):
+    def __init__(self, name: str, extra: khulnasoft.InputType[ExtraArgs]):
         super().__init__("test:index:ExtraResource", name, {"extra": extra})
 
     def translate_output_property(self, prop):
@@ -166,98 +166,98 @@ res8 = ExtraResource(
 # Now test some resources that use explicitly declared properties.
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class SupplementaryArgs:
     def __init__(
         self,
-        first_value: pulumi.Input[str],
-        second_value: Optional[pulumi.Input[float]] = None,
-        third: Optional[pulumi.Input[str]] = None,
-        fourth: Optional[pulumi.Input[str]] = None,
+        first_value: khulnasoft.Input[str],
+        second_value: Optional[khulnasoft.Input[float]] = None,
+        third: Optional[khulnasoft.Input[str]] = None,
+        fourth: Optional[khulnasoft.Input[str]] = None,
     ):
-        pulumi.set(self, "first_value", first_value)
-        pulumi.set(self, "second_value", second_value)
-        pulumi.set(self, "third", third)
-        pulumi.set(self, "fourth", fourth)
+        khulnasoft.set(self, "first_value", first_value)
+        khulnasoft.set(self, "second_value", second_value)
+        khulnasoft.set(self, "third", third)
+        khulnasoft.set(self, "fourth", fourth)
 
     # Property with empty getter/setter bodies.
     @property
-    @pulumi.getter(name="firstValue")
-    def first_value(self) -> pulumi.Input[str]: ...  # type: ignore
+    @khulnasoft.getter(name="firstValue")
+    def first_value(self) -> khulnasoft.Input[str]: ...  # type: ignore
 
     @first_value.setter
-    def first_value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "first_value", value)
+    def first_value(self, value: khulnasoft.Input[str]):
+        khulnasoft.set(self, "first_value", value)
 
     # Property with explicitly specified getter/setter bodies.
     @property
-    @pulumi.getter(name="secondValue")
-    def second_value(self) -> Optional[pulumi.Input[float]]:
-        return pulumi.get(self, "second_value")
+    @khulnasoft.getter(name="secondValue")
+    def second_value(self) -> Optional[khulnasoft.Input[float]]:
+        return khulnasoft.get(self, "second_value")
 
     @second_value.setter
-    def second_value(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "second_value", value)
+    def second_value(self, value: Optional[khulnasoft.Input[float]]):
+        khulnasoft.set(self, "second_value", value)
 
     # Single word property name that doesn't require a name to be
     # passed to the getter decorator.
     @property
-    @pulumi.getter
-    def third(self) -> Optional[pulumi.Input[str]]: ...  # type: ignore
+    @khulnasoft.getter
+    def third(self) -> Optional[khulnasoft.Input[str]]: ...  # type: ignore
 
     @third.setter
-    def third(self, value: Optional[pulumi.Input[str]]): ...  # type: ignore
+    def third(self, value: Optional[khulnasoft.Input[str]]): ...  # type: ignore
 
     # Another single word property name that doesn't require a name to be
     # passed to the getter decorator, this time using the decorator with
     # parens.
     @property
-    @pulumi.getter()
-    def fourth(self) -> Optional[pulumi.Input[str]]: ...
+    @khulnasoft.getter()
+    def fourth(self) -> Optional[khulnasoft.Input[str]]: ...
 
     @fourth.setter
-    def fourth(self, value: Optional[pulumi.Input[str]]): ...
+    def fourth(self, value: Optional[khulnasoft.Input[str]]): ...
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class Supplementary(dict):
     def __init__(
         self, first_value: str, second_value: Optional[float], third: str, fourth: str
     ):
-        pulumi.set(self, "first_value", first_value)
-        pulumi.set(self, "second_value", second_value)
-        pulumi.set(self, "third", third)
-        pulumi.set(self, "fourth", fourth)
+        khulnasoft.set(self, "first_value", first_value)
+        khulnasoft.set(self, "second_value", second_value)
+        khulnasoft.set(self, "third", third)
+        khulnasoft.set(self, "fourth", fourth)
 
     # Property with empty getter/setter bodies.
     @property
-    @pulumi.getter(name="firstValue")
+    @khulnasoft.getter(name="firstValue")
     def first_value(self) -> str: ...  # type: ignore
 
     # Property with explicitly specified getter/setter bodies.
     @property
-    @pulumi.getter(name="secondValue")
+    @khulnasoft.getter(name="secondValue")
     def second_value(self) -> Optional[float]:
-        return pulumi.get(self, "second_value")
+        return khulnasoft.get(self, "second_value")
 
     # Single word property name that doesn't require a name to be
     # passed to the getter decorator.
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def third(self) -> str: ...  # type: ignore
 
     # Another single word property name that doesn't require a name to be
     # passed to the getter decorator, this time using the decorator with
     # parens.
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def fourth(self) -> str: ...  # type: ignore
 
 
-class SupplementaryResource(pulumi.CustomResource):
-    supplementary: pulumi.Output[Supplementary]
+class SupplementaryResource(khulnasoft.CustomResource):
+    supplementary: khulnasoft.Output[Supplementary]
 
-    def __init__(self, name: str, supplementary: pulumi.InputType[SupplementaryArgs]):
+    def __init__(self, name: str, supplementary: khulnasoft.InputType[SupplementaryArgs]):
         super().__init__(
             "test:index:SupplementaryResource", name, {"supplementary": supplementary}
         )
@@ -313,101 +313,101 @@ res12 = SupplementaryResource(
 # Now, test some resources that use property translations and explicitly declared properties.
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class AncillaryArgs:
     def __init__(
         self,
-        first_value: pulumi.Input[str],
-        second_value: Optional[pulumi.Input[float]] = None,
-        third: Optional[pulumi.Input[str]] = None,
-        fourth: Optional[pulumi.Input[str]] = None,
+        first_value: khulnasoft.Input[str],
+        second_value: Optional[khulnasoft.Input[float]] = None,
+        third: Optional[khulnasoft.Input[str]] = None,
+        fourth: Optional[khulnasoft.Input[str]] = None,
     ):
-        pulumi.set(self, "first_value", first_value)
-        pulumi.set(self, "second_value", second_value)
-        pulumi.set(self, "third", third)
-        pulumi.set(self, "fourth", fourth)
+        khulnasoft.set(self, "first_value", first_value)
+        khulnasoft.set(self, "second_value", second_value)
+        khulnasoft.set(self, "third", third)
+        khulnasoft.set(self, "fourth", fourth)
 
     # Property with empty getter/setter bodies.
     @property
-    @pulumi.getter(name="firstValue")
-    def first_value(self) -> pulumi.Input[str]: ...  # type: ignore
+    @khulnasoft.getter(name="firstValue")
+    def first_value(self) -> khulnasoft.Input[str]: ...  # type: ignore
 
     @first_value.setter
-    def first_value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "first_value", value)
+    def first_value(self, value: khulnasoft.Input[str]):
+        khulnasoft.set(self, "first_value", value)
 
     # Property with explicitly specified getter/setter bodies.
     @property
-    @pulumi.getter(name="secondValue")
-    def second_value(self) -> Optional[pulumi.Input[float]]:
-        return pulumi.get(self, "second_value")
+    @khulnasoft.getter(name="secondValue")
+    def second_value(self) -> Optional[khulnasoft.Input[float]]:
+        return khulnasoft.get(self, "second_value")
 
     @second_value.setter
-    def second_value(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "second_value", value)
+    def second_value(self, value: Optional[khulnasoft.Input[float]]):
+        khulnasoft.set(self, "second_value", value)
 
     # Single word property name that doesn't require a name to be
     # passed to the getter decorator.
     @property
-    @pulumi.getter
-    def third(self) -> Optional[pulumi.Input[str]]: ...  # type: ignore
+    @khulnasoft.getter
+    def third(self) -> Optional[khulnasoft.Input[str]]: ...  # type: ignore
 
     @third.setter
-    def third(self, value: Optional[pulumi.Input[str]]): ...  # type: ignore
+    def third(self, value: Optional[khulnasoft.Input[str]]): ...  # type: ignore
 
     # Another single word property name that doesn't require a name to be
     # passed to the getter decorator, this time using the decorator with
     # parens.
     @property
-    @pulumi.getter()
-    def fourth(self) -> Optional[pulumi.Input[str]]: ...  # type: ignore
+    @khulnasoft.getter()
+    def fourth(self) -> Optional[khulnasoft.Input[str]]: ...  # type: ignore
 
     @fourth.setter
-    def fourth(self, value: Optional[pulumi.Input[str]]): ...  # type: ignore
+    def fourth(self, value: Optional[khulnasoft.Input[str]]): ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class Ancillary(dict):
     def __init__(
         self, first_value: str, second_value: Optional[float], third: str, fourth: str
     ):
-        pulumi.set(self, "first_value", first_value)
-        pulumi.set(self, "second_value", second_value)
-        pulumi.set(self, "third", third)
-        pulumi.set(self, "fourth", fourth)
+        khulnasoft.set(self, "first_value", first_value)
+        khulnasoft.set(self, "second_value", second_value)
+        khulnasoft.set(self, "third", third)
+        khulnasoft.set(self, "fourth", fourth)
 
     # Property with empty getter/setter bodies.
     @property
-    @pulumi.getter(name="firstValue")
+    @khulnasoft.getter(name="firstValue")
     def first_value(self) -> str: ...  # type: ignore
 
     # Property with explicitly specified getter/setter bodies.
     @property
-    @pulumi.getter(name="secondValue")
+    @khulnasoft.getter(name="secondValue")
     def second_value(self) -> Optional[float]:
-        return pulumi.get(self, "second_value")
+        return khulnasoft.get(self, "second_value")
 
     # Single word property name that doesn't require a name to be
     # passed to the getter decorator.
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def third(self) -> str: ...  # type: ignore
 
     # Another single word property name that doesn't require a name to be
     # passed to the getter decorator, this time using the decorator with
     # parens.
     @property
-    @pulumi.getter()
+    @khulnasoft.getter()
     def fourth(self) -> str: ...  # type: ignore
 
     def _translate_property(self, prop):
         return CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
-class AncillaryResource(pulumi.CustomResource):
-    ancillary: pulumi.Output[Ancillary]
+class AncillaryResource(khulnasoft.CustomResource):
+    ancillary: khulnasoft.Output[Ancillary]
 
-    def __init__(self, name: str, ancillary: pulumi.InputType[AncillaryArgs]):
+    def __init__(self, name: str, ancillary: khulnasoft.InputType[AncillaryArgs]):
         super().__init__("test:index:AncillaryResource", name, {"ancillary": ancillary})
 
     def translate_output_property(self, prop):

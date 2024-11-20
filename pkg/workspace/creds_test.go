@@ -17,8 +17,8 @@ package workspace
 import (
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/stretchr/testify/assert"
 )
 

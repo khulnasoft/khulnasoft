@@ -27,12 +27,12 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 type testPluginHost struct {
@@ -822,7 +822,7 @@ func TestLoadProvider_missingError(t *testing.T) {
 			"myplugin", &version, srv.URL,
 			nil, host, nil /* builtins */)
 		assert.ErrorContains(t, err,
-			"no resource plugin 'pulumi-resource-myplugin' found in the workspace at version v1.2.3")
+			"no resource plugin 'khulnasoft-resource-myplugin' found in the workspace at version v1.2.3")
 		assert.Equal(t, 0, count)
 	})
 
@@ -834,15 +834,15 @@ func TestLoadProvider_missingError(t *testing.T) {
 			"myplugin", &version, srv.URL,
 			nil, host, nil /* builtins */)
 		assert.ErrorContains(t, err,
-			"Could not automatically download and install resource plugin 'pulumi-resource-myplugin' at version v1.2.3")
+			"Could not automatically download and install resource plugin 'khulnasoft-resource-myplugin' at version v1.2.3")
 		assert.ErrorContains(t, err,
-			fmt.Sprintf("install the plugin using `pulumi plugin install resource myplugin v1.2.3 --server %s`", srv.URL))
+			fmt.Sprintf("install the plugin using `khulnasoft plugin install resource myplugin v1.2.3 --server %s`", srv.URL))
 		assert.Equal(t, 5, count)
 	})
 }
 
 func TestConcurrentRegistryUsage(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi/issues/13491, make sure we can use registry in
+	// Regression test for https://github.com/khulnasoft/khulnasoft/issues/13491, make sure we can use registry in
 	// parallel.
 
 	t.Parallel()
@@ -900,7 +900,7 @@ func TestRegistry(t *testing.T) {
 	t.Run("Pkg", func(t *testing.T) {
 		t.Parallel()
 		r := &Registry{}
-		assert.Equal(t, tokens.Package("pulumi"), r.Pkg())
+		assert.Equal(t, tokens.Package("khulnasoft"), r.Pkg())
 	})
 	t.Run("GetSchema", func(t *testing.T) {
 		t.Parallel()

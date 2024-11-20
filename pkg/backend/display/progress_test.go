@@ -27,11 +27,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -311,7 +311,7 @@ func TestPrintDiagnosticsIsTolerantOfDiagnostics(t *testing.T) {
 	makeDisplayWithDiagnostic := func(sev diag.Severity) *ProgressDisplay {
 		return &ProgressDisplay{
 			eventUrnToResourceRow: map[resource.URN]ResourceRow{
-				"urn:pulumi:test::test::pulumi:pulumi:Stack::test": &resourceRowData{
+				"urn:khulnasoft:test::test::khulnasoft:khulnasoft:Stack::test": &resourceRowData{
 					diagInfo: &DiagInfo{
 						StreamIDToDiagPayloads: map[int32][]engine.DiagEventPayload{
 							0: {

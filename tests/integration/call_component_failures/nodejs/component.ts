@@ -1,22 +1,22 @@
 // Copyright 2016-2024, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 interface ComponentArgs {
-    foo: pulumi.Input<string>;
+    foo: khulnasoft.Input<string>;
 }
 
-export class Component extends pulumi.ComponentResource {
-    public readonly foo!: pulumi.Output<string>;
+export class Component extends khulnasoft.ComponentResource {
+    public readonly foo!: khulnasoft.Output<string>;
 
-    constructor(name: string, args: ComponentArgs, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, args: ComponentArgs, opts?: khulnasoft.ComponentResourceOptions) {
         const inputs: any = {};
         inputs["foo"] = args.foo;
         super("testcomponent:index:Component", name, inputs, opts, true);
     }
 
-    getMessage(args: Component.GetMessageArgs): pulumi.Output<Component.GetMessageResult> {
-        return pulumi.runtime.call("testcomponent:index:Component/getMessage", {
+    getMessage(args: Component.GetMessageArgs): khulnasoft.Output<Component.GetMessageResult> {
+        return khulnasoft.runtime.call("testcomponent:index:Component/getMessage", {
             "__self__": this,
             "echo": args.echo,
         }, this);
@@ -25,7 +25,7 @@ export class Component extends pulumi.ComponentResource {
 
 export namespace Component {
     export interface GetMessageArgs {
-        echo: pulumi.Input<string>;
+        echo: khulnasoft.Input<string>;
     }
 
     export interface GetMessageResult {

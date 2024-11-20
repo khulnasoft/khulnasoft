@@ -1,6 +1,6 @@
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-const config = new pulumi.Config();
+const config = new khulnasoft.Config();
 const requiredString = config.require("requiredString");
 const requiredInt = config.requireNumber("requiredInt");
 const requiredFloat = config.requireNumber("requiredFloat");

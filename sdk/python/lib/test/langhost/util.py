@@ -26,8 +26,8 @@ from os import path
 
 import grpc
 from google.protobuf import empty_pb2, struct_pb2
-from pulumi.runtime import proto, rpc
-from pulumi.runtime.proto import (
+from khulnasoft.runtime import proto, rpc
+from khulnasoft.runtime.proto import (
     engine_pb2,
     engine_pb2_grpc,
     language_pb2_grpc,
@@ -124,7 +124,7 @@ class LanghostMockResourceMonitor(proto.ResourceMonitorServicer):
         for key, value in request.propertyDependencies.items():
             property_dependencies[key] = sorted(list(value.urns))
 
-        if type_ != "pulumi:pulumi:Stack":
+        if type_ != "khulnasoft:khulnasoft:Stack":
             outs = self.langhost_test.register_resource(
                 context,
                 self.dryrun,
@@ -417,11 +417,11 @@ class LanghostTest(unittest.TestCase):
             "..",
             "..",
             "cmd",
-            "pulumi-language-python-exec",
+            "khulnasoft-language-python-exec",
         )
         proc = subprocess.Popen(
             [
-                "pulumi-language-python",
+                "khulnasoft-language-python",
                 "--use-executor",
                 exec_path,
                 "localhost:%d" % port,

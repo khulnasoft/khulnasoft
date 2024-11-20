@@ -26,7 +26,7 @@ import (
 )
 
 // Regress a problem of non-deterministic codegen (due to reordering).
-// The schema is taken from `pulumi-aws` and minified to the smallest
+// The schema is taken from `khulnasoft-aws` and minified to the smallest
 // example that still reproduced the issue.
 func TestGenResourceMappingsIsDeterministic(t *testing.T) {
 	t.Parallel()
@@ -69,9 +69,9 @@ func TestGenResourceMappingsIsDeterministic(t *testing.T) {
 			return ""
 		}
 
-		file, haveFile := files["pulumi_aws/__init__.py"]
+		file, haveFile := files["khulnasoft_aws/__init__.py"]
 		if !haveFile {
-			t.Error("Cannot find pulumi_aws/__init__.py in the generated files")
+			t.Error("Cannot find khulnasoft_aws/__init__.py in the generated files")
 			return ""
 		}
 

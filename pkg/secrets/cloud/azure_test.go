@@ -21,7 +21,7 @@ import (
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/keyvault/azkeys"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -37,7 +37,7 @@ func getAzureCaller(ctx context.Context, t *testing.T) *azidentity.DefaultAzureC
 }
 
 func createAzureKey(ctx context.Context, t *testing.T, credentials *azidentity.DefaultAzureCredential) string {
-	url := "pulumi-testing.vault.azure.net"
+	url := "khulnasoft-testing.vault.azure.net"
 	keysClient, err := azkeys.NewClient("https://"+url, credentials, nil)
 	require.NoError(t, err)
 	keyName := "test-key-" + randomName(t)
@@ -67,14 +67,14 @@ func TestAzureCloudManager(t *testing.T) {
 }
 
 // This is a regression test for
-// https://github.com/pulumi/pulumi/issues/11982.  The issue only
+// https://github.com/khulnasoft/khulnasoft/issues/11982.  The issue only
 // appears when we have an existing key from gocloud.dev v0.27.0, and
 // we try to use it with a newer version.
 //
 //nolint:paralleltest // mutates environment variables
 func TestAzureKeyVaultExistingKey(t *testing.T) {
 	ctx := context.Background()
-	keyName := "pulumi-testing.vault.azure.net/keys/test-key"
+	keyName := "khulnasoft-testing.vault.azure.net/keys/test-key"
 	url := "azurekeyvault://" + keyName
 
 	//nolint:lll // this is a base64 encoded key
@@ -105,7 +105,7 @@ func TestAzureKeyVaultExistingState(t *testing.T) {
 
 	//nolint:lll // this includes a base64 encoded key
 	cloudState := `{
-                    "url": "azurekeyvault://pulumi-testing.vault.azure.net/keys/test-key",
+                    "url": "azurekeyvault://khulnasoft-testing.vault.azure.net/keys/test-key",
                     "encryptedkey": "c3YwTUQwWjRHYlZXYWpIX3k2Z2twNDFXTlBlRERVOHJKakdTbWFVdk44NWNBWHdQTUJrNFBsRjl5SXJCaEZ5T1VjSVVCTmVkV3NOaWxCbTBOcnotYjVXOHFMRHdWbk9oQTZDMGNyX1p3ZEhiRW1acVpTX1RjazFLd0RmM1RPc3c3Q2s1UTduSXV1NERQYjdUU3ZSdzlDNU5UZ01RRXRhSWgtVGdvM3U0aXVMZV8zY3d5eHhwamIyRW8tYWEyS29XeEpSNXhUb3gxaUQ0dUFfbEszdEx0bXQxVWpod1BCZUJHcmVWd2RmclBUUk1Jcm52ZkZMaS1nQXpLT1VwLVJMQURpX1pVdU9BUFRnLWR2OGpUeGUxNV9pSkN1U25BVUstY2RRemtpRVVheGlsUVlhX2lOa0JXYm95ZUpubEM3eFhNalAwVGhQMUp4ZUI0bmxpcW9YUFFB"
 }
 `
@@ -130,7 +130,7 @@ func TestAzureKeyVaultExistingState(t *testing.T) {
 
 //nolint:paralleltest // mutates environment variables
 func TestAzureKeyEditProjectStack(t *testing.T) {
-	keyName := "pulumi-testing.vault.azure.net/keys/test-key"
+	keyName := "khulnasoft-testing.vault.azure.net/keys/test-key"
 	url := "azurekeyvault://" + keyName
 
 	//nolint:lll // this is a base64 encoded key
@@ -148,12 +148,12 @@ func TestAzureKeyEditProjectStack(t *testing.T) {
 	assert.Equal(t, stackConfig.EncryptedKey, newConfig.EncryptedKey)
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/15329
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/15329
 //
 //nolint:paralleltest // mutates environment variables
 func TestAzureKeyVaultExistingKeyState(t *testing.T) {
 	ctx := context.Background()
-	keyName := "pulumi-testing.vault.azure.net/keys/test-key"
+	keyName := "khulnasoft-testing.vault.azure.net/keys/test-key"
 	url := "azurekeyvault://" + keyName
 
 	//nolint:lll // this is a base64 encoded key
@@ -182,16 +182,16 @@ func TestAzureKeyVaultExistingKeyState(t *testing.T) {
 	assert.Equal(t, "plaintext", plaintext)
 }
 
-// Test to auto-fix the regressions from https://github.com/pulumi/pulumi/issues/15329
+// Test to auto-fix the regressions from https://github.com/khulnasoft/khulnasoft/issues/15329
 //
 //nolint:paralleltest // mutates environment variables
 func TestAzureKeyVaultAutoFix15329(t *testing.T) {
 	ctx := context.Background()
-	// https://github.com/pulumi/pulumi/issues/15329 result in keys like the following being written to state. We can auto-detect these because they aren't valid base64.
+	// https://github.com/khulnasoft/khulnasoft/issues/15329 result in keys like the following being written to state. We can auto-detect these because they aren't valid base64.
 	//nolint:lll // this includes a base64 encoded key
 	encryptedKey := "nLdkXrvtOYvgaVHn8FrdALMtFjgV67KoGIb6kWwz5Weo/yxAVyK7Rl0rtNxoIDnOvkvRQdCDTSrq1q8w6XZU/cvZ5FQMTMN3l1I28r7YV4HIBzDxx0G964DrfUSlxh1GhpQogcLiYor9MCGEidd5BdAqxKMHZJXUGJLCoUuuA3kWBwkeAowstpkumfXzxgxocq2BIkrfPqkfSetmLQajhBNn9dAIgxhaIaM+ubjOAFHkvYlrujE8dY7b2wNVa2ua/3tYfyIBYyg8jFRdOjxXXpXs7cZcRD3oQxa3F1DxYPl/IxuQdyHWxvmYH9SXVKn/B1z7JcOraZDTAptDgc3B0Q=="
 	cloudState := fmt.Sprintf(`{
-		"url": "azurekeyvault://pulumi-testing.vault.azure.net/keys/test-key",
+		"url": "azurekeyvault://khulnasoft-testing.vault.azure.net/keys/test-key",
 		"encryptedkey": "%s"
 }
 `, encryptedKey)
@@ -228,7 +228,7 @@ func TestAzureKeyVaultAutoFix15329(t *testing.T) {
 //nolint:paralleltest // mutates environment variables
 func TestAzureKeyVaultKeyError(t *testing.T) {
 	cloudState := `{
-		"url": "azurekeyvault://pulumi-testing.vault.azure.net/keys/test-key",
+		"url": "azurekeyvault://khulnasoft-testing.vault.azure.net/keys/test-key",
 		"encryptedkey": "not base64 data"
 }
 `

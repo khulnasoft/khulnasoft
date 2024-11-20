@@ -1,6 +1,6 @@
 # Copyright 2024, Pulumi Corporation.
 
-from pulumi import ComponentResource, ResourceOptions
+from khulnasoft import ComponentResource, ResourceOptions
 
 from echo import Echo
 

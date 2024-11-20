@@ -23,8 +23,8 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 )
 
 func validateResources(t *testing.T, resources []apitype.ResourceV3, expectedNames ...string) {
@@ -64,7 +64,7 @@ func validateResources(t *testing.T, resources []apitype.ResourceV3, expectedNam
 func TestSteps(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir:          "step1",
-		Dependencies: []string{"@pulumi/pulumi"},
+		Dependencies: []string{"@khulnasoft/khulnasoft"},
 		Quick:        true,
 		ExtraRuntimeValidation: func(t *testing.T, stackInfo integration.RuntimeValidationStackInfo) {
 			assert.NotNil(t, stackInfo.Deployment)

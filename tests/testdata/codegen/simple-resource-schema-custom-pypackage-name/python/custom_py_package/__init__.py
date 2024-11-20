@@ -27,7 +27,7 @@ _utilities.register(
 [
  {
   "pkg": "example",
-  "token": "pulumi:providers:example",
+  "token": "khulnasoft:providers:example",
   "fqn": "custom_py_package",
   "class": "Provider"
  }

@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import asyncio
-from pulumi import export
-from pulumi.runtime import invoke
+from khulnasoft import export
+from khulnasoft.runtime import invoke
 
 
 async def await_invoke():

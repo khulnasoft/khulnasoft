@@ -19,7 +19,7 @@ import (
 	"testing"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -93,10 +93,10 @@ func TestColorTablePrinting(t *testing.T) {
 	}
 
 	rows := []TableRow{
-		{Columns: []string{greenText("+"), "pulumi:pulumi:Stack", "aws-cs-webserver-test", greenText("create")}},
+		{Columns: []string{greenText("+"), "khulnasoft:khulnasoft:Stack", "aws-cs-webserver-test", greenText("create")}},
 		{Columns: []string{greenText("+"), "├─ aws:ec2/instance:Instance", "web-server-www", greenText("create")}},
 		{Columns: []string{greenText("+"), "├─ aws:ec2/securityGroup:SecurityGroup", "web-secgrp", greenText("create")}},
-		{Columns: []string{greenText("+"), "└─ pulumi:providers:aws", "default_4_25_0", greenText("create")}},
+		{Columns: []string{greenText("+"), "└─ khulnasoft:providers:aws", "default_4_25_0", greenText("create")}},
 	}
 
 	columnHeader := func(msg string) string {
@@ -111,10 +111,10 @@ func TestColorTablePrinting(t *testing.T) {
 
 	expected := "" +
 		"     Type                                    Name                   Plan\n" +
-		"  +  pulumi:pulumi:Stack                     aws-cs-webserver-test  create\n" +
+		"  +  khulnasoft:khulnasoft:Stack                     aws-cs-webserver-test  create\n" +
 		"  +  ├─ aws:ec2/instance:Instance            web-server-www         create\n" +
 		"  +  ├─ aws:ec2/securityGroup:SecurityGroup  web-secgrp             create\n" +
-		"  +  └─ pulumi:providers:aws                 default_4_25_0         create\n"
+		"  +  └─ khulnasoft:providers:aws                 default_4_25_0         create\n"
 
 	colorTable := table.ToStringWithGap("  ")
 	// 7-bit C1 ANSI sequences

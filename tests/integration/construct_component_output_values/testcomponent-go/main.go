@@ -11,22 +11,22 @@ import (
 	"github.com/blang/semver"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/provider"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	pulumiprovider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	khulnasoftprovider "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/provider"
 )
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 type ComponentArgs struct {
-	Bar BarPtrInput `pulumi:"bar"`
-	Foo *FooArgs    `pulumi:"foo"`
+	Bar BarPtrInput `khulnasoft:"bar"`
+	Foo *FooArgs    `khulnasoft:"foo"`
 }
 
-func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs,
-	opts ...pulumi.ResourceOption,
+func NewComponent(ctx *khulnasoft.Context, name string, args *ComponentArgs,
+	opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	if args == nil {
 		return nil, errors.New("args is required")
@@ -38,9 +38,9 @@ func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs,
 	if args.Foo.Something == nil {
 		return nil, errors.New(`expected args.Foo.Something to be non-nil`)
 	}
-	something, somethingIsString := args.Foo.Something.(pulumi.String)
+	something, somethingIsString := args.Foo.Something.(khulnasoft.String)
 	if !somethingIsString {
-		return nil, errors.New(`expected args.Foo.Something to be pulumi.String`)
+		return nil, errors.New(`expected args.Foo.Something to be khulnasoft.String`)
 	}
 	if something != "hello" {
 		return nil, fmt.Errorf(`expected args.Foo.Something to equal "hello" but got %q`, something)
@@ -50,22 +50,22 @@ func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs,
 	if !isBarArgs {
 		return nil, errors.New("expected args.Bar to be BarArgs")
 	}
-	tags, isStringMap := barArgs.Tags.(pulumi.StringMap)
+	tags, isStringMap := barArgs.Tags.(khulnasoft.StringMap)
 	if !isStringMap {
-		return nil, errors.New("expected args.Bar.Tags to be pulumi.StringMap")
+		return nil, errors.New("expected args.Bar.Tags to be khulnasoft.StringMap")
 	}
 
-	a, aIsString := tags["a"].(pulumi.String)
+	a, aIsString := tags["a"].(khulnasoft.String)
 	if !aIsString {
-		return nil, errors.New(`expected args.Bar.Tags["a"] to be pulumi.String`)
+		return nil, errors.New(`expected args.Bar.Tags["a"] to be khulnasoft.String`)
 	}
 	if a != "world" {
 		return nil, fmt.Errorf(`expected args.Bar.Tags["a"] to equal "world" but got %q`, a)
 	}
 
-	b, bIsStringOutput := tags["b"].(pulumi.StringOutput)
+	b, bIsStringOutput := tags["b"].(khulnasoft.StringOutput)
 	if !bIsStringOutput {
-		return nil, errors.New(`expected args.Bar.Tags["b"] to be pulumi.StringOutput`)
+		return nil, errors.New(`expected args.Bar.Tags["b"] to be khulnasoft.StringOutput`)
 	}
 	b.ApplyT(func(v string) (string, error) {
 		if v != "shh" {
@@ -80,7 +80,7 @@ func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs,
 		return nil, err
 	}
 
-	if err := ctx.RegisterResourceOutputs(component, pulumi.Map{}); err != nil {
+	if err := ctx.RegisterResourceOutputs(component, khulnasoft.Map{}); err != nil {
 		return nil, err
 	}
 
@@ -100,7 +100,7 @@ func (m *module) Version() semver.Version {
 	return m.version
 }
 
-func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+func (m *module) Construct(ctx *khulnasoft.Context, name, typ, urn string) (r khulnasoft.Resource, err error) {
 	switch typ {
 	case "testcomponent:index:Component":
 		r = &Component{}
@@ -108,20 +108,20 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
-	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err = ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return
 }
 
 func main() {
 	// Register any resources that can come back as resource references that need to be rehydrated.
-	pulumi.RegisterResourceModule("testcomponent", "index", &module{semver.MustParse(version)})
+	khulnasoft.RegisterResourceModule("testcomponent", "index", &module{semver.MustParse(version)})
 
 	if err := provider.MainWithOptions(provider.Options{
 		Name:    providerName,
 		Version: version,
-		Construct: func(ctx *pulumi.Context, typ, name string, inputs pulumiprovider.ConstructInputs,
-			options pulumi.ResourceOption,
-		) (*pulumiprovider.ConstructResult, error) {
+		Construct: func(ctx *khulnasoft.Context, typ, name string, inputs khulnasoftprovider.ConstructInputs,
+			options khulnasoft.ResourceOption,
+		) (*khulnasoftprovider.ConstructResult, error) {
 			if typ != "testcomponent:index:Component" {
 				return nil, fmt.Errorf("unknown resource type %s", typ)
 			}
@@ -136,7 +136,7 @@ func main() {
 				return nil, fmt.Errorf("creating component: %w", err)
 			}
 
-			return pulumiprovider.NewConstructResult(component)
+			return khulnasoftprovider.NewConstructResult(component)
 		},
 	}); err != nil {
 		cmdutil.ExitError(err.Error())

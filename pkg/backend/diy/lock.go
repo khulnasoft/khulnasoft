@@ -26,11 +26,11 @@ import (
 	"time"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/fsutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/fsutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 type lockContent struct {
@@ -81,7 +81,7 @@ func (b *diyBackend) checkForLock(ctx context.Context, stackRef backend.StackRef
 
 	if len(lockKeys) > 0 {
 		errorString := fmt.Sprintf("the stack is currently locked by %v lock(s). Either wait for the other "+
-			"process(es) to end or delete the lock file with `pulumi cancel`.", len(lockKeys))
+			"process(es) to end or delete the lock file with `khulnasoft cancel`.", len(lockKeys))
 
 		for _, lock := range lockKeys {
 			content, err := b.bucket.ReadAll(ctx, lock)

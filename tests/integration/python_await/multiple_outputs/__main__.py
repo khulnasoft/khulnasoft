@@ -1,14 +1,14 @@
 import asyncio
-import pulumi
+import khulnasoft
 
-output = pulumi.Output.from_input(asyncio.sleep(3, "magic string"))
+output = khulnasoft.Output.from_input(asyncio.sleep(3, "magic string"))
 output.apply(print)
 
-exported = pulumi.Output.from_input(asyncio.sleep(2, "foo"))
-pulumi.export("exported", exported)
+exported = khulnasoft.Output.from_input(asyncio.sleep(2, "foo"))
+khulnasoft.export("exported", exported)
 exported.apply(print)
 
-another = pulumi.Output.from_input(asyncio.sleep(5, "bar"))
+another = khulnasoft.Output.from_input(asyncio.sleep(5, "bar"))
 another.apply(print)
 
 

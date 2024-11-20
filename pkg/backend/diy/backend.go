@@ -51,17 +51,17 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/passphrase"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/nosleep"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // UpgradeOptions customizes the behavior of the upgrade operation.
@@ -306,7 +306,7 @@ func newDIYBackend(
 	// To avoid breaking old stacks, we use legacy mode for existing states.
 	// We use project mode only if one of the following is true:
 	//
-	//  - The state has a single .pulumi/meta.yaml file
+	//  - The state has a single .khulnasoft/meta.yaml file
 	//    and the version is 1 or greater.
 	//  - The state is entirely new
 	//    so there's no risk of breaking old stacks.
@@ -332,7 +332,7 @@ func newDIYBackend(
 	}
 	// Otherwise, warn about any old stack files.
 	// This is possible if a user creates a new stack with a new CLI,
-	// or migrates it to project mode with `pulumi state upgrade`,
+	// or migrates it to project mode with `khulnasoft state upgrade`,
 	// but someone else interacts with the same state with an old CLI.
 
 	refs, err := newLegacyReferenceStore(wbucket).ListReferences(ctx)
@@ -349,7 +349,7 @@ func newDIYBackend(
 	for _, ref := range refs {
 		fmt.Fprintf(&msg, "  - %s\n", ref.Name())
 	}
-	msg.WriteString("Please run 'pulumi state upgrade' to migrate them to the new format.\n")
+	msg.WriteString("Please run 'khulnasoft state upgrade' to migrate them to the new format.\n")
 	msg.WriteString("Set PULUMI_DIY_BACKEND_NO_LEGACY_WARNING=1 to disable this warning.")
 	d.Warningf(diag.Message("", msg.String()))
 	return backend, nil
@@ -441,9 +441,9 @@ func (b *diyBackend) Upgrade(ctx context.Context, opts *UpgradeOptions) error {
 	// It's important that we attempt to write the new metadata file
 	// before we attempt the upgrade.
 	// This ensures that if permissions are borked for any reason,
-	// (e.g., we can write to .pulumi/*/*" but not ".pulumi/*.")
+	// (e.g., we can write to .khulnasoft/*/*" but not ".khulnasoft/*.")
 	// we don't leave the bucket in a completely inaccessible state.
-	meta := pulumiMeta{Version: 1}
+	meta := khulnasoftMeta{Version: 1}
 	if err := meta.WriteTo(ctx, b.bucket); err != nil {
 		var s strings.Builder
 		fmt.Fprintf(&s, "Could not write new state metadata file: %v\n", err)
@@ -530,7 +530,7 @@ func massageBlobPath(path string) (string, error) {
 	}
 
 	// We need to set no_tmp_dir to a value to avoid using the system temp directory.
-	// See also https://github.com/pulumi/pulumi/issues/15352
+	// See also https://github.com/khulnasoft/khulnasoft/issues/15352
 	url, err := url.Parse(path)
 	if err != nil {
 		return "", fmt.Errorf("parsing the provided URL: %w", err)
@@ -1227,12 +1227,12 @@ func (b *diyBackend) apply(
 				link = ""
 
 				// we log a warning here rather then returning an error to avoid exiting
-				// pulumi with an error code.
+				// khulnasoft with an error code.
 				// printing a statefile perma link happens after all the providers have finished
-				// deploying the infrastructure, failing the pulumi update because there was a
+				// deploying the infrastructure, failing the khulnasoft update because there was a
 				// problem printing a statefile perma link can be missleading in automated CI environments.
 				cmdutil.Diag().Warningf(diag.Message("", "Unable to create signed url for current backend to "+
-					"create a Permalink. Please visit https://www.pulumi.com/docs/troubleshooting/ "+
+					"create a Permalink. Please visit https://www.khulnasoft.com/docs/troubleshooting/ "+
 					"for more information\n"))
 			}
 		}

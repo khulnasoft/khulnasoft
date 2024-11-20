@@ -11,10 +11,10 @@ import typing
 import warnings
 import base64
 
-import pulumi
-import pulumi.runtime
-from pulumi.runtime.sync_await import _sync_await
-from pulumi.runtime.proto import resource_pb2
+import khulnasoft
+import khulnasoft.runtime
+from khulnasoft.runtime.sync_await import _sync_await
+from khulnasoft.runtime.proto import resource_pb2
 
 from semver import VersionInfo as SemverVersion
 from parver import Version as PEP440Version
@@ -98,14 +98,14 @@ def _get_semver_version():
 _version = _get_semver_version()
 _version_str = str(_version)
 
-def get_resource_opts_defaults() -> pulumi.ResourceOptions:
-    return pulumi.ResourceOptions(
+def get_resource_opts_defaults() -> khulnasoft.ResourceOptions:
+    return khulnasoft.ResourceOptions(
         version=get_version(),
         plugin_download_url=get_plugin_download_url(),
     )
 
-def get_invoke_opts_defaults() -> pulumi.InvokeOptions:
-    return pulumi.InvokeOptions(
+def get_invoke_opts_defaults() -> khulnasoft.InvokeOptions:
+    return khulnasoft.InvokeOptions(
         version=get_version(),
         plugin_download_url=get_plugin_download_url(),
     )
@@ -141,10 +141,10 @@ def get_resource_args_opts(resource_args_type, resource_options_type, *args, **k
     return resource_args, opts
 
 
-# Temporary: just use pulumi._utils.lazy_import once everyone upgrades.
+# Temporary: just use khulnasoft._utils.lazy_import once everyone upgrades.
 def lazy_import(fullname):
 
-    import pulumi._utils as u
+    import khulnasoft._utils as u
     f = getattr(u, 'lazy_import', None)
     if f is None:
         f = _lazy_import_temp
@@ -152,7 +152,7 @@ def lazy_import(fullname):
     return f(fullname)
 
 
-# Copied from pulumi._utils.lazy_import, see comments there.
+# Copied from khulnasoft._utils.lazy_import, see comments there.
 def _lazy_import_temp(fullname):
     m = sys.modules.get(fullname, None)
     if m is not None:
@@ -177,7 +177,7 @@ def _lazy_import_temp(fullname):
     return module
 
 
-class Package(pulumi.runtime.ResourcePackage):
+class Package(khulnasoft.runtime.ResourcePackage):
     def __init__(self, pkg_info):
         super().__init__()
         self.pkg_info = pkg_info
@@ -185,14 +185,14 @@ class Package(pulumi.runtime.ResourcePackage):
     def version(self):
         return _version
 
-    def construct_provider(self, name: str, typ: str, urn: str) -> pulumi.ProviderResource:
+    def construct_provider(self, name: str, typ: str, urn: str) -> khulnasoft.ProviderResource:
         if typ != self.pkg_info['token']:
             raise Exception(f"unknown provider type {typ}")
         Provider = getattr(lazy_import(self.pkg_info['fqn']), self.pkg_info['class'])
-        return Provider(name, pulumi.ResourceOptions(urn=urn))
+        return Provider(name, khulnasoft.ResourceOptions(urn=urn))
 
 
-class Module(pulumi.runtime.ResourceModule):
+class Module(khulnasoft.runtime.ResourceModule):
     def __init__(self, mod_info):
         super().__init__()
         self.mod_info = mod_info
@@ -200,14 +200,14 @@ class Module(pulumi.runtime.ResourceModule):
     def version(self):
         return _version
 
-    def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+    def construct(self, name: str, typ: str, urn: str) -> khulnasoft.Resource:
         class_name = self.mod_info['classes'].get(typ, None)
 
         if class_name is None:
             raise Exception(f"unknown resource type {typ}")
 
         TheClass = getattr(lazy_import(self.mod_info['fqn']), class_name)
-        return TheClass(name, pulumi.ResourceOptions(urn=urn))
+        return TheClass(name, khulnasoft.ResourceOptions(urn=urn))
 
 
 def register(resource_modules, resource_packages):
@@ -215,10 +215,10 @@ def register(resource_modules, resource_packages):
     resource_packages = json.loads(resource_packages)
 
     for pkg_info in resource_packages:
-        pulumi.runtime.register_resource_package(pkg_info['pkg'], Package(pkg_info))
+        khulnasoft.runtime.register_resource_package(pkg_info['pkg'], Package(pkg_info))
 
     for mod_info in resource_modules:
-        pulumi.runtime.register_resource_module(
+        khulnasoft.runtime.register_resource_module(
             mod_info['pkg'],
             mod_info['mod'],
             Module(mod_info))
@@ -235,9 +235,9 @@ def lift_output_func(func: typing.Any) -> typing.Callable[[_F], _F]:
 
     def lifted_func(*args, opts=None, **kwargs):
         bound_args = func_sig.bind(*args, **kwargs)
-        # Convert tuple to list, see pulumi/pulumi#8172
+        # Convert tuple to list, see khulnasoft/khulnasoft#8172
         args_list = list(bound_args.args)
-        return pulumi.Output.from_input({
+        return khulnasoft.Output.from_input({
             'args': args_list,
             'kwargs': bound_args.kwargs
         }).apply(lambda resolved_args: func(*resolved_args['args'],
@@ -249,15 +249,15 @@ def lift_output_func(func: typing.Any) -> typing.Callable[[_F], _F]:
 
 def call_plain(
     tok: str,
-    props: pulumi.Inputs,
-    res: typing.Optional[pulumi.Resource] = None,
+    props: khulnasoft.Inputs,
+    res: typing.Optional[khulnasoft.Resource] = None,
     typ: typing.Optional[type] = None,
 ) -> typing.Any:
     """
-    Wraps pulumi.runtime.plain to force the output and return it plainly.
+    Wraps khulnasoft.runtime.plain to force the output and return it plainly.
     """
 
-    output = pulumi.runtime.call(tok, props, res, typ)
+    output = khulnasoft.runtime.call(tok, props, res, typ)
 
     # Ingoring deps silently. They are typically non-empty, r.f() calls include r as a dependency.
     result, known, secret, _ = _sync_await(asyncio.create_task(_await_output(output)))
@@ -277,7 +277,7 @@ def call_plain(
     return result
 
 
-async def _await_output(o: pulumi.Output[typing.Any]) -> typing.Tuple[object, bool, bool, set]:
+async def _await_output(o: khulnasoft.Output[typing.Any]) -> typing.Tuple[object, bool, bool, set]:
     return (
         await o._future,
         await o._is_known,
@@ -307,11 +307,11 @@ def deprecated(message: str) -> typing.Callable[[C], C]:
         @functools.wraps(fn)
         def deprecated_fn(*args, **kwargs):
             warnings.warn(message)
-            pulumi.warn(f"{fn.__name__} is deprecated: {message}")
+            khulnasoft.warn(f"{fn.__name__} is deprecated: {message}")
 
             return fn(*args, **kwargs)
 
-        deprecated_fn.__dict__["_pulumi_deprecated_callable"] = fn
+        deprecated_fn.__dict__["_khulnasoft_deprecated_callable"] = fn
         return typing.cast(C, deprecated_fn)
 
     return decorator

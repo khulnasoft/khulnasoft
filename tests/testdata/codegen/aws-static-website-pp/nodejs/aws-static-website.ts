@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws_static_website from "@pulumi/aws-static-website";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws_static_website from "@khulnasoft/aws-static-website";
 
 const websiteResource = new aws_static_website.Website("websiteResource", {
     sitePath: "string",

@@ -1,15 +1,15 @@
 {
   "emittedFiles": [
-    "pulumi_cloudinit/README.md",
-    "pulumi_cloudinit/__init__.py",
-    "pulumi_cloudinit/_inputs.py",
-    "pulumi_cloudinit/_utilities.py",
-    "pulumi_cloudinit/config.py",
-    "pulumi_cloudinit/get_config.py",
-    "pulumi_cloudinit/outputs.py",
-    "pulumi_cloudinit/provider.py",
-    "pulumi_cloudinit/pulumi-plugin.json",
-    "pulumi_cloudinit/py.typed",
+    "khulnasoft_cloudinit/README.md",
+    "khulnasoft_cloudinit/__init__.py",
+    "khulnasoft_cloudinit/_inputs.py",
+    "khulnasoft_cloudinit/_utilities.py",
+    "khulnasoft_cloudinit/config.py",
+    "khulnasoft_cloudinit/get_config.py",
+    "khulnasoft_cloudinit/outputs.py",
+    "khulnasoft_cloudinit/provider.py",
+    "khulnasoft_cloudinit/khulnasoft-plugin.json",
+    "khulnasoft_cloudinit/py.typed",
     "pyproject.toml"
   ]
 }

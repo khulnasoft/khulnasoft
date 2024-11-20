@@ -1,6 +1,6 @@
 # Copyright 2024, Pulumi Corporation.  All rights reserved.
 
-import pulumi
+import khulnasoft
 import time
 
 print("Sleeping", flush=True)

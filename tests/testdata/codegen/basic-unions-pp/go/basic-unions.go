@@ -1,17 +1,17 @@
 package main
 
 import (
-	basicunions "github.com/pulumi/pulumi-basic-unions/sdk/v4/go/basic-unions"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	basicunions "github.com/khulnasoft/khulnasoft-basic-unions/sdk/v4/go/basic-unions"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		// properties field is bound to union case ServerPropertiesForReplica
 		_, err := basicunions.NewExampleServer(ctx, "replica", &basicunions.ExampleServerArgs{
 			Properties: &basicunions.ServerPropertiesForReplicaArgs{
-				CreateMode: pulumi.String("Replica"),
-				Version:    pulumi.String("0.1.0-dev"),
+				CreateMode: khulnasoft.String("Replica"),
+				Version:    khulnasoft.String("0.1.0-dev"),
 			},
 		})
 		if err != nil {
@@ -20,8 +20,8 @@ func main() {
 		// properties field is bound to union case ServerPropertiesForRestore
 		_, err = basicunions.NewExampleServer(ctx, "restore", &basicunions.ExampleServerArgs{
 			Properties: &basicunions.ServerPropertiesForRestoreArgs{
-				CreateMode:         pulumi.String("PointInTimeRestore"),
-				RestorePointInTime: pulumi.String("example"),
+				CreateMode:         khulnasoft.String("PointInTimeRestore"),
+				RestorePointInTime: khulnasoft.String("example"),
 			},
 		})
 		if err != nil {

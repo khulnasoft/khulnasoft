@@ -1,5 +1,5 @@
 // package: codegen
-// file: pulumi/codegen/loader.proto
+// file: khulnasoft/codegen/loader.proto
 
 /* tslint:disable */
 /* eslint-disable */

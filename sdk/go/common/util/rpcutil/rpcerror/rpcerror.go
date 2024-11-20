@@ -36,9 +36,9 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/runtime/protoiface"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	perrors "github.com/pulumi/pulumi/sdk/v3/go/pulumi/errors"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	perrors "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/errors"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // Error represents an error response from an RPC server endpoint.
@@ -158,9 +158,9 @@ func WrapDetailedError(err error) error {
 	var iperr *perrors.InputPropertiesError
 	if errors.As(err, &iperr) {
 		status := status.New(codes.InvalidArgument, iperr.Message)
-		errorDetails := pulumirpc.InputPropertiesError{}
+		errorDetails := khulnasoftrpc.InputPropertiesError{}
 		for _, e := range iperr.Errors {
-			errorDetails.Errors = append(errorDetails.Errors, &pulumirpc.InputPropertiesError_PropertyError{
+			errorDetails.Errors = append(errorDetails.Errors, &khulnasoftrpc.InputPropertiesError_PropertyError{
 				PropertyPath: e.PropertyPath,
 				Reason:       e.Reason,
 			})
@@ -204,7 +204,7 @@ func FromError(err error) (*Error, bool) {
 	rpcError.message = status.Message()
 	rpcError.details = status.Details()
 	for _, details := range status.Details() {
-		if d, ok := details.(*pulumirpc.InputPropertiesError); ok {
+		if d, ok := details.(*khulnasoftrpc.InputPropertiesError); ok {
 			rpcError.inputPropertiesErrors = make([]perrors.InputPropertyErrorDetails, len(d.Errors))
 			for i, e := range d.GetErrors() {
 				rpcError.inputPropertiesErrors[i] = perrors.InputPropertyErrorDetails{
@@ -213,7 +213,7 @@ func FromError(err error) (*Error, bool) {
 				}
 			}
 		}
-		if errorCause, ok := details.(*pulumirpc.ErrorCause); ok {
+		if errorCause, ok := details.(*khulnasoftrpc.ErrorCause); ok {
 			contract.Assertf(rpcError.cause == nil, "RPC endpoint sent more than one ErrorCause")
 			rpcError.cause = &ErrorCause{
 				message:    errorCause.Message,
@@ -233,7 +233,7 @@ func Convert(err error) *Error {
 	return converted
 }
 
-func serializeErrorCause(err error) *pulumirpc.ErrorCause {
+func serializeErrorCause(err error) *khulnasoftrpc.ErrorCause {
 	// Go is a surprising language that lets you do wacky stuff like this
 	// to get at implementation details of private structs.
 	//
@@ -249,7 +249,7 @@ func serializeErrorCause(err error) *pulumirpc.ErrorCause {
 		stackTrace = fmt.Sprintf("%+v", errWithStack.StackTrace())
 	}
 
-	return &pulumirpc.ErrorCause{
+	return &khulnasoftrpc.ErrorCause{
 		Message:    message,
 		StackTrace: stackTrace,
 	}

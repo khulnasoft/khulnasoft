@@ -25,11 +25,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 )
 
 type Row interface {
@@ -434,7 +434,7 @@ func getDiffInfo(step engine.StepEventMetadata, action apitype.UpdateKind) strin
 	if step.Old != nil && step.New != nil {
 		var diff *resource.ObjectDiff
 		// An OpSame might have a diff due to metadata changes (e.g. protect) but we should never print a property diff,
-		// even if the properties appear to have changed. See https://github.com/pulumi/pulumi/issues/15944 for context.
+		// even if the properties appear to have changed. See https://github.com/khulnasoft/khulnasoft/issues/15944 for context.
 		if step.Op != deploy.OpSame {
 			if step.DetailedDiff != nil {
 				diff = engine.TranslateDetailedDiff(&step, false)

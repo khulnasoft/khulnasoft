@@ -1,9 +1,9 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-export class Component extends pulumi.ComponentResource {
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+export class Component extends khulnasoft.ComponentResource {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("testcomponent:index:Component", name, {}, opts, true);
     }
 }

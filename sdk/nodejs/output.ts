@@ -36,7 +36,7 @@ class OutputImpl<T> implements OutputInstance<T> {
      * @internal
      */
     // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
-    public readonly __pulumiOutput: boolean = true;
+    public readonly __khulnasoftOutput: boolean = true;
 
     /**
      * Whether or not this output wraps a secret value. Values which are
@@ -79,9 +79,9 @@ class OutputImpl<T> implements OutputInstance<T> {
      * The list of resources that this output value depends on.
      *
      * This only returns the set of dependent resources that were known at
-     * Output construction time. It represents the `@pulumi/pulumi` API prior to
+     * Output construction time. It represents the `@khulnasoft/khulnasoft` API prior to
      * the addition of "async resource" dependencies. Code inside
-     * `@pulumi/pulumi` should use `.allResources` instead.
+     * `@khulnasoft/khulnasoft` should use `.allResources` instead.
      *
      * Only callable on the outside.
      *
@@ -115,18 +115,18 @@ class OutputImpl<T> implements OutputInstance<T> {
      * thus, this is akin to calling {@link toString} on a {@link Promise}).
      *
      * Calling this will simply return useful text about the issue, and will log
-     * a warning. In a future version of `@pulumi/pulumi` this will be changed
+     * a warning. In a future version of `@khulnasoft/khulnasoft` this will be changed
      * to throw an error when this occurs.
      *
      * To get the value of an {@link Output} as an `Output<string>` consider
      * either:
      * 1. `o.apply(v => ``prefix${v}suffix``)` or
-     * 2. `pulumi.interpolate ``prefix${v}suffix`` `
+     * 2. `khulnasoft.interpolate ``prefix${v}suffix`` `
      *
      * This will return an {@link Output} with the inner computed value and all
      * resources still tracked.
      *
-     * @see https://www.pulumi.com/docs/concepts/inputs-outputs
+     * @see https://www.khulnasoft.com/docs/concepts/inputs-outputs
      *
      * @internal
      */
@@ -138,7 +138,7 @@ class OutputImpl<T> implements OutputInstance<T> {
      * this is akin to calling {@link toJSON} on a {@link Promise}).
      *
      * Calling this will simply return useful text about the issue, and will log
-     * a warning. In a future version of `@pulumi/pulumi` this will be changed
+     * a warning. In a future version of `@khulnasoft/khulnasoft` this will be changed
      * to throw an error when this occurs.
      *
      * To get the value of an {@link Output} as a JSON value or JSON string consider
@@ -149,7 +149,7 @@ class OutputImpl<T> implements OutputInstance<T> {
      * This will return an {@link Output} with the inner computed value and all
      * resources still tracked.
      *
-     * @see https://www.pulumi.com/docs/concepts/inputs-outputs for more details
+     * @see https://www.khulnasoft.com/docs/concepts/inputs-outputs for more details
      *
      * @internal
      */
@@ -174,7 +174,7 @@ class OutputImpl<T> implements OutputInstance<T> {
      * the same process.
      */
     public static isInstance<T>(obj: any): obj is Output<T> {
-        return utils.isInstance(obj, "__pulumiOutput");
+        return utils.isInstance(obj, "__khulnasoftOutput");
     }
 
     /**
@@ -233,16 +233,16 @@ class OutputImpl<T> implements OutputInstance<T> {
 
 To get the value of an Output<T> as an Output<string> consider either:
 1: o.apply(v => \`prefix\${v}suffix\`)
-2: pulumi.interpolate \`prefix\${v}suffix\`
+2: khulnasoft.interpolate \`prefix\${v}suffix\`
 
-See https://www.pulumi.com/docs/concepts/inputs-outputs for more details.
+See https://www.khulnasoft.com/docs/concepts/inputs-outputs for more details.
 
-Or use ESLint with https://github.com/pulumi/eslint-plugin-pulumi to warn or
+Or use ESLint with https://github.com/khulnasoft/eslint-plugin-khulnasoft to warn or
 error lint on using Output<T> in template literals.`;
             if (utils.errorOutputString) {
                 throw new Error(message);
             }
-            message += `\nThis function may throw in a future version of @pulumi/pulumi.`;
+            message += `\nThis function may throw in a future version of @khulnasoft/khulnasoft.`;
             return message;
         };
 
@@ -253,11 +253,11 @@ To get the value of an Output as a JSON value or JSON string consider either:
     1: o.apply(v => v.toJSON())
     2: o.apply(v => JSON.stringify(v))
 
-See https://www.pulumi.com/docs/concepts/inputs-outputs for more details.`;
+See https://www.khulnasoft.com/docs/concepts/inputs-outputs for more details.`;
             if (utils.errorOutputString) {
                 throw new Error(message);
             }
-            message += `\nThis function may throw in a future version of @pulumi/pulumi.`;
+            message += `\nThis function may throw in a future version of @khulnasoft/khulnasoft.`;
             return message;
         };
 
@@ -279,13 +279,13 @@ See https://www.pulumi.com/docs/concepts/inputs-outputs for more details.`;
                 }
 
                 // Do not lift members that start with __.  Technically, if all libraries were
-                // using this version of pulumi/pulumi we would not need this.  However, this is
-                // so that downstream consumers can use this version of pulumi/pulumi while also
-                // passing these new Outputs to older versions of pulumi/pulumi.  The reason this
+                // using this version of khulnasoft/khulnasoft we would not need this.  However, this is
+                // so that downstream consumers can use this version of khulnasoft/khulnasoft while also
+                // passing these new Outputs to older versions of khulnasoft/khulnasoft.  The reason this
                 // can be a problem is that older versions do an RTTI check that simply asks questions
                 // like:
                 //
-                //      Is there a member on this object called '__pulumiResource'
+                //      Is there a member on this object called '__khulnasoftResource'
                 //
                 // If we automatically lift such a member (even if it eventually points to 'undefined'),
                 // then those RTTI checks will succeed.
@@ -582,7 +582,7 @@ function outputRec(val: any): any {
  * The expected way to use this function is like so:
  *
  * ```ts
- *      var transformed = pulumi.output(someVal).apply(unwrapped => {
+ *      var transformed = khulnasoft.output(someVal).apply(unwrapped => {
  *          // Do whatever you want now.  'unwrapped' will contain no outputs/promises inside
  *          // here, so you can easily do whatever sort of transformation is most convenient.
  *      });
@@ -776,7 +776,7 @@ class Unknown {
      * @internal
      */
     // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
-    public readonly __pulumiUnknown: boolean = true;
+    public readonly __khulnasoftUnknown: boolean = true;
 
     /**
      * Returns true if the given object is an {@link Unknown}. This is designed
@@ -784,7 +784,7 @@ class Unknown {
      * the same process.
      */
     public static isInstance(obj: any): obj is Unknown {
-        return utils.isInstance<Unknown>(obj, "__pulumiUnknown");
+        return utils.isInstance<Unknown>(obj, "__khulnasoftUnknown");
     }
 }
 
@@ -940,11 +940,11 @@ export interface OutputInstance<T> {
      *
      * Importantly, the resources that `d2` feels like it will depend on are the
      * same resources as `d1`. If you need have multiple outputs and a single
-     * output is needed that combines both set of resources, then `pulumi.all`
+     * output is needed that combines both set of resources, then `khulnasoft.all`
      * should be used instead.
      *
-     * This function will be called during the execution of a `pulumi up` or
-     * `pulumi preview` operation, but it will not run when the values of the
+     * This function will be called during the execution of a `khulnasoft up` or
+     * `khulnasoft preview` operation, but it will not run when the values of the
      * output are unknown. It is not available for functions that end up
      * executing in the cloud during runtime. To get the value of the Output
      * during cloud runtime execution, use `get()`.
@@ -996,7 +996,7 @@ export interface OutputConstructor {
  *
  * An output is used in a Pulumi program differently depending on if the
  * application is executing at "deployment time" (i.e. when actually running the
- * `pulumi` executable), or at "run time" (i.e. a piece of code running in some
+ * `khulnasoft` executable), or at "run time" (i.e. a piece of code running in some
  * cloud).
  *
  * At "deployment time", the correct way to work with the underlying value is to
@@ -1122,7 +1122,7 @@ export type LiftedArray<T> = {
  *
  * ```ts
  *      // 'server' and 'loadBalancer' are both resources that expose [Output] properties.
- *      let val: Output<string> = pulumi.concat("http://", server.hostname, ":", loadBalancer.port);
+ *      let val: Output<string> = khulnasoft.concat("http://", server.hostname, ":", loadBalancer.port);
  * ```
  *
  */
@@ -1136,7 +1136,7 @@ export function concat(...params: Input<any>[]): Output<string> {
  *
  * ```ts
  *      // 'server' and 'loadBalancer' are both resources that expose [Output] properties.
- *      let val: Output<string> = pulumi.interpolate `http://${server.hostname}:${loadBalancer.port}`
+ *      let val: Output<string> = khulnasoft.interpolate `http://${server.hostname}:${loadBalancer.port}`
  * ```
  *
  * As with {@link concat}, the placeholders between `${}` can be any

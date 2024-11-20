@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as std from "@pulumi/std";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as std from "@khulnasoft/std";
 
 const everyArg = std.AbsMultiArgs(10, 20, 30);
 const onlyRequiredArgs = std.AbsMultiArgs(10);

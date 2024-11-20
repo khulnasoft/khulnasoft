@@ -65,7 +65,7 @@
     },
     "language": {
         "go": {
-          "importBasePath": "github.com/pulumi/pulumi-basic-unions/sdk/v4/go/basic-unions",
+          "importBasePath": "github.com/khulnasoft/khulnasoft-basic-unions/sdk/v4/go/basic-unions",
           "generateExtraInputTypes": true
         }
     }

@@ -56,7 +56,7 @@ export class StackReference extends CustomResource {
         const stackReferenceName = args.name || name;
 
         super(
-            "pulumi:pulumi:StackReference",
+            "khulnasoft:khulnasoft:StackReference",
             name,
             {
                 name: stackReferenceName,

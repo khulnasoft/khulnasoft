@@ -22,23 +22,23 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
-// AnyOutputType is the reflected type of pulumi.AnyOutput.
+// AnyOutputType is the reflected type of khulnasoft.AnyOutput.
 //
-// This type is set by the pulumi package at init().
+// This type is set by the khulnasoft package at init().
 var AnyOutputType reflect.Type
 
 // FullyResolvedTypes is a collection of Input types
 // that are known to be fully resolved and do not need to be awaited.
 //
-// This map is filled by the pulumi package at init().
+// This map is filled by the khulnasoft package at init().
 var FullyResolvedTypes = make(map[reflect.Type]struct{})
 
 // Output encodes the relationship between resources in a Pulumi
-// application. See pulumi.Output for more details.
+// application. See khulnasoft.Output for more details.
 type Output interface {
 	ElementType() reflect.Type
 
@@ -127,7 +127,7 @@ type OutputState struct {
 	element reflect.Type // the element type of this output.
 
 	// The dependencies associated with this output property.
-	// This is a []pulumi.Resource, but we can't use that type here because
+	// This is a []khulnasoft.Resource, but we can't use that type here because
 	// it would create a circular dependency.
 	deps []Resource
 }
@@ -320,7 +320,7 @@ func (o *OutputState) getState() *OutputState {
 // NewOutputState creates a new OutputState that will hold a value of the given type.
 func NewOutputState(join *WorkGroup, elementType reflect.Type, deps ...Resource) *OutputState {
 	if deps == nil && len(deps) != 0 {
-		panic(fmt.Sprintf("data race detected - please report to https://github.com/pulumi/pulumi/issues: deps is nil with len %d", len(deps)))
+		panic(fmt.Sprintf("data race detected - please report to https://github.com/khulnasoft/khulnasoft/issues: deps is nil with len %d", len(deps)))
 	}
 
 	if join != nil {
@@ -333,7 +333,7 @@ func NewOutputState(join *WorkGroup, elementType reflect.Type, deps ...Resource)
 		element: elementType,
 		deps:    deps,
 		// Note: Calling registerResource or readResource with the same resource state can report a
-		// spurious data race here. See note in https://github.com/pulumi/pulumi/pull/10081.
+		// spurious data race here. See note in https://github.com/khulnasoft/khulnasoft/pull/10081.
 		//
 		// To reproduce, revert changes in PR to file pkg/engine/lifecycletest/golang_sdk_test.go.
 		cond: sync.NewCond(&m),
@@ -531,17 +531,17 @@ func (ap *applier) Call(ctx context.Context, in reflect.Value) (reflect.Value, e
 // U must be assignable from the ElementType of the Output. If T is a type that has a registered Output type, the
 // result of ApplyT will be of the registered Output type, and can be used in an appropriate type assertion:
 //
-//	stringOutput := pulumi.String("hello").ToStringOutput()
+//	stringOutput := khulnasoft.String("hello").ToStringOutput()
 //	intOutput := stringOutput.ApplyT(func(v string) int {
 //	    return len(v)
-//	}).(pulumi.IntOutput)
+//	}).(khulnasoft.IntOutput)
 //
 // Otherwise, the result will be of type AnyOutput:
 //
-//	stringOutput := pulumi.String("hello").ToStringOutput()
+//	stringOutput := khulnasoft.String("hello").ToStringOutput()
 //	intOutput := stringOutput.ApplyT(func(v string) []rune {
 //	    return []rune(v)
-//	}).(pulumi.AnyOutput)
+//	}).(khulnasoft.AnyOutput)
 func (o *OutputState) ApplyT(applier interface{}) Output {
 	ap, err := newApplier(applier, o.elementType())
 	if err != nil {
@@ -563,17 +563,17 @@ func (o *OutputState) ApplyT(applier interface{}) Output {
 // U must be assignable from the ElementType of the Output. If T is a type that has a registered Output type, the
 // result of ApplyT will be of the registered Output type, and can be used in an appropriate type assertion:
 //
-//	stringOutput := pulumi.String("hello").ToStringOutput()
+//	stringOutput := khulnasoft.String("hello").ToStringOutput()
 //	intOutput := stringOutput.ApplyTWithContext(func(_ context.Context, v string) int {
 //	    return len(v)
-//	}).(pulumi.IntOutput)
+//	}).(khulnasoft.IntOutput)
 //
 // Otherwise, the result will be of type AnyOutput:
 //
-//	stringOutput := pulumi.String("hello").ToStringOutput()
+//	stringOutput := khulnasoft.String("hello").ToStringOutput()
 //	intOutput := stringOutput.ApplyT(func(_ context.Context, v string) []rune {
 //	    return []rune(v)
-//	}).(pulumi.AnyOutput)
+//	}).(khulnasoft.AnyOutput)
 func (o *OutputState) ApplyTWithContext(ctx context.Context, applier interface{}) Output {
 	ap, err := newApplier(applier, o.elementType())
 	if err != nil {
@@ -784,7 +784,7 @@ func CallToOutputMethod(ctx context.Context, input reflect.Value, resolvedType r
 }
 
 // awaitInputs recursively discovers the Inputs in a value, awaits them, and sets resolved to the result of the await.
-// It is essentially an attempt to port the logic in the NodeJS SDK's `pulumi.output` function, which takes a value and
+// It is essentially an attempt to port the logic in the NodeJS SDK's `khulnasoft.output` function, which takes a value and
 // returns its fully-resolved value. The fully-resolved value `W` of some value `V` has the same shape as `V`, but with
 // all outputs recursively replaced with their resolved values. Unforunately, the way Outputs are represented in Go
 // combined with Go's strong typing and relatively simplistic type system make this challenging.

@@ -31,7 +31,7 @@ export class RunError extends Error {
      * @internal
      */
     // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
-    public readonly __pulumiRunError: boolean = true;
+    public readonly __khulnasoftRunError: boolean = true;
 
     /**
      * Returns true if the given object is a {@link RunError}. This is designed
@@ -39,7 +39,7 @@ export class RunError extends Error {
      * the same process.
      */
     public static isInstance(obj: any): obj is RunError {
-        return utils.isInstance<RunError>(obj, "__pulumiRunError");
+        return utils.isInstance<RunError>(obj, "__khulnasoftRunError");
     }
 }
 
@@ -90,7 +90,7 @@ export function isGrpcError(err: Error): boolean {
  */
 export class InputPropertyError extends Error {
     /** @internal */
-    public readonly __pulumiInputPropertyError: boolean = true;
+    public readonly __khulnasoftInputPropertyError: boolean = true;
 
     public propertyPath: string;
     public reason: string;
@@ -102,7 +102,7 @@ export class InputPropertyError extends Error {
     }
 
     public static isInstance(obj: any): obj is InputPropertyError {
-        return utils.isInstance<InputPropertyError>(obj, "__pulumiInputPropertyError");
+        return utils.isInstance<InputPropertyError>(obj, "__khulnasoftInputPropertyError");
     }
 }
 
@@ -124,7 +124,7 @@ interface InputPropertiesErrorArgs {
  */
 export class InputPropertiesError extends Error {
     /** @internal */
-    public readonly __pulumiInputPropertiesError: boolean = true;
+    public readonly __khulnasoftInputPropertiesError: boolean = true;
 
     public message: string;
     public errors: Array<InputPropertyErrorDetails>;
@@ -136,6 +136,6 @@ export class InputPropertiesError extends Error {
     }
 
     public static isInstance(obj: any): obj is InputPropertiesError {
-        return utils.isInstance<InputPropertiesError>(obj, "__pulumiInputPropertiesError");
+        return utils.isInstance<InputPropertiesError>(obj, "__khulnasoftInputPropertiesError");
     }
 }

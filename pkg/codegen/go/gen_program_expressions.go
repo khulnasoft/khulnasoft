@@ -28,8 +28,8 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 	"github.com/zclconf/go-cty/cty"
 )
 
@@ -117,8 +117,8 @@ func (g *generator) genAnonymousFunctionExpression(
 	// fromBase64 special case
 	if b, ok := body.(*model.FunctionCallExpression); ok && b.Name == fromBase64Fn {
 		g.Fgenf(w, "value, _ := %v\n", b)
-		g.Fgenf(w, "return pulumi.String(value), nil")
-	} else if strings.HasPrefix(retTypeName, "pulumi") {
+		g.Fgenf(w, "return khulnasoft.String(value), nil")
+	} else if strings.HasPrefix(retTypeName, "khulnasoft") {
 		g.Fgenf(w, "return %s(%v), nil", retTypeName, body)
 	} else {
 		g.Fgenf(w, "return %v, nil", body)
@@ -191,7 +191,7 @@ func (g *generator) genSafeEnum(w io.Writer, to *model.EnumType, dest model.Type
 		if union, isUnion := dest.(*model.UnionType); isUnion && len(union.Annotations) > 0 {
 			if input, ok := union.Annotations[0].(schema.Type); ok {
 				if _, ok := codegen.ResolvedType(input).(*schema.UnionType); ok {
-					g.Fgenf(w, "pulumi.String(%s.%s)", mod, memberTag)
+					g.Fgenf(w, "khulnasoft.String(%s.%s)", mod, memberTag)
 					return
 				}
 			}
@@ -275,7 +275,7 @@ func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionC
 
 				if typeName == "" {
 					g.Fgenf(w, "%.v", from)
-				} else if typeName == "pulumi.String" && isID {
+				} else if typeName == "khulnasoft.String" && isID {
 					g.Fgenf(w, "%.v", from)
 				} else {
 					g.Fgenf(w, "%s(%.v)", typeName, from)
@@ -285,17 +285,17 @@ func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionC
 	case pcl.IntrinsicApply:
 		g.genApply(w, expr)
 	case "fileArchive":
-		g.Fgenf(w, "pulumi.NewFileArchive(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.NewFileArchive(%.v)", expr.Args[0])
 	case "remoteArchive":
-		g.Fgenf(w, "pulumi.NewRemoteArchive(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.NewRemoteArchive(%.v)", expr.Args[0])
 	case "assetArchive":
-		g.Fgenf(w, "pulumi.NewAssetArchive(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.NewAssetArchive(%.v)", expr.Args[0])
 	case "fileAsset":
-		g.Fgenf(w, "pulumi.NewFileAsset(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.NewFileAsset(%.v)", expr.Args[0])
 	case "stringAsset":
-		g.Fgenf(w, "pulumi.NewStringAsset(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.NewStringAsset(%.v)", expr.Args[0])
 	case "remoteAsset":
-		g.Fgenf(w, "pulumi.NewRemoteAsset(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.NewRemoteAsset(%.v)", expr.Args[0])
 	case "filebase64":
 		// Assuming the existence of the following helper method
 		g.Fgenf(w, "filebase64OrPanic(%v)", expr.Args[0])
@@ -351,13 +351,13 @@ func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionC
 					last := i == len(invokeOptions.Items)-1
 					switch pcl.LiteralValueString(item.Key) {
 					case "provider":
-						g.Fgenf(&buf, "pulumi.Provider(%v)", item.Value)
+						g.Fgenf(&buf, "khulnasoft.Provider(%v)", item.Value)
 					case "parent":
-						g.Fgenf(&buf, "pulumi.Parent(%v)", item.Value)
+						g.Fgenf(&buf, "khulnasoft.Parent(%v)", item.Value)
 					case "version":
-						g.Fgenf(&buf, "pulumi.Version(%v)", item.Value)
+						g.Fgenf(&buf, "khulnasoft.Version(%v)", item.Value)
 					case "pluginDownloadUrl":
-						g.Fgenf(&buf, "pulumi.PluginDownloadURL(%v)", item.Value)
+						g.Fgenf(&buf, "khulnasoft.PluginDownloadURL(%v)", item.Value)
 					}
 
 					if !last {
@@ -378,17 +378,17 @@ func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionC
 		// Assuming the existence of the following helper method located earlier in the preamble
 		g.Fgenf(w, "readFileOrPanic(%v)", expr.Args[0])
 	case "secret":
-		outputTypeName := "pulumi.Any"
+		outputTypeName := "khulnasoft.Any"
 		if model.ResolveOutputs(expr.Type()) != model.DynamicType {
 			outputTypeName = g.argumentTypeName(expr.Type(), false)
 		}
-		g.Fgenf(w, "pulumi.ToSecret(%v).(%sOutput)", expr.Args[0], outputTypeName)
+		g.Fgenf(w, "khulnasoft.ToSecret(%v).(%sOutput)", expr.Args[0], outputTypeName)
 	case "unsecret":
-		outputTypeName := "pulumi.Any"
+		outputTypeName := "khulnasoft.Any"
 		if model.ResolveOutputs(expr.Type()) != model.DynamicType {
 			outputTypeName = g.argumentTypeName(expr.Type(), false)
 		}
-		g.Fgenf(w, "pulumi.Unsecret(%v).(%sOutput)", expr.Args[0], outputTypeName)
+		g.Fgenf(w, "khulnasoft.Unsecret(%v).(%sOutput)", expr.Args[0], outputTypeName)
 	case "toBase64":
 		g.Fgenf(w, "base64.StdEncoding.EncodeToString([]byte(%v))", expr.Args[0])
 	case fromBase64Fn:
@@ -398,13 +398,13 @@ func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionC
 	case "sha1":
 		g.Fgenf(w, "sha1Hash(%v)", expr.Args[0])
 	case "goOptionalFloat64":
-		g.Fgenf(w, "pulumi.Float64Ref(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.Float64Ref(%.v)", expr.Args[0])
 	case "goOptionalBool":
-		g.Fgenf(w, "pulumi.BoolRef(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.BoolRef(%.v)", expr.Args[0])
 	case "goOptionalInt":
-		g.Fgenf(w, "pulumi.IntRef(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.IntRef(%.v)", expr.Args[0])
 	case "goOptionalString":
-		g.Fgenf(w, "pulumi.StringRef(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.StringRef(%.v)", expr.Args[0])
 	case "stack":
 		g.Fgen(w, "ctx.Stack()")
 	case "project":
@@ -414,7 +414,7 @@ func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionC
 	case "cwd":
 		g.Fgen(w, "func(cwd string, err error) string { if err != nil { panic(err) }; return cwd }(os.Getwd())")
 	case "getOutput":
-		g.Fgenf(w, "%v.GetOutput(pulumi.String(%v))", expr.Args[0], expr.Args[1])
+		g.Fgenf(w, "%v.GetOutput(khulnasoft.String(%v))", expr.Args[0], expr.Args[1])
 	default:
 		// toJSON and readDir are reduced away, shouldn't see them here
 		reducedFunctions := codegen.NewStringSet("toJSON", "readDir")
@@ -474,7 +474,7 @@ func (g *generator) genLiteralValueExpression(w io.Writer, expr *model.LiteralVa
 	}
 
 	argTypeName := g.argumentTypeName(destType, false)
-	isPulumiType := strings.HasPrefix(argTypeName, "pulumi.")
+	isPulumiType := strings.HasPrefix(argTypeName, "khulnasoft.")
 
 	switch exprType {
 	case model.BoolType:
@@ -548,7 +548,7 @@ func (g *generator) genObjectConsExpression(
 
 	if schemaType, ok := g.toSchemaType(destType); ok {
 		if codegen.ResolvedType(schemaType) == schema.AnyType {
-			g.Fgenf(w, "pulumi.Any(")
+			g.Fgenf(w, "khulnasoft.Any(")
 			g.genObjectConsExpressionWithTypeName(w, expr, destType, "map[string]interface{}")
 			g.Fgenf(w, ")")
 			return
@@ -664,7 +664,7 @@ func (g *generator) genScopeTraversalExpression(
 	case *pcl.ConfigVariable:
 		if g.isComponent {
 			// config variables of components are always of type Input<T>
-			// these shouldn't be wrapped in a pulumi.String(...), pulumi.Int(...) etc. functions
+			// these shouldn't be wrapped in a khulnasoft.String(...), khulnasoft.Int(...) etc. functions
 			g.Fgenf(w, "args.%s", Title(rootName))
 			isRootResource := false
 			g.genRelativeTraversal(w, expr.Traversal.SimpleSplit().Rel, expr.Parts[1:], isRootResource)
@@ -672,7 +672,7 @@ func (g *generator) genScopeTraversalExpression(
 		}
 	}
 
-	// TODO if it's an array type, we need a lowering step to turn []string -> pulumi.StringArray
+	// TODO if it's an array type, we need a lowering step to turn []string -> khulnasoft.StringArray
 	if isInput {
 		argTypeName := g.argumentTypeName(expr.Type(), isInput)
 		if strings.HasSuffix(argTypeName, "Array") {
@@ -749,8 +749,8 @@ func (g *generator) genTemplateExpression(w io.Writer, expr *model.TemplateExpre
 		return
 	}
 	argTypeName := g.argumentTypeName(destType, false)
-	isPulumiType := strings.HasPrefix(argTypeName, "pulumi.")
-	isPulumiStr := argTypeName == "pulumi.String"
+	isPulumiType := strings.HasPrefix(argTypeName, "khulnasoft.")
+	isPulumiStr := argTypeName == "khulnasoft.String"
 	if isPulumiType && !isPulumiStr {
 		g.Fgenf(w, "%s(", argTypeName)
 		defer g.Fgenf(w, ")")
@@ -779,7 +779,7 @@ func (g *generator) genTemplateExpression(w io.Writer, expr *model.TemplateExpre
 		g.Fgenf(args, ", %.v", v)
 	}
 	if isPulumiStr {
-		g.Fgenf(w, "pulumi.Sprintf(")
+		g.Fgenf(w, "khulnasoft.Sprintf(")
 	} else {
 		g.Fgenf(w, "fmt.Sprintf(")
 	}
@@ -853,27 +853,27 @@ func (g *generator) argumentTypeName(destType model.Type, isInput bool) (result 
 		switch *destType {
 		case *model.IntType:
 			if isInput {
-				return "pulumi.Int"
+				return "khulnasoft.Int"
 			}
 			return "int"
 		case *model.NumberType:
 			if isInput {
-				return "pulumi.Float64"
+				return "khulnasoft.Float64"
 			}
 			return "float64"
 		case *model.StringType:
 			if isInput {
-				return "pulumi.String"
+				return "khulnasoft.String"
 			}
 			return "string"
 		case *model.BoolType:
 			if isInput {
-				return "pulumi.Bool"
+				return "khulnasoft.Bool"
 			}
 			return "bool"
 		case *model.DynamicType:
 			if isInput {
-				return "pulumi.Any"
+				return "khulnasoft.Any"
 			}
 			return "interface{}"
 		default:
@@ -896,21 +896,21 @@ func (g *generator) argumentTypeName(destType model.Type, isInput bool) (result 
 			if allSameType && elmType != "" {
 				return elmType + "Map"
 			}
-			return "pulumi.Map"
+			return "khulnasoft.Map"
 		}
 		return "map[string]interface{}"
 	case *model.MapType:
 		valType := g.argumentTypeName(destType.ElementType, isInput)
 		if isInput {
-			trimmedType := strings.TrimPrefix(valType, "pulumi.")
-			return fmt.Sprintf("pulumi.%sMap", Title(trimmedType))
+			trimmedType := strings.TrimPrefix(valType, "khulnasoft.")
+			return fmt.Sprintf("khulnasoft.%sMap", Title(trimmedType))
 		}
 		return "map[string]" + valType
 	case *model.ListType:
 		argTypeName := g.argumentTypeName(destType.ElementType, isInput)
-		if strings.HasPrefix(argTypeName, "pulumi.") && argTypeName != "pulumi.Resource" {
-			if argTypeName == "pulumi.Any" {
-				return "pulumi.Array"
+		if strings.HasPrefix(argTypeName, "khulnasoft.") && argTypeName != "khulnasoft.Resource" {
+			if argTypeName == "khulnasoft.Any" {
+				return "khulnasoft.Array"
 			}
 			return argTypeName + "Array"
 		}
@@ -936,9 +936,9 @@ func (g *generator) argumentTypeName(destType model.Type, isInput bool) (result 
 
 		if elmType != nil {
 			argTypeName := g.argumentTypeName(elmType, isInput)
-			if strings.HasPrefix(argTypeName, "pulumi.") && argTypeName != "pulumi.Resource" {
-				if argTypeName == "pulumi.Any" {
-					return "pulumi.Array"
+			if strings.HasPrefix(argTypeName, "khulnasoft.") && argTypeName != "khulnasoft.Resource" {
+				if argTypeName == "khulnasoft.Any" {
+					return "khulnasoft.Array"
 				}
 				return argTypeName + "Array"
 			}
@@ -946,7 +946,7 @@ func (g *generator) argumentTypeName(destType model.Type, isInput bool) (result 
 		}
 
 		if isInput {
-			return "pulumi.Array"
+			return "khulnasoft.Array"
 		}
 		return "[]interface{}"
 	case *model.OutputType:
@@ -986,7 +986,7 @@ func (g *generator) argumentTypeName(destType model.Type, isInput bool) (result 
 
 func (g *generator) argumentTypeNamePtr(destType model.Type, isInput bool) (result string) {
 	res := g.argumentTypeName(destType, isInput)
-	if !strings.HasPrefix(res, "pulumi.") {
+	if !strings.HasPrefix(res, "khulnasoft.") {
 		return "*" + res
 	}
 	return res
@@ -1095,10 +1095,10 @@ func (g *generator) genApply(w io.Writer, expr *model.FunctionCallExpression) {
 	isInput := false
 	retType := g.argumentTypeName(then.Signature.ReturnType, isInput)
 	// TODO account for outputs in other namespaces like aws
-	// TODO[pulumi/pulumi#8453] incomplete pattern code below.
+	// TODO[khulnasoft/khulnasoft#8453] incomplete pattern code below.
 	var typeAssertion string
 	if retType == "[]string" {
-		typeAssertion = ".(pulumi.StringArrayOutput)"
+		typeAssertion = ".(khulnasoft.StringArrayOutput)"
 	} else {
 		if strings.HasPrefix(retType, "*") {
 			retType = Title(strings.TrimPrefix(retType, "*")) + "Ptr"
@@ -1111,7 +1111,7 @@ func (g *generator) genApply(w io.Writer, expr *model.FunctionCallExpression) {
 		}
 		typeAssertion = fmt.Sprintf(".(%sOutput)", retType)
 		if !strings.Contains(retType, ".") {
-			typeAssertion = fmt.Sprintf(".(pulumi.%sOutput)", Title(retType))
+			typeAssertion = fmt.Sprintf(".(khulnasoft.%sOutput)", Title(retType))
 		}
 	}
 
@@ -1119,7 +1119,7 @@ func (g *generator) genApply(w io.Writer, expr *model.FunctionCallExpression) {
 		// If we only have a single output, just generate a normal `.Apply`
 		g.Fgenf(w, "%.v.ApplyT(%.v)%s", applyArgs[0], then, typeAssertion)
 	} else {
-		g.Fgenf(w, "pulumi.All(%.v", applyArgs[0])
+		g.Fgenf(w, "khulnasoft.All(%.v", applyArgs[0])
 		applyArgs = applyArgs[1:]
 		for _, a := range applyArgs {
 			g.Fgenf(w, ",%.v", a)
@@ -1210,7 +1210,7 @@ func (g *generator) escapeString(v string) string {
 //nolint:lll
 func isInputty(destType model.Type) bool {
 	// TODO this needs to be more robust, likely the inverse of:
-	// https://github.com/pulumi/pulumi/blob/5330c97684cad78bcc60d8867f1b28704bd8a555/pkg/codegen/hcl2/model/type_eventuals.go#L244
+	// https://github.com/khulnasoft/khulnasoft/blob/5330c97684cad78bcc60d8867f1b28704bd8a555/pkg/codegen/hcl2/model/type_eventuals.go#L244
 	switch destType := destType.(type) {
 	case *model.UnionType:
 		for _, t := range destType.ElementTypes {

@@ -59,24 +59,24 @@ export class LocalWorkspace implements Workspace {
      * location of `$PULUMI_HOME` where metadata is stored and plugins are
      * installed.
      */
-    readonly pulumiHome?: string;
+    readonly khulnasoftHome?: string;
 
     /**
      * The secrets provider to use for encryption and decryption of stack secrets.
-     * See: https://www.pulumi.com/docs/intro/concepts/secrets/#available-encryption-providers
+     * See: https://www.khulnasoft.com/docs/intro/concepts/secrets/#available-encryption-providers
      */
     readonly secretsProvider?: string;
 
-    private _pulumiCommand?: PulumiCommand;
+    private _khulnasoftCommand?: PulumiCommand;
 
     /**
      * The underlying Pulumi CLI.
      */
-    public get pulumiCommand(): PulumiCommand {
-        if (this._pulumiCommand === undefined) {
+    public get khulnasoftCommand(): PulumiCommand {
+        if (this._khulnasoftCommand === undefined) {
             throw new Error("Failed to get Pulumi CLI");
         }
-        return this._pulumiCommand;
+        return this._khulnasoftCommand;
     }
 
     /**
@@ -91,18 +91,18 @@ export class LocalWorkspace implements Workspace {
      */
     envVars: { [key: string]: string };
 
-    private _pulumiVersion?: semver.SemVer;
+    private _khulnasoftVersion?: semver.SemVer;
 
     /**
      * The version of the underlying Pulumi CLI/engine.
      *
      * @returns A string representation of the version, if available. `null` otherwise.
      */
-    public get pulumiVersion(): string {
-        if (this._pulumiVersion === undefined) {
+    public get khulnasoftVersion(): string {
+        if (this._khulnasoftVersion === undefined) {
             throw new Error(`Failed to get Pulumi version`);
         }
-        return this._pulumiVersion.toString();
+        return this._khulnasoftVersion.toString();
     }
 
     private ready: Promise<any[]>;
@@ -331,7 +331,7 @@ export class LocalWorkspace implements Workspace {
         if (opts) {
             const {
                 workDir,
-                pulumiHome,
+                khulnasoftHome,
                 program,
                 envVars,
                 secretsProvider,
@@ -349,7 +349,7 @@ export class LocalWorkspace implements Workspace {
                 }
                 dir = workDir;
             }
-            this.pulumiHome = pulumiHome;
+            this.khulnasoftHome = khulnasoftHome;
             this.program = program;
             this.secretsProvider = secretsProvider;
             this.remote = remote;
@@ -368,15 +368,15 @@ export class LocalWorkspace implements Workspace {
         this.envVars = envs;
 
         const skipVersionCheck = !!this.envVars[SKIP_VERSION_CHECK_VAR] || !!process.env[SKIP_VERSION_CHECK_VAR];
-        const pulumiCommand = opts?.pulumiCommand
-            ? Promise.resolve(opts.pulumiCommand)
+        const khulnasoftCommand = opts?.khulnasoftCommand
+            ? Promise.resolve(opts.khulnasoftCommand)
             : PulumiCommand.get({ skipVersionCheck });
 
         const readinessPromises: Promise<any>[] = [
-            pulumiCommand.then((p) => {
-                this._pulumiCommand = p;
+            khulnasoftCommand.then((p) => {
+                this._khulnasoftCommand = p;
                 if (p.version) {
-                    this._pulumiVersion = p.version;
+                    this._khulnasoftVersion = p.version;
                 }
                 return this.checkRemoteSupport();
             }),
@@ -532,7 +532,7 @@ export class LocalWorkspace implements Workspace {
      */
     async selectStack(stackName: string): Promise<void> {
         // If this is a remote workspace, we don't want to actually select the stack (which would modify global state);
-        // but we will ensure the stack exists by calling `pulumi stack`.
+        // but we will ensure the stack exists by calling `khulnasoft stack`.
         const args = ["stack"];
         if (!this.isRemote) {
             args.push("select");
@@ -575,13 +575,13 @@ export class LocalWorkspace implements Workspace {
      *  The names of the environments to add to the stack's configuration
      */
     async addEnvironments(stackName: string, ...environments: string[]): Promise<void> {
-        let ver = this._pulumiVersion;
+        let ver = this._khulnasoftVersion;
         if (ver === undefined) {
             // Assume an old version. Doesn't really matter what this is as long as it's pre-3.95.
             ver = semver.parse("3.0.0")!;
         }
 
-        // 3.95 added this command (https://github.com/pulumi/pulumi/releases/tag/v3.95.0)
+        // 3.95 added this command (https://github.com/khulnasoft/khulnasoft/releases/tag/v3.95.0)
         if (ver.compare("3.95.0") < 0) {
             throw new Error(`addEnvironments requires Pulumi version >= 3.95.0`);
         }
@@ -595,13 +595,13 @@ export class LocalWorkspace implements Workspace {
      * @param stackName The stack to operate on
      */
     async listEnvironments(stackName: string): Promise<string[]> {
-        let ver = this._pulumiVersion;
+        let ver = this._khulnasoftVersion;
         if (ver === undefined) {
             // Assume an old version. Doesn't really matter what this is as long as it's pre-3.99.
             ver = semver.parse("3.0.0")!;
         }
 
-        // 3.99 added this command (https://github.com/pulumi/pulumi/releases/tag/v3.99.0)
+        // 3.99 added this command (https://github.com/khulnasoft/khulnasoft/releases/tag/v3.99.0)
         if (ver.compare("3.99.0") < 0) {
             throw new Error(`listEnvironments requires Pulumi version >= 3.99.0`);
         }
@@ -619,13 +619,13 @@ export class LocalWorkspace implements Workspace {
      *  The name of the environment to remove from the stack's configuration
      */
     async removeEnvironment(stackName: string, environment: string): Promise<void> {
-        let ver = this._pulumiVersion;
+        let ver = this._khulnasoftVersion;
         if (ver === undefined) {
             // Assume an old version. Doesn't really matter what this is as long as it's pre-3.95.
             ver = semver.parse("3.0.0")!;
         }
 
-        // 3.95 added this command (https://github.com/pulumi/pulumi/releases/tag/v3.95.0)
+        // 3.95 added this command (https://github.com/khulnasoft/khulnasoft/releases/tag/v3.95.0)
         if (ver.compare("3.95.0") < 0) {
             throw new Error(`removeEnvironments requires Pulumi version >= 3.95.0`);
         }
@@ -827,13 +827,13 @@ export class LocalWorkspace implements Workspace {
      * Returns information about the currently authenticated user.
      */
     async whoAmI(): Promise<WhoAmIResult> {
-        let ver = this._pulumiVersion;
+        let ver = this._khulnasoftVersion;
         if (ver === undefined) {
             // Assume an old version. Doesn't really matter what this is as long as it's pre-3.58.
             ver = semver.parse("3.0.0")!;
         }
 
-        // 3.58 added the --json flag (https://github.com/pulumi/pulumi/releases/tag/v3.58.0)
+        // 3.58 added the --json flag (https://github.com/khulnasoft/khulnasoft/releases/tag/v3.58.0)
         if (ver.compare("3.58.0") >= 0) {
             const result = await this.runPulumiCmd(["whoami", "--json"]);
             return JSON.parse(result.stdout);
@@ -881,22 +881,22 @@ export class LocalWorkspace implements Workspace {
      * @param opts Options to customize the behavior of install.
      */
     async install(opts?: InstallOptions): Promise<void> {
-        let ver = this._pulumiVersion;
+        let ver = this._khulnasoftVersion;
         if (ver === undefined) {
             ver = semver.parse("3.0.0")!;
         }
 
         if (ver.compare("3.91.0") < 0) {
-            // Pulumi 3.91.0 added the `pulumi install` command.
-            // https://github.com/pulumi/pulumi/releases/tag/v3.91.0
-            throw new Error(`pulumi install requires Pulumi version >= 3.91.0`);
+            // Pulumi 3.91.0 added the `khulnasoft install` command.
+            // https://github.com/khulnasoft/khulnasoft/releases/tag/v3.91.0
+            throw new Error(`khulnasoft install requires Pulumi version >= 3.91.0`);
         }
 
         const args: string[] = [];
         if (opts?.useLanguageVersionTools) {
             if (ver.compare("3.130.0") < 0) {
                 // Pulumi 3.130.0 introduced the `--use-language-version-tools` flag.
-                // https://github.com/pulumi/pulumi/releases/tag/v3.130.0
+                // https://github.com/khulnasoft/khulnasoft/releases/tag/v3.130.0
                 throw new Error(`useLanguageVersionTools requires Pulumi version >= 3.130.0`);
             }
             args.push("--use-language-version-tools");
@@ -1016,7 +1016,7 @@ export class LocalWorkspace implements Workspace {
      * @param stackName The name of the stack.
      */
     async stackOutputs(stackName: string): Promise<OutputMap> {
-        // TODO: do this in parallel after this is fixed https://github.com/pulumi/pulumi/issues/6050
+        // TODO: do this in parallel after this is fixed https://github.com/khulnasoft/khulnasoft/issues/6050
         const maskedResult = await this.runPulumiCmd(["stack", "output", "--json", "--stack", stackName]);
         const plaintextResult = await this.runPulumiCmd([
             "stack",
@@ -1063,7 +1063,7 @@ export class LocalWorkspace implements Workspace {
         const optOut = !!this.envVars[SKIP_VERSION_CHECK_VAR] || !!process.env[SKIP_VERSION_CHECK_VAR];
         // If remote was specified, ensure the CLI supports it.
         if (!optOut && this.isRemote) {
-            // See if `--remote` is present in `pulumi preview --help`'s output.
+            // See if `--remote` is present in `khulnasoft preview --help`'s output.
             const previewResult = await this.runPulumiCmd(["preview", "--help"]);
             const previewOutput = previewResult.stdout.trim();
             if (!previewOutput.includes("--remote")) {
@@ -1074,14 +1074,14 @@ export class LocalWorkspace implements Workspace {
 
     private async runPulumiCmd(args: string[]): Promise<CommandResult> {
         let envs: { [key: string]: string } = {};
-        if (this.pulumiHome) {
-            envs["PULUMI_HOME"] = this.pulumiHome;
+        if (this.khulnasoftHome) {
+            envs["PULUMI_HOME"] = this.khulnasoftHome;
         }
         if (this.isRemote) {
             envs["PULUMI_EXPERIMENTAL"] = "true";
         }
         envs = { ...envs, ...this.envVars };
-        return this.pulumiCommand.run(args, this.workDir, envs);
+        return this.khulnasoftCommand.run(args, this.workDir, envs);
     }
 
     /**
@@ -1211,12 +1211,12 @@ export interface LocalWorkspaceOptions {
     /**
      * The directory to override for CLI metadata
      */
-    pulumiHome?: string;
+    khulnasoftHome?: string;
 
     /**
      * The underlying Pulumi CLI.
      */
-    pulumiCommand?: PulumiCommand;
+    khulnasoftCommand?: PulumiCommand;
 
     /**
      * The inline program {@link PulumiFn} to be used for preview/update
@@ -1232,7 +1232,7 @@ export interface LocalWorkspaceOptions {
 
     /**
      * The secrets provider to use for encryption and decryption of stack secrets.
-     * See: https://www.pulumi.com/docs/intro/concepts/secrets/#available-encryption-providers
+     * See: https://www.khulnasoft.com/docs/intro/concepts/secrets/#available-encryption-providers
      */
     secretsProvider?: string;
 

@@ -333,7 +333,7 @@ class Server implements grpc.UntypedServiceImplementation {
             });
 
             const details = new anyproto.Any();
-            details.pack(errorDetails.serializeBinary(), "pulumirpc.InputPropertiesError");
+            details.pack(errorDetails.serializeBinary(), "khulnasoftrpc.InputPropertiesError");
 
             status.addDetails(details);
             metadata.add("grpc-status-details-bin", Buffer.from(status.serializeBinary()));
@@ -561,14 +561,14 @@ async function configureRuntime(req: any, engineAddr: string | undefined) {
     // resetOptions doesn't reset the saved features
     await settings.awaitFeatureSupport();
 
-    const pulumiConfig: { [key: string]: string } = {};
+    const khulnasoftConfig: { [key: string]: string } = {};
     const rpcConfig = req.getConfigMap();
     if (rpcConfig) {
         for (const [k, v] of rpcConfig.entries()) {
-            pulumiConfig[k] = v;
+            khulnasoftConfig[k] = v;
         }
     }
-    config.setAllConfig(pulumiConfig, req.getConfigsecretkeysList());
+    config.setAllConfig(khulnasoftConfig, req.getConfigsecretkeysList());
 }
 
 /**
@@ -674,7 +674,7 @@ function grpcResponseFromError(e: { id: string; properties: any; message: string
         detail.setReasonsList(e.reasons || []);
 
         const details = new anyproto.Any();
-        details.pack(detail.serializeBinary(), "pulumirpc.ErrorResourceInitFailed");
+        details.pack(detail.serializeBinary(), "khulnasoftrpc.ErrorResourceInitFailed");
 
         // Add details to metadata.
         resp.addDetails(details);
@@ -699,7 +699,7 @@ export async function main(provider: Provider, args: string[]) {
     const uncaughtHandler = (err: Error) => {
         if (!uncaughtErrors.has(err)) {
             uncaughtErrors.add(err);
-            // Use `pulumi.log.error` here to tell the engine there was a fatal error, which should
+            // Use `khulnasoft.log.error` here to tell the engine there was a fatal error, which should
             // stop processing subsequent resource operations.
             log.error(err.stack || err.message || "" + err);
         }

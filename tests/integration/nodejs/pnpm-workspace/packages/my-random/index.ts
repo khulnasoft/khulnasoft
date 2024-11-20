@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-export class MyRandom extends pulumi.ComponentResource {
-  public readonly randomID: pulumi.Output<string>;
+export class MyRandom extends khulnasoft.ComponentResource {
+  public readonly randomID: khulnasoft.Output<string>;
 
-  constructor(name: string, opts: pulumi.ResourceOptions) {
+  constructor(name: string, opts: khulnasoft.ResourceOptions) {
     super("pkg:index:MyRandom", name, {}, opts);
-    this.randomID = pulumi.output(`${name}-${Math.floor(Math.random() * 1000)}`);
+    this.randomID = khulnasoft.output(`${name}-${Math.floor(Math.random() * 1000)}`);
     this.registerOutputs({ randomID: this.randomID });
   }
 }

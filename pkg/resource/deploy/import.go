@@ -25,11 +25,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/gsync"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // An Import specifies a resource to import.

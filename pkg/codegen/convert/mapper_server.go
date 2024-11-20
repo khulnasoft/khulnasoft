@@ -19,8 +19,8 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	codegenrpc "github.com/pulumi/pulumi/sdk/v3/proto/go/codegen"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	codegenrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go/codegen"
 )
 
 type mapperServer struct {
@@ -37,7 +37,7 @@ func (m *mapperServer) GetMapping(ctx context.Context,
 	req *codegenrpc.GetMappingRequest,
 ) (*codegenrpc.GetMappingResponse, error) {
 	label := "GetMapping"
-	logging.V(7).Infof("%s executing: provider=%s, pulumi=%s", label, req.Provider, req.PulumiProvider)
+	logging.V(7).Infof("%s executing: provider=%s, khulnasoft=%s", label, req.Provider, req.PulumiProvider)
 
 	data, err := m.mapper.GetMapping(ctx, req.Provider, req.PulumiProvider)
 	if err != nil {

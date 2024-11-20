@@ -14,71 +14,71 @@
 
 import unittest
 
-from pulumi._types import resource_types
-import pulumi
+from khulnasoft._types import resource_types
+import khulnasoft
 
 
-class Resource1(pulumi.Resource):
+class Resource1(khulnasoft.Resource):
     pass
 
 
-class Resource2(pulumi.Resource):
-    foo: pulumi.Output[str]
+class Resource2(khulnasoft.Resource):
+    foo: khulnasoft.Output[str]
 
 
-class Resource3(pulumi.Resource):
-    nested: pulumi.Output["Nested"]
+class Resource3(khulnasoft.Resource):
+    nested: khulnasoft.Output["Nested"]
 
 
-class Resource4(pulumi.Resource):
-    nested_value: pulumi.Output["Nested"] = pulumi.property("nestedValue")
+class Resource4(khulnasoft.Resource):
+    nested_value: khulnasoft.Output["Nested"] = khulnasoft.property("nestedValue")
 
 
-class Resource5(pulumi.Resource):
+class Resource5(khulnasoft.Resource):
     @property
-    @pulumi.getter
-    def foo(self) -> pulumi.Output[str]: ...  # type: ignore
+    @khulnasoft.getter
+    def foo(self) -> khulnasoft.Output[str]: ...  # type: ignore
 
 
-class Resource6(pulumi.Resource):
+class Resource6(khulnasoft.Resource):
     @property
-    @pulumi.getter
-    def nested(self) -> pulumi.Output["Nested"]: ...  # type: ignore
+    @khulnasoft.getter
+    def nested(self) -> khulnasoft.Output["Nested"]: ...  # type: ignore
 
 
-class Resource7(pulumi.Resource):
+class Resource7(khulnasoft.Resource):
     @property
-    @pulumi.getter(name="nestedValue")
-    def nested_value(self) -> pulumi.Output["Nested"]: ...  # type: ignore
+    @khulnasoft.getter(name="nestedValue")
+    def nested_value(self) -> khulnasoft.Output["Nested"]: ...  # type: ignore
 
 
-class Resource8(pulumi.Resource):
-    foo: pulumi.Output
+class Resource8(khulnasoft.Resource):
+    foo: khulnasoft.Output
 
 
-class Resource9(pulumi.Resource):
+class Resource9(khulnasoft.Resource):
     @property
-    @pulumi.getter
-    def foo(self) -> pulumi.Output: ...  # type: ignore
+    @khulnasoft.getter
+    def foo(self) -> khulnasoft.Output: ...  # type: ignore
 
 
-class Resource10(pulumi.Resource):
+class Resource10(khulnasoft.Resource):
     foo: str
 
 
-class Resource11(pulumi.Resource):
+class Resource11(khulnasoft.Resource):
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def foo(self) -> str: ...  # type: ignore
 
 
-class Resource12(pulumi.Resource):
+class Resource12(khulnasoft.Resource):
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def foo(self): ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class Nested:
     first: str
     second: str

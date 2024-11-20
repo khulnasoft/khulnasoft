@@ -31,11 +31,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 func TestDestroyTarget(t *testing.T) {
@@ -513,7 +513,7 @@ func TestCreateDuringTargetedUpdate_UntargetedCreateReferencedByChangedTarget(t 
 	}
 
 	beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "b", true)
@@ -540,7 +540,7 @@ func TestCreateDuringTargetedUpdate_UntargetedCreateReferencedByChangedTarget(t 
 	}
 
 	afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		resA, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -588,7 +588,7 @@ func TestCreateDuringTargetedUpdate_UntargetedCreateReferencedByUnchangedTarget(
 	// Operation 1 -- create a resource, B.
 
 	beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "b", true)
@@ -609,7 +609,7 @@ func TestCreateDuringTargetedUpdate_UntargetedCreateReferencedByUnchangedTarget(
 	// B, but not A. This should fail because A's create will be skipped, meaning
 	// that B's dependency cannot be satisfied.
 	afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		resA, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -664,7 +664,7 @@ func TestCreateDuringTargetedUpdate_UntargetedCreateReferencedByTargetPropertyDe
 	}
 
 	beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "b", true)
@@ -691,7 +691,7 @@ func TestCreateDuringTargetedUpdate_UntargetedCreateReferencedByTargetPropertyDe
 	}
 
 	afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		resA, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -748,7 +748,7 @@ func TestCreateDuringTargetedUpdate_UntargetedCreateReferencedByTargetDeletedWit
 	}
 
 	beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "b", true)
@@ -775,7 +775,7 @@ func TestCreateDuringTargetedUpdate_UntargetedCreateReferencedByTargetDeletedWit
 	}
 
 	afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		resA, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -831,7 +831,7 @@ func TestCreateDuringTargetedUpdate_UntargetedCreateReferencedByTargetParent(t *
 
 	var resBOldURN resource.URN
 	beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		resB, err := monitor.RegisterResource("pkgA:m:typA", "b", true)
@@ -859,7 +859,7 @@ func TestCreateDuringTargetedUpdate_UntargetedCreateReferencedByTargetParent(t *
 	}
 
 	afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		resA, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -1363,7 +1363,7 @@ func TestTargetedCreateDefaultProvider(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resA",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resA",
 			}),
 		},
 	}
@@ -1373,7 +1373,7 @@ func TestTargetedCreateDefaultProvider(t *testing.T) {
 	// Check that the default provider was created.
 	var foundDefaultProvider bool
 	for _, res := range snap.Resources {
-		if res.URN == "urn:pulumi:test::test::pulumi:providers:pkgA::default" {
+		if res.URN == "urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default" {
 			foundDefaultProvider = true
 		}
 	}
@@ -1391,7 +1391,7 @@ func findResourceByURN(rs []*resource.State, urn resource.URN) *resource.State {
 }
 
 // TestEnsureUntargetedSame checks that an untargeted resource retains the prior state after an update when the provider
-// alters the inputs. This is a regression test for pulumi/pulumi#12964.
+// alters the inputs. This is a regression test for khulnasoft/khulnasoft#12964.
 func TestEnsureUntargetedSame(t *testing.T) {
 	t.Parallel()
 
@@ -1413,7 +1413,7 @@ func TestEnsureUntargetedSame(t *testing.T) {
 
 	// Program that creates 2 resources.
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test-test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test-test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "resA", true, deploytest.ResourceOptions{
@@ -1449,7 +1449,7 @@ func TestEnsureUntargetedSame(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resA",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resA",
 			}),
 		},
 	}
@@ -1459,10 +1459,10 @@ func TestEnsureUntargetedSame(t *testing.T) {
 
 	// Check that `resB` (untargeted) is the same between the two snapshots.
 	{
-		initialState := findResourceByURN(origSnap.Resources, "urn:pulumi:test::test::pkgA:m:typA::resB")
+		initialState := findResourceByURN(origSnap.Resources, "urn:khulnasoft:test::test::pkgA:m:typA::resB")
 		assert.NotNil(t, initialState, "initial `resB` state not found")
 
-		finalState := findResourceByURN(finalSnap.Resources, "urn:pulumi:test::test::pkgA:m:typA::resB")
+		finalState := findResourceByURN(finalSnap.Resources, "urn:khulnasoft:test::test::pkgA:m:typA::resB")
 		assert.NotNil(t, finalState, "final `resB` state not found")
 
 		assert.Equal(t, initialState, finalState)
@@ -1488,7 +1488,7 @@ func TestReplaceSpecificTargetsPlan(t *testing.T) {
 	createResB := false
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		resp, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test-test", false)
+		resp, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test-test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "resA", true, deploytest.ResourceOptions{
@@ -1534,8 +1534,8 @@ func TestReplaceSpecificTargetsPlan(t *testing.T) {
 	// Now try to create resB.
 	createResB = true
 
-	urnA := resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA")
-	urnB := resource.URN("urn:pulumi:test::test::pkgA:m:typA::resB")
+	urnA := resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA")
+	urnB := resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resB")
 
 	// `--target-replace a`
 	t.Run("EnsureUntargetedIsSame", func(t *testing.T) {
@@ -1672,7 +1672,7 @@ func TestReplaceSpecificTargetsPlan(t *testing.T) {
 }
 
 func TestTargetDependents(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi/pull/13560. This test ensures that when
+	// Regression test for https://github.com/khulnasoft/khulnasoft/pull/13560. This test ensures that when
 	// --target-dependents is set we don't start creating untargted resources.
 	t.Parallel()
 
@@ -1683,7 +1683,7 @@ func TestTargetDependents(t *testing.T) {
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "resA", true, deploytest.ResourceOptions{})
@@ -1705,7 +1705,7 @@ func TestTargetDependents(t *testing.T) {
 		T:     t,
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
-			Targets:          deploy.NewUrnTargets([]string{"urn:pulumi:test::test::pkgA:m:typA::resA"}),
+			Targets:          deploy.NewUrnTargets([]string{"urn:khulnasoft:test::test::pkgA:m:typA::resA"}),
 			TargetDependents: false,
 		},
 	}, false, p.BackendClient, nil, "1")
@@ -1719,7 +1719,7 @@ func TestTargetDependents(t *testing.T) {
 		T:     t,
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
-			Targets:          deploy.NewUrnTargets([]string{"urn:pulumi:test::test::pkgA:m:typA::resA"}),
+			Targets:          deploy.NewUrnTargets([]string{"urn:khulnasoft:test::test::pkgA:m:typA::resA"}),
 			TargetDependents: true,
 		},
 	}, false, p.BackendClient, nil, "2")
@@ -1729,7 +1729,7 @@ func TestTargetDependents(t *testing.T) {
 }
 
 func TestTargetDependentsExplicitProvider(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi/pull/13560. This test ensures that when
+	// Regression test for https://github.com/khulnasoft/khulnasoft/pull/13560. This test ensures that when
 	// --target-dependents is set we still target explicit providers resources.
 	t.Parallel()
 
@@ -1740,7 +1740,7 @@ func TestTargetDependentsExplicitProvider(t *testing.T) {
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		resp, err := monitor.RegisterResource(
@@ -1778,7 +1778,7 @@ func TestTargetDependentsExplicitProvider(t *testing.T) {
 		T:     t,
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
-			Targets:          deploy.NewUrnTargets([]string{"urn:pulumi:test::test::pulumi:providers:pkgA::provider"}),
+			Targets:          deploy.NewUrnTargets([]string{"urn:khulnasoft:test::test::khulnasoft:providers:pkgA::provider"}),
 			TargetDependents: false,
 		},
 	}, false, p.BackendClient, nil, "0")
@@ -1792,7 +1792,7 @@ func TestTargetDependentsExplicitProvider(t *testing.T) {
 		T:     t,
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
-			Targets:          deploy.NewUrnTargets([]string{"urn:pulumi:test::test::pulumi:providers:pkgA::provider"}),
+			Targets:          deploy.NewUrnTargets([]string{"urn:khulnasoft:test::test::khulnasoft:providers:pkgA::provider"}),
 			TargetDependents: true,
 		},
 	}, false, p.BackendClient, nil, "1")
@@ -1802,7 +1802,7 @@ func TestTargetDependentsExplicitProvider(t *testing.T) {
 }
 
 func TestTargetDependentsSiblingResources(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi/pull/13591. This test ensures that when
+	// Regression test for https://github.com/khulnasoft/khulnasoft/pull/13591. This test ensures that when
 	// --target-dependents is set we don't target sibling resources (that is resources created by the same
 	// provider as the one being targeted).
 	t.Parallel()
@@ -1814,7 +1814,7 @@ func TestTargetDependentsSiblingResources(t *testing.T) {
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		// We're creating 8 resources here (one the implicit default provider). First we create three
@@ -1876,8 +1876,8 @@ func TestTargetDependentsSiblingResources(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::implicitX",
-				"urn:pulumi:test::test::pkgA:m:typA::explicitX",
+				"urn:khulnasoft:test::test::pkgA:m:typA::implicitX",
+				"urn:khulnasoft:test::test::pkgA:m:typA::explicitX",
 			}),
 			TargetDependents: false,
 		},
@@ -1893,8 +1893,8 @@ func TestTargetDependentsSiblingResources(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::implicitX",
-				"urn:pulumi:test::test::pkgA:m:typA::explicitX",
+				"urn:khulnasoft:test::test::pkgA:m:typA::implicitX",
+				"urn:khulnasoft:test::test::pkgA:m:typA::explicitX",
 			}),
 			TargetDependents: true,
 		},
@@ -1903,7 +1903,7 @@ func TestTargetDependentsSiblingResources(t *testing.T) {
 	require.Equal(t, 7, len(snap.Resources))
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/14531. This test ensures that when
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/14531. This test ensures that when
 // --targets is set non-targeted parents in creates trigger an error.
 func TestTargetUntargetedParent(t *testing.T) {
 	t.Parallel()
@@ -1917,7 +1917,7 @@ func TestTargetUntargetedParent(t *testing.T) {
 	inputs := resource.PropertyMap{}
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		resp, err := monitor.RegisterResource("component", "parent", false)
@@ -1985,8 +1985,8 @@ func TestTargetUntargetedParent(t *testing.T) {
 		assert.ErrorContains(t, err, "untargeted create")
 		// We should have two resources the stack and the default provider we made for the child.
 		assert.Equal(t, 2, len(snap.Resources))
-		assert.Equal(t, tokens.Type("pulumi:pulumi:Stack"), snap.Resources[0].URN.Type())
-		assert.Equal(t, tokens.Type("pulumi:providers:pkgA"), snap.Resources[1].URN.Type())
+		assert.Equal(t, tokens.Type("khulnasoft:khulnasoft:Stack"), snap.Resources[0].URN.Type())
+		assert.Equal(t, tokens.Type("khulnasoft:providers:pkgA"), snap.Resources[1].URN.Type())
 	})
 }
 
@@ -2031,8 +2031,8 @@ func TestTargetDestroyDependencyErrors(t *testing.T) {
 		assert.NotNil(t, snap)
 		assert.Nil(t, snap.VerifyIntegrity())
 		assert.Len(t, snap.Resources, 3)
-		assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
-		assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resB"), snap.Resources[2].URN)
+		assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+		assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resB"), snap.Resources[2].URN)
 	}
 
 	// Run an update for initial state.
@@ -2045,7 +2045,7 @@ func TestTargetDestroyDependencyErrors(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resA",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resA",
 			}),
 		},
 	}, false, p.BackendClient, nil, "1")
@@ -2094,8 +2094,8 @@ func TestTargetDestroyChildErrors(t *testing.T) {
 		assert.NotNil(t, snap)
 		assert.Nil(t, snap.VerifyIntegrity())
 		assert.Len(t, snap.Resources, 3)
-		assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
-		assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typA::resB"), snap.Resources[2].URN)
+		assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+		assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typA::resB"), snap.Resources[2].URN)
 	}
 
 	// Run an update for initial state.
@@ -2108,7 +2108,7 @@ func TestTargetDestroyChildErrors(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resA",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resA",
 			}),
 		},
 	}, false, p.BackendClient, nil, "1")
@@ -2155,7 +2155,7 @@ func TestTargetDestroyDeleteFails(t *testing.T) {
 		assert.NotNil(t, snap)
 		assert.Nil(t, snap.VerifyIntegrity())
 		assert.Len(t, snap.Resources, 2)
-		assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+		assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 	}
 
 	// Run an update for initial state.
@@ -2170,7 +2170,7 @@ func TestTargetDestroyDeleteFails(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resA",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resA",
 			}),
 		},
 	}, false, p.BackendClient, nil, "1")
@@ -2194,7 +2194,7 @@ func TestTargetDestroyDependencyDeleteFails(t *testing.T) {
 					}, nil
 				},
 				DeleteF: func(_ context.Context, req plugin.DeleteRequest) (plugin.DeleteResponse, error) {
-					assert.Equal(t, "urn:pulumi:test::test::pkgA:m:typA::resB", string(req.URN))
+					assert.Equal(t, "urn:khulnasoft:test::test::pkgA:m:typA::resB", string(req.URN))
 					return plugin.DeleteResponse{Status: resource.StatusUnknown}, errors.New("can't delete")
 				},
 			}, nil
@@ -2224,8 +2224,8 @@ func TestTargetDestroyDependencyDeleteFails(t *testing.T) {
 		assert.NotNil(t, snap)
 		assert.Nil(t, snap.VerifyIntegrity())
 		assert.Len(t, snap.Resources, 3)
-		assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
-		assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resB"), snap.Resources[2].URN)
+		assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+		assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resB"), snap.Resources[2].URN)
 	}
 
 	// Run an update for initial state.
@@ -2242,7 +2242,7 @@ func TestTargetDestroyDependencyDeleteFails(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resA",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resA",
 			}),
 			TargetDependents: true,
 		},
@@ -2258,8 +2258,8 @@ func TestTargetDestroyDependencyDeleteFails(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resA",
-				"urn:pulumi:test::test::pkgA:m:typA::resB",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resA",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resB",
 			}),
 		},
 	}, false, p.BackendClient, nil, "2")
@@ -2283,7 +2283,7 @@ func TestTargetDestroyChildDeleteFails(t *testing.T) {
 					}, nil
 				},
 				DeleteF: func(_ context.Context, req plugin.DeleteRequest) (plugin.DeleteResponse, error) {
-					assert.Equal(t, "urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typA::resB", string(req.URN))
+					assert.Equal(t, "urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typA::resB", string(req.URN))
 					return plugin.DeleteResponse{Status: resource.StatusUnknown}, errors.New("can't delete")
 				},
 			}, nil
@@ -2313,8 +2313,8 @@ func TestTargetDestroyChildDeleteFails(t *testing.T) {
 		assert.NotNil(t, snap)
 		assert.Nil(t, snap.VerifyIntegrity())
 		assert.Len(t, snap.Resources, 3)
-		assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
-		assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typA::resB"), snap.Resources[2].URN)
+		assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+		assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typA::resB"), snap.Resources[2].URN)
 	}
 
 	// Run an update for initial state.
@@ -2331,7 +2331,7 @@ func TestTargetDestroyChildDeleteFails(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resA",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resA",
 			}),
 			TargetDependents: true,
 		},
@@ -2347,8 +2347,8 @@ func TestTargetDestroyChildDeleteFails(t *testing.T) {
 		HostF: hostF,
 		UpdateOptions: UpdateOptions{
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resA",
-				"urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typA::resB",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resA",
+				"urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typA::resB",
 			}),
 		},
 	}, false, p.BackendClient, nil, "2")
@@ -2357,7 +2357,7 @@ func TestTargetDestroyChildDeleteFails(t *testing.T) {
 }
 
 func TestDependencyUnreleatedToTargetUpdatedSucceeds(t *testing.T) {
-	// This test is a regression test for https://github.com/pulumi/pulumi/issues/12096
+	// This test is a regression test for https://github.com/khulnasoft/khulnasoft/issues/12096
 	t.Parallel()
 
 	loaders := []*deploytest.ProviderLoader{
@@ -2369,7 +2369,7 @@ func TestDependencyUnreleatedToTargetUpdatedSucceeds(t *testing.T) {
 	inputs := resource.PropertyMap{}
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "target", true, deploytest.ResourceOptions{
@@ -2385,7 +2385,7 @@ func TestDependencyUnreleatedToTargetUpdatedSucceeds(t *testing.T) {
 	})
 
 	programF2 := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 		_, err = monitor.RegisterResource("pkgA:m:typA", "target", true, deploytest.ResourceOptions{
 			Inputs: inputs,
@@ -2452,7 +2452,7 @@ func TestTargetUntargetedParentWithUpdatedDependency(t *testing.T) {
 	inputs := resource.PropertyMap{}
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "newResource", true)
@@ -2470,7 +2470,7 @@ func TestTargetUntargetedParentWithUpdatedDependency(t *testing.T) {
 	})
 
 	programF2 := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		resp, err := monitor.RegisterResource("pkgA:m:typA", "newResource", true)
@@ -2549,13 +2549,13 @@ func TestTargetUntargetedParentWithUpdatedDependency(t *testing.T) {
 		assert.ErrorContains(t, err, "untargeted create")
 		// We should have two resources the stack and the default provider we made for the child.
 		assert.Equal(t, 2, len(snap.Resources))
-		assert.Equal(t, tokens.Type("pulumi:pulumi:Stack"), snap.Resources[0].URN.Type())
-		assert.Equal(t, tokens.Type("pulumi:providers:pkgA"), snap.Resources[1].URN.Type())
+		assert.Equal(t, tokens.Type("khulnasoft:khulnasoft:Stack"), snap.Resources[0].URN.Type())
+		assert.Equal(t, tokens.Type("khulnasoft:providers:pkgA"), snap.Resources[1].URN.Type())
 	})
 }
 
 func TestTargetChangeProviderVersion(t *testing.T) {
-	// This test is a regression test for https://github.com/pulumi/pulumi/issues/15704
+	// This test is a regression test for https://github.com/khulnasoft/khulnasoft/issues/15704
 	t.Parallel()
 
 	loaders := []*deploytest.ProviderLoader{
@@ -2574,7 +2574,7 @@ func TestTargetChangeProviderVersion(t *testing.T) {
 
 	providerVersion := "1.0.0"
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:index:typA", "target", true, deploytest.ResourceOptions{
@@ -2615,13 +2615,13 @@ func TestTargetChangeProviderVersion(t *testing.T) {
 	}
 	snap, err = lt.TestOp(Update).RunStep(project, p.GetTarget(t, snap), options, false, p.BackendClient, nil, "1")
 	assert.ErrorContains(t, err,
-		"for resource urn:pulumi:test::test::pkgB:index:typA::unrelated has not been registered yet")
+		"for resource urn:khulnasoft:test::test::pkgB:index:typA::unrelated has not been registered yet")
 	// 6 because we have the stack, provider A, target, provider B, unrelated, and the new provider B
 	assert.Equal(t, 6, len(snap.Resources))
 }
 
 func TestTargetChangeAndSameProviderVersion(t *testing.T) {
-	// This test is a regression test for https://github.com/pulumi/pulumi/issues/15704
+	// This test is a regression test for https://github.com/khulnasoft/khulnasoft/issues/15704
 	t.Parallel()
 
 	loaders := []*deploytest.ProviderLoader{
@@ -2640,7 +2640,7 @@ func TestTargetChangeAndSameProviderVersion(t *testing.T) {
 
 	providerVersion := "1.0.0"
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:index:typA", "target", true, deploytest.ResourceOptions{
@@ -2688,7 +2688,7 @@ func TestTargetChangeAndSameProviderVersion(t *testing.T) {
 	}
 	snap, err = lt.TestOp(Update).RunStep(project, p.GetTarget(t, snap), options, false, p.BackendClient, nil, "1")
 	assert.ErrorContains(t, err,
-		"for resource urn:pulumi:test::test::pkgB:index:typA::unrelated1 has not been registered yet")
+		"for resource urn:khulnasoft:test::test::pkgB:index:typA::unrelated1 has not been registered yet")
 	// Check we have 7 resources in the stack (stack, provider A, target, provider B, unrelated1, unrelated2, new
 	// provider B)
 	assert.Equal(t, 7, len(snap.Resources))
@@ -2735,7 +2735,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 		var bBeforeURN resource.URN
 
 		beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-			_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+			_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 			assert.NoError(t, err)
 
 			a, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -2770,13 +2770,13 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 		assert.NoError(t, err)
 
 		afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-			_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+			_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 			assert.NoError(t, err)
 
 			b, err := monitor.RegisterResource("pkgA:m:typA", "not-b", true, deploytest.ResourceOptions{
-				Aliases: []*pulumirpc.Alias{
+				Aliases: []*khulnasoftrpc.Alias{
 					{
-						Alias: &pulumirpc.Alias_Urn{
+						Alias: &khulnasoftrpc.Alias_Urn{
 							Urn: string(bBeforeURN),
 						},
 					},
@@ -2825,7 +2825,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 		t.Parallel()
 
 		beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-			_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+			_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 			assert.NoError(t, err)
 
 			a, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -2865,7 +2865,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				b, err := monitor.RegisterResource("pkgA:m:typA", "b", true)
@@ -2914,7 +2914,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -2962,7 +2962,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "c", true)
@@ -3006,7 +3006,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 		var bBeforeURN, cBeforeURN resource.URN
 
 		beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-			_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+			_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 			assert.NoError(t, err)
 
 			a, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -3050,13 +3050,13 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				b, err := monitor.RegisterResource("pkgA:m:typA", "b", true, deploytest.ResourceOptions{
-					Aliases: []*pulumirpc.Alias{
+					Aliases: []*khulnasoftrpc.Alias{
 						{
-							Alias: &pulumirpc.Alias_Urn{
+							Alias: &khulnasoftrpc.Alias_Urn{
 								Urn: string(bBeforeURN),
 							},
 						},
@@ -3109,16 +3109,16 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "a", true)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "c", true, deploytest.ResourceOptions{
-					Aliases: []*pulumirpc.Alias{
+					Aliases: []*khulnasoftrpc.Alias{
 						{
-							Alias: &pulumirpc.Alias_Urn{
+							Alias: &khulnasoftrpc.Alias_Urn{
 								Urn: string(cBeforeURN),
 							},
 						},
@@ -3167,13 +3167,13 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "c", true, deploytest.ResourceOptions{
-					Aliases: []*pulumirpc.Alias{
+					Aliases: []*khulnasoftrpc.Alias{
 						{
-							Alias: &pulumirpc.Alias_Urn{
+							Alias: &khulnasoftrpc.Alias_Urn{
 								Urn: string(cBeforeURN),
 							},
 						},
@@ -3215,7 +3215,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 	// * TARGET is unrelated to all other resources
 	t.Run("dependencies", func(t *testing.T) {
 		beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-			_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+			_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 			assert.NoError(t, err)
 
 			a, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -3257,7 +3257,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				b, err := monitor.RegisterResource("pkgA:m:typA", "b", true)
@@ -3308,7 +3308,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -3358,7 +3358,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "c", true)
@@ -3398,7 +3398,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 	// * TARGET is unrelated to all other resources
 	t.Run("property dependencies", func(t *testing.T) {
 		beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-			_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+			_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 			assert.NoError(t, err)
 
 			a, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -3444,7 +3444,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				b, err := monitor.RegisterResource("pkgA:m:typA", "b", true)
@@ -3497,7 +3497,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -3547,7 +3547,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "c", true)
@@ -3587,7 +3587,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 	// * TARGET is unrelated to all other resources
 	t.Run("deleted with", func(t *testing.T) {
 		beforeF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-			_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+			_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 			assert.NoError(t, err)
 
 			a, err := monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -3629,7 +3629,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				b, err := monitor.RegisterResource("pkgA:m:typA", "b", true)
@@ -3680,7 +3680,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "a", true)
@@ -3730,7 +3730,7 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 			assert.NoError(t, err)
 
 			afterF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-				_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+				_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 				assert.NoError(t, err)
 
 				_, err = monitor.RegisterResource("pkgA:m:typA", "c", true)
@@ -3760,9 +3760,9 @@ func TestUntargetedDependencyChainsArePreserved(t *testing.T) {
 	})
 }
 
-// This test is a regression test for https://github.com/pulumi/pulumi/issues/14254. This was "fixed" by
-// https://github.com/pulumi/pulumi/pull/15716 but we didn't notice. This test is to ensure that the issue stays fixed
-// because we _almost_ regressed it in https://github.com/pulumi/pulumi/pull/17245.
+// This test is a regression test for https://github.com/khulnasoft/khulnasoft/issues/14254. This was "fixed" by
+// https://github.com/khulnasoft/khulnasoft/pull/15716 but we didn't notice. This test is to ensure that the issue stays fixed
+// because we _almost_ regressed it in https://github.com/khulnasoft/khulnasoft/pull/17245.
 //
 // The test checks that if a resource has an explicit provider and we then run an update that changes the resource to
 // use the default provider _but DON'T_ target it that we preserve its explicit provider reference in state. We do NOT
@@ -3784,7 +3784,7 @@ func TestUntargetedProviderChange(t *testing.T) {
 
 	explicitProvider := true
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		_, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:index:typA", "target", true, deploytest.ResourceOptions{
@@ -3794,7 +3794,7 @@ func TestUntargetedProviderChange(t *testing.T) {
 
 		var provider providers.Reference
 		if explicitProvider {
-			resp, err := monitor.RegisterResource("pulumi:providers:pkgB", "explicit", true)
+			resp, err := monitor.RegisterResource("khulnasoft:providers:pkgB", "explicit", true)
 			assert.NoError(t, err)
 
 			provID := resp.ID
@@ -3842,7 +3842,7 @@ func TestUntargetedProviderChange(t *testing.T) {
 	}
 	snap, err = lt.TestOp(Update).RunStep(project, p.GetTarget(t, snap), options, false, p.BackendClient, nil, "1")
 	assert.ErrorContains(t, err,
-		"for resource urn:pulumi:test::test::pkgB:index:typA::unrelated has not been registered yet")
+		"for resource urn:khulnasoft:test::test::pkgB:index:typA::unrelated has not been registered yet")
 	// 6 because we have the stack, provider A, target, provider B, unrelated, and the new provider B
 	assert.Equal(t, 6, len(snap.Resources))
 	// unrelated shouldn't have had its provider changed
@@ -3879,10 +3879,10 @@ func TestUntargetedAliasedProviderChanges(t *testing.T) {
 	// * Prov, an explicit provider instance for pkgA that we will reparent and alias in the next step
 	// * Res, a resource which references Prov as its provider
 	setupProgramF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pkgParent:pulumi:typParent", "parent", false)
+		_, err := monitor.RegisterResource("pkgParent:khulnasoft:typParent", "parent", false)
 		assert.NoError(t, err)
 
-		prov, err := monitor.RegisterResource("pulumi:providers:pkgA", "prov", true)
+		prov, err := monitor.RegisterResource("khulnasoft:providers:pkgA", "prov", true)
 		require.NoError(t, err)
 
 		setupProvURN = prov.URN
@@ -3911,10 +3911,10 @@ func TestUntargetedAliasedProviderChanges(t *testing.T) {
 	// * Reparent Prov to Parent
 	// * Alias Prov to its old URN
 	reproProgramF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		parent, err := monitor.RegisterResource("pkgParent:pulumi:typParent", "parent", false)
+		parent, err := monitor.RegisterResource("pkgParent:khulnasoft:typParent", "parent", false)
 		assert.NoError(t, err)
 
-		prov, err := monitor.RegisterResource("pulumi:providers:pkgA", "prov", true, deploytest.ResourceOptions{
+		prov, err := monitor.RegisterResource("khulnasoft:providers:pkgA", "prov", true, deploytest.ResourceOptions{
 			Parent:    parent.URN,
 			AliasURNs: []resource.URN{setupProvURN},
 		})
@@ -3953,8 +3953,8 @@ func TestUntargetedAliasedProviderChanges(t *testing.T) {
 		resource.NewURN(
 			tokens.QName(p.Stack),
 			tokens.PackageName(p.Project),
-			"pkgParent:pulumi:typParent",
-			"pulumi:providers:pkgA",
+			"pkgParent:khulnasoft:typParent",
+			"khulnasoft:providers:pkgA",
 			"prov",
 		),
 		setupProvID,
@@ -4066,11 +4066,11 @@ func TestUntargetedSameStepsAcceptDeletedResources(t *testing.T) {
 		assert.NoError(t, err)
 
 		resA, err := monitor.RegisterResource("pkgA:m:typA", "resA", true, deploytest.ResourceOptions{
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				{
-					Alias: &pulumirpc.Alias_Spec_{
-						Spec: &pulumirpc.Alias_Spec{
-							Parent: &pulumirpc.Alias_Spec_ParentUrn{
+					Alias: &khulnasoftrpc.Alias_Spec_{
+						Spec: &khulnasoftrpc.Alias_Spec{
+							Parent: &khulnasoftrpc.Alias_Spec_ParentUrn{
 								ParentUrn: string(resP.URN),
 							},
 						},

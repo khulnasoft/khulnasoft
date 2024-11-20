@@ -21,9 +21,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/pulumi/esc"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/esc"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 func formatMissingKeys(missingKeys []string) string {
@@ -318,7 +318,7 @@ func ValidateStackConfigAndApplyProjectConfig(
 
 // ApplyConfigDefaults applies the default values for the project configuration onto the stack configuration
 // without validating the contents of stack config values.
-// This is because sometimes during pulumi config ls and pulumi config get, if users are
+// This is because sometimes during khulnasoft config ls and khulnasoft config get, if users are
 // using PassphraseDecrypter, we don't want to always prompt for the values when not necessary
 func ApplyProjectConfig(
 	ctx context.Context,

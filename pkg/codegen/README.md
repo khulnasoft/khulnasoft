@@ -5,7 +5,7 @@
 Code generation is essential to Pulumi's ability to support both a variety of
 programming languages and a variety of cloud providers. This package defines the
 core components of Pulumi's code generation functionality (known as [Pulumi
-CrossCode](https://www.pulumi.com/crosscode/)). At a high level, code generation
+CrossCode](https://www.khulnasoft.com/crosscode/)). At a high level, code generation
 is used to manage three categories of output: [SDKs](sdkgen),
 [programs](programgen), and [documentation](docsgen). At a lower level, these
 all make use of a number of shared concepts such as [schema](schema) and [Pulumi

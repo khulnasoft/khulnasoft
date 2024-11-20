@@ -1,7 +1,7 @@
 {
     "resources": [
 		{
-			"urn": "urn:pulumi:stack::project::aws:autoscaling/group:Group::Group",
+			"urn": "urn:khulnasoft:stack::project::aws:autoscaling/group:Group::Group",
 			"custom": true,
 			"type": "aws:autoscaling/group:Group",
 			"inputs": {
@@ -25,7 +25,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:cloudformation/stack:Stack::Stack",
+			"urn": "urn:khulnasoft:stack::project::aws:cloudformation/stack:Stack::Stack",
 			"custom": true,
 			"type": "aws:cloudformation/stack:Stack",
 			"inputs": {
@@ -34,7 +34,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:cloudwatch/dashboard:Dashboard::Dashboard",
+			"urn": "urn:khulnasoft:stack::project::aws:cloudwatch/dashboard:Dashboard::Dashboard",
 			"custom": true,
 			"type": "aws:cloudwatch/dashboard:Dashboard",
 			"inputs": {
@@ -43,7 +43,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:cloudwatch/logGroup:LogGroup::LogGroup",
+			"urn": "urn:khulnasoft:stack::project::aws:cloudwatch/logGroup:LogGroup::LogGroup",
 			"custom": true,
 			"type": "aws:cloudwatch/logGroup:LogGroup",
 			"inputs": {
@@ -52,7 +52,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:cloudwatch/logMetricFilter:LogMetricFilter::LogMetricFilter",
+			"urn": "urn:khulnasoft:stack::project::aws:cloudwatch/logMetricFilter:LogMetricFilter::LogMetricFilter",
 			"custom": true,
 			"type": "aws:cloudwatch/logMetricFilter:LogMetricFilter",
 			"inputs": {
@@ -67,7 +67,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
+			"urn": "urn:khulnasoft:stack::project::aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
 			"custom": true,
 			"type": "aws:cloudwatch/metricAlarm:MetricAlarm",
 			"inputs": {
@@ -91,7 +91,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
+			"urn": "urn:khulnasoft:stack::project::aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
 			"custom": true,
 			"type": "aws:cloudwatch/metricAlarm:MetricAlarm",
 			"inputs": {
@@ -115,7 +115,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
+			"urn": "urn:khulnasoft:stack::project::aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
 			"custom": true,
 			"type": "aws:cloudwatch/metricAlarm:MetricAlarm",
 			"inputs": {
@@ -139,7 +139,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
+			"urn": "urn:khulnasoft:stack::project::aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
 			"custom": true,
 			"type": "aws:cloudwatch/metricAlarm:MetricAlarm",
 			"inputs": {
@@ -164,7 +164,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
+			"urn": "urn:khulnasoft:stack::project::aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
 			"custom": true,
 			"type": "aws:cloudwatch/metricAlarm:MetricAlarm",
 			"inputs": {
@@ -185,7 +185,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/eip:Eip::Eip",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/eip:Eip::Eip",
 			"custom": true,
 			"type": "aws:ec2/eip:Eip",
 			"inputs": {
@@ -193,7 +193,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/flowLog:FlowLog::FlowLog",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/flowLog:FlowLog::FlowLog",
 			"custom": true,
 			"type": "aws:ec2/flowLog:FlowLog",
 			"inputs": {
@@ -206,7 +206,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/internetGateway:InternetGateway::InternetGateway",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/internetGateway:InternetGateway::InternetGateway",
 			"custom": true,
 			"type": "aws:ec2/internetGateway:InternetGateway",
 			"inputs": {
@@ -214,7 +214,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/launchConfiguration:LaunchConfiguration::LaunchConfiguration",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/launchConfiguration:LaunchConfiguration::LaunchConfiguration",
 			"custom": true,
 			"type": "aws:ec2/launchConfiguration:LaunchConfiguration",
 			"inputs": {
@@ -245,7 +245,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/launchConfiguration:LaunchConfiguration::LaunchConfiguration",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/launchConfiguration:LaunchConfiguration::LaunchConfiguration",
 			"custom": true,
 			"type": "aws:ec2/launchConfiguration:LaunchConfiguration",
 			"inputs": {
@@ -261,7 +261,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/natGateway:NatGateway::NatGateway",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/natGateway:NatGateway::NatGateway",
 			"custom": true,
 			"type": "aws:ec2/natGateway:NatGateway",
 			"inputs": {
@@ -270,7 +270,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/routeTable:RouteTable::RouteTable",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/routeTable:RouteTable::RouteTable",
 			"custom": true,
 			"type": "aws:ec2/routeTable:RouteTable",
 			"inputs": {
@@ -284,7 +284,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/routeTableAssociation:RouteTableAssociation::RouteTableAssociation",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/routeTableAssociation:RouteTableAssociation::RouteTableAssociation",
 			"custom": true,
 			"type": "aws:ec2/routeTableAssociation:RouteTableAssociation",
 			"inputs": {
@@ -293,7 +293,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
 			"custom": true,
 			"type": "aws:ec2/securityGroup:SecurityGroup",
 			"inputs": {
@@ -326,7 +326,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
 			"custom": true,
 			"type": "aws:ec2/securityGroup:SecurityGroup",
 			"inputs": {
@@ -368,7 +368,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
 			"custom": true,
 			"type": "aws:ec2/securityGroup:SecurityGroup",
 			"inputs": {
@@ -410,7 +410,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
 			"custom": true,
 			"type": "aws:ec2/securityGroup:SecurityGroup",
 			"inputs": {
@@ -441,7 +441,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/subnet:Subnet::Subnet",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/subnet:Subnet::Subnet",
 			"custom": true,
 			"type": "aws:ec2/subnet:Subnet",
 			"inputs": {
@@ -453,7 +453,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/subnet:Subnet::Subnet",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/subnet:Subnet::Subnet",
 			"custom": true,
 			"type": "aws:ec2/subnet:Subnet",
 			"inputs": {
@@ -465,7 +465,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/vpc:Vpc::Vpc",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/vpc:Vpc::Vpc",
 			"custom": true,
 			"type": "aws:ec2/vpc:Vpc",
             "inputs": {
@@ -473,7 +473,7 @@
             }
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ec2/vpc:Vpc::Vpc",
+			"urn": "urn:khulnasoft:stack::project::aws:ec2/vpc:Vpc::Vpc",
 			"custom": true,
 			"type": "aws:ec2/vpc:Vpc",
 			"inputs": {
@@ -484,12 +484,12 @@
 				"instanceTenancy": "foobar",
 				"tags": {
 					"Name": "foobar",
-					"pulumi:Project": "tag-check"
+					"khulnasoft:Project": "tag-check"
 				}
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ecs/cluster:Cluster::Cluster",
+			"urn": "urn:khulnasoft:stack::project::aws:ecs/cluster:Cluster::Cluster",
 			"custom": true,
 			"type": "aws:ecs/cluster:Cluster",
 			"inputs": {
@@ -497,7 +497,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ecs/service:Service::Service",
+			"urn": "urn:khulnasoft:stack::project::aws:ecs/service:Service::Service",
 			"custom": true,
 			"type": "aws:ecs/service:Service",
 			"inputs": {
@@ -527,7 +527,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:ecs/taskDefinition:TaskDefinition::TaskDefinition",
+			"urn": "urn:khulnasoft:stack::project::aws:ecs/taskDefinition:TaskDefinition::TaskDefinition",
 			"custom": true,
 			"type": "aws:ecs/taskDefinition:TaskDefinition",
 			"inputs": {
@@ -538,7 +538,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:elasticloadbalancingv2/listener:Listener::Listener",
+			"urn": "urn:khulnasoft:stack::project::aws:elasticloadbalancingv2/listener:Listener::Listener",
 			"custom": true,
 			"type": "aws:elasticloadbalancingv2/listener:Listener",
 			"inputs": {
@@ -560,7 +560,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:elasticloadbalancingv2/listener:Listener::Listener",
+			"urn": "urn:khulnasoft:stack::project::aws:elasticloadbalancingv2/listener:Listener::Listener",
 			"custom": true,
 			"type": "aws:elasticloadbalancingv2/listener:Listener",
 			"inputs": {
@@ -580,7 +580,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:elasticloadbalancingv2/listenerRule:ListenerRule::ListenerRule",
+			"urn": "urn:khulnasoft:stack::project::aws:elasticloadbalancingv2/listenerRule:ListenerRule::ListenerRule",
 			"custom": true,
 			"type": "aws:elasticloadbalancingv2/listenerRule:ListenerRule",
 			"inputs": {
@@ -609,7 +609,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:elasticloadbalancingv2/loadBalancer:LoadBalancer::LoadBalancer",
+			"urn": "urn:khulnasoft:stack::project::aws:elasticloadbalancingv2/loadBalancer:LoadBalancer::LoadBalancer",
 			"custom": true,
 			"type": "aws:elasticloadbalancingv2/loadBalancer:LoadBalancer",
 			"inputs": {
@@ -636,7 +636,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:elasticloadbalancingv2/targetGroup:TargetGroup::TargetGroup",
+			"urn": "urn:khulnasoft:stack::project::aws:elasticloadbalancingv2/targetGroup:TargetGroup::TargetGroup",
 			"custom": true,
 			"type": "aws:elasticloadbalancingv2/targetGroup:TargetGroup",
 			"inputs": {
@@ -663,7 +663,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:elasticloadbalancingv2/targetGroup:TargetGroup::TargetGroup",
+			"urn": "urn:khulnasoft:stack::project::aws:elasticloadbalancingv2/targetGroup:TargetGroup::TargetGroup",
 			"custom": true,
 			"type": "aws:elasticloadbalancingv2/targetGroup:TargetGroup",
 			"inputs": {
@@ -679,7 +679,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:iam/instanceProfile:InstanceProfile::InstanceProfile",
+			"urn": "urn:khulnasoft:stack::project::aws:iam/instanceProfile:InstanceProfile::InstanceProfile",
 			"custom": true,
 			"type": "aws:iam/instanceProfile:InstanceProfile",
 			"inputs": {
@@ -689,7 +689,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:iam/role:Role::Role",
+			"urn": "urn:khulnasoft:stack::project::aws:iam/role:Role::Role",
 			"custom": true,
 			"type": "aws:iam/role:Role",
 			"inputs": {
@@ -701,7 +701,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:iam/rolePolicy:RolePolicy::RolePolicy",
+			"urn": "urn:khulnasoft:stack::project::aws:iam/rolePolicy:RolePolicy::RolePolicy",
 			"custom": true,
 			"type": "aws:iam/rolePolicy:RolePolicy",
 			"inputs": {
@@ -711,7 +711,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:iam/rolePolicyAttachment:RolePolicyAttachment::RolePolicyAttachment",
+			"urn": "urn:khulnasoft:stack::project::aws:iam/rolePolicyAttachment:RolePolicyAttachment::RolePolicyAttachment",
 			"custom": true,
 			"type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
 			"inputs": {
@@ -720,7 +720,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:iam/serviceLinkedRole:ServiceLinkedRole::ServiceLinkedRole",
+			"urn": "urn:khulnasoft:stack::project::aws:iam/serviceLinkedRole:ServiceLinkedRole::ServiceLinkedRole",
 			"custom": true,
 			"type": "aws:iam/serviceLinkedRole:ServiceLinkedRole",
 			"inputs": {
@@ -728,7 +728,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:kms/key:Key::Key",
+			"urn": "urn:khulnasoft:stack::project::aws:kms/key:Key::Key",
 			"custom": true,
 			"type": "aws:kms/key:Key",
 			"inputs": {
@@ -740,7 +740,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:rds/cluster:Cluster::Cluster",
+			"urn": "urn:khulnasoft:stack::project::aws:rds/cluster:Cluster::Cluster",
 			"custom": true,
 			"type": "aws:rds/cluster:Cluster",
 			"inputs": {
@@ -764,7 +764,7 @@
 			"protect": true
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:rds/clusterInstance:ClusterInstance::ClusterInstance",
+			"urn": "urn:khulnasoft:stack::project::aws:rds/clusterInstance:ClusterInstance::ClusterInstance",
 			"custom": true,
 			"type": "aws:rds/clusterInstance:ClusterInstance",
 			"inputs": {
@@ -781,7 +781,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:rds/parameterGroup:ParameterGroup::ParameterGroup",
+			"urn": "urn:khulnasoft:stack::project::aws:rds/parameterGroup:ParameterGroup::ParameterGroup",
 			"custom": true,
 			"type": "aws:rds/parameterGroup:ParameterGroup",
 			"inputs": {
@@ -818,7 +818,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:rds/subnetGroup:SubnetGroup::SubnetGroup",
+			"urn": "urn:khulnasoft:stack::project::aws:rds/subnetGroup:SubnetGroup::SubnetGroup",
 			"custom": true,
 			"type": "aws:rds/subnetGroup:SubnetGroup",
 			"inputs": {
@@ -831,7 +831,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:route53/record:Record::Record",
+			"urn": "urn:khulnasoft:stack::project::aws:route53/record:Record::Record",
 			"custom": true,
 			"type": "aws:route53/record:Record",
 			"inputs": {
@@ -848,7 +848,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:route53/record:Record::Record",
+			"urn": "urn:khulnasoft:stack::project::aws:route53/record:Record::Record",
 			"custom": true,
 			"type": "aws:route53/record:Record",
 			"inputs": {
@@ -862,12 +862,12 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:route53/zone:Zone::Zone",
+			"urn": "urn:khulnasoft:stack::project::aws:route53/zone:Zone::Zone",
 			"custom": true,
 			"type": "aws:route53/zone:Zone"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:s3/bucket:Bucket::Bucket",
+			"urn": "urn:khulnasoft:stack::project::aws:s3/bucket:Bucket::Bucket",
 			"custom": true,
 			"type": "aws:s3/bucket:Bucket",
 			"inputs": {
@@ -878,7 +878,7 @@
 			"protect": true
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:s3/bucket:Bucket::Bucket",
+			"urn": "urn:khulnasoft:stack::project::aws:s3/bucket:Bucket::Bucket",
 			"custom": true,
 			"type": "aws:s3/bucket:Bucket",
 			"inputs": {
@@ -905,7 +905,7 @@
 			"protect": true
 		},
 		{
-			"urn": "urn:pulumi:stack::project::aws:s3/bucketPolicy:BucketPolicy::BucketPolicy",
+			"urn": "urn:khulnasoft:stack::project::aws:s3/bucketPolicy:BucketPolicy::BucketPolicy",
 			"custom": true,
 			"type": "aws:s3/bucketPolicy:BucketPolicy",
 			"inputs": {
@@ -914,13 +914,13 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:acm/certificate:Certificate::Certificate",
+			"urn": "urn:khulnasoft:stack::project::my$aws:acm/certificate:Certificate::Certificate",
 			"custom": true,
 			"type": "aws:acm/certificate:Certificate",
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:cloudwatch/eventRule:EventRule::EventRule",
+			"urn": "urn:khulnasoft:stack::project::my$aws:cloudwatch/eventRule:EventRule::EventRule",
 			"custom": true,
 			"type": "aws:cloudwatch/eventRule:EventRule",
 			"inputs": {
@@ -929,10 +929,10 @@
 				"name": "foobar",
 				"scheduleExpression": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:cloudwatch/eventTarget:EventTarget::EventTarget",
+			"urn": "urn:khulnasoft:stack::project::my$aws:cloudwatch/eventTarget:EventTarget::EventTarget",
 			"custom": true,
 			"type": "aws:cloudwatch/eventTarget:EventTarget",
 			"inputs": {
@@ -956,20 +956,20 @@
 				"rule": "foobar",
 				"targetId": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:cloudwatch/logGroup:LogGroup::LogGroup",
+			"urn": "urn:khulnasoft:stack::project::my$aws:cloudwatch/logGroup:LogGroup::LogGroup",
 			"custom": true,
 			"type": "aws:cloudwatch/logGroup:LogGroup",
 			"inputs": {
 				"name": "foobar",
 				"retentionInDays": 42
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
+			"urn": "urn:khulnasoft:stack::project::my$aws:cloudwatch/metricAlarm:MetricAlarm::MetricAlarm",
 			"custom": true,
 			"type": "aws:cloudwatch/metricAlarm:MetricAlarm",
 			"inputs": {
@@ -992,10 +992,10 @@
 				"threshold": 42,
 				"treatMissingData": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
 			"custom": true,
 			"type": "aws:ec2/securityGroup:SecurityGroup",
 			"inputs": {
@@ -1004,16 +1004,16 @@
 				"revokeRulesOnDelete": false,
 				"vpcId": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ec2/securityGroup:SecurityGroup::SecurityGroup",
 			"custom": true,
 			"type": "aws:ec2/securityGroup:SecurityGroup",
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ec2/securityGroupRule:SecurityGroupRule::SecurityGroupRule",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ec2/securityGroupRule:SecurityGroupRule::SecurityGroupRule",
 			"custom": true,
 			"type": "aws:ec2/securityGroupRule:SecurityGroupRule",
 			"inputs": {
@@ -1028,10 +1028,10 @@
 				"toPort": 42,
 				"type": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ec2/securityGroupRule:SecurityGroupRule::SecurityGroupRule",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ec2/securityGroupRule:SecurityGroupRule::SecurityGroupRule",
 			"custom": true,
 			"type": "aws:ec2/securityGroupRule:SecurityGroupRule",
 			"inputs": {
@@ -1045,10 +1045,10 @@
 				"toPort": 42,
 				"type": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ec2/securityGroupRule:SecurityGroupRule::SecurityGroupRule",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ec2/securityGroupRule:SecurityGroupRule::SecurityGroupRule",
 			"custom": true,
 			"type": "aws:ec2/securityGroupRule:SecurityGroupRule",
 			"inputs": {
@@ -1063,10 +1063,10 @@
 				"toPort": 42,
 				"type": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ec2/securityGroupRule:SecurityGroupRule::SecurityGroupRule",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ec2/securityGroupRule:SecurityGroupRule::SecurityGroupRule",
 			"custom": true,
 			"type": "aws:ec2/securityGroupRule:SecurityGroupRule",
 			"inputs": {
@@ -1077,39 +1077,39 @@
 				"toPort": 42,
 				"type": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ecr/lifecyclePolicy:LifecyclePolicy::LifecyclePolicy",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ecr/lifecyclePolicy:LifecyclePolicy::LifecyclePolicy",
 			"custom": true,
 			"type": "aws:ecr/lifecyclePolicy:LifecyclePolicy",
 			"inputs": {
 				"policy": "foobar",
 				"repository": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ecr/repository:Repository::Repository",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ecr/repository:Repository::Repository",
 			"custom": true,
 			"type": "aws:ecr/repository:Repository",
 			"inputs": {
 				"imageTagMutability": "foobar",
 				"name": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ecs/cluster:Cluster::Cluster",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ecs/cluster:Cluster::Cluster",
 			"custom": true,
 			"type": "aws:ecs/cluster:Cluster",
 			"inputs": {
 				"name": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ecs/service:Service::Service",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ecs/service:Service::Service",
 			"custom": true,
 			"type": "aws:ecs/service:Service",
 			"inputs": {
@@ -1140,10 +1140,10 @@
 				"taskDefinition": "foobar",
 				"waitForSteadyState": true
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ecs/service:Service::Service",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ecs/service:Service::Service",
 			"custom": true,
 			"type": "aws:ecs/service:Service",
 			"inputs": {
@@ -1175,10 +1175,10 @@
 				"taskDefinition": "foobar",
 				"waitForSteadyState": true
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ecs/taskDefinition:TaskDefinition::TaskDefinition",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ecs/taskDefinition:TaskDefinition::TaskDefinition",
 			"custom": true,
 			"type": "aws:ecs/taskDefinition:TaskDefinition",
 			"inputs": {
@@ -1193,10 +1193,10 @@
 				],
 				"taskRoleArn": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:ecs/taskDefinition:TaskDefinition::TaskDefinition",
+			"urn": "urn:khulnasoft:stack::project::my$aws:ecs/taskDefinition:TaskDefinition::TaskDefinition",
 			"custom": true,
 			"type": "aws:ecs/taskDefinition:TaskDefinition",
 			"inputs": {
@@ -1223,10 +1223,10 @@
 				],
 				"taskRoleArn": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:elasticsearch/domain:Domain::Domain",
+			"urn": "urn:khulnasoft:stack::project::my$aws:elasticsearch/domain:Domain::Domain",
 			"custom": true,
 			"type": "aws:elasticsearch/domain:Domain",
 			"inputs": {
@@ -1249,7 +1249,7 @@
 				},
 				"tags": {
 					"category": "foobar",
-					"pulumiStack": "foobar"
+					"khulnasoftStack": "foobar"
 				},
 				"vpcOptions": {
 					"securityGroupIds": [
@@ -1260,10 +1260,10 @@
 					]
 				}
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:iam/policy:Policy::Policy",
+			"urn": "urn:khulnasoft:stack::project::my$aws:iam/policy:Policy::Policy",
 			"custom": true,
 			"type": "aws:iam/policy:Policy",
 			"inputs": {
@@ -1271,11 +1271,11 @@
 				"path": "foobar",
 				"policy": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent",
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent",
 			"protect": true
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:iam/policyAttachment:PolicyAttachment::PolicyAttachment",
+			"urn": "urn:khulnasoft:stack::project::my$aws:iam/policyAttachment:PolicyAttachment::PolicyAttachment",
 			"custom": true,
 			"type": "aws:iam/policyAttachment:PolicyAttachment",
 			"inputs": {
@@ -1285,11 +1285,11 @@
 					"foobar"
 				]
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent",
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent",
 			"protect": true
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:iam/role:Role::Role",
+			"urn": "urn:khulnasoft:stack::project::my$aws:iam/role:Role::Role",
 			"custom": true,
 			"type": "aws:iam/role:Role",
 			"inputs": {
@@ -1299,10 +1299,10 @@
 				"name": "foobar",
 				"path": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:iam/role:Role::Role",
+			"urn": "urn:khulnasoft:stack::project::my$aws:iam/role:Role::Role",
 			"custom": true,
 			"type": "aws:iam/role:Role",
 			"inputs": {
@@ -1312,11 +1312,11 @@
 				"name": "foobar",
 				"path": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent",
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent",
 			"protect": true
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:iam/rolePolicy:RolePolicy::RolePolicy",
+			"urn": "urn:khulnasoft:stack::project::my$aws:iam/rolePolicy:RolePolicy::RolePolicy",
 			"custom": true,
 			"type": "aws:iam/rolePolicy:RolePolicy",
 			"inputs": {
@@ -1324,20 +1324,20 @@
 				"policy": "foobar",
 				"role": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:iam/rolePolicyAttachment:RolePolicyAttachment::RolePolicyAttachment",
+			"urn": "urn:khulnasoft:stack::project::my$aws:iam/rolePolicyAttachment:RolePolicyAttachment::RolePolicyAttachment",
 			"custom": true,
 			"type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
 			"inputs": {
 				"policyArn": "foobar",
 				"role": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:lambda/function:Function::Function",
+			"urn": "urn:khulnasoft:stack::project::my$aws:lambda/function:Function::Function",
 			"custom": true,
 			"type": "aws:lambda/function:Function",
 			"inputs": {
@@ -1351,10 +1351,10 @@
 				"runtime": "foobar",
 				"timeout": 42
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:lambda/permission:Permission::Permission",
+			"urn": "urn:khulnasoft:stack::project::my$aws:lambda/permission:Permission::Permission",
 			"custom": true,
 			"type": "aws:lambda/permission:Permission",
 			"inputs": {
@@ -1364,10 +1364,10 @@
 				"sourceArn": "foobar",
 				"statementId": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:lb/listener:Listener::Listener",
+			"urn": "urn:khulnasoft:stack::project::my$aws:lb/listener:Listener::Listener",
 			"custom": true,
 			"type": "aws:lb/listener:Listener",
 			"inputs": {
@@ -1383,10 +1383,10 @@
 				"protocol": "foobar",
 				"sslPolicy": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:lb/listener:Listener::Listener",
+			"urn": "urn:khulnasoft:stack::project::my$aws:lb/listener:Listener::Listener",
 			"custom": true,
 			"type": "aws:lb/listener:Listener",
 			"inputs": {
@@ -1400,10 +1400,10 @@
 				"port": 42,
 				"protocol": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:lb/loadBalancer:LoadBalancer::LoadBalancer",
+			"urn": "urn:khulnasoft:stack::project::my$aws:lb/loadBalancer:LoadBalancer::LoadBalancer",
 			"custom": true,
 			"type": "aws:lb/loadBalancer:LoadBalancer",
 			"inputs": {
@@ -1425,13 +1425,13 @@
 				"tags": {
 					"Name": "foobar",
 					"category": "foobar",
-					"pulumiStack": "foobar"
+					"khulnasoftStack": "foobar"
 				}
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:lb/loadBalancer:LoadBalancer::LoadBalancer",
+			"urn": "urn:khulnasoft:stack::project::my$aws:lb/loadBalancer:LoadBalancer::LoadBalancer",
 			"custom": true,
 			"type": "aws:lb/loadBalancer:LoadBalancer",
 			"inputs": {
@@ -1453,13 +1453,13 @@
 				"tags": {
 					"Name": "foobar",
 					"category": "foobar",
-					"pulumiStack": "foobar"
+					"khulnasoftStack": "foobar"
 				}
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:lb/targetGroup:TargetGroup::TargetGroup",
+			"urn": "urn:khulnasoft:stack::project::my$aws:lb/targetGroup:TargetGroup::TargetGroup",
 			"custom": true,
 			"type": "aws:lb/targetGroup:TargetGroup",
 			"inputs": {
@@ -1483,15 +1483,15 @@
 				"tags": {
 					"Name": "foobar",
 					"category": "foobar",
-					"pulumiStack": "foobar"
+					"khulnasoftStack": "foobar"
 				},
 				"targetType": "foobar",
 				"vpcId": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:lb/targetGroup:TargetGroup::TargetGroup",
+			"urn": "urn:khulnasoft:stack::project::my$aws:lb/targetGroup:TargetGroup::TargetGroup",
 			"custom": true,
 			"type": "aws:lb/targetGroup:TargetGroup",
 			"inputs": {
@@ -1508,10 +1508,10 @@
 				"targetType": "foobar",
 				"vpcId": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:s3/bucket:Bucket::Bucket",
+			"urn": "urn:khulnasoft:stack::project::my$aws:s3/bucket:Bucket::Bucket",
 			"custom": true,
 			"type": "aws:s3/bucket:Bucket",
 			"inputs": {
@@ -1523,21 +1523,21 @@
 					"mfaDelete": false
 				}
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent",
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent",
 			"protect": true,
-			"provider": "urn:pulumi:stack::project::pulumi:providers:pkg::provider::id"
+			"provider": "urn:khulnasoft:stack::project::khulnasoft:providers:pkg::provider::id"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:sns/topic:Topic::Topic",
+			"urn": "urn:khulnasoft:stack::project::my$aws:sns/topic:Topic::Topic",
 			"custom": true,
 			"type": "aws:sns/topic:Topic",
 			"inputs": {
 				"name": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::my$aws:sns/topicSubscription:TopicSubscription::TopicSubscription",
+			"urn": "urn:khulnasoft:stack::project::my$aws:sns/topicSubscription:TopicSubscription::TopicSubscription",
 			"custom": true,
 			"type": "aws:sns/topicSubscription:TopicSubscription",
 			"inputs": {
@@ -1548,10 +1548,10 @@
 				"rawMessageDelivery": false,
 				"topic": "foobar"
 			},
-			"parent": "urn:pulumi:stack::project::my::parent::parent"
+			"parent": "urn:khulnasoft:stack::project::my::parent::parent"
 		},
 		{
-			"urn": "urn:pulumi:stack::project::random:index/randomId:RandomId::RandomId",
+			"urn": "urn:khulnasoft:stack::project::random:index/randomId:RandomId::RandomId",
 			"custom": true,
 			"type": "random:index/randomId:RandomId",
 			"inputs": {
@@ -1560,7 +1560,7 @@
 			}
 		},
 		{
-			"urn": "urn:pulumi:stack::project::random:index/randomId:RandomId::strange logical name",
+			"urn": "urn:khulnasoft:stack::project::random:index/randomId:RandomId::strange logical name",
 			"custom": true,
 			"type": "random:index/randomId:RandomId",
 			"inputs": {

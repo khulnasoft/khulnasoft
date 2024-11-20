@@ -26,9 +26,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/sig"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/httputil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/sig"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/httputil"
 )
 
 // Asset is a serialized asset reference. It is a union: thus, at most one of its fields will be non-nil. Several helper

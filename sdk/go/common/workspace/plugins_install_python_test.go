@@ -24,6 +24,6 @@ func TestPythonInstall(t *testing.T) {
 	t.Parallel()
 	testPluginInstall(t, "venv", map[string][]byte{
 		"PulumiPlugin.yaml": []byte("runtime: python\n"),
-		"package.json":      []byte("pulumi==2.0.0\n"),
+		"package.json":      []byte("khulnasoft==2.0.0\n"),
 	})
 }

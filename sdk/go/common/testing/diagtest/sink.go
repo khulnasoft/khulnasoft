@@ -20,9 +20,9 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/iotest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/iotest"
 )
 
 // LogSink builds a diagnostic sink that logs to the given testing.TB.

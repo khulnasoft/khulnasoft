@@ -47,9 +47,9 @@ func TestRemoveLeadingUnderscores(t *testing.T) {
 	}{
 		{input: "", expected: ""},
 		{input: "root", expected: "root"},
-		{input: "pulumi_azure_native", expected: "pulumi_azure_native"},
+		{input: "khulnasoft_azure_native", expected: "khulnasoft_azure_native"},
 		{input: "_root.FooBuzz", expected: "root.FooBuzz"},
-		{input: "_pulumi_random.sub_module.Type", expected: "pulumi_random.sub_module.Type"},
+		{input: "_khulnasoft_random.sub_module.Type", expected: "khulnasoft_random.sub_module.Type"},
 		{input: "Optional[Sequence[_meta.v1.module_name.FooBar]]", expected: "Optional[Sequence[meta.v1.module_name.FooBar]]"},
 	}
 

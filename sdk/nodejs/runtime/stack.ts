@@ -24,9 +24,9 @@ import { getStore, setStackResource, getStackResource as stateGetStackResource }
 /**
  * The type name that should be used to construct the root component in the tree
  * of Pulumi resources allocated by a deployment. This must be kept up to date
- * with `github.com/pulumi/pulumi/sdk/v3/go/common/resource/stack.RootStackType`.
+ * with `github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/stack.RootStackType`.
  */
-export const rootPulumiStackTypeName = "pulumi:pulumi:Stack";
+export const rootPulumiStackTypeName = "khulnasoft:khulnasoft:Stack";
 
 /**
  * Creates a new Pulumi stack resource and executes the callback inside of it.

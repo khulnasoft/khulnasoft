@@ -7,17 +7,17 @@ The Pulumi Node.js SDK lets you write cloud programs in JavaScript.
 Using npm:
 
 ```bash
-$ npm install --save @pulumi/pulumi
+$ npm install --save @khulnasoft/khulnasoft
 ```
 
 Using yarn:
 
 ```bash
-$ yarn add @pulumi/pulumi
+$ yarn add @khulnasoft/khulnasoft
 ```
 
 This SDK is meant for use with the Pulumi CLI.  Visit
-[Pulumi's Download & Install](https://www.pulumi.com/docs/install/) to install the CLI.
+[Pulumi's Download & Install](https://www.khulnasoft.com/docs/install/) to install the CLI.
 
 ## Building and Testing
 
@@ -36,7 +36,7 @@ At the moment, we only support building on macOS and Linux, where standard GNU t
 To build the SDK, simply run `make` from the root directory (where this `README` lives, at `sdk/nodejs/` from the repo's
 root).  This will build the code, run tests, and install the package and its supporting artifacts.
 
-At the moment, for local development, we install everything into `$HOME/.dev-pulumi`. You will want this on your `$PATH`.
+At the moment, for local development, we install everything into `$HOME/.dev-khulnasoft`. You will want this on your `$PATH`.
 
-The tests will verify that everything works, but feel free to try running `pulumi preview` and/or `pulumi up` from
-the `examples/minimal/` directory.  Remember to run `tsc` first, since `pulumi` expects JavaScript, not TypeScript.
+The tests will verify that everything works, but feel free to try running `khulnasoft preview` and/or `khulnasoft up` from
+the `examples/minimal/` directory.  Remember to run `tsc` first, since `khulnasoft` expects JavaScript, not TypeScript.

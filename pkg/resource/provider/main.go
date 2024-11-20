@@ -23,10 +23,10 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // Tracing is the optional command line flag passed to this provider for configuring a  Zipkin-compatible tracing
@@ -35,7 +35,7 @@ var tracing string
 
 // Main is the typical entrypoint for a resource provider plugin.  Using it isn't required but can cut down
 // significantly on the amount of boilerplate necessary to fire up a new resource provider.
-func Main(name string, provMaker func(*HostClient) (pulumirpc.ResourceProviderServer, error)) error {
+func Main(name string, provMaker func(*HostClient) (khulnasoftrpc.ResourceProviderServer, error)) error {
 	flag.StringVar(&tracing, "tracing", "", "Emit tracing to a Zipkin-compatible tracing endpoint")
 	flag.Parse()
 
@@ -80,7 +80,7 @@ func Main(name string, provMaker func(*HostClient) (pulumirpc.ResourceProviderSe
 			if proverr != nil {
 				return fmt.Errorf("failed to create resource provider: %v", proverr)
 			}
-			pulumirpc.RegisterResourceProviderServer(srv, prov)
+			khulnasoftrpc.RegisterResourceProviderServer(srv, prov)
 			return nil
 		},
 		Options: rpcutil.OpenTracingServerInterceptorOptions(nil),

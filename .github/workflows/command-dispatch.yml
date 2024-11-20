@@ -16,7 +16,7 @@ jobs:
           reaction-token: ${{ secrets.GITHUB_TOKEN }}
           permission: write
           issue-type: pull-request
-          repository: pulumi/pulumi
+          repository: khulnasoft/khulnasoft
           commands: |
             run-acceptance-tests
             run-docs-gen

@@ -1,9 +1,9 @@
 # Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
 import asyncio
-from pulumi import Output, export, UNKNOWN
-from pulumi.dynamic import Resource, ResourceProvider, CreateResult
-from pulumi.runtime import is_dry_run
+from khulnasoft import Output, export, UNKNOWN
+from khulnasoft.dynamic import Resource, ResourceProvider, CreateResult
+from khulnasoft.runtime import is_dry_run
 
 class MyProvider(ResourceProvider):
     def create(self, props):

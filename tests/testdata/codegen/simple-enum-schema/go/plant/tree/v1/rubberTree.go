@@ -8,25 +8,25 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"simple-enum-schema/plant"
 	"simple-enum-schema/plant/internal"
 )
 
 type RubberTree struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Container plant.ContainerPtrOutput `pulumi:"container"`
-	Diameter  DiameterOutput           `pulumi:"diameter"`
-	Farm      pulumi.StringPtrOutput   `pulumi:"farm"`
-	Size      TreeSizePtrOutput        `pulumi:"size"`
-	Type      RubberTreeVarietyOutput  `pulumi:"type"`
+	Container plant.ContainerPtrOutput `khulnasoft:"container"`
+	Diameter  DiameterOutput           `khulnasoft:"diameter"`
+	Farm      khulnasoft.StringPtrOutput   `khulnasoft:"farm"`
+	Size      TreeSizePtrOutput        `khulnasoft:"size"`
+	Type      RubberTreeVarietyOutput  `khulnasoft:"type"`
 }
 
 // NewRubberTree registers a new resource with the given unique name, arguments, and options.
-func NewRubberTree(ctx *pulumi.Context,
-	name string, args *RubberTreeArgs, opts ...pulumi.ResourceOption) (*RubberTree, error) {
+func NewRubberTree(ctx *khulnasoft.Context,
+	name string, args *RubberTreeArgs, opts ...khulnasoft.ResourceOption) (*RubberTree, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -38,7 +38,7 @@ func NewRubberTree(ctx *pulumi.Context,
 		args.Diameter = Diameter(6.0)
 	}
 	if args.Farm == nil {
-		args.Farm = pulumi.StringPtr("(unknown)")
+		args.Farm = khulnasoft.StringPtr("(unknown)")
 	}
 	if args.Size == nil {
 		args.Size = TreeSize("medium")
@@ -57,8 +57,8 @@ func NewRubberTree(ctx *pulumi.Context,
 
 // GetRubberTree gets an existing RubberTree resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetRubberTree(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *RubberTreeState, opts ...pulumi.ResourceOption) (*RubberTree, error) {
+func GetRubberTree(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *RubberTreeState, opts ...khulnasoft.ResourceOption) (*RubberTree, error) {
 	var resource RubberTree
 	err := ctx.ReadResource("plant:tree/v1:RubberTree", name, id, state, &resource, opts...)
 	if err != nil {
@@ -69,11 +69,11 @@ func GetRubberTree(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RubberTree resources.
 type rubberTreeState struct {
-	Farm *string `pulumi:"farm"`
+	Farm *string `khulnasoft:"farm"`
 }
 
 type RubberTreeState struct {
-	Farm pulumi.StringPtrInput
+	Farm khulnasoft.StringPtrInput
 }
 
 func (RubberTreeState) ElementType() reflect.Type {
@@ -81,18 +81,18 @@ func (RubberTreeState) ElementType() reflect.Type {
 }
 
 type rubberTreeArgs struct {
-	Container *plant.Container  `pulumi:"container"`
-	Diameter  Diameter          `pulumi:"diameter"`
-	Farm      *string           `pulumi:"farm"`
-	Size      *TreeSize         `pulumi:"size"`
-	Type      RubberTreeVariety `pulumi:"type"`
+	Container *plant.Container  `khulnasoft:"container"`
+	Diameter  Diameter          `khulnasoft:"diameter"`
+	Farm      *string           `khulnasoft:"farm"`
+	Size      *TreeSize         `khulnasoft:"size"`
+	Type      RubberTreeVariety `khulnasoft:"type"`
 }
 
 // The set of arguments for constructing a RubberTree resource.
 type RubberTreeArgs struct {
 	Container plant.ContainerPtrInput
 	Diameter  DiameterInput
-	Farm      pulumi.StringPtrInput
+	Farm      khulnasoft.StringPtrInput
 	Size      TreeSizePtrInput
 	Type      RubberTreeVarietyInput
 }
@@ -102,7 +102,7 @@ func (RubberTreeArgs) ElementType() reflect.Type {
 }
 
 type RubberTreeInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToRubberTreeOutput() RubberTreeOutput
 	ToRubberTreeOutputWithContext(ctx context.Context) RubberTreeOutput
@@ -117,16 +117,16 @@ func (i *RubberTree) ToRubberTreeOutput() RubberTreeOutput {
 }
 
 func (i *RubberTree) ToRubberTreeOutputWithContext(ctx context.Context) RubberTreeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RubberTreeOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(RubberTreeOutput)
 }
 
-func (i *RubberTree) ToOutput(ctx context.Context) pulumix.Output[*RubberTree] {
-	return pulumix.Output[*RubberTree]{
+func (i *RubberTree) ToOutput(ctx context.Context) khulnasoftx.Output[*RubberTree] {
+	return khulnasoftx.Output[*RubberTree]{
 		OutputState: i.ToRubberTreeOutputWithContext(ctx).OutputState,
 	}
 }
 
-type RubberTreeOutput struct{ *pulumi.OutputState }
+type RubberTreeOutput struct{ *khulnasoft.OutputState }
 
 func (RubberTreeOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RubberTree)(nil)).Elem()
@@ -140,8 +140,8 @@ func (o RubberTreeOutput) ToRubberTreeOutputWithContext(ctx context.Context) Rub
 	return o
 }
 
-func (o RubberTreeOutput) ToOutput(ctx context.Context) pulumix.Output[*RubberTree] {
-	return pulumix.Output[*RubberTree]{
+func (o RubberTreeOutput) ToOutput(ctx context.Context) khulnasoftx.Output[*RubberTree] {
+	return khulnasoftx.Output[*RubberTree]{
 		OutputState: o.OutputState,
 	}
 }
@@ -154,8 +154,8 @@ func (o RubberTreeOutput) Diameter() DiameterOutput {
 	return o.ApplyT(func(v *RubberTree) DiameterOutput { return v.Diameter }).(DiameterOutput)
 }
 
-func (o RubberTreeOutput) Farm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RubberTree) pulumi.StringPtrOutput { return v.Farm }).(pulumi.StringPtrOutput)
+func (o RubberTreeOutput) Farm() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *RubberTree) khulnasoft.StringPtrOutput { return v.Farm }).(khulnasoft.StringPtrOutput)
 }
 
 func (o RubberTreeOutput) Size() TreeSizePtrOutput {
@@ -167,6 +167,6 @@ func (o RubberTreeOutput) Type() RubberTreeVarietyOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*RubberTreeInput)(nil)).Elem(), &RubberTree{})
-	pulumi.RegisterOutputType(RubberTreeOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*RubberTreeInput)(nil)).Elem(), &RubberTree{})
+	khulnasoft.RegisterOutputType(RubberTreeOutput{})
 }

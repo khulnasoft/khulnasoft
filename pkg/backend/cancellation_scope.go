@@ -22,7 +22,7 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/cancel"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
 )
 
 type cancellationScope struct {

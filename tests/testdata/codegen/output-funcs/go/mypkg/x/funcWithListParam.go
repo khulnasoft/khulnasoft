@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"output-funcs/mypkg/internal"
 )
 
 // Check codegen of functions with a List parameter.
-func FuncWithListParam(ctx *pulumi.Context, args *FuncWithListParamArgs, opts ...pulumi.InvokeOption) (*FuncWithListParamResult, error) {
+func FuncWithListParam(ctx *khulnasoft.Context, args *FuncWithListParamArgs, opts ...khulnasoft.InvokeOption) (*FuncWithListParamResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FuncWithListParamResult
 	err := ctx.Invoke("mypkg::funcWithListParam", args, &rv, opts...)
@@ -24,32 +24,32 @@ func FuncWithListParam(ctx *pulumi.Context, args *FuncWithListParamArgs, opts ..
 }
 
 type FuncWithListParamArgs struct {
-	A []string `pulumi:"a"`
-	B *string  `pulumi:"b"`
+	A []string `khulnasoft:"a"`
+	B *string  `khulnasoft:"b"`
 }
 
 type FuncWithListParamResult struct {
-	R string `pulumi:"r"`
+	R string `khulnasoft:"r"`
 }
 
-func FuncWithListParamOutput(ctx *pulumi.Context, args FuncWithListParamOutputArgs, opts ...pulumi.InvokeOption) FuncWithListParamResultOutput {
-	outputResult := pulumix.ApplyErr[*FuncWithListParamArgs](args.ToOutput(), func(plainArgs *FuncWithListParamArgs) (*FuncWithListParamResult, error) {
+func FuncWithListParamOutput(ctx *khulnasoft.Context, args FuncWithListParamOutputArgs, opts ...khulnasoft.InvokeOption) FuncWithListParamResultOutput {
+	outputResult := khulnasoftx.ApplyErr[*FuncWithListParamArgs](args.ToOutput(), func(plainArgs *FuncWithListParamArgs) (*FuncWithListParamResult, error) {
 		return FuncWithListParam(ctx, plainArgs, opts...)
 	})
 
-	return pulumix.Cast[FuncWithListParamResultOutput, *FuncWithListParamResult](outputResult)
+	return khulnasoftx.Cast[FuncWithListParamResultOutput, *FuncWithListParamResult](outputResult)
 }
 
 type FuncWithListParamOutputArgs struct {
-	A pulumix.Input[[]string] `pulumi:"a"`
-	B pulumix.Input[*string]  `pulumi:"b"`
+	A khulnasoftx.Input[[]string] `khulnasoft:"a"`
+	B khulnasoftx.Input[*string]  `khulnasoft:"b"`
 }
 
-func (args FuncWithListParamOutputArgs) ToOutput() pulumix.Output[*FuncWithListParamArgs] {
-	allArgs := pulumix.All(
+func (args FuncWithListParamOutputArgs) ToOutput() khulnasoftx.Output[*FuncWithListParamArgs] {
+	allArgs := khulnasoftx.All(
 		args.A.ToOutput(context.Background()).AsAny(),
 		args.B.ToOutput(context.Background()).AsAny())
-	return pulumix.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *FuncWithListParamArgs {
+	return khulnasoftx.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *FuncWithListParamArgs {
 		return &FuncWithListParamArgs{
 			A: resolvedArgs[0].([]string),
 			B: resolvedArgs[1].(*string),
@@ -57,18 +57,18 @@ func (args FuncWithListParamOutputArgs) ToOutput() pulumix.Output[*FuncWithListP
 	})
 }
 
-type FuncWithListParamResultOutput struct{ *pulumi.OutputState }
+type FuncWithListParamResultOutput struct{ *khulnasoft.OutputState }
 
 func (FuncWithListParamResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithListParamResult)(nil)).Elem()
 }
 
-func (o FuncWithListParamResultOutput) ToOutput(context.Context) pulumix.Output[*FuncWithListParamResult] {
-	return pulumix.Output[*FuncWithListParamResult]{
+func (o FuncWithListParamResultOutput) ToOutput(context.Context) khulnasoftx.Output[*FuncWithListParamResult] {
+	return khulnasoftx.Output[*FuncWithListParamResult]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o FuncWithListParamResultOutput) R() pulumix.Output[string] {
-	return pulumix.Apply[*FuncWithListParamResult](o, func(v *FuncWithListParamResult) string { return v.R })
+func (o FuncWithListParamResultOutput) R() khulnasoftx.Output[string] {
+	return khulnasoftx.Apply[*FuncWithListParamResult](o, func(v *FuncWithListParamResult) string { return v.R })
 }

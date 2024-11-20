@@ -34,12 +34,12 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/archive"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/asset"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/archive"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/asset"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // getIndent computes a step's parent indentation.
@@ -49,7 +49,7 @@ func getIndent(step engine.StepEventMetadata, seen map[resource.URN]engine.StepE
 		par, has := seen[p]
 		if !has {
 			// This can happen during deletes, since we delete children before parents.
-			// TODO[pulumi/pulumi#340]: we need to figure out how best to display this sequence; at the very
+			// TODO[khulnasoft/khulnasoft#340]: we need to figure out how best to display this sequence; at the very
 			//     least, it would be ideal to preserve the indentation.
 			break
 		}
@@ -817,10 +817,10 @@ func (p *propertyPrinter) printPrimitivePropertyValue(v resource.PropertyValue) 
 	} else if v.IsBool() {
 		p.writef("%t", v.BoolValue())
 	} else if v.IsNumber() {
-		// All pulumi numbers are IEEE doubles really (even in languages where we codegen integers the wire
+		// All khulnasoft numbers are IEEE doubles really (even in languages where we codegen integers the wire
 		// protocol only supports doubles). But by default Go will print them in scientific notation for large
 		// enough values which is suboptimal for our purposes when the value is still an integer. (i.e.
-		// non-fractional). See https://github.com/pulumi/pulumi/issues/13016 for context.
+		// non-fractional). See https://github.com/khulnasoft/khulnasoft/issues/13016 for context.
 		number := v.NumberValue()
 		if math.Trunc(number) == number {
 			p.writef("%.f", number)
@@ -847,7 +847,7 @@ func (p *propertyPrinter) printPrimitivePropertyValue(v resource.PropertyValue) 
 		// between user-supplied undefined values and input properties that are undefined because
 		// they were sourced from undefined values in other resources' output properties. Once we
 		// have richer information about the dataflow between resources, we should be able to do a
-		// better job here (pulumi/pulumi#234).
+		// better job here (khulnasoft/khulnasoft#234).
 		if p.planning {
 			p.writeVerbatim(v.TypeString())
 		} else {

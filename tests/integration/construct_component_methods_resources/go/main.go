@@ -5,17 +5,17 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		component, err := NewComponent(ctx, "component")
 		if err != nil {
 			return err
 		}
 		result, err := component.CreateRandom(ctx, &ComponentCreateRandomArgs{
-			Length: pulumi.Int(10),
+			Length: khulnasoft.Int(10),
 		})
 		if err != nil {
 			return err

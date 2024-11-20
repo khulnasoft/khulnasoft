@@ -6,9 +6,9 @@ package configstation
 import (
 	"fmt"
 
-	"example.com/pulumi-configstation/sdk/go/configstation/internal"
+	"example.com/khulnasoft-configstation/sdk/go/configstation/internal"
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type pkg struct {
@@ -19,13 +19,13 @@ func (p *pkg) Version() semver.Version {
 	return p.version
 }
 
-func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pulumi.ProviderResource, error) {
-	if typ != "pulumi:providers:configstation" {
+func (p *pkg) ConstructProvider(ctx *khulnasoft.Context, name, typ, urn string) (khulnasoft.ProviderResource, error) {
+	if typ != "khulnasoft:providers:configstation" {
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
 	r := &Provider{}
-	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err := ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return r, err
 }
 
@@ -34,7 +34,7 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
-	pulumi.RegisterResourcePackage(
+	khulnasoft.RegisterResourcePackage(
 		"configstation",
 		&pkg{version},
 	)

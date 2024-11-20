@@ -4,14 +4,14 @@
   "version": "0.4.0",
   "description": "A Pulumi component to deploy a static website to AWS",
   "keywords": [
-    "pulumi",
+    "khulnasoft",
     "aws",
     "category/cloud",
     "kind/component",
     "web"
   ],
-  "homepage": "https://pulumi.com",
-  "repository": "https://github.com/pulumi/pulumi-aws-static-website",
+  "homepage": "https://khulnasoft.com",
+  "repository": "https://github.com/khulnasoft/khulnasoft-aws-static-website",
   "publisher": "Pulumi",
   "meta": {
     "moduleFormat": "(.*)"
@@ -25,12 +25,12 @@
     },
     "go": {
       "generateResourceContainerTypes": true,
-      "importBasePath": "github.com/pulumi/pulumi-aws-static-website/sdk/go/aws-static-website"
+      "importBasePath": "github.com/khulnasoft/khulnasoft-aws-static-website/sdk/go/aws-static-website"
     },
     "nodejs": {
       "dependencies": {
-        "@pulumi/aws": "^5.0.0",
-        "@pulumi/pulumi": "^3.37.0"
+        "@khulnasoft/aws": "^5.0.0",
+        "@khulnasoft/khulnasoft": "^3.37.0"
       },
       "devDependencies": {
         "typescript": "^3.7.0"
@@ -38,8 +38,8 @@
     },
     "python": {
       "requires": {
-        "pulumi": "\u003e=3.0.0,\u003c4.0.0",
-        "pulumi-aws": "\u003e=5.0.0,\u003c6.0.0"
+        "khulnasoft": "\u003e=3.0.0,\u003c4.0.0",
+        "khulnasoft-aws": "\u003e=5.0.0,\u003c6.0.0"
       }
     }
   },

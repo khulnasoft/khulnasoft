@@ -36,13 +36,13 @@
     },
     "go": {
       "generateResourceContainerTypes": true,
-      "importBasePath": "github.com/pulumi/pulumi-registrygeoreplication/sdk/go/registrygeoreplication",
+      "importBasePath": "github.com/khulnasoft/khulnasoft-registrygeoreplication/sdk/go/registrygeoreplication",
       "generateExtraInputTypes": true
     },
     "nodejs": {
       "dependencies": {
-        "@pulumi/pulumi": "^3.7.0",
-        "@pulumi/azure-native": "^1.28.0"
+        "@khulnasoft/khulnasoft": "^3.7.0",
+        "@khulnasoft/azure-native": "^1.28.0"
       },
       "devDependencies": {
         "typescript": "^3.7.0"
@@ -50,8 +50,8 @@
     },
     "python": {
       "requires": {
-        "pulumi": ">=3.0.0,<4.0.0",
-        "pulumi-azure-native": ">=1.0.0,<2.0.0"
+        "khulnasoft": ">=3.0.0,<4.0.0",
+        "khulnasoft-azure-native": ">=1.0.0,<2.0.0"
       }
     }
   }

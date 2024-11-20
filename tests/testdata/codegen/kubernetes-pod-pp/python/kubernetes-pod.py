@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_kubernetes as kubernetes
+import khulnasoft
+import khulnasoft_kubernetes as kubernetes
 
 bar = kubernetes.core.v1.Pod("bar",
     api_version="v1",

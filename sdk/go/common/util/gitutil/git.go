@@ -37,10 +37,10 @@ import (
 	"github.com/kevinburke/ssh_config"
 	"golang.org/x/crypto/ssh"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/fsutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/fsutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 // VCSKind represents the hostname of a specific type of VCS.
@@ -527,7 +527,7 @@ func gitCloneOrPull(
 	}
 
 	if cloneErr == git.ErrUnstagedChanges {
-		// See https://github.com/pulumi/pulumi/issues/11121. We seem to be getting intermittent unstaged
+		// See https://github.com/khulnasoft/khulnasoft/issues/11121. We seem to be getting intermittent unstaged
 		// changes errors, which is very hard to reproduce. This block of code catches this error and tries to
 		// do a diff to see what the unstaged change is and tells the user to report this error to the above
 		// ticket.
@@ -536,21 +536,21 @@ func gitCloneOrPull(
 		if err != nil {
 			return fmt.Errorf(
 				"GitCloneOrPull reported unstaged changes, but the repo couldn't be opened to check: %w\n"+
-					"Please report this to https://github.com/pulumi/pulumi/issues/11121.", err)
+					"Please report this to https://github.com/khulnasoft/khulnasoft/issues/11121.", err)
 		}
 
 		worktree, err := repo.Worktree()
 		if err != nil {
 			return fmt.Errorf(
 				"GitCloneOrPull reported unstaged changes, but the worktree couldn't be opened to check: %w\n"+
-					"Please report this to https://github.com/pulumi/pulumi/issues/11121.", err)
+					"Please report this to https://github.com/khulnasoft/khulnasoft/issues/11121.", err)
 		}
 
 		status, err := worktree.Status()
 		if err != nil {
 			return fmt.Errorf(
 				"GitCloneOrPull reported unstaged changes, but the worktree status couldn't be fetched to check: %w\n"+
-					"Please report this to https://github.com/pulumi/pulumi/issues/11121.", err)
+					"Please report this to https://github.com/khulnasoft/khulnasoft/issues/11121.", err)
 		}
 
 		messages := make([]string, 0)
@@ -561,7 +561,7 @@ func gitCloneOrPull(
 		}
 
 		return fmt.Errorf("GitCloneOrPull reported unstaged changes: %s\n"+
-			"Please report this to https://github.com/pulumi/pulumi/issues/11121.",
+			"Please report this to https://github.com/khulnasoft/khulnasoft/issues/11121.",
 			strings.Join(messages, "\n"))
 	}
 
@@ -735,11 +735,11 @@ func parseGitRepoURLParts(rawurl string) (gitRepoURLParts, error) {
 }
 
 // ParseGitRepoURL returns the URL to the Git repository and path from a raw URL.
-// For example, an input of "https://github.com/pulumi/templates/templates/javascript" returns
-// "https://github.com/pulumi/templates.git" and "templates/javascript".
+// For example, an input of "https://github.com/khulnasoft/templates/templates/javascript" returns
+// "https://github.com/khulnasoft/templates.git" and "templates/javascript".
 // Additionally, it supports nested git projects, as used by GitLab.
-// For example, "https://github.com/pulumi/platform-team/templates.git/templates/javascript"
-// returns "https://github.com/pulumi/platform-team/templates.git" and "templates/javascript"
+// For example, "https://github.com/khulnasoft/platform-team/templates.git/templates/javascript"
+// returns "https://github.com/khulnasoft/platform-team/templates.git" and "templates/javascript"
 //
 // Note: URL with a hostname of `dev.azure.com`, are currently treated as a raw git clone url
 // and currently do not support subpaths.

@@ -22,8 +22,8 @@ import (
 
 	"github.com/blang/semver"
 	"github.com/hashicorp/hcl/v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 	"github.com/segmentio/encoding/json"
 )
 
@@ -452,7 +452,7 @@ func (p *PartialPackage) Provider() (*Resource, error) {
 		return p.def.Provider, nil
 	}
 
-	provider, diags, err := p.types.bindResourceDef("pulumi:providers:" + p.spec.Name)
+	provider, diags, err := p.types.bindResourceDef("khulnasoft:providers:" + p.spec.Name)
 	if err != nil {
 		return nil, err
 	}
@@ -572,7 +572,7 @@ func (p *PartialPackage) Snapshot() (*Package, error) {
 	}
 
 	config := p.config
-	provider := p.types.resourceDefs["pulumi:providers:"+p.spec.Name]
+	provider := p.types.resourceDefs["khulnasoft:providers:"+p.spec.Name]
 
 	resources := slice.Prealloc[*Resource](len(p.types.resourceDefs))
 	resourceDefs := make(map[string]*Resource, len(p.types.resourceDefs))

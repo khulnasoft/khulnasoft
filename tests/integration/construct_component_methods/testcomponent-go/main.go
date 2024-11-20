@@ -11,24 +11,24 @@ import (
 	"github.com/blang/semver"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/provider"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	pulumiprovider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	khulnasoftprovider "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/provider"
 )
 
 type Component struct {
-	pulumi.ResourceState
-	First  pulumi.StringOutput `pulumi:"first"`
-	Second pulumi.StringOutput `pulumi:"second"`
+	khulnasoft.ResourceState
+	First  khulnasoft.StringOutput `khulnasoft:"first"`
+	Second khulnasoft.StringOutput `khulnasoft:"second"`
 }
 
 type ComponentArgs struct {
-	First  pulumi.StringInput `pulumi:"first"`
-	Second pulumi.StringInput `pulumi:"second"`
+	First  khulnasoft.StringInput `khulnasoft:"first"`
+	Second khulnasoft.StringInput `khulnasoft:"second"`
 }
 
-func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs,
-	opts ...pulumi.ResourceOption,
+func NewComponent(ctx *khulnasoft.Context, name string, args *ComponentArgs,
+	opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	if args == nil {
 		return nil, errors.New("args is required")
@@ -43,7 +43,7 @@ func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs,
 	component.First = args.First.ToStringOutput()
 	component.Second = args.Second.ToStringOutput()
 
-	if err := ctx.RegisterResourceOutputs(component, pulumi.Map{
+	if err := ctx.RegisterResourceOutputs(component, khulnasoft.Map{
 		"first":  args.First,
 		"second": args.Second,
 	}); err != nil {
@@ -54,16 +54,16 @@ func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs,
 }
 
 type ComponentGetMessageArgs struct {
-	Name pulumi.StringInput `pulumi:"name"`
+	Name khulnasoft.StringInput `khulnasoft:"name"`
 }
 
 type ComponentGetMessageResult struct {
-	Message pulumi.StringOutput `pulumi:"message"`
+	Message khulnasoft.StringOutput `khulnasoft:"message"`
 }
 
 func (c *Component) GetMessage(args *ComponentGetMessageArgs) (*ComponentGetMessageResult, error) {
 	return &ComponentGetMessageResult{
-		Message: pulumi.Sprintf("%s %s, %s!", c.First, c.Second, args.Name),
+		Message: khulnasoft.Sprintf("%s %s, %s!", c.First, c.Second, args.Name),
 	}, nil
 }
 
@@ -80,7 +80,7 @@ func (m *module) Version() semver.Version {
 	return m.version
 }
 
-func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+func (m *module) Construct(ctx *khulnasoft.Context, name, typ, urn string) (r khulnasoft.Resource, err error) {
 	switch typ {
 	case "testcomponent:index:Component":
 		r = &Component{}
@@ -88,20 +88,20 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
-	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err = ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return
 }
 
 func main() {
 	// Register any resources that can come back as resource references that need to be rehydrated.
-	pulumi.RegisterResourceModule("testcomponent", "index", &module{semver.MustParse(version)})
+	khulnasoft.RegisterResourceModule("testcomponent", "index", &module{semver.MustParse(version)})
 
 	if err := provider.MainWithOptions(provider.Options{
 		Name:    providerName,
 		Version: version,
-		Construct: func(ctx *pulumi.Context, typ, name string, inputs pulumiprovider.ConstructInputs,
-			options pulumi.ResourceOption,
-		) (*pulumiprovider.ConstructResult, error) {
+		Construct: func(ctx *khulnasoft.Context, typ, name string, inputs khulnasoftprovider.ConstructInputs,
+			options khulnasoft.ResourceOption,
+		) (*khulnasoftprovider.ConstructResult, error) {
 			if typ != "testcomponent:index:Component" {
 				return nil, fmt.Errorf("unknown resource type %s", typ)
 			}
@@ -116,9 +116,9 @@ func main() {
 				return nil, fmt.Errorf("creating component: %w", err)
 			}
 
-			return pulumiprovider.NewConstructResult(component)
+			return khulnasoftprovider.NewConstructResult(component)
 		},
-		Call: func(ctx *pulumi.Context, tok string, args pulumiprovider.CallArgs) (*pulumiprovider.CallResult, error) {
+		Call: func(ctx *khulnasoft.Context, tok string, args khulnasoftprovider.CallArgs) (*khulnasoftprovider.CallResult, error) {
 			if tok != "testcomponent:index:Component/getMessage" {
 				return nil, fmt.Errorf("unknown method %s", tok)
 			}
@@ -135,7 +135,7 @@ func main() {
 				return nil, fmt.Errorf("calling method: %w", err)
 			}
 
-			return pulumiprovider.NewCallResult(result)
+			return khulnasoftprovider.NewCallResult(result)
 		},
 	}); err != nil {
 		cmdutil.ExitError(err.Error())

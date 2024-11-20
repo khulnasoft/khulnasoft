@@ -8,10 +8,10 @@ import (
 	"reflect"
 
 	"functions-secrets/mypkg/internal"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
-func FuncWithSecrets(ctx *pulumi.Context, args *FuncWithSecretsArgs, opts ...pulumi.InvokeOption) (*FuncWithSecretsResult, error) {
+func FuncWithSecrets(ctx *khulnasoft.Context, args *FuncWithSecretsArgs, opts ...khulnasoft.InvokeOption) (*FuncWithSecretsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FuncWithSecretsResult
 	err := ctx.Invoke("mypkg::funcWithSecrets", args, &rv, opts...)
@@ -22,19 +22,19 @@ func FuncWithSecrets(ctx *pulumi.Context, args *FuncWithSecretsArgs, opts ...pul
 }
 
 type FuncWithSecretsArgs struct {
-	CryptoKey string `pulumi:"cryptoKey"`
-	Plaintext string `pulumi:"plaintext"`
+	CryptoKey string `khulnasoft:"cryptoKey"`
+	Plaintext string `khulnasoft:"plaintext"`
 }
 
 type FuncWithSecretsResult struct {
-	Ciphertext string `pulumi:"ciphertext"`
-	CryptoKey  string `pulumi:"cryptoKey"`
-	Id         string `pulumi:"id"`
-	Plaintext  string `pulumi:"plaintext"`
+	Ciphertext string `khulnasoft:"ciphertext"`
+	CryptoKey  string `khulnasoft:"cryptoKey"`
+	Id         string `khulnasoft:"id"`
+	Plaintext  string `khulnasoft:"plaintext"`
 }
 
-func FuncWithSecretsOutput(ctx *pulumi.Context, args FuncWithSecretsOutputArgs, opts ...pulumi.InvokeOption) FuncWithSecretsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func FuncWithSecretsOutput(ctx *khulnasoft.Context, args FuncWithSecretsOutputArgs, opts ...khulnasoft.InvokeOption) FuncWithSecretsResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (FuncWithSecretsResultOutput, error) {
 			args := v.(FuncWithSecretsArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -44,24 +44,24 @@ func FuncWithSecretsOutput(ctx *pulumi.Context, args FuncWithSecretsOutputArgs, 
 				return FuncWithSecretsResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(FuncWithSecretsResultOutput)
+			output := khulnasoft.ToOutput(rv).(FuncWithSecretsResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(FuncWithSecretsResultOutput), nil
+				return khulnasoft.ToSecret(output).(FuncWithSecretsResultOutput), nil
 			}
 			return output, nil
 		}).(FuncWithSecretsResultOutput)
 }
 
 type FuncWithSecretsOutputArgs struct {
-	CryptoKey pulumi.StringInput `pulumi:"cryptoKey"`
-	Plaintext pulumi.StringInput `pulumi:"plaintext"`
+	CryptoKey khulnasoft.StringInput `khulnasoft:"cryptoKey"`
+	Plaintext khulnasoft.StringInput `khulnasoft:"plaintext"`
 }
 
 func (FuncWithSecretsOutputArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithSecretsArgs)(nil)).Elem()
 }
 
-type FuncWithSecretsResultOutput struct{ *pulumi.OutputState }
+type FuncWithSecretsResultOutput struct{ *khulnasoft.OutputState }
 
 func (FuncWithSecretsResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithSecretsResult)(nil)).Elem()
@@ -75,22 +75,22 @@ func (o FuncWithSecretsResultOutput) ToFuncWithSecretsResultOutputWithContext(ct
 	return o
 }
 
-func (o FuncWithSecretsResultOutput) Ciphertext() pulumi.StringOutput {
-	return o.ApplyT(func(v FuncWithSecretsResult) string { return v.Ciphertext }).(pulumi.StringOutput)
+func (o FuncWithSecretsResultOutput) Ciphertext() khulnasoft.StringOutput {
+	return o.ApplyT(func(v FuncWithSecretsResult) string { return v.Ciphertext }).(khulnasoft.StringOutput)
 }
 
-func (o FuncWithSecretsResultOutput) CryptoKey() pulumi.StringOutput {
-	return o.ApplyT(func(v FuncWithSecretsResult) string { return v.CryptoKey }).(pulumi.StringOutput)
+func (o FuncWithSecretsResultOutput) CryptoKey() khulnasoft.StringOutput {
+	return o.ApplyT(func(v FuncWithSecretsResult) string { return v.CryptoKey }).(khulnasoft.StringOutput)
 }
 
-func (o FuncWithSecretsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v FuncWithSecretsResult) string { return v.Id }).(pulumi.StringOutput)
+func (o FuncWithSecretsResultOutput) Id() khulnasoft.StringOutput {
+	return o.ApplyT(func(v FuncWithSecretsResult) string { return v.Id }).(khulnasoft.StringOutput)
 }
 
-func (o FuncWithSecretsResultOutput) Plaintext() pulumi.StringOutput {
-	return o.ApplyT(func(v FuncWithSecretsResult) string { return v.Plaintext }).(pulumi.StringOutput)
+func (o FuncWithSecretsResultOutput) Plaintext() khulnasoft.StringOutput {
+	return o.ApplyT(func(v FuncWithSecretsResult) string { return v.Plaintext }).(khulnasoft.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(FuncWithSecretsResultOutput{})
+	khulnasoft.RegisterOutputType(FuncWithSecretsResultOutput{})
 }

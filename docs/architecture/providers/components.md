@@ -8,11 +8,11 @@ might specify a component that combines AWS and PostgreSQL providers to abstract
 the management of an RDS database and logical databases within it:
 
 ```typescript
-import * as aws from "@pulumi/aws"
-import * as postgresql from "@pulumi/postgresql"
+import * as aws from "@khulnasoft/aws"
+import * as postgresql from "@khulnasoft/postgresql"
 
-class Database extends pulumi.ComponentResource {
-  constructor(name: string, args: DatabaseArgs, opts?: pulumi.ComponentResourceOptions) {
+class Database extends khulnasoft.ComponentResource {
+  constructor(name: string, args: DatabaseArgs, opts?: khulnasoft.ComponentResourceOptions) {
     super("my:database:Database", name, args, opts)
 
     const rds = new aws.rds.Instance("my-rds", { ... }, { parent: this })
@@ -41,7 +41,7 @@ used in another (or rather, any other). Typically we refer to such components as
 the user's program as above.
 
 Under the hood, component providers expose remote components by implementing the
-[](pulumirpc.ResourceProvider.Construct) method. The engine automatically calls
+[](khulnasoftrpc.ResourceProvider.Construct) method. The engine automatically calls
 `Construct` when it sees a request to create a remote
 component.[^engine-construct] Indeed, since providers and gRPC calls are the key
 to making custom resources consumable in any language, exposing components
@@ -52,13 +52,13 @@ through the same interface is a natural extension of the Pulumi model.
 
 Just as the body of a component resource is largely concerned with instantiating
 other resources, so is the implementation of `Construct` for a component
-provider. Whereas a custom resource's [](pulumirpc.ResourceProvider.Create)
+provider. Whereas a custom resource's [](khulnasoftrpc.ResourceProvider.Create)
 method can be expected to make a "raw" call to some underlying cloud provider
-API (for instance), [](pulumirpc.ResourceProvider.Construct) is generally only
+API (for instance), [](khulnasoftrpc.ResourceProvider.Construct) is generally only
 concerned with registering child resources and their desired state. For this
-reason, [](pulumirpc.ConstructRequest) includes a `monitorEndpoint` so that the
+reason, [](khulnasoftrpc.ConstructRequest) includes a `monitorEndpoint` so that the
 component provider can itself make
-[](pulumirpc.ResourceMonitor.RegisterResource) calls *back* to the [deployment's
+[](khulnasoftrpc.ResourceMonitor.RegisterResource) calls *back* to the [deployment's
 resource monitor](resource-monitor) to register these child resources. Child
 resources registered by `Construct` consequently end up in the calling program's
 state just like any other resource, and proceed through [step
@@ -69,7 +69,7 @@ resource registration came from the program or a remote component.
 :::{note}
 "Ordinary" resource providers and component providers are not mutually exclusive
 -- it is perfectly sensible for a provider to implement both the
-[](pulumirpc.ResourceProvider.Construct) and
-[](pulumirpc.ResourceProvider.Create)/[](pulumirpc.ResourceProvider.Read)/...
+[](khulnasoftrpc.ResourceProvider.Construct) and
+[](khulnasoftrpc.ResourceProvider.Create)/[](khulnasoftrpc.ResourceProvider.Read)/...
 methods.
 :::

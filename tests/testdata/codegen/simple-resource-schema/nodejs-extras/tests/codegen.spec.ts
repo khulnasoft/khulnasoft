@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 import * as assert from "assert";
 import "mocha";
 import * as sut from "..";
 
-pulumi.runtime.setMocks({
-    newResource: function(_: pulumi.runtime.MockResourceArgs): {id: string, state: any} {
+khulnasoft.runtime.setMocks({
+    newResource: function(_: khulnasoft.runtime.MockResourceArgs): {id: string, state: any} {
         return {id: "", state: {}};
     },
-    call: function(args: pulumi.runtime.MockCallArgs) {
+    call: function(args: khulnasoft.runtime.MockCallArgs) {
         throw new Error("call not implemented");
     },
 });

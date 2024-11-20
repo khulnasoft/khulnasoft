@@ -18,7 +18,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // Mapper can map from weakly typed JSON-like property bags to strongly typed structs, and vice versa.
@@ -47,7 +47,7 @@ func New(opts *Opts) Mapper {
 
 // Opts controls the way mapping occurs; for default behavior, simply pass an empty struct.
 type Opts struct {
-	Tags               []string // the tag names to recognize (`json` and `pulumi` if unspecified).
+	Tags               []string // the tag names to recognize (`json` and `khulnasoft` if unspecified).
 	OptionalTags       []string // the tags to interpret to mean "optional" (`optional` if unspecified).
 	SkipTags           []string // the tags to interpret to mean "skip" (`skip` if unspecified).
 	CustomDecoders     Decoders // custom decoders.
@@ -118,7 +118,7 @@ func structFields(t reflect.Type) []reflect.StructField {
 // defaultTags fetches the mapper's tag names from the options, or supplies defaults if not present.
 func (md *mapper) defaultTags() (tags []string, optionalTags []string, skipTags []string) {
 	if md.opts.Tags == nil {
-		tags = []string{"json", "pulumi"}
+		tags = []string{"json", "khulnasoft"}
 	} else {
 		tags = md.opts.Tags
 	}

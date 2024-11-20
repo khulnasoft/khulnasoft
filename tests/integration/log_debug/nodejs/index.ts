@@ -1,13 +1,13 @@
 // Copyright 2016-2024, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-class MyComponent extends pulumi.ComponentResource {
+class MyComponent extends khulnasoft.ComponentResource {
     constructor(name: string) {
         super("test:index:MyComponent", name);
     }
 }
 
-pulumi.log.debug("A debug message");
+khulnasoft.log.debug("A debug message");
 
 new MyComponent("mycomponent");

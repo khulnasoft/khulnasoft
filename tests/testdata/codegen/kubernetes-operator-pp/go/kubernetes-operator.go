@@ -1,72 +1,72 @@
 package main
 
 import (
-	appsv1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/apps/v1"
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/meta/v1"
-	rbacv1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/rbac/v1"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	appsv1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/apps/v1"
+	corev1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/core/v1"
+	metav1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/meta/v1"
+	rbacv1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/rbac/v1"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		_, err := appsv1.NewDeployment(ctx, "pulumi_kubernetes_operatorDeployment", &appsv1.DeploymentArgs{
-			ApiVersion: pulumi.String("apps/v1"),
-			Kind:       pulumi.String("Deployment"),
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		_, err := appsv1.NewDeployment(ctx, "khulnasoft_kubernetes_operatorDeployment", &appsv1.DeploymentArgs{
+			ApiVersion: khulnasoft.String("apps/v1"),
+			Kind:       khulnasoft.String("Deployment"),
 			Metadata: &metav1.ObjectMetaArgs{
-				Name: pulumi.String("pulumi-kubernetes-operator"),
+				Name: khulnasoft.String("khulnasoft-kubernetes-operator"),
 			},
 			Spec: &appsv1.DeploymentSpecArgs{
-				Replicas: pulumi.Int(1),
+				Replicas: khulnasoft.Int(1),
 				Selector: &metav1.LabelSelectorArgs{
-					MatchLabels: pulumi.StringMap{
-						"name": pulumi.String("pulumi-kubernetes-operator"),
+					MatchLabels: khulnasoft.StringMap{
+						"name": khulnasoft.String("khulnasoft-kubernetes-operator"),
 					},
 				},
 				Template: &corev1.PodTemplateSpecArgs{
 					Metadata: &metav1.ObjectMetaArgs{
-						Labels: pulumi.StringMap{
-							"name": pulumi.String("pulumi-kubernetes-operator"),
+						Labels: khulnasoft.StringMap{
+							"name": khulnasoft.String("khulnasoft-kubernetes-operator"),
 						},
 					},
 					Spec: &corev1.PodSpecArgs{
-						ServiceAccountName: pulumi.String("pulumi-kubernetes-operator"),
+						ServiceAccountName: khulnasoft.String("khulnasoft-kubernetes-operator"),
 						ImagePullSecrets: corev1.LocalObjectReferenceArray{
 							&corev1.LocalObjectReferenceArgs{
-								Name: pulumi.String("pulumi-kubernetes-operator"),
+								Name: khulnasoft.String("khulnasoft-kubernetes-operator"),
 							},
 						},
 						Containers: corev1.ContainerArray{
 							&corev1.ContainerArgs{
-								Name:  pulumi.String("pulumi-kubernetes-operator"),
-								Image: pulumi.String("pulumi/pulumi-kubernetes-operator:v0.0.2"),
-								Command: pulumi.StringArray{
-									pulumi.String("pulumi-kubernetes-operator"),
+								Name:  khulnasoft.String("khulnasoft-kubernetes-operator"),
+								Image: khulnasoft.String("khulnasoft/khulnasoft-kubernetes-operator:v0.0.2"),
+								Command: khulnasoft.StringArray{
+									khulnasoft.String("khulnasoft-kubernetes-operator"),
 								},
-								Args: pulumi.StringArray{
-									pulumi.String("--zap-level=debug"),
+								Args: khulnasoft.StringArray{
+									khulnasoft.String("--zap-level=debug"),
 								},
-								ImagePullPolicy: pulumi.String("Always"),
+								ImagePullPolicy: khulnasoft.String("Always"),
 								Env: corev1.EnvVarArray{
 									&corev1.EnvVarArgs{
-										Name: pulumi.String("WATCH_NAMESPACE"),
+										Name: khulnasoft.String("WATCH_NAMESPACE"),
 										ValueFrom: &corev1.EnvVarSourceArgs{
 											FieldRef: &corev1.ObjectFieldSelectorArgs{
-												FieldPath: pulumi.String("metadata.namespace"),
+												FieldPath: khulnasoft.String("metadata.namespace"),
 											},
 										},
 									},
 									&corev1.EnvVarArgs{
-										Name: pulumi.String("POD_NAME"),
+										Name: khulnasoft.String("POD_NAME"),
 										ValueFrom: &corev1.EnvVarSourceArgs{
 											FieldRef: &corev1.ObjectFieldSelectorArgs{
-												FieldPath: pulumi.String("metadata.name"),
+												FieldPath: khulnasoft.String("metadata.name"),
 											},
 										},
 									},
 									&corev1.EnvVarArgs{
-										Name:  pulumi.String("OPERATOR_NAME"),
-										Value: pulumi.String("pulumi-kubernetes-operator"),
+										Name:  khulnasoft.String("OPERATOR_NAME"),
+										Value: khulnasoft.String("khulnasoft-kubernetes-operator"),
 									},
 								},
 							},
@@ -78,122 +78,122 @@ func main() {
 		if err != nil {
 			return err
 		}
-		_, err = rbacv1.NewRole(ctx, "pulumi_kubernetes_operatorRole", &rbacv1.RoleArgs{
-			ApiVersion: pulumi.String("rbac.authorization.k8s.io/v1"),
-			Kind:       pulumi.String("Role"),
+		_, err = rbacv1.NewRole(ctx, "khulnasoft_kubernetes_operatorRole", &rbacv1.RoleArgs{
+			ApiVersion: khulnasoft.String("rbac.authorization.k8s.io/v1"),
+			Kind:       khulnasoft.String("Role"),
 			Metadata: &metav1.ObjectMetaArgs{
 				CreationTimestamp: nil,
-				Name:              pulumi.String("pulumi-kubernetes-operator"),
+				Name:              khulnasoft.String("khulnasoft-kubernetes-operator"),
 			},
 			Rules: rbacv1.PolicyRuleArray{
 				&rbacv1.PolicyRuleArgs{
-					ApiGroups: pulumi.StringArray{
-						pulumi.String(""),
+					ApiGroups: khulnasoft.StringArray{
+						khulnasoft.String(""),
 					},
-					Resources: pulumi.StringArray{
-						pulumi.String("pods"),
-						pulumi.String("services"),
-						pulumi.String("services/finalizers"),
-						pulumi.String("endpoints"),
-						pulumi.String("persistentvolumeclaims"),
-						pulumi.String("events"),
-						pulumi.String("configmaps"),
-						pulumi.String("secrets"),
+					Resources: khulnasoft.StringArray{
+						khulnasoft.String("pods"),
+						khulnasoft.String("services"),
+						khulnasoft.String("services/finalizers"),
+						khulnasoft.String("endpoints"),
+						khulnasoft.String("persistentvolumeclaims"),
+						khulnasoft.String("events"),
+						khulnasoft.String("configmaps"),
+						khulnasoft.String("secrets"),
 					},
-					Verbs: pulumi.StringArray{
-						pulumi.String("create"),
-						pulumi.String("delete"),
-						pulumi.String("get"),
-						pulumi.String("list"),
-						pulumi.String("patch"),
-						pulumi.String("update"),
-						pulumi.String("watch"),
-					},
-				},
-				&rbacv1.PolicyRuleArgs{
-					ApiGroups: pulumi.StringArray{
-						pulumi.String("apps"),
-					},
-					Resources: pulumi.StringArray{
-						pulumi.String("deployments"),
-						pulumi.String("daemonsets"),
-						pulumi.String("replicasets"),
-						pulumi.String("statefulsets"),
-					},
-					Verbs: pulumi.StringArray{
-						pulumi.String("create"),
-						pulumi.String("delete"),
-						pulumi.String("get"),
-						pulumi.String("list"),
-						pulumi.String("patch"),
-						pulumi.String("update"),
-						pulumi.String("watch"),
+					Verbs: khulnasoft.StringArray{
+						khulnasoft.String("create"),
+						khulnasoft.String("delete"),
+						khulnasoft.String("get"),
+						khulnasoft.String("list"),
+						khulnasoft.String("patch"),
+						khulnasoft.String("update"),
+						khulnasoft.String("watch"),
 					},
 				},
 				&rbacv1.PolicyRuleArgs{
-					ApiGroups: pulumi.StringArray{
-						pulumi.String("monitoring.coreos.com"),
+					ApiGroups: khulnasoft.StringArray{
+						khulnasoft.String("apps"),
 					},
-					Resources: pulumi.StringArray{
-						pulumi.String("servicemonitors"),
+					Resources: khulnasoft.StringArray{
+						khulnasoft.String("deployments"),
+						khulnasoft.String("daemonsets"),
+						khulnasoft.String("replicasets"),
+						khulnasoft.String("statefulsets"),
 					},
-					Verbs: pulumi.StringArray{
-						pulumi.String("get"),
-						pulumi.String("create"),
-					},
-				},
-				&rbacv1.PolicyRuleArgs{
-					ApiGroups: pulumi.StringArray{
-						pulumi.String("apps"),
-					},
-					ResourceNames: pulumi.StringArray{
-						pulumi.String("pulumi-kubernetes-operator"),
-					},
-					Resources: pulumi.StringArray{
-						pulumi.String("deployments/finalizers"),
-					},
-					Verbs: pulumi.StringArray{
-						pulumi.String("update"),
+					Verbs: khulnasoft.StringArray{
+						khulnasoft.String("create"),
+						khulnasoft.String("delete"),
+						khulnasoft.String("get"),
+						khulnasoft.String("list"),
+						khulnasoft.String("patch"),
+						khulnasoft.String("update"),
+						khulnasoft.String("watch"),
 					},
 				},
 				&rbacv1.PolicyRuleArgs{
-					ApiGroups: pulumi.StringArray{
-						pulumi.String(""),
+					ApiGroups: khulnasoft.StringArray{
+						khulnasoft.String("monitoring.coreos.com"),
 					},
-					Resources: pulumi.StringArray{
-						pulumi.String("pods"),
+					Resources: khulnasoft.StringArray{
+						khulnasoft.String("servicemonitors"),
 					},
-					Verbs: pulumi.StringArray{
-						pulumi.String("get"),
-					},
-				},
-				&rbacv1.PolicyRuleArgs{
-					ApiGroups: pulumi.StringArray{
-						pulumi.String("apps"),
-					},
-					Resources: pulumi.StringArray{
-						pulumi.String("replicasets"),
-						pulumi.String("deployments"),
-					},
-					Verbs: pulumi.StringArray{
-						pulumi.String("get"),
+					Verbs: khulnasoft.StringArray{
+						khulnasoft.String("get"),
+						khulnasoft.String("create"),
 					},
 				},
 				&rbacv1.PolicyRuleArgs{
-					ApiGroups: pulumi.StringArray{
-						pulumi.String("pulumi.com"),
+					ApiGroups: khulnasoft.StringArray{
+						khulnasoft.String("apps"),
 					},
-					Resources: pulumi.StringArray{
-						pulumi.String("*"),
+					ResourceNames: khulnasoft.StringArray{
+						khulnasoft.String("khulnasoft-kubernetes-operator"),
 					},
-					Verbs: pulumi.StringArray{
-						pulumi.String("create"),
-						pulumi.String("delete"),
-						pulumi.String("get"),
-						pulumi.String("list"),
-						pulumi.String("patch"),
-						pulumi.String("update"),
-						pulumi.String("watch"),
+					Resources: khulnasoft.StringArray{
+						khulnasoft.String("deployments/finalizers"),
+					},
+					Verbs: khulnasoft.StringArray{
+						khulnasoft.String("update"),
+					},
+				},
+				&rbacv1.PolicyRuleArgs{
+					ApiGroups: khulnasoft.StringArray{
+						khulnasoft.String(""),
+					},
+					Resources: khulnasoft.StringArray{
+						khulnasoft.String("pods"),
+					},
+					Verbs: khulnasoft.StringArray{
+						khulnasoft.String("get"),
+					},
+				},
+				&rbacv1.PolicyRuleArgs{
+					ApiGroups: khulnasoft.StringArray{
+						khulnasoft.String("apps"),
+					},
+					Resources: khulnasoft.StringArray{
+						khulnasoft.String("replicasets"),
+						khulnasoft.String("deployments"),
+					},
+					Verbs: khulnasoft.StringArray{
+						khulnasoft.String("get"),
+					},
+				},
+				&rbacv1.PolicyRuleArgs{
+					ApiGroups: khulnasoft.StringArray{
+						khulnasoft.String("khulnasoft.com"),
+					},
+					Resources: khulnasoft.StringArray{
+						khulnasoft.String("*"),
+					},
+					Verbs: khulnasoft.StringArray{
+						khulnasoft.String("create"),
+						khulnasoft.String("delete"),
+						khulnasoft.String("get"),
+						khulnasoft.String("list"),
+						khulnasoft.String("patch"),
+						khulnasoft.String("update"),
+						khulnasoft.String("watch"),
 					},
 				},
 			},
@@ -201,32 +201,32 @@ func main() {
 		if err != nil {
 			return err
 		}
-		_, err = rbacv1.NewRoleBinding(ctx, "pulumi_kubernetes_operatorRoleBinding", &rbacv1.RoleBindingArgs{
-			Kind:       pulumi.String("RoleBinding"),
-			ApiVersion: pulumi.String("rbac.authorization.k8s.io/v1"),
+		_, err = rbacv1.NewRoleBinding(ctx, "khulnasoft_kubernetes_operatorRoleBinding", &rbacv1.RoleBindingArgs{
+			Kind:       khulnasoft.String("RoleBinding"),
+			ApiVersion: khulnasoft.String("rbac.authorization.k8s.io/v1"),
 			Metadata: &metav1.ObjectMetaArgs{
-				Name: pulumi.String("pulumi-kubernetes-operator"),
+				Name: khulnasoft.String("khulnasoft-kubernetes-operator"),
 			},
 			Subjects: rbacv1.SubjectArray{
 				&rbacv1.SubjectArgs{
-					Kind: pulumi.String("ServiceAccount"),
-					Name: pulumi.String("pulumi-kubernetes-operator"),
+					Kind: khulnasoft.String("ServiceAccount"),
+					Name: khulnasoft.String("khulnasoft-kubernetes-operator"),
 				},
 			},
 			RoleRef: &rbacv1.RoleRefArgs{
-				Kind:     pulumi.String("Role"),
-				Name:     pulumi.String("pulumi-kubernetes-operator"),
-				ApiGroup: pulumi.String("rbac.authorization.k8s.io"),
+				Kind:     khulnasoft.String("Role"),
+				Name:     khulnasoft.String("khulnasoft-kubernetes-operator"),
+				ApiGroup: khulnasoft.String("rbac.authorization.k8s.io"),
 			},
 		})
 		if err != nil {
 			return err
 		}
-		_, err = corev1.NewServiceAccount(ctx, "pulumi_kubernetes_operatorServiceAccount", &corev1.ServiceAccountArgs{
-			ApiVersion: pulumi.String("v1"),
-			Kind:       pulumi.String("ServiceAccount"),
+		_, err = corev1.NewServiceAccount(ctx, "khulnasoft_kubernetes_operatorServiceAccount", &corev1.ServiceAccountArgs{
+			ApiVersion: khulnasoft.String("v1"),
+			Kind:       khulnasoft.String("ServiceAccount"),
 			Metadata: &metav1.ObjectMetaArgs{
-				Name: pulumi.String("pulumi-kubernetes-operator"),
+				Name: khulnasoft.String("khulnasoft-kubernetes-operator"),
 			},
 		})
 		if err != nil {

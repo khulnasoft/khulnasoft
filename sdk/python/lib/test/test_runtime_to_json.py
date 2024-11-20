@@ -16,8 +16,8 @@ import unittest
 
 from typing import Mapping, Optional, Sequence
 
-import pulumi
-from pulumi.runtime import to_json
+import khulnasoft
+from khulnasoft.runtime import to_json
 
 
 class ToJSONTests(unittest.TestCase):
@@ -33,10 +33,10 @@ class ToJSONTests(unittest.TestCase):
         self.assertEqual('[{"hello": 42}]', to_json([{"hello": 42}]))
 
     def test_to_json_basic_input_type(self):
-        @pulumi.input_type
+        @khulnasoft.input_type
         class ProviderAssumeRoleArgs:
-            role_arn: Optional[pulumi.Input[str]] = pulumi.property("roleArn")
-            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+            role_arn: Optional[khulnasoft.Input[str]] = khulnasoft.property("roleArn")
+            tags: Optional[khulnasoft.Input[Mapping[str, khulnasoft.Input[str]]]]
 
         assume_role = ProviderAssumeRoleArgs(
             role_arn="some-arn", tags={"hello": "world"}
@@ -46,15 +46,15 @@ class ToJSONTests(unittest.TestCase):
         )
 
     def test_to_json_nested_input_type(self):
-        @pulumi.input_type
+        @khulnasoft.input_type
         class ProviderFeaturesNetworkArgs:
-            relaxed_locking: Optional[pulumi.Input[bool]] = pulumi.property(
+            relaxed_locking: Optional[khulnasoft.Input[bool]] = khulnasoft.property(
                 "relaxedLocking"
             )
 
-        @pulumi.input_type
+        @khulnasoft.input_type
         class ProviderFeaturesArgs:
-            network: Optional[pulumi.Input[ProviderFeaturesNetworkArgs]]
+            network: Optional[khulnasoft.Input[ProviderFeaturesNetworkArgs]]
 
         features = ProviderFeaturesArgs(
             network=ProviderFeaturesNetworkArgs(relaxed_locking=False)

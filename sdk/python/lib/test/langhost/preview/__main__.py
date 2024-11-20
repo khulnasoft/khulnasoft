@@ -11,8 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from pulumi import CustomResource
-from pulumi.runtime import is_dry_run
+from khulnasoft import CustomResource
+from khulnasoft.runtime import is_dry_run
 
 
 class MyResource(CustomResource):

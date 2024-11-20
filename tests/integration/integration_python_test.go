@@ -35,7 +35,7 @@ import (
 	"time"
 
 	"github.com/google/go-dap"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -43,8 +43,8 @@ import (
 	pygen "github.com/khulnasoft/khulnasoft/pkg/v3/codegen/python"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
 )
 
 // This checks that error logs are not being emitted twice
@@ -247,7 +247,7 @@ func TestConfigMissingPython(t *testing.T) {
 		ExtraRuntimeValidation: func(t *testing.T, stackInfo integration.RuntimeValidationStackInfo) {
 			assert.NotEmpty(t, stackInfo.Events)
 			text1 := "Missing required configuration variable 'config_missing_py:notFound'"
-			text2 := "\tplease set a value using the command `pulumi config set --secret config_missing_py:notFound <value>`"
+			text2 := "\tplease set a value using the command `khulnasoft config set --secret config_missing_py:notFound <value>`"
 			var found1, found2 bool
 			for _, event := range stackInfo.Events {
 				if event.DiagnosticEvent != nil && strings.Contains(event.DiagnosticEvent.Message, text1) {
@@ -267,8 +267,8 @@ func TestConfigMissingPython(t *testing.T) {
 //
 //nolint:paralleltest // ProgramTest calls t.Parallel()
 func TestConfigSecretsWarnPython(t *testing.T) {
-	// TODO[pulumi/pulumi#7127]: Re-enabled the warning.
-	t.Skip("Temporarily skipping test until we've re-enabled the warning - pulumi/pulumi#7127")
+	// TODO[khulnasoft/khulnasoft#7127]: Re-enabled the warning.
+	t.Skip("Temporarily skipping test until we've re-enabled the warning - khulnasoft/khulnasoft#7127")
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("config_secrets_warn", "python"),
 		Dependencies: []string{
@@ -414,7 +414,7 @@ func TestResourceWithSecretSerializationPython(t *testing.T) {
 		Quick: true,
 		ExtraRuntimeValidation: func(t *testing.T, stackInfo integration.RuntimeValidationStackInfo) {
 			// The program exports three resources:
-			//   1. One named `withSecret` who's prefix property should be secret, specified via `pulumi.secret()`.
+			//   1. One named `withSecret` who's prefix property should be secret, specified via `khulnasoft.secret()`.
 			//   2. One named `withSecretAdditional` who's prefix property should be a secret, specified via
 			//      additionalSecretOutputs.
 			//   3. One named `withoutSecret` which should not be a secret.
@@ -450,8 +450,8 @@ func TestResourceWithSecretSerializationPython(t *testing.T) {
 //
 //nolint:paralleltest // ProgramTest calls t.Parallel()
 func TestPython3NotInstalled(t *testing.T) {
-	// TODO[pulumi/pulumi#6304]
-	t.Skip("Temporarily skipping failing test - pulumi/pulumi#6304")
+	// TODO[khulnasoft/khulnasoft#6304]
+	t.Skip("Temporarily skipping failing test - khulnasoft/khulnasoft#6304")
 	stderr := &bytes.Buffer{}
 	badPython := "python3000"
 	expectedError := fmt.Sprintf(
@@ -491,7 +491,7 @@ func TestCustomResourceTypeNameDynamicPython(t *testing.T) {
 			urnOut := stack.Outputs["urn"].(string)
 			urn := resource.URN(urnOut)
 			typ := urn.Type().String()
-			assert.Equal(t, "pulumi-python:dynamic/custom-provider:CustomResource", typ)
+			assert.Equal(t, "khulnasoft-python:dynamic/custom-provider:CustomResource", typ)
 		},
 	})
 }
@@ -647,7 +647,7 @@ func TestEnumOutputsPython(t *testing.T) {
 //
 //nolint:paralleltest // ProgramTest calls t.Parallel()
 func TestPythonPylint(t *testing.T) {
-	t.Skip("Temporarily skipping test - pulumi/pulumi#4849")
+	t.Skip("Temporarily skipping test - khulnasoft/khulnasoft#4849")
 	var opts *integration.ProgramTestOptions
 	opts = &integration.ProgramTestOptions{
 		Dir: filepath.Join("python", "pylint"),
@@ -776,9 +776,9 @@ func TestConstructSlowPython(t *testing.T) {
 
 	localProvider := testComponentSlowLocalProvider(t)
 
-	// TODO[pulumi/pulumi#5455]: Dynamic providers fail to load when used from multi-lang components.
+	// TODO[khulnasoft/khulnasoft#5455]: Dynamic providers fail to load when used from multi-lang components.
 	// Until we've addressed this, set PULUMI_TEST_YARN_LINK_PULUMI, which tells the integration test
-	// module to run `yarn install && yarn link @pulumi/pulumi` in the Python program's directory, allowing
+	// module to run `yarn install && yarn link @khulnasoft/khulnasoft` in the Python program's directory, allowing
 	// the Node.js dynamic provider plugin to load.
 	// When the underlying issue has been fixed, the use of this environment variable inside the integration
 	// test module should be removed.
@@ -824,9 +824,9 @@ func TestConstructPlainPython(t *testing.T) {
 		{
 			componentDir:          "testcomponent",
 			expectedResourceCount: 9,
-			// TODO[pulumi/pulumi#5455]: Dynamic providers fail to load when used from multi-lang components.
+			// TODO[khulnasoft/khulnasoft#5455]: Dynamic providers fail to load when used from multi-lang components.
 			// Until we've addressed this, set PULUMI_TEST_YARN_LINK_PULUMI, which tells the integration test
-			// module to run `yarn install && yarn link @pulumi/pulumi` in the Go program's directory, allowing
+			// module to run `yarn install && yarn link @khulnasoft/khulnasoft` in the Go program's directory, allowing
 			// the Node.js dynamic provider plugin to load.
 			// When the underlying issue has been fixed, the use of this environment variable inside the integration
 			// test module should be removed.
@@ -957,7 +957,7 @@ func TestConstructComponentWithIdOutputPython(t *testing.T) {
 			require.Equal(t, "42-hello", componentID, "component id output should be '42-hello'")
 
 			// the stack should also have an output called ID
-			stack := findResource("pulumi:pulumi:Stack", stackInfo.Deployment.Resources)
+			stack := findResource("khulnasoft:khulnasoft:Stack", stackInfo.Deployment.Resources)
 			require.NotNil(t, stack, "stack should be present in the deployment")
 			require.NotNil(t, stack.Outputs, "stack should have outputs")
 			stackID, ok := stack.Outputs["id"].(string)
@@ -1113,7 +1113,7 @@ func TestPythonAwaitOutputs(t *testing.T) {
 				sawUrn := false
 				for _, evt := range stack.Events {
 					if evt.DiagnosticEvent != nil {
-						if strings.Contains(evt.DiagnosticEvent.Message, "pulumi-python:dynamic:Resource::magic_string") {
+						if strings.Contains(evt.DiagnosticEvent.Message, "khulnasoft-python:dynamic:Resource::magic_string") {
 							sawUrn = true
 						}
 					}
@@ -1275,7 +1275,7 @@ func TestPythonAwaitOutputs(t *testing.T) {
 	})
 
 	// This checks we don't leak futures awaiting outputs. Regression test for
-	// https://github.com/pulumi/pulumi/issues/16055.
+	// https://github.com/khulnasoft/khulnasoft/issues/16055.
 	//
 	//nolint:paralleltest // ProgramTest calls t.Parallel()
 	t.Run("OutputLeak", func(t *testing.T) {
@@ -1311,13 +1311,13 @@ func TestPythonTranslation(t *testing.T) {
 
 func TestComponentProviderSchemaPython(t *testing.T) {
 	t.Parallel()
-	// TODO[https://github.com/pulumi/pulumi/issues/12365] we no longer have shim files so there's no native
+	// TODO[https://github.com/khulnasoft/khulnasoft/issues/12365] we no longer have shim files so there's no native
 	// binary for the testComponentProviderSchema to just exec. It _ought_ to be rewritten to use the plugin
 	// host framework so that it starts the component up the same as all the other tests are doing (via
 	// shimless).
 	t.Skip("testComponentProviderSchema needs to be updated to use a plugin host to deal with non-native-binary providers")
 
-	path := filepath.Join("component_provider_schema", "testcomponent-python", "pulumi-resource-testcomponent")
+	path := filepath.Join("component_provider_schema", "testcomponent-python", "khulnasoft-resource-testcomponent")
 	if runtime.GOOS == WindowsOS {
 		path += ".cmd"
 	}
@@ -1335,9 +1335,9 @@ func TestAboutPython(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 	e.ImportDirectory(dir)
 
-	stdout, _ := e.RunCommand("pulumi", "about", "--json")
+	stdout, _ := e.RunCommand("khulnasoft", "about", "--json")
 	// Assert we parsed the dependencies
-	assert.Contains(t, stdout, "pulumi-kubernetes")
+	assert.Contains(t, stdout, "khulnasoft-kubernetes")
 }
 
 func TestConstructOutputValuesPython(t *testing.T) {
@@ -1345,7 +1345,7 @@ func TestConstructOutputValuesPython(t *testing.T) {
 	testConstructOutputValues(t, "python", filepath.Join("..", "..", "sdk", "python", "env", "src"))
 }
 
-// TestResourceRefsGetResourcePython tests that invoking the built-in 'pulumi:pulumi:getResource' function
+// TestResourceRefsGetResourcePython tests that invoking the built-in 'khulnasoft:khulnasoft:getResource' function
 // returns resource references for any resource reference in a resource's state.
 //
 //nolint:paralleltest // ProgramTest calls t.Parallel()
@@ -1383,7 +1383,7 @@ func TestConstructProviderPropagationPython(t *testing.T) {
 	})
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/9411
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/9411
 //
 //nolint:paralleltest // ProgramTest calls t.Parallel()
 func TestDuplicateOutputPython(t *testing.T) {
@@ -1408,11 +1408,11 @@ func TestConstructProviderExplicitPython(t *testing.T) {
 	})
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/13551
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/13551
 //
 //nolint:paralleltest // ProgramTestManualLifeCycle calls t.Parallel()
 func TestFailsOnImplicitDependencyCyclesPython(t *testing.T) {
-	t.Skip("Temporarily skipping flakey test - pulumi/pulumi#14708")
+	t.Skip("Temporarily skipping flakey test - khulnasoft/khulnasoft#14708")
 
 	stdout := &bytes.Buffer{}
 	pt := integration.ProgramTestManualLifeCycle(t, &integration.ProgramTestOptions{
@@ -1459,7 +1459,7 @@ func TestParameterizedPython(t *testing.T) {
 	err = os.RemoveAll(filepath.Join("python", "parameterized", "sdk"))
 	require.NoError(t, err)
 
-	_, _ = e.RunCommand("pulumi", "package", "gen-sdk", "../../../testprovider", "pkg", "--language", "python", "--local")
+	_, _ = e.RunCommand("khulnasoft", "package", "gen-sdk", "../../../testprovider", "pkg", "--language", "python", "--local")
 
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("python", "parameterized"),
@@ -1479,10 +1479,10 @@ func TestConfigGetterOverloads(t *testing.T) {
 	e.ImportDirectory("python/config-getter-types")
 
 	stackName := ptesting.RandomStackName()
-	e.RunCommand("pulumi", "install")
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", stackName)
-	defer e.RunCommand("pulumi", "stack", "rm", "--yes", "--stack", stackName)
+	e.RunCommand("khulnasoft", "install")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
+	defer e.RunCommand("khulnasoft", "stack", "rm", "--yes", "--stack", stackName)
 
 	// ProgramTest installs extra dependencies as editable packages using the `-e` flag, but typecheckers do not
 	// handle editable packages well. We have to manually install the SDK without `-e` flag instead.
@@ -1496,12 +1496,12 @@ func TestConfigGetterOverloads(t *testing.T) {
 	e.RunCommand(pythonBin, "-m", "pip", "install", sdkPath)
 
 	// Add some config values
-	e.RunCommand("pulumi", "config", "set", "foo", "bar")
-	e.RunCommand("pulumi", "config", "set", "foo_int", "42")
-	e.RunCommand("pulumi", "config", "set", "--secret", "foo_secret", "3")
+	e.RunCommand("khulnasoft", "config", "set", "foo", "bar")
+	e.RunCommand("khulnasoft", "config", "set", "foo_int", "42")
+	e.RunCommand("khulnasoft", "config", "set", "--secret", "foo_secret", "3")
 
 	// Run a preview. This will typecheck the program and fail if typechecking has errors.
-	e.RunCommand("pulumi", "preview")
+	e.RunCommand("khulnasoft", "preview")
 }
 
 // Test that we can run a program, attach a debugger to it, and send debugging commands using the dap protocol
@@ -1513,16 +1513,16 @@ func TestDebuggerAttachPython(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 	e.ImportDirectory(filepath.Join("python", "venv"))
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
 	wg := sync.WaitGroup{}
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
 		e.Env = append(e.Env, "PULUMI_DEBUG_COMMANDS=true")
-		e.RunCommand("pulumi", "stack", "init", "debugger-test")
-		e.RunCommand("pulumi", "stack", "select", "debugger-test")
-		e.RunCommand("pulumi", "preview", "--attach-debugger",
+		e.RunCommand("khulnasoft", "stack", "init", "debugger-test")
+		e.RunCommand("khulnasoft", "stack", "select", "debugger-test")
+		e.RunCommand("khulnasoft", "preview", "--attach-debugger",
 			"--event-log", filepath.Join(e.RootPath, "debugger.log"))
 	}()
 
@@ -1570,9 +1570,9 @@ outer:
 	err = dap.WriteProtocolMessage(conn, &dap.InitializeRequest{
 		Request: newDAPRequest(seq, "initialize"),
 		Arguments: dap.InitializeRequestArguments{
-			ClientID:        "pulumi",
+			ClientID:        "khulnasoft",
 			ClientName:      "Pulumi",
-			AdapterID:       "pulumi",
+			AdapterID:       "khulnasoft",
 			Locale:          "en-us",
 			LinesStartAt1:   true,
 			ColumnsStartAt1: true,

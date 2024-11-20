@@ -19,8 +19,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 func TestUrlAlreadySet(t *testing.T) {
@@ -29,7 +29,7 @@ func TestUrlAlreadySet(t *testing.T) {
 	spec := workspace.PluginSpec{
 		Name:              "acme",
 		Kind:              apitype.ResourcePlugin,
-		PluginDownloadURL: "github://api.github.com/pulumiverse",
+		PluginDownloadURL: "github://api.github.com/khulnasoftverse",
 	}
 	res := SetKnownPluginDownloadURL(&spec)
 	assert.False(t, res)
@@ -44,5 +44,5 @@ func TestKnownProvider(t *testing.T) {
 	}
 	res := SetKnownPluginDownloadURL(&spec)
 	assert.True(t, res)
-	assert.Equal(t, "github://api.github.com/pulumiverse", spec.PluginDownloadURL)
+	assert.Equal(t, "github://api.github.com/khulnasoftverse", spec.PluginDownloadURL)
 }

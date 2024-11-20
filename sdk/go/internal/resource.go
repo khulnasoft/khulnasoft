@@ -17,7 +17,7 @@ package internal
 // Resource is a cloud resource managed by Pulumi.
 //
 // Inside this package, Resource is just a marker interface.
-// See pulumi.Resource for the real definition.
+// See khulnasoft.Resource for the real definition.
 type Resource interface {
 	isResource()
 }
@@ -26,7 +26,7 @@ type Resource interface {
 // that should be embedded in the ResourceState type
 // for this package to consider it a resource.
 //
-// See pulumi.ResourceState for more information.
+// See khulnasoft.ResourceState for more information.
 type ResourceState struct{}
 
 var _ Resource = ResourceState{}

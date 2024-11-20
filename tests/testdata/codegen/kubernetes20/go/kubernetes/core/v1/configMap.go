@@ -7,38 +7,38 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/meta/v1"
-	"github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/utilities"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	metav1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/meta/v1"
+	"github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/utilities"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // A non-overlay, non-component, Kubernetes resource.
 type ConfigMap struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
 	// APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	ApiVersion pulumi.StringOutput `pulumi:"apiVersion"`
+	ApiVersion khulnasoft.StringOutput `khulnasoft:"apiVersion"`
 	// BinaryData contains the binary data. Each key must consist of alphanumeric characters, '-', '_' or '.'. BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.
-	BinaryData pulumi.StringMapOutput `pulumi:"binaryData"`
+	BinaryData khulnasoft.StringMapOutput `khulnasoft:"binaryData"`
 	// Data contains the configuration data. Each key must consist of alphanumeric characters, '-', '_' or '.'. Values with non-UTF-8 byte sequences must use the BinaryData field. The keys stored in Data must not overlap with the keys in the BinaryData field, this is enforced during validation process.
-	Data pulumi.StringMapOutput `pulumi:"data"`
+	Data khulnasoft.StringMapOutput `khulnasoft:"data"`
 	// Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.
-	Immutable pulumi.BoolOutput `pulumi:"immutable"`
+	Immutable khulnasoft.BoolOutput `khulnasoft:"immutable"`
 	// Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	Kind pulumi.StringOutput `pulumi:"kind"`
+	Kind khulnasoft.StringOutput `khulnasoft:"kind"`
 	// Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-	Metadata metav1.ObjectMetaOutput `pulumi:"metadata"`
+	Metadata metav1.ObjectMetaOutput `khulnasoft:"metadata"`
 }
 
 // NewConfigMap registers a new resource with the given unique name, arguments, and options.
-func NewConfigMap(ctx *pulumi.Context,
-	name string, args *ConfigMapArgs, opts ...pulumi.ResourceOption) (*ConfigMap, error) {
+func NewConfigMap(ctx *khulnasoft.Context,
+	name string, args *ConfigMapArgs, opts ...khulnasoft.ResourceOption) (*ConfigMap, error) {
 	if args == nil {
 		args = &ConfigMapArgs{}
 	}
 
-	args.ApiVersion = pulumi.StringPtr("v1")
-	args.Kind = pulumi.StringPtr("ConfigMap")
+	args.ApiVersion = khulnasoft.StringPtr("v1")
+	args.Kind = khulnasoft.StringPtr("ConfigMap")
 	opts = utilities.PkgResourceDefaultOpts(opts)
 	var resource ConfigMap
 	err := ctx.RegisterResource("kubernetes:core/v1:ConfigMap", name, args, &resource, opts...)
@@ -50,8 +50,8 @@ func NewConfigMap(ctx *pulumi.Context,
 
 // GetConfigMap gets an existing ConfigMap resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetConfigMap(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ConfigMapState, opts ...pulumi.ResourceOption) (*ConfigMap, error) {
+func GetConfigMap(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ConfigMapState, opts ...khulnasoft.ResourceOption) (*ConfigMap, error) {
 	var resource ConfigMap
 	err := ctx.ReadResource("kubernetes:core/v1:ConfigMap", name, id, state, &resource, opts...)
 	if err != nil {
@@ -73,31 +73,31 @@ func (ConfigMapState) ElementType() reflect.Type {
 
 type configMapArgs struct {
 	// APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	ApiVersion *string `pulumi:"apiVersion"`
+	ApiVersion *string `khulnasoft:"apiVersion"`
 	// BinaryData contains the binary data. Each key must consist of alphanumeric characters, '-', '_' or '.'. BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.
-	BinaryData map[string]string `pulumi:"binaryData"`
+	BinaryData map[string]string `khulnasoft:"binaryData"`
 	// Data contains the configuration data. Each key must consist of alphanumeric characters, '-', '_' or '.'. Values with non-UTF-8 byte sequences must use the BinaryData field. The keys stored in Data must not overlap with the keys in the BinaryData field, this is enforced during validation process.
-	Data map[string]string `pulumi:"data"`
+	Data map[string]string `khulnasoft:"data"`
 	// Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.
-	Immutable *bool `pulumi:"immutable"`
+	Immutable *bool `khulnasoft:"immutable"`
 	// Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	Kind *string `pulumi:"kind"`
+	Kind *string `khulnasoft:"kind"`
 	// Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-	Metadata *metav1.ObjectMeta `pulumi:"metadata"`
+	Metadata *metav1.ObjectMeta `khulnasoft:"metadata"`
 }
 
 // The set of arguments for constructing a ConfigMap resource.
 type ConfigMapArgs struct {
 	// APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	ApiVersion pulumi.StringPtrInput
+	ApiVersion khulnasoft.StringPtrInput
 	// BinaryData contains the binary data. Each key must consist of alphanumeric characters, '-', '_' or '.'. BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.
-	BinaryData pulumi.StringMapInput
+	BinaryData khulnasoft.StringMapInput
 	// Data contains the configuration data. Each key must consist of alphanumeric characters, '-', '_' or '.'. Values with non-UTF-8 byte sequences must use the BinaryData field. The keys stored in Data must not overlap with the keys in the BinaryData field, this is enforced during validation process.
-	Data pulumi.StringMapInput
+	Data khulnasoft.StringMapInput
 	// Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.
-	Immutable pulumi.BoolPtrInput
+	Immutable khulnasoft.BoolPtrInput
 	// Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	Kind pulumi.StringPtrInput
+	Kind khulnasoft.StringPtrInput
 	// Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 	Metadata metav1.ObjectMetaPtrInput
 }
@@ -107,7 +107,7 @@ func (ConfigMapArgs) ElementType() reflect.Type {
 }
 
 type ConfigMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConfigMapOutput() ConfigMapOutput
 	ToConfigMapOutputWithContext(ctx context.Context) ConfigMapOutput
@@ -122,7 +122,7 @@ func (i *ConfigMap) ToConfigMapOutput() ConfigMapOutput {
 }
 
 func (i *ConfigMap) ToConfigMapOutputWithContext(ctx context.Context) ConfigMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConfigMapOutput)
 }
 
 // ConfigMapArrayInput is an input type that accepts ConfigMapArray and ConfigMapArrayOutput values.
@@ -130,7 +130,7 @@ func (i *ConfigMap) ToConfigMapOutputWithContext(ctx context.Context) ConfigMapO
 //
 //	ConfigMapArray{ ConfigMapArgs{...} }
 type ConfigMapArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConfigMapArrayOutput() ConfigMapArrayOutput
 	ToConfigMapArrayOutputWithContext(context.Context) ConfigMapArrayOutput
@@ -147,7 +147,7 @@ func (i ConfigMapArray) ToConfigMapArrayOutput() ConfigMapArrayOutput {
 }
 
 func (i ConfigMapArray) ToConfigMapArrayOutputWithContext(ctx context.Context) ConfigMapArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConfigMapArrayOutput)
 }
 
 // ConfigMapMapInput is an input type that accepts ConfigMapMap and ConfigMapMapOutput values.
@@ -155,7 +155,7 @@ func (i ConfigMapArray) ToConfigMapArrayOutputWithContext(ctx context.Context) C
 //
 //	ConfigMapMap{ "key": ConfigMapArgs{...} }
 type ConfigMapMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConfigMapMapOutput() ConfigMapMapOutput
 	ToConfigMapMapOutputWithContext(context.Context) ConfigMapMapOutput
@@ -172,10 +172,10 @@ func (i ConfigMapMap) ToConfigMapMapOutput() ConfigMapMapOutput {
 }
 
 func (i ConfigMapMap) ToConfigMapMapOutputWithContext(ctx context.Context) ConfigMapMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConfigMapMapOutput)
 }
 
-type ConfigMapOutput struct{ *pulumi.OutputState }
+type ConfigMapOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ConfigMap)(nil)).Elem()
@@ -190,28 +190,28 @@ func (o ConfigMapOutput) ToConfigMapOutputWithContext(ctx context.Context) Confi
 }
 
 // APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-func (o ConfigMapOutput) ApiVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v *ConfigMap) pulumi.StringOutput { return v.ApiVersion }).(pulumi.StringOutput)
+func (o ConfigMapOutput) ApiVersion() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *ConfigMap) khulnasoft.StringOutput { return v.ApiVersion }).(khulnasoft.StringOutput)
 }
 
 // BinaryData contains the binary data. Each key must consist of alphanumeric characters, '-', '_' or '.'. BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.
-func (o ConfigMapOutput) BinaryData() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *ConfigMap) pulumi.StringMapOutput { return v.BinaryData }).(pulumi.StringMapOutput)
+func (o ConfigMapOutput) BinaryData() khulnasoft.StringMapOutput {
+	return o.ApplyT(func(v *ConfigMap) khulnasoft.StringMapOutput { return v.BinaryData }).(khulnasoft.StringMapOutput)
 }
 
 // Data contains the configuration data. Each key must consist of alphanumeric characters, '-', '_' or '.'. Values with non-UTF-8 byte sequences must use the BinaryData field. The keys stored in Data must not overlap with the keys in the BinaryData field, this is enforced during validation process.
-func (o ConfigMapOutput) Data() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *ConfigMap) pulumi.StringMapOutput { return v.Data }).(pulumi.StringMapOutput)
+func (o ConfigMapOutput) Data() khulnasoft.StringMapOutput {
+	return o.ApplyT(func(v *ConfigMap) khulnasoft.StringMapOutput { return v.Data }).(khulnasoft.StringMapOutput)
 }
 
 // Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.
-func (o ConfigMapOutput) Immutable() pulumi.BoolOutput {
-	return o.ApplyT(func(v *ConfigMap) pulumi.BoolOutput { return v.Immutable }).(pulumi.BoolOutput)
+func (o ConfigMapOutput) Immutable() khulnasoft.BoolOutput {
+	return o.ApplyT(func(v *ConfigMap) khulnasoft.BoolOutput { return v.Immutable }).(khulnasoft.BoolOutput)
 }
 
 // Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-func (o ConfigMapOutput) Kind() pulumi.StringOutput {
-	return o.ApplyT(func(v *ConfigMap) pulumi.StringOutput { return v.Kind }).(pulumi.StringOutput)
+func (o ConfigMapOutput) Kind() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *ConfigMap) khulnasoft.StringOutput { return v.Kind }).(khulnasoft.StringOutput)
 }
 
 // Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
@@ -219,7 +219,7 @@ func (o ConfigMapOutput) Metadata() metav1.ObjectMetaOutput {
 	return o.ApplyT(func(v *ConfigMap) metav1.ObjectMetaOutput { return v.Metadata }).(metav1.ObjectMetaOutput)
 }
 
-type ConfigMapArrayOutput struct{ *pulumi.OutputState }
+type ConfigMapArrayOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigMapArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*ConfigMap)(nil)).Elem()
@@ -233,13 +233,13 @@ func (o ConfigMapArrayOutput) ToConfigMapArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o ConfigMapArrayOutput) Index(i pulumi.IntInput) ConfigMapOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ConfigMap {
+func (o ConfigMapArrayOutput) Index(i khulnasoft.IntInput) ConfigMapOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *ConfigMap {
 		return vs[0].([]*ConfigMap)[vs[1].(int)]
 	}).(ConfigMapOutput)
 }
 
-type ConfigMapMapOutput struct{ *pulumi.OutputState }
+type ConfigMapMapOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigMapMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*ConfigMap)(nil)).Elem()
@@ -253,17 +253,17 @@ func (o ConfigMapMapOutput) ToConfigMapMapOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o ConfigMapMapOutput) MapIndex(k pulumi.StringInput) ConfigMapOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ConfigMap {
+func (o ConfigMapMapOutput) MapIndex(k khulnasoft.StringInput) ConfigMapOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *ConfigMap {
 		return vs[0].(map[string]*ConfigMap)[vs[1].(string)]
 	}).(ConfigMapOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ConfigMapInput)(nil)).Elem(), &ConfigMap{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ConfigMapArrayInput)(nil)).Elem(), ConfigMapArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ConfigMapMapInput)(nil)).Elem(), ConfigMapMap{})
-	pulumi.RegisterOutputType(ConfigMapOutput{})
-	pulumi.RegisterOutputType(ConfigMapArrayOutput{})
-	pulumi.RegisterOutputType(ConfigMapMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConfigMapInput)(nil)).Elem(), &ConfigMap{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConfigMapArrayInput)(nil)).Elem(), ConfigMapArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConfigMapMapInput)(nil)).Elem(), ConfigMapMap{})
+	khulnasoft.RegisterOutputType(ConfigMapOutput{})
+	khulnasoft.RegisterOutputType(ConfigMapArrayOutput{})
+	khulnasoft.RegisterOutputType(ConfigMapMapOutput{})
 }

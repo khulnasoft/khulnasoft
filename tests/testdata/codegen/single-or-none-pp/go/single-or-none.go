@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func singleOrNone[T any](elements []T) T {
@@ -14,8 +14,8 @@ func singleOrNone[T any](elements []T) T {
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		ctx.Export("result", pulumi.Float64(singleOrNone([]float64{
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		ctx.Export("result", khulnasoft.Float64(singleOrNone([]float64{
 			1,
 		})))
 		return nil

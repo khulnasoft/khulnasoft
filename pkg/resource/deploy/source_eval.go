@@ -42,20 +42,20 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	interceptors "github.com/khulnasoft/khulnasoft/pkg/v3/util/rpcdebug"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/result"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil/rpcerror"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/result"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil/rpcerror"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 
 	mapset "github.com/deckarep/golang-set/v2"
 )
@@ -521,12 +521,12 @@ func (d *defaultProviders) handleRequest(req providers.ProviderRequest) (provide
 func (d *defaultProviders) shouldDenyRequest(req providers.ProviderRequest) (bool, error) {
 	logging.V(9).Infof("checking if %#v should be denied", req)
 
-	if req.Package().Name().String() == "pulumi" {
+	if req.Package().Name().String() == "khulnasoft" {
 		logging.V(9).Infof("we always allow %#v through", req)
 		return false, nil
 	}
 
-	pConfig, err := d.config.GetPackageConfig("pulumi")
+	pConfig, err := d.config.GetPackageConfig("khulnasoft")
 	if err != nil {
 		return true, err
 	}
@@ -535,7 +535,7 @@ func (d *defaultProviders) shouldDenyRequest(req providers.ProviderRequest) (boo
 	if value, ok := pConfig["disable-default-providers"]; ok {
 		array := []interface{}{}
 		if !value.IsString() {
-			return true, errors.New("Unexpected encoding of pulumi:disable-default-providers")
+			return true, errors.New("Unexpected encoding of khulnasoft:disable-default-providers")
 		}
 		if value.StringValue() == "" {
 			// If the list is provided but empty, we don't encode a empty json
@@ -549,7 +549,7 @@ func (d *defaultProviders) shouldDenyRequest(req providers.ProviderRequest) (boo
 		for i, v := range array {
 			s, ok := v.(string)
 			if !ok {
-				return true, fmt.Errorf("pulumi:disable-default-providers[%d] must be a string", i)
+				return true, fmt.Errorf("khulnasoft:disable-default-providers[%d] must be a string", i)
 			}
 			barred := strings.TrimSpace(s)
 			if barred == "*" || barred == req.Package().Name().String() {
@@ -559,7 +559,7 @@ func (d *defaultProviders) shouldDenyRequest(req providers.ProviderRequest) (boo
 			}
 		}
 	} else {
-		logging.V(9).Infof("Did not find a config for 'pulumi'")
+		logging.V(9).Infof("Did not find a config for 'khulnasoft'")
 	}
 
 	return denyCreation, nil
@@ -597,17 +597,17 @@ type TransformFunction func(
 	ctx context.Context,
 	name, typ string, custom bool, parent resource.URN,
 	props resource.PropertyMap,
-	opts *pulumirpc.TransformResourceOptions,
-) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error)
+	opts *khulnasoftrpc.TransformResourceOptions,
+) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error)
 
 // A transformation function that can be applied to an invoke.
 type TransformInvokeFunction func(
 	ctx context.Context, token string, args resource.PropertyMap,
-	opts *pulumirpc.TransformInvokeOptions,
-) (resource.PropertyMap, *pulumirpc.TransformInvokeOptions, error)
+	opts *khulnasoftrpc.TransformInvokeOptions,
+) (resource.PropertyMap, *khulnasoftrpc.TransformInvokeOptions, error)
 
 type CallbacksClient struct {
-	pulumirpc.CallbacksClient
+	khulnasoftrpc.CallbacksClient
 
 	conn *grpc.ClientConn
 }
@@ -618,15 +618,15 @@ func (c *CallbacksClient) Close() error {
 
 func NewCallbacksClient(conn *grpc.ClientConn) *CallbacksClient {
 	return &CallbacksClient{
-		CallbacksClient: pulumirpc.NewCallbacksClient(conn),
+		CallbacksClient: khulnasoftrpc.NewCallbacksClient(conn),
 		conn:            conn,
 	}
 }
 
-// resmon implements the pulumirpc.ResourceMonitor interface and acts as the gateway between a language runtime's
+// resmon implements the khulnasoftrpc.ResourceMonitor interface and acts as the gateway between a language runtime's
 // evaluation of a program and the internal resource planning and deployment logic.
 type resmon struct {
-	pulumirpc.UnsafeResourceMonitorServer
+	khulnasoftrpc.UnsafeResourceMonitorServer
 
 	pendingTransforms     map[string][]TransformFunction // pending transformation functions for a constructed resource
 	pendingTransformsLock sync.Mutex
@@ -722,7 +722,7 @@ func newResourceMonitor(
 	handle, err := rpcutil.ServeWithOptions(rpcutil.ServeOptions{
 		Cancel: resmon.cancel,
 		Init: func(srv *grpc.Server) error {
-			pulumirpc.RegisterResourceMonitorServer(srv, resmon)
+			khulnasoftrpc.RegisterResourceMonitorServer(srv, resmon)
 			return nil
 		},
 		Options: sourceEvalServeOptions(src.plugctx, tracingSpan, env.DebugGRPC.Value()),
@@ -878,8 +878,8 @@ func parseProviderRequest(
 }
 
 func (rm *resmon) RegisterPackage(ctx context.Context,
-	req *pulumirpc.RegisterPackageRequest,
-) (*pulumirpc.RegisterPackageResponse, error) {
+	req *khulnasoftrpc.RegisterPackageRequest,
+) (*khulnasoftrpc.RegisterPackageResponse, error) {
 	logging.V(5).Infof("ResourceMonitor.RegisterPackage(%v)", req)
 
 	name := tokens.Package(req.Name)
@@ -925,7 +925,7 @@ func (rm *resmon) RegisterPackage(ctx context.Context,
 	for uuid, candidate := range rm.packageRefMap {
 		if reflect.DeepEqual(candidate, pi) {
 			logging.V(5).Infof("ResourceMonitor.RegisterPackage(%v) matched %s", req, uuid)
-			return &pulumirpc.RegisterPackageResponse{Ref: uuid}, nil
+			return &khulnasoftrpc.RegisterPackageResponse{Ref: uuid}, nil
 		}
 	}
 
@@ -933,17 +933,17 @@ func (rm *resmon) RegisterPackage(ctx context.Context,
 	uuid := uuid.New().String()
 	rm.packageRefMap[uuid] = pi
 	logging.V(5).Infof("ResourceMonitor.RegisterPackage(%v) created %s", req, uuid)
-	return &pulumirpc.RegisterPackageResponse{Ref: uuid}, nil
+	return &khulnasoftrpc.RegisterPackageResponse{Ref: uuid}, nil
 }
 
 func (rm *resmon) SupportsFeature(ctx context.Context,
-	req *pulumirpc.SupportsFeatureRequest,
-) (*pulumirpc.SupportsFeatureResponse, error) {
+	req *khulnasoftrpc.SupportsFeatureRequest,
+) (*khulnasoftrpc.SupportsFeatureResponse, error) {
 	hasSupport := false
 
 	// NOTE: DO NOT ADD ANY MORE FEATURES TO THIS LIST
 	//
-	// Context: https://github.com/pulumi/pulumi-dotnet/pull/88#pullrequestreview-1265714090
+	// Context: https://github.com/khulnasoft/khulnasoft-dotnet/pull/88#pullrequestreview-1265714090
 	//
 	// We shouldn't add any more features to this list, copying strings around codebases is prone to bugs.
 	// Rather than adding a new feature here, setup a new SupportsFeatureV2 method, that takes a grpc enum
@@ -974,13 +974,13 @@ func (rm *resmon) SupportsFeature(ctx context.Context,
 
 	logging.V(5).Infof("ResourceMonitor.SupportsFeature(id: %s) = %t", req.Id, hasSupport)
 
-	return &pulumirpc.SupportsFeatureResponse{
+	return &khulnasoftrpc.SupportsFeatureResponse{
 		HasSupport: hasSupport,
 	}, nil
 }
 
 // Invoke performs an invocation of a member located in a resource provider.
-func (rm *resmon) Invoke(ctx context.Context, req *pulumirpc.ResourceInvokeRequest) (*pulumirpc.InvokeResponse, error) {
+func (rm *resmon) Invoke(ctx context.Context, req *khulnasoftrpc.ResourceInvokeRequest) (*khulnasoftrpc.InvokeResponse, error) {
 	// Fetch the token.
 	tok := tokens.ModuleMember(req.GetTok())
 
@@ -997,7 +997,7 @@ func (rm *resmon) Invoke(ctx context.Context, req *pulumirpc.ResourceInvokeReque
 		return nil, fmt.Errorf("failed to unmarshal %v args: %w", tok, err)
 	}
 
-	opts := &pulumirpc.TransformInvokeOptions{
+	opts := &khulnasoftrpc.TransformInvokeOptions{
 		Provider:          req.GetProvider(),
 		Version:           req.GetVersion(),
 		PluginDownloadUrl: req.GetPluginDownloadURL(),
@@ -1056,11 +1056,11 @@ func (rm *resmon) Invoke(ctx context.Context, req *pulumirpc.ResourceInvokeReque
 		return nil, fmt.Errorf("invocation of %v returned an error: %w", tok, err)
 	}
 
-	// Respect `AcceptResources` unless `tok` is for the built-in `pulumi:pulumi:getResource` function,
+	// Respect `AcceptResources` unless `tok` is for the built-in `khulnasoft:khulnasoft:getResource` function,
 	// in which case always keep resources to maintain the original behavior for older SDKs that are not
 	// setting the `AccceptResources` flag.
 	keepResources := req.GetAcceptResources()
-	if tok == "pulumi:pulumi:getResource" {
+	if tok == "khulnasoft:khulnasoft:getResource" {
 		keepResources = true
 	}
 
@@ -1074,18 +1074,18 @@ func (rm *resmon) Invoke(ctx context.Context, req *pulumirpc.ResourceInvokeReque
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal %v return: %w", tok, err)
 	}
-	chkfails := slice.Prealloc[*pulumirpc.CheckFailure](len(resp.Failures))
+	chkfails := slice.Prealloc[*khulnasoftrpc.CheckFailure](len(resp.Failures))
 	for _, failure := range resp.Failures {
-		chkfails = append(chkfails, &pulumirpc.CheckFailure{
+		chkfails = append(chkfails, &khulnasoftrpc.CheckFailure{
 			Property: string(failure.Property),
 			Reason:   failure.Reason,
 		})
 	}
-	return &pulumirpc.InvokeResponse{Return: mret, Failures: chkfails}, nil
+	return &khulnasoftrpc.InvokeResponse{Return: mret, Failures: chkfails}, nil
 }
 
 // Call dynamically executes a method in the provider associated with a component resource.
-func (rm *resmon) Call(ctx context.Context, req *pulumirpc.ResourceCallRequest) (*pulumirpc.CallResponse, error) {
+func (rm *resmon) Call(ctx context.Context, req *khulnasoftrpc.ResourceCallRequest) (*khulnasoftrpc.CallResponse, error) {
 	// Fetch the token and load up the resource provider if necessary.
 	tok := tokens.ModuleMember(req.GetTok())
 	providerReq, err := parseProviderRequest(
@@ -1186,13 +1186,13 @@ func (rm *resmon) Call(ctx context.Context, req *pulumirpc.ResourceCallRequest) 
 		ret.ReturnDependencies[k] = extendOutputDependencies(ret.ReturnDependencies[k], v)
 	}
 
-	returnDependencies := map[string]*pulumirpc.CallResponse_ReturnDependencies{}
+	returnDependencies := map[string]*khulnasoftrpc.CallResponse_ReturnDependencies{}
 	for name, deps := range ret.ReturnDependencies {
 		urns := make([]string, len(deps))
 		for i, urn := range deps {
 			urns[i] = string(urn)
 		}
-		returnDependencies[string(name)] = &pulumirpc.CallResponse_ReturnDependencies{Urns: urns}
+		returnDependencies[string(name)] = &khulnasoftrpc.CallResponse_ReturnDependencies{Urns: urns}
 	}
 
 	mret, err := plugin.MarshalProperties(ret.Return, plugin.MarshalOptions{
@@ -1206,18 +1206,18 @@ func (rm *resmon) Call(ctx context.Context, req *pulumirpc.ResourceCallRequest) 
 		return nil, fmt.Errorf("failed to marshal %v return: %w", tok, err)
 	}
 
-	chkfails := slice.Prealloc[*pulumirpc.CheckFailure](len(ret.Failures))
+	chkfails := slice.Prealloc[*khulnasoftrpc.CheckFailure](len(ret.Failures))
 	for _, failure := range ret.Failures {
-		chkfails = append(chkfails, &pulumirpc.CheckFailure{
+		chkfails = append(chkfails, &khulnasoftrpc.CheckFailure{
 			Property: string(failure.Property),
 			Reason:   failure.Reason,
 		})
 	}
-	return &pulumirpc.CallResponse{Return: mret, ReturnDependencies: returnDependencies, Failures: chkfails}, nil
+	return &khulnasoftrpc.CallResponse{Return: mret, ReturnDependencies: returnDependencies, Failures: chkfails}, nil
 }
 
 func (rm *resmon) StreamInvoke(
-	req *pulumirpc.ResourceInvokeRequest, stream pulumirpc.ResourceMonitor_StreamInvokeServer,
+	req *khulnasoftrpc.ResourceInvokeRequest, stream khulnasoftrpc.ResourceMonitor_StreamInvokeServer,
 ) error {
 	tok := tokens.ModuleMember(req.GetTok())
 	label := fmt.Sprintf("ResourceMonitor.StreamInvoke(%s)", tok)
@@ -1262,31 +1262,31 @@ func (rm *resmon) StreamInvoke(
 				return fmt.Errorf("failed to marshal return: %w", err)
 			}
 
-			return stream.Send(&pulumirpc.InvokeResponse{Return: mret})
+			return stream.Send(&khulnasoftrpc.InvokeResponse{Return: mret})
 		},
 	})
 	if err != nil {
 		return fmt.Errorf("streaming invocation of %v returned an error: %w", tok, err)
 	}
 
-	chkfails := slice.Prealloc[*pulumirpc.CheckFailure](len(resp.Failures))
+	chkfails := slice.Prealloc[*khulnasoftrpc.CheckFailure](len(resp.Failures))
 	for _, failure := range resp.Failures {
-		chkfails = append(chkfails, &pulumirpc.CheckFailure{
+		chkfails = append(chkfails, &khulnasoftrpc.CheckFailure{
 			Property: string(failure.Property),
 			Reason:   failure.Reason,
 		})
 	}
 
 	if len(chkfails) > 0 {
-		return stream.Send(&pulumirpc.InvokeResponse{Failures: chkfails})
+		return stream.Send(&khulnasoftrpc.InvokeResponse{Failures: chkfails})
 	}
 	return nil
 }
 
 // ReadResource reads the current state associated with a resource from its provider plugin.
 func (rm *resmon) ReadResource(ctx context.Context,
-	req *pulumirpc.ReadResourceRequest,
-) (*pulumirpc.ReadResourceResponse, error) {
+	req *khulnasoftrpc.ReadResourceRequest,
+) (*khulnasoftrpc.ReadResourceResponse, error) {
 	// Read the basic inputs necessary to identify the plugin.
 	t, err := tokens.ParseTypeToken(req.GetType())
 	if err != nil {
@@ -1394,7 +1394,7 @@ func (rm *resmon) ReadResource(ctx context.Context,
 		return nil, fmt.Errorf("failed to marshal %s return state: %w", result.State.URN, err)
 	}
 
-	return &pulumirpc.ReadResourceResponse{
+	return &khulnasoftrpc.ReadResourceResponse{
 		Urn:        string(result.State.URN),
 		Properties: marshaled,
 	}, nil
@@ -1402,7 +1402,7 @@ func (rm *resmon) ReadResource(ctx context.Context,
 
 // Wrap the transform callback so the engine can call the callback server, which will then execute the function.  The
 // wrapper takes care of all the necessary marshalling and unmarshalling.
-func (rm *resmon) wrapTransformCallback(cb *pulumirpc.Callback) (TransformFunction, error) {
+func (rm *resmon) wrapTransformCallback(cb *khulnasoftrpc.Callback) (TransformFunction, error) {
 	client, err := rm.GetCallbacksClient(cb.Target)
 	if err != nil {
 		return nil, err
@@ -1411,8 +1411,8 @@ func (rm *resmon) wrapTransformCallback(cb *pulumirpc.Callback) (TransformFuncti
 	token := cb.Token
 	return func(
 		ctx context.Context, name, typ string, custom bool, parent resource.URN,
-		props resource.PropertyMap, opts *pulumirpc.TransformResourceOptions,
-	) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error) {
+		props resource.PropertyMap, opts *khulnasoftrpc.TransformResourceOptions,
+	) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error) {
 		logging.V(5).Infof("Transform: name=%v type=%v custom=%v parent=%v props=%v opts=%v",
 			name, typ, custom, parent, props, opts)
 
@@ -1429,7 +1429,7 @@ func (rm *resmon) wrapTransformCallback(cb *pulumirpc.Callback) (TransformFuncti
 			return nil, nil, err
 		}
 
-		request, err := proto.Marshal(&pulumirpc.TransformRequest{
+		request, err := proto.Marshal(&khulnasoftrpc.TransformRequest{
 			Name:       name,
 			Type:       typ,
 			Custom:     custom,
@@ -1440,7 +1440,7 @@ func (rm *resmon) wrapTransformCallback(cb *pulumirpc.Callback) (TransformFuncti
 			return nil, nil, fmt.Errorf("marshaling request: %w", err)
 		}
 
-		resp, err := client.Invoke(ctx, &pulumirpc.CallbackInvokeRequest{
+		resp, err := client.Invoke(ctx, &khulnasoftrpc.CallbackInvokeRequest{
 			Token:   token,
 			Request: request,
 		})
@@ -1449,7 +1449,7 @@ func (rm *resmon) wrapTransformCallback(cb *pulumirpc.Callback) (TransformFuncti
 			return nil, nil, err
 		}
 
-		var response pulumirpc.TransformResponse
+		var response khulnasoftrpc.TransformResponse
 		err = proto.Unmarshal(resp.Response, &response)
 		if err != nil {
 			return nil, nil, fmt.Errorf("unmarshaling response: %w", err)
@@ -1476,7 +1476,7 @@ func (rm *resmon) wrapTransformCallback(cb *pulumirpc.Callback) (TransformFuncti
 
 // Wrap the transform callback so the engine can call the callback server, which will then execute the function.  The
 // wrapper takes care of all the necessary marshalling and unmarshalling.
-func (rm *resmon) wrapInvokeTransformCallback(cb *pulumirpc.Callback) (TransformInvokeFunction, error) {
+func (rm *resmon) wrapInvokeTransformCallback(cb *khulnasoftrpc.Callback) (TransformInvokeFunction, error) {
 	client, err := rm.GetCallbacksClient(cb.Target)
 	if err != nil {
 		return nil, err
@@ -1485,8 +1485,8 @@ func (rm *resmon) wrapInvokeTransformCallback(cb *pulumirpc.Callback) (Transform
 	token := cb.Token
 	return func(
 		ctx context.Context, invokeToken string,
-		args resource.PropertyMap, opts *pulumirpc.TransformInvokeOptions,
-	) (resource.PropertyMap, *pulumirpc.TransformInvokeOptions, error) {
+		args resource.PropertyMap, opts *khulnasoftrpc.TransformInvokeOptions,
+	) (resource.PropertyMap, *khulnasoftrpc.TransformInvokeOptions, error) {
 		logging.V(5).Infof("Invoke transform: token=%v props=%v opts=%v",
 			invokeToken, args, opts)
 
@@ -1504,7 +1504,7 @@ func (rm *resmon) wrapInvokeTransformCallback(cb *pulumirpc.Callback) (Transform
 		}
 
 		var request []byte
-		request, err = proto.Marshal(&pulumirpc.TransformInvokeRequest{
+		request, err = proto.Marshal(&khulnasoftrpc.TransformInvokeRequest{
 			Token:   invokeToken,
 			Args:    mprops,
 			Options: opts,
@@ -1513,7 +1513,7 @@ func (rm *resmon) wrapInvokeTransformCallback(cb *pulumirpc.Callback) (Transform
 			return nil, nil, fmt.Errorf("marshaling request: %w", err)
 		}
 
-		resp, err := client.Invoke(ctx, &pulumirpc.CallbackInvokeRequest{
+		resp, err := client.Invoke(ctx, &khulnasoftrpc.CallbackInvokeRequest{
 			Token:   token,
 			Request: request,
 		})
@@ -1524,7 +1524,7 @@ func (rm *resmon) wrapInvokeTransformCallback(cb *pulumirpc.Callback) (Transform
 
 		newOpts := opts
 		var newProps resource.PropertyMap
-		var response pulumirpc.TransformInvokeResponse
+		var response khulnasoftrpc.TransformInvokeResponse
 		err = proto.Unmarshal(resp.Response, &response)
 		if err != nil {
 			return nil, nil, fmt.Errorf("unmarshaling response: %w", err)
@@ -1547,7 +1547,7 @@ func (rm *resmon) wrapInvokeTransformCallback(cb *pulumirpc.Callback) (Transform
 	}, nil
 }
 
-func (rm *resmon) RegisterStackTransform(ctx context.Context, cb *pulumirpc.Callback) (*emptypb.Empty, error) {
+func (rm *resmon) RegisterStackTransform(ctx context.Context, cb *khulnasoftrpc.Callback) (*emptypb.Empty, error) {
 	rm.stackTransformsLock.Lock()
 	defer rm.stackTransformsLock.Unlock()
 
@@ -1564,7 +1564,7 @@ func (rm *resmon) RegisterStackTransform(ctx context.Context, cb *pulumirpc.Call
 	return &emptypb.Empty{}, nil
 }
 
-func (rm *resmon) RegisterStackInvokeTransform(ctx context.Context, cb *pulumirpc.Callback) (*emptypb.Empty, error) {
+func (rm *resmon) RegisterStackInvokeTransform(ctx context.Context, cb *khulnasoftrpc.Callback) (*emptypb.Empty, error) {
 	rm.stackInvokeTransformsLock.Lock()
 	defer rm.stackInvokeTransformsLock.Unlock()
 
@@ -1605,7 +1605,7 @@ func newSourcePositions(projectRoot string) *sourcePositions {
 	return &sourcePositions{projectRoot: projectRoot}
 }
 
-func (s *sourcePositions) parseSourcePosition(raw *pulumirpc.SourcePosition) (string, error) {
+func (s *sourcePositions) parseSourcePosition(raw *khulnasoftrpc.SourcePosition) (string, error) {
 	if raw == nil {
 		return "", nil
 	}
@@ -1649,7 +1649,7 @@ func (s *sourcePositions) parseSourcePosition(raw *pulumirpc.SourcePosition) (st
 // Allow getFromRequest to accept any gRPC request that has a source position (ReadResourceRequest,
 // RegisterResourceRequest, ResourceInvokeRequest, and CallRequest).
 type hasSourcePosition interface {
-	GetSourcePosition() *pulumirpc.SourcePosition
+	GetSourcePosition() *khulnasoftrpc.SourcePosition
 }
 
 // getFromRequest returns any source position information from an incoming request.
@@ -1663,15 +1663,15 @@ func (s *sourcePositions) getFromRequest(req hasSourcePosition) string {
 }
 
 // requestFromNodeJS returns true if the request is coming from a Node.js language runtime
-// or SDK. This is determined by checking if the request has a "pulumi-runtime" metadata
-// header with a value of "nodejs". If no "pulumi-runtime" header is present, then it
+// or SDK. This is determined by checking if the request has a "khulnasoft-runtime" metadata
+// header with a value of "nodejs". If no "khulnasoft-runtime" header is present, then it
 // checks if the request has a "user-agent" metadata header that has a value that starts
 // with "grpc-node-js/".
 func requestFromNodeJS(ctx context.Context) bool {
 	if md, hasMetadata := metadata.FromIncomingContext(ctx); hasMetadata {
-		// Check for the "pulumi-runtime" header first.
+		// Check for the "khulnasoft-runtime" header first.
 		// We'll always respect this header value when present.
-		if runtime, ok := md["pulumi-runtime"]; ok {
+		if runtime, ok := md["khulnasoft-runtime"]; ok {
 			return len(runtime) == 1 && runtime[0] == "nodejs"
 		}
 		// Otherwise, check the "user-agent" header.
@@ -1683,9 +1683,9 @@ func requestFromNodeJS(ctx context.Context) bool {
 }
 
 // transformAliasForNodeJSCompat transforms the alias from the legacy Node.js values to properly specified values.
-func transformAliasForNodeJSCompat(alias *pulumirpc.Alias) *pulumirpc.Alias {
+func transformAliasForNodeJSCompat(alias *khulnasoftrpc.Alias) *khulnasoftrpc.Alias {
 	switch a := alias.Alias.(type) {
-	case *pulumirpc.Alias_Spec_:
+	case *khulnasoftrpc.Alias_Spec_:
 		// The original implementation in the Node.js SDK did not specify aliases correctly:
 		//
 		// - It did not set NoParent when it should have, but instead set Parent to empty.
@@ -1696,7 +1696,7 @@ func transformAliasForNodeJSCompat(alias *pulumirpc.Alias) *pulumirpc.Alias {
 		//
 		// - { Parent: "", NoParent: false } -> { Parent: "", NoParent: true }
 		// - { Parent: "", NoParent: true }  -> { Parent: "", NoParent: false }
-		spec := &pulumirpc.Alias_Spec{
+		spec := &khulnasoftrpc.Alias_Spec{
 			Name:    a.Spec.Name,
 			Type:    a.Spec.Type,
 			Stack:   a.Spec.Stack,
@@ -1704,24 +1704,24 @@ func transformAliasForNodeJSCompat(alias *pulumirpc.Alias) *pulumirpc.Alias {
 		}
 
 		switch p := a.Spec.Parent.(type) {
-		case *pulumirpc.Alias_Spec_ParentUrn:
+		case *khulnasoftrpc.Alias_Spec_ParentUrn:
 			if p.ParentUrn == "" {
-				spec.Parent = &pulumirpc.Alias_Spec_NoParent{NoParent: true}
+				spec.Parent = &khulnasoftrpc.Alias_Spec_NoParent{NoParent: true}
 			} else {
 				spec.Parent = p
 			}
-		case *pulumirpc.Alias_Spec_NoParent:
+		case *khulnasoftrpc.Alias_Spec_NoParent:
 			if p.NoParent {
 				spec.Parent = nil
 			} else {
 				spec.Parent = p
 			}
 		default:
-			spec.Parent = &pulumirpc.Alias_Spec_NoParent{NoParent: true}
+			spec.Parent = &khulnasoftrpc.Alias_Spec_NoParent{NoParent: true}
 		}
 
-		return &pulumirpc.Alias{
-			Alias: &pulumirpc.Alias_Spec_{
+		return &khulnasoftrpc.Alias{
+			Alias: &khulnasoftrpc.Alias_Spec_{
 				Spec: spec,
 			},
 		}
@@ -1786,8 +1786,8 @@ func errorToMessage(err error, inputs resource.PropertyMap) string {
 
 // RegisterResource is invoked by a language process when a new resource has been allocated.
 func (rm *resmon) RegisterResource(ctx context.Context,
-	req *pulumirpc.RegisterResourceRequest,
-) (*pulumirpc.RegisterResourceResponse, error) {
+	req *khulnasoftrpc.RegisterResourceRequest,
+) (*khulnasoftrpc.RegisterResourceResponse, error) {
 	// Communicate the type, name, and object information to the iterator that is awaiting us.
 	name := req.GetName()
 	custom := req.GetCustom()
@@ -1815,9 +1815,9 @@ func (rm *resmon) RegisterResource(ctx context.Context,
 	label := fmt.Sprintf("ResourceMonitor.RegisterResource(%s,%s)", t, name)
 
 	// We need to build the full alias spec list here, so we can pass it to transforms.
-	aliases := []*pulumirpc.Alias{}
+	aliases := []*khulnasoftrpc.Alias{}
 	for _, aliasURN := range req.GetAliasURNs() {
-		aliases = append(aliases, &pulumirpc.Alias{Alias: &pulumirpc.Alias_Urn{Urn: aliasURN}})
+		aliases = append(aliases, &khulnasoftrpc.Alias{Alias: &khulnasoftrpc.Alias_Urn{Urn: aliasURN}})
 	}
 
 	// We assume aliases are properly specified. However, if a request hasn't explicitly
@@ -1901,7 +1901,7 @@ func (rm *resmon) RegisterResource(ctx context.Context,
 		provider = rm.resolveProvider(req.GetProvider(), req.GetProviders(), parent, t.Package())
 	}
 
-	opts := &pulumirpc.TransformResourceOptions{
+	opts := &khulnasoftrpc.TransformResourceOptions{
 		DependsOn:               req.GetDependencies(),
 		Protect:                 req.GetProtect(),
 		IgnoreChanges:           req.GetIgnoreChanges(),
@@ -2069,7 +2069,7 @@ func (rm *resmon) RegisterResource(ctx context.Context,
 				Project: aliasSpec.Project,
 			}
 			switch parent := aliasSpec.GetParent().(type) {
-			case *pulumirpc.Alias_Spec_ParentUrn:
+			case *khulnasoftrpc.Alias_Spec_ParentUrn:
 				// Technically an SDK shouldn't set `parent` at all to specify the default parent, but both NodeJS and
 				// Python have buggy SDKs that set parent to an empty URN to specify the default parent. We handle this
 				// case here to maintain backward compatibility with older SDKs but it would be good to fix this to be
@@ -2079,7 +2079,7 @@ func (rm *resmon) RegisterResource(ctx context.Context,
 					return nil, rpcerror.New(codes.InvalidArgument, fmt.Sprintf("invalid parent alias URN: %s", err))
 				}
 				alias.Parent = parentURN
-			case *pulumirpc.Alias_Spec_NoParent:
+			case *khulnasoftrpc.Alias_Spec_NoParent:
 				alias.NoParent = parent.NoParent
 			}
 		} else {
@@ -2211,7 +2211,7 @@ func (rm *resmon) RegisterResource(ctx context.Context,
 	// If this is a remote component, fetch its provider and issue the construct call. Otherwise, register the resource.
 	var result *RegisterResult
 
-	var outputDeps map[string]*pulumirpc.RegisterResourceResponse_PropertyDependencies
+	var outputDeps map[string]*khulnasoftrpc.RegisterResourceResponse_PropertyDependencies
 	if remote {
 		provider, ok := rm.providers.GetProvider(providerRef)
 		if providers.IsDenyDefaultsProvider(providerRef) {
@@ -2280,13 +2280,13 @@ func (rm *resmon) RegisterResource(ctx context.Context,
 			constructResult.OutputDependencies[k] = extendOutputDependencies(constructResult.OutputDependencies[k], v)
 		}
 
-		outputDeps = map[string]*pulumirpc.RegisterResourceResponse_PropertyDependencies{}
+		outputDeps = map[string]*khulnasoftrpc.RegisterResourceResponse_PropertyDependencies{}
 		for k, deps := range constructResult.OutputDependencies {
 			urns := make([]string, len(deps))
 			for i, d := range deps {
 				urns[i] = string(d)
 			}
-			outputDeps[string(k)] = &pulumirpc.RegisterResourceResponse_PropertyDependencies{Urns: urns}
+			outputDeps[string(k)] = &khulnasoftrpc.RegisterResourceResponse_PropertyDependencies{Urns: urns}
 		}
 	} else {
 		additionalSecretKeys := slice.Prealloc[resource.PropertyKey](len(additionalSecretOutputs))
@@ -2396,7 +2396,7 @@ func (rm *resmon) RegisterResource(ctx context.Context,
 		// ComponentResource, it may return references to resources that have not yet been registered, which will cause
 		// the SDK's calls to getResource to fail when it attempts to resolve those references.
 		//
-		// Work on a more targeted fix is tracked in https://github.com/pulumi/pulumi/issues/5978
+		// Work on a more targeted fix is tracked in https://github.com/khulnasoft/khulnasoft/issues/5978
 		outputs = resource.PropertyMap{}
 	}
 
@@ -2420,7 +2420,7 @@ func (rm *resmon) RegisterResource(ctx context.Context,
 	// • retainOnDelete
 	// • deletedWith
 	// Revisit these semantics in Pulumi v4.0
-	// See this issue for more: https://github.com/pulumi/pulumi/issues/9704
+	// See this issue for more: https://github.com/khulnasoft/khulnasoft/issues/9704
 	if !custom {
 		rm.checkComponentOption(result.State.URN, "ignoreChanges", func() bool {
 			return len(ignoreChanges) > 0
@@ -2470,13 +2470,13 @@ func (rm *resmon) RegisterResource(ctx context.Context,
 		!providers.IsProviderType(result.State.Type) || result.State.ID != providers.UnconfiguredID,
 		"provider resource %s has unconfigured ID", result.State.URN)
 
-	reason := pulumirpc.Result_SUCCESS
+	reason := khulnasoftrpc.Result_SUCCESS
 	if result.Result == ResultStateSkipped {
-		reason = pulumirpc.Result_SKIP
+		reason = khulnasoftrpc.Result_SKIP
 	} else if result.Result == ResultStateFailed {
-		reason = pulumirpc.Result_FAIL
+		reason = khulnasoftrpc.Result_FAIL
 	}
-	return &pulumirpc.RegisterResourceResponse{
+	return &khulnasoftrpc.RegisterResourceResponse{
 		Urn:                  string(result.State.URN),
 		Id:                   string(result.State.ID),
 		Object:               obj,
@@ -2499,7 +2499,7 @@ func (rm *resmon) checkComponentOption(urn resource.URN, optName string, check f
 // RegisterResourceOutputs records some new output properties for a resource that have arrived after its initial
 // provisioning.  These will make their way into the eventual checkpoint state file for that resource.
 func (rm *resmon) RegisterResourceOutputs(ctx context.Context,
-	req *pulumirpc.RegisterResourceOutputsRequest,
+	req *khulnasoftrpc.RegisterResourceOutputsRequest,
 ) (*emptypb.Empty, error) {
 	// Obtain and validate the message's inputs (a URN plus the output property map).
 	urn, err := resource.ParseURN(req.Urn)
@@ -2638,12 +2638,12 @@ func decorateResourceSpans(span opentracing.Span, method string, req, resp inter
 	}
 
 	switch method {
-	case "/pulumirpc.ResourceMonitor/Invoke":
-		span.SetTag("pulumi-decorator", req.(*pulumirpc.ResourceInvokeRequest).Tok)
-	case "/pulumirpc.ResourceMonitor/ReadResource":
-		span.SetTag("pulumi-decorator", req.(*pulumirpc.ReadResourceRequest).Type)
-	case "/pulumirpc.ResourceMonitor/RegisterResource":
-		span.SetTag("pulumi-decorator", req.(*pulumirpc.RegisterResourceRequest).Type)
+	case "/khulnasoftrpc.ResourceMonitor/Invoke":
+		span.SetTag("khulnasoft-decorator", req.(*khulnasoftrpc.ResourceInvokeRequest).Tok)
+	case "/khulnasoftrpc.ResourceMonitor/ReadResource":
+		span.SetTag("khulnasoft-decorator", req.(*khulnasoftrpc.ReadResourceRequest).Type)
+	case "/khulnasoftrpc.ResourceMonitor/RegisterResource":
+		span.SetTag("khulnasoft-decorator", req.(*khulnasoftrpc.RegisterResourceRequest).Type)
 	}
 }
 

@@ -15,14 +15,14 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-	"github.com/pulumi/pulumi/tests/testdata/codegen/methods-return-plain-resource/go/metaprovider"
+	"github.com/khulnasoft/khulnasoft-tls/sdk/v4/go/tls"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"
+	"github.com/khulnasoft/khulnasoft/tests/testdata/codegen/methods-return-plain-resource/go/metaprovider"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		cfg := config.New(ctx, "")
 		proxy := cfg.Require("proxy")
 
@@ -39,9 +39,9 @@ func main() {
 		}
 
 		key, err := tls.NewPrivateKey(ctx, "my-private-key", &tls.PrivateKeyArgs{
-			Algorithm:  pulumi.String("ECDSA"),
-			EcdsaCurve: pulumi.String("P384"),
-		}, pulumi.Provider(prov))
+			Algorithm:  khulnasoft.String("ECDSA"),
+			EcdsaCurve: khulnasoft.String("P384"),
+		}, khulnasoft.Provider(prov))
 		if err != nil {
 			return err
 		}
@@ -57,16 +57,16 @@ func main() {
 			return err
 		}
 
-		ctx.Export("meaningOfLife", pulumi.Int(n))
+		ctx.Export("meaningOfLife", khulnasoft.Int(n))
 		ctx.Export("keyAlgo", key.Algorithm)
 		if mix.MeaningOfLife != nil {
-			ctx.Export("meaningOfLife2", pulumi.Int(*mix.MeaningOfLife))
+			ctx.Export("meaningOfLife2", khulnasoft.Int(*mix.MeaningOfLife))
 		}
 
 		key2, err := tls.NewPrivateKey(ctx, "my-private-key-2", &tls.PrivateKeyArgs{
-			Algorithm:  pulumi.String("ECDSA"),
-			EcdsaCurve: pulumi.String("P384"),
-		}, pulumi.Provider(mix.Provider))
+			Algorithm:  khulnasoft.String("ECDSA"),
+			EcdsaCurve: khulnasoft.String("P384"),
+		}, khulnasoft.Provider(mix.Provider))
 		if err != nil {
 			return err
 		}
@@ -76,11 +76,11 @@ func main() {
 	})
 }
 
-func unknownIfDryRun(ctx *pulumi.Context, value string) pulumi.StringOutput {
+func unknownIfDryRun(ctx *khulnasoft.Context, value string) khulnasoft.StringOutput {
 	if ctx.DryRun() {
-		return pulumi.UnsafeUnknownOutput(nil).ApplyT(func(_ any) string {
+		return khulnasoft.UnsafeUnknownOutput(nil).ApplyT(func(_ any) string {
 			panic("impossible")
-		}).(pulumi.StringOutput)
+		}).(khulnasoft.StringOutput)
 	}
-	return pulumi.String(value).ToStringOutput()
+	return khulnasoft.String(value).ToStringOutput()
 }

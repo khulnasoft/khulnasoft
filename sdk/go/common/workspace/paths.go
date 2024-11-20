@@ -23,16 +23,16 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/fsutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/fsutil"
 )
 
 const (
 	// BackupDir is the name of the folder where backup stack information is stored.
 	BackupDir = "backups"
 	// BookkeepingDir is the name of our bookkeeping folder, we store state here (like .git for git).
-	BookkeepingDir = ".pulumi"
+	BookkeepingDir = ".khulnasoft"
 	// ConfigDir is the name of the folder that holds local configuration information.
 	ConfigDir = "config"
 	// GitDir is the name of the folder git uses to store information.
@@ -55,7 +55,7 @@ const (
 	WorkspaceDir = "workspaces"
 
 	// IgnoreFile is the name of the file that we use to control what to upload to the service.
-	IgnoreFile = ".pulumiignore"
+	IgnoreFile = ".khulnasoftignore"
 
 	// ProjectFile is the base name of a project file.
 	ProjectFile = "Pulumi"
@@ -68,9 +68,9 @@ const (
 	// CachedVersionFile is the name of the file we use to store when we last checked if the CLI was out of date
 	CachedVersionFile = ".cachedVersionInfo"
 
-	// PulumiHomeEnvVar is a path to the '.pulumi' folder with plugins, access token, etc.
-	// The folder can have any name, not necessarily '.pulumi'.
-	// It defaults to the '<user's home>/.pulumi' if not specified.
+	// PulumiHomeEnvVar is a path to the '.khulnasoft' folder with plugins, access token, etc.
+	// The folder can have any name, not necessarily '.khulnasoft'.
+	// It defaults to the '<user's home>/.khulnasoft' if not specified.
 	PulumiHomeEnvVar = "PULUMI_HOME"
 
 	// PolicyPackFile is the base name of a Pulumi policy pack file.
@@ -133,7 +133,7 @@ func DetectProjectPathFrom(dir string) (string, error) {
 		return true
 	})
 	// We special case permission errors to cause ErrProjectNotFound to return from this function. This is so
-	// users can run pulumi with unreadable root directories.
+	// users can run khulnasoft with unreadable root directories.
 	if errors.Is(err, fs.ErrPermission) {
 		err = nil
 	}
@@ -146,7 +146,7 @@ func DetectProjectPathFrom(dir string) (string, error) {
 		// Embed/wrap ErrProjectNotFound
 		return "", fmt.Errorf(
 			"no Pulumi.yaml project file found (searching upwards from %s). If you have not "+
-				"created a project yet, use `pulumi new` to do so: %w", dir, ErrProjectNotFound)
+				"created a project yet, use `khulnasoft new` to do so: %w", dir, ErrProjectNotFound)
 	}
 	return path, nil
 }
@@ -212,7 +212,7 @@ func DetectProjectAndPath() (*Project, string, error) {
 		return nil, "", err
 	} else if path == "" {
 		return nil, "", errors.New("no Pulumi project found in the current working directory. " +
-			"Move to a directory with a Pulumi project or try creating a project first with `pulumi new`.")
+			"Move to a directory with a Pulumi project or try creating a project first with `khulnasoft new`.")
 	}
 
 	proj, err := LoadProject(path)
@@ -285,13 +285,13 @@ func isMarkupFile(path string, expect string) bool {
 	return false
 }
 
-// GetCachedVersionFilePath returns the location where the CLI caches information from pulumi.com on the newest
+// GetCachedVersionFilePath returns the location where the CLI caches information from khulnasoft.com on the newest
 // available version of the CLI
 func GetCachedVersionFilePath() (string, error) {
 	return GetPulumiPath(CachedVersionFile)
 }
 
-// GetPulumiHomeDir returns the path of the '.pulumi' folder where Pulumi puts its artifacts.
+// GetPulumiHomeDir returns the path of the '.khulnasoft' folder where Pulumi puts its artifacts.
 func GetPulumiHomeDir() (string, error) {
 	// Allow the folder we use to be overridden by an environment variable
 	dir := os.Getenv(PulumiHomeEnvVar)
@@ -299,7 +299,7 @@ func GetPulumiHomeDir() (string, error) {
 		return dir, nil
 	}
 
-	// Otherwise, use the current user's home dir + .pulumi
+	// Otherwise, use the current user's home dir + .khulnasoft
 	user, err := user.Current()
 	if err != nil {
 		return "", fmt.Errorf("getting current user: %w", err)
@@ -312,8 +312,8 @@ func GetPulumiHomeDir() (string, error) {
 	return filepath.Join(user.HomeDir, BookkeepingDir), nil
 }
 
-// GetPulumiPath returns the path to a file or directory under the '.pulumi' folder. It joins the path of
-// the '.pulumi' folder with elements passed as arguments.
+// GetPulumiPath returns the path to a file or directory under the '.khulnasoft' folder. It joins the path of
+// the '.khulnasoft' folder with elements passed as arguments.
 func GetPulumiPath(elem ...string) (string, error) {
 	homeDir, err := GetPulumiHomeDir()
 	if err != nil {

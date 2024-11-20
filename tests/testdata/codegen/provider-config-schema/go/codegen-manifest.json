@@ -1,15 +1,15 @@
 {
   "emittedFiles": [
     "configstation/config/config.go",
-    "configstation/config/pulumiTypes.go",
+    "configstation/config/khulnasoftTypes.go",
     "configstation/doc.go",
     "configstation/funcWithAllOptionalInputs.go",
     "configstation/init.go",
-    "configstation/internal/pulumiUtilities.go",
-    "configstation/internal/pulumiVersion.go",
+    "configstation/internal/khulnasoftUtilities.go",
+    "configstation/internal/khulnasoftVersion.go",
     "configstation/provider.go",
-    "configstation/pulumi-plugin.json",
-    "configstation/pulumiEnums.go",
-    "configstation/pulumiTypes.go"
+    "configstation/khulnasoft-plugin.json",
+    "configstation/khulnasoftEnums.go",
+    "configstation/khulnasoftTypes.go"
   ]
 }

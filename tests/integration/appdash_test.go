@@ -19,7 +19,7 @@ package ints
 import (
 	"os"
 
-	"github.com/pulumi/appdash"
+	"github.com/khulnasoft/appdash"
 )
 
 func ReadMemoryStoreFromFile(file string) (*appdash.MemoryStore, error) {

@@ -6,8 +6,8 @@ Creates and manages Scaleway Kubernetes clusters. For more information, see [the
 
 <!--Start PulumiCodeChooser -->
 ```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as scaleway from "@pulumiverse/scaleway";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as scaleway from "@khulnasoftverse/scaleway";
 
 const hedy = new scaleway.VpcPrivateNetwork("hedy", {});
 const jack = new scaleway.KubernetesCluster("jack", {
@@ -23,8 +23,8 @@ const john = new scaleway.KubernetesNodePool("john", {
 });
 ```
 ```python
-import pulumi
-import pulumiverse_scaleway as scaleway
+import khulnasoft
+import khulnasoftverse_scaleway as scaleway
 
 hedy = scaleway.VpcPrivateNetwork("hedy")
 jack = scaleway.KubernetesCluster("jack",
@@ -68,29 +68,29 @@ return await Deployment.RunAsync(() =>
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoftverse/khulnasoft-scaleway/sdk/go/scaleway"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		hedy, err := scaleway.NewVpcPrivateNetwork(ctx, "hedy", nil)
 		if err != nil {
 			return err
 		}
 		jack, err := scaleway.NewKubernetesCluster(ctx, "jack", \u0026scaleway.KubernetesClusterArgs{
-			Version:                   pulumi.String("1.24.3"),
-			Cni:                       pulumi.String("cilium"),
+			Version:                   khulnasoft.String("1.24.3"),
+			Cni:                       khulnasoft.String("cilium"),
 			PrivateNetworkId:          hedy.ID(),
-			DeleteAdditionalResources: pulumi.Bool(false),
+			DeleteAdditionalResources: khulnasoft.Bool(false),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = scaleway.NewKubernetesNodePool(ctx, "john", \u0026scaleway.KubernetesNodePoolArgs{
 			ClusterId: jack.ID(),
-			NodeType:  pulumi.String("DEV1-M"),
-			Size:      pulumi.Int(1),
+			NodeType:  khulnasoft.String("DEV1-M"),
+			Size:      khulnasoft.Int(1),
 		})
 		if err != nil {
 			return err
@@ -102,14 +102,14 @@ func main() {
 ```java
 package generated_program;
 
-import com.pulumi.Context;
-import com.pulumi.Pulumi;
-import com.pulumi.core.Output;
-import com.pulumi.scaleway.VpcPrivateNetwork;
-import com.pulumi.scaleway.KubernetesCluster;
-import com.pulumi.scaleway.KubernetesClusterArgs;
-import com.pulumi.scaleway.KubernetesNodePool;
-import com.pulumi.scaleway.KubernetesNodePoolArgs;
+import com.khulnasoft.Context;
+import com.khulnasoft.Pulumi;
+import com.khulnasoft.core.Output;
+import com.khulnasoft.scaleway.VpcPrivateNetwork;
+import com.khulnasoft.scaleway.KubernetesCluster;
+import com.khulnasoft.scaleway.KubernetesClusterArgs;
+import com.khulnasoft.scaleway.KubernetesNodePool;
+import com.khulnasoft.scaleway.KubernetesNodePoolArgs;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -165,8 +165,8 @@ resources:
 
 <!--Start PulumiCodeChooser -->
 ```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as scaleway from "@pulumiverse/scaleway";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as scaleway from "@khulnasoftverse/scaleway";
 
 const henry = new scaleway.KubernetesCluster("henry", {
     type: "multicloud",
@@ -182,8 +182,8 @@ const friendFromOuterSpace = new scaleway.KubernetesNodePool("friendFromOuterSpa
 });
 ```
 ```python
-import pulumi
-import pulumiverse_scaleway as scaleway
+import khulnasoft
+import khulnasoftverse_scaleway as scaleway
 
 henry = scaleway.KubernetesCluster("henry",
     type="multicloud",
@@ -226,26 +226,26 @@ return await Deployment.RunAsync(() =>
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoftverse/khulnasoft-scaleway/sdk/go/scaleway"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		henry, err := scaleway.NewKubernetesCluster(ctx, "henry", \u0026scaleway.KubernetesClusterArgs{
-			Type:                      pulumi.String("multicloud"),
-			Version:                   pulumi.String("1.24.3"),
-			Cni:                       pulumi.String("kilo"),
-			DeleteAdditionalResources: pulumi.Bool(false),
+			Type:                      khulnasoft.String("multicloud"),
+			Version:                   khulnasoft.String("1.24.3"),
+			Cni:                       khulnasoft.String("kilo"),
+			DeleteAdditionalResources: khulnasoft.Bool(false),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = scaleway.NewKubernetesNodePool(ctx, "friendFromOuterSpace", \u0026scaleway.KubernetesNodePoolArgs{
 			ClusterId: henry.ID(),
-			NodeType:  pulumi.String("external"),
-			Size:      pulumi.Int(0),
-			MinSize:   pulumi.Int(0),
+			NodeType:  khulnasoft.String("external"),
+			Size:      khulnasoft.Int(0),
+			MinSize:   khulnasoft.Int(0),
 		})
 		if err != nil {
 			return err
@@ -257,13 +257,13 @@ func main() {
 ```java
 package generated_program;
 
-import com.pulumi.Context;
-import com.pulumi.Pulumi;
-import com.pulumi.core.Output;
-import com.pulumi.scaleway.KubernetesCluster;
-import com.pulumi.scaleway.KubernetesClusterArgs;
-import com.pulumi.scaleway.KubernetesNodePool;
-import com.pulumi.scaleway.KubernetesNodePoolArgs;
+import com.khulnasoft.Context;
+import com.khulnasoft.Pulumi;
+import com.khulnasoft.core.Output;
+import com.khulnasoft.scaleway.KubernetesCluster;
+import com.khulnasoft.scaleway.KubernetesClusterArgs;
+import com.khulnasoft.scaleway.KubernetesNodePool;
+import com.khulnasoft.scaleway.KubernetesNodePoolArgs;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -319,8 +319,8 @@ For a detailed example of how to add or run Elastic Metal servers instead of ins
 
 <!--Start PulumiCodeChooser -->
 ```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as scaleway from "@pulumiverse/scaleway";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as scaleway from "@khulnasoftverse/scaleway";
 
 const hedy = new scaleway.VpcPrivateNetwork("hedy", {});
 const johnKubernetesCluster = new scaleway.KubernetesCluster("johnKubernetesCluster", {
@@ -354,8 +354,8 @@ const johnKubernetesNodePool = new scaleway.KubernetesNodePool("johnKubernetesNo
 });
 ```
 ```python
-import pulumi
-import pulumiverse_scaleway as scaleway
+import khulnasoft
+import khulnasoftverse_scaleway as scaleway
 
 hedy = scaleway.VpcPrivateNetwork("hedy")
 john_kubernetes_cluster = scaleway.KubernetesCluster("johnKubernetesCluster",
@@ -437,33 +437,33 @@ return await Deployment.RunAsync(() =>
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoftverse/khulnasoft-scaleway/sdk/go/scaleway"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		hedy, err := scaleway.NewVpcPrivateNetwork(ctx, "hedy", nil)
 		if err != nil {
 			return err
 		}
 		johnKubernetesCluster, err := scaleway.NewKubernetesCluster(ctx, "johnKubernetesCluster", \u0026scaleway.KubernetesClusterArgs{
-			Description: pulumi.String("my awesome cluster"),
-			Version:     pulumi.String("1.24.3"),
-			Cni:         pulumi.String("calico"),
-			Tags: pulumi.StringArray{
-				pulumi.String("i'm an awesome tag"),
-				pulumi.String("yay"),
+			Description: khulnasoft.String("my awesome cluster"),
+			Version:     khulnasoft.String("1.24.3"),
+			Cni:         khulnasoft.String("calico"),
+			Tags: khulnasoft.StringArray{
+				khulnasoft.String("i'm an awesome tag"),
+				khulnasoft.String("yay"),
 			},
 			PrivateNetworkId:          hedy.ID(),
-			DeleteAdditionalResources: pulumi.Bool(false),
+			DeleteAdditionalResources: khulnasoft.Bool(false),
 			AutoscalerConfig: \u0026scaleway.KubernetesClusterAutoscalerConfigArgs{
-				DisableScaleDown:             pulumi.Bool(false),
-				ScaleDownDelayAfterAdd:       pulumi.String("5m"),
-				Estimator:                    pulumi.String("binpacking"),
-				Expander:                     pulumi.String("random"),
-				IgnoreDaemonsetsUtilization:  pulumi.Bool(true),
-				BalanceSimilarNodeGroups:     pulumi.Bool(true),
+				DisableScaleDown:             khulnasoft.Bool(false),
+				ScaleDownDelayAfterAdd:       khulnasoft.String("5m"),
+				Estimator:                    khulnasoft.String("binpacking"),
+				Expander:                     khulnasoft.String("random"),
+				IgnoreDaemonsetsUtilization:  khulnasoft.Bool(true),
+				BalanceSimilarNodeGroups:     khulnasoft.Bool(true),
 				ExpendablePodsPriorityCutoff: -5,
 			},
 		})
@@ -472,12 +472,12 @@ func main() {
 		}
 		_, err = scaleway.NewKubernetesNodePool(ctx, "johnKubernetesNodePool", \u0026scaleway.KubernetesNodePoolArgs{
 			ClusterId:   johnKubernetesCluster.ID(),
-			NodeType:    pulumi.String("DEV1-M"),
-			Size:        pulumi.Int(3),
-			Autoscaling: pulumi.Bool(true),
-			Autohealing: pulumi.Bool(true),
-			MinSize:     pulumi.Int(1),
-			MaxSize:     pulumi.Int(5),
+			NodeType:    khulnasoft.String("DEV1-M"),
+			Size:        khulnasoft.Int(3),
+			Autoscaling: khulnasoft.Bool(true),
+			Autohealing: khulnasoft.Bool(true),
+			MinSize:     khulnasoft.Int(1),
+			MaxSize:     khulnasoft.Int(5),
 		})
 		if err != nil {
 			return err
@@ -498,11 +498,11 @@ Before:
 ```java
 package generated_program;
 
-import com.pulumi.Context;
-import com.pulumi.Pulumi;
-import com.pulumi.core.Output;
-import com.pulumi.scaleway.KubernetesCluster;
-import com.pulumi.scaleway.KubernetesClusterArgs;
+import com.khulnasoft.Context;
+import com.khulnasoft.Pulumi;
+import com.khulnasoft.core.Output;
+import com.khulnasoft.scaleway.KubernetesCluster;
+import com.khulnasoft.scaleway.KubernetesClusterArgs;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -542,8 +542,8 @@ After:
 
 <!--Start PulumiCodeChooser -->
 ```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as scaleway from "@pulumiverse/scaleway";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as scaleway from "@khulnasoftverse/scaleway";
 
 const jack = new scaleway.KubernetesCluster("jack", {
     version: "1.18.0",
@@ -556,8 +556,8 @@ const _default = new scaleway.KubernetesNodePool("default", {
 });
 ```
 ```python
-import pulumi
-import pulumiverse_scaleway as scaleway
+import khulnasoft
+import khulnasoftverse_scaleway as scaleway
 
 jack = scaleway.KubernetesCluster("jack",
     version="1.18.0",
@@ -594,23 +594,23 @@ return await Deployment.RunAsync(() =>
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoftverse/khulnasoft-scaleway/sdk/go/scaleway"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		jack, err := scaleway.NewKubernetesCluster(ctx, "jack", \u0026scaleway.KubernetesClusterArgs{
-			Version: pulumi.String("1.18.0"),
-			Cni:     pulumi.String("cilium"),
+			Version: khulnasoft.String("1.18.0"),
+			Cni:     khulnasoft.String("cilium"),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = scaleway.NewKubernetesNodePool(ctx, "default", \u0026scaleway.KubernetesNodePoolArgs{
 			ClusterId: jack.ID(),
-			NodeType:  pulumi.String("DEV1-M"),
-			Size:      pulumi.Int(1),
+			NodeType:  khulnasoft.String("DEV1-M"),
+			Size:      khulnasoft.Int(1),
 		})
 		if err != nil {
 			return err
@@ -622,13 +622,13 @@ func main() {
 ```java
 package generated_program;
 
-import com.pulumi.Context;
-import com.pulumi.Pulumi;
-import com.pulumi.core.Output;
-import com.pulumi.scaleway.KubernetesCluster;
-import com.pulumi.scaleway.KubernetesClusterArgs;
-import com.pulumi.scaleway.KubernetesNodePool;
-import com.pulumi.scaleway.KubernetesNodePoolArgs;
+import com.khulnasoft.Context;
+import com.khulnasoft.Pulumi;
+import com.khulnasoft.core.Output;
+import com.khulnasoft.scaleway.KubernetesCluster;
+import com.khulnasoft.scaleway.KubernetesClusterArgs;
+import com.khulnasoft.scaleway.KubernetesNodePool;
+import com.khulnasoft.scaleway.KubernetesNodePoolArgs;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -678,7 +678,7 @@ Once you have moved all the `default_pool` into their own object, you will need 
 $ terraform import scaleway_k8s_pool.default fr-par/11111111-1111-1111-1111-111111111111
 ```
 
-Then you will only need to type `pulumi up` to have a smooth migration.
+Then you will only need to type `khulnasoft up` to have a smooth migration.
 
 ## Import
 
@@ -687,6 +687,6 @@ Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
 bash
 
 ```sh
-$ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
+$ khulnasoft import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
 ```
 

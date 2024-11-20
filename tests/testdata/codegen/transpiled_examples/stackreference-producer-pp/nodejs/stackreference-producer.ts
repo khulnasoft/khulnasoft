@@ -1,3 +1,3 @@
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-export const imageName = "pulumi/pulumi:latest";
+export const imageName = "khulnasoft/khulnasoft:latest";

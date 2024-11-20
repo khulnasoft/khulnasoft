@@ -1,5 +1,5 @@
 import asyncio
-import pulumi
+import khulnasoft
 
 
 async def raises():
@@ -13,5 +13,5 @@ async def catches():
     except Exception:
         return "oh yeah"
 
-output = pulumi.Output.from_input(catches())
+output = khulnasoft.Output.from_input(catches())
 output.apply(print)

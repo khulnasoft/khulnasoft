@@ -17,7 +17,7 @@ package env_test
 import (
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/env"
 	"github.com/stretchr/testify/assert"
 )
 

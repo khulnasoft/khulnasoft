@@ -24,8 +24,8 @@ import (
 	. "github.com/khulnasoft/khulnasoft/pkg/v3/engine" //nolint:revive
 	lt "github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/framework"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
 )
 
 // TestResourceReferences tests that resource references can be marshaled between the engine, language host,
@@ -279,7 +279,7 @@ func TestResourceReferences_DownlevelEngine(t *testing.T) {
 	p.Run(t, nil)
 }
 
-// TestResourceReferences_GetResource tests that invoking the built-in 'pulumi:pulumi:getResource' function
+// TestResourceReferences_GetResource tests that invoking the built-in 'khulnasoft:khulnasoft:getResource' function
 // returns resource references for any resource reference in a resource's state.
 func TestResourceReferences_GetResource(t *testing.T) {
 	t.Parallel()
@@ -325,9 +325,9 @@ func TestResourceReferences_GetResource(t *testing.T) {
 			})
 		assert.NoError(t, err)
 
-		// Expect the `child` property from `resContainer`'s state to come back from 'pulumi:pulumi:getResource'
+		// Expect the `child` property from `resContainer`'s state to come back from 'khulnasoft:khulnasoft:getResource'
 		// as a resource reference.
-		result, failures, err := monitor.Invoke("pulumi:pulumi:getResource", resource.PropertyMap{
+		result, failures, err := monitor.Invoke("khulnasoft:khulnasoft:getResource", resource.PropertyMap{
 			"urn": resource.NewStringProperty(string(resp.URN)),
 		}, "", "", "")
 		assert.NoError(t, err)

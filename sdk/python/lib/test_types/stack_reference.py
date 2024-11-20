@@ -1,4 +1,4 @@
-import pulumi
+import khulnasoft
 
-ref = pulumi.StackReference("ref")
-ref.outputs["bucket"].apply(lambda bucket: pulumi.log.info(f"Bucket: {bucket}"))
+ref = khulnasoft.StackReference("ref")
+ref.outputs["bucket"].apply(lambda bucket: khulnasoft.log.info(f"Bucket: {bucket}"))

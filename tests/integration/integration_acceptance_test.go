@@ -25,9 +25,9 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // TestConfigSave ensures that config commands in the Pulumi CLI work as expected.
@@ -45,33 +45,33 @@ func TestConfigSave(t *testing.T) {
 
 	err := project.Save(path)
 	assert.NoError(t, err)
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", "testing-2")
-	e.RunCommand("pulumi", "stack", "init", "testing-1")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "stack", "init", "testing-2")
+	e.RunCommand("khulnasoft", "stack", "init", "testing-1")
 
 	// Now configure and save a few different things:
-	e.RunCommand("pulumi", "config", "set", "configA", "value1")
-	e.RunCommand("pulumi", "config", "set", "configB", "value2", "--stack", "testing-2")
+	e.RunCommand("khulnasoft", "config", "set", "configA", "value1")
+	e.RunCommand("khulnasoft", "config", "set", "configB", "value2", "--stack", "testing-2")
 
-	e.RunCommand("pulumi", "stack", "select", "testing-2")
+	e.RunCommand("khulnasoft", "stack", "select", "testing-2")
 
-	e.RunCommand("pulumi", "config", "set", "configD", "value4")
-	e.RunCommand("pulumi", "config", "set", "configC", "value3", "--stack", "testing-1")
+	e.RunCommand("khulnasoft", "config", "set", "configD", "value4")
+	e.RunCommand("khulnasoft", "config", "set", "configC", "value3", "--stack", "testing-1")
 
 	// Now read back the config using the CLI:
 	{
-		stdout, _ := e.RunCommand("pulumi", "config", "get", "configB")
+		stdout, _ := e.RunCommand("khulnasoft", "config", "get", "configB")
 		assert.Equal(t, "value2\n", stdout)
 	}
 	{
 		// the config in a different stack, so this should error.
-		stdout, stderr := e.RunCommandExpectError("pulumi", "config", "get", "configA")
+		stdout, stderr := e.RunCommandExpectError("khulnasoft", "config", "get", "configA")
 		assert.Equal(t, "", stdout)
 		assert.NotEqual(t, "", stderr)
 	}
 	{
 		// but selecting the stack should let you see it
-		stdout, _ := e.RunCommand("pulumi", "config", "get", "configA", "--stack", "testing-1")
+		stdout, _ := e.RunCommand("khulnasoft", "config", "get", "configA", "--stack", "testing-1")
 		assert.Equal(t, "value1\n", stdout)
 	}
 
@@ -100,7 +100,7 @@ func TestConfigSave(t *testing.T) {
 	validate("configB", "value2", testStack2.Config)
 	validate("configD", "value4", testStack2.Config)
 
-	e.RunCommand("pulumi", "stack", "rm", "--yes")
+	e.RunCommand("khulnasoft", "stack", "rm", "--yes")
 }
 
 func TestRotatePassphrase(t *testing.T) {
@@ -110,19 +110,19 @@ func TestRotatePassphrase(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 
 	e.ImportDirectory("rotate_passphrase")
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
-	e.RunCommand("pulumi", "stack", "init", "dev")
-	e.RunCommand("pulumi", "up", "--skip-preview", "--yes")
+	e.RunCommand("khulnasoft", "stack", "init", "dev")
+	e.RunCommand("khulnasoft", "up", "--skip-preview", "--yes")
 
-	e.RunCommand("pulumi", "config", "set", "--secret", "foo", "bar")
+	e.RunCommand("khulnasoft", "config", "set", "--secret", "foo", "bar")
 
 	e.SetEnvVars("PULUMI_TEST_PASSPHRASE=true")
 	e.Stdin = strings.NewReader("qwerty\nqwerty\n")
-	e.RunCommand("pulumi", "stack", "change-secrets-provider", "passphrase")
+	e.RunCommand("khulnasoft", "stack", "change-secrets-provider", "passphrase")
 
 	e.Stdin, e.Passphrase = nil, "qwerty"
-	e.RunCommand("pulumi", "config", "get", "foo")
+	e.RunCommand("khulnasoft", "config", "get", "foo")
 }
 
 //nolint:paralleltest // uses parallel programtest
@@ -132,7 +132,7 @@ func TestJSONOutputWithStreamingPreview(t *testing.T) {
 	// Test with env var for streaming preview (should *not* print previewSummary).
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir:          filepath.Join("stack_outputs", "nodejs"),
-		Dependencies: []string{"@pulumi/pulumi"},
+		Dependencies: []string{"@khulnasoft/khulnasoft"},
 		Stdout:       stdout,
 		Verbose:      true,
 		JSONOutput:   true,
@@ -162,10 +162,10 @@ func TestPassphrasePrompting(t *testing.T) {
 	// even though the test won't be interactive.
 	e.SetEnvVars("PULUMI_TEST_PASSPHRASE=true")
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
 	e.Stdin = strings.NewReader("qwerty\nqwerty\n")
-	e.RunCommand("pulumi", "new", "go",
+	e.RunCommand("khulnasoft", "new", "go",
 		"--name", "pphraseprompt",
 		"--description", "A project that tests passphrase prompts",
 		"--stack", "dev",
@@ -174,14 +174,14 @@ func TestPassphrasePrompting(t *testing.T) {
 		"--force")
 
 	e.Stdin = strings.NewReader("qwerty\n")
-	e.RunCommand("pulumi", "up", "--stack", "dev", "--skip-preview", "--yes")
+	e.RunCommand("khulnasoft", "up", "--stack", "dev", "--skip-preview", "--yes")
 
 	e.Stdin = strings.NewReader("qwerty\n")
-	e.RunCommand("pulumi", "stack", "export", "--stack", "dev", "--file", "stack.json")
+	e.RunCommand("khulnasoft", "stack", "export", "--stack", "dev", "--file", "stack.json")
 
 	e.Stdin = strings.NewReader("qwerty\n")
-	e.RunCommand("pulumi", "stack", "import", "--stack", "dev", "--file", "stack.json")
+	e.RunCommand("khulnasoft", "stack", "import", "--stack", "dev", "--file", "stack.json")
 
 	e.Stdin = strings.NewReader("qwerty\n")
-	e.RunCommand("pulumi", "destroy", "--stack", "dev", "--skip-preview", "--yes")
+	e.RunCommand("khulnasoft", "destroy", "--stack", "dev", "--skip-preview", "--yes")
 }

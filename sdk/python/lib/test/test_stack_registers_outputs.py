@@ -16,23 +16,23 @@
 there are no outputs. This makes sure removing stack outputs from a
 program actually deletes them from the stack.
 
-Regresses https://github.com/pulumi/pulumi/issues/8273
+Regresses https://github.com/khulnasoft/khulnasoft/issues/8273
 
 """
 
 from copy import deepcopy
 
 import pytest
-from pulumi.runtime import settings, mocks
-import pulumi
+from khulnasoft.runtime import settings, mocks
+import khulnasoft
 
 
-class MyMocks(pulumi.runtime.Mocks):
+class MyMocks(khulnasoft.runtime.Mocks):
 
-    def new_resource(self, args: pulumi.runtime.MockResourceArgs):
+    def new_resource(self, args: khulnasoft.runtime.MockResourceArgs):
         raise Exception("new_resource")
 
-    def call(self, args: pulumi.runtime.MockCallArgs):
+    def call(self, args: khulnasoft.runtime.MockCallArgs):
         raise Exception("call")
 
 
@@ -64,6 +64,6 @@ def my_mocks():
         assert isinstance(monitor.outputs.urn, str)
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_stack_registers_outputs(my_mocks):
     pass

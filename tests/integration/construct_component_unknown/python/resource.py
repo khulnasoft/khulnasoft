@@ -2,8 +2,8 @@
 
 from typing import Any, Optional
 
-import pulumi
-import pulumi.dynamic as dynamic
+import khulnasoft
+import khulnasoft.dynamic as dynamic
 
 
 _ID = 0
@@ -17,5 +17,5 @@ class MyDynamicProvider(dynamic.ResourceProvider):
 
 
 class Resource(dynamic.Resource):
-    def __init__(self, name: str, opts: Optional[pulumi.ResourceOptions]=None):
+    def __init__(self, name: str, opts: Optional[khulnasoft.ResourceOptions]=None):
         super().__init__(MyDynamicProvider(), name, {}, opts)

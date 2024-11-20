@@ -7,18 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/tests/testdata/codegen/methods-return-plain-resource/go/metaprovider/internal"
+	"github.com/khulnasoft/khulnasoft-tls/sdk/v4/go/tls"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/tests/testdata/codegen/methods-return-plain-resource/go/metaprovider/internal"
 )
 
 type Configurer struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 // NewConfigurer registers a new resource with the given unique name, arguments, and options.
-func NewConfigurer(ctx *pulumi.Context,
-	name string, args *ConfigurerArgs, opts ...pulumi.ResourceOption) (*Configurer, error) {
+func NewConfigurer(ctx *khulnasoft.Context,
+	name string, args *ConfigurerArgs, opts ...khulnasoft.ResourceOption) (*Configurer, error) {
 	if args == nil {
 		args = &ConfigurerArgs{}
 	}
@@ -33,71 +33,71 @@ func NewConfigurer(ctx *pulumi.Context,
 }
 
 type configurerArgs struct {
-	TlsProxy *string `pulumi:"tlsProxy"`
+	TlsProxy *string `khulnasoft:"tlsProxy"`
 }
 
 // The set of arguments for constructing a Configurer resource.
 type ConfigurerArgs struct {
-	TlsProxy pulumi.StringPtrInput
+	TlsProxy khulnasoft.StringPtrInput
 }
 
 func (ConfigurerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*configurerArgs)(nil)).Elem()
 }
 
-func (r *Configurer) MeaningOfLife(ctx *pulumi.Context) (o int, e error) {
+func (r *Configurer) MeaningOfLife(ctx *khulnasoft.Context) (o int, e error) {
 	internal.CallPlain(ctx, "metaprovider:index:Configurer/meaningOfLife", nil, ConfigurerMeaningOfLifeResultOutput{}, r, "Res", reflect.ValueOf(&o), &e)
 	return
 }
 
 type ConfigurerMeaningOfLifeResult struct {
-	Res int `pulumi:"res"`
+	Res int `khulnasoft:"res"`
 }
 
-type ConfigurerMeaningOfLifeResultOutput struct{ *pulumi.OutputState }
+type ConfigurerMeaningOfLifeResultOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigurerMeaningOfLifeResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ConfigurerMeaningOfLifeResult)(nil)).Elem()
 }
 
-func (o ConfigurerMeaningOfLifeResultOutput) Res() pulumi.IntOutput {
-	return o.ApplyT(func(v ConfigurerMeaningOfLifeResult) int { return v.Res }).(pulumi.IntOutput)
+func (o ConfigurerMeaningOfLifeResultOutput) Res() khulnasoft.IntOutput {
+	return o.ApplyT(func(v ConfigurerMeaningOfLifeResult) int { return v.Res }).(khulnasoft.IntOutput)
 }
 
-func (r *Configurer) ObjectMix(ctx *pulumi.Context) (o ConfigurerObjectMixResult, e error) {
+func (r *Configurer) ObjectMix(ctx *khulnasoft.Context) (o ConfigurerObjectMixResult, e error) {
 	internal.CallPlain(ctx, "metaprovider:index:Configurer/objectMix", nil, ConfigurerObjectMixResultOutput{}, r, "", reflect.ValueOf(&o), &e)
 	return
 }
 
 type ConfigurerObjectMixResult struct {
-	MeaningOfLife *int          `pulumi:"meaningOfLife"`
-	Provider      *tls.Provider `pulumi:"provider"`
+	MeaningOfLife *int          `khulnasoft:"meaningOfLife"`
+	Provider      *tls.Provider `khulnasoft:"provider"`
 }
 
-type ConfigurerObjectMixResultOutput struct{ *pulumi.OutputState }
+type ConfigurerObjectMixResultOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigurerObjectMixResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ConfigurerObjectMixResult)(nil)).Elem()
 }
 
-func (o ConfigurerObjectMixResultOutput) MeaningOfLife() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ConfigurerObjectMixResult) *int { return v.MeaningOfLife }).(pulumi.IntPtrOutput)
+func (o ConfigurerObjectMixResultOutput) MeaningOfLife() khulnasoft.IntPtrOutput {
+	return o.ApplyT(func(v ConfigurerObjectMixResult) *int { return v.MeaningOfLife }).(khulnasoft.IntPtrOutput)
 }
 
 func (o ConfigurerObjectMixResultOutput) Provider() tls.ProviderOutput {
 	return o.ApplyT(func(v ConfigurerObjectMixResult) *tls.Provider { return v.Provider }).(tls.ProviderOutput)
 }
 
-func (r *Configurer) TlsProvider(ctx *pulumi.Context) (o *tls.Provider, e error) {
+func (r *Configurer) TlsProvider(ctx *khulnasoft.Context) (o *tls.Provider, e error) {
 	internal.CallPlain(ctx, "metaprovider:index:Configurer/tlsProvider", nil, ConfigurerTlsProviderResultOutput{}, r, "Res", reflect.ValueOf(&o), &e)
 	return
 }
 
 type ConfigurerTlsProviderResult struct {
-	Res *tls.Provider `pulumi:"res"`
+	Res *tls.Provider `khulnasoft:"res"`
 }
 
-type ConfigurerTlsProviderResultOutput struct{ *pulumi.OutputState }
+type ConfigurerTlsProviderResultOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigurerTlsProviderResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ConfigurerTlsProviderResult)(nil)).Elem()
@@ -108,7 +108,7 @@ func (o ConfigurerTlsProviderResultOutput) Res() tls.ProviderOutput {
 }
 
 type ConfigurerInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConfigurerOutput() ConfigurerOutput
 	ToConfigurerOutputWithContext(ctx context.Context) ConfigurerOutput
@@ -123,10 +123,10 @@ func (i *Configurer) ToConfigurerOutput() ConfigurerOutput {
 }
 
 func (i *Configurer) ToConfigurerOutputWithContext(ctx context.Context) ConfigurerOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigurerOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConfigurerOutput)
 }
 
-type ConfigurerOutput struct{ *pulumi.OutputState }
+type ConfigurerOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigurerOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Configurer)(nil)).Elem()
@@ -141,7 +141,7 @@ func (o ConfigurerOutput) ToConfigurerOutputWithContext(ctx context.Context) Con
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ConfigurerInput)(nil)).Elem(), &Configurer{})
-	pulumi.RegisterOutputType(ConfigurerOutput{})
-	pulumi.RegisterOutputType(ConfigurerObjectMixResultOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConfigurerInput)(nil)).Elem(), &Configurer{})
+	khulnasoft.RegisterOutputType(ConfigurerOutput{})
+	khulnasoft.RegisterOutputType(ConfigurerObjectMixResultOutput{})
 }

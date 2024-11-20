@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as pulumi from "@pulumi/pulumi"; // @pulumi dependency is not included;
+import * as khulnasoft from "@khulnasoft/khulnasoft"; // @khulnasoft dependency is not included;
 import * as pathExists from "path-exists"; // npm dependency
 import * as relative from "./relative"; // local dependency
 
-const dynamicProvider: pulumi.dynamic.ResourceProvider = {
+const dynamicProvider: khulnasoft.dynamic.ResourceProvider = {
   async create(inputs) {
     return {
       id: `dyn-${Math.ceil(Math.random() * 1000)}`, outs: { isFinite: isFinite(42), magic: relative.fun() }
@@ -24,8 +24,8 @@ const dynamicProvider: pulumi.dynamic.ResourceProvider = {
   }
 }
 
-export class MyDynamicProviderResource extends pulumi.dynamic.Resource {
-  constructor(name: string, opts?: pulumi.CustomResourceOptions) {
+export class MyDynamicProviderResource extends khulnasoft.dynamic.Resource {
+  constructor(name: string, opts?: khulnasoft.CustomResourceOptions) {
     super(dynamicProvider, name, {}, opts);
   }
 }

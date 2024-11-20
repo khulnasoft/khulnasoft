@@ -46,7 +46,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo: pulumi/pulumictl
+          repo: khulnasoft/khulnasoftctl
           tag: v0.0.46
           cache: enable
       - name: Git describe
@@ -56,13 +56,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PULUMI_BOT_TOKEN }}
         # Always prefix the short_sha with a letter to ensure it's a valid semver prerelease,
-        # see https://github.com/pulumi/pulumi/issues/15471 for context.
+        # see https://github.com/khulnasoft/khulnasoft/issues/15471 for context.
         run: |
-          if [ "$(git ls-remote https://github.com/pulumi/pulumi HEAD | cut -f 1)" = "${{ github.sha }}" ]; then
+          if [ "$(git ls-remote https://github.com/khulnasoft/khulnasoft HEAD | cut -f 1)" = "${{ github.sha }}" ]; then
             short_sha="x${{ steps.ghd.outputs.short-sha }}"
             version="${{ needs.info.outputs.version }}"
             version="${version#v}-alpha.${short_sha}"
-            pulumictl dispatch -c pulumi-cli-dev-version -r pulumi/docs dev_version="$version"
+            khulnasoftctl dispatch -c khulnasoft-cli-dev-version -r khulnasoft/docs dev_version="$version"
           else
             echo "Not updating latest version as there has been a new push to the main branch"
           fi

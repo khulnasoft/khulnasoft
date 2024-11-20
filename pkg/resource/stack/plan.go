@@ -19,9 +19,9 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
 )
 
 func SerializePlanDiff(

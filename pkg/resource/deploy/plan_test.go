@@ -18,7 +18,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -273,7 +273,7 @@ func TestResourcePlan(t *testing.T) {
 						resource.PropertyMap{},
 						resource.PropertyMap{},
 						&resource.Goal{
-							Provider: "urn:pulumi:dev::random::pulumi:providers:random::default_4_13_2::provider-foo",
+							Provider: "urn:khulnasoft:dev::random::khulnasoft:providers:random::default_4_13_2::provider-foo",
 						})
 					assert.ErrorContains(t, err, "failed to parse provider reference")
 				})
@@ -281,7 +281,7 @@ func TestResourcePlan(t *testing.T) {
 					t.Parallel()
 					rp := &ResourcePlan{
 						Goal: &GoalPlan{
-							Provider: "urn:pulumi:dev::random::pulumi:providers:random::default_4_13_2::provider-bar",
+							Provider: "urn:khulnasoft:dev::random::khulnasoft:providers:random::default_4_13_2::provider-bar",
 						},
 					}
 					err := rp.checkGoal(
@@ -297,14 +297,14 @@ func TestResourcePlan(t *testing.T) {
 				t.Parallel()
 				rp := &ResourcePlan{
 					Goal: &GoalPlan{
-						Provider: "urn:pulumi:dev::random::pulumi:providers:random::default_4_13_2::provider-bar",
+						Provider: "urn:khulnasoft:dev::random::khulnasoft:providers:random::default_4_13_2::provider-bar",
 					},
 				}
 				err := rp.checkGoal(
 					resource.PropertyMap{},
 					resource.PropertyMap{},
 					&resource.Goal{
-						Provider: "urn:pulumi:dev::random::pulumi:providers:random::default_4_13_2::provider-foo",
+						Provider: "urn:khulnasoft:dev::random::khulnasoft:providers:random::default_4_13_2::provider-foo",
 					})
 				assert.ErrorContains(t, err, "provider changed")
 			})

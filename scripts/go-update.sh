@@ -10,7 +10,7 @@ do
     (
         cd "$(dirname $f)"
 
-        go get -u github.com/pulumi/pulumi/sdk/v3
+        go get -u github.com/khulnasoft/khulnasoft/sdk/v3
         go get -u github.com/khulnasoft/khulnasoft/pkg/v3
         go mod tidy -go=1.18
     )

@@ -24,8 +24,8 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 func TestProjectRoundtripComments(t *testing.T) {
@@ -34,9 +34,9 @@ func TestProjectRoundtripComments(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	pulumiProject := `
+	khulnasoftProject := `
 # 🔴 header comment
-name: pulumi-test
+name: khulnasoft-test
 runtime: yaml
 config:
   first-value:
@@ -60,7 +60,7 @@ resources:
 # 🟥 footer comment
 `
 
-	integration.CreatePulumiRepo(e, pulumiProject)
+	integration.CreatePulumiRepo(e, khulnasoftProject)
 	projFilename := filepath.Join(e.CWD, workspace.ProjectFile+".yaml")
 	// TODO: Replace this with config set --project after implemented.
 	proj, err := workspace.LoadProject(projFilename)
@@ -78,7 +78,7 @@ resources:
 
 	// Project file:
 	want := autogold.Want("roundtrip-project", `# 🔴 header comment
-name: pulumi-test
+name: khulnasoft-test
 runtime: yaml
 config:
   first-value:
@@ -113,14 +113,14 @@ func TestConfigRoundtripComments(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	pulumiProject := `
+	khulnasoftProject := `
 name: foo
 runtime: yaml
 `
 
-	integration.CreatePulumiRepo(e, pulumiProject)
+	integration.CreatePulumiRepo(e, khulnasoftProject)
 	e.SetBackend(e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", "test")
+	e.RunCommand("khulnasoft", "stack", "init", "test")
 	e.Passphrase = "TestConfigRoundtripComments"
 	configFilename := filepath.Join(e.CWD, workspace.ProjectFile+".test.yaml")
 
@@ -144,8 +144,8 @@ config:
 
 # 🟥 footer comment`), 0o600)
 	require.NoError(t, err)
-	e.RunCommand("pulumi", "config", "set", "e", "E")
-	e.RunCommand("pulumi", "config", "set", "--path", "c.c[2]", "three")
+	e.RunCommand("khulnasoft", "config", "set", "e", "E")
+	e.RunCommand("khulnasoft", "config", "set", "--path", "c.c[2]", "three")
 
 	projData, err := os.ReadFile(configFilename)
 	require.NoError(t, err)

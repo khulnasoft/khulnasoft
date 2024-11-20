@@ -15,10 +15,10 @@ PULUMI_BUILD_MODE=${PULUMI_BUILD_MODE:-}
 
 COVER_PACKAGES=( \
     "github.com/khulnasoft/khulnasoft/pkg/v3/..." \
-    "github.com/pulumi/pulumi/sdk/v3/..." \
-    "github.com/pulumi/pulumi/sdk/go/pulumi-language-go/v3/..." \
-    "github.com/pulumi/pulumi/sdk/nodejs/cmd/pulumi-language-nodejs/v3/..." \
-    "github.com/pulumi/pulumi/sdk/python/cmd/pulumi-language-python/v3/..." \
+    "github.com/khulnasoft/khulnasoft/sdk/v3/..." \
+    "github.com/khulnasoft/khulnasoft/sdk/go/khulnasoft-language-go/v3/..." \
+    "github.com/khulnasoft/khulnasoft/sdk/nodejs/cmd/khulnasoft-language-nodejs/v3/..." \
+    "github.com/khulnasoft/khulnasoft/sdk/python/cmd/khulnasoft-language-python/v3/..." \
 )
 
 # Join COVER_PACKAGES with commas.

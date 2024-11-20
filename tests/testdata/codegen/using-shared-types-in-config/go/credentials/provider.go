@@ -8,22 +8,22 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"using-shared-types-in-config/credentials/internal"
 )
 
 type Provider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 
 	// The password. It is very secret.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
+	Password khulnasoft.StringPtrOutput `khulnasoft:"password"`
 	// The username. Its important but not secret.
-	User pulumi.StringOutput `pulumi:"user"`
+	User khulnasoft.StringOutput `khulnasoft:"user"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
-func NewProvider(ctx *pulumi.Context,
-	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
+func NewProvider(ctx *khulnasoft.Context,
+	name string, args *ProviderArgs, opts ...khulnasoft.ResourceOption) (*Provider, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -39,19 +39,19 @@ func NewProvider(ctx *pulumi.Context,
 	}
 	if args.Password == nil {
 		if d := internal.GetEnvOrDefault("", nil, "FOO"); d != nil {
-			args.Password = pulumi.StringPtr(d.(string))
+			args.Password = khulnasoft.StringPtr(d.(string))
 		}
 	}
 	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+		args.Password = khulnasoft.ToSecret(args.Password).(khulnasoft.StringPtrInput)
 	}
-	secrets := pulumi.AdditionalSecretOutputs([]string{
+	secrets := khulnasoft.AdditionalSecretOutputs([]string{
 		"password",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
-	err := ctx.RegisterResource("pulumi:providers:credentials", name, args, &resource, opts...)
+	err := ctx.RegisterResource("khulnasoft:providers:credentials", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,12 +60,12 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	// The (entirely uncryptographic) hash function used to encode the "password".
-	Hash HashKind `pulumi:"hash"`
+	Hash HashKind `khulnasoft:"hash"`
 	// The password. It is very secret.
-	Password *string `pulumi:"password"`
-	Shared   Shared  `pulumi:"shared"`
+	Password *string `khulnasoft:"password"`
+	Shared   Shared  `khulnasoft:"shared"`
 	// The username. Its important but not secret.
-	User string `pulumi:"user"`
+	User string `khulnasoft:"user"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -73,10 +73,10 @@ type ProviderArgs struct {
 	// The (entirely uncryptographic) hash function used to encode the "password".
 	Hash HashKindInput
 	// The password. It is very secret.
-	Password pulumi.StringPtrInput
+	Password khulnasoft.StringPtrInput
 	Shared   SharedInput
 	// The username. Its important but not secret.
-	User pulumi.StringInput
+	User khulnasoft.StringInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -84,7 +84,7 @@ func (ProviderArgs) ElementType() reflect.Type {
 }
 
 type ProviderInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToProviderOutput() ProviderOutput
 	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
@@ -99,10 +99,10 @@ func (i *Provider) ToProviderOutput() ProviderOutput {
 }
 
 func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
-type ProviderOutput struct{ *pulumi.OutputState }
+type ProviderOutput struct{ *khulnasoft.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Provider)(nil)).Elem()
@@ -117,16 +117,16 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 }
 
 // The password. It is very secret.
-func (o ProviderOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+func (o ProviderOutput) Password() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) khulnasoft.StringPtrOutput { return v.Password }).(khulnasoft.StringPtrOutput)
 }
 
 // The username. Its important but not secret.
-func (o ProviderOutput) User() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+func (o ProviderOutput) User() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *Provider) khulnasoft.StringOutput { return v.User }).(khulnasoft.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
-	pulumi.RegisterOutputType(ProviderOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
+	khulnasoft.RegisterOutputType(ProviderOutput{})
 }

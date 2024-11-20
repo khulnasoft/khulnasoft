@@ -37,7 +37,7 @@ type GoogleCredentials struct {
 	ClientID     string `json:"client_id"`
 }
 
-// ResolveGoogleCredentials loads the google credentials using the pulumi-specific
+// ResolveGoogleCredentials loads the google credentials using the khulnasoft-specific
 // logic first, falling back to the DefaultCredentials resoulution after.
 func ResolveGoogleCredentials(ctx context.Context, scope string) (*google.Credentials, error) {
 	// GOOGLE_CREDENTIALS aren't part of the gcloud standard authorization variables

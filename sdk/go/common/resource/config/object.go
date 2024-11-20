@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 var errSecureReprReserved = errors.New(`maps with the single key "secure" are reserved`)

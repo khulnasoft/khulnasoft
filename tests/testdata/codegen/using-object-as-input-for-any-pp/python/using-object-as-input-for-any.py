@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_aws_native as aws_native
+import khulnasoft
+import khulnasoft_aws_native as aws_native
 
 role = aws_native.iam.Role("role",
     role_name="ScriptIAMRole",

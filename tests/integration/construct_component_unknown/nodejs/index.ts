@@ -1,13 +1,13 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
-import * as dynamic from "@pulumi/pulumi/dynamic";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as dynamic from "@khulnasoft/khulnasoft/dynamic";
 import { Component } from "./component";
 
 let currentID = 0;
 
 class Resource extends dynamic.Resource {
-    constructor(name: string, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.CustomResourceOptions) {
         const provider = {
             create: async (inputs: any) => ({
                 id: (currentID++).toString(),

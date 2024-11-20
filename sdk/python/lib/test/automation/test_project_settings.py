@@ -16,7 +16,7 @@ import os
 import tempfile
 import unittest
 
-from pulumi.automation import (
+from khulnasoft.automation import (
     LocalWorkspace,
     ProjectBackend,
     ProjectRuntimeInfo,
@@ -42,7 +42,7 @@ class TestProjectSettings(unittest.TestCase):
                 main="main.py",
                 description="Project description",
                 author="Pulumi",
-                website="https://pulumi.com",
+                website="https://khulnasoft.com",
                 license="Apache-2.0",
                 template=ProjectTemplate(
                     description="Template description",
@@ -84,7 +84,7 @@ class TestProjectSettings(unittest.TestCase):
                 main="main.py",
                 description="Project description",
                 author="Pulumi",
-                website="https://pulumi.com",
+                website="https://khulnasoft.com",
                 license="Apache-2.0",
                 template=ProjectTemplate(
                     description="Template description",

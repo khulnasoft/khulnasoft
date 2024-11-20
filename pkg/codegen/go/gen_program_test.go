@@ -21,7 +21,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 
 	"github.com/hashicorp/hcl/v2"
 	"github.com/stretchr/testify/assert"
@@ -66,7 +66,7 @@ func TestCollectImports(t *testing.T) {
 	}
 
 	assert.Equal(t, []string{
-		`"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/s3"`,
+		`"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/s3"`,
 	}, allImports)
 }
 
@@ -106,35 +106,35 @@ func TestFileImporter(t *testing.T) {
 			},
 		},
 		{
-			desc: "single import/pulumi",
+			desc: "single import/khulnasoft",
 			imports: []importCall{
-				{importPath: "github.com/pulumi/pulumi/sdk/v3/go/pulumi", name: "pulumi", want: "pulumi"},
+				{importPath: "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft", name: "khulnasoft", want: "khulnasoft"},
 			},
 			wantGroups: [][]string{
-				{`"github.com/pulumi/pulumi/sdk/v3/go/pulumi"`},
+				{`"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"`},
 			},
 		},
 		{
-			desc: "std and pulumi/no conflict",
+			desc: "std and khulnasoft/no conflict",
 			imports: []importCall{
 				{importPath: "fmt", name: "fmt", want: "fmt"},
-				{importPath: "github.com/pulumi/pulumi/sdk/v3/go/pulumi", name: "pulumi", want: "pulumi"},
+				{importPath: "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft", name: "khulnasoft", want: "khulnasoft"},
 			},
 			wantGroups: [][]string{
 				{`"fmt"`},
-				{`"github.com/pulumi/pulumi/sdk/v3/go/pulumi"`},
+				{`"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"`},
 			},
 		},
 		{
-			desc: "std and pulumi many imports, no conflict",
+			desc: "std and khulnasoft many imports, no conflict",
 			imports: []importCall{
 				{importPath: "fmt", name: "fmt", want: "fmt"},
-				{importPath: "github.com/pulumi/pulumi/sdk/v3/go/pulumi", name: "pulumi", want: "pulumi"},
-				{importPath: "github.com/pulumi/pulumi/sdk/v3/go/pulumi/config", name: "config", want: "config"},
+				{importPath: "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft", name: "khulnasoft", want: "khulnasoft"},
+				{importPath: "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config", name: "config", want: "config"},
 				{importPath: "encoding/json", name: "json", want: "json"},
-				{importPath: "github.com/pulumi/pulumi-aws/sdk/v5/go/aws/s3", name: "s3", want: "s3"},
+				{importPath: "github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/s3", name: "s3", want: "s3"},
 				{importPath: "io", name: "io", want: "io"},
-				{importPath: "github.com/pulumi/pulumi-awsx/sdk/v5/go/awsx", name: "awsx", want: "awsx"},
+				{importPath: "github.com/khulnasoft/khulnasoft-awsx/sdk/v5/go/awsx", name: "awsx", want: "awsx"},
 			},
 			wantGroups: [][]string{
 				{
@@ -143,42 +143,42 @@ func TestFileImporter(t *testing.T) {
 					`"io"`,
 				},
 				{
-					`"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/s3"`,
-					`"github.com/pulumi/pulumi-awsx/sdk/v5/go/awsx"`,
-					`"github.com/pulumi/pulumi/sdk/v3/go/pulumi"`,
-					`"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"`,
+					`"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/s3"`,
+					`"github.com/khulnasoft/khulnasoft-awsx/sdk/v5/go/awsx"`,
+					`"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"`,
+					`"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"`,
 				},
 			},
 		},
 		{
-			desc: "std and pulumi/conflict",
+			desc: "std and khulnasoft/conflict",
 			imports: []importCall{
 				{importPath: "encoding/json", name: "json", want: "json"},
 				{
 					// This doesn't actually exist yet,
 					// but it's conceivable that it might.
-					importPath: "github.com/pulumi/pulumi-std/sdk/go/std/encoding/json",
+					importPath: "github.com/khulnasoft/khulnasoft-std/sdk/go/std/encoding/json",
 					name:       "json",
 					want:       "encodingjson",
 				},
 			},
 			wantGroups: [][]string{
 				{`"encoding/json"`},
-				{`encodingjson "github.com/pulumi/pulumi-std/sdk/go/std/encoding/json"`},
+				{`encodingjson "github.com/khulnasoft/khulnasoft-std/sdk/go/std/encoding/json"`},
 			},
 		},
 		{
-			desc: "std and pulumi/conflict repeated",
+			desc: "std and khulnasoft/conflict repeated",
 			imports: []importCall{
 				{importPath: "encoding/json", name: "json", want: "json"},
 				{
-					importPath: "github.com/pulumi/pulumi-std/sdk/go/std/encoding/json",
+					importPath: "github.com/khulnasoft/khulnasoft-std/sdk/go/std/encoding/json",
 					name:       "json",
 					want:       "encodingjson",
 				},
 				{importPath: "encoding/json/v2", name: "json", want: "jsonv2"},
 				{
-					importPath: "github.com/pulumi/pulumi-std/sdk/v2/go/std/encoding/json",
+					importPath: "github.com/khulnasoft/khulnasoft-std/sdk/v2/go/std/encoding/json",
 					name:       "json",
 					want:       "json2",
 				},
@@ -189,18 +189,18 @@ func TestFileImporter(t *testing.T) {
 					`jsonv2 "encoding/json/v2"`,
 				},
 				{
-					`encodingjson "github.com/pulumi/pulumi-std/sdk/go/std/encoding/json"`,
-					`json2 "github.com/pulumi/pulumi-std/sdk/v2/go/std/encoding/json"`,
+					`encodingjson "github.com/khulnasoft/khulnasoft-std/sdk/go/std/encoding/json"`,
+					`json2 "github.com/khulnasoft/khulnasoft-std/sdk/v2/go/std/encoding/json"`,
 				},
 			},
 		},
 		{
-			desc: "std and pulumi/conflict reverse",
+			desc: "std and khulnasoft/conflict reverse",
 			imports: []importCall{
 				{
 					// This doesn't actually exist yet,
 					// but it's conceivable that it might.
-					importPath: "github.com/pulumi/pulumi-std/sdk/go/std/encoding/json",
+					importPath: "github.com/khulnasoft/khulnasoft-std/sdk/go/std/encoding/json",
 					name:       "json",
 					want:       "json",
 				},
@@ -208,19 +208,19 @@ func TestFileImporter(t *testing.T) {
 			},
 			wantGroups: [][]string{
 				{`json2 "encoding/json"`},
-				{`"github.com/pulumi/pulumi-std/sdk/go/std/encoding/json"`},
+				{`"github.com/khulnasoft/khulnasoft-std/sdk/go/std/encoding/json"`},
 			},
 		},
 		{
-			desc: "pulumi aws awsx conflict",
+			desc: "khulnasoft aws awsx conflict",
 			imports: []importCall{
-				{importPath: "github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ecs", name: "ecs", want: "ecs"},
-				{importPath: "github.com/pulumi/pulumi-awsx/sdk/go/awsx/ecs", name: "ecs", want: "awsxecs"},
+				{importPath: "github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/ecs", name: "ecs", want: "ecs"},
+				{importPath: "github.com/khulnasoft/khulnasoft-awsx/sdk/go/awsx/ecs", name: "ecs", want: "awsxecs"},
 			},
 			wantGroups: [][]string{
 				{
-					`"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ecs"`,
-					`awsxecs "github.com/pulumi/pulumi-awsx/sdk/go/awsx/ecs"`,
+					`"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/ecs"`,
+					`awsxecs "github.com/khulnasoft/khulnasoft-awsx/sdk/go/awsx/ecs"`,
 				},
 			},
 		},
@@ -234,12 +234,12 @@ func TestFileImporter(t *testing.T) {
 			},
 		},
 		{
-			desc: "basename mismatch/pulumi",
+			desc: "basename mismatch/khulnasoft",
 			imports: []importCall{
-				{importPath: "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1", name: "corev1", want: "corev1"},
+				{importPath: "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/core/v1", name: "corev1", want: "corev1"},
 			},
 			wantGroups: [][]string{
-				{`corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1"`},
+				{`corev1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/core/v1"`},
 			},
 		},
 		{

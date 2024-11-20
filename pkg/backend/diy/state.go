@@ -24,8 +24,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/retry"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/retry"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 
@@ -36,12 +36,12 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // DisableIntegrityChecking can be set to true to disable checkpoint state integrity verification.  This is not
@@ -234,7 +234,7 @@ func (b *diyBackend) saveCheckpoint(
 
 	// Back up the existing file if it already exists. Don't delete the original, the following WriteAll will
 	// atomically replace it anyway and various other bits of the system depend on being able to find the
-	// .json file to know the stack currently exists (see https://github.com/pulumi/pulumi/issues/9033 for
+	// .json file to know the stack currently exists (see https://github.com/khulnasoft/khulnasoft/issues/9033 for
 	// context).
 	filePlain := strings.TrimSuffix(file, ".gz")
 	fileGzip := filePlain + ".gz"
@@ -355,7 +355,7 @@ func backupTarget(ctx context.Context, bucket Bucket, file string, keepOriginal 
 	return bck
 }
 
-// backupStack copies the current Checkpoint file to ~/.pulumi/backups.
+// backupStack copies the current Checkpoint file to ~/.khulnasoft/backups.
 func (b *diyBackend) backupStack(ctx context.Context, ref *diyBackendReference) error {
 	contract.Requiref(ref != nil, "ref", "must not be nil")
 

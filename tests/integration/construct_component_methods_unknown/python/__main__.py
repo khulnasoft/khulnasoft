@@ -2,7 +2,7 @@
 
 import sys
 
-import pulumi
+import khulnasoft
 
 from component import Component
 from random_ import Random
@@ -18,4 +18,4 @@ component = Component("component")
 
 result = component.get_message(r.id)
 
-pulumi.export("result", result.apply(lambda v: panic("should not run (result)")))
+khulnasoft.export("result", result.apply(lambda v: panic("should not run (result)")))

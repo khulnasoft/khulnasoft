@@ -40,11 +40,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/cgstrings"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // A signifier that the module is external, and will never match.
@@ -318,7 +318,7 @@ func (pkg *pkgContext) tokenToResource(tok string) string {
 	}
 
 	// Is it a provider resource?
-	if components[0] == "pulumi" && components[1] == "providers" {
+	if components[0] == "khulnasoft" && components[1] == "providers" {
 		return components[2] + ".Provider"
 	}
 
@@ -439,25 +439,25 @@ func (pkg *pkgContext) inputType(t schema.Type) (result string) {
 			}
 		}
 		// TODO(pdg): union types
-		return "pulumi.Input"
+		return "khulnasoft.Input"
 	default:
 		switch t {
 		case schema.BoolType:
-			return "pulumi.BoolInput"
+			return "khulnasoft.BoolInput"
 		case schema.IntType:
-			return "pulumi.IntInput"
+			return "khulnasoft.IntInput"
 		case schema.NumberType:
-			return "pulumi.Float64Input"
+			return "khulnasoft.Float64Input"
 		case schema.StringType:
-			return "pulumi.StringInput"
+			return "khulnasoft.StringInput"
 		case schema.ArchiveType:
-			return "pulumi.ArchiveInput"
+			return "khulnasoft.ArchiveInput"
 		case schema.AssetType:
-			return "pulumi.AssetOrArchiveInput"
+			return "khulnasoft.AssetOrArchiveInput"
 		case schema.JSONType:
 			fallthrough
 		case schema.AnyType:
-			return "pulumi.Input"
+			return "khulnasoft.Input"
 		}
 	}
 
@@ -548,7 +548,7 @@ func (pkg *pkgContext) genericInputType(t schema.Type) string {
 		optionalPointer = ""
 	}
 
-	return fmt.Sprintf("pulumix.Input[%s%s]", optionalPointer, inputType)
+	return fmt.Sprintf("khulnasoftx.Input[%s%s]", optionalPointer, inputType)
 }
 
 func (pkg *pkgContext) plainGenericInputType(t schema.Type) string {
@@ -576,13 +576,13 @@ func (pkg *pkgContext) argsTypeImpl(t schema.Type) (result string) {
 		return pkg.resolveEnumType(t)
 	case *schema.ArrayType:
 		en := pkg.argsTypeImpl(t.ElementType)
-		if en == "pulumi.Any" {
+		if en == "khulnasoft.Any" {
 			en = strings.TrimSuffix(en, "Any")
 		}
 		return strings.TrimSuffix(en, "Args") + "Array"
 	case *schema.MapType:
 		en := pkg.argsTypeImpl(t.ElementType)
-		if en == "pulumi.Any" {
+		if en == "khulnasoft.Any" {
 			en = strings.TrimSuffix(en, "Any")
 		}
 		return strings.TrimSuffix(en, "Args") + "Map"
@@ -604,25 +604,25 @@ func (pkg *pkgContext) argsTypeImpl(t schema.Type) (result string) {
 				return pkg.argsTypeImpl(typ.ElementType)
 			}
 		}
-		return "pulumi.Any"
+		return "khulnasoft.Any"
 	default:
 		switch t {
 		case schema.BoolType:
-			return "pulumi.Bool"
+			return "khulnasoft.Bool"
 		case schema.IntType:
-			return "pulumi.Int"
+			return "khulnasoft.Int"
 		case schema.NumberType:
-			return "pulumi.Float64"
+			return "khulnasoft.Float64"
 		case schema.StringType:
-			return "pulumi.String"
+			return "khulnasoft.String"
 		case schema.ArchiveType:
-			return "pulumi.Archive"
+			return "khulnasoft.Archive"
 		case schema.AssetType:
-			return "pulumi.AssetOrArchive"
+			return "khulnasoft.AssetOrArchive"
 		case schema.JSONType:
 			fallthrough
 		case schema.AnyType:
-			return "pulumi.Any"
+			return "khulnasoft.Any"
 		}
 	}
 
@@ -638,7 +638,7 @@ func (pkg *pkgContext) typeStringImpl(t schema.Type, argsType bool) string {
 	case *schema.OptionalType:
 		if input, isInputType := t.ElementType.(*schema.InputType); isInputType {
 			elem := pkg.inputType(input.ElementType)
-			if isNilType(input.ElementType) || elem == "pulumi.Input" {
+			if isNilType(input.ElementType) || elem == "khulnasoft.Input" {
 				return elem
 			}
 			if pkg.isExternalReference(input.ElementType) {
@@ -710,9 +710,9 @@ func (pkg *pkgContext) typeStringImpl(t schema.Type, argsType bool) string {
 		case schema.StringType:
 			return "string"
 		case schema.ArchiveType:
-			return "pulumi.Archive"
+			return "khulnasoft.Archive"
 		case schema.AssetType:
-			return "pulumi.AssetOrArchive"
+			return "khulnasoft.AssetOrArchive"
 		case schema.JSONType:
 			fallthrough
 		case schema.AnyType:
@@ -725,8 +725,8 @@ func (pkg *pkgContext) typeStringImpl(t schema.Type, argsType bool) string {
 
 func (pkg *pkgContext) typeString(t schema.Type) string {
 	s := pkg.typeStringImpl(t, false)
-	if s == "pulumi." {
-		return "pulumi.Any"
+	if s == "khulnasoft." {
+		return "khulnasoft.Any"
 	}
 	return s
 }
@@ -861,7 +861,7 @@ func (pkg *pkgContext) outputTypeImpl(t schema.Type) string {
 	switch t := t.(type) {
 	case *schema.OptionalType:
 		elem := pkg.outputTypeImpl(t.ElementType)
-		if isNilType(t.ElementType) || elem == "pulumi.AnyOutput" {
+		if isNilType(t.ElementType) || elem == "khulnasoft.AnyOutput" {
 			return elem
 		}
 		if pkg.isExternalReference(t.ElementType) {
@@ -882,14 +882,14 @@ func (pkg *pkgContext) outputTypeImpl(t schema.Type) string {
 		return pkg.resolveEnumType(t) + "Output"
 	case *schema.ArrayType:
 		en := strings.TrimSuffix(pkg.outputTypeImpl(t.ElementType), "Output")
-		if en == "pulumi.Any" {
-			return "pulumi.ArrayOutput"
+		if en == "khulnasoft.Any" {
+			return "khulnasoft.ArrayOutput"
 		}
 		return en + "ArrayOutput"
 	case *schema.MapType:
 		en := strings.TrimSuffix(pkg.outputTypeImpl(t.ElementType), "Output")
-		if en == "pulumi.Any" {
-			return "pulumi.MapOutput"
+		if en == "khulnasoft.Any" {
+			return "khulnasoft.MapOutput"
 		}
 		return en + "MapOutput"
 	case *schema.ObjectType:
@@ -911,28 +911,28 @@ func (pkg *pkgContext) outputTypeImpl(t schema.Type) string {
 			}
 		}
 		// TODO(pdg): union types
-		return "pulumi.AnyOutput"
+		return "khulnasoft.AnyOutput"
 	case *schema.InputType:
 		// We can't make output types for input types. We instead strip the input and try again.
 		return pkg.outputTypeImpl(t.ElementType)
 	default:
 		switch t {
 		case schema.BoolType:
-			return "pulumi.BoolOutput"
+			return "khulnasoft.BoolOutput"
 		case schema.IntType:
-			return "pulumi.IntOutput"
+			return "khulnasoft.IntOutput"
 		case schema.NumberType:
-			return "pulumi.Float64Output"
+			return "khulnasoft.Float64Output"
 		case schema.StringType:
-			return "pulumi.StringOutput"
+			return "khulnasoft.StringOutput"
 		case schema.ArchiveType:
-			return "pulumi.ArchiveOutput"
+			return "khulnasoft.ArchiveOutput"
 		case schema.AssetType:
-			return "pulumi.AssetOrArchiveOutput"
+			return "khulnasoft.AssetOrArchiveOutput"
 		case schema.JSONType:
 			fallthrough
 		case schema.AnyType:
-			return "pulumi.AnyOutput"
+			return "khulnasoft.AnyOutput"
 		}
 	}
 
@@ -959,9 +959,9 @@ func (pkg *pkgContext) genericElementType(schemaType schema.Type) (string, bool)
 	case schema.NumberType:
 		return "float64", true
 	case schema.ArchiveType:
-		return "pulumi.Archive", true
+		return "khulnasoft.Archive", true
 	case schema.AssetType:
-		return "pulumi.AssetOrArchive", true
+		return "khulnasoft.AssetOrArchive", true
 	default:
 		switch schemaType := schemaType.(type) {
 		case *schema.ObjectType:
@@ -992,18 +992,18 @@ func (pkg *pkgContext) genericElementType(schemaType schema.Type) (string, bool)
 }
 
 // genericOutputTypeImpl is similar to outputTypeImpl, but it generates the generic variant.
-// for example instead of pulumi.StringOutput, it generates pulumix.Output[string]
+// for example instead of khulnasoft.StringOutput, it generates khulnasoftx.Output[string]
 func (pkg *pkgContext) genericOutputTypeImpl(t schema.Type) string {
 	switch t := t.(type) {
 	case *schema.OptionalType:
 		elementType, isPrimitive := pkg.genericElementType(t.ElementType)
 		if elementType == "any" {
-			return fmt.Sprintf("pulumix.Output[%s]", elementType)
+			return fmt.Sprintf("khulnasoftx.Output[%s]", elementType)
 		}
 
 		if isPrimitive {
-			// for example OptionalType{StringType} becomes pulumix.Output[*string]
-			return fmt.Sprintf("pulumix.Output[*%s]", elementType)
+			// for example OptionalType{StringType} becomes khulnasoftx.Output[*string]
+			return fmt.Sprintf("khulnasoftx.Output[*%s]", elementType)
 		}
 
 		if pkg.isExternalReference(t.ElementType) {
@@ -1023,32 +1023,32 @@ func (pkg *pkgContext) genericOutputTypeImpl(t schema.Type) string {
 		return pkg.genericOutputTypeImpl(t.ElementType)
 	case *schema.EnumType:
 		elementType, _ := pkg.genericElementType(t)
-		return fmt.Sprintf("pulumix.Output[%s]", elementType)
+		return fmt.Sprintf("khulnasoftx.Output[%s]", elementType)
 	case *schema.ArrayType:
 		elementType, isPrimitive := pkg.genericElementType(t.ElementType)
 		if isPrimitive {
-			return fmt.Sprintf("pulumix.ArrayOutput[%s]", elementType)
+			return fmt.Sprintf("khulnasoftx.ArrayOutput[%s]", elementType)
 		}
 
 		// for non-primitive types such as objects and resources
 		// use GArrayOutput[Type, TypeOutput]
-		return fmt.Sprintf("pulumix.GArrayOutput[%s, %sOutput]", elementType, elementType)
+		return fmt.Sprintf("khulnasoftx.GArrayOutput[%s, %sOutput]", elementType, elementType)
 	case *schema.MapType:
 		elementType, isPrimitive := pkg.genericElementType(t.ElementType)
 		if isPrimitive {
-			return fmt.Sprintf("pulumix.MapOutput[%s]", elementType)
+			return fmt.Sprintf("khulnasoftx.MapOutput[%s]", elementType)
 		}
 
 		// for non-primitive types such as objects and resources
 		// use GMapOutput[Type, TypeOutput]
-		return fmt.Sprintf("pulumix.GMapOutput[%s, %sOutput]", elementType, elementType)
+		return fmt.Sprintf("khulnasoftx.GMapOutput[%s, %sOutput]", elementType, elementType)
 	case *schema.ObjectType:
 		objectTypeName, _ := pkg.genericElementType(t)
-		return fmt.Sprintf("pulumix.GPtrOutput[%s, %sOutput]", objectTypeName, objectTypeName)
+		return fmt.Sprintf("khulnasoftx.GPtrOutput[%s, %sOutput]", objectTypeName, objectTypeName)
 	case *schema.ResourceType:
 		resourceTypeName, _ := pkg.genericElementType(t)
 		// element type of a ResourceOutput is Resource
-		return fmt.Sprintf("pulumix.GPtrOutput[%s, %sOutput]", resourceTypeName, resourceTypeName)
+		return fmt.Sprintf("khulnasoftx.GPtrOutput[%s, %sOutput]", resourceTypeName, resourceTypeName)
 	case *schema.TokenType:
 		// Use the underlying type for now.
 		if t.UnderlyingType != nil {
@@ -1056,7 +1056,7 @@ func (pkg *pkgContext) genericOutputTypeImpl(t schema.Type) string {
 		}
 
 		tokenType := pkg.tokenToType(t.Token)
-		return fmt.Sprintf("pulumix.Output[%s]", tokenType)
+		return fmt.Sprintf("khulnasoftx.Output[%s]", tokenType)
 	case *schema.UnionType:
 		// If the union is actually a relaxed enum type, use the underlying
 		// type for the enum instead
@@ -1066,18 +1066,18 @@ func (pkg *pkgContext) genericOutputTypeImpl(t schema.Type) string {
 			}
 		}
 		// TODO(pdg): union types
-		return "pulumix.Output[interface{}]"
+		return "khulnasoftx.Output[interface{}]"
 	case *schema.InputType:
 		// We can't make output types for input types. We instead strip the input and try again.
 		return pkg.genericOutputTypeImpl(t.ElementType)
 	default:
 		elementType, _ := pkg.genericElementType(t)
-		return fmt.Sprintf("pulumix.Output[%s]", elementType)
+		return fmt.Sprintf("khulnasoftx.Output[%s]", elementType)
 	}
 }
 
 // outputType returns a reference to the Go output type that corresponds to the given schema type. For example, given
-// a schema.String, outputType returns "pulumi.String", and given a *schema.ObjectType with the token pkg:mod:Name,
+// a schema.String, outputType returns "khulnasoft.String", and given a *schema.ObjectType with the token pkg:mod:Name,
 // outputType returns "mod.NameOutput" or "NameOutput", depending on whether or not the object type lives in a
 // different module than the one associated with the receiver.
 func (pkg *pkgContext) outputType(t schema.Type) string {
@@ -1085,7 +1085,7 @@ func (pkg *pkgContext) outputType(t schema.Type) string {
 }
 
 // genericOutputType returns a reference to the Go output type that corresponds to the given schema type.
-// For example, given a schema.StringType, genericOutputType returns "pulumix.Output[string]",
+// For example, given a schema.StringType, genericOutputType returns "khulnasoftx.Output[string]",
 // and given a *schema.ObjectType with the token pkg:mod:Name,
 // outputType returns "mod.NameOutput" or "NameOutput", depending on whether the object type lives in a
 // different module than the one associated with the receiver.
@@ -1140,7 +1140,7 @@ func printCommentWithDeprecationMessage(w io.Writer, comment, deprecationMessage
 func (pkg *pkgContext) genInputInterface(w io.Writer, name string) {
 	printComment(w, pkg.getInputUsage(name), false)
 	fmt.Fprintf(w, "type %sInput interface {\n", name)
-	fmt.Fprintf(w, "\tpulumi.Input\n\n")
+	fmt.Fprintf(w, "\tkhulnasoft.Input\n\n")
 	fmt.Fprintf(w, "\tTo%sOutput() %sOutput\n", Title(name), name)
 	fmt.Fprintf(w, "\tTo%sOutputWithContext(context.Context) %sOutput\n", Title(name), name)
 	fmt.Fprintf(w, "}\n\n")
@@ -1166,7 +1166,7 @@ func (pkg *pkgContext) genEnumInputInterface(w io.Writer, name string, enumType 
 
 	printComment(w, enumUsage, false)
 	fmt.Fprintf(w, "type %sInput interface {\n", name)
-	fmt.Fprintf(w, "\tpulumi.Input\n\n")
+	fmt.Fprintf(w, "\tkhulnasoft.Input\n\n")
 	fmt.Fprintf(w, "\tTo%sOutput() %sOutput\n", Title(name), name)
 	fmt.Fprintf(w, "\tTo%sOutputWithContext(context.Context) %sOutput\n", Title(name), name)
 	fmt.Fprintf(w, "}\n\n")
@@ -1299,25 +1299,25 @@ func genInputImplementationWithArgs(w io.Writer, genArgs genInputImplementationA
 		fmt.Fprintf(w, "}\n\n")
 
 		fmt.Fprintf(w, "func (i %s) To%sOutputWithContext(ctx context.Context) %sOutput {\n", receiverType, Title(name), name)
-		fmt.Fprintf(w, "\treturn pulumi.ToOutputWithContext(ctx, i).(%sOutput)\n", name)
+		fmt.Fprintf(w, "\treturn khulnasoft.ToOutputWithContext(ctx, i).(%sOutput)\n", name)
 		fmt.Fprintf(w, "}\n\n")
 
 		if !genArgs.usingGenericTypes {
-			// Generate 'ToOuput(context.Context) pulumix.Output[T]' method
-			// to satisfy pulumix.Input[T].
+			// Generate 'ToOuput(context.Context) khulnasoftx.Output[T]' method
+			// to satisfy khulnasoftx.Input[T].
 			if genArgs.goPackageinfo.Generics == GenericsSettingSideBySide {
-				fmt.Fprintf(w, "func (i %s) ToOutput(ctx context.Context) pulumix.Output[%s] {\n", receiverType, elementType)
-				fmt.Fprintf(w, "\treturn pulumix.Output[%s]{\n", elementType)
+				fmt.Fprintf(w, "func (i %s) ToOutput(ctx context.Context) khulnasoftx.Output[%s] {\n", receiverType, elementType)
+				fmt.Fprintf(w, "\treturn khulnasoftx.Output[%s]{\n", elementType)
 				fmt.Fprintf(w, "\t\tOutputState: i.To%sOutputWithContext(ctx).OutputState,\n", Title(name))
 				fmt.Fprintf(w, "\t}\n")
 				fmt.Fprintf(w, "}\n\n")
 				hasToOutput = true
 			}
 		} else {
-			// Generate 'ToOuput(context.Context) pulumix.Output[T]' method which lifts the receiver type *T
-			// to satisfy pulumix.Input[*T].
-			fmt.Fprintf(w, "func (i *%s) ToOutput(ctx context.Context) pulumix.Output[*%s] {\n", receiverType, receiverType)
-			fmt.Fprint(w, "\treturn pulumix.Val(i)\n")
+			// Generate 'ToOuput(context.Context) khulnasoftx.Output[T]' method which lifts the receiver type *T
+			// to satisfy khulnasoftx.Input[*T].
+			fmt.Fprintf(w, "func (i *%s) ToOutput(ctx context.Context) khulnasoftx.Output[*%s] {\n", receiverType, receiverType)
+			fmt.Fprint(w, "\treturn khulnasoftx.Val(i)\n")
 			fmt.Fprint(w, "}\n\n")
 		}
 	}
@@ -1329,18 +1329,18 @@ func genInputImplementationWithArgs(w io.Writer, genArgs genInputImplementationA
 
 		fmt.Fprintf(w, "func (i %s) To%sPtrOutputWithContext(ctx context.Context) %sPtrOutput {\n", receiverType, Title(name), name)
 		if strings.HasSuffix(receiverType, "Args") {
-			fmt.Fprintf(w, "\treturn pulumi.ToOutputWithContext(ctx, i).(%[1]sOutput).To%[1]sPtrOutputWithContext(ctx)\n", name)
+			fmt.Fprintf(w, "\treturn khulnasoft.ToOutputWithContext(ctx, i).(%[1]sOutput).To%[1]sPtrOutputWithContext(ctx)\n", name)
 		} else {
-			fmt.Fprintf(w, "\treturn pulumi.ToOutputWithContext(ctx, i).(%sPtrOutput)\n", name)
+			fmt.Fprintf(w, "\treturn khulnasoft.ToOutputWithContext(ctx, i).(%sPtrOutput)\n", name)
 		}
 		fmt.Fprintf(w, "}\n\n")
 
 		if !hasToOutput {
-			// Generate 'ToOuput(context.Context) pulumix.Output[*T]' method
-			// to satisfy pulumix.Input[*T].
+			// Generate 'ToOuput(context.Context) khulnasoftx.Output[*T]' method
+			// to satisfy khulnasoftx.Input[*T].
 			if genArgs.goPackageinfo.Generics == GenericsSettingSideBySide {
-				fmt.Fprintf(w, "func (i %s) ToOutput(ctx context.Context) pulumix.Output[*%s] {\n", receiverType, elementType)
-				fmt.Fprintf(w, "\treturn pulumix.Output[*%s]{\n", elementType)
+				fmt.Fprintf(w, "func (i %s) ToOutput(ctx context.Context) khulnasoftx.Output[*%s] {\n", receiverType, elementType)
+				fmt.Fprintf(w, "\treturn khulnasoftx.Output[*%s]{\n", elementType)
 				fmt.Fprintf(w, "\t\tOutputState: i.To%sPtrOutputWithContext(ctx).OutputState,\n", Title(name))
 				fmt.Fprintf(w, "\t}\n")
 				fmt.Fprintf(w, "}\n\n")
@@ -1350,7 +1350,7 @@ func genInputImplementationWithArgs(w io.Writer, genArgs genInputImplementationA
 }
 
 func (pkg *pkgContext) genOutputType(w io.Writer, baseName, elementType string, ptrMethods, usingGenericTypes bool) {
-	fmt.Fprintf(w, "type %sOutput struct { *pulumi.OutputState }\n\n", baseName)
+	fmt.Fprintf(w, "type %sOutput struct { *khulnasoft.OutputState }\n\n", baseName)
 
 	fmt.Fprintf(w, "func (%sOutput) ElementType() reflect.Type {\n", baseName)
 	fmt.Fprintf(w, "\treturn reflect.TypeOf((*%s)(nil)).Elem()\n", elementType)
@@ -1376,12 +1376,12 @@ func (pkg *pkgContext) genOutputType(w io.Writer, baseName, elementType string, 
 		fmt.Fprintf(w, "}\n\n")
 	}
 
-	// Generate 'ToOuput(context.Context) pulumix.Output[T]' method
-	// to satisfy pulumix.Input[T].
+	// Generate 'ToOuput(context.Context) khulnasoftx.Output[T]' method
+	// to satisfy khulnasoftx.Input[T].
 	goPackageInfo := goPackageInfo(pkg.pkg)
 	if goPackageInfo.Generics == GenericsSettingSideBySide || goPackageInfo.Generics == GenericsSettingGenericsOnly {
-		fmt.Fprintf(w, "func (o %sOutput) ToOutput(ctx context.Context) pulumix.Output[%s] {\n", baseName, elementType)
-		fmt.Fprintf(w, "\treturn pulumix.Output[%s]{\n", elementType)
+		fmt.Fprintf(w, "func (o %sOutput) ToOutput(ctx context.Context) khulnasoftx.Output[%s] {\n", baseName, elementType)
+		fmt.Fprintf(w, "\treturn khulnasoftx.Output[%s]{\n", elementType)
 		fmt.Fprintf(w, "\t\tOutputState: o.OutputState,\n")
 		fmt.Fprintf(w, "\t}\n")
 		fmt.Fprintf(w, "}\n\n")
@@ -1391,8 +1391,8 @@ func (pkg *pkgContext) genOutputType(w io.Writer, baseName, elementType string, 
 func (pkg *pkgContext) genArrayOutput(w io.Writer, baseName, elementType string) {
 	pkg.genOutputType(w, baseName+"Array", "[]"+elementType, false, false)
 
-	fmt.Fprintf(w, "func (o %[1]sArrayOutput) Index(i pulumi.IntInput) %[1]sOutput {\n", baseName)
-	fmt.Fprintf(w, "\treturn pulumi.All(o, i).ApplyT(func (vs []interface{}) %s {\n", elementType)
+	fmt.Fprintf(w, "func (o %[1]sArrayOutput) Index(i khulnasoft.IntInput) %[1]sOutput {\n", baseName)
+	fmt.Fprintf(w, "\treturn khulnasoft.All(o, i).ApplyT(func (vs []interface{}) %s {\n", elementType)
 	fmt.Fprintf(w, "\t\treturn vs[0].([]%s)[vs[1].(int)]\n", elementType)
 	fmt.Fprintf(w, "\t}).(%sOutput)\n", baseName)
 	fmt.Fprintf(w, "}\n\n")
@@ -1401,8 +1401,8 @@ func (pkg *pkgContext) genArrayOutput(w io.Writer, baseName, elementType string)
 func (pkg *pkgContext) genMapOutput(w io.Writer, baseName, elementType string) {
 	pkg.genOutputType(w, baseName+"Map", "map[string]"+elementType, false, false)
 
-	fmt.Fprintf(w, "func (o %[1]sMapOutput) MapIndex(k pulumi.StringInput) %[1]sOutput {\n", baseName)
-	fmt.Fprintf(w, "\treturn pulumi.All(o, k).ApplyT(func (vs []interface{}) %s{\n", elementType)
+	fmt.Fprintf(w, "func (o %[1]sMapOutput) MapIndex(k khulnasoft.StringInput) %[1]sOutput {\n", baseName)
+	fmt.Fprintf(w, "\treturn khulnasoft.All(o, k).ApplyT(func (vs []interface{}) %s{\n", elementType)
 	fmt.Fprintf(w, "\t\treturn vs[0].(map[string]%s)[vs[1].(string)]\n", elementType)
 	fmt.Fprintf(w, "\t}).(%sOutput)\n", baseName)
 	fmt.Fprintf(w, "}\n\n")
@@ -1433,7 +1433,7 @@ func (pkg *pkgContext) genEnum(w io.Writer, enumType *schema.EnumType, usingGene
 
 	elementArgsType := pkg.argsTypeImpl(enumType.ElementType)
 	elementGoType := pkg.typeString(enumType.ElementType)
-	asFuncName := strings.TrimPrefix(elementArgsType, "pulumi.")
+	asFuncName := strings.TrimPrefix(elementArgsType, "khulnasoft.")
 
 	fmt.Fprintf(w, "type %s %s\n\n", name, elementGoType)
 
@@ -1561,7 +1561,7 @@ func (pkg *pkgContext) genEnumInputTypes(w io.Writer, name string, enumType *sch
 	fmt.Fprintln(w)
 
 	fmt.Fprintf(w, "type %sPtrInput interface {\n", name)
-	fmt.Fprint(w, "pulumi.Input\n\n")
+	fmt.Fprint(w, "khulnasoft.Input\n\n")
 	fmt.Fprintf(w, "To%[1]sPtrOutput() %[1]sPtrOutput\n", name)
 	fmt.Fprintf(w, "To%[1]sPtrOutputWithContext(context.Context) %[1]sPtrOutput\n", name)
 	fmt.Fprintf(w, "}\n")
@@ -1581,19 +1581,19 @@ func (pkg *pkgContext) genEnumInputTypes(w io.Writer, name string, enumType *sch
 	fmt.Fprintln(w)
 
 	fmt.Fprintf(w, "func (in *%[1]sPtr) To%[2]sPtrOutput() %[2]sPtrOutput {\n", typeName, name)
-	fmt.Fprintf(w, "return pulumi.ToOutput(in).(%sPtrOutput)\n", name)
+	fmt.Fprintf(w, "return khulnasoft.ToOutput(in).(%sPtrOutput)\n", name)
 	fmt.Fprintf(w, "}\n")
 	fmt.Fprintln(w)
 
 	fmt.Fprintf(w, "func (in *%[1]sPtr) To%[2]sPtrOutputWithContext(ctx context.Context) %[2]sPtrOutput {\n", cgstrings.Camel(name), name)
-	fmt.Fprintf(w, "return pulumi.ToOutputWithContext(ctx, in).(%sPtrOutput)\n", name)
+	fmt.Fprintf(w, "return khulnasoft.ToOutputWithContext(ctx, in).(%sPtrOutput)\n", name)
 	fmt.Fprintf(w, "}\n")
 	fmt.Fprintln(w)
 
 	if goPkgInfo.Generics != GenericsSettingNone {
-		// ToOutput implementation for pulumix.Input.
-		fmt.Fprintf(w, "func (in *%sPtr) ToOutput(ctx context.Context) pulumix.Output[*%s] {\n", typeName, name)
-		fmt.Fprintf(w, "\treturn pulumix.Output[*%s]{\n", name)
+		// ToOutput implementation for khulnasoftx.Input.
+		fmt.Fprintf(w, "func (in *%sPtr) ToOutput(ctx context.Context) khulnasoftx.Output[*%s] {\n", typeName, name)
+		fmt.Fprintf(w, "\treturn khulnasoftx.Output[*%s]{\n", name)
 		fmt.Fprintf(w, "\t\tOutputState: in.To%sPtrOutputWithContext(ctx).OutputState,\n", name)
 		fmt.Fprintf(w, "\t}\n")
 		fmt.Fprintf(w, "}\n\n")
@@ -1608,12 +1608,12 @@ func (pkg *pkgContext) genEnumInputFuncs(w io.Writer, typeName string, enum *sch
 	fmt.Fprintln(w)
 
 	fmt.Fprintf(w, "func (e %[1]s) To%[1]sOutput() %[1]sOutput {\n", typeName)
-	fmt.Fprintf(w, "return pulumi.ToOutput(e).(%sOutput)\n", typeName)
+	fmt.Fprintf(w, "return khulnasoft.ToOutput(e).(%sOutput)\n", typeName)
 	fmt.Fprintln(w, "}")
 	fmt.Fprintln(w)
 
 	fmt.Fprintf(w, "func (e %[1]s) To%[1]sOutputWithContext(ctx context.Context) %[1]sOutput {\n", typeName)
-	fmt.Fprintf(w, "return pulumi.ToOutputWithContext(ctx, e).(%sOutput)\n", typeName)
+	fmt.Fprintf(w, "return khulnasoft.ToOutputWithContext(ctx, e).(%sOutput)\n", typeName)
 	fmt.Fprintln(w, "}")
 	fmt.Fprintln(w)
 
@@ -1628,12 +1628,12 @@ func (pkg *pkgContext) genEnumInputFuncs(w io.Writer, typeName string, enum *sch
 	fmt.Fprintln(w)
 
 	fmt.Fprintf(w, "func (e %[1]s) To%[2]sOutput() %[3]sOutput {\n", typeName, asFuncName, elementArgsType)
-	fmt.Fprintf(w, "return pulumi.ToOutput(%[1]s(e)).(%[1]sOutput)\n", elementArgsType)
+	fmt.Fprintf(w, "return khulnasoft.ToOutput(%[1]s(e)).(%[1]sOutput)\n", elementArgsType)
 	fmt.Fprintln(w, "}")
 	fmt.Fprintln(w)
 
 	fmt.Fprintf(w, "func (e %[1]s) To%[2]sOutputWithContext(ctx context.Context) %[3]sOutput {\n", typeName, asFuncName, elementArgsType)
-	fmt.Fprintf(w, "return pulumi.ToOutputWithContext(ctx, %[1]s(e)).(%[1]sOutput)\n", elementArgsType)
+	fmt.Fprintf(w, "return khulnasoft.ToOutputWithContext(ctx, %[1]s(e)).(%[1]sOutput)\n", elementArgsType)
 	fmt.Fprintln(w, "}")
 	fmt.Fprintln(w)
 
@@ -1658,9 +1658,9 @@ func (pkg *pkgContext) assignProperty(
 ) {
 	t := strings.TrimSuffix(pkg.typeString(p.Type), "Input")
 	if useGenericTypes {
-		t = "pulumix.Val"
+		t = "khulnasoftx.Val"
 		if isOptionalType(reduceInputType(p.Type)) {
-			t = "pulumix.Ptr"
+			t = "khulnasoftx.Ptr"
 		}
 	}
 	switch codegen.UnwrapType(p.Type).(type) {
@@ -1696,7 +1696,7 @@ func (pkg *pkgContext) genPlainType(w io.Writer, name, comment, deprecationMessa
 	fmt.Fprintf(w, "type %s struct {\n", name)
 	for _, p := range properties {
 		printCommentWithDeprecationMessage(w, p.Comment, p.DeprecationMessage, true)
-		fmt.Fprintf(w, "\t%s %s `pulumi:\"%s\"`\n", pkg.fieldName(nil, p), pkg.typeString(codegen.ResolvedType(p.Type)), p.Name)
+		fmt.Fprintf(w, "\t%s %s `khulnasoft:\"%s\"`\n", pkg.fieldName(nil, p), pkg.typeString(codegen.ResolvedType(p.Type)), p.Name)
 	}
 	fmt.Fprintf(w, "}\n\n")
 }
@@ -1710,7 +1710,7 @@ func (pkg *pkgContext) genGenericPlainType(w io.Writer, name, comment, deprecati
 	fmt.Fprintf(w, "type %s struct {\n", name)
 	for _, p := range properties {
 		printCommentWithDeprecationMessage(w, p.Comment, p.DeprecationMessage, true)
-		fmt.Fprintf(w, "\t%s %s `pulumi:\"%s\"`\n", pkg.fieldName(nil, p), pkg.plainGenericInputType(p.Type), p.Name)
+		fmt.Fprintf(w, "\t%s %s `khulnasoft:\"%s\"`\n", pkg.fieldName(nil, p), pkg.plainGenericInputType(p.Type), p.Name)
 	}
 	fmt.Fprintf(w, "}\n\n")
 }
@@ -1865,7 +1865,7 @@ func (pkg *pkgContext) genInputArgsStruct(
 				inputType = pkg.genericInputType(p.Type)
 			}
 		}
-		fmt.Fprintf(w, "\t%s %s `pulumi:\"%s\"`\n", pkg.fieldName(nil, p), inputType, p.Name)
+		fmt.Fprintf(w, "\t%s %s `khulnasoft:\"%s\"`\n", pkg.fieldName(nil, p), inputType, p.Name)
 	}
 	fmt.Fprintf(w, "}\n\n")
 }
@@ -1918,10 +1918,10 @@ func (pkg *pkgContext) genOutputTypes(w io.Writer, genArgs genOutputTypesArgs) {
 			} else {
 				needsCast := genericTypeNeedsExplicitCasting(outputType)
 				if !needsCast {
-					fmt.Fprintf(w, "\treturn pulumix.Apply[%s](o, func (v %s) %s { return v.%s })\n",
+					fmt.Fprintf(w, "\treturn khulnasoftx.Apply[%s](o, func (v %s) %s { return v.%s })\n",
 						name, name, pkg.plainGenericInputType(p.Type), pkg.fieldName(nil, p))
 				} else {
-					fmt.Fprintf(w, "\tvalue := pulumix.Apply[%s](o, func (v %s) %s { return v.%s })\n",
+					fmt.Fprintf(w, "\tvalue := khulnasoftx.Apply[%s](o, func (v %s) %s { return v.%s })\n",
 						name, name, pkg.plainGenericInputType(p.Type), pkg.fieldName(nil, p))
 					fmt.Fprintf(w, "\treturn %s{OutputState: value.OutputState}\n", outputType)
 				}
@@ -2064,7 +2064,7 @@ func (pkg *pkgContext) setDefaultValue(
 	parser, typ := "nil", "string"
 	switch codegen.UnwrapType(t).(type) {
 	case *schema.ArrayType:
-		parser, typ = pkg.internalModuleName+".ParseEnvStringArray", "pulumi.StringArray"
+		parser, typ = pkg.internalModuleName+".ParseEnvStringArray", "khulnasoft.StringArray"
 	}
 	switch t {
 	case schema.BoolType:
@@ -2116,11 +2116,11 @@ func (pkg *pkgContext) genResource(
 
 	switch {
 	case r.IsProvider:
-		fmt.Fprintf(w, "\tpulumi.ProviderResourceState\n\n")
+		fmt.Fprintf(w, "\tkhulnasoft.ProviderResourceState\n\n")
 	case r.IsComponent:
-		fmt.Fprintf(w, "\tpulumi.ResourceState\n\n")
+		fmt.Fprintf(w, "\tkhulnasoft.ResourceState\n\n")
 	default:
-		fmt.Fprintf(w, "\tpulumi.CustomResourceState\n\n")
+		fmt.Fprintf(w, "\tkhulnasoft.CustomResourceState\n\n")
 	}
 
 	var secretProps []*schema.Property
@@ -2133,7 +2133,7 @@ func (pkg *pkgContext) genResource(
 			outputType = pkg.genericOutputType(p.Type)
 		}
 
-		fmt.Fprintf(w, "\t%s %s `pulumi:\"%s\"`\n", pkg.fieldName(r, p), outputType, p.Name)
+		fmt.Fprintf(w, "\t%s %s `khulnasoft:\"%s\"`\n", pkg.fieldName(r, p), outputType, p.Name)
 
 		if p.Secret {
 			secretProps = append(secretProps, p)
@@ -2143,8 +2143,8 @@ func (pkg *pkgContext) genResource(
 
 	// Create a constructor function that registers a new instance of this resource.
 	fmt.Fprintf(w, "// New%s registers a new resource with the given unique name, arguments, and options.\n", name)
-	fmt.Fprintf(w, "func New%s(ctx *pulumi.Context,\n", name)
-	fmt.Fprintf(w, "\tname string, args *%[1]sArgs, opts ...pulumi.ResourceOption) (*%[1]s, error) {\n", name)
+	fmt.Fprintf(w, "func New%s(ctx *khulnasoft.Context,\n", name)
+	fmt.Fprintf(w, "\tname string, args *%[1]sArgs, opts ...khulnasoft.ResourceOption) (*%[1]s, error) {\n", name)
 
 	// Ensure required arguments are present.
 	hasRequired := false
@@ -2233,7 +2233,7 @@ func (pkg *pkgContext) genResource(
 					optionalPointer = ""
 				}
 
-				fmt.Fprintf(w, "args.%s = pulumix.Apply(args.%s, func(o %s%s) %s%s { return o.Defaults() })\n",
+				fmt.Fprintf(w, "args.%s = khulnasoftx.Apply(args.%s, func(o %s%s) %s%s { return o.Defaults() })\n",
 					pkg.fieldName(r, p),
 					pkg.fieldName(r, p),
 					optionalPointer,
@@ -2256,11 +2256,11 @@ func (pkg *pkgContext) genResource(
 
 	// Set any defined aliases.
 	if len(r.Aliases) > 0 {
-		fmt.Fprintf(w, "\taliases := pulumi.Aliases([]pulumi.Alias{\n")
+		fmt.Fprintf(w, "\taliases := khulnasoft.Aliases([]khulnasoft.Alias{\n")
 		for _, alias := range r.Aliases {
 			s := "\t\t{\n"
 			if alias.Type != nil {
-				s += fmt.Sprintf("\t\t\tType: pulumi.String(%q),\n", *alias.Type)
+				s += fmt.Sprintf("\t\t\tType: khulnasoft.String(%q),\n", *alias.Type)
 			}
 			s += "\t\t},\n"
 			fmt.Fprint(w, s)
@@ -2274,11 +2274,11 @@ func (pkg *pkgContext) genResource(
 		fmt.Fprintf(w, "\tif args.%s != nil {\n", pkg.fieldName(r, p))
 
 		if !useGenericVariant {
-			fmt.Fprintf(w, "\t\targs.%[1]s = pulumi.ToSecret(args.%[1]s).(%[2]s)\n",
+			fmt.Fprintf(w, "\t\targs.%[1]s = khulnasoft.ToSecret(args.%[1]s).(%[2]s)\n",
 				pkg.fieldName(r, p),
 				pkg.typeString(p.Type))
 		} else {
-			fmt.Fprintf(w, "\t\tuntypedSecretValue := pulumi.ToSecret(args.%s.ToOutput(ctx.Context()).Untyped())\n",
+			fmt.Fprintf(w, "\t\tuntypedSecretValue := khulnasoft.ToSecret(args.%s.ToOutput(ctx.Context()).Untyped())\n",
 				pkg.fieldName(r, p))
 
 			t := p.Type
@@ -2291,7 +2291,7 @@ func (pkg *pkgContext) genResource(
 			if strings.HasPrefix(inputType, "*") {
 				optionalPointer = ""
 			}
-			fmt.Fprintf(w, "\t\targs.%s = pulumix.MustConvertTyped[%s%s](untypedSecretValue)\n",
+			fmt.Fprintf(w, "\t\targs.%s = khulnasoftx.MustConvertTyped[%s%s](untypedSecretValue)\n",
 				pkg.fieldName(r, p),
 				optionalPointer,
 				inputType)
@@ -2300,7 +2300,7 @@ func (pkg *pkgContext) genResource(
 		fmt.Fprintf(w, "\t}\n")
 	}
 	if len(secretProps) > 0 {
-		fmt.Fprintf(w, "\tsecrets := pulumi.AdditionalSecretOutputs([]string{\n")
+		fmt.Fprintf(w, "\tsecrets := khulnasoft.AdditionalSecretOutputs([]string{\n")
 		for _, sp := range secretProps {
 			fmt.Fprintf(w, "\t\t\t%q,\n", sp.Name)
 		}
@@ -2316,7 +2316,7 @@ func (pkg *pkgContext) genResource(
 	replaceOnChangesStrings := schema.PropertyListJoinToString(replaceOnChangesProps,
 		func(x string) string { return x })
 	if len(replaceOnChangesProps) > 0 {
-		fmt.Fprint(w, "\treplaceOnChanges := pulumi.ReplaceOnChanges([]string{\n")
+		fmt.Fprint(w, "\treplaceOnChanges := khulnasoft.ReplaceOnChanges([]string{\n")
 		for _, p := range replaceOnChangesStrings {
 			fmt.Fprintf(w, "\t\t%q,\n", p)
 		}
@@ -2366,8 +2366,8 @@ func (pkg *pkgContext) genResource(
 	if !r.IsProvider && !r.IsComponent {
 		fmt.Fprintf(w, "// Get%[1]s gets an existing %[1]s resource's state with the given name, ID, and optional\n", name)
 		fmt.Fprintf(w, "// state properties that are used to uniquely qualify the lookup (nil if not required).\n")
-		fmt.Fprintf(w, "func Get%s(ctx *pulumi.Context,\n", name)
-		fmt.Fprintf(w, "\tname string, id pulumi.IDInput, state *%[1]sState, opts ...pulumi.ResourceOption) (*%[1]s, error) {\n", name)
+		fmt.Fprintf(w, "func Get%s(ctx *khulnasoft.Context,\n", name)
+		fmt.Fprintf(w, "\tname string, id khulnasoft.IDInput, state *%[1]sState, opts ...khulnasoft.ResourceOption) (*%[1]s, error) {\n", name)
 		fmt.Fprintf(w, "\tvar resource %s\n", name)
 
 		// If this is a parameterized resource we need the package ref.
@@ -2402,7 +2402,7 @@ func (pkg *pkgContext) genResource(
 		if r.StateInputs != nil {
 			for _, p := range r.StateInputs.Properties {
 				printCommentWithDeprecationMessage(w, p.Comment, p.DeprecationMessage, true)
-				fmt.Fprintf(w, "\t%s %s `pulumi:\"%s\"`\n", pkg.fieldName(r, p), pkg.typeString(codegen.ResolvedType(codegen.OptionalType(p))), p.Name)
+				fmt.Fprintf(w, "\t%s %s `khulnasoft:\"%s\"`\n", pkg.fieldName(r, p), pkg.typeString(codegen.ResolvedType(codegen.OptionalType(p))), p.Name)
 			}
 		}
 		fmt.Fprintf(w, "}\n\n")
@@ -2430,7 +2430,7 @@ func (pkg *pkgContext) genResource(
 	for _, p := range r.InputProperties {
 		printCommentWithDeprecationMessage(w, p.Comment, p.DeprecationMessage, true)
 		inputTypeName := pkg.typeString(codegen.ResolvedType(p.Type))
-		fmt.Fprintf(w, "\t%s %s `pulumi:\"%s\"`\n", pkg.fieldName(r, p), inputTypeName, p.Name)
+		fmt.Fprintf(w, "\t%s %s `khulnasoft:\"%s\"`\n", pkg.fieldName(r, p), inputTypeName, p.Name)
 	}
 	fmt.Fprintf(w, "}\n\n")
 
@@ -2494,7 +2494,7 @@ func (pkg *pkgContext) genResource(
 		}
 
 		// Now emit the method signature.
-		argsig := "ctx *pulumi.Context"
+		argsig := "ctx *khulnasoft.Context"
 		if len(args) > 0 {
 			argsig = fmt.Sprintf("%s, args *%s%sArgs", argsig, name, methodName)
 		}
@@ -2533,7 +2533,7 @@ func (pkg *pkgContext) genResource(
 		}
 
 		// Now simply invoke the runtime function with the arguments.
-		outputsType := "pulumi.AnyOutput"
+		outputsType := "khulnasoft.AnyOutput"
 		if objectReturnType != nil || f.ReturnTypePlain {
 			if liftReturn {
 				outputsType = fmt.Sprintf("%s%sResultOutput", cgstrings.Camel(name), methodName)
@@ -2608,7 +2608,7 @@ func (pkg *pkgContext) genResource(
 				if useGenericVariant {
 					inputTypeName = pkg.genericInputType(codegen.ResolvedType(p.Type))
 				}
-				fmt.Fprintf(w, "\t%s %s `pulumi:\"%s\"`\n", pkg.fieldName(nil, p), inputTypeName, p.Name)
+				fmt.Fprintf(w, "\t%s %s `khulnasoft:\"%s\"`\n", pkg.fieldName(nil, p), inputTypeName, p.Name)
 			}
 			fmt.Fprintf(w, "}\n\n")
 
@@ -2655,7 +2655,7 @@ func (pkg *pkgContext) genResource(
 			pkg.genPlainType(w, fmt.Sprintf("%s%sResult", outputStructName, methodName), comment, "", properties)
 
 			fmt.Fprintf(w, "\n")
-			fmt.Fprintf(w, "type %s%sResultOutput struct{ *pulumi.OutputState }\n\n", outputStructName, methodName)
+			fmt.Fprintf(w, "type %s%sResultOutput struct{ *khulnasoft.OutputState }\n\n", outputStructName, methodName)
 
 			fmt.Fprintf(w, "func (%s%sResultOutput) ElementType() reflect.Type {\n", outputStructName, methodName)
 			fmt.Fprintf(w, "\treturn reflect.TypeOf((*%s%sResult)(nil)).Elem()\n", outputStructName, methodName)
@@ -2674,7 +2674,7 @@ func (pkg *pkgContext) genResource(
 					fmt.Fprintf(w, "\treturn o.ApplyT(func (v %s%sResult) %s { return v.%s }).(%s)\n", outputStructName, methodName,
 						pkg.typeString(codegen.ResolvedType(p.Type)), Title(p.Name), outputTypeName)
 				} else {
-					fmt.Fprintf(w, "\treturn pulumix.Apply(o, func(v %s%sResult) %s { return v.%s })\n", outputStructName, methodName,
+					fmt.Fprintf(w, "\treturn khulnasoftx.Apply(o, func(v %s%sResult) %s { return v.%s })\n", outputStructName, methodName,
 						pkg.typeString(codegen.ResolvedType(p.Type)), Title(p.Name))
 				}
 
@@ -2687,7 +2687,7 @@ func (pkg *pkgContext) genResource(
 		// Emit the resource input type.
 		fmt.Fprintf(w, "\n")
 		fmt.Fprintf(w, "type %sInput interface {\n", name)
-		fmt.Fprintf(w, "\tpulumi.Input\n\n")
+		fmt.Fprintf(w, "\tkhulnasoft.Input\n\n")
 		fmt.Fprintf(w, "\tTo%[1]sOutput() %[1]sOutput\n", name)
 		fmt.Fprintf(w, "\tTo%[1]sOutputWithContext(ctx context.Context) %[1]sOutput\n", name)
 		fmt.Fprintf(w, "}\n\n")
@@ -2735,7 +2735,7 @@ func (pkg *pkgContext) genResource(
 
 			elementType := pkg.typeString(codegen.ResolvedType(p.Type))
 
-			if strings.HasPrefix(outputType, "pulumix.GPtrOutput") && !strings.HasPrefix(elementType, "*") {
+			if strings.HasPrefix(outputType, "khulnasoftx.GPtrOutput") && !strings.HasPrefix(elementType, "*") {
 				elementType = "*" + elementType
 			}
 
@@ -2747,16 +2747,16 @@ func (pkg *pkgContext) genResource(
 
 			if needsCast {
 				// needs an explicit cast operation to align the types
-				fmt.Fprintf(w, "\tvalue := pulumix.Apply[%s](o, func (v %s) %s { return v.%s })\n",
+				fmt.Fprintf(w, "\tvalue := khulnasoftx.Apply[%s](o, func (v %s) %s { return v.%s })\n",
 					name, name, outputType, pkg.fieldName(r, p))
-				fmt.Fprintf(w, "\tunwrapped := pulumix.Flatten[%s, %s](value)\n",
+				fmt.Fprintf(w, "\tunwrapped := khulnasoftx.Flatten[%s, %s](value)\n",
 					elementType, outputType)
 				fmt.Fprintf(w, "\treturn %s{OutputState: unwrapped.OutputState}\n", outputType)
 			} else {
-				fmt.Fprintf(w, "\tvalue := pulumix.Apply[%s](o, func (v %s) %s { return v.%s })\n",
+				fmt.Fprintf(w, "\tvalue := khulnasoftx.Apply[%s](o, func (v %s) %s { return v.%s })\n",
 					name, name, outputType, pkg.fieldName(r, p))
 				if !p.Plain {
-					fmt.Fprintf(w, "\treturn pulumix.Flatten[%s, %s](value)\n",
+					fmt.Fprintf(w, "\treturn khulnasoftx.Flatten[%s, %s](value)\n",
 						elementType, outputType)
 				} else {
 					fmt.Fprintf(w, "\treturn value\n")
@@ -2808,7 +2808,7 @@ func NeedsGoOutputVersion(f *schema.Function) bool {
 func (pkg *pkgContext) genFunctionCodeFile(f *schema.Function) (string, error) {
 	importsAndAliases := map[string]string{}
 	pkg.getImports(f, importsAndAliases)
-	importsAndAliases["github.com/pulumi/pulumi/sdk/v3/go/pulumi"] = ""
+	importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"] = ""
 	importsAndAliases[path.Join(pkg.importBasePath, pkg.internalModuleName)] = ""
 	buffer := &bytes.Buffer{}
 	goInfo := goPackageInfo(pkg.pkg)
@@ -2816,7 +2816,7 @@ func (pkg *pkgContext) genFunctionCodeFile(f *schema.Function) (string, error) {
 	if f.ReturnType != nil {
 		imports = []string{"context", "reflect"}
 		if goInfo.Generics == GenericsSettingSideBySide {
-			importsAndAliases["github.com/pulumi/pulumi/sdk/v3/go/pulumix"] = ""
+			importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"] = ""
 		}
 	}
 
@@ -2832,9 +2832,9 @@ func (pkg *pkgContext) genFunctionCodeFile(f *schema.Function) (string, error) {
 func (pkg *pkgContext) genGenericVariantFunctionCodeFile(f *schema.Function) (string, error) {
 	importsAndAliases := map[string]string{}
 	pkg.getImports(f, importsAndAliases)
-	importsAndAliases["github.com/pulumi/pulumi/sdk/v3/go/pulumi"] = ""
+	importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"] = ""
 	if f.NeedsOutputVersion() {
-		importsAndAliases["github.com/pulumi/pulumi/sdk/v3/go/pulumix"] = ""
+		importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"] = ""
 	}
 
 	importsAndAliases[path.Join(pkg.importBasePath, pkg.internalModuleName)] = ""
@@ -2874,7 +2874,7 @@ func (pkg *pkgContext) genFunction(w io.Writer, f *schema.Function, useGenericTy
 	printCommentWithDeprecationMessage(w, f.Comment, f.DeprecationMessage, false)
 
 	// Now, emit the function signature.
-	argsig := "ctx *pulumi.Context"
+	argsig := "ctx *khulnasoft.Context"
 	if f.Inputs != nil {
 		argsig = fmt.Sprintf("%s, args *%sArgs", argsig, name)
 	}
@@ -2884,7 +2884,7 @@ func (pkg *pkgContext) genFunction(w io.Writer, f *schema.Function, useGenericTy
 	} else {
 		retty = fmt.Sprintf("(*%sResult, error)", name)
 	}
-	fmt.Fprintf(w, "func %s(%s, opts ...pulumi.InvokeOption) %s {\n", name, argsig, retty)
+	fmt.Fprintf(w, "func %s(%s, opts ...khulnasoft.InvokeOption) %s {\n", name, argsig, retty)
 
 	// Make a map of inputs to pass to the runtime function.
 	var inputsVar string
@@ -2996,11 +2996,11 @@ func (pkg *pkgContext) functionResultTypeName(f *schema.Function) string {
 }
 
 func genericTypeNeedsExplicitCasting(outputType string) bool {
-	return strings.HasPrefix(outputType, "pulumix.ArrayOutput") ||
-		strings.HasPrefix(outputType, "pulumix.MapOutput") ||
-		strings.HasPrefix(outputType, "pulumix.GPtrOutput") ||
-		strings.HasPrefix(outputType, "pulumix.GArrayOutput") ||
-		strings.HasPrefix(outputType, "pulumix.GMapOutput")
+	return strings.HasPrefix(outputType, "khulnasoftx.ArrayOutput") ||
+		strings.HasPrefix(outputType, "khulnasoftx.MapOutput") ||
+		strings.HasPrefix(outputType, "khulnasoftx.GPtrOutput") ||
+		strings.HasPrefix(outputType, "khulnasoftx.GArrayOutput") ||
+		strings.HasPrefix(outputType, "khulnasoftx.GMapOutput")
 }
 
 func (pkg *pkgContext) genFunctionOutputGenericVersion(w io.Writer, f *schema.Function) {
@@ -3013,22 +3013,22 @@ func (pkg *pkgContext) genFunctionOutputGenericVersion(w io.Writer, f *schema.Fu
 
 	if f.Inputs != nil {
 		code = `
-func ${fn}Output(ctx *pulumi.Context, args ${fn}OutputArgs, opts ...pulumi.InvokeOption) ${outputType} {
-	outputResult := pulumix.ApplyErr[*${fn}Args](args.ToOutput(), func(plainArgs *${fn}Args) (*${fn}Result, error) {
+func ${fn}Output(ctx *khulnasoft.Context, args ${fn}OutputArgs, opts ...khulnasoft.InvokeOption) ${outputType} {
+	outputResult := khulnasoftx.ApplyErr[*${fn}Args](args.ToOutput(), func(plainArgs *${fn}Args) (*${fn}Result, error) {
 		return ${fn}(ctx, plainArgs, opts...)
 	})
 
-	return pulumix.Cast[${outputType}, *${fn}Result](outputResult)
+	return khulnasoftx.Cast[${outputType}, *${fn}Result](outputResult)
 }
 `
 	} else {
 		code = `
-func ${fn}Output(ctx *pulumi.Context, opts ...pulumi.InvokeOption) ${outputType} {
-	outputResult := pulumix.ApplyErr[int](pulumix.Val(0), func(_ int) (*${fn}Result, error) {
+func ${fn}Output(ctx *khulnasoft.Context, opts ...khulnasoft.InvokeOption) ${outputType} {
+	outputResult := khulnasoftx.ApplyErr[int](khulnasoftx.Val(0), func(_ int) (*${fn}Result, error) {
 		return ${fn}(ctx, opts...)
 	})
 
-	return pulumix.Cast[${outputType}, *${fn}Result](outputResult)
+	return khulnasoftx.Cast[${outputType}, *${fn}Result](outputResult)
 }
 `
 	}
@@ -3044,8 +3044,8 @@ func ${fn}Output(ctx *pulumi.Context, opts ...pulumi.InvokeOption) ${outputType}
 		receiverType := name + "Args"
 		plainType := originalName + "Args"
 
-		fmt.Fprintf(w, "func (args %s) ToOutput() pulumix.Output[*%s] {\n", receiverType, plainType)
-		fmt.Fprint(w, "\tallArgs := pulumix.All(\n")
+		fmt.Fprintf(w, "func (args %s) ToOutput() khulnasoftx.Output[*%s] {\n", receiverType, plainType)
+		fmt.Fprint(w, "\tallArgs := khulnasoftx.All(\n")
 		for i, p := range f.Inputs.Properties {
 			fmt.Fprintf(w, "\t\targs.%s.ToOutput(context.Background()).AsAny()", pkg.fieldName(nil, p))
 			if i < len(f.Inputs.Properties)-1 {
@@ -3054,7 +3054,7 @@ func ${fn}Output(ctx *pulumi.Context, opts ...pulumi.InvokeOption) ${outputType}
 		}
 		fmt.Fprint(w, ")\n")
 
-		fmt.Fprintf(w, "\treturn pulumix.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *%s {\n", plainType)
+		fmt.Fprintf(w, "\treturn khulnasoftx.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *%s {\n", plainType)
 		fmt.Fprintf(w, "\t\treturn &%s{\n", plainType)
 		for i, p := range f.Inputs.Properties {
 			fmt.Fprintf(w, "\t\t\t%s: resolvedArgs[%d].(%s),\n",
@@ -3075,16 +3075,16 @@ func ${fn}Output(ctx *pulumi.Context, opts ...pulumi.InvokeOption) ${outputType}
 	}
 
 	if objectReturnType != nil {
-		fmt.Fprintf(w, "type %sOutput struct { *pulumi.OutputState }\n\n", originalResultTypeName)
+		fmt.Fprintf(w, "type %sOutput struct { *khulnasoft.OutputState }\n\n", originalResultTypeName)
 
 		fmt.Fprintf(w, "func (%sOutput) ElementType() reflect.Type {\n", originalResultTypeName)
 		fmt.Fprintf(w, "\treturn reflect.TypeOf((*%s)(nil)).Elem()\n", originalResultTypeName)
 		fmt.Fprintf(w, "}\n\n")
 
-		fmt.Fprintf(w, "func (o %sOutput) ToOutput(context.Context) pulumix.Output[*%s] {\n",
+		fmt.Fprintf(w, "func (o %sOutput) ToOutput(context.Context) khulnasoftx.Output[*%s] {\n",
 			originalResultTypeName,
 			originalResultTypeName)
-		fmt.Fprintf(w, "\treturn pulumix.Output[*%s]{\n", originalResultTypeName)
+		fmt.Fprintf(w, "\treturn khulnasoftx.Output[*%s]{\n", originalResultTypeName)
 		fmt.Fprint(w, "\t\tOutputState: o.OutputState,\n")
 		fmt.Fprint(w, "\t}\n")
 		fmt.Fprint(w, "}\n\n")
@@ -3098,13 +3098,13 @@ func ${fn}Output(ctx *pulumi.Context, opts ...pulumi.InvokeOption) ${outputType}
 			needsCast := genericTypeNeedsExplicitCasting(outputType)
 
 			if !needsCast {
-				fmt.Fprintf(w, "\treturn pulumix.Apply[*%s](o, func (v *%s) %s { return v.%s })\n",
+				fmt.Fprintf(w, "\treturn khulnasoftx.Apply[*%s](o, func (v *%s) %s { return v.%s })\n",
 					originalResultTypeName,
 					originalResultTypeName,
 					pkg.typeString(p.Type),
 					pkg.fieldName(nil, p))
 			} else {
-				fmt.Fprintf(w, "\tvalue := pulumix.Apply[*%s](o, func (v *%s) %s { return v.%s })\n",
+				fmt.Fprintf(w, "\tvalue := khulnasoftx.Apply[*%s](o, func (v *%s) %s { return v.%s })\n",
 					originalResultTypeName,
 					originalResultTypeName,
 					pkg.typeString(p.Type),
@@ -3148,8 +3148,8 @@ func (pkg *pkgContext) genFunctionOutputVersion(w io.Writer, f *schema.Function,
 
 	if f.Inputs != nil {
 		code = `
-func ${fn}Output(ctx *pulumi.Context, args ${fn}OutputArgs, opts ...pulumi.InvokeOption) ${outputType} {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func ${fn}Output(ctx *khulnasoft.Context, args ${fn}OutputArgs, opts ...khulnasoft.InvokeOption) ${outputType} {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (${outputType}, error) {
 			args := v.(${fn}Args)
 			opts = ${internalModule}.PkgInvokeDefaultOpts(opts)
@@ -3159,9 +3159,9 @@ func ${fn}Output(ctx *pulumi.Context, args ${fn}OutputArgs, opts ...pulumi.Invok
 				return ${outputType}{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(${outputType})
+			output := khulnasoft.ToOutput(rv).(${outputType})
 			if secret {
-				return pulumi.ToSecret(output).(${outputType}), nil
+				return khulnasoft.ToSecret(output).(${outputType}), nil
 			}
 			return output, nil
 		}).(${outputType})
@@ -3170,8 +3170,8 @@ func ${fn}Output(ctx *pulumi.Context, args ${fn}OutputArgs, opts ...pulumi.Invok
 `
 	} else {
 		code = `
-func ${fn}Output(ctx *pulumi.Context, opts ...pulumi.InvokeOption) ${outputType} {
-	return pulumi.ToOutput(0).ApplyT(func(int) (${outputType}, error) {
+func ${fn}Output(ctx *khulnasoft.Context, opts ...khulnasoft.InvokeOption) ${outputType} {
+	return khulnasoft.ToOutput(0).ApplyT(func(int) (${outputType}, error) {
 		opts = ${internalModule}.PkgInvokeDefaultOpts(opts)
 		var rv ${fn}Result
 		secret, err := ctx.InvokePackageRaw("${token}", nil, &rv, "", opts...)
@@ -3179,9 +3179,9 @@ func ${fn}Output(ctx *pulumi.Context, opts ...pulumi.InvokeOption) ${outputType}
 			return ${outputType}{}, err
 		}
 
-		output := pulumi.ToOutput(rv).(${outputType})
+		output := khulnasoft.ToOutput(rv).(${outputType})
 		if secret {
-			return pulumi.ToSecret(output).(${outputType}), nil
+			return khulnasoft.ToSecret(output).(${outputType}), nil
 		}
 		return output, nil
 	}).(${outputType})
@@ -3221,7 +3221,7 @@ func ${fn}Output(ctx *pulumi.Context, opts ...pulumi.InvokeOption) ${outputType}
 	// generate an `init()` for Output type init.
 	initCode := `
 func init() {
-        pulumi.RegisterOutputType(${outputType}{})
+        khulnasoft.RegisterOutputType(${outputType}{})
 }
 
 `
@@ -3534,24 +3534,24 @@ func (pkg *pkgContext) genTypeRegistrations(
 			name, details := pkg.tokenToType(obj.Token), pkg.detailsForType(obj)
 			if details.input {
 				fmt.Fprintf(w,
-					"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sInput)(nil)).Elem(), %[1]sArgs{})\n", name)
+					"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sInput)(nil)).Elem(), %[1]sArgs{})\n", name)
 			}
 			if details.ptrInput {
 				fmt.Fprintf(w,
-					"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sPtrInput)(nil)).Elem(), %[1]sArgs{})\n", name)
+					"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sPtrInput)(nil)).Elem(), %[1]sArgs{})\n", name)
 			}
 			if details.arrayInput && !pkg.names.Has(name+"Array") {
 				fmt.Fprintf(w,
-					"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sArrayInput)(nil)).Elem(), %[1]sArray{})\n", name)
+					"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sArrayInput)(nil)).Elem(), %[1]sArray{})\n", name)
 			}
 			if details.mapInput && !pkg.names.Has(name+"Map") {
 				fmt.Fprintf(w,
-					"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sMapInput)(nil)).Elem(), %[1]sMap{})\n", name)
+					"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sMapInput)(nil)).Elem(), %[1]sMap{})\n", name)
 			}
 		}
 		for _, t := range types {
 			if strings.HasSuffix(t, "Input") {
-				fmt.Fprintf(w, "\tpulumi.RegisterInputType(reflect.TypeOf((*%s)(nil)).Elem(), %s{})\n", t, strings.TrimSuffix(t, "Input"))
+				fmt.Fprintf(w, "\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%s)(nil)).Elem(), %s{})\n", t, strings.TrimSuffix(t, "Input"))
 			}
 		}
 	}
@@ -3564,21 +3564,21 @@ func (pkg *pkgContext) genTypeRegistrations(
 		}
 		name, details := pkg.tokenToType(obj.Token), pkg.detailsForType(obj)
 		if details.output {
-			fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sOutput{})\n", name)
+			fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sOutput{})\n", name)
 		}
 		if details.ptrOutput && !usingGenericTypes {
-			fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sPtrOutput{})\n", name)
+			fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sPtrOutput{})\n", name)
 		}
 		if details.arrayOutput && !usingGenericTypes {
-			fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sArrayOutput{})\n", name)
+			fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sArrayOutput{})\n", name)
 		}
 		if details.mapOutput && !usingGenericTypes {
-			fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sMapOutput{})\n", name)
+			fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sMapOutput{})\n", name)
 		}
 	}
 	for _, t := range types {
 		if strings.HasSuffix(t, "Output") {
-			fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%s{})\n", t)
+			fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%s{})\n", t)
 		}
 	}
 
@@ -3597,20 +3597,20 @@ func (pkg *pkgContext) genEnumRegistrations(w io.Writer) {
 			instance := fmt.Sprintf("%#v", e.Elements[0].Value)
 			if details.input || details.ptrInput {
 				fmt.Fprintf(w,
-					"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sInput)(nil)).Elem(), %[1]s(%[2]s))\n",
+					"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sInput)(nil)).Elem(), %[1]s(%[2]s))\n",
 					name, instance)
 				fmt.Fprintf(w,
-					"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sPtrInput)(nil)).Elem(), %[1]s(%[2]s))\n",
+					"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sPtrInput)(nil)).Elem(), %[1]s(%[2]s))\n",
 					name, instance)
 			}
 			if details.arrayInput {
 				fmt.Fprintf(w,
-					"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sArrayInput)(nil)).Elem(), %[1]sArray{})\n",
+					"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sArrayInput)(nil)).Elem(), %[1]sArray{})\n",
 					name)
 			}
 			if details.mapInput {
 				fmt.Fprintf(w,
-					"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sMapInput)(nil)).Elem(), %[1]sMap{})\n",
+					"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sMapInput)(nil)).Elem(), %[1]sMap{})\n",
 					name)
 			}
 		}
@@ -3619,14 +3619,14 @@ func (pkg *pkgContext) genEnumRegistrations(w io.Writer) {
 	for _, e := range pkg.enums {
 		name, details := pkg.tokenToEnum(e.Token), pkg.detailsForType(e)
 		if details.output || details.ptrOutput {
-			fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sOutput{})\n", name)
-			fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sPtrOutput{})\n", name)
+			fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sOutput{})\n", name)
+			fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sPtrOutput{})\n", name)
 		}
 		if details.arrayOutput {
-			fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sArrayOutput{})\n", name)
+			fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sArrayOutput{})\n", name)
 		}
 		if details.mapOutput {
-			fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sMapOutput{})\n", name)
+			fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sMapOutput{})\n", name)
 		}
 	}
 	fmt.Fprintf(w, "}\n\n")
@@ -3643,19 +3643,19 @@ func (pkg *pkgContext) genResourceRegistrations(
 	// Register input type
 	if !pkg.disableInputTypeRegistrations && !usingGenericTypes {
 		fmt.Fprintf(w,
-			"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sInput)(nil)).Elem(), &%[1]s{})\n",
+			"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sInput)(nil)).Elem(), &%[1]s{})\n",
 			name)
 		if generateResourceContainerTypes && !r.IsProvider {
 			fmt.Fprintf(w,
-				"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sArrayInput)(nil)).Elem(), %[1]sArray{})\n",
+				"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sArrayInput)(nil)).Elem(), %[1]sArray{})\n",
 				name)
 			fmt.Fprintf(w,
-				"\tpulumi.RegisterInputType(reflect.TypeOf((*%[1]sMapInput)(nil)).Elem(), %[1]sMap{})\n",
+				"\tkhulnasoft.RegisterInputType(reflect.TypeOf((*%[1]sMapInput)(nil)).Elem(), %[1]sMap{})\n",
 				name)
 		}
 	}
 	// Register all output types
-	fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sOutput{})\n", name)
+	fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sOutput{})\n", name)
 	for _, method := range r.Methods {
 		var objectReturnType *schema.ObjectType
 		if method.Function.ReturnType != nil {
@@ -3666,16 +3666,16 @@ func (pkg *pkgContext) genResourceRegistrations(
 
 		if objectReturnType != nil {
 			if pkg.liftSingleValueMethodReturns && len(objectReturnType.Properties) == 1 {
-				fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%s%sResultOutput{})\n", cgstrings.Camel(name), Title(method.Name))
+				fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%s%sResultOutput{})\n", cgstrings.Camel(name), Title(method.Name))
 			} else {
-				fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%s%sResultOutput{})\n", name, Title(method.Name))
+				fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%s%sResultOutput{})\n", name, Title(method.Name))
 			}
 		}
 	}
 
 	if generateResourceContainerTypes && !r.IsProvider && !usingGenericTypes {
-		fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sArrayOutput{})\n", name)
-		fmt.Fprintf(w, "\tpulumi.RegisterOutputType(%sMapOutput{})\n", name)
+		fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sArrayOutput{})\n", name)
+		fmt.Fprintf(w, "\tkhulnasoft.RegisterOutputType(%sMapOutput{})\n", name)
 	}
 	fmt.Fprintf(w, "}\n\n")
 }
@@ -3761,11 +3761,11 @@ func extractModulePath(extPkg schema.PackageReference) string {
 		vPath = fmt.Sprintf("/v%d", version.Major)
 	}
 
-	// Default to example.com/pulumi-pkg if we have no other information.
-	root := "example.com/pulumi-" + name
+	// Default to example.com/khulnasoft-pkg if we have no other information.
+	root := "example.com/khulnasoft-" + name
 	// But if we have a publisher use that instead, assuming it's from github
 	if extPkg.Publisher() != "" {
-		root = fmt.Sprintf("github.com/%s/pulumi-%s", extPkg.Publisher(), name)
+		root = fmt.Sprintf("github.com/%s/khulnasoft-%s", extPkg.Publisher(), name)
 	}
 	// And if we have a repository, use that instead of the publisher
 	if extPkg.Repository() != "" {
@@ -3867,7 +3867,7 @@ func (pkg *pkgContext) genHeader(w io.Writer, goImports []string, importsAndAlia
 	var pkgName string
 	if pkg.mod == "" {
 		if isUtil {
-			// we place pulumiVersion and pulumiUtilities in an ./internal folder
+			// we place khulnasoftVersion and khulnasoftUtilities in an ./internal folder
 			// the name of the folder can be overridden by the schema
 			// so we use the computed internalModuleName which defaults to "internal" if not set
 			pkgName = pkg.internalModuleName
@@ -3921,8 +3921,8 @@ func (pkg *pkgContext) genHeader(w io.Writer, goImports []string, importsAndAlia
 
 func (pkg *pkgContext) genConfig(w io.Writer, variables []*schema.Property) error {
 	importsAndAliases := map[string]string{
-		"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config": "",
-		"github.com/pulumi/pulumi/sdk/v3/go/pulumi":        "",
+		"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config": "",
+		"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft":        "",
 	}
 	importsAndAliases[path.Join(pkg.importBasePath, pkg.internalModuleName)] = ""
 	pkg.genHeader(w, nil, importsAndAliases, false /* isUtil */)
@@ -3949,7 +3949,7 @@ func (pkg *pkgContext) genConfig(w io.Writer, variables []*schema.Property) erro
 		printCommentWithDeprecationMessage(w, p.Comment, p.DeprecationMessage, false)
 		configKey := fmt.Sprintf("\"%s:%s\"", pkg.pkg.Name(), cgstrings.Camel(p.Name))
 
-		fmt.Fprintf(w, "func Get%s(ctx *pulumi.Context) %s {\n", Title(p.Name), getType)
+		fmt.Fprintf(w, "func Get%s(ctx *khulnasoft.Context) %s {\n", Title(p.Name), getType)
 		if p.DefaultValue != nil {
 			fmt.Fprintf(w, "\tv, err := config.Try%s(ctx, %s)\n", funcType, configKey)
 			fmt.Fprintf(w, "\tif err == nil {\n")
@@ -3995,7 +3995,7 @@ func (pkg *pkgContext) genResourceModule(w io.Writer) error {
 
 	imports := map[string]string{
 		"github.com/blang/semver":                   "",
-		"github.com/pulumi/pulumi/sdk/v3/go/pulumi": "",
+		"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft": "",
 	}
 	imports[path.Join(pkg.importBasePath, pkg.internalModuleName)] = ""
 
@@ -4025,7 +4025,7 @@ func (pkg *pkgContext) genResourceModule(w io.Writer) error {
 		fmt.Fprintf(w, "\treturn m.version\n")
 		fmt.Fprintf(w, "}\n\n")
 
-		fmt.Fprintf(w, "func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {\n")
+		fmt.Fprintf(w, "func (m *module) Construct(ctx *khulnasoft.Context, name, typ, urn string) (r khulnasoft.Resource, err error) {\n")
 		fmt.Fprintf(w, "\tswitch typ {\n")
 		for _, r := range pkg.resources {
 			if r.IsOverlay {
@@ -4045,7 +4045,7 @@ func (pkg *pkgContext) genResourceModule(w io.Writer) error {
 		fmt.Fprintf(w, "\tdefault:\n")
 		fmt.Fprintf(w, "\t\treturn nil, fmt.Errorf(\"unknown resource type: %%s\", typ)\n")
 		fmt.Fprintf(w, "\t}\n\n")
-		fmt.Fprintf(w, "\terr = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))\n")
+		fmt.Fprintf(w, "\terr = ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))\n")
 		fmt.Fprintf(w, "\treturn\n")
 		fmt.Fprintf(w, "}\n\n")
 	}
@@ -4059,12 +4059,12 @@ func (pkg *pkgContext) genResourceModule(w io.Writer) error {
 		fmt.Fprintf(w, "\treturn p.version\n")
 		fmt.Fprintf(w, "}\n\n")
 
-		fmt.Fprintf(w, "func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pulumi.ProviderResource, error) {\n")
-		fmt.Fprintf(w, "\tif typ != \"pulumi:providers:%s\" {\n", pkg.pkg.Name())
+		fmt.Fprintf(w, "func (p *pkg) ConstructProvider(ctx *khulnasoft.Context, name, typ, urn string) (khulnasoft.ProviderResource, error) {\n")
+		fmt.Fprintf(w, "\tif typ != \"khulnasoft:providers:%s\" {\n", pkg.pkg.Name())
 		fmt.Fprintf(w, "\t\treturn nil, fmt.Errorf(\"unknown provider type: %%s\", typ)\n")
 		fmt.Fprintf(w, "\t}\n\n")
 		fmt.Fprintf(w, "\tr := &Provider{}\n")
-		fmt.Fprintf(w, "\terr := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))\n")
+		fmt.Fprintf(w, "\terr := ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))\n")
 		fmt.Fprintf(w, "\treturn r, err\n")
 		fmt.Fprintf(w, "}\n\n")
 	}
@@ -4079,7 +4079,7 @@ func (pkg *pkgContext) genResourceModule(w io.Writer) error {
 	fmt.Fprintf(w, "\t}\n")
 	if len(registrations) > 0 {
 		for _, mod := range registrations.SortedValues() {
-			fmt.Fprintf(w, "\tpulumi.RegisterResourceModule(\n")
+			fmt.Fprintf(w, "\tkhulnasoft.RegisterResourceModule(\n")
 			fmt.Fprintf(w, "\t\t%q,\n", pkg.pkg.Name())
 			fmt.Fprintf(w, "\t\t%q,\n", mod)
 			fmt.Fprintf(w, "\t\t&module{version},\n")
@@ -4087,7 +4087,7 @@ func (pkg *pkgContext) genResourceModule(w io.Writer) error {
 		}
 	}
 	if provider != nil {
-		fmt.Fprintf(w, "\tpulumi.RegisterResourcePackage(\n")
+		fmt.Fprintf(w, "\tkhulnasoft.RegisterResourcePackage(\n")
 		fmt.Fprintf(w, "\t\t%q,\n", pkg.pkg.Name())
 		fmt.Fprintf(w, "\t\t&pkg{version},\n")
 		fmt.Fprintf(w, "\t)\n")
@@ -4560,7 +4560,7 @@ type LanguageResource struct {
 
 	Alias   string // The package alias (e.g. appsv1)
 	Name    string // The resource name (e.g. Deployment)
-	Package string // The package name (e.g. github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/apps/v1)
+	Package string // The package name (e.g. github.com/khulnasoft/khulnasoft-kubernetes/sdk/v2/go/kubernetes/apps/v1)
 }
 
 // LanguageResources returns a map of resources that can be used by downstream codegen. The map
@@ -4694,10 +4694,10 @@ func GeneratePackage(tool string,
 		contract.AssertNoErrorf(err, "could not add module statement to go.mod")
 		err = mod.AddGoStmt("1.21")
 		contract.AssertNoErrorf(err, "could not add Go statement to go.mod")
-		// Parameterized packages need the pulumi SDK >= v3.129.0
-		pulumiPackagePath := "github.com/pulumi/pulumi/sdk/v3"
-		pulumiVersion := "v3.129.0"
-		err = mod.AddRequire(pulumiPackagePath, pulumiVersion)
+		// Parameterized packages need the khulnasoft SDK >= v3.129.0
+		khulnasoftPackagePath := "github.com/khulnasoft/khulnasoft/sdk/v3"
+		khulnasoftVersion := "v3.129.0"
+		err = mod.AddRequire(khulnasoftPackagePath, khulnasoftVersion)
 		contract.AssertNoErrorf(err, "could not add require statement to go.mod")
 		bytes, err := mod.Format()
 		if err != nil {
@@ -4706,27 +4706,27 @@ func GeneratePackage(tool string,
 		files.Add(path.Join(pathPrefix, "go.mod"), bytes)
 	}
 
-	// Generate pulumi-plugin.json
-	pulumiPlugin := &plugin.PulumiPluginJSON{
+	// Generate khulnasoft-plugin.json
+	khulnasoftPlugin := &plugin.PulumiPluginJSON{
 		Resource: true,
 		Name:     pkg.Name,
 		Server:   pkg.PluginDownloadURL,
 	}
 	if goPkgInfo.RespectSchemaVersion && pkg.Version != nil {
-		pulumiPlugin.Version = pkg.Version.String()
+		khulnasoftPlugin.Version = pkg.Version.String()
 	}
 
 	if pkg.Parameterization != nil {
-		pulumiPlugin.Name = pkg.Parameterization.BaseProvider.Name
-		pulumiPlugin.Version = pkg.Parameterization.BaseProvider.Version.String()
-		pulumiPlugin.Server = pkg.Parameterization.BaseProvider.PluginDownloadURL
+		khulnasoftPlugin.Name = pkg.Parameterization.BaseProvider.Name
+		khulnasoftPlugin.Version = pkg.Parameterization.BaseProvider.Version.String()
+		khulnasoftPlugin.Server = pkg.Parameterization.BaseProvider.PluginDownloadURL
 	}
 
-	pulumiPluginJSON, err := pulumiPlugin.JSON()
+	khulnasoftPluginJSON, err := khulnasoftPlugin.JSON()
 	if err != nil {
-		return nil, fmt.Errorf("Failed to format pulumi-plugin.json: %w", err)
+		return nil, fmt.Errorf("Failed to format khulnasoft-plugin.json: %w", err)
 	}
-	files.Add(path.Join(pathPrefix, "pulumi-plugin.json"), pulumiPluginJSON)
+	files.Add(path.Join(pathPrefix, "khulnasoft-plugin.json"), khulnasoftPluginJSON)
 
 	setFileContent := func(root, relPath, contents string) {
 		relPath = path.Join(root, relPath)
@@ -4801,7 +4801,7 @@ func GeneratePackage(tool string,
 				return nil, err
 			}
 
-			versionFilePath := pkg.internalModuleName + "/pulumiVersion.go"
+			versionFilePath := pkg.internalModuleName + "/khulnasoftVersion.go"
 			setFile(path.Join(mod, versionFilePath), versionBuf.String())
 			if emitOnlyGenericVariant {
 				setGenericVariantFile(path.Join(mod, versionFilePath), versionBuf.String())
@@ -4833,10 +4833,10 @@ func GeneratePackage(tool string,
 
 			importsAndAliases := map[string]string{}
 			pkg.getImports(resource, importsAndAliases)
-			importsAndAliases["github.com/pulumi/pulumi/sdk/v3/go/pulumi"] = ""
+			importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"] = ""
 			importsAndAliases[path.Join(pkg.importBasePath, pkg.internalModuleName)] = ""
 			if goPkgInfo.Generics == GenericsSettingSideBySide {
-				importsAndAliases["github.com/pulumi/pulumi/sdk/v3/go/pulumix"] = ""
+				importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"] = ""
 			}
 
 			buffer := &bytes.Buffer{}
@@ -4854,7 +4854,7 @@ func GeneratePackage(tool string,
 			setFile(resourceFilePath, buffer.String())
 
 			genericVariantBuffer := &bytes.Buffer{}
-			importsAndAliases["github.com/pulumi/pulumi/sdk/v3/go/pulumix"] = ""
+			importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"] = ""
 			pkg.genHeader(genericVariantBuffer, []string{"context", "reflect"}, importsAndAliases, false /* isUtil */)
 			if err := pkg.genResource(
 				genericVariantBuffer,
@@ -4903,9 +4903,9 @@ func GeneratePackage(tool string,
 			var goImports []string
 			if hasOutputs {
 				goImports = []string{"context", "reflect"}
-				imports["github.com/pulumi/pulumi/sdk/v3/go/pulumi"] = ""
+				imports["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"] = ""
 				if goPkgInfo.Generics != GenericsSettingNone {
-					imports["github.com/pulumi/pulumi/sdk/v3/go/pulumix"] = ""
+					imports["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"] = ""
 				}
 			}
 
@@ -4928,8 +4928,8 @@ func GeneratePackage(tool string,
 				delete(knownTypes, e)
 			}
 			pkg.genEnumRegistrations(buffer)
-			setFile(path.Join(mod, "pulumiEnums.go"), buffer.String())
-			setGenericVariantFile(path.Join(mod, "pulumiEnums.go"), genericVariantBuffer.String())
+			setFile(path.Join(mod, "khulnasoftEnums.go"), buffer.String())
+			setGenericVariantFile(path.Join(mod, "khulnasoftEnums.go"), genericVariantBuffer.String())
 		}
 
 		// Types
@@ -4957,7 +4957,7 @@ func GeneratePackage(tool string,
 				if err != nil {
 					return nil, err
 				}
-				typeFilePath := path.Join(mod, "pulumiTypes.go")
+				typeFilePath := path.Join(mod, "khulnasoftTypes.go")
 				setFile(typeFilePath, buffer.String())
 
 				genericVariantBuffer := &bytes.Buffer{}
@@ -4992,7 +4992,7 @@ func GeneratePackage(tool string,
 				return nil, err
 			}
 
-			typePath := "pulumiTypes"
+			typePath := "khulnasoftTypes"
 			if i != 0 {
 				typePath = fmt.Sprintf("%s%d", typePath, i)
 			}
@@ -5015,7 +5015,7 @@ func GeneratePackage(tool string,
 			buffer := &bytes.Buffer{}
 			importsAndAliases := map[string]string{
 				"github.com/blang/semver":                   "",
-				"github.com/pulumi/pulumi/sdk/v3/go/pulumi": "",
+				"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft": "",
 			}
 
 			imports := []string{"fmt", "os", "reflect", "regexp", "strconv", "strings"}
@@ -5026,12 +5026,12 @@ func GeneratePackage(tool string,
 			}
 			if def.Parameterization != nil {
 				imports = append(imports, "encoding/base64")
-				importsAndAliases["github.com/pulumi/pulumi/sdk/v3/proto/go"] = "pulumirpc"
+				importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"] = "khulnasoftrpc"
 			}
 
 			pkg.genHeader(buffer, imports, importsAndAliases, true /* isUtil */)
 
-			packageRegex := fmt.Sprintf("^.*/pulumi-%s/sdk(/v\\d+)?", pkg.pkg.Name())
+			packageRegex := fmt.Sprintf("^.*/khulnasoft-%s/sdk(/v\\d+)?", pkg.pkg.Name())
 			if pkg.rootPackageName != "" {
 				packageRegex = fmt.Sprintf("^%s(/v\\d+)?", pkg.importBasePath)
 			}
@@ -5040,7 +5040,7 @@ func GeneratePackage(tool string,
 				return nil, err
 			}
 
-			utilFilePath := pkg.internalModuleName + "/pulumiUtilities.go"
+			utilFilePath := pkg.internalModuleName + "/khulnasoftUtilities.go"
 			setFile(path.Join(mod, utilFilePath), buffer.String())
 			if emitOnlyGenericVariant {
 				setGenericVariantFile(path.Join(mod, utilFilePath), buffer.String())
@@ -5092,15 +5092,15 @@ func GeneratePackage(tool string,
 		contract.AssertNoErrorf(err, "could not add module statement to go.mod")
 		err = gomod.AddGoStmt("1.20")
 		contract.AssertNoErrorf(err, "could not add Go statement to go.mod")
-		pulumiPackagePath := "github.com/pulumi/pulumi/sdk/v3"
-		pulumiVersion := "v3.30.0"
+		khulnasoftPackagePath := "github.com/khulnasoft/khulnasoft/sdk/v3"
+		khulnasoftVersion := "v3.30.0"
 		if pkg.Parameterization != nil {
-			pulumiVersion = "v3.133.0"
+			khulnasoftVersion = "v3.133.0"
 		}
-		err = gomod.AddRequire(pulumiPackagePath, pulumiVersion)
+		err = gomod.AddRequire(khulnasoftPackagePath, khulnasoftVersion)
 		contract.AssertNoErrorf(err, "could not add require statement to go.mod")
-		if replacementPath, hasReplacement := localDependencies["pulumi"]; hasReplacement {
-			err = gomod.AddReplace(pulumiPackagePath, "", replacementPath, "")
+		if replacementPath, hasReplacement := localDependencies["khulnasoft"]; hasReplacement {
+			err = gomod.AddReplace(khulnasoftPackagePath, "", replacementPath, "")
 			contract.AssertNoErrorf(err, "could not add replace statement to go.mod")
 		}
 
@@ -5138,14 +5138,14 @@ func generateTypes(
 	var goImports []string
 	if hasOutputs {
 		goImports = []string{"context", "reflect"}
-		importsAndAliases["github.com/pulumi/pulumi/sdk/v3/go/pulumi"] = ""
+		importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"] = ""
 		if goInfo.Generics == GenericsSettingSideBySide {
-			importsAndAliases["github.com/pulumi/pulumi/sdk/v3/go/pulumix"] = ""
+			importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"] = ""
 		}
 	}
 
 	if useGenericTypes && hasOutputs {
-		importsAndAliases["github.com/pulumi/pulumi/sdk/v3/go/pulumix"] = ""
+		importsAndAliases["github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"] = ""
 	}
 
 	importsAndAliases[path.Join(pkg.importBasePath, pkg.internalModuleName)] = ""
@@ -5216,20 +5216,20 @@ func (pkg *pkgContext) GenPkgDefaultOpts(w io.Writer) error {
 	}
 	url := p.PluginDownloadURL
 	const template string = `
-// Pkg%[1]sDefaultOpts provides package level defaults to pulumi.Option%[1]s.
-func Pkg%[1]sDefaultOpts(opts []pulumi.%[1]sOption) []pulumi.%[1]sOption {
-	defaults := []pulumi.%[1]sOption{}
+// Pkg%[1]sDefaultOpts provides package level defaults to khulnasoft.Option%[1]s.
+func Pkg%[1]sDefaultOpts(opts []khulnasoft.%[1]sOption) []khulnasoft.%[1]sOption {
+	defaults := []khulnasoft.%[1]sOption{}
 		%[2]s
 		version := %[3]s
 		if !version.Equals(semver.Version{}){
-			defaults = append(defaults, pulumi.Version(version.String()))
+			defaults = append(defaults, khulnasoft.Version(version.String()))
 		}
 	return append(defaults, opts...)
 }
 `
 	var pluginDownloadURL string
 	if url != "" {
-		pluginDownloadURL = fmt.Sprintf(`defaults = append(defaults, pulumi.PluginDownloadURL("%s"))`, url)
+		pluginDownloadURL = fmt.Sprintf(`defaults = append(defaults, khulnasoft.PluginDownloadURL("%s"))`, url)
 	}
 
 	versionPackageRef := "SdkVersion"
@@ -5256,7 +5256,7 @@ func Pkg%[1]sDefaultOpts(opts []pulumi.%[1]sOption) []pulumi.%[1]sOption {
 		const packageRefTemplate string = `
 var packageRef *string
 // PkgGetPackageRef returns the package reference for the current package.
-func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
+func PkgGetPackageRef(ctx *khulnasoft.Context) (string, error) {
 	if packageRef == nil {
 
 		parameter, err := base64.StdEncoding.DecodeString(%q)
@@ -5264,11 +5264,11 @@ func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
 			return "", err
 		}
 
-		resp, err := ctx.RegisterPackage(&pulumirpc.RegisterPackageRequest{
+		resp, err := ctx.RegisterPackage(&khulnasoftrpc.RegisterPackageRequest{
 			Name: %q,
 			Version: %q,
 			DownloadUrl: %q,
-			Parameterization: &pulumirpc.Parameterization{
+			Parameterization: &khulnasoftrpc.Parameterization{
 				Name: %q,
 				Version: %q,
 				Value: parameter,

@@ -23,7 +23,7 @@ import (
 	"strings"
 	"testing"
 
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 
@@ -47,7 +47,7 @@ func (m *streamMock) Context() context.Context {
 	return m.ctx
 }
 
-func (m *streamMock) Send(resp *pulumirpc.InstallDependenciesResponse) error {
+func (m *streamMock) Send(resp *khulnasoftrpc.InstallDependenciesResponse) error {
 	if _, err := m.stdout.Write(resp.Stdout); err != nil {
 		return err
 	}

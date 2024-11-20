@@ -25,7 +25,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
 
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 func TestClientInterceptorCatchesErrors(t *testing.T) {
@@ -55,11 +55,11 @@ func TestClientInterceptorCatchesErrors(t *testing.T) {
 		return giveErr
 	}
 
-	err = uci(ctx, "/pulumirpc.ResourceProvider/Configure",
-		&pulumirpc.ConfigureRequest{
+	err = uci(ctx, "/khulnasoftrpc.ResourceProvider/Configure",
+		&khulnasoftrpc.ConfigureRequest{
 			Variables: map[string]string{"x": "y"},
 		},
-		&pulumirpc.ConfigureResponse{}, nil, inner)
+		&khulnasoftrpc.ConfigureResponse{}, nil, inner)
 
 	assert.ErrorIs(t, err, giveErr)
 
@@ -67,7 +67,7 @@ func TestClientInterceptorCatchesErrors(t *testing.T) {
 	require.NoError(t, err)
 
 	assert.JSONEq(t, `{
-		"method": "/pulumirpc.ResourceProvider/Configure",
+		"method": "/khulnasoftrpc.ResourceProvider/Configure",
 		"request": {"variables": {"x": "y"}},
 		"errors": ["oops"]
 	}`, string(log))

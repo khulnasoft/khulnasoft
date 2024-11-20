@@ -5,16 +5,16 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // FooComponent is a component resource
 type FooComponent struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		fooComponent := &FooComponent{}
 		return ctx.RegisterComponentResource("foo:component", "foo", fooComponent)
 	})

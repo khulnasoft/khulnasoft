@@ -17,8 +17,8 @@ coverage:
       sdk-go:
         informational: true
         paths:
-          - "sdk/go/pulumi"
-          - "sdk/go/pulumi-language-go"
+          - "sdk/go/khulnasoft"
+          - "sdk/go/khulnasoft-language-go"
       sdk-nodejs:
         informational: true
         paths:
@@ -43,7 +43,7 @@ ignore:
   # Don't count protobuf-generated code against coverage.
   - "sdk/proto"
 
-  # Ignore code generator for pulumix/applyn.go.
+  # Ignore code generator for khulnasoftx/applyn.go.
   - "sdk/go/internal/gen-pux-applyn"
 
   # More generally, none of the test data

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 /**
- * An input to/output from a `pulumi config` command.
+ * An input to/output from a `khulnasoft config` command.
  */
 export interface ConfigValue {
     /**

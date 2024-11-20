@@ -10,7 +10,7 @@
         "@types/node": "^18.0.0"
     },
     "peerDependencies": {
-        "@pulumi/pulumi": "latest"
+        "@khulnasoft/khulnasoft": "latest"
     },
     "dependencies": {
         "ts-node": "^10.4.0",

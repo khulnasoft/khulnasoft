@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_azure_native as azure_native
+import khulnasoft
+import khulnasoft_azure_native as azure_native
 
 storage_accounts = azure_native.storage.StorageAccount("storageAccounts",
     account_name="sto4445",

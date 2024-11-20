@@ -64,9 +64,9 @@ function testResources(
 }
 
 class TestResource {
-    // fake being a pulumi resource.  We can't actually derive from Resource as that then needs an
+    // fake being a khulnasoft resource.  We can't actually derive from Resource as that then needs an
     // engine and whatnot.  All things we don't want during simple unit tests.
-    private readonly __pulumiResource: boolean = true;
+    private readonly __khulnasoftResource: boolean = true;
 
     constructor(public name: string) {}
 }

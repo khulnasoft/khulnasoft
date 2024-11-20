@@ -2,11 +2,11 @@
 
 import * as assert from "assert";
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-class Child extends pulumi.ComponentResource {
-    public readonly message!: pulumi.Output<string>;
-    constructor(name: string, message?: string, opts?: pulumi.ResourceOptions) {
+class Child extends khulnasoft.ComponentResource {
+    public readonly message!: khulnasoft.Output<string>;
+    constructor(name: string, message?: string, opts?: khulnasoft.ResourceOptions) {
         const args = { message }
         super("test:index:Child", name, args, opts);
         if (opts?.urn) {
@@ -16,9 +16,9 @@ class Child extends pulumi.ComponentResource {
     }
 }
 
-class Container extends pulumi.ComponentResource {
-    public readonly child!: pulumi.Output<Child>;
-    constructor(name: string, child?: Child, opts?: pulumi.ResourceOptions) {
+class Container extends khulnasoft.ComponentResource {
+    public readonly child!: khulnasoft.Output<Child>;
+    constructor(name: string, child?: Child, opts?: khulnasoft.ResourceOptions) {
         const args = { child };
         super("test:index:Container", name, args, opts);
         if (opts?.urn) {
@@ -53,7 +53,7 @@ async function waitForContainer(container: Container): Promise<void> {
     }
 }
 
-pulumi.runtime.registerResourceModule("test", "index", {
+khulnasoft.runtime.registerResourceModule("test", "index", {
     version: "0.0.1",
     construct: (name: string, type: string, urn: string) => {
         switch (type) {
@@ -76,15 +76,15 @@ const container = new Container("mycontainer", child);
 // outputs are registered before we return the container.  Ideally we should find a way to make this non-racy
 // (see the issue linked below)
 //
-// TODO: make RegisterResourceOutputs not racy [pulumi/pulumi#16896]
+// TODO: make RegisterResourceOutputs not racy [khulnasoft/khulnasoft#16896]
 waitForContainer(container).then(() => {
     console.log(child, container);
 
-    pulumi.all([child.urn, container.urn]).apply(([childUrn, urn]) => {
+    khulnasoft.all([child.urn, container.urn]).apply(([childUrn, urn]) => {
 	const roundTrippedContainer = new Container("mycontainer", undefined, { urn })
 	const roundTrippedContainerChildUrn = roundTrippedContainer.child.apply(c => c.urn);
 	const roundTrippedContainerChildMessage = roundTrippedContainer.child.apply(c => c.message);
-	return pulumi.all([childUrn, roundTrippedContainerChildUrn, roundTrippedContainerChildMessage])
+	return khulnasoft.all([childUrn, roundTrippedContainerChildUrn, roundTrippedContainerChildMessage])
 	    .apply(([expectedUrn, actualUrn, actualMessage]) => {
 		assert.strictEqual(actualUrn, expectedUrn);
 		assert.strictEqual(actualMessage, "hello world!");

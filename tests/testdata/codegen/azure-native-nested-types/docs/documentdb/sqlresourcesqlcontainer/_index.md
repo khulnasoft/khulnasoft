@@ -15,18 +15,18 @@ no_edit_this_page: true
 An Azure Cosmos DB container.
 API Version: 2021-03-15.
 
-<div><pulumi-examples>
+<div><khulnasoft-examples>
 
 ## Example Usage
 
-<div><pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser></div>
+<div><khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser></div>
 
 
 ### CosmosDBSqlContainerCreateUpdate
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 ```csharp
 using Pulumi;
@@ -112,76 +112,76 @@ class MyStack : Stack
 ```
 
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 
 ```go
 package main
 
 import (
-	documentdb "github.com/pulumi/pulumi-azure-native/sdk/go/azure/documentdb"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	documentdb "github.com/khulnasoft/khulnasoft-azure-native/sdk/go/azure/documentdb"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := documentdb.NewSqlResourceSqlContainer(ctx, "sqlResourceSqlContainer", &documentdb.SqlResourceSqlContainerArgs{
-			AccountName:   pulumi.String("ddb1"),
-			ContainerName: pulumi.String("containerName"),
-			DatabaseName:  pulumi.String("databaseName"),
-			Location:      pulumi.String("West US"),
+			AccountName:   khulnasoft.String("ddb1"),
+			ContainerName: khulnasoft.String("containerName"),
+			DatabaseName:  khulnasoft.String("databaseName"),
+			Location:      khulnasoft.String("West US"),
 			Options:       nil,
 			Resource: &documentdb.SqlContainerResourceArgs{
 				ConflictResolutionPolicy: &documentdb.ConflictResolutionPolicyArgs{
-					ConflictResolutionPath: pulumi.String("/path"),
-					Mode:                   pulumi.String("LastWriterWins"),
+					ConflictResolutionPath: khulnasoft.String("/path"),
+					Mode:                   khulnasoft.String("LastWriterWins"),
 				},
-				DefaultTtl: pulumi.Int(100),
-				Id:         pulumi.String("containerName"),
+				DefaultTtl: khulnasoft.Int(100),
+				Id:         khulnasoft.String("containerName"),
 				IndexingPolicy: &documentdb.IndexingPolicyArgs{
-					Automatic:     pulumi.Bool(true),
+					Automatic:     khulnasoft.Bool(true),
 					ExcludedPaths: documentdb.ExcludedPathArray{},
 					IncludedPaths: documentdb.IncludedPathArray{
 						&documentdb.IncludedPathArgs{
 							Indexes: documentdb.IndexesArray{
 								&documentdb.IndexesArgs{
-									DataType:  pulumi.String("String"),
-									Kind:      pulumi.String("Range"),
+									DataType:  khulnasoft.String("String"),
+									Kind:      khulnasoft.String("Range"),
 									Precision: -1,
 								},
 								&documentdb.IndexesArgs{
-									DataType:  pulumi.String("Number"),
-									Kind:      pulumi.String("Range"),
+									DataType:  khulnasoft.String("Number"),
+									Kind:      khulnasoft.String("Range"),
 									Precision: -1,
 								},
 							},
-							Path: pulumi.String("/*"),
+							Path: khulnasoft.String("/*"),
 						},
 					},
-					IndexingMode: pulumi.String("consistent"),
+					IndexingMode: khulnasoft.String("consistent"),
 				},
 				PartitionKey: &documentdb.ContainerPartitionKeyArgs{
-					Kind: pulumi.String("Hash"),
-					Paths: pulumi.StringArray{
-						pulumi.String("/AccountNumber"),
+					Kind: khulnasoft.String("Hash"),
+					Paths: khulnasoft.StringArray{
+						khulnasoft.String("/AccountNumber"),
 					},
 				},
 				UniqueKeyPolicy: &documentdb.UniqueKeyPolicyArgs{
 					UniqueKeys: documentdb.UniqueKeyArray{
 						&documentdb.UniqueKeyArgs{
-							Paths: pulumi.StringArray{
-								pulumi.String("/testPath"),
+							Paths: khulnasoft.StringArray{
+								khulnasoft.String("/testPath"),
 							},
 						},
 					},
 				},
 			},
-			ResourceGroupName: pulumi.String("rg1"),
+			ResourceGroupName: khulnasoft.String("rg1"),
 			Tags:              nil,
 		})
 		if err != nil {
@@ -194,26 +194,26 @@ func main() {
 ```
 
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 Coming soon!
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 
 ```python
-import pulumi
-import pulumi_azure_native as azure_native
+import khulnasoft
+import khulnasoft_azure_native as azure_native
 
 sql_resource_sql_container = azure_native.documentdb.SqlResourceSqlContainer("sqlResourceSqlContainer",
     account_name="ddb1",
@@ -264,17 +264,17 @@ sql_resource_sql_container = azure_native.documentdb.SqlResourceSqlContainer("sq
 ```
 
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="typescript">
+<khulnasoft-choosable type="language" values="typescript">
 
 
 ```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as azure_native from "@pulumi/azure-native";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as azure_native from "@khulnasoft/azure-native";
 
 const sqlResourceSqlContainer = new azure_native.documentdb.SqlResourceSqlContainer("sqlResourceSqlContainer", {
     accountName: "ddb1",
@@ -326,23 +326,23 @@ const sqlResourceSqlContainer = new azure_native.documentdb.SqlResourceSqlContai
 ```
 
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 
 Coming soon!
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 
 
 
-</pulumi-examples></div>
+</khulnasoft-examples></div>
 
 
 
@@ -353,64 +353,64 @@ Resources are created with functions called constructors. To learn more about de
 
 ### Constructor syntax
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">SqlResourceSqlContainer</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">?:</span> <span class="nx"><a href="#inputs">SqlResourceSqlContainerArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#CustomResourceOptions">CustomResourceOptions</a></span><span class="p">);</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="javascript,typescript">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">SqlResourceSqlContainer</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">?:</span> <span class="nx"><a href="#inputs">SqlResourceSqlContainerArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#CustomResourceOptions">CustomResourceOptions</a></span><span class="p">);</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">SqlResourceSqlContainer</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
                             <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">Optional[SqlResourceSqlContainerArgs]</a></span> = None<span class="p">,</span>
-                            <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
+                            <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
 <span></span>
 <span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">SqlResourceSqlContainer</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
-                            <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+                            <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewSqlResourceSqlContainer</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx"><a href="#inputs">SqlResourceSqlContainerArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">SqlResourceSqlContainer</span>, error)</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="go">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewSqlResourceSqlContainer</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx"><a href="#inputs">SqlResourceSqlContainerArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">SqlResourceSqlContainer</span>, error)</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public </span><span class="nx">SqlResourceSqlContainer</span><span class="p">(</span><span class="nx">string</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">SqlResourceSqlContainerArgs</a></span><span class="p">? </span><span class="nx">args = null<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.CustomResourceOptions.html">CustomResourceOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <div class="no-copy"><div class="highlight"><pre class="chroma">
 <code class="language-java" data-lang="java"><span class="k">public </span><span class="nx">SqlResourceSqlContainer</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">SqlResourceSqlContainerArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">)</span>
 <span class="k">public </span><span class="nx">SqlResourceSqlContainer</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">SqlResourceSqlContainerArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx">CustomResourceOptions</span><span class="p"> </span><span class="nx">options<span class="p">)</span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">type: <span class="nx">azure-native:documentdb:SqlResourceSqlContainer</span><span class="p"></span>
 <span class="p">properties</span><span class="p">: </span><span class="c">#&nbsp;The arguments to resource properties.</span>
 <span class="p"></span><span class="p">options</span><span class="p">: </span><span class="c">#&nbsp;Bag of options to control resource&#39;s behavior.</span>
 <span class="p"></span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 #### Parameters
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -428,15 +428,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#CustomResourceOptions">CustomResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#CustomResourceOptions">CustomResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -454,21 +454,21 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">ResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">ResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 <dl class="resources-properties"><dt
         class="property-optional" title="Optional">
         <span>ctx</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span>
     </dt>
     <dd>Context object for the current deployment.</dd><dt
         class="property-required" title="Required">
@@ -486,15 +486,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -516,11 +516,11 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -542,7 +542,7 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -551,74 +551,74 @@ Resources are created with functions called constructors. To learn more about de
 
 The following reference example uses placeholder values for all [input properties](#inputs).
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 ```csharp
 var sqlResourceSqlContainerResource = new AzureNative.DocumentDB.SqlResourceSqlContainer("sqlResourceSqlContainerResource");
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 ```go
 example, err := documentdb.NewSqlResourceSqlContainer(ctx, "sqlResourceSqlContainerResource", nil)
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 ```java
 var sqlResourceSqlContainerResource = new SqlResourceSqlContainer("sqlResourceSqlContainerResource");
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 ```python
 sql_resource_sql_container_resource = azure_native.documentdb.SqlResourceSqlContainer("sqlResourceSqlContainerResource")
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="typescript">
+<khulnasoft-choosable type="language" values="typescript">
 
 ```typescript
 const sqlResourceSqlContainerResource = new azure_native.documentdb.SqlResourceSqlContainer("sqlResourceSqlContainerResource", {});
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 
 ```yaml
 type: azure-native:documentdb:SqlResourceSqlContainer
 properties: {}
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -629,50 +629,50 @@ To learn more about resource properties and how to use them, see [Inputs and Out
 
 ### Inputs
 
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <p>
 In Python, inputs that are objects can be passed either as <a href="/docs/languages-sdks/python/#inputs-and-outputs">argument classes or as dictionary literals</a>.
 </p>
-</pulumi-choosable>
+</khulnasoft-choosable>
 
 The SqlResourceSqlContainer resource accepts the following [input](/docs/intro/concepts/inputs-outputs) properties:
 
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -683,7 +683,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_csharp">
@@ -701,11 +701,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type"><a href="#sqlcontainergetpropertiesresponseresource">Pulumi.<wbr>Azure<wbr>Native.<wbr>Document<wbr>DB.<wbr>Outputs.<wbr>Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_go">
@@ -723,11 +723,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type"><a href="#sqlcontainergetpropertiesresponseresource">Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_java">
@@ -745,11 +745,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type"><a href="#sqlcontainergetpropertiesresponseresource">Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_nodejs">
@@ -767,11 +767,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type"><a href="#sqlcontainergetpropertiesresponseresource">Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_python">
@@ -789,11 +789,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type"><a href="#sqlcontainergetpropertiesresponseresource">Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_yaml">
@@ -811,7 +811,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type"><a href="#sqlcontainergetpropertiesresponseresource">Property Map</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -825,11 +825,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
 
 
 <h4 id="compositepathresponse">
-Composite<wbr>Path<wbr>Response<pulumi-choosable type="language" values="python,go" class="inline">, Composite<wbr>Path<wbr>Response<wbr>Args</pulumi-choosable>
+Composite<wbr>Path<wbr>Response<khulnasoft-choosable type="language" values="python,go" class="inline">, Composite<wbr>Path<wbr>Response<wbr>Args</khulnasoft-choosable>
 </h4>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="order_csharp">
@@ -847,11 +847,11 @@ Composite<wbr>Path<wbr>Response<pulumi-choosable type="language" values="python,
         <span class="property-type">string</span>
     </dt>
     <dd>The path for which the indexing behavior applies to. Index paths typically start with root and end with wildcard (/path/*)</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="order_go">
@@ -869,11 +869,11 @@ Composite<wbr>Path<wbr>Response<pulumi-choosable type="language" values="python,
         <span class="property-type">string</span>
     </dt>
     <dd>The path for which the indexing behavior applies to. Index paths typically start with root and end with wildcard (/path/*)</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="order_java">
@@ -891,11 +891,11 @@ Composite<wbr>Path<wbr>Response<pulumi-choosable type="language" values="python,
         <span class="property-type">String</span>
     </dt>
     <dd>The path for which the indexing behavior applies to. Index paths typically start with root and end with wildcard (/path/*)</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="order_nodejs">
@@ -913,11 +913,11 @@ Composite<wbr>Path<wbr>Response<pulumi-choosable type="language" values="python,
         <span class="property-type">string</span>
     </dt>
     <dd>The path for which the indexing behavior applies to. Index paths typically start with root and end with wildcard (/path/*)</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="order_python">
@@ -935,11 +935,11 @@ Composite<wbr>Path<wbr>Response<pulumi-choosable type="language" values="python,
         <span class="property-type">str</span>
     </dt>
     <dd>The path for which the indexing behavior applies to. Index paths typically start with root and end with wildcard (/path/*)</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="order_yaml">
@@ -957,15 +957,15 @@ Composite<wbr>Path<wbr>Response<pulumi-choosable type="language" values="python,
         <span class="property-type">String</span>
     </dt>
     <dd>The path for which the indexing behavior applies to. Index paths typically start with root and end with wildcard (/path/*)</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="indexingpolicyresponse">
-Indexing<wbr>Policy<wbr>Response<pulumi-choosable type="language" values="python,go" class="inline">, Indexing<wbr>Policy<wbr>Response<wbr>Args</pulumi-choosable>
+Indexing<wbr>Policy<wbr>Response<khulnasoft-choosable type="language" values="python,go" class="inline">, Indexing<wbr>Policy<wbr>Response<wbr>Args</khulnasoft-choosable>
 </h4>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="compositeindexes_csharp">
@@ -975,11 +975,11 @@ Indexing<wbr>Policy<wbr>Response<pulumi-choosable type="language" values="python
         <span class="property-type"><a href="#compositepathresponse">List&lt;Immutable<wbr>Array&lt;Pulumi.<wbr>Azure<wbr>Native.<wbr>Document<wbr>DB.<wbr>Inputs.<wbr>Composite<wbr>Path<wbr>Response&gt;&gt;</a></span>
     </dt>
     <dd>List of composite path list</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="compositeindexes_go">
@@ -989,11 +989,11 @@ Indexing<wbr>Policy<wbr>Response<pulumi-choosable type="language" values="python
         <span class="property-type"><a href="#compositepathresponse">[][]Composite<wbr>Path<wbr>Response</a></span>
     </dt>
     <dd>List of composite path list</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="compositeindexes_java">
@@ -1003,11 +1003,11 @@ Indexing<wbr>Policy<wbr>Response<pulumi-choosable type="language" values="python
         <span class="property-type"><a href="#compositepathresponse">List&lt;List&lt;Composite<wbr>Path<wbr>Response&gt;&gt;</a></span>
     </dt>
     <dd>List of composite path list</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="compositeindexes_nodejs">
@@ -1017,11 +1017,11 @@ Indexing<wbr>Policy<wbr>Response<pulumi-choosable type="language" values="python
         <span class="property-type"><a href="#compositepathresponse">Composite<wbr>Path<wbr>Response[][]</a></span>
     </dt>
     <dd>List of composite path list</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="composite_indexes_python">
@@ -1031,11 +1031,11 @@ Indexing<wbr>Policy<wbr>Response<pulumi-choosable type="language" values="python
         <span class="property-type"><a href="#compositepathresponse">Sequence[Sequence[Composite<wbr>Path<wbr>Response]]</a></span>
     </dt>
     <dd>List of composite path list</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="compositeindexes_yaml">
@@ -1045,15 +1045,15 @@ Indexing<wbr>Policy<wbr>Response<pulumi-choosable type="language" values="python
         <span class="property-type"><a href="#compositepathresponse">List&lt;List&lt;Property Map&gt;&gt;</a></span>
     </dt>
     <dd>List of composite path list</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="sqlcontainergetpropertiesresponseresource">
-Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<pulumi-choosable type="language" values="python,go" class="inline">, Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<wbr>Args</pulumi-choosable>
+Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<khulnasoft-choosable type="language" values="python,go" class="inline">, Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<wbr>Args</khulnasoft-choosable>
 </h4>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="indexingpolicy_csharp">
@@ -1063,11 +1063,11 @@ Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<pulumi-choosa
         <span class="property-type"><a href="#indexingpolicyresponse">Pulumi.<wbr>Azure<wbr>Native.<wbr>Document<wbr>DB.<wbr>Inputs.<wbr>Indexing<wbr>Policy<wbr>Response</a></span>
     </dt>
     <dd>The configuration of the indexing policy. By default, the indexing is automatic for all document paths within the container</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="indexingpolicy_go">
@@ -1077,11 +1077,11 @@ Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<pulumi-choosa
         <span class="property-type"><a href="#indexingpolicyresponse">Indexing<wbr>Policy<wbr>Response</a></span>
     </dt>
     <dd>The configuration of the indexing policy. By default, the indexing is automatic for all document paths within the container</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="indexingpolicy_java">
@@ -1091,11 +1091,11 @@ Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<pulumi-choosa
         <span class="property-type"><a href="#indexingpolicyresponse">Indexing<wbr>Policy<wbr>Response</a></span>
     </dt>
     <dd>The configuration of the indexing policy. By default, the indexing is automatic for all document paths within the container</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="indexingpolicy_nodejs">
@@ -1105,11 +1105,11 @@ Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<pulumi-choosa
         <span class="property-type"><a href="#indexingpolicyresponse">Indexing<wbr>Policy<wbr>Response</a></span>
     </dt>
     <dd>The configuration of the indexing policy. By default, the indexing is automatic for all document paths within the container</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="indexing_policy_python">
@@ -1119,11 +1119,11 @@ Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<pulumi-choosa
         <span class="property-type"><a href="#indexingpolicyresponse">Indexing<wbr>Policy<wbr>Response</a></span>
     </dt>
     <dd>The configuration of the indexing policy. By default, the indexing is automatic for all document paths within the container</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="indexingpolicy_yaml">
@@ -1133,7 +1133,7 @@ Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<pulumi-choosa
         <span class="property-type"><a href="#indexingpolicyresponse">Property Map</a></span>
     </dt>
     <dd>The configuration of the indexing policy. By default, the indexing is automatic for all document paths within the container</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 ## Import
@@ -1143,11 +1143,11 @@ Sql<wbr>Container<wbr>Get<wbr>Properties<wbr>Response<wbr>Resource<pulumi-choosa
 An existing resource can be imported using its type token, name, and identifier, e.g.
 
 ```sh
-$ pulumi import azure-native:documentdb:SqlResourceSqlContainer containerName /subscriptions/subid/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/ddb1/sqlDatabases/databaseName/sqlContainers/containerName 
+$ khulnasoft import azure-native:documentdb:SqlResourceSqlContainer containerName /subscriptions/subid/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/ddb1/sqlDatabases/databaseName/sqlContainers/containerName 
 ```
 
 
-To learn more about importing existing cloud resources, see [Importing resources](/docs/using-pulumi/adopting-pulumi/import/).
+To learn more about importing existing cloud resources, see [Importing resources](/docs/using-khulnasoft/adopting-khulnasoft/import/).
 
 
 
@@ -1155,7 +1155,7 @@ To learn more about importing existing cloud resources, see [Importing resources
 <h2 id="package-details">Package Details</h2>
 <dl class="package-details">
 	<dt>Repository</dt>
-	<dd><a href="https://github.com/pulumi/pulumi-azure-native">Azure Native pulumi/pulumi-azure-native</a></dd>
+	<dd><a href="https://github.com/khulnasoft/khulnasoft-azure-native">Azure Native khulnasoft/khulnasoft-azure-native</a></dd>
 	<dt>License</dt>
 	<dd>Apache-2.0</dd>
 </dl>

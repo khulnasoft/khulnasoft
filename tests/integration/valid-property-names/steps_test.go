@@ -24,7 +24,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 )
 
 func getResource(stackInfo integration.RuntimeValidationStackInfo, name string) (apitype.ResourceV3, error) {
@@ -61,7 +61,7 @@ func TestPropertyNameDiffs(t *testing.T) {
 		t.Run("validate path "+propName, func(t *testing.T) {
 			integration.ProgramTest(t, &integration.ProgramTestOptions{
 				Dir:          "step1",
-				Dependencies: []string{"@pulumi/pulumi"},
+				Dependencies: []string{"@khulnasoft/khulnasoft"},
 				Config: map[string]string{
 					"propertyName": propName,
 				},

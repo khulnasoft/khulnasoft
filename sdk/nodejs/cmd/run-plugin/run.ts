@@ -164,7 +164,7 @@ export function run(opts: RunOpts): Promise<Record<string, any> | undefined> | P
     // behavior is to walk up from the cwd to find a tsconfig.json. For us, it's reasonable to say
     // that the "root" of the project is the cwd, if there's a tsconfig.json file here. Otherwise,
     // just tell ts-node to not load project options at all. This helps with cases like
-    // pulumi/pulumi#1772.
+    // khulnasoft/khulnasoft#1772.
     const tsConfigPath = "tsconfig.json";
 
     if (opts.typeScript) {
@@ -277,7 +277,7 @@ ${errMsg}`,
         try {
             // Execute the module and capture any module outputs it exported. If the exported value
             // was itself a Function, then just execute it.  This allows for exported top level
-            // async functions that pulumi programs can live in.  Finally, await the value we get
+            // async functions that khulnasoft programs can live in.  Finally, await the value we get
             // back.  That way, if it is async and throws an exception, we properly capture it here
             // and handle it.
             const reqResult = require(program);

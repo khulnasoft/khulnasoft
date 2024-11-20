@@ -44,7 +44,7 @@ provider instance that is used for resources at that package and version that do
 instance when they are registered. For example, consider the following program that creates an AWS S3 bucket:
 
 ```typescript
-import * as aws from "@pulumi/aws";
+import * as aws from "@khulnasoft/aws";
 
 new aws.s3.Bucket("myBucket");
 ```
@@ -55,7 +55,7 @@ The constructor call will become a `RegisterResourceRequest` like:
 RegisterResourceRequest{
 	type: "aws:s3/bucket:Bucket",
 	name: "myBucket",
-	parent: "urn:pulumi:dev::project::pulumi:pulumi:Stack::project",
+	parent: "urn:khulnasoft:dev::project::khulnasoft:khulnasoft:Stack::project",
 	custom: true,
 	object: {},
 	version: "4.16.0",
@@ -73,7 +73,7 @@ If we change the program slightly to create and reference a provider instance, t
 be used:
 
 ```typescript
-import * as aws from "@pulumi/aws";
+import * as aws from "@khulnasoft/aws";
 
 const usWest2 = new aws.Provider("us-west-2", {region: "us-west-2"});
 
@@ -86,10 +86,10 @@ The constructor call will become a `RegisterResourceRequest` like:
 RegisterResourceRequest{
 	type: "aws:s3/bucket:Bucket",
 	name: "myBucket",
-	parent: "urn:pulumi:dev::project::pulumi:pulumi:Stack::project",
+	parent: "urn:khulnasoft:dev::project::khulnasoft:khulnasoft:Stack::project",
 	custom: true,
 	object: {},
-	provider: "urn:pulumi:dev::vpc-2::pulumi:providers:aws::us-west-2::308b79ee-8249-40fb-a203-de190cb8faa8",
+	provider: "urn:khulnasoft:dev::vpc-2::khulnasoft:providers:aws::us-west-2::308b79ee-8249-40fb-a203-de190cb8faa8",
 	version: "4.16.0",
 }
 ```

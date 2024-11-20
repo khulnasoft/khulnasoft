@@ -19,7 +19,7 @@ no_edit_this_page: true
 <h2 id="package-details">Package Details</h2>
 <dl class="package-details">
 	<dt>Repository</dt>
-	<dd><a href="https://github.com/pulumi/pulumi-kubernetes">Kubernetes pulumi/pulumi-kubernetes</a></dd>
+	<dd><a href="https://github.com/khulnasoft/khulnasoft-kubernetes">Kubernetes khulnasoft/khulnasoft-kubernetes</a></dd>
 	<dt>License</dt>
 	<dd>Apache-2.0</dd>
 </dl>

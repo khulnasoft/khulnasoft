@@ -19,7 +19,7 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/cancel"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // UpdateInfo handles information common to resource operations (update, preview, destroy, import, refresh).

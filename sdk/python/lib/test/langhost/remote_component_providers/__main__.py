@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pulumi import ComponentResource, ProviderResource, ResourceOptions
+from khulnasoft import ComponentResource, ProviderResource, ResourceOptions
 
 
 class Provider(ProviderResource):

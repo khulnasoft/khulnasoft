@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import asyncio
-from pulumi import CustomResource, Output, log
-from pulumi.runtime import invoke, invoke_async
+from khulnasoft import CustomResource, Output, log
+from khulnasoft.runtime import invoke, invoke_async
 
 
 def assert_eq(l, r):

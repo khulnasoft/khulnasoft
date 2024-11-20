@@ -25,8 +25,8 @@ import (
 	"strings"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/graph"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // Print prints a resource graph.
@@ -63,7 +63,7 @@ func Print(g graph.Graph, w io.Writer, dotFragment string) error {
 	}
 
 	// For now, we auto-generate IDs.
-	// TODO[pulumi/pulumi#76]: use the object URNs instead, once we have them.
+	// TODO[khulnasoft/khulnasoft#76]: use the object URNs instead, once we have them.
 	c := 0
 	ids := make(map[graph.Vertex]string)
 	getID := func(v graph.Vertex) string {

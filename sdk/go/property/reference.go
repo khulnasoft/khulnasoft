@@ -14,7 +14,7 @@
 
 package property
 
-import "github.com/pulumi/pulumi/sdk/v3/go/common/resource/urn"
+import "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/urn"
 
 // ResourceReference is a property value that represents a reference to a Resource. The reference captures the
 // resource's URN, ID, and the version of its containing package. Note that there are several cases to consider with

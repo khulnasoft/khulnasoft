@@ -18,7 +18,7 @@ package logging
 // necessary.  This is primarily used so we can make a best effort approach to filtering out secrets
 // from any logs we emit before they get written to log-files/stderr.
 //
-// Code in pulumi should use this package instead of directly importing glog itself.  If any glog
+// Code in khulnasoft should use this package instead of directly importing glog itself.  If any glog
 // methods are needed that are not exported from this, they can be added, with the caveat that they
 // should be updated to properly filter as well before forwarding things along.
 
@@ -31,7 +31,7 @@ import (
 	"sync"
 
 	"github.com/golang/glog"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 )
 
 type Filter interface {

@@ -19,17 +19,17 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"gocloud.dev/gcerrors"
 	"gopkg.in/yaml.v3"
 )
 
 // Path inside the bucket where we store the metadata file.
-var pulumiMetaPath = filepath.Join(workspace.BookkeepingDir, "meta.yaml")
+var khulnasoftMetaPath = filepath.Join(workspace.BookkeepingDir, "meta.yaml")
 
-// pulumiMeta holds the contents of the .pulumi/meta.yaml file
+// khulnasoftMeta holds the contents of the .khulnasoft/meta.yaml file
 // in a diy backend.
 //
 // This file specifies metadata for the backend,
@@ -39,7 +39,7 @@ var pulumiMetaPath = filepath.Join(workspace.BookkeepingDir, "meta.yaml")
 // The metadata file is not written for legacy layouts.
 // However, there was a short period of time where it was written,
 // so we should still allow for Version 0 when reading these files.
-type pulumiMeta struct {
+type khulnasoftMeta struct {
 	// Version is the current version of the state store.
 	//
 	// Version 0 is the starting version.
@@ -62,7 +62,7 @@ type pulumiMeta struct {
 // "PULUMI_diy_BACKEND_LEGACY_LAYOUT" to "1".
 // ensurePulumiMeta uses the provided 'getenv' function
 // to read the environment variable.
-func ensurePulumiMeta(ctx context.Context, b Bucket, e env.Env) (*pulumiMeta, error) {
+func ensurePulumiMeta(ctx context.Context, b Bucket, e env.Env) (*khulnasoftMeta, error) {
 	meta, err := readPulumiMeta(ctx, b)
 	if err != nil {
 		return nil, err
@@ -96,14 +96,14 @@ func ensurePulumiMeta(ctx context.Context, b Bucket, e env.Env) (*pulumiMeta, er
 	}
 
 	if useLegacy {
-		meta = &pulumiMeta{Version: 0}
+		meta = &khulnasoftMeta{Version: 0}
 	} else {
-		meta = &pulumiMeta{Version: 1}
+		meta = &khulnasoftMeta{Version: 1}
 	}
 
 	// Implementation detail:
 	// For version 0, WriteTo won't write the metadata file.
-	// See [pulumiMeta.WriteTo] for details on why.
+	// See [khulnasoftMeta.WriteTo] for details on why.
 	if err := meta.WriteTo(ctx, b); err != nil {
 		return nil, err
 	}
@@ -113,16 +113,16 @@ func ensurePulumiMeta(ctx context.Context, b Bucket, e env.Env) (*pulumiMeta, er
 
 // readPulumiMeta loads the Pulumi state metadata from the bucket.
 // If the file does not exist, it returns nil and no error.
-func readPulumiMeta(ctx context.Context, b Bucket) (*pulumiMeta, error) {
-	metaBody, err := b.ReadAll(ctx, pulumiMetaPath)
+func readPulumiMeta(ctx context.Context, b Bucket) (*khulnasoftMeta, error) {
+	metaBody, err := b.ReadAll(ctx, khulnasoftMetaPath)
 	if err != nil {
 		if gcerrors.Code(err) == gcerrors.NotFound {
 			return nil, nil
 		}
-		return nil, fmt.Errorf("read %q: %w", pulumiMetaPath, err)
+		return nil, fmt.Errorf("read %q: %w", khulnasoftMetaPath, err)
 	}
 
-	// State is a copy of the pulumiMeta shape,
+	// State is a copy of the khulnasoftMeta shape,
 	// but with pointers to fields where we need to differentiate
 	// between a missing field and a zero value.
 	// Don't use pointers for fields where the zero value is invalid.
@@ -135,35 +135,35 @@ func readPulumiMeta(ctx context.Context, b Bucket) (*pulumiMeta, error) {
 	}
 
 	if err := yaml.Unmarshal(metaBody, &state); err != nil {
-		return nil, fmt.Errorf("corrupt store: unmarshal %q: %w", pulumiMetaPath, err)
+		return nil, fmt.Errorf("corrupt store: unmarshal %q: %w", khulnasoftMetaPath, err)
 	}
 
 	if state.Version == nil {
-		return nil, fmt.Errorf("corrupt store: missing version in %q", pulumiMetaPath)
+		return nil, fmt.Errorf("corrupt store: missing version in %q", khulnasoftMetaPath)
 	}
 
-	return &pulumiMeta{
+	return &khulnasoftMeta{
 		Version: *state.Version,
 	}, nil
 }
 
 // WriteTo writes the metadata to the bucket, overwriting any existing metadata.
-func (m *pulumiMeta) WriteTo(ctx context.Context, b Bucket) error {
+func (m *khulnasoftMeta) WriteTo(ctx context.Context, b Bucket) error {
 	if m.Version == 0 {
 		// We don't want to write a metadata file
 		// for legacy layouts.
 		//
 		// This allows for cases where a user has
 		// strict permission controls on their bucket,
-		// and doesn't expect a file outside .pulumi/stacks/.
+		// and doesn't expect a file outside .khulnasoft/stacks/.
 		return nil
 	}
 
 	bs, err := yaml.Marshal(m)
-	contract.AssertNoErrorf(err, "Could not marshal diy.pulumiMeta to YAML")
+	contract.AssertNoErrorf(err, "Could not marshal diy.khulnasoftMeta to YAML")
 
-	if err := b.WriteAll(ctx, pulumiMetaPath, bs, nil); err != nil {
-		return fmt.Errorf("write %q: %w", pulumiMetaPath, err)
+	if err := b.WriteAll(ctx, khulnasoftMetaPath, bs, nil); err != nil {
+		return fmt.Errorf("write %q: %w", khulnasoftMetaPath, err)
 	}
 	return nil
 }

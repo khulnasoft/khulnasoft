@@ -27,7 +27,7 @@ import {
 } from "../../automation";
 import { getTestOrg, getTestSuffix } from "./util";
 
-const testRepo = "https://github.com/pulumi/test-repo.git";
+const testRepo = "https://github.com/khulnasoft/test-repo.git";
 
 describe("RemoteWorkspace", () => {
     describe("remote cmd args", () => {
@@ -389,14 +389,14 @@ async function testLifecycle(fn: (args: RemoteGitProgramArgs, opts?: RemoteWorks
         },
         {
             preRunCommands: [
-                `pulumi config set bar abc --stack ${stackName}`,
-                `pulumi config set --secret buzz secret --stack ${stackName}`,
+                `khulnasoft config set bar abc --stack ${stackName}`,
+                `khulnasoft config set --secret buzz secret --stack ${stackName}`,
             ],
             skipInstallDependencies: true,
         },
     );
 
-    // pulumi up
+    // khulnasoft up
     const upRes = await stack.up();
     assert.strictEqual(Object.keys(upRes.outputs).length, 3);
     assert.strictEqual(upRes.outputs["exp_static"].value, "foo");
@@ -408,16 +408,16 @@ async function testLifecycle(fn: (args: RemoteGitProgramArgs, opts?: RemoteWorks
     assert.strictEqual(upRes.summary.kind, "update");
     assert.strictEqual(upRes.summary.result, "succeeded");
 
-    // pulumi preview
+    // khulnasoft preview
     const preRes = await stack.preview();
     assert.strictEqual(preRes.changeSummary.same, 1);
 
-    // pulumi refresh
+    // khulnasoft refresh
     const refRes = await stack.refresh();
     assert.strictEqual(refRes.summary.kind, "refresh");
     assert.strictEqual(refRes.summary.result, "succeeded");
 
-    // pulumi destroy
+    // khulnasoft destroy
     const destroyRes = await stack.destroy();
     assert.strictEqual(destroyRes.summary.kind, "destroy");
     assert.strictEqual(destroyRes.summary.result, "succeeded");

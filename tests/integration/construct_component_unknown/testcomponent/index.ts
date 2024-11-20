@@ -1,28 +1,28 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as provider from "@pulumi/pulumi/provider";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as provider from "@khulnasoft/khulnasoft/provider";
 
 interface ComponentArgs {
-    message: pulumi.Input<string>;
-    nested: pulumi.Input<{
-        value: pulumi.Input<string>;
+    message: khulnasoft.Input<string>;
+    nested: khulnasoft.Input<{
+        value: khulnasoft.Input<string>;
     }>;
 }
 
-class Component extends pulumi.ComponentResource {
-    constructor(name: string, args: ComponentArgs, opts?: pulumi.ComponentResourceOptions) {
+class Component extends khulnasoft.ComponentResource {
+    constructor(name: string, args: ComponentArgs, opts?: khulnasoft.ComponentResourceOptions) {
         super("testcomponent:index:Component", name, {}, opts);
 
         // These `apply`s should not run.
-        pulumi.output(args.message).apply(v => { console.log("should not run (message)"); process.exit(1); });
-        pulumi.output(args.nested).apply(v => { console.log("should not run (nested)"); process.exit(1); });
+        khulnasoft.output(args.message).apply(v => { console.log("should not run (message)"); process.exit(1); });
+        khulnasoft.output(args.nested).apply(v => { console.log("should not run (nested)"); process.exit(1); });
     }
 }
 
 class Provider implements provider.Provider {
     public readonly version = "0.0.1";
 
-    construct(name: string, type: string, inputs: pulumi.Inputs,
-              options: pulumi.ComponentResourceOptions): Promise<provider.ConstructResult> {
+    construct(name: string, type: string, inputs: khulnasoft.Inputs,
+              options: khulnasoft.ComponentResourceOptions): Promise<provider.ConstructResult> {
         if (type != "testcomponent:index:Component") {
             throw new Error(`unknown resource type ${type}`);
         }

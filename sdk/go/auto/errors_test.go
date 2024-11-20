@@ -23,23 +23,23 @@ import (
 	"testing"
 	"time"
 
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/python/toolchain"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/python/toolchain"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestConcurrentUpdateError(t *testing.T) {
 	t.Parallel()
 
-	// TODO[pulumi/pulumi#8122] - investigate underlying sporadic 404 error
+	// TODO[khulnasoft/khulnasoft#8122] - investigate underlying sporadic 404 error
 	t.Skip("disabled as flaky and resource-intensive")
 
 	n := 50
 	ctx := context.Background()
 	pName := "conflict_error"
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 
 	// initialize
 	pDir := filepath.Join(".", "test", "errors", "conflict_error")
@@ -50,7 +50,7 @@ func TestConcurrentUpdateError(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -79,7 +79,7 @@ func TestConcurrentUpdateError(t *testing.T) {
 		}
 	}
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -102,16 +102,16 @@ func TestConcurrentUpdateError(t *testing.T) {
 func TestInlineConcurrentUpdateError(t *testing.T) {
 	t.Parallel()
 
-	t.Skip("disabled, see https://github.com/pulumi/pulumi/issues/5312")
+	t.Skip("disabled, see https://github.com/khulnasoft/khulnasoft/issues/5312")
 	ctx := context.Background()
 	pName := "inline_conflict_error"
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 		time.Sleep(1 * time.Second)
-		ctx.Export("exp_static", pulumi.String("foo"))
+		ctx.Export("exp_static", khulnasoft.String("foo"))
 		return nil
 	})
 	if err != nil {
@@ -120,7 +120,7 @@ func TestInlineConcurrentUpdateError(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -144,7 +144,7 @@ func TestInlineConcurrentUpdateError(t *testing.T) {
 		}
 	}
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -163,7 +163,7 @@ func TestCompilationErrorGo(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, compilationErrProj, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, compilationErrProj, sName)
 
 	// initialize
 	pDir := filepath.Join(".", "test", "errors", "compilation_error", "go")
@@ -174,7 +174,7 @@ func TestCompilationErrorGo(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -182,7 +182,7 @@ func TestCompilationErrorGo(t *testing.T) {
 	_, err = s.Up(ctx)
 	assert.True(t, IsCompilationError(err), "%v is not a compilation error", err)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -196,7 +196,7 @@ func TestSelectStack404Error(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, "testproj", sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, "testproj", sName)
 
 	// initialize
 	pDir := filepath.Join(".", "test", "testproj")
@@ -217,7 +217,7 @@ func TestCreateStack409Error(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, "testproj", sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, "testproj", sName)
 
 	// initialize first stack
 	pDir := filepath.Join(".", "test", "testproj")
@@ -228,7 +228,7 @@ func TestCreateStack409Error(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -251,7 +251,7 @@ func TestCompilationErrorDotnet(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, compilationErrProj, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, compilationErrProj, sName)
 
 	// initialize
 	pDir := filepath.Join(".", "test", "errors", "compilation_error", "dotnet")
@@ -262,7 +262,7 @@ func TestCompilationErrorDotnet(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -270,7 +270,7 @@ func TestCompilationErrorDotnet(t *testing.T) {
 	_, err = s.Up(ctx)
 	assert.True(t, IsCompilationError(err), "%v is not a compilation error", err)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -284,7 +284,7 @@ func TestCompilationErrorTypescript(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, compilationErrProj, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, compilationErrProj, sName)
 
 	// initialize
 	pDir := filepath.Join(".", "test", "errors", "compilation_error", "typescript")
@@ -304,7 +304,7 @@ func TestCompilationErrorTypescript(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -312,7 +312,7 @@ func TestCompilationErrorTypescript(t *testing.T) {
 	_, err = s.Up(ctx)
 	assert.True(t, IsCompilationError(err), "%v is not a compilation error", err)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -328,7 +328,7 @@ func TestRuntimeErrorGo(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, runtimeErrProj, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, runtimeErrProj, sName)
 
 	// initialize
 	pDir := filepath.Join(".", "test", "errors", "runtime_error", "go")
@@ -339,7 +339,7 @@ func TestRuntimeErrorGo(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -347,7 +347,7 @@ func TestRuntimeErrorGo(t *testing.T) {
 	_, err = s.Up(ctx)
 	assert.True(t, IsRuntimeError(err), "%v is not a runtime error", err)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -361,10 +361,10 @@ func TestRuntimeErrorInlineGo(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, runtimeErrProj, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, runtimeErrProj, sName)
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, runtimeErrProj, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, runtimeErrProj, func(ctx *khulnasoft.Context) error {
 		panic("great sadness")
 	})
 	if err != nil {
@@ -373,7 +373,7 @@ func TestRuntimeErrorInlineGo(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -381,7 +381,7 @@ func TestRuntimeErrorInlineGo(t *testing.T) {
 	_, err = s.Up(ctx)
 	assert.True(t, IsRuntimeError(err), "%v is not a runtime error", err)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -395,7 +395,7 @@ func TestRuntimeErrorPython(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, runtimeErrProj, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, runtimeErrProj, sName)
 
 	// initialize
 	pDir, err := filepath.Abs(filepath.Join(".", "test", "errors", "runtime_error", "python"))
@@ -435,7 +435,7 @@ func TestRuntimeErrorPython(t *testing.T) {
 	pyCmd.Dir = pDir
 	err = pyCmd.Run()
 	if err != nil {
-		t.Errorf("failed to link venv against in-source pulumi: %v", err)
+		t.Errorf("failed to link venv against in-source khulnasoft: %v", err)
 		t.FailNow()
 	}
 
@@ -446,7 +446,7 @@ func TestRuntimeErrorPython(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -455,7 +455,7 @@ func TestRuntimeErrorPython(t *testing.T) {
 	assert.True(t, IsRuntimeError(err), "%v is not a runtime error", err)
 	assert.ErrorContains(t, err, "IndexError: list index out of range")
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -469,7 +469,7 @@ func TestRuntimeErrorJavascript(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, runtimeErrProj, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, runtimeErrProj, sName)
 
 	// initialize
 	pDir := filepath.Join(".", "test", "errors", "runtime_error", "javascript")
@@ -489,7 +489,7 @@ func TestRuntimeErrorJavascript(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -497,7 +497,7 @@ func TestRuntimeErrorJavascript(t *testing.T) {
 	_, err = s.Up(ctx)
 	assert.True(t, IsRuntimeError(err), "%v is not a runtime error", err)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -511,7 +511,7 @@ func TestRuntimeErrorTypescript(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, runtimeErrProj, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, runtimeErrProj, sName)
 
 	// initialize
 	pDir := filepath.Join(".", "test", "errors", "runtime_error", "typescript")
@@ -531,7 +531,7 @@ func TestRuntimeErrorTypescript(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -539,7 +539,7 @@ func TestRuntimeErrorTypescript(t *testing.T) {
 	_, err = s.Up(ctx)
 	assert.True(t, IsRuntimeError(err), "%v is not a runtime error", err)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -553,7 +553,7 @@ func TestRuntimeErrorDotnet(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, runtimeErrProj, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, runtimeErrProj, sName)
 
 	// initialize
 	pDir := filepath.Join(".", "test", "errors", "runtime_error", "dotnet")
@@ -564,7 +564,7 @@ func TestRuntimeErrorDotnet(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -572,7 +572,7 @@ func TestRuntimeErrorDotnet(t *testing.T) {
 	_, err = s.Up(ctx)
 	assert.True(t, IsRuntimeError(err), "%v is not a runtime error", err)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {

@@ -1,7 +1,7 @@
 # Copyright 2024, Pulumi Corporation.  All rights reserved.
 
-import pulumi
-from pulumi.dynamic import CreateResult, ResourceProvider, ConfigureRequest, Config
+import khulnasoft
+from khulnasoft.dynamic import CreateResult, ResourceProvider, ConfigureRequest, Config
 
 
 class SimpleProvider(ResourceProvider):

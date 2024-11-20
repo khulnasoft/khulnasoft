@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: pulumi/engine.proto
+// source: khulnasoft/engine.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	context "context"
@@ -45,7 +45,7 @@ func NewEngineClient(cc grpc.ClientConnInterface) EngineClient {
 
 func (c *engineClient) Log(ctx context.Context, in *LogRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Engine/Log", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Engine/Log", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -54,7 +54,7 @@ func (c *engineClient) Log(ctx context.Context, in *LogRequest, opts ...grpc.Cal
 
 func (c *engineClient) GetRootResource(ctx context.Context, in *GetRootResourceRequest, opts ...grpc.CallOption) (*GetRootResourceResponse, error) {
 	out := new(GetRootResourceResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Engine/GetRootResource", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Engine/GetRootResource", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -63,7 +63,7 @@ func (c *engineClient) GetRootResource(ctx context.Context, in *GetRootResourceR
 
 func (c *engineClient) SetRootResource(ctx context.Context, in *SetRootResourceRequest, opts ...grpc.CallOption) (*SetRootResourceResponse, error) {
 	out := new(SetRootResourceResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Engine/SetRootResource", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Engine/SetRootResource", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,7 +72,7 @@ func (c *engineClient) SetRootResource(ctx context.Context, in *SetRootResourceR
 
 func (c *engineClient) StartDebugging(ctx context.Context, in *StartDebuggingRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Engine/StartDebugging", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Engine/StartDebugging", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -135,7 +135,7 @@ func _Engine_Log_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Engine/Log",
+		FullMethod: "/khulnasoftrpc.Engine/Log",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EngineServer).Log(ctx, req.(*LogRequest))
@@ -153,7 +153,7 @@ func _Engine_GetRootResource_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Engine/GetRootResource",
+		FullMethod: "/khulnasoftrpc.Engine/GetRootResource",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EngineServer).GetRootResource(ctx, req.(*GetRootResourceRequest))
@@ -171,7 +171,7 @@ func _Engine_SetRootResource_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Engine/SetRootResource",
+		FullMethod: "/khulnasoftrpc.Engine/SetRootResource",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EngineServer).SetRootResource(ctx, req.(*SetRootResourceRequest))
@@ -189,7 +189,7 @@ func _Engine_StartDebugging_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Engine/StartDebugging",
+		FullMethod: "/khulnasoftrpc.Engine/StartDebugging",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EngineServer).StartDebugging(ctx, req.(*StartDebuggingRequest))
@@ -201,7 +201,7 @@ func _Engine_StartDebugging_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Engine_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pulumirpc.Engine",
+	ServiceName: "khulnasoftrpc.Engine",
 	HandlerType: (*EngineServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -222,5 +222,5 @@ var Engine_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "pulumi/engine.proto",
+	Metadata: "khulnasoft/engine.proto",
 }

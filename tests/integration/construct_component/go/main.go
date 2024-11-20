@@ -7,15 +7,15 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type componentArgs struct {
-	Echo interface{} `pulumi:"echo"`
+	Echo interface{} `khulnasoft:"echo"`
 }
 
 type ComponentArgs struct {
-	Echo pulumi.Input
+	Echo khulnasoft.Input
 }
 
 func (ComponentArgs) ElementType() reflect.Type {
@@ -23,15 +23,15 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Echo    pulumi.AnyOutput    `pulumi:"echo"`
-	ChildID pulumi.StringOutput `pulumi:"childId"`
-	Secret  pulumi.StringOutput `pulumi:"secret"`
+	Echo    khulnasoft.AnyOutput    `khulnasoft:"echo"`
+	ChildID khulnasoft.StringOutput `khulnasoft:"childId"`
+	Secret  khulnasoft.StringOutput `khulnasoft:"secret"`
 }
 
 func NewComponent(
-	ctx *pulumi.Context, name string, args *ComponentArgs, opts ...pulumi.ResourceOption,
+	ctx *khulnasoft.Context, name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, args, &resource, opts...)
@@ -43,8 +43,8 @@ func NewComponent(
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		componentA, err := NewComponent(ctx, "a", &ComponentArgs{Echo: pulumi.Int(42)})
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		componentA, err := NewComponent(ctx, "a", &ComponentArgs{Echo: khulnasoft.Int(42)})
 		if err != nil {
 			return err
 		}

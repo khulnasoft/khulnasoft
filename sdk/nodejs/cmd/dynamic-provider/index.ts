@@ -78,7 +78,7 @@ async function getProvider(props: any, rawConfig: Record<string, any>): Promise<
         }
     }
 
-    // TODO[pulumi/pulumi#414]: investigate replacing requireFromString with eval
+    // TODO[khulnasoft/khulnasoft#414]: investigate replacing requireFromString with eval
     return provider;
 }
 
@@ -132,7 +132,7 @@ class ResourceProviderService implements provrpc.IResourceProviderServer {
     async invoke(call: any, callback: any): Promise<void> {
         const req: any = call.request;
 
-        // TODO[pulumi/pulumi#406]: implement this.
+        // TODO[khulnasoft/khulnasoft#406]: implement this.
         callback(new Error(`unknown function ${req.getTok()}`), undefined);
     }
 
@@ -141,7 +141,7 @@ class ResourceProviderService implements provrpc.IResourceProviderServer {
     ): Promise<void> {
         const req: any = call.request;
 
-        // TODO[pulumi/pulumi#406]: implement this.
+        // TODO[khulnasoft/khulnasoft#406]: implement this.
         call.emit("error", {
             code: grpc.status.UNIMPLEMENTED,
             details: `unknown function ${req.getTok()}`,
@@ -452,7 +452,7 @@ function grpcResponseFromError(e: {
         detail.setReasonsList(e.reasons || []);
 
         const details = new anyproto.Any();
-        details.pack(detail.serializeBinary(), "pulumirpc.ErrorResourceInitFailed");
+        details.pack(detail.serializeBinary(), "khulnasoftrpc.ErrorResourceInitFailed");
 
         // Add details to metadata.
         resp.addDetails(details);

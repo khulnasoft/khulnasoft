@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import pulumi
+import khulnasoft
 
-pulumi.export("xyz", "ABC")
-pulumi.export("foo", 42)
+khulnasoft.export("xyz", "ABC")
+khulnasoft.export("foo", 42)

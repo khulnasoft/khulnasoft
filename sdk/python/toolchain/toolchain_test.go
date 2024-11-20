@@ -162,7 +162,7 @@ func TestListPackages(t *testing.T) {
 			t.Parallel()
 			opts := copyOptions(opts)
 			opts.Root = t.TempDir()
-			createVenv(t, opts, "pulumi-random")
+			createVenv(t, opts, "khulnasoft-random")
 
 			tc, err := ResolveToolchain(opts)
 			require.NoError(t, err)
@@ -174,7 +174,7 @@ func TestListPackages(t *testing.T) {
 			require.NoError(t, err)
 			require.Len(t, packages, 4)
 			require.Equal(t, "pip", packages[0].Name)
-			require.Equal(t, "pulumi_random", packages[1].Name)
+			require.Equal(t, "khulnasoft_random", packages[1].Name)
 			require.Equal(t, "setuptools", packages[2].Name)
 			require.Equal(t, "wheel", packages[3].Name)
 		})
@@ -322,13 +322,13 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "test_pulumi_venv"
+name = "test_khulnasoft_venv"
 version = "0.1.0"
 description = ""
 authors = []
 readme = "README.md"
 package-mode = false
-packages = [{include = "test_pulumi_venv"}]
+packages = [{include = "test_khulnasoft_venv"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"

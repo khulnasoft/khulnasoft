@@ -22,14 +22,14 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type mocks int
 
 // We assert that default values were passed to our constuctor
-func (mocks) NewResource(args pulumi.MockResourceArgs) (string, resource.PropertyMap, error) {
+func (mocks) NewResource(args khulnasoft.MockResourceArgs) (string, resource.PropertyMap, error) {
 	checkFloat64 := func(v resource.PropertyValue, k string, expected float64) {
 		m := v.ObjectValue()
 		if m[resource.PropertyKey(k)].NumberValue() != expected {
@@ -47,7 +47,7 @@ func (mocks) NewResource(args pulumi.MockResourceArgs) (string, resource.Propert
 	return args.Name, args.Inputs.Copy(), nil
 }
 
-func (mocks) Call(args pulumi.MockCallArgs) (resource.PropertyMap, error) {
+func (mocks) Call(args khulnasoft.MockCallArgs) (resource.PropertyMap, error) {
 	panic("Call not supported")
 }
 
@@ -76,17 +76,17 @@ func TestTransitiveObjectDefaults(t *testing.T) {
 // We already have that defaults for resources. We test that they translate through objects.
 func TestDefaultResource(t *testing.T) {
 	t.Setenv("PULUMI_K8S_CLIENT_BURST", "42")
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := example.NewFoo(ctx, "foo", &example.FooArgs{
 			KubeClientSettings:       example.KubeClientSettingsPtr(&example.KubeClientSettingsArgs{}),
-			BackupKubeClientSettings: &example.KubeClientSettingsArgs{Qps: pulumi.Float64(7)},
+			BackupKubeClientSettings: &example.KubeClientSettingsArgs{Qps: khulnasoft.Float64(7)},
 		})
 		assert.NoError(t, err)
 		return nil
-	}, pulumi.WithMocks("example", "stack", mocks(0)))
+	}, khulnasoft.WithMocks("example", "stack", mocks(0)))
 }
 
-func waitOut(t *testing.T, output pulumi.Output) interface{} {
+func waitOut(t *testing.T, output khulnasoft.Output) interface{} {
 	result, err := waitOutput(output, 1*time.Second)
 	if err != nil {
 		t.Error(err)
@@ -95,7 +95,7 @@ func waitOut(t *testing.T, output pulumi.Output) interface{} {
 	return result
 }
 
-func waitOutput(output pulumi.Output, timeout time.Duration) (interface{}, error) {
+func waitOutput(output khulnasoft.Output, timeout time.Duration) (interface{}, error) {
 	c := make(chan interface{}, 2)
 	output.ApplyT(func(v interface{}) interface{} {
 		c <- v
@@ -109,7 +109,7 @@ func waitOutput(output pulumi.Output, timeout time.Duration) (interface{}, error
 
 	result := <-c
 	if result == timeoutMarker {
-		return nil, fmt.Errorf("Timed out waiting for pulumi.Output after %v", timeout)
+		return nil, fmt.Errorf("Timed out waiting for khulnasoft.Output after %v", timeout)
 	} else {
 		return result, nil
 	}

@@ -7,27 +7,27 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"replace-on-change/example/internal"
 )
 
 type ToyStore struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Chew   ChewPtrOutput  `pulumi:"chew"`
-	Laser  LaserPtrOutput `pulumi:"laser"`
-	Stuff  ToyArrayOutput `pulumi:"stuff"`
-	Wanted ToyArrayOutput `pulumi:"wanted"`
+	Chew   ChewPtrOutput  `khulnasoft:"chew"`
+	Laser  LaserPtrOutput `khulnasoft:"laser"`
+	Stuff  ToyArrayOutput `khulnasoft:"stuff"`
+	Wanted ToyArrayOutput `khulnasoft:"wanted"`
 }
 
 // NewToyStore registers a new resource with the given unique name, arguments, and options.
-func NewToyStore(ctx *pulumi.Context,
-	name string, args *ToyStoreArgs, opts ...pulumi.ResourceOption) (*ToyStore, error) {
+func NewToyStore(ctx *khulnasoft.Context,
+	name string, args *ToyStoreArgs, opts ...khulnasoft.ResourceOption) (*ToyStore, error) {
 	if args == nil {
 		args = &ToyStoreArgs{}
 	}
 
-	replaceOnChanges := pulumi.ReplaceOnChanges([]string{
+	replaceOnChanges := khulnasoft.ReplaceOnChanges([]string{
 		"chew.owner",
 		"laser.batteries",
 		"stuff[*].associated.color",
@@ -46,8 +46,8 @@ func NewToyStore(ctx *pulumi.Context,
 
 // GetToyStore gets an existing ToyStore resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetToyStore(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ToyStoreState, opts ...pulumi.ResourceOption) (*ToyStore, error) {
+func GetToyStore(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ToyStoreState, opts ...khulnasoft.ResourceOption) (*ToyStore, error) {
 	var resource ToyStore
 	err := ctx.ReadResource("example::ToyStore", name, id, state, &resource, opts...)
 	if err != nil {
@@ -79,7 +79,7 @@ func (ToyStoreArgs) ElementType() reflect.Type {
 }
 
 type ToyStoreInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToToyStoreOutput() ToyStoreOutput
 	ToToyStoreOutputWithContext(ctx context.Context) ToyStoreOutput
@@ -94,7 +94,7 @@ func (i *ToyStore) ToToyStoreOutput() ToyStoreOutput {
 }
 
 func (i *ToyStore) ToToyStoreOutputWithContext(ctx context.Context) ToyStoreOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ToyStoreOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ToyStoreOutput)
 }
 
 // ToyStoreArrayInput is an input type that accepts ToyStoreArray and ToyStoreArrayOutput values.
@@ -102,7 +102,7 @@ func (i *ToyStore) ToToyStoreOutputWithContext(ctx context.Context) ToyStoreOutp
 //
 //	ToyStoreArray{ ToyStoreArgs{...} }
 type ToyStoreArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToToyStoreArrayOutput() ToyStoreArrayOutput
 	ToToyStoreArrayOutputWithContext(context.Context) ToyStoreArrayOutput
@@ -119,7 +119,7 @@ func (i ToyStoreArray) ToToyStoreArrayOutput() ToyStoreArrayOutput {
 }
 
 func (i ToyStoreArray) ToToyStoreArrayOutputWithContext(ctx context.Context) ToyStoreArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ToyStoreArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ToyStoreArrayOutput)
 }
 
 // ToyStoreMapInput is an input type that accepts ToyStoreMap and ToyStoreMapOutput values.
@@ -127,7 +127,7 @@ func (i ToyStoreArray) ToToyStoreArrayOutputWithContext(ctx context.Context) Toy
 //
 //	ToyStoreMap{ "key": ToyStoreArgs{...} }
 type ToyStoreMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToToyStoreMapOutput() ToyStoreMapOutput
 	ToToyStoreMapOutputWithContext(context.Context) ToyStoreMapOutput
@@ -144,10 +144,10 @@ func (i ToyStoreMap) ToToyStoreMapOutput() ToyStoreMapOutput {
 }
 
 func (i ToyStoreMap) ToToyStoreMapOutputWithContext(ctx context.Context) ToyStoreMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ToyStoreMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ToyStoreMapOutput)
 }
 
-type ToyStoreOutput struct{ *pulumi.OutputState }
+type ToyStoreOutput struct{ *khulnasoft.OutputState }
 
 func (ToyStoreOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ToyStore)(nil)).Elem()
@@ -177,7 +177,7 @@ func (o ToyStoreOutput) Wanted() ToyArrayOutput {
 	return o.ApplyT(func(v *ToyStore) ToyArrayOutput { return v.Wanted }).(ToyArrayOutput)
 }
 
-type ToyStoreArrayOutput struct{ *pulumi.OutputState }
+type ToyStoreArrayOutput struct{ *khulnasoft.OutputState }
 
 func (ToyStoreArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*ToyStore)(nil)).Elem()
@@ -191,13 +191,13 @@ func (o ToyStoreArrayOutput) ToToyStoreArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o ToyStoreArrayOutput) Index(i pulumi.IntInput) ToyStoreOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ToyStore {
+func (o ToyStoreArrayOutput) Index(i khulnasoft.IntInput) ToyStoreOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *ToyStore {
 		return vs[0].([]*ToyStore)[vs[1].(int)]
 	}).(ToyStoreOutput)
 }
 
-type ToyStoreMapOutput struct{ *pulumi.OutputState }
+type ToyStoreMapOutput struct{ *khulnasoft.OutputState }
 
 func (ToyStoreMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*ToyStore)(nil)).Elem()
@@ -211,14 +211,14 @@ func (o ToyStoreMapOutput) ToToyStoreMapOutputWithContext(ctx context.Context) T
 	return o
 }
 
-func (o ToyStoreMapOutput) MapIndex(k pulumi.StringInput) ToyStoreOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ToyStore {
+func (o ToyStoreMapOutput) MapIndex(k khulnasoft.StringInput) ToyStoreOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *ToyStore {
 		return vs[0].(map[string]*ToyStore)[vs[1].(string)]
 	}).(ToyStoreOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(ToyStoreOutput{})
-	pulumi.RegisterOutputType(ToyStoreArrayOutput{})
-	pulumi.RegisterOutputType(ToyStoreMapOutput{})
+	khulnasoft.RegisterOutputType(ToyStoreOutput{})
+	khulnasoft.RegisterOutputType(ToyStoreArrayOutput{})
+	khulnasoft.RegisterOutputType(ToyStoreMapOutput{})
 }

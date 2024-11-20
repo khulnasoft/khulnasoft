@@ -40,25 +40,25 @@ export interface Workspace {
      * location of `$PULUMI_HOME` where metadata is stored and plugins are
      * installed.
      */
-    readonly pulumiHome?: string;
+    readonly khulnasoftHome?: string;
 
     /**
      * The secrets provider to use for encryption and decryption of stack
      * secrets.
      *
-     * @see https://www.pulumi.com/docs/intro/concepts/secrets/#available-encryption-providers
+     * @see https://www.khulnasoft.com/docs/intro/concepts/secrets/#available-encryption-providers
      */
     readonly secretsProvider?: string;
 
     /**
      * The version of the underlying Pulumi CLI/engine.
      */
-    readonly pulumiVersion: string;
+    readonly khulnasoftVersion: string;
 
     /**
      * The underlying Pulumi CLI.
      */
-    readonly pulumiCommand: PulumiCommand;
+    readonly khulnasoftCommand: PulumiCommand;
 
     /**
      * The inline program {@link PulumiFn} to be used for preview/update
@@ -418,7 +418,7 @@ export interface Deployment {
     version: number;
 
     /**
-     * The pulumi deployment.
+     * The khulnasoft deployment.
      */
     // TODO: Expand type to encapsulate deployment.
     deployment: any;

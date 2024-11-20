@@ -7,14 +7,14 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type FailsOnDelete struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
-func NewFailsOnDelete(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*FailsOnDelete, error) {
+func NewFailsOnDelete(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*FailsOnDelete, error) {
 	var resource FailsOnDelete
 	err := ctx.RegisterResource("testprovider:index:FailsOnDelete", name, nil, &resource, opts...)
 	if err != nil {

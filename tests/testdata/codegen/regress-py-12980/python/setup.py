@@ -17,7 +17,7 @@ def readme():
         return "myPkg Pulumi Package - Development Version"
 
 
-setup(name='pulumi_myPkg',
+setup(name='khulnasoft_myPkg',
       python_requires='>=3.8',
       version=VERSION,
       description="Test imports across different module names",
@@ -25,14 +25,14 @@ setup(name='pulumi_myPkg',
       long_description_content_type='text/markdown',
       packages=find_packages(),
       package_data={
-          'pulumi_myPkg': [
+          'khulnasoft_myPkg': [
               'py.typed',
-              'pulumi-plugin.json',
+              'khulnasoft-plugin.json',
           ]
       },
       install_requires=[
           'parver>=0.2.1',
-          'pulumi>=3.136.0,<4.0.0',
+          'khulnasoft>=3.136.0,<4.0.0',
           'semver>=2.8.1',
           'typing-extensions>=4.11,<5; python_version < "3.11"'
       ],

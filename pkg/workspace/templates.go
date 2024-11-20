@@ -19,7 +19,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 )
 
 const (
@@ -34,7 +34,7 @@ func ValidateProjectName(s string) error {
 	}
 
 	// This is needed to stop cyclic imports in DotNet projects
-	if strings.ToLower(s) == "pulumi" || strings.HasPrefix(strings.ToLower(s), "pulumi.") {
+	if strings.ToLower(s) == "khulnasoft" || strings.HasPrefix(strings.ToLower(s), "khulnasoft.") {
 		return errors.New("project name must not be `Pulumi` and must not start with the prefix `Pulumi.` " +
 			"to avoid collision with standard libraries")
 	}

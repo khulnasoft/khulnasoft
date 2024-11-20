@@ -5,22 +5,22 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Resource struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 type ComponentSix struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 type ComponentSixParent struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewResource(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*Resource, error) {
+func NewResource(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*Resource, error) {
 	comp := &Resource{}
 	err := ctx.RegisterComponentResource("my:module:Resource", name, comp, opts...)
 	if err != nil {
@@ -30,21 +30,21 @@ func NewResource(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption
 }
 
 // Scenario #6 - Nested parents changing types
-func NewComponentSix(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*ComponentSix, error) {
+func NewComponentSix(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*ComponentSix, error) {
 	comp := &ComponentSix{}
-	aliases := make([]pulumi.Alias, 0)
+	aliases := make([]khulnasoft.Alias, 0)
 	for i := 0; i < 100; i++ {
-		aliases = append(aliases, pulumi.Alias{
-			Type: pulumi.Sprintf("my:module:ComponentSix-v%d", i),
+		aliases = append(aliases, khulnasoft.Alias{
+			Type: khulnasoft.Sprintf("my:module:ComponentSix-v%d", i),
 		})
 	}
 	err := ctx.RegisterComponentResource(
 		"my:module:ComponentSix-v0", name, comp,
-		pulumi.Aliases(aliases), pulumi.Composite(opts...))
+		khulnasoft.Aliases(aliases), khulnasoft.Composite(opts...))
 	if err != nil {
 		return nil, err
 	}
-	parentOpt := pulumi.Parent(comp)
+	parentOpt := khulnasoft.Parent(comp)
 	_, err = NewResource(ctx, "otherchild", parentOpt)
 	if err != nil {
 		return nil, err
@@ -52,23 +52,23 @@ func NewComponentSix(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOp
 	return comp, nil
 }
 
-func NewComponentSixParent(ctx *pulumi.Context, name string,
-	opts ...pulumi.ResourceOption,
+func NewComponentSixParent(ctx *khulnasoft.Context, name string,
+	opts ...khulnasoft.ResourceOption,
 ) (*ComponentSixParent, error) {
 	comp := &ComponentSixParent{}
-	aliases := make([]pulumi.Alias, 0)
+	aliases := make([]khulnasoft.Alias, 0)
 	for i := 0; i < 10; i++ {
-		aliases = append(aliases, pulumi.Alias{
-			Type: pulumi.Sprintf("my:module:ComponentSixParent-v%d", i),
+		aliases = append(aliases, khulnasoft.Alias{
+			Type: khulnasoft.Sprintf("my:module:ComponentSixParent-v%d", i),
 		})
 	}
 	err := ctx.RegisterComponentResource(
 		"my:module:ComponentSixParent-v0", name, comp,
-		pulumi.Aliases(aliases), pulumi.Composite(opts...))
+		khulnasoft.Aliases(aliases), khulnasoft.Composite(opts...))
 	if err != nil {
 		return nil, err
 	}
-	parentOpt := pulumi.Parent(comp)
+	parentOpt := khulnasoft.Parent(comp)
 	_, err = NewComponentSix(ctx, "child", parentOpt)
 	if err != nil {
 		return nil, err
@@ -77,7 +77,7 @@ func NewComponentSixParent(ctx *pulumi.Context, name string,
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := NewComponentSixParent(ctx, "comp6")
 		if err != nil {
 			return err

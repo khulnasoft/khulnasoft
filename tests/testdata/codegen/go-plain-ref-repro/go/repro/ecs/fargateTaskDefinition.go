@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"go-plain-ref-repro/repro/internal"
 )
 
 type FargateTaskDefinition struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	LoadBalancers pulumi.StringArrayOutput `pulumi:"loadBalancers"`
+	LoadBalancers khulnasoft.StringArrayOutput `khulnasoft:"loadBalancers"`
 }
 
 // NewFargateTaskDefinition registers a new resource with the given unique name, arguments, and options.
-func NewFargateTaskDefinition(ctx *pulumi.Context,
-	name string, args *FargateTaskDefinitionArgs, opts ...pulumi.ResourceOption) (*FargateTaskDefinition, error) {
+func NewFargateTaskDefinition(ctx *khulnasoft.Context,
+	name string, args *FargateTaskDefinitionArgs, opts ...khulnasoft.ResourceOption) (*FargateTaskDefinition, error) {
 	if args == nil {
 		args = &FargateTaskDefinitionArgs{}
 	}
@@ -34,8 +34,8 @@ func NewFargateTaskDefinition(ctx *pulumi.Context,
 }
 
 type fargateTaskDefinitionArgs struct {
-	Container  *TaskDefinitionContainerDefinition           `pulumi:"container"`
-	Containers map[string]TaskDefinitionContainerDefinition `pulumi:"containers"`
+	Container  *TaskDefinitionContainerDefinition           `khulnasoft:"container"`
+	Containers map[string]TaskDefinitionContainerDefinition `khulnasoft:"containers"`
 }
 
 // The set of arguments for constructing a FargateTaskDefinition resource.
@@ -49,7 +49,7 @@ func (FargateTaskDefinitionArgs) ElementType() reflect.Type {
 }
 
 type FargateTaskDefinitionInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToFargateTaskDefinitionOutput() FargateTaskDefinitionOutput
 	ToFargateTaskDefinitionOutputWithContext(ctx context.Context) FargateTaskDefinitionOutput
@@ -64,7 +64,7 @@ func (i *FargateTaskDefinition) ToFargateTaskDefinitionOutput() FargateTaskDefin
 }
 
 func (i *FargateTaskDefinition) ToFargateTaskDefinitionOutputWithContext(ctx context.Context) FargateTaskDefinitionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FargateTaskDefinitionOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(FargateTaskDefinitionOutput)
 }
 
 // FargateTaskDefinitionArrayInput is an input type that accepts FargateTaskDefinitionArray and FargateTaskDefinitionArrayOutput values.
@@ -72,7 +72,7 @@ func (i *FargateTaskDefinition) ToFargateTaskDefinitionOutputWithContext(ctx con
 //
 //	FargateTaskDefinitionArray{ FargateTaskDefinitionArgs{...} }
 type FargateTaskDefinitionArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToFargateTaskDefinitionArrayOutput() FargateTaskDefinitionArrayOutput
 	ToFargateTaskDefinitionArrayOutputWithContext(context.Context) FargateTaskDefinitionArrayOutput
@@ -89,7 +89,7 @@ func (i FargateTaskDefinitionArray) ToFargateTaskDefinitionArrayOutput() Fargate
 }
 
 func (i FargateTaskDefinitionArray) ToFargateTaskDefinitionArrayOutputWithContext(ctx context.Context) FargateTaskDefinitionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FargateTaskDefinitionArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(FargateTaskDefinitionArrayOutput)
 }
 
 // FargateTaskDefinitionMapInput is an input type that accepts FargateTaskDefinitionMap and FargateTaskDefinitionMapOutput values.
@@ -97,7 +97,7 @@ func (i FargateTaskDefinitionArray) ToFargateTaskDefinitionArrayOutputWithContex
 //
 //	FargateTaskDefinitionMap{ "key": FargateTaskDefinitionArgs{...} }
 type FargateTaskDefinitionMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToFargateTaskDefinitionMapOutput() FargateTaskDefinitionMapOutput
 	ToFargateTaskDefinitionMapOutputWithContext(context.Context) FargateTaskDefinitionMapOutput
@@ -114,10 +114,10 @@ func (i FargateTaskDefinitionMap) ToFargateTaskDefinitionMapOutput() FargateTask
 }
 
 func (i FargateTaskDefinitionMap) ToFargateTaskDefinitionMapOutputWithContext(ctx context.Context) FargateTaskDefinitionMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FargateTaskDefinitionMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(FargateTaskDefinitionMapOutput)
 }
 
-type FargateTaskDefinitionOutput struct{ *pulumi.OutputState }
+type FargateTaskDefinitionOutput struct{ *khulnasoft.OutputState }
 
 func (FargateTaskDefinitionOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**FargateTaskDefinition)(nil)).Elem()
@@ -131,11 +131,11 @@ func (o FargateTaskDefinitionOutput) ToFargateTaskDefinitionOutputWithContext(ct
 	return o
 }
 
-func (o FargateTaskDefinitionOutput) LoadBalancers() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *FargateTaskDefinition) pulumi.StringArrayOutput { return v.LoadBalancers }).(pulumi.StringArrayOutput)
+func (o FargateTaskDefinitionOutput) LoadBalancers() khulnasoft.StringArrayOutput {
+	return o.ApplyT(func(v *FargateTaskDefinition) khulnasoft.StringArrayOutput { return v.LoadBalancers }).(khulnasoft.StringArrayOutput)
 }
 
-type FargateTaskDefinitionArrayOutput struct{ *pulumi.OutputState }
+type FargateTaskDefinitionArrayOutput struct{ *khulnasoft.OutputState }
 
 func (FargateTaskDefinitionArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*FargateTaskDefinition)(nil)).Elem()
@@ -149,13 +149,13 @@ func (o FargateTaskDefinitionArrayOutput) ToFargateTaskDefinitionArrayOutputWith
 	return o
 }
 
-func (o FargateTaskDefinitionArrayOutput) Index(i pulumi.IntInput) FargateTaskDefinitionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FargateTaskDefinition {
+func (o FargateTaskDefinitionArrayOutput) Index(i khulnasoft.IntInput) FargateTaskDefinitionOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *FargateTaskDefinition {
 		return vs[0].([]*FargateTaskDefinition)[vs[1].(int)]
 	}).(FargateTaskDefinitionOutput)
 }
 
-type FargateTaskDefinitionMapOutput struct{ *pulumi.OutputState }
+type FargateTaskDefinitionMapOutput struct{ *khulnasoft.OutputState }
 
 func (FargateTaskDefinitionMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*FargateTaskDefinition)(nil)).Elem()
@@ -169,17 +169,17 @@ func (o FargateTaskDefinitionMapOutput) ToFargateTaskDefinitionMapOutputWithCont
 	return o
 }
 
-func (o FargateTaskDefinitionMapOutput) MapIndex(k pulumi.StringInput) FargateTaskDefinitionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FargateTaskDefinition {
+func (o FargateTaskDefinitionMapOutput) MapIndex(k khulnasoft.StringInput) FargateTaskDefinitionOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *FargateTaskDefinition {
 		return vs[0].(map[string]*FargateTaskDefinition)[vs[1].(string)]
 	}).(FargateTaskDefinitionOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*FargateTaskDefinitionInput)(nil)).Elem(), &FargateTaskDefinition{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FargateTaskDefinitionArrayInput)(nil)).Elem(), FargateTaskDefinitionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FargateTaskDefinitionMapInput)(nil)).Elem(), FargateTaskDefinitionMap{})
-	pulumi.RegisterOutputType(FargateTaskDefinitionOutput{})
-	pulumi.RegisterOutputType(FargateTaskDefinitionArrayOutput{})
-	pulumi.RegisterOutputType(FargateTaskDefinitionMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*FargateTaskDefinitionInput)(nil)).Elem(), &FargateTaskDefinition{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*FargateTaskDefinitionArrayInput)(nil)).Elem(), FargateTaskDefinitionArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*FargateTaskDefinitionMapInput)(nil)).Elem(), FargateTaskDefinitionMap{})
+	khulnasoft.RegisterOutputType(FargateTaskDefinitionOutput{})
+	khulnasoft.RegisterOutputType(FargateTaskDefinitionArrayOutput{})
+	khulnasoft.RegisterOutputType(FargateTaskDefinitionMapOutput{})
 }

@@ -29,10 +29,10 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/b64"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/diagtest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/diagtest"
 )
 
 // This file contains copies of old backend tests
@@ -291,7 +291,7 @@ func TestRenameWorks_legacy(t *testing.T) {
 	assert.Equal(t, apitype.DestroyUpdate, history[0].Kind)
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/10439
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/10439
 func TestHtmlEscaping_legacy(t *testing.T) {
 	t.Parallel()
 
@@ -367,7 +367,7 @@ func TestDIYBackendRejectsStackInitOptions_legacy(t *testing.T) {
 	assert.NoError(t, err)
 	ctx := context.Background()
 
-	// • Simulate `pulumi stack init`, passing non-nil init options
+	// • Simulate `khulnasoft stack init`, passing non-nil init options
 	fakeStackRef, err := diy.ParseStackReference("foobar")
 	assert.NoError(t, err)
 	_, err = diy.CreateStack(ctx, fakeStackRef, "", nil, illegalOptions)
@@ -380,7 +380,7 @@ func TestDIYBackendRejectsStackInitOptions_legacy(t *testing.T) {
 //
 // Returns the directory that was marked.
 func markLegacyStore(t *testing.T, dir string) string {
-	metaPath := filepath.Join(dir, pulumiMetaPath)
+	metaPath := filepath.Join(dir, khulnasoftMetaPath)
 	require.NoError(t, os.MkdirAll(filepath.Dir(metaPath), 0o755))
 	require.NoError(t, os.WriteFile(metaPath, []byte(`version: 0`), 0o600))
 	return dir

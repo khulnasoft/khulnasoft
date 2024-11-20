@@ -20,11 +20,11 @@ import * as process from "process";
 import * as tmp from "tmp";
 import { pack } from "./pack";
 
-// Write a package.json that installs the local pulumi package and ensures we
+// Write a package.json that installs the local khulnasoft package and ensures we
 // have the right typescript version.
 async function writePackageJSON(
     dir: string,
-    pulumiPackagePath: string,
+    khulnasoftPackagePath: string,
     typescriptVersion: string,
     nodeTypesVersion: string,
 ) {
@@ -33,7 +33,7 @@ async function writePackageJSON(
         version: "1.0.0",
         license: "Apache-2.0",
         dependencies: {
-            "@pulumi/pulumi": pulumiPackagePath,
+            "@khulnasoft/khulnasoft": khulnasoftPackagePath,
             "@types/mocha": "^9.0.0",
             "@types/node": nodeTypesVersion,
             "@types/semver": "^7.5.6",
@@ -75,10 +75,10 @@ async function run(typescriptVersion: string, nodeTypesVersion: string) {
     const sdkRoot = path.join(__dirname, "..", "..", "..");
     const sdkRootBin = path.join(sdkRoot, "bin");
     // Add a random suffix to the package name to avoid any issues with yarn caching the tgz.
-    const packageName = `pulumi-${randomInt(10000, 99999)}.tgz`;
-    const pulumiPackagePath = path.join(tmpDir.name, packageName);
-    await pack(sdkRootBin, pulumiPackagePath);
-    await writePackageJSON(tmpDir.name, pulumiPackagePath, typescriptVersion, nodeTypesVersion);
+    const packageName = `khulnasoft-${randomInt(10000, 99999)}.tgz`;
+    const khulnasoftPackagePath = path.join(tmpDir.name, packageName);
+    await pack(sdkRootBin, khulnasoftPackagePath);
+    await writePackageJSON(tmpDir.name, khulnasoftPackagePath, typescriptVersion, nodeTypesVersion);
     await copyDir(path.join(sdkRoot, "tests", "runtime", "testdata", "closure-tests"), tmpDir.name);
 
     await execa("yarn", ["install"], { cwd: tmpDir.name });

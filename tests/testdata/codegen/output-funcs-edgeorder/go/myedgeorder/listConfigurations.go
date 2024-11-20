@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"example.com/pulumi-myedgeorder/sdk/go/myedgeorder/internal"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"example.com/khulnasoft-myedgeorder/sdk/go/myedgeorder/internal"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // The list of configurations.
 // API Version: 2020-12-01-preview.
-func ListConfigurations(ctx *pulumi.Context, args *ListConfigurationsArgs, opts ...pulumi.InvokeOption) (*ListConfigurationsResult, error) {
+func ListConfigurations(ctx *khulnasoft.Context, args *ListConfigurationsArgs, opts ...khulnasoft.InvokeOption) (*ListConfigurationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListConfigurationsResult
 	err := ctx.Invoke("myedgeorder::listConfigurations", args, &rv, opts...)
@@ -25,23 +25,23 @@ func ListConfigurations(ctx *pulumi.Context, args *ListConfigurationsArgs, opts 
 
 type ListConfigurationsArgs struct {
 	// Holds details about product hierarchy information and filterable property.
-	ConfigurationFilters []ConfigurationFilters `pulumi:"configurationFilters"`
+	ConfigurationFilters []ConfigurationFilters `khulnasoft:"configurationFilters"`
 	// Customer subscription properties. Clients can display available products to unregistered customers by explicitly passing subscription details
-	CustomerSubscriptionDetails *CustomerSubscriptionDetails `pulumi:"customerSubscriptionDetails"`
+	CustomerSubscriptionDetails *CustomerSubscriptionDetails `khulnasoft:"customerSubscriptionDetails"`
 	// $skipToken is supported on list of configurations, which provides the next page in the list of configurations.
-	SkipToken *string `pulumi:"skipToken"`
+	SkipToken *string `khulnasoft:"skipToken"`
 }
 
 // The list of configurations.
 type ListConfigurationsResult struct {
 	// Link for the next set of configurations.
-	NextLink *string `pulumi:"nextLink"`
+	NextLink *string `khulnasoft:"nextLink"`
 	// List of configurations.
-	Value []ConfigurationResponse `pulumi:"value"`
+	Value []ConfigurationResponse `khulnasoft:"value"`
 }
 
-func ListConfigurationsOutput(ctx *pulumi.Context, args ListConfigurationsOutputArgs, opts ...pulumi.InvokeOption) ListConfigurationsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func ListConfigurationsOutput(ctx *khulnasoft.Context, args ListConfigurationsOutputArgs, opts ...khulnasoft.InvokeOption) ListConfigurationsResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (ListConfigurationsResultOutput, error) {
 			args := v.(ListConfigurationsArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -51,9 +51,9 @@ func ListConfigurationsOutput(ctx *pulumi.Context, args ListConfigurationsOutput
 				return ListConfigurationsResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(ListConfigurationsResultOutput)
+			output := khulnasoft.ToOutput(rv).(ListConfigurationsResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(ListConfigurationsResultOutput), nil
+				return khulnasoft.ToSecret(output).(ListConfigurationsResultOutput), nil
 			}
 			return output, nil
 		}).(ListConfigurationsResultOutput)
@@ -61,11 +61,11 @@ func ListConfigurationsOutput(ctx *pulumi.Context, args ListConfigurationsOutput
 
 type ListConfigurationsOutputArgs struct {
 	// Holds details about product hierarchy information and filterable property.
-	ConfigurationFilters ConfigurationFiltersArrayInput `pulumi:"configurationFilters"`
+	ConfigurationFilters ConfigurationFiltersArrayInput `khulnasoft:"configurationFilters"`
 	// Customer subscription properties. Clients can display available products to unregistered customers by explicitly passing subscription details
-	CustomerSubscriptionDetails CustomerSubscriptionDetailsPtrInput `pulumi:"customerSubscriptionDetails"`
+	CustomerSubscriptionDetails CustomerSubscriptionDetailsPtrInput `khulnasoft:"customerSubscriptionDetails"`
 	// $skipToken is supported on list of configurations, which provides the next page in the list of configurations.
-	SkipToken pulumi.StringPtrInput `pulumi:"skipToken"`
+	SkipToken khulnasoft.StringPtrInput `khulnasoft:"skipToken"`
 }
 
 func (ListConfigurationsOutputArgs) ElementType() reflect.Type {
@@ -73,7 +73,7 @@ func (ListConfigurationsOutputArgs) ElementType() reflect.Type {
 }
 
 // The list of configurations.
-type ListConfigurationsResultOutput struct{ *pulumi.OutputState }
+type ListConfigurationsResultOutput struct{ *khulnasoft.OutputState }
 
 func (ListConfigurationsResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ListConfigurationsResult)(nil)).Elem()
@@ -88,8 +88,8 @@ func (o ListConfigurationsResultOutput) ToListConfigurationsResultOutputWithCont
 }
 
 // Link for the next set of configurations.
-func (o ListConfigurationsResultOutput) NextLink() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListConfigurationsResult) *string { return v.NextLink }).(pulumi.StringPtrOutput)
+func (o ListConfigurationsResultOutput) NextLink() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v ListConfigurationsResult) *string { return v.NextLink }).(khulnasoft.StringPtrOutput)
 }
 
 // List of configurations.
@@ -98,5 +98,5 @@ func (o ListConfigurationsResultOutput) Value() ConfigurationResponseArrayOutput
 }
 
 func init() {
-	pulumi.RegisterOutputType(ListConfigurationsResultOutput{})
+	khulnasoft.RegisterOutputType(ListConfigurationsResultOutput{})
 }

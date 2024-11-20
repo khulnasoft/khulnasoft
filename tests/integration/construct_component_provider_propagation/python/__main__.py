@@ -2,31 +2,31 @@
 
 from typing import Optional
 
-import pulumi
+import khulnasoft
 
-class Component(pulumi.ComponentResource):
+class Component(khulnasoft.ComponentResource):
     """
     Python-level remote component for the component resource
     defined in sibling testcomponent-go directory.
     """
 
-    result: pulumi.Output[str]
+    result: khulnasoft.Output[str]
 
     def __init__(self,
                  name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None):
+                 opts: Optional[khulnasoft.ResourceOptions] = None):
         props = {"result": None}
         super().__init__("testcomponent:index:Component", name, props, opts, remote=True)
 
 
-class RandomProvider(pulumi.ProviderResource):
+class RandomProvider(khulnasoft.ProviderResource):
     """
     Provider for the testprovider:index:Random resource.
 
     Implemented in tests/testprovider.
     """
 
-    def __init__(self, name, opts: Optional[pulumi.ResourceOptions]=None):
+    def __init__(self, name, opts: Optional[khulnasoft.ResourceOptions]=None):
         super().__init__("testprovider", name, {}, opts)
 
 
@@ -36,16 +36,16 @@ explicit_provider = RandomProvider("explicit")
 Component("uses_default")
 
 # Should use the provider passed in as an argument.
-Component("uses_provider", opts=pulumi.ResourceOptions(
+Component("uses_provider", opts=khulnasoft.ResourceOptions(
     provider=explicit_provider,
 ))
 
 # Should use the provider passed in as an argument
-Component("uses_providers", opts=pulumi.ResourceOptions(
+Component("uses_providers", opts=khulnasoft.ResourceOptions(
     providers=[explicit_provider],
 ))
 
 # Should use the provider passed in as an argument
-Component("uses_providers_map", opts=pulumi.ResourceOptions(
+Component("uses_providers_map", opts=khulnasoft.ResourceOptions(
     providers={"testprovider": explicit_provider},
 ))

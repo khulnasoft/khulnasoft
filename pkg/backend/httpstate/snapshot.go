@@ -23,7 +23,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/httpstate/client"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 // cloudSnapshotPersister persists snapshots to the Pulumi service.

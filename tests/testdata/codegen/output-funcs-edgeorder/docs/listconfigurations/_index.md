@@ -26,80 +26,80 @@ returns a Promise-wrapped result. The output form accepts
 Input-wrapped arguments and returns an Output-wrapped result.
 
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <div class="highlight"
 ><pre class="chroma"><code class="language-typescript" data-lang="typescript"
-><span class="k">function </span>listConfigurations<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">ListConfigurationsArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#InvokeOptions">InvokeOptions</a></span><span class="p">): Promise&lt;<span class="nx"><a href="#result">ListConfigurationsResult</a></span>></span
+><span class="k">function </span>listConfigurations<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">ListConfigurationsArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#InvokeOptions">InvokeOptions</a></span><span class="p">): Promise&lt;<span class="nx"><a href="#result">ListConfigurationsResult</a></span>></span
 ><span class="k">
-function </span>listConfigurationsOutput<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">ListConfigurationsOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#InvokeOptions">InvokeOptions</a></span><span class="p">): Output&lt;<span class="nx"><a href="#result">ListConfigurationsResult</a></span>></span
+function </span>listConfigurationsOutput<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">ListConfigurationsOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#InvokeOptions">InvokeOptions</a></span><span class="p">): Output&lt;<span class="nx"><a href="#result">ListConfigurationsResult</a></span>></span
 ></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"
 ><span class="k">def </span>list_configurations<span class="p">(</span><span class="nx">configuration_filters</span><span class="p">:</span> <span class="nx">Optional[Sequence[ConfigurationFilters]]</span> = None<span class="p">,</span>
                         <span class="nx">customer_subscription_details</span><span class="p">:</span> <span class="nx">Optional[CustomerSubscriptionDetails]</span> = None<span class="p">,</span>
                         <span class="nx">skip_token</span><span class="p">:</span> <span class="nx">Optional[str]</span> = None<span class="p">,</span>
-                        <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>ListConfigurationsResult</span
+                        <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>ListConfigurationsResult</span
 ><span class="k">
-def </span>list_configurations_output<span class="p">(</span><span class="nx">configuration_filters</span><span class="p">:</span> <span class="nx">Optional[pulumi.Input[Sequence[pulumi.Input[ConfigurationFiltersArgs]]]]</span> = None<span class="p">,</span>
-                        <span class="nx">customer_subscription_details</span><span class="p">:</span> <span class="nx">Optional[pulumi.Input[CustomerSubscriptionDetailsArgs]]</span> = None<span class="p">,</span>
-                        <span class="nx">skip_token</span><span class="p">:</span> <span class="nx">Optional[pulumi.Input[str]]</span> = None<span class="p">,</span>
-                        <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>Output[ListConfigurationsResult]</span
+def </span>list_configurations_output<span class="p">(</span><span class="nx">configuration_filters</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Input[Sequence[khulnasoft.Input[ConfigurationFiltersArgs]]]]</span> = None<span class="p">,</span>
+                        <span class="nx">customer_subscription_details</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Input[CustomerSubscriptionDetailsArgs]]</span> = None<span class="p">,</span>
+                        <span class="nx">skip_token</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Input[str]]</span> = None<span class="p">,</span>
+                        <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>Output[ListConfigurationsResult]</span
 ></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"
-><span class="k">func </span>ListConfigurations<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">ListConfigurationsArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) (*<span class="nx"><a href="#result">ListConfigurationsResult</a></span>, error)</span
+><span class="k">func </span>ListConfigurations<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">ListConfigurationsArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) (*<span class="nx"><a href="#result">ListConfigurationsResult</a></span>, error)</span
 ><span class="k">
-func </span>ListConfigurationsOutput<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">ListConfigurationsOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) ListConfigurationsResultOutput</span
+func </span>ListConfigurationsOutput<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">ListConfigurationsOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) ListConfigurationsResultOutput</span
 ></code></pre></div>
 
 &gt; Note: This function is named `ListConfigurations` in the Go SDK.
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public static class </span><span class="nx">ListConfigurations </span><span class="p">
 {</span><span class="k">
     public static </span>Task&lt;<span class="nx"><a href="#result">ListConfigurationsResult</a></span>> <span class="p">InvokeAsync(</span><span class="nx">ListConfigurationsArgs</span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.InvokeOptions.html">InvokeOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span><span class="k">
     public static </span>Output&lt;<span class="nx"><a href="#result">ListConfigurationsResult</a></span>> <span class="p">Invoke(</span><span class="nx">ListConfigurationsInvokeArgs</span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.InvokeOptions.html">InvokeOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span><span class="p">
 }</span></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">public static CompletableFuture&lt;<span class="nx"><a href="#result">ListConfigurationsResult</a></span>> </span>listConfigurations<span class="p">(</span><span class="nx">ListConfigurationsArgs</span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx">InvokeOptions</span><span class="p"> </span><span class="nx">options<span class="p">)</span>
 <span class="c">// Output-based functions aren't available in Java yet</span>
 </code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">fn::invoke:</span>
 <span class="k">&nbsp;&nbsp;function:</span> myedgeorder:listConfigurations
 <span class="k">&nbsp;&nbsp;arguments:</span>
 <span class="c">&nbsp;&nbsp;&nbsp;&nbsp;# arguments dictionary</span></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -108,7 +108,7 @@ The following arguments are supported:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="configurationfilters_csharp">
@@ -134,11 +134,11 @@ The following arguments are supported:
         <span class="property-type">string</span>
     </dt>
     <dd>$skipToken is supported on list of configurations, which provides the next page in the list of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="configurationfilters_go">
@@ -164,11 +164,11 @@ The following arguments are supported:
         <span class="property-type">string</span>
     </dt>
     <dd>$skipToken is supported on list of configurations, which provides the next page in the list of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="configurationfilters_java">
@@ -194,11 +194,11 @@ The following arguments are supported:
         <span class="property-type">String</span>
     </dt>
     <dd>$skipToken is supported on list of configurations, which provides the next page in the list of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="configurationfilters_nodejs">
@@ -224,11 +224,11 @@ The following arguments are supported:
         <span class="property-type">string</span>
     </dt>
     <dd>$skipToken is supported on list of configurations, which provides the next page in the list of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="configuration_filters_python">
@@ -254,11 +254,11 @@ The following arguments are supported:
         <span class="property-type">str</span>
     </dt>
     <dd>$skipToken is supported on list of configurations, which provides the next page in the list of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="configurationfilters_yaml">
@@ -284,7 +284,7 @@ The following arguments are supported:
         <span class="property-type">String</span>
     </dt>
     <dd>$skipToken is supported on list of configurations, which provides the next page in the list of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -297,7 +297,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="value_csharp">
@@ -315,11 +315,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Link for the next set of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="value_go">
@@ -337,11 +337,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Link for the next set of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="value_java">
@@ -359,11 +359,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Link for the next set of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="value_nodejs">
@@ -381,11 +381,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Link for the next set of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="value_python">
@@ -403,11 +403,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Link for the next set of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="value_yaml">
@@ -425,7 +425,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Link for the next set of configurations.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -439,7 +439,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availabilitystage_csharp">
@@ -465,11 +465,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Message for why the product is disabled.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availabilitystage_go">
@@ -495,11 +495,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Message for why the product is disabled.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availabilitystage_java">
@@ -525,11 +525,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Message for why the product is disabled.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availabilitystage_nodejs">
@@ -555,11 +555,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Message for why the product is disabled.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availability_stage_python">
@@ -585,11 +585,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Message for why the product is disabled.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availabilitystage_yaml">
@@ -615,7 +615,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Message for why the product is disabled.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="billingmeterdetailsresponse">Billing<wbr>Meter<wbr>Details<wbr>Response</h4>
@@ -623,7 +623,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="frequency_csharp">
@@ -657,11 +657,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Represents Billing type name</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="frequency_go">
@@ -695,11 +695,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Represents Billing type name</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="frequency_java">
@@ -733,11 +733,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Represents Billing type name</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="frequency_nodejs">
@@ -771,11 +771,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Represents Billing type name</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="frequency_python">
@@ -809,11 +809,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Represents Billing type name</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="frequency_yaml">
@@ -847,7 +847,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Represents Billing type name</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="configurationfilters">Configuration<wbr>Filters</h4>
@@ -855,7 +855,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="hierarchyinformation_csharp">
@@ -873,11 +873,11 @@ The following output properties are available:
         <span class="property-type"><a href="#filterableproperty">List&lt;Filterable<wbr>Property&gt;</a></span>
     </dt>
     <dd>Filters specific to product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="hierarchyinformation_go">
@@ -895,11 +895,11 @@ The following output properties are available:
         <span class="property-type"><a href="#filterableproperty">[]Filterable<wbr>Property</a></span>
     </dt>
     <dd>Filters specific to product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="hierarchyinformation_java">
@@ -917,11 +917,11 @@ The following output properties are available:
         <span class="property-type"><a href="#filterableproperty">List&lt;Filterable<wbr>Property&gt;</a></span>
     </dt>
     <dd>Filters specific to product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="hierarchyinformation_nodejs">
@@ -939,11 +939,11 @@ The following output properties are available:
         <span class="property-type"><a href="#filterableproperty">Filterable<wbr>Property[]</a></span>
     </dt>
     <dd>Filters specific to product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="hierarchy_information_python">
@@ -961,11 +961,11 @@ The following output properties are available:
         <span class="property-type"><a href="#filterableproperty">Sequence[Filterable<wbr>Property]</a></span>
     </dt>
     <dd>Filters specific to product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="hierarchyinformation_yaml">
@@ -983,7 +983,7 @@ The following output properties are available:
         <span class="property-type"><a href="#filterableproperty">List&lt;Property Map&gt;</a></span>
     </dt>
     <dd>Filters specific to product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="configurationresponse">Configuration<wbr>Response</h4>
@@ -991,7 +991,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availabilityinformation_csharp">
@@ -1065,11 +1065,11 @@ The following output properties are available:
         <span class="property-type"><a href="#specificationresponse">List&lt;Specification<wbr>Response&gt;</a></span>
     </dt>
     <dd>Specifications of the configuration</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availabilityinformation_go">
@@ -1143,11 +1143,11 @@ The following output properties are available:
         <span class="property-type"><a href="#specificationresponse">[]Specification<wbr>Response</a></span>
     </dt>
     <dd>Specifications of the configuration</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availabilityinformation_java">
@@ -1221,11 +1221,11 @@ The following output properties are available:
         <span class="property-type"><a href="#specificationresponse">List&lt;Specification<wbr>Response&gt;</a></span>
     </dt>
     <dd>Specifications of the configuration</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availabilityinformation_nodejs">
@@ -1299,11 +1299,11 @@ The following output properties are available:
         <span class="property-type"><a href="#specificationresponse">Specification<wbr>Response[]</a></span>
     </dt>
     <dd>Specifications of the configuration</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availability_information_python">
@@ -1377,11 +1377,11 @@ The following output properties are available:
         <span class="property-type"><a href="#specificationresponse">Sequence[Specification<wbr>Response]</a></span>
     </dt>
     <dd>Specifications of the configuration</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="availabilityinformation_yaml">
@@ -1455,7 +1455,7 @@ The following output properties are available:
         <span class="property-type"><a href="#specificationresponse">List&lt;Property Map&gt;</a></span>
     </dt>
     <dd>Specifications of the configuration</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="costinformationresponse">Cost<wbr>Information<wbr>Response</h4>
@@ -1463,7 +1463,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="billinginfourl_csharp">
@@ -1481,11 +1481,11 @@ The following output properties are available:
         <span class="property-type"><a href="#billingmeterdetailsresponse">List&lt;Billing<wbr>Meter<wbr>Details<wbr>Response&gt;</a></span>
     </dt>
     <dd>Details on the various billing aspects for the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="billinginfourl_go">
@@ -1503,11 +1503,11 @@ The following output properties are available:
         <span class="property-type"><a href="#billingmeterdetailsresponse">[]Billing<wbr>Meter<wbr>Details<wbr>Response</a></span>
     </dt>
     <dd>Details on the various billing aspects for the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="billinginfourl_java">
@@ -1525,11 +1525,11 @@ The following output properties are available:
         <span class="property-type"><a href="#billingmeterdetailsresponse">List&lt;Billing<wbr>Meter<wbr>Details<wbr>Response&gt;</a></span>
     </dt>
     <dd>Details on the various billing aspects for the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="billinginfourl_nodejs">
@@ -1547,11 +1547,11 @@ The following output properties are available:
         <span class="property-type"><a href="#billingmeterdetailsresponse">Billing<wbr>Meter<wbr>Details<wbr>Response[]</a></span>
     </dt>
     <dd>Details on the various billing aspects for the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="billing_info_url_python">
@@ -1569,11 +1569,11 @@ The following output properties are available:
         <span class="property-type"><a href="#billingmeterdetailsresponse">Sequence[Billing<wbr>Meter<wbr>Details<wbr>Response]</a></span>
     </dt>
     <dd>Details on the various billing aspects for the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="billinginfourl_yaml">
@@ -1591,7 +1591,7 @@ The following output properties are available:
         <span class="property-type"><a href="#billingmeterdetailsresponse">List&lt;Property Map&gt;</a></span>
     </dt>
     <dd>Details on the various billing aspects for the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="customersubscriptiondetails">Customer<wbr>Subscription<wbr>Details</h4>
@@ -1599,7 +1599,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="quotaid_csharp">
@@ -1625,11 +1625,11 @@ The following output properties are available:
         <span class="property-type"><a href="#customersubscriptionregisteredfeatures">List&lt;Customer<wbr>Subscription<wbr>Registered<wbr>Features&gt;</a></span>
     </dt>
     <dd>List of registered feature flags for subscription</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="quotaid_go">
@@ -1655,11 +1655,11 @@ The following output properties are available:
         <span class="property-type"><a href="#customersubscriptionregisteredfeatures">[]Customer<wbr>Subscription<wbr>Registered<wbr>Features</a></span>
     </dt>
     <dd>List of registered feature flags for subscription</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="quotaid_java">
@@ -1685,11 +1685,11 @@ The following output properties are available:
         <span class="property-type"><a href="#customersubscriptionregisteredfeatures">List&lt;Customer<wbr>Subscription<wbr>Registered<wbr>Features&gt;</a></span>
     </dt>
     <dd>List of registered feature flags for subscription</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="quotaid_nodejs">
@@ -1715,11 +1715,11 @@ The following output properties are available:
         <span class="property-type"><a href="#customersubscriptionregisteredfeatures">Customer<wbr>Subscription<wbr>Registered<wbr>Features[]</a></span>
     </dt>
     <dd>List of registered feature flags for subscription</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="quota_id_python">
@@ -1745,11 +1745,11 @@ The following output properties are available:
         <span class="property-type"><a href="#customersubscriptionregisteredfeatures">Sequence[Customer<wbr>Subscription<wbr>Registered<wbr>Features]</a></span>
     </dt>
     <dd>List of registered feature flags for subscription</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="quotaid_yaml">
@@ -1775,7 +1775,7 @@ The following output properties are available:
         <span class="property-type"><a href="#customersubscriptionregisteredfeatures">List&lt;Property Map&gt;</a></span>
     </dt>
     <dd>List of registered feature flags for subscription</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="customersubscriptionregisteredfeatures">Customer<wbr>Subscription<wbr>Registered<wbr>Features</h4>
@@ -1783,7 +1783,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="name_csharp">
@@ -1801,11 +1801,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>State of subscription registered feature</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="name_go">
@@ -1823,11 +1823,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>State of subscription registered feature</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="name_java">
@@ -1845,11 +1845,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>State of subscription registered feature</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="name_nodejs">
@@ -1867,11 +1867,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>State of subscription registered feature</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="name_python">
@@ -1889,11 +1889,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>State of subscription registered feature</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="name_yaml">
@@ -1911,7 +1911,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>State of subscription registered feature</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="descriptionresponse">Description<wbr>Response</h4>
@@ -1919,7 +1919,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="attributes_csharp">
@@ -1969,11 +1969,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Short description of the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="attributes_go">
@@ -2023,11 +2023,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Short description of the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="attributes_java">
@@ -2077,11 +2077,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Short description of the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="attributes_nodejs">
@@ -2131,11 +2131,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Short description of the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="attributes_python">
@@ -2185,11 +2185,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Short description of the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="attributes_yaml">
@@ -2239,7 +2239,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Short description of the product system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="dimensionsresponse">Dimensions<wbr>Response</h4>
@@ -2247,7 +2247,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="depth_csharp">
@@ -2305,11 +2305,11 @@ The following output properties are available:
         <span class="property-type">double</span>
     </dt>
     <dd>Width of the device.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="depth_go">
@@ -2367,11 +2367,11 @@ The following output properties are available:
         <span class="property-type">float64</span>
     </dt>
     <dd>Width of the device.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="depth_java">
@@ -2429,11 +2429,11 @@ The following output properties are available:
         <span class="property-type">Double</span>
     </dt>
     <dd>Width of the device.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="depth_nodejs">
@@ -2491,11 +2491,11 @@ The following output properties are available:
         <span class="property-type">number</span>
     </dt>
     <dd>Width of the device.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="depth_python">
@@ -2553,11 +2553,11 @@ The following output properties are available:
         <span class="property-type">float</span>
     </dt>
     <dd>Width of the device.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="depth_yaml">
@@ -2615,7 +2615,7 @@ The following output properties are available:
         <span class="property-type">Number</span>
     </dt>
     <dd>Width of the device.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="filterableproperty">Filterable<wbr>Property</h4>
@@ -2623,7 +2623,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supportedvalues_csharp">
@@ -2641,11 +2641,11 @@ The following output properties are available:
         <span class="property-type">string | <a href="#supportedfiltertypes">Pulumi.<wbr>Myedgeorder.<wbr>Supported<wbr>Filter<wbr>Types</a></span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supportedvalues_go">
@@ -2663,11 +2663,11 @@ The following output properties are available:
         <span class="property-type">string | <a href="#supportedfiltertypes">Supported<wbr>Filter<wbr>Types</a></span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supportedvalues_java">
@@ -2685,11 +2685,11 @@ The following output properties are available:
         <span class="property-type">String | <a href="#supportedfiltertypes">Supported<wbr>Filter<wbr>Types</a></span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supportedvalues_nodejs">
@@ -2707,11 +2707,11 @@ The following output properties are available:
         <span class="property-type">string | <a href="#supportedfiltertypes">Supported<wbr>Filter<wbr>Types</a></span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supported_values_python">
@@ -2729,11 +2729,11 @@ The following output properties are available:
         <span class="property-type">str | <a href="#supportedfiltertypes">Supported<wbr>Filter<wbr>Types</a></span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supportedvalues_yaml">
@@ -2751,7 +2751,7 @@ The following output properties are available:
         <span class="property-type">String | <a href="#supportedfiltertypes">&#34;Ship<wbr>To<wbr>Countries&#34; | &#34;Double<wbr>Encryption<wbr>Status&#34;</a></span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="filterablepropertyresponse">Filterable<wbr>Property<wbr>Response</h4>
@@ -2759,7 +2759,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supportedvalues_csharp">
@@ -2777,11 +2777,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supportedvalues_go">
@@ -2799,11 +2799,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supportedvalues_java">
@@ -2821,11 +2821,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supportedvalues_nodejs">
@@ -2843,11 +2843,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supported_values_python">
@@ -2865,11 +2865,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="supportedvalues_yaml">
@@ -2887,7 +2887,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Type of product filter.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="hierarchyinformation">Hierarchy<wbr>Information</h4>
@@ -2895,7 +2895,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configurationname_csharp">
@@ -2929,11 +2929,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configurationname_go">
@@ -2967,11 +2967,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configurationname_java">
@@ -3005,11 +3005,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configurationname_nodejs">
@@ -3043,11 +3043,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configuration_name_python">
@@ -3081,11 +3081,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configurationname_yaml">
@@ -3119,7 +3119,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="hierarchyinformationresponse">Hierarchy<wbr>Information<wbr>Response</h4>
@@ -3127,7 +3127,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configurationname_csharp">
@@ -3161,11 +3161,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configurationname_go">
@@ -3199,11 +3199,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configurationname_java">
@@ -3237,11 +3237,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configurationname_nodejs">
@@ -3275,11 +3275,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configuration_name_python">
@@ -3313,11 +3313,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="configurationname_yaml">
@@ -3351,7 +3351,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Represents product name that uniquely identifies product</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="imageinformationresponse">Image<wbr>Information<wbr>Response</h4>
@@ -3359,7 +3359,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="imagetype_csharp">
@@ -3377,11 +3377,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Url of the image</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="imagetype_go">
@@ -3399,11 +3399,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Url of the image</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="imagetype_java">
@@ -3421,11 +3421,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Url of the image</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="imagetype_nodejs">
@@ -3443,11 +3443,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Url of the image</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="image_type_python">
@@ -3465,11 +3465,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Url of the image</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="imagetype_yaml">
@@ -3487,7 +3487,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Url of the image</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="linkresponse">Link<wbr>Response</h4>
@@ -3495,7 +3495,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="linktype_csharp">
@@ -3513,11 +3513,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Url of the link</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="linktype_go">
@@ -3535,11 +3535,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Url of the link</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="linktype_java">
@@ -3557,11 +3557,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Url of the link</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="linktype_nodejs">
@@ -3579,11 +3579,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Url of the link</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="link_type_python">
@@ -3601,11 +3601,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Url of the link</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="linktype_yaml">
@@ -3623,7 +3623,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Url of the link</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="pav2meterdetailsresponse">Pav2Meter<wbr>Details<wbr>Response</h4>
@@ -3631,7 +3631,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="chargingtype_csharp">
@@ -3657,11 +3657,11 @@ The following output properties are available:
         <span class="property-type">double</span>
     </dt>
     <dd>Billing unit applicable for Pav2 billing</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="chargingtype_go">
@@ -3687,11 +3687,11 @@ The following output properties are available:
         <span class="property-type">float64</span>
     </dt>
     <dd>Billing unit applicable for Pav2 billing</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="chargingtype_java">
@@ -3717,11 +3717,11 @@ The following output properties are available:
         <span class="property-type">Double</span>
     </dt>
     <dd>Billing unit applicable for Pav2 billing</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="chargingtype_nodejs">
@@ -3747,11 +3747,11 @@ The following output properties are available:
         <span class="property-type">number</span>
     </dt>
     <dd>Billing unit applicable for Pav2 billing</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="charging_type_python">
@@ -3777,11 +3777,11 @@ The following output properties are available:
         <span class="property-type">float</span>
     </dt>
     <dd>Billing unit applicable for Pav2 billing</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="chargingtype_yaml">
@@ -3807,7 +3807,7 @@ The following output properties are available:
         <span class="property-type">Number</span>
     </dt>
     <dd>Billing unit applicable for Pav2 billing</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="purchasemeterdetailsresponse">Purchase<wbr>Meter<wbr>Details<wbr>Response</h4>
@@ -3815,7 +3815,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="chargingtype_csharp">
@@ -3857,11 +3857,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Term Id</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="chargingtype_go">
@@ -3903,11 +3903,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Term Id</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="chargingtype_java">
@@ -3949,11 +3949,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Term Id</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="chargingtype_nodejs">
@@ -3995,11 +3995,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Term Id</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="charging_type_python">
@@ -4041,11 +4041,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Term Id</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="chargingtype_yaml">
@@ -4087,7 +4087,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Term Id</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="specificationresponse">Specification<wbr>Response</h4>
@@ -4095,7 +4095,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="name_csharp">
@@ -4113,11 +4113,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Value of the specification</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="name_go">
@@ -4135,11 +4135,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Value of the specification</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="name_java">
@@ -4157,11 +4157,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Value of the specification</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="name_nodejs">
@@ -4179,11 +4179,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Value of the specification</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="name_python">
@@ -4201,11 +4201,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Value of the specification</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="name_yaml">
@@ -4223,7 +4223,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Value of the specification</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="supportedfiltertypes">Supported<wbr>Filter<wbr>Types</h4>

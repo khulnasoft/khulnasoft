@@ -1,7 +1,7 @@
-import pulumi
+import khulnasoft
 
-config = pulumi.Config()
+config = khulnasoft.Config()
 cidr_block = config.get("cidrBlock")
 if cidr_block is None:
     cidr_block = "Test config variable"
-pulumi.export("cidrBlock", cidr_block)
+khulnasoft.export("cidrBlock", cidr_block)

@@ -51,9 +51,9 @@ func TestProviderRequestNameNoPreURL(t *testing.T) {
 	t.Parallel()
 
 	ver := semver.MustParse("0.18.1")
-	req := NewProviderRequest("pkg", &ver, "pulumi.com/pkg", nil, nil)
-	assert.Equal(t, "default_0_18_1_pulumi.com/pkg", req.DefaultName())
-	assert.Equal(t, "pkg-0.18.1-pulumi.com/pkg", req.String())
+	req := NewProviderRequest("pkg", &ver, "khulnasoft.com/pkg", nil, nil)
+	assert.Equal(t, "default_0_18_1_khulnasoft.com/pkg", req.DefaultName())
+	assert.Equal(t, "pkg-0.18.1-khulnasoft.com/pkg", req.String())
 }
 
 func TestProviderRequestNameDevURL(t *testing.T) {

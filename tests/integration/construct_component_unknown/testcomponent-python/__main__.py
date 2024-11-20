@@ -15,8 +15,8 @@
 from typing import Optional
 import sys
 
-from pulumi import ComponentResource, Inputs, Output, ResourceOptions
-import pulumi.provider as provider
+from khulnasoft import ComponentResource, Inputs, Output, ResourceOptions
+import khulnasoft.provider as provider
 
 
 def panic(text: str):

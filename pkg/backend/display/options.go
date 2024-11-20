@@ -18,7 +18,7 @@ import (
 	"io"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/display/internal/terminal"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
 )
 
 // Type of output to display.

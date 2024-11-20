@@ -33,7 +33,7 @@ jobs:
       - name: strip prefix
         id: strip-prefix
         # Always prefix the short_sha with a letter to ensure it's a valid semver prerelease,
-        # see https://github.com/pulumi/pulumi/issues/15471 for context.
+        # see https://github.com/khulnasoft/khulnasoft/issues/15471 for context.
         run: |
           short_sha="x${{ steps.ghd.outputs.short-sha }}"
           version="${{ inputs.version }}"
@@ -228,8 +228,8 @@ jobs:
           aws-region: us-east-2
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           role-duration-seconds: 3600
-          role-external-id: upload-pulumi-release
-          role-session-name: pulumi@githubActions
+          role-external-id: upload-khulnasoft-release
+          role-session-name: khulnasoft@githubActions
           role-to-assume: ${{ secrets.AWS_UPLOAD_ROLE_ARN }}
       - name: Make artifacts directory
         run: |
@@ -246,12 +246,12 @@ jobs:
         run: |
           find artifacts.tmp
           mkdir -p ./artifacts
-          mv ./artifacts.tmp/artifacts-signatures/pulumi-*.tar.gz.sig ./artifacts
-          mv ./artifacts.tmp/artifacts-signatures/pulumi-*.zip.sig ./artifacts
-          mv ./artifacts.tmp/artifacts-signatures/pulumi-*.txt.sig ./artifacts
-          mv ./artifacts.tmp/artifacts-signatures/pulumi-*.txt ./artifacts
-          mv ./artifacts.tmp/artifacts-cli-*/pulumi-*.tar.gz ./artifacts
-          mv ./artifacts.tmp/artifacts-cli-*/pulumi-*.zip ./artifacts
+          mv ./artifacts.tmp/artifacts-signatures/khulnasoft-*.tar.gz.sig ./artifacts
+          mv ./artifacts.tmp/artifacts-signatures/khulnasoft-*.zip.sig ./artifacts
+          mv ./artifacts.tmp/artifacts-signatures/khulnasoft-*.txt.sig ./artifacts
+          mv ./artifacts.tmp/artifacts-signatures/khulnasoft-*.txt ./artifacts
+          mv ./artifacts.tmp/artifacts-cli-*/khulnasoft-*.tar.gz ./artifacts
+          mv ./artifacts.tmp/artifacts-cli-*/khulnasoft-*.zip ./artifacts
 
       - name: Find artifacts
         run: |
@@ -273,4 +273,4 @@ jobs:
 
       - name: Publish Blobs
         run: |
-          aws s3 sync artifacts s3://get.pulumi.com/releases/sdk --acl public-read
+          aws s3 sync artifacts s3://get.khulnasoft.com/releases/sdk --acl public-read

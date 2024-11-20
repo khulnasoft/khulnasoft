@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // An Azure Cosmos DB container.
@@ -21,65 +21,65 @@ import (
 //
 // import (
 //
-//	documentdb "github.com/pulumi/pulumi-azure-native/sdk/go/azure/documentdb"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	documentdb "github.com/khulnasoft/khulnasoft-azure-native/sdk/go/azure/documentdb"
+//	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 //
 // )
 //
 //	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
+//		khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 //			_, err := documentdb.NewSqlResourceSqlContainer(ctx, "sqlResourceSqlContainer", &documentdb.SqlResourceSqlContainerArgs{
-//				AccountName:   pulumi.String("ddb1"),
-//				ContainerName: pulumi.String("containerName"),
-//				DatabaseName:  pulumi.String("databaseName"),
-//				Location:      pulumi.String("West US"),
+//				AccountName:   khulnasoft.String("ddb1"),
+//				ContainerName: khulnasoft.String("containerName"),
+//				DatabaseName:  khulnasoft.String("databaseName"),
+//				Location:      khulnasoft.String("West US"),
 //				Options:       nil,
 //				Resource: &documentdb.SqlContainerResourceArgs{
 //					ConflictResolutionPolicy: &documentdb.ConflictResolutionPolicyArgs{
-//						ConflictResolutionPath: pulumi.String("/path"),
-//						Mode:                   pulumi.String("LastWriterWins"),
+//						ConflictResolutionPath: khulnasoft.String("/path"),
+//						Mode:                   khulnasoft.String("LastWriterWins"),
 //					},
-//					DefaultTtl: pulumi.Int(100),
-//					Id:         pulumi.String("containerName"),
+//					DefaultTtl: khulnasoft.Int(100),
+//					Id:         khulnasoft.String("containerName"),
 //					IndexingPolicy: &documentdb.IndexingPolicyArgs{
-//						Automatic:     pulumi.Bool(true),
+//						Automatic:     khulnasoft.Bool(true),
 //						ExcludedPaths: documentdb.ExcludedPathArray{},
 //						IncludedPaths: documentdb.IncludedPathArray{
 //							&documentdb.IncludedPathArgs{
 //								Indexes: documentdb.IndexesArray{
 //									&documentdb.IndexesArgs{
-//										DataType:  pulumi.String("String"),
-//										Kind:      pulumi.String("Range"),
+//										DataType:  khulnasoft.String("String"),
+//										Kind:      khulnasoft.String("Range"),
 //										Precision: -1,
 //									},
 //									&documentdb.IndexesArgs{
-//										DataType:  pulumi.String("Number"),
-//										Kind:      pulumi.String("Range"),
+//										DataType:  khulnasoft.String("Number"),
+//										Kind:      khulnasoft.String("Range"),
 //										Precision: -1,
 //									},
 //								},
-//								Path: pulumi.String("/*"),
+//								Path: khulnasoft.String("/*"),
 //							},
 //						},
-//						IndexingMode: pulumi.String("consistent"),
+//						IndexingMode: khulnasoft.String("consistent"),
 //					},
 //					PartitionKey: &documentdb.ContainerPartitionKeyArgs{
-//						Kind: pulumi.String("Hash"),
-//						Paths: pulumi.StringArray{
-//							pulumi.String("/AccountNumber"),
+//						Kind: khulnasoft.String("Hash"),
+//						Paths: khulnasoft.StringArray{
+//							khulnasoft.String("/AccountNumber"),
 //						},
 //					},
 //					UniqueKeyPolicy: &documentdb.UniqueKeyPolicyArgs{
 //						UniqueKeys: documentdb.UniqueKeyArray{
 //							&documentdb.UniqueKeyArgs{
-//								Paths: pulumi.StringArray{
-//									pulumi.String("/testPath"),
+//								Paths: khulnasoft.StringArray{
+//									khulnasoft.String("/testPath"),
 //								},
 //							},
 //						},
 //					},
 //				},
-//				ResourceGroupName: pulumi.String("rg1"),
+//				ResourceGroupName: khulnasoft.String("rg1"),
 //				Tags:              nil,
 //			})
 //			if err != nil {
@@ -96,17 +96,17 @@ import (
 // An existing resource can be imported using its type token, name, and identifier, e.g.
 //
 // ```sh
-// $ pulumi import azure-native:documentdb:SqlResourceSqlContainer containerName /subscriptions/subid/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/ddb1/sqlDatabases/databaseName/sqlContainers/containerName
+// $ khulnasoft import azure-native:documentdb:SqlResourceSqlContainer containerName /subscriptions/subid/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/ddb1/sqlDatabases/databaseName/sqlContainers/containerName
 // ```
 type SqlResourceSqlContainer struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Resource SqlContainerGetPropertiesResponseResourcePtrOutput `pulumi:"resource"`
+	Resource SqlContainerGetPropertiesResponseResourcePtrOutput `khulnasoft:"resource"`
 }
 
 // NewSqlResourceSqlContainer registers a new resource with the given unique name, arguments, and options.
-func NewSqlResourceSqlContainer(ctx *pulumi.Context,
-	name string, args *SqlResourceSqlContainerArgs, opts ...pulumi.ResourceOption) (*SqlResourceSqlContainer, error) {
+func NewSqlResourceSqlContainer(ctx *khulnasoft.Context,
+	name string, args *SqlResourceSqlContainerArgs, opts ...khulnasoft.ResourceOption) (*SqlResourceSqlContainer, error) {
 	if args == nil {
 		args = &SqlResourceSqlContainerArgs{}
 	}
@@ -121,8 +121,8 @@ func NewSqlResourceSqlContainer(ctx *pulumi.Context,
 
 // GetSqlResourceSqlContainer gets an existing SqlResourceSqlContainer resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetSqlResourceSqlContainer(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *SqlResourceSqlContainerState, opts ...pulumi.ResourceOption) (*SqlResourceSqlContainer, error) {
+func GetSqlResourceSqlContainer(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *SqlResourceSqlContainerState, opts ...khulnasoft.ResourceOption) (*SqlResourceSqlContainer, error) {
 	var resource SqlResourceSqlContainer
 	err := ctx.ReadResource("azure-native:documentdb:SqlResourceSqlContainer", name, id, state, &resource, opts...)
 	if err != nil {
@@ -154,7 +154,7 @@ func (SqlResourceSqlContainerArgs) ElementType() reflect.Type {
 }
 
 type SqlResourceSqlContainerInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToSqlResourceSqlContainerOutput() SqlResourceSqlContainerOutput
 	ToSqlResourceSqlContainerOutputWithContext(ctx context.Context) SqlResourceSqlContainerOutput
@@ -169,10 +169,10 @@ func (i *SqlResourceSqlContainer) ToSqlResourceSqlContainerOutput() SqlResourceS
 }
 
 func (i *SqlResourceSqlContainer) ToSqlResourceSqlContainerOutputWithContext(ctx context.Context) SqlResourceSqlContainerOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SqlResourceSqlContainerOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(SqlResourceSqlContainerOutput)
 }
 
-type SqlResourceSqlContainerOutput struct{ *pulumi.OutputState }
+type SqlResourceSqlContainerOutput struct{ *khulnasoft.OutputState }
 
 func (SqlResourceSqlContainerOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SqlResourceSqlContainer)(nil)).Elem()
@@ -191,5 +191,5 @@ func (o SqlResourceSqlContainerOutput) Resource() SqlContainerGetPropertiesRespo
 }
 
 func init() {
-	pulumi.RegisterOutputType(SqlResourceSqlContainerOutput{})
+	khulnasoft.RegisterOutputType(SqlResourceSqlContainerOutput{})
 }

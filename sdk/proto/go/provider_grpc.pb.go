@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: pulumi/provider.proto
+// source: khulnasoft/provider.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	context "context"
@@ -24,8 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ResourceProviderClient interface {
 	// `Parameterize` is the primary means of supporting [parameterized providers](parameterized-providers), which allow
-	// a caller to change a provider's behavior ahead of its [configuration](pulumirpc.ResourceProvider.Configure) and
-	// subsequent use. Where a [](pulumirpc.ResourceProvider.Configure) call allows a caller to influence provider
+	// a caller to change a provider's behavior ahead of its [configuration](khulnasoftrpc.ResourceProvider.Configure) and
+	// subsequent use. Where a [](khulnasoftrpc.ResourceProvider.Configure) call allows a caller to influence provider
 	// behaviour at a high level (e.g. by specifying the region in which an AWS provider should operate), a
 	// `Parameterize` call may change the set of resources and functions that a provider offers (that is, its schema).
 	// This is useful in any case where some "set" of providers can be captured by a single implementation that may
@@ -54,16 +54,16 @@ type ResourceProviderClient interface {
 	// GetSchema fetches the schema for this resource provider.
 	GetSchema(ctx context.Context, in *GetSchemaRequest, opts ...grpc.CallOption) (*GetSchemaResponse, error)
 	// `CheckConfig` validates a set of configuration inputs that will be passed to this provider instance.
-	// `CheckConfig` is to provider resources what [](pulumirpc.ResourceProvider.Check) is to individual resources, and
-	// is the first stage in configuring (that is, eventually executing a [](pulumirpc.ResourceProvider.Configure) call)
+	// `CheckConfig` is to provider resources what [](khulnasoftrpc.ResourceProvider.Check) is to individual resources, and
+	// is the first stage in configuring (that is, eventually executing a [](khulnasoftrpc.ResourceProvider.Configure) call)
 	// a provider using user-supplied values. In the case that provider inputs are coming from some source that has been
 	// checked previously (e.g. a Pulumi state), it is not necessary to call `CheckConfig`.
 	//
 	// A `CheckConfig` call returns either a set of checked, known-valid inputs that may subsequently be passed to
-	// [](pulumirpc.ResourceProvider.DiffConfig) and/or [](pulumirpc.ResourceProvider.Configure), or a set of errors
+	// [](khulnasoftrpc.ResourceProvider.DiffConfig) and/or [](khulnasoftrpc.ResourceProvider.Configure), or a set of errors
 	// explaining why the inputs are invalid. In the case that a set of inputs are successfully validated and returned,
 	// `CheckConfig` *may also populate default values* for provider configuration, returning them so that they may be
-	// passed to a subsequent [](pulumirpc.ResourceProvider.Configure) call and persisted in the Pulumi state. In the
+	// passed to a subsequent [](khulnasoftrpc.ResourceProvider.Configure) call and persisted in the Pulumi state. In the
 	// case that `CheckConfig` fails and returns a set of errors, it is expected that the caller (typically the Pulumi
 	// engine) will fail provider registration.
 	//
@@ -73,9 +73,9 @@ type ResourceProviderClient interface {
 	// rendering diffs.
 	CheckConfig(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error)
 	// `DiffConfig` compares an existing ("old") provider configuration with a new configuration and computes the
-	// difference (if any) between them. `DiffConfig` is to provider resources what [](pulumirpc.ResourceProvider.Diff)
+	// difference (if any) between them. `DiffConfig` is to provider resources what [](khulnasoftrpc.ResourceProvider.Diff)
 	// is to individual resources. `DiffConfig` should only be called with values that have at some point been validated
-	// by a [](pulumirpc.ResourceProvider.CheckConfig) call. The [](pulumirpc.DiffResponse) returned by a `DiffConfig`
+	// by a [](khulnasoftrpc.ResourceProvider.CheckConfig) call. The [](khulnasoftrpc.DiffResponse) returned by a `DiffConfig`
 	// call is used primarily to determine whether or not the newly configured provider is capable of managing resources
 	// owned by the old provider. If `DiffConfig` indicates that the provider resource needs to be replaced, for
 	// instance, then all resources owned by that provider will *also* need to be replaced. Replacement semantics should
@@ -86,14 +86,14 @@ type ResourceProviderClient interface {
 	// `Configure` is the final stage in configuring a provider instance. Callers supply two sets of data:
 	//
 	// * Provider-specific configuration, which is the set of inputs that have been validated by a previous
-	//   [](pulumirpc.ResourceProvider.CheckConfig) call.
+	//   [](khulnasoftrpc.ResourceProvider.CheckConfig) call.
 	// * Provider-agnostic ("protocol") configuration, such as whether or not the caller supports secrets.
 	//
 	// The provider is expected to return its own set of protocol configuration, indicating which features it supports
 	// in turn so that the caller and the provider can interact appropriately.
 	//
 	// Providers may expect a *single* call to `Configure`. If a call to `Configure` is missing required configuration,
-	// the provider may return a set of error details containing [](pulumirpc.ConfigureErrorMissingKeys) values to
+	// the provider may return a set of error details containing [](khulnasoftrpc.ConfigureErrorMissingKeys) values to
 	// indicate which keys are missing.
 	Configure(ctx context.Context, in *ConfigureRequest, opts ...grpc.CallOption) (*ConfigureResponse, error)
 	// Invoke dynamically executes a built-in function in the provider.
@@ -104,8 +104,8 @@ type ResourceProviderClient interface {
 	// Call dynamically executes a method in the provider associated with a component resource.
 	Call(ctx context.Context, in *CallRequest, opts ...grpc.CallOption) (*CallResponse, error)
 	// `Check` validates a set of input properties against a given resource type. A `Check` call returns either a set of
-	// checked, known-valid inputs that may subsequently be passed to [](pulumirpc.ResourceProvider.Diff),
-	// [](pulumirpc.ResourceProvider.Create), or [](pulumirpc.ResourceProvider.Update); or a set of errors explaining
+	// checked, known-valid inputs that may subsequently be passed to [](khulnasoftrpc.ResourceProvider.Diff),
+	// [](khulnasoftrpc.ResourceProvider.Create), or [](khulnasoftrpc.ResourceProvider.Update); or a set of errors explaining
 	// why the inputs are invalid. In the case that a set of inputs are successfully validated and returned, `Check`
 	// *may also populate default values* for resource inputs, returning them so that they may be passed to a subsequent
 	// call and persisted in the Pulumi state. In the case that `Check` fails and returns a set of errors, it is
@@ -118,14 +118,14 @@ type ResourceProviderClient interface {
 	Check(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error)
 	// `Diff` compares an existing ("old") set of resource properties with a new set of properties and computes the
 	// difference (if any) between them. `Diff` should only be called with values that have at some point been validated
-	// by a [](pulumirpc.ResourceProvider.Check) call.
+	// by a [](khulnasoftrpc.ResourceProvider.Check) call.
 	Diff(ctx context.Context, in *DiffRequest, opts ...grpc.CallOption) (*DiffResponse, error)
 	// `Create` provisions a new instance of the specified [(custom) resource](custom-resources). It returns a
 	// provider-assigned ID for the resource as well as the output properties that arose from the creation properties.
 	// Output properties are typically the union of the resource's input properties and any additional values that were
 	// computed or made available during creation.
 	//
-	// If creation fails, `Create` may return an [](pulumirpc.ErrorResourceInitFailed) error detail explaining why.
+	// If creation fails, `Create` may return an [](khulnasoftrpc.ErrorResourceInitFailed) error detail explaining why.
 	// Moreover, if `Create` does return an error, it must be the case that the resource was *not* created (that is,
 	// `Create` can be thought of as transactional or atomic).
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
@@ -141,17 +141,17 @@ type ResourceProviderClient interface {
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// `Construct` provisions a new [component resource](component-resources). Providers that implement `Construct` are
 	// referred to as [component providers](component-providers). `Construct` is to component resources what
-	// [](pulumirpc.ResourceProvider.Create) is to [custom resources](custom-resources). Components do not have any
+	// [](khulnasoftrpc.ResourceProvider.Create) is to [custom resources](custom-resources). Components do not have any
 	// lifecycle of their own, and instead embody the lifecycles of the resources that they are composed of. As such,
 	// `Construct` is effectively a subprogram whose resources will be persisted in the caller's state. It is
 	// consequently passed enough information to manage fully these resources. At a high level, this comprises:
 	//
-	// * A [](pulumirpc.ResourceMonitor) endpoint which the provider can use to [register](resource-registration) nested
+	// * A [](khulnasoftrpc.ResourceMonitor) endpoint which the provider can use to [register](resource-registration) nested
 	//   custom or component resources that belong to the component.
 	//
 	// * A set of input properties.
 	//
-	// * A full set of [resource options](https://www.pulumi.com/docs/iac/concepts/options/) that the component should
+	// * A full set of [resource options](https://www.khulnasoft.com/docs/iac/concepts/options/) that the component should
 	//   propagate to resources it registers against the supplied resource monitor.
 	Construct(ctx context.Context, in *ConstructRequest, opts ...grpc.CallOption) (*ConstructResponse, error)
 	// Cancel signals the provider to gracefully shut down and abort any ongoing resource operations.
@@ -183,7 +183,7 @@ func NewResourceProviderClient(cc grpc.ClientConnInterface) ResourceProviderClie
 
 func (c *resourceProviderClient) Parameterize(ctx context.Context, in *ParameterizeRequest, opts ...grpc.CallOption) (*ParameterizeResponse, error) {
 	out := new(ParameterizeResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Parameterize", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Parameterize", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -192,7 +192,7 @@ func (c *resourceProviderClient) Parameterize(ctx context.Context, in *Parameter
 
 func (c *resourceProviderClient) GetSchema(ctx context.Context, in *GetSchemaRequest, opts ...grpc.CallOption) (*GetSchemaResponse, error) {
 	out := new(GetSchemaResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/GetSchema", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/GetSchema", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -201,7 +201,7 @@ func (c *resourceProviderClient) GetSchema(ctx context.Context, in *GetSchemaReq
 
 func (c *resourceProviderClient) CheckConfig(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error) {
 	out := new(CheckResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/CheckConfig", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/CheckConfig", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -210,7 +210,7 @@ func (c *resourceProviderClient) CheckConfig(ctx context.Context, in *CheckReque
 
 func (c *resourceProviderClient) DiffConfig(ctx context.Context, in *DiffRequest, opts ...grpc.CallOption) (*DiffResponse, error) {
 	out := new(DiffResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/DiffConfig", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/DiffConfig", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -219,7 +219,7 @@ func (c *resourceProviderClient) DiffConfig(ctx context.Context, in *DiffRequest
 
 func (c *resourceProviderClient) Configure(ctx context.Context, in *ConfigureRequest, opts ...grpc.CallOption) (*ConfigureResponse, error) {
 	out := new(ConfigureResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Configure", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Configure", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -228,7 +228,7 @@ func (c *resourceProviderClient) Configure(ctx context.Context, in *ConfigureReq
 
 func (c *resourceProviderClient) Invoke(ctx context.Context, in *InvokeRequest, opts ...grpc.CallOption) (*InvokeResponse, error) {
 	out := new(InvokeResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Invoke", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Invoke", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -236,7 +236,7 @@ func (c *resourceProviderClient) Invoke(ctx context.Context, in *InvokeRequest, 
 }
 
 func (c *resourceProviderClient) StreamInvoke(ctx context.Context, in *InvokeRequest, opts ...grpc.CallOption) (ResourceProvider_StreamInvokeClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ResourceProvider_ServiceDesc.Streams[0], "/pulumirpc.ResourceProvider/StreamInvoke", opts...)
+	stream, err := c.cc.NewStream(ctx, &ResourceProvider_ServiceDesc.Streams[0], "/khulnasoftrpc.ResourceProvider/StreamInvoke", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -269,7 +269,7 @@ func (x *resourceProviderStreamInvokeClient) Recv() (*InvokeResponse, error) {
 
 func (c *resourceProviderClient) Call(ctx context.Context, in *CallRequest, opts ...grpc.CallOption) (*CallResponse, error) {
 	out := new(CallResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -278,7 +278,7 @@ func (c *resourceProviderClient) Call(ctx context.Context, in *CallRequest, opts
 
 func (c *resourceProviderClient) Check(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error) {
 	out := new(CheckResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Check", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Check", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -287,7 +287,7 @@ func (c *resourceProviderClient) Check(ctx context.Context, in *CheckRequest, op
 
 func (c *resourceProviderClient) Diff(ctx context.Context, in *DiffRequest, opts ...grpc.CallOption) (*DiffResponse, error) {
 	out := new(DiffResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Diff", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Diff", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -296,7 +296,7 @@ func (c *resourceProviderClient) Diff(ctx context.Context, in *DiffRequest, opts
 
 func (c *resourceProviderClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
 	out := new(CreateResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -305,7 +305,7 @@ func (c *resourceProviderClient) Create(ctx context.Context, in *CreateRequest, 
 
 func (c *resourceProviderClient) Read(ctx context.Context, in *ReadRequest, opts ...grpc.CallOption) (*ReadResponse, error) {
 	out := new(ReadResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Read", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Read", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -314,7 +314,7 @@ func (c *resourceProviderClient) Read(ctx context.Context, in *ReadRequest, opts
 
 func (c *resourceProviderClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
 	out := new(UpdateResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Update", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -323,7 +323,7 @@ func (c *resourceProviderClient) Update(ctx context.Context, in *UpdateRequest, 
 
 func (c *resourceProviderClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func (c *resourceProviderClient) Delete(ctx context.Context, in *DeleteRequest, 
 
 func (c *resourceProviderClient) Construct(ctx context.Context, in *ConstructRequest, opts ...grpc.CallOption) (*ConstructResponse, error) {
 	out := new(ConstructResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Construct", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Construct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -341,7 +341,7 @@ func (c *resourceProviderClient) Construct(ctx context.Context, in *ConstructReq
 
 func (c *resourceProviderClient) Cancel(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Cancel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Cancel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -350,7 +350,7 @@ func (c *resourceProviderClient) Cancel(ctx context.Context, in *emptypb.Empty, 
 
 func (c *resourceProviderClient) GetPluginInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PluginInfo, error) {
 	out := new(PluginInfo)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/GetPluginInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/GetPluginInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -359,7 +359,7 @@ func (c *resourceProviderClient) GetPluginInfo(ctx context.Context, in *emptypb.
 
 func (c *resourceProviderClient) Attach(ctx context.Context, in *PluginAttach, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/Attach", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/Attach", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -368,7 +368,7 @@ func (c *resourceProviderClient) Attach(ctx context.Context, in *PluginAttach, o
 
 func (c *resourceProviderClient) GetMapping(ctx context.Context, in *GetMappingRequest, opts ...grpc.CallOption) (*GetMappingResponse, error) {
 	out := new(GetMappingResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/GetMapping", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/GetMapping", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -377,7 +377,7 @@ func (c *resourceProviderClient) GetMapping(ctx context.Context, in *GetMappingR
 
 func (c *resourceProviderClient) GetMappings(ctx context.Context, in *GetMappingsRequest, opts ...grpc.CallOption) (*GetMappingsResponse, error) {
 	out := new(GetMappingsResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceProvider/GetMappings", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceProvider/GetMappings", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -389,8 +389,8 @@ func (c *resourceProviderClient) GetMappings(ctx context.Context, in *GetMapping
 // for forward compatibility
 type ResourceProviderServer interface {
 	// `Parameterize` is the primary means of supporting [parameterized providers](parameterized-providers), which allow
-	// a caller to change a provider's behavior ahead of its [configuration](pulumirpc.ResourceProvider.Configure) and
-	// subsequent use. Where a [](pulumirpc.ResourceProvider.Configure) call allows a caller to influence provider
+	// a caller to change a provider's behavior ahead of its [configuration](khulnasoftrpc.ResourceProvider.Configure) and
+	// subsequent use. Where a [](khulnasoftrpc.ResourceProvider.Configure) call allows a caller to influence provider
 	// behaviour at a high level (e.g. by specifying the region in which an AWS provider should operate), a
 	// `Parameterize` call may change the set of resources and functions that a provider offers (that is, its schema).
 	// This is useful in any case where some "set" of providers can be captured by a single implementation that may
@@ -419,16 +419,16 @@ type ResourceProviderServer interface {
 	// GetSchema fetches the schema for this resource provider.
 	GetSchema(context.Context, *GetSchemaRequest) (*GetSchemaResponse, error)
 	// `CheckConfig` validates a set of configuration inputs that will be passed to this provider instance.
-	// `CheckConfig` is to provider resources what [](pulumirpc.ResourceProvider.Check) is to individual resources, and
-	// is the first stage in configuring (that is, eventually executing a [](pulumirpc.ResourceProvider.Configure) call)
+	// `CheckConfig` is to provider resources what [](khulnasoftrpc.ResourceProvider.Check) is to individual resources, and
+	// is the first stage in configuring (that is, eventually executing a [](khulnasoftrpc.ResourceProvider.Configure) call)
 	// a provider using user-supplied values. In the case that provider inputs are coming from some source that has been
 	// checked previously (e.g. a Pulumi state), it is not necessary to call `CheckConfig`.
 	//
 	// A `CheckConfig` call returns either a set of checked, known-valid inputs that may subsequently be passed to
-	// [](pulumirpc.ResourceProvider.DiffConfig) and/or [](pulumirpc.ResourceProvider.Configure), or a set of errors
+	// [](khulnasoftrpc.ResourceProvider.DiffConfig) and/or [](khulnasoftrpc.ResourceProvider.Configure), or a set of errors
 	// explaining why the inputs are invalid. In the case that a set of inputs are successfully validated and returned,
 	// `CheckConfig` *may also populate default values* for provider configuration, returning them so that they may be
-	// passed to a subsequent [](pulumirpc.ResourceProvider.Configure) call and persisted in the Pulumi state. In the
+	// passed to a subsequent [](khulnasoftrpc.ResourceProvider.Configure) call and persisted in the Pulumi state. In the
 	// case that `CheckConfig` fails and returns a set of errors, it is expected that the caller (typically the Pulumi
 	// engine) will fail provider registration.
 	//
@@ -438,9 +438,9 @@ type ResourceProviderServer interface {
 	// rendering diffs.
 	CheckConfig(context.Context, *CheckRequest) (*CheckResponse, error)
 	// `DiffConfig` compares an existing ("old") provider configuration with a new configuration and computes the
-	// difference (if any) between them. `DiffConfig` is to provider resources what [](pulumirpc.ResourceProvider.Diff)
+	// difference (if any) between them. `DiffConfig` is to provider resources what [](khulnasoftrpc.ResourceProvider.Diff)
 	// is to individual resources. `DiffConfig` should only be called with values that have at some point been validated
-	// by a [](pulumirpc.ResourceProvider.CheckConfig) call. The [](pulumirpc.DiffResponse) returned by a `DiffConfig`
+	// by a [](khulnasoftrpc.ResourceProvider.CheckConfig) call. The [](khulnasoftrpc.DiffResponse) returned by a `DiffConfig`
 	// call is used primarily to determine whether or not the newly configured provider is capable of managing resources
 	// owned by the old provider. If `DiffConfig` indicates that the provider resource needs to be replaced, for
 	// instance, then all resources owned by that provider will *also* need to be replaced. Replacement semantics should
@@ -451,14 +451,14 @@ type ResourceProviderServer interface {
 	// `Configure` is the final stage in configuring a provider instance. Callers supply two sets of data:
 	//
 	// * Provider-specific configuration, which is the set of inputs that have been validated by a previous
-	//   [](pulumirpc.ResourceProvider.CheckConfig) call.
+	//   [](khulnasoftrpc.ResourceProvider.CheckConfig) call.
 	// * Provider-agnostic ("protocol") configuration, such as whether or not the caller supports secrets.
 	//
 	// The provider is expected to return its own set of protocol configuration, indicating which features it supports
 	// in turn so that the caller and the provider can interact appropriately.
 	//
 	// Providers may expect a *single* call to `Configure`. If a call to `Configure` is missing required configuration,
-	// the provider may return a set of error details containing [](pulumirpc.ConfigureErrorMissingKeys) values to
+	// the provider may return a set of error details containing [](khulnasoftrpc.ConfigureErrorMissingKeys) values to
 	// indicate which keys are missing.
 	Configure(context.Context, *ConfigureRequest) (*ConfigureResponse, error)
 	// Invoke dynamically executes a built-in function in the provider.
@@ -469,8 +469,8 @@ type ResourceProviderServer interface {
 	// Call dynamically executes a method in the provider associated with a component resource.
 	Call(context.Context, *CallRequest) (*CallResponse, error)
 	// `Check` validates a set of input properties against a given resource type. A `Check` call returns either a set of
-	// checked, known-valid inputs that may subsequently be passed to [](pulumirpc.ResourceProvider.Diff),
-	// [](pulumirpc.ResourceProvider.Create), or [](pulumirpc.ResourceProvider.Update); or a set of errors explaining
+	// checked, known-valid inputs that may subsequently be passed to [](khulnasoftrpc.ResourceProvider.Diff),
+	// [](khulnasoftrpc.ResourceProvider.Create), or [](khulnasoftrpc.ResourceProvider.Update); or a set of errors explaining
 	// why the inputs are invalid. In the case that a set of inputs are successfully validated and returned, `Check`
 	// *may also populate default values* for resource inputs, returning them so that they may be passed to a subsequent
 	// call and persisted in the Pulumi state. In the case that `Check` fails and returns a set of errors, it is
@@ -483,14 +483,14 @@ type ResourceProviderServer interface {
 	Check(context.Context, *CheckRequest) (*CheckResponse, error)
 	// `Diff` compares an existing ("old") set of resource properties with a new set of properties and computes the
 	// difference (if any) between them. `Diff` should only be called with values that have at some point been validated
-	// by a [](pulumirpc.ResourceProvider.Check) call.
+	// by a [](khulnasoftrpc.ResourceProvider.Check) call.
 	Diff(context.Context, *DiffRequest) (*DiffResponse, error)
 	// `Create` provisions a new instance of the specified [(custom) resource](custom-resources). It returns a
 	// provider-assigned ID for the resource as well as the output properties that arose from the creation properties.
 	// Output properties are typically the union of the resource's input properties and any additional values that were
 	// computed or made available during creation.
 	//
-	// If creation fails, `Create` may return an [](pulumirpc.ErrorResourceInitFailed) error detail explaining why.
+	// If creation fails, `Create` may return an [](khulnasoftrpc.ErrorResourceInitFailed) error detail explaining why.
 	// Moreover, if `Create` does return an error, it must be the case that the resource was *not* created (that is,
 	// `Create` can be thought of as transactional or atomic).
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
@@ -506,17 +506,17 @@ type ResourceProviderServer interface {
 	Delete(context.Context, *DeleteRequest) (*emptypb.Empty, error)
 	// `Construct` provisions a new [component resource](component-resources). Providers that implement `Construct` are
 	// referred to as [component providers](component-providers). `Construct` is to component resources what
-	// [](pulumirpc.ResourceProvider.Create) is to [custom resources](custom-resources). Components do not have any
+	// [](khulnasoftrpc.ResourceProvider.Create) is to [custom resources](custom-resources). Components do not have any
 	// lifecycle of their own, and instead embody the lifecycles of the resources that they are composed of. As such,
 	// `Construct` is effectively a subprogram whose resources will be persisted in the caller's state. It is
 	// consequently passed enough information to manage fully these resources. At a high level, this comprises:
 	//
-	// * A [](pulumirpc.ResourceMonitor) endpoint which the provider can use to [register](resource-registration) nested
+	// * A [](khulnasoftrpc.ResourceMonitor) endpoint which the provider can use to [register](resource-registration) nested
 	//   custom or component resources that belong to the component.
 	//
 	// * A set of input properties.
 	//
-	// * A full set of [resource options](https://www.pulumi.com/docs/iac/concepts/options/) that the component should
+	// * A full set of [resource options](https://www.khulnasoft.com/docs/iac/concepts/options/) that the component should
 	//   propagate to resources it registers against the supplied resource monitor.
 	Construct(context.Context, *ConstructRequest) (*ConstructResponse, error)
 	// Cancel signals the provider to gracefully shut down and abort any ongoing resource operations.
@@ -626,7 +626,7 @@ func _ResourceProvider_Parameterize_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Parameterize",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Parameterize",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Parameterize(ctx, req.(*ParameterizeRequest))
@@ -644,7 +644,7 @@ func _ResourceProvider_GetSchema_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/GetSchema",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/GetSchema",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).GetSchema(ctx, req.(*GetSchemaRequest))
@@ -662,7 +662,7 @@ func _ResourceProvider_CheckConfig_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/CheckConfig",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/CheckConfig",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).CheckConfig(ctx, req.(*CheckRequest))
@@ -680,7 +680,7 @@ func _ResourceProvider_DiffConfig_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/DiffConfig",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/DiffConfig",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).DiffConfig(ctx, req.(*DiffRequest))
@@ -698,7 +698,7 @@ func _ResourceProvider_Configure_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Configure",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Configure",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Configure(ctx, req.(*ConfigureRequest))
@@ -716,7 +716,7 @@ func _ResourceProvider_Invoke_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Invoke",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Invoke",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Invoke(ctx, req.(*InvokeRequest))
@@ -755,7 +755,7 @@ func _ResourceProvider_Call_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Call",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Call(ctx, req.(*CallRequest))
@@ -773,7 +773,7 @@ func _ResourceProvider_Check_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Check",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Check",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Check(ctx, req.(*CheckRequest))
@@ -791,7 +791,7 @@ func _ResourceProvider_Diff_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Diff",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Diff",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Diff(ctx, req.(*DiffRequest))
@@ -809,7 +809,7 @@ func _ResourceProvider_Create_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Create",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Create(ctx, req.(*CreateRequest))
@@ -827,7 +827,7 @@ func _ResourceProvider_Read_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Read",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Read",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Read(ctx, req.(*ReadRequest))
@@ -845,7 +845,7 @@ func _ResourceProvider_Update_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Update",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Update(ctx, req.(*UpdateRequest))
@@ -863,7 +863,7 @@ func _ResourceProvider_Delete_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Delete",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Delete(ctx, req.(*DeleteRequest))
@@ -881,7 +881,7 @@ func _ResourceProvider_Construct_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Construct",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Construct",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Construct(ctx, req.(*ConstructRequest))
@@ -899,7 +899,7 @@ func _ResourceProvider_Cancel_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Cancel",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Cancel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Cancel(ctx, req.(*emptypb.Empty))
@@ -917,7 +917,7 @@ func _ResourceProvider_GetPluginInfo_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/GetPluginInfo",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/GetPluginInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).GetPluginInfo(ctx, req.(*emptypb.Empty))
@@ -935,7 +935,7 @@ func _ResourceProvider_Attach_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/Attach",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/Attach",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).Attach(ctx, req.(*PluginAttach))
@@ -953,7 +953,7 @@ func _ResourceProvider_GetMapping_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/GetMapping",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/GetMapping",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).GetMapping(ctx, req.(*GetMappingRequest))
@@ -971,7 +971,7 @@ func _ResourceProvider_GetMappings_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceProvider/GetMappings",
+		FullMethod: "/khulnasoftrpc.ResourceProvider/GetMappings",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceProviderServer).GetMappings(ctx, req.(*GetMappingsRequest))
@@ -983,7 +983,7 @@ func _ResourceProvider_GetMappings_Handler(srv interface{}, ctx context.Context,
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ResourceProvider_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pulumirpc.ResourceProvider",
+	ServiceName: "khulnasoftrpc.ResourceProvider",
 	HandlerType: (*ResourceProviderServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -1070,5 +1070,5 @@ var ResourceProvider_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "pulumi/provider.proto",
+	Metadata: "khulnasoft/provider.proto",
 }

@@ -1,0 +1,14 @@
+{
+	"name": "l2-map-keys",
+	"devDependencies": {
+		"@types/node": "^14"
+	},
+	"dependencies": {
+		"typescript": "^4.0.0",
+		"@khulnasoft/khulnasoft": "ROOT/artifacts/khulnasoft-khulnasoft-CORE.VERSION.tgz",
+		"@khulnasoft/plain": "ROOT/artifacts/khulnasoft-plain-13.0.0.tgz",
+		"@khulnasoft/primitive": "ROOT/artifacts/khulnasoft-primitive-7.0.0.tgz",
+		"@khulnasoft/primitive-ref": "ROOT/artifacts/khulnasoft-primitive-ref-11.0.0.tgz",
+		"@khulnasoft/ref-ref": "ROOT/artifacts/khulnasoft-ref-ref-12.0.0.tgz"
+	}
+}

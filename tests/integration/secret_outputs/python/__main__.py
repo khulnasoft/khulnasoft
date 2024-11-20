@@ -1,7 +1,7 @@
 # Copyright 2016-2020, Pulumi Corporation.  All rights reserved.
 
-from pulumi import export, Input, Output, ResourceOptions
-from pulumi.dynamic import Resource, ResourceProvider, CreateResult
+from khulnasoft import export, Input, Output, ResourceOptions
+from khulnasoft.dynamic import Resource, ResourceProvider, CreateResult
 
 class Provider(ResourceProvider):
     def create(self, props):

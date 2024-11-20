@@ -3,7 +3,7 @@
   "main": "bin/index.js",
   "version": "1.0.0",
   "dependencies": {
-    "@pulumi/pulumi": "latest"
+    "@khulnasoft/khulnasoft": "latest"
   },
   "devDependencies": {
     "typescript": "^3.8.3",

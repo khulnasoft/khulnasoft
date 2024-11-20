@@ -326,7 +326,7 @@ export function getOrganization(): string {
 
     // If the organization is missing, specialize the error.
     // Throw an error if test mode is enabled, instructing how to manually configure the organization:
-    throw new Error("Missing organization name; for test mode, please call `pulumi.runtime.setMocks`");
+    throw new Error("Missing organization name; for test mode, please call `khulnasoft.runtime.setMocks`");
 }
 
 /**
@@ -519,13 +519,13 @@ export function serialize(): boolean {
  * Returns the options from the environment, which is the source of truth.
  * Options are global per process.
  *
- * For CLI driven programs, `pulumi-language-nodejs` sets environment variables
+ * For CLI driven programs, `khulnasoft-language-nodejs` sets environment variables
  * prior to the user program loading, meaning that options could be loaded up
  * front and cached. Automation API and multi-language components introduced
  * more complex lifecycles for runtime `options()`. These language hosts manage
  * the lifecycle of options manually throughout the lifetime of the NodeJS
  * process. In addition, NodeJS module resolution can lead to duplicate copies
- * of `@pulumi/pulumi` and thus duplicate options objects that may not be synced
+ * of `@khulnasoft/khulnasoft` and thus duplicate options objects that may not be synced
  * if options are cached upfront. Mutating options must write to the environment
  * and reading options must always read directly from the environment.
  */

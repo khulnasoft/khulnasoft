@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import functools
-from pulumi import ComponentResource, CustomResource, Output, ResourceOptions
+from khulnasoft import ComponentResource, CustomResource, Output, ResourceOptions
 
 
 class MyResource(CustomResource):

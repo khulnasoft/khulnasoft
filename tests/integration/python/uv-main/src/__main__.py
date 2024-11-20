@@ -2,6 +2,6 @@
 
 """A Python program that uses the uv toolchain and a main directory"""
 
-import pulumi
+import khulnasoft
 
-pulumi.export("foo", "bar")
+khulnasoft.export("foo", "bar")

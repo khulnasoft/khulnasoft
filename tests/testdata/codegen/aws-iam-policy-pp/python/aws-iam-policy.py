@@ -1,6 +1,6 @@
-import pulumi
+import khulnasoft
 import json
-import pulumi_aws as aws
+import khulnasoft_aws as aws
 
 # Create a policy with multiple Condition keys
 policy = aws.iam.Policy("policy",
@@ -25,4 +25,4 @@ policy = aws.iam.Policy("policy",
             },
         }],
     }))
-pulumi.export("policyName", policy.name)
+khulnasoft.export("policyName", policy.name)

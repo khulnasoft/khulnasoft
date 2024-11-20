@@ -13,7 +13,7 @@
 // limitations under the License.
 //
 
-import * as runtime from "@pulumi/pulumi/runtime" // @pulumi dependency is not included
+import * as runtime from "@khulnasoft/khulnasoft/runtime" // @khulnasoft dependency is not included
 import * as semver from "semver" // npm dependency
 import * as myRandom from "my-random" // workspace dependency
 import * as myDynamicProvider from "my-dynamic-provider" // workspace dependency

@@ -1,6 +1,6 @@
 // Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 import { Resource } from "./resource";
 
 // The DBR deletion of A triggers the deletion of C due to dependency.
@@ -19,4 +19,4 @@ const b = new Resource("base-2", { uniqueKey: 2, state: 50 });
 
 //   8. Replace Dependent
 //   9. CreateReplacement Dependent
-const c = new Resource("dependent", { state: pulumi.all([a.state, b.state]).apply(([astate, bstate]) => astate + bstate) });
+const c = new Resource("dependent", { state: khulnasoft.all([a.state, b.state]).apply(([astate, bstate]) => astate + bstate) });

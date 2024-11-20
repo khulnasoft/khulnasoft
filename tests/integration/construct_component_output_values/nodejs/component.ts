@@ -1,22 +1,22 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 export interface BarArgs {
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: khulnasoft.Input<{[key: string]: khulnasoft.Input<string>}>;
 }
 
 export interface FooArgs {
-    something?: pulumi.Input<string>;
+    something?: khulnasoft.Input<string>;
 }
 
 export interface ComponentArgs {
-    bar?: pulumi.Input<BarArgs>;
+    bar?: khulnasoft.Input<BarArgs>;
     foo?: FooArgs;
 }
 
-export class Component extends pulumi.ComponentResource {
-    constructor(name: string, args?: ComponentArgs, opts?: pulumi.ComponentResourceOptions) {
+export class Component extends khulnasoft.ComponentResource {
+    constructor(name: string, args?: ComponentArgs, opts?: khulnasoft.ComponentResourceOptions) {
         super("testcomponent:index:Component", name, args, opts, true /*remote*/);
     }
 }

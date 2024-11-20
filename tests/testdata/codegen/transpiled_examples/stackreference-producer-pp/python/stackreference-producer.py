@@ -1,3 +1,3 @@
-import pulumi
+import khulnasoft
 
-pulumi.export("imageName", "pulumi/pulumi:latest")
+khulnasoft.export("imageName", "khulnasoft/khulnasoft:latest")

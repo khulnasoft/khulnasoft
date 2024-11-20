@@ -20,11 +20,11 @@ import (
 	"testing"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
@@ -45,7 +45,7 @@ func TestHostEngine(t *testing.T) {
 		t.Run("GetRootResource", func(t *testing.T) {
 			t.Parallel()
 			engine := &hostEngine{}
-			req := &pulumirpc.GetRootResourceRequest{}
+			req := &khulnasoftrpc.GetRootResourceRequest{}
 
 			_, err := engine.GetRootResource(context.Background(), req)
 			assert.ErrorContains(t, err, "unsupported")
@@ -54,7 +54,7 @@ func TestHostEngine(t *testing.T) {
 		t.Run("SetRootResource", func(t *testing.T) {
 			t.Parallel()
 			engine := &hostEngine{}
-			req := &pulumirpc.SetRootResourceRequest{}
+			req := &khulnasoftrpc.SetRootResourceRequest{}
 
 			_, err := engine.SetRootResource(context.Background(), req)
 			assert.ErrorContains(t, err, "unsupported")
@@ -66,33 +66,33 @@ func TestHostEngine(t *testing.T) {
 			t.Parallel()
 			tests := []struct {
 				name           string
-				req            *pulumirpc.LogRequest
+				req            *khulnasoftrpc.LogRequest
 				expectedError  error
 				expectedOutput *emptypb.Empty
 			}{
 				{
 					name:           "DebugSeverity",
-					req:            &pulumirpc.LogRequest{Severity: pulumirpc.LogSeverity_DEBUG},
+					req:            &khulnasoftrpc.LogRequest{Severity: khulnasoftrpc.LogSeverity_DEBUG},
 					expectedOutput: &emptypb.Empty{},
 				},
 				{
 					name:           "InfoSeverity",
-					req:            &pulumirpc.LogRequest{Severity: pulumirpc.LogSeverity_INFO},
+					req:            &khulnasoftrpc.LogRequest{Severity: khulnasoftrpc.LogSeverity_INFO},
 					expectedOutput: &emptypb.Empty{},
 				},
 				{
 					name:           "WarningSeverity",
-					req:            &pulumirpc.LogRequest{Severity: pulumirpc.LogSeverity_INFO},
+					req:            &khulnasoftrpc.LogRequest{Severity: khulnasoftrpc.LogSeverity_INFO},
 					expectedOutput: &emptypb.Empty{},
 				},
 				{
 					name:           "ErrorSeverity",
-					req:            &pulumirpc.LogRequest{Severity: pulumirpc.LogSeverity_INFO},
+					req:            &khulnasoftrpc.LogRequest{Severity: khulnasoftrpc.LogSeverity_INFO},
 					expectedOutput: &emptypb.Empty{},
 				},
 				{
 					name:          "InvalidSeverity",
-					req:           &pulumirpc.LogRequest{Severity: 99999},
+					req:           &khulnasoftrpc.LogRequest{Severity: 99999},
 					expectedError: fmt.Errorf("Unrecognized logging severity: %v", 99999),
 				},
 			}

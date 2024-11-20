@@ -41,10 +41,10 @@ func TestBatches(t *testing.T) {
 	}
 }
 
-// Checks that all synced tests from pulumi/yaml are in test list
+// Checks that all synced tests from khulnasoft/yaml are in test list
 func TestTranspiledExampleTestsCovered(t *testing.T) {
 	t.Parallel()
-	// Check that all synced tests from pulumi/yaml are in test list
+	// Check that all synced tests from khulnasoft/yaml are in test list
 	syncDir := filepath.Join("testdata", transpiledExamplesDir)
 	untestedTranspiledExamples, err := getUntestedTranspiledExampleDirs(syncDir, PulumiPulumiYAMLProgramTests)
 	assert.NoError(t, err)

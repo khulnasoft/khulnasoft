@@ -1,10 +1,10 @@
 # Copyright 2016-2024, Pulumi Corporation.  All rights reserved.
 
 import asyncio
-from pulumi import Output, ComponentResource, ResourceOptions, ResourceTransformArgs, ResourceTransformResult, InvokeTransformArgs, InvokeTransformResult
-from pulumi.runtime import register_stack_transform, register_invoke_transform
+from khulnasoft import Output, ComponentResource, ResourceOptions, ResourceTransformArgs, ResourceTransformResult, InvokeTransformArgs, InvokeTransformResult
+from khulnasoft.runtime import register_stack_transform, register_invoke_transform
 from random_ import Component, Random, Provider
-from pulumi.runtime.sync_await import _sync_await
+from khulnasoft.runtime.sync_await import _sync_await
 
 class MyComponent(ComponentResource):
     child: Random

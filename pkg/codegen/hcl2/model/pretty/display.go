@@ -21,7 +21,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 )
 
 const (

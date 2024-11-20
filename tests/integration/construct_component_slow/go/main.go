@@ -5,14 +5,14 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, nil, &resource, opts...)
 	if err != nil {
@@ -22,7 +22,7 @@ func NewComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOptio
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		if _, err := NewComponent(ctx, "a"); err != nil {
 			return err
 		}

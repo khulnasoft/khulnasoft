@@ -7,6 +7,6 @@
     "Submod/README.md",
     "Utilities.cs",
     "logo.png",
-    "pulumi-plugin.json"
+    "khulnasoft-plugin.json"
   ]
 }

@@ -1,5 +1,5 @@
 {
-	"$schema": "https://raw.githubusercontent.com/pulumi/pulumi/master/pkg/codegen/schema/pulumi.json",
+	"$schema": "https://raw.githubusercontent.com/khulnasoft/khulnasoft/master/pkg/codegen/schema/khulnasoft.json",
 	"name": "other",
 	"version": "0.1.0",
 	"resources": {
@@ -27,7 +27,7 @@
 	},
 	"language": {
 		"nodejs": {
-			"packageName": "@third-party/pulumi-other"
+			"packageName": "@third-party/khulnasoft-other"
 		},
 		"csharp": {
 			"rootNamespace": "ThirdParty"

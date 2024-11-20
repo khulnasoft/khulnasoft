@@ -20,15 +20,15 @@ import (
 	"io"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/utils"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -107,7 +107,7 @@ func TestGenerateLanguageDefinitionsRetriesCodegenWhenEncounteringCircularRefere
 	// without guessing the dependencies between the resources.
 	resources := []apitype.ResourceV3{
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucketObject:BucketObject::first",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucketObject:BucketObject::first",
 			ID:     "bucket-object-1",
 			Custom: true,
 			Type:   "aws:s3/bucketObject:BucketObject",
@@ -116,7 +116,7 @@ func TestGenerateLanguageDefinitionsRetriesCodegenWhenEncounteringCircularRefere
 			},
 		},
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucketObject:BucketObject::second",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucketObject:BucketObject::second",
 			ID:     "bucket-object-2",
 			Custom: true,
 			Type:   "aws:s3/bucketObject:BucketObject",

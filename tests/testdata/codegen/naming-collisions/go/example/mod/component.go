@@ -7,18 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"naming-collisions/example"
 	"naming-collisions/example/internal"
 )
 
 type Component struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
 // NewComponent registers a new resource with the given unique name, arguments, and options.
-func NewComponent(ctx *pulumi.Context,
-	name string, args *ComponentArgs, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context,
+	name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	if args == nil {
 		args = &ComponentArgs{}
 	}
@@ -34,8 +34,8 @@ func NewComponent(ctx *pulumi.Context,
 
 // GetComponent gets an existing Component resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetComponent(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ComponentState, opts ...pulumi.ResourceOption) (*Component, error) {
+func GetComponent(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ComponentState, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	var resource Component
 	err := ctx.ReadResource("example:mod:Component", name, id, state, &resource, opts...)
 	if err != nil {
@@ -56,8 +56,8 @@ func (ComponentState) ElementType() reflect.Type {
 }
 
 type componentArgs struct {
-	Local *Component2            `pulumi:"local"`
-	Main  *example.MainComponent `pulumi:"main"`
+	Local *Component2            `khulnasoft:"local"`
+	Main  *example.MainComponent `khulnasoft:"main"`
 }
 
 // The set of arguments for constructing a Component resource.
@@ -71,7 +71,7 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type ComponentInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToComponentOutput() ComponentOutput
 	ToComponentOutputWithContext(ctx context.Context) ComponentOutput
@@ -86,10 +86,10 @@ func (i *Component) ToComponentOutput() ComponentOutput {
 }
 
 func (i *Component) ToComponentOutputWithContext(ctx context.Context) ComponentOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ComponentOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ComponentOutput)
 }
 
-type ComponentOutput struct{ *pulumi.OutputState }
+type ComponentOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Component)(nil)).Elem()
@@ -104,6 +104,6 @@ func (o ComponentOutput) ToComponentOutputWithContext(ctx context.Context) Compo
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ComponentInput)(nil)).Elem(), &Component{})
-	pulumi.RegisterOutputType(ComponentOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ComponentInput)(nil)).Elem(), &Component{})
+	khulnasoft.RegisterOutputType(ComponentOutput{})
 }

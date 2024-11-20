@@ -16,9 +16,9 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.20.1
-// source: pulumi/engine.proto
+// source: khulnasoft/engine.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -73,11 +73,11 @@ func (x LogSeverity) String() string {
 }
 
 func (LogSeverity) Descriptor() protoreflect.EnumDescriptor {
-	return file_pulumi_engine_proto_enumTypes[0].Descriptor()
+	return file_khulnasoft_engine_proto_enumTypes[0].Descriptor()
 }
 
 func (LogSeverity) Type() protoreflect.EnumType {
-	return &file_pulumi_engine_proto_enumTypes[0]
+	return &file_khulnasoft_engine_proto_enumTypes[0]
 }
 
 func (x LogSeverity) Number() protoreflect.EnumNumber {
@@ -86,7 +86,7 @@ func (x LogSeverity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LogSeverity.Descriptor instead.
 func (LogSeverity) EnumDescriptor() ([]byte, []int) {
-	return file_pulumi_engine_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_engine_proto_rawDescGZIP(), []int{0}
 }
 
 type LogRequest struct {
@@ -95,7 +95,7 @@ type LogRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// the logging level of this message.
-	Severity LogSeverity `protobuf:"varint,1,opt,name=severity,proto3,enum=pulumirpc.LogSeverity" json:"severity,omitempty"`
+	Severity LogSeverity `protobuf:"varint,1,opt,name=severity,proto3,enum=khulnasoftrpc.LogSeverity" json:"severity,omitempty"`
 	// the contents of the logged message.
 	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	// the (optional) resource urn this log is associated with.
@@ -115,7 +115,7 @@ type LogRequest struct {
 func (x *LogRequest) Reset() {
 	*x = LogRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_engine_proto_msgTypes[0]
+		mi := &file_khulnasoft_engine_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -128,7 +128,7 @@ func (x *LogRequest) String() string {
 func (*LogRequest) ProtoMessage() {}
 
 func (x *LogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_engine_proto_msgTypes[0]
+	mi := &file_khulnasoft_engine_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -141,7 +141,7 @@ func (x *LogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogRequest.ProtoReflect.Descriptor instead.
 func (*LogRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_engine_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_engine_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *LogRequest) GetSeverity() LogSeverity {
@@ -188,7 +188,7 @@ type GetRootResourceRequest struct {
 func (x *GetRootResourceRequest) Reset() {
 	*x = GetRootResourceRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_engine_proto_msgTypes[1]
+		mi := &file_khulnasoft_engine_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -201,7 +201,7 @@ func (x *GetRootResourceRequest) String() string {
 func (*GetRootResourceRequest) ProtoMessage() {}
 
 func (x *GetRootResourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_engine_proto_msgTypes[1]
+	mi := &file_khulnasoft_engine_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -214,7 +214,7 @@ func (x *GetRootResourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRootResourceRequest.ProtoReflect.Descriptor instead.
 func (*GetRootResourceRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_engine_proto_rawDescGZIP(), []int{1}
+	return file_khulnasoft_engine_proto_rawDescGZIP(), []int{1}
 }
 
 type GetRootResourceResponse struct {
@@ -229,7 +229,7 @@ type GetRootResourceResponse struct {
 func (x *GetRootResourceResponse) Reset() {
 	*x = GetRootResourceResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_engine_proto_msgTypes[2]
+		mi := &file_khulnasoft_engine_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -242,7 +242,7 @@ func (x *GetRootResourceResponse) String() string {
 func (*GetRootResourceResponse) ProtoMessage() {}
 
 func (x *GetRootResourceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_engine_proto_msgTypes[2]
+	mi := &file_khulnasoft_engine_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -255,7 +255,7 @@ func (x *GetRootResourceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRootResourceResponse.ProtoReflect.Descriptor instead.
 func (*GetRootResourceResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_engine_proto_rawDescGZIP(), []int{2}
+	return file_khulnasoft_engine_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetRootResourceResponse) GetUrn() string {
@@ -277,7 +277,7 @@ type SetRootResourceRequest struct {
 func (x *SetRootResourceRequest) Reset() {
 	*x = SetRootResourceRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_engine_proto_msgTypes[3]
+		mi := &file_khulnasoft_engine_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -290,7 +290,7 @@ func (x *SetRootResourceRequest) String() string {
 func (*SetRootResourceRequest) ProtoMessage() {}
 
 func (x *SetRootResourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_engine_proto_msgTypes[3]
+	mi := &file_khulnasoft_engine_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -303,7 +303,7 @@ func (x *SetRootResourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRootResourceRequest.ProtoReflect.Descriptor instead.
 func (*SetRootResourceRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_engine_proto_rawDescGZIP(), []int{3}
+	return file_khulnasoft_engine_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SetRootResourceRequest) GetUrn() string {
@@ -322,7 +322,7 @@ type SetRootResourceResponse struct {
 func (x *SetRootResourceResponse) Reset() {
 	*x = SetRootResourceResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_engine_proto_msgTypes[4]
+		mi := &file_khulnasoft_engine_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -335,7 +335,7 @@ func (x *SetRootResourceResponse) String() string {
 func (*SetRootResourceResponse) ProtoMessage() {}
 
 func (x *SetRootResourceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_engine_proto_msgTypes[4]
+	mi := &file_khulnasoft_engine_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -348,7 +348,7 @@ func (x *SetRootResourceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRootResourceResponse.ProtoReflect.Descriptor instead.
 func (*SetRootResourceResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_engine_proto_rawDescGZIP(), []int{4}
+	return file_khulnasoft_engine_proto_rawDescGZIP(), []int{4}
 }
 
 type StartDebuggingRequest struct {
@@ -365,7 +365,7 @@ type StartDebuggingRequest struct {
 func (x *StartDebuggingRequest) Reset() {
 	*x = StartDebuggingRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_engine_proto_msgTypes[5]
+		mi := &file_khulnasoft_engine_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -378,7 +378,7 @@ func (x *StartDebuggingRequest) String() string {
 func (*StartDebuggingRequest) ProtoMessage() {}
 
 func (x *StartDebuggingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_engine_proto_msgTypes[5]
+	mi := &file_khulnasoft_engine_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -391,7 +391,7 @@ func (x *StartDebuggingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartDebuggingRequest.ProtoReflect.Descriptor instead.
 func (*StartDebuggingRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_engine_proto_rawDescGZIP(), []int{5}
+	return file_khulnasoft_engine_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *StartDebuggingRequest) GetConfig() *structpb.Struct {
@@ -408,9 +408,9 @@ func (x *StartDebuggingRequest) GetMessage() string {
 	return ""
 }
 
-var File_pulumi_engine_proto protoreflect.FileDescriptor
+var File_khulnasoft_engine_proto protoreflect.FileDescriptor
 
-var file_pulumi_engine_proto_rawDesc = []byte{
+var file_khulnasoft_engine_proto_rawDesc = []byte{
 	0x0a, 0x13, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x65, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x72, 0x70, 0x63,
 	0x1a, 0x1b, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
@@ -474,41 +474,41 @@ var file_pulumi_engine_proto_rawDesc = []byte{
 }
 
 var (
-	file_pulumi_engine_proto_rawDescOnce sync.Once
-	file_pulumi_engine_proto_rawDescData = file_pulumi_engine_proto_rawDesc
+	file_khulnasoft_engine_proto_rawDescOnce sync.Once
+	file_khulnasoft_engine_proto_rawDescData = file_khulnasoft_engine_proto_rawDesc
 )
 
-func file_pulumi_engine_proto_rawDescGZIP() []byte {
-	file_pulumi_engine_proto_rawDescOnce.Do(func() {
-		file_pulumi_engine_proto_rawDescData = protoimpl.X.CompressGZIP(file_pulumi_engine_proto_rawDescData)
+func file_khulnasoft_engine_proto_rawDescGZIP() []byte {
+	file_khulnasoft_engine_proto_rawDescOnce.Do(func() {
+		file_khulnasoft_engine_proto_rawDescData = protoimpl.X.CompressGZIP(file_khulnasoft_engine_proto_rawDescData)
 	})
-	return file_pulumi_engine_proto_rawDescData
+	return file_khulnasoft_engine_proto_rawDescData
 }
 
-var file_pulumi_engine_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_pulumi_engine_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
-var file_pulumi_engine_proto_goTypes = []interface{}{
-	(LogSeverity)(0),                // 0: pulumirpc.LogSeverity
-	(*LogRequest)(nil),              // 1: pulumirpc.LogRequest
-	(*GetRootResourceRequest)(nil),  // 2: pulumirpc.GetRootResourceRequest
-	(*GetRootResourceResponse)(nil), // 3: pulumirpc.GetRootResourceResponse
-	(*SetRootResourceRequest)(nil),  // 4: pulumirpc.SetRootResourceRequest
-	(*SetRootResourceResponse)(nil), // 5: pulumirpc.SetRootResourceResponse
-	(*StartDebuggingRequest)(nil),   // 6: pulumirpc.StartDebuggingRequest
+var file_khulnasoft_engine_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_khulnasoft_engine_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_khulnasoft_engine_proto_goTypes = []interface{}{
+	(LogSeverity)(0),                // 0: khulnasoftrpc.LogSeverity
+	(*LogRequest)(nil),              // 1: khulnasoftrpc.LogRequest
+	(*GetRootResourceRequest)(nil),  // 2: khulnasoftrpc.GetRootResourceRequest
+	(*GetRootResourceResponse)(nil), // 3: khulnasoftrpc.GetRootResourceResponse
+	(*SetRootResourceRequest)(nil),  // 4: khulnasoftrpc.SetRootResourceRequest
+	(*SetRootResourceResponse)(nil), // 5: khulnasoftrpc.SetRootResourceResponse
+	(*StartDebuggingRequest)(nil),   // 6: khulnasoftrpc.StartDebuggingRequest
 	(*structpb.Struct)(nil),         // 7: google.protobuf.Struct
 	(*emptypb.Empty)(nil),           // 8: google.protobuf.Empty
 }
-var file_pulumi_engine_proto_depIdxs = []int32{
-	0, // 0: pulumirpc.LogRequest.severity:type_name -> pulumirpc.LogSeverity
-	7, // 1: pulumirpc.StartDebuggingRequest.config:type_name -> google.protobuf.Struct
-	1, // 2: pulumirpc.Engine.Log:input_type -> pulumirpc.LogRequest
-	2, // 3: pulumirpc.Engine.GetRootResource:input_type -> pulumirpc.GetRootResourceRequest
-	4, // 4: pulumirpc.Engine.SetRootResource:input_type -> pulumirpc.SetRootResourceRequest
-	6, // 5: pulumirpc.Engine.StartDebugging:input_type -> pulumirpc.StartDebuggingRequest
-	8, // 6: pulumirpc.Engine.Log:output_type -> google.protobuf.Empty
-	3, // 7: pulumirpc.Engine.GetRootResource:output_type -> pulumirpc.GetRootResourceResponse
-	5, // 8: pulumirpc.Engine.SetRootResource:output_type -> pulumirpc.SetRootResourceResponse
-	8, // 9: pulumirpc.Engine.StartDebugging:output_type -> google.protobuf.Empty
+var file_khulnasoft_engine_proto_depIdxs = []int32{
+	0, // 0: khulnasoftrpc.LogRequest.severity:type_name -> khulnasoftrpc.LogSeverity
+	7, // 1: khulnasoftrpc.StartDebuggingRequest.config:type_name -> google.protobuf.Struct
+	1, // 2: khulnasoftrpc.Engine.Log:input_type -> khulnasoftrpc.LogRequest
+	2, // 3: khulnasoftrpc.Engine.GetRootResource:input_type -> khulnasoftrpc.GetRootResourceRequest
+	4, // 4: khulnasoftrpc.Engine.SetRootResource:input_type -> khulnasoftrpc.SetRootResourceRequest
+	6, // 5: khulnasoftrpc.Engine.StartDebugging:input_type -> khulnasoftrpc.StartDebuggingRequest
+	8, // 6: khulnasoftrpc.Engine.Log:output_type -> google.protobuf.Empty
+	3, // 7: khulnasoftrpc.Engine.GetRootResource:output_type -> khulnasoftrpc.GetRootResourceResponse
+	5, // 8: khulnasoftrpc.Engine.SetRootResource:output_type -> khulnasoftrpc.SetRootResourceResponse
+	8, // 9: khulnasoftrpc.Engine.StartDebugging:output_type -> google.protobuf.Empty
 	6, // [6:10] is the sub-list for method output_type
 	2, // [2:6] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -516,13 +516,13 @@ var file_pulumi_engine_proto_depIdxs = []int32{
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_pulumi_engine_proto_init() }
-func file_pulumi_engine_proto_init() {
-	if File_pulumi_engine_proto != nil {
+func init() { file_khulnasoft_engine_proto_init() }
+func file_khulnasoft_engine_proto_init() {
+	if File_khulnasoft_engine_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_pulumi_engine_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_engine_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogRequest); i {
 			case 0:
 				return &v.state
@@ -534,7 +534,7 @@ func file_pulumi_engine_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_engine_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_engine_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRootResourceRequest); i {
 			case 0:
 				return &v.state
@@ -546,7 +546,7 @@ func file_pulumi_engine_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_engine_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_engine_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRootResourceResponse); i {
 			case 0:
 				return &v.state
@@ -558,7 +558,7 @@ func file_pulumi_engine_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_engine_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_engine_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetRootResourceRequest); i {
 			case 0:
 				return &v.state
@@ -570,7 +570,7 @@ func file_pulumi_engine_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_engine_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_engine_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetRootResourceResponse); i {
 			case 0:
 				return &v.state
@@ -582,7 +582,7 @@ func file_pulumi_engine_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_engine_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_engine_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StartDebuggingRequest); i {
 			case 0:
 				return &v.state
@@ -599,19 +599,19 @@ func file_pulumi_engine_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pulumi_engine_proto_rawDesc,
+			RawDescriptor: file_khulnasoft_engine_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_pulumi_engine_proto_goTypes,
-		DependencyIndexes: file_pulumi_engine_proto_depIdxs,
-		EnumInfos:         file_pulumi_engine_proto_enumTypes,
-		MessageInfos:      file_pulumi_engine_proto_msgTypes,
+		GoTypes:           file_khulnasoft_engine_proto_goTypes,
+		DependencyIndexes: file_khulnasoft_engine_proto_depIdxs,
+		EnumInfos:         file_khulnasoft_engine_proto_enumTypes,
+		MessageInfos:      file_khulnasoft_engine_proto_msgTypes,
 	}.Build()
-	File_pulumi_engine_proto = out.File
-	file_pulumi_engine_proto_rawDesc = nil
-	file_pulumi_engine_proto_goTypes = nil
-	file_pulumi_engine_proto_depIdxs = nil
+	File_khulnasoft_engine_proto = out.File
+	file_khulnasoft_engine_proto_rawDesc = nil
+	file_khulnasoft_engine_proto_goTypes = nil
+	file_khulnasoft_engine_proto_depIdxs = nil
 }

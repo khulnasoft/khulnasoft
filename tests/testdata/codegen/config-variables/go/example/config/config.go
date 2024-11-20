@@ -5,12 +5,12 @@ package config
 
 import (
 	"config-variables/example/internal"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"
 )
 
 var _ = internal.GetEnvOrDefault
 
-func GetHttpRetryWaitMax(ctx *pulumi.Context) float64 {
+func GetHttpRetryWaitMax(ctx *khulnasoft.Context) float64 {
 	return config.GetFloat64(ctx, "example:httpRetryWaitMax")
 }

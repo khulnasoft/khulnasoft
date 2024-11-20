@@ -28,7 +28,7 @@ export const CloudAuditOptionsLogName = {
 } as const;
 
 /**
- * The log_name to populate in the Cloud Audit Record. This is added to regress pulumi/pulumi issue #7913
+ * The log_name to populate in the Cloud Audit Record. This is added to regress khulnasoft/khulnasoft issue #7913
  */
 export type CloudAuditOptionsLogName = (typeof CloudAuditOptionsLogName)[keyof typeof CloudAuditOptionsLogName];
 

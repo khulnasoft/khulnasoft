@@ -1,7 +1,7 @@
 // Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
-import { Config } from "@pulumi/pulumi";
-import * as runtime from "@pulumi/pulumi/runtime"
+import { Config } from "@khulnasoft/khulnasoft";
+import * as runtime from "@khulnasoft/khulnasoft/runtime"
 
 (async function() {
     const config = new Config();

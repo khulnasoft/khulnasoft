@@ -53,7 +53,7 @@ class InheritanceTranslationTest(LanghostTest):
     def register_resource_outputs(
         self, _ctx, _dry_run, _urn, ty, _name, _resource, outputs
     ):
-        self.assertEqual("pulumi:pulumi:Stack", ty)
+        self.assertEqual("khulnasoft:khulnasoft:Stack", ty)
         self.assertEqual(
             {
                 "r1.some_value": "hello",

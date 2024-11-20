@@ -35,14 +35,14 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/diagtest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/diagtest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 type testRegEvent struct {
@@ -141,7 +141,7 @@ func disableDefaultProviders(runInfo *EvalRunInfo, pkgs ...string) {
 		runInfo.Target.Config = config.Map{}
 	}
 	c := runInfo.Target.Config
-	key := config.MustMakeKey("pulumi", "disable-default-providers")
+	key := config.MustMakeKey("khulnasoft", "disable-default-providers")
 	if _, ok, err := c.Get(key, false); err != nil {
 		panic(err)
 	} else if ok {
@@ -946,7 +946,7 @@ func TestResouceMonitor_remoteComponentResourceOptions(t *testing.T) {
 	}
 }
 
-// TODO[pulumi/pulumi#2753]: We should re-enable these tests (and fix them up as needed) once we have a solution
+// TODO[khulnasoft/khulnasoft#2753]: We should re-enable these tests (and fix them up as needed) once we have a solution
 // for #2753.
 // func TestReadResourceAndInvokeVersion(t *testing.T) {
 // 	runInfo := &EvalRunInfo{
@@ -1231,29 +1231,29 @@ func TestRequestFromNodeJS(t *testing.T) {
 			expected: true,
 		},
 		{
-			name:     "pulumi-runtime foo",
-			ctx:      newContext(map[string]string{"pulumi-runtime": "foo"}),
+			name:     "khulnasoft-runtime foo",
+			ctx:      newContext(map[string]string{"khulnasoft-runtime": "foo"}),
 			expected: false,
 		},
 		{
-			name:     "pulumi-runtime nodejs",
-			ctx:      newContext(map[string]string{"pulumi-runtime": "nodejs"}),
+			name:     "khulnasoft-runtime nodejs",
+			ctx:      newContext(map[string]string{"khulnasoft-runtime": "nodejs"}),
 			expected: true,
 		},
 		{
-			// Always respect the value of pulumi-runtime, regardless of the user-agent.
-			name: "user-agent grpc-go/1.54.0, pulumi-runtime nodejs",
+			// Always respect the value of khulnasoft-runtime, regardless of the user-agent.
+			name: "user-agent grpc-go/1.54.0, khulnasoft-runtime nodejs",
 			ctx: newContext(map[string]string{
 				"user-agent":     "grpc-go/1.54.0",
-				"pulumi-runtime": "nodejs",
+				"khulnasoft-runtime": "nodejs",
 			}),
 			expected: true,
 		},
 		{
-			name: "user-agent grpc-node-js/1.8.15, pulumi-runtime python",
+			name: "user-agent grpc-node-js/1.8.15, khulnasoft-runtime python",
 			ctx: newContext(map[string]string{
 				"user-agent":     "grpc-node-js/1.8.15",
-				"pulumi-runtime": "python",
+				"khulnasoft-runtime": "python",
 			}),
 			expected: false,
 		},
@@ -1279,19 +1279,19 @@ func TestTransformAliasForNodeJSCompat(t *testing.T) {
 		return &b
 	}
 
-	makeAlias := func(parent *string, noParent *bool, name string) *pulumirpc.Alias {
-		spec := &pulumirpc.Alias_Spec{
+	makeAlias := func(parent *string, noParent *bool, name string) *khulnasoftrpc.Alias {
+		spec := &khulnasoftrpc.Alias_Spec{
 			Name: name,
 		}
 		if parent != nil {
-			spec.Parent = &pulumirpc.Alias_Spec_ParentUrn{ParentUrn: *parent}
+			spec.Parent = &khulnasoftrpc.Alias_Spec_ParentUrn{ParentUrn: *parent}
 		}
 		if noParent != nil {
-			spec.Parent = &pulumirpc.Alias_Spec_NoParent{NoParent: *noParent}
+			spec.Parent = &khulnasoftrpc.Alias_Spec_NoParent{NoParent: *noParent}
 		}
 
-		return &pulumirpc.Alias{
-			Alias: &pulumirpc.Alias_Spec_{
+		return &khulnasoftrpc.Alias{
+			Alias: &khulnasoftrpc.Alias_Spec_{
 				Spec: spec,
 			},
 		}
@@ -1299,8 +1299,8 @@ func TestTransformAliasForNodeJSCompat(t *testing.T) {
 
 	tests := []struct {
 		name     string
-		input    *pulumirpc.Alias
-		expected *pulumirpc.Alias
+		input    *khulnasoftrpc.Alias
+		expected *khulnasoftrpc.Alias
 	}{
 		{
 			name:     `{Parent: "", NoParent: true} (transformed)`,
@@ -1344,12 +1344,12 @@ func TestTransformAliasForNodeJSCompat(t *testing.T) {
 }
 
 type streamInvokeMock struct {
-	SendF    func(res *pulumirpc.InvokeResponse) error
+	SendF    func(res *khulnasoftrpc.InvokeResponse) error
 	SendMsgF func(m interface{}) error
 	RecvMsgF func(m interface{}) error
 }
 
-func (s *streamInvokeMock) Send(res *pulumirpc.InvokeResponse) error {
+func (s *streamInvokeMock) Send(res *khulnasoftrpc.InvokeResponse) error {
 	if s.SendF != nil {
 		return s.SendF(res)
 	}
@@ -1374,7 +1374,7 @@ func (s *streamInvokeMock) SendHeader(metadata.MD) error { panic("unimplemented"
 func (s *streamInvokeMock) SetTrailer(metadata.MD)       { panic("unimplemented") }
 func (s *streamInvokeMock) Context() context.Context     { panic("unimplemented") }
 
-var _ pulumirpc.ResourceMonitor_StreamInvokeServer = (*streamInvokeMock)(nil)
+var _ khulnasoftrpc.ResourceMonitor_StreamInvokeServer = (*streamInvokeMock)(nil)
 
 type providerSourceMock struct {
 	Provider plugin.Provider
@@ -1433,16 +1433,16 @@ func TestStreamInvoke(t *testing.T) {
 			evt.done <- &RegisterResult{
 				State: &resource.State{
 					ID:  "b2562429-e255-4b8f-904b-2bd239301ff2",
-					URN: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					URN: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				},
 			}
 			wg.Done()
 		}()
 
-		err = mon.StreamInvoke(&pulumirpc.ResourceInvokeRequest{
+		err = mon.StreamInvoke(&khulnasoftrpc.ResourceInvokeRequest{
 			Tok: "pkgA:index:func",
 		}, &streamInvokeMock{
-			SendF:    func(res *pulumirpc.InvokeResponse) error { return nil },
+			SendF:    func(res *khulnasoftrpc.InvokeResponse) error { return nil },
 			RecvMsgF: func(m interface{}) error { return nil },
 		})
 		// Ensure the channel is read from.
@@ -1496,16 +1496,16 @@ func TestStreamInvoke(t *testing.T) {
 			evt.done <- &RegisterResult{
 				State: &resource.State{
 					ID:  "b2562429-e255-4b8f-904b-2bd239301ff2",
-					URN: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					URN: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				},
 			}
 			wg.Done()
 		}()
 
-		err = mon.StreamInvoke(&pulumirpc.ResourceInvokeRequest{
+		err = mon.StreamInvoke(&khulnasoftrpc.ResourceInvokeRequest{
 			Tok: "pkgA:index:func",
 		}, &streamInvokeMock{
-			SendF:    func(res *pulumirpc.InvokeResponse) error { return nil },
+			SendF:    func(res *khulnasoftrpc.InvokeResponse) error { return nil },
 			RecvMsgF: func(m interface{}) error { return nil },
 		})
 		// Ensure the channel is read from.
@@ -1565,17 +1565,17 @@ func TestStreamInvoke(t *testing.T) {
 			evt.done <- &RegisterResult{
 				State: &resource.State{
 					ID:  "b2562429-e255-4b8f-904b-2bd239301ff2",
-					URN: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					URN: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				},
 			}
 			wg.Done()
 		}()
 
 		var hasFailures bool
-		err = mon.StreamInvoke(&pulumirpc.ResourceInvokeRequest{
+		err = mon.StreamInvoke(&khulnasoftrpc.ResourceInvokeRequest{
 			Tok: "pkgA:index:func",
 		}, &streamInvokeMock{
-			SendF: func(res *pulumirpc.InvokeResponse) error {
+			SendF: func(res *khulnasoftrpc.InvokeResponse) error {
 				if len(res.Failures) > 0 {
 					hasFailures = true
 				}
@@ -1627,16 +1627,16 @@ func TestStreamInvoke(t *testing.T) {
 			evt.done <- &RegisterResult{
 				State: &resource.State{
 					ID:  "b2562429-e255-4b8f-904b-2bd239301ff2",
-					URN: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					URN: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				},
 			}
 			wg.Done()
 		}()
 
-		err = mon.StreamInvoke(&pulumirpc.ResourceInvokeRequest{
+		err = mon.StreamInvoke(&khulnasoftrpc.ResourceInvokeRequest{
 			Tok: "pkgA:index:func",
 		}, &streamInvokeMock{
-			SendF:    func(res *pulumirpc.InvokeResponse) error { return nil },
+			SendF:    func(res *khulnasoftrpc.InvokeResponse) error { return nil },
 			RecvMsgF: func(m interface{}) error { return nil },
 		})
 		// Ensure the channel is read from.
@@ -1700,18 +1700,18 @@ func TestStreamInvokeQuery(t *testing.T) {
 			})
 		require.NoError(t, err)
 
-		var failures []*pulumirpc.CheckFailure
-		err = mon.StreamInvoke(&pulumirpc.ResourceInvokeRequest{
+		var failures []*khulnasoftrpc.CheckFailure
+		err = mon.StreamInvoke(&khulnasoftrpc.ResourceInvokeRequest{
 			Tok: "pkgA:index:func",
 		}, &streamInvokeMock{
-			SendF: func(res *pulumirpc.InvokeResponse) error {
+			SendF: func(res *khulnasoftrpc.InvokeResponse) error {
 				failures = res.GetFailures()
 				return nil
 			},
 			RecvMsgF: func(m interface{}) error { return nil },
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, []*pulumirpc.CheckFailure{
+		assert.Equal(t, []*khulnasoftrpc.CheckFailure{
 			{
 				Property: "fake-key",
 				Reason:   "I said so",
@@ -1762,10 +1762,10 @@ func TestStreamInvokeQuery(t *testing.T) {
 			})
 		require.NoError(t, err)
 
-		err = mon.StreamInvoke(&pulumirpc.ResourceInvokeRequest{
+		err = mon.StreamInvoke(&khulnasoftrpc.ResourceInvokeRequest{
 			Tok: "pkgA:index:func",
 		}, &streamInvokeMock{
-			SendF:    func(res *pulumirpc.InvokeResponse) error { return nil },
+			SendF:    func(res *khulnasoftrpc.InvokeResponse) error { return nil },
 			RecvMsgF: func(m interface{}) error { return nil },
 		})
 		assert.NoError(t, err)
@@ -1993,7 +1993,7 @@ func TestParseSourcePosition(t *testing.T) {
 
 	testCases := []struct {
 		name        string
-		input       *pulumirpc.SourcePosition
+		input       *khulnasoftrpc.SourcePosition
 		expected    string
 		errContains string
 	}{
@@ -2005,31 +2005,31 @@ func TestParseSourcePosition(t *testing.T) {
 		},
 		{
 			name:        "InvalidLine",
-			input:       &pulumirpc.SourcePosition{Line: 0},
+			input:       &khulnasoftrpc.SourcePosition{Line: 0},
 			expected:    "",
 			errContains: "invalid line number 0",
 		},
 		{
 			name:        "InvalidColumn",
-			input:       &pulumirpc.SourcePosition{Line: 1, Column: -1},
+			input:       &khulnasoftrpc.SourcePosition{Line: 1, Column: -1},
 			expected:    "",
 			errContains: "invalid column number -1",
 		},
 		{
 			name:        "InvalidURI",
-			input:       &pulumirpc.SourcePosition{Line: 1, Column: 1, Uri: ":invalid-uri:"},
+			input:       &khulnasoftrpc.SourcePosition{Line: 1, Column: 1, Uri: ":invalid-uri:"},
 			expected:    "",
 			errContains: `parse ":invalid-uri:": missing protocol scheme`,
 		},
 		{
 			name:        "UnrecognizedScheme",
-			input:       &pulumirpc.SourcePosition{Line: 1, Column: 1, Uri: "http://example.com/file.txt"},
+			input:       &khulnasoftrpc.SourcePosition{Line: 1, Column: 1, Uri: "http://example.com/file.txt"},
 			expected:    "",
 			errContains: "unrecognized scheme \"http\"",
 		},
 		{
 			name:        "NonAbsolutePath",
-			input:       &pulumirpc.SourcePosition{Line: 1, Column: 1, Uri: "file:relative/path/file.txt"},
+			input:       &khulnasoftrpc.SourcePosition{Line: 1, Column: 1, Uri: "file:relative/path/file.txt"},
 			expected:    "",
 			errContains: "source positions must include absolute paths",
 		},
@@ -2133,9 +2133,9 @@ func TestDefaultProviders(t *testing.T) {
 			d := &defaultProviders{
 				config: &configSourceMock{
 					GetPackageConfigF: func(pkg tokens.Package) (resource.PropertyMap, error) {
-						if pkg == "pulumi" {
+						if pkg == "khulnasoft" {
 							// Enables shouldDenyRequest(req) to succeed as it always calls using
-							// "pulumi".
+							// "khulnasoft".
 							return nil, nil
 						}
 						return nil, expectedErr
@@ -2213,7 +2213,7 @@ func TestDefaultProviders(t *testing.T) {
 					},
 				}
 				_, err := d.shouldDenyRequest(providers.ProviderRequest{})
-				assert.ErrorContains(t, err, "Unexpected encoding of pulumi:disable-default-providers")
+				assert.ErrorContains(t, err, "Unexpected encoding of khulnasoft:disable-default-providers")
 			})
 			t.Run("empty value", func(t *testing.T) {
 				t.Parallel()
@@ -2330,7 +2330,7 @@ func TestInvoke(t *testing.T) {
 	t.Run("bad version", func(t *testing.T) {
 		t.Parallel()
 		rm := &resmon{}
-		_, err := rm.Invoke(context.Background(), &pulumirpc.ResourceInvokeRequest{
+		_, err := rm.Invoke(context.Background(), &khulnasoftrpc.ResourceInvokeRequest{
 			Tok:     "pkgA:index:func",
 			Version: "bad-version",
 		})
@@ -2378,13 +2378,13 @@ func TestInvoke(t *testing.T) {
 			evt.done <- &RegisterResult{
 				State: &resource.State{
 					ID:  "b2562429-e255-4b8f-904b-2bd239301ff2",
-					URN: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					URN: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				},
 			}
 			wg.Done()
 		}()
 
-		_, err = mon.Invoke(context.Background(), &pulumirpc.ResourceInvokeRequest{
+		_, err = mon.Invoke(context.Background(), &khulnasoftrpc.ResourceInvokeRequest{
 			Tok:     "pkgA:index:func",
 			Version: "1.0.0",
 		})
@@ -2441,13 +2441,13 @@ func TestInvoke(t *testing.T) {
 			evt.done <- &RegisterResult{
 				State: &resource.State{
 					ID:  "b2562429-e255-4b8f-904b-2bd239301ff2",
-					URN: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					URN: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				},
 			}
 			wg.Done()
 		}()
 
-		res, err := mon.Invoke(context.Background(), &pulumirpc.ResourceInvokeRequest{
+		res, err := mon.Invoke(context.Background(), &khulnasoftrpc.ResourceInvokeRequest{
 			Tok:     "pkgA:index:func",
 			Version: "1.0.0",
 		})
@@ -2465,7 +2465,7 @@ func TestCall(t *testing.T) {
 	t.Run("bad version", func(t *testing.T) {
 		t.Parallel()
 		rm := &resmon{}
-		_, err := rm.Call(context.Background(), &pulumirpc.ResourceCallRequest{
+		_, err := rm.Call(context.Background(), &khulnasoftrpc.ResourceCallRequest{
 			Tok:     "pkgA:index:func",
 			Version: "bad-version",
 		})
@@ -2518,7 +2518,7 @@ func TestCall(t *testing.T) {
 			evt.done <- &RegisterResult{
 				State: &resource.State{
 					ID:  "b2562429-e255-4b8f-904b-2bd239301ff2",
-					URN: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					URN: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				},
 			}
 			wg.Done()
@@ -2533,7 +2533,7 @@ func TestCall(t *testing.T) {
 			close(cancel)
 		}()
 
-		_, err = mon.Call(context.Background(), &pulumirpc.ResourceCallRequest{
+		_, err = mon.Call(context.Background(), &khulnasoftrpc.ResourceCallRequest{
 			Tok:     "pkgA:index:func",
 			Version: "1.0.0",
 		})
@@ -2561,7 +2561,7 @@ func TestCall(t *testing.T) {
 			evt.done <- &RegisterResult{
 				State: &resource.State{
 					ID:  "b2562429-e255-4b8f-904b-2bd239301ff2",
-					URN: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					URN: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				},
 			}
 			wg.Done()
@@ -2595,9 +2595,9 @@ func TestCall(t *testing.T) {
 					require.Equal(t, 1, len(req.Options.ArgDependencies))
 					assert.ElementsMatch(t,
 						[]resource.URN{
-							"urn:pulumi:stack::project::type::dep1",
-							"urn:pulumi:stack::project::type::dep2",
-							"urn:pulumi:stack::project::type::dep3",
+							"urn:khulnasoft:stack::project::type::dep1",
+							"urn:khulnasoft:stack::project::type::dep2",
+							"urn:khulnasoft:stack::project::type::dep3",
 						},
 						req.Options.ArgDependencies["test"])
 					called = true
@@ -2626,16 +2626,16 @@ func TestCall(t *testing.T) {
 		}, plugin.MarshalOptions{})
 		require.NoError(t, err)
 
-		_, err = mon.Call(context.Background(), &pulumirpc.ResourceCallRequest{
+		_, err = mon.Call(context.Background(), &khulnasoftrpc.ResourceCallRequest{
 			Tok:     "pkgA:index:func",
 			Version: "1.0.0",
 			Args:    args,
-			ArgDependencies: map[string]*pulumirpc.ResourceCallRequest_ArgumentDependencies{
+			ArgDependencies: map[string]*khulnasoftrpc.ResourceCallRequest_ArgumentDependencies{
 				"test": {
 					Urns: []string{
-						"urn:pulumi:stack::project::type::dep1",
-						"urn:pulumi:stack::project::type::dep2",
-						"urn:pulumi:stack::project::type::dep3",
+						"urn:khulnasoft:stack::project::type::dep1",
+						"urn:khulnasoft:stack::project::type::dep2",
+						"urn:khulnasoft:stack::project::type::dep3",
 					},
 				},
 			},
@@ -2663,7 +2663,7 @@ func TestCall(t *testing.T) {
 			evt.done <- &RegisterResult{
 				State: &resource.State{
 					ID:  "b2562429-e255-4b8f-904b-2bd239301ff2",
-					URN: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					URN: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				},
 			}
 			wg.Done()
@@ -2695,11 +2695,11 @@ func TestCall(t *testing.T) {
 		}, plugin.MarshalOptions{})
 		require.NoError(t, err)
 
-		_, err = mon.Call(context.Background(), &pulumirpc.ResourceCallRequest{
+		_, err = mon.Call(context.Background(), &khulnasoftrpc.ResourceCallRequest{
 			Tok:     "pkgA:index:func",
 			Version: "1.0.0",
 			Args:    args,
-			ArgDependencies: map[string]*pulumirpc.ResourceCallRequest_ArgumentDependencies{
+			ArgDependencies: map[string]*khulnasoftrpc.ResourceCallRequest_ArgumentDependencies{
 				"test": {
 					Urns: []string{
 						"invalid urn",
@@ -2728,7 +2728,7 @@ func TestCall(t *testing.T) {
 			evt.done <- &RegisterResult{
 				State: &resource.State{
 					ID:  "b2562429-e255-4b8f-904b-2bd239301ff2",
-					URN: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					URN: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				},
 			}
 			wg.Done()
@@ -2754,9 +2754,9 @@ func TestCall(t *testing.T) {
 						},
 						ReturnDependencies: map[resource.PropertyKey][]resource.URN{
 							"prop": {
-								"urn:pulumi:stack::project::type::dep1",
-								"urn:pulumi:stack::project::type::dep2",
-								"urn:pulumi:stack::project::type::dep3",
+								"urn:khulnasoft:stack::project::type::dep1",
+								"urn:khulnasoft:stack::project::type::dep2",
+								"urn:khulnasoft:stack::project::type::dep3",
 							},
 						},
 						Failures: []plugin.CheckFailure{
@@ -2776,7 +2776,7 @@ func TestCall(t *testing.T) {
 		}, plugin.MarshalOptions{})
 		require.NoError(t, err)
 
-		res, err := mon.Call(context.Background(), &pulumirpc.ResourceCallRequest{
+		res, err := mon.Call(context.Background(), &khulnasoftrpc.ResourceCallRequest{
 			Tok:     "pkgA:index:func",
 			Version: "1.0.0",
 			Args:    args,
@@ -2788,11 +2788,11 @@ func TestCall(t *testing.T) {
 			}, res.Return.AsMap())
 		assert.Equal(t,
 			[]string{
-				"urn:pulumi:stack::project::type::dep1",
-				"urn:pulumi:stack::project::type::dep2",
-				"urn:pulumi:stack::project::type::dep3",
+				"urn:khulnasoft:stack::project::type::dep1",
+				"urn:khulnasoft:stack::project::type::dep2",
+				"urn:khulnasoft:stack::project::type::dep3",
 			}, res.ReturnDependencies["prop"].Urns)
-		assert.Equal(t, &pulumirpc.CheckFailure{
+		assert.Equal(t, &khulnasoftrpc.CheckFailure{
 			Property: "some-prop",
 			Reason:   "expected failure",
 		}, res.Failures[0])
@@ -2804,7 +2804,7 @@ func TestReadResource(t *testing.T) {
 	t.Run("bad parent", func(t *testing.T) {
 		t.Parallel()
 		rm := &resmon{}
-		_, err := rm.ReadResource(context.Background(), &pulumirpc.ReadResourceRequest{
+		_, err := rm.ReadResource(context.Background(), &khulnasoftrpc.ReadResourceRequest{
 			Type:   "foo:bar:some-type",
 			Parent: "invalid-parent",
 		})
@@ -2824,7 +2824,7 @@ func TestReadResource(t *testing.T) {
 				},
 			},
 		}
-		_, err := rm.ReadResource(context.Background(), &pulumirpc.ReadResourceRequest{
+		_, err := rm.ReadResource(context.Background(), &khulnasoftrpc.ReadResourceRequest{
 			Type:    "foo:bar:some-type",
 			Version: "1.0.0",
 		})
@@ -2841,12 +2841,12 @@ func TestReadResource(t *testing.T) {
 				},
 			},
 		}
-		_, err := rm.ReadResource(context.Background(), &pulumirpc.ReadResourceRequest{
-			Type:    "pulumi:providers:fake-provider",
+		_, err := rm.ReadResource(context.Background(), &khulnasoftrpc.ReadResourceRequest{
+			Type:    "khulnasoft:providers:fake-provider",
 			Version: "1.0.0",
 			Dependencies: []string{
-				"urn:pulumi:stack::project::type::dep1",
-				"urn:pulumi:stack::project::type::dep2",
+				"urn:khulnasoft:stack::project::type::dep1",
+				"urn:khulnasoft:stack::project::type::dep2",
 				"invalidURN",
 			},
 		})
@@ -2863,12 +2863,12 @@ func TestReadResource(t *testing.T) {
 				},
 			},
 		}
-		_, err := rm.ReadResource(context.Background(), &pulumirpc.ReadResourceRequest{
-			Type:    "pulumi:providers:fake-provider",
+		_, err := rm.ReadResource(context.Background(), &khulnasoftrpc.ReadResourceRequest{
+			Type:    "khulnasoft:providers:fake-provider",
 			Version: "1.0.0",
 			Dependencies: []string{
-				"urn:pulumi:stack::project::type::dep1",
-				"urn:pulumi:stack::project::type::dep2",
+				"urn:khulnasoft:stack::project::type::dep1",
+				"urn:khulnasoft:stack::project::type::dep2",
 				"invalidURN",
 			},
 		})
@@ -2897,8 +2897,8 @@ func TestReadResource(t *testing.T) {
 			}
 			wg.Done()
 		}()
-		_, err := rm.ReadResource(context.Background(), &pulumirpc.ReadResourceRequest{
-			Type:                    "pulumi:providers:fake-provider",
+		_, err := rm.ReadResource(context.Background(), &khulnasoftrpc.ReadResourceRequest{
+			Type:                    "khulnasoft:providers:fake-provider",
 			Version:                 "1.0.0",
 			AdditionalSecretOutputs: []string{"foo"},
 		})
@@ -2924,8 +2924,8 @@ func TestReadResource(t *testing.T) {
 			cancel <- true
 			wg.Done()
 		}()
-		_, err := rm.ReadResource(context.Background(), &pulumirpc.ReadResourceRequest{
-			Type:    "pulumi:providers:fake-provider",
+		_, err := rm.ReadResource(context.Background(), &khulnasoftrpc.ReadResourceRequest{
+			Type:    "khulnasoft:providers:fake-provider",
 			Version: "1.0.0",
 		})
 		assert.ErrorContains(t, err, "resource monitor shut down while sending resource registration")
@@ -2954,8 +2954,8 @@ func TestReadResource(t *testing.T) {
 			cancel <- true
 			wg.Done()
 		}()
-		_, err := rm.ReadResource(context.Background(), &pulumirpc.ReadResourceRequest{
-			Type:    "pulumi:providers:fake-provider",
+		_, err := rm.ReadResource(context.Background(), &khulnasoftrpc.ReadResourceRequest{
+			Type:    "khulnasoft:providers:fake-provider",
 			Version: "1.0.0",
 		})
 		assert.ErrorContains(t, err, "resource monitor shut down while waiting on step's done channel")
@@ -2974,7 +2974,7 @@ func TestRegisterResource(t *testing.T) {
 			rm := &resmon{
 				cancel: cancel,
 			}
-			_, err := rm.RegisterResource(context.Background(), &pulumirpc.RegisterResourceRequest{})
+			_, err := rm.RegisterResource(context.Background(), &khulnasoftrpc.RegisterResourceRequest{})
 			assert.ErrorContains(t, err, "resource monitor shut down while sending resource registration")
 		})
 		t.Run("resource monitor shut down while waiting on step's done channel", func(t *testing.T) {
@@ -2990,7 +2990,7 @@ func TestRegisterResource(t *testing.T) {
 				regChan: regChan,
 				cancel:  cancel,
 			}
-			_, err := rm.RegisterResource(context.Background(), &pulumirpc.RegisterResourceRequest{})
+			_, err := rm.RegisterResource(context.Background(), &khulnasoftrpc.RegisterResourceRequest{})
 			assert.ErrorContains(t, err, "resource monitor shut down while waiting on step's done channel")
 		})
 		t.Run("resource monitor shut down while waiting on step's done channel", func(t *testing.T) {
@@ -3006,7 +3006,7 @@ func TestRegisterResource(t *testing.T) {
 				regChan: regChan,
 				cancel:  cancel,
 			}
-			_, err := rm.RegisterResource(context.Background(), &pulumirpc.RegisterResourceRequest{})
+			_, err := rm.RegisterResource(context.Background(), &khulnasoftrpc.RegisterResourceRequest{})
 			assert.ErrorContains(t, err, "resource monitor shut down while waiting on step's done channel")
 		})
 	})
@@ -3020,7 +3020,7 @@ func TestRegisterResource(t *testing.T) {
 			}
 		}()
 		rm := &resmon{}
-		req := &pulumirpc.RegisterResourceRequest{
+		req := &khulnasoftrpc.RegisterResourceRequest{
 			Type:    "foo:bar:some-type",
 			Version: "improper-version",
 			Remote:  true,
@@ -3038,7 +3038,7 @@ func TestRegisterResource(t *testing.T) {
 			}
 		}()
 		rm := &resmon{}
-		req := &pulumirpc.RegisterResourceRequest{
+		req := &khulnasoftrpc.RegisterResourceRequest{
 			Type:    "foo:bar:some-type",
 			Version: "improper-version",
 			Custom:  true,
@@ -3057,8 +3057,8 @@ func TestRegisterResource(t *testing.T) {
 			}
 		}()
 		rm := &resmon{}
-		req := &pulumirpc.RegisterResourceRequest{
-			Type:    "pulumi:providers:some-type",
+		req := &khulnasoftrpc.RegisterResourceRequest{
+			Type:    "khulnasoft:providers:some-type",
 			Version: "improper-version",
 			Custom:  true,
 		}
@@ -3069,8 +3069,8 @@ func TestRegisterResource(t *testing.T) {
 	t.Run("invalid alias URN", func(t *testing.T) {
 		t.Parallel()
 		rm := &resmon{}
-		req := &pulumirpc.RegisterResourceRequest{
-			Type: "pulumi:providers:some-type",
+		req := &khulnasoftrpc.RegisterResourceRequest{
+			Type: "khulnasoft:providers:some-type",
 			AliasURNs: []string{
 				"invalid-urn",
 			},
@@ -3085,10 +3085,10 @@ func TestRegisterResource(t *testing.T) {
 				defaultProviderInfo: map[tokens.Package]workspace.PluginSpec{},
 			},
 		}
-		req := &pulumirpc.RegisterResourceRequest{
-			Type:    "pulumi:providers:some-type",
+		req := &khulnasoftrpc.RegisterResourceRequest{
+			Type:    "khulnasoft:providers:some-type",
 			Version: "1.0.0",
-			PropertyDependencies: map[string]*pulumirpc.RegisterResourceRequest_PropertyDependencies{
+			PropertyDependencies: map[string]*khulnasoftrpc.RegisterResourceRequest_PropertyDependencies{
 				"invalid-urn": {
 					Urns: []string{"bad-urn"},
 				},
@@ -3105,7 +3105,7 @@ func TestRegisterResource(t *testing.T) {
 			go func() {
 				evt := <-requests
 				ref, err := providers.NewReference(
-					"urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					"urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 					"b2562429-e255-4b8f-904b-2bd239301ff2")
 				require.NoError(t, err)
 				evt.response <- defaultProviderResponse{
@@ -3122,9 +3122,9 @@ func TestRegisterResource(t *testing.T) {
 					},
 				},
 			}
-			req := &pulumirpc.RegisterResourceRequest{
+			req := &khulnasoftrpc.RegisterResourceRequest{
 				Version: "1.0.0",
-				Type:    "pulumi:providers:some-type",
+				Type:    "khulnasoft:providers:some-type",
 				Remote:  true,
 				Providers: map[string]string{
 					"name": "not-an-urn::id",
@@ -3139,7 +3139,7 @@ func TestRegisterResource(t *testing.T) {
 			go func() {
 				evt := <-requests
 				ref, err := providers.NewReference(
-					"urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					"urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 					"denydefaultprovider")
 				require.NoError(t, err)
 				evt.response <- defaultProviderResponse{
@@ -3159,17 +3159,17 @@ func TestRegisterResource(t *testing.T) {
 					Provider: &deploytest.Provider{},
 				},
 			}
-			req := &pulumirpc.RegisterResourceRequest{
+			req := &khulnasoftrpc.RegisterResourceRequest{
 				Version: "1.0.0",
-				Type:    "pulumi:providers:some-type",
+				Type:    "khulnasoft:providers:some-type",
 				Remote:  true,
 				Providers: map[string]string{
-					"missing": "urn:pulumi:stack::project::pulumi:providers:aws::prov-1::uuid",
+					"missing": "urn:khulnasoft:stack::project::khulnasoft:providers:aws::prov-1::uuid",
 				},
 			}
 			_, err := rm.RegisterResource(context.Background(), req)
 			assert.ErrorContains(t, err,
-				"Default provider for 'pulumi' disabled. 'pulumi:providers:some-type' must use an explicit provider.")
+				"Default provider for 'khulnasoft' disabled. 'khulnasoft:providers:some-type' must use an explicit provider.")
 		})
 		t.Run("unknown provider", func(t *testing.T) {
 			t.Parallel()
@@ -3177,7 +3177,7 @@ func TestRegisterResource(t *testing.T) {
 			go func() {
 				evt := <-requests
 				ref, err := providers.NewReference(
-					"urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+					"urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 					"b2562429-e255-4b8f-904b-2bd239301ff2")
 				require.NoError(t, err)
 				evt.response <- defaultProviderResponse{
@@ -3195,12 +3195,12 @@ func TestRegisterResource(t *testing.T) {
 				},
 				providers: &providerSourceMock{},
 			}
-			req := &pulumirpc.RegisterResourceRequest{
+			req := &khulnasoftrpc.RegisterResourceRequest{
 				Version: "1.0.0",
-				Type:    "pulumi:providers:some-type",
+				Type:    "khulnasoft:providers:some-type",
 				Remote:  true,
 				Providers: map[string]string{
-					"missing": "urn:pulumi:stack::project::pulumi:providers:aws::prov-1::uuid",
+					"missing": "urn:khulnasoft:stack::project::khulnasoft:providers:aws::prov-1::uuid",
 				},
 			}
 			_, err := rm.RegisterResource(context.Background(), req)
@@ -3213,7 +3213,7 @@ func TestRegisterResource(t *testing.T) {
 		go func() {
 			evt := <-requests
 			ref, err := providers.NewReference(
-				"urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+				"urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				"b2562429-e255-4b8f-904b-2bd239301ff2")
 			require.NoError(t, err)
 			evt.response <- defaultProviderResponse{
@@ -3256,9 +3256,9 @@ func TestRegisterResource(t *testing.T) {
 				},
 			},
 		}
-		req := &pulumirpc.RegisterResourceRequest{
+		req := &khulnasoftrpc.RegisterResourceRequest{
 			Version: "1.0.0",
-			Type:    "pulumi:providers:some-type",
+			Type:    "khulnasoft:providers:some-type",
 			Remote:  true,
 		}
 		res, err := rm.RegisterResource(context.Background(), req)
@@ -3285,15 +3285,15 @@ func TestRegisterResource(t *testing.T) {
 			rm := &resmon{
 				regChan: regChan,
 				componentProviders: map[resource.URN]map[string]string{
-					"urn:pulumi:stack::project::type::foo": {
-						"urn:pulumi:stack::project::type::prov1": "",
-						"urn:pulumi:stack::project::type::prov2": "expected-value",
+					"urn:khulnasoft:stack::project::type::foo": {
+						"urn:khulnasoft:stack::project::type::prov1": "",
+						"urn:khulnasoft:stack::project::type::prov2": "expected-value",
 					},
 				},
 			}
-			req := &pulumirpc.RegisterResourceRequest{
-				Provider: "urn:pulumi:stack::project::type::bar",
-				Parent:   "urn:pulumi:stack::project::type::foo",
+			req := &khulnasoftrpc.RegisterResourceRequest{
+				Provider: "urn:khulnasoft:stack::project::type::bar",
+				Parent:   "urn:khulnasoft:stack::project::type::foo",
 				AdditionalSecretOutputs: []string{
 					"a",
 					"b",
@@ -3321,8 +3321,8 @@ func TestRegisterResource(t *testing.T) {
 					regChan:            regChan,
 					componentProviders: map[resource.URN]map[string]string{},
 				}
-				req := &pulumirpc.RegisterResourceRequest{
-					CustomTimeouts: &pulumirpc.RegisterResourceRequest_CustomTimeouts{
+				req := &khulnasoftrpc.RegisterResourceRequest{
+					CustomTimeouts: &khulnasoftrpc.RegisterResourceRequest_CustomTimeouts{
 						Create: "invalid",
 					},
 				}
@@ -3342,8 +3342,8 @@ func TestRegisterResource(t *testing.T) {
 					regChan:            regChan,
 					componentProviders: map[resource.URN]map[string]string{},
 				}
-				req := &pulumirpc.RegisterResourceRequest{
-					CustomTimeouts: &pulumirpc.RegisterResourceRequest_CustomTimeouts{
+				req := &khulnasoftrpc.RegisterResourceRequest{
+					CustomTimeouts: &khulnasoftrpc.RegisterResourceRequest_CustomTimeouts{
 						Delete: "invalid",
 					},
 				}
@@ -3363,8 +3363,8 @@ func TestRegisterResource(t *testing.T) {
 					regChan:            regChan,
 					componentProviders: map[resource.URN]map[string]string{},
 				}
-				req := &pulumirpc.RegisterResourceRequest{
-					CustomTimeouts: &pulumirpc.RegisterResourceRequest_CustomTimeouts{
+				req := &khulnasoftrpc.RegisterResourceRequest{
+					CustomTimeouts: &khulnasoftrpc.RegisterResourceRequest_CustomTimeouts{
 						Update: "invalid",
 					},
 				}
@@ -3379,8 +3379,8 @@ func TestValidationFailures(t *testing.T) {
 	t.Parallel()
 
 	s, _ := status.Newf(codes.InvalidArgument, "bad request").WithDetails(
-		&pulumirpc.InputPropertiesError{
-			Errors: []*pulumirpc.InputPropertiesError_PropertyError{
+		&khulnasoftrpc.InputPropertiesError{
+			Errors: []*khulnasoftrpc.InputPropertiesError_PropertyError{
 				{
 					Reason:       "missing",
 					PropertyPath: "testproperty",
@@ -3402,12 +3402,12 @@ func TestValidationFailures(t *testing.T) {
 		{
 			name:           "regular error",
 			err:            errors.New("test error"),
-			expectedStderr: "error: pulumi:providers:some-type resource 'some-name' has a problem: test error\n",
+			expectedStderr: "error: khulnasoft:providers:some-type resource 'some-name' has a problem: test error\n",
 		},
 		{
 			name: "bad request",
 			err:  badRequestError,
-			expectedStderr: "error: pulumi:providers:some-type resource 'some-name' has a problem: bad request\n" +
+			expectedStderr: "error: khulnasoft:providers:some-type resource 'some-name' has a problem: bad request\n" +
 				"\t\t- property testproperty with value '{testvalue}' has a problem: missing\n" +
 				"\t\t- property nested[0] with value '{nestedvalue}' has a problem: nested property error\n",
 		},
@@ -3427,7 +3427,7 @@ func TestValidationFailures(t *testing.T) {
 		go func() {
 			evt := <-requests
 			ref, err := providers.NewReference(
-				"urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0",
+				"urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0",
 				"b2562429-e255-4b8f-904b-2bd239301ff2")
 			require.NoError(t, err)
 			evt.response <- defaultProviderResponse{
@@ -3472,9 +3472,9 @@ func TestValidationFailures(t *testing.T) {
 		marshalledProps, err := plugin.MarshalProperties(props, plugin.MarshalOptions{})
 		assert.NoError(t, err)
 
-		req := &pulumirpc.RegisterResourceRequest{
+		req := &khulnasoftrpc.RegisterResourceRequest{
 			Version: "1.0.0",
-			Type:    "pulumi:providers:some-type",
+			Type:    "khulnasoft:providers:some-type",
 			Name:    "some-name",
 			Remote:  true,
 			Object:  marshalledProps,
@@ -3552,13 +3552,13 @@ func TestDowngradeOutputValues(t *testing.T) {
 			"unknown resource reference",
 			resource.PropertyMap{
 				"foo": resource.NewResourceReferenceProperty(resource.ResourceReference{
-					URN: "urn:pulumi:stack::project::package:module:resource::name",
+					URN: "urn:khulnasoft:stack::project::package:module:resource::name",
 					ID:  resource.NewOutputProperty(resource.Output{}),
 				}),
 			},
 			resource.PropertyMap{
 				"foo": resource.NewResourceReferenceProperty(resource.ResourceReference{
-					URN: "urn:pulumi:stack::project::package:module:resource::name",
+					URN: "urn:khulnasoft:stack::project::package:module:resource::name",
 					ID:  resource.MakeComputed(resource.NewStringProperty("")),
 				}),
 			},

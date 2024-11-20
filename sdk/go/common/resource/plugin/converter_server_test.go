@@ -21,8 +21,8 @@ import (
 	"testing"
 
 	"github.com/hashicorp/hcl/v2"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
-	codegenrpc "github.com/pulumi/pulumi/sdk/v3/proto/go/codegen"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
+	codegenrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go/codegen"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -99,7 +99,7 @@ func TestConverterServer_State(t *testing.T) {
 
 	server := NewConverterServer(&testConverter{})
 
-	resp, err := server.ConvertState(context.Background(), &pulumirpc.ConvertStateRequest{
+	resp, err := server.ConvertState(context.Background(), &khulnasoftrpc.ConvertStateRequest{
 		Args:         []string{"arg1", "arg2"},
 		MapperTarget: "localhost:1234",
 	})
@@ -128,7 +128,7 @@ func TestConverterServer_Program(t *testing.T) {
 
 	server := NewConverterServer(&testConverter{})
 
-	resp, err := server.ConvertProgram(context.Background(), &pulumirpc.ConvertProgramRequest{
+	resp, err := server.ConvertProgram(context.Background(), &khulnasoftrpc.ConvertProgramRequest{
 		MapperTarget:    "localhost:1234",
 		LoaderTarget:    "localhost:4321",
 		SourceDirectory: "src",

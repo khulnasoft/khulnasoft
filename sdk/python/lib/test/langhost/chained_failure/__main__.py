@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from pulumi import CustomResource, Output, Input
+from khulnasoft import CustomResource, Output, Input
 
 
 class ResourceA(CustomResource):
@@ -44,5 +44,5 @@ b_value = a.outprop.apply(lambda number: number / 0)
 b = ResourceB("resourceB", b_value)
 
 # C depends on B, but B's outputs will never resolve since B fails to initialize.
-# This should NOT deadlock. (pulumi/pulumi#2189)
+# This should NOT deadlock. (khulnasoft/khulnasoft#2189)
 c = ResourceB("resourceC", b.other_out)

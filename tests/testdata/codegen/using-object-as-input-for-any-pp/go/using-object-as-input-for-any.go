@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws-native/sdk/go/aws/iam"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws-native/sdk/go/aws/iam"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := iam.NewRole(ctx, "role", &iam.RoleArgs{
-			RoleName: pulumi.String("ScriptIAMRole"),
-			AssumeRolePolicyDocument: pulumi.Any(map[string]interface{}{
+			RoleName: khulnasoft.String("ScriptIAMRole"),
+			AssumeRolePolicyDocument: khulnasoft.Any(map[string]interface{}{
 				"Version": "2012-10-17",
 				"Statement": []map[string]interface{}{
 					map[string]interface{}{

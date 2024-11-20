@@ -19,8 +19,8 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
 	"github.com/stretchr/testify/require"
 	"pgregory.net/rapid"
 )
@@ -47,13 +47,13 @@ func (ps *ProgramSpec) AsLanguageRuntimeF(t require.TestingT) deploytest.Languag
 		//  ResourceSpec{
 		//    Type: "pkgA:modA:typeA",
 		//    Name: "res2",
-		//    Parent: "urn:pulumi:stack::project::pkgA:modA:typeA::res1",
-		//    AliasURNs: []resource.URN{"urn:pulumi:stack::project::pkgA:modA:typeA::res2"},
+		//    Parent: "urn:khulnasoft:stack::project::pkgA:modA:typeA::res1",
+		//    AliasURNs: []resource.URN{"urn:khulnasoft:stack::project::pkgA:modA:typeA::res2"},
 		//  }
 		//
 		// res2 has been updated to add a parent, res1, which previously it did not have. Its new URN,
-		// urn:pulumi:stack::project::pkgA:modA:typeA$pkgA:modA:typeA::res2, will include res1's type. Its old URN,
-		// urn:pulumi:stack::project::pkgA:modA:typeA::res2, with just res2's type, has been added as an alias. When we
+		// urn:khulnasoft:stack::project::pkgA:modA:typeA$pkgA:modA:typeA::res2, will include res1's type. Its old URN,
+		// urn:khulnasoft:stack::project::pkgA:modA:typeA::res2, with just res2's type, has been added as an alias. When we
 		// register res2, we will receive a different URN back based on whether we target it or not:
 		//
 		// * If we target it, we'll get the new URN, since the alias will find the old state, which will then be updated to

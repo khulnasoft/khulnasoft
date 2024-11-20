@@ -14,7 +14,7 @@ the gap between existing and Pulumi-managed infrastructure.
 
 These components are composed like so:
 
-![Pulumi CLI](./pulumi-cli.svg)
+![Pulumi CLI](./khulnasoft-cli.svg)
 
 In most cases, the language plugin, CLI, and resource providers will all live in separate processes, and each instance
 of a resource provider will live in its own process.

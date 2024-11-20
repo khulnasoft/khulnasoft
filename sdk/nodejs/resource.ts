@@ -52,14 +52,14 @@ export function createUrn(
         }
         parentPrefix = parentUrn.apply((parentUrnString) => {
             const prefix = parentUrnString.substring(0, parentUrnString.lastIndexOf("::")) + "$";
-            if (prefix.endsWith("::pulumi:pulumi:Stack$")) {
+            if (prefix.endsWith("::khulnasoft:khulnasoft:Stack$")) {
                 // Don't prefix the stack type as a parent type
-                return `urn:pulumi:${stack || getStack()}::${project || getProject()}::`;
+                return `urn:khulnasoft:${stack || getStack()}::${project || getProject()}::`;
             }
             return prefix;
         });
     } else {
-        parentPrefix = output(`urn:pulumi:${stack || getStack()}::${project || getProject()}::`);
+        parentPrefix = output(`urn:khulnasoft:${stack || getStack()}::${project || getProject()}::`);
     }
     return interpolate`${parentPrefix}${type}::${name}`;
 }
@@ -84,10 +84,10 @@ function inheritedChildAlias(
     // For example:
     // * name: "newapp-function"
     // * opts.parent.__name: "newapp"
-    // * parentAlias: "urn:pulumi:stackname::projectname::awsx:ec2:Vpc::app"
+    // * parentAlias: "urn:khulnasoft:stackname::projectname::awsx:ec2:Vpc::app"
     // * parentAliasName: "app"
     // * aliasName: "app-function"
-    // * childAlias: "urn:pulumi:stackname::projectname::aws:s3/bucket:Bucket::app-function"
+    // * childAlias: "urn:khulnasoft:stackname::projectname::aws:s3/bucket:Bucket::app-function"
     let aliasName = output(childName);
     if (childName.startsWith(parentName)) {
         aliasName = output(parentAlias).apply((parentAliasUrn) => {
@@ -163,7 +163,7 @@ export abstract class Resource {
      * @internal
      */
     // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
-    public readonly __pulumiResource: boolean = true;
+    public readonly __khulnasoftResource: boolean = true;
 
     /**
      * The optional parent of this resource.
@@ -318,10 +318,10 @@ export abstract class Resource {
      * @internal
      */
     // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
-    public readonly __pulumiType: string;
+    public readonly __khulnasoftType: string;
 
     public static isInstance(obj: any): obj is Resource {
-        return utils.isInstance<Resource>(obj, "__pulumiResource");
+        return utils.isInstance<Resource>(obj, "__khulnasoftResource");
     }
 
     /**
@@ -421,7 +421,7 @@ export abstract class Resource {
         dependency: boolean = false,
         packageRef?: Promise<string | undefined>,
     ) {
-        this.__pulumiType = t;
+        this.__khulnasoftType = t;
 
         if (dependency) {
             this.__protect = false;
@@ -630,7 +630,7 @@ export const rootStackResource: Resource = undefined!;
  * Note: to indicate that a resource was previously parented by the root stack,
  * it is recommended that you use:
  *
- * `aliases: [{ parent: pulumi.rootStackResource }]`
+ * `aliases: [{ parent: khulnasoft.rootStackResource }]`
  *
  * This form is self-descriptive and makes the intent clearer than using:
  *
@@ -654,19 +654,19 @@ export interface Alias {
      * }`), the current parent of the resource is used (`opts.parent` if
      * provided, else the implicit stack resource parent).
      *
-     * To specify no original parent, use `{ parent: pulumi.rootStackResource }`.
+     * To specify no original parent, use `{ parent: khulnasoft.rootStackResource }`.
      */
     parent?: Resource | Input<URN>;
 
     /**
      * The previous stack of the resource. If not provided, defaults to
-     * `pulumi.getStack()`.
+     * `khulnasoft.getStack()`.
      */
     stack?: Input<string>;
 
     /**
      * The previous project of the resource. If not provided, defaults to
-     * `pulumi.getProject()`.
+     * `khulnasoft.getProject()`.
      */
     project?: Input<string>;
 }
@@ -1023,7 +1023,7 @@ export abstract class CustomResource extends Resource {
      *
      */
     // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
-    public readonly __pulumiCustomResource: boolean;
+    public readonly __khulnasoftCustomResource: boolean;
 
     /**
      * The provider-assigned unique ID for this managed resource. It is set
@@ -1037,7 +1037,7 @@ export abstract class CustomResource extends Resource {
      * loaded into the same process.
      */
     public static isInstance(obj: any): obj is CustomResource {
-        return utils.isInstance<CustomResource>(obj, "__pulumiCustomResource");
+        return utils.isInstance<CustomResource>(obj, "__khulnasoftCustomResource");
     }
 
     /**
@@ -1077,7 +1077,7 @@ export abstract class CustomResource extends Resource {
         }
 
         super(t, name, true, props, opts, false, dependency, packageRef);
-        this.__pulumiCustomResource = true;
+        this.__khulnasoftCustomResource = true;
     }
 }
 
@@ -1136,7 +1136,7 @@ export abstract class ProviderResource extends CustomResource {
         dependency: boolean = false,
         packageRef?: Promise<string | undefined>,
     ) {
-        super(`pulumi:providers:${pkg}`, name, props, opts, dependency, packageRef);
+        super(`khulnasoft:providers:${pkg}`, name, props, opts, dependency, packageRef);
         this.pkg = pkg;
     }
 
@@ -1161,7 +1161,7 @@ export class ComponentResource<TData = any> extends Resource {
      * @internal
      */
     // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
-    public readonly __pulumiComponentResource = true;
+    public readonly __khulnasoftComponentResource = true;
 
     /**
      * @internal
@@ -1187,7 +1187,7 @@ export class ComponentResource<TData = any> extends Resource {
      * loaded into the same process.
      */
     public static isInstance(obj: any): obj is ComponentResource {
-        return utils.isInstance<ComponentResource>(obj, "__pulumiComponentResource");
+        return utils.isInstance<ComponentResource>(obj, "__khulnasoftComponentResource");
     }
 
     /**
@@ -1462,7 +1462,7 @@ export class DependencyProviderResource extends ProviderResource {
         const urnParts = urn.split("::");
         const qualifiedType = urnParts[2];
         const type = qualifiedType.split("$").pop()!;
-        // type will be "pulumi:providers:<package>" and we want the last part.
+        // type will be "khulnasoft:providers:<package>" and we want the last part.
         const typeParts = type.split(":");
         const pkg = typeParts.length > 2 ? typeParts[2] : "";
 

@@ -44,18 +44,18 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/operations"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tools"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/fsutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/retry"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/nodejs/npm"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tools"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/fsutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/retry"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/nodejs/npm"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -87,7 +87,7 @@ type EditDir struct {
 	ExtraRuntimeValidation func(t *testing.T, stack RuntimeValidationStackInfo)
 
 	// Additive is true if Dir should be copied *on top* of the test directory.
-	// Otherwise Dir *replaces* the test directory, except we keep .pulumi/ and Pulumi.yaml and Pulumi.<stack>.yaml.
+	// Otherwise Dir *replaces* the test directory, except we keep .khulnasoft/ and Pulumi.yaml and Pulumi.<stack>.yaml.
 	Additive bool
 
 	// ExpectFailure is true if we expect this test to fail.  This is very coarse grained, and will essentially
@@ -147,13 +147,13 @@ type Environment struct {
 
 // ConfigValue is used to provide config values to a test program.
 type ConfigValue struct {
-	// The config key to pass to `pulumi config`.
+	// The config key to pass to `khulnasoft config`.
 	Key string
-	// The config value to pass to `pulumi config`.
+	// The config value to pass to `khulnasoft config`.
 	Value string
-	// Secret indicates that the `--secret` flag should be specified when calling `pulumi config`.
+	// Secret indicates that the `--secret` flag should be specified when calling `khulnasoft config`.
 	Secret bool
-	// Path indicates that the `--path` flag should be specified when calling `pulumi config`.
+	// Path indicates that the `--path` flag should be specified when calling `khulnasoft config`.
 	Path bool
 }
 
@@ -161,12 +161,12 @@ type ConfigValue struct {
 type ProgramTestOptions struct {
 	// Dir is the program directory to test.
 	Dir string
-	// Array of NPM packages which must be `yarn linked` (e.g. {"pulumi", "@pulumi/aws"})
+	// Array of NPM packages which must be `yarn linked` (e.g. {"khulnasoft", "@khulnasoft/aws"})
 	Dependencies []string
 	// Map of package names to versions. The test will use the specified versions of these packages instead of what
 	// is declared in `package.json`.
 	Overrides map[string]string
-	// Automatically use the latest dev version of pulumi SDKs if available.
+	// Automatically use the latest dev version of khulnasoft SDKs if available.
 	InstallDevReleases bool
 	// List of environments to create in order.
 	CreateEnvironments []Environment
@@ -232,11 +232,11 @@ type ProgramTestOptions struct {
 	Quick bool
 	// RequireService indicates that the test must be run against the Pulumi Service
 	RequireService bool
-	// PreviewCommandlineFlags specifies flags to add to the `pulumi preview` command line (e.g. "--color=raw")
+	// PreviewCommandlineFlags specifies flags to add to the `khulnasoft preview` command line (e.g. "--color=raw")
 	PreviewCommandlineFlags []string
-	// UpdateCommandlineFlags specifies flags to add to the `pulumi up` command line (e.g. "--color=raw")
+	// UpdateCommandlineFlags specifies flags to add to the `khulnasoft up` command line (e.g. "--color=raw")
 	UpdateCommandlineFlags []string
-	// QueryCommandlineFlags specifies flags to add to the `pulumi query` command line (e.g. "--color=raw")
+	// QueryCommandlineFlags specifies flags to add to the `khulnasoft query` command line (e.g. "--color=raw")
 	QueryCommandlineFlags []string
 	// RunBuild indicates that the build step should be run (e.g. run `yarn build` for `nodejs` programs)
 	RunBuild bool
@@ -246,7 +246,7 @@ type ProgramTestOptions struct {
 	// Used in conjunction with ExtraRuntimeValidation
 	DecryptSecretsInOutput bool
 
-	// CloudURL is an optional URL to override the default Pulumi Service API (https://api.pulumi-staging.io). The
+	// CloudURL is an optional URL to override the default Pulumi Service API (https://api.khulnasoft-staging.io). The
 	// PULUMI_ACCESS_TOKEN environment variable must also be set to a valid access token for the target cloud.
 	CloudURL string
 
@@ -259,7 +259,7 @@ type ProgramTestOptions struct {
 	// `file:./local.trace` style url for AppDash tracing.
 	//
 	// Template `{command}` syntax will be expanded to the current
-	// command name such as `pulumi-stack-rm`. This is useful for
+	// command name such as `khulnasoft-stack-rm`. This is useful for
 	// file-based tracing since `ProgramTest` performs multiple
 	// CLI invocations that can inadvertently overwrite the trace
 	// file.
@@ -268,8 +268,8 @@ type ProgramTestOptions struct {
 	// NoParallel will opt the test out of being ran in parallel.
 	NoParallel bool
 
-	// PrePulumiCommand specifies a callback that will be executed before each `pulumi` invocation. This callback may
-	// optionally return another callback to be invoked after the `pulumi` invocation completes.
+	// PrePulumiCommand specifies a callback that will be executed before each `khulnasoft` invocation. This callback may
+	// optionally return another callback to be invoked after the `khulnasoft` invocation completes.
 	PrePulumiCommand func(verb string) (func(err error) error, error)
 
 	// ReportStats optionally specifies how to report results from the test for external collection.
@@ -282,15 +282,15 @@ type ProgramTestOptions struct {
 	// Verbose may be set to true to print messages as they occur, rather than buffering and showing upon failure.
 	Verbose bool
 
-	// DebugLogging may be set to anything >0 to enable excessively verbose debug logging from `pulumi`. This
+	// DebugLogging may be set to anything >0 to enable excessively verbose debug logging from `khulnasoft`. This
 	// is equivalent to `--logflow --logtostderr -v=N`, where N is the value of DebugLogLevel. This may also
 	// be enabled by setting the environment variable PULUMI_TEST_DEBUG_LOG_LEVEL.
 	DebugLogLevel int
-	// DebugUpdates may be set to true to enable debug logging from `pulumi preview`, `pulumi up`, and
-	// `pulumi destroy`.  This may also be enabled by setting the environment variable PULUMI_TEST_DEBUG_UPDATES.
+	// DebugUpdates may be set to true to enable debug logging from `khulnasoft preview`, `khulnasoft up`, and
+	// `khulnasoft destroy`.  This may also be enabled by setting the environment variable PULUMI_TEST_DEBUG_UPDATES.
 	DebugUpdates bool
 
-	// Bin is a location of a `pulumi` executable to be run.  Taken from the $PATH if missing.
+	// Bin is a location of a `khulnasoft` executable to be run.  Taken from the $PATH if missing.
 	Bin string
 	// YarnBin is a location of a `yarn` executable to be run.  Taken from the $PATH if missing.
 	YarnBin string
@@ -313,19 +313,19 @@ type ProgramTestOptions struct {
 	UsePipenv bool
 	// Use a shared virtual environment for tests based on the contents of the requirements file. Defaults to false.
 	UseSharedVirtualEnv *bool
-	// Shared venv path when UseSharedVirtualEnv is true. Defaults to $HOME/.pulumi-test-venvs.
+	// Shared venv path when UseSharedVirtualEnv is true. Defaults to $HOME/.khulnasoft-test-venvs.
 	SharedVirtualEnvPath string
 	// Refers to the shared venv directory when UseSharedVirtualEnv is true. Otherwise defaults to venv
 	virtualEnvDir string
 
-	// If set, this hook is called after the `pulumi preview` command has completed.
+	// If set, this hook is called after the `khulnasoft preview` command has completed.
 	PreviewCompletedHook func(dir string) error
 
 	// JSONOutput indicates that the `--json` flag should be passed to `up`, `preview`,
 	// `refresh` and `destroy` commands.
 	JSONOutput bool
 
-	// If set, this hook is called after `pulumi stack export` on the exported file. If `SkipExportImport` is set, this
+	// If set, this hook is called after `khulnasoft stack export` on the exported file. If `SkipExportImport` is set, this
 	// hook is ignored.
 	ExportStateValidator func(t *testing.T, stack []byte)
 
@@ -752,7 +752,7 @@ func prepareProgram(t *testing.T, opts *ProgramTestOptions) {
 		t.Skipf("Skipping: '%v' does not match '%v'", opts.Dir, directoryMatcher.re)
 	}
 
-	// Disable stack backups for tests to avoid filling up ~/.pulumi/backups with unnecessary
+	// Disable stack backups for tests to avoid filling up ~/.khulnasoft/backups with unnecessary
 	// backups of test stacks.
 	disableCheckpointBackups := env.DIYBackendDisableCheckpointBackups.Var().Name()
 	opts.Env = append(opts.Env, disableCheckpointBackups+"=1")
@@ -813,7 +813,7 @@ func prepareProgram(t *testing.T, opts *ProgramTestOptions) {
 	}
 
 	if opts.SharedVirtualEnvPath == "" {
-		opts.SharedVirtualEnvPath = filepath.Join(os.Getenv("HOME"), ".pulumi-test-venvs")
+		opts.SharedVirtualEnvPath = filepath.Join(os.Getenv("HOME"), ".khulnasoft-test-venvs")
 		if sharedVenvPath := os.Getenv("PULUMI_TEST_PYTHON_SHARED_VENV_PATH"); sharedVenvPath != "" {
 			opts.SharedVirtualEnvPath = sharedVenvPath
 		}
@@ -826,25 +826,25 @@ func prepareProgram(t *testing.T, opts *ProgramTestOptions) {
 	}
 }
 
-// ProgramTest runs a lifecycle of Pulumi commands in a program working directory, using the `pulumi` and `yarn`
+// ProgramTest runs a lifecycle of Pulumi commands in a program working directory, using the `khulnasoft` and `yarn`
 // binaries available on PATH.  It essentially executes the following workflow:
 //
 //	yarn install
 //	yarn link <each opts.Depencies>
 //	(+) yarn run build
-//	pulumi init
-//	(*) pulumi login
-//	pulumi stack init integrationtesting
-//	pulumi config set <each opts.Config>
-//	pulumi config set --secret <each opts.Secrets>
-//	pulumi preview
-//	pulumi up
-//	pulumi stack export --file stack.json
-//	pulumi stack import --file stack.json
-//	pulumi preview (expected to be empty)
-//	pulumi up (expected to be empty)
-//	pulumi destroy --yes
-//	pulumi stack rm --yes integrationtesting
+//	khulnasoft init
+//	(*) khulnasoft login
+//	khulnasoft stack init integrationtesting
+//	khulnasoft config set <each opts.Config>
+//	khulnasoft config set --secret <each opts.Secrets>
+//	khulnasoft preview
+//	khulnasoft up
+//	khulnasoft stack export --file stack.json
+//	khulnasoft stack import --file stack.json
+//	khulnasoft preview (expected to be empty)
+//	khulnasoft up (expected to be empty)
+//	khulnasoft destroy --yes
+//	khulnasoft stack rm --yes integrationtesting
 //
 //	(*) Only if PULUMI_ACCESS_TOKEN is set.
 //	(+) Only if `opts.RunBuild` is true.
@@ -869,18 +869,18 @@ func ProgramTestManualLifeCycle(t *testing.T, opts *ProgramTestOptions) *Program
 type ProgramTester struct {
 	t              *testing.T          // the Go tester for this run.
 	opts           *ProgramTestOptions // options that control this test run.
-	bin            string              // the `pulumi` binary we are using.
+	bin            string              // the `khulnasoft` binary we are using.
 	yarnBin        string              // the `yarn` binary we are using.
 	goBin          string              // the `go` binary we are using.
 	pythonBin      string              // the `python` binary we are using.
 	pipenvBin      string              // The `pipenv` binary we are using.
 	dotNetBin      string              // the `dotnet` binary we are using.
-	updateEventLog string              // The path to the engine event log for `pulumi up` in this test.
-	maxStepTries   int                 // The maximum number of times to retry a failed pulumi step.
+	updateEventLog string              // The path to the engine event log for `khulnasoft up` in this test.
+	maxStepTries   int                 // The maximum number of times to retry a failed khulnasoft step.
 	tmpdir         string              // the temporary directory we use for our test environment
 	projdir        string              // the project directory we use for this run
 	TestFinished   bool                // whether or not the test if finished
-	pulumiHome     string              // The directory PULUMI_HOME will be set to
+	khulnasoftHome     string              // The directory PULUMI_HOME will be set to
 }
 
 func newProgramTester(t *testing.T, opts *ProgramTestOptions) *ProgramTester {
@@ -896,7 +896,7 @@ func newProgramTester(t *testing.T, opts *ProgramTestOptions) *ProgramTester {
 		opts:           opts,
 		updateEventLog: filepath.Join(os.TempDir(), string(stackName)+"-events.json"),
 		maxStepTries:   maxStepTries,
-		pulumiHome:     home,
+		khulnasoftHome:     home,
 	}
 }
 
@@ -911,7 +911,7 @@ func (pt *ProgramTester) GetTmpDir() string {
 }
 
 func (pt *ProgramTester) getBin() (string, error) {
-	return getCmdBin(&pt.bin, "pulumi", pt.opts.Bin)
+	return getCmdBin(&pt.bin, "khulnasoft", pt.opts.Bin)
 }
 
 func (pt *ProgramTester) getYarnBin() (string, error) {
@@ -961,7 +961,7 @@ func (pt *ProgramTester) getDotNetBin() (string, error) {
 	return getCmdBin(&pt.dotNetBin, "dotnet", pt.opts.DotNetBin)
 }
 
-func (pt *ProgramTester) pulumiCmd(name string, args []string) ([]string, error) {
+func (pt *ProgramTester) khulnasoftCmd(name string, args []string) ([]string, error) {
 	bin, err := pt.getBin()
 	if err != nil {
 		return nil, err
@@ -1008,7 +1008,7 @@ func (pt *ProgramTester) pipenvCmd(args []string) ([]string, error) {
 }
 
 func (pt *ProgramTester) runCommand(name string, args []string, wd string) error {
-	return RunCommandPulumiHome(pt.t, name, args, wd, pt.opts, pt.pulumiHome)
+	return RunCommandPulumiHome(pt.t, name, args, wd, pt.opts, pt.khulnasoftHome)
 }
 
 // RunPulumiCommand runs a Pulumi command in the project directory.
@@ -1023,7 +1023,7 @@ func (pt *ProgramTester) RunPulumiCommand(name string, args ...string) error {
 }
 
 func (pt *ProgramTester) runPulumiCommand(name string, args []string, wd string, expectFailure bool) error {
-	cmd, err := pt.pulumiCmd(name, args)
+	cmd, err := pt.khulnasoftCmd(name, args)
 	if err != nil {
 		return err
 	}
@@ -1257,7 +1257,7 @@ func (pt *ProgramTester) TestCleanUp() {
 
 	// Clean up the temporary PULUMI_HOME directory we created. This is necessary to reclaim the disk space
 	// of the plugins that were downloaded during the test.
-	contract.IgnoreError(os.RemoveAll(pt.pulumiHome))
+	contract.IgnoreError(os.RemoveAll(pt.khulnasoftHome))
 }
 
 // TestLifeCycleInitAndDestroy executes the test and cleans up
@@ -1339,9 +1339,9 @@ func (pt *ProgramTester) TestLifeCycleInitialize() error {
 
 	// Set the default target Pulumi API if not overridden in options.
 	if pt.opts.CloudURL == "" {
-		pulumiAPI := os.Getenv("PULUMI_API")
-		if pulumiAPI != "" {
-			pt.opts.CloudURL = pulumiAPI
+		khulnasoftAPI := os.Getenv("PULUMI_API")
+		if khulnasoftAPI != "" {
+			pt.opts.CloudURL = khulnasoftAPI
 		}
 	}
 
@@ -1366,7 +1366,7 @@ func (pt *ProgramTester) TestLifeCycleInitialize() error {
 			stackInitName = string(pt.opts.GetStackName())
 		}
 
-		if err := pt.runPulumiCommand("pulumi-login", loginArgs, dir, false); err != nil {
+		if err := pt.runPulumiCommand("khulnasoft-login", loginArgs, dir, false); err != nil {
 			return err
 		}
 	}
@@ -1376,7 +1376,7 @@ func (pt *ProgramTester) TestLifeCycleInitialize() error {
 	if pt.opts.SecretsProvider != "" {
 		stackInitArgs = append(stackInitArgs, "--secrets-provider", pt.opts.SecretsProvider)
 	}
-	if err := pt.runPulumiCommand("pulumi-stack-init", stackInitArgs, dir, false); err != nil {
+	if err := pt.runPulumiCommand("khulnasoft-stack-init", stackInitArgs, dir, false); err != nil {
 		return err
 	}
 
@@ -1390,7 +1390,7 @@ func (pt *ProgramTester) TestLifeCycleInitialize() error {
 			setAllArgs = append(setAllArgs, "--secret", fmt.Sprintf("%s=%s", key, value))
 		}
 
-		if err := pt.runPulumiCommand("pulumi-config", setAllArgs, dir, false); err != nil {
+		if err := pt.runPulumiCommand("khulnasoft-config", setAllArgs, dir, false); err != nil {
 			return err
 		}
 	}
@@ -1403,7 +1403,7 @@ func (pt *ProgramTester) TestLifeCycleInitialize() error {
 		if cv.Path {
 			configArgs = append(configArgs, "--path")
 		}
-		if err := pt.runPulumiCommand("pulumi-config", configArgs, dir, false); err != nil {
+		if err := pt.runPulumiCommand("khulnasoft-config", configArgs, dir, false); err != nil {
 			return err
 		}
 	}
@@ -1413,7 +1413,7 @@ func (pt *ProgramTester) TestLifeCycleInitialize() error {
 		name := pt.opts.getEnvNameWithOwner(env.Name)
 
 		envFile, err := func() (string, error) {
-			temp, err := os.CreateTemp(pt.t.TempDir(), fmt.Sprintf("pulumi-env-%v-*", env.Name))
+			temp, err := os.CreateTemp(pt.t.TempDir(), fmt.Sprintf("khulnasoft-env-%v-*", env.Name))
 			if err != nil {
 				return "", err
 			}
@@ -1431,7 +1431,7 @@ func (pt *ProgramTester) TestLifeCycleInitialize() error {
 		}
 
 		initArgs := []string{"env", "init", name, "-f", envFile}
-		if err := pt.runPulumiCommand("pulumi-env-init", initArgs, dir, false); err != nil {
+		if err := pt.runPulumiCommand("khulnasoft-env-init", initArgs, dir, false); err != nil {
 			return err
 		}
 	}
@@ -1482,7 +1482,7 @@ func (pt *ProgramTester) TestLifeCycleDestroy() error {
 		if pt.opts.DestroyExcludeProtected {
 			destroy = append(destroy, "--exclude-protected")
 		}
-		if err := pt.runPulumiCommand("pulumi-destroy", destroy, pt.projdir, false); err != nil {
+		if err := pt.runPulumiCommand("khulnasoft-destroy", destroy, pt.projdir, false); err != nil {
 			return err
 		}
 
@@ -1492,7 +1492,7 @@ func (pt *ProgramTester) TestLifeCycleDestroy() error {
 		}
 
 		if !pt.opts.SkipStackRemoval {
-			err := pt.runPulumiCommand("pulumi-stack-rm", []string{"stack", "rm", "--yes"}, pt.projdir, false)
+			err := pt.runPulumiCommand("khulnasoft-stack-rm", []string{"stack", "rm", "--yes"}, pt.projdir, false)
 			if err != nil {
 				return err
 			}
@@ -1500,7 +1500,7 @@ func (pt *ProgramTester) TestLifeCycleDestroy() error {
 
 		for _, env := range pt.opts.CreateEnvironments {
 			name := pt.opts.getEnvNameWithOwner(env.Name)
-			err := pt.runPulumiCommand("pulumi-env-rm", []string{"env", "rm", "--yes", name}, pt.projdir, false)
+			err := pt.runPulumiCommand("khulnasoft-env-rm", []string{"env", "rm", "--yes", name}, pt.projdir, false)
 			if err != nil {
 				return err
 			}
@@ -1559,7 +1559,7 @@ func (pt *ProgramTester) TestPreviewUpdateAndEdits() error {
 		if !pt.opts.ExpectRefreshChanges {
 			refresh = append(refresh, "--expect-no-changes")
 		}
-		if err := pt.runPulumiCommand("pulumi-refresh", refresh, dir, false); err != nil {
+		if err := pt.runPulumiCommand("khulnasoft-refresh", refresh, dir, false); err != nil {
 			return err
 		}
 
@@ -1572,7 +1572,7 @@ func (pt *ProgramTester) TestPreviewUpdateAndEdits() error {
 			if pt.opts.JSONOutput {
 				preview = append(preview, "--json")
 			}
-			if err := pt.runPulumiCommand("pulumi-preview-after-refresh", preview, dir, false); err != nil {
+			if err := pt.runPulumiCommand("khulnasoft-preview-after-refresh", preview, dir, false); err != nil {
 				return err
 			}
 		}
@@ -1590,7 +1590,7 @@ func (pt *ProgramTester) exportImport(dir string) error {
 		contract.IgnoreError(os.Remove(filepath.Join(dir, "stack.json")))
 	}()
 
-	if err := pt.runPulumiCommand("pulumi-stack-export", exportCmd, dir, false); err != nil {
+	if err := pt.runPulumiCommand("khulnasoft-stack-export", exportCmd, dir, false); err != nil {
 		return err
 	}
 
@@ -1608,10 +1608,10 @@ func (pt *ProgramTester) exportImport(dir string) error {
 		}
 	}
 
-	return pt.runPulumiCommand("pulumi-stack-import", importCmd, dir, false)
+	return pt.runPulumiCommand("khulnasoft-stack-import", importCmd, dir, false)
 }
 
-// PreviewAndUpdate runs pulumi preview followed by pulumi up
+// PreviewAndUpdate runs khulnasoft preview followed by khulnasoft up
 func (pt *ProgramTester) PreviewAndUpdate(dir string, name string, shouldFail, expectNopPreview,
 	expectNopUpdate bool,
 ) error {
@@ -1640,7 +1640,7 @@ func (pt *ProgramTester) PreviewAndUpdate(dir string, name string, shouldFail, e
 
 	// If not in quick mode, run an explicit preview.
 	if !pt.opts.SkipPreview {
-		if err := pt.runPulumiCommand("pulumi-preview-"+name, preview, dir, shouldFail); err != nil {
+		if err := pt.runPulumiCommand("khulnasoft-preview-"+name, preview, dir, shouldFail); err != nil {
 			if shouldFail {
 				pt.t.Log("Permitting failure (ExpectFailure=true for this preview)")
 				return nil
@@ -1656,7 +1656,7 @@ func (pt *ProgramTester) PreviewAndUpdate(dir string, name string, shouldFail, e
 
 	// Now run an update.
 	if !pt.opts.SkipUpdate {
-		if err := pt.runPulumiCommand("pulumi-update-"+name, update, dir, shouldFail); err != nil {
+		if err := pt.runPulumiCommand("khulnasoft-update-"+name, update, dir, shouldFail); err != nil {
 			if shouldFail {
 				pt.t.Log("Permitting failure (ExpectFailure=true for this update)")
 				return nil
@@ -1683,7 +1683,7 @@ func (pt *ProgramTester) query(dir string, name string, shouldFail bool) error {
 	}
 
 	// Now run a query.
-	if err := pt.runPulumiCommand("pulumi-query-"+name, query, dir, shouldFail); err != nil {
+	if err := pt.runPulumiCommand("khulnasoft-query-"+name, query, dir, shouldFail); err != nil {
 		if shouldFail {
 			pt.t.Log("Permitting failure (ExpectFailure=true for this update)")
 			return nil
@@ -1730,7 +1730,7 @@ func (pt *ProgramTester) testEdit(dir string, i int, edit EditDir) error {
 			contract.IgnoreError(os.RemoveAll(dirToDelete))
 		}()
 
-		// Copy everything except Pulumi.yaml, Pulumi.<stack-name>.yaml, and .pulumi from source into new directory
+		// Copy everything except Pulumi.yaml, Pulumi.<stack-name>.yaml, and .khulnasoft from source into new directory
 		exclusions := make(map[string]bool)
 		projectYaml := workspace.ProjectFile + ".yaml"
 		configYaml := workspace.ProjectFile + "." + pt.opts.StackName + ".yaml"
@@ -1742,7 +1742,7 @@ func (pt *ProgramTester) testEdit(dir string, i int, edit EditDir) error {
 			return fmt.Errorf("Couldn't copy %v into %v: %w", edit.Dir, newDir, err)
 		}
 
-		// Copy Pulumi.yaml, Pulumi.<stack-name>.yaml, and .pulumi from old directory to new directory
+		// Copy Pulumi.yaml, Pulumi.<stack-name>.yaml, and .khulnasoft from old directory to new directory
 		oldProjectYaml := filepath.Join(dir, projectYaml)
 		newProjectYaml := filepath.Join(newDir, projectYaml)
 
@@ -1766,10 +1766,10 @@ func (pt *ProgramTester) testEdit(dir string, i int, edit EditDir) error {
 			}
 		}
 
-		// Likewise, pulumi is not required to write a book-keeping (.pulumi) file.
+		// Likewise, khulnasoft is not required to write a book-keeping (.khulnasoft) file.
 		if _, err := os.Stat(oldProjectDir); !os.IsNotExist(err) {
 			if err := fsutil.CopyFile(newProjectDir, oldProjectDir, nil); err != nil {
-				return fmt.Errorf("Couldn't copy .pulumi: %w", err)
+				return fmt.Errorf("Couldn't copy .khulnasoft: %w", err)
 			}
 		}
 
@@ -1842,17 +1842,17 @@ func (pt *ProgramTester) performExtraRuntimeValidation(
 	}
 	fileName := filepath.Join(tempDir, "stack.json")
 
-	// Invoke `pulumi stack export`
+	// Invoke `khulnasoft stack export`
 	// There are situations where we want to get access to the secrets in the validation
 	// this will allow us to get access to them as part of running ExtraRuntimeValidation
-	var pulumiCommand []string
+	var khulnasoftCommand []string
 	if pt.opts.DecryptSecretsInOutput {
-		pulumiCommand = append(pulumiCommand, "stack", "export", "--show-secrets", "--file", fileName)
+		khulnasoftCommand = append(khulnasoftCommand, "stack", "export", "--show-secrets", "--file", fileName)
 	} else {
-		pulumiCommand = append(pulumiCommand, "stack", "export", "--file", fileName)
+		khulnasoftCommand = append(khulnasoftCommand, "stack", "export", "--file", fileName)
 	}
-	if err = pt.runPulumiCommand("pulumi-export",
-		pulumiCommand, dir, false); err != nil {
+	if err = pt.runPulumiCommand("khulnasoft-export",
+		khulnasoftCommand, dir, false); err != nil {
 		return fmt.Errorf("expected to export stack to file: %s: %w", fileName, err)
 	}
 
@@ -1961,7 +1961,7 @@ func (pt *ProgramTester) copyTestToTemporaryDirectory() (string, string, error) 
 	if err != nil {
 		return "", "", err
 	}
-	pt.t.Logf("pulumi: %v\n", bin)
+	pt.t.Logf("khulnasoft: %v\n", bin)
 
 	stackName := string(pt.opts.GetStackName())
 
@@ -2083,9 +2083,9 @@ func (pt *ProgramTester) copyTestToTemporaryDirectory() (string, string, error) 
 		}
 	}
 
-	// TODO[pulumi/pulumi#5455]: Dynamic providers fail to load when used from multi-lang components.
+	// TODO[khulnasoft/khulnasoft#5455]: Dynamic providers fail to load when used from multi-lang components.
 	// Until that's been fixed, this environment variable can be set by a test, which results in
-	// a package.json being emitted in the project directory and `yarn install && yarn link @pulumi/pulumi`
+	// a package.json being emitted in the project directory and `yarn install && yarn link @khulnasoft/khulnasoft`
 	// being run.
 	// When the underlying issue has been fixed, the use of this environment variable should be removed.
 	var yarnLinkPulumi bool
@@ -2099,13 +2099,13 @@ func (pt *ProgramTester) copyTestToTemporaryDirectory() (string, string, error) 
 		const packageJSON = `{
 			"name": "test",
 			"peerDependencies": {
-				"@pulumi/pulumi": "latest"
+				"@khulnasoft/khulnasoft": "latest"
 			}
 		}`
 		if err := os.WriteFile(filepath.Join(projdir, "package.json"), []byte(packageJSON), 0o600); err != nil {
 			return "", "", err
 		}
-		if err := pt.runYarnCommand("yarn-link", []string{"link", "@pulumi/pulumi"}, projdir); err != nil {
+		if err := pt.runYarnCommand("yarn-link", []string{"link", "@khulnasoft/khulnasoft"}, projdir); err != nil {
 			return "", "", err
 		}
 		if err = pt.runYarnCommand("yarn-install", []string{"install"}, projdir); err != nil {
@@ -2127,7 +2127,7 @@ func (pt *ProgramTester) getProjinfo(projectDir string) (*engine.Projinfo, error
 	return &engine.Projinfo{Proj: proj, Root: projectDir}, nil
 }
 
-// prepareProject runs setup necessary to get the project ready for `pulumi` commands.
+// prepareProject runs setup necessary to get the project ready for `khulnasoft` commands.
 func (pt *ProgramTester) prepareProject(projinfo *engine.Projinfo) error {
 	if pt.opts.PrepareProject != nil {
 		return pt.opts.PrepareProject(projinfo)
@@ -2135,7 +2135,7 @@ func (pt *ProgramTester) prepareProject(projinfo *engine.Projinfo) error {
 	return pt.defaultPrepareProject(projinfo)
 }
 
-// prepareProjectDir runs setup necessary to get the project ready for `pulumi` commands.
+// prepareProjectDir runs setup necessary to get the project ready for `khulnasoft` commands.
 func (pt *ProgramTester) prepareProjectDir(projectDir string) error {
 	projinfo, err := pt.getProjinfo(projectDir)
 	if err != nil {
@@ -2144,7 +2144,7 @@ func (pt *ProgramTester) prepareProjectDir(projectDir string) error {
 	return pt.prepareProject(projinfo)
 }
 
-// prepareNodeJSProject runs setup necessary to get a Node.js project ready for `pulumi` commands.
+// prepareNodeJSProject runs setup necessary to get a Node.js project ready for `khulnasoft` commands.
 func (pt *ProgramTester) prepareNodeJSProject(projinfo *engine.Projinfo) error {
 	if err := ptesting.WriteYarnRCForTest(projinfo.Root); err != nil {
 		return err
@@ -2171,7 +2171,7 @@ func (pt *ProgramTester) prepareNodeJSProject(projinfo *engine.Projinfo) error {
 	// package.json to use them.  Note that Overrides take
 	// priority over installing dev versions.
 	if pt.opts.InstallDevReleases {
-		err := pt.runYarnCommand("yarn-add", []string{"add", "@pulumi/pulumi@dev"}, cwd)
+		err := pt.runYarnCommand("yarn-add", []string{"add", "@khulnasoft/khulnasoft@dev"}, cwd)
 		if err != nil {
 			return err
 		}
@@ -2265,7 +2265,7 @@ func writePackageJSON(pathToPackage string, metadata map[string]interface{}) err
 	return nil
 }
 
-// preparePythonProject runs setup necessary to get a Python project ready for `pulumi` commands.
+// preparePythonProject runs setup necessary to get a Python project ready for `khulnasoft` commands.
 func (pt *ProgramTester) preparePythonProject(projinfo *engine.Projinfo) error {
 	cwd, _, err := projinfo.GetPwdMain()
 	if err != nil {
@@ -2288,7 +2288,7 @@ func (pt *ProgramTester) preparePythonProject(projinfo *engine.Projinfo) error {
 			if err != nil {
 				return err
 			}
-			pt.opts.virtualEnvDir = fmt.Sprintf("pulumi-venv-%x", requirementsmd5)
+			pt.opts.virtualEnvDir = fmt.Sprintf("khulnasoft-venv-%x", requirementsmd5)
 			venvPath = filepath.Join(pt.opts.SharedVirtualEnvPath, pt.opts.virtualEnvDir)
 		}
 		if err = pt.runPythonCommand("python-venv", []string{"-m", "venv", venvPath}, cwd); err != nil {
@@ -2302,7 +2302,7 @@ func (pt *ProgramTester) preparePythonProject(projinfo *engine.Projinfo) error {
 		}
 
 		if pt.opts.InstallDevReleases {
-			command := []string{"python", "-m", "pip", "install", "--pre", "pulumi"}
+			command := []string{"python", "-m", "pip", "install", "--pre", "khulnasoft"}
 			if err := pt.runVirtualEnvCommand("virtualenv-pip-install", command, cwd); err != nil {
 				return err
 			}
@@ -2409,7 +2409,7 @@ func getVirtualenvBinPath(cwd, bin string, pt *ProgramTester) (string, error) {
 }
 
 // getSanitizedPkg strips the version string from a go dep
-// Note: most of the pulumi modules don't use major version subdirectories for modules
+// Note: most of the khulnasoft modules don't use major version subdirectories for modules
 func getSanitizedModulePath(pkg string) string {
 	re := regexp.MustCompile(`v\d`)
 	v := re.FindString(pkg)
@@ -2454,7 +2454,7 @@ func GoPath() (string, error) {
 	return gopath, nil
 }
 
-// prepareGoProject runs setup necessary to get a Go project ready for `pulumi` commands.
+// prepareGoProject runs setup necessary to get a Go project ready for `khulnasoft` commands.
 func (pt *ProgramTester) prepareGoProject(projinfo *engine.Projinfo) error {
 	// Go programs are compiled, so we will compile the project first.
 	goBin, err := pt.getGoBin()
@@ -2484,11 +2484,11 @@ func (pt *ProgramTester) prepareGoProject(projinfo *engine.Projinfo) error {
 
 	// install dev dependencies if requested
 	if pt.opts.InstallDevReleases {
-		// We're currently only installing pulumi/pulumi dependencies, which always have
+		// We're currently only installing khulnasoft/khulnasoft dependencies, which always have
 		// "master" as the default branch.
 		defaultBranch := "master"
 		err = pt.runCommand("go-get-dev-deps", []string{
-			goBin, "get", "-u", "github.com/pulumi/pulumi/sdk/v3@" + defaultBranch,
+			goBin, "get", "-u", "github.com/khulnasoft/khulnasoft/sdk/v3@" + defaultBranch,
 		}, cwd)
 		if err != nil {
 			return err
@@ -2596,7 +2596,7 @@ func getModName(dir string) (string, error) {
 	return pkgMod.Module.Mod.Path, nil
 }
 
-// prepareDotNetProject runs setup necessary to get a .NET project ready for `pulumi` commands.
+// prepareDotNetProject runs setup necessary to get a .NET project ready for `khulnasoft` commands.
 func (pt *ProgramTester) prepareDotNetProject(projinfo *engine.Projinfo) error {
 	dotNetBin, err := pt.getDotNetBin()
 	if err != nil {
@@ -2611,7 +2611,7 @@ func (pt *ProgramTester) prepareDotNetProject(projinfo *engine.Projinfo) error {
 	localNuget := os.Getenv("PULUMI_LOCAL_NUGET")
 	if localNuget == "" {
 		home := os.Getenv("HOME")
-		localNuget = filepath.Join(home, ".pulumi-dev", "nuget")
+		localNuget = filepath.Join(home, ".khulnasoft-dev", "nuget")
 	}
 
 	if pt.opts.InstallDevReleases {
@@ -2646,7 +2646,7 @@ func (pt *ProgramTester) prepareDotNetProject(projinfo *engine.Projinfo) error {
 
 		// We don't restore because the program might depend on external
 		// packages which cannot be found in our local nuget source. A restore
-		// will happen automatically as part of the `pulumi up`.
+		// will happen automatically as part of the `khulnasoft up`.
 		err = pt.runCommand("dotnet-add-package",
 			[]string{
 				dotNetBin, "add", "package", dep,
@@ -2703,10 +2703,10 @@ type AssertPerfBenchmark struct {
 
 func (t AssertPerfBenchmark) ReportCommand(stats TestCommandStats) {
 	var maxDuration *time.Duration
-	if strings.HasPrefix(stats.StepName, "pulumi-preview") {
+	if strings.HasPrefix(stats.StepName, "khulnasoft-preview") {
 		maxDuration = &t.MaxPreviewDuration
 	}
-	if strings.HasPrefix(stats.StepName, "pulumi-update") {
+	if strings.HasPrefix(stats.StepName, "khulnasoft-update") {
 		maxDuration = &t.MaxUpdateDuration
 	}
 

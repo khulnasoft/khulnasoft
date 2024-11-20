@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"resource-property-overlap/example/internal"
 )
 
 type Rec struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Rec RecOutput `pulumi:"rec"`
+	Rec RecOutput `khulnasoft:"rec"`
 }
 
 // NewRec registers a new resource with the given unique name, arguments, and options.
-func NewRec(ctx *pulumi.Context,
-	name string, args *RecArgs, opts ...pulumi.ResourceOption) (*Rec, error) {
+func NewRec(ctx *khulnasoft.Context,
+	name string, args *RecArgs, opts ...khulnasoft.ResourceOption) (*Rec, error) {
 	if args == nil {
 		args = &RecArgs{}
 	}
@@ -35,8 +35,8 @@ func NewRec(ctx *pulumi.Context,
 
 // GetRec gets an existing Rec resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetRec(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *RecState, opts ...pulumi.ResourceOption) (*Rec, error) {
+func GetRec(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *RecState, opts ...khulnasoft.ResourceOption) (*Rec, error) {
 	var resource Rec
 	err := ctx.ReadResource("example::Rec", name, id, state, &resource, opts...)
 	if err != nil {
@@ -68,7 +68,7 @@ func (RecArgs) ElementType() reflect.Type {
 }
 
 type RecInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToRecOutput() RecOutput
 	ToRecOutputWithContext(ctx context.Context) RecOutput
@@ -83,7 +83,7 @@ func (i *Rec) ToRecOutput() RecOutput {
 }
 
 func (i *Rec) ToRecOutputWithContext(ctx context.Context) RecOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RecOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(RecOutput)
 }
 
 // RecArrayInput is an input type that accepts RecArray and RecArrayOutput values.
@@ -91,7 +91,7 @@ func (i *Rec) ToRecOutputWithContext(ctx context.Context) RecOutput {
 //
 //	RecArray{ RecArgs{...} }
 type RecArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToRecArrayOutput() RecArrayOutput
 	ToRecArrayOutputWithContext(context.Context) RecArrayOutput
@@ -108,7 +108,7 @@ func (i RecArray) ToRecArrayOutput() RecArrayOutput {
 }
 
 func (i RecArray) ToRecArrayOutputWithContext(ctx context.Context) RecArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RecArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(RecArrayOutput)
 }
 
 // RecMapInput is an input type that accepts RecMap and RecMapOutput values.
@@ -116,7 +116,7 @@ func (i RecArray) ToRecArrayOutputWithContext(ctx context.Context) RecArrayOutpu
 //
 //	RecMap{ "key": RecArgs{...} }
 type RecMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToRecMapOutput() RecMapOutput
 	ToRecMapOutputWithContext(context.Context) RecMapOutput
@@ -133,10 +133,10 @@ func (i RecMap) ToRecMapOutput() RecMapOutput {
 }
 
 func (i RecMap) ToRecMapOutputWithContext(ctx context.Context) RecMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RecMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(RecMapOutput)
 }
 
-type RecOutput struct{ *pulumi.OutputState }
+type RecOutput struct{ *khulnasoft.OutputState }
 
 func (RecOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Rec)(nil)).Elem()
@@ -154,7 +154,7 @@ func (o RecOutput) Rec() RecOutput {
 	return o.ApplyT(func(v *Rec) RecOutput { return v.Rec }).(RecOutput)
 }
 
-type RecArrayOutput struct{ *pulumi.OutputState }
+type RecArrayOutput struct{ *khulnasoft.OutputState }
 
 func (RecArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*Rec)(nil)).Elem()
@@ -168,13 +168,13 @@ func (o RecArrayOutput) ToRecArrayOutputWithContext(ctx context.Context) RecArra
 	return o
 }
 
-func (o RecArrayOutput) Index(i pulumi.IntInput) RecOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Rec {
+func (o RecArrayOutput) Index(i khulnasoft.IntInput) RecOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *Rec {
 		return vs[0].([]*Rec)[vs[1].(int)]
 	}).(RecOutput)
 }
 
-type RecMapOutput struct{ *pulumi.OutputState }
+type RecMapOutput struct{ *khulnasoft.OutputState }
 
 func (RecMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*Rec)(nil)).Elem()
@@ -188,17 +188,17 @@ func (o RecMapOutput) ToRecMapOutputWithContext(ctx context.Context) RecMapOutpu
 	return o
 }
 
-func (o RecMapOutput) MapIndex(k pulumi.StringInput) RecOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Rec {
+func (o RecMapOutput) MapIndex(k khulnasoft.StringInput) RecOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *Rec {
 		return vs[0].(map[string]*Rec)[vs[1].(string)]
 	}).(RecOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*RecInput)(nil)).Elem(), &Rec{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RecArrayInput)(nil)).Elem(), RecArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RecMapInput)(nil)).Elem(), RecMap{})
-	pulumi.RegisterOutputType(RecOutput{})
-	pulumi.RegisterOutputType(RecArrayOutput{})
-	pulumi.RegisterOutputType(RecMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*RecInput)(nil)).Elem(), &Rec{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*RecArrayInput)(nil)).Elem(), RecArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*RecMapInput)(nil)).Elem(), RecMap{})
+	khulnasoft.RegisterOutputType(RecOutput{})
+	khulnasoft.RegisterOutputType(RecArrayOutput{})
+	khulnasoft.RegisterOutputType(RecMapOutput{})
 }

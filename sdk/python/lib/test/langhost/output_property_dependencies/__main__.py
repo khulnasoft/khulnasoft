@@ -12,34 +12,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from typing import Optional
-import pulumi
+import khulnasoft
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class MyResourceArgs:
-    def __init__(__self__, *, in_prop: Optional[pulumi.Input[str]] = None):
+    def __init__(__self__, *, in_prop: Optional[khulnasoft.Input[str]] = None):
         if in_prop is not None:
-            pulumi.set(__self__, "in_prop", in_prop)
+            khulnasoft.set(__self__, "in_prop", in_prop)
 
     @property
-    @pulumi.getter(name="inProp")
-    def in_prop(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "in_prop")
+    @khulnasoft.getter(name="inProp")
+    def in_prop(self) -> Optional[khulnasoft.Input[str]]:
+        return khulnasoft.get(self, "in_prop")
 
     @in_prop.setter
-    def in_prop(self, value: pulumi.Input[str]):
-        pulumi.set(self, "in_prop", value)
+    def in_prop(self, value: khulnasoft.Input[str]):
+        khulnasoft.set(self, "in_prop", value)
 
 
-class MyResource(pulumi.ComponentResource):
+class MyResource(khulnasoft.ComponentResource):
     @property
-    @pulumi.getter(name="outProp")
-    def out_prop(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "out_prop")
+    @khulnasoft.getter(name="outProp")
+    def out_prop(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "out_prop")
 
     def __init__(self, name, args, opts=None):
         args.__dict__["out_prop"] = None
-        pulumi.ComponentResource.__init__(
+        khulnasoft.ComponentResource.__init__(
             self, "test:index:MyResource", name, props=args, opts=opts, remote=True
         )
 

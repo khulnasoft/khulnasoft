@@ -39,9 +39,9 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 const (
@@ -179,13 +179,13 @@ func collectObjectTypedConfigVariables(component *pcl.Component) map[string]*mod
 func componentInputElementType(pclType model.Type) string {
 	switch pclType {
 	case model.BoolType:
-		return "pulumi.BoolInput"
+		return "khulnasoft.BoolInput"
 	case model.IntType:
-		return "pulumi.IntInput"
+		return "khulnasoft.IntInput"
 	case model.NumberType:
-		return "pulumi.Float64Input"
+		return "khulnasoft.Float64Input"
 	case model.StringType:
-		return "pulumi.StringInput"
+		return "khulnasoft.StringInput"
 	default:
 		switch pclType := pclType.(type) {
 		case *model.ListType, *model.MapType:
@@ -314,11 +314,11 @@ func (g *generator) genComponentType(w io.Writer, componentName string, componen
 	g.Fgenf(w, "type %s struct {\n", componentTypeName)
 	g.Indented(func() {
 		g.Fgen(w, g.Indent)
-		g.Fgen(w, "pulumi.ResourceState\n")
+		g.Fgen(w, "khulnasoft.ResourceState\n")
 		for _, output := range outputs {
 			g.Fgen(w, g.Indent)
 			fieldName := Title(output.LogicalName())
-			fieldType := "pulumi.AnyOutput" // TODO: update this
+			fieldType := "khulnasoft.AnyOutput" // TODO: update this
 			g.Fgenf(w, "%s %s\n", fieldName, fieldType)
 			g.Fgen(w, "")
 		}
@@ -331,10 +331,10 @@ func (g *generator) genComponentDefinition(w io.Writer, componentName string, co
 	argsTypeName := Title(componentName) + "Args"
 	g.Fgenf(w, "func New%s(\n", componentTypeName)
 	g.Indented(func() {
-		g.Fgenf(w, "%sctx *pulumi.Context,\n", g.Indent)
+		g.Fgenf(w, "%sctx *khulnasoft.Context,\n", g.Indent)
 		g.Fgenf(w, "%sname string,\n", g.Indent)
 		g.Fgenf(w, "%sargs *%s,\n", g.Indent, argsTypeName)
-		g.Fgenf(w, "%sopts ...pulumi.ResourceOption,\n", g.Indent)
+		g.Fgenf(w, "%sopts ...khulnasoft.ResourceOption,\n", g.Indent)
 	})
 
 	g.Fgenf(w, ") (*%s, error) {\n", componentTypeName)
@@ -383,14 +383,14 @@ func (g *generator) genComponentDefinition(w io.Writer, componentName string, co
 		outputs := component.Program.OutputVariables()
 
 		if len(outputs) == 0 {
-			g.Fgenf(w, "err = %sctx.RegisterResourceOutputs(&componentResource, pulumi.Map{})\n", g.Indent)
+			g.Fgenf(w, "err = %sctx.RegisterResourceOutputs(&componentResource, khulnasoft.Map{})\n", g.Indent)
 			g.Fgenf(w, "%sif err != nil {\n", g.Indent)
 			g.Indented(func() {
 				g.Fgenf(w, "%sreturn nil, err\n", g.Indent)
 			})
 			g.Fgenf(w, "%s}\n", g.Indent)
 		} else {
-			g.Fgenf(w, "err = %sctx.RegisterResourceOutputs(&componentResource, pulumi.Map{\n", g.Indent)
+			g.Fgenf(w, "err = %sctx.RegisterResourceOutputs(&componentResource, khulnasoft.Map{\n", g.Indent)
 			g.Indented(func() {
 				for _, output := range outputs {
 					g.Fgenf(w, "%s\"%s\": %v,\n", g.Indent, output.LogicalName(), output.Value)
@@ -446,7 +446,7 @@ func GenerateProgramWithOptions(program *pcl.Program, opts GenerateProgramOption
 	var index bytes.Buffer
 	g.genPreamble(&index, program, helpers)
 	g.Fprintf(&index, "func main() {\n")
-	g.Fprintf(&index, "pulumi.Run(func(ctx *pulumi.Context) error {\n")
+	g.Fprintf(&index, "khulnasoft.Run(func(ctx *khulnasoft.Context) error {\n")
 	index.Write(progPostamble.Bytes())
 
 	mainProgramContent := index.Bytes()
@@ -535,9 +535,9 @@ func GenerateProjectFiles(project workspace.Project, program *pcl.Program,
 	contract.AssertNoErrorf(err, "could not add Go statement to go.mod")
 
 	packagePaths := map[string]string{}
-	packagePaths["pulumi"] = "github.com/pulumi/pulumi/sdk/v3"
-	err = gomod.AddRequire("github.com/pulumi/pulumi/sdk/v3", "v3.30.0")
-	contract.AssertNoErrorf(err, "could not add require statement for github.com/pulumi/pulumi/sdk/v3 to go.mod")
+	packagePaths["khulnasoft"] = "github.com/khulnasoft/khulnasoft/sdk/v3"
+	err = gomod.AddRequire("github.com/khulnasoft/khulnasoft/sdk/v3", "v3.30.0")
+	contract.AssertNoErrorf(err, "could not add require statement for github.com/khulnasoft/khulnasoft/sdk/v3 to go.mod")
 
 	// For each package add a PackageReference line
 	packages, err := programPackageDefs(program)
@@ -545,7 +545,7 @@ func GenerateProjectFiles(project workspace.Project, program *pcl.Program,
 		return nil, diagnostics, err
 	}
 	for _, p := range packages {
-		if p.Name == "pulumi" {
+		if p.Name == "khulnasoft" {
 			continue
 		}
 		if err := p.ImportLanguages(map[string]schema.Language{"go": Importer}); err != nil {
@@ -560,7 +560,7 @@ func GenerateProjectFiles(project workspace.Project, program *pcl.Program,
 			//
 			// Here are two cases, first the parseable case:
 			//
-			// * go get github.com/pulumi/pulumi-aws/sdk/v5/go/aws@v5.3.0
+			// * go get github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws@v5.3.0
 			//          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ module path
 			//                                           ~~ major version
 			//                                              ~~~~~~ package path - can be any number of path parts
@@ -568,7 +568,7 @@ func GenerateProjectFiles(project workspace.Project, program *pcl.Program,
 			//
 			// Here, we can cut on the major version.
 
-			// * go get github.com/pulumi/pulumi-aws-native/sdk/go/aws@v0.16.0
+			// * go get github.com/khulnasoft/khulnasoft-aws-native/sdk/go/aws@v0.16.0
 			//          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ module path
 			//                                                  ~~~~~~ package path - can be any number of path parts
 			//                                                         ~~~~~~~ version
@@ -619,7 +619,7 @@ func GenerateProjectFiles(project workspace.Project, program *pcl.Program,
 	}
 
 	// For any local dependencies, add a replace statement. Make sure we iter this in sorted order (c.f.
-	// https://github.com/pulumi/pulumi/issues/16859).
+	// https://github.com/khulnasoft/khulnasoft/issues/16859).
 	pkgs := codegen.SortedKeys(localDependencies)
 	for _, pkg := range pkgs {
 		path := localDependencies[pkg]
@@ -716,7 +716,7 @@ func (g *generator) genPreamble(w io.Writer, program *pcl.Program, preambleHelpe
 	g.Fprint(w, "package main\n\n")
 	g.Fprintf(w, "import (\n")
 
-	g.importer.Import("github.com/pulumi/pulumi/sdk/v3/go/pulumi", "pulumi")
+	g.importer.Import("github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft", "khulnasoft")
 	for idx, group := range g.importer.ImportGroups() {
 		if idx > 0 {
 			g.Fprintf(w, "\n")
@@ -788,7 +788,7 @@ func (g *generator) collectTypeImports(program *pcl.Program, t schema.Type) {
 	g.addPulumiImport(pkg, vPath, mod, name)
 }
 
-// collect Imports returns two sets of packages imported by the program, std lib packages and pulumi packages
+// collect Imports returns two sets of packages imported by the program, std lib packages and khulnasoft packages
 func (g *generator) collectImports(program *pcl.Program) (helpers codegen.StringSet) {
 	helpers = codegen.NewStringSet()
 
@@ -797,7 +797,7 @@ func (g *generator) collectImports(program *pcl.Program) (helpers codegen.String
 		if r, isResource := n.(*pcl.Resource); isResource {
 			pcl.FixupPulumiPackageTokens(r)
 			pkg, mod, name, _ := r.DecomposeToken()
-			if pkg == "pulumi" {
+			if pkg == "khulnasoft" {
 				if mod == "providers" {
 					pkg = name
 					mod = ""
@@ -817,7 +817,7 @@ func (g *generator) collectImports(program *pcl.Program) (helpers codegen.String
 			g.addPulumiImport(pkg, vPath, mod, name)
 		}
 		if _, isConfigVar := n.(*pcl.ConfigVariable); isConfigVar {
-			g.importer.Import("github.com/pulumi/pulumi/sdk/v3/go/pulumi/config", "config")
+			g.importer.Import("github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config", "config")
 		}
 
 		diags := n.VisitExpressions(nil, func(n model.Expression) (model.Expression, hcl.Diagnostics) {
@@ -894,7 +894,7 @@ func (g *generator) collectConvertImports(
 		// cases here.
 		//
 		// Fully solving this is deferred for later:
-		// TODO[pulumi/pulumi#8324].
+		// TODO[khulnasoft/khulnasoft#8324].
 		switch arg0 := call.Args[0].(type) {
 		case *model.TemplateExpression:
 			if lit, ok := arg0.Parts[0].(*model.LiteralValueExpression); ok &&
@@ -944,7 +944,7 @@ func (g *generator) addPulumiImport(pkg, versionPath, mod, name string) {
 	// module named IndexToken.
 	info, hasInfo := g.getGoPackageInfo(pkg) // We're allowing `info` to be zero-initialized
 	importPath := func(mod string) string {
-		importBasePath := fmt.Sprintf("github.com/pulumi/pulumi-%s/sdk%s/go/%s", pkg, versionPath, pkg)
+		importBasePath := fmt.Sprintf("github.com/khulnasoft/khulnasoft-%s/sdk%s/go/%s", pkg, versionPath, pkg)
 		if info.ImportBasePath != "" {
 			importBasePath = info.ImportBasePath
 		} else {
@@ -1041,7 +1041,7 @@ func (g *generator) genNode(w io.Writer, n pcl.Node) {
 	}
 }
 
-var resourceType = model.NewOpaqueType("pulumi.Resource")
+var resourceType = model.NewOpaqueType("khulnasoft.Resource")
 
 func (g *generator) lowerResourceOptions(opts *pcl.ResourceOptions) (*model.Block, []interface{}) {
 	if opts == nil {
@@ -1100,7 +1100,7 @@ func (g *generator) genResourceOptions(w io.Writer, block *model.Block) {
 
 	for _, item := range block.Body.Items {
 		attr := item.(*model.Attribute)
-		g.Fgenf(w, ", pulumi.%s(%v)", attr.Name, attr.Value)
+		g.Fgenf(w, ", khulnasoft.%s(%v)", attr.Name, attr.Value)
 	}
 }
 
@@ -1108,7 +1108,7 @@ func (g *generator) genResource(w io.Writer, r *pcl.Resource) {
 	resName, resNameVar := r.LogicalName(), makeValidIdentifier(r.Name())
 	pkg, mod, typ, _ := r.DecomposeToken()
 	originalMod := mod
-	if pkg == "pulumi" && mod == "providers" {
+	if pkg == "khulnasoft" && mod == "providers" {
 		pkg = typ
 		mod = ""
 		typ = "Provider"
@@ -1669,8 +1669,8 @@ func (g *generator) genConfigVariable(w io.Writer, v *pcl.ConfigVariable) {
 // useLookupInvokeForm takes a token for an invoke and determines whether to use the
 // .Get or .Lookup form. The Go SDK has collisions in .Get methods that require renaming.
 // For instance, gen.go creates a resource getter for AWS VPCs that collides with a function:
-// GetVPC resource getter: https://github.com/pulumi/pulumi-aws/blob/7835df354694e2f9f23371602a9febebc6b45be8/sdk/go/aws/ec2/getVpc.go#L15
-// LookupVPC function: https://github.com/pulumi/pulumi-aws/blob/7835df354694e2f9f23371602a9febebc6b45be8/sdk/go/aws/ec2/getVpc.go#L15
+// GetVPC resource getter: https://github.com/khulnasoft/khulnasoft-aws/blob/7835df354694e2f9f23371602a9febebc6b45be8/sdk/go/aws/ec2/getVpc.go#L15
+// LookupVPC function: https://github.com/khulnasoft/khulnasoft-aws/blob/7835df354694e2f9f23371602a9febebc6b45be8/sdk/go/aws/ec2/getVpc.go#L15
 // Given that the naming here is not consisten, we must reverse the process from gen.go.
 //
 //nolint:lll
@@ -1847,7 +1847,7 @@ func (fi *fileImporter) Import(importPath string, name string) (actualName strin
 	// we'll try to combine the last two parts of the path
 	// into a single identifier.
 	//
-	// For example, if "github.com/pulumi/pulumi-aws/sdk/go/awsx/s3"
+	// For example, if "github.com/khulnasoft/khulnasoft-aws/sdk/go/awsx/s3"
 	// conflicts, we'll try to use "awsxs3" instead.
 	if idx := secondLastIndex(importPath, "/"); idx != -1 {
 		// "example.com/foo/bar/baz" -> "bar/baz"

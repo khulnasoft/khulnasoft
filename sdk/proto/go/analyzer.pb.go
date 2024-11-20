@@ -16,9 +16,9 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.20.1
-// source: pulumi/analyzer.proto
+// source: khulnasoft/analyzer.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -73,11 +73,11 @@ func (x EnforcementLevel) String() string {
 }
 
 func (EnforcementLevel) Descriptor() protoreflect.EnumDescriptor {
-	return file_pulumi_analyzer_proto_enumTypes[0].Descriptor()
+	return file_khulnasoft_analyzer_proto_enumTypes[0].Descriptor()
 }
 
 func (EnforcementLevel) Type() protoreflect.EnumType {
-	return &file_pulumi_analyzer_proto_enumTypes[0]
+	return &file_khulnasoft_analyzer_proto_enumTypes[0]
 }
 
 func (x EnforcementLevel) Number() protoreflect.EnumNumber {
@@ -86,7 +86,7 @@ func (x EnforcementLevel) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use EnforcementLevel.Descriptor instead.
 func (EnforcementLevel) EnumDescriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{0}
 }
 
 type AnalyzeRequest struct {
@@ -105,7 +105,7 @@ type AnalyzeRequest struct {
 func (x *AnalyzeRequest) Reset() {
 	*x = AnalyzeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[0]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -118,7 +118,7 @@ func (x *AnalyzeRequest) String() string {
 func (*AnalyzeRequest) ProtoMessage() {}
 
 func (x *AnalyzeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[0]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -131,7 +131,7 @@ func (x *AnalyzeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzeRequest.ProtoReflect.Descriptor instead.
 func (*AnalyzeRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *AnalyzeRequest) GetType() string {
@@ -198,7 +198,7 @@ type AnalyzerResource struct {
 func (x *AnalyzerResource) Reset() {
 	*x = AnalyzerResource{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[1]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -211,7 +211,7 @@ func (x *AnalyzerResource) String() string {
 func (*AnalyzerResource) ProtoMessage() {}
 
 func (x *AnalyzerResource) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[1]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -224,7 +224,7 @@ func (x *AnalyzerResource) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzerResource.ProtoReflect.Descriptor instead.
 func (*AnalyzerResource) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{1}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AnalyzerResource) GetType() string {
@@ -308,7 +308,7 @@ type AnalyzerResourceOptions struct {
 func (x *AnalyzerResourceOptions) Reset() {
 	*x = AnalyzerResourceOptions{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[2]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -321,7 +321,7 @@ func (x *AnalyzerResourceOptions) String() string {
 func (*AnalyzerResourceOptions) ProtoMessage() {}
 
 func (x *AnalyzerResourceOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[2]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -334,7 +334,7 @@ func (x *AnalyzerResourceOptions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzerResourceOptions.ProtoReflect.Descriptor instead.
 func (*AnalyzerResourceOptions) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{2}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AnalyzerResourceOptions) GetProtect() bool {
@@ -401,7 +401,7 @@ type AnalyzerProviderResource struct {
 func (x *AnalyzerProviderResource) Reset() {
 	*x = AnalyzerProviderResource{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[3]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -414,7 +414,7 @@ func (x *AnalyzerProviderResource) String() string {
 func (*AnalyzerProviderResource) ProtoMessage() {}
 
 func (x *AnalyzerProviderResource) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[3]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -427,7 +427,7 @@ func (x *AnalyzerProviderResource) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzerProviderResource.ProtoReflect.Descriptor instead.
 func (*AnalyzerProviderResource) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{3}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *AnalyzerProviderResource) GetType() string {
@@ -470,7 +470,7 @@ type AnalyzerPropertyDependencies struct {
 func (x *AnalyzerPropertyDependencies) Reset() {
 	*x = AnalyzerPropertyDependencies{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[4]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -483,7 +483,7 @@ func (x *AnalyzerPropertyDependencies) String() string {
 func (*AnalyzerPropertyDependencies) ProtoMessage() {}
 
 func (x *AnalyzerPropertyDependencies) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[4]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -496,7 +496,7 @@ func (x *AnalyzerPropertyDependencies) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzerPropertyDependencies.ProtoReflect.Descriptor instead.
 func (*AnalyzerPropertyDependencies) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{4}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *AnalyzerPropertyDependencies) GetUrns() []string {
@@ -517,7 +517,7 @@ type AnalyzeStackRequest struct {
 func (x *AnalyzeStackRequest) Reset() {
 	*x = AnalyzeStackRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[5]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -530,7 +530,7 @@ func (x *AnalyzeStackRequest) String() string {
 func (*AnalyzeStackRequest) ProtoMessage() {}
 
 func (x *AnalyzeStackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[5]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -543,7 +543,7 @@ func (x *AnalyzeStackRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzeStackRequest.ProtoReflect.Descriptor instead.
 func (*AnalyzeStackRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{5}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *AnalyzeStackRequest) GetResources() []*AnalyzerResource {
@@ -564,7 +564,7 @@ type AnalyzeResponse struct {
 func (x *AnalyzeResponse) Reset() {
 	*x = AnalyzeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[6]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -577,7 +577,7 @@ func (x *AnalyzeResponse) String() string {
 func (*AnalyzeResponse) ProtoMessage() {}
 
 func (x *AnalyzeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[6]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -590,7 +590,7 @@ func (x *AnalyzeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzeResponse.ProtoReflect.Descriptor instead.
 func (*AnalyzeResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{6}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *AnalyzeResponse) GetDiagnostics() []*AnalyzeDiagnostic {
@@ -611,14 +611,14 @@ type AnalyzeDiagnostic struct {
 	Description       string           `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`                                            // Description of policy rule. e.g., "encryption enabled."
 	Message           string           `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`                                                    // Message to display on policy violation, e.g., remediation steps.
 	Tags              []string         `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`                                                          // Keywords/terms to associate with a policy, e.g., "cost".
-	EnforcementLevel  EnforcementLevel `protobuf:"varint,7,opt,name=enforcementLevel,proto3,enum=pulumirpc.EnforcementLevel" json:"enforcementLevel,omitempty"` // Severity of the policy violation.
+	EnforcementLevel  EnforcementLevel `protobuf:"varint,7,opt,name=enforcementLevel,proto3,enum=khulnasoftrpc.EnforcementLevel" json:"enforcementLevel,omitempty"` // Severity of the policy violation.
 	Urn               string           `protobuf:"bytes,8,opt,name=urn,proto3" json:"urn,omitempty"`                                                            // URN of the resource that violates the policy.
 }
 
 func (x *AnalyzeDiagnostic) Reset() {
 	*x = AnalyzeDiagnostic{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[7]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -631,7 +631,7 @@ func (x *AnalyzeDiagnostic) String() string {
 func (*AnalyzeDiagnostic) ProtoMessage() {}
 
 func (x *AnalyzeDiagnostic) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[7]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -644,7 +644,7 @@ func (x *AnalyzeDiagnostic) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzeDiagnostic.ProtoReflect.Descriptor instead.
 func (*AnalyzeDiagnostic) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{7}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *AnalyzeDiagnostic) GetPolicyName() string {
@@ -720,7 +720,7 @@ type Remediation struct {
 func (x *Remediation) Reset() {
 	*x = Remediation{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[8]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -733,7 +733,7 @@ func (x *Remediation) String() string {
 func (*Remediation) ProtoMessage() {}
 
 func (x *Remediation) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[8]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -746,7 +746,7 @@ func (x *Remediation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Remediation.ProtoReflect.Descriptor instead.
 func (*Remediation) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{8}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Remediation) GetPolicyName() string {
@@ -803,7 +803,7 @@ type RemediateResponse struct {
 func (x *RemediateResponse) Reset() {
 	*x = RemediateResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[9]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -816,7 +816,7 @@ func (x *RemediateResponse) String() string {
 func (*RemediateResponse) ProtoMessage() {}
 
 func (x *RemediateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[9]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -829,7 +829,7 @@ func (x *RemediateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemediateResponse.ProtoReflect.Descriptor instead.
 func (*RemediateResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{9}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *RemediateResponse) GetRemediations() []*Remediation {
@@ -856,7 +856,7 @@ type AnalyzerInfo struct {
 func (x *AnalyzerInfo) Reset() {
 	*x = AnalyzerInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[10]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -869,7 +869,7 @@ func (x *AnalyzerInfo) String() string {
 func (*AnalyzerInfo) ProtoMessage() {}
 
 func (x *AnalyzerInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[10]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -882,7 +882,7 @@ func (x *AnalyzerInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzerInfo.ProtoReflect.Descriptor instead.
 func (*AnalyzerInfo) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{10}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *AnalyzerInfo) GetName() string {
@@ -937,14 +937,14 @@ type PolicyInfo struct {
 	DisplayName      string              `protobuf:"bytes,2,opt,name=displayName,proto3" json:"displayName,omitempty"`                                            // Pretty name for the policy.
 	Description      string              `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`                                            // Description of policy rule. e.g., "encryption enabled."
 	Message          string              `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty"`                                                    // Message to display on policy violation, e.g., remediation steps.
-	EnforcementLevel EnforcementLevel    `protobuf:"varint,5,opt,name=enforcementLevel,proto3,enum=pulumirpc.EnforcementLevel" json:"enforcementLevel,omitempty"` // Severity of the policy violation.
+	EnforcementLevel EnforcementLevel    `protobuf:"varint,5,opt,name=enforcementLevel,proto3,enum=khulnasoftrpc.EnforcementLevel" json:"enforcementLevel,omitempty"` // Severity of the policy violation.
 	ConfigSchema     *PolicyConfigSchema `protobuf:"bytes,6,opt,name=configSchema,proto3" json:"configSchema,omitempty"`                                          // Config schema for the policy.
 }
 
 func (x *PolicyInfo) Reset() {
 	*x = PolicyInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[11]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -957,7 +957,7 @@ func (x *PolicyInfo) String() string {
 func (*PolicyInfo) ProtoMessage() {}
 
 func (x *PolicyInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[11]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -970,7 +970,7 @@ func (x *PolicyInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PolicyInfo.ProtoReflect.Descriptor instead.
 func (*PolicyInfo) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{11}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *PolicyInfo) GetName() string {
@@ -1028,7 +1028,7 @@ type PolicyConfigSchema struct {
 func (x *PolicyConfigSchema) Reset() {
 	*x = PolicyConfigSchema{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[12]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1041,7 +1041,7 @@ func (x *PolicyConfigSchema) String() string {
 func (*PolicyConfigSchema) ProtoMessage() {}
 
 func (x *PolicyConfigSchema) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[12]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1054,7 +1054,7 @@ func (x *PolicyConfigSchema) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PolicyConfigSchema.ProtoReflect.Descriptor instead.
 func (*PolicyConfigSchema) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{12}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *PolicyConfigSchema) GetProperties() *structpb.Struct {
@@ -1077,14 +1077,14 @@ type PolicyConfig struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	EnforcementLevel EnforcementLevel `protobuf:"varint,1,opt,name=enforcementLevel,proto3,enum=pulumirpc.EnforcementLevel" json:"enforcementLevel,omitempty"` // Enforcement level of the policy.
+	EnforcementLevel EnforcementLevel `protobuf:"varint,1,opt,name=enforcementLevel,proto3,enum=khulnasoftrpc.EnforcementLevel" json:"enforcementLevel,omitempty"` // Enforcement level of the policy.
 	Properties       *structpb.Struct `protobuf:"bytes,2,opt,name=properties,proto3" json:"properties,omitempty"`                                              // Configuration properties of the policy.
 }
 
 func (x *PolicyConfig) Reset() {
 	*x = PolicyConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[13]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1097,7 +1097,7 @@ func (x *PolicyConfig) String() string {
 func (*PolicyConfig) ProtoMessage() {}
 
 func (x *PolicyConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[13]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1110,7 +1110,7 @@ func (x *PolicyConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PolicyConfig.ProtoReflect.Descriptor instead.
 func (*PolicyConfig) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{13}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *PolicyConfig) GetEnforcementLevel() EnforcementLevel {
@@ -1139,7 +1139,7 @@ type ConfigureAnalyzerRequest struct {
 func (x *ConfigureAnalyzerRequest) Reset() {
 	*x = ConfigureAnalyzerRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[14]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1152,7 +1152,7 @@ func (x *ConfigureAnalyzerRequest) String() string {
 func (*ConfigureAnalyzerRequest) ProtoMessage() {}
 
 func (x *ConfigureAnalyzerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[14]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1165,7 +1165,7 @@ func (x *ConfigureAnalyzerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigureAnalyzerRequest.ProtoReflect.Descriptor instead.
 func (*ConfigureAnalyzerRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{14}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ConfigureAnalyzerRequest) GetPolicyConfig() map[string]*PolicyConfig {
@@ -1189,7 +1189,7 @@ type AnalyzerResourceOptions_CustomTimeouts struct {
 func (x *AnalyzerResourceOptions_CustomTimeouts) Reset() {
 	*x = AnalyzerResourceOptions_CustomTimeouts{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_analyzer_proto_msgTypes[16]
+		mi := &file_khulnasoft_analyzer_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1202,7 +1202,7 @@ func (x *AnalyzerResourceOptions_CustomTimeouts) String() string {
 func (*AnalyzerResourceOptions_CustomTimeouts) ProtoMessage() {}
 
 func (x *AnalyzerResourceOptions_CustomTimeouts) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_analyzer_proto_msgTypes[16]
+	mi := &file_khulnasoft_analyzer_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1215,7 +1215,7 @@ func (x *AnalyzerResourceOptions_CustomTimeouts) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use AnalyzerResourceOptions_CustomTimeouts.ProtoReflect.Descriptor instead.
 func (*AnalyzerResourceOptions_CustomTimeouts) Descriptor() ([]byte, []int) {
-	return file_pulumi_analyzer_proto_rawDescGZIP(), []int{2, 0}
+	return file_khulnasoft_analyzer_proto_rawDescGZIP(), []int{2, 0}
 }
 
 func (x *AnalyzerResourceOptions_CustomTimeouts) GetCreate() float64 {
@@ -1239,9 +1239,9 @@ func (x *AnalyzerResourceOptions_CustomTimeouts) GetDelete() float64 {
 	return 0
 }
 
-var File_pulumi_analyzer_proto protoreflect.FileDescriptor
+var File_khulnasoft_analyzer_proto protoreflect.FileDescriptor
 
-var file_pulumi_analyzer_proto_rawDesc = []byte{
+var file_khulnasoft_analyzer_proto_rawDesc = []byte{
 	0x0a, 0x15, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x61, 0x6e, 0x61, 0x6c, 0x79, 0x7a, 0x65,
 	0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x72,
 	0x70, 0x63, 0x1a, 0x13, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x70, 0x6c, 0x75, 0x67, 0x69,
@@ -1500,82 +1500,82 @@ var file_pulumi_analyzer_proto_rawDesc = []byte{
 }
 
 var (
-	file_pulumi_analyzer_proto_rawDescOnce sync.Once
-	file_pulumi_analyzer_proto_rawDescData = file_pulumi_analyzer_proto_rawDesc
+	file_khulnasoft_analyzer_proto_rawDescOnce sync.Once
+	file_khulnasoft_analyzer_proto_rawDescData = file_khulnasoft_analyzer_proto_rawDesc
 )
 
-func file_pulumi_analyzer_proto_rawDescGZIP() []byte {
-	file_pulumi_analyzer_proto_rawDescOnce.Do(func() {
-		file_pulumi_analyzer_proto_rawDescData = protoimpl.X.CompressGZIP(file_pulumi_analyzer_proto_rawDescData)
+func file_khulnasoft_analyzer_proto_rawDescGZIP() []byte {
+	file_khulnasoft_analyzer_proto_rawDescOnce.Do(func() {
+		file_khulnasoft_analyzer_proto_rawDescData = protoimpl.X.CompressGZIP(file_khulnasoft_analyzer_proto_rawDescData)
 	})
-	return file_pulumi_analyzer_proto_rawDescData
+	return file_khulnasoft_analyzer_proto_rawDescData
 }
 
-var file_pulumi_analyzer_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_pulumi_analyzer_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
-var file_pulumi_analyzer_proto_goTypes = []interface{}{
-	(EnforcementLevel)(0),                          // 0: pulumirpc.EnforcementLevel
-	(*AnalyzeRequest)(nil),                         // 1: pulumirpc.AnalyzeRequest
-	(*AnalyzerResource)(nil),                       // 2: pulumirpc.AnalyzerResource
-	(*AnalyzerResourceOptions)(nil),                // 3: pulumirpc.AnalyzerResourceOptions
-	(*AnalyzerProviderResource)(nil),               // 4: pulumirpc.AnalyzerProviderResource
-	(*AnalyzerPropertyDependencies)(nil),           // 5: pulumirpc.AnalyzerPropertyDependencies
-	(*AnalyzeStackRequest)(nil),                    // 6: pulumirpc.AnalyzeStackRequest
-	(*AnalyzeResponse)(nil),                        // 7: pulumirpc.AnalyzeResponse
-	(*AnalyzeDiagnostic)(nil),                      // 8: pulumirpc.AnalyzeDiagnostic
-	(*Remediation)(nil),                            // 9: pulumirpc.Remediation
-	(*RemediateResponse)(nil),                      // 10: pulumirpc.RemediateResponse
-	(*AnalyzerInfo)(nil),                           // 11: pulumirpc.AnalyzerInfo
-	(*PolicyInfo)(nil),                             // 12: pulumirpc.PolicyInfo
-	(*PolicyConfigSchema)(nil),                     // 13: pulumirpc.PolicyConfigSchema
-	(*PolicyConfig)(nil),                           // 14: pulumirpc.PolicyConfig
-	(*ConfigureAnalyzerRequest)(nil),               // 15: pulumirpc.ConfigureAnalyzerRequest
-	nil,                                            // 16: pulumirpc.AnalyzerResource.PropertyDependenciesEntry
-	(*AnalyzerResourceOptions_CustomTimeouts)(nil), // 17: pulumirpc.AnalyzerResourceOptions.CustomTimeouts
-	nil,                     // 18: pulumirpc.AnalyzerInfo.InitialConfigEntry
-	nil,                     // 19: pulumirpc.ConfigureAnalyzerRequest.PolicyConfigEntry
+var file_khulnasoft_analyzer_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_khulnasoft_analyzer_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_khulnasoft_analyzer_proto_goTypes = []interface{}{
+	(EnforcementLevel)(0),                          // 0: khulnasoftrpc.EnforcementLevel
+	(*AnalyzeRequest)(nil),                         // 1: khulnasoftrpc.AnalyzeRequest
+	(*AnalyzerResource)(nil),                       // 2: khulnasoftrpc.AnalyzerResource
+	(*AnalyzerResourceOptions)(nil),                // 3: khulnasoftrpc.AnalyzerResourceOptions
+	(*AnalyzerProviderResource)(nil),               // 4: khulnasoftrpc.AnalyzerProviderResource
+	(*AnalyzerPropertyDependencies)(nil),           // 5: khulnasoftrpc.AnalyzerPropertyDependencies
+	(*AnalyzeStackRequest)(nil),                    // 6: khulnasoftrpc.AnalyzeStackRequest
+	(*AnalyzeResponse)(nil),                        // 7: khulnasoftrpc.AnalyzeResponse
+	(*AnalyzeDiagnostic)(nil),                      // 8: khulnasoftrpc.AnalyzeDiagnostic
+	(*Remediation)(nil),                            // 9: khulnasoftrpc.Remediation
+	(*RemediateResponse)(nil),                      // 10: khulnasoftrpc.RemediateResponse
+	(*AnalyzerInfo)(nil),                           // 11: khulnasoftrpc.AnalyzerInfo
+	(*PolicyInfo)(nil),                             // 12: khulnasoftrpc.PolicyInfo
+	(*PolicyConfigSchema)(nil),                     // 13: khulnasoftrpc.PolicyConfigSchema
+	(*PolicyConfig)(nil),                           // 14: khulnasoftrpc.PolicyConfig
+	(*ConfigureAnalyzerRequest)(nil),               // 15: khulnasoftrpc.ConfigureAnalyzerRequest
+	nil,                                            // 16: khulnasoftrpc.AnalyzerResource.PropertyDependenciesEntry
+	(*AnalyzerResourceOptions_CustomTimeouts)(nil), // 17: khulnasoftrpc.AnalyzerResourceOptions.CustomTimeouts
+	nil,                     // 18: khulnasoftrpc.AnalyzerInfo.InitialConfigEntry
+	nil,                     // 19: khulnasoftrpc.ConfigureAnalyzerRequest.PolicyConfigEntry
 	(*structpb.Struct)(nil), // 20: google.protobuf.Struct
 	(*emptypb.Empty)(nil),   // 21: google.protobuf.Empty
-	(*PluginInfo)(nil),      // 22: pulumirpc.PluginInfo
+	(*PluginInfo)(nil),      // 22: khulnasoftrpc.PluginInfo
 }
-var file_pulumi_analyzer_proto_depIdxs = []int32{
-	20, // 0: pulumirpc.AnalyzeRequest.properties:type_name -> google.protobuf.Struct
-	3,  // 1: pulumirpc.AnalyzeRequest.options:type_name -> pulumirpc.AnalyzerResourceOptions
-	4,  // 2: pulumirpc.AnalyzeRequest.provider:type_name -> pulumirpc.AnalyzerProviderResource
-	20, // 3: pulumirpc.AnalyzerResource.properties:type_name -> google.protobuf.Struct
-	3,  // 4: pulumirpc.AnalyzerResource.options:type_name -> pulumirpc.AnalyzerResourceOptions
-	4,  // 5: pulumirpc.AnalyzerResource.provider:type_name -> pulumirpc.AnalyzerProviderResource
-	16, // 6: pulumirpc.AnalyzerResource.propertyDependencies:type_name -> pulumirpc.AnalyzerResource.PropertyDependenciesEntry
-	17, // 7: pulumirpc.AnalyzerResourceOptions.customTimeouts:type_name -> pulumirpc.AnalyzerResourceOptions.CustomTimeouts
-	20, // 8: pulumirpc.AnalyzerProviderResource.properties:type_name -> google.protobuf.Struct
-	2,  // 9: pulumirpc.AnalyzeStackRequest.resources:type_name -> pulumirpc.AnalyzerResource
-	8,  // 10: pulumirpc.AnalyzeResponse.diagnostics:type_name -> pulumirpc.AnalyzeDiagnostic
-	0,  // 11: pulumirpc.AnalyzeDiagnostic.enforcementLevel:type_name -> pulumirpc.EnforcementLevel
-	20, // 12: pulumirpc.Remediation.properties:type_name -> google.protobuf.Struct
-	9,  // 13: pulumirpc.RemediateResponse.remediations:type_name -> pulumirpc.Remediation
-	12, // 14: pulumirpc.AnalyzerInfo.policies:type_name -> pulumirpc.PolicyInfo
-	18, // 15: pulumirpc.AnalyzerInfo.initialConfig:type_name -> pulumirpc.AnalyzerInfo.InitialConfigEntry
-	0,  // 16: pulumirpc.PolicyInfo.enforcementLevel:type_name -> pulumirpc.EnforcementLevel
-	13, // 17: pulumirpc.PolicyInfo.configSchema:type_name -> pulumirpc.PolicyConfigSchema
-	20, // 18: pulumirpc.PolicyConfigSchema.properties:type_name -> google.protobuf.Struct
-	0,  // 19: pulumirpc.PolicyConfig.enforcementLevel:type_name -> pulumirpc.EnforcementLevel
-	20, // 20: pulumirpc.PolicyConfig.properties:type_name -> google.protobuf.Struct
-	19, // 21: pulumirpc.ConfigureAnalyzerRequest.policyConfig:type_name -> pulumirpc.ConfigureAnalyzerRequest.PolicyConfigEntry
-	5,  // 22: pulumirpc.AnalyzerResource.PropertyDependenciesEntry.value:type_name -> pulumirpc.AnalyzerPropertyDependencies
-	14, // 23: pulumirpc.AnalyzerInfo.InitialConfigEntry.value:type_name -> pulumirpc.PolicyConfig
-	14, // 24: pulumirpc.ConfigureAnalyzerRequest.PolicyConfigEntry.value:type_name -> pulumirpc.PolicyConfig
-	1,  // 25: pulumirpc.Analyzer.Analyze:input_type -> pulumirpc.AnalyzeRequest
-	6,  // 26: pulumirpc.Analyzer.AnalyzeStack:input_type -> pulumirpc.AnalyzeStackRequest
-	1,  // 27: pulumirpc.Analyzer.Remediate:input_type -> pulumirpc.AnalyzeRequest
-	21, // 28: pulumirpc.Analyzer.GetAnalyzerInfo:input_type -> google.protobuf.Empty
-	21, // 29: pulumirpc.Analyzer.GetPluginInfo:input_type -> google.protobuf.Empty
-	15, // 30: pulumirpc.Analyzer.Configure:input_type -> pulumirpc.ConfigureAnalyzerRequest
-	7,  // 31: pulumirpc.Analyzer.Analyze:output_type -> pulumirpc.AnalyzeResponse
-	7,  // 32: pulumirpc.Analyzer.AnalyzeStack:output_type -> pulumirpc.AnalyzeResponse
-	10, // 33: pulumirpc.Analyzer.Remediate:output_type -> pulumirpc.RemediateResponse
-	11, // 34: pulumirpc.Analyzer.GetAnalyzerInfo:output_type -> pulumirpc.AnalyzerInfo
-	22, // 35: pulumirpc.Analyzer.GetPluginInfo:output_type -> pulumirpc.PluginInfo
-	21, // 36: pulumirpc.Analyzer.Configure:output_type -> google.protobuf.Empty
+var file_khulnasoft_analyzer_proto_depIdxs = []int32{
+	20, // 0: khulnasoftrpc.AnalyzeRequest.properties:type_name -> google.protobuf.Struct
+	3,  // 1: khulnasoftrpc.AnalyzeRequest.options:type_name -> khulnasoftrpc.AnalyzerResourceOptions
+	4,  // 2: khulnasoftrpc.AnalyzeRequest.provider:type_name -> khulnasoftrpc.AnalyzerProviderResource
+	20, // 3: khulnasoftrpc.AnalyzerResource.properties:type_name -> google.protobuf.Struct
+	3,  // 4: khulnasoftrpc.AnalyzerResource.options:type_name -> khulnasoftrpc.AnalyzerResourceOptions
+	4,  // 5: khulnasoftrpc.AnalyzerResource.provider:type_name -> khulnasoftrpc.AnalyzerProviderResource
+	16, // 6: khulnasoftrpc.AnalyzerResource.propertyDependencies:type_name -> khulnasoftrpc.AnalyzerResource.PropertyDependenciesEntry
+	17, // 7: khulnasoftrpc.AnalyzerResourceOptions.customTimeouts:type_name -> khulnasoftrpc.AnalyzerResourceOptions.CustomTimeouts
+	20, // 8: khulnasoftrpc.AnalyzerProviderResource.properties:type_name -> google.protobuf.Struct
+	2,  // 9: khulnasoftrpc.AnalyzeStackRequest.resources:type_name -> khulnasoftrpc.AnalyzerResource
+	8,  // 10: khulnasoftrpc.AnalyzeResponse.diagnostics:type_name -> khulnasoftrpc.AnalyzeDiagnostic
+	0,  // 11: khulnasoftrpc.AnalyzeDiagnostic.enforcementLevel:type_name -> khulnasoftrpc.EnforcementLevel
+	20, // 12: khulnasoftrpc.Remediation.properties:type_name -> google.protobuf.Struct
+	9,  // 13: khulnasoftrpc.RemediateResponse.remediations:type_name -> khulnasoftrpc.Remediation
+	12, // 14: khulnasoftrpc.AnalyzerInfo.policies:type_name -> khulnasoftrpc.PolicyInfo
+	18, // 15: khulnasoftrpc.AnalyzerInfo.initialConfig:type_name -> khulnasoftrpc.AnalyzerInfo.InitialConfigEntry
+	0,  // 16: khulnasoftrpc.PolicyInfo.enforcementLevel:type_name -> khulnasoftrpc.EnforcementLevel
+	13, // 17: khulnasoftrpc.PolicyInfo.configSchema:type_name -> khulnasoftrpc.PolicyConfigSchema
+	20, // 18: khulnasoftrpc.PolicyConfigSchema.properties:type_name -> google.protobuf.Struct
+	0,  // 19: khulnasoftrpc.PolicyConfig.enforcementLevel:type_name -> khulnasoftrpc.EnforcementLevel
+	20, // 20: khulnasoftrpc.PolicyConfig.properties:type_name -> google.protobuf.Struct
+	19, // 21: khulnasoftrpc.ConfigureAnalyzerRequest.policyConfig:type_name -> khulnasoftrpc.ConfigureAnalyzerRequest.PolicyConfigEntry
+	5,  // 22: khulnasoftrpc.AnalyzerResource.PropertyDependenciesEntry.value:type_name -> khulnasoftrpc.AnalyzerPropertyDependencies
+	14, // 23: khulnasoftrpc.AnalyzerInfo.InitialConfigEntry.value:type_name -> khulnasoftrpc.PolicyConfig
+	14, // 24: khulnasoftrpc.ConfigureAnalyzerRequest.PolicyConfigEntry.value:type_name -> khulnasoftrpc.PolicyConfig
+	1,  // 25: khulnasoftrpc.Analyzer.Analyze:input_type -> khulnasoftrpc.AnalyzeRequest
+	6,  // 26: khulnasoftrpc.Analyzer.AnalyzeStack:input_type -> khulnasoftrpc.AnalyzeStackRequest
+	1,  // 27: khulnasoftrpc.Analyzer.Remediate:input_type -> khulnasoftrpc.AnalyzeRequest
+	21, // 28: khulnasoftrpc.Analyzer.GetAnalyzerInfo:input_type -> google.protobuf.Empty
+	21, // 29: khulnasoftrpc.Analyzer.GetPluginInfo:input_type -> google.protobuf.Empty
+	15, // 30: khulnasoftrpc.Analyzer.Configure:input_type -> khulnasoftrpc.ConfigureAnalyzerRequest
+	7,  // 31: khulnasoftrpc.Analyzer.Analyze:output_type -> khulnasoftrpc.AnalyzeResponse
+	7,  // 32: khulnasoftrpc.Analyzer.AnalyzeStack:output_type -> khulnasoftrpc.AnalyzeResponse
+	10, // 33: khulnasoftrpc.Analyzer.Remediate:output_type -> khulnasoftrpc.RemediateResponse
+	11, // 34: khulnasoftrpc.Analyzer.GetAnalyzerInfo:output_type -> khulnasoftrpc.AnalyzerInfo
+	22, // 35: khulnasoftrpc.Analyzer.GetPluginInfo:output_type -> khulnasoftrpc.PluginInfo
+	21, // 36: khulnasoftrpc.Analyzer.Configure:output_type -> google.protobuf.Empty
 	31, // [31:37] is the sub-list for method output_type
 	25, // [25:31] is the sub-list for method input_type
 	25, // [25:25] is the sub-list for extension type_name
@@ -1583,14 +1583,14 @@ var file_pulumi_analyzer_proto_depIdxs = []int32{
 	0,  // [0:25] is the sub-list for field type_name
 }
 
-func init() { file_pulumi_analyzer_proto_init() }
-func file_pulumi_analyzer_proto_init() {
-	if File_pulumi_analyzer_proto != nil {
+func init() { file_khulnasoft_analyzer_proto_init() }
+func file_khulnasoft_analyzer_proto_init() {
+	if File_khulnasoft_analyzer_proto != nil {
 		return
 	}
-	file_pulumi_plugin_proto_init()
+	file_khulnasoft_plugin_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_pulumi_analyzer_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AnalyzeRequest); i {
 			case 0:
 				return &v.state
@@ -1602,7 +1602,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AnalyzerResource); i {
 			case 0:
 				return &v.state
@@ -1614,7 +1614,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AnalyzerResourceOptions); i {
 			case 0:
 				return &v.state
@@ -1626,7 +1626,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AnalyzerProviderResource); i {
 			case 0:
 				return &v.state
@@ -1638,7 +1638,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AnalyzerPropertyDependencies); i {
 			case 0:
 				return &v.state
@@ -1650,7 +1650,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AnalyzeStackRequest); i {
 			case 0:
 				return &v.state
@@ -1662,7 +1662,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AnalyzeResponse); i {
 			case 0:
 				return &v.state
@@ -1674,7 +1674,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AnalyzeDiagnostic); i {
 			case 0:
 				return &v.state
@@ -1686,7 +1686,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Remediation); i {
 			case 0:
 				return &v.state
@@ -1698,7 +1698,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RemediateResponse); i {
 			case 0:
 				return &v.state
@@ -1710,7 +1710,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AnalyzerInfo); i {
 			case 0:
 				return &v.state
@@ -1722,7 +1722,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PolicyInfo); i {
 			case 0:
 				return &v.state
@@ -1734,7 +1734,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PolicyConfigSchema); i {
 			case 0:
 				return &v.state
@@ -1746,7 +1746,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PolicyConfig); i {
 			case 0:
 				return &v.state
@@ -1758,7 +1758,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigureAnalyzerRequest); i {
 			case 0:
 				return &v.state
@@ -1770,7 +1770,7 @@ func file_pulumi_analyzer_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_analyzer_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_analyzer_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AnalyzerResourceOptions_CustomTimeouts); i {
 			case 0:
 				return &v.state
@@ -1787,19 +1787,19 @@ func file_pulumi_analyzer_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pulumi_analyzer_proto_rawDesc,
+			RawDescriptor: file_khulnasoft_analyzer_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_pulumi_analyzer_proto_goTypes,
-		DependencyIndexes: file_pulumi_analyzer_proto_depIdxs,
-		EnumInfos:         file_pulumi_analyzer_proto_enumTypes,
-		MessageInfos:      file_pulumi_analyzer_proto_msgTypes,
+		GoTypes:           file_khulnasoft_analyzer_proto_goTypes,
+		DependencyIndexes: file_khulnasoft_analyzer_proto_depIdxs,
+		EnumInfos:         file_khulnasoft_analyzer_proto_enumTypes,
+		MessageInfos:      file_khulnasoft_analyzer_proto_msgTypes,
 	}.Build()
-	File_pulumi_analyzer_proto = out.File
-	file_pulumi_analyzer_proto_rawDesc = nil
-	file_pulumi_analyzer_proto_goTypes = nil
-	file_pulumi_analyzer_proto_depIdxs = nil
+	File_khulnasoft_analyzer_proto = out.File
+	file_khulnasoft_analyzer_proto_rawDesc = nil
+	file_khulnasoft_analyzer_proto_goTypes = nil
+	file_khulnasoft_analyzer_proto_depIdxs = nil
 }

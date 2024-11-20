@@ -15,7 +15,7 @@
 package engine
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
 )
 
 func newDebuggingEventEmitter(events eventEmitter) plugin.DebugEventEmitter {

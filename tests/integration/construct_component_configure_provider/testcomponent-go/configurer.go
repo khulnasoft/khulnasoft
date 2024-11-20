@@ -18,25 +18,25 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-tls/sdk/v4/go/tls"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Configurer struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	TlsProviderOutput tls.ProviderOutput `pulumi:"tlsProvider"`
+	TlsProviderOutput tls.ProviderOutput `khulnasoft:"tlsProvider"`
 }
 
 type ConfigurerArgs struct {
-	TlsProxy pulumi.StringInput `pulumi:"tlsProxy"`
+	TlsProxy khulnasoft.StringInput `khulnasoft:"tlsProxy"`
 }
 
 func NewConfigurer(
-	ctx *pulumi.Context,
+	ctx *khulnasoft.Context,
 	name string,
 	args *ConfigurerArgs,
-	opts ...pulumi.ResourceOption,
+	opts ...khulnasoft.ResourceOption,
 ) (*Configurer, error) {
 	if args == nil {
 		return nil, fmt.Errorf("args is required")
@@ -48,23 +48,23 @@ func NewConfigurer(
 	}
 
 	prov, err := tls.NewProvider(ctx, "tls-p", &tls.ProviderArgs{
-		// Due to pulumi/pulumi-tls#160 cannot yet set URL here, but can test setting FromEnv.
+		// Due to khulnasoft/khulnasoft-tls#160 cannot yet set URL here, but can test setting FromEnv.
 		Proxy: &tls.ProviderProxyArgs{
 			FromEnv: args.TlsProxy.ToStringOutput().ApplyT(func(proxy string) bool {
 				if proxy == "FromEnv" {
 					return true
 				}
 				return false
-			}).(pulumi.BoolOutput),
+			}).(khulnasoft.BoolOutput),
 		},
-	}, pulumi.Version("4.10.0"))
+	}, khulnasoft.Version("4.10.0"))
 	if err != nil {
 		return nil, err
 	}
 
 	component.TlsProviderOutput = prov.ToProviderOutput()
 
-	if err := ctx.RegisterResourceOutputs(component, pulumi.Map{
+	if err := ctx.RegisterResourceOutputs(component, khulnasoft.Map{
 		"tlsProvider": component.TlsProviderOutput,
 	}); err != nil {
 		return nil, err
@@ -74,12 +74,12 @@ func NewConfigurer(
 
 type TlsProviderArgs struct{}
 
-func (c *Configurer) TlsProvider(ctx *pulumi.Context, args *TlsProviderArgs) (tls.ProviderOutput, error) {
+func (c *Configurer) TlsProvider(ctx *khulnasoft.Context, args *TlsProviderArgs) (tls.ProviderOutput, error) {
 	// The SDKs really do not support receving unknowns plain-resource returning methods, but if desired one can set
 	// an UNKNOWNS=true env var to see what happens if the provider was to actually send one, to test the error
 	// handling.
 	if ctx.DryRun() && os.Getenv("UNKNOWNS") == "true" {
-		return pulumi.UnsafeUnknownOutput(nil).ApplyT(func(x any) *tls.Provider {
+		return khulnasoft.UnsafeUnknownOutput(nil).ApplyT(func(x any) *tls.Provider {
 			panic("This should not be called")
 		}).(tls.ProviderOutput), nil
 	}
@@ -90,21 +90,21 @@ func (c *Configurer) TlsProvider(ctx *pulumi.Context, args *TlsProviderArgs) (tl
 type MeaningOfLifeArgs struct{}
 
 type MeaningOfLifeResult struct {
-	Result pulumi.IntOutput `pulumi:"res"`
+	Result khulnasoft.IntOutput `khulnasoft:"res"`
 }
 
-func (c *Configurer) MeaningOfLife(ctx *pulumi.Context, args *MeaningOfLifeArgs) (pulumi.IntOutput, error) {
-	return pulumi.Int(42).ToIntOutputWithContext(ctx.Context()), nil
+func (c *Configurer) MeaningOfLife(ctx *khulnasoft.Context, args *MeaningOfLifeArgs) (khulnasoft.IntOutput, error) {
+	return khulnasoft.Int(42).ToIntOutputWithContext(ctx.Context()), nil
 }
 
 type ObjectMixArgs struct{}
 
 type ObjectMixResult struct {
-	Provider      tls.ProviderOutput `pulumi:"provider"`
-	MeaningOfLife pulumi.IntOutput   `pulumi:"meaningOfLife"`
+	Provider      tls.ProviderOutput `khulnasoft:"provider"`
+	MeaningOfLife khulnasoft.IntOutput   `khulnasoft:"meaningOfLife"`
 }
 
-func (c *Configurer) ObjectMix(ctx *pulumi.Context, args *ObjectMixArgs) (*ObjectMixResult, error) {
+func (c *Configurer) ObjectMix(ctx *khulnasoft.Context, args *ObjectMixArgs) (*ObjectMixResult, error) {
 	p, err := c.TlsProvider(ctx, &TlsProviderArgs{})
 	if err != nil {
 		return nil, err

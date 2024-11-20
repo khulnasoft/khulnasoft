@@ -6,6 +6,6 @@
         "@types/node": "ts3.9"
     },
     "peerDependencies": {
-        "@pulumi/pulumi": "latest"
+        "@khulnasoft/khulnasoft": "latest"
     }
 }

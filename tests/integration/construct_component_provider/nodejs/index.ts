@@ -1,19 +1,19 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-class Provider extends pulumi.ProviderResource {
-    public readonly message!: pulumi.Output<string>;
+class Provider extends khulnasoft.ProviderResource {
+    public readonly message!: khulnasoft.Output<string>;
 
-    constructor(name: string, message: string, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, message: string, opts?: khulnasoft.ResourceOptions) {
         super("testcomponent", name, { message }, opts);
     }
 }
 
-class Component extends pulumi.ComponentResource {
-    public readonly message!: pulumi.Output<string>;
+class Component extends khulnasoft.ComponentResource {
+    public readonly message!: khulnasoft.Output<string>;
 
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         const inputs = {
             message: undefined /*out*/,
         };

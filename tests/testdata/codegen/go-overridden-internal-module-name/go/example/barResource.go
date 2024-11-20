@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"go-overridden-internal-module-name/example/utilities"
 )
 
 type BarResource struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Foo ResourceOutput `pulumi:"foo"`
+	Foo ResourceOutput `khulnasoft:"foo"`
 }
 
 // NewBarResource registers a new resource with the given unique name, arguments, and options.
-func NewBarResource(ctx *pulumi.Context,
-	name string, args *BarResourceArgs, opts ...pulumi.ResourceOption) (*BarResource, error) {
+func NewBarResource(ctx *khulnasoft.Context,
+	name string, args *BarResourceArgs, opts ...khulnasoft.ResourceOption) (*BarResource, error) {
 	if args == nil {
 		args = &BarResourceArgs{}
 	}
@@ -34,7 +34,7 @@ func NewBarResource(ctx *pulumi.Context,
 }
 
 type barResourceArgs struct {
-	Foo *Resource `pulumi:"foo"`
+	Foo *Resource `khulnasoft:"foo"`
 }
 
 // The set of arguments for constructing a BarResource resource.
@@ -47,7 +47,7 @@ func (BarResourceArgs) ElementType() reflect.Type {
 }
 
 type BarResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToBarResourceOutput() BarResourceOutput
 	ToBarResourceOutputWithContext(ctx context.Context) BarResourceOutput
@@ -62,10 +62,10 @@ func (i *BarResource) ToBarResourceOutput() BarResourceOutput {
 }
 
 func (i *BarResource) ToBarResourceOutputWithContext(ctx context.Context) BarResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BarResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(BarResourceOutput)
 }
 
-type BarResourceOutput struct{ *pulumi.OutputState }
+type BarResourceOutput struct{ *khulnasoft.OutputState }
 
 func (BarResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**BarResource)(nil)).Elem()
@@ -84,6 +84,6 @@ func (o BarResourceOutput) Foo() ResourceOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*BarResourceInput)(nil)).Elem(), &BarResource{})
-	pulumi.RegisterOutputType(BarResourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*BarResourceInput)(nil)).Elem(), &BarResource{})
+	khulnasoft.RegisterOutputType(BarResourceOutput{})
 }

@@ -1,7 +1,7 @@
-import pulumi
-import pulumi_kubernetes as kubernetes
+import khulnasoft
+import khulnasoft_kubernetes as kubernetes
 
-config = pulumi.Config()
+config = khulnasoft.Config()
 hostname = config.get("hostname")
 if hostname is None:
     hostname = "example.com"

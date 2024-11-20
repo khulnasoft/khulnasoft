@@ -51,7 +51,7 @@ class ComponentResourceListOfProvidersTest(LanghostTest):
         _providers,
         source_position,
     ):
-        if _custom and not ty.startswith("pulumi:providers:"):
+        if _custom and not ty.startswith("khulnasoft:providers:"):
             expect_protect = False
             expect_provider_name = ""
 

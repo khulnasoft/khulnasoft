@@ -8,21 +8,21 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"plain-object-disable-defaults/example/internal"
 )
 
 // test new feature with resoruces
 type Foo struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
 	// A test for plain types
-	DefaultKubeClientSettings KubeClientSettingsPtrOutput `pulumi:"defaultKubeClientSettings"`
+	DefaultKubeClientSettings KubeClientSettingsPtrOutput `khulnasoft:"defaultKubeClientSettings"`
 }
 
 // NewFoo registers a new resource with the given unique name, arguments, and options.
-func NewFoo(ctx *pulumi.Context,
-	name string, args *FooArgs, opts ...pulumi.ResourceOption) (*Foo, error) {
+func NewFoo(ctx *khulnasoft.Context,
+	name string, args *FooArgs, opts ...khulnasoft.ResourceOption) (*Foo, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -41,8 +41,8 @@ func NewFoo(ctx *pulumi.Context,
 
 // GetFoo gets an existing Foo resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetFoo(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *FooState, opts ...pulumi.ResourceOption) (*Foo, error) {
+func GetFoo(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *FooState, opts ...khulnasoft.ResourceOption) (*Foo, error) {
 	var resource Foo
 	err := ctx.ReadResource("example:index:Foo", name, id, state, &resource, opts...)
 	if err != nil {
@@ -63,13 +63,13 @@ func (FooState) ElementType() reflect.Type {
 }
 
 type fooArgs struct {
-	Argument *string `pulumi:"argument"`
+	Argument *string `khulnasoft:"argument"`
 	// Options for tuning the Kubernetes client used by a Provider.
-	BackupKubeClientSettings KubeClientSettings `pulumi:"backupKubeClientSettings"`
+	BackupKubeClientSettings KubeClientSettings `khulnasoft:"backupKubeClientSettings"`
 	// Options for tuning the Kubernetes client used by a Provider.
-	KubeClientSettings *KubeClientSettings `pulumi:"kubeClientSettings"`
+	KubeClientSettings *KubeClientSettings `khulnasoft:"kubeClientSettings"`
 	// describing things
-	Settings *LayeredType `pulumi:"settings"`
+	Settings *LayeredType `khulnasoft:"settings"`
 }
 
 // The set of arguments for constructing a Foo resource.
@@ -88,7 +88,7 @@ func (FooArgs) ElementType() reflect.Type {
 }
 
 type FooInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToFooOutput() FooOutput
 	ToFooOutputWithContext(ctx context.Context) FooOutput
@@ -103,10 +103,10 @@ func (i *Foo) ToFooOutput() FooOutput {
 }
 
 func (i *Foo) ToFooOutputWithContext(ctx context.Context) FooOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FooOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(FooOutput)
 }
 
-type FooOutput struct{ *pulumi.OutputState }
+type FooOutput struct{ *khulnasoft.OutputState }
 
 func (FooOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Foo)(nil)).Elem()
@@ -126,6 +126,6 @@ func (o FooOutput) DefaultKubeClientSettings() KubeClientSettingsPtrOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*FooInput)(nil)).Elem(), &Foo{})
-	pulumi.RegisterOutputType(FooOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*FooInput)(nil)).Elem(), &Foo{})
+	khulnasoft.RegisterOutputType(FooOutput{})
 }

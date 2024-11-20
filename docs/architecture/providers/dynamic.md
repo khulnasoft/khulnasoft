@@ -2,7 +2,7 @@
 # Dynamic providers
 
 [*Dynamic
-providers*](https://www.pulumi.com/docs/concepts/resources/dynamic-providers/)
+providers*](https://www.khulnasoft.com/docs/concepts/resources/dynamic-providers/)
 are a Pulumi feature that allows the core logic of a provider to be defined and
 managed within the context of a Pulumi program. This is in contrast to a normal
 ("real", sometimes "side-by-side") provider, whose logic is encapsulated as a
@@ -15,16 +15,16 @@ presently only supported in NodeJS/TypeScript and Python. They work as follows:
   * That of *dynamic resources* -- those that are managed by a dynamic provider.
     This type specialises (e.g. by subclassing in NodeJS and Python) the SDK's
     core resource type so that all dynamic resources *have the same Pulumi
-    package* -- `pulumi-nodejs` for NodeJS and `pulumi-python` for Python.
+    package* -- `khulnasoft-nodejs` for NodeJS and `khulnasoft-python` for Python.
 
-  These are located in <gh-file:pulumi#sdk/nodejs/dynamic/index.ts> in
+  These are located in <gh-file:khulnasoft#sdk/nodejs/dynamic/index.ts> in
   NodeJS/TypeScript and
-  <gh-file:pulumi#sdk/python/lib/pulumi/dynamic/dynamic.py> in Python.
+  <gh-file:khulnasoft#sdk/python/lib/khulnasoft/dynamic/dynamic.py> in Python.
 * The SDK also defines a "real" provider that implements the gRPC interface and
   manages the lifecycle of dynamic resources. This provider is named according
   to the single package name used for all dynamic resources. See
-  <gh-file:pulumi#sdk/nodejs/cmd/dynamic-provider/index.ts> for NodeJS and
-  <gh-file:pulumi#sdk/python/lib/pulumi/dynamic/__main__.py> for Python.
+  <gh-file:khulnasoft#sdk/nodejs/cmd/dynamic-provider/index.ts> for NodeJS and
+  <gh-file:khulnasoft#sdk/python/lib/khulnasoft/dynamic/__main__.py> for Python.
 
 * A user extends the types defined by the SDK in order to implement one or more
   dynamic providers and resources that belong to those providers. They use these
@@ -34,15 +34,15 @@ presently only supported in NodeJS/TypeScript and Python. They work as follows:
   the resource's properties.
   * In NodeJS, serialization is performed by capturing and mangling the source
     code of the provider and any dependencies by (ab)using v8 primitives -- see
-    <gh-file:pulumi#sdk/nodejs/runtime/closure> for the gory details.
+    <gh-file:khulnasoft#sdk/nodejs/runtime/closure> for the gory details.
   * In Python, serialization is performed by pickling the dynamic provider
-    instance -- see <gh-file:pulumi#sdk/python/lib/pulumi/dynamic/dynamic.py>'s
+    instance -- see <gh-file:khulnasoft#sdk/python/lib/khulnasoft/dynamic/dynamic.py>'s
     use of `dill` for more on this.
 * The serialized provider state is then stored as a property on the dynamic
   resource. It is consequently sent to the engine as part of lifecycle calls
   (check, diff, create, etc.) like any other property.
 * When the engine receives requests pertaining to dynamic resources, the fixed
-  package (`pulumi-nodejs` or `pulumi-python`) will cause it to make provider
+  package (`khulnasoft-nodejs` or `khulnasoft-python`) will cause it to make provider
   calls against the "real" provider defined in the SDK.
 * The provider proxies these calls to the code the user wrote by deserializing
   and hydrating the provider instance from the resource's properties and

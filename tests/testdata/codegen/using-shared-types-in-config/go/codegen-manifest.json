@@ -3,12 +3,12 @@
     "credentials/config/config.go",
     "credentials/doc.go",
     "credentials/init.go",
-    "credentials/internal/pulumiUtilities.go",
-    "credentials/internal/pulumiVersion.go",
+    "credentials/internal/khulnasoftUtilities.go",
+    "credentials/internal/khulnasoftVersion.go",
     "credentials/provider.go",
-    "credentials/pulumi-plugin.json",
-    "credentials/pulumiEnums.go",
-    "credentials/pulumiTypes.go",
+    "credentials/khulnasoft-plugin.json",
+    "credentials/khulnasoftEnums.go",
+    "credentials/khulnasoftTypes.go",
     "credentials/user.go"
   ]
 }

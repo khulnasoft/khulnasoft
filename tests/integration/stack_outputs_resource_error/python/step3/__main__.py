@@ -12,17 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pulumi
+import khulnasoft
 
 
-class FailsOnCreate(pulumi.CustomResource):
+class FailsOnCreate(khulnasoft.CustomResource):
     def __init__(self, resource_name: str):
         super().__init__("testprovider:index:FailsOnCreate", resource_name, { "value": None })
         value = None
 
 
-pulumi.export("xyz", "DEF")
+khulnasoft.export("xyz", "DEF")
 
 FailsOnCreate("test")
 
-pulumi.export("foo", 1)
+khulnasoft.export("foo", 1)

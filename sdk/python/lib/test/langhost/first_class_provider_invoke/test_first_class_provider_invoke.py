@@ -74,7 +74,7 @@ class TestFirstClassProviderInvoke(LanghostTest):
         source_position,
     ):
         if name == "testprov":
-            self.assertEqual("pulumi:providers:test", ty)
+            self.assertEqual("khulnasoft:providers:test", ty)
             self.prov_urn = self.make_urn(ty, name)
             self.prov_id = name
             return {

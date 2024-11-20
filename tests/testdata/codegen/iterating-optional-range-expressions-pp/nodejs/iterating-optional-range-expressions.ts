@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as range from "@pulumi/range";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as range from "@khulnasoft/range";
 
 const root = new range.Root("root", {});
 // creating resources by iterating a property of type array(string) of another resource
@@ -18,7 +18,7 @@ root.mapOfString.apply(rangeBody => {
 });
 // computed range list expression to create instances of range:index:Example resource
 const fromComputedListOfStrings: range.Example[] = [];
-pulumi.all([
+khulnasoft.all([
     root.mapOfString.apply(mapOfString => mapOfString?.hello),
     root.mapOfString.apply(mapOfString => mapOfString?.world),
 ]).apply(rangeBody => {
@@ -28,7 +28,7 @@ pulumi.all([
 });
 // computed range for expression to create instances of range:index:Example resource
 const fromComputedForExpression: range.Example[] = [];
-pulumi.all([root.arrayOfString, root.mapOfString]).apply(([arrayOfString, mapOfString]) => {
+khulnasoft.all([root.arrayOfString, root.mapOfString]).apply(([arrayOfString, mapOfString]) => {
     for (const range of arrayOfString.map(value => (mapOfString[value])).map((v, k) => ({key: k, value: v}))) {
         fromComputedForExpression.push(new range.Example(`fromComputedForExpression-${range.key}`, {someString: `${range.key} ${range.value}`}));
     }

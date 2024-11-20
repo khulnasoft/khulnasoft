@@ -13,8 +13,8 @@ familiar with:
   buckets) that the user wants to manage in various *providers* (e.g. AWS, Azure
   or GCP).
 
-* Programs are written using the *core Pulumi SDK* (e.g. `@pulumi/pulumi` in
-  TypeScript) and one or more *provider SDKs* (e.g. `@pulumi/aws` for AWS).
+* Programs are written using the *core Pulumi SDK* (e.g. `@khulnasoft/khulnasoft` in
+  TypeScript) and one or more *provider SDKs* (e.g. `@khulnasoft/aws` for AWS).
 
 * Users invoke the *Pulumi command-line interface* (CLI) to run their programs
   and invoke particular *operations* (e.g. preview, update, or refresh).
@@ -74,7 +74,7 @@ follows:[^side-node-exhaustive]
 
 * `pkg/codegen` -- contains code generators for the various languages that Pulumi
   supports. As well as supporting language SDK generation as mentioned above
-  (*"SDKgen"*), code generators also underpin the `pulumi convert` command, which
+  (*"SDKgen"*), code generators also underpin the `khulnasoft convert` command, which
   can convert existing infrastructure-as-code (IaC) programs written in e.g.
   Terraform or CloudFormation to Pulumi programs (*"Programgen"*).
 
@@ -85,8 +85,8 @@ follows:[^side-node-exhaustive]
   (e.g. `new Resource(...)` in TypeScript, or `Resource(...)` in Python).
 
   The language host for a given language (written in Go) is also typically found
-  under that language's SDK directory, and named `pulumi-language-<language>`
-  (e.g. `pulumi-language-nodejs` in the case of NodeJS/TypeScript).
+  under that language's SDK directory, and named `khulnasoft-language-<language>`
+  (e.g. `khulnasoft-language-nodejs` in the case of NodeJS/TypeScript).
 
 * `pkg/{backend,engine,graph,operations,resource}` -- contains the core
   components of the Pulumi engine. The various directories roughly segregate
@@ -101,14 +101,14 @@ follows:[^side-node-exhaustive]
   pieces required to enact a complete deployment.
 
 * `pkg/{cmd,display}` -- contains code pertinent to the Pulumi CLI. In
-  particular, `pulumi/cmd/pulumi` is the entry point to the CLI and exposes the
-  various `pulumi preview`, `pulumi up`, `pulumi destroy`, etc. commands that
+  particular, `khulnasoft/cmd/khulnasoft` is the entry point to the CLI and exposes the
+  various `khulnasoft preview`, `khulnasoft up`, `khulnasoft destroy`, etc. commands that
   you may be familiar with, routing these commands to an instance of the engine
   that the CLI creates and manages.
 
 * With the exception of a number of test providers that live in the core
-  `pulumi/pulumi` repository, provider implementations are typically housed in
-  their own repositories (e.g. `pulumi-aws` for AWS). These repositories follow
+  `khulnasoft/khulnasoft` repository, provider implementations are typically housed in
+  their own repositories (e.g. `khulnasoft-aws` for AWS). These repositories follow
   a similar pattern when it comes to several of the core components -- e.g. most
   providers will have an `sdk/` directory exposing provider SDKs for each
   supported language.

@@ -1,7 +1,7 @@
-import pulumi
-import pulumi_aws as aws
+import khulnasoft
+import khulnasoft_aws as aws
 
-config = pulumi.Config()
+config = khulnasoft.Config()
 instance_type = config.get("instanceType")
 if instance_type is None:
     instance_type = "t2.micro"
@@ -33,5 +33,5 @@ server = aws.ec2.Instance("server",
     tags={
         "Name": "web-server-www",
     })
-pulumi.export("publicIP", server.public_ip)
-pulumi.export("publicDNS", server.public_dns)
+khulnasoft.export("publicIP", server.public_ip)
+khulnasoft.export("publicDNS", server.public_dns)

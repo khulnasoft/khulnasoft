@@ -68,13 +68,13 @@
   "language": {
     "nodejs": {
       "dependencies": {
-        "@pulumi/tls": "4.10"
+        "@khulnasoft/tls": "4.10"
       },
       "respectSchemaVersion": true
     },
     "go": {
-      "modulePath": "github.com/pulumi/pulumi/tests/testdata/codegen/methods-return-plain-resource/go",
-      "importBasePath": "github.com/pulumi/pulumi/tests/testdata/codegen/methods-return-plain-resource/go/metaprovider"
+      "modulePath": "github.com/khulnasoft/khulnasoft/tests/testdata/codegen/methods-return-plain-resource/go",
+      "importBasePath": "github.com/khulnasoft/khulnasoft/tests/testdata/codegen/methods-return-plain-resource/go/metaprovider"
     }
   }
 }

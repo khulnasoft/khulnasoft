@@ -23,7 +23,7 @@ import (
 // diySnapshotPersister is a simple SnapshotManager implementation that persists snapshots
 // to blob storage.
 type diySnapshotPersister struct {
-	// TODO[pulumi/pulumi#12593]:
+	// TODO[khulnasoft/khulnasoft#12593]:
 	// Remove this once SnapshotPersister is updated to take a context.
 	ctx context.Context
 

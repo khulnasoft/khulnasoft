@@ -25,7 +25,7 @@ export function getTestOrg() {
         if (process.env.PULUMI_TEST_ORG) {
             return process.env.PULUMI_TEST_ORG;
         }
-        return "pulumi-test";
+        return "khulnasoft-test";
     }
     return "organization";
 }

@@ -27,15 +27,15 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/graph"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/result"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/result"
 )
 
 // stepGenerator is responsible for turning resource events into steps that can be fed to the deployment executor.
@@ -134,14 +134,14 @@ func (sg *stepGenerator) checkParent(parent resource.URN, resourceType tokens.Ty
 		if _, hasParent := sg.urns[parent]; !hasParent {
 			return "", fmt.Errorf("could not find parent resource %v", parent)
 		}
-	} else { //nolint:staticcheck // https://github.com/pulumi/pulumi/issues/10950
+	} else { //nolint:staticcheck // https://github.com/khulnasoft/khulnasoft/issues/10950
 		// Else try and set it to the root stack
 
 		// TODO: It looks like this currently has some issues with state ordering (see
-		// https://github.com/pulumi/pulumi/issues/10950). Best I can guess is the stack resource is
+		// https://github.com/khulnasoft/khulnasoft/issues/10950). Best I can guess is the stack resource is
 		// hitting the step generator and so saving it's URN to sg.urns and issuing a Create step but not
 		// actually getting to writing it's state to the snapshot. Then in parallel with this something
-		// else is causing a pulumi:providers:pulumi default provider to be created, this picks up the
+		// else is causing a khulnasoft:providers:khulnasoft default provider to be created, this picks up the
 		// stack URN from sg.urns and so sets it's parent automatically, but then races the step executor
 		// to write itself to state before the stack resource manages to. Long term we want to ensure
 		// there's always a stack resource present, and so that all resources (except the stack) have a
@@ -170,7 +170,7 @@ func (sg *stepGenerator) generateURN(
 	// Generate a URN for this new resource, confirm we haven't seen it before in this deployment.
 	urn := sg.deployment.generateURN(parent, ty, name)
 	if sg.urns[urn] {
-		// TODO[pulumi/pulumi-framework#19]: improve this error message!
+		// TODO[khulnasoft/khulnasoft-framework#19]: improve this error message!
 		return "", sg.bailDiag(diag.GetDuplicateResourceURNError(urn), urn)
 	}
 	sg.urns[urn] = true
@@ -434,10 +434,10 @@ func (sg *stepGenerator) inheritedChildAlias(
 	// For example:
 	// * name: "newapp-function"
 	// * options.parent.__name: "newapp"
-	// * parentAlias: "urn:pulumi:stackname::projectname::awsx:ec2:Vpc::app"
+	// * parentAlias: "urn:khulnasoft:stackname::projectname::awsx:ec2:Vpc::app"
 	// * parentAliasName: "app"
 	// * aliasName: "app-function"
-	// * childAlias: "urn:pulumi:stackname::projectname::aws:s3/bucket:Bucket::app-function"
+	// * childAlias: "urn:khulnasoft:stackname::projectname::aws:s3/bucket:Bucket::app-function"
 
 	aliasName := childName
 	if strings.HasPrefix(childName, parentName) {
@@ -666,7 +666,7 @@ func (sg *stepGenerator) generateSteps(event RegisterResourceEvent) ([]Step, err
 
 	// Internally managed resources are under Pulumi's control and changes or creations should be invisible to
 	// the user, we also implicitly target providers (both default and explicit, see
-	// https://github.com/pulumi/pulumi/issues/13557 and https://github.com/pulumi/pulumi/issues/13591 for
+	// https://github.com/khulnasoft/khulnasoft/issues/13557 and https://github.com/khulnasoft/khulnasoft/issues/13591 for
 	// context on why).
 
 	// Resources are targeted by default
@@ -939,7 +939,7 @@ func (sg *stepGenerator) generateSteps(event RegisterResourceEvent) ([]Step, err
 				_, has := sg.deployment.GetProvider(ref)
 				if !has {
 					// This provider hasn't been registered yet. This happens when a user changes the default
-					// provider version in a targeted update. See https://github.com/pulumi/pulumi/issues/15704
+					// provider version in a targeted update. See https://github.com/khulnasoft/khulnasoft/issues/15704
 					// for more information.
 					var providerResource *resource.State
 					for _, r := range sg.deployment.olds {
@@ -1188,7 +1188,7 @@ func (sg *stepGenerator) generateStepsFromDiff(
 				message := fmt.Sprintf("unable to replace resource %q\n"+
 					"as it is currently marked for protection. To unprotect the resource, "+
 					"remove the `protect` flag from the resource in your Pulumi "+
-					"program and run `pulumi up`", urn)
+					"program and run `khulnasoft up`", urn)
 				sg.deployment.ctx.Diag.Errorf(diag.StreamMessage(urn, message, 0))
 				sg.sawError = true
 				// In Preview, we mark the deployment as Error but continue to next steps,
@@ -1309,8 +1309,8 @@ func (sg *stepGenerator) generateStepsFromDiff(
 							message := fmt.Sprintf("unable to replace resource %q as part of replacing %q "+
 								"as it is currently marked for protection. To unprotect the resource, "+
 								"remove the `protect` flag from the resource in your Pulumi "+
-								"program and run `pulumi up`, or use the command:\n"+
-								"`pulumi state unprotect %q`",
+								"program and run `khulnasoft up`, or use the command:\n"+
+								"`khulnasoft state unprotect %q`",
 								dependentResource.URN, urn, dependentResource.URN)
 							sg.deployment.ctx.Diag.Errorf(diag.StreamMessage(urn, message, 0))
 							sg.sawError = true
@@ -1475,7 +1475,7 @@ func (sg *stepGenerator) GenerateDeletes(targetsOpt UrnTargets) ([]Step, error) 
 		}
 	}
 
-	// If -target was provided to either `pulumi update` or `pulumi destroy` then only delete
+	// If -target was provided to either `khulnasoft update` or `khulnasoft destroy` then only delete
 	// resources that were specified.
 	allowedResourcesToDelete, err := sg.determineAllowedResourcesToDeleteFromTargets(targetsOpt)
 	if err != nil {
@@ -1693,7 +1693,7 @@ func (sg *stepGenerator) ScheduleDeletes(deleteSteps []Step) []antichain {
 // should consider there to be a diff between these two resources.
 func (sg *stepGenerator) providerChanged(urn resource.URN, old, new *resource.State) (bool, error) {
 	// If a resource's Provider field has changed, we may need to show a diff and we may not. This is subtle. See
-	// pulumi/pulumi#2753 for more details.
+	// khulnasoft/khulnasoft#2753 for more details.
 	//
 	// Recent versions of Pulumi allow for language hosts to pass a plugin version to the engine. The purpose of this is
 	// to ensure that the plugin that the engine uses for a particular resource is *exactly equal* to the version of the

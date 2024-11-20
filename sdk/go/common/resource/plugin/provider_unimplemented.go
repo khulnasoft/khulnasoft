@@ -17,8 +17,8 @@ package plugin
 import (
 	"context"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

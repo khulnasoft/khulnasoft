@@ -36,7 +36,7 @@ import (
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/pkg/browser"
 
-	esc_client "github.com/pulumi/esc/cmd/esc/cli/client"
+	esc_client "github.com/khulnasoft/esc/cmd/esc/cli/client"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/diy"
@@ -48,20 +48,20 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/nosleep"
 	pkgWorkspace "github.com/khulnasoft/khulnasoft/pkg/v3/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/result"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/retry"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/result"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/retry"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 const (
@@ -83,7 +83,7 @@ const (
 	PulumiAILanguageYAML       PulumiAILanguage = "YAML"
 )
 
-var pulumiAILanguageMap = map[string]PulumiAILanguage{
+var khulnasoftAILanguageMap = map[string]PulumiAILanguage{
 	"typescript": PulumiAILanguageTypeScript,
 	"javascript": PulumiAILanguageJavaScript,
 	"python":     PulumiAILanguagePython,
@@ -112,7 +112,7 @@ func (e *PulumiAILanguage) String() string {
 }
 
 func (e *PulumiAILanguage) Set(v string) error {
-	value, ok := pulumiAILanguageMap[strings.ToLower(v)]
+	value, ok := khulnasoftAILanguageMap[strings.ToLower(v)]
 	if !ok {
 		return fmt.Errorf("must be one of %s", PulumiAILanguagesClause)
 	}
@@ -121,7 +121,7 @@ func (e *PulumiAILanguage) Set(v string) error {
 }
 
 func (e *PulumiAILanguage) Type() string {
-	return "pulumiAILanguage"
+	return "khulnasoftAILanguage"
 }
 
 type AIPromptRequestBody struct {
@@ -137,7 +137,7 @@ var stackOwnerRegexp = regexp.MustCompile("^[a-zA-Z0-9][a-zA-Z0-9-_]{1,38}[a-zA-
 
 // DefaultURL returns the default cloud URL.  This may be overridden using the PULUMI_API environment
 // variable.  If no override is found, and we are authenticated with a cloud, choose that.  Otherwise,
-// we will default to the https://api.pulumi.com/ endpoint.
+// we will default to the https://api.khulnasoft.com/ endpoint.
 func DefaultURL(ws pkgWorkspace.Context) string {
 	return ValueOrDefaultURL(ws, "")
 }
@@ -238,7 +238,7 @@ func loginWithBrowser(
 	// Locally, we generate a nonce and spin up a web server listening on a random port on localhost. We then open a
 	// browser to a special endpoint on the Pulumi.com console, passing the generated nonce as well as the port of the
 	// webserver we launched. This endpoint does the OAuth flow and when it completes, redirects to localhost passing
-	// the nonce and the pulumi access token we created as part of the OAuth flow. If the nonces match, we set the
+	// the nonce and the khulnasoft access token we created as part of the OAuth flow. If the nonces match, we set the
 	// access token that was passed to us and the redirect to a special welcome page on Pulumi.com
 
 	loginURL := cloudConsoleURL(cloudURL, "cli-login")
@@ -284,7 +284,7 @@ func loginWithBrowser(
 	q.Add("cliSessionPort", port)
 	q.Add("cliSessionNonce", nonce)
 	q.Add("cliSessionDescription", tokenDescription)
-	if command != "pulumi" {
+	if command != "khulnasoft" {
 		q.Add("cliCommand", command)
 	}
 	u.RawQuery = q.Encode()
@@ -490,7 +490,7 @@ func (m defaultLoginManager) Login(
 		maxlen = line2len
 	}
 
-	// In the case where we could not construct a link to the pulumi console based on the API server's hostname,
+	// In the case where we could not construct a link to the khulnasoft console based on the API server's hostname,
 	// don't offer magic log-in or text about where to find your access token.
 	if accountLink == "" {
 		for {
@@ -565,11 +565,11 @@ func WelcomeUser(opts display.Options) {
   Pulumi helps you create, deploy, and manage infrastructure on any cloud using
   your favorite language. You can get started today with Pulumi at:
 
-      https://www.pulumi.com/docs/get-started/
+      https://www.khulnasoft.com/docs/get-started/
 
   %s Resources you create with Pulumi are given unique names (a randomly
   generated suffix) by default. To learn more about auto-naming or customizing resource
-  names see https://www.pulumi.com/docs/intro/concepts/resources/#autonaming.
+  names see https://www.khulnasoft.com/docs/intro/concepts/resources/#autonaming.
 
 
 `,
@@ -594,7 +594,7 @@ func (b *cloudBackend) StackConsoleURL(stackRef backend.StackReference) (string,
 
 func (b *cloudBackend) Name() string {
 	if b.url == PulumiCloudURL {
-		return "pulumi.com"
+		return "khulnasoft.com"
 	}
 
 	return b.url
@@ -701,7 +701,7 @@ func (b *cloudBackend) SupportsDeployments() bool {
 }
 
 // qualifiedStackReference describes a qualified stack on the Pulumi Service. The Owner or Project
-// may be "" if unspecified, e.g. "pulumi/production" specifies the Owner and Name, but not the
+// may be "" if unspecified, e.g. "khulnasoft/production" specifies the Owner and Name, but not the
 // Project. We infer the missing data and try to make things work as best we can in ParseStackReference.
 type qualifiedStackReference struct {
 	Owner   string
@@ -1070,7 +1070,7 @@ func (b *cloudBackend) RenameStack(ctx context.Context, stack backend.Stack,
 		if parsedName.Owner == "" {
 			errMsg += fmt.Sprintf(
 				"       Did you forget to include the owner name? If yes, rerun the command as follows:\n\n"+
-					"           $ pulumi stack rename %s/%s\n\n",
+					"           $ khulnasoft stack rename %s/%s\n\n",
 				stackID.Owner, newName)
 		}
 
@@ -1248,7 +1248,7 @@ func (b *cloudBackend) createAndStartUpdate(
 	}
 
 	//
-	// TODO[pulumi-service#3745]: Move this to the plugin-gathering routine when we have a dedicated
+	// TODO[khulnasoft-service#3745]: Move this to the plugin-gathering routine when we have a dedicated
 	// service API when for getting a list of the required policies to run.
 	//
 	// For now, this list is given to us when we start an update; yet, the list of analyzers to boot
@@ -1982,7 +1982,7 @@ func (b *cloudBackend) RunDeployment(ctx context.Context, stackRef backend.Stack
 
 				// If we see it's a Pulumi operation, rather than outputting the deployment logs,
 				// find the associated update and show the normal rendering of the operation's events.
-				if l.Header == fmt.Sprintf("pulumi %v", req.Op) {
+				if l.Header == fmt.Sprintf("khulnasoft %v", req.Op) {
 					fmt.Println()
 					return b.showDeploymentEvents(ctx, stackID, apitype.UpdateKind(req.Op), id, opts)
 				}
@@ -2091,7 +2091,7 @@ func (c httpstateBackendClient) GetStackOutputs(ctx context.Context, name string
 	// look like "<org>/<project>/<stack>"
 	if strings.Count(name, "/") != 2 {
 		return nil, errors.New("a stack reference's name should be of the form '<organization>/<project>/<stack>'. " +
-			"See https://www.pulumi.com/docs/using-pulumi/stack-outputs-and-references/#using-stack-references " +
+			"See https://www.khulnasoft.com/docs/using-khulnasoft/stack-outputs-and-references/#using-stack-references " +
 			"for more information.")
 	}
 

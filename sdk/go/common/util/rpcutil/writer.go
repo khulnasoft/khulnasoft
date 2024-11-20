@@ -21,10 +21,10 @@ import (
 	"syscall"
 
 	"github.com/hashicorp/go-multierror"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 type ptyCloser struct {
@@ -120,30 +120,30 @@ func makeStreams(
 
 // Returns a pair of streams for use with the language runtimes InstallDependencies method
 func MakeInstallDependenciesStreams(
-	server pulumirpc.LanguageRuntime_InstallDependenciesServer,
+	server khulnasoftrpc.LanguageRuntime_InstallDependenciesServer,
 	isTerminal bool,
 ) (io.Closer, io.Writer, io.Writer, error) {
 	return makeStreams(
 		func(b []byte) error {
-			return server.Send(&pulumirpc.InstallDependenciesResponse{Stdout: b})
+			return server.Send(&khulnasoftrpc.InstallDependenciesResponse{Stdout: b})
 		},
 		func(b []byte) error {
-			return server.Send(&pulumirpc.InstallDependenciesResponse{Stderr: b})
+			return server.Send(&khulnasoftrpc.InstallDependenciesResponse{Stderr: b})
 		},
 		isTerminal)
 }
 
 // Returns a pair of streams for use with the language runtimes RunPlugin method
 func MakeRunPluginStreams(
-	server pulumirpc.LanguageRuntime_RunPluginServer,
+	server khulnasoftrpc.LanguageRuntime_RunPluginServer,
 	isTerminal bool,
 ) (io.Closer, io.Writer, io.Writer, error) {
 	return makeStreams(
 		func(b []byte) error {
-			return server.Send(&pulumirpc.RunPluginResponse{Output: &pulumirpc.RunPluginResponse_Stdout{Stdout: b}})
+			return server.Send(&khulnasoftrpc.RunPluginResponse{Output: &khulnasoftrpc.RunPluginResponse_Stdout{Stdout: b}})
 		},
 		func(b []byte) error {
-			return server.Send(&pulumirpc.RunPluginResponse{Output: &pulumirpc.RunPluginResponse_Stderr{Stderr: b}})
+			return server.Send(&khulnasoftrpc.RunPluginResponse{Output: &khulnasoftrpc.RunPluginResponse_Stderr{Stderr: b}})
 		},
 		isTerminal)
 }

@@ -74,16 +74,16 @@ myst_fence_as_directive = ["mermaid"]
 myst_url_schemes = {
     "http": None,
     "https": None,
-    # Usage: <gh-file:repository-under-pulumi-org#path/to/file>
+    # Usage: <gh-file:repository-under-khulnasoft-org#path/to/file>
     "gh-file": {
-        "url": "https://github.com/pulumi/{{path}}/blob/master/{{fragment}}",
-        "title": "pulumi/{{path}}:{{fragment}}",
+        "url": "https://github.com/khulnasoft/{{path}}/blob/master/{{fragment}}",
+        "title": "khulnasoft/{{path}}:{{fragment}}",
         "classes": ["github"],
     },
-    # Usage: <gh-file:repository-under-pulumi-org#issue-or-pr-number>
+    # Usage: <gh-file:repository-under-khulnasoft-org#issue-or-pr-number>
     "gh-issue": {
-        "url": "https://github.com/pulumi/{{path}}/issues/{{fragment}}",
-        "title": "pulumi/{{path}} #{{fragment}}",
+        "url": "https://github.com/khulnasoft/{{path}}/issues/{{fragment}}",
+        "title": "khulnasoft/{{path}} #{{fragment}}",
         "classes": ["github"],
     },
 }
@@ -93,8 +93,8 @@ myst_url_schemes = {
 # Pulumi projects that are all hosted under the root Pulumi site.
 intersphinx_mapping = {
     # Terrafom Bridge developer documentation
-    # https://github.com/pulumi/pulumi-terraform-bridge
-    "tfbridge": ("https://pulumi-developer-docs.readthedocs.io/projects/pulumi-terraform-bridge/en/latest/", None),
+    # https://github.com/khulnasoft/khulnasoft-terraform-bridge
+    "tfbridge": ("https://khulnasoft-developer-docs.readthedocs.io/projects/khulnasoft-terraform-bridge/en/latest/", None),
 }
 
 # Sphinx defaults to trying to automatically resolve *unresolved* labels using
@@ -152,7 +152,7 @@ exclude_patterns = [
 html_theme = "sphinx_book_theme"
 
 html_title = "Pulumi developer documentation"
-html_logo = "https://www.pulumi.com/images/logo/logo-on-white-box.svg"
+html_logo = "https://www.khulnasoft.com/images/logo/logo-on-white-box.svg"
 
 html_theme_options = {
     # Expand all headings up to level 2 by default in the left sidebar (global)
@@ -169,7 +169,7 @@ html_theme_options = {
     # Enable linking to GitHub page sources and editing files directly in the
     # browser.
     "repository_provider": "github",
-    "repository_url": "https://github.com/pulumi/pulumi",
+    "repository_url": "https://github.com/khulnasoft/khulnasoft",
     "repository_branch": "master",
     "use_source_button": True,
     "use_edit_page_button": True,

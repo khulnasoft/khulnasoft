@@ -9,18 +9,18 @@ import (
 
 	"dash-named-schema/foo"
 	"dash-named-schema/foo/internal"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type ModuleResource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Thing foo.TopLevelPtrOutput `pulumi:"thing"`
+	Thing foo.TopLevelPtrOutput `khulnasoft:"thing"`
 }
 
 // NewModuleResource registers a new resource with the given unique name, arguments, and options.
-func NewModuleResource(ctx *pulumi.Context,
-	name string, args *ModuleResourceArgs, opts ...pulumi.ResourceOption) (*ModuleResource, error) {
+func NewModuleResource(ctx *khulnasoft.Context,
+	name string, args *ModuleResourceArgs, opts ...khulnasoft.ResourceOption) (*ModuleResource, error) {
 	if args == nil {
 		args = &ModuleResourceArgs{}
 	}
@@ -36,8 +36,8 @@ func NewModuleResource(ctx *pulumi.Context,
 
 // GetModuleResource gets an existing ModuleResource resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetModuleResource(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ModuleResourceState, opts ...pulumi.ResourceOption) (*ModuleResource, error) {
+func GetModuleResource(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ModuleResourceState, opts ...khulnasoft.ResourceOption) (*ModuleResource, error) {
 	var resource ModuleResource
 	err := ctx.ReadResource("foo-bar:submodule1:ModuleResource", name, id, state, &resource, opts...)
 	if err != nil {
@@ -58,7 +58,7 @@ func (ModuleResourceState) ElementType() reflect.Type {
 }
 
 type moduleResourceArgs struct {
-	Thing *foo.TopLevel `pulumi:"thing"`
+	Thing *foo.TopLevel `khulnasoft:"thing"`
 }
 
 // The set of arguments for constructing a ModuleResource resource.
@@ -71,7 +71,7 @@ func (ModuleResourceArgs) ElementType() reflect.Type {
 }
 
 type ModuleResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToModuleResourceOutput() ModuleResourceOutput
 	ToModuleResourceOutputWithContext(ctx context.Context) ModuleResourceOutput
@@ -86,10 +86,10 @@ func (i *ModuleResource) ToModuleResourceOutput() ModuleResourceOutput {
 }
 
 func (i *ModuleResource) ToModuleResourceOutputWithContext(ctx context.Context) ModuleResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ModuleResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ModuleResourceOutput)
 }
 
-type ModuleResourceOutput struct{ *pulumi.OutputState }
+type ModuleResourceOutput struct{ *khulnasoft.OutputState }
 
 func (ModuleResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ModuleResource)(nil)).Elem()
@@ -108,6 +108,6 @@ func (o ModuleResourceOutput) Thing() foo.TopLevelPtrOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ModuleResourceInput)(nil)).Elem(), &ModuleResource{})
-	pulumi.RegisterOutputType(ModuleResourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ModuleResourceInput)(nil)).Elem(), &ModuleResource{})
+	khulnasoft.RegisterOutputType(ModuleResourceOutput{})
 }

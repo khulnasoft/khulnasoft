@@ -4,7 +4,7 @@ This directory contains vendored versions of [Typescript 3.8.3](https://github.c
 
 These are the default and minimum versions we support for these packages.
 
-Historically these packages were direct dependencies of `@pulumi/pulumi`. To decouple the node SDK from the precise version of TypeScript, the packages are now declared as optional peer pependencies of `@pulumi/pulumi` and customers can pick the versions they want.
+Historically these packages were direct dependencies of `@khulnasoft/khulnasoft`. To decouple the node SDK from the precise version of TypeScript, the packages are now declared as optional peer pependencies of `@khulnasoft/khulnasoft` and customers can pick the versions they want.
 
 The reason we mark the peer dependencies as *optional* is to prevent package managers from automatically installing them. This avoids the situation where the package manger would install a more recent version of TypeScript without the user explictly opting in. Newer versions have stricter type checks, and can thus stop existing programs from running successfully.
 

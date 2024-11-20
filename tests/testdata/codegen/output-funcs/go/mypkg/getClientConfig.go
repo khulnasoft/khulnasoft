@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"output-funcs/mypkg/internal"
 )
 
 // Failing example taken from azure-native. Original doc: Use this function to access the current configuration of the native Azure provider.
-func GetClientConfig(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetClientConfigResult, error) {
+func GetClientConfig(ctx *khulnasoft.Context, opts ...khulnasoft.InvokeOption) (*GetClientConfigResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetClientConfigResult
 	err := ctx.Invoke("mypkg::getClientConfig", nil, &rv, opts...)
@@ -26,17 +26,17 @@ func GetClientConfig(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetClie
 // Configuration values returned by getClientConfig.
 type GetClientConfigResult struct {
 	// Azure Client ID (Application Object ID).
-	ClientId string `pulumi:"clientId"`
+	ClientId string `khulnasoft:"clientId"`
 	// Azure Object ID of the current user or service principal.
-	ObjectId string `pulumi:"objectId"`
+	ObjectId string `khulnasoft:"objectId"`
 	// Azure Subscription ID
-	SubscriptionId string `pulumi:"subscriptionId"`
+	SubscriptionId string `khulnasoft:"subscriptionId"`
 	// Azure Tenant ID
-	TenantId string `pulumi:"tenantId"`
+	TenantId string `khulnasoft:"tenantId"`
 }
 
-func GetClientConfigOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetClientConfigResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetClientConfigResultOutput, error) {
+func GetClientConfigOutput(ctx *khulnasoft.Context, opts ...khulnasoft.InvokeOption) GetClientConfigResultOutput {
+	return khulnasoft.ToOutput(0).ApplyT(func(int) (GetClientConfigResultOutput, error) {
 		opts = internal.PkgInvokeDefaultOpts(opts)
 		var rv GetClientConfigResult
 		secret, err := ctx.InvokePackageRaw("mypkg::getClientConfig", nil, &rv, "", opts...)
@@ -44,16 +44,16 @@ func GetClientConfigOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) Get
 			return GetClientConfigResultOutput{}, err
 		}
 
-		output := pulumi.ToOutput(rv).(GetClientConfigResultOutput)
+		output := khulnasoft.ToOutput(rv).(GetClientConfigResultOutput)
 		if secret {
-			return pulumi.ToSecret(output).(GetClientConfigResultOutput), nil
+			return khulnasoft.ToSecret(output).(GetClientConfigResultOutput), nil
 		}
 		return output, nil
 	}).(GetClientConfigResultOutput)
 }
 
 // Configuration values returned by getClientConfig.
-type GetClientConfigResultOutput struct{ *pulumi.OutputState }
+type GetClientConfigResultOutput struct{ *khulnasoft.OutputState }
 
 func (GetClientConfigResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetClientConfigResult)(nil)).Elem()
@@ -67,32 +67,32 @@ func (o GetClientConfigResultOutput) ToGetClientConfigResultOutputWithContext(ct
 	return o
 }
 
-func (o GetClientConfigResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetClientConfigResult] {
-	return pulumix.Output[GetClientConfigResult]{
+func (o GetClientConfigResultOutput) ToOutput(ctx context.Context) khulnasoftx.Output[GetClientConfigResult] {
+	return khulnasoftx.Output[GetClientConfigResult]{
 		OutputState: o.OutputState,
 	}
 }
 
 // Azure Client ID (Application Object ID).
-func (o GetClientConfigResultOutput) ClientId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClientConfigResult) string { return v.ClientId }).(pulumi.StringOutput)
+func (o GetClientConfigResultOutput) ClientId() khulnasoft.StringOutput {
+	return o.ApplyT(func(v GetClientConfigResult) string { return v.ClientId }).(khulnasoft.StringOutput)
 }
 
 // Azure Object ID of the current user or service principal.
-func (o GetClientConfigResultOutput) ObjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClientConfigResult) string { return v.ObjectId }).(pulumi.StringOutput)
+func (o GetClientConfigResultOutput) ObjectId() khulnasoft.StringOutput {
+	return o.ApplyT(func(v GetClientConfigResult) string { return v.ObjectId }).(khulnasoft.StringOutput)
 }
 
 // Azure Subscription ID
-func (o GetClientConfigResultOutput) SubscriptionId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClientConfigResult) string { return v.SubscriptionId }).(pulumi.StringOutput)
+func (o GetClientConfigResultOutput) SubscriptionId() khulnasoft.StringOutput {
+	return o.ApplyT(func(v GetClientConfigResult) string { return v.SubscriptionId }).(khulnasoft.StringOutput)
 }
 
 // Azure Tenant ID
-func (o GetClientConfigResultOutput) TenantId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClientConfigResult) string { return v.TenantId }).(pulumi.StringOutput)
+func (o GetClientConfigResultOutput) TenantId() khulnasoft.StringOutput {
+	return o.ApplyT(func(v GetClientConfigResult) string { return v.TenantId }).(khulnasoft.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetClientConfigResultOutput{})
+	khulnasoft.RegisterOutputType(GetClientConfigResultOutput{})
 }

@@ -24,9 +24,9 @@ import (
 	"testing"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"github.com/stretchr/testify/require"
 )
 
@@ -40,13 +40,13 @@ func TestInstallDefaultRoot(t *testing.T) {
 	require.NoError(t, err)
 	homeDir, err := os.UserHomeDir()
 	require.NoError(t, err)
-	pulumiBin := filepath.Join(homeDir, ".pulumi", "versions", requestedVersion.String(), "bin", "pulumi")
+	khulnasoftBin := filepath.Join(homeDir, ".khulnasoft", "versions", requestedVersion.String(), "bin", "khulnasoft")
 	if runtime.GOOS == "windows" {
-		pulumiBin += ".exe"
+		khulnasoftBin += ".exe"
 	}
-	_, err = os.Stat(pulumiBin)
-	require.NoError(t, err, "did not find pulumi binary in the expected path")
-	cmd := exec.Command(pulumiBin, "version")
+	_, err = os.Stat(khulnasoftBin)
+	require.NoError(t, err, "did not find khulnasoft binary in the expected path")
+	cmd := exec.Command(khulnasoftBin, "version")
 	out, err := cmd.Output()
 	require.NoError(t, err)
 	require.Equal(t, "v3.98.0", strings.TrimSpace(string(out)))
@@ -62,7 +62,7 @@ func TestOptionDefaults(t *testing.T) {
 	require.NoError(t, err)
 	homeDir, err := os.UserHomeDir()
 	require.NoError(t, err)
-	root := filepath.Join(homeDir, ".pulumi", "versions", sdk.Version.String())
+	root := filepath.Join(homeDir, ".khulnasoft", "versions", sdk.Version.String())
 	require.Equal(t, root, opts.Root)
 	require.Equal(t, sdk.Version, opts.Version)
 }
@@ -78,19 +78,19 @@ func TestInstallTwice(t *testing.T) {
 	_, err = InstallPulumiCommand(context.Background(), &PulumiCommandOptions{Root: dir, Version: version})
 
 	require.NoError(t, err)
-	pulumiPath := filepath.Join(dir, "bin", "pulumi")
+	khulnasoftPath := filepath.Join(dir, "bin", "khulnasoft")
 	if runtime.GOOS == "windows" {
-		pulumiPath += ".exe"
+		khulnasoftPath += ".exe"
 	}
-	stat, err := os.Stat(pulumiPath)
-	require.NoError(t, err, "did not find pulumi binary in the expected path")
+	stat, err := os.Stat(khulnasoftPath)
+	require.NoError(t, err, "did not find khulnasoft binary in the expected path")
 	modTime1 := stat.ModTime()
 
 	_, err = InstallPulumiCommand(context.Background(), &PulumiCommandOptions{Root: dir, Version: version})
 
 	require.NoError(t, err)
-	stat, err = os.Stat(pulumiPath)
-	require.NoError(t, err, "did not find pulumi binary in the expected path")
+	stat, err = os.Stat(khulnasoftPath)
+	require.NoError(t, err, "did not find khulnasoft binary in the expected path")
 	modTime2 := stat.ModTime()
 	require.Equal(t, modTime1, modTime2)
 }
@@ -128,14 +128,14 @@ func TestNoGlobalPulumi(t *testing.T) {
 	_, err = InstallPulumiCommand(context.Background(), &PulumiCommandOptions{Root: dir, Version: version})
 	require.NoError(t, err)
 
-	t.Setenv("PATH", "") // Clear path so we don't have access to a globally installed pulumi command.
+	t.Setenv("PATH", "") // Clear path so we don't have access to a globally installed khulnasoft command.
 
-	// Grab a new pulumi command for our installation, but now env.PATH is
-	// empty, so we can't accidentally use a globally installed pulumi.
-	pulumiCommand, err := InstallPulumiCommand(context.Background(), &PulumiCommandOptions{Root: dir, Version: version})
+	// Grab a new khulnasoft command for our installation, but now env.PATH is
+	// empty, so we can't accidentally use a globally installed khulnasoft.
+	khulnasoftCommand, err := InstallPulumiCommand(context.Background(), &PulumiCommandOptions{Root: dir, Version: version})
 	require.NoError(t, err)
 
-	deployFunc := func(ctx *pulumi.Context) error {
+	deployFunc := func(ctx *khulnasoft.Context) error {
 		return nil
 	}
 
@@ -144,24 +144,24 @@ func TestNoGlobalPulumi(t *testing.T) {
 	projectName := "autoInstall"
 	stackName := ptesting.RandomStackName()
 
-	_, err = UpsertStackInlineSource(ctx, stackName, projectName, deployFunc, Pulumi(pulumiCommand))
+	_, err = UpsertStackInlineSource(ctx, stackName, projectName, deployFunc, Pulumi(khulnasoftCommand))
 	require.NoError(t, err)
 }
 
 func TestFixupPath(t *testing.T) {
 	t.Parallel()
 
-	env := fixupPath([]string{"FOO=bar", "V=1"}, "/pulumi-root/bin")
+	env := fixupPath([]string{"FOO=bar", "V=1"}, "/khulnasoft-root/bin")
 
-	require.Contains(t, env, "PATH=/pulumi-root/bin")
+	require.Contains(t, env, "PATH=/khulnasoft-root/bin")
 }
 
 func TestFixupPathExistingPath(t *testing.T) {
 	t.Parallel()
 
-	env := fixupPath([]string{"FOO=bar", "PATH=/usr/local/bin"}, "/pulumi-root/bin")
+	env := fixupPath([]string{"FOO=bar", "PATH=/usr/local/bin"}, "/khulnasoft-root/bin")
 
-	require.Contains(t, env, "PATH=/pulumi-root/bin"+string(os.PathListSeparator)+"/usr/local/bin")
+	require.Contains(t, env, "PATH=/khulnasoft-root/bin"+string(os.PathListSeparator)+"/usr/local/bin")
 }
 
 const (

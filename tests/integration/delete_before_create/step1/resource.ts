@@ -1,7 +1,7 @@
 // Copyright 2016-2022, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
-import * as dynamic from "@pulumi/pulumi/dynamic";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as dynamic from "@khulnasoft/khulnasoft/dynamic";
 import {v4 as uuidv4} from "uuid";
 
 export class Provider implements dynamic.ResourceProvider {
@@ -13,7 +13,7 @@ export class Provider implements dynamic.ResourceProvider {
         };
     }
 
-    public async diff(id: pulumi.ID, olds: any, news: any): Promise<dynamic.DiffResult> {
+    public async diff(id: khulnasoft.ID, olds: any, news: any): Promise<dynamic.DiffResult> {
         if (olds.state !== news.state) {
             return {
                 changes: true,
@@ -41,19 +41,19 @@ export class Provider implements dynamic.ResourceProvider {
     }
 }
 
-export class Resource extends pulumi.dynamic.Resource {
-    public uniqueKey?: pulumi.Output<number>;
-    public state: pulumi.Output<number>;
-    public noReplace?: pulumi.Output<number>;
+export class Resource extends khulnasoft.dynamic.Resource {
+    public uniqueKey?: khulnasoft.Output<number>;
+    public state: khulnasoft.Output<number>;
+    public noReplace?: khulnasoft.Output<number>;
 
-    constructor(name: string, props: ResourceProps, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, props: ResourceProps, opts?: khulnasoft.CustomResourceOptions) {
         super(Provider.instance, name, props, opts);
     }
 }
 
 export interface ResourceProps {
-    readonly uniqueKey?: pulumi.Input<number>;
-    readonly state: pulumi.Input<number>;
-    readonly noReplace?: pulumi.Input<number>;
-    readonly noDBR?: pulumi.Input<boolean>;
+    readonly uniqueKey?: khulnasoft.Input<number>;
+    readonly state: khulnasoft.Input<number>;
+    readonly noReplace?: khulnasoft.Input<number>;
+    readonly noDBR?: khulnasoft.Input<boolean>;
 }

@@ -17,21 +17,21 @@ def readme():
         return "foo Pulumi Package - Development Version"
 
 
-setup(name='pulumi_foo',
+setup(name='khulnasoft_foo',
       python_requires='>=3.8',
       version=VERSION,
       long_description=readme(),
       long_description_content_type='text/markdown',
       packages=find_packages(),
       package_data={
-          'pulumi_foo': [
+          'khulnasoft_foo': [
               'py.typed',
-              'pulumi-plugin.json',
+              'khulnasoft-plugin.json',
           ]
       },
       install_requires=[
           'parver>=0.2.1',
-          'pulumi>=3.136.0,<4.0.0',
+          'khulnasoft>=3.136.0,<4.0.0',
           'semver>=2.8.1',
           'typing-extensions>=4.11,<5; python_version < "3.11"'
       ],

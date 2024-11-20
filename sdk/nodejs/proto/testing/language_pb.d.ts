@@ -1,5 +1,5 @@
-// package: pulumirpc.testing
-// file: pulumi/testing/language.proto
+// package: khulnasoftrpc.testing
+// file: khulnasoft/testing/language.proto
 
 /* tslint:disable */
 /* eslint-disable */

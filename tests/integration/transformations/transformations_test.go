@@ -20,8 +20,8 @@ import (
 	"testing"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -78,7 +78,7 @@ func Validator(t *testing.T, stack integration.RuntimeValidationStackInfo) {
 			foundRes5Child = true
 			assert.Equal(t, res.Type, tokens.Type(randomResName))
 			assert.Equal(t, res.Parent.Type(), tokens.Type("my:component:MyOtherComponent"))
-			// TODO[pulumi/pulumi#3282] Due to this bug, the dependency information
+			// TODO[khulnasoft/khulnasoft#3282] Due to this bug, the dependency information
 			// will not be correctly recorded in the state file, and so cannot be
 			// verified here.
 			//

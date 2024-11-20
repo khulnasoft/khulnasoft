@@ -20,7 +20,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
 )
 
 // GrpcServer is a standard Pulumi style gRPC server that can be used to serve gRPC services.

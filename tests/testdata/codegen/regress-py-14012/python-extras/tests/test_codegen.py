@@ -14,23 +14,23 @@
 
 import pytest
 
-import pulumi
+import khulnasoft
 
-from pulumi_foo import Provider, ProviderCertmanagerArgs
+from khulnasoft_foo import Provider, ProviderCertmanagerArgs
 
 
 @pytest.fixture
 def my_mocks():
-    old_settings = pulumi.runtime.settings.SETTINGS
+    old_settings = khulnasoft.runtime.settings.SETTINGS
     try:
         mocks = MyMocks()
-        pulumi.runtime.mocks.set_mocks(mocks)
+        khulnasoft.runtime.mocks.set_mocks(mocks)
         yield mocks
     finally:
-        pulumi.runtime.settings.configure(old_settings)
+        khulnasoft.runtime.settings.configure(old_settings)
 
 
-class MyMocks(pulumi.runtime.Mocks):
+class MyMocks(khulnasoft.runtime.Mocks):
     def call(self, args):
         raise Exception(f'Unhandled args.token={args.token}')
 
@@ -38,7 +38,7 @@ class MyMocks(pulumi.runtime.Mocks):
         return ["", {}]
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_provider(my_mocks):
     # Create an instance of the provider, but don't pass it the optional `certmanager` argument.
     Provider("provider")

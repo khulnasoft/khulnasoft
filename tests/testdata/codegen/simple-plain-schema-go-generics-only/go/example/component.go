@@ -8,28 +8,28 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"simple-plain-schema-go-generics-only/example/internal"
 )
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	A   pulumix.Output[bool]                 `pulumi:"a"`
-	B   pulumix.Output[*bool]                `pulumi:"b"`
-	Bar pulumix.GPtrOutput[Foo, FooOutput]   `pulumi:"bar"`
-	Baz pulumix.GArrayOutput[Foo, FooOutput] `pulumi:"baz"`
-	C   pulumix.Output[int]                  `pulumi:"c"`
-	D   pulumix.Output[*int]                 `pulumi:"d"`
-	E   pulumix.Output[string]               `pulumi:"e"`
-	F   pulumix.Output[*string]              `pulumi:"f"`
-	Foo pulumix.GPtrOutput[Foo, FooOutput]   `pulumi:"foo"`
+	A   khulnasoftx.Output[bool]                 `khulnasoft:"a"`
+	B   khulnasoftx.Output[*bool]                `khulnasoft:"b"`
+	Bar khulnasoftx.GPtrOutput[Foo, FooOutput]   `khulnasoft:"bar"`
+	Baz khulnasoftx.GArrayOutput[Foo, FooOutput] `khulnasoft:"baz"`
+	C   khulnasoftx.Output[int]                  `khulnasoft:"c"`
+	D   khulnasoftx.Output[*int]                 `khulnasoft:"d"`
+	E   khulnasoftx.Output[string]               `khulnasoft:"e"`
+	F   khulnasoftx.Output[*string]              `khulnasoft:"f"`
+	Foo khulnasoftx.GPtrOutput[Foo, FooOutput]   `khulnasoft:"foo"`
 }
 
 // NewComponent registers a new resource with the given unique name, arguments, and options.
-func NewComponent(ctx *pulumi.Context,
-	name string, args *ComponentArgs, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context,
+	name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -44,16 +44,16 @@ func NewComponent(ctx *pulumi.Context,
 }
 
 type componentArgs struct {
-	A      bool           `pulumi:"a"`
-	B      *bool          `pulumi:"b"`
-	Bar    *Foo           `pulumi:"bar"`
-	Baz    []Foo          `pulumi:"baz"`
-	BazMap map[string]Foo `pulumi:"bazMap"`
-	C      int            `pulumi:"c"`
-	D      *int           `pulumi:"d"`
-	E      string         `pulumi:"e"`
-	F      *string        `pulumi:"f"`
-	Foo    *Foo           `pulumi:"foo"`
+	A      bool           `khulnasoft:"a"`
+	B      *bool          `khulnasoft:"b"`
+	Bar    *Foo           `khulnasoft:"bar"`
+	Baz    []Foo          `khulnasoft:"baz"`
+	BazMap map[string]Foo `khulnasoft:"bazMap"`
+	C      int            `khulnasoft:"c"`
+	D      *int           `khulnasoft:"d"`
+	E      string         `khulnasoft:"e"`
+	F      *string        `khulnasoft:"f"`
+	Foo    *Foo           `khulnasoft:"foo"`
 }
 
 // The set of arguments for constructing a Component resource.
@@ -67,14 +67,14 @@ type ComponentArgs struct {
 	D      *int
 	E      string
 	F      *string
-	Foo    pulumix.Input[*FooArgs]
+	Foo    khulnasoftx.Input[*FooArgs]
 }
 
 func (ComponentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*componentArgs)(nil)).Elem()
 }
 
-type ComponentOutput struct{ *pulumi.OutputState }
+type ComponentOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Component)(nil)).Elem()
@@ -88,60 +88,60 @@ func (o ComponentOutput) ToComponentOutputWithContext(ctx context.Context) Compo
 	return o
 }
 
-func (o ComponentOutput) ToOutput(ctx context.Context) pulumix.Output[Component] {
-	return pulumix.Output[Component]{
+func (o ComponentOutput) ToOutput(ctx context.Context) khulnasoftx.Output[Component] {
+	return khulnasoftx.Output[Component]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o ComponentOutput) A() pulumix.Output[bool] {
-	value := pulumix.Apply[Component](o, func(v Component) pulumix.Output[bool] { return v.A })
-	return pulumix.Flatten[bool, pulumix.Output[bool]](value)
+func (o ComponentOutput) A() khulnasoftx.Output[bool] {
+	value := khulnasoftx.Apply[Component](o, func(v Component) khulnasoftx.Output[bool] { return v.A })
+	return khulnasoftx.Flatten[bool, khulnasoftx.Output[bool]](value)
 }
 
-func (o ComponentOutput) B() pulumix.Output[*bool] {
-	value := pulumix.Apply[Component](o, func(v Component) pulumix.Output[*bool] { return v.B })
-	return pulumix.Flatten[*bool, pulumix.Output[*bool]](value)
+func (o ComponentOutput) B() khulnasoftx.Output[*bool] {
+	value := khulnasoftx.Apply[Component](o, func(v Component) khulnasoftx.Output[*bool] { return v.B })
+	return khulnasoftx.Flatten[*bool, khulnasoftx.Output[*bool]](value)
 }
 
-func (o ComponentOutput) Bar() pulumix.GPtrOutput[Foo, FooOutput] {
-	value := pulumix.Apply[Component](o, func(v Component) pulumix.GPtrOutput[Foo, FooOutput] { return v.Bar })
-	unwrapped := pulumix.Flatten[*Foo, pulumix.GPtrOutput[Foo, FooOutput]](value)
-	return pulumix.GPtrOutput[Foo, FooOutput]{OutputState: unwrapped.OutputState}
+func (o ComponentOutput) Bar() khulnasoftx.GPtrOutput[Foo, FooOutput] {
+	value := khulnasoftx.Apply[Component](o, func(v Component) khulnasoftx.GPtrOutput[Foo, FooOutput] { return v.Bar })
+	unwrapped := khulnasoftx.Flatten[*Foo, khulnasoftx.GPtrOutput[Foo, FooOutput]](value)
+	return khulnasoftx.GPtrOutput[Foo, FooOutput]{OutputState: unwrapped.OutputState}
 }
 
-func (o ComponentOutput) Baz() pulumix.GArrayOutput[Foo, FooOutput] {
-	value := pulumix.Apply[Component](o, func(v Component) pulumix.GArrayOutput[Foo, FooOutput] { return v.Baz })
-	unwrapped := pulumix.Flatten[[]Foo, pulumix.GArrayOutput[Foo, FooOutput]](value)
-	return pulumix.GArrayOutput[Foo, FooOutput]{OutputState: unwrapped.OutputState}
+func (o ComponentOutput) Baz() khulnasoftx.GArrayOutput[Foo, FooOutput] {
+	value := khulnasoftx.Apply[Component](o, func(v Component) khulnasoftx.GArrayOutput[Foo, FooOutput] { return v.Baz })
+	unwrapped := khulnasoftx.Flatten[[]Foo, khulnasoftx.GArrayOutput[Foo, FooOutput]](value)
+	return khulnasoftx.GArrayOutput[Foo, FooOutput]{OutputState: unwrapped.OutputState}
 }
 
-func (o ComponentOutput) C() pulumix.Output[int] {
-	value := pulumix.Apply[Component](o, func(v Component) pulumix.Output[int] { return v.C })
-	return pulumix.Flatten[int, pulumix.Output[int]](value)
+func (o ComponentOutput) C() khulnasoftx.Output[int] {
+	value := khulnasoftx.Apply[Component](o, func(v Component) khulnasoftx.Output[int] { return v.C })
+	return khulnasoftx.Flatten[int, khulnasoftx.Output[int]](value)
 }
 
-func (o ComponentOutput) D() pulumix.Output[*int] {
-	value := pulumix.Apply[Component](o, func(v Component) pulumix.Output[*int] { return v.D })
-	return pulumix.Flatten[*int, pulumix.Output[*int]](value)
+func (o ComponentOutput) D() khulnasoftx.Output[*int] {
+	value := khulnasoftx.Apply[Component](o, func(v Component) khulnasoftx.Output[*int] { return v.D })
+	return khulnasoftx.Flatten[*int, khulnasoftx.Output[*int]](value)
 }
 
-func (o ComponentOutput) E() pulumix.Output[string] {
-	value := pulumix.Apply[Component](o, func(v Component) pulumix.Output[string] { return v.E })
-	return pulumix.Flatten[string, pulumix.Output[string]](value)
+func (o ComponentOutput) E() khulnasoftx.Output[string] {
+	value := khulnasoftx.Apply[Component](o, func(v Component) khulnasoftx.Output[string] { return v.E })
+	return khulnasoftx.Flatten[string, khulnasoftx.Output[string]](value)
 }
 
-func (o ComponentOutput) F() pulumix.Output[*string] {
-	value := pulumix.Apply[Component](o, func(v Component) pulumix.Output[*string] { return v.F })
-	return pulumix.Flatten[*string, pulumix.Output[*string]](value)
+func (o ComponentOutput) F() khulnasoftx.Output[*string] {
+	value := khulnasoftx.Apply[Component](o, func(v Component) khulnasoftx.Output[*string] { return v.F })
+	return khulnasoftx.Flatten[*string, khulnasoftx.Output[*string]](value)
 }
 
-func (o ComponentOutput) Foo() pulumix.GPtrOutput[Foo, FooOutput] {
-	value := pulumix.Apply[Component](o, func(v Component) pulumix.GPtrOutput[Foo, FooOutput] { return v.Foo })
-	unwrapped := pulumix.Flatten[*Foo, pulumix.GPtrOutput[Foo, FooOutput]](value)
-	return pulumix.GPtrOutput[Foo, FooOutput]{OutputState: unwrapped.OutputState}
+func (o ComponentOutput) Foo() khulnasoftx.GPtrOutput[Foo, FooOutput] {
+	value := khulnasoftx.Apply[Component](o, func(v Component) khulnasoftx.GPtrOutput[Foo, FooOutput] { return v.Foo })
+	unwrapped := khulnasoftx.Flatten[*Foo, khulnasoftx.GPtrOutput[Foo, FooOutput]](value)
+	return khulnasoftx.GPtrOutput[Foo, FooOutput]{OutputState: unwrapped.OutputState}
 }
 
 func init() {
-	pulumi.RegisterOutputType(ComponentOutput{})
+	khulnasoft.RegisterOutputType(ComponentOutput{})
 }

@@ -21,7 +21,7 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
 )
 
 func TestPreviewOnlyFlag(t *testing.T) {
@@ -33,36 +33,36 @@ func TestPreviewOnlyFlag(t *testing.T) {
 
 		integration.CreateBasicPulumiRepo(e)
 		e.ImportDirectory("integration/single_resource")
-		e.RunCommand("yarn", "link", "@pulumi/pulumi")
+		e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 		e.RunCommand("yarn", "install")
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "foo")
-		e.RunCommand("pulumi", "up", "--skip-preview", "--yes")
+		e.RunCommand("khulnasoft", "stack", "init", "foo")
+		e.RunCommand("khulnasoft", "up", "--skip-preview", "--yes")
 
 		// Try some invalid flag combinations.
-		_, stderr := e.RunCommandExpectError("pulumi", "refresh", "--preview-only", "--yes")
+		_, stderr := e.RunCommandExpectError("khulnasoft", "refresh", "--preview-only", "--yes")
 		assert.Equal(t,
 			"error: --yes and --preview-only cannot be used together",
 			strings.Trim(stderr, "\r\n"))
-		_, stderr = e.RunCommandExpectError("pulumi", "refresh", "--skip-preview", "--preview-only")
+		_, stderr = e.RunCommandExpectError("khulnasoft", "refresh", "--skip-preview", "--preview-only")
 		assert.Equal(t,
 			"error: --skip-preview and --preview-only cannot be used together",
 			strings.Trim(stderr, "\r\n"))
-		_, stderr = e.RunCommandExpectError("pulumi", "refresh", "--non-interactive")
+		_, stderr = e.RunCommandExpectError("khulnasoft", "refresh", "--non-interactive")
 		assert.Equal(t,
 			"error: --yes or --skip-preview or --preview-only must be passed in to proceed when "+
 				"running in non-interactive mode",
 			strings.Trim(stderr, "\r\n"))
 
 		// Now try just the flag.
-		stdout, _ := e.RunCommand("pulumi", "refresh", "--preview-only")
+		stdout, _ := e.RunCommand("khulnasoft", "refresh", "--preview-only")
 		assert.NotContains(t, stdout, "Do you want to perform this refresh?")
 		// Make sure it works with --non-interactive too.
-		e.RunCommand("pulumi", "refresh", "--preview-only", "--non-interactive")
+		e.RunCommand("khulnasoft", "refresh", "--preview-only", "--non-interactive")
 
-		e.RunCommand("pulumi", "destroy", "--skip-preview", "--yes")
+		e.RunCommand("khulnasoft", "destroy", "--skip-preview", "--yes")
 		// Remove the stack.
-		e.RunCommand("pulumi", "stack", "rm", "foo", "--yes")
+		e.RunCommand("khulnasoft", "stack", "rm", "foo", "--yes")
 	})
 
 	t.Run("PreviewOnlyDestroy", func(t *testing.T) {
@@ -73,36 +73,36 @@ func TestPreviewOnlyFlag(t *testing.T) {
 
 		integration.CreateBasicPulumiRepo(e)
 		e.ImportDirectory("integration/single_resource")
-		e.RunCommand("yarn", "link", "@pulumi/pulumi")
+		e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 		e.RunCommand("yarn", "install")
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "foo")
-		e.RunCommand("pulumi", "up", "--skip-preview", "--yes")
+		e.RunCommand("khulnasoft", "stack", "init", "foo")
+		e.RunCommand("khulnasoft", "up", "--skip-preview", "--yes")
 
 		// Try some invalid flag combinations.
-		_, stderr := e.RunCommandExpectError("pulumi", "destroy", "--preview-only", "--yes")
+		_, stderr := e.RunCommandExpectError("khulnasoft", "destroy", "--preview-only", "--yes")
 		assert.Equal(t,
 			"error: --yes and --preview-only cannot be used together",
 			strings.Trim(stderr, "\r\n"))
-		_, stderr = e.RunCommandExpectError("pulumi", "destroy", "--skip-preview", "--preview-only")
+		_, stderr = e.RunCommandExpectError("khulnasoft", "destroy", "--skip-preview", "--preview-only")
 		assert.Equal(t,
 			"error: --skip-preview and --preview-only cannot be used together",
 			strings.Trim(stderr, "\r\n"))
-		_, stderr = e.RunCommandExpectError("pulumi", "destroy", "--non-interactive")
+		_, stderr = e.RunCommandExpectError("khulnasoft", "destroy", "--non-interactive")
 		assert.Equal(t,
 			"error: --yes or --skip-preview or --preview-only must be passed in to proceed when running in non-interactive mode",
 			strings.Trim(stderr, "\r\n"))
 
 		// Now try just the flag.
-		stdout, _ := e.RunCommand("pulumi", "destroy", "--preview-only")
+		stdout, _ := e.RunCommand("khulnasoft", "destroy", "--preview-only")
 		assert.NotContains(t, stdout, "Do you want to perform this destroy?")
 		assert.NotContains(t, stdout, "The resources in the stack have been deleted")
 		// Make sure it works with --non-interactive too.
-		e.RunCommand("pulumi", "destroy", "--preview-only", "--non-interactive")
+		e.RunCommand("khulnasoft", "destroy", "--preview-only", "--non-interactive")
 
-		e.RunCommand("pulumi", "destroy", "--skip-preview", "--yes")
+		e.RunCommand("khulnasoft", "destroy", "--skip-preview", "--yes")
 		// Remove the stack.
-		e.RunCommand("pulumi", "stack", "rm", "foo", "--yes")
+		e.RunCommand("khulnasoft", "stack", "rm", "foo", "--yes")
 	})
 
 	t.Run("PreviewOnlyImport", func(t *testing.T) {
@@ -113,37 +113,37 @@ func TestPreviewOnlyFlag(t *testing.T) {
 
 		integration.CreateBasicPulumiRepo(e)
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "foo")
+		e.RunCommand("khulnasoft", "stack", "init", "foo")
 
 		// Make sure random is installed
-		e.RunCommand("pulumi", "plugin", "install", "resource", "random", "4.13.0")
+		e.RunCommand("khulnasoft", "plugin", "install", "resource", "random", "4.13.0")
 
 		// Try some invalid flag combinations.
-		_, stderr := e.RunCommandExpectError("pulumi", "import", "random:index/randomId:RandomId",
+		_, stderr := e.RunCommandExpectError("khulnasoft", "import", "random:index/randomId:RandomId",
 			"identifier", "p-9hUg", "--preview-only", "--yes")
 		assert.Equal(t,
 			"error: --yes and --preview-only cannot be used together",
 			strings.Trim(stderr, "\r\n"))
-		_, stderr = e.RunCommandExpectError("pulumi", "import", "random:index/randomId:RandomId",
+		_, stderr = e.RunCommandExpectError("khulnasoft", "import", "random:index/randomId:RandomId",
 			"identifier", "p-9hUg", "--skip-preview", "--preview-only")
 		assert.Equal(t,
 			"error: --skip-preview and --preview-only cannot be used together",
 			strings.Trim(stderr, "\r\n"))
-		_, stderr = e.RunCommandExpectError("pulumi", "import", "random:index/randomId:RandomId",
+		_, stderr = e.RunCommandExpectError("khulnasoft", "import", "random:index/randomId:RandomId",
 			"identifier", "p-9hUg", "--non-interactive")
 		assert.Equal(t,
 			"error: --yes or --skip-preview or --preview-only must be passed in to proceed when running in non-interactive mode",
 			strings.Trim(stderr, "\r\n"))
 
 		// Now try just the flag.
-		stdout, _ := e.RunCommand("pulumi", "import", "random:index/randomId:RandomId",
+		stdout, _ := e.RunCommand("khulnasoft", "import", "random:index/randomId:RandomId",
 			"identifier", "p-9hUg", "--preview-only")
 		assert.NotContains(t, stdout, "Do you want to perform this import?")
 		// Make sure it works with --non-interactive too.
-		e.RunCommand("pulumi", "import", "random:index/randomId:RandomId",
+		e.RunCommand("khulnasoft", "import", "random:index/randomId:RandomId",
 			"identifier", "p-9hUg", "--preview-only", "--non-interactive")
 
 		// Remove the stack.
-		e.RunCommand("pulumi", "stack", "rm", "foo", "--yes")
+		e.RunCommand("khulnasoft", "stack", "rm", "foo", "--yes")
 	})
 }

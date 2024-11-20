@@ -25,7 +25,7 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/executable"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/executable"
 )
 
 func GenerateGoProgramTest(
@@ -36,11 +36,11 @@ func GenerateGoProgramTest(
 ) {
 	expectedVersion := map[string]PkgVersionInfo{
 		"aws-resource-options-4.26": {
-			Pkg:          "github.com/pulumi/pulumi-aws/sdk/v4",
+			Pkg:          "github.com/khulnasoft/khulnasoft-aws/sdk/v4",
 			OpAndVersion: "v4.26.0",
 		},
 		"aws-resource-options-5.16.2": {
-			Pkg:          "github.com/pulumi/pulumi-aws/sdk/v5",
+			Pkg:          "github.com/khulnasoft/khulnasoft-aws/sdk/v5",
 			OpAndVersion: "v5.16.2",
 		},
 		"modpath": {
@@ -131,7 +131,7 @@ func GenerateGoYAMLBatchTest(t *testing.T, rootDir string, genProgram GenProgram
 		})
 }
 
-func checkGo(t *testing.T, path string, deps codegen.StringSet, pulumiSDKPath string) {
+func checkGo(t *testing.T, path string, deps codegen.StringSet, khulnasoftSDKPath string) {
 	dir := filepath.Dir(path)
 	ex, err := executable.FindExecutable("go")
 	require.NoError(t, err)
@@ -149,21 +149,21 @@ func checkGo(t *testing.T, path string, deps codegen.StringSet, pulumiSDKPath st
 		[]string{ex, "mod", "tidy"},
 		dir, &integration.ProgramTestOptions{})
 	require.NoError(t, err)
-	if pulumiSDKPath != "" {
+	if khulnasoftSDKPath != "" {
 		err = integration.RunCommand(t, "point towards local Go SDK",
 			[]string{
 				ex, "mod", "edit",
 				fmt.Sprintf("--replace=%s=%s",
-					"github.com/pulumi/pulumi/sdk/v3",
-					pulumiSDKPath),
+					"github.com/khulnasoft/khulnasoft/sdk/v3",
+					khulnasoftSDKPath),
 			},
 			dir, &integration.ProgramTestOptions{})
 		require.NoError(t, err)
 	}
-	typeCheckGo(t, path, deps, pulumiSDKPath)
+	typeCheckGo(t, path, deps, khulnasoftSDKPath)
 }
 
-func typeCheckGo(t *testing.T, path string, deps codegen.StringSet, pulumiSDKPath string) {
+func typeCheckGo(t *testing.T, path string, deps codegen.StringSet, khulnasoftSDKPath string) {
 	dir := filepath.Dir(path)
 	ex, err := executable.FindExecutable("go")
 	require.NoError(t, err)

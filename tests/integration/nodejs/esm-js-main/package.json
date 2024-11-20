@@ -4,9 +4,9 @@
     "type": "module",
     "main": "src/main.js",
     "peerDependencies": {
-        "@pulumi/pulumi": "latest"
+        "@khulnasoft/khulnasoft": "latest"
     },
     "dependencies": {
-        "@pulumi/aws": "^4.33.0"
+        "@khulnasoft/aws": "^4.33.0"
     }
 }

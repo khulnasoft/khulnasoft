@@ -21,9 +21,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/archive"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/asset"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/mapper"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/archive"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/asset"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/mapper"
 )
 
 type complexBag struct {

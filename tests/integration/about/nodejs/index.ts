@@ -1,3 +1,3 @@
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 const name = "about-name"

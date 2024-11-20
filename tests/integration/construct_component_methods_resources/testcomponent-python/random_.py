@@ -2,13 +2,13 @@
 
 from typing import Optional
 
-import pulumi
+import khulnasoft
 
-class Random(pulumi.CustomResource):
+class Random(khulnasoft.CustomResource):
     def __init__(self,
                  resource_name: str,
-                 length: pulumi.Input[int],
-                 opts: Optional[pulumi.ResourceOptions] = None):
+                 length: khulnasoft.Input[int],
+                 opts: Optional[khulnasoft.ResourceOptions] = None):
         props = {
             "length": length,
             "result": None,
@@ -16,11 +16,11 @@ class Random(pulumi.CustomResource):
         super().__init__("testprovider:index:Random", resource_name, props, opts)
 
     @property
-    @pulumi.getter
-    def length(self) -> pulumi.Output[int]:
-        return pulumi.get(self, "length")
+    @khulnasoft.getter
+    def length(self) -> khulnasoft.Output[int]:
+        return khulnasoft.get(self, "length")
 
     @property
-    @pulumi.getter
-    def result(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "result")
+    @khulnasoft.getter
+    def result(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "result")

@@ -20,8 +20,8 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -30,7 +30,7 @@ func TestComputeUpdateStats(t *testing.T) {
 	t.Parallel()
 
 	events := []engine.Event{
-		makeResourcePreEvent("res1", "pulumi:pulumi:Stack", deploy.OpCreate, false),
+		makeResourcePreEvent("res1", "khulnasoft:khulnasoft:Stack", deploy.OpCreate, false),
 		makeResourcePreEvent("res2", "custom:resource:Type", deploy.OpCreate, false),
 		makeResourcePreEvent("res3", "custom:resource:Type", deploy.OpDelete, true),
 		makeResourcePreEvent("res4", "custom:resource:Type", deploy.OpReplace, true),

@@ -2,25 +2,25 @@
 
 set -euo pipefail
 
-pulumi version
+khulnasoft version
 
-time pulumi destroy --yes
+time khulnasoft destroy --yes
 
-pulumi config set mode new
-time pulumi up --yes --skip-preview
+khulnasoft config set mode new
+time khulnasoft up --yes --skip-preview
 
-pulumi config set mode alias
-time pulumi up --yes --skip-preview
+khulnasoft config set mode alias
+time khulnasoft up --yes --skip-preview
 
 
-export PATH=~/.pulumi-dev/bin:$PATH
+export PATH=~/.khulnasoft-dev/bin:$PATH
 
-pulumi version
+khulnasoft version
 
-time pulumi destroy --yes
+time khulnasoft destroy --yes
 
-pulumi config set mode new
-time pulumi up --yes --skip-preview
+khulnasoft config set mode new
+time khulnasoft up --yes --skip-preview
 
-pulumi config set mode alias
-time pulumi up --yes --skip-preview
+khulnasoft config set mode alias
+time khulnasoft up --yes --skip-preview

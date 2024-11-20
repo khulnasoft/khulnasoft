@@ -27,14 +27,14 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/fsutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/fsutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 const (
 	windows             = "windows"
-	pythonShimCmdFormat = "pulumi-%s-shim.cmd"
+	pythonShimCmdFormat = "khulnasoft-%s-shim.cmd"
 )
 
 type pip struct {
@@ -328,7 +328,7 @@ func NewVirtualEnvError(dir, fullPath string) error {
 
 	return fmt.Errorf("The 'virtualenv' option in Pulumi.yaml is set to %q, but %q %s; "+
 		"run the following commands to create the virtual environment and install dependencies into it:\n\n%s\n\n"+
-		"For more information see: https://www.pulumi.com/docs/intro/languages/python/#virtual-environments",
+		"For more information see: https://www.khulnasoft.com/docs/intro/languages/python/#virtual-environments",
 		dir, fullPath, message, commandsText)
 }
 

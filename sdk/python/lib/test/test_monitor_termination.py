@@ -19,16 +19,16 @@ import logging
 import grpc
 import pytest
 
-import pulumi
+import khulnasoft
 
 from .helpers import raises
 
 
 # Verify that when the monitor becomes unavailable (via
 # unavailable_mocks), programs fail with a `RunError` and do not hang.
-@raises(pulumi.RunError)
+@raises(khulnasoft.RunError)
 @pytest.mark.timeout(10)
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_resource_registration_does_not_hang_when_monitor_unavailable(
     unavailable_mocks,
 ):
@@ -40,31 +40,31 @@ class Unavailable(grpc.RpcError):
         return grpc.StatusCode.UNAVAILABLE
 
 
-class UnavailableMocks(pulumi.runtime.Mocks):
-    def call(self, args: pulumi.runtime.MockCallArgs) -> Any:
+class UnavailableMocks(khulnasoft.runtime.Mocks):
+    def call(self, args: khulnasoft.runtime.MockCallArgs) -> Any:
         return {}
 
-    def new_resource(self, args: pulumi.runtime.MockResourceArgs) -> Any:
+    def new_resource(self, args: khulnasoft.runtime.MockResourceArgs) -> Any:
         raise Unavailable()
 
 
-class MyCustom(pulumi.CustomResource):
-    outprop: pulumi.Output[str]
+class MyCustom(khulnasoft.CustomResource):
+    outprop: khulnasoft.Output[str]
 
     def __init__(self, resource_name, props: Optional[dict] = None, opts=None) -> None:
         super().__init__("pkg:index:MyCustom", resource_name, props, opts)
         inprop = (props or {}).get("inprop", None)
         if inprop is None:
             raise TypeError("Missing required property 'inprop'")
-        self.outprop = pulumi.Output.from_input(inprop).apply(lambda x: f"output: {x}")
+        self.outprop = khulnasoft.Output.from_input(inprop).apply(lambda x: f"output: {x}")
 
 
 @pytest.fixture
 def unavailable_mocks():
-    old_settings = pulumi.runtime.settings.SETTINGS
+    old_settings = khulnasoft.runtime.settings.SETTINGS
     try:
         mocks = UnavailableMocks()
-        pulumi.runtime.mocks.set_mocks(mocks)
+        khulnasoft.runtime.mocks.set_mocks(mocks)
         yield mocks
     finally:
-        pulumi.runtime.settings.configure(old_settings)
+        khulnasoft.runtime.settings.configure(old_settings)

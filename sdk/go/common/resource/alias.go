@@ -42,7 +42,7 @@ func CreateURN(name string, t string, parent URN, project string, stack string) 
 		parentString := string(parent)
 		var parentPrefix string
 		if parent == "" {
-			parentPrefix = "urn:pulumi:" + stack + "::" + project + "::"
+			parentPrefix = "urn:khulnasoft:" + stack + "::" + project + "::"
 		} else {
 			ix := strings.LastIndex(parentString, "::")
 			if ix == -1 {

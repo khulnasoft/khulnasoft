@@ -19,7 +19,7 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
 )
 
 // Manager provides the interface for providing stack encryption.

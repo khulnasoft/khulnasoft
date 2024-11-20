@@ -20,7 +20,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/test"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -41,18 +41,18 @@ func TestGenerateProgramVersionSelection(t *testing.T) {
 func TestEnumReferencesCorrectIdentifier(t *testing.T) {
 	t.Parallel()
 	s := &schema.Package{
-		Name: "pulumiservice",
+		Name: "khulnasoftservice",
 		Language: map[string]interface{}{
 			"nodejs": NodePackageInfo{
-				PackageName: "@pulumi/bar",
+				PackageName: "@khulnasoft/bar",
 			},
 		},
 	}
-	result, err := enumNameWithPackage("pulumiservice:index:WebhookFilters", s.Reference())
+	result, err := enumNameWithPackage("khulnasoftservice:index:WebhookFilters", s.Reference())
 	assert.NoError(t, err)
-	assert.Equal(t, "pulumiservice.WebhookFilters", result)
+	assert.Equal(t, "khulnasoftservice.WebhookFilters", result)
 
 	// These are redundant, but serve to clarify our expectations around package alias names.
 	assert.NotEqual(t, "bar.WebhookFilters", result)
-	assert.NotEqual(t, "@pulumi/bar.WebhookFilters", result)
+	assert.NotEqual(t, "@khulnasoft/bar.WebhookFilters", result)
 }

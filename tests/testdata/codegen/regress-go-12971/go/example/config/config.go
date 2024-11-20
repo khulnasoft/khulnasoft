@@ -4,14 +4,14 @@
 package config
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"
 	"regress-go-12971/example/internal"
 )
 
 var _ = internal.GetEnvOrDefault
 
-func GetName(ctx *pulumi.Context) string {
+func GetName(ctx *khulnasoft.Context) string {
 	v, err := config.Try(ctx, "world:name")
 	if err == nil {
 		return v
@@ -22,7 +22,7 @@ func GetName(ctx *pulumi.Context) string {
 	}
 	return value
 }
-func GetPopulated(ctx *pulumi.Context) bool {
+func GetPopulated(ctx *khulnasoft.Context) bool {
 	v, err := config.TryBool(ctx, "world:populated")
 	if err == nil {
 		return v
@@ -33,7 +33,7 @@ func GetPopulated(ctx *pulumi.Context) bool {
 	}
 	return value
 }
-func GetRadiusKm(ctx *pulumi.Context) float64 {
+func GetRadiusKm(ctx *khulnasoft.Context) float64 {
 	v, err := config.TryFloat64(ctx, "world:radiusKm")
 	if err == nil {
 		return v

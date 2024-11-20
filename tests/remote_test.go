@@ -24,10 +24,10 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
 )
 
-const remoteTestRepo = "https://github.com/pulumi/test-repo.git"
+const remoteTestRepo = "https://github.com/khulnasoft/test-repo.git"
 
 func TestInvalidRemoteFlags(t *testing.T) {
 	t.Parallel()
@@ -96,7 +96,7 @@ func TestInvalidRemoteFlags(t *testing.T) {
 				e.Env = append(e.Env, "PULUMI_EXPERIMENTAL=true")
 
 				args := []string{command, "--remote"}
-				_, err := e.RunCommandExpectError("pulumi", append(args, tc.args...)...)
+				_, err := e.RunCommandExpectError("khulnasoft", append(args, tc.args...)...)
 				assert.NotEmpty(t, tc.err)
 				assert.Contains(t, err, tc.err)
 			})
@@ -138,7 +138,7 @@ func TestRemoteLifecycle(t *testing.T) {
 	stack := strings.ToLower("p-t-remotelifecycle-" + randomSuffix())
 	fullyQualifiedStack := fmt.Sprintf("%s/%s/%s", owner, proj, stack)
 
-	e.RunCommand("pulumi", "stack", "init", "--no-select", "--stack", fullyQualifiedStack)
+	e.RunCommand("khulnasoft", "stack", "init", "--no-select", "--stack", fullyQualifiedStack)
 
 	args := func(command string) []string {
 		return []string{
@@ -147,10 +147,10 @@ func TestRemoteLifecycle(t *testing.T) {
 		}
 	}
 
-	e.RunCommand("pulumi", args("preview")...)
-	e.RunCommand("pulumi", args("up")...)
-	e.RunCommand("pulumi", args("refresh")...)
-	e.RunCommand("pulumi", args("destroy")...)
+	e.RunCommand("khulnasoft", args("preview")...)
+	e.RunCommand("khulnasoft", args("up")...)
+	e.RunCommand("khulnasoft", args("refresh")...)
+	e.RunCommand("khulnasoft", args("destroy")...)
 
-	e.RunCommand("pulumi", "stack", "rm", "--stack", fullyQualifiedStack, "--yes")
+	e.RunCommand("khulnasoft", "stack", "rm", "--stack", fullyQualifiedStack, "--yes")
 }

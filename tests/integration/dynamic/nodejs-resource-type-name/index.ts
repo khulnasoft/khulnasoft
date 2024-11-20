@@ -1,15 +1,15 @@
 // Copyright 2016-2022, Pulumi Corporation.
 
-import * as pulumi from '@pulumi/pulumi'
+import * as khulnasoft from '@khulnasoft/khulnasoft'
 
-class CustomResource extends pulumi.dynamic.Resource {
-  constructor (name: string, opts?: pulumi.ResourceOptions) {
+class CustomResource extends khulnasoft.dynamic.Resource {
+  constructor (name: string, opts?: khulnasoft.ResourceOptions) {
     super(new DummyResourceProvider(), name, {}, opts, "custom-provider", "CustomResource")
   }
 }
 
-class DummyResourceProvider implements pulumi.dynamic.ResourceProvider {
-  async create (props: any): Promise<pulumi.dynamic.CreateResult> {
+class DummyResourceProvider implements khulnasoft.dynamic.ResourceProvider {
+  async create (props: any): Promise<khulnasoft.dynamic.CreateResult> {
     return { id: "resource-id", outs: {} }
   }
 }

@@ -53,7 +53,7 @@ class FirstClassProviderTest(LanghostTest):
     ):
         if name == "testprov":
             # Provider resource.
-            self.assertEqual("pulumi:providers:test", ty)
+            self.assertEqual("khulnasoft:providers:test", ty)
             self.assertEqual("", _provider)
             self.prov_urn = self.make_urn(ty, name)
             self.prov_id = "testid"

@@ -24,7 +24,7 @@ import (
 	"github.com/blang/semver"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/cgstrings"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 )
 
 // isLegalIdentifierStart returns true if it is legal for c to be the first character of a Python identifier as per

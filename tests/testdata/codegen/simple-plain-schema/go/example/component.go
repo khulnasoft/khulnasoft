@@ -8,28 +8,28 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"simple-plain-schema/example/internal"
 )
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	A   pulumi.BoolOutput      `pulumi:"a"`
-	B   pulumi.BoolPtrOutput   `pulumi:"b"`
-	Bar FooPtrOutput           `pulumi:"bar"`
-	Baz FooArrayOutput         `pulumi:"baz"`
-	C   pulumi.IntOutput       `pulumi:"c"`
-	D   pulumi.IntPtrOutput    `pulumi:"d"`
-	E   pulumi.StringOutput    `pulumi:"e"`
-	F   pulumi.StringPtrOutput `pulumi:"f"`
-	Foo FooPtrOutput           `pulumi:"foo"`
+	A   khulnasoft.BoolOutput      `khulnasoft:"a"`
+	B   khulnasoft.BoolPtrOutput   `khulnasoft:"b"`
+	Bar FooPtrOutput           `khulnasoft:"bar"`
+	Baz FooArrayOutput         `khulnasoft:"baz"`
+	C   khulnasoft.IntOutput       `khulnasoft:"c"`
+	D   khulnasoft.IntPtrOutput    `khulnasoft:"d"`
+	E   khulnasoft.StringOutput    `khulnasoft:"e"`
+	F   khulnasoft.StringPtrOutput `khulnasoft:"f"`
+	Foo FooPtrOutput           `khulnasoft:"foo"`
 }
 
 // NewComponent registers a new resource with the given unique name, arguments, and options.
-func NewComponent(ctx *pulumi.Context,
-	name string, args *ComponentArgs, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context,
+	name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -44,16 +44,16 @@ func NewComponent(ctx *pulumi.Context,
 }
 
 type componentArgs struct {
-	A      bool           `pulumi:"a"`
-	B      *bool          `pulumi:"b"`
-	Bar    *Foo           `pulumi:"bar"`
-	Baz    []Foo          `pulumi:"baz"`
-	BazMap map[string]Foo `pulumi:"bazMap"`
-	C      int            `pulumi:"c"`
-	D      *int           `pulumi:"d"`
-	E      string         `pulumi:"e"`
-	F      *string        `pulumi:"f"`
-	Foo    *Foo           `pulumi:"foo"`
+	A      bool           `khulnasoft:"a"`
+	B      *bool          `khulnasoft:"b"`
+	Bar    *Foo           `khulnasoft:"bar"`
+	Baz    []Foo          `khulnasoft:"baz"`
+	BazMap map[string]Foo `khulnasoft:"bazMap"`
+	C      int            `khulnasoft:"c"`
+	D      *int           `khulnasoft:"d"`
+	E      string         `khulnasoft:"e"`
+	F      *string        `khulnasoft:"f"`
+	Foo    *Foo           `khulnasoft:"foo"`
 }
 
 // The set of arguments for constructing a Component resource.
@@ -75,7 +75,7 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type ComponentInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToComponentOutput() ComponentOutput
 	ToComponentOutputWithContext(ctx context.Context) ComponentOutput
@@ -90,16 +90,16 @@ func (i *Component) ToComponentOutput() ComponentOutput {
 }
 
 func (i *Component) ToComponentOutputWithContext(ctx context.Context) ComponentOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ComponentOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ComponentOutput)
 }
 
-func (i *Component) ToOutput(ctx context.Context) pulumix.Output[*Component] {
-	return pulumix.Output[*Component]{
+func (i *Component) ToOutput(ctx context.Context) khulnasoftx.Output[*Component] {
+	return khulnasoftx.Output[*Component]{
 		OutputState: i.ToComponentOutputWithContext(ctx).OutputState,
 	}
 }
 
-type ComponentOutput struct{ *pulumi.OutputState }
+type ComponentOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Component)(nil)).Elem()
@@ -113,18 +113,18 @@ func (o ComponentOutput) ToComponentOutputWithContext(ctx context.Context) Compo
 	return o
 }
 
-func (o ComponentOutput) ToOutput(ctx context.Context) pulumix.Output[*Component] {
-	return pulumix.Output[*Component]{
+func (o ComponentOutput) ToOutput(ctx context.Context) khulnasoftx.Output[*Component] {
+	return khulnasoftx.Output[*Component]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o ComponentOutput) A() pulumi.BoolOutput {
-	return o.ApplyT(func(v *Component) pulumi.BoolOutput { return v.A }).(pulumi.BoolOutput)
+func (o ComponentOutput) A() khulnasoft.BoolOutput {
+	return o.ApplyT(func(v *Component) khulnasoft.BoolOutput { return v.A }).(khulnasoft.BoolOutput)
 }
 
-func (o ComponentOutput) B() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Component) pulumi.BoolPtrOutput { return v.B }).(pulumi.BoolPtrOutput)
+func (o ComponentOutput) B() khulnasoft.BoolPtrOutput {
+	return o.ApplyT(func(v *Component) khulnasoft.BoolPtrOutput { return v.B }).(khulnasoft.BoolPtrOutput)
 }
 
 func (o ComponentOutput) Bar() FooPtrOutput {
@@ -135,20 +135,20 @@ func (o ComponentOutput) Baz() FooArrayOutput {
 	return o.ApplyT(func(v *Component) FooArrayOutput { return v.Baz }).(FooArrayOutput)
 }
 
-func (o ComponentOutput) C() pulumi.IntOutput {
-	return o.ApplyT(func(v *Component) pulumi.IntOutput { return v.C }).(pulumi.IntOutput)
+func (o ComponentOutput) C() khulnasoft.IntOutput {
+	return o.ApplyT(func(v *Component) khulnasoft.IntOutput { return v.C }).(khulnasoft.IntOutput)
 }
 
-func (o ComponentOutput) D() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Component) pulumi.IntPtrOutput { return v.D }).(pulumi.IntPtrOutput)
+func (o ComponentOutput) D() khulnasoft.IntPtrOutput {
+	return o.ApplyT(func(v *Component) khulnasoft.IntPtrOutput { return v.D }).(khulnasoft.IntPtrOutput)
 }
 
-func (o ComponentOutput) E() pulumi.StringOutput {
-	return o.ApplyT(func(v *Component) pulumi.StringOutput { return v.E }).(pulumi.StringOutput)
+func (o ComponentOutput) E() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *Component) khulnasoft.StringOutput { return v.E }).(khulnasoft.StringOutput)
 }
 
-func (o ComponentOutput) F() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Component) pulumi.StringPtrOutput { return v.F }).(pulumi.StringPtrOutput)
+func (o ComponentOutput) F() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *Component) khulnasoft.StringPtrOutput { return v.F }).(khulnasoft.StringPtrOutput)
 }
 
 func (o ComponentOutput) Foo() FooPtrOutput {
@@ -156,6 +156,6 @@ func (o ComponentOutput) Foo() FooPtrOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ComponentInput)(nil)).Elem(), &Component{})
-	pulumi.RegisterOutputType(ComponentOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ComponentInput)(nil)).Elem(), &Component{})
+	khulnasoft.RegisterOutputType(ComponentOutput{})
 }

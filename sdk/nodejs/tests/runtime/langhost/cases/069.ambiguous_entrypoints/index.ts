@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as pulumi from "../../../../../";
+import * as khulnasoft from "../../../../../";
 
-class MyResource extends pulumi.CustomResource {
+class MyResource extends khulnasoft.CustomResource {
     constructor(name: string) {
         super("test:index:MyResource", name);
     }

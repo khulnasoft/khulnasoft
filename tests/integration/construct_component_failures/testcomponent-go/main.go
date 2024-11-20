@@ -20,10 +20,10 @@ import (
 	"fmt"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/provider"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	perrors "github.com/pulumi/pulumi/sdk/v3/go/pulumi/errors"
-	pulumiprovider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	perrors "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/errors"
+	khulnasoftprovider "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/provider"
 )
 
 const (
@@ -35,9 +35,9 @@ func main() {
 	if err := provider.MainWithOptions(provider.Options{
 		Name:    providerName,
 		Version: version,
-		Construct: func(ctx *pulumi.Context, typ, name string, inputs pulumiprovider.ConstructInputs,
-			options pulumi.ResourceOption,
-		) (*pulumiprovider.ConstructResult, error) {
+		Construct: func(ctx *khulnasoft.Context, typ, name string, inputs khulnasoftprovider.ConstructInputs,
+			options khulnasoft.ResourceOption,
+		) (*khulnasoftprovider.ConstructResult, error) {
 			if typ != "testcomponent:index:Component" {
 				return nil, fmt.Errorf("unknown resource type %s", typ)
 			}

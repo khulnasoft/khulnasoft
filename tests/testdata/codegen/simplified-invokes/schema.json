@@ -3,8 +3,8 @@
     "displayName": "StandardLibrary",
     "version": "1.0.0",
     "description": "Standard library functions",
-    "homepage": "https://github.com/pulumi/pulumi-std",
-    "repository": "https://github.com/pulumi/pulumi-std",
+    "homepage": "https://github.com/khulnasoft/khulnasoft-std",
+    "repository": "https://github.com/khulnasoft/khulnasoft-std",
     "publisher": "Pulumi",
     "meta": {
       "moduleFormat": "(.*)"
@@ -17,7 +17,7 @@
       },
       "nodejs": {
         "dependencies": {
-          "@pulumi/pulumi": "^3.0.0"
+          "@khulnasoft/khulnasoft": "^3.0.0"
         },
         "respectSchemaVersion": true
       }
@@ -211,7 +211,7 @@
           }
         },
         "outputs": {
-          "$ref": "pulumi.json#/Asset"
+          "$ref": "khulnasoft.json#/Asset"
         }
       },
 
@@ -226,7 +226,7 @@
           }
         },
         "outputs": {
-          "$ref": "pulumi.json#/Archive"
+          "$ref": "khulnasoft.json#/Archive"
         }
       }
     },

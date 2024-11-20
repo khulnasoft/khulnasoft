@@ -9,19 +9,19 @@ import (
 	"fmt"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/provider"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	pulumiprovider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	khulnasoftprovider "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/provider"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 type Bucket struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
-func NewBucket(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*Bucket, error) {
+func NewBucket(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*Bucket, error) {
 	resource := &Bucket{}
 	err := ctx.RegisterResource(typeToken("Bucket"), name, nil, resource, opts...)
 	if err != nil {
@@ -31,17 +31,17 @@ func NewBucket(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) 
 }
 
 type BucketComponent struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewBucketComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*BucketComponent, error) {
+func NewBucketComponent(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*BucketComponent, error) {
 	component := &BucketComponent{}
 	err := ctx.RegisterComponentResource(typeToken("BucketComponent"), name, component, opts...)
 	if err != nil {
 		return nil, err
 	}
 
-	_, err = NewBucket(ctx, name+"child", pulumi.Parent(component))
+	_, err = NewBucket(ctx, name+"child", khulnasoft.Parent(component))
 	if err != nil {
 		return nil, err
 	}
@@ -50,14 +50,14 @@ func NewBucketComponent(ctx *pulumi.Context, name string, opts ...pulumi.Resourc
 }
 
 type BucketV2 struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
-func NewBucketV2(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*BucketV2, error) {
+func NewBucketV2(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*BucketV2, error) {
 	resource := &BucketV2{}
-	aliases := pulumi.Aliases([]pulumi.Alias{
+	aliases := khulnasoft.Aliases([]khulnasoft.Alias{
 		{
-			Type: pulumi.String(typeToken("Bucket")),
+			Type: khulnasoft.String(typeToken("Bucket")),
 		},
 	})
 	opts = append(opts, aliases)
@@ -69,14 +69,14 @@ func NewBucketV2(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption
 }
 
 type BucketComponentV2 struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewBucketComponentV2(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*BucketComponentV2, error) {
+func NewBucketComponentV2(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*BucketComponentV2, error) {
 	component := &BucketComponentV2{}
-	aliases := pulumi.Aliases([]pulumi.Alias{
+	aliases := khulnasoft.Aliases([]khulnasoft.Alias{
 		{
-			Type: pulumi.String(typeToken("BucketComponent")),
+			Type: khulnasoft.String(typeToken("BucketComponent")),
 		},
 	})
 	opts = append(opts, aliases)
@@ -85,7 +85,7 @@ func NewBucketComponentV2(ctx *pulumi.Context, name string, opts ...pulumi.Resou
 		return nil, err
 	}
 
-	_, err = NewBucketV2(ctx, name+"child", pulumi.Parent(component))
+	_, err = NewBucketV2(ctx, name+"child", khulnasoft.Parent(component))
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +105,7 @@ func typeToken(t string) string {
 var currentID int
 
 func main() {
-	err := provider.Main(providerName, func(host *provider.HostClient) (pulumirpc.ResourceProviderServer, error) {
+	err := provider.Main(providerName, func(host *provider.HostClient) (khulnasoftrpc.ResourceProviderServer, error) {
 		return makeProvider(host, providerName, version)
 	})
 	if err != nil {
@@ -114,14 +114,14 @@ func main() {
 }
 
 type Provider struct {
-	pulumirpc.UnimplementedResourceProviderServer
+	khulnasoftrpc.UnimplementedResourceProviderServer
 
 	host    *provider.HostClient
 	name    string
 	version string
 }
 
-func makeProvider(host *provider.HostClient, name, version string) (pulumirpc.ResourceProviderServer, error) {
+func makeProvider(host *provider.HostClient, name, version string) (khulnasoftrpc.ResourceProviderServer, error) {
 	return &Provider{
 		host:    host,
 		name:    name,
@@ -129,22 +129,22 @@ func makeProvider(host *provider.HostClient, name, version string) (pulumirpc.Re
 	}, nil
 }
 
-func (p *Provider) Create(ctx context.Context, req *pulumirpc.CreateRequest) (*pulumirpc.CreateResponse, error) {
+func (p *Provider) Create(ctx context.Context, req *khulnasoftrpc.CreateRequest) (*khulnasoftrpc.CreateResponse, error) {
 	id := currentID
 	currentID++
 
-	return &pulumirpc.CreateResponse{
+	return &khulnasoftrpc.CreateResponse{
 		Id: fmt.Sprintf("%v", id),
 	}, nil
 }
 
 func (p *Provider) Construct(ctx context.Context,
-	req *pulumirpc.ConstructRequest,
-) (*pulumirpc.ConstructResponse, error) {
-	return pulumiprovider.Construct(ctx, req, p.host.EngineConn(), func(ctx *pulumi.Context, typ, name string,
-		inputs pulumiprovider.ConstructInputs, options pulumi.ResourceOption,
-	) (*pulumiprovider.ConstructResult, error) {
-		var component pulumi.ComponentResource
+	req *khulnasoftrpc.ConstructRequest,
+) (*khulnasoftrpc.ConstructResponse, error) {
+	return khulnasoftprovider.Construct(ctx, req, p.host.EngineConn(), func(ctx *khulnasoft.Context, typ, name string,
+		inputs khulnasoftprovider.ConstructInputs, options khulnasoft.ResourceOption,
+	) (*khulnasoftprovider.ConstructResult, error) {
+		var component khulnasoft.ComponentResource
 		var err error
 		switch typ {
 		case typeToken("BucketComponent"):
@@ -158,26 +158,26 @@ func (p *Provider) Construct(ctx context.Context,
 			return nil, fmt.Errorf("creating component: %w", err)
 		}
 
-		return pulumiprovider.NewConstructResult(component)
+		return khulnasoftprovider.NewConstructResult(component)
 	})
 }
 
 func (p *Provider) CheckConfig(ctx context.Context,
-	req *pulumirpc.CheckRequest,
-) (*pulumirpc.CheckResponse, error) {
-	return &pulumirpc.CheckResponse{Inputs: req.GetNews()}, nil
+	req *khulnasoftrpc.CheckRequest,
+) (*khulnasoftrpc.CheckResponse, error) {
+	return &khulnasoftrpc.CheckResponse{Inputs: req.GetNews()}, nil
 }
 
 func (p *Provider) DiffConfig(ctx context.Context,
-	req *pulumirpc.DiffRequest,
-) (*pulumirpc.DiffResponse, error) {
-	return &pulumirpc.DiffResponse{}, nil
+	req *khulnasoftrpc.DiffRequest,
+) (*khulnasoftrpc.DiffResponse, error) {
+	return &khulnasoftrpc.DiffResponse{}, nil
 }
 
 func (p *Provider) Configure(ctx context.Context,
-	req *pulumirpc.ConfigureRequest,
-) (*pulumirpc.ConfigureResponse, error) {
-	return &pulumirpc.ConfigureResponse{
+	req *khulnasoftrpc.ConfigureRequest,
+) (*khulnasoftrpc.ConfigureResponse, error) {
+	return &khulnasoftrpc.ConfigureResponse{
 		AcceptSecrets:   true,
 		SupportsPreview: true,
 		AcceptResources: true,
@@ -185,72 +185,72 @@ func (p *Provider) Configure(ctx context.Context,
 }
 
 func (p *Provider) Invoke(ctx context.Context,
-	req *pulumirpc.InvokeRequest,
-) (*pulumirpc.InvokeResponse, error) {
+	req *khulnasoftrpc.InvokeRequest,
+) (*khulnasoftrpc.InvokeResponse, error) {
 	return nil, fmt.Errorf("Unknown Invoke token '%s'", req.GetTok())
 }
 
-func (p *Provider) StreamInvoke(req *pulumirpc.InvokeRequest,
-	server pulumirpc.ResourceProvider_StreamInvokeServer,
+func (p *Provider) StreamInvoke(req *khulnasoftrpc.InvokeRequest,
+	server khulnasoftrpc.ResourceProvider_StreamInvokeServer,
 ) error {
 	return fmt.Errorf("Unknown StreamInvoke token '%s'", req.GetTok())
 }
 
 func (p *Provider) Call(ctx context.Context,
-	req *pulumirpc.CallRequest,
-) (*pulumirpc.CallResponse, error) {
+	req *khulnasoftrpc.CallRequest,
+) (*khulnasoftrpc.CallResponse, error) {
 	return nil, fmt.Errorf("Unknown Call token '%s'", req.GetTok())
 }
 
 func (p *Provider) Check(ctx context.Context,
-	req *pulumirpc.CheckRequest,
-) (*pulumirpc.CheckResponse, error) {
-	return &pulumirpc.CheckResponse{Inputs: req.News, Failures: nil}, nil
+	req *khulnasoftrpc.CheckRequest,
+) (*khulnasoftrpc.CheckResponse, error) {
+	return &khulnasoftrpc.CheckResponse{Inputs: req.News, Failures: nil}, nil
 }
 
-func (p *Provider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (*pulumirpc.DiffResponse, error) {
-	return &pulumirpc.DiffResponse{}, nil
+func (p *Provider) Diff(ctx context.Context, req *khulnasoftrpc.DiffRequest) (*khulnasoftrpc.DiffResponse, error) {
+	return &khulnasoftrpc.DiffResponse{}, nil
 }
 
-func (p *Provider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (*pulumirpc.ReadResponse, error) {
-	return &pulumirpc.ReadResponse{
+func (p *Provider) Read(ctx context.Context, req *khulnasoftrpc.ReadRequest) (*khulnasoftrpc.ReadResponse, error) {
+	return &khulnasoftrpc.ReadResponse{
 		Id:         req.GetId(),
 		Properties: req.GetProperties(),
 	}, nil
 }
 
 func (p *Provider) Update(ctx context.Context,
-	req *pulumirpc.UpdateRequest,
-) (*pulumirpc.UpdateResponse, error) {
-	return &pulumirpc.UpdateResponse{
+	req *khulnasoftrpc.UpdateRequest,
+) (*khulnasoftrpc.UpdateResponse, error) {
+	return &khulnasoftrpc.UpdateResponse{
 		Properties: req.GetNews(),
 	}, nil
 }
 
-func (p *Provider) Delete(ctx context.Context, req *pulumirpc.DeleteRequest) (*emptypb.Empty, error) {
+func (p *Provider) Delete(ctx context.Context, req *khulnasoftrpc.DeleteRequest) (*emptypb.Empty, error) {
 	return &emptypb.Empty{}, nil
 }
 
-func (p *Provider) GetPluginInfo(context.Context, *emptypb.Empty) (*pulumirpc.PluginInfo, error) {
-	return &pulumirpc.PluginInfo{
+func (p *Provider) GetPluginInfo(context.Context, *emptypb.Empty) (*khulnasoftrpc.PluginInfo, error) {
+	return &khulnasoftrpc.PluginInfo{
 		Version: p.version,
 	}, nil
 }
 
-func (p *Provider) Attach(ctx context.Context, req *pulumirpc.PluginAttach) (*emptypb.Empty, error) {
+func (p *Provider) Attach(ctx context.Context, req *khulnasoftrpc.PluginAttach) (*emptypb.Empty, error) {
 	return &emptypb.Empty{}, nil
 }
 
 func (p *Provider) GetSchema(ctx context.Context,
-	req *pulumirpc.GetSchemaRequest,
-) (*pulumirpc.GetSchemaResponse, error) {
-	return &pulumirpc.GetSchemaResponse{}, nil
+	req *khulnasoftrpc.GetSchemaRequest,
+) (*khulnasoftrpc.GetSchemaResponse, error) {
+	return &khulnasoftrpc.GetSchemaResponse{}, nil
 }
 
 func (p *Provider) Cancel(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return &emptypb.Empty{}, nil
 }
 
-func (p *Provider) GetMapping(context.Context, *pulumirpc.GetMappingRequest) (*pulumirpc.GetMappingResponse, error) {
-	return &pulumirpc.GetMappingResponse{}, nil
+func (p *Provider) GetMapping(context.Context, *khulnasoftrpc.GetMappingRequest) (*khulnasoftrpc.GetMappingResponse, error) {
+	return &khulnasoftrpc.GetMappingResponse{}, nil
 }

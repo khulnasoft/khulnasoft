@@ -6,13 +6,13 @@ package main
 import (
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		// Create and export a very long string (>4mb)
-		ctx.Export("longString", pulumi.String(strings.Repeat("a", 5*1024*1024)))
+		ctx.Export("longString", khulnasoft.String(strings.Repeat("a", 5*1024*1024)))
 		return nil
 	})
 }

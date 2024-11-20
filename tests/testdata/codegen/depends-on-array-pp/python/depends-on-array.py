@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_aws as aws
+import khulnasoft
+import khulnasoft_aws as aws
 
 my_bucket = aws.s3.Bucket("myBucket", website={
     "index_document": "index.html",
@@ -14,12 +14,12 @@ public_access_block = aws.s3.BucketPublicAccessBlock("publicAccessBlock",
     block_public_acls=False)
 index_html = aws.s3.BucketObject("index.html",
     bucket=my_bucket.id,
-    source=pulumi.FileAsset("./index.html"),
+    source=khulnasoft.FileAsset("./index.html"),
     content_type="text/html",
     acl="public-read",
-    opts = pulumi.ResourceOptions(depends_on=[
+    opts = khulnasoft.ResourceOptions(depends_on=[
             public_access_block,
             ownership_controls,
         ]))
-pulumi.export("bucketName", my_bucket.id)
-pulumi.export("bucketEndpoint", my_bucket.website_endpoint.apply(lambda website_endpoint: f"http://{website_endpoint}"))
+khulnasoft.export("bucketName", my_bucket.id)
+khulnasoft.export("bucketEndpoint", my_bucket.website_endpoint.apply(lambda website_endpoint: f"http://{website_endpoint}"))

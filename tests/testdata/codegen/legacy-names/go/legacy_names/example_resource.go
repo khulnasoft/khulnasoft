@@ -7,22 +7,22 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"legacy-names/legacy_names/http_module"
 	"legacy-names/legacy_names/internal"
 )
 
 type Example_resource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	URL       pulumi.StringPtrOutput   `pulumi:"URL"`
-	Good_URLs pulumi.StringArrayOutput `pulumi:"good_URLs"`
-	Map_enum  Enum_XYZMapArrayOutput   `pulumi:"map_enum"`
+	URL       khulnasoft.StringPtrOutput   `khulnasoft:"URL"`
+	Good_URLs khulnasoft.StringArrayOutput `khulnasoft:"good_URLs"`
+	Map_enum  Enum_XYZMapArrayOutput   `khulnasoft:"map_enum"`
 }
 
 // NewExample_resource registers a new resource with the given unique name, arguments, and options.
-func NewExample_resource(ctx *pulumi.Context,
-	name string, args *Example_resourceArgs, opts ...pulumi.ResourceOption) (*Example_resource, error) {
+func NewExample_resource(ctx *khulnasoft.Context,
+	name string, args *Example_resourceArgs, opts ...khulnasoft.ResourceOption) (*Example_resource, error) {
 	if args == nil {
 		args = &Example_resourceArgs{}
 	}
@@ -38,8 +38,8 @@ func NewExample_resource(ctx *pulumi.Context,
 
 // GetExample_resource gets an existing Example_resource resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetExample_resource(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *Example_resourceState, opts ...pulumi.ResourceOption) (*Example_resource, error) {
+func GetExample_resource(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *Example_resourceState, opts ...khulnasoft.ResourceOption) (*Example_resource, error) {
 	var resource Example_resource
 	err := ctx.ReadResource("legacy_names:index:example_resource", name, id, state, &resource, opts...)
 	if err != nil {
@@ -60,8 +60,8 @@ func (Example_resourceState) ElementType() reflect.Type {
 }
 
 type example_resourceArgs struct {
-	Map_enum     []map[string]Enum_XYZ `pulumi:"map_enum"`
-	Request_HTTP *http_module.Request  `pulumi:"request_HTTP"`
+	Map_enum     []map[string]Enum_XYZ `khulnasoft:"map_enum"`
+	Request_HTTP *http_module.Request  `khulnasoft:"request_HTTP"`
 }
 
 // The set of arguments for constructing a Example_resource resource.
@@ -75,7 +75,7 @@ func (Example_resourceArgs) ElementType() reflect.Type {
 }
 
 type Example_resourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToExample_resourceOutput() Example_resourceOutput
 	ToExample_resourceOutputWithContext(ctx context.Context) Example_resourceOutput
@@ -90,10 +90,10 @@ func (i *Example_resource) ToExample_resourceOutput() Example_resourceOutput {
 }
 
 func (i *Example_resource) ToExample_resourceOutputWithContext(ctx context.Context) Example_resourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Example_resourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(Example_resourceOutput)
 }
 
-type Example_resourceOutput struct{ *pulumi.OutputState }
+type Example_resourceOutput struct{ *khulnasoft.OutputState }
 
 func (Example_resourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Example_resource)(nil)).Elem()
@@ -107,12 +107,12 @@ func (o Example_resourceOutput) ToExample_resourceOutputWithContext(ctx context.
 	return o
 }
 
-func (o Example_resourceOutput) URL() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Example_resource) pulumi.StringPtrOutput { return v.URL }).(pulumi.StringPtrOutput)
+func (o Example_resourceOutput) URL() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *Example_resource) khulnasoft.StringPtrOutput { return v.URL }).(khulnasoft.StringPtrOutput)
 }
 
-func (o Example_resourceOutput) Good_URLs() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *Example_resource) pulumi.StringArrayOutput { return v.Good_URLs }).(pulumi.StringArrayOutput)
+func (o Example_resourceOutput) Good_URLs() khulnasoft.StringArrayOutput {
+	return o.ApplyT(func(v *Example_resource) khulnasoft.StringArrayOutput { return v.Good_URLs }).(khulnasoft.StringArrayOutput)
 }
 
 func (o Example_resourceOutput) Map_enum() Enum_XYZMapArrayOutput {
@@ -120,6 +120,6 @@ func (o Example_resourceOutput) Map_enum() Enum_XYZMapArrayOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*Example_resourceInput)(nil)).Elem(), &Example_resource{})
-	pulumi.RegisterOutputType(Example_resourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*Example_resourceInput)(nil)).Elem(), &Example_resource{})
+	khulnasoft.RegisterOutputType(Example_resourceOutput{})
 }

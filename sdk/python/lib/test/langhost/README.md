@@ -65,7 +65,7 @@ Note that your test method must begin with `test_*`, since this is how Python di
 tests to run.
 
 One additional thing to note is that this test harness explicitly ignores the registration
-of the top-level Stack resource, `pulumi:pulumi:Stack`, because it is annoying to write tests around.
+of the top-level Stack resource, `khulnasoft:khulnasoft:Stack`, because it is annoying to write tests around.
 All expected resource counts do not count this resource as a registration and overridden resource monitor
-methods will never see a registration for `pulumi:pulumi:Stack.`
+methods will never see a registration for `khulnasoft:khulnasoft:Stack.`
 

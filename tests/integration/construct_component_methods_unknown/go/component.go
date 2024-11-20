@@ -7,15 +7,15 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 func NewComponent(
-	ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption,
+	ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, nil, &resource, opts...)
@@ -26,7 +26,7 @@ func NewComponent(
 	return &resource, nil
 }
 
-func (c *Component) GetMessage(ctx *pulumi.Context, args *ComponentGetMessageArgs) (ComponentGetMessageResultOutput, error) {
+func (c *Component) GetMessage(ctx *khulnasoft.Context, args *ComponentGetMessageArgs) (ComponentGetMessageResultOutput, error) {
 	out, err := ctx.Call("testcomponent:index:Component/getMessage", args, ComponentGetMessageResultOutput{}, c)
 	if err != nil {
 		return ComponentGetMessageResultOutput{}, err
@@ -35,11 +35,11 @@ func (c *Component) GetMessage(ctx *pulumi.Context, args *ComponentGetMessageArg
 }
 
 type componentGetMessageArgs struct {
-	Echo string `pulumi:"echo"`
+	Echo string `khulnasoft:"echo"`
 }
 
 type ComponentGetMessageArgs struct {
-	Echo pulumi.StringInput
+	Echo khulnasoft.StringInput
 }
 
 func (ComponentGetMessageArgs) ElementType() reflect.Type {
@@ -47,17 +47,17 @@ func (ComponentGetMessageArgs) ElementType() reflect.Type {
 }
 
 type ComponentGetMessageResult struct {
-	Message string `pulumi:"message"`
+	Message string `khulnasoft:"message"`
 }
 
-type ComponentGetMessageResultOutput struct{ *pulumi.OutputState }
+type ComponentGetMessageResultOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentGetMessageResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ComponentGetMessageResult)(nil)).Elem()
 }
 
-func (o ComponentGetMessageResultOutput) Message() pulumi.StringOutput {
-	return o.ApplyT(func(v ComponentGetMessageResult) string { return v.Message }).(pulumi.StringOutput)
+func (o ComponentGetMessageResultOutput) Message() khulnasoft.StringOutput {
+	return o.ApplyT(func(v ComponentGetMessageResult) string { return v.Message }).(khulnasoft.StringOutput)
 }
 
 func (*Component) ElementType() reflect.Type {
@@ -65,5 +65,5 @@ func (*Component) ElementType() reflect.Type {
 }
 
 func init() {
-	pulumi.RegisterOutputType(ComponentGetMessageResultOutput{})
+	khulnasoft.RegisterOutputType(ComponentGetMessageResultOutput{})
 }

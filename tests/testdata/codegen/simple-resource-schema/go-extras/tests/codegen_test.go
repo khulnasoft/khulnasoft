@@ -20,28 +20,28 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 
 	"simple-resource-schema/example"
 )
 
 type mocks int
 
-func pulumiTest(t *testing.T, body func(ctx *pulumi.Context) error) {
-	err := pulumi.RunErr(body, pulumi.WithMocks("project", "stack", mocks(0)))
+func khulnasoftTest(t *testing.T, body func(ctx *khulnasoft.Context) error) {
+	err := khulnasoft.RunErr(body, khulnasoft.WithMocks("project", "stack", mocks(0)))
 	assert.NoError(t, err)
 }
 
-func (mocks) NewResource(args pulumi.MockResourceArgs) (string, resource.PropertyMap, error) {
+func (mocks) NewResource(args khulnasoft.MockResourceArgs) (string, resource.PropertyMap, error) {
 	return args.ID, args.Inputs, nil
 }
-func (mocks) Call(args pulumi.MockCallArgs) (resource.PropertyMap, error) {
+func (mocks) Call(args khulnasoft.MockCallArgs) (resource.PropertyMap, error) {
 	panic("Call not supported")
 }
 
 func TestHasDefaultPluginDownloadURL(t *testing.T) {
-	pulumiTest(t, func(ctx *pulumi.Context) error {
+	khulnasoftTest(t, func(ctx *khulnasoft.Context) error {
 		r, err := example.NewResource(ctx, "resource", &example.ResourceArgs{})
 		assert.NoError(t, err)
 		assert.Contains(t, fmt.Sprintf("%#v", r), `pluginDownloadURL:"example.com/download"`)
@@ -50,9 +50,9 @@ func TestHasDefaultPluginDownloadURL(t *testing.T) {
 }
 
 func TestCanOverrideDefaultPluginDownloadURL(t *testing.T) {
-	pulumiTest(t, func(ctx *pulumi.Context) error {
+	khulnasoftTest(t, func(ctx *khulnasoft.Context) error {
 		r, err := example.NewResource(ctx, "resource", &example.ResourceArgs{},
-			pulumi.PluginDownloadURL("example.com/other"))
+			khulnasoft.PluginDownloadURL("example.com/other"))
 		assert.NoError(t, err)
 		assert.Contains(t, fmt.Sprintf("%#v", r), `pluginDownloadURL:"example.com/other"`)
 		return nil

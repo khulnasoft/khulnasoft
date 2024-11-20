@@ -2,9 +2,9 @@
 
 from typing import Any, Optional
 
-from pulumi import Resource, export
-from pulumi.resource import ProviderResource as Provider
-from pulumi.resource import ResourceOptions
+from khulnasoft import Resource, export
+from khulnasoft.resource import ProviderResource as Provider
+from khulnasoft.resource import ResourceOptions
 
 
 class Random(Resource):
@@ -19,7 +19,7 @@ class RandomProvider(Provider):
         Provider.__init__(self, "testprovider", "provider", None, opts)
 
 example_url = ResourceOptions(plugin_download_url="get.example.test")
-provider_url = ResourceOptions(plugin_download_url="get.pulumi.test/providers")
+provider_url = ResourceOptions(plugin_download_url="get.khulnasoft.test/providers")
 
 # Create resource with specified PluginDownloadURL
 r = Random("default", length=10, opts=example_url)

@@ -1,6 +1,6 @@
 // Copyright 2016-2020, Pulumi Corporation.  All rights reserved.
 
-import * as policy from "@pulumi/policy";
+import * as policy from "@khulnasoft/policy";
 
 const packName = process.env.TEST_POLICY_PACK;
 

@@ -19,7 +19,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 	"github.com/stretchr/testify/assert"
 )
 

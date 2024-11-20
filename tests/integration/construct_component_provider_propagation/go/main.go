@@ -6,11 +6,11 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		provider, err := NewRandomProvider(ctx, "explicit")
 		if err != nil {
 			return err
@@ -20,18 +20,18 @@ func main() {
 			return err
 		}
 
-		if _, err := NewComponent(ctx, "uses_provider", nil, pulumi.Provider(provider)); err != nil {
+		if _, err := NewComponent(ctx, "uses_provider", nil, khulnasoft.Provider(provider)); err != nil {
 			return err
 		}
 
-		if _, err := NewComponent(ctx, "uses_providers", nil, pulumi.Providers(provider)); err != nil {
+		if _, err := NewComponent(ctx, "uses_providers", nil, khulnasoft.Providers(provider)); err != nil {
 			return err
 		}
 
-		providerMap := map[string]pulumi.ProviderResource{
+		providerMap := map[string]khulnasoft.ProviderResource{
 			"testprovider": provider,
 		}
-		if _, err := NewComponent(ctx, "uses_providers_map", nil, pulumi.ProviderMap(providerMap)); err != nil {
+		if _, err := NewComponent(ctx, "uses_providers_map", nil, khulnasoft.ProviderMap(providerMap)); err != nil {
 			return err
 		}
 
@@ -40,29 +40,29 @@ func main() {
 }
 
 type RandomProvider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 }
 
-func NewRandomProvider(ctx *pulumi.Context, name string) (*RandomProvider, error) {
+func NewRandomProvider(ctx *khulnasoft.Context, name string) (*RandomProvider, error) {
 	var provider RandomProvider
-	err := ctx.RegisterResource("pulumi:providers:testprovider", "explicit", nil, &provider)
+	err := ctx.RegisterResource("khulnasoft:providers:testprovider", "explicit", nil, &provider)
 	return &provider, err
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Result pulumi.StringOutput `pulumi:"result"`
+	Result khulnasoft.StringOutput `khulnasoft:"result"`
 }
 
-func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context, name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, args, &resource, opts...)
 	return &resource, err
 }
 
 type ComponentArgs struct {
-	Result pulumi.StringInput `pulumi:"result"`
+	Result khulnasoft.StringInput `khulnasoft:"result"`
 }
 
 func (ComponentArgs) ElementType() reflect.Type {
@@ -70,5 +70,5 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type fooComponentArgs struct {
-	Result pulumi.StringInput `pulumi:"result"`
+	Result khulnasoft.StringInput `khulnasoft:"result"`
 }

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: pulumi/testing/language.proto
+// source: khulnasoft/testing/language.proto
 
 package testing
 
@@ -41,7 +41,7 @@ func NewLanguageTestClient(cc grpc.ClientConnInterface) LanguageTestClient {
 
 func (c *languageTestClient) GetLanguageTests(ctx context.Context, in *GetLanguageTestsRequest, opts ...grpc.CallOption) (*GetLanguageTestsResponse, error) {
 	out := new(GetLanguageTestsResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.testing.LanguageTest/GetLanguageTests", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.testing.LanguageTest/GetLanguageTests", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +50,7 @@ func (c *languageTestClient) GetLanguageTests(ctx context.Context, in *GetLangua
 
 func (c *languageTestClient) PrepareLanguageTests(ctx context.Context, in *PrepareLanguageTestsRequest, opts ...grpc.CallOption) (*PrepareLanguageTestsResponse, error) {
 	out := new(PrepareLanguageTestsResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.testing.LanguageTest/PrepareLanguageTests", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.testing.LanguageTest/PrepareLanguageTests", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func (c *languageTestClient) PrepareLanguageTests(ctx context.Context, in *Prepa
 
 func (c *languageTestClient) RunLanguageTest(ctx context.Context, in *RunLanguageTestRequest, opts ...grpc.CallOption) (*RunLanguageTestResponse, error) {
 	out := new(RunLanguageTestResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.testing.LanguageTest/RunLanguageTest", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.testing.LanguageTest/RunLanguageTest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +116,7 @@ func _LanguageTest_GetLanguageTests_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.testing.LanguageTest/GetLanguageTests",
+		FullMethod: "/khulnasoftrpc.testing.LanguageTest/GetLanguageTests",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageTestServer).GetLanguageTests(ctx, req.(*GetLanguageTestsRequest))
@@ -134,7 +134,7 @@ func _LanguageTest_PrepareLanguageTests_Handler(srv interface{}, ctx context.Con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.testing.LanguageTest/PrepareLanguageTests",
+		FullMethod: "/khulnasoftrpc.testing.LanguageTest/PrepareLanguageTests",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageTestServer).PrepareLanguageTests(ctx, req.(*PrepareLanguageTestsRequest))
@@ -152,7 +152,7 @@ func _LanguageTest_RunLanguageTest_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.testing.LanguageTest/RunLanguageTest",
+		FullMethod: "/khulnasoftrpc.testing.LanguageTest/RunLanguageTest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageTestServer).RunLanguageTest(ctx, req.(*RunLanguageTestRequest))
@@ -164,7 +164,7 @@ func _LanguageTest_RunLanguageTest_Handler(srv interface{}, ctx context.Context,
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var LanguageTest_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pulumirpc.testing.LanguageTest",
+	ServiceName: "khulnasoftrpc.testing.LanguageTest",
 	HandlerType: (*LanguageTestServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -181,5 +181,5 @@ var LanguageTest_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "pulumi/testing/language.proto",
+	Metadata: "khulnasoft/testing/language.proto",
 }

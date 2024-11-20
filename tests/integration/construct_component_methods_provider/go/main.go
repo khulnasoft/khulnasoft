@@ -7,16 +7,16 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type TestProvider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 }
 
-func NewTestProvider(ctx *pulumi.Context, name string) (*TestProvider, error) {
+func NewTestProvider(ctx *khulnasoft.Context, name string) (*TestProvider, error) {
 	var resource TestProvider
-	err := ctx.RegisterResource("pulumi:providers:testprovider", name, nil, &resource)
+	err := ctx.RegisterResource("khulnasoft:providers:testprovider", name, nil, &resource)
 	if err != nil {
 		return nil, err
 	}
@@ -24,13 +24,13 @@ func NewTestProvider(ctx *pulumi.Context, name string) (*TestProvider, error) {
 }
 
 type componentArgs struct {
-	First  string `pulumi:"first"`
-	Second string `pulumi:"second"`
+	First  string `khulnasoft:"first"`
+	Second string `khulnasoft:"second"`
 }
 
 type ComponentArgs struct {
-	First  pulumi.StringInput
-	Second pulumi.StringInput
+	First  khulnasoft.StringInput
+	Second khulnasoft.StringInput
 }
 
 func (ComponentArgs) ElementType() reflect.Type {
@@ -38,11 +38,11 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 func NewComponent(
-	ctx *pulumi.Context, name string, args *ComponentArgs, opts ...pulumi.ResourceOption,
+	ctx *khulnasoft.Context, name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, args, &resource, opts...)
@@ -53,7 +53,7 @@ func NewComponent(
 	return &resource, nil
 }
 
-func (c *Component) GetMessage(ctx *pulumi.Context, args *ComponentGetMessageArgs) (ComponentGetMessageResultOutput, error) {
+func (c *Component) GetMessage(ctx *khulnasoft.Context, args *ComponentGetMessageArgs) (ComponentGetMessageResultOutput, error) {
 	out, err := ctx.Call("testcomponent:index:Component/getMessage", args, ComponentGetMessageResultOutput{}, c)
 	if err != nil {
 		return ComponentGetMessageResultOutput{}, err
@@ -62,11 +62,11 @@ func (c *Component) GetMessage(ctx *pulumi.Context, args *ComponentGetMessageArg
 }
 
 type componentGetMessageArgs struct {
-	Name string `pulumi:"name"`
+	Name string `khulnasoft:"name"`
 }
 
 type ComponentGetMessageArgs struct {
-	Name pulumi.StringInput
+	Name khulnasoft.StringInput
 }
 
 func (ComponentGetMessageArgs) ElementType() reflect.Type {
@@ -74,17 +74,17 @@ func (ComponentGetMessageArgs) ElementType() reflect.Type {
 }
 
 type ComponentGetMessageResult struct {
-	Message string `pulumi:"message"`
+	Message string `khulnasoft:"message"`
 }
 
-type ComponentGetMessageResultOutput struct{ *pulumi.OutputState }
+type ComponentGetMessageResultOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentGetMessageResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ComponentGetMessageResult)(nil)).Elem()
 }
 
-func (o ComponentGetMessageResultOutput) Message() pulumi.StringOutput {
-	return o.ApplyT(func(v ComponentGetMessageResult) string { return v.Message }).(pulumi.StringOutput)
+func (o ComponentGetMessageResultOutput) Message() khulnasoft.StringOutput {
+	return o.ApplyT(func(v ComponentGetMessageResult) string { return v.Message }).(khulnasoft.StringOutput)
 }
 
 func (*Component) ElementType() reflect.Type {
@@ -92,39 +92,39 @@ func (*Component) ElementType() reflect.Type {
 }
 
 func init() {
-	pulumi.RegisterOutputType(ComponentGetMessageResultOutput{})
+	khulnasoft.RegisterOutputType(ComponentGetMessageResultOutput{})
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		testProvider, err := NewTestProvider(ctx, "testProvider")
 		if err != nil {
 			return err
 		}
 
 		component1, err := NewComponent(ctx, "component1", &ComponentArgs{
-			First:  pulumi.String("Hello"),
-			Second: pulumi.String("World"),
-		}, pulumi.Provider(testProvider))
+			First:  khulnasoft.String("Hello"),
+			Second: khulnasoft.String("World"),
+		}, khulnasoft.Provider(testProvider))
 		if err != nil {
 			return err
 		}
 		result1, err := component1.GetMessage(ctx, &ComponentGetMessageArgs{
-			Name: pulumi.String("Alice"),
+			Name: khulnasoft.String("Alice"),
 		})
 		if err != nil {
 			return err
 		}
 
 		component2, err := NewComponent(ctx, "component2", &ComponentArgs{
-			First:  pulumi.String("Hi"),
-			Second: pulumi.String("There"),
-		}, pulumi.Providers(testProvider))
+			First:  khulnasoft.String("Hi"),
+			Second: khulnasoft.String("There"),
+		}, khulnasoft.Providers(testProvider))
 		if err != nil {
 			return err
 		}
 		result2, err := component2.GetMessage(ctx, &ComponentGetMessageArgs{
-			Name: pulumi.String("Bob"),
+			Name: khulnasoft.String("Bob"),
 		})
 		if err != nil {
 			return err

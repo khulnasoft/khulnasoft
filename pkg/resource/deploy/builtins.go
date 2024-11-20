@@ -23,12 +23,12 @@ import (
 	uuid "github.com/gofrs/uuid"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/gsync"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 type builtinProvider struct {
@@ -60,7 +60,7 @@ func (p *builtinProvider) Close() error {
 }
 
 func (p *builtinProvider) Pkg() tokens.Package {
-	return "pulumi"
+	return "khulnasoft"
 }
 
 func (p *builtinProvider) Parameterize(
@@ -96,7 +96,7 @@ func (p *builtinProvider) Configure(context.Context, plugin.ConfigureRequest) (p
 	return plugin.ConfigureResponse{}, nil
 }
 
-const stackReferenceType = "pulumi:pulumi:StackReference"
+const stackReferenceType = "khulnasoft:khulnasoft:StackReference"
 
 func (p *builtinProvider) Check(_ context.Context, req plugin.CheckRequest) (plugin.CheckResponse, error) {
 	typ := req.URN.Type()
@@ -106,8 +106,8 @@ func (p *builtinProvider) Check(_ context.Context, req plugin.CheckRequest) (plu
 
 	// We only need to warn about this in Check. This won't be called for Reads but Creates or Updates will
 	// call Check first.
-	msg := "The \"pulumi:pulumi:StackReference\" resource type is deprecated. " +
-		"Update your SDK or if already up to date raise an issue at https://github.com/pulumi/pulumi/issues."
+	msg := "The \"khulnasoft:khulnasoft:StackReference\" resource type is deprecated. " +
+		"Update your SDK or if already up to date raise an issue at https://github.com/khulnasoft/khulnasoft/issues."
 	p.diag.Warningf(diag.Message(req.URN, msg))
 
 	for k := range req.News {
@@ -215,9 +215,9 @@ func (p *builtinProvider) Construct(context.Context, plugin.ConstructRequest) (p
 }
 
 const (
-	readStackOutputs         = "pulumi:pulumi:readStackOutputs"
-	readStackResourceOutputs = "pulumi:pulumi:readStackResourceOutputs" //nolint:gosec // not a credential
-	getResource              = "pulumi:pulumi:getResource"
+	readStackOutputs         = "khulnasoft:khulnasoft:readStackOutputs"
+	readStackResourceOutputs = "khulnasoft:khulnasoft:readStackResourceOutputs" //nolint:gosec // not a credential
+	getResource              = "khulnasoft:khulnasoft:getResource"
 )
 
 func (p *builtinProvider) Invoke(_ context.Context, req plugin.InvokeRequest) (plugin.InvokeResponse, error) {

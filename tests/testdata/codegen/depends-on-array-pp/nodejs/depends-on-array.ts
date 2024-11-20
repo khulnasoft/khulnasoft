@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
 const myBucket = new aws.s3.Bucket("myBucket", {website: {
     indexDocument: "index.html",
@@ -16,7 +16,7 @@ const publicAccessBlock = new aws.s3.BucketPublicAccessBlock("publicAccessBlock"
 });
 const indexHtml = new aws.s3.BucketObject("index.html", {
     bucket: myBucket.id,
-    source: new pulumi.asset.FileAsset("./index.html"),
+    source: new khulnasoft.asset.FileAsset("./index.html"),
     contentType: "text/html",
     acl: "public-read",
 }, {
@@ -26,4 +26,4 @@ const indexHtml = new aws.s3.BucketObject("index.html", {
     ],
 });
 export const bucketName = myBucket.id;
-export const bucketEndpoint = pulumi.interpolate`http://${myBucket.websiteEndpoint}`;
+export const bucketEndpoint = khulnasoft.interpolate`http://${myBucket.websiteEndpoint}`;

@@ -27,9 +27,9 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/python/toolchain"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/python/toolchain"
 )
 
 func boolPointer(b bool) *bool {
@@ -68,7 +68,7 @@ func TestDynamicPython(t *testing.T) {
 			ExtraRuntimeValidation: func(t *testing.T, stack integration.RuntimeValidationStackInfo) {
 				assert.Equal(t, randomVal, stack.Outputs["random_val"].(string))
 
-				// Regression testing the workaround for https://github.com/pulumi/pulumi/issues/8265
+				// Regression testing the workaround for https://github.com/khulnasoft/khulnasoft/issues/8265
 				// Ensure the __provider input and output was marked secret
 				assertIsSecret := func(v interface{}) {
 					switch v := v.(type) {
@@ -111,9 +111,9 @@ func TestConstructPython(t *testing.T) {
 		{
 			componentDir:          "testcomponent",
 			expectedResourceCount: 9,
-			// TODO[pulumi/pulumi#5455]: Dynamic providers fail to load when used from multi-lang components.
+			// TODO[khulnasoft/khulnasoft#5455]: Dynamic providers fail to load when used from multi-lang components.
 			// Until we've addressed this, set PULUMI_TEST_YARN_LINK_PULUMI, which tells the integration test
-			// module to run `yarn install && yarn link @pulumi/pulumi` in the Go program's directory, allowing
+			// module to run `yarn install && yarn link @khulnasoft/khulnasoft` in the Go program's directory, allowing
 			// the Node.js dynamic provider plugin to load.
 			// When the underlying issue has been fixed, the use of this environment variable inside the integration
 			// test module should be removed.
@@ -203,26 +203,26 @@ func TestConstructComponentConfigureProviderPython(t *testing.T) {
 
 	const testDir = "construct_component_configure_provider"
 	runComponentSetup(t, testDir)
-	pulumiRoot, err := filepath.Abs("../..")
+	khulnasoftRoot, err := filepath.Abs("../..")
 	require.NoError(t, err)
-	pulumiPySDK := filepath.Join("..", "..", "sdk", "python", "env", "src")
-	componentSDK := filepath.Join(pulumiRoot, "pkg/codegen/testing/test/testdata/methods-return-plain-resource/python")
+	khulnasoftPySDK := filepath.Join("..", "..", "sdk", "python", "env", "src")
+	componentSDK := filepath.Join(khulnasoftRoot, "pkg/codegen/testing/test/testdata/methods-return-plain-resource/python")
 	opts := testConstructComponentConfigureProviderCommonOptions()
 	opts = opts.With(integration.ProgramTestOptions{
 		Dir:          filepath.Join(testDir, "python"),
-		Dependencies: []string{pulumiPySDK, componentSDK},
+		Dependencies: []string{khulnasoftPySDK, componentSDK},
 		NoParallel:   true,
 	})
 	integration.ProgramTest(t, &opts)
 }
 
-// Regresses https://github.com/pulumi/pulumi/issues/6471
+// Regresses https://github.com/khulnasoft/khulnasoft/issues/6471
 func TestAutomaticVenvCreation(t *testing.T) {
 	t.Parallel()
 
 	// Do not use integration.ProgramTest to avoid automatic venv
 	// handling by test harness; we actually are testing venv
-	// handling by the pulumi CLI itself.
+	// handling by the khulnasoft CLI itself.
 
 	check := func(t *testing.T, venvPathTemplate string, dir string) {
 		e := ptesting.NewEnvironment(t)
@@ -234,9 +234,9 @@ func TestAutomaticVenvCreation(t *testing.T) {
 		e.ImportDirectory(dir)
 
 		// replace "virtualenv: venv" with "virtualenv: ${venvPath}" in Pulumi.yaml
-		pulumiYaml := filepath.Join(e.RootPath, "Pulumi.yaml")
+		khulnasoftYaml := filepath.Join(e.RootPath, "Pulumi.yaml")
 
-		oldYaml, err := os.ReadFile(pulumiYaml)
+		oldYaml, err := os.ReadFile(khulnasoftYaml)
 		if err != nil {
 			t.Error(err)
 			return
@@ -245,7 +245,7 @@ func TestAutomaticVenvCreation(t *testing.T) {
 			"virtualenv: venv",
 			"virtualenv: >-\n      "+venvPath))
 
-		if err := os.WriteFile(pulumiYaml, newYaml, 0o600); err != nil {
+		if err := os.WriteFile(khulnasoftYaml, newYaml, 0o600); err != nil {
 			t.Error(err)
 			return
 		}
@@ -258,9 +258,9 @@ func TestAutomaticVenvCreation(t *testing.T) {
 		require.NoError(t, err)
 		e.CWD = subdir
 
-		e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "teststack")
-		e.RunCommand("pulumi", "preview")
+		e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+		e.RunCommand("khulnasoft", "stack", "init", "teststack")
+		e.RunCommand("khulnasoft", "preview")
 
 		var absVenvPath string
 		if filepath.IsAbs(venvPath) {
@@ -304,10 +304,10 @@ func TestAutomaticVenvCreation(t *testing.T) {
 		dir := filepath.Join("python", "venv")
 		e.ImportDirectory(dir)
 
-		e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "teststack")
-		stdout, stderr, _ := e.GetCommandResults("pulumi", "preview")
-		// pulumi/pulumi#9175
+		e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+		e.RunCommand("khulnasoft", "stack", "init", "teststack")
+		stdout, stderr, _ := e.GetCommandResults("khulnasoft", "preview")
+		// khulnasoft/khulnasoft#9175
 		// Ensures this error message doesn't show up for uninitialized
 		// virtualenv
 		//     `Failed to resolve python version command: ` +
@@ -318,7 +318,7 @@ func TestAutomaticVenvCreation(t *testing.T) {
 	})
 }
 
-//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See pulumi/pulumi#17183
+//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See khulnasoft/khulnasoft#17183
 func TestAutomaticVenvCreationPoetry(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
@@ -335,9 +335,9 @@ func TestAutomaticVenvCreationPoetry(t *testing.T) {
 	require.NoError(t, err)
 	e.CWD = subdir
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", "teststack")
-	e.RunCommand("pulumi", "preview")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "stack", "init", "teststack")
+	e.RunCommand("khulnasoft", "preview")
 
 	localPoetryVenv := filepath.Join(e.RootPath, ".venv")
 	if !toolchain.IsVirtualEnv(localPoetryVenv) {
@@ -345,7 +345,7 @@ func TestAutomaticVenvCreationPoetry(t *testing.T) {
 	}
 }
 
-//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See pulumi/pulumi#17183
+//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See khulnasoft/khulnasoft#17183
 func TestPoetryInstallParentDirectory(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
@@ -358,7 +358,7 @@ func TestPoetryInstallParentDirectory(t *testing.T) {
 	// Run from the subdir with the Pulumi.yaml file
 	e.CWD = filepath.Join(e.RootPath, "subfolder")
 
-	e.RunCommand("pulumi", "install")
+	e.RunCommand("khulnasoft", "install")
 
 	localPoetryVenv := filepath.Join(e.RootPath, ".venv")
 	if !toolchain.IsVirtualEnv(localPoetryVenv) {
@@ -366,7 +366,7 @@ func TestPoetryInstallParentDirectory(t *testing.T) {
 	}
 }
 
-//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See pulumi/pulumi#17183
+//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See khulnasoft/khulnasoft#17183
 func TestPoetryInstallWithMain(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
@@ -377,7 +377,7 @@ func TestPoetryInstallWithMain(t *testing.T) {
 
 	e.ImportDirectory(filepath.Join("python", "poetry-main"))
 
-	e.RunCommand("pulumi", "install")
+	e.RunCommand("khulnasoft", "install")
 
 	localPoetryVenv := filepath.Join(e.RootPath, ".venv")
 	if !toolchain.IsVirtualEnv(localPoetryVenv) {
@@ -385,7 +385,7 @@ func TestPoetryInstallWithMain(t *testing.T) {
 	}
 }
 
-//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See pulumi/pulumi#17183
+//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See khulnasoft/khulnasoft#17183
 func TestPoetryInstallWithMainAndParent(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
@@ -396,7 +396,7 @@ func TestPoetryInstallWithMainAndParent(t *testing.T) {
 
 	e.ImportDirectory(filepath.Join("python", "poetry-main-and-parent"))
 
-	e.RunCommand("pulumi", "install")
+	e.RunCommand("khulnasoft", "install")
 
 	localPoetryVenv := filepath.Join(e.RootPath, "src", ".venv")
 	if !toolchain.IsVirtualEnv(localPoetryVenv) {
@@ -438,7 +438,7 @@ func TestUv(t *testing.T) {
 		test := test
 		// On windows, when running in parallel, we can run into issues when Uv tries
 		// to write the same cache file concurrently. This is the same issue we see
-		// for Poetry https://github.com/pulumi/pulumi/pull/17337
+		// for Poetry https://github.com/khulnasoft/khulnasoft/pull/17337
 		//nolint:paralleltest
 		t.Run(test.template, func(t *testing.T) {
 			if runtime.GOOS != "windows" {
@@ -453,10 +453,10 @@ func TestUv(t *testing.T) {
 				e.CWD = filepath.Join(e.RootPath, test.cwd)
 			}
 
-			e.RunCommand("pulumi", "install")
-			e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-			e.RunCommand("pulumi", "stack", "init", ptesting.RandomStackName())
-			e.RunCommand("pulumi", "preview")
+			e.RunCommand("khulnasoft", "install")
+			e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+			e.RunCommand("khulnasoft", "stack", "init", ptesting.RandomStackName())
+			e.RunCommand("khulnasoft", "preview")
 
 			venv := filepath.Join(e.RootPath, test.expectedVenv)
 			if !toolchain.IsVirtualEnv(venv) {
@@ -474,7 +474,7 @@ func TestUv(t *testing.T) {
 
 		e.ImportDirectory(filepath.Join("python", "uv-convert-requirements"))
 
-		e.RunCommand("pulumi", "install")
+		e.RunCommand("khulnasoft", "install")
 
 		venv := filepath.Join(e.RootPath, "my-venv")
 		if !toolchain.IsVirtualEnv(venv) {
@@ -495,7 +495,7 @@ func TestUv(t *testing.T) {
 		e.ImportDirectory(filepath.Join("python", "uv-convert-requirements-subfolder"))
 		e.CWD = filepath.Join(e.RootPath, "subfolder")
 
-		e.RunCommand("pulumi", "install")
+		e.RunCommand("khulnasoft", "install")
 
 		venv := filepath.Join(e.RootPath, "subfolder", "my-venv")
 		if !toolchain.IsVirtualEnv(venv) {
@@ -527,7 +527,7 @@ func TestMypySupport(t *testing.T) {
 
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("python", "mypy"),
-		// mypy doesn't really support editable packages, so we install pulumi normally from pip for this test.
+		// mypy doesn't really support editable packages, so we install khulnasoft normally from pip for this test.
 		Quick:                  true,
 		ExpectFailure:          true,
 		ExtraRuntimeValidation: validation,
@@ -555,7 +555,7 @@ func TestPyrightSupport(t *testing.T) {
 
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("python", "pyright"),
-		// to match the mypy test we install pulumi normally from pip for this test.
+		// to match the mypy test we install khulnasoft normally from pip for this test.
 		Quick:                  true,
 		ExpectFailure:          true,
 		ExtraRuntimeValidation: validation,
@@ -593,10 +593,10 @@ func TestNewPythonUsesPip(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	stdout, _ := e.RunCommand("pulumi", "new", "python", "--force", "--non-interactive", "--yes", "--generate-only")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	stdout, _ := e.RunCommand("khulnasoft", "new", "python", "--force", "--non-interactive", "--yes", "--generate-only")
 
-	require.Contains(t, stdout, "pulumi install")
+	require.Contains(t, stdout, "khulnasoft install")
 
 	expected := map[string]interface{}{
 		"toolchain":  "pip",
@@ -613,10 +613,10 @@ func TestNewPythonUsesPipNonInteractive(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	stdout, _ := e.RunCommand("pulumi", "new", "python", "--force", "--yes", "--generate-only")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	stdout, _ := e.RunCommand("khulnasoft", "new", "python", "--force", "--yes", "--generate-only")
 
-	require.Contains(t, stdout, "pulumi install")
+	require.Contains(t, stdout, "khulnasoft install")
 
 	expected := map[string]interface{}{
 		"toolchain":  "pip",
@@ -638,10 +638,10 @@ func TestNewPythonChoosePoetry(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
 	e.Stdin = strings.NewReader("poetry\n")
-	e.RunCommand("pulumi", "new", "python", "--force", "--generate-only",
+	e.RunCommand("khulnasoft", "new", "python", "--force", "--generate-only",
 		"--name", "test_project",
 		"--description", "A python test using poetry as toolchain",
 		"--stack", "test",
@@ -667,7 +667,7 @@ func TestNewPythonChooseUv(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 
 	e.Stdin = strings.NewReader("uv\n")
-	e.RunCommand("pulumi", "new", "python", "--force", "--generate-only",
+	e.RunCommand("khulnasoft", "new", "python", "--force", "--generate-only",
 		"--name", "test_project",
 		"--description", "A python test using uv as toolchain",
 	)
@@ -677,7 +677,7 @@ func TestNewPythonChooseUv(t *testing.T) {
 	}
 	integration.CheckRuntimeOptions(t, e.RootPath, expected)
 
-	e.RunCommand("pulumi", "install")
+	e.RunCommand("khulnasoft", "install")
 
 	require.True(t, e.PathExists(".venv"))
 	require.True(t, e.PathExists("uv.lock"))
@@ -685,7 +685,7 @@ func TestNewPythonChooseUv(t *testing.T) {
 	require.False(t, e.PathExists("requirements.txt"))
 }
 
-//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See pulumi/pulumi#17183
+//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See khulnasoft/khulnasoft#17183
 func TestNewPythonRuntimeOptions(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
@@ -694,8 +694,8 @@ func TestNewPythonRuntimeOptions(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "new", "python", "--force", "--non-interactive", "--yes", "--generate-only",
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "new", "python", "--force", "--non-interactive", "--yes", "--generate-only",
 		"--name", "test_project",
 		"--description", "A python test using poetry as toolchain",
 		"--stack", "test",
@@ -709,7 +709,7 @@ func TestNewPythonRuntimeOptions(t *testing.T) {
 	integration.CheckRuntimeOptions(t, e.RootPath, expected)
 }
 
-//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See pulumi/pulumi#17183
+//nolint:paralleltest // Poetry causes issues when run in parallel on windows. See khulnasoft/khulnasoft#17183
 func TestNewPythonConvertRequirementsTxt(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
@@ -727,8 +727,8 @@ in-project = true`
 
 	template := "python"
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	out, _ := e.RunCommand("pulumi", "new", template, "--force", "--non-interactive", "--yes",
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	out, _ := e.RunCommand("khulnasoft", "new", template, "--force", "--non-interactive", "--yes",
 		"--name", "test_project",
 		"--description", "A python test using poetry as toolchain",
 		"--stack", "test",
@@ -749,7 +749,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 package-mode = false
 [tool.poetry.dependencies]
-pulumi = ">=3.0.0,<4.0.0"
+khulnasoft = ">=3.0.0,<4.0.0"
 python = "^3.8"
 `, string(b))
 }

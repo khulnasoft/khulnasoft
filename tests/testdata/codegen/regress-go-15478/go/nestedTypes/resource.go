@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"regress-go-15478/nestedTypes/internal"
 )
 
 type Resource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Nested NestedTypePtrOutput `pulumi:"nested"`
+	Nested NestedTypePtrOutput `khulnasoft:"nested"`
 }
 
 // NewResource registers a new resource with the given unique name, arguments, and options.
-func NewResource(ctx *pulumi.Context,
-	name string, args *ResourceArgs, opts ...pulumi.ResourceOption) (*Resource, error) {
+func NewResource(ctx *khulnasoft.Context,
+	name string, args *ResourceArgs, opts ...khulnasoft.ResourceOption) (*Resource, error) {
 	if args == nil {
 		args = &ResourceArgs{}
 	}
@@ -35,8 +35,8 @@ func NewResource(ctx *pulumi.Context,
 
 // GetResource gets an existing Resource resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetResource(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ResourceState, opts ...pulumi.ResourceOption) (*Resource, error) {
+func GetResource(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ResourceState, opts ...khulnasoft.ResourceOption) (*Resource, error) {
 	var resource Resource
 	err := ctx.ReadResource("nestedTypes:index:Resource", name, id, state, &resource, opts...)
 	if err != nil {
@@ -68,7 +68,7 @@ func (ResourceArgs) ElementType() reflect.Type {
 }
 
 type ResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToResourceOutput() ResourceOutput
 	ToResourceOutputWithContext(ctx context.Context) ResourceOutput
@@ -83,10 +83,10 @@ func (i *Resource) ToResourceOutput() ResourceOutput {
 }
 
 func (i *Resource) ToResourceOutputWithContext(ctx context.Context) ResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ResourceOutput)
 }
 
-type ResourceOutput struct{ *pulumi.OutputState }
+type ResourceOutput struct{ *khulnasoft.OutputState }
 
 func (ResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Resource)(nil)).Elem()
@@ -105,6 +105,6 @@ func (o ResourceOutput) Nested() NestedTypePtrOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ResourceInput)(nil)).Elem(), &Resource{})
-	pulumi.RegisterOutputType(ResourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ResourceInput)(nil)).Elem(), &Resource{})
+	khulnasoft.RegisterOutputType(ResourceOutput{})
 }

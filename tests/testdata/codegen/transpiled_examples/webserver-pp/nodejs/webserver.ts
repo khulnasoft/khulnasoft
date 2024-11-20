@@ -1,7 +1,7 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
-const config = new pulumi.Config();
+const config = new khulnasoft.Config();
 const instanceType = config.get("InstanceType") || "t3.micro";
 const ec2Ami = aws.getAmi({
     filters: [{
@@ -20,7 +20,7 @@ const webSecGrp = new aws.ec2.SecurityGroup("WebSecGrp", {ingress: [{
 const webServer = new aws.ec2.Instance("WebServer", {
     instanceType: instanceType,
     ami: ec2Ami,
-    userData: pulumi.interpolate`#!/bin/bash
+    userData: khulnasoft.interpolate`#!/bin/bash
 echo 'Hello, World from ${webSecGrp.arn}!' > index.html
 nohup python -m SimpleHTTPServer 80 &`,
     vpcSecurityGroupIds: [webSecGrp.id],

@@ -1,6 +1,6 @@
-import pulumi
+import khulnasoft
 
-pulumi.export("output_true", True)
-pulumi.export("output_false", False)
-pulumi.export("output_number", 4)
-pulumi.export("output_string", "hello")
+khulnasoft.export("output_true", True)
+khulnasoft.export("output_false", False)
+khulnasoft.export("output_number", 4)
+khulnasoft.export("output_string", "hello")

@@ -1,5 +1,5 @@
 import pytest
-from pulumi.runtime.settings import Settings
+from khulnasoft.runtime.settings import Settings
 
 
 @pytest.mark.asyncio

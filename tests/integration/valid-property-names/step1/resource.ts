@@ -1,9 +1,9 @@
 // Copyright 2016-2023, Pulumi Corporation.  All rights reserved.
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 let currentID = 0;
 
-export class Provider implements pulumi.dynamic.ResourceProvider {
+export class Provider implements khulnasoft.dynamic.ResourceProvider {
     public static readonly instance = new Provider();
 
     constructor() {}
@@ -15,17 +15,17 @@ export class Provider implements pulumi.dynamic.ResourceProvider {
         };
     }
 
-    public async delete(id: pulumi.ID, props: any) {}
+    public async delete(id: khulnasoft.ID, props: any) {}
 
-    public async diff(id: pulumi.ID, olds: any, news: any) { return {}; }
+    public async diff(id: khulnasoft.ID, olds: any, news: any) { return {}; }
 
-    public async update(id: pulumi.ID, olds: any, news: any) {
+    public async update(id: khulnasoft.ID, olds: any, news: any) {
         return news;
     }
 }
 
-export class Resource extends pulumi.dynamic.Resource {
-    constructor(name: string, props: ResourceProps, opts?: pulumi.ResourceOptions) {
+export class Resource extends khulnasoft.dynamic.Resource {
+    constructor(name: string, props: ResourceProps, opts?: khulnasoft.ResourceOptions) {
         super(Provider.instance, name, props, opts);
     }
 }

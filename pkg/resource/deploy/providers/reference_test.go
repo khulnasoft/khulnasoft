@@ -19,8 +19,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 )
 
 func TestRoundTripProviderType(t *testing.T) {
@@ -49,7 +49,7 @@ func TestParseReferenceInvalidModule(t *testing.T) {
 	assert.Equal(t, Reference{}, ref)
 
 	// Right package, wrong module
-	str = string(resource.NewURN("test", "test", "", "pulumi:invalid:type", "test")) + "::id"
+	str = string(resource.NewURN("test", "test", "", "khulnasoft:invalid:type", "test")) + "::id"
 	ref, err = ParseReference(str)
 	assert.Error(t, err)
 	assert.Equal(t, Reference{}, ref)
@@ -64,7 +64,7 @@ func TestParseReferenceInvalidModule(t *testing.T) {
 func TestParseReference(t *testing.T) {
 	t.Parallel()
 
-	urn, id := resource.NewURN("test", "test", "", "pulumi:providers:type", "test"), resource.ID("id")
+	urn, id := resource.NewURN("test", "test", "", "khulnasoft:providers:type", "test"), resource.ID("id")
 	ref, err := ParseReference(string(urn) + "::" + string(id))
 	assert.NoError(t, err)
 	assert.Equal(t, urn, ref.URN())
@@ -74,7 +74,7 @@ func TestParseReference(t *testing.T) {
 func TestReferenceString(t *testing.T) {
 	t.Parallel()
 
-	urn, id := resource.NewURN("test", "test", "", "pulumi:providers:type", "test"), resource.ID("id")
+	urn, id := resource.NewURN("test", "test", "", "khulnasoft:providers:type", "test"), resource.ID("id")
 	ref := Reference{urn: urn, id: id}
 	assert.Equal(t, string(urn)+"::"+string(id), ref.String())
 }
@@ -82,7 +82,7 @@ func TestReferenceString(t *testing.T) {
 func TestRoundTripReference(t *testing.T) {
 	t.Parallel()
 
-	str := string(resource.NewURN("test", "test", "", "pulumi:providers:type", "test")) + "::id"
+	str := string(resource.NewURN("test", "test", "", "khulnasoft:providers:type", "test")) + "::id"
 	ref, err := ParseReference(str)
 	assert.NoError(t, err)
 	assert.Equal(t, str, ref.String())

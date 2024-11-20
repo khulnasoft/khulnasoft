@@ -23,7 +23,7 @@ import (
 
 //nolint:paralleltest // mutates environment
 func TestConcurrentCredentialsWrites(t *testing.T) {
-	// save and remember to restore creds in ~/.pulumi/credentials
+	// save and remember to restore creds in ~/.khulnasoft/credentials
 	// as the test will be modifying them
 	oldCreds, err := GetStoredCredentials()
 	assert.NoError(t, err)

@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: pulumi/converter.proto
+// source: khulnasoft/converter.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	context "context"
@@ -38,7 +38,7 @@ func NewConverterClient(cc grpc.ClientConnInterface) ConverterClient {
 
 func (c *converterClient) ConvertState(ctx context.Context, in *ConvertStateRequest, opts ...grpc.CallOption) (*ConvertStateResponse, error) {
 	out := new(ConvertStateResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Converter/ConvertState", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Converter/ConvertState", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (c *converterClient) ConvertState(ctx context.Context, in *ConvertStateRequ
 
 func (c *converterClient) ConvertProgram(ctx context.Context, in *ConvertProgramRequest, opts ...grpc.CallOption) (*ConvertProgramResponse, error) {
 	out := new(ConvertProgramResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Converter/ConvertProgram", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Converter/ConvertProgram", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,7 +98,7 @@ func _Converter_ConvertState_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Converter/ConvertState",
+		FullMethod: "/khulnasoftrpc.Converter/ConvertState",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConverterServer).ConvertState(ctx, req.(*ConvertStateRequest))
@@ -116,7 +116,7 @@ func _Converter_ConvertProgram_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Converter/ConvertProgram",
+		FullMethod: "/khulnasoftrpc.Converter/ConvertProgram",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConverterServer).ConvertProgram(ctx, req.(*ConvertProgramRequest))
@@ -128,7 +128,7 @@ func _Converter_ConvertProgram_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Converter_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pulumirpc.Converter",
+	ServiceName: "khulnasoftrpc.Converter",
 	HandlerType: (*ConverterServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -141,5 +141,5 @@ var Converter_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "pulumi/converter.proto",
+	Metadata: "khulnasoft/converter.proto",
 }

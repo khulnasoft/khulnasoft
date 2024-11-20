@@ -30,14 +30,14 @@ import (
 
 	"github.com/blang/semver"
 	"github.com/hashicorp/hcl/v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 	"github.com/santhosh-tekuri/jsonschema/v5"
 	"github.com/segmentio/encoding/json"
 )
 
-//go:embed pulumi.json
+//go:embed khulnasoft.json
 var metaSchema string
 
 var MetaSchema *jsonschema.Schema
@@ -45,12 +45,12 @@ var MetaSchema *jsonschema.Schema
 func init() {
 	compiler := jsonschema.NewCompiler()
 	compiler.LoadURL = func(u string) (io.ReadCloser, error) {
-		if u == "blob://pulumi.json" {
+		if u == "blob://khulnasoft.json" {
 			return io.NopCloser(strings.NewReader(metaSchema)), nil
 		}
 		return jsonschema.LoadURL(u)
 	}
-	MetaSchema = compiler.MustCompile("blob://pulumi.json")
+	MetaSchema = compiler.MustCompile("blob://khulnasoft.json")
 }
 
 func sortedKeys[K cmp.Ordered, V any](m map[K]V) []K {
@@ -376,7 +376,7 @@ func (s packageSpecSource) GetFunctionSpec(token string) (FunctionSpec, bool, er
 }
 
 func (s packageSpecSource) GetResourceSpec(token string) (ResourceSpec, bool, error) {
-	if token == "pulumi:providers:"+s.spec.Name {
+	if token == "khulnasoft:providers:"+s.spec.Name {
 		return s.spec.Provider, true, nil
 	}
 	spec, ok := s.spec.Resources[token]
@@ -415,7 +415,7 @@ func (s partialPackageSpecSource) GetFunctionSpec(token string) (FunctionSpec, b
 
 func (s partialPackageSpecSource) GetResourceSpec(token string) (ResourceSpec, bool, error) {
 	var rawSpec json.RawMessage
-	if token == "pulumi:providers:"+s.spec.Name {
+	if token == "khulnasoft:providers:"+s.spec.Name {
 		rawSpec = s.spec.Provider
 	} else {
 		raw, ok := s.spec.Resources[token]
@@ -601,7 +601,7 @@ func (t *types) parseTypeSpecRef(refPath, ref string) (typeSpecRef, hcl.Diagnost
 		if token != "" {
 			return typeSpecRef{}, hcl.Diagnostics{errorf(refPath, "invalid provider reference '%v'", ref)}
 		}
-		token = "pulumi:providers:" + pkgName
+		token = "khulnasoft:providers:" + pkgName
 	case "resources", "types":
 		token, err = url.PathUnescape(token)
 		if err != nil {
@@ -751,13 +751,13 @@ func (t *types) bindTypeSpecRef(path string, spec TypeSpec, inputShape bool) (Ty
 
 	// Explicitly handle built-in types so that we don't have to handle this type of path during ref parsing.
 	switch spec.Ref {
-	case "pulumi.json#/Archive":
+	case "khulnasoft.json#/Archive":
 		return ArchiveType, nil, nil
-	case "pulumi.json#/Asset":
+	case "khulnasoft.json#/Asset":
 		return AssetType, nil, nil
-	case "pulumi.json#/Json":
+	case "khulnasoft.json#/Json":
 		return JSONType, nil, nil
-	case "pulumi.json#/Any":
+	case "khulnasoft.json#/Any":
 		return AnyType, nil, nil
 	}
 
@@ -1439,7 +1439,7 @@ func (t *types) bindResourceDef(token string) (res *Resource, diags hcl.Diagnost
 	// Declare the resource.
 	res = &Resource{}
 
-	if token == "pulumi:providers:"+t.pkg.Name {
+	if token == "khulnasoft:providers:"+t.pkg.Name {
 		t.resourceDefs[token] = res
 		diags, err = t.bindProvider(res)
 	} else {
@@ -1545,13 +1545,13 @@ func (t *types) bindResourceDetails(path, token string, spec ResourceSpec, decl 
 }
 
 func (t *types) bindProvider(decl *Resource) (hcl.Diagnostics, error) {
-	spec, ok, err := t.spec.GetResourceSpec("pulumi:providers:" + t.pkg.Name)
+	spec, ok, err := t.spec.GetResourceSpec("khulnasoft:providers:" + t.pkg.Name)
 	if err != nil {
 		return nil, err
 	}
 	contract.Assertf(ok, "provider resource %q not found", t.pkg.Name)
 
-	diags, err := t.bindResourceDetails("#/provider", "pulumi:providers:"+t.pkg.Name, spec, decl)
+	diags, err := t.bindResourceDetails("#/provider", "khulnasoft:providers:"+t.pkg.Name, spec, decl)
 	if err != nil {
 		return diags, err
 	}
@@ -1591,7 +1591,7 @@ func (t *types) bindProvider(decl *Resource) (hcl.Diagnostics, error) {
 func (t *types) finishResources(tokens []string) (*Resource, []*Resource, hcl.Diagnostics, error) {
 	var diags hcl.Diagnostics
 
-	provider, provDiags, err := t.bindResourceTypeDef("pulumi:providers:" + t.pkg.Name)
+	provider, provDiags, err := t.bindResourceTypeDef("khulnasoft:providers:" + t.pkg.Name)
 	if err != nil {
 		return nil, nil, diags, fmt.Errorf("error binding provider: %w", err)
 	}

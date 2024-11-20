@@ -21,65 +21,65 @@ Resources are created with functions called constructors. To learn more about de
 
 ### Constructor syntax
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">OtherResource</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">?:</span> <span class="nx"><a href="#inputs">OtherResourceArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#ComponentResourceOptions">ComponentResourceOptions</a></span><span class="p">);</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="javascript,typescript">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">OtherResource</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">?:</span> <span class="nx"><a href="#inputs">OtherResourceArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#ComponentResourceOptions">ComponentResourceOptions</a></span><span class="p">);</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">OtherResource</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
                   <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">Optional[OtherResourceArgs]</a></span> = None<span class="p">,</span>
-                  <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
+                  <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
 <span></span>
 <span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">OtherResource</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
-                  <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">,</span>
+                  <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">,</span>
                   <span class="nx">foo</span><span class="p">:</span> <span class="nx">Optional[Resource]</span> = None<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewOtherResource</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx"><a href="#inputs">OtherResourceArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">OtherResource</span>, error)</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="go">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewOtherResource</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx"><a href="#inputs">OtherResourceArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">OtherResource</span>, error)</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public </span><span class="nx">OtherResource</span><span class="p">(</span><span class="nx">string</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">OtherResourceArgs</a></span><span class="p">? </span><span class="nx">args = null<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.ComponentResourceOptions.html">ComponentResourceOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <div class="no-copy"><div class="highlight"><pre class="chroma">
 <code class="language-java" data-lang="java"><span class="k">public </span><span class="nx">OtherResource</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">OtherResourceArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">)</span>
 <span class="k">public </span><span class="nx">OtherResource</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">OtherResourceArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx">ComponentResourceOptions</span><span class="p"> </span><span class="nx">options<span class="p">)</span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">type: <span class="nx">example:OtherResource</span><span class="p"></span>
 <span class="p">properties</span><span class="p">: </span><span class="c">#&nbsp;The arguments to resource properties.</span>
 <span class="p"></span><span class="p">options</span><span class="p">: </span><span class="c">#&nbsp;Bag of options to control resource&#39;s behavior.</span>
 <span class="p"></span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 #### Parameters
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -97,15 +97,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#ComponentResourceOptions">ComponentResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#ComponentResourceOptions">ComponentResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -123,21 +123,21 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">ResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">ResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 <dl class="resources-properties"><dt
         class="property-optional" title="Optional">
         <span>ctx</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span>
     </dt>
     <dd>Context object for the current deployment.</dd><dt
         class="property-required" title="Required">
@@ -155,15 +155,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -185,11 +185,11 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -211,7 +211,7 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -220,12 +220,12 @@ Resources are created with functions called constructors. To learn more about de
 
 The following reference example uses placeholder values for all [input properties](#inputs).
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 ```csharp
 var otherResourceResource = new Example.OtherResource("otherResourceResource", new()
@@ -234,25 +234,25 @@ var otherResourceResource = new Example.OtherResource("otherResourceResource", n
 });
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 ```go
 example, err := example.NewOtherResource(ctx, "otherResourceResource", &example.OtherResourceArgs{
-	Foo: pulumi.Any(resource),
+	Foo: khulnasoft.Any(resource),
 })
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 ```java
 var otherResourceResource = new OtherResource("otherResourceResource", OtherResourceArgs.builder()
@@ -260,34 +260,34 @@ var otherResourceResource = new OtherResource("otherResourceResource", OtherReso
     .build());
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 ```python
 other_resource_resource = example.OtherResource("otherResourceResource", foo=resource)
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="typescript">
+<khulnasoft-choosable type="language" values="typescript">
 
 ```typescript
 const otherResourceResource = new example.OtherResource("otherResourceResource", {foo: resource});
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 
 ```yaml
 type: example:OtherResource
@@ -295,7 +295,7 @@ properties:
     foo: ${resource}
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -306,18 +306,18 @@ To learn more about resource properties and how to use them, see [Inputs and Out
 
 ### Inputs
 
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <p>
 In Python, inputs that are objects can be passed either as <a href="/docs/languages-sdks/python/#inputs-and-outputs">argument classes or as dictionary literals</a>.
 </p>
-</pulumi-choosable>
+</khulnasoft-choosable>
 
 The OtherResource resource accepts the following [input](/docs/intro/concepts/inputs-outputs) properties:
 
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="foo_csharp">
@@ -327,11 +327,11 @@ The OtherResource resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type">Pulumi.<wbr>Example.<wbr>Resource</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="foo_go">
@@ -341,11 +341,11 @@ The OtherResource resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type">Resource</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="foo_java">
@@ -355,11 +355,11 @@ The OtherResource resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type">Resource</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="foo_nodejs">
@@ -369,11 +369,11 @@ The OtherResource resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type">Resource</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="foo_python">
@@ -383,11 +383,11 @@ The OtherResource resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type">Resource</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="foo_yaml">
@@ -397,7 +397,7 @@ The OtherResource resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type">example:Resource</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -408,39 +408,39 @@ All [input](#inputs) properties are implicitly available as output properties. A
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 

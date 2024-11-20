@@ -7,17 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"naming-collisions/example/internal"
 )
 
 type MainComponent struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
 // NewMainComponent registers a new resource with the given unique name, arguments, and options.
-func NewMainComponent(ctx *pulumi.Context,
-	name string, args *MainComponentArgs, opts ...pulumi.ResourceOption) (*MainComponent, error) {
+func NewMainComponent(ctx *khulnasoft.Context,
+	name string, args *MainComponentArgs, opts ...khulnasoft.ResourceOption) (*MainComponent, error) {
 	if args == nil {
 		args = &MainComponentArgs{}
 	}
@@ -33,8 +33,8 @@ func NewMainComponent(ctx *pulumi.Context,
 
 // GetMainComponent gets an existing MainComponent resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetMainComponent(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *MainComponentState, opts ...pulumi.ResourceOption) (*MainComponent, error) {
+func GetMainComponent(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *MainComponentState, opts ...khulnasoft.ResourceOption) (*MainComponent, error) {
 	var resource MainComponent
 	err := ctx.ReadResource("example::MainComponent", name, id, state, &resource, opts...)
 	if err != nil {
@@ -66,7 +66,7 @@ func (MainComponentArgs) ElementType() reflect.Type {
 }
 
 type MainComponentInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToMainComponentOutput() MainComponentOutput
 	ToMainComponentOutputWithContext(ctx context.Context) MainComponentOutput
@@ -81,10 +81,10 @@ func (i *MainComponent) ToMainComponentOutput() MainComponentOutput {
 }
 
 func (i *MainComponent) ToMainComponentOutputWithContext(ctx context.Context) MainComponentOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MainComponentOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(MainComponentOutput)
 }
 
-type MainComponentOutput struct{ *pulumi.OutputState }
+type MainComponentOutput struct{ *khulnasoft.OutputState }
 
 func (MainComponentOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**MainComponent)(nil)).Elem()
@@ -99,6 +99,6 @@ func (o MainComponentOutput) ToMainComponentOutputWithContext(ctx context.Contex
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*MainComponentInput)(nil)).Elem(), &MainComponent{})
-	pulumi.RegisterOutputType(MainComponentOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*MainComponentInput)(nil)).Elem(), &MainComponent{})
+	khulnasoft.RegisterOutputType(MainComponentOutput{})
 }

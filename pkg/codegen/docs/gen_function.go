@@ -27,8 +27,8 @@ import (
 	go_gen "github.com/khulnasoft/khulnasoft/pkg/v3/codegen/go"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/python"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // functionDocArgs represents the args that a Function doc template needs.
@@ -188,7 +188,7 @@ func (mod *modContext) genFunctionGo(f *schema.Function, funcName string, output
 			OptionalFlag: "*",
 			Type: propertyType{
 				Name: "Context",
-				Link: "https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context",
+				Link: "https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context",
 			},
 		},
 	}
@@ -208,7 +208,7 @@ func (mod *modContext) genFunctionGo(f *schema.Function, funcName string, output
 		OptionalFlag: "...",
 		Type: propertyType{
 			Name: "InvokeOption",
-			Link: "https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#InvokeOption",
+			Link: "https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#InvokeOption",
 		},
 	})
 	return params
@@ -329,7 +329,7 @@ func (mod *modContext) genFunctionPython(f *schema.Function, resourceName string
 		DefaultValue: " = None",
 		Type: propertyType{
 			Name: "Optional[InvokeOptions]",
-			Link: "/docs/reference/pkg/python/pulumi/#pulumi.InvokeOptions",
+			Link: "/docs/reference/pkg/python/khulnasoft/#khulnasoft.InvokeOptions",
 		},
 	})
 

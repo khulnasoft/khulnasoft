@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as azure_native from "@pulumi/azure-native";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as azure_native from "@khulnasoft/azure-native";
 
 const frontDoor = new azure_native.network.FrontDoor("frontDoor", {
     resourceGroupName: "someGroupName",

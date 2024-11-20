@@ -1,6 +1,6 @@
 import pytest
-from pulumi.runtime.resource import create_alias_spec
-from pulumi.resource import Alias
+from khulnasoft.runtime.resource import create_alias_spec
+from khulnasoft.resource import Alias
 
 
 @pytest.mark.asyncio
@@ -33,8 +33,8 @@ async def test_create_alias_spec_with_type():
 
 @pytest.mark.asyncio
 async def test_create_alias_spec_with_parent():
-    alias = Alias(parent="pulumi:pulumi:Stack")
+    alias = Alias(parent="khulnasoft:khulnasoft:Stack")
     alias_spec = await create_alias_spec(alias)
     assert alias_spec is not None
     assert alias_spec.noParent is False
-    assert alias_spec.parentUrn == "pulumi:pulumi:Stack"
+    assert alias_spec.parentUrn == "khulnasoft:khulnasoft:Stack"

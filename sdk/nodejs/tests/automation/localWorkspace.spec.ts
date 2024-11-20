@@ -35,7 +35,7 @@ import { ComponentResource, ComponentResourceOptions, Config, output } from "../
 import { getTestOrg, getTestSuffix } from "./util";
 
 const versionRegex = /(\d+\.)(\d+\.)(\d+)(-.*)?/;
-const userAgent = "pulumi/pulumi/test";
+const userAgent = "khulnasoft/khulnasoft/test";
 
 describe("LocalWorkspace", () => {
     it(`projectSettings from yaml/yml/json`, async () => {
@@ -84,7 +84,7 @@ describe("LocalWorkspace", () => {
     it(`adds/removes/lists plugins successfully`, async () => {
         const ws = await LocalWorkspace.create(withTestBackend({}));
         await ws.installPlugin("aws", "v3.0.0");
-        // See https://github.com/pulumi/pulumi/issues/11013 for why this is disabled
+        // See https://github.com/khulnasoft/khulnasoft/issues/11013 for why this is disabled
         //await ws.installPluginFromServer("scaleway", "v1.2.0", "github://api.github.com/lbrlabs");
         await ws.removePlugin("aws", "3.0.0");
         await ws.listPlugins();
@@ -140,8 +140,8 @@ describe("LocalWorkspace", () => {
                 return;
             }
             const result = await workspace.listTags(stackName);
-            assert.strictEqual(result["pulumi:project"], projectName);
-            assert.strictEqual(result["pulumi:runtime"], runtime);
+            assert.strictEqual(result["khulnasoft:project"], projectName);
+            assert.strictEqual(result["khulnasoft:runtime"], runtime);
         });
         it("sets and removes tag values", async () => {
             if (!process.env.PULUMI_ACCESS_TOKEN) {
@@ -164,7 +164,7 @@ describe("LocalWorkspace", () => {
                 // Skip the test because the local backend doesn't support tags
                 return;
             }
-            const actualValue = await workspace.getTag(stackName, "pulumi:project");
+            const actualValue = await workspace.getTag(stackName, "khulnasoft:project");
             assert.strictEqual(actualValue, actualValue.trim());
             assert.strictEqual(actualValue, projectName);
         });
@@ -178,17 +178,17 @@ describe("LocalWorkspace", () => {
                     {
                         "name": "testorg1/testproj1/teststack1",
                         "current": false,
-                        "url": "https://app.pulumi.com/testorg1/testproj1/teststack1"
+                        "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack1"
                     },
                     {
                         "name": "testorg1/testproj1/teststack2",
                         "current": false,
-                        "url": "https://app.pulumi.com/testorg1/testproj1/teststack2"
+                        "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack2"
                     }
                 ]`;
             it(`should handle stacks correctly for listStacks`, async () => {
                 const mockWithReturnedStacks = {
-                    command: "pulumi",
+                    command: "khulnasoft",
                     version: null,
                     run: async (args: string[], cwd: string, additionalEnv: { [key: string]: string }) => {
                         return new CommandResult(stackJson, "", 0);
@@ -196,23 +196,23 @@ describe("LocalWorkspace", () => {
                 };
 
                 const workspace = await LocalWorkspace.create(
-                    withTestBackend({ pulumiCommand: mockWithReturnedStacks }),
+                    withTestBackend({ khulnasoftCommand: mockWithReturnedStacks }),
                 );
                 const stacks = await workspace.listStacks();
 
                 assert.strictEqual(stacks.length, 2);
                 assert.strictEqual(stacks[0].name, "testorg1/testproj1/teststack1");
                 assert.strictEqual(stacks[0].current, false);
-                assert.strictEqual(stacks[0].url, "https://app.pulumi.com/testorg1/testproj1/teststack1");
+                assert.strictEqual(stacks[0].url, "https://app.khulnasoft.com/testorg1/testproj1/teststack1");
                 assert.strictEqual(stacks[1].name, "testorg1/testproj1/teststack2");
                 assert.strictEqual(stacks[1].current, false);
-                assert.strictEqual(stacks[1].url, "https://app.pulumi.com/testorg1/testproj1/teststack2");
+                assert.strictEqual(stacks[1].url, "https://app.khulnasoft.com/testorg1/testproj1/teststack2");
             });
 
             it(`should use correct args for listStacks`, async () => {
                 let capturedArgs: string[] = [];
                 const mockPulumiCommand = {
-                    command: "pulumi",
+                    command: "khulnasoft",
                     version: null,
                     run: async (args: string[], cwd: string, additionalEnv: { [key: string]: string }) => {
                         capturedArgs = args;
@@ -221,7 +221,7 @@ describe("LocalWorkspace", () => {
                 };
                 const workspace = await LocalWorkspace.create(
                     withTestBackend({
-                        pulumiCommand: mockPulumiCommand,
+                        khulnasoftCommand: mockPulumiCommand,
                     }),
                 );
                 await workspace.listStacks();
@@ -234,39 +234,39 @@ describe("LocalWorkspace", () => {
                     {
                         "name": "testorg1/testproj1/teststack1",
                         "current": false,
-                        "url": "https://app.pulumi.com/testorg1/testproj1/teststack1"
+                        "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack1"
                     },
                     {
                         "name": "testorg1/testproj2/teststack2",
                         "current": false,
-                        "url": "https://app.pulumi.com/testorg1/testproj2/teststack2"
+                        "url": "https://app.khulnasoft.com/testorg1/testproj2/teststack2"
                     }
                 ]`;
             it(`should handle stacks correctly for listStacks when all is set`, async () => {
                 const mockWithReturnedStacks = {
-                    command: "pulumi",
+                    command: "khulnasoft",
                     version: null,
                     run: async () => new CommandResult(stackJson, "", 0),
                 };
                 const workspace = await LocalWorkspace.create(
                     withTestBackend({
-                        pulumiCommand: mockWithReturnedStacks,
+                        khulnasoftCommand: mockWithReturnedStacks,
                     }),
                 );
                 const stacks = await workspace.listStacks({ all: true });
                 assert.strictEqual(stacks.length, 2);
                 assert.strictEqual(stacks[0].name, "testorg1/testproj1/teststack1");
                 assert.strictEqual(stacks[0].current, false);
-                assert.strictEqual(stacks[0].url, "https://app.pulumi.com/testorg1/testproj1/teststack1");
+                assert.strictEqual(stacks[0].url, "https://app.khulnasoft.com/testorg1/testproj1/teststack1");
                 assert.strictEqual(stacks[1].name, "testorg1/testproj2/teststack2");
                 assert.strictEqual(stacks[1].current, false);
-                assert.strictEqual(stacks[1].url, "https://app.pulumi.com/testorg1/testproj2/teststack2");
+                assert.strictEqual(stacks[1].url, "https://app.khulnasoft.com/testorg1/testproj2/teststack2");
             });
 
             it(`should use correct args for listStacks when all is set`, async () => {
                 let capturedArgs: string[] = [];
                 const mockPuluiCommand = {
-                    command: "pulumi",
+                    command: "khulnasoft",
                     version: null,
                     run: async (args: string[], cwd: string, additionalEnv: { [key: string]: string }) => {
                         capturedArgs = args;
@@ -275,7 +275,7 @@ describe("LocalWorkspace", () => {
                 };
                 const workspace = await LocalWorkspace.create(
                     withTestBackend({
-                        pulumiCommand: mockPuluiCommand,
+                        khulnasoftCommand: mockPuluiCommand,
                     }),
                 );
                 await workspace.listStacks({ all: true });
@@ -565,7 +565,7 @@ describe("LocalWorkspace", () => {
         assert.strictEqual(typeof info, "undefined");
         await ws.removeStack(stackName);
     });
-    // TODO[pulumi/pulumi#8220] understand why this test was flaky
+    // TODO[khulnasoft/khulnasoft#8220] understand why this test was flaky
     xit(`runs through the stack lifecycle with a local program`, async () => {
         const stackName = fullyQualifiedStackName(getTestOrg(), "testproj", `int_test${getTestSuffix()}`);
         const workDir = upath.joinSafe(__dirname, "data", "testproj");
@@ -577,7 +577,7 @@ describe("LocalWorkspace", () => {
         };
         await stack.setAllConfig(config);
 
-        // pulumi up
+        // khulnasoft up
         const upRes = await stack.up({ userAgent });
         assert.strictEqual(Object.keys(upRes.outputs).length, 3);
         assert.strictEqual(upRes.outputs["exp_static"].value, "foo");
@@ -589,16 +589,16 @@ describe("LocalWorkspace", () => {
         assert.strictEqual(upRes.summary.kind, "update");
         assert.strictEqual(upRes.summary.result, "succeeded");
 
-        // pulumi preview
+        // khulnasoft preview
         const preRes = await stack.preview({ userAgent });
         assert.strictEqual(preRes.changeSummary.same, 1);
 
-        // pulumi refresh
+        // khulnasoft refresh
         const refRes = await stack.refresh({ userAgent });
         assert.strictEqual(refRes.summary.kind, "refresh");
         assert.strictEqual(refRes.summary.result, "succeeded");
 
-        // pulumi destroy
+        // khulnasoft destroy
         const destroyRes = await stack.destroy({ userAgent });
         assert.strictEqual(destroyRes.summary.kind, "destroy");
         assert.strictEqual(destroyRes.summary.result, "succeeded");
@@ -613,7 +613,7 @@ describe("LocalWorkspace", () => {
             withTestBackend({}, "testproj_dotnet", "", "dotnet"),
         );
 
-        // pulumi up
+        // khulnasoft up
         const upRes = await stack.up({ userAgent });
         assert.strictEqual(Object.keys(upRes.outputs).length, 1);
         assert.strictEqual(upRes.outputs["exp_static"].value, "foo");
@@ -621,16 +621,16 @@ describe("LocalWorkspace", () => {
         assert.strictEqual(upRes.summary.kind, "update");
         assert.strictEqual(upRes.summary.result, "succeeded");
 
-        // pulumi preview
+        // khulnasoft preview
         const preRes = await stack.preview({ userAgent });
         assert.strictEqual(preRes.changeSummary.same, 1);
 
-        // pulumi refresh
+        // khulnasoft refresh
         const refRes = await stack.refresh({ userAgent });
         assert.strictEqual(refRes.summary.kind, "refresh");
         assert.strictEqual(refRes.summary.result, "succeeded");
 
-        // pulumi destroy
+        // khulnasoft destroy
         const destroyRes = await stack.destroy({ userAgent });
         assert.strictEqual(destroyRes.summary.kind, "destroy");
         assert.strictEqual(destroyRes.summary.result, "succeeded");
@@ -659,7 +659,7 @@ describe("LocalWorkspace", () => {
         };
         await stack.setAllConfig(stackConfig);
 
-        // pulumi up
+        // khulnasoft up
         const upRes = await stack.up({ userAgent });
         assert.strictEqual(Object.keys(upRes.outputs).length, 3);
         assert.strictEqual(upRes.outputs["exp_static"].value, "foo");
@@ -671,16 +671,16 @@ describe("LocalWorkspace", () => {
         assert.strictEqual(upRes.summary.kind, "update");
         assert.strictEqual(upRes.summary.result, "succeeded");
 
-        // pulumi preview
+        // khulnasoft preview
         const preRes = await stack.preview({ userAgent });
         assert.strictEqual(preRes.changeSummary.same, 1);
 
-        // pulumi refresh
+        // khulnasoft refresh
         const refRes = await stack.refresh({ userAgent });
         assert.strictEqual(refRes.summary.kind, "refresh");
         assert.strictEqual(refRes.summary.result, "succeeded");
 
-        // pulumi destroy
+        // khulnasoft destroy
         const destroyRes = await stack.destroy({ userAgent });
         assert.strictEqual(destroyRes.summary.kind, "destroy");
         assert.strictEqual(destroyRes.summary.result, "succeeded");
@@ -794,7 +794,7 @@ describe("LocalWorkspace", () => {
         await stack.setConfig("protect", { value: "true" });
         await stack.up({ userAgent });
 
-        // pulumi destroy
+        // khulnasoft destroy
         const destroyRes = await stack.destroy({ userAgent, excludeProtected: true });
         assert.strictEqual(destroyRes.summary.kind, "destroy");
         assert.strictEqual(destroyRes.summary.result, "succeeded");
@@ -804,7 +804,7 @@ describe("LocalWorkspace", () => {
         await stack.removeConfig("protect");
         await stack.up({ userAgent });
 
-        // pulumi destroy to cleanup all resources
+        // khulnasoft destroy to cleanup all resources
         await stack.destroy({ userAgent });
 
         await stack.workspace.removeStack(stackName);
@@ -856,8 +856,8 @@ describe("LocalWorkspace", () => {
             };
             await stack.setAllConfig(stackConfig);
 
-            // pulumi up
-            const upRes = await stack.up({ userAgent }); // pulumi up
+            // khulnasoft up
+            const upRes = await stack.up({ userAgent }); // khulnasoft up
             assert.strictEqual(Object.keys(upRes.outputs).length, 3);
             assert.strictEqual(upRes.outputs["exp_static"].value, "foo");
             assert.strictEqual(upRes.outputs["exp_static"].secret, false);
@@ -868,16 +868,16 @@ describe("LocalWorkspace", () => {
             assert.strictEqual(upRes.summary.kind, "update");
             assert.strictEqual(upRes.summary.result, "succeeded");
 
-            // pulumi preview
-            const preRes = await stack.preview({ userAgent }); // pulumi preview
+            // khulnasoft preview
+            const preRes = await stack.preview({ userAgent }); // khulnasoft preview
             assert.strictEqual(preRes.changeSummary.same, 1);
 
-            // pulumi refresh
+            // khulnasoft refresh
             const refRes = await stack.refresh({ userAgent });
             assert.strictEqual(refRes.summary.kind, "refresh");
             assert.strictEqual(refRes.summary.result, "succeeded");
 
-            // pulumi destroy
+            // khulnasoft destroy
             const destroyRes = await stack.destroy({ userAgent });
             assert.strictEqual(destroyRes.summary.kind, "destroy");
             assert.strictEqual(destroyRes.summary.result, "succeeded");
@@ -918,32 +918,32 @@ describe("LocalWorkspace", () => {
             }
         };
 
-        // pulumi preview
+        // khulnasoft preview
         const preRes = await stack.preview({ onEvent: findSummaryEvent });
         assert.strictEqual(seenSummaryEvent, true, "No SummaryEvent for `preview`");
         assert.strictEqual(preRes.changeSummary.create, 1);
 
-        // pulumi up
+        // khulnasoft up
         seenSummaryEvent = false;
         const upRes = await stack.up({ onEvent: findSummaryEvent });
         assert.strictEqual(seenSummaryEvent, true, "No SummaryEvent for `up`");
         assert.strictEqual(upRes.summary.kind, "update");
         assert.strictEqual(upRes.summary.result, "succeeded");
 
-        // pulumi preview
+        // khulnasoft preview
         seenSummaryEvent = false;
         const preResAgain = await stack.preview({ onEvent: findSummaryEvent });
         assert.strictEqual(seenSummaryEvent, true, "No SummaryEvent for `preview`");
         assert.strictEqual(preResAgain.changeSummary.same, 1);
 
-        // pulumi refresh
+        // khulnasoft refresh
         seenSummaryEvent = false;
         const refRes = await stack.refresh({ onEvent: findSummaryEvent });
         assert.strictEqual(seenSummaryEvent, true, "No SummaryEvent for `refresh`");
         assert.strictEqual(refRes.summary.kind, "refresh");
         assert.strictEqual(refRes.summary.result, "succeeded");
 
-        // pulumi destroy
+        // khulnasoft destroy
         seenSummaryEvent = false;
         const destroyRes = await stack.destroy({ onEvent: findSummaryEvent });
         assert.strictEqual(seenSummaryEvent, true, "No SummaryEvent for `destroy`");
@@ -952,7 +952,7 @@ describe("LocalWorkspace", () => {
 
         await stack.workspace.removeStack(stackName);
     });
-    // TODO[pulumi/pulumi#7127]: Re-enabled the warning.
+    // TODO[khulnasoft/khulnasoft#7127]: Re-enabled the warning.
     // Temporarily skipping test until we've re-enabled the warning.
     it.skip(`has secret config warnings`, async () => {
         const program = async () => {
@@ -1109,11 +1109,11 @@ describe("LocalWorkspace", () => {
             }
         };
 
-        // pulumi preview
+        // khulnasoft preview
         await stack.preview({ onEvent: findDiagnosticEvents });
         validate(events);
 
-        // pulumi up
+        // khulnasoft up
         events = [];
         await stack.up({ onEvent: findDiagnosticEvents });
         validate(events);
@@ -1157,7 +1157,7 @@ describe("LocalWorkspace", () => {
             await stack.workspace.removeStack(stackName);
         }
     });
-    // TODO[pulumi/pulumi#8061] flaky test
+    // TODO[khulnasoft/khulnasoft#8061] flaky test
     xit(`supports stack outputs`, async () => {
         const program = async () => {
             const config = new Config();
@@ -1193,7 +1193,7 @@ describe("LocalWorkspace", () => {
             const initialOutputs = await stack.outputs();
             assert.strictEqual(Object.keys(initialOutputs).length, 0, "expected initialOutputs to be empty");
 
-            // pulumi up
+            // khulnasoft up
             const upRes = await stack.up();
             assert.strictEqual(upRes.summary.kind, "update");
             assert.strictEqual(upRes.summary.result, "succeeded");
@@ -1221,10 +1221,10 @@ describe("LocalWorkspace", () => {
             withTestBackend({}, "inline_node"),
         );
 
-        // pulumi up
+        // khulnasoft up
         await assert.doesNotReject(stack.up());
 
-        // pulumi destroy
+        // khulnasoft destroy
         const destroyRes = await stack.destroy();
         assert.strictEqual(destroyRes.summary.kind, "destroy");
         assert.strictEqual(destroyRes.summary.result, "succeeded");
@@ -1243,10 +1243,10 @@ describe("LocalWorkspace", () => {
             withTestBackend({}, "inline_node"),
         );
 
-        // pulumi up
+        // khulnasoft up
         await assert.rejects(stack.up());
 
-        // pulumi destroy
+        // khulnasoft destroy
         const destroyRes = await stack.destroy();
         assert.strictEqual(destroyRes.summary.kind, "destroy");
         assert.strictEqual(destroyRes.summary.result, "succeeded");
@@ -1268,14 +1268,14 @@ describe("LocalWorkspace", () => {
             withTestBackend({}, "inline_node"),
         );
 
-        // pulumi up rejects the first time
+        // khulnasoft up rejects the first time
         await assert.rejects(stack.up());
 
-        // pulumi up succeeds the 2nd time
+        // khulnasoft up succeeds the 2nd time
         shouldFail = false;
         await assert.doesNotReject(stack.up());
 
-        // pulumi destroy
+        // khulnasoft destroy
         const destroyRes = await stack.destroy();
         assert.strictEqual(destroyRes.summary.kind, "destroy");
         assert.strictEqual(destroyRes.summary.result, "succeeded");
@@ -1287,8 +1287,8 @@ describe("LocalWorkspace", () => {
         const workDir = upath.joinSafe(__dirname, "data", "import");
         const stackName = `int_test${getTestSuffix()}`;
         const stack = await LocalWorkspace.createStack({ workDir, stackName }, withTestBackend({}));
-        const pulumiRandomVersion = "4.16.3";
-        await stack.workspace.installPlugin("random", pulumiRandomVersion);
+        const khulnasoftRandomVersion = "4.16.3";
+        await stack.workspace.installPlugin("random", khulnasoftRandomVersion);
         const result = await stack.import({
             protect: false,
             resources: [
@@ -1311,15 +1311,15 @@ describe("LocalWorkspace", () => {
         assert.strictEqual(result.generatedCode, expectedGeneratedCode);
         await stack.destroy();
         await stack.workspace.removeStack(stackName);
-        await stack.workspace.removePlugin("random", pulumiRandomVersion);
+        await stack.workspace.removePlugin("random", khulnasoftRandomVersion);
     });
 
     it("can import resources into a stack without generating code", async () => {
         const workDir = upath.joinSafe(__dirname, "data", "import");
         const stackName = `int_test${getTestSuffix()}`;
         const stack = await LocalWorkspace.createStack({ workDir, stackName }, withTestBackend({}));
-        const pulumiRandomVersion = "4.16.3";
-        await stack.workspace.installPlugin("random", pulumiRandomVersion);
+        const khulnasoftRandomVersion = "4.16.3";
+        await stack.workspace.installPlugin("random", khulnasoftRandomVersion);
         const result = await stack.import({
             protect: false,
             generateCode: false,
@@ -1341,58 +1341,58 @@ describe("LocalWorkspace", () => {
         assert.strictEqual(result.generatedCode, "");
         await stack.destroy();
         await stack.workspace.removeStack(stackName);
-        await stack.workspace.removePlugin("random", pulumiRandomVersion);
+        await stack.workspace.removePlugin("random", khulnasoftRandomVersion);
     });
 
-    it(`sets pulumi version`, async () => {
+    it(`sets khulnasoft version`, async () => {
         const ws = await LocalWorkspace.create(withTestBackend({}));
-        assert(ws.pulumiVersion);
-        assert.strictEqual(versionRegex.test(ws.pulumiVersion), true);
+        assert(ws.khulnasoftVersion);
+        assert.strictEqual(versionRegex.test(ws.khulnasoftVersion), true);
     });
-    it("sets pulumi version when using a custom CLI instance", async () => {
+    it("sets khulnasoft version when using a custom CLI instance", async () => {
         const tmpDir = tmp.dirSync({ prefix: "automation-test-", unsafeCleanup: true });
         try {
             const cmd = await PulumiCommand.get();
-            const ws = await LocalWorkspace.create(withTestBackend({ pulumiCommand: cmd }));
-            assert.strictEqual(versionRegex.test(ws.pulumiVersion), true);
+            const ws = await LocalWorkspace.create(withTestBackend({ khulnasoftCommand: cmd }));
+            assert.strictEqual(versionRegex.test(ws.khulnasoftVersion), true);
         } finally {
             tmpDir.removeCallback();
         }
     });
-    it("throws when attempting to retrieve an invalid pulumi version", async () => {
+    it("throws when attempting to retrieve an invalid khulnasoft version", async () => {
         const mockWithNoVersion = {
-            command: "pulumi",
+            command: "khulnasoft",
             version: null,
             run: async () => new CommandResult("some output", "", 0),
         };
         const ws = await LocalWorkspace.create(
             withTestBackend({
-                pulumiCommand: mockWithNoVersion,
+                khulnasoftCommand: mockWithNoVersion,
                 envVars: {
                     PULUMI_AUTOMATION_API_SKIP_VERSION_CHECK: "true",
                 },
             }),
         );
-        assert.throws(() => ws.pulumiVersion);
+        assert.throws(() => ws.khulnasoftVersion);
     });
     it("fails creation if remote operation is not supported", async () => {
         const mockWithNoRemoteSupport = {
-            command: "pulumi",
+            command: "khulnasoft",
             version: new semver.SemVer("2.0.0"),
-            // We inspect the output of `pulumi preview --help` to determine
+            // We inspect the output of `khulnasoft preview --help` to determine
             // if the CLI supports remote operations, see
             // `LocalWorkspace.checkRemoteSupport`.
             run: async () => new CommandResult("some output", "", 0),
         };
         await assert.rejects(
-            LocalWorkspace.create(withTestBackend({ pulumiCommand: mockWithNoRemoteSupport, remote: true })),
+            LocalWorkspace.create(withTestBackend({ khulnasoftCommand: mockWithNoRemoteSupport, remote: true })),
         );
     });
     it("bypasses remote support check", async () => {
         const mockWithNoRemoteSupport = {
-            command: "pulumi",
+            command: "khulnasoft",
             version: new semver.SemVer("2.0.0"),
-            // We inspect the output of `pulumi preview --help` to determine
+            // We inspect the output of `khulnasoft preview --help` to determine
             // if the CLI supports remote operations, see
             // `LocalWorkspace.checkRemoteSupport`.
             run: async () => new CommandResult("some output", "", 0),
@@ -1400,7 +1400,7 @@ describe("LocalWorkspace", () => {
         await assert.doesNotReject(
             LocalWorkspace.create(
                 withTestBackend({
-                    pulumiCommand: mockWithNoRemoteSupport,
+                    khulnasoftCommand: mockWithNoRemoteSupport,
                     remote: true,
                     envVars: {
                         PULUMI_AUTOMATION_API_SKIP_VERSION_CHECK: "true",
@@ -1477,7 +1477,7 @@ describe("LocalWorkspace", () => {
     it(`runs the install command`, async () => {
         let recordedArgs: string[] = [];
         const mockCommand = {
-            command: "pulumi",
+            command: "khulnasoft",
             // Version high enough to support --use-language-version-tools
             version: semver.parse("3.130.0"),
             run: async (
@@ -1490,7 +1490,7 @@ describe("LocalWorkspace", () => {
                 return new CommandResult("some output", "", 0);
             },
         };
-        const ws = await LocalWorkspace.create(withTestBackend({ pulumiCommand: mockCommand }));
+        const ws = await LocalWorkspace.create(withTestBackend({ khulnasoftCommand: mockCommand }));
 
         await ws.install();
         assert.deepStrictEqual(recordedArgs, ["install"]);
@@ -1524,7 +1524,7 @@ describe("LocalWorkspace", () => {
 
     it(`install requires version >= 3.91`, async () => {
         const mockCommand = {
-            command: "pulumi",
+            command: "khulnasoft",
             version: semver.parse("3.90.0"),
             run: async (
                 args: string[],
@@ -1535,14 +1535,14 @@ describe("LocalWorkspace", () => {
                 return new CommandResult("some output", "", 0);
             },
         };
-        const ws = await LocalWorkspace.create(withTestBackend({ pulumiCommand: mockCommand }));
+        const ws = await LocalWorkspace.create(withTestBackend({ khulnasoftCommand: mockCommand }));
 
         assert.rejects(() => ws.install());
     });
 
     it(`install --use-language-version-tools requires version >= 3.130`, async () => {
         const mockCommand = {
-            command: "pulumi",
+            command: "khulnasoft",
             version: semver.parse("3.129.0"),
             run: async (
                 args: string[],
@@ -1553,7 +1553,7 @@ describe("LocalWorkspace", () => {
                 return new CommandResult("some output", "", 0);
             },
         };
-        const ws = await LocalWorkspace.create(withTestBackend({ pulumiCommand: mockCommand }));
+        const ws = await LocalWorkspace.create(withTestBackend({ khulnasoftCommand: mockCommand }));
 
         assert.rejects(() => ws.install());
     });
@@ -1573,7 +1573,7 @@ describe("LocalWorkspace", () => {
 
         new Promise((f) => setTimeout(f, 500)).then(() => controller.abort());
         try {
-            // pulumi preview
+            // khulnasoft preview
             const previewRes = await stack.preview({
                 signal: controller.signal,
             });
@@ -1619,7 +1619,7 @@ function withCloudBackend(
     runtime?: string,
 ): LocalWorkspaceOptions {
     const backend = {
-        url: "https://api.pulumi.com",
+        url: "https://api.khulnasoft.com",
     };
     if (name === undefined) {
         name = "node_test";
@@ -1665,7 +1665,7 @@ function withTemporaryFileBackend(
 
     return withTestConfigPassphrase({
         ...opts,
-        pulumiHome: tmpDir.name,
+        khulnasoftHome: tmpDir.name,
         projectSettings: {
             // We are obliged to provide a name and runtime if we provide project
             // settings, so we do so, but we spread in the provided project settings

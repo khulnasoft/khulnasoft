@@ -1,5 +1,5 @@
-from pulumi import Input, Output, export
-from pulumi.dynamic import Resource, ResourceProvider, CreateResult
+from khulnasoft import Input, Output, export
+from khulnasoft.dynamic import Resource, ResourceProvider, CreateResult
 from enum import Enum
 from typing import Optional, Union
 

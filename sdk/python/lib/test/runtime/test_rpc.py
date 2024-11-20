@@ -13,7 +13,7 @@
 # limitations under the License.
 
 from collections import abc
-from pulumi.runtime import rpc
+from khulnasoft.runtime import rpc
 from typing import Any
 import typing
 

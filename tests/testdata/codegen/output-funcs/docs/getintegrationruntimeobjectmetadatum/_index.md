@@ -26,82 +26,82 @@ returns a Promise-wrapped result. The output form accepts
 Input-wrapped arguments and returns an Output-wrapped result.
 
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <div class="highlight"
 ><pre class="chroma"><code class="language-typescript" data-lang="typescript"
-><span class="k">function </span>getIntegrationRuntimeObjectMetadatum<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">GetIntegrationRuntimeObjectMetadatumArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#InvokeOptions">InvokeOptions</a></span><span class="p">): Promise&lt;<span class="nx"><a href="#result">GetIntegrationRuntimeObjectMetadatumResult</a></span>></span
+><span class="k">function </span>getIntegrationRuntimeObjectMetadatum<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">GetIntegrationRuntimeObjectMetadatumArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#InvokeOptions">InvokeOptions</a></span><span class="p">): Promise&lt;<span class="nx"><a href="#result">GetIntegrationRuntimeObjectMetadatumResult</a></span>></span
 ><span class="k">
-function </span>getIntegrationRuntimeObjectMetadatumOutput<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">GetIntegrationRuntimeObjectMetadatumOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#InvokeOptions">InvokeOptions</a></span><span class="p">): Output&lt;<span class="nx"><a href="#result">GetIntegrationRuntimeObjectMetadatumResult</a></span>></span
+function </span>getIntegrationRuntimeObjectMetadatumOutput<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">GetIntegrationRuntimeObjectMetadatumOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#InvokeOptions">InvokeOptions</a></span><span class="p">): Output&lt;<span class="nx"><a href="#result">GetIntegrationRuntimeObjectMetadatumResult</a></span>></span
 ></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"
 ><span class="k">def </span>get_integration_runtime_object_metadatum<span class="p">(</span><span class="nx">factory_name</span><span class="p">:</span> <span class="nx">Optional[str]</span> = None<span class="p">,</span>
                                              <span class="nx">integration_runtime_name</span><span class="p">:</span> <span class="nx">Optional[str]</span> = None<span class="p">,</span>
                                              <span class="nx">metadata_path</span><span class="p">:</span> <span class="nx">Optional[str]</span> = None<span class="p">,</span>
                                              <span class="nx">resource_group_name</span><span class="p">:</span> <span class="nx">Optional[str]</span> = None<span class="p">,</span>
-                                             <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>GetIntegrationRuntimeObjectMetadatumResult</span
+                                             <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>GetIntegrationRuntimeObjectMetadatumResult</span
 ><span class="k">
-def </span>get_integration_runtime_object_metadatum_output<span class="p">(</span><span class="nx">factory_name</span><span class="p">:</span> <span class="nx">Optional[pulumi.Input[str]]</span> = None<span class="p">,</span>
-                                             <span class="nx">integration_runtime_name</span><span class="p">:</span> <span class="nx">Optional[pulumi.Input[str]]</span> = None<span class="p">,</span>
-                                             <span class="nx">metadata_path</span><span class="p">:</span> <span class="nx">Optional[pulumi.Input[str]]</span> = None<span class="p">,</span>
-                                             <span class="nx">resource_group_name</span><span class="p">:</span> <span class="nx">Optional[pulumi.Input[str]]</span> = None<span class="p">,</span>
-                                             <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>Output[GetIntegrationRuntimeObjectMetadatumResult]</span
+def </span>get_integration_runtime_object_metadatum_output<span class="p">(</span><span class="nx">factory_name</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Input[str]]</span> = None<span class="p">,</span>
+                                             <span class="nx">integration_runtime_name</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Input[str]]</span> = None<span class="p">,</span>
+                                             <span class="nx">metadata_path</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Input[str]]</span> = None<span class="p">,</span>
+                                             <span class="nx">resource_group_name</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Input[str]]</span> = None<span class="p">,</span>
+                                             <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>Output[GetIntegrationRuntimeObjectMetadatumResult]</span
 ></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"
-><span class="k">func </span>GetIntegrationRuntimeObjectMetadatum<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">GetIntegrationRuntimeObjectMetadatumArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) (*<span class="nx"><a href="#result">GetIntegrationRuntimeObjectMetadatumResult</a></span>, error)</span
+><span class="k">func </span>GetIntegrationRuntimeObjectMetadatum<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">GetIntegrationRuntimeObjectMetadatumArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) (*<span class="nx"><a href="#result">GetIntegrationRuntimeObjectMetadatumResult</a></span>, error)</span
 ><span class="k">
-func </span>GetIntegrationRuntimeObjectMetadatumOutput<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">GetIntegrationRuntimeObjectMetadatumOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) GetIntegrationRuntimeObjectMetadatumResultOutput</span
+func </span>GetIntegrationRuntimeObjectMetadatumOutput<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">GetIntegrationRuntimeObjectMetadatumOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) GetIntegrationRuntimeObjectMetadatumResultOutput</span
 ></code></pre></div>
 
 &gt; Note: This function is named `GetIntegrationRuntimeObjectMetadatum` in the Go SDK.
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public static class </span><span class="nx">GetIntegrationRuntimeObjectMetadatum </span><span class="p">
 {</span><span class="k">
     public static </span>Task&lt;<span class="nx"><a href="#result">GetIntegrationRuntimeObjectMetadatumResult</a></span>> <span class="p">InvokeAsync(</span><span class="nx">GetIntegrationRuntimeObjectMetadatumArgs</span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.InvokeOptions.html">InvokeOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span><span class="k">
     public static </span>Output&lt;<span class="nx"><a href="#result">GetIntegrationRuntimeObjectMetadatumResult</a></span>> <span class="p">Invoke(</span><span class="nx">GetIntegrationRuntimeObjectMetadatumInvokeArgs</span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.InvokeOptions.html">InvokeOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span><span class="p">
 }</span></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">public static CompletableFuture&lt;<span class="nx"><a href="#result">GetIntegrationRuntimeObjectMetadatumResult</a></span>> </span>getIntegrationRuntimeObjectMetadatum<span class="p">(</span><span class="nx">GetIntegrationRuntimeObjectMetadatumArgs</span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx">InvokeOptions</span><span class="p"> </span><span class="nx">options<span class="p">)</span>
 <span class="c">// Output-based functions aren't available in Java yet</span>
 </code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">fn::invoke:</span>
 <span class="k">&nbsp;&nbsp;function:</span> mypkg:getIntegrationRuntimeObjectMetadatum
 <span class="k">&nbsp;&nbsp;arguments:</span>
 <span class="c">&nbsp;&nbsp;&nbsp;&nbsp;# arguments dictionary</span></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -110,7 +110,7 @@ The following arguments are supported:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="factoryname_csharp">
@@ -144,11 +144,11 @@ The following arguments are supported:
         <span class="property-type">string</span>
     </dt>
     <dd>Metadata path.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="factoryname_go">
@@ -182,11 +182,11 @@ The following arguments are supported:
         <span class="property-type">string</span>
     </dt>
     <dd>Metadata path.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="factoryname_java">
@@ -220,11 +220,11 @@ The following arguments are supported:
         <span class="property-type">String</span>
     </dt>
     <dd>Metadata path.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="factoryname_nodejs">
@@ -258,11 +258,11 @@ The following arguments are supported:
         <span class="property-type">string</span>
     </dt>
     <dd>Metadata path.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="factory_name_python">
@@ -296,11 +296,11 @@ The following arguments are supported:
         <span class="property-type">str</span>
     </dt>
     <dd>Metadata path.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="factoryname_yaml">
@@ -334,7 +334,7 @@ The following arguments are supported:
         <span class="property-type">String</span>
     </dt>
     <dd>Metadata path.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -347,7 +347,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="nextlink_csharp">
@@ -365,11 +365,11 @@ The following output properties are available:
         <span class="property-type">List&lt;object&gt;</span>
     </dt>
     <dd>List of SSIS object metadata.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="nextlink_go">
@@ -387,11 +387,11 @@ The following output properties are available:
         <span class="property-type">[]interface{}</span>
     </dt>
     <dd>List of SSIS object metadata.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="nextlink_java">
@@ -409,11 +409,11 @@ The following output properties are available:
         <span class="property-type">List&lt;Object&gt;</span>
     </dt>
     <dd>List of SSIS object metadata.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="nextlink_nodejs">
@@ -431,11 +431,11 @@ The following output properties are available:
         <span class="property-type">(Ssis<wbr>Environment<wbr>Response | Ssis<wbr>Folder<wbr>Response | Ssis<wbr>Package<wbr>Response | Ssis<wbr>Project<wbr>Response)[]</span>
     </dt>
     <dd>List of SSIS object metadata.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="next_link_python">
@@ -453,11 +453,11 @@ The following output properties are available:
         <span class="property-type">Sequence[Any]</span>
     </dt>
     <dd>List of SSIS object metadata.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="nextlink_yaml">
@@ -475,7 +475,7 @@ The following output properties are available:
         <span class="property-type">List&lt;Property Map | Property Map | Property Map | Property Map&gt;</span>
     </dt>
     <dd>List of SSIS object metadata.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -489,7 +489,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="environmentfoldername_csharp">
@@ -523,11 +523,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Reference type</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="environmentfoldername_go">
@@ -561,11 +561,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Reference type</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="environmentfoldername_java">
@@ -599,11 +599,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Reference type</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="environmentfoldername_nodejs">
@@ -637,11 +637,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Reference type</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="environment_folder_name_python">
@@ -675,11 +675,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Reference type</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="environmentfoldername_yaml">
@@ -713,7 +713,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Reference type</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="ssisenvironmentresponse">Ssis<wbr>Environment<wbr>Response</h4>
@@ -721,7 +721,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_csharp">
@@ -763,11 +763,11 @@ The following output properties are available:
         <span class="property-type"><a href="#ssisvariableresponse">List&lt;Ssis<wbr>Variable<wbr>Response&gt;</a></span>
     </dt>
     <dd>Variable in environment</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_go">
@@ -809,11 +809,11 @@ The following output properties are available:
         <span class="property-type"><a href="#ssisvariableresponse">[]Ssis<wbr>Variable<wbr>Response</a></span>
     </dt>
     <dd>Variable in environment</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_java">
@@ -855,11 +855,11 @@ The following output properties are available:
         <span class="property-type"><a href="#ssisvariableresponse">List&lt;Ssis<wbr>Variable<wbr>Response&gt;</a></span>
     </dt>
     <dd>Variable in environment</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_nodejs">
@@ -901,11 +901,11 @@ The following output properties are available:
         <span class="property-type"><a href="#ssisvariableresponse">Ssis<wbr>Variable<wbr>Response[]</a></span>
     </dt>
     <dd>Variable in environment</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_python">
@@ -947,11 +947,11 @@ The following output properties are available:
         <span class="property-type"><a href="#ssisvariableresponse">Sequence[Ssis<wbr>Variable<wbr>Response]</a></span>
     </dt>
     <dd>Variable in environment</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_yaml">
@@ -993,7 +993,7 @@ The following output properties are available:
         <span class="property-type"><a href="#ssisvariableresponse">List&lt;Property Map&gt;</a></span>
     </dt>
     <dd>Variable in environment</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="ssisfolderresponse">Ssis<wbr>Folder<wbr>Response</h4>
@@ -1001,7 +1001,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_csharp">
@@ -1027,11 +1027,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Metadata name.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_go">
@@ -1057,11 +1057,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Metadata name.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_java">
@@ -1087,11 +1087,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Metadata name.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_nodejs">
@@ -1117,11 +1117,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Metadata name.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_python">
@@ -1147,11 +1147,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Metadata name.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_yaml">
@@ -1177,7 +1177,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Metadata name.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="ssispackageresponse">Ssis<wbr>Package<wbr>Response</h4>
@@ -1185,7 +1185,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_csharp">
@@ -1243,11 +1243,11 @@ The following output properties are available:
         <span class="property-type">double</span>
     </dt>
     <dd>Project version which contains package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_go">
@@ -1305,11 +1305,11 @@ The following output properties are available:
         <span class="property-type">float64</span>
     </dt>
     <dd>Project version which contains package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_java">
@@ -1367,11 +1367,11 @@ The following output properties are available:
         <span class="property-type">Double</span>
     </dt>
     <dd>Project version which contains package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_nodejs">
@@ -1429,11 +1429,11 @@ The following output properties are available:
         <span class="property-type">number</span>
     </dt>
     <dd>Project version which contains package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_python">
@@ -1491,11 +1491,11 @@ The following output properties are available:
         <span class="property-type">float</span>
     </dt>
     <dd>Project version which contains package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_yaml">
@@ -1553,7 +1553,7 @@ The following output properties are available:
         <span class="property-type">Number</span>
     </dt>
     <dd>Project version which contains package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="ssisparameterresponse">Ssis<wbr>Parameter<wbr>Response</h4>
@@ -1561,7 +1561,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="datatype_csharp">
@@ -1659,11 +1659,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Parameter reference variable.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="datatype_go">
@@ -1761,11 +1761,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Parameter reference variable.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="datatype_java">
@@ -1863,11 +1863,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Parameter reference variable.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="datatype_nodejs">
@@ -1965,11 +1965,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Parameter reference variable.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="data_type_python">
@@ -2067,11 +2067,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Parameter reference variable.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="datatype_yaml">
@@ -2169,7 +2169,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Parameter reference variable.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="ssisprojectresponse">Ssis<wbr>Project<wbr>Response</h4>
@@ -2177,7 +2177,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_csharp">
@@ -2235,11 +2235,11 @@ The following output properties are available:
         <span class="property-type">double</span>
     </dt>
     <dd>Project version.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_go">
@@ -2297,11 +2297,11 @@ The following output properties are available:
         <span class="property-type">float64</span>
     </dt>
     <dd>Project version.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_java">
@@ -2359,11 +2359,11 @@ The following output properties are available:
         <span class="property-type">Double</span>
     </dt>
     <dd>Project version.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_nodejs">
@@ -2421,11 +2421,11 @@ The following output properties are available:
         <span class="property-type">number</span>
     </dt>
     <dd>Project version.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_python">
@@ -2483,11 +2483,11 @@ The following output properties are available:
         <span class="property-type">float</span>
     </dt>
     <dd>Project version.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="description_yaml">
@@ -2545,7 +2545,7 @@ The following output properties are available:
         <span class="property-type">Number</span>
     </dt>
     <dd>Project version.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="ssisvariableresponse">Ssis<wbr>Variable<wbr>Response</h4>
@@ -2553,7 +2553,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="datatype_csharp">
@@ -2611,11 +2611,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Variable value.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="datatype_go">
@@ -2673,11 +2673,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Variable value.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="datatype_java">
@@ -2735,11 +2735,11 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Variable value.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="datatype_nodejs">
@@ -2797,11 +2797,11 @@ The following output properties are available:
         <span class="property-type">string</span>
     </dt>
     <dd>Variable value.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="data_type_python">
@@ -2859,11 +2859,11 @@ The following output properties are available:
         <span class="property-type">str</span>
     </dt>
     <dd>Variable value.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="datatype_yaml">
@@ -2921,7 +2921,7 @@ The following output properties are available:
         <span class="property-type">String</span>
     </dt>
     <dd>Variable value.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 

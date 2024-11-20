@@ -17,8 +17,8 @@ package provider
 import (
 	"fmt"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/provider"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc/codes"
@@ -27,7 +27,7 @@ import (
 )
 
 type componentProvider struct {
-	pulumirpc.UnimplementedResourceProviderServer
+	khulnasoftrpc.UnimplementedResourceProviderServer
 
 	host      *HostClient
 	name      string
@@ -51,7 +51,7 @@ type Options struct {
 // Using it isn't required but can cut down significantly on the amount of boilerplate necessary to fire up a new
 // resource provider for components.
 func MainWithOptions(opts Options) error {
-	return Main(opts.Name, func(host *HostClient) (pulumirpc.ResourceProviderServer, error) {
+	return Main(opts.Name, func(host *HostClient) (khulnasoftrpc.ResourceProviderServer, error) {
 		return &componentProvider{
 			host:      host,
 			name:      opts.Name,
@@ -67,7 +67,7 @@ func MainWithOptions(opts Options) error {
 // Using it isn't required but can cut down significantly on the amount of boilerplate necessary to fire up a new
 // resource provider for components.
 func ComponentMain(name, version string, schema []byte, construct provider.ConstructFunc) error {
-	return Main(name, func(host *HostClient) (pulumirpc.ResourceProviderServer, error) {
+	return Main(name, func(host *HostClient) (khulnasoftrpc.ResourceProviderServer, error) {
 		return &componentProvider{
 			host:      host,
 			name:      name,
@@ -79,16 +79,16 @@ func ComponentMain(name, version string, schema []byte, construct provider.Const
 }
 
 // GetPluginInfo returns generic information about this plugin, like its version.
-func (p *componentProvider) GetPluginInfo(context.Context, *emptypb.Empty) (*pulumirpc.PluginInfo, error) {
-	return &pulumirpc.PluginInfo{
+func (p *componentProvider) GetPluginInfo(context.Context, *emptypb.Empty) (*khulnasoftrpc.PluginInfo, error) {
+	return &khulnasoftrpc.PluginInfo{
 		Version: p.version,
 	}, nil
 }
 
 // GetSchema returns the JSON-encoded schema for this provider's package.
 func (p *componentProvider) GetSchema(ctx context.Context,
-	req *pulumirpc.GetSchemaRequest,
-) (*pulumirpc.GetSchemaResponse, error) {
+	req *khulnasoftrpc.GetSchemaRequest,
+) (*khulnasoftrpc.GetSchemaResponse, error) {
 	if v := req.GetVersion(); v != 0 {
 		return nil, fmt.Errorf("unsupported schema version %d", v)
 	}
@@ -96,14 +96,14 @@ func (p *componentProvider) GetSchema(ctx context.Context,
 	if schema == "" {
 		schema = "{}"
 	}
-	return &pulumirpc.GetSchemaResponse{Schema: schema}, nil
+	return &khulnasoftrpc.GetSchemaResponse{Schema: schema}, nil
 }
 
 // Configure configures the resource provider with "globals" that control its behavior.
 func (p *componentProvider) Configure(ctx context.Context,
-	req *pulumirpc.ConfigureRequest,
-) (*pulumirpc.ConfigureResponse, error) {
-	return &pulumirpc.ConfigureResponse{
+	req *khulnasoftrpc.ConfigureRequest,
+) (*khulnasoftrpc.ConfigureResponse, error) {
+	return &khulnasoftrpc.ConfigureResponse{
 		AcceptSecrets:   true,
 		SupportsPreview: true,
 		AcceptResources: true,
@@ -113,8 +113,8 @@ func (p *componentProvider) Configure(ctx context.Context,
 
 // Construct creates a new instance of the provided component resource and returns its state.
 func (p *componentProvider) Construct(ctx context.Context,
-	req *pulumirpc.ConstructRequest,
-) (*pulumirpc.ConstructResponse, error) {
+	req *khulnasoftrpc.ConstructRequest,
+) (*khulnasoftrpc.ConstructResponse, error) {
 	if p.construct != nil {
 		return provider.Construct(ctx, req, p.host.conn, p.construct)
 	}
@@ -123,8 +123,8 @@ func (p *componentProvider) Construct(ctx context.Context,
 
 // Call dynamically executes a method in the provider associated with a component resource.
 func (p *componentProvider) Call(ctx context.Context,
-	req *pulumirpc.CallRequest,
-) (*pulumirpc.CallResponse, error) {
+	req *khulnasoftrpc.CallRequest,
+) (*khulnasoftrpc.CallResponse, error) {
 	if p.call != nil {
 		return provider.Call(ctx, req, p.host.conn, p.call)
 	}
@@ -142,7 +142,7 @@ func (p *componentProvider) Cancel(context.Context, *emptypb.Empty) (*emptypb.Em
 
 // Attach attaches to the engine for an already running provider.
 func (p *componentProvider) Attach(ctx context.Context,
-	req *pulumirpc.PluginAttach,
+	req *khulnasoftrpc.PluginAttach,
 ) (*emptypb.Empty, error) {
 	host, err := NewHostClient(req.GetAddress())
 	if err != nil {
@@ -154,7 +154,7 @@ func (p *componentProvider) Attach(ctx context.Context,
 
 // GetMapping fetches the conversion mapping (if any) for this resource provider.
 func (p *componentProvider) GetMapping(ctx context.Context,
-	req *pulumirpc.GetMappingRequest,
-) (*pulumirpc.GetMappingResponse, error) {
-	return &pulumirpc.GetMappingResponse{Provider: "", Data: nil}, nil
+	req *khulnasoftrpc.GetMappingRequest,
+) (*khulnasoftrpc.GetMappingResponse, error) {
+	return &khulnasoftrpc.GetMappingResponse{Provider: "", Data: nil}, nil
 }

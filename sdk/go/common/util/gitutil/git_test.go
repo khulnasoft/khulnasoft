@@ -31,9 +31,9 @@ import (
 	"github.com/stretchr/testify/require"
 	"golang.org/x/net/nettest"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 func TestParseGitRepoURL(t *testing.T) {
@@ -62,7 +62,7 @@ func TestParseGitRepoURL(t *testing.T) {
 	}
 
 	// GitHub.
-	pre := "https://github.com/pulumi/templates"
+	pre := "https://github.com/khulnasoft/templates"
 	exp := pre + ".git"
 	test(exp, "", pre+".git")
 	test(exp, "", pre)
@@ -89,8 +89,8 @@ func TestParseGitRepoURL(t *testing.T) {
 	exp = "https://gitlab.com/my-org/proj/subproj/doot.git"
 	test(exp, "poc/waka-waka", pre)
 	test(exp, "poc/waka-waka", pre+"/")
-	pre = "https://gitlab.com/pulumi/platform/templates.git/templates/javascript"
-	exp = "https://gitlab.com/pulumi/platform/templates.git"
+	pre = "https://gitlab.com/khulnasoft/platform/templates.git/templates/javascript"
+	exp = "https://gitlab.com/khulnasoft/platform/templates.git"
 	test(exp, "templates/javascript", pre)
 	test(exp, "templates/javascript", pre+"///")
 	pre = "https://gitlab.com/a/b/c/d/e/f/g/finally.git/1/2/3/4/5"
@@ -150,16 +150,16 @@ func TestParseGitRepoURL(t *testing.T) {
 	testError("ssh://git@github.com/", "invalid Git URL")
 
 	// No repo.
-	testError("https://github.com/pulumi", "invalid Git URL")
-	testError("https://github.com/pulumi/", "invalid Git URL; no repository")
-	testError("git@github.com:pulumi", "invalid Git URL")
-	testError("git@github.com:pulumi/", "invalid Git URL; no repository")
-	testError("ssh://git@github.com/pulumi", "invalid Git URL")
-	testError("ssh://git@github.com/pulumi/", "invalid Git URL; no repository")
+	testError("https://github.com/khulnasoft", "invalid Git URL")
+	testError("https://github.com/khulnasoft/", "invalid Git URL; no repository")
+	testError("git@github.com:khulnasoft", "invalid Git URL")
+	testError("git@github.com:khulnasoft/", "invalid Git URL; no repository")
+	testError("ssh://git@github.com/khulnasoft", "invalid Git URL")
+	testError("ssh://git@github.com/khulnasoft/", "invalid Git URL; no repository")
 
 	// Not HTTPS.
-	testError("http://github.com/pulumi/templates.git", "invalid URL scheme: http")
-	testError("http://github.com/pulumi/templates", "invalid URL scheme: http")
+	testError("http://github.com/khulnasoft/templates.git", "invalid URL scheme: http")
+	testError("http://github.com/khulnasoft/templates", "invalid URL scheme: http")
 }
 
 func TestGetGitReferenceNameOrHashAndSubDirectory(t *testing.T) {
@@ -426,25 +426,25 @@ func TestParseAuthURL(t *testing.T) {
 
 	t.Run("with no auth", func(t *testing.T) {
 		t.Parallel()
-		_, auth, err := parseAuthURL("http://github.com/pulumi/templates")
+		_, auth, err := parseAuthURL("http://github.com/khulnasoft/templates")
 		assert.NoError(t, err)
 		assert.Nil(t, auth)
 	})
 
 	t.Run("with basic auth user", func(t *testing.T) {
 		t.Parallel()
-		url, auth, err := parseAuthURL("http://user@github.com/pulumi/templates")
+		url, auth, err := parseAuthURL("http://user@github.com/khulnasoft/templates")
 		assert.NoError(t, err)
 		assert.Equal(t, &http.BasicAuth{Username: "user"}, auth)
-		assert.Equal(t, "http://github.com/pulumi/templates", url)
+		assert.Equal(t, "http://github.com/khulnasoft/templates", url)
 	})
 
 	t.Run("with basic auth user/password", func(t *testing.T) {
 		t.Parallel()
-		url, auth, err := parseAuthURL("http://user:password@github.com/pulumi/templates")
+		url, auth, err := parseAuthURL("http://user:password@github.com/khulnasoft/templates")
 		assert.NoError(t, err)
 		assert.Equal(t, &http.BasicAuth{Username: "user", Password: "password"}, auth)
-		assert.Equal(t, "http://github.com/pulumi/templates", url)
+		assert.Equal(t, "http://github.com/khulnasoft/templates", url)
 	})
 
 	//nolint:paralleltest // global environment variables
@@ -456,7 +456,7 @@ func TestParseAuthURL(t *testing.T) {
 			sshConfig: &mockSSHConfig{path: generateSSHKey(t, passphrase)},
 		}
 
-		_, auth, err := parser.Parse("git@github.com:pulumi/templates.git")
+		_, auth, err := parser.Parse("git@github.com:khulnasoft/templates.git")
 		assert.NoError(t, err)
 		assert.NotNil(t, auth)
 		assert.Equal(t, "user: git, name: ssh-public-keys", auth.String())
@@ -476,7 +476,7 @@ func TestParseAuthURL(t *testing.T) {
 			sshConfig: &mockSSHConfig{path: generateSSHKey(t, "correct passphrase")},
 		}
 
-		_, auth, err := parser.Parse("git@github.com:pulumi/templates.git")
+		_, auth, err := parser.Parse("git@github.com:khulnasoft/templates.git")
 		// This isn't an error because the connection should fall back to the
 		// SSH agent for auth.
 		assert.NoError(t, err)
@@ -493,7 +493,7 @@ func TestParseAuthURL(t *testing.T) {
 			sshConfig: &mockSSHConfig{path: generateSSHKey(t, "correct passphrase")},
 		}
 
-		_, auth, err := parser.Parse("git@github.com:pulumi/templates.git")
+		_, auth, err := parser.Parse("git@github.com:khulnasoft/templates.git")
 		assert.ErrorContains(t, err, "SSH_AUTH_SOCK not-specified")
 		assert.Nil(t, auth)
 	})
@@ -507,7 +507,7 @@ func TestParseAuthURL(t *testing.T) {
 			},
 		}
 
-		_, auth, err := parser.Parse("git@github.com:pulumi/templates.git")
+		_, auth, err := parser.Parse("git@github.com:khulnasoft/templates.git")
 		assert.NoError(t, err)
 		assert.NotNil(t, auth)
 		assert.Equal(t, "http-basic-auth - foo:<empty>", auth.String())
@@ -515,7 +515,7 @@ func TestParseAuthURL(t *testing.T) {
 
 	//nolint:paralleltest // modifies environment variables
 	t.Run("Don't cache on error", func(t *testing.T) {
-		// Regression test for https://github.com/pulumi/pulumi/issues/16637
+		// Regression test for https://github.com/khulnasoft/khulnasoft/issues/16637
 		t.Setenv(env.GitSSHPassphrase.Var().Name(), "incorrect passphrase")
 		t.Setenv("SSH_AUTH_SOCK", "")
 		os.Unsetenv("SSH_AUTH_SOCK") // t.Setenv above will restore it after the test
@@ -524,12 +524,12 @@ func TestParseAuthURL(t *testing.T) {
 			sshConfig: &mockSSHConfig{path: generateSSHKey(t, "correct passphrase")},
 		}
 
-		_, auth, err := parser.Parse("git@github.com:pulumi/templates.git")
+		_, auth, err := parser.Parse("git@github.com:khulnasoft/templates.git")
 		assert.ErrorContains(t, err, "SSH_AUTH_SOCK not-specified")
 		assert.Nil(t, auth)
 
 		// Retry, should still fail.
-		_, auth, err = parser.Parse("git@github.com:pulumi/templates.git")
+		_, auth, err = parser.Parse("git@github.com:khulnasoft/templates.git")
 		assert.ErrorContains(t, err, "SSH_AUTH_SOCK not-specified")
 		assert.Nil(t, auth)
 	})

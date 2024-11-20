@@ -36,14 +36,14 @@
       "generateResourceContainerTypes": true,
       "generateExtraInputTypes": true,
       "packageImportAliases": {
-        "github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2": "awsec2",
-        "github.com/pulumi/pulumi-google-native/sdk/go/google/iam/v1": "gcpiamv1"
+        "github.com/khulnasoft/khulnasoft-aws/sdk/v4/go/aws/ec2": "awsec2",
+        "github.com/khulnasoft/khulnasoft-google-native/sdk/go/google/iam/v1": "gcpiamv1"
       }
     },
     "nodejs": {
       "dependencies": {
-        "@pulumi/pulumi": "^3.12",
-        "@pulumi/google-native": "^0.20.0"
+        "@khulnasoft/khulnasoft": "^3.12",
+        "@khulnasoft/google-native": "^0.20.0"
       },
       "devDependencies": {
         "typescript": "^3.7.0",
@@ -53,8 +53,8 @@
     },
     "python": {
       "requires": {
-        "pulumi": ">=3.0.0,<4.0.0",
-        "pulumi-google-native": ">=0.20.0,<1.0.0"
+        "khulnasoft": ">=3.0.0,<4.0.0",
+        "khulnasoft-google-native": ">=0.20.0,<1.0.0"
       }
     },
     "csharp": {

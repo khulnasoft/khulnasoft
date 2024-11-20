@@ -8,25 +8,25 @@ host" refers to the combination of two parts:
 
 * A runtime, which is a Pulumi [plugin](plugins) that exposes the ability to
   execute programs written in a particular language according to a [standardized
-  gRPC interface](pulumirpc.LanguageRuntime). The plugin will be named
-  `pulumi-language-<language>` (e.g. `pulumi-language-nodejs` for NodeJS, or
-  `pulumi-language-python` for Python).
+  gRPC interface](khulnasoftrpc.LanguageRuntime). The plugin will be named
+  `khulnasoft-language-<language>` (e.g. `khulnasoft-language-nodejs` for NodeJS, or
+  `khulnasoft-language-python` for Python).
 * An SDK, which is a set of libraries that provide the necessary abstractions
   and utilities for writing Pulumi programs in that language (e.g.
-  `@pulumi/pulumi` in NodeJS, or `pulumi` in Python).
+  `@khulnasoft/khulnasoft` in NodeJS, or `khulnasoft` in Python).
 
 Often however, the term "language host" is used to refer to the runtime alone.
-Aside from providing the ability to [](pulumirpc.LanguageRuntime.Run) programs,
+Aside from providing the ability to [](khulnasoftrpc.LanguageRuntime.Run) programs,
 the runtime also supports a number of other operations:
 
 * *Code generation* methods enable callers to generate both [SDKs](sdkgen)
-  ([](pulumirpc.LanguageRuntime.GeneratePackage)) and [programs](programgen)
-  ([](pulumirpc.LanguageRuntime.GenerateProject)) in the language.
+  ([](khulnasoftrpc.LanguageRuntime.GeneratePackage)) and [programs](programgen)
+  ([](khulnasoftrpc.LanguageRuntime.GenerateProject)) in the language.
 * *Query* endpoints allow callers to calculate the set of language-specific
-  dependencies ([](pulumirpc.LanguageRuntime.GetProgramDependencies)) or Pulumi
-  plugins ([](pulumirpc.LanguageRuntime.GetRequiredPlugins)) that might be
+  dependencies ([](khulnasoftrpc.LanguageRuntime.GetProgramDependencies)) or Pulumi
+  plugins ([](khulnasoftrpc.LanguageRuntime.GetRequiredPlugins)) that might be
   required by a program.
-* The *[](pulumirpc.LanguageRuntime.Pack)* method allows callers to package up
+* The *[](khulnasoftrpc.LanguageRuntime.Pack)* method allows callers to package up
   bundles of code written in the language into a format suitable for consumption
   by other code (for instance, packaging an SDK for use as a dependency, or
   packaging a program for execution).

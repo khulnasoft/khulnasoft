@@ -438,13 +438,13 @@ A reference to a type in this or another document. The "$ref" property must be p
 #### `$ref` (_required_)
 
 The URI of the referenced type. For example, the built-in Archive, Asset, and Any
-types are referenced as "pulumi.json#/Archive", "pulumi.json#/Asset", and "pulumi.json#/Any", respectively.
-A type from this document is referenced as "#/types/pulumi:type:token".
-A type from another document is referenced as "path#/types/pulumi:type:token", where path is of the form:
-  "/provider/vX.Y.Z/schema.json" or "pulumi.json" or "http[s]://example.com/provider/vX.Y.Z/schema.json"
-A resource from this document is referenced as "#/resources/pulumi:type:token".
-A resource from another document is referenced as "path#/resources/pulumi:type:token", where path is of the form:
-  "/provider/vX.Y.Z/schema.json" or "pulumi.json" or "http[s]://example.com/provider/vX.Y.Z/schema.json"
+types are referenced as "khulnasoft.json#/Archive", "khulnasoft.json#/Asset", and "khulnasoft.json#/Any", respectively.
+A type from this document is referenced as "#/types/khulnasoft:type:token".
+A type from another document is referenced as "path#/types/khulnasoft:type:token", where path is of the form:
+  "/provider/vX.Y.Z/schema.json" or "khulnasoft.json" or "http[s]://example.com/provider/vX.Y.Z/schema.json"
+A resource from this document is referenced as "#/resources/khulnasoft:type:token".
+A resource from another document is referenced as "path#/resources/khulnasoft:type:token", where path is of the form:
+  "/provider/vX.Y.Z/schema.json" or "khulnasoft.json" or "http[s]://example.com/provider/vX.Y.Z/schema.json"
 
 `string`
 

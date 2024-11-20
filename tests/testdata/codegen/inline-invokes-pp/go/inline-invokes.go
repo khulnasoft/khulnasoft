@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/ec2"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		invokeLookupVpc, err := ec2.LookupVpc(ctx, &ec2.LookupVpcArgs{
-			Default: pulumi.BoolRef(true),
+			Default: khulnasoft.BoolRef(true),
 		}, nil)
 		if err != nil {
 			return err

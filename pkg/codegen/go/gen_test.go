@@ -33,8 +33,8 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/test"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/utils"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/executable"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/executable"
 )
 
 func TestInputUsage(t *testing.T) {
@@ -159,7 +159,7 @@ func typeCheckGeneratedPackage(t *testing.T, codeDir string) {
 		t.Logf("Found an existing go.mod, leaving as is")
 	} else {
 		test.RunCommand(t, "go_mod_init", codeDir, goExe, "mod", "init", inferModuleName(codeDir))
-		replacement := "github.com/pulumi/pulumi/sdk/v3=" + sdk
+		replacement := "github.com/khulnasoft/khulnasoft/sdk/v3=" + sdk
 		test.RunCommand(t, "go_mod_edit", codeDir, goExe, "mod", "edit", "-replace", replacement)
 	}
 
@@ -277,7 +277,7 @@ func TestPackageNaming(t *testing.T) {
 		expectedRoot    string
 	}{
 		{
-			importBasePath: "github.com/pulumi/pulumi-azure-quickstart-acr-geo-replication/sdk/go/acr",
+			importBasePath: "github.com/khulnasoft/khulnasoft-azure-quickstart-acr-geo-replication/sdk/go/acr",
 			expectedRoot:   "acr",
 		},
 		{
@@ -332,7 +332,7 @@ func TestPackageNaming(t *testing.T) {
 func TestTokenToType(t *testing.T) {
 	t.Parallel()
 
-	const awsImportBasePath = "github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
+	const awsImportBasePath = "github.com/khulnasoft/khulnasoft-aws/sdk/v4/go/aws"
 	awsSpec := schema.PackageSpec{
 		Name: "aws",
 		Meta: &schema.MetadataSpec{
@@ -340,7 +340,7 @@ func TestTokenToType(t *testing.T) {
 		},
 	}
 
-	const googleNativeImportBasePath = "github.com/pulumi/pulumi-google-native/sdk/go/google"
+	const googleNativeImportBasePath = "github.com/khulnasoft/khulnasoft-google-native/sdk/go/google"
 	googleNativeSpec := schema.PackageSpec{
 		Name: "google-native",
 	}
@@ -363,7 +363,7 @@ func TestTokenToType(t *testing.T) {
 				pkg:            importSpec(t, awsSpec).Reference(),
 				importBasePath: awsImportBasePath,
 				pkgImportAliases: map[string]string{
-					"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/s3": "awss3",
+					"github.com/khulnasoft/khulnasoft-aws/sdk/v4/go/aws/s3": "awss3",
 				},
 			},
 			token:    "aws:s3/BucketWebsite:BucketWebsite",
@@ -374,7 +374,7 @@ func TestTokenToType(t *testing.T) {
 				pkg:            importSpec(t, googleNativeSpec).Reference(),
 				importBasePath: googleNativeImportBasePath,
 				pkgImportAliases: map[string]string{
-					"github.com/pulumi/pulumi-google-native/sdk/go/google/dns/v1": "dns",
+					"github.com/khulnasoft/khulnasoft-google-native/sdk/go/google/dns/v1": "dns",
 				},
 			},
 			token:    "google-native:dns/v1:DnsKeySpec",
@@ -396,7 +396,7 @@ func TestTokenToType(t *testing.T) {
 func TestTokenToResource(t *testing.T) {
 	t.Parallel()
 
-	const awsImportBasePath = "github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
+	const awsImportBasePath = "github.com/khulnasoft/khulnasoft-aws/sdk/v4/go/aws"
 	awsSpec := schema.PackageSpec{
 		Name: "aws",
 		Meta: &schema.MetadataSpec{
@@ -404,7 +404,7 @@ func TestTokenToResource(t *testing.T) {
 		},
 	}
 
-	const googleNativeImportBasePath = "github.com/pulumi/pulumi-google-native/sdk/go/google"
+	const googleNativeImportBasePath = "github.com/khulnasoft/khulnasoft-google-native/sdk/go/google"
 	googleNativeSpec := schema.PackageSpec{
 		Name: "google-native",
 	}
@@ -427,7 +427,7 @@ func TestTokenToResource(t *testing.T) {
 				pkg:            importSpec(t, awsSpec).Reference(),
 				importBasePath: awsImportBasePath,
 				pkgImportAliases: map[string]string{
-					"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/s3": "awss3",
+					"github.com/khulnasoft/khulnasoft-aws/sdk/v4/go/aws/s3": "awss3",
 				},
 			},
 			token:    "aws:s3/Bucket:Bucket",
@@ -438,7 +438,7 @@ func TestTokenToResource(t *testing.T) {
 				pkg:            importSpec(t, googleNativeSpec).Reference(),
 				importBasePath: googleNativeImportBasePath,
 				pkgImportAliases: map[string]string{
-					"github.com/pulumi/pulumi-google-native/sdk/go/google/dns/v1": "dns",
+					"github.com/khulnasoft/khulnasoft-google-native/sdk/go/google/dns/v1": "dns",
 				},
 			},
 			token:    "google-native:dns/v1:Policy",
@@ -598,9 +598,9 @@ func TestRegressTypeDuplicatesInChunking(t *testing.T) {
 	}
 
 	// Expect to see two chunked files (chunking at n=500).
-	assert.Contains(t, fs, "test/pulumiTypes.go")
-	assert.Contains(t, fs, "test/pulumiTypes1.go")
-	assert.NotContains(t, fs, "test/pulumiTypes2.go")
+	assert.Contains(t, fs, "test/khulnasoftTypes.go")
+	assert.Contains(t, fs, "test/khulnasoftTypes1.go")
+	assert.NotContains(t, fs, "test/khulnasoftTypes2.go")
 
 	// The types defined in the chunks should be mutually exclusive.
 	typedefs := func(s string) []string {
@@ -615,8 +615,8 @@ func TestRegressTypeDuplicatesInChunking(t *testing.T) {
 		return types
 	}
 
-	typedefs1 := typedefs(string(fs["test/pulumiTypes.go"]))
-	typedefs2 := typedefs(string(fs["test/pulumiTypes1.go"]))
+	typedefs1 := typedefs(string(fs["test/khulnasoftTypes.go"]))
+	typedefs2 := typedefs(string(fs["test/khulnasoftTypes1.go"]))
 
 	for _, typ := range typedefs1 {
 		assert.NotContains(t, typedefs2, typ)

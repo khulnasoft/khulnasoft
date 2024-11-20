@@ -1,7 +1,7 @@
-import pulumi
+import khulnasoft
 import json
-import pulumi_aws as aws
-import pulumi_random as random
+import khulnasoft_aws as aws
+import khulnasoft_random as random
 
 data = [
     "bob",
@@ -15,7 +15,7 @@ db_users = []
 for range in [{"key": k, "value": v} for [k, v] in enumerate(data)]:
     db_users.append(aws.secretsmanager.SecretVersion(f"dbUsers-{range['key']}",
         secret_id="mySecret",
-        secret_string=pulumi.Output.json_dumps({
+        secret_string=khulnasoft.Output.json_dumps({
             "username": range["value"],
             "password": user[range["value"]].result,
         })))

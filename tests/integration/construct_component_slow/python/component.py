@@ -2,9 +2,9 @@
 
 from typing import Any, Optional
 
-import pulumi
+import khulnasoft
 
-class Component(pulumi.ComponentResource):
-    def __init__(self, name: str, opts: Optional[pulumi.ResourceOptions] = None):
+class Component(khulnasoft.ComponentResource):
+    def __init__(self, name: str, opts: Optional[khulnasoft.ResourceOptions] = None):
         props = dict()
         super().__init__("testcomponent:index:Component", name, props, opts, True)

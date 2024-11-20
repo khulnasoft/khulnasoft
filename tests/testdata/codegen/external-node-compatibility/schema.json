@@ -17,7 +17,7 @@
     "nodejs": {
       "compatibility": "kubernetes20",
       "dependencies": {
-        "@pulumi/google-native": "^0.11.0"
+        "@khulnasoft/google-native": "^0.11.0"
       }
     }
   }

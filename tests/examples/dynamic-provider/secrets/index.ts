@@ -1,12 +1,12 @@
 // Copyright 2023, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
-import * as dynamic from "@pulumi/pulumi/dynamic";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as dynamic from "@khulnasoft/khulnasoft/dynamic";
 
-const config = new pulumi.Config();
+const config = new khulnasoft.Config();
 const password = config.requireSecret("password");
 
-class SimpleProvider implements pulumi.dynamic.ResourceProvider {
+class SimpleProvider implements khulnasoft.dynamic.ResourceProvider {
     async create(inputs: any) {
         // Need to use `password.get()` to get the underlying value of the secret from within the serialzied code.  
         // This simulates using this as a credential to talk to an external system.
@@ -15,7 +15,7 @@ class SimpleProvider implements pulumi.dynamic.ResourceProvider {
 }
 
 class SimpleResource extends dynamic.Resource {
-    authenticated!: pulumi.Output<string>;
+    authenticated!: khulnasoft.Output<string>;
     constructor(name: string) {
         super(new SimpleProvider(), name, { authenticated: undefined }, undefined);
     }

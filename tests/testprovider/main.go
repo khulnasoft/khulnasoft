@@ -26,11 +26,11 @@ import (
 
 	pschema "github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/provider"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	pulumiprovider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
-	rpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	khulnasoftprovider "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/provider"
+	rpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 
 	"google.golang.org/protobuf/types/known/emptypb"
 )
@@ -262,11 +262,11 @@ func (p *testproviderProvider) Construct(ctx context.Context, req *rpc.Construct
 		return nil, fmt.Errorf("unknown resource type %s", req.Type)
 	}
 
-	return pulumiprovider.Construct(
+	return khulnasoftprovider.Construct(
 		ctx, req, p.host.EngineConn(),
-		func(ctx *pulumi.Context, typ, name string, inputs pulumiprovider.ConstructInputs,
-			options pulumi.ResourceOption,
-		) (*pulumiprovider.ConstructResult, error) {
+		func(ctx *khulnasoft.Context, typ, name string, inputs khulnasoftprovider.ConstructInputs,
+			options khulnasoft.ResourceOption,
+		) (*khulnasoftprovider.ConstructResult, error) {
 			args := &ComponentArgs{}
 			if err := inputs.CopyTo(args); err != nil {
 				return nil, fmt.Errorf("setting args: %w", err)
@@ -277,7 +277,7 @@ func (p *testproviderProvider) Construct(ctx context.Context, req *rpc.Construct
 				return nil, err
 			}
 
-			return pulumiprovider.NewConstructResult(component)
+			return khulnasoftprovider.NewConstructResult(component)
 		})
 }
 

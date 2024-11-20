@@ -1,6 +1,6 @@
-import pulumi
+import khulnasoft
 
-config = pulumi.Config()
+config = khulnasoft.Config()
 required_string = config.require("requiredString")
 required_int = config.require_int("requiredInt")
 required_float = config.require_float("requiredFloat")

@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"output-funcs-go-generics-only/mypkg/internal"
 )
 
 // Check codegen of functions with all optional inputs.
-func FuncWithAllOptionalInputs(ctx *pulumi.Context, args *FuncWithAllOptionalInputsArgs, opts ...pulumi.InvokeOption) (*FuncWithAllOptionalInputsResult, error) {
+func FuncWithAllOptionalInputs(ctx *khulnasoft.Context, args *FuncWithAllOptionalInputsArgs, opts ...khulnasoft.InvokeOption) (*FuncWithAllOptionalInputsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FuncWithAllOptionalInputsResult
 	err := ctx.Invoke("mypkg::funcWithAllOptionalInputs", args, &rv, opts...)
@@ -25,35 +25,35 @@ func FuncWithAllOptionalInputs(ctx *pulumi.Context, args *FuncWithAllOptionalInp
 
 type FuncWithAllOptionalInputsArgs struct {
 	// Property A
-	A *string `pulumi:"a"`
+	A *string `khulnasoft:"a"`
 	// Property B
-	B *string `pulumi:"b"`
+	B *string `khulnasoft:"b"`
 }
 
 type FuncWithAllOptionalInputsResult struct {
-	R string `pulumi:"r"`
+	R string `khulnasoft:"r"`
 }
 
-func FuncWithAllOptionalInputsOutput(ctx *pulumi.Context, args FuncWithAllOptionalInputsOutputArgs, opts ...pulumi.InvokeOption) FuncWithAllOptionalInputsResultOutput {
-	outputResult := pulumix.ApplyErr[*FuncWithAllOptionalInputsArgs](args.ToOutput(), func(plainArgs *FuncWithAllOptionalInputsArgs) (*FuncWithAllOptionalInputsResult, error) {
+func FuncWithAllOptionalInputsOutput(ctx *khulnasoft.Context, args FuncWithAllOptionalInputsOutputArgs, opts ...khulnasoft.InvokeOption) FuncWithAllOptionalInputsResultOutput {
+	outputResult := khulnasoftx.ApplyErr[*FuncWithAllOptionalInputsArgs](args.ToOutput(), func(plainArgs *FuncWithAllOptionalInputsArgs) (*FuncWithAllOptionalInputsResult, error) {
 		return FuncWithAllOptionalInputs(ctx, plainArgs, opts...)
 	})
 
-	return pulumix.Cast[FuncWithAllOptionalInputsResultOutput, *FuncWithAllOptionalInputsResult](outputResult)
+	return khulnasoftx.Cast[FuncWithAllOptionalInputsResultOutput, *FuncWithAllOptionalInputsResult](outputResult)
 }
 
 type FuncWithAllOptionalInputsOutputArgs struct {
 	// Property A
-	A pulumix.Input[*string] `pulumi:"a"`
+	A khulnasoftx.Input[*string] `khulnasoft:"a"`
 	// Property B
-	B pulumix.Input[*string] `pulumi:"b"`
+	B khulnasoftx.Input[*string] `khulnasoft:"b"`
 }
 
-func (args FuncWithAllOptionalInputsOutputArgs) ToOutput() pulumix.Output[*FuncWithAllOptionalInputsArgs] {
-	allArgs := pulumix.All(
+func (args FuncWithAllOptionalInputsOutputArgs) ToOutput() khulnasoftx.Output[*FuncWithAllOptionalInputsArgs] {
+	allArgs := khulnasoftx.All(
 		args.A.ToOutput(context.Background()).AsAny(),
 		args.B.ToOutput(context.Background()).AsAny())
-	return pulumix.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *FuncWithAllOptionalInputsArgs {
+	return khulnasoftx.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *FuncWithAllOptionalInputsArgs {
 		return &FuncWithAllOptionalInputsArgs{
 			A: resolvedArgs[0].(*string),
 			B: resolvedArgs[1].(*string),
@@ -61,18 +61,18 @@ func (args FuncWithAllOptionalInputsOutputArgs) ToOutput() pulumix.Output[*FuncW
 	})
 }
 
-type FuncWithAllOptionalInputsResultOutput struct{ *pulumi.OutputState }
+type FuncWithAllOptionalInputsResultOutput struct{ *khulnasoft.OutputState }
 
 func (FuncWithAllOptionalInputsResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithAllOptionalInputsResult)(nil)).Elem()
 }
 
-func (o FuncWithAllOptionalInputsResultOutput) ToOutput(context.Context) pulumix.Output[*FuncWithAllOptionalInputsResult] {
-	return pulumix.Output[*FuncWithAllOptionalInputsResult]{
+func (o FuncWithAllOptionalInputsResultOutput) ToOutput(context.Context) khulnasoftx.Output[*FuncWithAllOptionalInputsResult] {
+	return khulnasoftx.Output[*FuncWithAllOptionalInputsResult]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o FuncWithAllOptionalInputsResultOutput) R() pulumix.Output[string] {
-	return pulumix.Apply[*FuncWithAllOptionalInputsResult](o, func(v *FuncWithAllOptionalInputsResult) string { return v.R })
+func (o FuncWithAllOptionalInputsResultOutput) R() khulnasoftx.Output[string] {
+	return khulnasoftx.Apply[*FuncWithAllOptionalInputsResult](o, func(v *FuncWithAllOptionalInputsResult) string { return v.R })
 }

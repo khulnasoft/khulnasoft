@@ -2,8 +2,8 @@
 
 from typing import Optional
 
-from pulumi import Input, InputType, Output, export, input_type, output_type, property
-from pulumi.dynamic import Resource, ResourceProvider, CreateResult
+from khulnasoft import Input, InputType, Output, export, input_type, output_type, property
+from khulnasoft.dynamic import Resource, ResourceProvider, CreateResult
 
 
 @input_type

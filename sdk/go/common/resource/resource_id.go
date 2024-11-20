@@ -22,7 +22,7 @@ import (
 
 	"lukechampine.com/frand"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // ID is a unique resource identifier; it is managed by the provider and is mostly opaque.

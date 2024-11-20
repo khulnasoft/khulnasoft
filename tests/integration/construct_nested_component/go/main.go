@@ -7,15 +7,15 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type componentArgs struct {
-	Echo interface{} `pulumi:"echo"`
+	Echo interface{} `khulnasoft:"echo"`
 }
 
 type ComponentArgs struct {
-	Echo pulumi.Input
+	Echo khulnasoft.Input
 }
 
 func (ComponentArgs) ElementType() reflect.Type {
@@ -23,15 +23,15 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Echo    pulumi.AnyOutput    `pulumi:"echo"`
-	ChildID pulumi.StringOutput `pulumi:"childId"`
-	Secret  pulumi.StringOutput `pulumi:"secret"`
+	Echo    khulnasoft.AnyOutput    `khulnasoft:"echo"`
+	ChildID khulnasoft.StringOutput `khulnasoft:"childId"`
+	Secret  khulnasoft.StringOutput `khulnasoft:"secret"`
 }
 
 func NewComponent(
-	ctx *pulumi.Context, name string, args *ComponentArgs, opts ...pulumi.ResourceOption,
+	ctx *khulnasoft.Context, name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, args, &resource, opts...)
@@ -43,7 +43,7 @@ func NewComponent(
 }
 
 func NewSecondComponent(
-	ctx *pulumi.Context, name string, args *ComponentArgs, opts ...pulumi.ResourceOption,
+	ctx *khulnasoft.Context, name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("secondtestcomponent:index:Component", name, args, &resource, opts...)
@@ -55,10 +55,10 @@ func NewSecondComponent(
 }
 
 func NewComponentComponent(
-	ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption,
+	ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	var resource Component
-	err := ctx.RegisterRemoteComponentResource("secondtestcomponent:index:ComponentComponent", name, pulumi.Map{}, &resource, opts...)
+	err := ctx.RegisterRemoteComponentResource("secondtestcomponent:index:ComponentComponent", name, khulnasoft.Map{}, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,15 +67,15 @@ func NewComponentComponent(
 }
 
 type provider struct {
-	pulumi.ProviderResourceState
-	expectResourceArg pulumi.Bool
+	khulnasoft.ProviderResourceState
+	expectResourceArg khulnasoft.Bool
 }
 
-type LocalComponent struct{ pulumi.ResourceState }
+type LocalComponent struct{ khulnasoft.ResourceState }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		componentA, err := NewComponent(ctx, "a", &ComponentArgs{Echo: pulumi.Int(42)})
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		componentA, err := NewComponent(ctx, "a", &ComponentArgs{Echo: khulnasoft.Int(42)})
 		if err != nil {
 			return err
 		}
@@ -89,25 +89,25 @@ func main() {
 		}
 
 		provider := &provider{}
-		err = ctx.RegisterResource("pulumi:providers:testcomponent", "provider", pulumi.Map{
-			"expectResourceArg": pulumi.Bool(true),
+		err = ctx.RegisterResource("khulnasoft:providers:testcomponent", "provider", khulnasoft.Map{
+			"expectResourceArg": khulnasoft.Bool(true),
 		}, provider)
 		if err != nil {
 			return err
 		}
 		localComponent := &LocalComponent{}
-		err = ctx.RegisterComponentResource("pkg:index:LocalComponent", "localComponent", localComponent, pulumi.Providers(provider))
+		err = ctx.RegisterComponentResource("pkg:index:LocalComponent", "localComponent", localComponent, khulnasoft.Providers(provider))
 		if err != nil {
 			return err
 		}
-		parentProvider := pulumi.Parent(localComponent)
+		parentProvider := khulnasoft.Parent(localComponent)
 		_, err = NewComponent(ctx, "checkProvider1",
-			&ComponentArgs{Echo: pulumi.String("checkExpected")}, parentProvider)
+			&ComponentArgs{Echo: khulnasoft.String("checkExpected")}, parentProvider)
 		if err != nil {
 			return err
 		}
 		_, err = NewSecondComponent(ctx, "checkProvider2",
-			&ComponentArgs{Echo: pulumi.String("checkExpected")}, parentProvider)
+			&ComponentArgs{Echo: khulnasoft.String("checkExpected")}, parentProvider)
 		if err != nil {
 			return err
 		}

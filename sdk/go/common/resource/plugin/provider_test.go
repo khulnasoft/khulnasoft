@@ -17,7 +17,7 @@ package plugin
 import (
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -133,7 +133,7 @@ func TestNewDetailedDiff(t *testing.T) {
 // Assert that UnimplementedProvider implements Provider
 var _ = Provider((*UnimplementedProvider)(nil))
 
-// Regression test for https://github.com/pulumi/pulumi/issues/14335.
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/14335.
 // Ensure that NewDetailedDiffFromObjectDiff builds correct keys.
 func TestNewDetailedDiffFromObjectDiff(t *testing.T) {
 	t.Parallel()

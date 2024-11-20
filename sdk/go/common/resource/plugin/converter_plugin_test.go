@@ -22,8 +22,8 @@ import (
 
 	"github.com/hashicorp/hcl/v2"
 
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
-	codegenrpc "github.com/pulumi/pulumi/sdk/v3/proto/go/codegen"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
+	codegenrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go/codegen"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
@@ -34,8 +34,8 @@ type testConverterClient struct {
 }
 
 func (c *testConverterClient) ConvertState(
-	ctx context.Context, req *pulumirpc.ConvertStateRequest, opts ...grpc.CallOption,
-) (*pulumirpc.ConvertStateResponse, error) {
+	ctx context.Context, req *khulnasoftrpc.ConvertStateRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.ConvertStateResponse, error) {
 	if !reflect.DeepEqual(req.Args, []string{"arg1", "arg2"}) {
 		return nil, fmt.Errorf("unexpected Args: %v", req.Args)
 	}
@@ -43,8 +43,8 @@ func (c *testConverterClient) ConvertState(
 		return nil, fmt.Errorf("unexpected MapperTarget: %s", req.MapperTarget)
 	}
 
-	return &pulumirpc.ConvertStateResponse{
-		Resources: []*pulumirpc.ResourceImport{
+	return &khulnasoftrpc.ConvertStateResponse{
+		Resources: []*khulnasoftrpc.ResourceImport{
 			{
 				Type:              "test:type",
 				Name:              "test:name",
@@ -61,8 +61,8 @@ func (c *testConverterClient) ConvertState(
 }
 
 func (c *testConverterClient) ConvertProgram(
-	ctx context.Context, req *pulumirpc.ConvertProgramRequest, opts ...grpc.CallOption,
-) (*pulumirpc.ConvertProgramResponse, error) {
+	ctx context.Context, req *khulnasoftrpc.ConvertProgramRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.ConvertProgramResponse, error) {
 	if req.MapperTarget != "localhost:1234" {
 		return nil, fmt.Errorf("unexpected MapperTarget: %s", req.MapperTarget)
 	}
@@ -76,7 +76,7 @@ func (c *testConverterClient) ConvertProgram(
 		return nil, fmt.Errorf("unexpected args: %v", req.Args)
 	}
 
-	return &pulumirpc.ConvertProgramResponse{
+	return &khulnasoftrpc.ConvertProgramResponse{
 		Diagnostics: c.diagnostics,
 	}, nil
 }
@@ -153,7 +153,7 @@ func TestConverterPlugin_Program(t *testing.T) {
 }
 
 func TestConverterPlugin_Program_EmptyDiagnosticsIsNil(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi-terraform-bridge/issues/1201 hcl.Diagnostics
+	// Regression test for https://github.com/khulnasoft/khulnasoft-terraform-bridge/issues/1201 hcl.Diagnostics
 	// implements the Error interface, but this means a list of zero diagnostics still looks like a non-nil
 	// error, which throws of normal "if err == nil" checks. We make sure that if the RPC diagnostics list is
 	// empty we return nil not an empty slice.

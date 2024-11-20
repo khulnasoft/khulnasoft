@@ -3,7 +3,7 @@
   "main": "bin/index.js",
   "version": "1.0.0",
   "dependencies": {
-    "@pulumi/pulumi": "latest",
+    "@khulnasoft/khulnasoft": "latest",
     "path-exists": "^4.0.0"
   },
   "devDependencies": {

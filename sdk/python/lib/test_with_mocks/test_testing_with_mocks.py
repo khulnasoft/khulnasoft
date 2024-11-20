@@ -15,7 +15,7 @@
 from concurrent.futures import ThreadPoolExecutor
 import asyncio
 import grpc
-import pulumi
+import khulnasoft
 import pytest
 import resources
 import unittest
@@ -26,16 +26,16 @@ def my_resources():
     loop = asyncio.get_event_loop()
     loop.set_default_executor(ImmediateExecutor())
 
-    old_settings = pulumi.runtime.settings.SETTINGS
+    old_settings = khulnasoft.runtime.settings.SETTINGS
     try:
-        pulumi.runtime.mocks.set_mocks(MyMocks())
+        khulnasoft.runtime.mocks.set_mocks(MyMocks())
         yield resources.define_resources()
     finally:
-        pulumi.runtime.settings.configure(old_settings)
+        khulnasoft.runtime.settings.configure(old_settings)
         loop.set_default_executor(ThreadPoolExecutor())
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_component(my_resources):
 
     def check_outprop(outprop):
@@ -44,7 +44,7 @@ def test_component(my_resources):
     return my_resources['mycomponent'].outprop.apply(check_outprop)
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_remote_component(my_resources):
 
     def check_outprop(outprop):
@@ -53,7 +53,7 @@ def test_remote_component(my_resources):
     return my_resources['myremotecomponent'].outprop.apply(check_outprop)
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_custom(my_resources):
 
     def check_ip(ip):
@@ -62,7 +62,7 @@ def test_custom(my_resources):
     return my_resources['myinstance'].public_ip.apply(check_ip)
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_custom_resource_reference(my_resources):
 
     def check_instance(instance):
@@ -76,36 +76,36 @@ def test_custom_resource_reference(my_resources):
     return my_resources['mycustom'].instance.apply(check_instance)
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_invoke(my_resources):
     assert my_resources['invoke_result'] == 59
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_invoke_failures(my_resources):
     caught = False
 
     try:
-        pulumi.runtime.invoke("test:index:FailFunction", props={})
+        khulnasoft.runtime.invoke("test:index:FailFunction", props={})
     except Exception as e:
         caught = str(e)
 
     assert 'this function fails!' in caught
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_invoke_throws(my_resources):
     caught = None
 
     try:
-        pulumi.runtime.invoke("test:index:ThrowFunction", props={})
+        khulnasoft.runtime.invoke("test:index:ThrowFunction", props={})
     except Exception as e:
         caught = str(e)
 
     assert 'this function throws!' in caught
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_stack_reference(my_resources):
 
     def check_outputs(outputs):
@@ -127,8 +127,8 @@ class GrpcError(grpc.RpcError):
         return self._details
 
 
-class MyMocks(pulumi.runtime.Mocks):
-    def call(self, args: pulumi.runtime.MockCallArgs):
+class MyMocks(khulnasoft.runtime.Mocks):
+    def call(self, args: khulnasoft.runtime.MockCallArgs):
         if args.token == 'test:index:MyFunction':
             return {
                 'out_value': 59,
@@ -140,7 +140,7 @@ class MyMocks(pulumi.runtime.Mocks):
         else:
             return {}
 
-    def new_resource(self, args: pulumi.runtime.MockResourceArgs):
+    def new_resource(self, args: khulnasoft.runtime.MockResourceArgs):
         if args.typ == 'aws:ec2/securityGroup:SecurityGroup':
             state = {
                 'arn': 'arn:aws:ec2:us-west-2:123456789012:security-group/sg-12345678',
@@ -159,7 +159,7 @@ class MyMocks(pulumi.runtime.Mocks):
             return ['i-1234567890abcdef0', dict(args.inputs, **state)]
         elif args.typ == 'pkg:index:MyCustom':
             return [args.name + '_id', args.inputs]
-        elif args.typ == 'pulumi:pulumi:StackReference' and 'dns' in args.name:
+        elif args.typ == 'khulnasoft:khulnasoft:StackReference' and 'dns' in args.name:
             return [args.name, {'outputs': {'haha': 'business'}}]
         elif args.typ == 'pkg:index:MyRemoteComponent':
             state = {
@@ -173,7 +173,7 @@ class MyMocks(pulumi.runtime.Mocks):
 class ImmediateExecutor(ThreadPoolExecutor):
     """This removes multithreading from current tests. Unfortunately in
     presence of multithreading the tests are flaky. The proper fix is
-    postponed - see https://github.com/pulumi/pulumi/issues/7663
+    postponed - see https://github.com/khulnasoft/khulnasoft/issues/7663
 
     """
 

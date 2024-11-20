@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/pulumi/pulumi/master/pkg/codegen/schema/pulumi.json",
+  "$schema": "https://raw.githubusercontent.com/khulnasoft/khulnasoft/master/pkg/codegen/schema/khulnasoft.json",
   "name": "range",
   "version": "0.1.0",
   "//": [
@@ -39,18 +39,18 @@
   },
   "language": {
     "nodejs": {
-      "packageName": "@pulumi/range"
+      "packageName": "@khulnasoft/range"
     },
     "csharp": {
       "rootNamespace": "Pulumi.Range"
     },
     "python": {
-      "packageName": "pulumi_range"
+      "packageName": "khulnasoft_range"
     },
     "go": {
       "importBasePath": "git.example.org/range",
       "packageImportAliases": {
-        "git.example.org/pulumi-range/index": "index"
+        "git.example.org/khulnasoft-range/index": "index"
       }
     }
   }

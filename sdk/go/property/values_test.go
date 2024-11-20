@@ -21,7 +21,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/asset"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/asset"
 )
 
 // Calling == does not implement desirable behavior, so we ensure that it is invalid.

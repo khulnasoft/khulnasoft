@@ -1,12 +1,12 @@
 {
   "emittedFiles": [
     "foo/component.go",
-    "foo/crd.k8s.amazonaws.com/v1alpha1/pulumiTypes.go",
+    "foo/crd.k8s.amazonaws.com/v1alpha1/khulnasoftTypes.go",
     "foo/doc.go",
     "foo/init.go",
-    "foo/internal/pulumiUtilities.go",
-    "foo/internal/pulumiVersion.go",
+    "foo/internal/khulnasoftUtilities.go",
+    "foo/internal/khulnasoftVersion.go",
     "foo/provider.go",
-    "foo/pulumi-plugin.json"
+    "foo/khulnasoft-plugin.json"
   ]
 }

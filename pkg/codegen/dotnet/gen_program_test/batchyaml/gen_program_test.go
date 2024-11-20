@@ -24,7 +24,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/test"
 )
 
-// This specifically tests the synced examples from pulumi/yaml with
+// This specifically tests the synced examples from khulnasoft/yaml with
 // testing/test/testdata/transpiled_examples, as it requires a different SDK path in Check
 func TestGenerateProgram(t *testing.T) {
 	t.Parallel()

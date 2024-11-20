@@ -5,17 +5,17 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		rand, err := NewRandom(ctx, "random", &RandomArgs{Length: pulumi.Int(10)})
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		rand, err := NewRandom(ctx, "random", &RandomArgs{Length: khulnasoft.Int(10)})
 		if err != nil {
 			return err
 		}
 
-		_, err = NewFailsOnDelete(ctx, "failsondelete", pulumi.DeletedWith(rand))
+		_, err = NewFailsOnDelete(ctx, "failsondelete", khulnasoft.DeletedWith(rand))
 		if err != nil {
 			return err
 		}

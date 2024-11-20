@@ -1,14 +1,14 @@
 // Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
-import * as dynamic from "@pulumi/pulumi/dynamic";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as dynamic from "@khulnasoft/khulnasoft/dynamic";
 
-class SimpleProvider implements pulumi.dynamic.ResourceProvider {
-    public create: (inputs: any) => Promise<pulumi.dynamic.CreateResult>;
+class SimpleProvider implements khulnasoft.dynamic.ResourceProvider {
+    public create: (inputs: any) => Promise<khulnasoft.dynamic.CreateResult>;
 
     // Ensure that the arrow in the following comment does not throw
     //  off how Pulumi serializes classes/functions.
-    // public update: (id: pulumi.ID, inputs: any) => Promise<pulumi.dynamic.CreateResult>;
+    // public update: (id: khulnasoft.ID, inputs: any) => Promise<khulnasoft.dynamic.CreateResult>;
 
     constructor() {
         this.create = async (inputs: any) => {

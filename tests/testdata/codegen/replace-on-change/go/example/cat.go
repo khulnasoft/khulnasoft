@@ -7,32 +7,32 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"replace-on-change/example/internal"
 )
 
 type Cat struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Foes    ToyMapOutput           `pulumi:"foes"`
-	Friends ToyArrayOutput         `pulumi:"friends"`
-	Name    pulumi.StringPtrOutput `pulumi:"name"`
-	Other   GodOutput              `pulumi:"other"`
-	Toy     ToyPtrOutput           `pulumi:"toy"`
+	Foes    ToyMapOutput           `khulnasoft:"foes"`
+	Friends ToyArrayOutput         `khulnasoft:"friends"`
+	Name    khulnasoft.StringPtrOutput `khulnasoft:"name"`
+	Other   GodOutput              `khulnasoft:"other"`
+	Toy     ToyPtrOutput           `khulnasoft:"toy"`
 }
 
 // NewCat registers a new resource with the given unique name, arguments, and options.
-func NewCat(ctx *pulumi.Context,
-	name string, args *CatArgs, opts ...pulumi.ResourceOption) (*Cat, error) {
+func NewCat(ctx *khulnasoft.Context,
+	name string, args *CatArgs, opts ...khulnasoft.ResourceOption) (*Cat, error) {
 	if args == nil {
 		args = &CatArgs{}
 	}
 
-	secrets := pulumi.AdditionalSecretOutputs([]string{
+	secrets := khulnasoft.AdditionalSecretOutputs([]string{
 		"name",
 	})
 	opts = append(opts, secrets)
-	replaceOnChanges := pulumi.ReplaceOnChanges([]string{
+	replaceOnChanges := khulnasoft.ReplaceOnChanges([]string{
 		"foes.*.associated.color",
 		"foes.*.color",
 		"friends[*].associated.color",
@@ -52,8 +52,8 @@ func NewCat(ctx *pulumi.Context,
 
 // GetCat gets an existing Cat resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetCat(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CatState, opts ...pulumi.ResourceOption) (*Cat, error) {
+func GetCat(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *CatState, opts ...khulnasoft.ResourceOption) (*Cat, error) {
 	var resource Cat
 	err := ctx.ReadResource("example::Cat", name, id, state, &resource, opts...)
 	if err != nil {
@@ -85,7 +85,7 @@ func (CatArgs) ElementType() reflect.Type {
 }
 
 type CatInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToCatOutput() CatOutput
 	ToCatOutputWithContext(ctx context.Context) CatOutput
@@ -100,7 +100,7 @@ func (i *Cat) ToCatOutput() CatOutput {
 }
 
 func (i *Cat) ToCatOutputWithContext(ctx context.Context) CatOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CatOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(CatOutput)
 }
 
 // CatArrayInput is an input type that accepts CatArray and CatArrayOutput values.
@@ -108,7 +108,7 @@ func (i *Cat) ToCatOutputWithContext(ctx context.Context) CatOutput {
 //
 //	CatArray{ CatArgs{...} }
 type CatArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToCatArrayOutput() CatArrayOutput
 	ToCatArrayOutputWithContext(context.Context) CatArrayOutput
@@ -125,7 +125,7 @@ func (i CatArray) ToCatArrayOutput() CatArrayOutput {
 }
 
 func (i CatArray) ToCatArrayOutputWithContext(ctx context.Context) CatArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CatArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(CatArrayOutput)
 }
 
 // CatMapInput is an input type that accepts CatMap and CatMapOutput values.
@@ -133,7 +133,7 @@ func (i CatArray) ToCatArrayOutputWithContext(ctx context.Context) CatArrayOutpu
 //
 //	CatMap{ "key": CatArgs{...} }
 type CatMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToCatMapOutput() CatMapOutput
 	ToCatMapOutputWithContext(context.Context) CatMapOutput
@@ -150,10 +150,10 @@ func (i CatMap) ToCatMapOutput() CatMapOutput {
 }
 
 func (i CatMap) ToCatMapOutputWithContext(ctx context.Context) CatMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CatMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(CatMapOutput)
 }
 
-type CatOutput struct{ *pulumi.OutputState }
+type CatOutput struct{ *khulnasoft.OutputState }
 
 func (CatOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Cat)(nil)).Elem()
@@ -175,8 +175,8 @@ func (o CatOutput) Friends() ToyArrayOutput {
 	return o.ApplyT(func(v *Cat) ToyArrayOutput { return v.Friends }).(ToyArrayOutput)
 }
 
-func (o CatOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Cat) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
+func (o CatOutput) Name() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *Cat) khulnasoft.StringPtrOutput { return v.Name }).(khulnasoft.StringPtrOutput)
 }
 
 func (o CatOutput) Other() GodOutput {
@@ -187,7 +187,7 @@ func (o CatOutput) Toy() ToyPtrOutput {
 	return o.ApplyT(func(v *Cat) ToyPtrOutput { return v.Toy }).(ToyPtrOutput)
 }
 
-type CatArrayOutput struct{ *pulumi.OutputState }
+type CatArrayOutput struct{ *khulnasoft.OutputState }
 
 func (CatArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*Cat)(nil)).Elem()
@@ -201,13 +201,13 @@ func (o CatArrayOutput) ToCatArrayOutputWithContext(ctx context.Context) CatArra
 	return o
 }
 
-func (o CatArrayOutput) Index(i pulumi.IntInput) CatOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Cat {
+func (o CatArrayOutput) Index(i khulnasoft.IntInput) CatOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *Cat {
 		return vs[0].([]*Cat)[vs[1].(int)]
 	}).(CatOutput)
 }
 
-type CatMapOutput struct{ *pulumi.OutputState }
+type CatMapOutput struct{ *khulnasoft.OutputState }
 
 func (CatMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*Cat)(nil)).Elem()
@@ -221,14 +221,14 @@ func (o CatMapOutput) ToCatMapOutputWithContext(ctx context.Context) CatMapOutpu
 	return o
 }
 
-func (o CatMapOutput) MapIndex(k pulumi.StringInput) CatOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Cat {
+func (o CatMapOutput) MapIndex(k khulnasoft.StringInput) CatOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *Cat {
 		return vs[0].(map[string]*Cat)[vs[1].(string)]
 	}).(CatOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(CatOutput{})
-	pulumi.RegisterOutputType(CatArrayOutput{})
-	pulumi.RegisterOutputType(CatMapOutput{})
+	khulnasoft.RegisterOutputType(CatOutput{})
+	khulnasoft.RegisterOutputType(CatArrayOutput{})
+	khulnasoft.RegisterOutputType(CatMapOutput{})
 }

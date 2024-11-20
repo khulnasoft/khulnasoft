@@ -25,7 +25,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 	"golang.org/x/crypto/pbkdf2"
 )
 

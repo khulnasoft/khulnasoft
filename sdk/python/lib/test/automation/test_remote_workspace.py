@@ -16,9 +16,9 @@ import os
 from typing import Optional
 import pytest
 
-from pulumi.automation._remote_workspace import _is_fully_qualified_stack_name
+from khulnasoft.automation._remote_workspace import _is_fully_qualified_stack_name
 
-from pulumi.automation import (
+from khulnasoft.automation import (
     LocalWorkspace,
     OpType,
     RemoteGitAuth,
@@ -31,7 +31,7 @@ from pulumi.automation import (
 from .test_utils import stack_namer
 
 
-test_repo = "https://github.com/pulumi/test-repo.git"
+test_repo = "https://github.com/khulnasoft/test-repo.git"
 
 
 @pytest.mark.parametrize(
@@ -149,14 +149,14 @@ def test_remote_workspace_stack_lifecycle(factory):
         project_path="goproj",
         opts=RemoteWorkspaceOptions(
             pre_run_commands=[
-                f"pulumi config set bar abc --stack {stack_name}",
-                f"pulumi config set --secret buzz secret --stack {stack_name}",
+                f"khulnasoft config set bar abc --stack {stack_name}",
+                f"khulnasoft config set --secret buzz secret --stack {stack_name}",
             ],
             skip_install_dependencies=True,
         ),
     )
 
-    # pulumi up
+    # khulnasoft up
     up_res = stack.up()
     assert len(up_res.outputs) == 3
     assert up_res.outputs["exp_static"].value == "foo"
@@ -168,16 +168,16 @@ def test_remote_workspace_stack_lifecycle(factory):
     assert up_res.summary.kind == "update"
     assert up_res.summary.result == "succeeded"
 
-    # pulumi preview
+    # khulnasoft preview
     preview_result = stack.preview()
     assert preview_result.change_summary.get(OpType.SAME) == 1
 
-    # pulumi refresh
+    # khulnasoft refresh
     refresh_res = stack.refresh()
     assert refresh_res.summary.kind == "refresh"
     assert refresh_res.summary.result == "succeeded"
 
-    # pulumi destroy
+    # khulnasoft destroy
     destroy_res = stack.destroy()
     assert destroy_res.summary.kind == "destroy"
     assert destroy_res.summary.result == "succeeded"

@@ -6,13 +6,13 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		newComponent := func(name string, opts ...pulumi.ResourceOption) (*Component, error) {
-			return NewComponent(ctx, name, &ComponentArgs{Echo: pulumi.String(name)}, opts...)
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		newComponent := func(name string, opts ...khulnasoft.ResourceOption) (*Component, error) {
+			return NewComponent(ctx, name, &ComponentArgs{Echo: khulnasoft.String(name)}, opts...)
 		}
 
 		dep1, err := newComponent("Dep1")
@@ -23,22 +23,22 @@ func main() {
 		if err != nil {
 			return err
 		}
-		_, err = newComponent("DependsOn", pulumi.DependsOn([]pulumi.Resource{dep1, dep2}))
+		_, err = newComponent("DependsOn", khulnasoft.DependsOn([]khulnasoft.Resource{dep1, dep2}))
 		if err != nil {
 			return err
 		}
 
-		_, err = newComponent("Protect", pulumi.Protect(true))
+		_, err = newComponent("Protect", khulnasoft.Protect(true))
 		if err != nil {
 			return err
 		}
 
-		_, err = newComponent("AdditionalSecretOutputs", pulumi.AdditionalSecretOutputs([]string{"foo"}))
+		_, err = newComponent("AdditionalSecretOutputs", khulnasoft.AdditionalSecretOutputs([]string{"foo"}))
 		if err != nil {
 			return err
 		}
 
-		_, err = newComponent("CustomTimeouts", pulumi.Timeouts(&pulumi.CustomTimeouts{
+		_, err = newComponent("CustomTimeouts", khulnasoft.Timeouts(&khulnasoft.CustomTimeouts{
 			Create: ("1m"),
 			Update: ("2m"),
 			Delete: ("3m"),
@@ -51,12 +51,12 @@ func main() {
 		if err != nil {
 			return err
 		}
-		_, err = newComponent("DeletedWith", pulumi.DeletedWith(getDeletedWithMe))
+		_, err = newComponent("DeletedWith", khulnasoft.DeletedWith(getDeletedWithMe))
 		if err != nil {
 			return err
 		}
 
-		_, err = newComponent("RetainOnDelete", pulumi.RetainOnDelete(true))
+		_, err = newComponent("RetainOnDelete", khulnasoft.RetainOnDelete(true))
 		if err != nil {
 			return err
 		}
@@ -66,21 +66,21 @@ func main() {
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Echo pulumi.StringOutput `pulumi:"echo"`
-	Foo  pulumi.StringOutput `pulumi:"foo"`
-	Bar  pulumi.StringOutput `pulumi:"bar"`
+	Echo khulnasoft.StringOutput `khulnasoft:"echo"`
+	Foo  khulnasoft.StringOutput `khulnasoft:"foo"`
+	Bar  khulnasoft.StringOutput `khulnasoft:"bar"`
 }
 
-func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context, name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, args, &resource, opts...)
 	return &resource, err
 }
 
 type ComponentArgs struct {
-	Echo pulumi.StringInput
+	Echo khulnasoft.StringInput
 }
 
 func (ComponentArgs) ElementType() reflect.Type {
@@ -88,5 +88,5 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type componentArgs struct {
-	Echo string `pulumi:"echo"`
+	Echo string `khulnasoft:"echo"`
 }

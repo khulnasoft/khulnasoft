@@ -19,7 +19,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 func isOutputType(t model.Type) bool {
@@ -82,7 +82,7 @@ func (g *generator) canLiftTraversal(parts []model.Traversable) bool {
 // - __apply(<expr>, eval(x, x.attr))) -> <expr>.attr
 // - __apply(scope.traversal, eval(x, x.attr)) -> scope.traversal.attr
 //
-// Each of these patterns matches an apply that can be handled by `pulumi.Output`'s property access proxy.
+// Each of these patterns matches an apply that can be handled by `khulnasoft.Output`'s property access proxy.
 func (g *generator) parseProxyApply(parameters codegen.Set, args []model.Expression,
 	then model.Expression,
 ) (model.Expression, bool) {
@@ -187,7 +187,7 @@ func (g *generator) parseInterpolate(parameters codegen.Set, args []model.Expres
 }
 
 // lowerProxyApplies lowers certain calls to the apply intrinsic into proxied property accesses and/or calls to the
-// pulumi.interpolate function. Concretely, this boils down to rewriting the following shapes
+// khulnasoft.interpolate function. Concretely, this boils down to rewriting the following shapes
 //
 // - __apply(<expr>, eval(x, x[index]))
 // - __apply(<expr>, eval(x, x.attr))
@@ -202,7 +202,7 @@ func (g *generator) parseInterpolate(parameters codegen.Set, args []model.Expres
 // - __interpolate("foo ", <proxy-apply>, " bar ", ...)
 //
 // The first two forms will be generated as proxied applies; the lattermost will be generated as an interpolated string
-// that uses `pulumi.interpolate`.
+// that uses `khulnasoft.interpolate`.
 func (g *generator) lowerProxyApplies(expr model.Expression) (model.Expression, hcl.Diagnostics) {
 	rewriter := func(expr model.Expression) (model.Expression, hcl.Diagnostics) {
 		// Ignore the node if it is not a call to the apply intrinsic.

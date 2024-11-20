@@ -21,26 +21,26 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"github.com/stretchr/testify/assert"
 )
 
 type mocks int
 
 // Create the mock.
-func (mocks) NewResource(args pulumi.MockResourceArgs) (string, resource.PropertyMap, error) {
+func (mocks) NewResource(args khulnasoft.MockResourceArgs) (string, resource.PropertyMap, error) {
 	return args.Name, args.Inputs, nil
 }
 
-func (mocks) Call(args pulumi.MockCallArgs) (resource.PropertyMap, error) {
+func (mocks) Call(args khulnasoft.MockCallArgs) (resource.PropertyMap, error) {
 	panic("functions not supported")
 }
 
 func TestDefaults(t *testing.T) {
-	pulumiTest(t, "explicit false", func(ctx *pulumi.Context) error {
+	khulnasoftTest(t, "explicit false", func(ctx *khulnasoft.Context) error {
 		output, err := foo.NewModuleResource(ctx, "test", &foo.ModuleResourceArgs{
-			OptionalBool: pulumi.Bool(false),
+			OptionalBool: khulnasoft.Bool(false),
 		})
 		assert.NoError(t, err)
 		assert.Equalf(t, *waitOut(t, output.OptionalBool).(*bool), false,
@@ -48,9 +48,9 @@ func TestDefaults(t *testing.T) {
 		return nil
 	})
 
-	pulumiTest(t, "explicit true", func(ctx *pulumi.Context) error {
+	khulnasoftTest(t, "explicit true", func(ctx *khulnasoft.Context) error {
 		output, err := foo.NewModuleResource(ctx, "test", &foo.ModuleResourceArgs{
-			OptionalBool: pulumi.Bool(true),
+			OptionalBool: khulnasoft.Bool(true),
 		})
 		assert.NoError(t, err)
 		assert.Equalf(t, *waitOut(t, output.OptionalBool).(*bool), true,
@@ -58,7 +58,7 @@ func TestDefaults(t *testing.T) {
 		return nil
 	})
 
-	pulumiTest(t, "default value", func(ctx *pulumi.Context) error {
+	khulnasoftTest(t, "default value", func(ctx *khulnasoft.Context) error {
 		output, err := foo.NewModuleResource(ctx, "test", &foo.ModuleResourceArgs{})
 		assert.NoError(t, err)
 		assert.Equalf(t, *waitOut(t, output.OptionalBool).(*bool), true,
@@ -67,14 +67,14 @@ func TestDefaults(t *testing.T) {
 	})
 }
 
-func pulumiTest(t *testing.T, name string, testBody func(*pulumi.Context) error) {
+func khulnasoftTest(t *testing.T, name string, testBody func(*khulnasoft.Context) error) {
 	t.Run(name, func(t *testing.T) {
-		err := pulumi.RunErr(testBody, pulumi.WithMocks("project", "stack", mocks(0)))
+		err := khulnasoft.RunErr(testBody, khulnasoft.WithMocks("project", "stack", mocks(0)))
 		assert.NoError(t, err)
 	})
 }
 
-func waitOut(t *testing.T, output pulumi.Output) interface{} {
+func waitOut(t *testing.T, output khulnasoft.Output) interface{} {
 	result, err := waitOutput(output, 1*time.Second)
 	if !assert.NoError(t, err, "output not received") {
 		return nil
@@ -82,7 +82,7 @@ func waitOut(t *testing.T, output pulumi.Output) interface{} {
 	return result
 }
 
-func waitOutput(output pulumi.Output, timeout time.Duration) (interface{}, error) {
+func waitOutput(output khulnasoft.Output, timeout time.Duration) (interface{}, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -96,6 +96,6 @@ func waitOutput(output pulumi.Output, timeout time.Duration) (interface{}, error
 	case v := <-ch:
 		return v, nil
 	case <-ctx.Done():
-		return nil, fmt.Errorf("timed out waiting for pulumi.Output after %v: %w", timeout, ctx.Err())
+		return nil, fmt.Errorf("timed out waiting for khulnasoft.Output after %v: %w", timeout, ctx.Err())
 	}
 }

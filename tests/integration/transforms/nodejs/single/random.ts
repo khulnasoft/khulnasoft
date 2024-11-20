@@ -1,16 +1,16 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 interface RandomArgs {
-    length: pulumi.Input<number>;
-    prefix?: pulumi.Input<string | undefined>;
+    length: khulnasoft.Input<number>;
+    prefix?: khulnasoft.Input<string | undefined>;
 }
 
-export class Random extends pulumi.CustomResource {
-    public readonly length!: pulumi.Output<number>;
-    public readonly result!: pulumi.Output<string>;
-    constructor(name: string, args: RandomArgs, opts?: pulumi.CustomResourceOptions) {
+export class Random extends khulnasoft.CustomResource {
+    public readonly length!: khulnasoft.Output<number>;
+    public readonly result!: khulnasoft.Output<string>;
+    constructor(name: string, args: RandomArgs, opts?: khulnasoft.CustomResourceOptions) {
         super("testprovider:index:Random", name, args, opts);
     }
 }

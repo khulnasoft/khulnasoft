@@ -41,20 +41,20 @@ import (
 	"github.com/cheggaaa/pb"
 	"github.com/djherbis/times"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/archive"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/fsutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/httputil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/retry"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/version"
-	"github.com/pulumi/pulumi/sdk/v3/nodejs/npm"
-	"github.com/pulumi/pulumi/sdk/v3/python/toolchain"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/archive"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/fsutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/httputil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/retry"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/version"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/nodejs/npm"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/python/toolchain"
 )
 
 const (
@@ -179,11 +179,11 @@ func (err *MissingError) Error() string {
 	}
 
 	if err.version != nil {
-		return fmt.Sprintf("no %[1]s plugin 'pulumi-%[1]s-%[2]s' found in the workspace at version v%[3]s%[4]s",
+		return fmt.Sprintf("no %[1]s plugin 'khulnasoft-%[1]s-%[2]s' found in the workspace at version v%[3]s%[4]s",
 			err.kind, err.name, err.version, includePath)
 	}
 
-	return fmt.Sprintf("no %[1]s plugin 'pulumi-%[1]s-%[2]s' found in the workspace%[3]s",
+	return fmt.Sprintf("no %[1]s plugin 'khulnasoft-%[1]s-%[2]s' found in the workspace%[3]s",
 		err.kind, err.name, includePath)
 }
 
@@ -201,16 +201,16 @@ type PluginSource interface {
 		getHTTPResponse func(*http.Request) (io.ReadCloser, int64, error)) (*semver.Version, error)
 
 	// A base URL that can uniquely identify the source. Has the same structure as the PluginDownloadURL
-	// schema option. Example: "github://api.github.com/pulumi/pulumi-aws".
+	// schema option. Example: "github://api.github.com/khulnasoft/khulnasoft-aws".
 	URL() string
 }
 
 // standardAssetName returns the standard name for the asset that contains the given plugin.
 func standardAssetName(name string, kind apitype.PluginKind, version semver.Version, opSy, arch string) string {
-	return fmt.Sprintf("pulumi-%s-%s-v%s-%s-%s.tar.gz", kind, name, version, opSy, arch)
+	return fmt.Sprintf("khulnasoft-%s-%s-v%s-%s-%s.tar.gz", kind, name, version, opSy, arch)
 }
 
-// getPulumiSource can download a plugin from get.pulumi.com
+// getPulumiSource can download a plugin from get.khulnasoft.com
 type getPulumiSource struct {
 	name string
 	kind apitype.PluginKind
@@ -225,7 +225,7 @@ func (source *getPulumiSource) Download(
 	version semver.Version, opSy string, arch string,
 	getHTTPResponse func(*http.Request) (io.ReadCloser, int64, error),
 ) (io.ReadCloser, int64, error) {
-	serverURL := "https://get.pulumi.com/releases/plugins"
+	serverURL := "https://get.khulnasoft.com/releases/plugins"
 	logging.V(1).Infof("%s downloading from %s", source.name, serverURL)
 	endpoint := fmt.Sprintf("%s/%s",
 		serverURL,
@@ -390,25 +390,25 @@ func newGithubSource(url *url.URL, name string, kind apitype.PluginKind) (*githu
 			url)
 	}
 
-	repository := "pulumi-" + name
+	repository := "khulnasoft-" + name
 	if kind == apitype.ConverterPlugin {
 		// Converter plugins are expected at a different repo path, e.g.
-		// github.com/pulumi/pulumi-converter-aws rather than github.com/pulumi/pulumi-aws which would clash
+		// github.com/khulnasoft/khulnasoft-converter-aws rather than github.com/khulnasoft/khulnasoft-aws which would clash
 		// with the providers of the same name.
-		repository = "pulumi-converter-" + name
+		repository = "khulnasoft-converter-" + name
 		if name == "yaml" {
-			// We special case the yaml converter plugin to be in the pulumi-yaml repo. It's not ideal but its
+			// We special case the yaml converter plugin to be in the khulnasoft-yaml repo. It's not ideal but its
 			// to have this hardcoded here than having to deal with two repos for YAML, and long term this
 			// should go away and be replaced with a registry lookup.
-			repository = "pulumi-yaml"
+			repository = "khulnasoft-yaml"
 		}
 	}
 
 	if kind == apitype.ToolPlugin {
-		// Convention for tool plugins is to have them in a repository named "pulumi-tool-<name>".
-		if !strings.HasPrefix(name, "pulumi-tool-") {
-			// if it is not already fully qualified, we will prefix it with "pulumi-tool-"
-			repository = "pulumi-tool-" + name
+		// Convention for tool plugins is to have them in a repository named "khulnasoft-tool-<name>".
+		if !strings.HasPrefix(name, "khulnasoft-tool-") {
+			// if it is not already fully qualified, we will prefix it with "khulnasoft-tool-"
+			repository = "khulnasoft-tool-" + name
 		}
 	}
 
@@ -619,7 +619,7 @@ func (source *httpSource) Download(
 
 	endpoint := fmt.Sprintf("%s/%s",
 		serverURL,
-		url.QueryEscape(fmt.Sprintf("pulumi-%s-%s-v%s-%s-%s.tar.gz", source.kind, source.name, version, opSy, arch)))
+		url.QueryEscape(fmt.Sprintf("khulnasoft-%s-%s-v%s-%s-%s.tar.gz", source.kind, source.name, version, opSy, arch)))
 
 	req, err := buildHTTPRequest(ctx, endpoint, "")
 	if err != nil {
@@ -632,7 +632,7 @@ func (source *httpSource) URL() string {
 	return source.url
 }
 
-// fallbackSource handles our current default logic of trying the pulumi public github then get.pulumi.com.
+// fallbackSource handles our current default logic of trying the khulnasoft public github then get.khulnasoft.com.
 type fallbackSource struct {
 	name string
 	kind apitype.PluginKind
@@ -655,8 +655,8 @@ func (source *fallbackSource) GetLatestVersion(
 	ctx context.Context,
 	getHTTPResponse func(*http.Request) (io.ReadCloser, int64, error),
 ) (*semver.Version, error) {
-	// Try and get this package from our public pulumi github
-	public, err := newGithubSource(urlMustParse("github://api.github.com/pulumi"), source.name, source.kind)
+	// Try and get this package from our public khulnasoft github
+	public, err := newGithubSource(urlMustParse("github://api.github.com/khulnasoft"), source.name, source.kind)
 	if err != nil {
 		return nil, err
 	}
@@ -673,8 +673,8 @@ func (source *fallbackSource) Download(
 	version semver.Version, opSy string, arch string,
 	getHTTPResponse func(*http.Request) (io.ReadCloser, int64, error),
 ) (io.ReadCloser, int64, error) {
-	// Try and get this package from public pulumi github
-	public, err := newGithubSource(urlMustParse("github://api.github.com/pulumi"), source.name, source.kind)
+	// Try and get this package from public khulnasoft github
+	public, err := newGithubSource(urlMustParse("github://api.github.com/khulnasoft"), source.name, source.kind)
 	if err != nil {
 		return nil, -1, err
 	}
@@ -682,15 +682,15 @@ func (source *fallbackSource) Download(
 	if err == nil {
 		return resp, length, nil
 	}
-	logging.Infof("Failed to download from GitHub, falling back to get.pulumi.com: %v", err)
+	logging.Infof("Failed to download from GitHub, falling back to get.khulnasoft.com: %v", err)
 
-	// Fallback to get.pulumi.com
-	pulumi := newGetPulumiSource(source.name, source.kind)
-	return pulumi.Download(ctx, version, opSy, arch, getHTTPResponse)
+	// Fallback to get.khulnasoft.com
+	khulnasoft := newGetPulumiSource(source.name, source.kind)
+	return khulnasoft.Download(ctx, version, opSy, arch, getHTTPResponse)
 }
 
 func (source *fallbackSource) URL() string {
-	public, err := newGithubSource(urlMustParse("github://api.github.com/pulumi"), source.name, source.kind)
+	public, err := newGithubSource(urlMustParse("github://api.github.com/khulnasoft"), source.name, source.kind)
 	if err != nil {
 		return ""
 	}
@@ -827,7 +827,7 @@ type PluginSpec struct {
 	Kind              apitype.PluginKind // the kind of the plugin (language, resource, etc).
 	Version           *semver.Version    // the plugin's semantic version, if present.
 	PluginDownloadURL string             // an optional server to use when downloading this plugin.
-	PluginDir         string             // if set, will be used as the root plugin dir instead of ~/.pulumi/plugins.
+	PluginDir         string             // if set, will be used as the root plugin dir instead of ~/.khulnasoft/plugins.
 
 	// if set will be used to validate the plugin downloaded matches. This is keyed by "$os-$arch", e.g. "linux-x64".
 	Checksums map[string][]byte
@@ -845,7 +845,7 @@ func (spec PluginSpec) Dir() string {
 // File gets the expected filename for this plugin, excluding any platform specific suffixes (e.g. ".exe" on
 // windows).
 func (spec PluginSpec) File() string {
-	return fmt.Sprintf("pulumi-%s-%s", spec.Kind, spec.Name)
+	return fmt.Sprintf("khulnasoft-%s-%s", spec.Kind, spec.Name)
 }
 
 // DirPath returns the directory where this plugin should be installed.
@@ -891,8 +891,8 @@ func (spec PluginSpec) String() string {
 }
 
 // PluginInfo provides basic information about a plugin.  Each plugin gets installed into a system-wide
-// location, by default `~/.pulumi/plugins/<kind>-<name>-<version>/`.  A plugin may contain multiple files,
-// however the primary loadable executable must be named `pulumi-<kind>-<name>`.
+// location, by default `~/.khulnasoft/plugins/<kind>-<name>-<version>/`.  A plugin may contain multiple files,
+// however the primary loadable executable must be named `khulnasoft-<kind>-<name>`.
 type PluginInfo struct {
 	Name         string             // the simple name of the plugin.
 	Path         string             // the path that a plugin was loaded from (this will always be a directory)
@@ -1000,7 +1000,7 @@ func (spec PluginSpec) GetSource() (PluginSource, error) {
 			return nil, err
 		}
 	} else {
-		// Use our default fallback behaviour of github then get.pulumi.com
+		// Use our default fallback behaviour of github then get.khulnasoft.com
 		source = newFallbackSource(spec.Name, spec.Kind)
 	}
 
@@ -1067,7 +1067,7 @@ func buildHTTPRequest(ctx context.Context, pluginEndpoint string, authorization 
 		return nil, err
 	}
 
-	userAgent := fmt.Sprintf("pulumi-cli/1 (%s; %s)", version.Version, runtime.GOOS)
+	userAgent := fmt.Sprintf("khulnasoft-cli/1 (%s; %s)", version.Version, runtime.GOOS)
 	req.Header.Set("User-Agent", userAgent)
 
 	if authorization != "" {
@@ -1273,7 +1273,7 @@ func (d *pluginDownloader) tryDownload(ctx context.Context, pkgPlugin PluginSpec
 }
 
 func (d *pluginDownloader) tryDownloadToFile(ctx context.Context, pkgPlugin PluginSpec) (string, error, error) {
-	file, err := os.CreateTemp("" /* default temp dir */, "pulumi-plugin-tar")
+	file, err := os.CreateTemp("" /* default temp dir */, "khulnasoft-plugin-tar")
 	if err != nil {
 		return "", nil, err
 	}
@@ -1397,7 +1397,7 @@ func (p singleFilePlugin) writeToDir(finalDir string) error {
 		return err
 	}
 
-	finalPath := filepath.Join(finalDir, fmt.Sprintf("pulumi-%s-%s", p.Kind, p.Name))
+	finalPath := filepath.Join(finalDir, fmt.Sprintf("khulnasoft-%s-%s", p.Kind, p.Name))
 	if runtime.GOOS == "windows" {
 		finalPath += ".exe"
 	}
@@ -1566,7 +1566,7 @@ func (spec PluginSpec) InstallWithContext(ctx context.Context, content PluginCon
 		// For now, we only do this for Node.js and Python. For Go, the expectation is the binary is
 		// already built. For .NET, similarly, a single self-contained binary could be used, but
 		// otherwise `dotnet run` will implicitly run `dotnet restore`.
-		// TODO[pulumi/pulumi#1334]: move to the language plugins so we don't have to hard code here.
+		// TODO[khulnasoft/khulnasoft#1334]: move to the language plugins so we don't have to hard code here.
 		switch runtime {
 		case "nodejs":
 			var b bytes.Buffer
@@ -1575,7 +1575,7 @@ func (spec PluginSpec) InstallWithContext(ctx context.Context, content PluginCon
 				return fmt.Errorf("installing plugin dependencies: %w", err)
 			}
 		case "python":
-			// TODO[pulumi/pulumi/issues/16287]: Support toolchain options for installing plugins.
+			// TODO[khulnasoft/khulnasoft/issues/16287]: Support toolchain options for installing plugins.
 			tc, err := toolchain.ResolveToolchain(toolchain.PythonOptions{
 				Toolchain:  toolchain.Pip,
 				Root:       finalDir,
@@ -1621,12 +1621,12 @@ func cleanupTempDirs(finalDir string) error {
 // Re exporting PluginKind to keep backward compatibility, this should be kept in sync with
 // the definitions in sdk/go/common/apitype/plugins.go
 //
-// Deprecated: PluginKind type was moved to "github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+// Deprecated: PluginKind type was moved to "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 type PluginKind = apitype.PluginKind
 
 // ProductKind types definition
 //
-// Deprecated: PluginKind type was moved to "github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+// Deprecated: PluginKind type was moved to "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 const (
 	AnalyzerPlugin  = apitype.AnalyzerPlugin
 	LanguagePlugin  = apitype.LanguagePlugin
@@ -1637,7 +1637,7 @@ const (
 
 // IsPluginKind returns true if k is a valid plugin kind, and false otherwise.
 //
-// Deprecated: IsPluginKind type was moved to "github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+// Deprecated: IsPluginKind type was moved to "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 func IsPluginKind(k string) bool {
 	return apitype.IsPluginKind(k)
 }
@@ -1673,7 +1673,7 @@ func HasPluginGTE(spec PluginSpec) (bool, error) {
 	}
 
 	// If we're not doing the legacy plugin behavior and we've been asked for a specific version, do the same plugin
-	// search that we'd do at runtime. This ensures that `pulumi plugin install` works the same way that the runtime
+	// search that we'd do at runtime. This ensures that `khulnasoft plugin install` works the same way that the runtime
 	// loader does, to minimize confusion when a user has to install new plugins.
 	var match *PluginInfo
 	if !enableLegacyPluginBehavior && spec.Version != nil {
@@ -1698,7 +1698,7 @@ func GetPolicyPath(orgName, name, version string) (string, bool, error) {
 		return "", false, err
 	}
 
-	policyPackPath := path.Join(policiesDir, fmt.Sprintf("pulumi-analyzer-%s-v%s", name, version))
+	policyPackPath := path.Join(policiesDir, fmt.Sprintf("khulnasoft-analyzer-%s-v%s", name, version))
 
 	file, err := os.Stat(policyPackPath)
 	if err == nil && file.IsDir() {
@@ -1783,7 +1783,7 @@ func getPlugins(dir string, skipMetadata bool) ([]PluginInfo, error) {
 	return plugins, nil
 }
 
-// We currently bundle some plugins with "pulumi" and thus expect them to be next to the pulumi binary.
+// We currently bundle some plugins with "khulnasoft" and thus expect them to be next to the khulnasoft binary.
 // Eventually we want to fix this so new plugins are true plugins in the plugin cache.
 func IsPluginBundled(kind apitype.PluginKind, name string) bool {
 	return (kind == apitype.LanguagePlugin && name == "nodejs") ||
@@ -1792,8 +1792,8 @@ func IsPluginBundled(kind apitype.PluginKind, name string) bool {
 		(kind == apitype.LanguagePlugin && name == "dotnet") ||
 		(kind == apitype.LanguagePlugin && name == "yaml") ||
 		(kind == apitype.LanguagePlugin && name == "java") ||
-		(kind == apitype.ResourcePlugin && name == "pulumi-nodejs") ||
-		(kind == apitype.ResourcePlugin && name == "pulumi-python") ||
+		(kind == apitype.ResourcePlugin && name == "khulnasoft-nodejs") ||
+		(kind == apitype.ResourcePlugin && name == "khulnasoft-python") ||
 		(kind == apitype.AnalyzerPlugin && name == "policy") ||
 		(kind == apitype.AnalyzerPlugin && name == "policy-python")
 }
@@ -1847,7 +1847,7 @@ func getPluginPath(info *PluginInfo) string {
 
 // getPluginInfoAndPath searches for a compatible plugin kind, name, and version and returns either:
 //   - if found as an ambient plugin, nil and the path to the executable
-//   - if found in the pulumi dir's installed plugins, a PluginInfo and path to the executable
+//   - if found in the khulnasoft dir's installed plugins, a PluginInfo and path to the executable
 //   - an error in all other cases.
 func getPluginInfoAndPath(
 	d diag.Sink,
@@ -1915,12 +1915,12 @@ func getPluginInfoAndPath(
 	}
 
 	// At some point in the future, bundled plugins will be located in the plugin cache, just like regular
-	// plugins (see pulumi/pulumi#956 for some of the reasons why this isn't the case today). For now, they
-	// ship next to the `pulumi` binary. While we encourage this folder to be on the $PATH (and so the check
-	// above would have normally found the plugin) it's possible someone is running `pulumi` with an explicit
-	// path on the command line or has done symlink magic such that `pulumi` is on the path, but the bundled
+	// plugins (see khulnasoft/khulnasoft#956 for some of the reasons why this isn't the case today). For now, they
+	// ship next to the `khulnasoft` binary. While we encourage this folder to be on the $PATH (and so the check
+	// above would have normally found the plugin) it's possible someone is running `khulnasoft` with an explicit
+	// path on the command line or has done symlink magic such that `khulnasoft` is on the path, but the bundled
 	// plugins are not, or has simply set IGNORE_AMBIENT_PLUGINS. So, if possible, look next to the instance
-	// of `pulumi` that is running to find this bundled plugin.
+	// of `khulnasoft` that is running to find this bundled plugin.
 	var bundledPath string
 	if IsPluginBundled(kind, name) {
 		exePath, exeErr := os.Executable()
@@ -1948,8 +1948,8 @@ func getPluginInfoAndPath(
 	pluginPath := bundledPath
 	if ambientPath != "" {
 		if ambientPath != bundledPath {
-			// They don't match _but_ it might be they just don't match because the pulumi install is symlinked,
-			// e.g. /opt/homebrew/bin/pulumi-language-nodejs -> /opt/homebrew/Cellar/pulumi/3.77.0/bin/pulumi-language-nodejs
+			// They don't match _but_ it might be they just don't match because the khulnasoft install is symlinked,
+			// e.g. /opt/homebrew/bin/khulnasoft-language-nodejs -> /opt/homebrew/Cellar/khulnasoft/3.77.0/bin/khulnasoft-language-nodejs
 			// So before we warn, lets just check if we can resolve symlinks in the ambient path and then check again.
 			fullAmbientPath, err := filepath.EvalSymlinks(ambientPath)
 			// N.B, that we don't _return_ the resolved path, we return the original path. Also if resolving
@@ -2206,7 +2206,7 @@ func getCandidateExtensions() []string {
 	return []string{""}
 }
 
-// pluginRegexp matches plugin directory names: pulumi-KIND-NAME-VERSION.
+// pluginRegexp matches plugin directory names: khulnasoft-KIND-NAME-VERSION.
 var pluginRegexp = regexp.MustCompile(
 	"^(?P<Kind>[a-z]+)-" + // KIND
 		"(?P<Name>[a-zA-Z0-9-]*[a-zA-Z0-9])-" + // NAME

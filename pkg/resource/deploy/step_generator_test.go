@@ -20,9 +20,9 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -366,7 +366,7 @@ func TestEngineDiff(t *testing.T) {
 			expectedChanges: plugin.DiffNone,
 		},
 	}
-	urn := resource.URN("urn:pulumi:dev::website-and-lambda::aws:s3/bucket:Bucket::my-bucket")
+	urn := resource.URN("urn:khulnasoft:dev::website-and-lambda::aws:s3/bucket:Bucket::my-bucket")
 	id := resource.ID("someid")
 	var oldOutputs resource.PropertyMap
 	allowUnknowns := false
@@ -414,7 +414,7 @@ func TestGenerateAliases(t *testing.T) {
 				{Type: "test:resource:child2"},
 			},
 			expected: []resource.URN{
-				"urn:pulumi:stack::project::test:resource:type$test:resource:child2::myres-child",
+				"urn:khulnasoft:stack::project::test:resource:type$test:resource:child2::myres-child",
 			},
 		},
 		{
@@ -423,7 +423,7 @@ func TestGenerateAliases(t *testing.T) {
 				{Name: "child2"},
 			},
 			expected: []resource.URN{
-				"urn:pulumi:stack::project::test:resource:type$test:resource:child::child2",
+				"urn:khulnasoft:stack::project::test:resource:type$test:resource:child::child2",
 			},
 		},
 		{
@@ -435,7 +435,7 @@ func TestGenerateAliases(t *testing.T) {
 				},
 			},
 			expected: []resource.URN{
-				"urn:pulumi:stack::project::test:resource:child2::myres-child",
+				"urn:khulnasoft:stack::project::test:resource:child2::myres-child",
 			},
 		},
 		{
@@ -447,7 +447,7 @@ func TestGenerateAliases(t *testing.T) {
 				},
 			},
 			expected: []resource.URN{
-				"urn:pulumi:stack::project::test:resource:original$test:resource:child2::myres-child",
+				"urn:khulnasoft:stack::project::test:resource:original$test:resource:child2::myres-child",
 			},
 		},
 		{
@@ -457,9 +457,9 @@ func TestGenerateAliases(t *testing.T) {
 				{Name: "myres-child2"},
 			},
 			expected: []resource.URN{
-				"urn:pulumi:stack::project::test:resource:type$test:resource:child::myres-child2",
-				"urn:pulumi:stack::project::test:resource:type2$test:resource:child::myres-child",
-				"urn:pulumi:stack::project::test:resource:type2$test:resource:child::myres-child2",
+				"urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres-child2",
+				"urn:khulnasoft:stack::project::test:resource:type2$test:resource:child::myres-child",
+				"urn:khulnasoft:stack::project::test:resource:type2$test:resource:child::myres-child2",
 			},
 		},
 		{
@@ -469,9 +469,9 @@ func TestGenerateAliases(t *testing.T) {
 				{Name: "myres-child2"},
 			},
 			expected: []resource.URN{
-				"urn:pulumi:stack::project::test:resource:type$test:resource:child::myres-child2",
-				"urn:pulumi:stack::project::test:resource:type$test:resource:child::myres2-child",
-				"urn:pulumi:stack::project::test:resource:type$test:resource:child::myres2-child2",
+				"urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres-child2",
+				"urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres2-child",
+				"urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres2-child2",
 			},
 		},
 	}
@@ -809,7 +809,7 @@ func TestStepGenerator(t *testing.T) {
 			t.Parallel()
 			sg := &stepGenerator{
 				urns: map[resource.URN]bool{
-					"urn:pulumi:stack::::::": true,
+					"urn:khulnasoft:stack::::::": true,
 				},
 				deployment: &Deployment{
 					ctx: &plugin.Context{
@@ -890,7 +890,7 @@ func TestStepGenerator(t *testing.T) {
 					Provider: "invalid-old-provider",
 				},
 				&resource.State{
-					Provider: "urn:pulumi:stack::project::pulumi:providers:provider::name::uuid",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:provider::name::uuid",
 				},
 			)
 			assert.ErrorContains(t, err, "expected '::' in provider reference 'invalid-old-provider'")
@@ -907,7 +907,7 @@ func TestStepGenerator(t *testing.T) {
 			}
 			_, err := sg.providerChanged("",
 				&resource.State{
-					Provider: "urn:pulumi:stack::project::pulumi:providers:provider::name::uuid",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:provider::name::uuid",
 				},
 				&resource.State{
 					Provider: "invalid-new-provider",
@@ -928,10 +928,10 @@ func TestStepGenerator(t *testing.T) {
 			}
 			_, err := sg.providerChanged("",
 				&resource.State{
-					Provider: "urn:pulumi:stack::project::pulumi:providers:provider::default_name::uuid",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:provider::default_name::uuid",
 				},
 				&resource.State{
-					Provider: "urn:pulumi:stack::project::pulumi:providers:provider::default_new::uuid",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:provider::default_new::uuid",
 				},
 			)
 			assert.ErrorContains(t, err, "failed to resolve provider reference")

@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-azure-native/sdk/go/azure/cdn"
-	"github.com/pulumi/pulumi-azure-native/sdk/go/azure/network"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-azure-native/sdk/go/azure/cdn"
+	"github.com/khulnasoft/khulnasoft-azure-native/sdk/go/azure/network"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := network.NewFrontDoor(ctx, "frontDoor", &network.FrontDoorArgs{
-			ResourceGroupName: pulumi.String("someGroupName"),
+			ResourceGroupName: khulnasoft.String("someGroupName"),
 			RoutingRules: network.RoutingRuleArray{
 				&network.RoutingRuleArgs{
 					RouteConfiguration: network.ForwardingConfiguration{
@@ -29,7 +29,7 @@ func main() {
 			DeliveryPolicy: &cdn.EndpointPropertiesUpdateParametersDeliveryPolicyArgs{
 				Rules: cdn.DeliveryRuleArray{
 					&cdn.DeliveryRuleArgs{
-						Actions: pulumi.Array{
+						Actions: khulnasoft.Array{
 							cdn.DeliveryRuleCacheExpirationAction{
 								Name: "CacheExpiration",
 								Parameters: cdn.CacheExpirationActionParameters{
@@ -58,7 +58,7 @@ func main() {
 								},
 							},
 						},
-						Conditions: pulumi.Array{
+						Conditions: khulnasoft.Array{
 							cdn.DeliveryRuleRemoteAddressCondition{
 								Name: "RemoteAddress",
 								Parameters: cdn.RemoteAddressMatchConditionParameters{
@@ -72,18 +72,18 @@ func main() {
 								},
 							},
 						},
-						Name:  pulumi.String("rule1"),
-						Order: pulumi.Int(1),
+						Name:  khulnasoft.String("rule1"),
+						Order: khulnasoft.Int(1),
 					},
 				},
 			},
-			EndpointName:         pulumi.String("endpoint1"),
-			IsCompressionEnabled: pulumi.Bool(true),
-			IsHttpAllowed:        pulumi.Bool(true),
-			IsHttpsAllowed:       pulumi.Bool(true),
-			Location:             pulumi.String("WestUs"),
-			ProfileName:          pulumi.String("profileName"),
-			ResourceGroupName:    pulumi.String("resourceGroupName"),
+			EndpointName:         khulnasoft.String("endpoint1"),
+			IsCompressionEnabled: khulnasoft.Bool(true),
+			IsHttpAllowed:        khulnasoft.Bool(true),
+			IsHttpsAllowed:       khulnasoft.Bool(true),
+			Location:             khulnasoft.String("WestUs"),
+			ProfileName:          khulnasoft.String("profileName"),
+			ResourceGroupName:    khulnasoft.String("resourceGroupName"),
 		})
 		if err != nil {
 			return err

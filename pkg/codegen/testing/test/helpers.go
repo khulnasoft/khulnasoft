@@ -31,7 +31,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/utils"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/executable"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/executable"
 )
 
 // GenPkgSignature corresponds to the shape of the codegen GeneratePackage functions.

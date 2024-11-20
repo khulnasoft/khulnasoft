@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: pulumi/analyzer.proto
+// source: khulnasoft/analyzer.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	context "context"
@@ -51,7 +51,7 @@ func NewAnalyzerClient(cc grpc.ClientConnInterface) AnalyzerClient {
 
 func (c *analyzerClient) Analyze(ctx context.Context, in *AnalyzeRequest, opts ...grpc.CallOption) (*AnalyzeResponse, error) {
 	out := new(AnalyzeResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Analyzer/Analyze", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Analyzer/Analyze", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (c *analyzerClient) Analyze(ctx context.Context, in *AnalyzeRequest, opts .
 
 func (c *analyzerClient) AnalyzeStack(ctx context.Context, in *AnalyzeStackRequest, opts ...grpc.CallOption) (*AnalyzeResponse, error) {
 	out := new(AnalyzeResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Analyzer/AnalyzeStack", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Analyzer/AnalyzeStack", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func (c *analyzerClient) AnalyzeStack(ctx context.Context, in *AnalyzeStackReque
 
 func (c *analyzerClient) Remediate(ctx context.Context, in *AnalyzeRequest, opts ...grpc.CallOption) (*RemediateResponse, error) {
 	out := new(RemediateResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Analyzer/Remediate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Analyzer/Remediate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (c *analyzerClient) Remediate(ctx context.Context, in *AnalyzeRequest, opts
 
 func (c *analyzerClient) GetAnalyzerInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AnalyzerInfo, error) {
 	out := new(AnalyzerInfo)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Analyzer/GetAnalyzerInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Analyzer/GetAnalyzerInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *analyzerClient) GetAnalyzerInfo(ctx context.Context, in *emptypb.Empty,
 
 func (c *analyzerClient) GetPluginInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PluginInfo, error) {
 	out := new(PluginInfo)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Analyzer/GetPluginInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Analyzer/GetPluginInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,7 +96,7 @@ func (c *analyzerClient) GetPluginInfo(ctx context.Context, in *emptypb.Empty, o
 
 func (c *analyzerClient) Configure(ctx context.Context, in *ConfigureAnalyzerRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Analyzer/Configure", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Analyzer/Configure", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -171,7 +171,7 @@ func _Analyzer_Analyze_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Analyzer/Analyze",
+		FullMethod: "/khulnasoftrpc.Analyzer/Analyze",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AnalyzerServer).Analyze(ctx, req.(*AnalyzeRequest))
@@ -189,7 +189,7 @@ func _Analyzer_AnalyzeStack_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Analyzer/AnalyzeStack",
+		FullMethod: "/khulnasoftrpc.Analyzer/AnalyzeStack",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AnalyzerServer).AnalyzeStack(ctx, req.(*AnalyzeStackRequest))
@@ -207,7 +207,7 @@ func _Analyzer_Remediate_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Analyzer/Remediate",
+		FullMethod: "/khulnasoftrpc.Analyzer/Remediate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AnalyzerServer).Remediate(ctx, req.(*AnalyzeRequest))
@@ -225,7 +225,7 @@ func _Analyzer_GetAnalyzerInfo_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Analyzer/GetAnalyzerInfo",
+		FullMethod: "/khulnasoftrpc.Analyzer/GetAnalyzerInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AnalyzerServer).GetAnalyzerInfo(ctx, req.(*emptypb.Empty))
@@ -243,7 +243,7 @@ func _Analyzer_GetPluginInfo_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Analyzer/GetPluginInfo",
+		FullMethod: "/khulnasoftrpc.Analyzer/GetPluginInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AnalyzerServer).GetPluginInfo(ctx, req.(*emptypb.Empty))
@@ -261,7 +261,7 @@ func _Analyzer_Configure_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Analyzer/Configure",
+		FullMethod: "/khulnasoftrpc.Analyzer/Configure",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AnalyzerServer).Configure(ctx, req.(*ConfigureAnalyzerRequest))
@@ -273,7 +273,7 @@ func _Analyzer_Configure_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Analyzer_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pulumirpc.Analyzer",
+	ServiceName: "khulnasoftrpc.Analyzer",
 	HandlerType: (*AnalyzerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -302,5 +302,5 @@ var Analyzer_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "pulumi/analyzer.proto",
+	Metadata: "khulnasoft/analyzer.proto",
 }

@@ -248,7 +248,7 @@ export async function run(
     // if you want to use TypeScript with Pulumi. However, ts-node's default behavior is to walk up from the cwd to
     // find a tsconfig.json. For us, it's reasonable to say that the "root" of the project is the cwd,
     // if there's a tsconfig.json file here. Otherwise, just tell ts-node to not load project options at all.
-    // This helps with cases like pulumi/pulumi#1772.
+    // This helps with cases like khulnasoft/khulnasoft#1772.
     const defaultTsConfigPath = "tsconfig.json";
     const tsConfigPath: string = process.env["PULUMI_NODEJS_TSCONFIG_PATH"] ?? defaultTsConfigPath;
     const skipProject = !fs.existsSync(tsConfigPath);
@@ -262,7 +262,7 @@ export async function run(
         tsn.register({
             compiler: typescriptRequire,
             transpileOnly,
-            // PULUMI_NODEJS_TSCONFIG_PATH might be set to a config file such as "tsconfig.pulumi.yaml" which
+            // PULUMI_NODEJS_TSCONFIG_PATH might be set to a config file such as "tsconfig.khulnasoft.yaml" which
             // would not get picked up by tsnode by default, so we explicitly tell tsnode which config file to
             // use (Which might just be ./tsconfig.yaml)
             project: tsConfigPath,
@@ -464,7 +464,7 @@ ${defaultMessage}`,
             }
 
             // If the exported value was itself a Function, then just execute it.  This allows for
-            // exported top level async functions that pulumi programs can live in.  Finally, await
+            // exported top level async functions that khulnasoft programs can live in.  Finally, await
             // the value we get back.  That way, if it is async and throws an exception, we properly
             // capture it here and handle it.
             const invokeResult = programExport instanceof Function ? programExport() : programExport;

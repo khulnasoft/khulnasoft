@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_basic_unions as basic_unions
+import khulnasoft
+import khulnasoft_basic_unions as basic_unions
 
 # properties field is bound to union case ServerPropertiesForReplica
 replica = basic_unions.ExampleServer("replica", properties={

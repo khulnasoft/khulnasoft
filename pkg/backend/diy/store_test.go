@@ -19,8 +19,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"gocloud.dev/blob/memblob"
@@ -37,9 +37,9 @@ func TestLegacyReferenceStore_referencePaths(t *testing.T) {
 
 	assert.Equal(t, tokens.MustParseStackName("foo"), ref.Name())
 	assert.Equal(t, tokens.QName("foo"), ref.FullyQualifiedName())
-	assert.Equal(t, ".pulumi/stacks/foo", ref.StackBasePath())
-	assert.Equal(t, ".pulumi/history/foo", ref.HistoryDir())
-	assert.Equal(t, ".pulumi/backups/foo", ref.BackupDir())
+	assert.Equal(t, ".khulnasoft/stacks/foo", ref.StackBasePath())
+	assert.Equal(t, ".khulnasoft/history/foo", ref.HistoryDir())
+	assert.Equal(t, ".khulnasoft/backups/foo", ref.BackupDir())
 }
 
 func TestProjectReferenceStore_referencePaths(t *testing.T) {
@@ -53,9 +53,9 @@ func TestProjectReferenceStore_referencePaths(t *testing.T) {
 	ref, err := store.ParseReference("organization/myproject/mystack")
 	require.NoError(t, err)
 
-	assert.Equal(t, ".pulumi/stacks/myproject/mystack", ref.StackBasePath())
-	assert.Equal(t, ".pulumi/history/myproject/mystack", ref.HistoryDir())
-	assert.Equal(t, ".pulumi/backups/myproject/mystack", ref.BackupDir())
+	assert.Equal(t, ".khulnasoft/stacks/myproject/mystack", ref.StackBasePath())
+	assert.Equal(t, ".khulnasoft/history/myproject/mystack", ref.HistoryDir())
+	assert.Equal(t, ".khulnasoft/backups/myproject/mystack", ref.BackupDir())
 }
 
 func TestProjectReferenceStore_ParseReference(t *testing.T) {
@@ -236,31 +236,31 @@ func TestLegacyReferenceStore_ListReferences(t *testing.T) {
 		{
 			desc: "json",
 			files: []string{
-				".pulumi/stacks/foo.json",
+				".khulnasoft/stacks/foo.json",
 			},
 			want: []tokens.QName{"foo"},
 		},
 		{
 			desc: "gzipped",
 			files: []string{
-				".pulumi/stacks/foo.json.gz",
+				".khulnasoft/stacks/foo.json.gz",
 			},
 			want: []tokens.QName{"foo"},
 		},
 		{
 			desc: "multiple",
 			files: []string{
-				".pulumi/stacks/foo.json",
-				".pulumi/stacks/bar.json.gz",
-				".pulumi/stacks/baz.json",
+				".khulnasoft/stacks/foo.json",
+				".khulnasoft/stacks/bar.json.gz",
+				".khulnasoft/stacks/baz.json",
 			},
 			want: []tokens.QName{"bar", "baz", "foo"},
 		},
 		{
 			desc: "extraneous directories",
 			files: []string{
-				".pulumi/stacks/foo.json",
-				".pulumi/stacks/bar.json/baz.json", // not a file
+				".khulnasoft/stacks/foo.json",
+				".khulnasoft/stacks/bar.json/baz.json", // not a file
 			},
 			want: []tokens.QName{"foo"},
 		},
@@ -317,7 +317,7 @@ func TestProjectReferenceStore_List(t *testing.T) {
 		{
 			desc: "json",
 			files: []string{
-				".pulumi/stacks/proj/foo.json",
+				".khulnasoft/stacks/proj/foo.json",
 			},
 			stacks:   []tokens.QName{"organization/proj/foo"},
 			projects: []tokens.Name{"proj"},
@@ -325,7 +325,7 @@ func TestProjectReferenceStore_List(t *testing.T) {
 		{
 			desc: "gzipped",
 			files: []string{
-				".pulumi/stacks/foo/bar.json.gz",
+				".khulnasoft/stacks/foo/bar.json.gz",
 			},
 			stacks:   []tokens.QName{"organization/foo/bar"},
 			projects: []tokens.Name{"foo"},
@@ -333,9 +333,9 @@ func TestProjectReferenceStore_List(t *testing.T) {
 		{
 			desc: "multiple",
 			files: []string{
-				".pulumi/stacks/a/foo.json",
-				".pulumi/stacks/b/bar.json.gz",
-				".pulumi/stacks/c/baz.json",
+				".khulnasoft/stacks/a/foo.json",
+				".khulnasoft/stacks/b/bar.json.gz",
+				".khulnasoft/stacks/c/baz.json",
 			},
 			stacks: []tokens.QName{
 				"organization/a/foo",
@@ -347,10 +347,10 @@ func TestProjectReferenceStore_List(t *testing.T) {
 		{
 			desc: "extraneous files and directories",
 			files: []string{
-				".pulumi/stacks/a/foo.json",
-				".pulumi/stacks/foo.json",
-				".pulumi/stacks/bar/baz/qux.json", // nested too deep
-				".pulumi/stacks/a b/c.json",       // bad project name
+				".khulnasoft/stacks/a/foo.json",
+				".khulnasoft/stacks/foo.json",
+				".khulnasoft/stacks/bar/baz/qux.json", // nested too deep
+				".khulnasoft/stacks/a b/c.json",       // bad project name
 			},
 			stacks:   []tokens.QName{"organization/a/foo"},
 			projects: []tokens.Name{"a", "bar"},
@@ -417,7 +417,7 @@ func TestProjectReferenceStore_ProjectExists(t *testing.T) {
 		{
 			desc: "project exists",
 			files: []string{
-				".pulumi/stacks/a/foo.json",
+				".khulnasoft/stacks/a/foo.json",
 			},
 			projectName: "a",
 			exist:       true,
@@ -425,7 +425,7 @@ func TestProjectReferenceStore_ProjectExists(t *testing.T) {
 		{
 			desc: "project exists as empty directory",
 			files: []string{
-				".pulumi/stacks/a",
+				".khulnasoft/stacks/a",
 			},
 			projectName: "a",
 			exist:       false,
@@ -433,7 +433,7 @@ func TestProjectReferenceStore_ProjectExists(t *testing.T) {
 		{
 			desc: "project does not exist",
 			files: []string{
-				".pulumi/stacks/a",
+				".khulnasoft/stacks/a",
 			},
 			projectName: "b",
 			exist:       false,
@@ -441,7 +441,7 @@ func TestProjectReferenceStore_ProjectExists(t *testing.T) {
 		{
 			desc: "subproject exist",
 			files: []string{
-				".pulumi/stacks/b/a", // Project name exist, but as a subproject
+				".khulnasoft/stacks/b/a", // Project name exist, but as a subproject
 			},
 			projectName: "a",
 			exist:       false,

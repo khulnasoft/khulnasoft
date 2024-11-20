@@ -1,6 +1,6 @@
 # Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
-from pulumi import ComponentResource, export, Resource, ResourceOptions
+from khulnasoft import ComponentResource, export, Resource, ResourceOptions
 
 class Resource1(ComponentResource):
     def __init__(self, name, opts=None):

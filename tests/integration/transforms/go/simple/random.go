@@ -10,18 +10,18 @@ import (
 	"errors"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Random struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Length pulumi.IntOutput    `pulumi:"length"`
-	Result pulumi.StringOutput `pulumi:"result"`
+	Length khulnasoft.IntOutput    `khulnasoft:"length"`
+	Result khulnasoft.StringOutput `khulnasoft:"result"`
 }
 
-func NewRandom(ctx *pulumi.Context,
-	name string, args *RandomArgs, opts ...pulumi.ResourceOption,
+func NewRandom(ctx *khulnasoft.Context,
+	name string, args *RandomArgs, opts ...khulnasoft.ResourceOption,
 ) (*Random, error) {
 	if args == nil || args.Length == nil {
 		return nil, errors.New("missing required argument 'Length'")
@@ -34,7 +34,7 @@ func NewRandom(ctx *pulumi.Context,
 	return &resource, nil
 }
 
-func (r *Random) RandomInvoke(ctx *pulumi.Context, args map[string]interface{}) (map[string]interface{}, error) {
+func (r *Random) RandomInvoke(ctx *khulnasoft.Context, args map[string]interface{}) (map[string]interface{}, error) {
 	var result map[string]interface{}
 	err := ctx.Invoke("testprovider:index:returnArgs", args, &result)
 	if err != nil {
@@ -44,13 +44,13 @@ func (r *Random) RandomInvoke(ctx *pulumi.Context, args map[string]interface{}) 
 }
 
 type randomArgs struct {
-	Length int    `pulumi:"length"`
-	Prefix string `pulumi:"prefix"`
+	Length int    `khulnasoft:"length"`
+	Prefix string `khulnasoft:"prefix"`
 }
 
 type RandomArgs struct {
-	Length pulumi.IntInput
-	Prefix pulumi.StringInput
+	Length khulnasoft.IntInput
+	Prefix khulnasoft.StringInput
 }
 
 func (RandomArgs) ElementType() reflect.Type {
@@ -58,14 +58,14 @@ func (RandomArgs) ElementType() reflect.Type {
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Length  pulumi.IntOutput    `pulumi:"length"`
-	ChildID pulumi.StringOutput `pulumi:"childId"`
+	Length  khulnasoft.IntOutput    `khulnasoft:"length"`
+	ChildID khulnasoft.StringOutput `khulnasoft:"childId"`
 }
 
-func NewComponent(ctx *pulumi.Context,
-	name string, args *ComponentArgs, opts ...pulumi.ResourceOption,
+func NewComponent(ctx *khulnasoft.Context,
+	name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption,
 ) (*Random, error) {
 	if args == nil || args.Length == nil {
 		return nil, errors.New("missing required argument 'Length'")
@@ -79,11 +79,11 @@ func NewComponent(ctx *pulumi.Context,
 }
 
 type componentArgs struct {
-	Length int `pulumi:"length"`
+	Length int `khulnasoft:"length"`
 }
 
 type ComponentArgs struct {
-	Length pulumi.IntInput
+	Length khulnasoft.IntInput
 }
 
 func (ComponentArgs) ElementType() reflect.Type {
@@ -91,14 +91,14 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type Provider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 }
 
-func NewProvider(ctx *pulumi.Context,
-	name string, opts ...pulumi.ResourceOption,
+func NewProvider(ctx *khulnasoft.Context,
+	name string, opts ...khulnasoft.ResourceOption,
 ) (*Provider, error) {
 	var resource Provider
-	err := ctx.RegisterResource("pulumi:providers:testprovider", name, nil, &resource, opts...)
+	err := ctx.RegisterResource("khulnasoft:providers:testprovider", name, nil, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

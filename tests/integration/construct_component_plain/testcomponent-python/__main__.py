@@ -15,8 +15,8 @@
 from typing import Optional
 import sys
 
-from pulumi import Inputs, ComponentResource, ResourceOptions
-import pulumi.provider as provider
+from khulnasoft import Inputs, ComponentResource, ResourceOptions
+import khulnasoft.provider as provider
 
 from echo import Echo
 

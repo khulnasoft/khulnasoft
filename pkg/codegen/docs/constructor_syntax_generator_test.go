@@ -170,16 +170,16 @@ no_inputs_resource = test.NoInputs("noInputsResource")
 	assert.Equal(t, expectedResources, len(constructorSyntax.golang.resources))
 	equalPrograms(constructorSyntax.golang, "test:index:First", `
 _, err := test.NewFirst(ctx, "firstResource", &test.FirstArgs{
-	FooBool:        pulumi.Bool(false),
+	FooBool:        khulnasoft.Bool(false),
 	FooEnum:        index.ExampleEnumFirst,
-	FooInt:         pulumi.Int(0),
+	FooInt:         khulnasoft.Int(0),
 	FooNumericEnum: index.ExampleNumericEnumFirst,
-	FooString:      pulumi.String("string"),
+	FooString:      khulnasoft.String("string"),
 })`)
 
 	equalPrograms(constructorSyntax.golang, "test:index:Second", `
 _, err = test.NewSecond(ctx, "secondResource", &test.SecondArgs{
-	BarString: pulumi.String("string"),
+	BarString: khulnasoft.String("string"),
 })`)
 
 	equalPrograms(constructorSyntax.golang, "test:index:NoInputs", `

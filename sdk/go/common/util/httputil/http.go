@@ -20,8 +20,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/retry"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/retry"
 )
 
 // RetryOpts defines options to configure the retry behavior.

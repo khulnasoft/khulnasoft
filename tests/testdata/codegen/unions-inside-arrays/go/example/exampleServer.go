@@ -7,20 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"unions-inside-arrays/example/internal"
 )
 
 type ExampleServer struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Name pulumi.StringPtrOutput `pulumi:"name"`
+	Name khulnasoft.StringPtrOutput `khulnasoft:"name"`
 }
 
 // NewExampleServer registers a new resource with the given unique name, arguments, and options.
-func NewExampleServer(ctx *pulumi.Context,
-	name string, args *ExampleServerArgs, opts ...pulumi.ResourceOption) (*ExampleServer, error) {
+func NewExampleServer(ctx *khulnasoft.Context,
+	name string, args *ExampleServerArgs, opts ...khulnasoft.ResourceOption) (*ExampleServer, error) {
 	if args == nil {
 		args = &ExampleServerArgs{}
 	}
@@ -36,8 +36,8 @@ func NewExampleServer(ctx *pulumi.Context,
 
 // GetExampleServer gets an existing ExampleServer resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetExampleServer(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ExampleServerState, opts ...pulumi.ResourceOption) (*ExampleServer, error) {
+func GetExampleServer(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ExampleServerState, opts ...khulnasoft.ResourceOption) (*ExampleServer, error) {
 	var resource ExampleServer
 	err := ctx.ReadResource("example:index:ExampleServer", name, id, state, &resource, opts...)
 	if err != nil {
@@ -58,12 +58,12 @@ func (ExampleServerState) ElementType() reflect.Type {
 }
 
 type exampleServerArgs struct {
-	PropertiesCollection []interface{} `pulumi:"propertiesCollection"`
+	PropertiesCollection []interface{} `khulnasoft:"propertiesCollection"`
 }
 
 // The set of arguments for constructing a ExampleServer resource.
 type ExampleServerArgs struct {
-	PropertiesCollection pulumi.ArrayInput
+	PropertiesCollection khulnasoft.ArrayInput
 }
 
 func (ExampleServerArgs) ElementType() reflect.Type {
@@ -71,7 +71,7 @@ func (ExampleServerArgs) ElementType() reflect.Type {
 }
 
 type ExampleServerInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToExampleServerOutput() ExampleServerOutput
 	ToExampleServerOutputWithContext(ctx context.Context) ExampleServerOutput
@@ -86,16 +86,16 @@ func (i *ExampleServer) ToExampleServerOutput() ExampleServerOutput {
 }
 
 func (i *ExampleServer) ToExampleServerOutputWithContext(ctx context.Context) ExampleServerOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExampleServerOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ExampleServerOutput)
 }
 
-func (i *ExampleServer) ToOutput(ctx context.Context) pulumix.Output[*ExampleServer] {
-	return pulumix.Output[*ExampleServer]{
+func (i *ExampleServer) ToOutput(ctx context.Context) khulnasoftx.Output[*ExampleServer] {
+	return khulnasoftx.Output[*ExampleServer]{
 		OutputState: i.ToExampleServerOutputWithContext(ctx).OutputState,
 	}
 }
 
-type ExampleServerOutput struct{ *pulumi.OutputState }
+type ExampleServerOutput struct{ *khulnasoft.OutputState }
 
 func (ExampleServerOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ExampleServer)(nil)).Elem()
@@ -109,17 +109,17 @@ func (o ExampleServerOutput) ToExampleServerOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o ExampleServerOutput) ToOutput(ctx context.Context) pulumix.Output[*ExampleServer] {
-	return pulumix.Output[*ExampleServer]{
+func (o ExampleServerOutput) ToOutput(ctx context.Context) khulnasoftx.Output[*ExampleServer] {
+	return khulnasoftx.Output[*ExampleServer]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o ExampleServerOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ExampleServer) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
+func (o ExampleServerOutput) Name() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *ExampleServer) khulnasoft.StringPtrOutput { return v.Name }).(khulnasoft.StringPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ExampleServerInput)(nil)).Elem(), &ExampleServer{})
-	pulumi.RegisterOutputType(ExampleServerOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ExampleServerInput)(nil)).Elem(), &ExampleServer{})
+	khulnasoft.RegisterOutputType(ExampleServerOutput{})
 }

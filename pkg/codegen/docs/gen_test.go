@@ -171,7 +171,7 @@ func newTestPackageSpec() schema.PackageSpec {
 The import docs would be here
 
 ` + codeFence + `sh
-$ pulumi import prov:module/resource:Resource test test
+$ khulnasoft import prov:module/resource:Resource test test
 ` + codeFence + `
 `,
 				},
@@ -245,7 +245,7 @@ $ pulumi import prov:module/resource:Resource test test
 The import docs would be here
 
 ` + codeFence + `sh
-$ pulumi import prov:module/resource:Resource test test
+$ khulnasoft import prov:module/resource:Resource test test
 ` + codeFence + `
 `,
 				},
@@ -596,7 +596,7 @@ func TestDecomposeDocstring(t *testing.T) {
 		"VPCs can be imported using the `vpc id`, e.g.,\n" +
 		"\n" +
 		"```sh\n" +
-		" $ pulumi import aws:ec2/vpc:Vpc test_vpc vpc-a01106c2\n" +
+		" $ khulnasoft import aws:ec2/vpc:Vpc test_vpc vpc-a01106c2\n" +
 		"```\n" +
 		"\n" +
 		" "
@@ -640,7 +640,7 @@ func TestDecomposeDocstring(t *testing.T) {
 				},
 			},
 		},
-		importDetails: "\n\nVPCs can be imported using the `vpc id`, e.g.,\n\n```sh\n $ pulumi import aws:ec2/vpc:Vpc test_vpc vpc-a01106c2\n```\n",
+		importDetails: "\n\nVPCs can be imported using the `vpc id`, e.g.,\n\n```sh\n $ khulnasoft import aws:ec2/vpc:Vpc test_vpc vpc-a01106c2\n```\n",
 	},
 		info)
 }

@@ -13,11 +13,11 @@
 // limitations under the License.
 
 // @ts-ignore
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 export const description = "Can capture secrets with allowSecrets";
 
-const s = pulumi.secret("can't capture me");
+const s = khulnasoft.secret("can't capture me");
 
 export const func = function () {
     console.log(s.get());

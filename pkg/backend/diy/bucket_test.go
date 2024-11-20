@@ -68,18 +68,18 @@ func TestWrappedBucket(t *testing.T) {
 	t.Run("SanityCheck", func(t *testing.T) {
 		randomData := []byte("Just some random data")
 
-		err := wrappedBucket.WriteAll(ctx, ".pulumi/bucket-test/foo", randomData, &blob.WriterOptions{})
+		err := wrappedBucket.WriteAll(ctx, ".khulnasoft/bucket-test/foo", randomData, &blob.WriterOptions{})
 		mustNotHaveError(t, "WriteAll", err)
 
-		readData, err := wrappedBucket.ReadAll(ctx, `.pulumi\bucket-test\foo`)
+		readData, err := wrappedBucket.ReadAll(ctx, `.khulnasoft\bucket-test\foo`)
 		mustNotHaveError(t, "ReadAll", err)
 		assert.EqualValues(t, randomData, readData, "data read from bucket doesn't match what was written")
 
 		// Verify the leading slash isn't necessary.
-		err = wrappedBucket.Delete(ctx, ".pulumi/bucket-test/foo")
+		err = wrappedBucket.Delete(ctx, ".khulnasoft/bucket-test/foo")
 		mustNotHaveError(t, "Delete", err)
 
-		exists, err := wrappedBucket.Exists(ctx, ".pulumi/bucket-test/foo")
+		exists, err := wrappedBucket.Exists(ctx, ".khulnasoft/bucket-test/foo")
 		mustNotHaveError(t, "Exists", err)
 		assert.False(t, exists, "Deleted file still found?")
 	})
@@ -92,14 +92,14 @@ func TestWrappedBucket(t *testing.T) {
 
 		// Write some data.
 		for _, filename := range filenames {
-			key := ".pulumi\\bucket-test\\" + filename
+			key := ".khulnasoft\\bucket-test\\" + filename
 			err := wrappedBucket.WriteAll(ctx, key, randomData, &blob.WriterOptions{})
 			mustNotHaveError(t, "WriteAll", err)
 		}
 
 		// Verify it is found. NOTE: This requires that any files created
 		// during other tests have successfully been cleaned up too.
-		objects, err := listBucket(ctx, wrappedBucket, `.pulumi\bucket-test`)
+		objects, err := listBucket(ctx, wrappedBucket, `.khulnasoft\bucket-test`)
 		mustNotHaveError(t, "listBucket", err)
 		if len(objects) != len(filenames) {
 			assert.Equal(t, 3, len(objects), "listBucket returned unexpected number of objects.")

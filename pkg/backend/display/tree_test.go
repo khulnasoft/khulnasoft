@@ -20,12 +20,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/display/internal/terminal"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -204,7 +204,7 @@ func TestTreeRenderCallsFrameOnTick(t *testing.T) {
 	// Check that at least one system message was written to the mock terminal,
 	// and trimmed to the terminal width appropriately.
 	terminalText := buf.String()
-	assert.Contains(t, terminalText, "pulumi:pulumi:Stack")
+	assert.Contains(t, terminalText, "khulnasoft:khulnasoft:Stack")
 	assert.Contains(t, terminalText, "System Messages")
 	assert.Contains(t, terminalText, strings.Repeat("a", 70))
 }

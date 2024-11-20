@@ -2,6 +2,6 @@
 
 """An example program that needs a poetry venv to run"""
 
-import pulumi
+import khulnasoft
 
-pulumi.export("foo", "bar")
+khulnasoft.export("foo", "bar")

@@ -1,4 +1,4 @@
-from pulumi_policy import (
+from khulnasoft_policy import (
     EnforcementLevel,
     PolicyPack,
     ReportViolation,

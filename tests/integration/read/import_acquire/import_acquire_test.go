@@ -30,7 +30,7 @@ func TestImportAcquire(t *testing.T) {
 
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir:          "step1",
-		Dependencies: []string{"@pulumi/pulumi"},
+		Dependencies: []string{"@khulnasoft/khulnasoft"},
 		Quick:        true,
 		EditDirs: []integration.EditDir{
 			{

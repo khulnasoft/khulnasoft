@@ -14,7 +14,7 @@
 
 """Verifies that type-related mistakes in dynamic providers result in
 exceptions and not hangs. Regresses
-https://github.com/pulumi/pulumi/issues/6981
+https://github.com/khulnasoft/khulnasoft/issues/6981
 
 """
 
@@ -23,21 +23,21 @@ from typing import Dict
 import uuid
 import pytest
 
-from pulumi import Input, Output
-from pulumi.runtime import settings, mocks
-import pulumi
-import pulumi.dynamic as dyn
+from khulnasoft import Input, Output
+from khulnasoft.runtime import settings, mocks
+import khulnasoft
+import khulnasoft.dynamic as dyn
 
 from .helpers import raises
 
 
-class MyMocks(pulumi.runtime.Mocks):
+class MyMocks(khulnasoft.runtime.Mocks):
 
-    def new_resource(self, args: pulumi.runtime.MockResourceArgs):
+    def new_resource(self, args: khulnasoft.runtime.MockResourceArgs):
         result = XProvider().create(args=args.inputs)
         return [result.id, result.outs]
 
-    def call(self, args: pulumi.runtime.MockCallArgs):
+    def call(self, args: khulnasoft.runtime.MockCallArgs):
         return {}
 
 
@@ -75,7 +75,7 @@ class X(dyn.Resource):
 
 @raises(AssertionError)
 @pytest.mark.timeout(10)
-@pulumi.runtime.test
-def test_pulumi_broken_dynamic_provider(my_mocks):
+@khulnasoft.runtime.test
+def test_khulnasoft_broken_dynamic_provider(my_mocks):
     x = X(name="my_x", args=XInputs({"my_key_1": "my_value_1"}))
     return x.x.apply(print)

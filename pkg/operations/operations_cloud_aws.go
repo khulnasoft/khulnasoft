@@ -19,17 +19,17 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
-// TODO[pulumi/pulumi#54] This should be factored out behind an OperationsProvider RPC interface and versioned with the
-// `pulumi-cloud` repo instead of statically linked into the engine.
+// TODO[khulnasoft/khulnasoft#54] This should be factored out behind an OperationsProvider RPC interface and versioned with the
+// `khulnasoft-cloud` repo instead of statically linked into the engine.
 
 // CloudOperationsProvider creates an OperationsProvider capable of answering operational queries based on the
-// underlying resources of the `@pulumi/cloud-aws` implementation.
+// underlying resources of the `@khulnasoft/cloud-aws` implementation.
 func CloudOperationsProvider(config map[config.Key]string, component *Resource) (Provider, error) {
 	prov := &cloudOpsProvider{
 		config:    config,
@@ -125,7 +125,7 @@ func (ops *cloudOpsProvider) GetLogs(query LogQuery) (*[]LogEntry, error) {
 				}
 				if len(match) != 2 {
 					logging.V(5).Infof("Skipping invalid log name found in log collector %s. "+
-						"Possibly mismatched versions of pulumi and pulumi-cloud.", state.URN)
+						"Possibly mismatched versions of khulnasoft and khulnasoft-cloud.", state.URN)
 					continue
 				}
 				logName := match[1]
@@ -189,7 +189,7 @@ type encodedLogMessage struct {
 var (
 	// Extract function name from LogGroup name
 	functionNameFromLogGroupNameRegExp = regexp.MustCompile(`^/aws/lambda/(.*)-[0-9A-Fa-f]{7}$`)
-	// Used prior to pulumi-terraform@1307256eeeefdd87ffd76581cd3ab73c3d7cfd4a
+	// Used prior to khulnasoft-terraform@1307256eeeefdd87ffd76581cd3ab73c3d7cfd4a
 	oldFunctionNameFromLogGroupNameRegExp = regexp.MustCompile(`^/aws/lambda/(.*)[0-9A-Fa-f]{8}$`)
 	// Extract Lambda log parts from Lambda log format
 	// * Starts with a timestamp

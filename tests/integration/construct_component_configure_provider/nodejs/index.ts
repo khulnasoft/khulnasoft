@@ -1,11 +1,11 @@
 // Copyright 2016-2023, Pulumi Corporation.  All rights reserved.
 
-import * as metaprovider from "@pulumi/metaprovider";
-import * as pulumi from "@pulumi/pulumi";
-import * as tls from "@pulumi/tls";
+import * as metaprovider from "@khulnasoft/metaprovider";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as tls from "@khulnasoft/tls";
 
 export = async () => {
-  const config = new pulumi.Config();
+  const config = new khulnasoft.Config();
   const proxy = config.require("proxy");
 
   // This resource is just here to generate unknown outputs to test propagating unknowns; there seems to be no way to

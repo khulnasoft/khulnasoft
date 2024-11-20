@@ -1,10 +1,10 @@
 // Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 let currentID = 0;
 
-export class Provider implements pulumi.dynamic.ResourceProvider {
+export class Provider implements khulnasoft.dynamic.ResourceProvider {
     public static readonly instance = new Provider();
 
     public async create(inputs: any) {
@@ -15,12 +15,12 @@ export class Provider implements pulumi.dynamic.ResourceProvider {
     }
 }
 
-export class Resource extends pulumi.dynamic.Resource {
+export class Resource extends khulnasoft.dynamic.Resource {
     public isInstance(o: any): o is Resource {
-        return o.__pulumiType === "pulumi-nodejs:dynamic:Resource";
+        return o.__khulnasoftType === "khulnasoft-nodejs:dynamic:Resource";
     }
 
-    constructor(name: string, props: pulumi.Inputs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, props: khulnasoft.Inputs, opts?: khulnasoft.ResourceOptions) {
         super(Provider.instance, name, props, opts);
     }
 }

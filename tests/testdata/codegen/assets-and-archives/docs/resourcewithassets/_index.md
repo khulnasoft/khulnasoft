@@ -21,67 +21,67 @@ Resources are created with functions called constructors. To learn more about de
 
 ### Constructor syntax
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">ResourceWithAssets</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">ResourceWithAssetsArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#CustomResourceOptions">CustomResourceOptions</a></span><span class="p">);</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="javascript,typescript">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">ResourceWithAssets</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">ResourceWithAssetsArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#CustomResourceOptions">CustomResourceOptions</a></span><span class="p">);</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">ResourceWithAssets</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
                        <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">ResourceWithAssetsArgs</a></span><span class="p">,</span>
-                       <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
+                       <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
 <span></span>
 <span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">ResourceWithAssets</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
-                       <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">,</span>
-                       <span class="nx">source</span><span class="p">:</span> <span class="nx">Optional[Union[pulumi.Asset, pulumi.Archive]]</span> = None<span class="p">,</span>
-                       <span class="nx">archive</span><span class="p">:</span> <span class="nx">Optional[pulumi.Archive]</span> = None<span class="p">,</span>
+                       <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">,</span>
+                       <span class="nx">source</span><span class="p">:</span> <span class="nx">Optional[Union[khulnasoft.Asset, khulnasoft.Archive]]</span> = None<span class="p">,</span>
+                       <span class="nx">archive</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Archive]</span> = None<span class="p">,</span>
                        <span class="nx">nested</span><span class="p">:</span> <span class="nx">Optional[TypeWithAssetsArgs]</span> = None<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewResourceWithAssets</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> </span><span class="nx"><a href="#inputs">ResourceWithAssetsArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">ResourceWithAssets</span>, error)</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="go">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewResourceWithAssets</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> </span><span class="nx"><a href="#inputs">ResourceWithAssetsArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">ResourceWithAssets</span>, error)</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public </span><span class="nx">ResourceWithAssets</span><span class="p">(</span><span class="nx">string</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ResourceWithAssetsArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.CustomResourceOptions.html">CustomResourceOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <div class="no-copy"><div class="highlight"><pre class="chroma">
 <code class="language-java" data-lang="java"><span class="k">public </span><span class="nx">ResourceWithAssets</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ResourceWithAssetsArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">)</span>
 <span class="k">public </span><span class="nx">ResourceWithAssets</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ResourceWithAssetsArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx">CustomResourceOptions</span><span class="p"> </span><span class="nx">options<span class="p">)</span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">type: <span class="nx">example:ResourceWithAssets</span><span class="p"></span>
 <span class="p">properties</span><span class="p">: </span><span class="c">#&nbsp;The arguments to resource properties.</span>
 <span class="p"></span><span class="p">options</span><span class="p">: </span><span class="c">#&nbsp;Bag of options to control resource&#39;s behavior.</span>
 <span class="p"></span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 #### Parameters
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -99,15 +99,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#CustomResourceOptions">CustomResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#CustomResourceOptions">CustomResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -125,21 +125,21 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">ResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">ResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 <dl class="resources-properties"><dt
         class="property-optional" title="Optional">
         <span>ctx</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span>
     </dt>
     <dd>Context object for the current deployment.</dd><dt
         class="property-required" title="Required">
@@ -157,15 +157,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -187,11 +187,11 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -213,7 +213,7 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -222,12 +222,12 @@ Resources are created with functions called constructors. To learn more about de
 
 The following reference example uses placeholder values for all [input properties](#inputs).
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 ```csharp
 var resourceWithAssetsResource = new Example.ResourceWithAssets("resourceWithAssetsResource", new()
@@ -244,32 +244,32 @@ var resourceWithAssetsResource = new Example.ResourceWithAssets("resourceWithAss
 });
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 ```go
 example, err := example.NewResourceWithAssets(ctx, "resourceWithAssetsResource", &example.ResourceWithAssetsArgs{
-	Source:  pulumi.NewStringAsset("content"),
-	Archive: pulumi.NewFileArchive("./path/to/archive"),
+	Source:  khulnasoft.NewStringAsset("content"),
+	Archive: khulnasoft.NewFileArchive("./path/to/archive"),
 	Nested: &example.TypeWithAssetsArgs{
-		Asset:        pulumi.NewStringAsset("content"),
-		PlainArchive: pulumi.NewFileArchive("./path/to/archive"),
-		Archive:      pulumi.NewFileArchive("./path/to/archive"),
-		PlainAsset:   pulumi.NewStringAsset("content"),
+		Asset:        khulnasoft.NewStringAsset("content"),
+		PlainArchive: khulnasoft.NewFileArchive("./path/to/archive"),
+		Archive:      khulnasoft.NewFileArchive("./path/to/archive"),
+		PlainAsset:   khulnasoft.NewStringAsset("content"),
 	},
 })
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 ```java
 var resourceWithAssetsResource = new ResourceWithAssets("resourceWithAssetsResource", ResourceWithAssetsArgs.builder()
@@ -284,51 +284,51 @@ var resourceWithAssetsResource = new ResourceWithAssets("resourceWithAssetsResou
     .build());
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 ```python
 resource_with_assets_resource = example.ResourceWithAssets("resourceWithAssetsResource",
-    source=pulumi.StringAsset("content"),
-    archive=pulumi.FileArchive("./path/to/archive"),
+    source=khulnasoft.StringAsset("content"),
+    archive=khulnasoft.FileArchive("./path/to/archive"),
     nested={
-        "asset": pulumi.StringAsset("content"),
-        "plain_archive": pulumi.FileArchive("./path/to/archive"),
-        "archive": pulumi.FileArchive("./path/to/archive"),
-        "plain_asset": pulumi.StringAsset("content"),
+        "asset": khulnasoft.StringAsset("content"),
+        "plain_archive": khulnasoft.FileArchive("./path/to/archive"),
+        "archive": khulnasoft.FileArchive("./path/to/archive"),
+        "plain_asset": khulnasoft.StringAsset("content"),
     })
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="typescript">
+<khulnasoft-choosable type="language" values="typescript">
 
 ```typescript
 const resourceWithAssetsResource = new example.ResourceWithAssets("resourceWithAssetsResource", {
-    source: new pulumi.asset.StringAsset("content"),
-    archive: new pulumi.asset.FileArchive("./path/to/archive"),
+    source: new khulnasoft.asset.StringAsset("content"),
+    archive: new khulnasoft.asset.FileArchive("./path/to/archive"),
     nested: {
-        asset: new pulumi.asset.StringAsset("content"),
-        plainArchive: new pulumi.asset.FileArchive("./path/to/archive"),
-        archive: new pulumi.asset.FileArchive("./path/to/archive"),
-        plainAsset: new pulumi.asset.StringAsset("content"),
+        asset: new khulnasoft.asset.StringAsset("content"),
+        plainArchive: new khulnasoft.asset.FileArchive("./path/to/archive"),
+        archive: new khulnasoft.asset.FileArchive("./path/to/archive"),
+        plainAsset: new khulnasoft.asset.StringAsset("content"),
     },
 });
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 
 ```yaml
 type: example:ResourceWithAssets
@@ -348,7 +348,7 @@ properties:
         fn::StringAsset: content
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -359,18 +359,18 @@ To learn more about resource properties and how to use them, see [Inputs and Out
 
 ### Inputs
 
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <p>
 In Python, inputs that are objects can be passed either as <a href="/docs/languages-sdks/python/#inputs-and-outputs">argument classes or as dictionary literals</a>.
 </p>
-</pulumi-choosable>
+</khulnasoft-choosable>
 
 The ResourceWithAssets resource accepts the following [input](/docs/intro/concepts/inputs-outputs) properties:
 
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="source_csharp">
@@ -396,18 +396,18 @@ The ResourceWithAssets resource accepts the following [input](/docs/intro/concep
         <span class="property-type"><a href="#typewithassets">Type<wbr>With<wbr>Assets</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="source_go">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#source_go" style="color: inherit; text-decoration: inherit;">Source</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Asset<wbr>Or<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -415,7 +415,7 @@ The ResourceWithAssets resource accepts the following [input](/docs/intro/concep
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_go" style="color: inherit; text-decoration: inherit;">Archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -426,11 +426,11 @@ The ResourceWithAssets resource accepts the following [input](/docs/intro/concep
         <span class="property-type"><a href="#typewithassets">Type<wbr>With<wbr>Assets<wbr>Args</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="source_java">
@@ -456,18 +456,18 @@ The ResourceWithAssets resource accepts the following [input](/docs/intro/concep
         <span class="property-type"><a href="#typewithassets">Type<wbr>With<wbr>Assets</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="source_nodejs">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#source_nodejs" style="color: inherit; text-decoration: inherit;">source</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Asset | pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Asset | khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -475,7 +475,7 @@ The ResourceWithAssets resource accepts the following [input](/docs/intro/concep
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_nodejs" style="color: inherit; text-decoration: inherit;">archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -486,18 +486,18 @@ The ResourceWithAssets resource accepts the following [input](/docs/intro/concep
         <span class="property-type"><a href="#typewithassets">Type<wbr>With<wbr>Assets</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="source_python">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#source_python" style="color: inherit; text-decoration: inherit;">source</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">Union[pulumi.<wbr>Asset, pulumi.<wbr>Archive]</span>
+        <span class="property-type">Union[khulnasoft.<wbr>Asset, khulnasoft.<wbr>Archive]</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -505,7 +505,7 @@ The ResourceWithAssets resource accepts the following [input](/docs/intro/concep
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_python" style="color: inherit; text-decoration: inherit;">archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -516,11 +516,11 @@ The ResourceWithAssets resource accepts the following [input](/docs/intro/concep
         <span class="property-type"><a href="#typewithassets">Type<wbr>With<wbr>Assets<wbr>Args</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="source_yaml">
@@ -546,7 +546,7 @@ The ResourceWithAssets resource accepts the following [input](/docs/intro/concep
         <span class="property-type"><a href="#typewithassets">Property Map</a></span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -557,7 +557,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="asset_csharp">
@@ -575,18 +575,18 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">string</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="asset_go">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#asset_go" style="color: inherit; text-decoration: inherit;">Asset</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Asset<wbr>Or<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-"
             title="">
@@ -597,11 +597,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">string</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="asset_java">
@@ -619,18 +619,18 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">String</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="asset_nodejs">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#asset_nodejs" style="color: inherit; text-decoration: inherit;">asset</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Asset | pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Asset | khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-"
             title="">
@@ -641,18 +641,18 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">string</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="asset_python">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#asset_python" style="color: inherit; text-decoration: inherit;">asset</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">Union[pulumi.<wbr>Asset, pulumi.<wbr>Archive]</span>
+        <span class="property-type">Union[khulnasoft.<wbr>Asset, khulnasoft.<wbr>Archive]</span>
     </dt>
     <dd></dd><dt class="property-"
             title="">
@@ -663,11 +663,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">str</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="asset_yaml">
@@ -685,7 +685,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">String</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -699,11 +699,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
 
 
 <h4 id="typewithassets">
-Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" class="inline">, Type<wbr>With<wbr>Assets<wbr>Args</pulumi-choosable>
+Type<wbr>With<wbr>Assets<khulnasoft-choosable type="language" values="python,go" class="inline">, Type<wbr>With<wbr>Assets<wbr>Args</khulnasoft-choosable>
 </h4>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="asset_csharp">
@@ -737,18 +737,18 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
         <span class="property-type">Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="asset_go">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#asset_go" style="color: inherit; text-decoration: inherit;">Asset</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Asset<wbr>Or<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-required"
             title="Required">
@@ -756,7 +756,7 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#plainarchive_go" style="color: inherit; text-decoration: inherit;">Plain<wbr>Archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -764,7 +764,7 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_go" style="color: inherit; text-decoration: inherit;">Archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -772,14 +772,14 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#plainasset_go" style="color: inherit; text-decoration: inherit;">Plain<wbr>Asset</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Asset<wbr>Or<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="asset_java">
@@ -813,18 +813,18 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
         <span class="property-type">Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="asset_nodejs">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#asset_nodejs" style="color: inherit; text-decoration: inherit;">asset</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Asset | pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Asset | khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-required"
             title="Required">
@@ -832,7 +832,7 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#plainarchive_nodejs" style="color: inherit; text-decoration: inherit;">plain<wbr>Archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -840,7 +840,7 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_nodejs" style="color: inherit; text-decoration: inherit;">archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -848,21 +848,21 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#plainasset_nodejs" style="color: inherit; text-decoration: inherit;">plain<wbr>Asset</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Asset | pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Asset | khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="asset_python">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#asset_python" style="color: inherit; text-decoration: inherit;">asset</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">Union[pulumi.<wbr>Asset, pulumi.<wbr>Archive]</span>
+        <span class="property-type">Union[khulnasoft.<wbr>Asset, khulnasoft.<wbr>Archive]</span>
     </dt>
     <dd></dd><dt class="property-required"
             title="Required">
@@ -870,7 +870,7 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#plain_archive_python" style="color: inherit; text-decoration: inherit;">plain_<wbr>archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -878,7 +878,7 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_python" style="color: inherit; text-decoration: inherit;">archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -886,14 +886,14 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#plain_asset_python" style="color: inherit; text-decoration: inherit;">plain_<wbr>asset</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">Union[pulumi.<wbr>Asset, pulumi.<wbr>Archive]</span>
+        <span class="property-type">Union[khulnasoft.<wbr>Asset, khulnasoft.<wbr>Archive]</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="asset_yaml">
@@ -927,7 +927,7 @@ Type<wbr>With<wbr>Assets<pulumi-choosable type="language" values="python,go" cla
         <span class="property-type">Asset</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 

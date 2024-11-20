@@ -1,11 +1,11 @@
 // Copyright 2016-2024, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 import { Component, Random, TestProvider} from "./random";
 
-class MyComponent extends pulumi.ComponentResource {
+class MyComponent extends khulnasoft.ComponentResource {
     child: Random;
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:component:MyComponent", name, {}, opts);
         this.child = new Random(`${name}-child`, { length: 5 }, {
             parent: this,
@@ -22,7 +22,7 @@ const res1 = new Random("res1", { length: 5 }, {
             console.log("res1 transform");
             return {
                 props: props,
-                opts: pulumi.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
+                opts: khulnasoft.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
             };
         },
     ],
@@ -36,7 +36,7 @@ const res2 = new MyComponent("res2", {
             if (type === "testprovider:index:Random") {
                 return {
                     props: { prefix: "newDefault", ...props },
-                    opts: pulumi.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
+                    opts: khulnasoft.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
                 };
             }
         },
@@ -44,17 +44,17 @@ const res2 = new MyComponent("res2", {
 });
 
 // Scenario #3 - apply a transform to the Stack to transform all (future) resources in the stack
-pulumi.runtime.registerStackTransform(async ({ type, props, opts }) => {
+khulnasoft.runtime.registerStackTransform(async ({ type, props, opts }) => {
     console.log("stack transform");
     if (type === "testprovider:index:Random") {
         return {
             props: { ...props, prefix: "stackDefault" },
-            opts: pulumi.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
+            opts: khulnasoft.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
         };
     }
 });
 
-const res3 = new Random("res3", { length: pulumi.secret(5) });
+const res3 = new Random("res3", { length: khulnasoft.secret(5) });
 
 // Scenario #4 - transforms are applied in order of decreasing specificity
 // 1. (not in this example) Child transform
@@ -113,7 +113,7 @@ const res6 = new Random("res6", { length: 10 }, {
             console.log("res6 transform");
             return {
                 props: props,
-                opts: pulumi.mergeOptions(opts, { provider: provider2 }),
+                opts: khulnasoft.mergeOptions(opts, { provider: provider2 }),
             };
         },
     ],
@@ -127,20 +127,20 @@ const res7 = new Component("res7", { length: 10 }, {
             console.log("res7 transform");
             return {
                 props: props,
-                opts: pulumi.mergeOptions(opts, { provider: provider2 }),
+                opts: khulnasoft.mergeOptions(opts, { provider: provider2 }),
             };
         },
     ],
 });
 
-pulumi.runtime.registerInvokeTransform(async ({ token, args, opts }) => {
+khulnasoft.runtime.registerInvokeTransform(async ({ token, args, opts }) => {
     return {
 	args: { ...args, length: 11 },
 	opts: opts,
     };
 });
 
-const res8 = new Random("res8", { length: pulumi.secret(5) });
+const res8 = new Random("res8", { length: khulnasoft.secret(5) });
 const args = {
     length: 10,
     prefix: "test",

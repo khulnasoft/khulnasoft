@@ -3,9 +3,9 @@
     "mypkg/doc.go",
     "mypkg/funcWithSecrets.go",
     "mypkg/init.go",
-    "mypkg/internal/pulumiUtilities.go",
-    "mypkg/internal/pulumiVersion.go",
+    "mypkg/internal/khulnasoftUtilities.go",
+    "mypkg/internal/khulnasoftVersion.go",
     "mypkg/provider.go",
-    "mypkg/pulumi-plugin.json"
+    "mypkg/khulnasoft-plugin.json"
   ]
 }

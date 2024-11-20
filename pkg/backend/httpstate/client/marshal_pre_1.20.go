@@ -24,7 +24,7 @@ import (
 
 	jsoniter "github.com/json-iterator/go"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 )
 
 const maxNewLines = 1024

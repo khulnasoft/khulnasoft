@@ -42,14 +42,14 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func applyEdits(before, deltas json.RawMessage) (json.RawMessage, error) {
@@ -269,7 +269,7 @@ func (tsf tokenSourceFn) GetToken(_ context.Context) (string, error) {
 
 func generateSnapshots(t testing.TB, r *rand.Rand, resourceCount, resourcePayloadBytes int) []*apitype.DeploymentV3 {
 	programF := deploytest.NewLanguageRuntimeF(func(info plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		ctx, err := pulumi.NewContext(context.Background(), pulumi.RunInfo{
+		ctx, err := khulnasoft.NewContext(context.Background(), khulnasoft.RunInfo{
 			Project:     info.Project,
 			Stack:       info.Stack,
 			Parallel:    info.Parallel,
@@ -278,9 +278,9 @@ func generateSnapshots(t testing.TB, r *rand.Rand, resourceCount, resourcePayloa
 		})
 		assert.NoError(t, err)
 
-		return pulumi.RunWithContext(ctx, func(ctx *pulumi.Context) error {
+		return khulnasoft.RunWithContext(ctx, func(ctx *khulnasoft.Context) error {
 			type Dummy struct {
-				pulumi.ResourceState
+				khulnasoft.ResourceState
 			}
 
 			for i := 0; i < resourceCount; i++ {
@@ -289,8 +289,8 @@ func generateSnapshots(t testing.TB, r *rand.Rand, resourceCount, resourcePayloa
 				if err != nil {
 					return err
 				}
-				err = ctx.RegisterResourceOutputs(&dummy, pulumi.Map{
-					"deadweight": pulumi.String(pseudoRandomString(r, resourcePayloadBytes)),
+				err = ctx.RegisterResourceOutputs(&dummy, khulnasoft.Map{
+					"deadweight": khulnasoft.String(pseudoRandomString(r, resourcePayloadBytes)),
 				})
 				if err != nil {
 					return err

@@ -84,7 +84,7 @@ type PulumiQueryRequest struct {
 // and returns a PulumiQueryRequest struct that can be used to make a request
 // to the Pulumi API.
 //
-// See https://www.pulumi.com/docs/pulumi-cloud/insights/search/#query-syntax for reference
+// See https://www.khulnasoft.com/docs/khulnasoft-cloud/insights/search/#query-syntax for reference
 func ParseQueryParams(rawParams []string) *PulumiQueryRequest {
 	return &PulumiQueryRequest{Query: strings.Join(rawParams, " ")}
 }

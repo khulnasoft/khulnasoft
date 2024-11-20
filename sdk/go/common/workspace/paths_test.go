@@ -19,7 +19,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -117,7 +117,7 @@ func TestProjectStackPath(t *testing.T) {
 
 //nolint:paralleltest // Theses test use and change the current working directory
 func TestDetectProjectUnreadableParent(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi/issues/12481
+	// Regression test for https://github.com/khulnasoft/khulnasoft/issues/12481
 
 	tmpDir := mkTempDir(t)
 	cwd, err := os.Getwd()

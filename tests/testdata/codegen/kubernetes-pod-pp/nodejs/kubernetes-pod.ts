@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as kubernetes from "@pulumi/kubernetes";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as kubernetes from "@khulnasoft/kubernetes";
 
 const bar = new kubernetes.core.v1.Pod("bar", {
     apiVersion: "v1",

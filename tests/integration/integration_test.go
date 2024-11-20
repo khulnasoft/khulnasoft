@@ -32,14 +32,14 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/test"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/fsutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/python/toolchain"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/fsutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/python/toolchain"
 )
 
 // TestStackTagValidation verifies various error scenarios related to stack names and tags.
@@ -53,9 +53,9 @@ func TestStackTagValidation(t *testing.T) {
 		e.RunCommand("git", "init")
 
 		e.ImportDirectory("stack_project_name")
-		e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+		e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
-		stdout, stderr := e.RunCommandExpectError("pulumi", "stack", "init", "invalid name (spaces, parens, etc.)")
+		stdout, stderr := e.RunCommandExpectError("khulnasoft", "stack", "init", "invalid name (spaces, parens, etc.)")
 		assert.Equal(t, "", stdout)
 		assert.Contains(t, stderr,
 			"a stack name may only contain alphanumeric, hyphens, underscores, or periods")
@@ -89,11 +89,11 @@ func TestStackTagValidation(t *testing.T) {
 		err = integration.ReplaceInFile("description: ", "description: "+prefix, yamlPath)
 		assert.NoError(t, err)
 
-		stdout, stderr := e.RunCommandExpectError("pulumi", "stack", "init", stackName)
+		stdout, stderr := e.RunCommandExpectError("khulnasoft", "stack", "init", stackName)
 		assert.Equal(t, "", stdout)
 		assert.Contains(t, stderr, "error: could not create stack:")
 		assert.Contains(t, stderr, "validating stack properties:")
-		assert.Contains(t, stderr, "stack tag \"pulumi:description\" value is too long (max length 256 characters)")
+		assert.Contains(t, stderr, "stack tag \"khulnasoft:description\" value is too long (max length 256 characters)")
 	})
 }
 
@@ -108,7 +108,7 @@ func TestStackInitValidation(t *testing.T) {
 		e.RunCommand("git", "init")
 
 		e.ImportDirectory("stack_project_name")
-		e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+		e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
 		// Starting a yaml value with a quote string and then more data is invalid
 		invalidYaml := "\"this is invalid\" yaml because of trailing data after quote string"
@@ -118,7 +118,7 @@ func TestStackInitValidation(t *testing.T) {
 		err := integration.ReplaceInFile("description: ", "description: "+invalidYaml, yamlPath)
 		assert.NoError(t, err)
 
-		stdout, stderr := e.RunCommandExpectError("pulumi", "stack", "init", "valid-name")
+		stdout, stderr := e.RunCommandExpectError("khulnasoft", "stack", "init", "valid-name")
 		assert.Equal(t, "", stdout)
 		assert.Contains(t, stderr, "invalid YAML file")
 	})
@@ -138,8 +138,8 @@ func TestConfigPaths(t *testing.T) {
 		Runtime: workspace.NewProjectRuntimeInfo("nodejs", nil),
 	}).Save(path)
 	assert.NoError(t, err)
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", "testing")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "stack", "init", "testing")
 
 	namespaces := []string{"", "my:"}
 
@@ -446,7 +446,7 @@ func TestConfigPaths(t *testing.T) {
 		if path {
 			args = append(args, "--path")
 		}
-		stdout, stderr := e.RunCommand("pulumi", args...)
+		stdout, stderr := e.RunCommand("khulnasoft", args...)
 		assert.Equal(t, value+"\n", stdout)
 		assert.Equal(t, "", stderr)
 	}
@@ -465,7 +465,7 @@ func TestConfigPaths(t *testing.T) {
 				args = append(args, "--path")
 			}
 			args = append(args, key, test.Value)
-			stdout, stderr := e.RunCommand("pulumi", args...)
+			stdout, stderr := e.RunCommand("khulnasoft", args...)
 			assert.Equal(t, "", stdout)
 			assert.Equal(t, "", stderr)
 
@@ -507,13 +507,13 @@ func TestConfigPaths(t *testing.T) {
 	for _, ns := range namespaces {
 		for _, badKey := range badKeys {
 			key := fmt.Sprintf("%s%s", ns, badKey)
-			stdout, stderr := e.RunCommandExpectError("pulumi", "config", "set", "--path", key, "value")
+			stdout, stderr := e.RunCommandExpectError("khulnasoft", "config", "set", "--path", key, "value")
 			assert.Equal(t, "", stdout)
 			assert.NotEqual(t, "", stderr)
 		}
 	}
 
-	e.RunCommand("pulumi", "stack", "rm", "--yes")
+	e.RunCommand("khulnasoft", "stack", "rm", "--yes")
 }
 
 func testDestroyStackRef(e *ptesting.Environment, organization string) {
@@ -522,20 +522,20 @@ func testDestroyStackRef(e *ptesting.Environment, organization string) {
 	stackName, err := resource.NewUniqueHex("rm-test-", 8, -1)
 	contract.AssertNoErrorf(err, "resource.NewUniqueHex should not fail with no maximum length is set")
 
-	e.RunCommand("pulumi", "stack", "init", stackName)
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
 
-	e.RunCommand("yarn", "link", "@pulumi/pulumi")
+	e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 	e.RunCommand("yarn", "install")
 
-	e.RunCommand("pulumi", "up", "--skip-preview", "--yes")
+	e.RunCommand("khulnasoft", "up", "--skip-preview", "--yes")
 	e.CWD = os.TempDir()
 	stackRef := stackName
 	if organization != "" {
 		stackRef = organization + "/large_resource_js/" + stackName
 	}
 
-	e.RunCommand("pulumi", "destroy", "--skip-preview", "--yes", "-s", stackRef)
-	e.RunCommand("pulumi", "stack", "rm", "--yes", "-s", stackRef)
+	e.RunCommand("khulnasoft", "destroy", "--skip-preview", "--yes", "-s", stackRef)
+	e.RunCommand("khulnasoft", "stack", "rm", "--yes", "-s", stackRef)
 }
 
 //nolint:paralleltest // uses parallel programtest
@@ -543,7 +543,7 @@ func TestDestroyStackRef_LocalProject(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 	testDestroyStackRef(e, "organization")
 }
 
@@ -553,7 +553,7 @@ func TestDestroyStackRef_LocalNonProject_NewEnv(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 
 	t.Setenv("PULUMI_DIY_BACKEND_LEGACY_LAYOUT", "true")
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 	testDestroyStackRef(e, "")
 }
 
@@ -563,7 +563,7 @@ func TestDestroyStackRef_LocalNonProject_OldEnv(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 
 	t.Setenv("PULUMI_SELF_MANAGED_STATE_LEGACY_LAYOUT", "true")
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 	testDestroyStackRef(e, "")
 }
 
@@ -576,7 +576,7 @@ func TestDestroyStackRef_Cloud(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	output, _ := e.RunCommand("pulumi", "whoami")
+	output, _ := e.RunCommand("khulnasoft", "whoami")
 	organization := strings.TrimSpace(output)
 	testDestroyStackRef(e, organization)
 }
@@ -588,7 +588,7 @@ func TestJSONOutput(t *testing.T) {
 	// Test without env var for streaming preview (should print previewSummary).
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir:          filepath.Join("stack_outputs", "nodejs"),
-		Dependencies: []string{"@pulumi/pulumi"},
+		Dependencies: []string{"@khulnasoft/khulnasoft"},
 		Stdout:       stdout,
 		Verbose:      true,
 		JSONOutput:   true,
@@ -633,7 +633,7 @@ func TestProviderDownloadURL(t *testing.T) {
 				assert.Equalf(t, nil, resource.Inputs[urlKey], "Outputs")
 				assert.Equalf(t, nil, resource.Outputs[urlKey], "Outputs")
 			case providers.IsProviderType(resource.Type):
-				assert.Equalf(t, "get.pulumi.test/providers", getPluginDownloadURL(resource.Inputs), "Inputs")
+				assert.Equalf(t, "get.khulnasoft.test/providers", getPluginDownloadURL(resource.Inputs), "Inputs")
 				assert.Equalf(t, "", getPluginDownloadURL(resource.Outputs), "Outputs")
 				assert.Equalf(t, nil, resource.Inputs[urlKey], "Outputs")
 				assert.Equalf(t, nil, resource.Outputs[urlKey], "Outputs")
@@ -652,8 +652,8 @@ func TestProviderDownloadURL(t *testing.T) {
 		dependency string
 	}{
 		{"python", filepath.Join("..", "..", "sdk", "python", "env", "src")},
-		{"nodejs", "@pulumi/pulumi"},
-		{"go", "github.com/pulumi/pulumi/sdk/v3"},
+		{"nodejs", "@khulnasoft/khulnasoft"},
+		{"go", "github.com/khulnasoft/khulnasoft/sdk/v3"},
 	}
 
 	//nolint:paralleltest // uses parallel programtest
@@ -679,19 +679,19 @@ func TestExcludeProtected(t *testing.T) {
 
 	e.ImportDirectory("exclude_protected")
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
-	e.RunCommand("pulumi", "stack", "init", "dev")
+	e.RunCommand("khulnasoft", "stack", "init", "dev")
 
-	e.RunCommand("yarn", "link", "@pulumi/pulumi")
+	e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 	e.RunCommand("yarn", "install")
 
-	e.RunCommand("pulumi", "up", "--skip-preview", "--yes")
+	e.RunCommand("khulnasoft", "up", "--skip-preview", "--yes")
 
-	stdout, _ := e.RunCommand("pulumi", "destroy", "--skip-preview", "--yes", "--exclude-protected")
+	stdout, _ := e.RunCommand("khulnasoft", "destroy", "--skip-preview", "--yes", "--exclude-protected")
 	assert.Contains(t, stdout, "All unprotected resources were destroyed. There are still 7 protected resources")
 	// We run the command again, but this time there are not unprotected resources to destroy.
-	stdout, _ = e.RunCommand("pulumi", "destroy", "--skip-preview", "--yes", "--exclude-protected")
+	stdout, _ = e.RunCommand("khulnasoft", "destroy", "--skip-preview", "--yes", "--exclude-protected")
 	assert.Contains(t, stdout, "There were no unprotected resources to destroy. There are still 7")
 }
 
@@ -701,7 +701,7 @@ func TestInvalidPluginError(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	pulumiProject := `
+	khulnasoftProject := `
 name: invalid-plugin
 runtime: yaml
 description: A Pulumi program referencing an invalid plugin.
@@ -711,21 +711,21 @@ plugins:
       bin: ./does/not/exist/bin # key should be 'path'
 `
 
-	integration.CreatePulumiRepo(e, pulumiProject)
+	integration.CreatePulumiRepo(e, khulnasoftProject)
 	e.SetBackend(e.LocalURL())
 	{
-		_, stderr := e.RunCommandExpectError("pulumi", "stack", "init", "invalid-resources")
+		_, stderr := e.RunCommandExpectError("khulnasoft", "stack", "init", "invalid-resources")
 		assert.NotContains(t, stderr, "panic: ")
 		assert.Contains(t, stderr, "error: ")
 	}
 	{
-		_, stderr := e.RunCommandExpectError("pulumi", "pre")
+		_, stderr := e.RunCommandExpectError("khulnasoft", "pre")
 		assert.NotContains(t, stderr, "panic: ")
 		assert.Contains(t, stderr, "error: ")
 	}
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/12632.
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/12632.
 func TestPassphraseSetAllGet(t *testing.T) {
 	t.Parallel()
 
@@ -733,22 +733,22 @@ func TestPassphraseSetAllGet(t *testing.T) {
 	e.Passphrase = "test-passphrase"
 	defer e.DeleteIfNotFailed()
 
-	pulumiProject := `
+	khulnasoftProject := `
 name: passphrase-test
 runtime: yaml
 description: A Pulumi program testing passphrase config.
 `
 
-	integration.CreatePulumiRepo(e, pulumiProject)
+	integration.CreatePulumiRepo(e, khulnasoftProject)
 	e.SetBackend(e.LocalURL())
 	// Init a new stack, then set a secret config value, then try to get it.
-	e.RunCommand("pulumi", "stack", "init", "passphrase-test")
+	e.RunCommand("khulnasoft", "stack", "init", "passphrase-test")
 	// Clear the config file so that "config set-all" has to re-initialize the passphrase config.
 	err := os.Remove(filepath.Join(e.RootPath, "Pulumi.passphrase-test.yaml"))
 	require.NoError(t, err)
 	// Set a secret config value, then try to get it.
-	e.RunCommand("pulumi", "config", "set-all", "--secret", "foo=bar")
-	stdout, _ := e.RunCommand("pulumi", "config", "get", "foo")
+	e.RunCommand("khulnasoft", "config", "set-all", "--secret", "foo=bar")
+	stdout, _ := e.RunCommand("khulnasoft", "config", "get", "foo")
 	assert.Contains(t, stdout, "bar")
 }
 
@@ -760,26 +760,26 @@ func TestPassphraseSetGet(t *testing.T) {
 	e.Passphrase = "test-passphrase"
 	defer e.DeleteIfNotFailed()
 
-	pulumiProject := `
+	khulnasoftProject := `
 name: passphrase-test
 runtime: yaml
 description: A Pulumi program testing passphrase config.
 `
 
-	integration.CreatePulumiRepo(e, pulumiProject)
+	integration.CreatePulumiRepo(e, khulnasoftProject)
 	e.SetBackend(e.LocalURL())
 	// Init a new stack, then set a secret config value, then try to get it.
-	e.RunCommand("pulumi", "stack", "init", "passphrase-test")
+	e.RunCommand("khulnasoft", "stack", "init", "passphrase-test")
 	// Clear the config file so that "config set" has to re-initialize the passphrase config.
 	err := os.Remove(filepath.Join(e.RootPath, "Pulumi.passphrase-test.yaml"))
 	require.NoError(t, err)
 	// Set a secret config value, then try to get it.
-	e.RunCommand("pulumi", "config", "set", "--secret", "foo", "bar")
-	stdout, _ := e.RunCommand("pulumi", "config", "get", "foo")
+	e.RunCommand("khulnasoft", "config", "set", "--secret", "foo", "bar")
+	stdout, _ := e.RunCommand("khulnasoft", "config", "get", "foo")
 	assert.Contains(t, stdout, "bar")
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/12593.
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/12593.
 //
 // Verifies that a "provider" option passed to a remote component
 // is properly propagated to the component's children.
@@ -897,16 +897,16 @@ func testProjectRename(e *ptesting.Environment, organization string) {
 	stackName, err := resource.NewUniqueHex("rm-test-", 8, -1)
 	contract.AssertNoErrorf(err, "resource.NewUniqueHex should not fail with no maximum length is set")
 
-	e.RunCommand("pulumi", "stack", "init", stackName)
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
 
-	e.RunCommand("yarn", "link", "@pulumi/pulumi")
+	e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 	e.RunCommand("yarn", "install")
 
-	e.RunCommand("pulumi", "up", "--skip-preview", "--yes")
+	e.RunCommand("khulnasoft", "up", "--skip-preview", "--yes")
 	newProjectName := "new_large_resource_js"
 	stackRef := organization + "/" + newProjectName + "/" + stackName
 
-	e.RunCommand("pulumi", "stack", "rename", stackRef)
+	e.RunCommand("khulnasoft", "stack", "rename", stackRef)
 
 	// Rename the project name in the yaml file
 	projFilename := filepath.Join(e.CWD, "Pulumi.yaml")
@@ -916,8 +916,8 @@ func testProjectRename(e *ptesting.Environment, organization string) {
 	err = proj.Save(projFilename)
 	require.NoError(e, err)
 
-	e.RunCommand("pulumi", "up", "--skip-preview", "--yes", "--expect-no-changes", "-s", stackRef)
-	e.RunCommand("pulumi", "stack", "rm", "--force", "--yes", "-s", stackRef)
+	e.RunCommand("khulnasoft", "up", "--skip-preview", "--yes", "--expect-no-changes", "-s", stackRef)
+	e.RunCommand("khulnasoft", "stack", "rm", "--force", "--yes", "-s", stackRef)
 }
 
 //nolint:paralleltest // uses parallel programtest
@@ -925,7 +925,7 @@ func TestProjectRename_LocalProject(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 	testProjectRename(e, "organization")
 }
 
@@ -938,7 +938,7 @@ func TestProjectRename_Cloud(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	output, _ := e.RunCommand("pulumi", "whoami")
+	output, _ := e.RunCommand("khulnasoft", "whoami")
 	organization := strings.TrimSpace(output)
 	testProjectRename(e, organization)
 }
@@ -946,16 +946,16 @@ func TestProjectRename_Cloud(t *testing.T) {
 //nolint:paralleltest // uses parallel programtest
 func TestParentRename_issue13179(t *testing.T) {
 	// This test is a reproduction of the issue reported in
-	// https://github.com/pulumi/pulumi/issues/13179.
+	// https://github.com/khulnasoft/khulnasoft/issues/13179.
 	//
 	// It creates a stack with a resource that has a parent
-	// and then renames the parent resource with 'pulumi state rename'.
+	// and then renames the parent resource with 'khulnasoft state rename'.
 
 	var parentURN resource.URN
 	pt := integration.ProgramTestManualLifeCycle(t, &integration.ProgramTestOptions{
 		Dir: "state_rename_parent",
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		LocalProviders: []integration.LocalDependency{
 			{Package: "testprovider", Path: filepath.Join("..", "testprovider")},
@@ -1005,20 +1005,20 @@ func testStackRmConfig(e *ptesting.Environment, organization string) {
 	// Create a stack in the go project
 	e.CWD = goDir
 	e.ImportDirectory("large_resource/go")
-	e.RunCommand("pulumi", "stack", "init", stackName)
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
 	// Create a config value to ensure there's a Pulumi.<name>.yaml file.
-	e.RunCommand("pulumi", "config", "set", "key", "value")
+	e.RunCommand("khulnasoft", "config", "set", "key", "value")
 
 	// Now create the js project
 	e.CWD = jsDir
 	e.ImportDirectory("large_resource/nodejs")
-	e.RunCommand("pulumi", "stack", "init", stackName)
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
 	// Create a config value to ensure there's a Pulumi.<name>.yaml file.
-	e.RunCommand("pulumi", "config", "set", "key", "value")
+	e.RunCommand("khulnasoft", "config", "set", "key", "value")
 
 	// Now try and remove the go stack while still in the js directory
 	stackRef := organization + "/large_resource_go/" + stackName
-	e.RunCommand("pulumi", "stack", "rm", "--yes", "-s", stackRef)
+	e.RunCommand("khulnasoft", "stack", "rm", "--yes", "-s", stackRef)
 
 	// And check that Pulumi.<name>.yaml file is still there for the js project
 	_, err = os.Stat(filepath.Join(jsDir, "Pulumi."+stackName+".yaml"))
@@ -1030,7 +1030,7 @@ func TestStackRmConfig_LocalProject(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 	testStackRmConfig(e, "organization")
 }
 
@@ -1043,7 +1043,7 @@ func TestStackRmConfig_Cloud(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 
-	output, _ := e.RunCommand("pulumi", "whoami")
+	output, _ := e.RunCommand("khulnasoft", "whoami")
 	organization := strings.TrimSpace(output)
 	testStackRmConfig(e, organization)
 }
@@ -1055,21 +1055,21 @@ func TestAdvisoryPolicyPack(t *testing.T) {
 	e.ImportDirectory("single_resource")
 	e.ImportDirectory("policy")
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
 	stackName, err := resource.NewUniqueHex("advisory-policy-pack", 8, -1)
 	contract.AssertNoErrorf(err, "resource.NewUniqueHex should not fail with no maximum length is set")
 
-	e.RunCommand("pulumi", "stack", "init", stackName)
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
 
 	_, _, err = e.GetCommandResultsIn(filepath.Join(e.CWD, "advisory_policy_pack"), "npm", "install")
 	assert.NoError(t, err)
 
-	e.RunCommand("yarn", "link", "@pulumi/pulumi")
+	e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 	e.RunCommand("yarn", "install")
 
 	stdout, _, err := e.GetCommandResults(
-		"pulumi", "up", "--skip-preview", "--yes", "--policy-pack", "advisory_policy_pack")
+		"khulnasoft", "up", "--skip-preview", "--yes", "--policy-pack", "advisory_policy_pack")
 	assert.NoError(t, err)
 	assert.Contains(t, stdout, "Failing advisory policy pack for testing\n          foobar")
 }
@@ -1081,21 +1081,21 @@ func TestMandatoryPolicyPack(t *testing.T) {
 	e.ImportDirectory("single_resource")
 	e.ImportDirectory("policy")
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
 	stackName, err := resource.NewUniqueHex("mandatory-policy-pack", 8, -1)
 	contract.AssertNoErrorf(err, "resource.NewUniqueHex should not fail with no maximum length is set")
 
-	e.RunCommand("pulumi", "stack", "init", stackName)
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
 
 	_, _, err = e.GetCommandResultsIn(filepath.Join(e.CWD, "mandatory_policy_pack"), "npm", "install")
 	assert.NoError(t, err)
 
-	e.RunCommand("yarn", "link", "@pulumi/pulumi")
+	e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 	e.RunCommand("yarn", "install")
 
 	stdout, _, err := e.GetCommandResults(
-		"pulumi", "up", "--skip-preview", "--yes", "--policy-pack", "mandatory_policy_pack")
+		"khulnasoft", "up", "--skip-preview", "--yes", "--policy-pack", "mandatory_policy_pack")
 	assert.Error(t, err)
 	assert.Contains(t, stdout, "error: update failed")
 	assert.Contains(t, stdout, "❌ typescript@v0.0.1 (local: mandatory_policy_pack)")
@@ -1108,22 +1108,22 @@ func TestMultiplePolicyPacks(t *testing.T) {
 	e.ImportDirectory("single_resource")
 	e.ImportDirectory("policy")
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
 	stackName, err := resource.NewUniqueHex("multiple-policy-pack", 8, -1)
 	contract.AssertNoErrorf(err, "resource.NewUniqueHex should not fail with no maximum length is set")
 
-	e.RunCommand("pulumi", "stack", "init", stackName)
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
 
 	_, _, err = e.GetCommandResultsIn(filepath.Join(e.CWD, "advisory_policy_pack"), "npm", "install")
 	assert.NoError(t, err)
 	_, _, err = e.GetCommandResultsIn(filepath.Join(e.CWD, "mandatory_policy_pack"), "npm", "install")
 	assert.NoError(t, err)
 
-	e.RunCommand("yarn", "link", "@pulumi/pulumi")
+	e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 	e.RunCommand("yarn", "install")
 
-	stdout, _, err := e.GetCommandResults("pulumi", "up", "--skip-preview", "--yes",
+	stdout, _, err := e.GetCommandResults("khulnasoft", "up", "--skip-preview", "--yes",
 		"--policy-pack", "advisory_policy_pack",
 		"--policy-pack", "mandatory_policy_pack")
 	assert.Error(t, err)
@@ -1132,7 +1132,7 @@ func TestMultiplePolicyPacks(t *testing.T) {
 	assert.Contains(t, stdout, "❌ typescript@v0.0.1 (local: advisory_policy_pack; mandatory_policy_pack)")
 }
 
-// regresses https://github.com/pulumi/pulumi/issues/11092
+// regresses https://github.com/khulnasoft/khulnasoft/issues/11092
 //
 //nolint:paralleltest // uses parallel programtest
 func TestPolicyPluginExtraArguments(t *testing.T) {
@@ -1140,11 +1140,11 @@ func TestPolicyPluginExtraArguments(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 	e.ImportDirectory("single_resource")
 	e.ImportDirectory("policy")
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 	stackName, err := resource.NewUniqueHex("policy-plugin-extra-args", 8, -1)
 	contract.AssertNoErrorf(err, "resource.NewUniqueHex should not fail with no maximum length is set")
-	e.RunCommand("pulumi", "stack", "init", stackName)
-	e.RunCommand("yarn", "link", "@pulumi/pulumi")
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
+	e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 	e.RunCommand("yarn", "install")
 	assert.NoError(t, err)
 	// Create a venv for the policy package and install the current python SDK into it
@@ -1169,7 +1169,7 @@ func TestPolicyPluginExtraArguments(t *testing.T) {
 	require.NoError(t, cmd.Run())
 
 	// Run with extra arguments
-	_, _, err = e.GetCommandResults("pulumi", "--logflow", "preview", "--logtostderr",
+	_, _, err = e.GetCommandResults("khulnasoft", "--logflow", "preview", "--logtostderr",
 		"--policy-pack", "python_policy_pack", "--tracing", "file:/trace.log")
 	require.NoError(t, err)
 }
@@ -1179,8 +1179,8 @@ func TestPolicyPackNewGenerateOnly(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 	require.False(t, e.PathExists("venv"))
-	stdout, _ := e.RunCommand("pulumi", "policy", "new", "aws-python", "--force", "--generate-only")
-	require.Contains(t, stdout, "To install dependencies for the Policy Pack, run `pulumi install`")
+	stdout, _ := e.RunCommand("khulnasoft", "policy", "new", "aws-python", "--force", "--generate-only")
+	require.Contains(t, stdout, "To install dependencies for the Policy Pack, run `khulnasoft install`")
 	require.False(t, e.PathExists("venv"))
 }
 
@@ -1189,8 +1189,8 @@ func TestPolicyPackNew(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
 	require.False(t, e.PathExists("venv"))
-	stdout, _ := e.RunCommand("pulumi", "policy", "new", "aws-python", "--force")
-	require.NotContains(t, stdout, "To install dependencies for the Policy Pack, run `pulumi install`")
+	stdout, _ := e.RunCommand("khulnasoft", "policy", "new", "aws-python", "--force")
+	require.NotContains(t, stdout, "To install dependencies for the Policy Pack, run `khulnasoft install`")
 	require.Contains(t, stdout, "Finished creating virtual environment")
 	require.Contains(t, stdout, "Finished installing dependencies")
 	require.True(t, e.PathExists("venv"))
@@ -1202,7 +1202,7 @@ func TestPolicyPackInstallDependencies(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 	e.ImportDirectory("policy/python_policy_pack")
 	require.False(t, e.PathExists("venv"))
-	stdout, _ := e.RunCommand("pulumi", "install")
+	stdout, _ := e.RunCommand("khulnasoft", "install")
 	require.Contains(t, stdout, "Finished creating virtual environment")
 	require.Contains(t, stdout, "Finished installing dependencies")
 	require.True(t, e.PathExists("venv"))
@@ -1214,7 +1214,7 @@ func TestProjectInstallDependencies(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 	e.ImportDirectory("single_resource")
 	require.False(t, e.PathExists("node_modules"))
-	stdout, _ := e.RunCommand("pulumi", "install")
+	stdout, _ := e.RunCommand("khulnasoft", "install")
 	require.Contains(t, stdout, "Finished installing dependencies")
 	require.True(t, e.PathExists("node_modules"))
 }
@@ -1223,15 +1223,15 @@ func TestProjectInstallDependencies(t *testing.T) {
 func TestInstallDependenciesForPolicyPackWithParentProject(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
-	// create a directory structure with a pulumi project and a nested policy pack
+	// create a directory structure with a khulnasoft project and a nested policy pack
 	require.NoError(t, fsutil.CopyFile(e.RootPath, "nodejs/esm-ts", nil))
 	policyPackPath := filepath.Join(e.RootPath, "policy")
 	require.NoError(t, os.Mkdir(policyPackPath, 0o700))
 	require.NoError(t, fsutil.CopyFile(policyPackPath, "policy/mandatory_policy_pack", nil))
 
-	// chdir to the policy pack directory and run pulumi install
+	// chdir to the policy pack directory and run khulnasoft install
 	e.CWD = policyPackPath
-	stdout, _ := e.RunCommand("pulumi", "install")
+	stdout, _ := e.RunCommand("khulnasoft", "install")
 
 	e.CWD = e.RootPath
 	require.Contains(t, stdout, "Finished installing dependencies")
@@ -1249,9 +1249,9 @@ func TestInstallDependenciesProjectWithParentPolicyPack(t *testing.T) {
 	require.NoError(t, os.Mkdir(projectPath, 0o700))
 	require.NoError(t, fsutil.CopyFile(projectPath, "nodejs/esm-ts", nil))
 
-	// chdir to the project directory and run pulumi install
+	// chdir to the project directory and run khulnasoft install
 	e.CWD = projectPath
-	stdout, _ := e.RunCommand("pulumi", "install")
+	stdout, _ := e.RunCommand("khulnasoft", "install")
 
 	e.CWD = e.RootPath
 	require.Contains(t, stdout, "Finished installing dependencies")

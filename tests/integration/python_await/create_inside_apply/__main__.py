@@ -1,8 +1,8 @@
 import asyncio
 import binascii
 import os
-from pulumi import Output
-from pulumi.dynamic import Resource, ResourceProvider, CreateResult
+from khulnasoft import Output
+from khulnasoft.dynamic import Resource, ResourceProvider, CreateResult
 
 
 class RandomResourceProvider(ResourceProvider):

@@ -4,11 +4,11 @@
 package example
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"simple-plain-schema/example/internal"
 )
 
-func DoFoo(ctx *pulumi.Context, args *DoFooArgs, opts ...pulumi.InvokeOption) error {
+func DoFoo(ctx *khulnasoft.Context, args *DoFooArgs, opts ...khulnasoft.InvokeOption) error {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv struct{}
 	err := ctx.Invoke("example::doFoo", args, &rv, opts...)
@@ -16,5 +16,5 @@ func DoFoo(ctx *pulumi.Context, args *DoFooArgs, opts ...pulumi.InvokeOption) er
 }
 
 type DoFooArgs struct {
-	Foo Foo `pulumi:"foo"`
+	Foo Foo `khulnasoft:"foo"`
 }

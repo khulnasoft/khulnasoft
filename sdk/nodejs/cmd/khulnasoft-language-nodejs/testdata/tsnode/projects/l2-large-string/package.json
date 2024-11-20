@@ -1,0 +1,11 @@
+{
+	"name": "l2-large-string",
+	"devDependencies": {
+		"@types/node": "^14"
+	},
+	"dependencies": {
+		"typescript": "^4.0.0",
+		"@khulnasoft/khulnasoft": "ROOT/artifacts/khulnasoft-khulnasoft-CORE.VERSION.tgz",
+		"@khulnasoft/large": "ROOT/artifacts/khulnasoft-large-4.3.2.tgz"
+	}
+}

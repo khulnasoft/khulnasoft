@@ -7,8 +7,8 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/utilities"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/utilities"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type module struct {
@@ -19,7 +19,7 @@ func (m *module) Version() semver.Version {
 	return m.version
 }
 
-func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+func (m *module) Construct(ctx *khulnasoft.Context, name, typ, urn string) (r khulnasoft.Resource, err error) {
 	switch typ {
 	case "kubernetes:core/v1:ConfigMap":
 		r = &ConfigMap{}
@@ -29,7 +29,7 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
-	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err = ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return
 }
 
@@ -38,7 +38,7 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
-	pulumi.RegisterResourceModule(
+	khulnasoft.RegisterResourceModule(
 		"kubernetes",
 		"core/v1",
 		&module{version},

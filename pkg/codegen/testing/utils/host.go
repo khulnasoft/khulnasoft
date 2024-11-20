@@ -22,9 +22,9 @@ import (
 
 	"github.com/blang/semver"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 )
 
 type SchemaProvider struct {
@@ -63,7 +63,7 @@ func NewHostWithProviders(schemaDirectoryPath string, providers ...SchemaProvide
 		pluginLoaders = append(pluginLoaders, mockProvider(tokens.Package(v.name), v.version))
 	}
 
-	// For the pulumi/pulumi repository, this must be kept in sync with the makefile and/or committed
+	// For the khulnasoft/khulnasoft repository, this must be kept in sync with the makefile and/or committed
 	// schema files in the given schema directory. This is the minimal set of schemas that must be
 	// supplied.
 	return deploytest.NewPluginHost(nil, nil, nil,
@@ -75,7 +75,7 @@ func NewHostWithProviders(schemaDirectoryPath string, providers ...SchemaProvide
 // enables running tests offline. If this host is used to load a plugin, that is, to run a Pulumi
 // program, it will panic.
 func NewHost(schemaDirectoryPath string) plugin.Host {
-	// For the pulumi/pulumi repository, this must be kept in sync with the makefile and/or committed
+	// For the khulnasoft/khulnasoft repository, this must be kept in sync with the makefile and/or committed
 	// schema files in the given schema directory. This is the minimal set of schemas that must be
 	// supplied.
 	return NewHostWithProviders(schemaDirectoryPath,

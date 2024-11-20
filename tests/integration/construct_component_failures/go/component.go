@@ -7,15 +7,15 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type componentArgs struct {
-	Foo string `pulumi:"foo"`
+	Foo string `khulnasoft:"foo"`
 }
 
 type ComponentArgs struct {
-	Foo pulumi.StringInput
+	Foo khulnasoft.StringInput
 }
 
 func (ComponentArgs) ElementType() reflect.Type {
@@ -23,13 +23,13 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Foo pulumi.StringOutput `pulumi:"foo"`
+	Foo khulnasoft.StringOutput `khulnasoft:"foo"`
 }
 
 func NewComponent(
-	ctx *pulumi.Context, name string, args *ComponentArgs, opts ...pulumi.ResourceOption,
+	ctx *khulnasoft.Context, name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, args, &resource, opts...)

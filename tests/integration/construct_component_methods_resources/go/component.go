@@ -7,14 +7,14 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, nil, &resource, opts...)
 	if err != nil {
@@ -23,7 +23,7 @@ func NewComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOptio
 	return &resource, nil
 }
 
-func (c *Component) CreateRandom(ctx *pulumi.Context, args *ComponentCreateRandomArgs) (ComponentCreateRandomResultOutput, error) {
+func (c *Component) CreateRandom(ctx *khulnasoft.Context, args *ComponentCreateRandomArgs) (ComponentCreateRandomResultOutput, error) {
 	out, err := ctx.Call("testcomponent:index:Component/createRandom", args, ComponentCreateRandomResultOutput{}, c)
 	if err != nil {
 		return ComponentCreateRandomResultOutput{}, err
@@ -32,11 +32,11 @@ func (c *Component) CreateRandom(ctx *pulumi.Context, args *ComponentCreateRando
 }
 
 type componentCreateRandomArgs struct {
-	Length int `pulumi:"length"`
+	Length int `khulnasoft:"length"`
 }
 
 type ComponentCreateRandomArgs struct {
-	Length pulumi.IntInput
+	Length khulnasoft.IntInput
 }
 
 func (ComponentCreateRandomArgs) ElementType() reflect.Type {
@@ -44,19 +44,19 @@ func (ComponentCreateRandomArgs) ElementType() reflect.Type {
 }
 
 type ComponentCreateRandomResult struct {
-	Result string `pulumi:"result"`
+	Result string `khulnasoft:"result"`
 }
 
-type ComponentCreateRandomResultOutput struct{ *pulumi.OutputState }
+type ComponentCreateRandomResultOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentCreateRandomResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ComponentCreateRandomResult)(nil)).Elem()
 }
 
-func (o ComponentCreateRandomResultOutput) Result() pulumi.StringOutput {
-	return o.ApplyT(func(v ComponentCreateRandomResult) string { return v.Result }).(pulumi.StringOutput)
+func (o ComponentCreateRandomResultOutput) Result() khulnasoft.StringOutput {
+	return o.ApplyT(func(v ComponentCreateRandomResult) string { return v.Result }).(khulnasoft.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(ComponentCreateRandomResultOutput{})
+	khulnasoft.RegisterOutputType(ComponentCreateRandomResultOutput{})
 }

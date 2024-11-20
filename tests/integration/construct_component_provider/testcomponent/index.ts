@@ -1,26 +1,26 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
-import * as provider from "@pulumi/pulumi/provider";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as provider from "@khulnasoft/khulnasoft/provider";
 
 const version = "0.0.1";
 
-class Provider extends pulumi.ProviderResource {
-    public readonly message!: pulumi.Output<string>;
+class Provider extends khulnasoft.ProviderResource {
+    public readonly message!: khulnasoft.Output<string>;
 
-    constructor(name: string, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ResourceOptions) {
         super("testcomponent", name, { "message": undefined }, opts);
     }
 }
 
-class Component extends pulumi.ComponentResource {
-    public message!: pulumi.Output<string>;
+class Component extends khulnasoft.ComponentResource {
+    public message!: khulnasoft.Output<string>;
 
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("testcomponent:index:Component", name, {}, opts);
     }
 
-    protected async initialize(args: pulumi.Inputs) {
+    protected async initialize(args: khulnasoft.Inputs) {
         const provider = this.getProvider("testcomponent::");
         if (!(provider instanceof Provider)) {
             throw new Error("provider is not an instance of Provider");
@@ -37,10 +37,10 @@ class ProviderServer implements provider.Provider {
     public readonly version = version;
 
     constructor() {
-        pulumi.runtime.registerResourcePackage("testcomponent", {
+        khulnasoft.runtime.registerResourcePackage("testcomponent", {
             version,
-            constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
-                if (type !== "pulumi:providers:testcomponent") {
+            constructProvider: (name: string, type: string, urn: string): khulnasoft.ProviderResource => {
+                if (type !== "khulnasoft:providers:testcomponent") {
                     throw new Error(`unknown provider type ${type}`);
                 }
                 return new Provider(name, { urn });
@@ -48,8 +48,8 @@ class ProviderServer implements provider.Provider {
         });
     }
 
-    async construct(name: string, type: string, inputs: pulumi.Inputs,
-              options: pulumi.ComponentResourceOptions): Promise<provider.ConstructResult> {
+    async construct(name: string, type: string, inputs: khulnasoft.Inputs,
+              options: khulnasoft.ComponentResourceOptions): Promise<provider.ConstructResult> {
         if (type != "testcomponent:index:Component") {
             throw new Error(`unknown resource type ${type}`);
         }

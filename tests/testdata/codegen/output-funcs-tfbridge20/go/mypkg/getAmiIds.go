@@ -7,14 +7,14 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"output-funcs-tfbridge20/mypkg/internal"
 )
 
-// Taken from pulumi-AWS to regress an issue
+// Taken from khulnasoft-AWS to regress an issue
 //
 // Deprecated: aws.getAmiIds has been deprecated in favor of aws.ec2.getAmiIds
-func GetAmiIds(ctx *pulumi.Context, args *GetAmiIdsArgs, opts ...pulumi.InvokeOption) (*GetAmiIdsResult, error) {
+func GetAmiIds(ctx *khulnasoft.Context, args *GetAmiIdsArgs, opts ...khulnasoft.InvokeOption) (*GetAmiIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAmiIdsResult
 	err := ctx.Invoke("mypkg::getAmiIds", args, &rv, opts...)
@@ -28,37 +28,37 @@ func GetAmiIds(ctx *pulumi.Context, args *GetAmiIdsArgs, opts ...pulumi.InvokeOp
 type GetAmiIdsArgs struct {
 	// Limit search to users with *explicit* launch
 	// permission on  the image. Valid items are the numeric account ID or `self`.
-	ExecutableUsers []string `pulumi:"executableUsers"`
+	ExecutableUsers []string `khulnasoft:"executableUsers"`
 	// One or more name/value pairs to filter off of. There
 	// are several valid keys, for a full reference, check out
 	// [describe-images in the AWS CLI reference][1].
-	Filters []GetAmiIdsFilter `pulumi:"filters"`
+	Filters []GetAmiIdsFilter `khulnasoft:"filters"`
 	// A regex string to apply to the AMI list returned
 	// by AWS. This allows more advanced filtering not supported from the AWS API.
 	// This filtering is done locally on what AWS returns, and could have a performance
 	// impact if the result is large. It is recommended to combine this with other
 	// options to narrow down the list AWS returns.
-	NameRegex *string `pulumi:"nameRegex"`
+	NameRegex *string `khulnasoft:"nameRegex"`
 	// List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, `self` (the current account), or an AWS owner alias (e.g. `amazon`, `aws-marketplace`, `microsoft`).
-	Owners []string `pulumi:"owners"`
+	Owners []string `khulnasoft:"owners"`
 	// Used to sort AMIs by creation time.
-	SortAscending *bool `pulumi:"sortAscending"`
+	SortAscending *bool `khulnasoft:"sortAscending"`
 }
 
 // A collection of values returned by getAmiIds.
 type GetAmiIdsResult struct {
-	ExecutableUsers []string          `pulumi:"executableUsers"`
-	Filters         []GetAmiIdsFilter `pulumi:"filters"`
+	ExecutableUsers []string          `khulnasoft:"executableUsers"`
+	Filters         []GetAmiIdsFilter `khulnasoft:"filters"`
 	// The provider-assigned unique ID for this managed resource.
-	Id            string   `pulumi:"id"`
-	Ids           []string `pulumi:"ids"`
-	NameRegex     *string  `pulumi:"nameRegex"`
-	Owners        []string `pulumi:"owners"`
-	SortAscending *bool    `pulumi:"sortAscending"`
+	Id            string   `khulnasoft:"id"`
+	Ids           []string `khulnasoft:"ids"`
+	NameRegex     *string  `khulnasoft:"nameRegex"`
+	Owners        []string `khulnasoft:"owners"`
+	SortAscending *bool    `khulnasoft:"sortAscending"`
 }
 
-func GetAmiIdsOutput(ctx *pulumi.Context, args GetAmiIdsOutputArgs, opts ...pulumi.InvokeOption) GetAmiIdsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func GetAmiIdsOutput(ctx *khulnasoft.Context, args GetAmiIdsOutputArgs, opts ...khulnasoft.InvokeOption) GetAmiIdsResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (GetAmiIdsResultOutput, error) {
 			args := v.(GetAmiIdsArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -68,9 +68,9 @@ func GetAmiIdsOutput(ctx *pulumi.Context, args GetAmiIdsOutputArgs, opts ...pulu
 				return GetAmiIdsResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(GetAmiIdsResultOutput)
+			output := khulnasoft.ToOutput(rv).(GetAmiIdsResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(GetAmiIdsResultOutput), nil
+				return khulnasoft.ToSecret(output).(GetAmiIdsResultOutput), nil
 			}
 			return output, nil
 		}).(GetAmiIdsResultOutput)
@@ -80,21 +80,21 @@ func GetAmiIdsOutput(ctx *pulumi.Context, args GetAmiIdsOutputArgs, opts ...pulu
 type GetAmiIdsOutputArgs struct {
 	// Limit search to users with *explicit* launch
 	// permission on  the image. Valid items are the numeric account ID or `self`.
-	ExecutableUsers pulumi.StringArrayInput `pulumi:"executableUsers"`
+	ExecutableUsers khulnasoft.StringArrayInput `khulnasoft:"executableUsers"`
 	// One or more name/value pairs to filter off of. There
 	// are several valid keys, for a full reference, check out
 	// [describe-images in the AWS CLI reference][1].
-	Filters GetAmiIdsFilterArrayInput `pulumi:"filters"`
+	Filters GetAmiIdsFilterArrayInput `khulnasoft:"filters"`
 	// A regex string to apply to the AMI list returned
 	// by AWS. This allows more advanced filtering not supported from the AWS API.
 	// This filtering is done locally on what AWS returns, and could have a performance
 	// impact if the result is large. It is recommended to combine this with other
 	// options to narrow down the list AWS returns.
-	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
+	NameRegex khulnasoft.StringPtrInput `khulnasoft:"nameRegex"`
 	// List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, `self` (the current account), or an AWS owner alias (e.g. `amazon`, `aws-marketplace`, `microsoft`).
-	Owners pulumi.StringArrayInput `pulumi:"owners"`
+	Owners khulnasoft.StringArrayInput `khulnasoft:"owners"`
 	// Used to sort AMIs by creation time.
-	SortAscending pulumi.BoolPtrInput `pulumi:"sortAscending"`
+	SortAscending khulnasoft.BoolPtrInput `khulnasoft:"sortAscending"`
 }
 
 func (GetAmiIdsOutputArgs) ElementType() reflect.Type {
@@ -102,7 +102,7 @@ func (GetAmiIdsOutputArgs) ElementType() reflect.Type {
 }
 
 // A collection of values returned by getAmiIds.
-type GetAmiIdsResultOutput struct{ *pulumi.OutputState }
+type GetAmiIdsResultOutput struct{ *khulnasoft.OutputState }
 
 func (GetAmiIdsResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetAmiIdsResult)(nil)).Elem()
@@ -116,8 +116,8 @@ func (o GetAmiIdsResultOutput) ToGetAmiIdsResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o GetAmiIdsResultOutput) ExecutableUsers() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetAmiIdsResult) []string { return v.ExecutableUsers }).(pulumi.StringArrayOutput)
+func (o GetAmiIdsResultOutput) ExecutableUsers() khulnasoft.StringArrayOutput {
+	return o.ApplyT(func(v GetAmiIdsResult) []string { return v.ExecutableUsers }).(khulnasoft.StringArrayOutput)
 }
 
 func (o GetAmiIdsResultOutput) Filters() GetAmiIdsFilterArrayOutput {
@@ -125,26 +125,26 @@ func (o GetAmiIdsResultOutput) Filters() GetAmiIdsFilterArrayOutput {
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetAmiIdsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAmiIdsResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetAmiIdsResultOutput) Id() khulnasoft.StringOutput {
+	return o.ApplyT(func(v GetAmiIdsResult) string { return v.Id }).(khulnasoft.StringOutput)
 }
 
-func (o GetAmiIdsResultOutput) Ids() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetAmiIdsResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
+func (o GetAmiIdsResultOutput) Ids() khulnasoft.StringArrayOutput {
+	return o.ApplyT(func(v GetAmiIdsResult) []string { return v.Ids }).(khulnasoft.StringArrayOutput)
 }
 
-func (o GetAmiIdsResultOutput) NameRegex() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAmiIdsResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
+func (o GetAmiIdsResultOutput) NameRegex() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v GetAmiIdsResult) *string { return v.NameRegex }).(khulnasoft.StringPtrOutput)
 }
 
-func (o GetAmiIdsResultOutput) Owners() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetAmiIdsResult) []string { return v.Owners }).(pulumi.StringArrayOutput)
+func (o GetAmiIdsResultOutput) Owners() khulnasoft.StringArrayOutput {
+	return o.ApplyT(func(v GetAmiIdsResult) []string { return v.Owners }).(khulnasoft.StringArrayOutput)
 }
 
-func (o GetAmiIdsResultOutput) SortAscending() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v GetAmiIdsResult) *bool { return v.SortAscending }).(pulumi.BoolPtrOutput)
+func (o GetAmiIdsResultOutput) SortAscending() khulnasoft.BoolPtrOutput {
+	return o.ApplyT(func(v GetAmiIdsResult) *bool { return v.SortAscending }).(khulnasoft.BoolPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetAmiIdsResultOutput{})
+	khulnasoft.RegisterOutputType(GetAmiIdsResultOutput{})
 }

@@ -17,8 +17,8 @@ package deepcopy
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/internal"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/internal"
 )
 
 // Copy returns a deep copy of the provided value.

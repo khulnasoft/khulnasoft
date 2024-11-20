@@ -31,8 +31,8 @@ import (
 	"strconv"
 	"testing"
 
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/iotest"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/iotest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -240,7 +240,7 @@ func testInstall(t *testing.T, packageManager string, production bool) {
 	    "name": "test-package",
 	    "license": "MIT",
 	    "dependencies": {
-	        "@pulumi/pulumi": "latest"
+	        "@khulnasoft/khulnasoft": "latest"
 	    }
 	}`)
 	assert.NoError(t, os.WriteFile(packageJSONFilename, packageJSON, 0o600))
@@ -262,7 +262,7 @@ func testInstall(t *testing.T, packageManager string, production bool) {
 // The server will shut down when the test is complete.
 //
 // The server responds with fake information about a single package:
-// @pulumi/pulumi.
+// @khulnasoft/khulnasoft.
 //
 // See https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md for
 // details on the protocol.
@@ -274,7 +274,7 @@ func fakeNPMRegistry(t testing.TB) string {
 	tarball, tarballSHA1 := tarballOf(t,
 		// The bare minimum files needed by NPM.
 		"package/package.json", `{
-			"name": "@pulumi/pulumi",
+			"name": "@khulnasoft/khulnasoft",
 			"license": "MIT"
 		}`)
 
@@ -290,14 +290,14 @@ func fakeNPMRegistry(t testing.TB) string {
 		}
 
 		switch r.URL.Path {
-		case "/@pulumi/pulumi":
-			tarballURL := srv.URL + "/@pulumi/pulumi/-/pulumi-3.0.0.tgz"
+		case "/@khulnasoft/khulnasoft":
+			tarballURL := srv.URL + "/@khulnasoft/khulnasoft/-/khulnasoft-3.0.0.tgz"
 			fmt.Fprintf(w, `{
-				"name": "@pulumi/pulumi",
+				"name": "@khulnasoft/khulnasoft",
 				"dist-tags": {"latest": "3.0.0"},
 				"versions": {
 					"3.0.0": {
-						"name": "@pulumi/pulumi",
+						"name": "@khulnasoft/khulnasoft",
 						"version": "3.0.0",
 						"dist": {
 							"tarball": %q,
@@ -307,7 +307,7 @@ func fakeNPMRegistry(t testing.TB) string {
 				}
 			}`, tarballURL, tarballSHA1)
 
-		case "/@pulumi/pulumi/-/pulumi-3.0.0.tgz":
+		case "/@khulnasoft/khulnasoft/-/khulnasoft-3.0.0.tgz":
 			w.Header().Set("Content-Type", "application/octet-stream")
 			w.Header().Set("Content-Length", strconv.Itoa(len(tarball)))
 			_, err := w.Write(tarball)

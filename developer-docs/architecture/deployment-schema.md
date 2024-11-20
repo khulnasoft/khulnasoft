@@ -130,7 +130,7 @@ Version 2 of a resource operation state
 
 The state of the affected resource as of the start of this operation.
 
-[Resource V3](https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/resources.json#/$defs/resourceV3)
+[Resource V3](https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/resources.json#/$defs/resourceV3)
 
 ---
 
@@ -234,7 +234,7 @@ All resources that are part of the stack.
 
 `array`
 
-Items: [Resource V3](https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/resources.json#/$defs/resourceV3)
+Items: [Resource V3](https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/resources.json#/$defs/resourceV3)
 
 ---
 
@@ -292,7 +292,7 @@ The SHA256 hash of the archive's contents.
 
 `array`
 
-Items: [Pulumi Property Value](#pulumi-property-value)
+Items: [Pulumi Property Value](#khulnasoft-property-value)
 
 ### Asset property values
 
@@ -368,7 +368,7 @@ The literal contents of the archive.
 
 `object`
 
-Additional properties: [`https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/property-values.json#/oneOf/5/oneOf/1/properties/assets/additionalProperties`](#httpsgithubcompulumipulumiblobmastersdkgocommonapitypeproperty-valuesjsononeof5oneof1propertiesassetsadditionalproperties)
+Additional properties: [`https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/property-values.json#/oneOf/5/oneOf/1/properties/assets/additionalProperties`](#httpsgithubcomkhulnasoftkhulnasoftblobmastersdkgocommonapitypeproperty-valuesjsononeof5oneof1propertiesassetsadditionalproperties)
 
 ---
 
@@ -418,7 +418,7 @@ The path to a local file that contains the asset's contents.
 
 `object`
 
-Additional properties: [Pulumi Property Value](#pulumi-property-value)
+Additional properties: [Pulumi Property Value](#khulnasoft-property-value)
 
 ### Primitive property values
 
@@ -524,7 +524,7 @@ Format: `uri`
 
 Constant: `"04da6b54-80e4-46f7-96ec-b56ff0331ba9"`
 
-### `https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/property-values.json#/oneOf/5/oneOf/1/properties/assets/additionalProperties`
+### `https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/property-values.json#/oneOf/5/oneOf/1/properties/assets/additionalProperties`
 
 One of:
 
@@ -638,7 +638,7 @@ The input properties supplied to the provider.
 
 `object`
 
-Additional properties: [Pulumi Property Value](https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/property-values.json#)
+Additional properties: [Pulumi Property Value](https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/property-values.json#)
 
 ---
 
@@ -648,7 +648,7 @@ The output properties returned by the provider after provisioning.
 
 `object`
 
-Additional properties: [Pulumi Property Value](https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/property-values.json#)
+Additional properties: [Pulumi Property Value](https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/property-values.json#)
 
 ---
 
@@ -674,7 +674,7 @@ A map from each input property name to the set of resources that property depend
 
 `object`
 
-Additional properties: [`https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/resources.json#/$defs/resourceV3/properties/propertyDependencies/additionalProperties`](#httpsgithubcompulumipulumiblobmastersdkgocommonapityperesourcesjsondefsresourcev3propertiespropertydependenciesadditionalproperties)
+Additional properties: [`https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/resources.json#/$defs/resourceV3/properties/propertyDependencies/additionalProperties`](#httpsgithubcomkhulnasoftkhulnasoftblobmastersdkgocommonapityperesourcesjsondefsresourcev3propertiespropertydependenciesadditionalproperties)
 
 ---
 
@@ -716,7 +716,7 @@ The unique name for a resource in a Pulumi stack.
 
 `string`
 
-### `https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/resources.json#/$defs/resourceV3/properties/propertyDependencies/additionalProperties`
+### `https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/resources.json#/$defs/resourceV3/properties/propertyDependencies/additionalProperties`
 
 `array`
 

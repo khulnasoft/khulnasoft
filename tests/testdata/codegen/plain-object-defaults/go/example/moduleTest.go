@@ -7,18 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"plain-object-defaults/example/internal"
 	"plain-object-defaults/example/mod1"
 )
 
 type ModuleTest struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
 // NewModuleTest registers a new resource with the given unique name, arguments, and options.
-func NewModuleTest(ctx *pulumi.Context,
-	name string, args *ModuleTestArgs, opts ...pulumi.ResourceOption) (*ModuleTest, error) {
+func NewModuleTest(ctx *khulnasoft.Context,
+	name string, args *ModuleTestArgs, opts ...khulnasoft.ResourceOption) (*ModuleTest, error) {
 	if args == nil {
 		args = &ModuleTestArgs{}
 	}
@@ -40,8 +40,8 @@ func NewModuleTest(ctx *pulumi.Context,
 
 // GetModuleTest gets an existing ModuleTest resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetModuleTest(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ModuleTestState, opts ...pulumi.ResourceOption) (*ModuleTest, error) {
+func GetModuleTest(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ModuleTestState, opts ...khulnasoft.ResourceOption) (*ModuleTest, error) {
 	var resource ModuleTest
 	err := ctx.ReadResource("example:index:moduleTest", name, id, state, &resource, opts...)
 	if err != nil {
@@ -62,8 +62,8 @@ func (ModuleTestState) ElementType() reflect.Type {
 }
 
 type moduleTestArgs struct {
-	Mod1 *mod1.Typ `pulumi:"mod1"`
-	Val  *Typ      `pulumi:"val"`
+	Mod1 *mod1.Typ `khulnasoft:"mod1"`
+	Val  *Typ      `khulnasoft:"val"`
 }
 
 // The set of arguments for constructing a ModuleTest resource.
@@ -77,7 +77,7 @@ func (ModuleTestArgs) ElementType() reflect.Type {
 }
 
 type ModuleTestInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToModuleTestOutput() ModuleTestOutput
 	ToModuleTestOutputWithContext(ctx context.Context) ModuleTestOutput
@@ -92,10 +92,10 @@ func (i *ModuleTest) ToModuleTestOutput() ModuleTestOutput {
 }
 
 func (i *ModuleTest) ToModuleTestOutputWithContext(ctx context.Context) ModuleTestOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ModuleTestOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ModuleTestOutput)
 }
 
-type ModuleTestOutput struct{ *pulumi.OutputState }
+type ModuleTestOutput struct{ *khulnasoft.OutputState }
 
 func (ModuleTestOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ModuleTest)(nil)).Elem()
@@ -110,6 +110,6 @@ func (o ModuleTestOutput) ToModuleTestOutputWithContext(ctx context.Context) Mod
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ModuleTestInput)(nil)).Elem(), &ModuleTest{})
-	pulumi.RegisterOutputType(ModuleTestOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ModuleTestInput)(nil)).Elem(), &ModuleTest{})
+	khulnasoft.RegisterOutputType(ModuleTestOutput{})
 }

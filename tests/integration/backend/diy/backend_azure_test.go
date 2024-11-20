@@ -31,7 +31,7 @@ func TestAzureLoginSasToken(t *testing.T) {
 		err := os.Chdir("..")
 		require.NoError(t, err)
 	})
-	cloudURL := "azblob://pulumitesting?storage_account=pulumitesting"
+	cloudURL := "azblob://khulnasofttesting?storage_account=khulnasofttesting"
 
 	// Make sure we use the SAS token for login here
 	t.Setenv("AZURE_CLIENT_ID", "")
@@ -44,7 +44,7 @@ func TestAzureLoginSasToken(t *testing.T) {
 	}
 
 	t.Cleanup(func() {
-		err := exec.Command("pulumi", "logout").Run()
+		err := exec.Command("khulnasoft", "logout").Run()
 		assert.NoError(t, err)
 	})
 	loginAndCreateStack(t, cloudURL)
@@ -58,7 +58,7 @@ func TestAzureLoginAzLogin(t *testing.T) {
 		err := os.Chdir("..")
 		require.NoError(t, err)
 	})
-	cloudURL := "azblob://pulumitesting?storage_account=pulumitesting"
+	cloudURL := "azblob://khulnasofttesting?storage_account=khulnasofttesting"
 	_, clientIDSet := os.LookupEnv("AZURE_CLIENT_ID")
 	_, clientSecretSet := os.LookupEnv("AZURE_CLIENT_SECRET")
 	_, tenantIDSet := os.LookupEnv("AZURE_TENANT_ID")
@@ -79,7 +79,7 @@ func TestAzureLoginAzLogin(t *testing.T) {
 	t.Cleanup(func() {
 		err := exec.Command("az", "logout").Run()
 		assert.NoError(t, err)
-		err = exec.Command("pulumi", "logout").Run()
+		err = exec.Command("khulnasoft", "logout").Run()
 		assert.NoError(t, err)
 	})
 

@@ -7,14 +7,14 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"output-funcs/mypkg/internal"
 )
 
 // Another failing example. A list of SSIS object metadata.
 // API Version: 2018-06-01.
-func GetIntegrationRuntimeObjectMetadatum(ctx *pulumi.Context, args *GetIntegrationRuntimeObjectMetadatumArgs, opts ...pulumi.InvokeOption) (*GetIntegrationRuntimeObjectMetadatumResult, error) {
+func GetIntegrationRuntimeObjectMetadatum(ctx *khulnasoft.Context, args *GetIntegrationRuntimeObjectMetadatumArgs, opts ...khulnasoft.InvokeOption) (*GetIntegrationRuntimeObjectMetadatumResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetIntegrationRuntimeObjectMetadatumResult
 	err := ctx.Invoke("mypkg::getIntegrationRuntimeObjectMetadatum", args, &rv, opts...)
@@ -26,25 +26,25 @@ func GetIntegrationRuntimeObjectMetadatum(ctx *pulumi.Context, args *GetIntegrat
 
 type GetIntegrationRuntimeObjectMetadatumArgs struct {
 	// The factory name.
-	FactoryName string `pulumi:"factoryName"`
+	FactoryName string `khulnasoft:"factoryName"`
 	// The integration runtime name.
-	IntegrationRuntimeName string `pulumi:"integrationRuntimeName"`
+	IntegrationRuntimeName string `khulnasoft:"integrationRuntimeName"`
 	// Metadata path.
-	MetadataPath *string `pulumi:"metadataPath"`
+	MetadataPath *string `khulnasoft:"metadataPath"`
 	// The resource group name.
-	ResourceGroupName string `pulumi:"resourceGroupName"`
+	ResourceGroupName string `khulnasoft:"resourceGroupName"`
 }
 
 // A list of SSIS object metadata.
 type GetIntegrationRuntimeObjectMetadatumResult struct {
 	// The link to the next page of results, if any remaining results exist.
-	NextLink *string `pulumi:"nextLink"`
+	NextLink *string `khulnasoft:"nextLink"`
 	// List of SSIS object metadata.
-	Value []interface{} `pulumi:"value"`
+	Value []interface{} `khulnasoft:"value"`
 }
 
-func GetIntegrationRuntimeObjectMetadatumOutput(ctx *pulumi.Context, args GetIntegrationRuntimeObjectMetadatumOutputArgs, opts ...pulumi.InvokeOption) GetIntegrationRuntimeObjectMetadatumResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func GetIntegrationRuntimeObjectMetadatumOutput(ctx *khulnasoft.Context, args GetIntegrationRuntimeObjectMetadatumOutputArgs, opts ...khulnasoft.InvokeOption) GetIntegrationRuntimeObjectMetadatumResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (GetIntegrationRuntimeObjectMetadatumResultOutput, error) {
 			args := v.(GetIntegrationRuntimeObjectMetadatumArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -54,9 +54,9 @@ func GetIntegrationRuntimeObjectMetadatumOutput(ctx *pulumi.Context, args GetInt
 				return GetIntegrationRuntimeObjectMetadatumResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(GetIntegrationRuntimeObjectMetadatumResultOutput)
+			output := khulnasoft.ToOutput(rv).(GetIntegrationRuntimeObjectMetadatumResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(GetIntegrationRuntimeObjectMetadatumResultOutput), nil
+				return khulnasoft.ToSecret(output).(GetIntegrationRuntimeObjectMetadatumResultOutput), nil
 			}
 			return output, nil
 		}).(GetIntegrationRuntimeObjectMetadatumResultOutput)
@@ -64,13 +64,13 @@ func GetIntegrationRuntimeObjectMetadatumOutput(ctx *pulumi.Context, args GetInt
 
 type GetIntegrationRuntimeObjectMetadatumOutputArgs struct {
 	// The factory name.
-	FactoryName pulumi.StringInput `pulumi:"factoryName"`
+	FactoryName khulnasoft.StringInput `khulnasoft:"factoryName"`
 	// The integration runtime name.
-	IntegrationRuntimeName pulumi.StringInput `pulumi:"integrationRuntimeName"`
+	IntegrationRuntimeName khulnasoft.StringInput `khulnasoft:"integrationRuntimeName"`
 	// Metadata path.
-	MetadataPath pulumi.StringPtrInput `pulumi:"metadataPath"`
+	MetadataPath khulnasoft.StringPtrInput `khulnasoft:"metadataPath"`
 	// The resource group name.
-	ResourceGroupName pulumi.StringInput `pulumi:"resourceGroupName"`
+	ResourceGroupName khulnasoft.StringInput `khulnasoft:"resourceGroupName"`
 }
 
 func (GetIntegrationRuntimeObjectMetadatumOutputArgs) ElementType() reflect.Type {
@@ -78,7 +78,7 @@ func (GetIntegrationRuntimeObjectMetadatumOutputArgs) ElementType() reflect.Type
 }
 
 // A list of SSIS object metadata.
-type GetIntegrationRuntimeObjectMetadatumResultOutput struct{ *pulumi.OutputState }
+type GetIntegrationRuntimeObjectMetadatumResultOutput struct{ *khulnasoft.OutputState }
 
 func (GetIntegrationRuntimeObjectMetadatumResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetIntegrationRuntimeObjectMetadatumResult)(nil)).Elem()
@@ -92,22 +92,22 @@ func (o GetIntegrationRuntimeObjectMetadatumResultOutput) ToGetIntegrationRuntim
 	return o
 }
 
-func (o GetIntegrationRuntimeObjectMetadatumResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetIntegrationRuntimeObjectMetadatumResult] {
-	return pulumix.Output[GetIntegrationRuntimeObjectMetadatumResult]{
+func (o GetIntegrationRuntimeObjectMetadatumResultOutput) ToOutput(ctx context.Context) khulnasoftx.Output[GetIntegrationRuntimeObjectMetadatumResult] {
+	return khulnasoftx.Output[GetIntegrationRuntimeObjectMetadatumResult]{
 		OutputState: o.OutputState,
 	}
 }
 
 // The link to the next page of results, if any remaining results exist.
-func (o GetIntegrationRuntimeObjectMetadatumResultOutput) NextLink() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetIntegrationRuntimeObjectMetadatumResult) *string { return v.NextLink }).(pulumi.StringPtrOutput)
+func (o GetIntegrationRuntimeObjectMetadatumResultOutput) NextLink() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v GetIntegrationRuntimeObjectMetadatumResult) *string { return v.NextLink }).(khulnasoft.StringPtrOutput)
 }
 
 // List of SSIS object metadata.
-func (o GetIntegrationRuntimeObjectMetadatumResultOutput) Value() pulumi.ArrayOutput {
-	return o.ApplyT(func(v GetIntegrationRuntimeObjectMetadatumResult) []interface{} { return v.Value }).(pulumi.ArrayOutput)
+func (o GetIntegrationRuntimeObjectMetadatumResultOutput) Value() khulnasoft.ArrayOutput {
+	return o.ApplyT(func(v GetIntegrationRuntimeObjectMetadatumResult) []interface{} { return v.Value }).(khulnasoft.ArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetIntegrationRuntimeObjectMetadatumResultOutput{})
+	khulnasoft.RegisterOutputType(GetIntegrationRuntimeObjectMetadatumResultOutput{})
 }

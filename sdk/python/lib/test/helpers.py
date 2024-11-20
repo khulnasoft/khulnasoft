@@ -20,7 +20,7 @@ import pytest
 def supress_unobserved_task_logging():
     """Suppresses logs about faulted unobserved tasks. This is similar to
     Python Pulumi user programs. See rationale in
-    `sdk/python/cmd/pulumi-language-python-exec`.
+    `sdk/python/cmd/khulnasoft-language-python-exec`.
 
     This scope of this setting necessarily bleeds beyond this test; it
     has to do so because the undesired logs appear after the entire

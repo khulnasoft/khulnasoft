@@ -20,12 +20,12 @@ import (
 
 	"github.com/opentracing/opentracing-go"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/fsutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/result"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/fsutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/result"
 )
 
 type QueryOptions struct {
@@ -53,7 +53,7 @@ func Query(ctx *Context, q QueryInfo, opts UpdateOptions) error {
 		if parentSpan != nil {
 			opts = append(opts, opentracing.ChildOf(parentSpan))
 		}
-		return opentracing.StartSpan("pulumi-query", opts...)
+		return opentracing.StartSpan("khulnasoft-query", opts...)
 	}("query", ctx.ParentSpan)
 	defer tracingSpan.Finish()
 
@@ -120,7 +120,7 @@ func newQuerySource(cancel context.Context, client deploy.BackendClient, q Query
 	}
 
 	// If that succeeded, create a new source that will perform interpretation of the compiled program.
-	// TODO[pulumi/pulumi#88]: we are passing `nil` as the arguments map; we need to allow a way to pass these.
+	// TODO[khulnasoft/khulnasoft#88]: we are passing `nil` as the arguments map; we need to allow a way to pass these.
 	return deploy.NewQuerySource(cancel, opts.plugctx, client, &deploy.EvalRunInfo{
 		ProjectRoot: q.GetRoot(),
 		Proj:        q.GetProject(),

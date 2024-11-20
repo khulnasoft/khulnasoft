@@ -19,7 +19,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 func isParameterReference(parameters codegen.Set, x model.Expression) bool {
@@ -37,7 +37,7 @@ func isParameterReference(parameters codegen.Set, x model.Expression) bool {
 // - __apply(<expr>, eval(x, x.attr))) -> <expr>.attr
 // - __apply(traversal, eval(x, x.attr)) -> traversal.attr
 //
-// Each of these patterns matches an apply that can be handled by `pulumi.Output`'s `__getitem__` or `__getattr__`
+// Each of these patterns matches an apply that can be handled by `khulnasoft.Output`'s `__getitem__` or `__getattr__`
 // method. The rewritten expressions will use those methods rather than calling `apply`.
 func (g *generator) parseProxyApply(parameters codegen.Set, args []model.Expression,
 	then model.Expression,
@@ -89,7 +89,7 @@ func (g *generator) parseProxyApply(parameters codegen.Set, args []model.Express
 // - <expr>.attr
 // - scope.traversal.attr
 //
-// These forms will use `pulumi.Output`'s `__getitem__` and `__getattr__` instead of calling `apply`.
+// These forms will use `khulnasoft.Output`'s `__getitem__` and `__getattr__` instead of calling `apply`.
 func (g *generator) lowerProxyApplies(expr model.Expression) (model.Expression, hcl.Diagnostics) {
 	rewriter := func(expr model.Expression) (model.Expression, hcl.Diagnostics) {
 		// Ignore the node if it is not a call to the apply intrinsic.

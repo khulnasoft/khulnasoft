@@ -15,12 +15,12 @@
 package resource
 
 // The contents of this file have been moved. The logic behind URN now lives in
-// "github.com/pulumi/pulumi/sdk/v3/go/common/resource/urn". This file exists to fulfill
+// "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/urn". This file exists to fulfill
 // backwards-compatibility requirements. No new declarations should be added here.
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/urn"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/urn"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 )
 
 // URN is a friendly, but unique, URN for a resource, most often auto-assigned by Pulumi.  These are
@@ -34,7 +34,7 @@ import (
 //
 // Each resource URN is of the form:
 //
-//	urn:pulumi:<Stack>::<Project>::<Qualified$Type$Name>::<Name>
+//	urn:khulnasoft:<Stack>::<Project>::<Qualified$Type$Name>::<Name>
 //
 // wherein each element is the following:
 //

@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
 const test = new aws.fsx.OpenZfsFileSystem("test", {
     storageCapacity: 64,

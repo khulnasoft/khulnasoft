@@ -2,11 +2,11 @@
   "emittedFiles": [
     "xyz/doc.go",
     "xyz/init.go",
-    "xyz/internal/pulumiUtilities.go",
-    "xyz/internal/pulumiVersion.go",
+    "xyz/internal/khulnasoftUtilities.go",
+    "xyz/internal/khulnasoftVersion.go",
     "xyz/provider.go",
-    "xyz/pulumi-plugin.json",
-    "xyz/pulumiTypes.go",
+    "xyz/khulnasoft-plugin.json",
+    "xyz/khulnasoftTypes.go",
     "xyz/staticPage.go"
   ]
 }

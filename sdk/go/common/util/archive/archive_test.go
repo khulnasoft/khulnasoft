@@ -34,18 +34,18 @@ func TestIgnoreSimple(t *testing.T) {
 	t.Parallel()
 
 	doArchiveTest(t, ".",
-		fileContents{name: ".gitignore", contents: []byte("node_modules/pulumi/"), shouldRetain: true},
+		fileContents{name: ".gitignore", contents: []byte("node_modules/khulnasoft/"), shouldRetain: true},
 		fileContents{name: "included.txt", shouldRetain: true},
 		fileContents{name: "node_modules/included.txt", shouldRetain: true},
-		fileContents{name: "node_modules/pulumi/excluded.txt", shouldRetain: false},
-		fileContents{name: "node_modules/pulumi/excluded/excluded.txt", shouldRetain: false})
+		fileContents{name: "node_modules/khulnasoft/excluded.txt", shouldRetain: false},
+		fileContents{name: "node_modules/khulnasoft/excluded/excluded.txt", shouldRetain: false})
 }
 
 func TestIgnoreNegate(t *testing.T) {
 	t.Parallel()
 
 	if runtime.GOOS == "windows" {
-		t.Skip("Skipped on Windows: TODO[pulumi/pulumi#8648] handle Windows paths in test logic")
+		t.Skip("Skipped on Windows: TODO[khulnasoft/khulnasoft#8648] handle Windows paths in test logic")
 	}
 
 	doArchiveTest(t, ".",
@@ -60,12 +60,12 @@ func TestNested(t *testing.T) {
 	t.Parallel()
 
 	doArchiveTest(t, ".",
-		fileContents{name: ".gitignore", contents: []byte("node_modules/pulumi/"), shouldRetain: true},
-		fileContents{name: "node_modules/.gitignore", contents: []byte("@pulumi/"), shouldRetain: true},
+		fileContents{name: ".gitignore", contents: []byte("node_modules/khulnasoft/"), shouldRetain: true},
+		fileContents{name: "node_modules/.gitignore", contents: []byte("@khulnasoft/"), shouldRetain: true},
 		fileContents{name: "included.txt", shouldRetain: true},
 		fileContents{name: "node_modules/included.txt", shouldRetain: true},
-		fileContents{name: "node_modules/pulumi/excluded.txt", shouldRetain: false},
-		fileContents{name: "node_modules/@pulumi/pulumi-cloud/excluded.txt", shouldRetain: false})
+		fileContents{name: "node_modules/khulnasoft/excluded.txt", shouldRetain: false},
+		fileContents{name: "node_modules/@khulnasoft/khulnasoft-cloud/excluded.txt", shouldRetain: false})
 }
 
 func TestTypicalPythonPolicyPackDir(t *testing.T) {
@@ -98,10 +98,10 @@ func TestNestedPath(t *testing.T) {
 
 	doArchiveTest(t, "pkg/",
 		fileContents{name: "excluded.txt", shouldRetain: false},
-		fileContents{name: "pkg/.gitignore", contents: []byte("node_modules/pulumi/"), shouldRetain: true},
+		fileContents{name: "pkg/.gitignore", contents: []byte("node_modules/khulnasoft/"), shouldRetain: true},
 		fileContents{name: "pkg/node_modules/included.txt", shouldRetain: true},
-		fileContents{name: "pkg/node_modules/pulumi/excluded.txt", shouldRetain: false},
-		fileContents{name: "pkg/node_modules/pulumi/excluded/excluded.txt", shouldRetain: false})
+		fileContents{name: "pkg/node_modules/khulnasoft/excluded.txt", shouldRetain: false},
+		fileContents{name: "pkg/node_modules/khulnasoft/excluded/excluded.txt", shouldRetain: false})
 }
 
 func TestIgnoreNestedGitignore(t *testing.T) {
@@ -110,11 +110,11 @@ func TestIgnoreNestedGitignore(t *testing.T) {
 	doArchiveTest(t, "pkg/",
 		fileContents{name: ".gitignore", contents: []byte("*.ts"), shouldRetain: false},
 		fileContents{name: "excluded.txt", shouldRetain: false},
-		fileContents{name: "pkg/.gitignore", contents: []byte("node_modules/pulumi/"), shouldRetain: true},
+		fileContents{name: "pkg/.gitignore", contents: []byte("node_modules/khulnasoft/"), shouldRetain: true},
 		fileContents{name: "pkg/node_modules/excluded.ts", shouldRetain: false},
 		fileContents{name: "pkg/node_modules/included.txt", shouldRetain: true},
-		fileContents{name: "pkg/node_modules/pulumi/excluded.txt", shouldRetain: false},
-		fileContents{name: "pkg/node_modules/pulumi/excluded/excluded.txt", shouldRetain: false})
+		fileContents{name: "pkg/node_modules/khulnasoft/excluded.txt", shouldRetain: false},
+		fileContents{name: "pkg/node_modules/khulnasoft/excluded/excluded.txt", shouldRetain: false})
 }
 
 func doArchiveTest(t *testing.T, path string, files ...fileContents) {

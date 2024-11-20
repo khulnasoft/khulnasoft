@@ -25,14 +25,14 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/events"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optremotepreview"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/events"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optremotepreview"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
 )
 
 const (
-	remoteTestRepo       = "https://github.com/pulumi/test-repo.git"
+	remoteTestRepo       = "https://github.com/khulnasoft/test-repo.git"
 	remoteTestRepoBranch = "refs/heads/master"
 )
 
@@ -199,7 +199,7 @@ func testRemoteStackGitSource(
 	ctx := context.Background()
 	pName := "go_remote_proj"
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	repo := GitRepo{
 		URL:         remoteTestRepo,
 		ProjectPath: "goproj",
@@ -215,15 +215,15 @@ func testRemoteStackGitSource(
 
 	if useExecutorImage {
 		executorImage = &ExecutorImage{
-			Image: "pulumi/pulumi",
+			Image: "khulnasoft/khulnasoft",
 		}
 	}
 
 	// initialize
 	s, err := fn(ctx, stackName, repo,
 		RemotePreRunCommands(
-			"pulumi config set bar abc --stack "+stackName,
-			"pulumi config set --secret buzz secret --stack "+stackName),
+			"khulnasoft config set bar abc --stack "+stackName,
+			"khulnasoft config set --secret buzz secret --stack "+stackName),
 		RemoteSkipInstallDependencies(true),
 		RemoteExecutorImage(executorImage),
 	)
@@ -233,12 +233,12 @@ func testRemoteStackGitSource(
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.stack.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx)
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
@@ -255,7 +255,7 @@ func testRemoteStackGitSource(
 	assert.Equal(t, "update", res.Summary.Kind)
 	assert.Equal(t, "succeeded", res.Summary.Result)
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 
 	var previewEvents []events.EngineEvent
 	prevCh := make(chan events.EngineEvent)
@@ -270,7 +270,7 @@ func testRemoteStackGitSource(
 	steps := countSteps(previewEvents)
 	assert.Equal(t, 1, steps)
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 
 	ref, err := s.Refresh(ctx)
 	if err != nil {
@@ -280,7 +280,7 @@ func testRemoteStackGitSource(
 	assert.Equal(t, "refresh", ref.Summary.Kind)
 	assert.Equal(t, "succeeded", ref.Summary.Result)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx)
 	if err != nil {

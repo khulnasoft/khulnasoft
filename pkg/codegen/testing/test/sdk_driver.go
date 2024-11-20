@@ -171,7 +171,7 @@ var PulumiPulumiSDKTests = []*SDKTest{
 	{
 		Directory:   "provider-config-schema",
 		Description: "Simple provider config schema",
-		// For golang skip check, see https://github.com/pulumi/pulumi/issues/11567
+		// For golang skip check, see https://github.com/khulnasoft/khulnasoft/issues/11567
 		SkipCompileCheck: codegen.NewStringSet(TestDotnet, TestGo),
 	},
 	{
@@ -204,7 +204,7 @@ var PulumiPulumiSDKTests = []*SDKTest{
 	},
 	{
 		Directory:        "output-funcs-tfbridge20",
-		Description:      "Similar to output-funcs, but with compatibility: tfbridge20, to simulate pulumi-aws use case",
+		Description:      "Similar to output-funcs, but with compatibility: tfbridge20, to simulate khulnasoft-aws use case",
 		SkipCompileCheck: codegen.NewStringSet(TestPython),
 	},
 	{
@@ -213,7 +213,7 @@ var PulumiPulumiSDKTests = []*SDKTest{
 	},
 	{
 		Directory:   "regress-node-8110",
-		Description: "Test the fix for pulumi/pulumi#8110 nodejs compilation error",
+		Description: "Test the fix for khulnasoft/khulnasoft#8110 nodejs compilation error",
 		Skip:        codegen.NewStringSet("go/test", "dotnet/test"),
 	},
 	{
@@ -235,7 +235,7 @@ var PulumiPulumiSDKTests = []*SDKTest{
 	},
 	{
 		Directory:        "regress-8403",
-		Description:      "Regress pulumi/pulumi#8403",
+		Description:      "Regress khulnasoft/khulnasoft#8403",
 		SkipCompileCheck: codegen.NewStringSet(TestPython),
 	},
 	{
@@ -250,7 +250,7 @@ var PulumiPulumiSDKTests = []*SDKTest{
 	},
 	{
 		Directory:   "array-of-enum-map",
-		Description: "A schema with an array of maps where the values are enums. Issue pulumi/pulumi#14734",
+		Description: "A schema with an array of maps where the values are enums. Issue khulnasoft/khulnasoft#14734",
 		Skip:        allLanguages.Except("go/any"),
 	},
 	{
@@ -260,29 +260,29 @@ var PulumiPulumiSDKTests = []*SDKTest{
 	},
 	{
 		Directory:   "regress-go-8664",
-		Description: "Regress pulumi/pulumi#8664 affecting Go",
+		Description: "Regress khulnasoft/khulnasoft#8664 affecting Go",
 		Skip:        allLanguages.Except("go/any"),
 	},
 	{
 		Directory:   "regress-go-10527",
-		Description: "Regress pulumi/pulumi#10527 affecting Go",
+		Description: "Regress khulnasoft/khulnasoft#10527 affecting Go",
 		Skip:        allLanguages.Except("go/any"),
 	},
 	{
 		Directory:   "regress-go-12971",
-		Description: "Regress pulumi/pulumi#12971 affecting Go",
+		Description: "Regress khulnasoft/khulnasoft#12971 affecting Go",
 		Skip:        allLanguages.Except("go/any"),
 	},
 	{
 		Directory:   "regress-go-15478",
-		Description: "Regress pulumi/pulumi#15478 affecting Go ensuring SDK-gen doesn't panic",
+		Description: "Regress khulnasoft/khulnasoft#15478 affecting Go ensuring SDK-gen doesn't panic",
 		Skip:        allLanguages.Except("go/any"),
 		// skipping the compile step because the generated code emits nested types that are not supported by the Go SDK
 		SkipCompileCheck: codegen.NewStringSet(TestGo),
 	},
 	{
 		Directory:   "regress-py-12546",
-		Description: "Regress pulumi/pulumi#12546 affecting Python",
+		Description: "Regress khulnasoft/khulnasoft#12546 affecting Python",
 		Skip:        allLanguages.Except("python/any"),
 	},
 	{
@@ -365,7 +365,7 @@ var PulumiPulumiSDKTests = []*SDKTest{
 	},
 	{
 		Directory:   "regress-py-tfbridge-611",
-		Description: "Regresses pulumi/pulumi-terraform-bridge#611",
+		Description: "Regresses khulnasoft/khulnasoft-terraform-bridge#611",
 		Skip:        allLanguages.Except("python/any").Union(codegen.NewStringSet("python/test", "python/py_compile")),
 	},
 	{
@@ -392,12 +392,12 @@ var PulumiPulumiSDKTests = []*SDKTest{
 	},
 	{
 		Directory:   "regress-py-14012",
-		Description: "Regresses https://github.com/pulumi/pulumi/issues/14012",
+		Description: "Regresses https://github.com/khulnasoft/khulnasoft/issues/14012",
 		Skip:        allLanguages.Except("python/any"),
 	},
 	{
 		Directory:   "regress-py-14539",
-		Description: "Regresses https://github.com/pulumi/pulumi/issues/14539",
+		Description: "Regresses https://github.com/khulnasoft/khulnasoft/issues/14539",
 		Skip:        allLanguages.Except("python/any"),
 	},
 	{
@@ -480,7 +480,7 @@ var PulumiPulumiSDKTests = []*SDKTest{
 	{
 		Directory: "regress-py-17219",
 		// The default behavior should be to generate classes and typed dicts.
-		Description: "Regress pulumi/pulumi#17219 affecting Python",
+		Description: "Regress khulnasoft/khulnasoft#17219 affecting Python",
 		Skip:        allLanguages.Except("python/any"),
 	},
 }

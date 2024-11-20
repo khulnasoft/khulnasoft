@@ -7,16 +7,16 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type componentArgs struct {
-	Message string              `pulumi:"message"`
-	Nested  componentNestedArgs `pulumi:"nested"`
+	Message string              `khulnasoft:"message"`
+	Nested  componentNestedArgs `khulnasoft:"nested"`
 }
 
 type ComponentArgs struct {
-	Message pulumi.StringInput
+	Message khulnasoft.StringInput
 	Nested  ComponentNestedInput
 }
 
@@ -25,15 +25,15 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type componentNestedArgs struct {
-	Value string `pulumi:"Value"`
+	Value string `khulnasoft:"Value"`
 }
 
 type ComponentNestedArgs struct {
-	Value pulumi.StringInput
+	Value khulnasoft.StringInput
 }
 
 type ComponentNestedInput interface {
-	pulumi.Input
+	khulnasoft.Input
 }
 
 func (ComponentNestedArgs) ElementType() reflect.Type {
@@ -41,11 +41,11 @@ func (ComponentNestedArgs) ElementType() reflect.Type {
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 func NewComponent(
-	ctx *pulumi.Context, name string, args *ComponentArgs, opts ...pulumi.ResourceOption,
+	ctx *khulnasoft.Context, name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, args, &resource, opts...)

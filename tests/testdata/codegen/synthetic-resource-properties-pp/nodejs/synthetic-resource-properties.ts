@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as synthetic from "@pulumi/synthetic";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as synthetic from "@khulnasoft/synthetic";
 
 const rt = new synthetic.resourceproperties.Root("rt", {});
 export const trivial = rt;

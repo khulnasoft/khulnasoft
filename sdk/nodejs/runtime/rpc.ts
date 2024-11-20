@@ -731,7 +731,7 @@ export function deserializeProperty(prop: any, keepUnknowns?: boolean): any {
                     const pkgName = typeParts[0];
                     const modName = typeParts.length > 1 ? typeParts[1] : "";
                     const typName = typeParts.length > 2 ? typeParts[2] : "";
-                    const isProvider = pkgName === "pulumi" && modName === "providers";
+                    const isProvider = pkgName === "khulnasoft" && modName === "providers";
 
                     if (isProvider) {
                         const resourcePackage = getResourcePackage(typName, version);

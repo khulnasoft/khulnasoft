@@ -18,7 +18,7 @@
 
 package env
 
-import "github.com/pulumi/pulumi/sdk/v3/go/common/util/env"
+import "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/env"
 
 // Re-export some types and functions from the env library.
 
@@ -39,14 +39,14 @@ func Global() env.Env {
 // and publicly consumed.
 var Experimental = env.Bool("EXPERIMENTAL", "Enable experimental options and commands.")
 
-var SkipUpdateCheck = env.Bool("SKIP_UPDATE_CHECK", "Disable checking for a new version of pulumi.")
+var SkipUpdateCheck = env.Bool("SKIP_UPDATE_CHECK", "Disable checking for a new version of khulnasoft.")
 
-var Dev = env.Bool("DEV", "Enable features for hacking on pulumi itself.")
+var Dev = env.Bool("DEV", "Enable features for hacking on khulnasoft itself.")
 
 var SkipCheckpoints = env.Bool("SKIP_CHECKPOINTS", "Skip saving state checkpoints and only save "+
 	"the final deployment. See #10668.")
 
-var DebugCommands = env.Bool("DEBUG_COMMANDS", "List commands helpful for debugging pulumi itself.")
+var DebugCommands = env.Bool("DEBUG_COMMANDS", "List commands helpful for debugging khulnasoft itself.")
 
 var EnableLegacyDiff = env.Bool("ENABLE_LEGACY_DIFF", "")
 

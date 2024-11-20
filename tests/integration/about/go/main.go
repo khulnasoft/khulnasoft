@@ -4,12 +4,12 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		ctx.Export("aboutName", pulumi.String("about-name"))
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		ctx.Export("aboutName", khulnasoft.String("about-name"))
 		return nil
 	})
 }

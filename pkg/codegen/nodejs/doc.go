@@ -34,7 +34,7 @@ var _ codegen.DocLanguageHelper = DocLanguageHelper{}
 // GetDocLinkForPulumiType returns the NodeJS API doc link for a Pulumi type.
 func (d DocLanguageHelper) GetDocLinkForPulumiType(pkg *schema.Package, typeName string) string {
 	typeName = strings.ReplaceAll(typeName, "?", "")
-	return "/docs/reference/pkg/nodejs/pulumi/pulumi/#" + typeName
+	return "/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#" + typeName
 }
 
 // GetDocLinkForResourceType returns the NodeJS API doc for a type belonging to a resource provider.
@@ -49,7 +49,7 @@ func (d DocLanguageHelper) GetDocLinkForResourceType(pkg *schema.Package, modNam
 		path = pkg.Name
 	}
 	typeName = strings.ReplaceAll(typeName, "?", "")
-	return fmt.Sprintf("/docs/reference/pkg/nodejs/pulumi/%s/#%s", path, typeName)
+	return fmt.Sprintf("/docs/reference/pkg/nodejs/khulnasoft/%s/#%s", path, typeName)
 }
 
 // GetDocLinkForResourceInputOrOutputType returns the doc link for an input or output type of a Resource.
@@ -58,9 +58,9 @@ func (d DocLanguageHelper) GetDocLinkForResourceInputOrOutputType(pkg *schema.Pa
 	parts := strings.Split(typeName, ".")
 	typeName = parts[len(parts)-1]
 	if input {
-		return fmt.Sprintf("/docs/reference/pkg/nodejs/pulumi/%s/types/input/#%s", pkg.Name, typeName)
+		return fmt.Sprintf("/docs/reference/pkg/nodejs/khulnasoft/%s/types/input/#%s", pkg.Name, typeName)
 	}
-	return fmt.Sprintf("/docs/reference/pkg/nodejs/pulumi/%s/types/output/#%s", pkg.Name, typeName)
+	return fmt.Sprintf("/docs/reference/pkg/nodejs/khulnasoft/%s/types/output/#%s", pkg.Name, typeName)
 }
 
 // GetDocLinkForFunctionInputOrOutputType returns the doc link for an input or output type of a Function.
@@ -151,9 +151,9 @@ func (d DocLanguageHelper) GetModuleDocLink(pkg *schema.Package, modName string)
 	var displayName string
 	var link string
 	if modName == "" {
-		displayName = "@pulumi/" + pkg.Name
+		displayName = "@khulnasoft/" + pkg.Name
 	} else {
-		displayName = fmt.Sprintf("@pulumi/%s/%s", pkg.Name, strings.ToLower(modName))
+		displayName = fmt.Sprintf("@khulnasoft/%s/%s", pkg.Name, strings.ToLower(modName))
 	}
 	link = d.GetDocLinkForResourceType(pkg, modName, "")
 	return displayName, link

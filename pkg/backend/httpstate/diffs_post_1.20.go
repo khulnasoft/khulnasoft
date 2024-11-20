@@ -25,8 +25,8 @@ import (
 	"github.com/hexops/gotextdiff"
 	"github.com/hexops/gotextdiff/span"
 	"github.com/pgavlin/diff/lcs"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 	segmentio_json "github.com/segmentio/encoding/json"
 
 	opentracing "github.com/opentracing/opentracing-go"

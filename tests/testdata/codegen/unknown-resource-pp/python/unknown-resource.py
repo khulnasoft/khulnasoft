@@ -1,7 +1,7 @@
-import pulumi
-import pulumi_unknown as unknown
+import khulnasoft
+import khulnasoft_unknown as unknown
 
-provider = pulumi.providers.Unknown("provider")
+provider = khulnasoft.providers.Unknown("provider")
 main = unknown.index.Main("main",
     first=hello,
     second={
@@ -10,5 +10,5 @@ main = unknown.index.Main("main",
 from_module = []
 for range in [{"value": i} for i in range(0, 10)]:
     from_module.append(unknown.eks.Example(f"fromModule-{range['value']}", associated_main=main.id))
-pulumi.export("mainId", main["id"])
-pulumi.export("values", from_module["values"]["first"])
+khulnasoft.export("mainId", main["id"])
+khulnasoft.export("values", from_module["values"]["first"])

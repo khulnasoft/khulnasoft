@@ -25,7 +25,7 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/executable"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/executable"
 )
 
 func GenerateDotnetProgramTest(
@@ -105,7 +105,7 @@ func GenerateDotnetYAMLBatchTest(t *testing.T, rootDir string, genProgram GenPro
 	)
 }
 
-func checkDotnet(t *testing.T, path string, dependencies codegen.StringSet, pulumiSDKPath string) {
+func checkDotnet(t *testing.T, path string, dependencies codegen.StringSet, khulnasoftSDKPath string) {
 	var err error
 	dir := filepath.Dir(path)
 
@@ -141,9 +141,9 @@ func checkDotnet(t *testing.T, path string, dependencies codegen.StringSet, pulu
 	} else {
 		// We would like this regardless of other dependencies, but dotnet
 		// packages do not play well with package references.
-		if pulumiSDKPath != "" {
+		if khulnasoftSDKPath != "" {
 			err = integration.RunCommand(t, "add sdk ref",
-				[]string{ex, "add", "reference", pulumiSDKPath},
+				[]string{ex, "add", "reference", khulnasoftSDKPath},
 				dir, &integration.ProgramTestOptions{})
 			require.NoError(t, err, "Failed to dotnet sdk package reference")
 		} else {
@@ -158,10 +158,10 @@ func checkDotnet(t *testing.T, path string, dependencies codegen.StringSet, pulu
 		err = os.RemoveAll(filepath.Join(dir, "obj"))
 		assert.NoError(t, err, "Failed to remove obj result")
 	}()
-	typeCheckDotnet(t, path, dependencies, pulumiSDKPath)
+	typeCheckDotnet(t, path, dependencies, khulnasoftSDKPath)
 }
 
-func typeCheckDotnet(t *testing.T, path string, dependencies codegen.StringSet, pulumiSDKPath string) {
+func typeCheckDotnet(t *testing.T, path string, dependencies codegen.StringSet, khulnasoftSDKPath string) {
 	var err error
 	dir := filepath.Dir(path)
 

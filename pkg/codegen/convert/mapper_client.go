@@ -20,11 +20,11 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil/rpcerror"
-	codegenrpc "github.com/pulumi/pulumi/sdk/v3/proto/go/codegen"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil/rpcerror"
+	codegenrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go/codegen"
 )
 
 // mapperClient reflects a mapper service, loaded dynamically from the engine process over gRPC.
@@ -63,13 +63,13 @@ func (m *mapperClient) Close() error {
 	return nil
 }
 
-func (m *mapperClient) GetMapping(ctx context.Context, provider string, pulumiProvider string) ([]byte, error) {
+func (m *mapperClient) GetMapping(ctx context.Context, provider string, khulnasoftProvider string) ([]byte, error) {
 	label := "GetMapping"
-	logging.V(7).Infof("%s executing: provider=%s, pulumi=%s", label, provider, pulumiProvider)
+	logging.V(7).Infof("%s executing: provider=%s, khulnasoft=%s", label, provider, khulnasoftProvider)
 
 	resp, err := m.clientRaw.GetMapping(ctx, &codegenrpc.GetMappingRequest{
 		Provider:       provider,
-		PulumiProvider: pulumiProvider,
+		PulumiProvider: khulnasoftProvider,
 	})
 	if err != nil {
 		rpcError := rpcerror.Convert(err)

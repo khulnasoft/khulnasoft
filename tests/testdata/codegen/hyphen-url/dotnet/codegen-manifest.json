@@ -6,6 +6,6 @@
     "RegistryGeoReplication.cs",
     "Utilities.cs",
     "logo.png",
-    "pulumi-plugin.json"
+    "khulnasoft-plugin.json"
   ]
 }

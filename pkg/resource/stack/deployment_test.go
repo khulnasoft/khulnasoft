@@ -29,13 +29,13 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/b64"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	rasset "github.com/pulumi/pulumi/sdk/v3/go/common/resource/asset"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	resource_testing "github.com/pulumi/pulumi/sdk/v3/go/common/resource/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	rasset "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/asset"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	resource_testing "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // TestDeploymentSerialization creates a basic snapshot of a given resource state.
@@ -437,7 +437,7 @@ func TestCustomSerialization(t *testing.T) {
 func TestDeserializeDeploymentSecretCache(t *testing.T) {
 	t.Parallel()
 
-	urn := "urn:pulumi:prod::acme::acme:erp:Backend$aws:ebs/volume:Volume::PlatformBackendDb"
+	urn := "urn:khulnasoft:prod::acme::acme:erp:Backend$aws:ebs/volume:Volume::PlatformBackendDb"
 	ctx := context.Background()
 	_, err := DeserializeDeploymentV3(ctx, apitype.DeploymentV3{
 		SecretsProviders: &apitype.SecretsProvidersV1{Type: b64.Type},
@@ -465,7 +465,7 @@ func TestDeserializeInvalidResourceErrors(t *testing.T) {
 	assert.Nil(t, deployment)
 	assert.EqualError(t, err, "resource missing required 'urn' field")
 
-	urn := "urn:pulumi:prod::acme::acme:erp:Backend$aws:ebs/volume:Volume::PlatformBackendDb"
+	urn := "urn:khulnasoft:prod::acme::acme:erp:Backend$aws:ebs/volume:Volume::PlatformBackendDb"
 
 	deployment, err = DeserializeDeploymentV3(ctx, apitype.DeploymentV3{
 		Resources: []apitype.ResourceV3{
@@ -494,7 +494,7 @@ func TestDeserializeInvalidResourceErrors(t *testing.T) {
 func TestDeserializeMissingSecretsManager(t *testing.T) {
 	t.Parallel()
 
-	urn := "urn:pulumi:urn:pulumi:test_stack::test_project::pkg:index:type::name"
+	urn := "urn:khulnasoft:urn:khulnasoft:test_stack::test_project::pkg:index:type::name"
 	ctx := context.Background()
 	deployment, err := DeserializeDeploymentV3(ctx, apitype.DeploymentV3{
 		Resources: []apitype.ResourceV3{

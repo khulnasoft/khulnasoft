@@ -19,7 +19,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 type promptToInputArrayHelper struct {
@@ -39,11 +39,11 @@ func (p *promptToInputArrayHelper) generateHelperMethod(w io.Writer) {
 	inputType := p.getInputItemType()
 	fnName := p.getFnName()
 	fmt.Fprintf(w, "func %s(arr []%s) %s {\n", fnName, promptType, p.destType)
-	fmt.Fprintf(w, "var pulumiArr %s\n", p.destType)
+	fmt.Fprintf(w, "var khulnasoftArr %s\n", p.destType)
 	fmt.Fprintf(w, "for _, v := range arr {\n")
-	fmt.Fprintf(w, "pulumiArr = append(pulumiArr, %s(v))\n", inputType)
+	fmt.Fprintf(w, "khulnasoftArr = append(khulnasoftArr, %s(v))\n", inputType)
 	fmt.Fprintf(w, "}\n")
-	fmt.Fprintf(w, "return pulumiArr\n")
+	fmt.Fprintf(w, "return khulnasoftArr\n")
 	fmt.Fprintf(w, "}\n")
 }
 
@@ -76,12 +76,12 @@ func (p *promptToInputArrayHelper) getInputItemType() string {
 func getHelperMethodIfNeeded(functionName string, indent string) (string, bool) {
 	switch functionName {
 	case "readFile":
-		return `func readFileOrPanic(path string) pulumi.StringPtrInput {
+		return `func readFileOrPanic(path string) khulnasoft.StringPtrInput {
 				data, err := os.ReadFile(path)
 				if err != nil {
 					panic(err.Error())
 				}
-				return pulumi.String(string(data))
+				return khulnasoft.String(string(data))
 			}`, true
 	case "filebase64":
 		return `func filebase64OrPanic(path string) string {
@@ -107,7 +107,7 @@ func getHelperMethodIfNeeded(functionName string, indent string) (string, bool) 
 			}`, true
 	case "notImplemented":
 		return fmt.Sprintf(`
-%sfunc notImplemented(message string) pulumi.AnyOutput {
+%sfunc notImplemented(message string) khulnasoft.AnyOutput {
 %s  panic(message)
 %s}`, indent, indent, indent), true
 	case "singleOrNone":

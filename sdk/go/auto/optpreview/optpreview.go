@@ -19,8 +19,8 @@ package optpreview
 import (
 	"io"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/debug"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/events"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/debug"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/events"
 )
 
 // Parallel is the number of resource operations to run in parallel at once during the update
@@ -136,7 +136,7 @@ func SuppressOutputs() Option {
 	})
 }
 
-// ImportFile save any creates seen during the preview into an import file to use with pulumi import
+// ImportFile save any creates seen during the preview into an import file to use with khulnasoft import
 func ImportFile(path string) Option {
 	return optionFunc(func(opts *Options) {
 		opts.ImportFile = path
@@ -205,7 +205,7 @@ type Options struct {
 	SuppressProgress bool
 	// Suppress display of stack outputs (in case they contain sensitive values)
 	SuppressOutputs bool
-	// Save any creates seen during the preview into an import file to use with pulumi import
+	// Save any creates seen during the preview into an import file to use with khulnasoft import
 	ImportFile string
 	// Run the process under a debugger, and pause until a debugger is attached
 	AttachDebugger bool

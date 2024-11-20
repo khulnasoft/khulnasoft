@@ -7,7 +7,7 @@ import { Provider, Resource } from "./resource";
 //   (CreateReplacement(a5), Update(c4=>c5), DeleteReplaced(a4)).
 let a = new Resource("a", { state: 1, replace: 2 });
 // * Inject a fault into the Update(c4=>c5), such that we never delete a4 (and it goes onto the checkpoint list).
-// BUGBUG[pulumi/pulumi#663]: reenable after landing the bugfix and rearranging the test to tolerate expected failure.
+// BUGBUG[khulnasoft/khulnasoft#663]: reenable after landing the bugfix and rearranging the test to tolerate expected failure.
 // Provider.instance.injectFault(new Error("intentional update failure during step 4"));
 let c = new Resource("c", { state: 1, replaceDBR: 1, resource: a });
 let e = new Resource("e", { state: 1 });

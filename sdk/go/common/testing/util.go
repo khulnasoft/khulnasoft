@@ -18,7 +18,7 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 func RandomStackName() string {

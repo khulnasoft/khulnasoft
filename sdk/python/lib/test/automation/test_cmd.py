@@ -21,8 +21,8 @@ from pathlib import Path
 import pytest
 from semver import VersionInfo
 
-from pulumi.automation import InvalidVersionError, PulumiCommand
-from pulumi.automation._cmd import _fixup_path, _parse_and_validate_pulumi_version
+from khulnasoft.automation import InvalidVersionError, PulumiCommand
+from khulnasoft.automation._cmd import _fixup_path, _parse_and_validate_khulnasoft_version
 
 
 def test_install_default_root():
@@ -30,28 +30,28 @@ def test_install_default_root():
 
     p = PulumiCommand.install(version=requested_version)
 
-    pulumiBin = (
-        Path.home() / ".pulumi" / "versions" / str(requested_version) / "bin" / "pulumi"
+    khulnasoftBin = (
+        Path.home() / ".khulnasoft" / "versions" / str(requested_version) / "bin" / "khulnasoft"
     )
     try:
-        pulumiBin.stat()
+        khulnasoftBin.stat()
     except Exception as exception:
-        pytest.fail(f"did not find pulumi binary: {exception}")
+        pytest.fail(f"did not find khulnasoft binary: {exception}")
     assert p.version == "3.101.0"
-    out = subprocess.check_output([pulumiBin, "version"])
+    out = subprocess.check_output([khulnasoftBin, "version"])
     assert out.decode("utf-8").strip() == "v" + str(requested_version)
 
 
 def test_install_twice():
     with tempfile.TemporaryDirectory(prefix="automation-test-") as root:
         requested_version = VersionInfo.parse("3.101.0")
-        pulumiBin = Path(root) / "bin" / "pulumi"
+        khulnasoftBin = Path(root) / "bin" / "khulnasoft"
 
         PulumiCommand.install(version=requested_version, root=root)
-        stat1 = pulumiBin.stat()
+        stat1 = khulnasoftBin.stat()
 
         PulumiCommand.install(version=requested_version, root=root)
-        stat2 = pulumiBin.stat()
+        stat2 = khulnasoftBin.stat()
 
         assert stat1.st_ino == stat2.st_ino
 
@@ -73,11 +73,11 @@ def test_incompatible_version():
 
 def test_fixup_env():
     env = {"PATH": "/usr/bin", "SOME_VAR": "some value"}
-    new_env = _fixup_path(env, "/tmp/pulumi-install/bin")
+    new_env = _fixup_path(env, "/tmp/khulnasoft-install/bin")
     if os.name == "nt":
-        assert new_env["PATH"] == "/tmp/pulumi-install/bin;/usr/bin"
+        assert new_env["PATH"] == "/tmp/khulnasoft-install/bin;/usr/bin"
     else:
-        assert new_env["PATH"] == "/tmp/pulumi-install/bin:/usr/bin"
+        assert new_env["PATH"] == "/tmp/khulnasoft-install/bin:/usr/bin"
 
 
 MAJOR = "Major version mismatch."
@@ -105,7 +105,7 @@ test_min_version = VersionInfo.parse("2.21.1")
 
 
 class TestParseAndValidatePulumiVersion(unittest.TestCase):
-    def test_validate_pulumi_version(self):
+    def test_validate_khulnasoft_version(self):
         for current_version, expected_error, opt_out in version_tests:
             with self.subTest():
                 if expected_error:
@@ -114,10 +114,10 @@ class TestParseAndValidatePulumiVersion(unittest.TestCase):
                         expected_error,
                         msg=f"min_version:{test_min_version}, current_version:{current_version}",
                     ):
-                        _parse_and_validate_pulumi_version(
+                        _parse_and_validate_khulnasoft_version(
                             test_min_version, current_version, opt_out
                         )
                 else:
-                    _parse_and_validate_pulumi_version(
+                    _parse_and_validate_khulnasoft_version(
                         test_min_version, current_version, opt_out
                     )

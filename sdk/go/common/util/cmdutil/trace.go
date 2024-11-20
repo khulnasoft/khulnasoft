@@ -26,9 +26,9 @@ import (
 	"time"
 
 	opentracing "github.com/opentracing/opentracing-go"
-	"github.com/pulumi/appdash"
-	appdash_opentracing "github.com/pulumi/appdash/opentracing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/appdash"
+	appdash_opentracing "github.com/khulnasoft/appdash/opentracing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 	jaeger "github.com/uber/jaeger-client-go"
 	"github.com/uber/jaeger-client-go/transport/zipkin"
 )
@@ -36,7 +36,7 @@ import (
 // TracingEndpoint is the Zipkin-compatible tracing endpoint where tracing data will be sent.
 var TracingEndpoint string
 
-// TracingToFile indicates if pulumi was called with a file:// scheme URL (--tracing=file:///...).
+// TracingToFile indicates if khulnasoft was called with a file:// scheme URL (--tracing=file:///...).
 //
 // Deprecated: Even in this case TracingEndpoint will now have the tcp:// scheme and will point to a
 // proxy server that will append traces to the user-specified file. Plugins should respect
@@ -220,8 +220,8 @@ func rootSpanTags() []opentracing.Tag {
 		},
 	}
 
-	// Promote all env vars `pulumi_tracing_tag_foo=bar` into tags `foo: bar`.
-	envPrefix := "pulumi_tracing_tag_"
+	// Promote all env vars `khulnasoft_tracing_tag_foo=bar` into tags `foo: bar`.
+	envPrefix := "khulnasoft_tracing_tag_"
 	for _, e := range os.Environ() {
 		pair := strings.SplitN(e, "=", 2)
 		envVarName := strings.ToLower(pair[0])

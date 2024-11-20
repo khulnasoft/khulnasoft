@@ -3,18 +3,18 @@ package main
 import (
 	"encoding/json"
 
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ecs"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/elasticloadbalancingv2"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/ec2"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/ecs"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/elasticloadbalancingv2"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/iam"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		// Read the default VPC and public subnets, which we will use.
 		vpc, err := ec2.LookupVpc(ctx, &ec2.LookupVpcArgs{
-			Default: pulumi.BoolRef(true),
+			Default: khulnasoft.BoolRef(true),
 		}, nil)
 		if err != nil {
 			return err
@@ -27,24 +27,24 @@ func main() {
 		}
 		// Create a security group that permits HTTP ingress and unrestricted egress.
 		webSecurityGroup, err := ec2.NewSecurityGroup(ctx, "webSecurityGroup", &ec2.SecurityGroupArgs{
-			VpcId: pulumi.String(vpc.Id),
+			VpcId: khulnasoft.String(vpc.Id),
 			Egress: ec2.SecurityGroupEgressArray{
 				&ec2.SecurityGroupEgressArgs{
-					Protocol: pulumi.String("-1"),
-					FromPort: pulumi.Int(0),
-					ToPort:   pulumi.Int(0),
-					CidrBlocks: pulumi.StringArray{
-						pulumi.String("0.0.0.0/0"),
+					Protocol: khulnasoft.String("-1"),
+					FromPort: khulnasoft.Int(0),
+					ToPort:   khulnasoft.Int(0),
+					CidrBlocks: khulnasoft.StringArray{
+						khulnasoft.String("0.0.0.0/0"),
 					},
 				},
 			},
 			Ingress: ec2.SecurityGroupIngressArray{
 				&ec2.SecurityGroupIngressArgs{
-					Protocol: pulumi.String("tcp"),
-					FromPort: pulumi.Int(80),
-					ToPort:   pulumi.Int(80),
-					CidrBlocks: pulumi.StringArray{
-						pulumi.String("0.0.0.0/0"),
+					Protocol: khulnasoft.String("tcp"),
+					FromPort: khulnasoft.Int(80),
+					ToPort:   khulnasoft.Int(80),
+					CidrBlocks: khulnasoft.StringArray{
+						khulnasoft.String("0.0.0.0/0"),
 					},
 				},
 			},
@@ -76,14 +76,14 @@ func main() {
 		json0 := string(tmpJSON0)
 		// Create an IAM role that can be used by our service's task.
 		taskExecRole, err := iam.NewRole(ctx, "taskExecRole", &iam.RoleArgs{
-			AssumeRolePolicy: pulumi.String(json0),
+			AssumeRolePolicy: khulnasoft.String(json0),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = iam.NewRolePolicyAttachment(ctx, "taskExecRolePolicyAttachment", &iam.RolePolicyAttachmentArgs{
 			Role:      taskExecRole.Name,
-			PolicyArn: pulumi.String("arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"),
+			PolicyArn: khulnasoft.String("arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"),
 		})
 		if err != nil {
 			return err
@@ -91,7 +91,7 @@ func main() {
 		// Create a load balancer to listen for HTTP traffic on port 80.
 		webLoadBalancer, err := elasticloadbalancingv2.NewLoadBalancer(ctx, "webLoadBalancer", &elasticloadbalancingv2.LoadBalancerArgs{
 			Subnets: toPulumiStringArray(subnets.Ids),
-			SecurityGroups: pulumi.StringArray{
+			SecurityGroups: khulnasoft.StringArray{
 				webSecurityGroup.ID(),
 			},
 		})
@@ -99,20 +99,20 @@ func main() {
 			return err
 		}
 		webTargetGroup, err := elasticloadbalancingv2.NewTargetGroup(ctx, "webTargetGroup", &elasticloadbalancingv2.TargetGroupArgs{
-			Port:       pulumi.Int(80),
-			Protocol:   pulumi.String("HTTP"),
-			TargetType: pulumi.String("ip"),
-			VpcId:      pulumi.String(vpc.Id),
+			Port:       khulnasoft.Int(80),
+			Protocol:   khulnasoft.String("HTTP"),
+			TargetType: khulnasoft.String("ip"),
+			VpcId:      khulnasoft.String(vpc.Id),
 		})
 		if err != nil {
 			return err
 		}
 		webListener, err := elasticloadbalancingv2.NewListener(ctx, "webListener", &elasticloadbalancingv2.ListenerArgs{
 			LoadBalancerArn: webLoadBalancer.Arn,
-			Port:            pulumi.Int(80),
+			Port:            khulnasoft.Int(80),
 			DefaultActions: elasticloadbalancingv2.ListenerDefaultActionArray{
 				&elasticloadbalancingv2.ListenerDefaultActionArgs{
-					Type:           pulumi.String("forward"),
+					Type:           khulnasoft.String("forward"),
 					TargetGroupArn: webTargetGroup.Arn,
 				},
 			},
@@ -139,39 +139,39 @@ func main() {
 		json1 := string(tmpJSON1)
 		// Spin up a load balanced service running NGINX
 		appTask, err := ecs.NewTaskDefinition(ctx, "appTask", &ecs.TaskDefinitionArgs{
-			Family:      pulumi.String("fargate-task-definition"),
-			Cpu:         pulumi.String("256"),
-			Memory:      pulumi.String("512"),
-			NetworkMode: pulumi.String("awsvpc"),
-			RequiresCompatibilities: pulumi.StringArray{
-				pulumi.String("FARGATE"),
+			Family:      khulnasoft.String("fargate-task-definition"),
+			Cpu:         khulnasoft.String("256"),
+			Memory:      khulnasoft.String("512"),
+			NetworkMode: khulnasoft.String("awsvpc"),
+			RequiresCompatibilities: khulnasoft.StringArray{
+				khulnasoft.String("FARGATE"),
 			},
 			ExecutionRoleArn:     taskExecRole.Arn,
-			ContainerDefinitions: pulumi.String(json1),
+			ContainerDefinitions: khulnasoft.String(json1),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = ecs.NewService(ctx, "appService", &ecs.ServiceArgs{
 			Cluster:        cluster.Arn,
-			DesiredCount:   pulumi.Int(5),
-			LaunchType:     pulumi.String("FARGATE"),
+			DesiredCount:   khulnasoft.Int(5),
+			LaunchType:     khulnasoft.String("FARGATE"),
 			TaskDefinition: appTask.Arn,
 			NetworkConfiguration: &ecs.ServiceNetworkConfigurationArgs{
-				AssignPublicIp: pulumi.Bool(true),
+				AssignPublicIp: khulnasoft.Bool(true),
 				Subnets:        toPulumiStringArray(subnets.Ids),
-				SecurityGroups: pulumi.StringArray{
+				SecurityGroups: khulnasoft.StringArray{
 					webSecurityGroup.ID(),
 				},
 			},
 			LoadBalancers: ecs.ServiceLoadBalancerArray{
 				&ecs.ServiceLoadBalancerArgs{
 					TargetGroupArn: webTargetGroup.Arn,
-					ContainerName:  pulumi.String("my-app"),
-					ContainerPort:  pulumi.Int(80),
+					ContainerName:  khulnasoft.String("my-app"),
+					ContainerPort:  khulnasoft.Int(80),
 				},
 			},
-		}, pulumi.DependsOn([]pulumi.Resource{
+		}, khulnasoft.DependsOn([]khulnasoft.Resource{
 			webListener,
 		}))
 		if err != nil {
@@ -181,10 +181,10 @@ func main() {
 		return nil
 	})
 }
-func toPulumiStringArray(arr []string) pulumi.StringArray {
-	var pulumiArr pulumi.StringArray
+func toPulumiStringArray(arr []string) khulnasoft.StringArray {
+	var khulnasoftArr khulnasoft.StringArray
 	for _, v := range arr {
-		pulumiArr = append(pulumiArr, pulumi.String(v))
+		khulnasoftArr = append(khulnasoftArr, khulnasoft.String(v))
 	}
-	return pulumiArr
+	return khulnasoftArr
 }

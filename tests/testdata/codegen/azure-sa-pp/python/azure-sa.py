@@ -1,7 +1,7 @@
-import pulumi
-import pulumi_azure as azure
+import khulnasoft
+import khulnasoft_azure as azure
 
-config = pulumi.Config()
+config = khulnasoft.Config()
 # The name of the storage account
 storage_account_name_param = config.require("storageAccountNameParam")
 # The name of the resource group
@@ -23,4 +23,4 @@ storage_account_resource = azure.storage.Account("storageAccountResource",
     resource_group_name=resource_group_name_param,
     account_tier=storage_account_tier_param,
     account_replication_type=storage_account_type_replication_param)
-pulumi.export("storageAccountNameOut", storage_account_resource.name)
+khulnasoft.export("storageAccountNameOut", storage_account_resource.name)

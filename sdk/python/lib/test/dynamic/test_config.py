@@ -1,4 +1,4 @@
-from pulumi.dynamic import Config
+from khulnasoft.dynamic import Config
 
 
 def test_config_get():

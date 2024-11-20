@@ -17,18 +17,18 @@ import json
 import unittest
 from typing import Mapping, Optional, Sequence, cast
 
-from pulumi.runtime import rpc, rpc_manager, settings
-from pulumi.runtime._serialization import (
+from khulnasoft.runtime import rpc, rpc_manager, settings
+from khulnasoft.runtime._serialization import (
     _deserialize,
     _serialize,
 )
 
-import pulumi
-from pulumi import Output
+import khulnasoft
+from khulnasoft import Output
 
 
-def pulumi_test(coro):
-    wrapped = pulumi.runtime.test(coro)
+def khulnasoft_test(coro):
+    wrapped = khulnasoft.runtime.test(coro)
 
     def wrapper(*args, **kwargs):
         settings.configure(settings.Settings("project", "stack"))
@@ -41,13 +41,13 @@ def pulumi_test(coro):
 
 
 class OutputSecretTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_secret(self):
         x = Output.secret("foo")
         is_secret = await x.is_secret()
         self.assertTrue(is_secret)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unsecret(self):
         x = Output.secret("foo")
         x_is_secret = await x.is_secret()
@@ -61,67 +61,67 @@ class OutputSecretTests(unittest.TestCase):
 
 
 class OutputFromInputTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_empty_dict(self):
         x = Output.from_input({})
         x_val = await x.future()
         self.assertEqual(x_val, {})
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_dict(self):
         x = Output.from_input({"hello": Output.from_input("world")})
         x_val = await x.future()
         self.assertEqual(x_val, {"hello": "world"})
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_dict_output_key(self):
         x = Output.from_input({Output.from_input("hello"): Output.from_input("world")})
         x_val = await x.future()
         self.assertEqual(x_val, {"hello": "world"})
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_dict_secret(self):
         x = Output.from_input({"hello": Output.secret("world")})
         x_val = await x.future()
         self.assertEqual(x_val, {"hello": "world"})
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_dict_dict(self):
         x = Output.from_input({"hello": {"foo": Output.from_input("bar")}})
         x_val = await x.future()
         self.assertEqual(x_val, {"hello": {"foo": "bar"}})
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_dict_list(self):
         x = Output.from_input({"hello": ["foo", Output.from_input("bar")]})
         x_val = await x.future()
         self.assertEqual(x_val, {"hello": ["foo", "bar"]})
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_empty_list(self):
         x = Output.from_input([])
         x_val = await x.future()
         self.assertEqual(x_val, [])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_list(self):
         x = Output.from_input(["hello", Output.from_input("world")])
         x_val = await x.future()
         self.assertEqual(x_val, ["hello", "world"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_list_list(self):
         x = Output.from_input(["hello", ["foo", Output.from_input("bar")]])
         x_val = await x.future()
         self.assertEqual(x_val, ["hello", ["foo", "bar"]])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_list_dict(self):
         x = Output.from_input(["hello", {"foo": Output.from_input("bar")}])
         x_val = await x.future()
         self.assertEqual(x_val, ["hello", {"foo": "bar"}])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_deeply_nested_objects(self):
         o1 = {
             "a": {
@@ -149,81 +149,81 @@ class OutputFromInputTests(unittest.TestCase):
         x_val = await x.future()
         self.assertEqual(x_val, o2)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_empty_tuple(self):
         x = Output.from_input(())
         x_val = await x.future()
         self.assertEqual(x_val, ())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_tuple(self):
         x = Output.from_input(("hello", Output.from_input("world")))
         x_val = await x.future()
         self.assertEqual(x_val, ("hello", "world"))
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_tuple_tuple(self):
         x = Output.from_input(("hello", ("foo", Output.from_input("bar"))))
         x_val = await x.future()
         self.assertEqual(x_val, ("hello", ("foo", "bar")))
 
-    @pulumi.input_type
+    @khulnasoft.input_type
     class FooArgs:
         def __init__(
             self,
             *,
-            foo: Optional[pulumi.Input[str]] = None,
-            bar: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            baz: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            foo: Optional[khulnasoft.Input[str]] = None,
+            bar: Optional[khulnasoft.Input[Sequence[khulnasoft.Input[str]]]] = None,
+            baz: Optional[khulnasoft.Input[Mapping[str, khulnasoft.Input[str]]]] = None,
             nested: Optional[
-                pulumi.Input[pulumi.InputType["OutputFromInputTests.NestedArgs"]]
+                khulnasoft.Input[khulnasoft.InputType["OutputFromInputTests.NestedArgs"]]
             ] = None,
         ):
             if foo is not None:
-                pulumi.set(self, "foo", foo)
+                khulnasoft.set(self, "foo", foo)
             if bar is not None:
-                pulumi.set(self, "bar", bar)
+                khulnasoft.set(self, "bar", bar)
             if baz is not None:
-                pulumi.set(self, "baz", baz)
+                khulnasoft.set(self, "baz", baz)
             if nested is not None:
-                pulumi.set(self, "nested", nested)
+                khulnasoft.set(self, "nested", nested)
 
         @property
-        @pulumi.getter
-        def foo(self) -> Optional[pulumi.Input[str]]:
-            return pulumi.get(self, "foo")
+        @khulnasoft.getter
+        def foo(self) -> Optional[khulnasoft.Input[str]]:
+            return khulnasoft.get(self, "foo")
 
         @property
-        @pulumi.getter
-        def bar(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-            return pulumi.get(self, "bar")
+        @khulnasoft.getter
+        def bar(self) -> Optional[khulnasoft.Input[Sequence[khulnasoft.Input[str]]]]:
+            return khulnasoft.get(self, "bar")
 
         @property
-        @pulumi.getter
-        def baz(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-            return pulumi.get(self, "baz")
+        @khulnasoft.getter
+        def baz(self) -> Optional[khulnasoft.Input[Mapping[str, khulnasoft.Input[str]]]]:
+            return khulnasoft.get(self, "baz")
 
         @property
-        @pulumi.getter
+        @khulnasoft.getter
         def nested(
             self,
         ) -> Optional[
-            pulumi.Input[pulumi.InputType["OutputFromInputTests.NestedArgs"]]
+            khulnasoft.Input[khulnasoft.InputType["OutputFromInputTests.NestedArgs"]]
         ]:
-            return pulumi.get(self, "nested")
+            return khulnasoft.get(self, "nested")
 
-    @pulumi.input_type
+    @khulnasoft.input_type
     class NestedArgs:
-        def __init__(self, *, hello: Optional[pulumi.Input[str]] = None):
+        def __init__(self, *, hello: Optional[khulnasoft.Input[str]] = None):
             if hello is not None:
-                pulumi.set(self, "hello", hello)
+                khulnasoft.set(self, "hello", hello)
 
         @property
-        @pulumi.getter
-        def hello(self) -> Optional[pulumi.Input[str]]:
-            return pulumi.get(self, "hello")
+        @khulnasoft.getter
+        def hello(self) -> Optional[khulnasoft.Input[str]]:
+            return khulnasoft.get(self, "hello")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_input_type(self):
         x = Output.from_input(
             OutputFromInputTests.FooArgs(foo=Output.from_input("bar"))
@@ -232,7 +232,7 @@ class OutputFromInputTests(unittest.TestCase):
         self.assertIsInstance(x_val, OutputFromInputTests.FooArgs)
         self.assertEqual(x_val.foo, "bar")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_input_type_list(self):
         x = Output.from_input(
             OutputFromInputTests.FooArgs(bar=["a", Output.from_input("b")])
@@ -241,7 +241,7 @@ class OutputFromInputTests(unittest.TestCase):
         self.assertIsInstance(x_val, OutputFromInputTests.FooArgs)
         self.assertEqual(x_val.bar, ["a", "b"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_input_type_dict(self):
         x = Output.from_input(
             OutputFromInputTests.FooArgs(baz={"hello": Output.from_input("world")})
@@ -250,7 +250,7 @@ class OutputFromInputTests(unittest.TestCase):
         self.assertIsInstance(x_val, OutputFromInputTests.FooArgs)
         self.assertEqual(x_val.baz, {"hello": "world"})
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_input_type_nested(self):
         nested = OutputFromInputTests.NestedArgs(hello=Output.from_input("world"))
         x = Output.from_input(OutputFromInputTests.FooArgs(nested=nested))
@@ -259,11 +259,11 @@ class OutputFromInputTests(unittest.TestCase):
         self.assertIsInstance(x_val.nested, OutputFromInputTests.NestedArgs)
         self.assertEqual(x_val.nested.hello, "world")
 
-    @pulumi.input_type
+    @khulnasoft.input_type
     class EmptyArgs:
         pass
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unwrap_empty_input_type(self):
         x = Output.from_input(OutputFromInputTests.EmptyArgs())
         x_val = cast(OutputFromInputTests.EmptyArgs, await x.future())
@@ -276,27 +276,27 @@ class Obj:
 
 
 class OutputHoistingTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_item(self):
         o = Output.from_input([1, 2, 3])
         x = o[0]
         x_val = await x.future()
         self.assertEqual(x_val, 1)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_attr(self):
         o = Output.from_input(Obj("hello"))
         x = o.x
         x_val = await x.future()
         self.assertEqual(x_val, "hello")
 
-    @pulumi_test
+    @khulnasoft_test
     def test_attr_doesnt_hoist_dunders(self):
         o = Output.from_input(Obj("hello"))
         x = hasattr(o, "__fields__")
         self.assertEqual(x, False)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_no_iter(self):
         x = Output.from_input([1, 2, 3])
         with self.assertRaises(TypeError):
@@ -305,7 +305,7 @@ class OutputHoistingTests(unittest.TestCase):
 
 
 class OutputStrTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_str(self):
         o = Output.from_input(1)
         self.assertEqual(
@@ -315,7 +315,7 @@ class OutputStrTests(unittest.TestCase):
 To get the value of an Output[T] as an Output[str] consider:
 1. o.apply(lambda v: f"prefix{v}suffix")
 
-See https://www.pulumi.com/docs/concepts/inputs-outputs for more details.
+See https://www.khulnasoft.com/docs/concepts/inputs-outputs for more details.
 This function may throw in a future version of Pulumi.""",
         )
 
@@ -334,7 +334,7 @@ class OutputApplyTests(unittest.TestCase):
 
         """
 
-        @pulumi_test
+        @khulnasoft_test
         async def test():
             bad = asyncio.Future()
             bad.set_exception(Exception("!"))
@@ -346,12 +346,12 @@ class OutputApplyTests(unittest.TestCase):
             self.assertEqual(await test_output.is_known(), False)
 
         with self.assertRaises(Exception):
-            # The overall test will fail with ! because pulumi_test awaits all outputs
+            # The overall test will fail with ! because khulnasoft_test awaits all outputs
             test()
 
 
 class OutputAllTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_args(self):
         o1 = Output.from_input(1)
         o2 = Output.from_input("hi")
@@ -359,7 +359,7 @@ class OutputAllTests(unittest.TestCase):
         x_val = await x.future()
         self.assertEqual(x_val, [1, "hi"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_kwargs(self):
         o1 = Output.from_input(1)
         o2 = Output.from_input("hi")
@@ -369,20 +369,20 @@ class OutputAllTests(unittest.TestCase):
 
 
 class OutputFormatTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_nothing(self):
         x = Output.format("blank format")
         x_val = await x.future()
         self.assertEqual(x_val, "blank format")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_simple(self):
         i = Output.from_input(1)
         x = Output.format("{0}", i)
         x_val = await x.future()
         self.assertEqual(x_val, "1")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_args_and_kwags(self):
         i = Output.from_input(1)
         s = Output.from_input("hi")
@@ -392,7 +392,7 @@ class OutputFormatTests(unittest.TestCase):
 
 
 class OutputJsonDumpsTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_basic(self):
         i = Output.from_input([0, 1])
         x = Output.json_dumps(i)
@@ -413,7 +413,7 @@ class OutputJsonDumpsTests(unittest.TestCase):
                 return (o.a, o.b)
             return json.JSONEncoder.default(self, o)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_nested(self):
         i = Output.from_input(
             OutputJsonDumpsTests.CustomClass(Output.from_input(0), Output.from_input(1))
@@ -423,7 +423,7 @@ class OutputJsonDumpsTests(unittest.TestCase):
         self.assertEqual(await x.is_secret(), False)
         self.assertEqual(await x.is_known(), True)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_nested_unknown(self):
         future = asyncio.Future()
         future.set_result(None)
@@ -438,7 +438,7 @@ class OutputJsonDumpsTests(unittest.TestCase):
         self.assertEqual(await x.is_secret(), False)
         self.assertEqual(await x.is_known(), False)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_nested_secret(self):
         future = asyncio.Future()
         future.set_result(0)
@@ -456,7 +456,7 @@ class OutputJsonDumpsTests(unittest.TestCase):
         self.assertEqual(await x.is_secret(), True)
         self.assertEqual(await x.is_known(), True)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_nested_dependencies(self):
         future = asyncio.Future()
         future.set_result(0)
@@ -474,7 +474,7 @@ class OutputJsonDumpsTests(unittest.TestCase):
         self.assertEqual(await x.is_known(), True)
         self.assertIn(resource, await x.resources())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_output_keys(self):
         i = {Output.from_input("hello"): Output.from_input(1)}
         x = Output.json_dumps(i)
@@ -484,7 +484,7 @@ class OutputJsonDumpsTests(unittest.TestCase):
 
 
 class OutputJsonLoadsTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_basic(self):
         i = Output.from_input("[0, 1]")
         x = Output.json_loads(i)
@@ -494,7 +494,7 @@ class OutputJsonLoadsTests(unittest.TestCase):
 
 
 class OutputSerializationTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_get_raises(self):
         i = Output.from_input("hello")
         with self.assertRaisesRegex(
@@ -503,7 +503,7 @@ class OutputSerializationTests(unittest.TestCase):
         ):
             i.get()
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_get_state_raises(self):
         i = Output.from_input("hello")
         with self.assertRaisesRegex(
@@ -511,40 +511,40 @@ class OutputSerializationTests(unittest.TestCase):
         ):
             i.__getstate__()
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_get_state_allow_secrets(self):
         i = Output.from_input("hello")
         result, contains_secrets = _serialize(True, lambda: i.__getstate__())
         self.assertEqual(result, {"value": "hello"})
         self.assertFalse(contains_secrets)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_get_state_disallow_secrets(self):
         i = Output.from_input("hello")
         result, contains_secrets = _serialize(False, lambda: i.__getstate__())
         self.assertEqual(result, {"value": "hello"})
         self.assertFalse(contains_secrets)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_get_state_allow_secrets_secret(self):
         i = Output.secret("shh")
         result, contains_secrets = _serialize(True, lambda: i.__getstate__())
         self.assertEqual(result, {"value": "shh"})
         self.assertTrue(contains_secrets)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_get_state_disallow_secrets_secret_raises(self):
         i = Output.secret("shh")
         with self.assertRaisesRegex(Exception, "Secret outputs cannot be captured"):
             _serialize(False, lambda: i.__getstate__())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_get_after_set_state(self):
         i = Output.from_input("hello")
         _deserialize(lambda: i.__setstate__({"value": "world"}))
         self.assertEqual(i.get(), "world")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_raises_after_set_state(self):
         i = Output.from_input("hello")
         _deserialize(lambda: i.__setstate__({"value": "world"}))

@@ -19,11 +19,11 @@ import (
 	"os"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -33,11 +33,11 @@ import (
 // HostClient is a client interface into the host's engine RPC interface.
 type HostClient struct {
 	conn   *grpc.ClientConn
-	client pulumirpc.EngineClient
+	client khulnasoftrpc.EngineClient
 }
 
 // Provider client is sensitive to GRPC info logging to stdout, so ensure they are dropped.
-// See https://github.com/pulumi/pulumi/issues/7156
+// See https://github.com/khulnasoft/khulnasoft/issues/7156
 //
 // grpclog.SetLoggerV2 sets global state, and thus must be called before any gRPC
 // connection is initiated. To avoid race conditions, we call it when the package loads.
@@ -57,7 +57,7 @@ func NewHostClient(addr string) (*HostClient, error) {
 	}
 	return &HostClient{
 		conn:   conn,
-		client: pulumirpc.NewEngineClient(conn),
+		client: khulnasoftrpc.NewEngineClient(conn),
 	}, nil
 }
 
@@ -74,20 +74,20 @@ func (host *HostClient) EngineConn() *grpc.ClientConn {
 func (host *HostClient) log(
 	context context.Context, sev diag.Severity, urn resource.URN, msg string, ephemeral bool,
 ) error {
-	var rpcsev pulumirpc.LogSeverity
+	var rpcsev khulnasoftrpc.LogSeverity
 	switch sev {
 	case diag.Debug:
-		rpcsev = pulumirpc.LogSeverity_DEBUG
+		rpcsev = khulnasoftrpc.LogSeverity_DEBUG
 	case diag.Info, diag.Infoerr:
-		rpcsev = pulumirpc.LogSeverity_INFO
+		rpcsev = khulnasoftrpc.LogSeverity_INFO
 	case diag.Warning:
-		rpcsev = pulumirpc.LogSeverity_WARNING
+		rpcsev = khulnasoftrpc.LogSeverity_WARNING
 	case diag.Error:
-		rpcsev = pulumirpc.LogSeverity_ERROR
+		rpcsev = khulnasoftrpc.LogSeverity_ERROR
 	default:
 		contract.Failf("Unrecognized log severity type: %v", sev)
 	}
-	_, err := host.client.Log(context, &pulumirpc.LogRequest{
+	_, err := host.client.Log(context, &khulnasoftrpc.LogRequest{
 		Severity:  rpcsev,
 		Message:   strings.ToValidUTF8(msg, "�"),
 		Urn:       string(urn),

@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as kubernetes from "@pulumi/kubernetes";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as kubernetes from "@khulnasoft/kubernetes";
 
 const argocd_serverDeployment = new kubernetes.apps.v1.Deployment("argocd_serverDeployment", {
     apiVersion: "apps/v1",

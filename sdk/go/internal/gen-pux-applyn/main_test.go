@@ -23,8 +23,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Verifies that the code in the pulumix package is up to date.
-// If the parameters in pulumix/gen.go ever change,
+// Verifies that the code in the khulnasoftx package is up to date.
+// If the parameters in khulnasoftx/gen.go ever change,
 // this test should be updated.
 func TestPulumixIsUpToDate(t *testing.T) {
 	t.Parallel()
@@ -32,9 +32,9 @@ func TestPulumixIsUpToDate(t *testing.T) {
 	outDir := t.TempDir()
 	require.NoError(t, run(&params{Dir: outDir}))
 
-	// Compare the generated code to the code in pulumix.
+	// Compare the generated code to the code in khulnasoftx.
 	expected := os.DirFS(outDir)
-	actual := os.DirFS("../../pulumix")
+	actual := os.DirFS("../../khulnasoftx")
 
 	err := fs.WalkDir(expected, ".", func(path string, d fs.DirEntry, err error) error {
 		if d.IsDir() || err != nil {
@@ -59,7 +59,7 @@ func TestPulumixIsUpToDate(t *testing.T) {
 
 	// Provide information on how to fix this failure.
 	if t.Failed() {
-		t.Errorf("Generated code in pulumix is out of date.")
-		t.Errorf("To fix this, run `go generate` in the pulumix directory.")
+		t.Errorf("Generated code in khulnasoftx is out of date.")
+		t.Errorf("To fix this, run `go generate` in the khulnasoftx directory.")
 	}
 }

@@ -15,41 +15,41 @@
 from typing import Optional
 import sys
 
-import pulumi
-import pulumi.provider as provider
+import khulnasoft
+import khulnasoft.provider as provider
 
 from random_ import Random
 
 
-class Component(pulumi.ComponentResource):
+class Component(khulnasoft.ComponentResource):
     def __init__(self,
                  resource_name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None) -> None:
+                 opts: Optional[khulnasoft.ResourceOptions] = None) -> None:
         super().__init__("testcomponent:index:Component", resource_name, {}, opts)
 
-    def create_random(self, length: pulumi.Input[int]) -> pulumi.Output[str]:
-        r = Random("myrandom", length=length, opts=pulumi.ResourceOptions(parent=self))
+    def create_random(self, length: khulnasoft.Input[int]) -> khulnasoft.Output[str]:
+        r = Random("myrandom", length=length, opts=khulnasoft.ResourceOptions(parent=self))
         return r.result
 
 class Provider(provider.Provider):
     VERSION = "0.0.1"
 
-    class Module(pulumi.runtime.ResourceModule):
+    class Module(khulnasoft.runtime.ResourceModule):
         def version(self):
             return Provider.VERSION
 
-        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+        def construct(self, name: str, typ: str, urn: str) -> khulnasoft.Resource:
             if typ == "testcomponent:index:Component":
-                return Component(name, pulumi.ResourceOptions(urn=urn))
+                return Component(name, khulnasoft.ResourceOptions(urn=urn))
             else:
                 raise Exception(f"unknown resource type {typ}")
 
     def __init__(self):
         super().__init__(Provider.VERSION)
-        pulumi.runtime.register_resource_module("testcomponent", "index", Provider.Module())
+        khulnasoft.runtime.register_resource_module("testcomponent", "index", Provider.Module())
 
-    def construct(self, name: str, resource_type: str, inputs: pulumi.Inputs,
-                  options: Optional[pulumi.ResourceOptions] = None) -> provider.ConstructResult:
+    def construct(self, name: str, resource_type: str, inputs: khulnasoft.Inputs,
+                  options: Optional[khulnasoft.ResourceOptions] = None) -> provider.ConstructResult:
 
         if resource_type != "testcomponent:index:Component":
             raise Exception(f"unknown resource type {resource_type}")
@@ -60,7 +60,7 @@ class Provider(provider.Provider):
             urn=component.urn,
             state=inputs)
 
-    def call(self, token: str, args: pulumi.Inputs) -> provider.CallResult:
+    def call(self, token: str, args: khulnasoft.Inputs) -> provider.CallResult:
         if token != "testcomponent:index:Component/createRandom":
             raise Exception(f'unknown method {token}')
 

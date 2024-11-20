@@ -24,7 +24,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
 )
 
-// TODO: add tests using other languages https://github.com/pulumi/pulumi/issues/17669
+// TODO: add tests using other languages https://github.com/khulnasoft/khulnasoft/issues/17669
 
 //nolint:paralleltest // Do not run in parallel to avoid resource contention
 func TestPerfEmptyUpdate(t *testing.T) {

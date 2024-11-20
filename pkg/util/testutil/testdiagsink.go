@@ -17,8 +17,8 @@ package testutil
 import (
 	"io"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
 )
 
 // TestDiagSink suppresses message output, but captures them, so that they can be compared to expected results.

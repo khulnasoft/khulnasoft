@@ -21,7 +21,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"pgregory.net/rapid"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/property"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/property"
 )
 
 func TestSameIsEqual(t *testing.T) {

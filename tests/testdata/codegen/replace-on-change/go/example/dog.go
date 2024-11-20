@@ -7,24 +7,24 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"replace-on-change/example/internal"
 )
 
 type Dog struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Bone pulumi.StringPtrOutput `pulumi:"bone"`
+	Bone khulnasoft.StringPtrOutput `khulnasoft:"bone"`
 }
 
 // NewDog registers a new resource with the given unique name, arguments, and options.
-func NewDog(ctx *pulumi.Context,
-	name string, args *DogArgs, opts ...pulumi.ResourceOption) (*Dog, error) {
+func NewDog(ctx *khulnasoft.Context,
+	name string, args *DogArgs, opts ...khulnasoft.ResourceOption) (*Dog, error) {
 	if args == nil {
 		args = &DogArgs{}
 	}
 
-	replaceOnChanges := pulumi.ReplaceOnChanges([]string{
+	replaceOnChanges := khulnasoft.ReplaceOnChanges([]string{
 		"bone",
 	})
 	opts = append(opts, replaceOnChanges)
@@ -39,8 +39,8 @@ func NewDog(ctx *pulumi.Context,
 
 // GetDog gets an existing Dog resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetDog(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *DogState, opts ...pulumi.ResourceOption) (*Dog, error) {
+func GetDog(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *DogState, opts ...khulnasoft.ResourceOption) (*Dog, error) {
 	var resource Dog
 	err := ctx.ReadResource("example::Dog", name, id, state, &resource, opts...)
 	if err != nil {
@@ -72,7 +72,7 @@ func (DogArgs) ElementType() reflect.Type {
 }
 
 type DogInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToDogOutput() DogOutput
 	ToDogOutputWithContext(ctx context.Context) DogOutput
@@ -87,7 +87,7 @@ func (i *Dog) ToDogOutput() DogOutput {
 }
 
 func (i *Dog) ToDogOutputWithContext(ctx context.Context) DogOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DogOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(DogOutput)
 }
 
 // DogArrayInput is an input type that accepts DogArray and DogArrayOutput values.
@@ -95,7 +95,7 @@ func (i *Dog) ToDogOutputWithContext(ctx context.Context) DogOutput {
 //
 //	DogArray{ DogArgs{...} }
 type DogArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToDogArrayOutput() DogArrayOutput
 	ToDogArrayOutputWithContext(context.Context) DogArrayOutput
@@ -112,7 +112,7 @@ func (i DogArray) ToDogArrayOutput() DogArrayOutput {
 }
 
 func (i DogArray) ToDogArrayOutputWithContext(ctx context.Context) DogArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DogArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(DogArrayOutput)
 }
 
 // DogMapInput is an input type that accepts DogMap and DogMapOutput values.
@@ -120,7 +120,7 @@ func (i DogArray) ToDogArrayOutputWithContext(ctx context.Context) DogArrayOutpu
 //
 //	DogMap{ "key": DogArgs{...} }
 type DogMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToDogMapOutput() DogMapOutput
 	ToDogMapOutputWithContext(context.Context) DogMapOutput
@@ -137,10 +137,10 @@ func (i DogMap) ToDogMapOutput() DogMapOutput {
 }
 
 func (i DogMap) ToDogMapOutputWithContext(ctx context.Context) DogMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DogMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(DogMapOutput)
 }
 
-type DogOutput struct{ *pulumi.OutputState }
+type DogOutput struct{ *khulnasoft.OutputState }
 
 func (DogOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Dog)(nil)).Elem()
@@ -154,11 +154,11 @@ func (o DogOutput) ToDogOutputWithContext(ctx context.Context) DogOutput {
 	return o
 }
 
-func (o DogOutput) Bone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Dog) pulumi.StringPtrOutput { return v.Bone }).(pulumi.StringPtrOutput)
+func (o DogOutput) Bone() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *Dog) khulnasoft.StringPtrOutput { return v.Bone }).(khulnasoft.StringPtrOutput)
 }
 
-type DogArrayOutput struct{ *pulumi.OutputState }
+type DogArrayOutput struct{ *khulnasoft.OutputState }
 
 func (DogArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*Dog)(nil)).Elem()
@@ -172,13 +172,13 @@ func (o DogArrayOutput) ToDogArrayOutputWithContext(ctx context.Context) DogArra
 	return o
 }
 
-func (o DogArrayOutput) Index(i pulumi.IntInput) DogOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Dog {
+func (o DogArrayOutput) Index(i khulnasoft.IntInput) DogOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *Dog {
 		return vs[0].([]*Dog)[vs[1].(int)]
 	}).(DogOutput)
 }
 
-type DogMapOutput struct{ *pulumi.OutputState }
+type DogMapOutput struct{ *khulnasoft.OutputState }
 
 func (DogMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*Dog)(nil)).Elem()
@@ -192,14 +192,14 @@ func (o DogMapOutput) ToDogMapOutputWithContext(ctx context.Context) DogMapOutpu
 	return o
 }
 
-func (o DogMapOutput) MapIndex(k pulumi.StringInput) DogOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Dog {
+func (o DogMapOutput) MapIndex(k khulnasoft.StringInput) DogOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *Dog {
 		return vs[0].(map[string]*Dog)[vs[1].(string)]
 	}).(DogOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(DogOutput{})
-	pulumi.RegisterOutputType(DogArrayOutput{})
-	pulumi.RegisterOutputType(DogMapOutput{})
+	khulnasoft.RegisterOutputType(DogOutput{})
+	khulnasoft.RegisterOutputType(DogArrayOutput{})
+	khulnasoft.RegisterOutputType(DogMapOutput{})
 }

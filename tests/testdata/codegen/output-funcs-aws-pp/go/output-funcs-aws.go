@@ -1,22 +1,22 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/ec2"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		aws_vpc, err := ec2.NewVpc(ctx, "aws_vpc", &ec2.VpcArgs{
-			CidrBlock:       pulumi.String("10.0.0.0/16"),
-			InstanceTenancy: pulumi.String("default"),
+			CidrBlock:       khulnasoft.String("10.0.0.0/16"),
+			InstanceTenancy: khulnasoft.String("default"),
 		})
 		if err != nil {
 			return err
 		}
 		privateS3VpcEndpoint, err := ec2.NewVpcEndpoint(ctx, "privateS3VpcEndpoint", &ec2.VpcEndpointArgs{
 			VpcId:       aws_vpc.ID(),
-			ServiceName: pulumi.String("com.amazonaws.us-west-2.s3"),
+			ServiceName: khulnasoft.String("com.amazonaws.us-west-2.s3"),
 		})
 		if err != nil {
 			return err
@@ -32,15 +32,15 @@ func main() {
 		}
 		_, err = ec2.NewNetworkAclRule(ctx, "privateS3NetworkAclRule", &ec2.NetworkAclRuleArgs{
 			NetworkAclId: bar.ID(),
-			RuleNumber:   pulumi.Int(200),
-			Egress:       pulumi.Bool(false),
-			Protocol:     pulumi.String("tcp"),
-			RuleAction:   pulumi.String("allow"),
+			RuleNumber:   khulnasoft.Int(200),
+			Egress:       khulnasoft.Bool(false),
+			Protocol:     khulnasoft.String("tcp"),
+			RuleAction:   khulnasoft.String("allow"),
 			CidrBlock: privateS3PrefixList.ApplyT(func(privateS3PrefixList ec2.GetPrefixListResult) (string, error) {
 				return privateS3PrefixList.CidrBlocks[0], nil
-			}).(pulumi.StringOutput),
-			FromPort: pulumi.Int(443),
-			ToPort:   pulumi.Int(443),
+			}).(khulnasoft.StringOutput),
+			FromPort: khulnasoft.Int(443),
+			ToPort:   khulnasoft.Int(443),
 		})
 		if err != nil {
 			return err
@@ -49,14 +49,14 @@ func main() {
 		// below) generate correctly when using output-versioned function
 		// invoke forms.
 		_ = ec2.GetAmiIdsOutput(ctx, ec2.GetAmiIdsOutputArgs{
-			Owners: pulumi.StringArray{
+			Owners: khulnasoft.StringArray{
 				bar.ID(),
 			},
 			Filters: ec2.GetAmiIdsFilterArray{
 				&ec2.GetAmiIdsFilterArgs{
 					Name: bar.ID(),
-					Values: pulumi.StringArray{
-						pulumi.String("pulumi*"),
+					Values: khulnasoft.StringArray{
+						khulnasoft.String("khulnasoft*"),
 					},
 				},
 			},

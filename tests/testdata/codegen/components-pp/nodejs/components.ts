@@ -1,4 +1,4 @@
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 import { AnotherComponent } from "./another-component";
 import { ExampleComponent } from "./exampleComponent";
 import { SimpleComponent } from "./simpleComponent";

@@ -1,19 +1,19 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/fsx"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/fsx"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := fsx.NewOpenZfsFileSystem(ctx, "test", &fsx.OpenZfsFileSystemArgs{
-			StorageCapacity: pulumi.Int(64),
-			SubnetIds: pulumi.String{
+			StorageCapacity: khulnasoft.Int(64),
+			SubnetIds: khulnasoft.String{
 				aws_subnet.Test1.Id,
 			},
-			DeploymentType:     pulumi.String("SINGLE_AZ_1"),
-			ThroughputCapacity: pulumi.Int(64),
+			DeploymentType:     khulnasoft.String("SINGLE_AZ_1"),
+			ThroughputCapacity: khulnasoft.Int(64),
 		})
 		if err != nil {
 			return err

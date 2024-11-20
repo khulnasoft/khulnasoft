@@ -24,15 +24,15 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optdestroy"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optpreview"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optrefresh"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optup"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optdestroy"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optpreview"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optrefresh"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optup"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func Example() {
@@ -41,8 +41,8 @@ func Example() {
 	// This stack creates an output
 	projA := "projA"
 	stackName := FullyQualifiedStackName("myOrg", projA, "devStack")
-	stackA, err := NewStackInlineSource(ctx, stackName, projA, func(pCtx *pulumi.Context) error {
-		pCtx.Export("outputA", pulumi.String("valueA"))
+	stackA, err := NewStackInlineSource(ctx, stackName, projA, func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("outputA", khulnasoft.String("valueA"))
 		return nil
 	})
 	if err != nil {
@@ -57,13 +57,13 @@ func Example() {
 	// this stack creates an uses stackA's output to create a new output
 	projB := "projB"
 	stackName = FullyQualifiedStackName("myOrg", projB, "devStack")
-	stackB, err := NewStackInlineSource(ctx, stackName, projB, func(pCtx *pulumi.Context) error {
+	stackB, err := NewStackInlineSource(ctx, stackName, projB, func(pCtx *khulnasoft.Context) error {
 		// output a new value "valueA/valueB"
 		pCtx.Export(
 			"outputB",
-			pulumi.Sprintf(
+			khulnasoft.Sprintf(
 				"%s/%s",
-				pulumi.String(aRes.Outputs["outputA"].Value.(string)), pulumi.String("valueB"),
+				khulnasoft.String(aRes.Outputs["outputA"].Value.(string)), khulnasoft.String("valueB"),
 			),
 		)
 		return nil
@@ -141,7 +141,7 @@ func ExampleIsUnexpectedEngineError() {
 	s, _ := NewStackLocalSource(ctx, "o/p/s", filepath.Join(".", "engine", "error", "program"))
 	_, err := s.Up(ctx)
 	if err != nil && IsUnexpectedEngineError(err) {
-		// oops, you've probably uncovered a bug in the pulumi engine.
+		// oops, you've probably uncovered a bug in the khulnasoft engine.
 		// please file a bug report :)
 	}
 }
@@ -183,7 +183,7 @@ func ExampleGitRepo() {
 	// we'll compile a the program into an executable with the name "examplesBinary"
 	binName := "examplesBinary"
 	repo := GitRepo{
-		URL:         "https://github.com/pulumi/test-repo.git",
+		URL:         "https://github.com/khulnasoft/test-repo.git",
 		ProjectPath: "goproj",
 		// this call back will get executed post-clone to allow for additional program setup
 		Setup: func(ctx context.Context, workspace Workspace) error {
@@ -213,7 +213,7 @@ func ExampleGitRepo_personalAccessToken() {
 	token, _ := os.LookupEnv("PERSONAL_ACCESS_TOKEN")
 
 	repo := GitRepo{
-		URL:         "https://github.com/pulumi/test-repo.git",
+		URL:         "https://github.com/khulnasoft/test-repo.git",
 		ProjectPath: "goproj",
 		Auth: &GitAuth{
 			PersonalAccessToken: token,
@@ -230,7 +230,7 @@ func ExampleGitRepo_privateKeyPath() {
 	stackName := FullyQualifiedStackName("myOrg", pName, "myStack")
 
 	repo := GitRepo{
-		URL:         "git@github.com:pulumi/test-repo.git",
+		URL:         "git@github.com:khulnasoft/test-repo.git",
 		ProjectPath: "goproj",
 		Auth: &GitAuth{
 			SSHPrivateKeyPath: "/Users/myuser/.ssh/id_rsa",
@@ -248,7 +248,7 @@ func ExampleGitRepo_privateKey() {
 	stackName := FullyQualifiedStackName("myOrg", pName, "myStack")
 
 	repo := GitRepo{
-		URL:         "git@github.com:pulumi/test-repo.git",
+		URL:         "git@github.com:khulnasoft/test-repo.git",
 		ProjectPath: "goproj",
 		Auth: &GitAuth{
 			SSHPrivateKey: "<PRIVATE KEY FILE CONTENTS HERE>",
@@ -266,7 +266,7 @@ func ExampleGitRepo_usernameAndPassword() {
 	stackName := FullyQualifiedStackName("myOrg", pName, "myStack")
 
 	repo := GitRepo{
-		URL:         "https://github.com/pulumi/test-repo.git",
+		URL:         "https://github.com/khulnasoft/test-repo.git",
 		ProjectPath: "goproj",
 		Auth: &GitAuth{
 			// This will use a username and password combination for the private repo
@@ -283,7 +283,7 @@ func ExampleLocalWorkspace() {
 	ctx := context.Background()
 	// create a workspace from a local project
 	w, _ := NewLocalWorkspace(ctx, WorkDir(filepath.Join(".", "program")))
-	// install the pulumi-aws plugin
+	// install the khulnasoft-aws plugin
 	w.InstallPlugin(ctx, "aws", "v3.2.0")
 	// fetch the config used with the last update on stack "org/proj/stack"
 	w.RefreshConfig(ctx, "org/proj/stack")
@@ -379,9 +379,9 @@ func ExampleNewLocalWorkspace() {
 	ctx := context.Background()
 	// WorkDir sets the working directory for the LocalWorkspace. The workspace will look for a default
 	// project settings file (Pulumi.yaml) in this location for information about the Pulumi program.
-	wd := WorkDir(filepath.Join("..", "path", "to", "pulumi", "project"))
+	wd := WorkDir(filepath.Join("..", "path", "to", "khulnasoft", "project"))
 	// PulumiHome customizes the location of $PULUMI_HOME where metadata is stored and plugins are installed.
-	ph := PulumiHome(filepath.Join("~", ".pulumi"))
+	ph := PulumiHome(filepath.Join("~", ".khulnasoft"))
 	// Project provides ProjectSettings to set once the workspace is created.
 	proj := Project(workspace.Project{
 		Name:    tokens.PackageName("myproject"),
@@ -397,9 +397,9 @@ func ExampleLocalWorkspace_secretsProvider() {
 	ctx := context.Background()
 	// WorkDir sets the working directory for the LocalWorkspace. The workspace will look for a default
 	// project settings file (Pulumi.yaml) in this location for information about the Pulumi program.
-	wd := WorkDir(filepath.Join("..", "path", "to", "pulumi", "project"))
+	wd := WorkDir(filepath.Join("..", "path", "to", "khulnasoft", "project"))
 	// PulumiHome customizes the location of $PULUMI_HOME where metadata is stored and plugins are installed.
-	ph := PulumiHome(filepath.Join("~", ".pulumi"))
+	ph := PulumiHome(filepath.Join("~", ".khulnasoft"))
 	// Project provides ProjectSettings to set once the workspace is created.
 	proj := Project(workspace.Project{
 		Name:    tokens.PackageName("myproject"),
@@ -450,7 +450,7 @@ func ExampleLocalWorkspace_ProjectSettings() {
 		}
 	}
 	// make some changes
-	author := "pulumipus"
+	author := "khulnasoftpus"
 	ps.Author = &author
 	// save the settings back to the Workspace
 	w.SaveProjectSettings(ctx, ps)
@@ -470,7 +470,7 @@ func ExampleLocalWorkspace_SaveProjectSettings() {
 		}
 	}
 	// make some changes
-	author := "pulumipus"
+	author := "khulnasoftpus"
 	ps.Author = &author
 	// save the settings back to the Workspace
 	w.SaveProjectSettings(ctx, ps)
@@ -482,7 +482,7 @@ func ExampleLocalWorkspace_RefreshConfig() {
 	w, _ := NewLocalWorkspace(ctx, WorkDir(filepath.Join(".", "program")))
 	stackNameA := FullyQualifiedStackName("org", "proj", "stackA")
 	// get the last deployed config from stack A
-	// this overwrites config in pulumi.stackA.yaml
+	// this overwrites config in khulnasoft.stackA.yaml
 	cfg, _ := w.RefreshConfig(ctx, stackNameA)
 	// add a key to the ConfigMap
 	cfg["addition_config_key"] = ConfigValue{Value: "additional_config_value"}
@@ -545,7 +545,7 @@ func ExampleLocalWorkspace_SetAllConfig() {
 	w, _ := NewLocalWorkspace(ctx, WorkDir(filepath.Join(".", "program")))
 	stackNameA := FullyQualifiedStackName("org", "proj", "stackA")
 	// get the last deployed config from stack A
-	// this overwrites config in pulumi.stackA.yaml
+	// this overwrites config in khulnasoft.stackA.yaml
 	cfg, _ := w.RefreshConfig(ctx, stackNameA)
 	// add a key to the ConfigMap
 	cfg["addition_config_key"] = ConfigValue{Value: "additional_config_value"}
@@ -560,8 +560,8 @@ func ExampleLocalWorkspace_SetProgram() {
 	ctx := context.Background()
 	// create a workspace from a local project
 	w, _ := NewLocalWorkspace(ctx, WorkDir(filepath.Join(".", "program")))
-	program := func(pCtx *pulumi.Context) error {
-		pCtx.Export("an output", pulumi.String("an output value"))
+	program := func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("an output", khulnasoft.String("an output value"))
 		return nil
 	}
 	// this program will be used for all Stack.Update and Stack.Preview operations going forward
@@ -584,7 +584,7 @@ func ExampleLocalWorkspace_StackSettings() {
 	// read existing stack settings for stackA if any
 	ss, err := w.StackSettings(ctx, stackNameA)
 	if err != nil {
-		// no pulumi.stackA.yaml was found, so create a default
+		// no khulnasoft.stackA.yaml was found, so create a default
 		ss = &workspace.ProjectStack{}
 	}
 	stackNameB := FullyQualifiedStackName("org", "proj", "stackB")
@@ -600,7 +600,7 @@ func ExampleLocalWorkspace_SaveStackSettings() {
 	// read existing stack settings for stackA if any
 	ss, err := w.StackSettings(ctx, stackNameA)
 	if err != nil {
-		// no pulumi.stackA.yaml was found, so create a default
+		// no khulnasoft.stackA.yaml was found, so create a default
 		ss = &workspace.ProjectStack{}
 	}
 	stackNameB := FullyQualifiedStackName("org", "proj", "stackB")
@@ -658,7 +658,7 @@ func ExampleStack() {
 
 	defer func() {
 		// Workspace operations can be accessed via Stack.Workspace()
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 	}()
 
@@ -667,14 +667,14 @@ func ExampleStack() {
 		// Handle failure setting configurations.
 	}
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx)
 	if err != nil {
 		// Handle failure updating stack.
 	}
 	fmt.Println(len(res.Outputs))
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 
 	prev, err := s.Preview(ctx)
 	if err != nil {
@@ -683,7 +683,7 @@ func ExampleStack() {
 	// no changes after the update
 	fmt.Println(prev.ChangeSummary["same"])
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 
 	ref, err := s.Refresh(ctx)
 	if err != nil {
@@ -692,7 +692,7 @@ func ExampleStack() {
 	// Success!
 	fmt.Println(ref.Summary.Result)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	_, err = s.Destroy(ctx)
 	if err != nil {
@@ -742,15 +742,15 @@ func ExampleNewStackInlineSource() {
 	stackName := FullyQualifiedStackName("myOrg", projName, "stack")
 	// create a new Stack with a default ProjectSettings file, and a temporary WorkDir created in a new
 	// LocalWorkspace on behalf of the user.
-	stack, _ := NewStackInlineSource(ctx, stackName, projName, func(pCtx *pulumi.Context) error {
-		pCtx.Export("outputA", pulumi.String("valueA"))
+	stack, _ := NewStackInlineSource(ctx, stackName, projName, func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("outputA", khulnasoft.String("valueA"))
 		return nil
 	})
-	// Stack.Up runs the inline pulumi.RunFunc specified above.
+	// Stack.Up runs the inline khulnasoft.RunFunc specified above.
 	stack.Up(ctx)
 	// we can update the Workspace program for subsequent updates if desired
-	stack.Workspace().SetProgram(func(pCtx *pulumi.Context) error {
-		pCtx.Export("outputAA", pulumi.String("valueAA"))
+	stack.Workspace().SetProgram(func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("outputAA", khulnasoft.String("valueAA"))
 		return nil
 	})
 	stack.Up(ctx)
@@ -762,15 +762,15 @@ func ExampleUpsertStackInlineSource() {
 	stackName := FullyQualifiedStackName("myOrg", "proj", "stack")
 	// create or select a new Stack with a default ProjectSettings file, and a temporary WorkDir created in a new
 	// LocalWorkspace on behalf of the user.
-	stack, _ := UpsertStackInlineSource(ctx, stackName, projName, func(pCtx *pulumi.Context) error {
-		pCtx.Export("outputA", pulumi.String("valueA"))
+	stack, _ := UpsertStackInlineSource(ctx, stackName, projName, func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("outputA", khulnasoft.String("valueA"))
 		return nil
 	})
-	// Stack.Up runs the inline pulumi.RunFunc specified above.
+	// Stack.Up runs the inline khulnasoft.RunFunc specified above.
 	stack.Up(ctx)
 	// we can update the Workspace program for subsequent updates if desired
-	stack.Workspace().SetProgram(func(pCtx *pulumi.Context) error {
-		pCtx.Export("outputAA", pulumi.String("valueAA"))
+	stack.Workspace().SetProgram(func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("outputAA", khulnasoft.String("valueAA"))
 		return nil
 	})
 	stack.Up(ctx)
@@ -782,15 +782,15 @@ func ExampleSelectStackInlineSource() {
 	stackName := FullyQualifiedStackName("myOrg", projName, "existing_stack")
 	// selects an existing stack with a default ProjectSettings file, and a temporary WorkDir in a new LocalWorkspace
 	// created on behalf of the user.
-	stack, _ := SelectStackInlineSource(ctx, stackName, projName, func(pCtx *pulumi.Context) error {
-		pCtx.Export("outputA", pulumi.String("valueA"))
+	stack, _ := SelectStackInlineSource(ctx, stackName, projName, func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("outputA", khulnasoft.String("valueA"))
 		return nil
 	})
-	// Stack.Up runs the inline pulumi.RunFunc specified above.
+	// Stack.Up runs the inline khulnasoft.RunFunc specified above.
 	stack.Up(ctx)
 	// we can update the Workspace program for subsequent updates if desired
-	stack.Workspace().SetProgram(func(pCtx *pulumi.Context) error {
-		pCtx.Export("outputAA", pulumi.String("valueAA"))
+	stack.Workspace().SetProgram(func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("outputAA", khulnasoft.String("valueAA"))
 		return nil
 	})
 	stack.Up(ctx)
@@ -806,8 +806,8 @@ func ExampleNewStackLocalSource() {
 	// Stack.Up runs the program in workDir
 	stack.Up(ctx)
 	// we can update the Workspace program for subsequent updates if desired
-	stack.Workspace().SetProgram(func(pCtx *pulumi.Context) error {
-		pCtx.Export("outputAA", pulumi.String("valueAA"))
+	stack.Workspace().SetProgram(func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("outputAA", khulnasoft.String("valueAA"))
 		return nil
 	})
 	// Stack.Up now runs our inline program
@@ -824,8 +824,8 @@ func ExampleUpsertStackLocalSource() {
 	// Stack.Up runs the program in workDir
 	stack.Up(ctx)
 	// we can update the Workspace program for subsequent updates if desired
-	stack.Workspace().SetProgram(func(pCtx *pulumi.Context) error {
-		pCtx.Export("outputAA", pulumi.String("valueAA"))
+	stack.Workspace().SetProgram(func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("outputAA", khulnasoft.String("valueAA"))
 		return nil
 	})
 	// Stack.Up now runs our inline program
@@ -842,8 +842,8 @@ func ExampleSelectStackLocalSource() {
 	// Stack.Up runs the program in workDir
 	stack.Up(ctx)
 	// we can update the Workspace program for subsequent updates if desired
-	stack.Workspace().SetProgram(func(pCtx *pulumi.Context) error {
-		pCtx.Export("outputAA", pulumi.String("valueAA"))
+	stack.Workspace().SetProgram(func(pCtx *khulnasoft.Context) error {
+		pCtx.Export("outputAA", khulnasoft.String("valueAA"))
 		return nil
 	})
 	// Stack.Up now runs our inline program
@@ -859,7 +859,7 @@ func ExampleNewStackRemoteSource() {
 	binName := "examplesBinary"
 	// a description of the git repo to clone
 	repo := GitRepo{
-		URL: "https://github.com/pulumi/test-repo.git",
+		URL: "https://github.com/khulnasoft/test-repo.git",
 		// the subdirectory relative to the root of the repo
 		ProjectPath: "goproj",
 		// this call back will get executed post-clone to allow for additional program setup
@@ -890,7 +890,7 @@ func ExampleUpsertStackRemoteSource() {
 	binName := "examplesBinary"
 	// a description of the git repo to clone
 	repo := GitRepo{
-		URL: "https://github.com/pulumi/test-repo.git",
+		URL: "https://github.com/khulnasoft/test-repo.git",
 		// the subdirectory relative to the root of the repo
 		ProjectPath: "goproj",
 		// this call back will get executed post-clone to allow for additional program setup
@@ -921,7 +921,7 @@ func ExampleSelectStackRemoteSource() {
 	binName := "examplesBinary"
 	// a description of the git repo to clone
 	repo := GitRepo{
-		URL: "https://github.com/pulumi/test-repo.git",
+		URL: "https://github.com/khulnasoft/test-repo.git",
 		// the subdirectory relative to the root of the repo
 		ProjectPath: "goproj",
 		// this call back will get executed post-clone to allow for additional program setup

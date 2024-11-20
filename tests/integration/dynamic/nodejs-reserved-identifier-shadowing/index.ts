@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Input, CustomResourceOptions, output } from "@pulumi/pulumi"
-import { ResourceProvider, Resource } from "@pulumi/pulumi/dynamic"
+import { Input, CustomResourceOptions, output } from "@khulnasoft/khulnasoft"
+import { ResourceProvider, Resource } from "@khulnasoft/khulnasoft/dynamic"
 
 interface ReproResourceInputs {
   example: Input<string>

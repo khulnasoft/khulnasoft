@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pulumi
+import khulnasoft
 
-pulumi.export("xyz", "DEF")
+khulnasoft.export("xyz", "DEF")
 
 raise Exception("program error")
 
-pulumi.export("foo", 1)
+khulnasoft.export("foo", 1)

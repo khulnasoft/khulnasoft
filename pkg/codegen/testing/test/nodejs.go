@@ -33,11 +33,11 @@ func GenerateNodeJSProgramTest(
 ) {
 	expectedVersion := map[string]PkgVersionInfo{
 		"aws-resource-options-4.26": {
-			Pkg:          "\"@pulumi/aws\"",
+			Pkg:          "\"@khulnasoft/aws\"",
 			OpAndVersion: "\"4.26.0\"",
 		},
 		"aws-resource-options-5.16.2": {
-			Pkg:          "\"@pulumi/aws\"",
+			Pkg:          "\"@khulnasoft/aws\"",
 			OpAndVersion: "\"5.16.2\"",
 		},
 	}
@@ -119,7 +119,7 @@ func checkNodeJS(t *testing.T, path string, dependencies codegen.StringSet, link
 	pkgs := nodejsPackages(t, dependencies)
 	pkgInfo := npmPackage{
 		Dependencies: map[string]string{
-			"@pulumi/pulumi": "latest",
+			"@khulnasoft/khulnasoft": "latest",
 		},
 		DevDependencies: map[string]string{
 			"@types/node": "^17.0.14",
@@ -152,7 +152,7 @@ func typeCheckNodeJS(t *testing.T, path string, _ codegen.StringSet, linkLocal b
 func TypeCheckNodeJSPackage(t *testing.T, pwd string, linkLocal bool) {
 	RunCommand(t, "npm_install", pwd, "npm", "install")
 	if linkLocal {
-		RunCommand(t, "yarn_link", pwd, "yarn", "link", "@pulumi/pulumi")
+		RunCommand(t, "yarn_link", pwd, "yarn", "link", "@khulnasoft/khulnasoft")
 	}
 	tscOptions := &integration.ProgramTestOptions{
 		// Avoid Out of Memory error on CI:
@@ -166,7 +166,7 @@ func TypeCheckNodeJSPackage(t *testing.T, pwd string, linkLocal bool) {
 func nodejsPackages(t *testing.T, deps codegen.StringSet) map[string]string {
 	result := make(map[string]string, len(deps))
 	for _, d := range deps.SortedValues() {
-		pkgName := "@pulumi/" + d
+		pkgName := "@khulnasoft/" + d
 		set := func(pkgVersion string) {
 			result[pkgName] = "^" + pkgVersion
 		}

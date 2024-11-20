@@ -21,18 +21,18 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Random struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Length pulumi.IntOutput    `pulumi:"length"`
-	Result pulumi.StringOutput `pulumi:"result"`
+	Length khulnasoft.IntOutput    `khulnasoft:"length"`
+	Result khulnasoft.StringOutput `khulnasoft:"result"`
 }
 
-func NewRandom(ctx *pulumi.Context,
-	name string, args *RandomArgs, opts ...pulumi.ResourceOption,
+func NewRandom(ctx *khulnasoft.Context,
+	name string, args *RandomArgs, opts ...khulnasoft.ResourceOption,
 ) (*Random, error) {
 	if args == nil || args.Length == nil {
 		return nil, errors.New("missing required argument 'Length'")
@@ -46,13 +46,13 @@ func NewRandom(ctx *pulumi.Context,
 }
 
 type randomArgs struct {
-	Length int    `pulumi:"length"`
-	Prefix string `pulumi:"prefix"`
+	Length int    `khulnasoft:"length"`
+	Prefix string `khulnasoft:"prefix"`
 }
 
 type RandomArgs struct {
-	Length pulumi.IntInput
-	Prefix pulumi.StringInput
+	Length khulnasoft.IntInput
+	Prefix khulnasoft.StringInput
 }
 
 func (RandomArgs) ElementType() reflect.Type {
@@ -60,17 +60,17 @@ func (RandomArgs) ElementType() reflect.Type {
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	ChildID pulumi.IDOutput `pulumi:"childId"`
+	ChildID khulnasoft.IDOutput `khulnasoft:"childId"`
 }
 
 type ComponentArgs struct {
-	Length int `pulumi:"length"`
+	Length int `khulnasoft:"length"`
 }
 
-func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs,
-	opts ...pulumi.ResourceOption,
+func NewComponent(ctx *khulnasoft.Context, name string, args *ComponentArgs,
+	opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	if args == nil {
 		return nil, errors.New("args is required")
@@ -83,15 +83,15 @@ func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs,
 	}
 
 	res, err := NewRandom(ctx, fmt.Sprintf("child-%s", name), &RandomArgs{
-		Length: pulumi.Int(args.Length),
-	}, pulumi.Parent(component))
+		Length: khulnasoft.Int(args.Length),
+	}, khulnasoft.Parent(component))
 	if err != nil {
 		return nil, err
 	}
 
 	component.ChildID = res.ID()
 
-	if err := ctx.RegisterResourceOutputs(component, pulumi.Map{
+	if err := ctx.RegisterResourceOutputs(component, khulnasoft.Map{
 		"childId": component.ChildID,
 	}); err != nil {
 		return nil, err

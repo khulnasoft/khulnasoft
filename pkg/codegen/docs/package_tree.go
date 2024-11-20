@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 )
 
 type entryType string

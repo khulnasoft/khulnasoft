@@ -1,6 +1,6 @@
 {
     "$schema":"https://json-schema.org/draft/2020-12/schema",
-    "$id":"https://github.com/pulumi/pulumi/blob/master/sdk/go/common/workspace/project.json",
+    "$id":"https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/workspace/project.json",
     "title":"Pulumi Project",
     "description":"A schema for Pulumi project files.",
     "type":"object",
@@ -219,7 +219,7 @@
             "additionalProperties":false
         },
         "plugins":{
-            "description":"Override for the plugin selection. Intended for use in developing pulumi plugins.",
+            "description":"Override for the plugin selection. Intended for use in developing khulnasoft plugins.",
             "type":"object",
             "properties":{
                 "providers":{

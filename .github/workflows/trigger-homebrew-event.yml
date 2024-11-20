@@ -19,6 +19,6 @@ jobs:
       - uses: dawidd6/action-homebrew-bump-formula@v3
         with:
           token: ${{secrets.PULUMI_BOT_HOMEBREW_TOKEN}}
-          formula: pulumi
+          formula: khulnasoft
           tag: v${{env.VERSION}}
           revision: ${{env.COMMIT_SHA}}

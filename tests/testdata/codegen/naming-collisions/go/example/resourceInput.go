@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"naming-collisions/example/internal"
 )
 
 type ResourceInputResource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Bar pulumi.StringPtrOutput `pulumi:"bar"`
+	Bar khulnasoft.StringPtrOutput `khulnasoft:"bar"`
 }
 
 // NewResourceInputResource registers a new resource with the given unique name, arguments, and options.
-func NewResourceInputResource(ctx *pulumi.Context,
-	name string, args *ResourceInputResourceArgs, opts ...pulumi.ResourceOption) (*ResourceInputResource, error) {
+func NewResourceInputResource(ctx *khulnasoft.Context,
+	name string, args *ResourceInputResourceArgs, opts ...khulnasoft.ResourceOption) (*ResourceInputResource, error) {
 	if args == nil {
 		args = &ResourceInputResourceArgs{}
 	}
@@ -35,8 +35,8 @@ func NewResourceInputResource(ctx *pulumi.Context,
 
 // GetResourceInputResource gets an existing ResourceInputResource resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetResourceInputResource(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ResourceInputResourceState, opts ...pulumi.ResourceOption) (*ResourceInputResource, error) {
+func GetResourceInputResource(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ResourceInputResourceState, opts ...khulnasoft.ResourceOption) (*ResourceInputResource, error) {
 	var resource ResourceInputResource
 	err := ctx.ReadResource("example::ResourceInput", name, id, state, &resource, opts...)
 	if err != nil {
@@ -68,7 +68,7 @@ func (ResourceInputResourceArgs) ElementType() reflect.Type {
 }
 
 type ResourceInputResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToResourceInputResourceOutput() ResourceInputResourceOutput
 	ToResourceInputResourceOutputWithContext(ctx context.Context) ResourceInputResourceOutput
@@ -83,10 +83,10 @@ func (i *ResourceInputResource) ToResourceInputResourceOutput() ResourceInputRes
 }
 
 func (i *ResourceInputResource) ToResourceInputResourceOutputWithContext(ctx context.Context) ResourceInputResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceInputResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ResourceInputResourceOutput)
 }
 
-type ResourceInputResourceOutput struct{ *pulumi.OutputState }
+type ResourceInputResourceOutput struct{ *khulnasoft.OutputState }
 
 func (ResourceInputResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ResourceInputResource)(nil)).Elem()
@@ -100,11 +100,11 @@ func (o ResourceInputResourceOutput) ToResourceInputResourceOutputWithContext(ct
 	return o
 }
 
-func (o ResourceInputResourceOutput) Bar() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ResourceInputResource) pulumi.StringPtrOutput { return v.Bar }).(pulumi.StringPtrOutput)
+func (o ResourceInputResourceOutput) Bar() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *ResourceInputResource) khulnasoft.StringPtrOutput { return v.Bar }).(khulnasoft.StringPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ResourceInputResourceInput)(nil)).Elem(), &ResourceInputResource{})
-	pulumi.RegisterOutputType(ResourceInputResourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ResourceInputResourceInput)(nil)).Elem(), &ResourceInputResource{})
+	khulnasoft.RegisterOutputType(ResourceInputResourceOutput{})
 }

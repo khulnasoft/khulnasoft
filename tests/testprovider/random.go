@@ -23,9 +23,9 @@ import (
 	"math/big"
 
 	pschema "github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	rpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	rpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 
 	"google.golang.org/protobuf/types/known/emptypb"
 )

@@ -1,5 +1,5 @@
 // Copyright 2016-2023, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-export const result = pulumi.output("hello world")
+export const result = khulnasoft.output("hello world")

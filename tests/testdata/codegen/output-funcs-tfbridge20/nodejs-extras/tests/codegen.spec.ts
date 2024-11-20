@@ -15,17 +15,17 @@
 import "mocha";
 import * as assert from "assert";
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 import { listStorageAccountKeysOutput, ListStorageAccountKeysResult } from "../listStorageAccountKeys";
 import * as amiIds from "../getAmiIds";
 import { GetAmiIdsFilterArgs } from "../types/input";
 
-pulumi.runtime.setMocks({
-    newResource: function(_: pulumi.runtime.MockResourceArgs): {id: string, state: any} {
+khulnasoft.runtime.setMocks({
+    newResource: function(_: khulnasoft.runtime.MockResourceArgs): {id: string, state: any} {
         throw new Error("newResource not implemented");
     },
-    call: function(args: pulumi.runtime.MockCallArgs) {
+    call: function(args: khulnasoft.runtime.MockCallArgs) {
         if (args.token == "mypkg::listStorageAccountKeys") {
             return {
                 "keys": [{
@@ -50,8 +50,8 @@ pulumi.runtime.setMocks({
     },
 });
 
-function checkTable(done: any, transform: (res: any) => any, table: {given: pulumi.Output<any>, expect: any}[]) {
-    checkOutput(done, pulumi.all(table.map(x => x.given)), res => {
+function checkTable(done: any, transform: (res: any) => any, table: {given: khulnasoft.Output<any>, expect: any}[]) {
+    checkOutput(done, khulnasoft.all(table.map(x => x.given)), res => {
         res.map((actual, i) => {
             assert.deepStrictEqual(transform(actual), table[i].expect);
         });
@@ -64,19 +64,19 @@ describe("output-funcs", () => {
 
         function filter(n: number): GetAmiIdsFilterArgs {
             return {
-                name: pulumi.output(`filter-${n}-name`),
+                name: khulnasoft.output(`filter-${n}-name`),
                 values: [
-                    pulumi.output(`filter-${n}-value-1`),
-                    pulumi.output(`filter-${n}-value-2`)
+                    khulnasoft.output(`filter-${n}-value-1`),
+                    khulnasoft.output(`filter-${n}-value-2`)
                 ],
             }
         }
 
         const output = amiIds.getAmiIdsOutput({
-            owners: [pulumi.output("owner-1"),
-                     pulumi.output("owner-2")],
-            nameRegex: pulumi.output("[a-z]"),
-            sortAscending: pulumi.output(true),
+            owners: [khulnasoft.output("owner-1"),
+                     khulnasoft.output("owner-2")],
+            nameRegex: khulnasoft.output("[a-z]"),
+            sortAscending: khulnasoft.output(true),
             filters: [filter(1), filter(2)],
         });
 
@@ -108,8 +108,8 @@ describe("output-funcs", () => {
 
     it("listStorageAccountKeysOutput", (done) => {
         const output = listStorageAccountKeysOutput({
-            accountName: pulumi.output("my-account-name"),
-            resourceGroupName: pulumi.output("my-resource-group-name"),
+            accountName: khulnasoft.output("my-account-name"),
+            resourceGroupName: khulnasoft.output("my-resource-group-name"),
         });
         checkOutput(done, output, (res: ListStorageAccountKeysResult) => {
             assert.equal(res.keys.length, 1);
@@ -126,9 +126,9 @@ describe("output-funcs", () => {
 
     it("listStorageAccountKeysOutput with optional arg set", (done) => {
         const output = listStorageAccountKeysOutput({
-            accountName: pulumi.output("my-account-name"),
-            resourceGroupName: pulumi.output("my-resource-group-name"),
-            expand: pulumi.output("my-expand"),
+            accountName: khulnasoft.output("my-account-name"),
+            resourceGroupName: khulnasoft.output("my-resource-group-name"),
+            expand: khulnasoft.output("my-expand"),
         });
         checkOutput(done, output, (res: ListStorageAccountKeysResult) => {
             assert.equal(res.keys.length, 1);
@@ -147,7 +147,7 @@ describe("output-funcs", () => {
  });
 
 
-function checkOutput<T>(done: any, output: pulumi.Output<T>, check: (value: T) => void) {
+function checkOutput<T>(done: any, output: khulnasoft.Output<T>, check: (value: T) => void) {
     output.apply(value => {
         try {
             check(value);

@@ -29,13 +29,13 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 	"github.com/zclconf/go-cty/cty"
 )
 
 const (
-	pulumiPackage          = "pulumi"
+	khulnasoftPackage          = "khulnasoft"
 	LogicalNamePropertyKey = "__logicalName"
 )
 
@@ -201,7 +201,7 @@ func BindProgram(files []*syntax.File, opts ...BindOption) (*Program, hcl.Diagno
 		ConstantValue: cty.NullVal(cty.DynamicPseudoType),
 	})
 	// Define builtin functions.
-	for name, fn := range pulumiBuiltins(options) {
+	for name, fn := range khulnasoftBuiltins(options) {
 		b.root.DefineFunction(name, fn)
 	}
 	// Define the invoke function.

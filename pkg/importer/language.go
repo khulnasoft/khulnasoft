@@ -27,8 +27,8 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // A LangaugeGenerator generates code for a given Pulumi program to an io.Writer.

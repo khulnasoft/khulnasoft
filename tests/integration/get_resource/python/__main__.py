@@ -1,11 +1,11 @@
 # Copyright 2016-2020, Pulumi Corporation.  All rights reserved.
 
 import asyncio
-import pulumi
+import khulnasoft
 
-from pulumi import Output, ResourceOptions, export, UNKNOWN
-from pulumi.dynamic import Resource, ResourceProvider, CreateResult
-from pulumi.runtime import is_dry_run
+from khulnasoft import Output, ResourceOptions, export, UNKNOWN
+from khulnasoft.dynamic import Resource, ResourceProvider, CreateResult
+from khulnasoft.runtime import is_dry_run
 
 class MyProvider(ResourceProvider):
     def create(self, props):
@@ -18,7 +18,7 @@ class MyResource(Resource):
     def __init__(self, name, props, opts = None):
         super().__init__(MyProvider(), name, props, opts)
 
-class GetResource(pulumi.Resource):
+class GetResource(khulnasoft.Resource):
     foo: Output
     bar: Output
 
@@ -31,7 +31,7 @@ class GetResource(pulumi.Resource):
 
 a = MyResource("a", {
     "foo": "foo",
-    "bar": pulumi.Output.secret("my-$ecret"),
+    "bar": khulnasoft.Output.secret("my-$ecret"),
 })
 
 async def check_get():

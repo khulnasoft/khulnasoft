@@ -167,7 +167,7 @@ func TestApplyRewriter(t *testing.T) {
 		Name:         "resourcesOutput",
 		VariableType: model.NewOutputType(model.NewListType(resourceType)),
 	})
-	functions := pulumiBuiltins(bindOptions{})
+	functions := khulnasoftBuiltins(bindOptions{})
 	scope.DefineFunction("element", functions["element"])
 	scope.DefineFunction("toJSON", functions["toJSON"])
 	scope.DefineFunction("getPromise", model.NewFunction(model.StaticFunctionSignature{

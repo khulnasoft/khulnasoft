@@ -4,15 +4,15 @@
 package config
 
 import (
-	"github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/utilities"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/utilities"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"
 )
 
 var _ = utilities.GetEnvOrDefault
 
 // The contents of a kubeconfig file or the path to a kubeconfig file. If this is set, this config will be used instead of $KUBECONFIG.
-func GetKubeconfig(ctx *pulumi.Context) string {
+func GetKubeconfig(ctx *khulnasoft.Context) string {
 	return config.Get(ctx, "kubernetes:kubeconfig")
 }
 
@@ -22,6 +22,6 @@ func GetKubeconfig(ctx *pulumi.Context) string {
 // 1. `.metadata.namespace` set on the resource.
 // 2. This `namespace` parameter.
 // 3. `namespace` set for the active context in the kubeconfig.
-func GetNamespace(ctx *pulumi.Context) string {
+func GetNamespace(ctx *khulnasoft.Context) string {
 	return config.Get(ctx, "kubernetes:namespace")
 }

@@ -41,18 +41,18 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/b64"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/passphrase"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/diagtest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/iotest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/diagtest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/iotest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 //nolint:paralleltest // mutates global configuration
@@ -700,7 +700,7 @@ func TestParseEmptyStackFails(t *testing.T) {
 	assert.Error(t, err)
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/10439
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/10439
 func TestHtmlEscaping(t *testing.T) {
 	t.Parallel()
 
@@ -775,7 +775,7 @@ func TestDIYBackendRejectsStackInitOptions(t *testing.T) {
 	assert.NoError(t, err)
 	ctx := context.Background()
 
-	// • Simulate `pulumi stack init`, passing non-nil init options
+	// • Simulate `khulnasoft stack init`, passing non-nil init options
 	fakeStackRef, err := diy.ParseStackReference("organization/b/foobar")
 	assert.NoError(t, err)
 	_, err = diy.CreateStack(ctx, fakeStackRef, "", nil, illegalOptions)
@@ -787,9 +787,9 @@ func TestLegacyFolderStructure(t *testing.T) {
 
 	// Make a dummy stack file in the legacy location
 	tmpDir := t.TempDir()
-	err := os.MkdirAll(path.Join(tmpDir, ".pulumi", "stacks"), os.ModePerm)
+	err := os.MkdirAll(path.Join(tmpDir, ".khulnasoft", "stacks"), os.ModePerm)
 	require.NoError(t, err)
-	err = os.WriteFile(path.Join(tmpDir, ".pulumi", "stacks", "a.json"), []byte("{}"), 0o600)
+	err = os.WriteFile(path.Join(tmpDir, ".khulnasoft", "stacks", "a.json"), []byte("{}"), 0o600)
 	require.NoError(t, err)
 
 	// Login to a temp dir diy backend
@@ -816,7 +816,7 @@ func TestLegacyFolderStructure(t *testing.T) {
 	bStack, err := b.CreateStack(ctx, bRef, "", nil, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "b", bStack.Ref().String())
-	assert.FileExists(t, path.Join(tmpDir, ".pulumi", "stacks", "b.json"))
+	assert.FileExists(t, path.Join(tmpDir, ".khulnasoft", "stacks", "b.json"))
 }
 
 func TestListStacksFilter(t *testing.T) {
@@ -868,7 +868,7 @@ func TestOptIntoLegacyFolderStructure(t *testing.T) {
 
 	_, err = b.CreateStack(ctx, foo, "", nil, nil)
 	require.NoError(t, err)
-	assert.FileExists(t, filepath.Join(tmpDir, ".pulumi", "stacks", "foo.json"))
+	assert.FileExists(t, filepath.Join(tmpDir, ".khulnasoft", "stacks", "foo.json"))
 }
 
 // Verifies that the StackReference.String method
@@ -961,11 +961,11 @@ func TestProjectFolderStructure(t *testing.T) {
 	// Make a dummy file in the legacy location which isn't a stack file, we should still automatically turn
 	// this into project mode.
 	tmpDir := t.TempDir()
-	err := os.MkdirAll(path.Join(tmpDir, ".pulumi", "plugins"), os.ModePerm)
+	err := os.MkdirAll(path.Join(tmpDir, ".khulnasoft", "plugins"), os.ModePerm)
 	require.NoError(t, err)
-	err = os.MkdirAll(path.Join(tmpDir, ".pulumi", "stacks"), os.ModePerm)
+	err = os.MkdirAll(path.Join(tmpDir, ".khulnasoft", "stacks"), os.ModePerm)
 	require.NoError(t, err)
-	err = os.WriteFile(path.Join(tmpDir, ".pulumi", "stacks", "a.txt"), []byte("{}"), 0o600)
+	err = os.WriteFile(path.Join(tmpDir, ".khulnasoft", "stacks", "a.txt"), []byte("{}"), 0o600)
 	require.NoError(t, err)
 
 	ctx := context.Background()
@@ -979,9 +979,9 @@ func TestProjectFolderStructure(t *testing.T) {
 	assert.IsType(t, &projectReferenceStore{}, lb.store)
 
 	// Make a dummy stack file in the new project location
-	err = os.MkdirAll(path.Join(tmpDir, ".pulumi", "stacks", "testproj"), os.ModePerm)
+	err = os.MkdirAll(path.Join(tmpDir, ".khulnasoft", "stacks", "testproj"), os.ModePerm)
 	assert.NoError(t, err)
-	err = os.WriteFile(path.Join(tmpDir, ".pulumi", "stacks", "testproj", "a.json"), []byte("{}"), 0o600)
+	err = os.WriteFile(path.Join(tmpDir, ".khulnasoft", "stacks", "testproj", "a.json"), []byte("{}"), 0o600)
 	assert.NoError(t, err)
 
 	// Check that testproj is reported as existing
@@ -1003,7 +1003,7 @@ func TestProjectFolderStructure(t *testing.T) {
 	bStack, err := b.CreateStack(ctx, bRef, "", nil, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "organization/testproj/b", bStack.Ref().String())
-	assert.FileExists(t, path.Join(tmpDir, ".pulumi", "stacks", "testproj", "b.json"))
+	assert.FileExists(t, path.Join(tmpDir, ".khulnasoft", "stacks", "testproj", "b.json"))
 }
 
 func chdir(t *testing.T, dir string) {
@@ -1043,7 +1043,7 @@ func TestProjectNameMustMatch(t *testing.T) {
 	aStack, err := b.CreateStack(ctx, aRef, "", nil, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "a", aStack.Ref().String())
-	assert.FileExists(t, path.Join(tmpDir, ".pulumi", "stacks", "my-project", "a.json"))
+	assert.FileExists(t, path.Join(tmpDir, ".khulnasoft", "stacks", "my-project", "a.json"))
 
 	// Create a new project stack with the wrong project name
 	bRef, err := b.ParseStackReference("organization/not-my-project/b")
@@ -1060,7 +1060,7 @@ func TestProjectNameMustMatch(t *testing.T) {
 	cStack, err := b.CreateStack(ctx, cRef, "", nil, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "c", cStack.Ref().String())
-	assert.FileExists(t, path.Join(tmpDir, ".pulumi", "stacks", "my-project", "c.json"))
+	assert.FileExists(t, path.Join(tmpDir, ".khulnasoft", "stacks", "my-project", "c.json"))
 }
 
 func TestNew_legacyFileWarning(t *testing.T) {
@@ -1079,27 +1079,27 @@ func TestNew_legacyFileWarning(t *testing.T) {
 			desc: "no legacy stacks",
 			files: map[string]string{
 				// Should ignore non-stack files.
-				".pulumi/foo/extraneous_file": "",
+				".khulnasoft/foo/extraneous_file": "",
 			},
 		},
 		{
 			desc: "legacy stacks",
 			files: map[string]string{
-				".pulumi/stacks/a.json":     "{}",
-				".pulumi/stacks/b.json":     "{}",
-				".pulumi/stacks/c.json.bak": "{}", // should ignore backup files
+				".khulnasoft/stacks/a.json":     "{}",
+				".khulnasoft/stacks/b.json":     "{}",
+				".khulnasoft/stacks/c.json.bak": "{}", // should ignore backup files
 			},
 			wantOut: "warning: Found legacy stack files in state store:\n" +
 				"  - a\n" +
 				"  - b\n" +
-				"Please run 'pulumi state upgrade' to migrate them to the new format.\n" +
+				"Please run 'khulnasoft state upgrade' to migrate them to the new format.\n" +
 				"Set PULUMI_DIY_BACKEND_NO_LEGACY_WARNING=1 to disable this warning.\n",
 		},
 		{
 			desc: "warning opt-out",
 			files: map[string]string{
-				".pulumi/stacks/a.json": "{}",
-				".pulumi/stacks/b.json": "{}",
+				".khulnasoft/stacks/a.json": "{}",
+				".khulnasoft/stacks/b.json": "{}",
 			},
 			env: map[string]string{
 				"PULUMI_DIY_BACKEND_NO_LEGACY_WARNING": "true",
@@ -1118,7 +1118,7 @@ func TestNew_legacyFileWarning(t *testing.T) {
 
 			ctx := context.Background()
 			require.NoError(t,
-				bucket.WriteAll(ctx, ".pulumi/meta.yaml", []byte("version: 1"), nil),
+				bucket.WriteAll(ctx, ".khulnasoft/meta.yaml", []byte("version: 1"), nil),
 				"write meta.yaml")
 
 			for path, contents := range tt.files {
@@ -1143,14 +1143,14 @@ func TestLegacyUpgrade(t *testing.T) {
 
 	// Make a dummy stack file in the legacy location
 	tmpDir := t.TempDir()
-	err := os.MkdirAll(path.Join(tmpDir, ".pulumi", "stacks"), os.ModePerm)
+	err := os.MkdirAll(path.Join(tmpDir, ".khulnasoft", "stacks"), os.ModePerm)
 	require.NoError(t, err)
-	err = os.WriteFile(path.Join(tmpDir, ".pulumi", "stacks", "a.json"), []byte(`{
+	err = os.WriteFile(path.Join(tmpDir, ".khulnasoft", "stacks", "a.json"), []byte(`{
 		"latest": {
 			"resources": [
 				{
 					"type": "package:module:resource",
-					"urn": "urn:pulumi:stack::project::package:module:resource::name"
+					"urn": "urn:khulnasoft:stack::project::package:module:resource::name"
 				}
 			]
 		}
@@ -1184,12 +1184,12 @@ func TestLegacyUpgrade(t *testing.T) {
 	assert.True(t, stackFileExists)
 
 	// Write b.json and upgrade again
-	err = os.WriteFile(path.Join(tmpDir, ".pulumi", "stacks", "b.json"), []byte(`{
+	err = os.WriteFile(path.Join(tmpDir, ".khulnasoft", "stacks", "b.json"), []byte(`{
 		"latest": {
 			"resources": [
 				{
 					"type": "package:module:resource",
-					"urn": "urn:pulumi:stack::other-project::package:module:resource::name"
+					"urn": "urn:khulnasoft:stack::other-project::package:module:resource::name"
 				}
 			]
 		}
@@ -1218,19 +1218,19 @@ func TestLegacyUpgrade_partial(t *testing.T) {
 
 	ctx := context.Background()
 	require.NoError(t,
-		bucket.WriteAll(ctx, ".pulumi/stacks/foo.json", []byte(`{
+		bucket.WriteAll(ctx, ".khulnasoft/stacks/foo.json", []byte(`{
 		"latest": {
 			"resources": [
 				{
 					"type": "package:module:resource",
-					"urn": "urn:pulumi:stack::project::package:module:resource::name"
+					"urn": "urn:khulnasoft:stack::project::package:module:resource::name"
 				}
 			]
 		}
 	}`), nil))
 	require.NoError(t,
 		// no resources, can't guess project name
-		bucket.WriteAll(ctx, ".pulumi/stacks/bar.json",
+		bucket.WriteAll(ctx, ".khulnasoft/stacks/bar.json",
 			[]byte(`{"latest": {"resources": []}}`), nil))
 
 	var buff bytes.Buffer
@@ -1241,7 +1241,7 @@ func TestLegacyUpgrade_partial(t *testing.T) {
 	require.NoError(t, b.Upgrade(ctx, nil /* opts */))
 	assert.Contains(t, buff.String(), `Skipping stack "bar": no project name found`)
 
-	exists, err := bucket.Exists(ctx, ".pulumi/stacks/project/foo.json")
+	exists, err := bucket.Exists(ctx, ".khulnasoft/stacks/project/foo.json")
 	require.NoError(t, err)
 	assert.True(t, exists, "foo was not migrated")
 
@@ -1263,7 +1263,7 @@ func TestLegacyUpgrade_ProjectsForDetachedStacks(t *testing.T) {
 	// These stacks have no resources, so we can't guess the project name.
 	ctx := context.Background()
 	for _, stack := range []string{"foo", "bar", "baz"} {
-		statePath := path.Join(".pulumi", "stacks", stack+".json")
+		statePath := path.Join(".khulnasoft", "stacks", stack+".json")
 		require.NoError(t,
 			bucket.WriteAll(ctx, statePath,
 				[]byte(`{"latest": {"resources": []}}`), nil),
@@ -1307,9 +1307,9 @@ func TestLegacyUpgrade_ProjectsForDetachedStacks(t *testing.T) {
 	assert.Contains(t, stderr.String(), fmt.Sprintf("Skipping stack %q", "baz"))
 
 	wantFiles := []string{
-		".pulumi/stacks/proj1/foo.json",
-		".pulumi/stacks/proj2/bar.json",
-		".pulumi/stacks/baz.json",
+		".khulnasoft/stacks/proj1/foo.json",
+		".khulnasoft/stacks/proj2/bar.json",
+		".khulnasoft/stacks/baz.json",
 	}
 	for _, file := range wantFiles {
 		exists, err := bucket.Exists(ctx, file)
@@ -1334,18 +1334,18 @@ func TestLegacyUpgrade_ProjectsForDetachedStacks_error(t *testing.T) {
 	// If ProjectsForDetachedStacks returns an error, the upgrade should
 	// fail for both because the user likely cancelled the upgrade.
 	require.NoError(t,
-		bucket.WriteAll(ctx, ".pulumi/stacks/foo.json", []byte(`{
+		bucket.WriteAll(ctx, ".khulnasoft/stacks/foo.json", []byte(`{
 		"latest": {
 			"resources": [
 				{
 					"type": "package:module:resource",
-					"urn": "urn:pulumi:stack::project::package:module:resource::name"
+					"urn": "urn:khulnasoft:stack::project::package:module:resource::name"
 				}
 			]
 		}
 	}`), nil))
 	require.NoError(t,
-		bucket.WriteAll(ctx, ".pulumi/stacks/bar.json",
+		bucket.WriteAll(ctx, ".khulnasoft/stacks/bar.json",
 			[]byte(`{"latest": {"resources": []}}`), nil))
 
 	sink := diag.DefaultSink(io.Discard, iotest.LogWriter(t), diag.FormatOptions{Color: colors.Never})
@@ -1365,8 +1365,8 @@ func TestLegacyUpgrade_ProjectsForDetachedStacks_error(t *testing.T) {
 	assert.ErrorIs(t, err, giveErr)
 
 	wantFiles := []string{
-		".pulumi/stacks/foo.json",
-		".pulumi/stacks/bar.json",
+		".khulnasoft/stacks/foo.json",
+		".khulnasoft/stacks/bar.json",
 	}
 	for _, file := range wantFiles {
 		exists, err := bucket.Exists(ctx, file)
@@ -1386,12 +1386,12 @@ func TestLegacyUpgrade_writeMetaError(t *testing.T) {
 
 	ctx := context.Background()
 	require.NoError(t,
-		bucket.WriteAll(ctx, ".pulumi/stacks/foo.json", []byte(`{
+		bucket.WriteAll(ctx, ".khulnasoft/stacks/foo.json", []byte(`{
 		"latest": {
 			"resources": [
 				{
 					"type": "package:module:resource",
-					"urn": "urn:pulumi:stack::project::package:module:resource::name"
+					"urn": "urn:khulnasoft:stack::project::package:module:resource::name"
 				}
 			]
 		}
@@ -1399,7 +1399,7 @@ func TestLegacyUpgrade_writeMetaError(t *testing.T) {
 
 	// To prevent a write to meta.yaml, we'll create a directory with that name.
 	// The system will reject creating a file with the same name.
-	require.NoError(t, os.MkdirAll(filepath.Join(stateDir, ".pulumi", "meta.yaml"), 0o755))
+	require.NoError(t, os.MkdirAll(filepath.Join(stateDir, ".khulnasoft", "meta.yaml"), 0o755))
 
 	var buff bytes.Buffer
 	sink := diag.DefaultSink(io.Discard, &buff, diag.FormatOptions{Color: colors.Never})
@@ -1412,7 +1412,7 @@ func TestLegacyUpgrade_writeMetaError(t *testing.T) {
 	assert.Contains(t, stderr, "error: Could not write new state metadata file")
 	assert.Contains(t, stderr, "Please verify that the storage is writable")
 
-	assert.FileExists(t, filepath.Join(stateDir, ".pulumi", "stacks", "foo.json"),
+	assert.FileExists(t, filepath.Join(stateDir, ".khulnasoft", "stacks", "foo.json"),
 		"foo.json should not have been upgraded")
 }
 
@@ -1429,7 +1429,7 @@ func TestNew_unsupportedStoreVersion(t *testing.T) {
 	// Set up a meta.yaml "from the future".
 	ctx := context.Background()
 	require.NoError(t,
-		bucket.WriteAll(ctx, ".pulumi/meta.yaml", []byte("version: 999999999"), nil))
+		bucket.WriteAll(ctx, ".khulnasoft/meta.yaml", []byte("version: 999999999"), nil))
 
 	_, err = New(ctx, diagtest.LogSink(t), "file://"+filepath.ToSlash(stateDir), nil)
 	assert.ErrorContains(t, err, "state store unsupported")
@@ -1468,7 +1468,7 @@ func TestUpgrade_manyFailures(t *testing.T) {
 	require.NoError(t, err)
 	ctx := context.Background()
 	for i := 0; i < numStacks; i++ {
-		stackPath := path.Join(".pulumi", "stacks", fmt.Sprintf("stack-%d.json", i))
+		stackPath := path.Join(".khulnasoft", "stacks", fmt.Sprintf("stack-%d.json", i))
 		require.NoError(t, bucket.WriteAll(ctx, stackPath, []byte(badStackBody), nil))
 	}
 
@@ -1511,7 +1511,7 @@ func TestCreateStack_gzip(t *testing.T) {
 
 	// With PULUMI_DIY_BACKEND_GZIP enabled,
 	// we'll store state into gzipped files.
-	assert.FileExists(t, filepath.Join(stateDir, ".pulumi", "stacks", "testproj", "foo.json.gz"))
+	assert.FileExists(t, filepath.Join(stateDir, ".khulnasoft", "stacks", "testproj", "foo.json.gz"))
 }
 
 func TestCreateStack_retainCheckpoints(t *testing.T) {
@@ -1543,7 +1543,7 @@ func TestCreateStack_retainCheckpoints(t *testing.T) {
 	// we'll just check that there's at least one file
 	// with a timestamp extension.
 	got, err := filepath.Glob(
-		filepath.Join(stateDir, ".pulumi", "stacks", "testproj", "foo.json.*"))
+		filepath.Join(stateDir, ".khulnasoft", "stacks", "testproj", "foo.json.*"))
 	require.NoError(t, err)
 
 	checkpointExtRe := regexp.MustCompile(`^\.[0-9]+$`)
@@ -1598,18 +1598,18 @@ func TestCreateStack_WritesInitialState(t *testing.T) {
 				Deployment: []byte(`{
 					"resources": [
 						{
-							"urn": "urn:pulumi:stack::proj::type::name1",
+							"urn": "urn:khulnasoft:stack::proj::type::name1",
 							"type": "type",
-							"parent": "urn:pulumi:stack::proj::type::name2"
+							"parent": "urn:khulnasoft:stack::proj::type::name2"
 						},
 						{
-							"urn": "urn:pulumi:stack::proj::type::name2",
+							"urn": "urn:khulnasoft:stack::proj::type::name2",
 							"type": "type"
 						}
 					]
 				}`),
 			},
-			contains: "urn:pulumi:stack::proj::type::name2",
+			contains: "urn:khulnasoft:stack::proj::type::name2",
 		},
 		{
 			name: "valid",
@@ -1637,7 +1637,7 @@ func TestCreateStack_WritesInitialState(t *testing.T) {
 			t.Parallel()
 
 			stateDir := t.TempDir()
-			stateFile := path.Join(stateDir, ".pulumi", "stacks", project, stack+".json")
+			stateFile := path.Join(stateDir, ".khulnasoft", "stacks", project, stack+".json")
 
 			ctx := context.Background()
 
@@ -1684,12 +1684,12 @@ func TestDisableIntegrityChecking(t *testing.T) {
 		Deployment: json.RawMessage(`{
 			"resources": [
 				{
-					"urn": "urn:pulumi:stack::proj::type::name1",
+					"urn": "urn:khulnasoft:stack::proj::type::name1",
 					"type": "type",
-					"parent": "urn:pulumi:stack::proj::type::name2"
+					"parent": "urn:khulnasoft:stack::proj::type::name2"
 				},
 				{
-					"urn": "urn:pulumi:stack::proj::type::name2",
+					"urn": "urn:khulnasoft:stack::proj::type::name2",
 					"type": "type"
 				}
 			]
@@ -1703,7 +1703,7 @@ func TestDisableIntegrityChecking(t *testing.T) {
 	backend.DisableIntegrityChecking = false
 	snap, err := s.Snapshot(ctx, b64.Base64SecretsProvider)
 	require.ErrorContains(t, err,
-		"child resource urn:pulumi:stack::proj::type::name1's parent urn:pulumi:stack::proj::type::name2 comes after it")
+		"child resource urn:khulnasoft:stack::proj::type::name1's parent urn:khulnasoft:stack::proj::type::name2 comes after it")
 	assert.Nil(t, snap)
 
 	backend.DisableIntegrityChecking = true

@@ -9,9 +9,9 @@ import (
 	"os"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/provider"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	pulumiprovider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	khulnasoftprovider "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/provider"
 )
 
 const (
@@ -28,9 +28,9 @@ func main() {
 		Name:    providerName,
 		Version: version,
 		Schema:  []byte(schema),
-		Construct: func(ctx *pulumi.Context, typ, name string,
-			inputs pulumiprovider.ConstructInputs, options pulumi.ResourceOption,
-		) (*pulumiprovider.ConstructResult, error) {
+		Construct: func(ctx *khulnasoft.Context, typ, name string,
+			inputs khulnasoftprovider.ConstructInputs, options khulnasoft.ResourceOption,
+		) (*khulnasoftprovider.ConstructResult, error) {
 			return nil, fmt.Errorf("unknown resource type %s", typ)
 		},
 	})

@@ -79,7 +79,7 @@ func TestGetDocLinkForPulumiType(t *testing.T) {
 		t.Parallel()
 
 		pkg.Language["go"] = GoPackageInfo{PulumiSDKVersion: 1}
-		expected := "https://pkg.go.dev/github.com/pulumi/pulumi/sdk/go/pulumi?tab=doc#ResourceOption"
+		expected := "https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/go/khulnasoft?tab=doc#ResourceOption"
 		link := d.GetDocLinkForPulumiType(pkg, "ResourceOption")
 		assert.Equal(t, expected, link)
 		pkg.Language["go"] = nil
@@ -88,7 +88,7 @@ func TestGetDocLinkForPulumiType(t *testing.T) {
 		t.Parallel()
 
 		pkg.Language["go"] = GoPackageInfo{PulumiSDKVersion: 2}
-		expected := "https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v2/go/pulumi?tab=doc#ResourceOption"
+		expected := "https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v2/go/khulnasoft?tab=doc#ResourceOption"
 		link := d.GetDocLinkForPulumiType(pkg, "ResourceOption")
 		assert.Equal(t, expected, link)
 		pkg.Language["go"] = nil
@@ -96,7 +96,7 @@ func TestGetDocLinkForPulumiType(t *testing.T) {
 	t.Run("Generate_ResourceOptionsLink_Unspecified", func(t *testing.T) {
 		t.Parallel()
 
-		expected := fmt.Sprintf("https://pkg.go.dev/github.com/pulumi/pulumi/sdk/%s/go/pulumi?tab=doc#ResourceOption", pulumiSDKVersion)
+		expected := fmt.Sprintf("https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/%s/go/khulnasoft?tab=doc#ResourceOption", khulnasoftSDKVersion)
 		link := d.GetDocLinkForPulumiType(pkg, "ResourceOption")
 		assert.Equal(t, expected, link)
 	})
@@ -107,7 +107,7 @@ func TestGetDocLinkForResourceType(t *testing.T) {
 
 	pkg := getTestPackage(t)
 	d := DocLanguageHelper{}
-	expected := "https://pkg.go.dev/github.com/pulumi/pulumi-aws/sdk/go/aws/s3?tab=doc#Bucket"
+	expected := "https://pkg.go.dev/github.com/khulnasoft/khulnasoft-aws/sdk/go/aws/s3?tab=doc#Bucket"
 	link := d.GetDocLinkForResourceType(pkg, "s3", "Bucket")
 	assert.Equal(t, expected, link)
 }

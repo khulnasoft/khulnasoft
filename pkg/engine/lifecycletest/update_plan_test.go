@@ -29,9 +29,9 @@ import (
 	lt "github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/framework"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 func TestPlannedUpdate(t *testing.T) {
@@ -97,7 +97,7 @@ func TestPlannedUpdate(t *testing.T) {
 	})
 	p.Options.Plan = plan.Clone()
 	validate := ExpectDiagMessage(t, regexp.QuoteMeta(
-		"<{%reset%}>resource urn:pulumi:test::test::pkgA:m:typA::resA violates plan: "+
+		"<{%reset%}>resource urn:khulnasoft:test::test::pkgA:m:typA::resA violates plan: "+
 			"properties changed: +-baz[{map[a:{42} b:output<string>{}]}], +-foo[{bar}]<{%reset%}>\n"))
 	snap, err := lt.TestOp(Update).RunStep(project, p.GetTarget(t, nil), p.Options, false, p.BackendClient, validate, "0")
 	assert.NoError(t, err)
@@ -109,7 +109,7 @@ func TestPlannedUpdate(t *testing.T) {
 
 	// Change the provider's planned operation to a same step.
 	// Remove the provider from the plan.
-	plan.ResourcePlans["urn:pulumi:test::test::pulumi:providers:pkgA::default"].Ops = []display.StepOp{deploy.OpSame}
+	plan.ResourcePlans["urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default"].Ops = []display.StepOp{deploy.OpSame}
 
 	// Attempt to run an update using the plan.
 	ins = resource.NewPropertyMapFromMap(map[string]interface{}{
@@ -352,7 +352,7 @@ func TestExpectedDelete(t *testing.T) {
 	createAllResources = true
 	p.Options.Plan = plan.Clone()
 	validate := ExpectDiagMessage(t, regexp.QuoteMeta(
-		"<{%reset%}>resource urn:pulumi:test::test::pkgA:m:typA::resB violates plan: "+
+		"<{%reset%}>resource urn:khulnasoft:test::test::pkgA:m:typA::resB violates plan: "+
 			"resource unexpectedly not deleted<{%reset%}>\n"))
 	snap, err = lt.TestOp(Update).RunStep(project, p.GetTarget(t, snap), p.Options, false, p.BackendClient, validate, "1")
 	assert.NotNil(t, snap)
@@ -429,7 +429,7 @@ func TestExpectedCreate(t *testing.T) {
 	p.Options.Plan = plan.Clone()
 	validate := ExpectDiagMessage(t, regexp.QuoteMeta(
 		"<{%reset%}>expected resource operations for "+
-			"urn:pulumi:test::test::pkgA:m:typA::resB but none were seen<{%reset%}>\n"))
+			"urn:khulnasoft:test::test::pkgA:m:typA::resB but none were seen<{%reset%}>\n"))
 	snap, err = lt.TestOp(Update).RunStep(project, p.GetTarget(t, snap), p.Options, false, p.BackendClient, validate, "1")
 	assert.NotNil(t, snap)
 	assert.NoError(t, err)
@@ -492,7 +492,7 @@ func TestPropertySetChange(t *testing.T) {
 	})
 	p.Options.Plan = plan.Clone()
 	validate := ExpectDiagMessage(t, regexp.QuoteMeta(
-		"<{%reset%}>resource urn:pulumi:test::test::pkgA:m:typA::resA violates plan: "+
+		"<{%reset%}>resource urn:khulnasoft:test::test::pkgA:m:typA::resA violates plan: "+
 			"properties changed: +-frob[{baz}]<{%reset%}>\n"))
 	snap, err := lt.TestOp(Update).Run(project, p.GetTarget(t, nil), p.Options, false, p.BackendClient, validate)
 	assert.NotNil(t, snap)
@@ -807,7 +807,7 @@ func TestPlannedPreviews(t *testing.T) {
 	})
 	p.Options.Plan = plan.Clone()
 	validate := ExpectDiagMessage(t, regexp.QuoteMeta(
-		"<{%reset%}>resource urn:pulumi:test::test::pkgA:m:typA::resA violates plan: properties changed: "+
+		"<{%reset%}>resource urn:khulnasoft:test::test::pkgA:m:typA::resA violates plan: properties changed: "+
 			"+-baz[{map[a:{42} b:output<string>{}]}], +-foo[{bar}]<{%reset%}>\n"))
 	_, err = lt.TestOp(Update).Plan(project, p.GetTarget(t, nil), p.Options, p.BackendClient, validate)
 	assert.NoError(t, err)
@@ -900,7 +900,7 @@ func TestPlannedUpdateChangedStack(t *testing.T) {
 	})
 	p.Options.Plan = plan.Clone()
 	validate := ExpectDiagMessage(t, regexp.QuoteMeta(
-		"<{%reset%}>resource urn:pulumi:test::test::pkgA:m:typA::resA violates plan: "+
+		"<{%reset%}>resource urn:khulnasoft:test::test::pkgA:m:typA::resA violates plan: "+
 			"properties changed: =~zed[{24}]<{%reset%}>\n"))
 	snap, err = lt.TestOp(Update).RunStep(project, p.GetTarget(t, snap), p.Options, false, p.BackendClient, validate, "2")
 	assert.NoError(t, err)
@@ -1064,7 +1064,7 @@ func TestPlannedInputOutputDifferences(t *testing.T) {
 	})
 	p.Options.Plan = plan.Clone()
 	validate := ExpectDiagMessage(t, regexp.QuoteMeta(
-		"<{%reset%}>resource urn:pulumi:test::test::pkgA:m:typA::resA violates plan: "+
+		"<{%reset%}>resource urn:khulnasoft:test::test::pkgA:m:typA::resA violates plan: "+
 			"properties changed: ~~frob[{newBazzer}!={differentBazzer}]<{%reset%}>\n"))
 	snap, err = lt.TestOp(Update).RunStep(project, p.GetTarget(t, snap), p.Options, false, p.BackendClient, validate, "1")
 	assert.NotNil(t, snap)
@@ -1135,7 +1135,7 @@ func TestAliasWithPlans(t *testing.T) {
 	// Update the name and alias and make a plan for resA
 	resourceName = "newResA"
 	aliases = make([]resource.URN, 1)
-	aliases[0] = resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA")
+	aliases[0] = resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA")
 	plan, err := lt.TestOp(Update).Plan(project, p.GetTarget(t, nil), p.Options, p.BackendClient, nil)
 	assert.NotNil(t, plan)
 	assert.NoError(t, err)
@@ -1370,7 +1370,7 @@ func TestPlannedUpdateWithNondeterministicCheck(t *testing.T) {
 	p.Options.Plan = plan.Clone()
 
 	validate := ExpectDiagMessage(t,
-		"<{%reset%}>resource urn:pulumi:test::test::pkgA:m:typA::resA violates plan: "+
+		"<{%reset%}>resource urn:khulnasoft:test::test::pkgA:m:typA::resA violates plan: "+
 			"properties changed: \\+\\+name\\[{res[\\d\\w]{9}}!={res[\\d\\w]{9}}\\]<{%reset%}>\\n")
 	snap, err := lt.TestOp(Update).RunStep(project, p.GetTarget(t, nil), p.Options, false, p.BackendClient, validate, "4")
 	assert.NoError(t, err)
@@ -1382,7 +1382,7 @@ func TestPlannedUpdateWithNondeterministicCheck(t *testing.T) {
 }
 
 func TestPlannedUpdateWithCheckFailure(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi/issues/9247
+	// Regression test for https://github.com/khulnasoft/khulnasoft/issues/9247
 
 	t.Parallel()
 
@@ -1450,7 +1450,7 @@ func TestPlannedUpdateWithCheckFailure(t *testing.T) {
 	})
 	plan, err = lt.TestOp(Update).Plan(project, p.GetTarget(t, nil), p.Options, p.BackendClient, nil)
 	assert.NotNil(t, plan)
-	assert.Contains(t, plan.ResourcePlans, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"))
+	assert.Contains(t, plan.ResourcePlans, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"))
 	assert.NoError(t, err)
 
 	// Try and run against the plan with inputs that will fail Check
@@ -1500,7 +1500,7 @@ func TestPluginsAreDownloaded(t *testing.T) {
 
 	plan, err := lt.TestOp(Update).Plan(project, p.GetTarget(t, nil), p.Options, p.BackendClient, nil)
 	assert.NotNil(t, plan)
-	assert.Contains(t, plan.ResourcePlans, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"))
+	assert.Contains(t, plan.ResourcePlans, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"))
 	assert.NoError(t, err)
 }
 
@@ -1689,8 +1689,8 @@ func TestPlannedUpdateWithDependentDelete(t *testing.T) {
 	assert.NotNil(t, plan)
 	assert.NoError(t, err)
 
-	assert.Equal(t, 3, len(plan.ResourcePlans["urn:pulumi:test::test::pkgA:m:typA::resA"].Ops))
-	assert.Equal(t, 3, len(plan.ResourcePlans["urn:pulumi:test::test::pkgA:m:typB::resB"].Ops))
+	assert.Equal(t, 3, len(plan.ResourcePlans["urn:khulnasoft:test::test::pkgA:m:typA::resA"].Ops))
+	assert.Equal(t, 3, len(plan.ResourcePlans["urn:khulnasoft:test::test::pkgA:m:typB::resB"].Ops))
 
 	// Now try and run with the plan
 	p.Options.Plan = plan.Clone()
@@ -1743,7 +1743,7 @@ func TestResourcesTargeted(t *testing.T) {
 			Experimental: true,
 			GeneratePlan: true,
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resB",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resB",
 			}),
 		},
 	}, p.BackendClient, nil)
@@ -1772,7 +1772,7 @@ func TestResourcesTargeted(t *testing.T) {
 			Plan:         plan.Clone(),
 			Experimental: true,
 			Targets: deploy.NewUrnTargets([]string{
-				"urn:pulumi:test::test::pkgA:m:typA::resB",
+				"urn:khulnasoft:test::test::pkgA:m:typA::resB",
 			}),
 		},
 	}, false, p.BackendClient, nil, "1")
@@ -1793,7 +1793,7 @@ func TestStackOutputsWithTargetedPlan(t *testing.T) {
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		resp, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test-test", false)
+		resp, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test-test", false)
 		assert.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "resA", true)
@@ -1821,7 +1821,7 @@ func TestStackOutputsWithTargetedPlan(t *testing.T) {
 			Experimental: true,
 			GeneratePlan: true,
 			Targets: deploy.NewUrnTargetsFromUrns([]resource.URN{
-				resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"),
+				resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"),
 			}),
 		},
 	}, p.BackendClient, nil)
@@ -1836,7 +1836,7 @@ func TestStackOutputsWithTargetedPlan(t *testing.T) {
 			GeneratePlan: true,
 			Experimental: true,
 			Targets: deploy.NewUrnTargetsFromUrns([]resource.URN{
-				resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"),
+				resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"),
 			}),
 		},
 	}, false, p.BackendClient, nil)

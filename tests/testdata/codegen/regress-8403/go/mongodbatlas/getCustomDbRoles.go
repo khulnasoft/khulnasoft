@@ -7,11 +7,11 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"regress-8403/mongodbatlas/internal"
 )
 
-func LookupCustomDbRoles(ctx *pulumi.Context, args *LookupCustomDbRolesArgs, opts ...pulumi.InvokeOption) (*LookupCustomDbRolesResult, error) {
+func LookupCustomDbRoles(ctx *khulnasoft.Context, args *LookupCustomDbRolesArgs, opts ...khulnasoft.InvokeOption) (*LookupCustomDbRolesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCustomDbRolesResult
 	err := ctx.Invoke("mongodbatlas::getCustomDbRoles", args, &rv, opts...)
@@ -25,11 +25,11 @@ type LookupCustomDbRolesArgs struct {
 }
 
 type LookupCustomDbRolesResult struct {
-	Result *GetCustomDbRolesResult `pulumi:"result"`
+	Result *GetCustomDbRolesResult `khulnasoft:"result"`
 }
 
-func LookupCustomDbRolesOutput(ctx *pulumi.Context, args LookupCustomDbRolesOutputArgs, opts ...pulumi.InvokeOption) LookupCustomDbRolesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func LookupCustomDbRolesOutput(ctx *khulnasoft.Context, args LookupCustomDbRolesOutputArgs, opts ...khulnasoft.InvokeOption) LookupCustomDbRolesResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (LookupCustomDbRolesResultOutput, error) {
 			args := v.(LookupCustomDbRolesArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -39,9 +39,9 @@ func LookupCustomDbRolesOutput(ctx *pulumi.Context, args LookupCustomDbRolesOutp
 				return LookupCustomDbRolesResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(LookupCustomDbRolesResultOutput)
+			output := khulnasoft.ToOutput(rv).(LookupCustomDbRolesResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(LookupCustomDbRolesResultOutput), nil
+				return khulnasoft.ToSecret(output).(LookupCustomDbRolesResultOutput), nil
 			}
 			return output, nil
 		}).(LookupCustomDbRolesResultOutput)
@@ -54,7 +54,7 @@ func (LookupCustomDbRolesOutputArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*LookupCustomDbRolesArgs)(nil)).Elem()
 }
 
-type LookupCustomDbRolesResultOutput struct{ *pulumi.OutputState }
+type LookupCustomDbRolesResultOutput struct{ *khulnasoft.OutputState }
 
 func (LookupCustomDbRolesResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*LookupCustomDbRolesResult)(nil)).Elem()
@@ -73,5 +73,5 @@ func (o LookupCustomDbRolesResultOutput) Result() GetCustomDbRolesResultPtrOutpu
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupCustomDbRolesResultOutput{})
+	khulnasoft.RegisterOutputType(LookupCustomDbRolesResultOutput{})
 }

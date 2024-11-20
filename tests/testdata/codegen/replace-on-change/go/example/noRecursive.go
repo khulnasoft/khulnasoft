@@ -7,25 +7,25 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"replace-on-change/example/internal"
 )
 
 type NoRecursive struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Rec       RecPtrOutput           `pulumi:"rec"`
-	ReplaceMe pulumi.StringPtrOutput `pulumi:"replaceMe"`
+	Rec       RecPtrOutput           `khulnasoft:"rec"`
+	ReplaceMe khulnasoft.StringPtrOutput `khulnasoft:"replaceMe"`
 }
 
 // NewNoRecursive registers a new resource with the given unique name, arguments, and options.
-func NewNoRecursive(ctx *pulumi.Context,
-	name string, args *NoRecursiveArgs, opts ...pulumi.ResourceOption) (*NoRecursive, error) {
+func NewNoRecursive(ctx *khulnasoft.Context,
+	name string, args *NoRecursiveArgs, opts ...khulnasoft.ResourceOption) (*NoRecursive, error) {
 	if args == nil {
 		args = &NoRecursiveArgs{}
 	}
 
-	replaceOnChanges := pulumi.ReplaceOnChanges([]string{
+	replaceOnChanges := khulnasoft.ReplaceOnChanges([]string{
 		"replaceMe",
 	})
 	opts = append(opts, replaceOnChanges)
@@ -40,8 +40,8 @@ func NewNoRecursive(ctx *pulumi.Context,
 
 // GetNoRecursive gets an existing NoRecursive resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetNoRecursive(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *NoRecursiveState, opts ...pulumi.ResourceOption) (*NoRecursive, error) {
+func GetNoRecursive(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *NoRecursiveState, opts ...khulnasoft.ResourceOption) (*NoRecursive, error) {
 	var resource NoRecursive
 	err := ctx.ReadResource("example::NoRecursive", name, id, state, &resource, opts...)
 	if err != nil {
@@ -73,7 +73,7 @@ func (NoRecursiveArgs) ElementType() reflect.Type {
 }
 
 type NoRecursiveInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToNoRecursiveOutput() NoRecursiveOutput
 	ToNoRecursiveOutputWithContext(ctx context.Context) NoRecursiveOutput
@@ -88,7 +88,7 @@ func (i *NoRecursive) ToNoRecursiveOutput() NoRecursiveOutput {
 }
 
 func (i *NoRecursive) ToNoRecursiveOutputWithContext(ctx context.Context) NoRecursiveOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NoRecursiveOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(NoRecursiveOutput)
 }
 
 // NoRecursiveArrayInput is an input type that accepts NoRecursiveArray and NoRecursiveArrayOutput values.
@@ -96,7 +96,7 @@ func (i *NoRecursive) ToNoRecursiveOutputWithContext(ctx context.Context) NoRecu
 //
 //	NoRecursiveArray{ NoRecursiveArgs{...} }
 type NoRecursiveArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToNoRecursiveArrayOutput() NoRecursiveArrayOutput
 	ToNoRecursiveArrayOutputWithContext(context.Context) NoRecursiveArrayOutput
@@ -113,7 +113,7 @@ func (i NoRecursiveArray) ToNoRecursiveArrayOutput() NoRecursiveArrayOutput {
 }
 
 func (i NoRecursiveArray) ToNoRecursiveArrayOutputWithContext(ctx context.Context) NoRecursiveArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NoRecursiveArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(NoRecursiveArrayOutput)
 }
 
 // NoRecursiveMapInput is an input type that accepts NoRecursiveMap and NoRecursiveMapOutput values.
@@ -121,7 +121,7 @@ func (i NoRecursiveArray) ToNoRecursiveArrayOutputWithContext(ctx context.Contex
 //
 //	NoRecursiveMap{ "key": NoRecursiveArgs{...} }
 type NoRecursiveMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToNoRecursiveMapOutput() NoRecursiveMapOutput
 	ToNoRecursiveMapOutputWithContext(context.Context) NoRecursiveMapOutput
@@ -138,10 +138,10 @@ func (i NoRecursiveMap) ToNoRecursiveMapOutput() NoRecursiveMapOutput {
 }
 
 func (i NoRecursiveMap) ToNoRecursiveMapOutputWithContext(ctx context.Context) NoRecursiveMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NoRecursiveMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(NoRecursiveMapOutput)
 }
 
-type NoRecursiveOutput struct{ *pulumi.OutputState }
+type NoRecursiveOutput struct{ *khulnasoft.OutputState }
 
 func (NoRecursiveOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**NoRecursive)(nil)).Elem()
@@ -159,11 +159,11 @@ func (o NoRecursiveOutput) Rec() RecPtrOutput {
 	return o.ApplyT(func(v *NoRecursive) RecPtrOutput { return v.Rec }).(RecPtrOutput)
 }
 
-func (o NoRecursiveOutput) ReplaceMe() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *NoRecursive) pulumi.StringPtrOutput { return v.ReplaceMe }).(pulumi.StringPtrOutput)
+func (o NoRecursiveOutput) ReplaceMe() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *NoRecursive) khulnasoft.StringPtrOutput { return v.ReplaceMe }).(khulnasoft.StringPtrOutput)
 }
 
-type NoRecursiveArrayOutput struct{ *pulumi.OutputState }
+type NoRecursiveArrayOutput struct{ *khulnasoft.OutputState }
 
 func (NoRecursiveArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*NoRecursive)(nil)).Elem()
@@ -177,13 +177,13 @@ func (o NoRecursiveArrayOutput) ToNoRecursiveArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o NoRecursiveArrayOutput) Index(i pulumi.IntInput) NoRecursiveOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NoRecursive {
+func (o NoRecursiveArrayOutput) Index(i khulnasoft.IntInput) NoRecursiveOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *NoRecursive {
 		return vs[0].([]*NoRecursive)[vs[1].(int)]
 	}).(NoRecursiveOutput)
 }
 
-type NoRecursiveMapOutput struct{ *pulumi.OutputState }
+type NoRecursiveMapOutput struct{ *khulnasoft.OutputState }
 
 func (NoRecursiveMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*NoRecursive)(nil)).Elem()
@@ -197,14 +197,14 @@ func (o NoRecursiveMapOutput) ToNoRecursiveMapOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o NoRecursiveMapOutput) MapIndex(k pulumi.StringInput) NoRecursiveOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *NoRecursive {
+func (o NoRecursiveMapOutput) MapIndex(k khulnasoft.StringInput) NoRecursiveOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *NoRecursive {
 		return vs[0].(map[string]*NoRecursive)[vs[1].(string)]
 	}).(NoRecursiveOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(NoRecursiveOutput{})
-	pulumi.RegisterOutputType(NoRecursiveArrayOutput{})
-	pulumi.RegisterOutputType(NoRecursiveMapOutput{})
+	khulnasoft.RegisterOutputType(NoRecursiveOutput{})
+	khulnasoft.RegisterOutputType(NoRecursiveArrayOutput{})
+	khulnasoft.RegisterOutputType(NoRecursiveMapOutput{})
 }

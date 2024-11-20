@@ -2,7 +2,7 @@
 
 // See README.md for information on what to do if this test fails.
 
-import * as latestShipped from "@pulumi/pulumi";
+import * as latestShipped from "@khulnasoft/khulnasoft";
 
 // Note: we reference 'bin' as we want to see the typescript types with all internal information
 // stripped.

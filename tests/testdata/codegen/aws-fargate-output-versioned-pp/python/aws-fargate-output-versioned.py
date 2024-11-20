@@ -1,6 +1,6 @@
-import pulumi
+import khulnasoft
 import json
-import pulumi_aws as aws
+import khulnasoft_aws as aws
 
 # Read the default VPC and public subnets, which we will use.
 vpc = aws.ec2.get_vpc_output(default=True)
@@ -85,5 +85,5 @@ app_service = aws.ecs.Service("appService",
         "container_name": "my-app",
         "container_port": 80,
     }],
-    opts = pulumi.ResourceOptions(depends_on=[web_listener]))
-pulumi.export("url", web_load_balancer.dns_name)
+    opts = khulnasoft.ResourceOptions(depends_on=[web_listener]))
+khulnasoft.export("url", web_load_balancer.dns_name)

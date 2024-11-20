@@ -19,10 +19,10 @@ import (
 	"io"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
@@ -64,20 +64,20 @@ type SourceIterator interface {
 // SourceResourceMonitor directs resource operations from the `Source` to various resource
 // providers.
 type SourceResourceMonitor interface {
-	// NOTE: This interface does not implement pulumirpc.ResourceMonitorClient because the eval and
+	// NOTE: This interface does not implement khulnasoftrpc.ResourceMonitorClient because the eval and
 	// query implementations of `Source` do not implement precisely the same signatures.
 
 	Address() string
 	Cancel() error
 	AbortChan() <-chan bool
-	Invoke(ctx context.Context, req *pulumirpc.ResourceInvokeRequest) (*pulumirpc.InvokeResponse, error)
-	Call(ctx context.Context, req *pulumirpc.ResourceCallRequest) (*pulumirpc.CallResponse, error)
+	Invoke(ctx context.Context, req *khulnasoftrpc.ResourceInvokeRequest) (*khulnasoftrpc.InvokeResponse, error)
+	Call(ctx context.Context, req *khulnasoftrpc.ResourceCallRequest) (*khulnasoftrpc.CallResponse, error)
 	ReadResource(ctx context.Context,
-		req *pulumirpc.ReadResourceRequest) (*pulumirpc.ReadResourceResponse, error)
+		req *khulnasoftrpc.ReadResourceRequest) (*khulnasoftrpc.ReadResourceResponse, error)
 	RegisterResource(ctx context.Context,
-		req *pulumirpc.RegisterResourceRequest) (*pulumirpc.RegisterResourceResponse, error)
+		req *khulnasoftrpc.RegisterResourceRequest) (*khulnasoftrpc.RegisterResourceResponse, error)
 	RegisterResourceOutputs(ctx context.Context,
-		req *pulumirpc.RegisterResourceOutputsRequest) (*emptypb.Empty, error)
+		req *khulnasoftrpc.RegisterResourceOutputsRequest) (*emptypb.Empty, error)
 }
 
 // SourceEvent is an event associated with the enumeration of a plan.  It is an intent expressed by the source

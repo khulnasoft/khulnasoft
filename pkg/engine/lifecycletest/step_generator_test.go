@@ -23,8 +23,8 @@ import (
 	lt "github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/framework"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -183,7 +183,7 @@ func TestReadReplaceStep(t *testing.T) {
 
 			assert.Nil(t, snap.VerifyIntegrity())
 			assert.Len(t, snap.Resources, 2)
-			assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+			assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 			assert.False(t, snap.Resources[1].External)
 
 			// ReadReplace resource.
@@ -207,7 +207,7 @@ func TestReadReplaceStep(t *testing.T) {
 					assert.NotNil(t, snap)
 					assert.Nil(t, snap.VerifyIntegrity())
 					assert.Len(t, snap.Resources, 2)
-					assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+					assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 					assert.True(t, snap.Resources[1].External)
 				})
 		})
@@ -237,7 +237,7 @@ func TestRelinquishStep(t *testing.T) {
 			assert.NotNil(t, snap)
 			assert.Nil(t, snap.VerifyIntegrity())
 			assert.Len(t, snap.Resources, 2)
-			assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+			assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 			assert.False(t, snap.Resources[1].External)
 
 			lt.NewTestBuilder(t, snap).
@@ -260,7 +260,7 @@ func TestRelinquishStep(t *testing.T) {
 					assert.NotNil(t, snap)
 					assert.Nil(t, snap.VerifyIntegrity())
 					assert.Len(t, snap.Resources, 2)
-					assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+					assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 					assert.True(t, snap.Resources[1].External)
 				})
 		})
@@ -289,7 +289,7 @@ func TestTakeOwnershipStep(t *testing.T) {
 			assert.NotNil(t, snap)
 			assert.Nil(t, snap.VerifyIntegrity())
 			assert.Len(t, snap.Resources, 2)
-			assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+			assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 			assert.True(t, snap.Resources[1].External)
 
 			// Create new resource for this snapshot.
@@ -315,7 +315,7 @@ func TestTakeOwnershipStep(t *testing.T) {
 					assert.NotNil(t, snap)
 					assert.Nil(t, snap.VerifyIntegrity())
 					assert.Len(t, snap.Resources, 2)
-					assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+					assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 					assert.False(t, snap.Resources[1].External)
 				})
 		})
@@ -328,18 +328,18 @@ func TestInitErrorsStep(t *testing.T) {
 	lt.NewTestBuilder(t, &deploy.Snapshot{
 		Resources: []*resource.State{
 			{
-				Type:   "pulumi:providers:pkgA",
-				URN:    "urn:pulumi:test::test::pulumi:providers:pkgA::default",
+				Type:   "khulnasoft:providers:pkgA",
+				URN:    "urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default",
 				Custom: true,
 				Delete: false,
 				ID:     "935b2216-aec5-4810-96fd-5f6eae57ac88",
 			},
 			{
 				Type:     "pkgA:m:typA",
-				URN:      "urn:pulumi:test::test::pkgA:m:typA::resA",
+				URN:      "urn:khulnasoft:test::test::pkgA:m:typA::resA",
 				Custom:   true,
 				ID:       "my-resource-id",
-				Provider: "urn:pulumi:test::test::pulumi:providers:pkgA::default::935b2216-aec5-4810-96fd-5f6eae57ac88",
+				Provider: "urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default::935b2216-aec5-4810-96fd-5f6eae57ac88",
 				InitErrors: []string{
 					`errors should yield an empty update to "continue" awaiting initialization.`,
 				},
@@ -366,7 +366,7 @@ func TestInitErrorsStep(t *testing.T) {
 			assert.NotNil(t, snap)
 			assert.Nil(t, snap.VerifyIntegrity())
 			assert.Len(t, snap.Resources, 2)
-			assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+			assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 			assert.Empty(t, snap.Resources[1].InitErrors)
 		})
 }

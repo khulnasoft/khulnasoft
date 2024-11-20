@@ -32,11 +32,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 func TestSingleResourceDefaultProviderLifecycle(t *testing.T) {
@@ -882,7 +882,7 @@ func TestDefaultProviderDiff(t *testing.T) {
 	// resB.
 	//
 	// Despite switching out the provider, the engine should still generate a Same step for resA. It is vital that the
-	// engine gracefully react to changes in the default provider in this manner. See pulumi/pulumi#2753 for what
+	// engine gracefully react to changes in the default provider in this manner. See khulnasoft/khulnasoft#2753 for what
 	// happens when it doesn't.
 	snap = runProgram(snap, "0.17.10", "0.17.10", deploy.OpSame, "1")
 	for _, res := range snap.Resources {
@@ -1229,7 +1229,7 @@ func TestPluginDownloadURLPassthrough(t *testing.T) {
 		}),
 	}
 
-	pkgAPluginDownloadURL := "get.pulumi.com/${VERSION}"
+	pkgAPluginDownloadURL := "get.khulnasoft.com/${VERSION}"
 	pkgAType := providers.MakeProviderType("pkgA")
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
@@ -1287,7 +1287,7 @@ func TestPluginDownloadURLDefaultProvider(t *testing.T) {
 			return &deploytest.Provider{}, nil
 		}),
 	}
-	url := "get.pulumi.com"
+	url := "get.khulnasoft.com"
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
 		_, err := monitor.RegisterResource("pkgA::Foo", "foo", true, deploytest.ResourceOptions{
@@ -1390,7 +1390,7 @@ func TestMultipleResourceDenyDefaultProviderLifecycle(t *testing.T) {
 			hostF := deploytest.NewPluginHostF(nil, nil, programF, loaders...)
 
 			c := config.Map{}
-			k := config.MustMakeKey("pulumi", "disable-default-providers")
+			k := config.MustMakeKey("khulnasoft", "disable-default-providers")
 			c[k] = config.NewValue(tt.disabled)
 
 			expectedCreated := 4
@@ -1418,7 +1418,7 @@ func TestProviderVersionAssignment(t *testing.T) {
 			if err != nil {
 				return err
 			}
-			_, err = monitor.RegisterResource("pulumi:providers:pkgA", "provA", true, opts...)
+			_, err = monitor.RegisterResource("khulnasoft:providers:pkgA", "provA", true, opts...)
 			if err != nil {
 				return err
 			}
@@ -1486,7 +1486,7 @@ func TestProviderVersionAssignment(t *testing.T) {
 			snapshot: &deploy.Snapshot{
 				Resources: []*resource.State{
 					{
-						Type: "providers:pulumi:pkgA",
+						Type: "providers:khulnasoft:pkgA",
 						URN:  "this:is:a:urn::ofaei",
 						Inputs: map[resource.PropertyKey]resource.PropertyValue{
 							"version": resource.NewPropertyValue("1.3.0"),
@@ -1668,7 +1668,7 @@ func TestComponentProvidersInheritance(t *testing.T) {
 	t.Parallel()
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		resp, err := monitor.RegisterResource("pulumi:providers:pkg", "provA", true)
+		resp, err := monitor.RegisterResource("khulnasoft:providers:pkg", "provA", true)
 		assert.NoError(t, err)
 
 		provID := resp.ID
@@ -1721,7 +1721,7 @@ func TestComponentProvidersInheritance(t *testing.T) {
 					assert.Equal(t, "pkg:index:component", string(req.Type))
 
 					if req.Name == "resB" {
-						assert.Contains(t, req.Options.Providers["pkgA"], "urn:pulumi:test::test::pulumi:providers:pkg::provA::")
+						assert.Contains(t, req.Options.Providers["pkgA"], "urn:khulnasoft:test::test::khulnasoft:providers:pkg::provA::")
 					} else {
 						assert.Equal(t, "resD", req.Name)
 						assert.NotContains(t, req.Options.Providers, "pkgA")
@@ -1751,7 +1751,7 @@ func TestComponentProvidersInheritance(t *testing.T) {
 
 // TestRefreshLegacyState tests that if we have a snapshot that contains a legacy state (before __internal was added) we
 // can still load the provider version and pluginDownloadURL from the state. c.f.
-// https://github.com/pulumi/pulumi/issues/16757.
+// https://github.com/khulnasoft/khulnasoft/issues/16757.
 func TestRefreshLegacyState(t *testing.T) {
 	t.Parallel()
 
@@ -1777,8 +1777,8 @@ func TestRefreshLegacyState(t *testing.T) {
 	snapshot := &deploy.Snapshot{
 		Resources: []*resource.State{
 			{
-				Type: "providers:pulumi:pkgA",
-				URN:  p.NewURN("providers:pulumi:pkgA", "prov", ""),
+				Type: "providers:khulnasoft:pkgA",
+				URN:  p.NewURN("providers:khulnasoft:pkgA", "prov", ""),
 				Inputs: map[resource.PropertyKey]resource.PropertyValue{
 					"version":           resource.NewPropertyValue("1.3.0"),
 					"pluginDownloadURL": resource.NewStringProperty("http://example.com"),

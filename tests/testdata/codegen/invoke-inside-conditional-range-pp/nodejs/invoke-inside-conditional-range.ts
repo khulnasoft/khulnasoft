@@ -1,9 +1,9 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
-import * as std from "@pulumi/std";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
+import * as std from "@khulnasoft/std";
 
 export = async () => {
-    const config = new pulumi.Config();
+    const config = new khulnasoft.Config();
     // A list of availability zones names or ids in the region
     const azs = config.getObject<Array<string>>("azs") || [];
     // Assigns IPv6 public subnet id based on the Amazon provided /56 prefix base 10 integer (0-256). Must be of equal length to the corresponding IPv4 subnet list

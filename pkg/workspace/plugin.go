@@ -23,9 +23,9 @@ import (
 	"github.com/blang/semver"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // InstallPluginError is returned by InstallPlugin if we couldn't install the plugin
@@ -43,14 +43,14 @@ func (err *InstallPluginError) Error() string {
 	}
 
 	if err.Spec.Version != nil {
-		return fmt.Sprintf("Could not automatically download and install %[1]s plugin 'pulumi-%[1]s-%[2]s'"+
+		return fmt.Sprintf("Could not automatically download and install %[1]s plugin 'khulnasoft-%[1]s-%[2]s'"+
 			" at version v%[3]s"+
-			", install the plugin using `pulumi plugin install %[1]s %[2]s v%[3]s%[4]s`: %[5]v",
+			", install the plugin using `khulnasoft plugin install %[1]s %[2]s v%[3]s%[4]s`: %[5]v",
 			err.Spec.Kind, err.Spec.Name, err.Spec.Version, server, err.Err)
 	}
 
-	return fmt.Sprintf("Could not automatically download and install %[1]s plugin 'pulumi-%[1]s-%[2]s'"+
-		", install the plugin using `pulumi plugin install %[1]s %[2]s%[3]s`: %[4]v",
+	return fmt.Sprintf("Could not automatically download and install %[1]s plugin 'khulnasoft-%[1]s-%[2]s'"+
+		", install the plugin using `khulnasoft plugin install %[1]s %[2]s%[3]s`: %[4]v",
 		err.Spec.Kind, err.Spec.Name, server, err.Err)
 }
 

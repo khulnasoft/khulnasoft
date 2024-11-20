@@ -4,11 +4,11 @@
 package my8110
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"regress-node-8110/my8110/internal"
 )
 
-func ExampleFunc(ctx *pulumi.Context, args *ExampleFuncArgs, opts ...pulumi.InvokeOption) error {
+func ExampleFunc(ctx *khulnasoft.Context, args *ExampleFuncArgs, opts ...khulnasoft.InvokeOption) error {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv struct{}
 	err := ctx.Invoke("my8110::exampleFunc", args, &rv, opts...)
@@ -16,5 +16,5 @@ func ExampleFunc(ctx *pulumi.Context, args *ExampleFuncArgs, opts ...pulumi.Invo
 }
 
 type ExampleFuncArgs struct {
-	Enums []string `pulumi:"enums"`
+	Enums []string `khulnasoft:"enums"`
 }

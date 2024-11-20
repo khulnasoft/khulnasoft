@@ -1,18 +1,18 @@
 {
-    "name": "@pulumi/my8110",
+    "name": "@khulnasoft/my8110",
     "version": "${VERSION}",
     "scripts": {
         "build": "tsc"
     },
     "dependencies": {
-        "@pulumi/pulumi": "^3.136.0"
+        "@khulnasoft/khulnasoft": "^3.136.0"
     },
     "devDependencies": {
         "@types/node": "ts4.3",
         "ts-node": "latest",
         "typescript": "^4.3.5"
     },
-    "pulumi": {
+    "khulnasoft": {
         "resource": true,
         "name": "my8110"
     }

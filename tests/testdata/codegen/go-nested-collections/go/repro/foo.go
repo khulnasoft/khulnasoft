@@ -7,20 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"go-nested-collections/repro/internal"
 )
 
 type Foo struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	ConditionSets   BarArrayArrayArrayOutput     `pulumi:"conditionSets"`
-	PrivateEndpoint pulumi.StringMapMapMapOutput `pulumi:"privateEndpoint"`
+	ConditionSets   BarArrayArrayArrayOutput     `khulnasoft:"conditionSets"`
+	PrivateEndpoint khulnasoft.StringMapMapMapOutput `khulnasoft:"privateEndpoint"`
 }
 
 // NewFoo registers a new resource with the given unique name, arguments, and options.
-func NewFoo(ctx *pulumi.Context,
-	name string, args *FooArgs, opts ...pulumi.ResourceOption) (*Foo, error) {
+func NewFoo(ctx *khulnasoft.Context,
+	name string, args *FooArgs, opts ...khulnasoft.ResourceOption) (*Foo, error) {
 	if args == nil {
 		args = &FooArgs{}
 	}
@@ -36,8 +36,8 @@ func NewFoo(ctx *pulumi.Context,
 
 // GetFoo gets an existing Foo resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetFoo(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *FooState, opts ...pulumi.ResourceOption) (*Foo, error) {
+func GetFoo(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *FooState, opts ...khulnasoft.ResourceOption) (*Foo, error) {
 	var resource Foo
 	err := ctx.ReadResource("repro:index:Foo", name, id, state, &resource, opts...)
 	if err != nil {
@@ -69,7 +69,7 @@ func (FooArgs) ElementType() reflect.Type {
 }
 
 type FooInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToFooOutput() FooOutput
 	ToFooOutputWithContext(ctx context.Context) FooOutput
@@ -84,7 +84,7 @@ func (i *Foo) ToFooOutput() FooOutput {
 }
 
 func (i *Foo) ToFooOutputWithContext(ctx context.Context) FooOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FooOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(FooOutput)
 }
 
 // FooArrayInput is an input type that accepts FooArray and FooArrayOutput values.
@@ -92,7 +92,7 @@ func (i *Foo) ToFooOutputWithContext(ctx context.Context) FooOutput {
 //
 //	FooArray{ FooArgs{...} }
 type FooArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToFooArrayOutput() FooArrayOutput
 	ToFooArrayOutputWithContext(context.Context) FooArrayOutput
@@ -109,7 +109,7 @@ func (i FooArray) ToFooArrayOutput() FooArrayOutput {
 }
 
 func (i FooArray) ToFooArrayOutputWithContext(ctx context.Context) FooArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FooArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(FooArrayOutput)
 }
 
 // FooMapInput is an input type that accepts FooMap and FooMapOutput values.
@@ -117,7 +117,7 @@ func (i FooArray) ToFooArrayOutputWithContext(ctx context.Context) FooArrayOutpu
 //
 //	FooMap{ "key": FooArgs{...} }
 type FooMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToFooMapOutput() FooMapOutput
 	ToFooMapOutputWithContext(context.Context) FooMapOutput
@@ -134,10 +134,10 @@ func (i FooMap) ToFooMapOutput() FooMapOutput {
 }
 
 func (i FooMap) ToFooMapOutputWithContext(ctx context.Context) FooMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FooMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(FooMapOutput)
 }
 
-type FooOutput struct{ *pulumi.OutputState }
+type FooOutput struct{ *khulnasoft.OutputState }
 
 func (FooOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Foo)(nil)).Elem()
@@ -155,11 +155,11 @@ func (o FooOutput) ConditionSets() BarArrayArrayArrayOutput {
 	return o.ApplyT(func(v *Foo) BarArrayArrayArrayOutput { return v.ConditionSets }).(BarArrayArrayArrayOutput)
 }
 
-func (o FooOutput) PrivateEndpoint() pulumi.StringMapMapMapOutput {
-	return o.ApplyT(func(v *Foo) pulumi.StringMapMapMapOutput { return v.PrivateEndpoint }).(pulumi.StringMapMapMapOutput)
+func (o FooOutput) PrivateEndpoint() khulnasoft.StringMapMapMapOutput {
+	return o.ApplyT(func(v *Foo) khulnasoft.StringMapMapMapOutput { return v.PrivateEndpoint }).(khulnasoft.StringMapMapMapOutput)
 }
 
-type FooArrayOutput struct{ *pulumi.OutputState }
+type FooArrayOutput struct{ *khulnasoft.OutputState }
 
 func (FooArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*Foo)(nil)).Elem()
@@ -173,13 +173,13 @@ func (o FooArrayOutput) ToFooArrayOutputWithContext(ctx context.Context) FooArra
 	return o
 }
 
-func (o FooArrayOutput) Index(i pulumi.IntInput) FooOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Foo {
+func (o FooArrayOutput) Index(i khulnasoft.IntInput) FooOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *Foo {
 		return vs[0].([]*Foo)[vs[1].(int)]
 	}).(FooOutput)
 }
 
-type FooMapOutput struct{ *pulumi.OutputState }
+type FooMapOutput struct{ *khulnasoft.OutputState }
 
 func (FooMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*Foo)(nil)).Elem()
@@ -193,17 +193,17 @@ func (o FooMapOutput) ToFooMapOutputWithContext(ctx context.Context) FooMapOutpu
 	return o
 }
 
-func (o FooMapOutput) MapIndex(k pulumi.StringInput) FooOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Foo {
+func (o FooMapOutput) MapIndex(k khulnasoft.StringInput) FooOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *Foo {
 		return vs[0].(map[string]*Foo)[vs[1].(string)]
 	}).(FooOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*FooInput)(nil)).Elem(), &Foo{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FooArrayInput)(nil)).Elem(), FooArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FooMapInput)(nil)).Elem(), FooMap{})
-	pulumi.RegisterOutputType(FooOutput{})
-	pulumi.RegisterOutputType(FooArrayOutput{})
-	pulumi.RegisterOutputType(FooMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*FooInput)(nil)).Elem(), &Foo{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*FooArrayInput)(nil)).Elem(), FooArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*FooMapInput)(nil)).Elem(), FooMap{})
+	khulnasoft.RegisterOutputType(FooOutput{})
+	khulnasoft.RegisterOutputType(FooArrayOutput{})
+	khulnasoft.RegisterOutputType(FooMapOutput{})
 }

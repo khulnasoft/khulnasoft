@@ -20,15 +20,15 @@ import (
 	"time"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // Manifest captures versions for all binaries used to construct this snapshot.
 type Manifest struct {
 	Time    time.Time              // the time this snapshot was taken.
 	Magic   string                 // a magic cookie.
-	Version string                 // the pulumi command version.
+	Version string                 // the khulnasoft command version.
 	Plugins []workspace.PluginInfo // the plugin versions also loaded.
 }
 

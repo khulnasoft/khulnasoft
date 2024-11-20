@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
 export = async () => {
     // VPC
@@ -9,13 +9,13 @@ export = async () => {
         enableDnsHostnames: true,
         enableDnsSupport: true,
         tags: {
-            Name: "pulumi-eks-vpc",
+            Name: "khulnasoft-eks-vpc",
         },
     });
     const eksIgw = new aws.ec2.InternetGateway("eksIgw", {
         vpcId: eksVpc.id,
         tags: {
-            Name: "pulumi-vpc-ig",
+            Name: "khulnasoft-vpc-ig",
         },
     });
     const eksRouteTable = new aws.ec2.RouteTable("eksRouteTable", {
@@ -25,7 +25,7 @@ export = async () => {
             gatewayId: eksIgw.id,
         }],
         tags: {
-            Name: "pulumi-vpc-rt",
+            Name: "khulnasoft-vpc-rt",
         },
     });
     // Subnets, one for each AZ in a region
@@ -39,7 +39,7 @@ export = async () => {
             cidrBlock: `10.100.${range.key}.0/24`,
             availabilityZone: range.value,
             tags: {
-                Name: `pulumi-sn-${range.value}`,
+                Name: `khulnasoft-sn-${range.value}`,
             },
         }));
     }
@@ -55,7 +55,7 @@ export = async () => {
         vpcId: eksVpc.id,
         description: "Allow all HTTP(s) traffic to EKS Cluster",
         tags: {
-            Name: "pulumi-cluster-sg",
+            Name: "khulnasoft-cluster-sg",
         },
         ingress: [
             {
@@ -122,7 +122,7 @@ export = async () => {
     const eksCluster = new aws.eks.Cluster("eksCluster", {
         roleArn: eksRole.arn,
         tags: {
-            Name: "pulumi-eks-cluster",
+            Name: "khulnasoft-eks-cluster",
         },
         vpcConfig: {
             publicAccessCidrs: ["0.0.0.0/0"],
@@ -132,11 +132,11 @@ export = async () => {
     });
     const nodeGroup = new aws.eks.NodeGroup("nodeGroup", {
         clusterName: eksCluster.name,
-        nodeGroupName: "pulumi-eks-nodegroup",
+        nodeGroupName: "khulnasoft-eks-nodegroup",
         nodeRoleArn: ec2Role.arn,
         subnetIds: subnetIds,
         tags: {
-            Name: "pulumi-cluster-nodeGroup",
+            Name: "khulnasoft-cluster-nodeGroup",
         },
         scalingConfig: {
             desiredSize: 2,
@@ -146,7 +146,7 @@ export = async () => {
     });
     return {
         clusterName: eksCluster.name,
-        kubeconfig: pulumi.jsonStringify({
+        kubeconfig: khulnasoft.jsonStringify({
             apiVersion: "v1",
             clusters: [{
                 cluster: {

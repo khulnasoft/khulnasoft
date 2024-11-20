@@ -11,24 +11,24 @@ import (
 	"time"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/internals"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/internals"
 )
 
 type Child struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Message pulumi.StringOutput `pulumi:"message"`
+	Message khulnasoft.StringOutput `khulnasoft:"message"`
 }
 
-func NewChild(ctx *pulumi.Context, name string, message pulumi.StringInput,
-	opts ...pulumi.ResourceOption,
+func NewChild(ctx *khulnasoft.Context, name string, message khulnasoft.StringInput,
+	opts ...khulnasoft.ResourceOption,
 ) (*Child, error) {
 	component := &Child{}
 	if err := ctx.RegisterComponentResource("test:index:Child", name, component, opts...); err != nil {
 		return nil, err
 	}
-	if err := ctx.RegisterResourceOutputs(component, pulumi.Map{
+	if err := ctx.RegisterResourceOutputs(component, khulnasoft.Map{
 		"message": message,
 	}); err != nil {
 		return nil, err
@@ -37,18 +37,18 @@ func NewChild(ctx *pulumi.Context, name string, message pulumi.StringInput,
 	//
 	// See also the comment in NewContainer below for a more thorough explanation.
 	//
-	// TODO: make RegisterResourceOutputs not racy [pulumi/pulumi#16896]
+	// TODO: make RegisterResourceOutputs not racy [khulnasoft/khulnasoft#16896]
 	componentURNResult, err := internals.UnsafeAwaitOutput(ctx.Context(), component.URN())
 	if err != nil {
 		return nil, err
 	}
-	componentURN := componentURNResult.Value.(pulumi.URN)
+	componentURN := componentURNResult.Value.(khulnasoft.URN)
 	sleep := 20 * time.Millisecond
 	for i := 0; ; i++ {
 		roundTrippedComponent := &Child{}
 
 		if err := ctx.RegisterComponentResource("test:index:Child", "mychild", roundTrippedComponent,
-			pulumi.URN_(string(componentURN))); err != nil {
+			khulnasoft.URN_(string(componentURN))); err != nil {
 			return nil, err
 		}
 		message, err := internals.UnsafeAwaitOutput(ctx.Context(), roundTrippedComponent.Message)
@@ -67,39 +67,39 @@ func NewChild(ctx *pulumi.Context, name string, message pulumi.StringInput,
 }
 
 type ChildInput interface {
-	pulumi.Input
+	khulnasoft.Input
 }
 
 func (*Child) ElementType() reflect.Type {
 	return reflect.TypeOf((**Child)(nil)).Elem()
 }
 
-type ChildOutput struct{ *pulumi.OutputState }
+type ChildOutput struct{ *khulnasoft.OutputState }
 
 func (ChildOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Child)(nil)).Elem()
 }
 
 type Container struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Child ChildOutput `pulumi:"child"`
+	Child ChildOutput `khulnasoft:"child"`
 }
 
 type CustomContainer struct {
-	pulumi.CustomResource
+	khulnasoft.CustomResource
 
-	Child ChildOutput `pulumi:"child"`
+	Child ChildOutput `khulnasoft:"child"`
 }
 
-func NewContainer(ctx *pulumi.Context, name string, child ChildInput,
-	opts ...pulumi.ResourceOption,
+func NewContainer(ctx *khulnasoft.Context, name string, child ChildInput,
+	opts ...khulnasoft.ResourceOption,
 ) (*Container, error) {
 	component := &Container{}
 	if err := ctx.RegisterComponentResource("test:index:Container", name, component, opts...); err != nil {
 		return nil, err
 	}
-	if err := ctx.RegisterResourceOutputs(component, pulumi.Map{
+	if err := ctx.RegisterResourceOutputs(component, khulnasoft.Map{
 		"child": child,
 	}); err != nil {
 		return nil, err
@@ -113,18 +113,18 @@ func NewContainer(ctx *pulumi.Context, name string, child ChildInput,
 	// outputs are registered before we return the container.  Ideally we should find a way to make this non-racy
 	// (see the issue linked below)
 	//
-	// TODO: make RegisterResourceOutputs not racy [pulumi/pulumi#16896]
+	// TODO: make RegisterResourceOutputs not racy [khulnasoft/khulnasoft#16896]
 	containerURNResult, err := internals.UnsafeAwaitOutput(ctx.Context(), component.URN())
 	if err != nil {
 		return nil, err
 	}
-	containerURN := containerURNResult.Value.(pulumi.URN)
+	containerURN := containerURNResult.Value.(khulnasoft.URN)
 	sleep := 20 * time.Millisecond
 	for i := 0; ; i++ {
 		roundTrippedContainer := &Container{}
 
 		if err := ctx.RegisterComponentResource("test:index:Container", "mycontainer", roundTrippedContainer,
-			pulumi.URN_(string(containerURN))); err != nil {
+			khulnasoft.URN_(string(containerURN))); err != nil {
 			return nil, err
 		}
 		child, err := internals.UnsafeAwaitOutput(ctx.Context(), roundTrippedContainer.Child)
@@ -150,27 +150,27 @@ func (m *module) Version() semver.Version {
 	return m.version
 }
 
-func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+func (m *module) Construct(ctx *khulnasoft.Context, name, typ, urn string) (r khulnasoft.Resource, err error) {
 	switch typ {
 	case "test:index:Child":
 		r = &Child{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
-	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err = ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return
 }
 
 func main() {
-	pulumi.RegisterOutputType(ChildOutput{})
-	pulumi.RegisterResourceModule(
+	khulnasoft.RegisterOutputType(ChildOutput{})
+	khulnasoft.RegisterResourceModule(
 		"test",
 		"index",
 		&module{semver.MustParse("1.0.0")},
 	)
 
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		child, err := NewChild(ctx, "mychild", pulumi.String("hello world!"))
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		child, err := NewChild(ctx, "mychild", khulnasoft.String("hello world!"))
 		if err != nil {
 			return err
 		}
@@ -184,11 +184,11 @@ func main() {
 		if err != nil {
 			return err
 		}
-		containerURN := containerURNResult.Value.(pulumi.URN)
+		containerURN := containerURNResult.Value.(khulnasoft.URN)
 
 		roundTrippedContainer := &Container{}
 		if err := ctx.RegisterComponentResource("test:index:Container", "mycontainer", roundTrippedContainer,
-			pulumi.URN_(string(containerURN))); err != nil {
+			khulnasoft.URN_(string(containerURN))); err != nil {
 			return err
 		}
 
@@ -198,11 +198,11 @@ func main() {
 		}
 		roundTrippedContainerChild := roundTrippedContainerChildResult.Value.(*Child)
 
-		pulumi.All(child.URN(), roundTrippedContainerChild.URN(), roundTrippedContainerChild.Message).ApplyT(
+		khulnasoft.All(child.URN(), roundTrippedContainerChild.URN(), roundTrippedContainerChild.Message).ApplyT(
 			func(args []interface{}) (*string, error) {
 				const expectedMessage = "hello world!"
-				expectedURN := args[0].(pulumi.URN)
-				actualURN := args[1].(pulumi.URN)
+				expectedURN := args[0].(khulnasoft.URN)
+				actualURN := args[1].(khulnasoft.URN)
 				actualMessage := args[2].(string)
 				if expectedURN != actualURN {
 					panic(fmt.Errorf("expected urn %q not equal to actual urn %q", expectedURN, actualMessage))

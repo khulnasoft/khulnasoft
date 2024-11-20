@@ -1,11 +1,11 @@
-import pulumi
-import pulumi_azure_native as azure_native
-import pulumi_random as random
+import khulnasoft
+import khulnasoft_azure_native as azure_native
+import khulnasoft_random as random
 
-config = pulumi.Config()
+config = khulnasoft.Config()
 sql_admin = config.get("sqlAdmin")
 if sql_admin is None:
-    sql_admin = "pulumi"
+    sql_admin = "khulnasoft"
 appservicegroup = azure_native.resources.ResourceGroup("appservicegroup")
 sa = azure_native.storage.StorageAccount("sa",
     resource_group_name=appservicegroup.name,
@@ -17,7 +17,7 @@ container = azure_native.storage.BlobContainer("container",
     resource_group_name=appservicegroup.name,
     account_name=sa.name,
     public_access=azure_native.storage.PublicAccess.NONE)
-blob_access_token = pulumi.Output.secret(pulumi.Output.all(
+blob_access_token = khulnasoft.Output.secret(khulnasoft.Output.all(
     saName=sa.name,
     appservicegroupName=appservicegroup.name,
     saName1=sa.name,
@@ -47,7 +47,7 @@ blob = azure_native.storage.Blob("blob",
     account_name=sa.name,
     container_name=container.name,
     type=azure_native.storage.BlobType.BLOCK,
-    source=pulumi.FileArchive("./www"))
+    source=khulnasoft.FileArchive("./www"))
 app_insights = azure_native.insights.Component("appInsights",
     resource_group_name=appservicegroup.name,
     application_type=azure_native.insights.ApplicationType.WEB,
@@ -73,7 +73,7 @@ app = azure_native.web.WebApp("app",
         "app_settings": [
             {
                 "name": "WEBSITE_RUN_FROM_PACKAGE",
-                "value": pulumi.Output.all(
+                "value": khulnasoft.Output.all(
                     saName=sa.name,
                     containerName=container.name,
                     blobName=blob.name,
@@ -97,7 +97,7 @@ app = azure_native.web.WebApp("app",
         "connection_strings": [{
             "name": "db",
             "type": azure_native.web.ConnectionStringType.SQL_AZURE,
-            "connection_string": pulumi.Output.all(
+            "connection_string": khulnasoft.Output.all(
                 sqlServerName=sql_server.name,
                 dbName=db.name,
                 result=sql_password.result
@@ -105,4 +105,4 @@ app = azure_native.web.WebApp("app",
 ,
         }],
     })
-pulumi.export("endpoint", app.default_host_name)
+khulnasoft.export("endpoint", app.default_host_name)

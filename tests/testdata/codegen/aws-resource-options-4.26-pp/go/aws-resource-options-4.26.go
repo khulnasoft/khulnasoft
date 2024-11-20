@@ -1,22 +1,22 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
-	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/s3"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v4/go/aws"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v4/go/aws/s3"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		provider, err := aws.NewProvider(ctx, "provider", &aws.ProviderArgs{
-			Region: pulumi.String("us-west-2"),
+			Region: khulnasoft.String("us-west-2"),
 		})
 		if err != nil {
 			return err
 		}
-		_, err = s3.NewBucket(ctx, "bucket1", nil, pulumi.Provider(provider), pulumi.DependsOn([]pulumi.Resource{
+		_, err = s3.NewBucket(ctx, "bucket1", nil, khulnasoft.Provider(provider), khulnasoft.DependsOn([]khulnasoft.Resource{
 			provider,
-		}), pulumi.Protect(true), pulumi.IgnoreChanges([]string{
+		}), khulnasoft.Protect(true), khulnasoft.IgnoreChanges([]string{
 			"bucket",
 			"lifecycleRules[0]",
 		}))

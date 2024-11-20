@@ -1,17 +1,17 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"github.com/khulnasoft/khulnasoft-random/sdk/v4/go/random"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		cfg := config.New(ctx, "")
 		configLexicalName := cfg.Require("cC-Charlie_charlie.😃⁉️")
 		resourceLexicalName, err := random.NewRandomPet(ctx, "aA-Alpha_alpha.🤯⁉️", &random.RandomPetArgs{
-			Prefix: pulumi.String(configLexicalName),
+			Prefix: khulnasoft.String(configLexicalName),
 		})
 		if err != nil {
 			return err

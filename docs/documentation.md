@@ -10,7 +10,7 @@ of various Sphinx features.
 
 ### Building
 
-The `docs` directory contains a `Makefile` (<gh-file:pulumi#docs/Makefile>) for
+The `docs` directory contains a `Makefile` (<gh-file:khulnasoft#docs/Makefile>) for
 working with the documentation. Generally you'll just want:
 
 ```sh
@@ -25,7 +25,7 @@ the results at <http://localhost:8000/docs/README.html>.
 This documentation is deployed to [Read the Docs](https://readthedocs.org) as
 part of our CI/CD pipelines. The `build` target in the `Makefile` is used to
 build an HTML version of the documentation that Read the Docs then deploys. See
-the <gh-file:pulumi#.readthedocs.yaml> configuration in the root of the
+the <gh-file:khulnasoft#.readthedocs.yaml> configuration in the root of the
 repository for more information.
 
 #### Previewing changes

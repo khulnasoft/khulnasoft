@@ -4,22 +4,22 @@
 package config
 
 import (
-	"example.com/pulumi-configstation/sdk/go/configstation/internal"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"example.com/khulnasoft-configstation/sdk/go/configstation/internal"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"
 )
 
 var _ = internal.GetEnvOrDefault
 
-func GetFavoritePlants(ctx *pulumi.Context) string {
+func GetFavoritePlants(ctx *khulnasoft.Context) string {
 	return config.Get(ctx, "configstation:favoritePlants")
 }
 
 // omg my favorite sandwich
-func GetFavoriteSandwich(ctx *pulumi.Context) string {
+func GetFavoriteSandwich(ctx *khulnasoft.Context) string {
 	return config.Get(ctx, "configstation:favoriteSandwich")
 }
-func GetIsMember(ctx *pulumi.Context) bool {
+func GetIsMember(ctx *khulnasoft.Context) bool {
 	v, err := config.TryBool(ctx, "configstation:isMember")
 	if err == nil {
 		return v
@@ -28,18 +28,18 @@ func GetIsMember(ctx *pulumi.Context) bool {
 	value = true
 	return value
 }
-func GetKids(ctx *pulumi.Context) string {
+func GetKids(ctx *khulnasoft.Context) string {
 	return config.Get(ctx, "configstation:kids")
 }
-func GetName(ctx *pulumi.Context) string {
+func GetName(ctx *khulnasoft.Context) string {
 	return config.Get(ctx, "configstation:name")
 }
-func GetNumberOfSheep(ctx *pulumi.Context) int {
+func GetNumberOfSheep(ctx *khulnasoft.Context) int {
 	return config.GetInt(ctx, "configstation:numberOfSheep")
 }
 
 // This is a huge secret
-func GetSecretCode(ctx *pulumi.Context) string {
+func GetSecretCode(ctx *khulnasoft.Context) string {
 	v, err := config.Try(ctx, "configstation:secretCode")
 	if err == nil {
 		return v

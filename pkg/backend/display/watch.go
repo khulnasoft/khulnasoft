@@ -23,7 +23,7 @@ import (
 	"time"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // We use RFC 5424 timestamps with millisecond precision for displaying time stamps on watch
@@ -54,7 +54,7 @@ func ShowWatchEvents(op string, events <-chan engine.Event, done chan<- bool, op
 			// Ignore it
 			continue
 		case engine.PolicyViolationEvent:
-			// At this point in time, we don't handle policy events as part of pulumi watch
+			// At this point in time, we don't handle policy events as part of khulnasoft watch
 			continue
 		case engine.DiagEvent:
 			// Skip any ephemeral or debug messages, and elide all colorization.

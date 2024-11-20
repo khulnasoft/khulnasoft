@@ -85,8 +85,8 @@
       "generateResourceContainerTypes": true,
       "generateExtraInputTypes": true,
       "packageImportAliases": {
-        "github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2": "awsec2",
-        "github.com/pulumi/pulumi-google-native/sdk/go/google/iam/v1": "gcpiamv1"
+        "github.com/khulnasoft/khulnasoft-aws/sdk/v4/go/aws/ec2": "awsec2",
+        "github.com/khulnasoft/khulnasoft-google-native/sdk/go/google/iam/v1": "gcpiamv1"
       },
       "importBasePath": "external-go-import-aliases/example"
     }

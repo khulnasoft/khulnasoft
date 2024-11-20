@@ -97,12 +97,12 @@ func TestIsZipArchiveURL(t *testing.T) {
 		},
 		{
 			testName:    "git_ssh_url",
-			templateURL: "ssh://github.com/pulumi/templates/archive/master.git",
+			templateURL: "ssh://github.com/khulnasoft/templates/archive/master.git",
 			expected:    false,
 		},
 		{
 			testName:    "git_https_url",
-			templateURL: "https://github.com/pulumi/templates/archive/master",
+			templateURL: "https://github.com/khulnasoft/templates/archive/master",
 			expected:    false,
 		},
 		{
@@ -149,7 +149,7 @@ func TestRetrieveZIPTemplates_FailsWhenPulumiYAMLIsMissing(t *testing.T) {
 	// Arrange.
 	cases := map[string][]string{
 		"empty.zip":          {},
-		"no-pulumi-yaml.zip": {"foo", "bar/baz"},
+		"no-khulnasoft-yaml.zip": {"foo", "bar/baz"},
 	}
 
 	server := newTestServer(t, cases)
@@ -167,11 +167,11 @@ func TestRetrieveZIPTemplates_FailsWhenPulumiYAMLIsMissing(t *testing.T) {
 func TestRetrieveZIPTemplates_SucceedsWhenPulumiYAMLIsPresent(t *testing.T) {
 	// Arrange.
 	cases := map[string][]string{
-		"just-pulumi-yaml.zip":                    {"Pulumi.yaml"},
-		"pulumi-yaml-and-flat-files.zip":          {"Pulumi.yaml", "foo"},
-		"pulumi-yaml-and-nested-files.zip":        {"Pulumi.yaml", "bar/baz"},
-		"pulumi-yaml-and-mixture.zip":             {"Pulumi.yaml", "foo", "bar/baz"},
-		"pulumi-yaml-at-top-level-and-nested.zip": {"Pulumi.yaml", "foo", "bar/Pulumi.yaml"},
+		"just-khulnasoft-yaml.zip":                    {"Pulumi.yaml"},
+		"khulnasoft-yaml-and-flat-files.zip":          {"Pulumi.yaml", "foo"},
+		"khulnasoft-yaml-and-nested-files.zip":        {"Pulumi.yaml", "bar/baz"},
+		"khulnasoft-yaml-and-mixture.zip":             {"Pulumi.yaml", "foo", "bar/baz"},
+		"khulnasoft-yaml-at-top-level-and-nested.zip": {"Pulumi.yaml", "foo", "bar/Pulumi.yaml"},
 	}
 
 	server := newTestServer(t, cases)

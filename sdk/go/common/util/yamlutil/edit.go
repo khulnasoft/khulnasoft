@@ -112,7 +112,7 @@ func handleMappingNode(original, newNode *yaml.Node) ([]*yaml.Node, error) {
 		newKeys[newKey] = i
 
 		// Keep a list of all the keys that are not in the original to add them to
-		// the end, (see pulumi/pulumi#14860).
+		// the end, (see khulnasoft/khulnasoft#14860).
 		if !inOriginal {
 			newKeyList = append(newKeyList, newKey)
 		}

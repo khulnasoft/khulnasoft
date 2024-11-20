@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_aws as aws
+import khulnasoft
+import khulnasoft_aws as aws
 
 aws_vpc = aws.ec2.Vpc("aws_vpc",
     cidr_block="10.0.0.0/16",
@@ -24,5 +24,5 @@ private_s3_network_acl_rule = aws.ec2.NetworkAclRule("privateS3NetworkAclRule",
 amis = aws.ec2.get_ami_ids_output(owners=[bar.id],
     filters=[{
         "name": bar.id,
-        "values": ["pulumi*"],
+        "values": ["khulnasoft*"],
     }])

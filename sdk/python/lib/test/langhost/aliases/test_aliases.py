@@ -42,7 +42,7 @@ class AliasesTest(LanghostTest):
         source_position,
     ):
         return {
-            "urn": f"urn:pulumi:stack::project::{ty}::{name}",
+            "urn": f"urn:khulnasoft:stack::project::{ty}::{name}",
             "id": "myID",
             "object": {},
         }

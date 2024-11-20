@@ -403,7 +403,7 @@ func TestHasValue(t *testing.T) {
 	}
 }
 
-// Test for https://github.com/pulumi/pulumi/issues/16889
+// Test for https://github.com/khulnasoft/khulnasoft/issues/16889
 func TestMapFromMapNestedPropertyValues(t *testing.T) {
 	t.Parallel()
 

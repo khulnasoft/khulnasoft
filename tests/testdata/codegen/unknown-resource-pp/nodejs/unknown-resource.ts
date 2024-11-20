@@ -1,7 +1,7 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as unknown from "@pulumi/unknown";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as unknown from "@khulnasoft/unknown";
 
-const provider = new pulumi.providers.Unknown("provider", {});
+const provider = new khulnasoft.providers.Unknown("provider", {});
 const main = new unknown.index.Main("main", {
     first: "hello",
     second: {

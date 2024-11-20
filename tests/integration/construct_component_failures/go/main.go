@@ -17,13 +17,13 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := NewComponent(ctx, "component", &ComponentArgs{
-			Foo: pulumi.String("bar"),
+			Foo: khulnasoft.String("bar"),
 		})
 		if err != nil {
 			return err

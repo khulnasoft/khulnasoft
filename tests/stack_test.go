@@ -30,13 +30,13 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v2"
@@ -53,7 +53,7 @@ func TestStackCommands(t *testing.T) {
 
 		integration.CreateBasicPulumiRepo(e)
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "foo")
+		e.RunCommand("khulnasoft", "stack", "init", "foo")
 
 		stacks, current := integration.GetStacks(e)
 		assert.Equal(t, 1, len(stacks))
@@ -66,7 +66,7 @@ func TestStackCommands(t *testing.T) {
 		assert.Equal(t, "foo", *current)
 		assert.Contains(t, stacks, "foo")
 
-		e.RunCommand("pulumi", "stack", "rm", "foo", "--yes")
+		e.RunCommand("khulnasoft", "stack", "rm", "foo", "--yes")
 
 		stacks, _ = integration.GetStacks(e)
 		assert.Equal(t, 0, len(stacks))
@@ -80,9 +80,9 @@ func TestStackCommands(t *testing.T) {
 
 		integration.CreateBasicPulumiRepo(e)
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "blighttown")
-		e.RunCommand("pulumi", "stack", "init", "majula")
-		e.RunCommand("pulumi", "stack", "init", "lothric")
+		e.RunCommand("khulnasoft", "stack", "init", "blighttown")
+		e.RunCommand("khulnasoft", "stack", "init", "majula")
+		e.RunCommand("khulnasoft", "stack", "init", "lothric")
 
 		// Last one created is always selected.
 		stacks, current := integration.GetStacks(e)
@@ -93,7 +93,7 @@ func TestStackCommands(t *testing.T) {
 		}
 
 		// Select works
-		e.RunCommand("pulumi", "stack", "select", "blighttown")
+		e.RunCommand("khulnasoft", "stack", "select", "blighttown")
 		stacks, current = integration.GetStacks(e)
 		if current == nil {
 			t.Fatalf("No stack was labeled as current among: %v", stacks)
@@ -102,12 +102,12 @@ func TestStackCommands(t *testing.T) {
 		}
 
 		// Error
-		out, err := e.RunCommandExpectError("pulumi", "stack", "select", "anor-londo")
+		out, err := e.RunCommandExpectError("khulnasoft", "stack", "select", "anor-londo")
 		assert.Empty(t, out)
 		// local: "no stack with name 'anor-londo' found"
-		// cloud: "Stack 'integration-test-59f645ba/pulumi-test/anor-londo' not found"
+		// cloud: "Stack 'integration-test-59f645ba/khulnasoft-test/anor-londo' not found"
 		assert.Contains(t, err, "anor-londo")
-		e.RunCommand("pulumi", "stack", "rm", "--yes")
+		e.RunCommand("khulnasoft", "stack", "rm", "--yes")
 	})
 
 	t.Run("StackInitNoSelect", func(t *testing.T) {
@@ -118,8 +118,8 @@ func TestStackCommands(t *testing.T) {
 
 		integration.CreateBasicPulumiRepo(e)
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "first")
-		e.RunCommand("pulumi", "stack", "init", "second")
+		e.RunCommand("khulnasoft", "stack", "init", "first")
+		e.RunCommand("khulnasoft", "stack", "init", "second")
 
 		// Last one created is always selected.
 		stacks, current := integration.GetStacks(e)
@@ -130,7 +130,7 @@ func TestStackCommands(t *testing.T) {
 		}
 
 		// Specifying `--no-select` prevents selection.
-		e.RunCommand("pulumi", "stack", "init", "third", "--no-select")
+		e.RunCommand("khulnasoft", "stack", "init", "third", "--no-select")
 		stacks, current = integration.GetStacks(e)
 		if current == nil {
 			t.Fatalf("No stack was labeled as current among: %v", stacks)
@@ -153,8 +153,8 @@ func TestStackCommands(t *testing.T) {
 
 		integration.CreateBasicPulumiRepo(e)
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "one")
-		e.RunCommand("pulumi", "stack", "init", "two")
+		e.RunCommand("khulnasoft", "stack", "init", "one")
+		e.RunCommand("khulnasoft", "stack", "init", "two")
 
 		// Last one created is always selected.
 		stacks, current := integration.GetStacks(e)
@@ -164,7 +164,7 @@ func TestStackCommands(t *testing.T) {
 			assert.Equal(t, "two", *current)
 		}
 
-		e.RunCommand("pulumi", "stack", "unselect")
+		e.RunCommand("khulnasoft", "stack", "unselect")
 		_, updatedCurrentStack := integration.GetStacks(e)
 		if updatedCurrentStack != nil {
 			t.Fatal("No stack should be selected after unselect was executed")
@@ -180,32 +180,32 @@ func TestStackCommands(t *testing.T) {
 		integration.CreateBasicPulumiRepo(e)
 
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "blighttown")
-		e.RunCommand("pulumi", "stack", "init", "majula")
-		e.RunCommand("pulumi", "stack", "init", "lothric")
+		e.RunCommand("khulnasoft", "stack", "init", "blighttown")
+		e.RunCommand("khulnasoft", "stack", "init", "majula")
+		e.RunCommand("khulnasoft", "stack", "init", "lothric")
 		stacks, _ := integration.GetStacks(e)
 		assert.Equal(t, 3, len(stacks))
 
-		e.RunCommand("pulumi", "stack", "rm", "majula", "--yes")
+		e.RunCommand("khulnasoft", "stack", "rm", "majula", "--yes")
 		stacks, _ = integration.GetStacks(e)
 		assert.Equal(t, 2, len(stacks))
 		assert.Contains(t, stacks, "blighttown")
 		assert.Contains(t, stacks, "lothric")
 
-		e.RunCommand("pulumi", "stack", "rm", "lothric", "--yes")
+		e.RunCommand("khulnasoft", "stack", "rm", "lothric", "--yes")
 		stacks, _ = integration.GetStacks(e)
 		assert.Equal(t, 1, len(stacks))
 		assert.Contains(t, stacks, "blighttown")
 
-		e.RunCommand("pulumi", "stack", "rm", "blighttown", "--yes")
+		e.RunCommand("khulnasoft", "stack", "rm", "blighttown", "--yes")
 		stacks, _ = integration.GetStacks(e)
 		assert.Equal(t, 0, len(stacks))
 
 		// Error
-		out, err := e.RunCommandExpectError("pulumi", "stack", "rm", "anor-londo", "--yes")
+		out, err := e.RunCommandExpectError("khulnasoft", "stack", "rm", "anor-londo", "--yes")
 		assert.Empty(t, out)
-		// local: .pulumi/stacks/pulumi-test/anor-londo.json: no such file or directory
-		// cloud:  Stack 'integration-test-59f645ba/pulumi-test/anor-londo' not found
+		// local: .khulnasoft/stacks/khulnasoft-test/anor-londo.json: no such file or directory
+		// cloud:  Stack 'integration-test-59f645ba/khulnasoft-test/anor-londo' not found
 		assert.Contains(t, err, "anor-londo")
 	})
 
@@ -226,12 +226,12 @@ func TestStackCommands(t *testing.T) {
 
 				integration.CreateBasicPulumiRepo(e)
 				e.SetBackend(e.LocalURL())
-				e.RunCommand("pulumi", "stack", "init", "the-abyss")
+				e.RunCommand("khulnasoft", "stack", "init", "the-abyss")
 				stacks, _ := integration.GetStacks(e)
 				assert.Equal(t, 1, len(stacks))
 
 				stackFile := path.Join(e.RootPath, "stack.json")
-				e.RunCommand("pulumi", "stack", "export", "--file", "stack.json")
+				e.RunCommand("khulnasoft", "stack", "export", "--file", "stack.json")
 				stackJSON, err := os.ReadFile(stackFile)
 				if !assert.NoError(t, err) {
 					t.FailNow()
@@ -251,7 +251,7 @@ func TestStackCommands(t *testing.T) {
 					t.FailNow()
 				}
 
-				stdout, stderr := e.RunCommandExpectError("pulumi", "stack", "import", "--file", "stack.json")
+				stdout, stderr := e.RunCommandExpectError("khulnasoft", "stack", "import", "--file", "stack.json")
 				assert.Empty(t, stdout)
 				switch {
 				case deploymentVersion > apitype.DeploymentSchemaVersionCurrent:
@@ -270,14 +270,14 @@ func TestStackCommands(t *testing.T) {
 		integration.CreateBasicPulumiRepo(e)
 		e.ImportDirectory("integration/stack_dependencies")
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", stackName)
-		e.RunCommand("yarn", "link", "@pulumi/pulumi")
+		e.RunCommand("khulnasoft", "stack", "init", stackName)
+		e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 		e.RunCommand("yarn", "install")
-		e.RunCommand("pulumi", "up", "--non-interactive", "--yes", "--skip-preview")
+		e.RunCommand("khulnasoft", "up", "--non-interactive", "--yes", "--skip-preview")
 		// We're going to futz with the stack a little so that one of the resources we just created
 		// becomes invalid.
 		stackFile := path.Join(e.RootPath, "stack.json")
-		e.RunCommand("pulumi", "stack", "export", "--file", "stack.json")
+		e.RunCommand("khulnasoft", "stack", "export", "--file", "stack.json")
 		stackJSON, err := os.ReadFile(stackFile)
 		if !assert.NoError(t, err) {
 			t.FailNow()
@@ -319,11 +319,11 @@ func TestStackCommands(t *testing.T) {
 			t.FailNow()
 		}
 		os.Unsetenv("PULUMI_CONFIG_PASSPHRASE")
-		_, stderr := e.RunCommand("pulumi", "stack", "import", "--file", "stack.json")
+		_, stderr := e.RunCommand("khulnasoft", "stack", "import", "--file", "stack.json")
 		assert.Contains(t, stderr, fmt.Sprintf("removing pending operation 'deleting' on '%s'", res.URN))
 		// The engine should be happy now that there are no invalid resources.
-		e.RunCommand("pulumi", "up", "--non-interactive", "--yes", "--skip-preview")
-		e.RunCommand("pulumi", "stack", "rm", "--yes", "--force")
+		e.RunCommand("khulnasoft", "up", "--non-interactive", "--yes", "--skip-preview")
+		e.RunCommand("khulnasoft", "stack", "rm", "--yes", "--force")
 	})
 }
 
@@ -358,15 +358,15 @@ func TestStackBackups(t *testing.T) {
 		}()
 
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", stackName)
+		e.RunCommand("khulnasoft", "stack", "init", stackName)
 
 		// Build the project.
-		e.RunCommand("yarn", "link", "@pulumi/pulumi")
+		e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 		e.RunCommand("yarn", "install")
 
-		// Now run pulumi up.
+		// Now run khulnasoft up.
 		before := time.Now().UnixNano()
-		e.RunCommand("pulumi", "up", "--non-interactive", "--yes", "--skip-preview")
+		e.RunCommand("khulnasoft", "up", "--non-interactive", "--yes", "--skip-preview")
 		after := time.Now().UnixNano()
 
 		// Verify the backup directory contains a single backup.
@@ -380,9 +380,9 @@ func TestStackBackups(t *testing.T) {
 		// Verify the backup file.
 		assertBackupStackFile(t, stackName, files[0], before, after)
 
-		// Now run pulumi destroy.
+		// Now run khulnasoft destroy.
 		before = time.Now().UnixNano()
-		e.RunCommand("pulumi", "destroy", "--non-interactive", "--yes", "--skip-preview")
+		e.RunCommand("khulnasoft", "destroy", "--non-interactive", "--yes", "--skip-preview")
 		after = time.Now().UnixNano()
 
 		// Verify the backup directory has been updated with 1 additional backups.
@@ -402,7 +402,7 @@ func TestStackBackups(t *testing.T) {
 			assertBackupStackFile(t, stackName, file, before, after)
 		}
 
-		e.RunCommand("pulumi", "stack", "rm", "--yes")
+		e.RunCommand("khulnasoft", "stack", "rm", "--yes")
 	})
 }
 
@@ -423,16 +423,16 @@ func TestDestroySetsEncryptionsalt(t *testing.T) {
 		e.ImportDirectory("integration/stack_outputs/nodejs")
 
 		e.SetBackend(e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", stackName)
+		e.RunCommand("khulnasoft", "stack", "init", stackName)
 
 		// Build the project.
-		e.RunCommand("yarn", "link", "@pulumi/pulumi")
+		e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 		e.RunCommand("yarn", "install")
 
-		e.RunCommand("pulumi", "config", "set", "--secret", "token", "cookie")
+		e.RunCommand("khulnasoft", "config", "set", "--secret", "token", "cookie")
 
-		// Now run pulumi up.
-		e.RunCommand("pulumi", "up", "--non-interactive", "--yes", "--skip-preview")
+		// Now run khulnasoft up.
+		e.RunCommand("khulnasoft", "up", "--non-interactive", "--yes", "--skip-preview")
 
 		// See what the encryptionsalt is
 		stackYAML, err := os.ReadFile(stackFile)
@@ -448,8 +448,8 @@ func TestDestroySetsEncryptionsalt(t *testing.T) {
 	err := os.WriteFile(stackFile, []byte(preamble), 0o600)
 	assert.NoError(t, err, "writing Pulumi.imulup.yaml")
 
-	// Now run pulumi destroy.
-	e.RunCommand("pulumi", "destroy", "--non-interactive", "--yes", "--skip-preview")
+	// Now run khulnasoft destroy.
+	e.RunCommand("khulnasoft", "destroy", "--non-interactive", "--yes", "--skip-preview")
 
 	// Check that the stack file has the right `encryptionsalt` set.
 	stackYAML, err := os.ReadFile(stackFile)
@@ -459,7 +459,7 @@ func TestDestroySetsEncryptionsalt(t *testing.T) {
 	require.NoError(t, err)
 	assert.Equal(t, expectedSalt, stackConfig.EncryptionSalt)
 
-	e.RunCommand("pulumi", "stack", "rm", "--yes")
+	e.RunCommand("khulnasoft", "stack", "rm", "--yes")
 }
 
 func TestStackRenameAfterCreate(t *testing.T) {
@@ -470,10 +470,10 @@ func TestStackRenameAfterCreate(t *testing.T) {
 	stackName := addRandomSuffix("stack-rename")
 	integration.CreateBasicPulumiRepo(e)
 	e.SetBackend(e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", stackName)
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
 
 	newName := addRandomSuffix("renamed-stack")
-	e.RunCommand("pulumi", "stack", "rename", newName)
+	e.RunCommand("khulnasoft", "stack", "rename", newName)
 }
 
 // TestStackRenameServiceAfterCreateBackend tests a few edge cases about renaming
@@ -485,39 +485,39 @@ func TestStackRenameAfterCreateServiceBackend(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 
 	// Use the current username as the "organization" in certain operations.
-	username, _ := e.RunCommand("pulumi", "whoami")
+	username, _ := e.RunCommand("khulnasoft", "whoami")
 	orgName := strings.TrimSpace(username)
 
 	// Create a basic project.
 	stackName := addRandomSuffix("stack-rename-svcbe")
 	stackRenameBase := addRandomSuffix("renamed-stack-svcbe")
 	integration.CreateBasicPulumiRepo(e)
-	e.RunCommand("pulumi", "stack", "init", stackName)
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
 
 	// Create some configuration so that a per-project YAML file is generated.
-	e.RunCommand("pulumi", "config", "set", "xyz", "abc")
+	e.RunCommand("khulnasoft", "config", "set", "xyz", "abc")
 
 	// Try to rename the stack to itself. This should fail.
-	e.RunCommandExpectError("pulumi", "stack", "rename", stackName)
+	e.RunCommandExpectError("khulnasoft", "stack", "rename", stackName)
 
 	// Try to rename this stack to a name outside of the current "organization".
 	// This should fail since it is not currently legal to do so.
-	e.RunCommandExpectError("pulumi", "stack", "rename", "fakeorg/"+stackRenameBase)
+	e.RunCommandExpectError("khulnasoft", "stack", "rename", "fakeorg/"+stackRenameBase)
 
 	// Next perform a legal rename. This should work.
-	e.RunCommand("pulumi", "stack", "rename", stackRenameBase)
-	stdoutXyz1, _ := e.RunCommand("pulumi", "config", "get", "xyz")
+	e.RunCommand("khulnasoft", "stack", "rename", stackRenameBase)
+	stdoutXyz1, _ := e.RunCommand("khulnasoft", "config", "get", "xyz")
 	assert.Equal(t, "abc", strings.Trim(stdoutXyz1, "\r\n"))
 
 	// Now perform another legal rename, this time explicitly specifying the
 	// "organization" for the stack (which should match the default).
-	e.RunCommand("pulumi", "stack", "rename", orgName+"/"+stackRenameBase+"2")
-	stdoutXyz2, _ := e.RunCommand("pulumi", "config", "get", "xyz")
+	e.RunCommand("khulnasoft", "stack", "rename", orgName+"/"+stackRenameBase+"2")
+	stdoutXyz2, _ := e.RunCommand("khulnasoft", "config", "get", "xyz")
 	assert.Equal(t, "abc", strings.Trim(stdoutXyz2, "\r\n"))
 }
 
 func TestLocalStateLocking(t *testing.T) {
-	t.Skip() // TODO[pulumi/pulumi#7269] flaky test
+	t.Skip() // TODO[khulnasoft/khulnasoft#7269] flaky test
 	t.Parallel()
 	e := ptesting.NewEnvironment(t)
 	defer e.DeleteIfNotFailed()
@@ -525,8 +525,8 @@ func TestLocalStateLocking(t *testing.T) {
 	integration.CreateBasicPulumiRepo(e)
 	e.ImportDirectory("integration/single_resource")
 	e.SetBackend(e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", "foo")
-	e.RunCommand("yarn", "link", "@pulumi/pulumi")
+	e.RunCommand("khulnasoft", "stack", "init", "foo")
+	e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 	e.RunCommand("yarn", "install")
 
 	count := 10
@@ -535,7 +535,7 @@ func TestLocalStateLocking(t *testing.T) {
 	// Run 10 concurrent updates
 	for i := 0; i < count; i++ {
 		go func() {
-			_, stderr, err := e.GetCommandResults("pulumi", "up", "--non-interactive", "--skip-preview", "--yes")
+			_, stderr, err := e.GetCommandResults("khulnasoft", "up", "--non-interactive", "--skip-preview", "--yes")
 			if err == nil {
 				stderrs <- "" // success marker
 			} else {
@@ -567,7 +567,7 @@ func TestLocalStateLocking(t *testing.T) {
 	// Run 10 concurrent previews
 	for i := 0; i < count; i++ {
 		go func() {
-			_, stderr, err := e.GetCommandResults("pulumi", "preview", "--non-interactive")
+			_, stderr, err := e.GetCommandResults("khulnasoft", "preview", "--non-interactive")
 			if err == nil {
 				stderrs <- "" // success marker
 			} else {
@@ -586,7 +586,7 @@ func TestLocalStateLocking(t *testing.T) {
 // stackFileFormatAsserters returns a function to assert that the current file
 // format is for gzip and plain formats respectively.
 func stackFileFormatAsserters(t *testing.T, e *ptesting.Environment, projectName, stackName string) (func(), func()) {
-	stacksDir := filepath.Join(".pulumi", "stacks", projectName)
+	stacksDir := filepath.Join(".khulnasoft", "stacks", projectName)
 	pathStack := filepath.Join(stacksDir, stackName+".json")
 	pathStackGzip := pathStack + ".gz"
 	pathStackBak := pathStack + ".bak"
@@ -638,43 +638,43 @@ func TestLocalStateGzip(t *testing.T) { //nolint:paralleltest
 	integration.CreateBasicPulumiRepo(e)
 	e.ImportDirectory("integration/stack_dependencies")
 	e.SetBackend(e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", stackName)
-	e.RunCommand("yarn", "link", "@pulumi/pulumi")
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
+	e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 	e.RunCommand("yarn", "install")
-	e.RunCommand("pulumi", "up", "--non-interactive", "--yes", "--skip-preview")
+	e.RunCommand("khulnasoft", "up", "--non-interactive", "--yes", "--skip-preview")
 
 	assertGzipFileFormat, assertPlainFileFormat := stackFileFormatAsserters(t, e, "stack_dependencies", stackName)
 	gzipEnvVar := env.DIYBackendGzip.Var().Name()
 	switchGzipOff := func() { e.Setenv(gzipEnvVar, "0") }
 	switchGzipOn := func() { e.Setenv(gzipEnvVar, "1") }
-	pulumiUp := func() { e.RunCommand("pulumi", "up", "--non-interactive", "--yes", "--skip-preview") }
+	khulnasoftUp := func() { e.RunCommand("khulnasoft", "up", "--non-interactive", "--yes", "--skip-preview") }
 
-	// Test "pulumi up" with gzip compression on and off.
+	// Test "khulnasoft up" with gzip compression on and off.
 	// Default is no gzip compression
 	switchGzipOff()
 	assertPlainFileFormat()
 
 	// Enable Gzip compression
 	switchGzipOn()
-	pulumiUp()
-	// Running "pulumi up" 2 times is important because normally, first the
+	khulnasoftUp()
+	// Running "khulnasoft up" 2 times is important because normally, first the
 	// `.json` becomes `.json.gz`, then the `.json.bak` becomes `.json.gz.bak`.
-	pulumiUp()
+	khulnasoftUp()
 	assertGzipFileFormat()
 
-	pulumiUp()
+	khulnasoftUp()
 	assertGzipFileFormat()
 
 	// Disable Gzip compression
 	switchGzipOff()
-	pulumiUp()
+	khulnasoftUp()
 	assertPlainFileFormat()
 
-	pulumiUp()
+	khulnasoftUp()
 	assertPlainFileFormat()
 
 	// Check stack history is still good even with mixed gzip / json files
-	rawHistory, _ := e.RunCommand("pulumi", "stack", "history", "--json")
+	rawHistory, _ := e.RunCommand("khulnasoft", "stack", "history", "--json")
 	var history []interface{}
 	if err := json.Unmarshal([]byte(rawHistory), &history); err != nil {
 		t.Fatalf("Can't unmarshall history json")
@@ -749,13 +749,13 @@ func TestStackTags(t *testing.T) {
 	integration.CreateBasicPulumiRepo(e)
 	e.ImportDirectory("testdata/simple_tags")
 
-	e.RunCommand("pulumi", "stack", "init", stackName)
+	e.RunCommand("khulnasoft", "stack", "init", stackName)
 
-	e.RunCommand("pulumi", "stack", "tag", "set", "tagA", "valueA")
-	e.RunCommand("pulumi", "stack", "tag", "set", "tagB", "valueB")
+	e.RunCommand("khulnasoft", "stack", "tag", "set", "tagA", "valueA")
+	e.RunCommand("khulnasoft", "stack", "tag", "set", "tagB", "valueB")
 
 	lsTags := func() map[string]string {
-		stdout, _ := e.RunCommand("pulumi", "stack", "tag", "ls", "--json")
+		stdout, _ := e.RunCommand("khulnasoft", "stack", "tag", "ls", "--json")
 		var tags map[string]string
 		err = json.Unmarshal([]byte(stdout), &tags)
 		require.NoError(t, err, "parsing the tags json")
@@ -766,13 +766,13 @@ func TestStackTags(t *testing.T) {
 	assert.Equal(t, "valueA", tags["tagA"], "tagA should be set to valueA")
 	assert.Equal(t, "valueB", tags["tagB"], "tagB should be set to valueB")
 
-	e.RunCommand("pulumi", "stack", "tag", "rm", "tagA")
+	e.RunCommand("khulnasoft", "stack", "tag", "rm", "tagA")
 	tags = lsTags()
 	assert.NotContains(t, tags, "tagA", "tagA should be removed")
 
-	e.RunCommand("yarn", "link", "@pulumi/pulumi")
+	e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 	e.RunCommand("yarn", "install")
-	e.RunCommand("pulumi", "up", "--non-interactive", "--yes", "--skip-preview")
+	e.RunCommand("khulnasoft", "up", "--non-interactive", "--yes", "--skip-preview")
 
 	tags = lsTags()
 	assert.Equal(t, "hello", tags["tagS"], "tagS should be set to hello")
@@ -780,7 +780,7 @@ func TestStackTags(t *testing.T) {
 	assert.Equal(t, "42", tags["tagN"], "tagN should be set to 42")
 }
 
-//nolint:paralleltest // pulumi new is not parallel safe
+//nolint:paralleltest // khulnasoft new is not parallel safe
 func TestNewStackConflictingOrg(t *testing.T) {
 	// This test requires the service, as only the service supports orgs.
 	if os.Getenv("PULUMI_ACCESS_TOKEN") == "" {
@@ -794,24 +794,24 @@ func TestNewStackConflictingOrg(t *testing.T) {
 	require.NoError(t, err)
 
 	// `new` wants to work in an empty directory but our use of local url means we have a
-	// ".pulumi" directory at root.
+	// ".khulnasoft" directory at root.
 	projectDir := filepath.Join(e.RootPath, project)
 	err = os.Mkdir(projectDir, 0o700)
 	require.NoError(t, err)
 
 	e.CWD = projectDir
 
-	orgs := []string{"moolumi", "pulumi-test"}
+	orgs := []string{"moolumi", "khulnasoft-test"}
 	for _, org := range orgs {
 		stackRef := fmt.Sprintf("%s/%s/stack", org, project)
 		// Ensure projects no longer exists. Ignoring errors.
-		_, _, err := e.GetCommandResults("pulumi", "stack", "rm", "-s", stackRef)
+		_, _, err := e.GetCommandResults("khulnasoft", "stack", "rm", "-s", stackRef)
 		_ = err
 	}
 	for _, org := range orgs {
 		stackRef := fmt.Sprintf("%s/%s/stack", org, project)
-		e.RunCommand("pulumi", "new", "yaml", "-s", stackRef, "--yes", "--force")
-		e.RunCommand("pulumi", "up", "--yes")
-		e.RunCommand("pulumi", "destroy", "--yes", "--remove")
+		e.RunCommand("khulnasoft", "new", "yaml", "-s", stackRef, "--yes", "--force")
+		e.RunCommand("khulnasoft", "up", "--yes")
+		e.RunCommand("khulnasoft", "destroy", "--yes", "--remove")
 	}
 }

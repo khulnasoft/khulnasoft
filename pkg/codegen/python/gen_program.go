@@ -34,12 +34,12 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
-const stackRefQualifiedName = "pulumi.StackReference"
+const stackRefQualifiedName = "khulnasoft.StackReference"
 
 type generator struct {
 	// The formatter to use when generating code.
@@ -217,10 +217,10 @@ func (g *generator) genComponentDefinition(w io.Writer, component *pcl.Component
 	}
 
 	componentToken := "components:index:" + componentName
-	g.Fgenf(w, "class %s(pulumi.ComponentResource):\n", componentName)
+	g.Fgenf(w, "class %s(khulnasoft.ComponentResource):\n", componentName)
 	g.Indented(func() {
 		if hasAnyInputVariables {
-			g.Fgenf(w, "%sdef __init__(self, name: str, args: %s, opts:Optional[pulumi.ResourceOptions] = None):\n",
+			g.Fgenf(w, "%sdef __init__(self, name: str, args: %s, opts:Optional[khulnasoft.ResourceOptions] = None):\n",
 				g.Indent,
 				componentName+"Args")
 
@@ -229,7 +229,7 @@ func (g *generator) genComponentDefinition(w io.Writer, component *pcl.Component
 				g.Indent,
 				componentToken)
 		} else {
-			g.Fgenf(w, "%sdef __init__(self, name: str, opts: Optional[pulumi.ResourceOptions] = None):\n", g.Indent)
+			g.Fgenf(w, "%sdef __init__(self, name: str, opts: Optional[khulnasoft.ResourceOptions] = None):\n", g.Indent)
 			g.Fgenf(w, "%s%ssuper().__init__(\"%s\", name, {}, opts)\n",
 				g.Indent,
 				g.Indent,
@@ -324,7 +324,7 @@ func GenerateProject(
 	}
 
 	var options map[string]interface{}
-	if _, ok := localDependencies["pulumi"]; ok {
+	if _, ok := localDependencies["khulnasoft"]; ok {
 		options = map[string]interface{}{
 			"virtualenv": "venv",
 		}
@@ -346,10 +346,10 @@ func GenerateProject(
 
 	// Build a requirements.txt based on the packages used by program
 	requirementsTxtLines := []string{}
-	if path, ok := localDependencies["pulumi"]; ok {
+	if path, ok := localDependencies["khulnasoft"]; ok {
 		requirementsTxtLines = append(requirementsTxtLines, path)
 	} else {
-		requirementsTxtLines = append(requirementsTxtLines, "pulumi>=3.0.0,<4.0.0")
+		requirementsTxtLines = append(requirementsTxtLines, "khulnasoft>=3.0.0,<4.0.0")
 	}
 
 	// For each package add a PackageReference line
@@ -360,7 +360,7 @@ func GenerateProject(
 	}
 
 	for _, p := range packages {
-		if p.Name == "pulumi" {
+		if p.Name == "khulnasoft" {
 			continue
 		}
 		if path, ok := localDependencies[p.Name]; ok {
@@ -369,7 +369,7 @@ func GenerateProject(
 			if err := p.ImportLanguages(map[string]schema.Language{"python": Importer}); err != nil {
 				return err
 			}
-			packageName := "pulumi-" + p.Name
+			packageName := "khulnasoft-" + p.Name
 			if langInfo, found := p.Language["python"]; found {
 				pyInfo, ok := langInfo.(PackageInfo)
 				if ok && pyInfo.PackageName != "" {
@@ -502,8 +502,8 @@ func rewriteApplyLambdaBody(applyLambda *model.AnonymousFunctionExpression, args
 }
 
 func (g *generator) genPreamble(w io.Writer, program *pcl.Program, preambleHelperMethods codegen.StringSet) {
-	// Print the pulumi import at the top.
-	g.Fprintln(w, "import pulumi")
+	// Print the khulnasoft import at the top.
+	g.Fprintln(w, "import khulnasoft")
 
 	// Accumulate other imports for the various providers. Don't emit them yet, as we need to sort them later on.
 	type Import struct {
@@ -517,10 +517,10 @@ func (g *generator) genPreamble(w io.Writer, program *pcl.Program, preambleHelpe
 		if r, isResource := n.(*pcl.Resource); isResource {
 			pcl.FixupPulumiPackageTokens(r)
 			pkg, _, _, _ := r.DecomposeToken()
-			if pkg == "pulumi" {
+			if pkg == "khulnasoft" {
 				continue
 			}
-			packageName := "pulumi_" + makeValidIdentifier(pkg)
+			packageName := "khulnasoft_" + makeValidIdentifier(pkg)
 			if r.Schema != nil && r.Schema.PackageReference != nil {
 				pkg, err := r.Schema.PackageReference.Definition()
 				if err == nil {
@@ -535,10 +535,10 @@ func (g *generator) genPreamble(w io.Writer, program *pcl.Program, preambleHelpe
 			if call, ok := n.(*model.FunctionCallExpression); ok {
 				if i := g.getFunctionImports(call); len(i) > 0 && i[0] != "" {
 					for _, importPackage := range i {
-						importAs := strings.HasPrefix(importPackage, "pulumi_")
+						importAs := strings.HasPrefix(importPackage, "khulnasoft_")
 						var maybePkg string
 						if importAs {
-							maybePkg = importPackage[len("pulumi_"):]
+							maybePkg = importPackage[len("khulnasoft_"):]
 						}
 						importSet[importPackage] = Import{
 							ImportAs: importAs,
@@ -561,7 +561,7 @@ func (g *generator) genPreamble(w io.Writer, program *pcl.Program, preambleHelpe
 		importSetNames.Add(k)
 	}
 	for _, pkg := range importSetNames.SortedValues() {
-		if pkg == "pulumi" {
+		if pkg == "khulnasoft" {
 			continue
 		}
 		control := importSet[pkg]
@@ -575,7 +575,7 @@ func (g *generator) genPreamble(w io.Writer, program *pcl.Program, preambleHelpe
 	if g.isComponent {
 		// add typing information
 		imports = append(imports, "from typing import Optional, Dict, TypedDict, Any")
-		imports = append(imports, "from pulumi import Input")
+		imports = append(imports, "from khulnasoft import Input")
 	}
 
 	seenComponentImports := map[string]bool{}
@@ -799,7 +799,7 @@ func (g *generator) genResourceOptions(w io.Writer, block *model.Block, hasInput
 	if hasInputs {
 		prefix = "\n" + g.Indent
 	}
-	g.Fprintf(w, ",%sopts = pulumi.ResourceOptions(", prefix)
+	g.Fprintf(w, ",%sopts = khulnasoft.ResourceOptions(", prefix)
 	g.Indented(func() {
 		for i, item := range block.Body.Items {
 			if i > 0 {
@@ -849,7 +849,7 @@ func (g *generator) genResourceDeclaration(w io.Writer, r *pcl.Resource, needsDe
 		indenter(func() {
 			for _, attr := range r.Inputs {
 				propertyName := InitParamName(attr.Name)
-				// special case: pulumi.StackReference requires `stack_name` instead of `name`
+				// special case: khulnasoft.StackReference requires `stack_name` instead of `name`
 				if qualifiedMemberName == stackRefQualifiedName && propertyName == "name" {
 					propertyName = "stack_name"
 				}
@@ -900,8 +900,8 @@ func (g *generator) genResourceDeclaration(w io.Writer, r *pcl.Resource, needsDe
 						// If we only have a single output, just generate a normal `.apply`
 						g.Fgenf(w, "%v.apply(", applyArgs[0])
 					} else {
-						// Otherwise, generate a call to `pulumi.Output.all([]).apply()`.
-						g.Fgen(w, "pulumi.Output.all(\n")
+						// Otherwise, generate a call to `khulnasoft.Output.all([]).apply()`.
+						g.Fgen(w, "khulnasoft.Output.all(\n")
 						g.Indented(func() {
 							for i, arg := range applyArgs {
 								argName := applyLambda.Signature.Parameters[i].Name
@@ -933,15 +933,15 @@ func (g *generator) genResourceDeclaration(w io.Writer, r *pcl.Resource, needsDe
 				// when we pass that list into `Output.all` it returns a list with a single element,
 				// that element is another list of all resolved items
 				// that is why we index the resolved outputs at 0
-				g.Fgenf(w, "pulumi.Output.all(%v).apply(lambda resolved_outputs: %s(resolved_outputs[0]))\n",
+				g.Fgenf(w, "khulnasoft.Output.all(%v).apply(lambda resolved_outputs: %s(resolved_outputs[0]))\n",
 					rangeExpr,
 					localFuncName)
 				return
 			case *model.TupleConsExpression:
 				// A list that contains outputs looks like list(output(T))
 				// ideally we want this to be output(list(T)) and then call apply:
-				// so we call pulumi.all to lift the elements of the list, then call apply
-				g.Fgen(w, "pulumi.Output.all(\n")
+				// so we call khulnasoft.all to lift the elements of the list, then call apply
+				g.Fgen(w, "khulnasoft.Output.all(\n")
 				g.Indented(func() {
 					for i, item := range expr.Expressions {
 						g.Fgenf(w, "%s%v", g.Indent, item)
@@ -1115,7 +1115,7 @@ func (g *generator) genConfigVariable(w io.Writer, v *pcl.ConfigVariable) {
 	// TODO(pdg): trivia
 
 	if !g.configCreated {
-		g.Fprintf(w, "%sconfig = pulumi.Config()\n", g.Indent)
+		g.Fprintf(w, "%sconfig = khulnasoft.Config()\n", g.Indent)
 		g.configCreated = true
 	}
 
@@ -1171,7 +1171,7 @@ func (g *generator) genOutputVariable(w io.Writer, v *pcl.OutputVariable) {
 	g.genTemps(w, temps)
 
 	// TODO(pdg): trivia
-	g.Fgenf(w, "%spulumi.export(\"%s\", %.v)\n", g.Indent, v.LogicalName(), value)
+	g.Fgenf(w, "%skhulnasoft.export(\"%s\", %.v)\n", g.Indent, v.LogicalName(), value)
 }
 
 func (g *generator) genNYI(w io.Writer, reason string, vs ...interface{}) {

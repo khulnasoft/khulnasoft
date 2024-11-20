@@ -5,17 +5,17 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/s3"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/iam"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/s3"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		// Create a bucket and expose a website index document
 		siteBucket, err := s3.NewBucket(ctx, "siteBucket", &s3.BucketArgs{
 			Website: &s3.BucketWebsiteArgs{
-				IndexDocument: pulumi.String("index.html"),
+				IndexDocument: khulnasoft.String("index.html"),
 			},
 		})
 		if err != nil {
@@ -35,10 +35,10 @@ func main() {
 		for key0, val0 := range fileNames0 {
 			__res, err := s3.NewBucketObject(ctx, fmt.Sprintf("files-%v", key0), &s3.BucketObjectArgs{
 				Bucket:      siteBucket.ID(),
-				Key:         pulumi.String(val0),
-				Source:      pulumi.NewFileAsset(fmt.Sprintf("%v/%v", siteDir, val0)),
-				ContentType: pulumi.String(val0),
-			}, pulumi.DeletedWith(siteBucket))
+				Key:         khulnasoft.String(val0),
+				Source:      khulnasoft.NewFileAsset(fmt.Sprintf("%v/%v", siteDir, val0)),
+				ContentType: khulnasoft.String(val0),
+			}, khulnasoft.DeletedWith(siteBucket))
 			if err != nil {
 				return err
 			}
@@ -47,8 +47,8 @@ func main() {
 		// Set the access policy for the bucket so all objects are readable
 		_, err = s3.NewBucketPolicy(ctx, "bucketPolicy", &s3.BucketPolicyArgs{
 			Bucket: siteBucket.ID(),
-			Policy: siteBucket.ID().ApplyT(func(id string) (pulumi.String, error) {
-				var _zero pulumi.String
+			Policy: siteBucket.ID().ApplyT(func(id string) (khulnasoft.String, error) {
+				var _zero khulnasoft.String
 				tmpJSON0, err := json.Marshal(map[string]interface{}{
 					"Version": "2012-10-17",
 					"Statement": []map[string]interface{}{
@@ -68,8 +68,8 @@ func main() {
 					return _zero, err
 				}
 				json0 := string(tmpJSON0)
-				return pulumi.String(json0), nil
-			}).(pulumi.StringOutput),
+				return khulnasoft.String(json0), nil
+			}).(khulnasoft.StringOutput),
 		})
 		if err != nil {
 			return err

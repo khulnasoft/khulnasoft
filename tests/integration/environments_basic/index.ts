@@ -1,7 +1,7 @@
 // Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
 import * as assert from "assert";
-import { Config } from "@pulumi/pulumi";
+import { Config } from "@khulnasoft/khulnasoft";
 
 // Just test that basic config works.
 const config = new Config("environments_basic");

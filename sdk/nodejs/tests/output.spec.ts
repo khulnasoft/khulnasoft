@@ -57,7 +57,7 @@ function mockOutput(isKnown: boolean | Promise<boolean>, value: any | Promise<an
     value = value instanceof Promise ? value : Promise.resolve(value);
 
     return {
-        __pulumiOutput: true,
+        __khulnasoftOutput: true,
         isKnown: isKnown,
         isSecret: Promise.resolve(false),
         promise: () => value,
@@ -1228,7 +1228,7 @@ describe("output", () => {
 
         it("does not lift __ properties", async () => {
             const output1 = output({ a: 1, b: 2 });
-            assert.strictEqual((<any>output1).__pulumiResource, undefined);
+            assert.strictEqual((<any>output1).__khulnasoftResource, undefined);
         });
 
         it("lifts properties from values with nested unknowns", async () => {

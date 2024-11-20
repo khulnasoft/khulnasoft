@@ -1,20 +1,20 @@
 {
-    "name": "@pulumi/example",
+    "name": "@khulnasoft/example",
     "version": "${VERSION}",
     "scripts": {
         "build": "tsc"
     },
     "dependencies": {
-        "@pulumi/aws": "^4.19.0",
-        "@pulumi/kubernetes": "^3.7.0",
-        "@pulumi/pulumi": "^3.136.0",
-        "@pulumi/random": "^4.2.0"
+        "@khulnasoft/aws": "^4.19.0",
+        "@khulnasoft/kubernetes": "^3.7.0",
+        "@khulnasoft/khulnasoft": "^3.136.0",
+        "@khulnasoft/random": "^4.2.0"
     },
     "devDependencies": {
         "@types/node": "^14",
         "typescript": "^4.3.5"
     },
-    "pulumi": {
+    "khulnasoft": {
         "resource": true,
         "name": "example"
     }

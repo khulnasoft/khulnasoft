@@ -1,10 +1,10 @@
 // Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
 import * as assert from "assert";
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 import { Resource } from "./resource";
 
-const unknown = <any>pulumi.output(pulumi.runtime.isDryRun() ? { __pulumiUnknown: true } : "foo");
+const unknown = <any>khulnasoft.output(khulnasoft.runtime.isDryRun() ? { __khulnasoftUnknown: true } : "foo");
 
 let a = new Resource("res", {
     foo: "foo",
@@ -21,9 +21,9 @@ export let o = Promise.all([
 ]).then(([r1, r2, r3, r4, r5]) => {
     assert.equal(r1, true);
     assert.equal(r2, true);
-    assert.equal(r3, !pulumi.runtime.isDryRun());
+    assert.equal(r3, !khulnasoft.runtime.isDryRun());
     assert.equal(r4, true);
-    assert.equal(r5, !pulumi.runtime.isDryRun());
+    assert.equal(r5, !khulnasoft.runtime.isDryRun());
 
     console.log("ok");
     return "checked";

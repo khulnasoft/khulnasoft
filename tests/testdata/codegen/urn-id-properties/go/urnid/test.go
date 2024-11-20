@@ -7,12 +7,12 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"urn-id-properties/urnid/internal"
 )
 
 // It's fine for invokes to use urn and id
-func Test(ctx *pulumi.Context, args *TestArgs, opts ...pulumi.InvokeOption) (*TestResult, error) {
+func Test(ctx *khulnasoft.Context, args *TestArgs, opts ...khulnasoft.InvokeOption) (*TestResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv TestResult
 	err := ctx.Invoke("urnid:index:Test", args, &rv, opts...)
@@ -23,17 +23,17 @@ func Test(ctx *pulumi.Context, args *TestArgs, opts ...pulumi.InvokeOption) (*Te
 }
 
 type TestArgs struct {
-	Id  float64 `pulumi:"id"`
-	Urn float64 `pulumi:"urn"`
+	Id  float64 `khulnasoft:"id"`
+	Urn float64 `khulnasoft:"urn"`
 }
 
 type TestResult struct {
-	Id  *float64 `pulumi:"id"`
-	Urn float64  `pulumi:"urn"`
+	Id  *float64 `khulnasoft:"id"`
+	Urn float64  `khulnasoft:"urn"`
 }
 
-func TestOutput(ctx *pulumi.Context, args TestOutputArgs, opts ...pulumi.InvokeOption) TestResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func TestOutput(ctx *khulnasoft.Context, args TestOutputArgs, opts ...khulnasoft.InvokeOption) TestResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (TestResultOutput, error) {
 			args := v.(TestArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -43,24 +43,24 @@ func TestOutput(ctx *pulumi.Context, args TestOutputArgs, opts ...pulumi.InvokeO
 				return TestResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(TestResultOutput)
+			output := khulnasoft.ToOutput(rv).(TestResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(TestResultOutput), nil
+				return khulnasoft.ToSecret(output).(TestResultOutput), nil
 			}
 			return output, nil
 		}).(TestResultOutput)
 }
 
 type TestOutputArgs struct {
-	Id  pulumi.Float64Input `pulumi:"id"`
-	Urn pulumi.Float64Input `pulumi:"urn"`
+	Id  khulnasoft.Float64Input `khulnasoft:"id"`
+	Urn khulnasoft.Float64Input `khulnasoft:"urn"`
 }
 
 func (TestOutputArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*TestArgs)(nil)).Elem()
 }
 
-type TestResultOutput struct{ *pulumi.OutputState }
+type TestResultOutput struct{ *khulnasoft.OutputState }
 
 func (TestResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*TestResult)(nil)).Elem()
@@ -74,14 +74,14 @@ func (o TestResultOutput) ToTestResultOutputWithContext(ctx context.Context) Tes
 	return o
 }
 
-func (o TestResultOutput) Id() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v TestResult) *float64 { return v.Id }).(pulumi.Float64PtrOutput)
+func (o TestResultOutput) Id() khulnasoft.Float64PtrOutput {
+	return o.ApplyT(func(v TestResult) *float64 { return v.Id }).(khulnasoft.Float64PtrOutput)
 }
 
-func (o TestResultOutput) Urn() pulumi.Float64Output {
-	return o.ApplyT(func(v TestResult) float64 { return v.Urn }).(pulumi.Float64Output)
+func (o TestResultOutput) Urn() khulnasoft.Float64Output {
+	return o.ApplyT(func(v TestResult) float64 { return v.Urn }).(khulnasoft.Float64Output)
 }
 
 func init() {
-	pulumi.RegisterOutputType(TestResultOutput{})
+	khulnasoft.RegisterOutputType(TestResultOutput{})
 }

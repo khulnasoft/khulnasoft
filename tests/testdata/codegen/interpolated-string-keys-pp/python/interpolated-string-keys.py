@@ -1,6 +1,6 @@
-import pulumi
+import khulnasoft
 
-config = pulumi.Config()
+config = khulnasoft.Config()
 value = config.require("value")
 tags = config.get_object("tags")
 if tags is None:

@@ -255,13 +255,13 @@ function serializeJavaScriptText(
             // }
             //
             // For "exports", importIdentifier will give us an identifier like
-            // "__pulumi_closure_import_exports" and we'll generate code like:
+            // "__khulnasoft_closure_import_exports" and we'll generate code like:
             //
-            // const __pulumi_closure_import_exports = require("some/module/foo");
+            // const __khulnasoft_closure_import_exports = require("some/module/foo");
             //
             // function x() {
             //   return (function () {
-            //     with({ exports: __pulumi_closure_import_exports, ... }) {
+            //     with({ exports: __khulnasoft_closure_import_exports, ... }) {
             //       // exports now available by virtue of the with()
             //     }
             //   }).apply(...)
@@ -626,7 +626,7 @@ interface ImportedIdentifier {
  */
 function importIdentifier(identifier: string): ImportedIdentifier {
     if (RESERVED_IDENTIFIERS.has(identifier)) {
-        const as = `__pulumi_closure_import_${identifier}`;
+        const as = `__khulnasoft_closure_import_${identifier}`;
 
         return {
             reserved: true,

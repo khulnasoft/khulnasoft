@@ -17,28 +17,28 @@ def readme():
         return "azure-native Pulumi Package - Development Version"
 
 
-setup(name='pulumi_azure_native',
+setup(name='khulnasoft_azure_native',
       python_requires='>=3.8',
       version=VERSION,
       description="A native Pulumi package for creating and managing Azure resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
-      keywords='pulumi azure azure-native category/cloud kind/native',
-      url='https://pulumi.com',
+      keywords='khulnasoft azure azure-native category/cloud kind/native',
+      url='https://khulnasoft.com',
       project_urls={
-          'Repository': 'https://github.com/pulumi/pulumi-azure-native'
+          'Repository': 'https://github.com/khulnasoft/khulnasoft-azure-native'
       },
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi_azure_native': [
+          'khulnasoft_azure_native': [
               'py.typed',
-              'pulumi-plugin.json',
+              'khulnasoft-plugin.json',
           ]
       },
       install_requires=[
           'parver>=0.2.1',
-          'pulumi>=3.0.0,<4.0.0',
+          'khulnasoft>=3.0.0,<4.0.0',
           'semver>=2.8.1',
           'typing-extensions>=4.11,<5; python_version < "3.11"'
       ],

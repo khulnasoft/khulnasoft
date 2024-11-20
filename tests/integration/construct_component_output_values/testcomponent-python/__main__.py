@@ -15,93 +15,93 @@
 from typing import Any, Mapping, Optional
 import sys
 
-import pulumi
-import pulumi.provider as provider
+import khulnasoft
+import khulnasoft.provider as provider
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class BarArgs:
     def __init__(__self__, *,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+                 tags: Optional[khulnasoft.Input[Mapping[str, khulnasoft.Input[str]]]] = None):
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            khulnasoft.set(__self__, "tags", tags)
 
     @property
-    @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        return pulumi.get(self, "tags")
+    @khulnasoft.getter
+    def tags(self) -> Optional[khulnasoft.Input[Mapping[str, khulnasoft.Input[str]]]]:
+        return khulnasoft.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "tags", value)
+    def tags(self, value: Optional[khulnasoft.Input[Mapping[str, khulnasoft.Input[str]]]]):
+        khulnasoft.set(self, "tags", value)
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class FooArgs:
     def __init__(__self__, *,
-                 something: Optional[pulumi.Input[str]] = None):
+                 something: Optional[khulnasoft.Input[str]] = None):
         if something is not None:
-            pulumi.set(__self__, "something", something)
+            khulnasoft.set(__self__, "something", something)
 
     @property
-    @pulumi.getter
-    def something(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "something")
+    @khulnasoft.getter
+    def something(self) -> Optional[khulnasoft.Input[str]]:
+        return khulnasoft.get(self, "something")
 
     @something.setter
-    def something(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "something", value)
+    def something(self, value: Optional[khulnasoft.Input[str]]):
+        khulnasoft.set(self, "something", value)
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class ComponentArgs:
     def __init__(__self__, *,
-                 bar: Optional[pulumi.Input['BarArgs']] = None,
+                 bar: Optional[khulnasoft.Input['BarArgs']] = None,
                  foo: Optional['FooArgs'] = None):
         if bar is not None:
-            pulumi.set(__self__, "bar", bar)
+            khulnasoft.set(__self__, "bar", bar)
         if foo is not None:
-            pulumi.set(__self__, "foo", foo)
+            khulnasoft.set(__self__, "foo", foo)
 
     @property
-    @pulumi.getter
-    def bar(self) -> Optional[pulumi.Input['BarArgs']]:
-        return pulumi.get(self, "bar")
+    @khulnasoft.getter
+    def bar(self) -> Optional[khulnasoft.Input['BarArgs']]:
+        return khulnasoft.get(self, "bar")
 
     @bar.setter
-    def bar(self, value: Optional[pulumi.Input['BarArgs']]):
-        pulumi.set(self, "bar", value)
+    def bar(self, value: Optional[khulnasoft.Input['BarArgs']]):
+        khulnasoft.set(self, "bar", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def foo(self) -> Optional['FooArgs']:
-        return pulumi.get(self, "foo")
+        return khulnasoft.get(self, "foo")
 
     @foo.setter
     def foo(self, value: Optional['FooArgs']):
-        pulumi.set(self, "foo", value)
+        khulnasoft.set(self, "foo", value)
 
 
-class Component(pulumi.ComponentResource):
+class Component(khulnasoft.ComponentResource):
     def __init__(self,
                  resource_name: str,
                  args: Optional[ComponentArgs] = None,
-                 opts: Optional[pulumi.ResourceOptions] = None) -> None:
+                 opts: Optional[khulnasoft.ResourceOptions] = None) -> None:
         super().__init__("testcomponent:index:Component", resource_name, args, opts)
 
         assert args.foo is not None, "expected args.foo to not be None"
-        assert not isinstance(args.foo, pulumi.Output), "expected args.foo not to be an instance of pulumi.Output"
+        assert not isinstance(args.foo, khulnasoft.Output), "expected args.foo not to be an instance of khulnasoft.Output"
         assert args.foo.something == "hello", \
             f'expected args.foo.something to equal "hello" but got "{args.foo.something}"'
 
         assert args.bar is not None, "expected args.bar to not be None"
-        assert not isinstance(args.bar, pulumi.Output), "expected args.bar not to be an instance of pulumi.Output"
+        assert not isinstance(args.bar, khulnasoft.Output), "expected args.bar not to be an instance of khulnasoft.Output"
         assert args.bar.tags is not None, "expected args.bar.tags to not be None"
-        assert not isinstance(args.bar.tags, pulumi.Output), \
-            "expected args.bar.tags not to be an instance of pulumi.Output"
+        assert not isinstance(args.bar.tags, khulnasoft.Output), \
+            "expected args.bar.tags not to be an instance of khulnasoft.Output"
         assert args.bar.tags["a"] == "world", \
             f'expected args.bar.tags["a"] to equal "world" but got "{args.bar.tags["a"]}"'
-        assert isinstance(args.bar.tags["b"], pulumi.Output), 'expected args.bar.tags["b"] to be an instance of pulumi.Output'
+        assert isinstance(args.bar.tags["b"], khulnasoft.Output), 'expected args.bar.tags["b"] to be an instance of khulnasoft.Output'
 
         def validate_b(v: str):
             assert v == "shh", f'expected args.bar.tags["b"] to equal "shh" but got: "{v}"'
@@ -114,8 +114,8 @@ class Provider(provider.Provider):
     def __init__(self):
         super().__init__(Provider.VERSION)
 
-    def construct(self, name: str, resource_type: str, inputs: pulumi.Inputs,
-                  options: Optional[pulumi.ResourceOptions] = None) -> provider.ConstructResult:
+    def construct(self, name: str, resource_type: str, inputs: khulnasoft.Inputs,
+                  options: Optional[khulnasoft.ResourceOptions] = None) -> provider.ConstructResult:
 
         if resource_type != "testcomponent:index:Component":
             raise Exception(f"unknown resource type {resource_type}")

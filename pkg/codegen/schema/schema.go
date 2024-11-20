@@ -25,7 +25,7 @@ import (
 
 	"github.com/blang/semver"
 	"github.com/hashicorp/hcl/v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 
 	"gopkg.in/yaml.v3"
 )
@@ -66,15 +66,15 @@ func (t primitiveType) String() string {
 	case stringType:
 		return "string"
 	case archiveType:
-		return "pulumi:pulumi:Archive"
+		return "khulnasoft:khulnasoft:Archive"
 	case assetType:
-		return "pulumi:pulumi:Asset"
+		return "khulnasoft:khulnasoft:Asset"
 	case jsonType:
 		fallthrough
 	case anyResourceType:
 		fallthrough
 	case anyType:
-		return "pulumi:pulumi:Any"
+		return "khulnasoft:khulnasoft:Any"
 	default:
 		panic("unknown primitive type")
 	}
@@ -574,7 +574,7 @@ type Function struct {
 func (fun *Function) NeedsOutputVersion() bool {
 	// Skip functions that return no value. Arguably we could
 	// support them and return `Task`, but there are no such
-	// functions in `pulumi-azure-native` or `pulumi-aws` so we
+	// functions in `khulnasoft-azure-native` or `khulnasoft-aws` so we
 	// omit to simplify.
 	return fun.ReturnType != nil
 }
@@ -1405,22 +1405,22 @@ func (pkg *Package) marshalType(t Type, plain bool) TypeSpec {
 			}
 		case AnyType:
 			return TypeSpec{
-				Ref:   "pulumi.json#/Any",
+				Ref:   "khulnasoft.json#/Any",
 				Plain: !plain,
 			}
 		case ArchiveType:
 			return TypeSpec{
-				Ref:   "pulumi.json#/Archive",
+				Ref:   "khulnasoft.json#/Archive",
 				Plain: !plain,
 			}
 		case AssetType:
 			return TypeSpec{
-				Ref:   "pulumi.json#/Asset",
+				Ref:   "khulnasoft.json#/Asset",
 				Plain: !plain,
 			}
 		case JSONType:
 			return TypeSpec{
-				Ref:   "pulumi.json#/Json",
+				Ref:   "khulnasoft.json#/Json",
 				Plain: !plain,
 			}
 		default:
@@ -1502,13 +1502,13 @@ type TypeSpec struct {
 	// "object".
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 	// Ref is a reference to a type in this or another document. For example, the built-in Archive, Asset, and Any
-	// types are referenced as "pulumi.json#/Archive", "pulumi.json#/Asset", and "pulumi.json#/Any", respectively.
-	// A type from this document is referenced as "#/types/pulumi:type:token".
-	// A type from another document is referenced as "path#/types/pulumi:type:token", where path is of the form:
-	//   "/provider/vX.Y.Z/schema.json" or "pulumi.json" or "http[s]://example.com/provider/vX.Y.Z/schema.json"
-	// A resource from this document is referenced as "#/resources/pulumi:type:token".
-	// A resource from another document is referenced as "path#/resources/pulumi:type:token", where path is of the form:
-	//   "/provider/vX.Y.Z/schema.json" or "pulumi.json" or "http[s]://example.com/provider/vX.Y.Z/schema.json"
+	// types are referenced as "khulnasoft.json#/Archive", "khulnasoft.json#/Asset", and "khulnasoft.json#/Any", respectively.
+	// A type from this document is referenced as "#/types/khulnasoft:type:token".
+	// A type from another document is referenced as "path#/types/khulnasoft:type:token", where path is of the form:
+	//   "/provider/vX.Y.Z/schema.json" or "khulnasoft.json" or "http[s]://example.com/provider/vX.Y.Z/schema.json"
+	// A resource from this document is referenced as "#/resources/khulnasoft:type:token".
+	// A resource from another document is referenced as "path#/resources/khulnasoft:type:token", where path is of the form:
+	//   "/provider/vX.Y.Z/schema.json" or "khulnasoft.json" or "http[s]://example.com/provider/vX.Y.Z/schema.json"
 	Ref string `json:"$ref,omitempty" yaml:"$ref,omitempty"`
 	// AdditionalProperties, if set, describes the element type of an "object" (i.e. a string -> value map).
 	AdditionalProperties *TypeSpec `json:"additionalProperties,omitempty" yaml:"additionalProperties,omitempty"`

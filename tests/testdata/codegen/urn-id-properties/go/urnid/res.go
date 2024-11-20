@@ -7,20 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"urn-id-properties/urnid/internal"
 )
 
 // It's fine to use urn and id as input properties
 type Res struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Output InnerTypePtrOutput `pulumi:"output"`
+	Output InnerTypePtrOutput `khulnasoft:"output"`
 }
 
 // NewRes registers a new resource with the given unique name, arguments, and options.
-func NewRes(ctx *pulumi.Context,
-	name string, args *ResArgs, opts ...pulumi.ResourceOption) (*Res, error) {
+func NewRes(ctx *khulnasoft.Context,
+	name string, args *ResArgs, opts ...khulnasoft.ResourceOption) (*Res, error) {
 	if args == nil {
 		args = &ResArgs{}
 	}
@@ -36,8 +36,8 @@ func NewRes(ctx *pulumi.Context,
 
 // GetRes gets an existing Res resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetRes(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ResState, opts ...pulumi.ResourceOption) (*Res, error) {
+func GetRes(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ResState, opts ...khulnasoft.ResourceOption) (*Res, error) {
 	var resource Res
 	err := ctx.ReadResource("urnid:index:Res", name, id, state, &resource, opts...)
 	if err != nil {
@@ -58,14 +58,14 @@ func (ResState) ElementType() reflect.Type {
 }
 
 type resArgs struct {
-	Id  *string `pulumi:"id"`
-	Urn *string `pulumi:"urn"`
+	Id  *string `khulnasoft:"id"`
+	Urn *string `khulnasoft:"urn"`
 }
 
 // The set of arguments for constructing a Res resource.
 type ResArgs struct {
-	Id  pulumi.StringPtrInput
-	Urn pulumi.StringPtrInput
+	Id  khulnasoft.StringPtrInput
+	Urn khulnasoft.StringPtrInput
 }
 
 func (ResArgs) ElementType() reflect.Type {
@@ -73,7 +73,7 @@ func (ResArgs) ElementType() reflect.Type {
 }
 
 type ResInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToResOutput() ResOutput
 	ToResOutputWithContext(ctx context.Context) ResOutput
@@ -88,10 +88,10 @@ func (i *Res) ToResOutput() ResOutput {
 }
 
 func (i *Res) ToResOutputWithContext(ctx context.Context) ResOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ResOutput)
 }
 
-type ResOutput struct{ *pulumi.OutputState }
+type ResOutput struct{ *khulnasoft.OutputState }
 
 func (ResOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Res)(nil)).Elem()
@@ -110,6 +110,6 @@ func (o ResOutput) Output() InnerTypePtrOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ResInput)(nil)).Elem(), &Res{})
-	pulumi.RegisterOutputType(ResOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ResInput)(nil)).Elem(), &Res{})
+	khulnasoft.RegisterOutputType(ResOutput{})
 }

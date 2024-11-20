@@ -39,11 +39,11 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 const (
@@ -67,7 +67,7 @@ type imports codegen.StringSet
 // defaultMinPythonVersion is what we use as the minimum version field in generated
 // package metadata if the schema does not provide a value. This version corresponds
 // to the minimum supported version as listed in the reference documentation:
-// https://www.pulumi.com/docs/languages-sdks/python/
+// https://www.khulnasoft.com/docs/languages-sdks/python/
 const defaultMinPythonVersion = ">=3.8"
 
 func (imports imports) addType(mod *modContext, t *schema.ObjectType, input bool) {
@@ -246,7 +246,7 @@ func (mod *modContext) objectType(t *schema.ObjectType, input bool, forDict bool
 			pkg, err := t.PackageReference.Definition()
 			contract.AssertNoErrorf(err, "error loading definition for package %q", t.PackageReference.Name())
 			info, ok := pkg.Language["python"].(PackageInfo)
-			// TODO[https://github.com/pulumi/pulumi/issues/16702]
+			// TODO[https://github.com/khulnasoft/khulnasoft/issues/16702]
 			// We don't yet assume that external packages support TypedDicts by default.
 			// Remove empty string check to enable TypedDicts for external packages by default.
 			typedDicts := ok && typedDictEnabled(info.InputTypes) && info.InputTypes != ""
@@ -315,9 +315,9 @@ func (mod *modContext) resourceType(r *schema.ResourceType) string {
 	}
 
 	// Is it a provider resource?
-	if strings.HasPrefix(r.Token, "pulumi:providers:") {
-		pkgName := strings.TrimPrefix(r.Token, "pulumi:providers:")
-		return fmt.Sprintf("pulumi_%s.Provider", pkgName)
+	if strings.HasPrefix(r.Token, "khulnasoft:providers:") {
+		pkgName := strings.TrimPrefix(r.Token, "khulnasoft:providers:")
+		return fmt.Sprintf("khulnasoft_%s.Provider", pkgName)
 	}
 
 	pkg := r.Resource.PackageReference
@@ -333,8 +333,8 @@ func (mod *modContext) tokenToResource(tok string) string {
 	contract.Assertf(len(components) == 3, "malformed token %v", tok)
 
 	// Is it a provider resource?
-	if components[0] == "pulumi" && components[1] == "providers" {
-		return fmt.Sprintf("pulumi_%s.Provider", components[2])
+	if components[0] == "khulnasoft" && components[1] == "providers" {
+		return fmt.Sprintf("khulnasoft_%s.Provider", components[2])
 	}
 
 	modName, name := mod.tokenToModule(tok), tokenToName(tok)
@@ -438,8 +438,8 @@ func (mod *modContext) generateCommonImports(w io.Writer, imports imports, typin
 	if typedDictEnabled(mod.inputTypes) {
 		fmt.Fprintf(w, "import sys\n")
 	}
-	fmt.Fprintf(w, "import pulumi\n")
-	fmt.Fprintf(w, "import pulumi.runtime\n")
+	fmt.Fprintf(w, "import khulnasoft\n")
+	fmt.Fprintf(w, "import khulnasoft.runtime\n")
 	fmt.Fprintf(w, "from typing import %s\n", strings.Join(typingImports, ", "))
 	if typedDictEnabled(mod.inputTypes) {
 		fmt.Fprintf(w, "if sys.version_info >= (3, 11):\n")
@@ -540,10 +540,10 @@ _package_ref = ...
 async def get_package():
 	global _package_ref
 	if _package_ref is ...:
-		if pulumi.runtime.settings._sync_monitor_supports_parameterization():
+		if khulnasoft.runtime.settings._sync_monitor_supports_parameterization():
 			async with _package_lock:
 				if _package_ref is ...:
-					monitor = pulumi.runtime.settings.get_monitor()
+					monitor = khulnasoft.runtime.settings.get_monitor()
 					parameterization = resource_pb2.Parameterization(
 						name=%q,
 						version=get_version(),
@@ -841,7 +841,7 @@ func (mod *modContext) genInit(exports []string) string {
 				// PyCharm and VSCode completion to do
 				// better.
 				//
-				// See https://github.com/pulumi/pulumi/issues/7367
+				// See https://github.com/khulnasoft/khulnasoft/issues/7367
 				fmt.Fprintf(w, "    import %s as __%s\n    %s = __%s\n",
 					submod.fullyQualifiedImportName(),
 					unq,
@@ -950,8 +950,8 @@ func (mod *modContext) importResourceType(r *schema.ResourceType) string {
 	contract.Assertf(len(parts) == 3, "type token %q is not in the form '<pkg>:<mod>:<type>'", tok)
 
 	// If it's a provider resource, import the top-level package.
-	if parts[0] == "pulumi" && parts[1] == "providers" {
-		return "import pulumi_" + parts[2]
+	if parts[0] == "khulnasoft" && parts[1] == "providers" {
+		return "import khulnasoft_" + parts[2]
 	}
 
 	modName := mod.tokenToModule(tok)
@@ -996,7 +996,7 @@ func (mod *modContext) genConfig(variables []*schema.Property) (string, error) {
 	fmt.Fprintf(w, "\n")
 
 	// Create a config bag for the variables to pull from.
-	fmt.Fprintf(w, "__config__ = pulumi.Config('%s')\n", mod.pkg.Name())
+	fmt.Fprintf(w, "__config__ = khulnasoft.Config('%s')\n", mod.pkg.Name())
 	fmt.Fprintf(w, "\n\n")
 
 	// To avoid a breaking change to the existing config getters, we define a class that extends
@@ -1052,7 +1052,7 @@ func genConfigFetch(configVar *schema.Property) (string, error) {
 func genConfigVarType(configVar *schema.Property) string {
 	// For historical reasons and to maintain backwards compatibility, the config variables for python
 	// are typed as `Optional[str`] or `str` for complex objects since the getters only use config.get().
-	// To return the rich objects would be a breaking change, tracked in https://github.com/pulumi/pulumi/issues/7493
+	// To return the rich objects would be a breaking change, tracked in https://github.com/khulnasoft/khulnasoft/issues/7493
 	typeString := "str"
 	switch codegen.UnwrapType(configVar.Type) {
 	case schema.BoolType:
@@ -1203,7 +1203,7 @@ func (mod *modContext) genAwaitableType(w io.Writer, obj *schema.ObjectType) str
 	baseName, awaitableName := awaitableTypeNames(obj.Token)
 
 	// Produce a class definition with optional """ comment.
-	fmt.Fprint(w, "@pulumi.output_type\n")
+	fmt.Fprint(w, "@khulnasoft.output_type\n")
 	fmt.Fprintf(w, "class %s:\n", baseName)
 	printComment(w, obj.Comment, "    ")
 
@@ -1224,7 +1224,7 @@ func (mod *modContext) genAwaitableType(w io.Writer, obj *schema.ObjectType) str
 		fmt.Fprintf(w, "            raise TypeError(\"Expected argument '%s' to be a %s\")\n", pname, ptype)
 
 		// Now perform the assignment.
-		fmt.Fprintf(w, "        pulumi.set(__self__, \"%[1]s\", %[1]s)\n", pname)
+		fmt.Fprintf(w, "        khulnasoft.set(__self__, \"%[1]s\", %[1]s)\n", pname)
 	}
 	fmt.Fprintf(w, "\n")
 
@@ -1352,11 +1352,11 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 	var baseType string
 	switch {
 	case res.IsProvider:
-		baseType = "pulumi.ProviderResource"
+		baseType = "khulnasoft.ProviderResource"
 	case res.IsComponent:
-		baseType = "pulumi.ComponentResource"
+		baseType = "khulnasoft.ComponentResource"
 	default:
-		baseType = "pulumi.CustomResource"
+		baseType = "khulnasoft.CustomResource"
 	}
 
 	if !res.IsProvider && res.DeprecationMessage != "" && mod.compatibility != kubernetes20 {
@@ -1383,7 +1383,7 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 	emitInitMethodSignature := func(methodName string) {
 		fmt.Fprintf(w, "    def %s(__self__,\n", methodName)
 		fmt.Fprintf(w, "                 resource_name: str,\n")
-		fmt.Fprintf(w, "                 opts: Optional[pulumi.ResourceOptions] = None")
+		fmt.Fprintf(w, "                 opts: Optional[khulnasoft.ResourceOptions] = None")
 
 		// If there's an argument type, emit it.
 		for _, prop := range res.InputProperties {
@@ -1409,14 +1409,14 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 	} else {
 		fmt.Fprintf(w, "                 args: %s,\n", resourceArgsName)
 	}
-	fmt.Fprintf(w, "                 opts: Optional[pulumi.ResourceOptions] = None):\n")
+	fmt.Fprintf(w, "                 opts: Optional[khulnasoft.ResourceOptions] = None):\n")
 	mod.genInitDocstring(w, res, resourceArgsName, true /*argsOverload*/)
 	fmt.Fprintf(w, "        ...\n")
 
 	// Emit the actual implementation of __init__, which does the appropriate thing based on which
 	// overload was called.
 	fmt.Fprintf(w, "    def __init__(__self__, resource_name: str, *args, **kwargs):\n")
-	fmt.Fprintf(w, "        resource_args, opts = _utilities.get_resource_args_opts(%s, pulumi.ResourceOptions, *args, **kwargs)\n", resourceArgsName)
+	fmt.Fprintf(w, "        resource_args, opts = _utilities.get_resource_args_opts(%s, khulnasoft.ResourceOptions, *args, **kwargs)\n", resourceArgsName)
 	fmt.Fprintf(w, "        if resource_args is not None:\n")
 	fmt.Fprintf(w, "            __self__._internal_init(resource_name, opts, **resource_args.__dict__)\n")
 	fmt.Fprintf(w, "        else:\n")
@@ -1426,10 +1426,10 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 	// Emit the _internal_init helper method which provides the bulk of the __init__ implementation.
 	emitInitMethodSignature("_internal_init")
 	if res.DeprecationMessage != "" && mod.compatibility != kubernetes20 {
-		fmt.Fprintf(w, "        pulumi.log.warn(\"\"\"%s is deprecated: %s\"\"\")\n", name, res.DeprecationMessage)
+		fmt.Fprintf(w, "        khulnasoft.log.warn(\"\"\"%s is deprecated: %s\"\"\")\n", name, res.DeprecationMessage)
 	}
-	fmt.Fprintf(w, "        opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)\n")
-	fmt.Fprintf(w, "        if not isinstance(opts, pulumi.ResourceOptions):\n")
+	fmt.Fprintf(w, "        opts = khulnasoft.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)\n")
+	fmt.Fprintf(w, "        if not isinstance(opts, khulnasoft.ResourceOptions):\n")
 	fmt.Fprintf(w, "            raise TypeError('Expected resource options to be a ResourceOptions instance')\n")
 	if res.IsComponent {
 		fmt.Fprintf(w, "        if opts.id is not None:\n")
@@ -1486,15 +1486,15 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 		handledSecret := false
 		if res.IsProvider && !isStringType(prop.Type) {
 			if prop.Secret {
-				arg = fmt.Sprintf("pulumi.Output.secret(%s).apply(pulumi.runtime.to_json) if %s is not None else None", arg, arg)
+				arg = fmt.Sprintf("khulnasoft.Output.secret(%s).apply(khulnasoft.runtime.to_json) if %s is not None else None", arg, arg)
 				handledSecret = true
 			} else {
-				arg = fmt.Sprintf("pulumi.Output.from_input(%s).apply(pulumi.runtime.to_json) if %s is not None else None", arg, arg)
+				arg = fmt.Sprintf("khulnasoft.Output.from_input(%s).apply(khulnasoft.runtime.to_json) if %s is not None else None", arg, arg)
 			}
 		}
 		name := PyName(prop.Name)
 		if prop.Secret && !handledSecret {
-			fmt.Fprintf(w, "            __props__.__dict__[%[1]q] = None if %[2]s is None else pulumi.Output.secret(%[2]s)\n", name, arg)
+			fmt.Fprintf(w, "            __props__.__dict__[%[1]q] = None if %[2]s is None else khulnasoft.Output.secret(%[2]s)\n", name, arg)
 		} else {
 			fmt.Fprintf(w, "            __props__.__dict__[%q] = %s\n", name, arg)
 		}
@@ -1516,11 +1516,11 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 	}
 
 	if len(res.Aliases) > 0 {
-		fmt.Fprintf(w, `        alias_opts = pulumi.ResourceOptions(aliases=[`)
+		fmt.Fprintf(w, `        alias_opts = khulnasoft.ResourceOptions(aliases=[`)
 
 		for i, alias := range res.Aliases {
 			if alias.Type != nil {
-				fmt.Fprintf(w, "pulumi.Alias(type_=\"%v\")", *alias.Type)
+				fmt.Fprintf(w, "khulnasoft.Alias(type_=\"%v\")", *alias.Type)
 				if i != len(res.Aliases)-1 {
 					fmt.Fprintf(w, ", ")
 				}
@@ -1528,12 +1528,12 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 		}
 
 		fmt.Fprintf(w, "])\n")
-		fmt.Fprintf(w, "        opts = pulumi.ResourceOptions.merge(opts, alias_opts)\n")
+		fmt.Fprintf(w, "        opts = khulnasoft.ResourceOptions.merge(opts, alias_opts)\n")
 	}
 
 	if len(secretProps) > 0 {
-		fmt.Fprintf(w, `        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["%s"])`, strings.Join(secretProps, `", "`))
-		fmt.Fprintf(w, "\n        opts = pulumi.ResourceOptions.merge(opts, secret_opts)\n")
+		fmt.Fprintf(w, `        secret_opts = khulnasoft.ResourceOptions(additional_secret_outputs=["%s"])`, strings.Join(secretProps, `", "`))
+		fmt.Fprintf(w, "\n        opts = khulnasoft.ResourceOptions.merge(opts, secret_opts)\n")
 	}
 
 	replaceOnChangesProps, errList := res.ReplaceOnChanges()
@@ -1543,8 +1543,8 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 	if len(replaceOnChangesProps) > 0 {
 		replaceOnChangesStrings := schema.PropertyListJoinToString(replaceOnChangesProps,
 			func(x string) string { return x })
-		fmt.Fprintf(w, `        replace_on_changes = pulumi.ResourceOptions(replace_on_changes=["%s"])`, strings.Join(replaceOnChangesStrings, `", "`))
-		fmt.Fprintf(w, "\n        opts = pulumi.ResourceOptions.merge(opts, replace_on_changes)\n")
+		fmt.Fprintf(w, `        replace_on_changes = khulnasoft.ResourceOptions(replace_on_changes=["%s"])`, strings.Join(replaceOnChangesStrings, `", "`))
+		fmt.Fprintf(w, "\n        opts = khulnasoft.ResourceOptions.merge(opts, replace_on_changes)\n")
 	}
 
 	// Finally, chain to the base constructor, which will actually register the resource.
@@ -1574,8 +1574,8 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 	if !res.IsProvider && !res.IsComponent {
 		fmt.Fprintf(w, "    @staticmethod\n")
 		fmt.Fprintf(w, "    def get(resource_name: str,\n")
-		fmt.Fprintf(w, "            id: pulumi.Input[str],\n")
-		fmt.Fprintf(w, "            opts: Optional[pulumi.ResourceOptions] = None")
+		fmt.Fprintf(w, "            id: khulnasoft.Input[str],\n")
+		fmt.Fprintf(w, "            opts: Optional[khulnasoft.ResourceOptions] = None")
 
 		if hasStateInputs {
 			for _, prop := range res.StateInputs.Properties {
@@ -1587,7 +1587,7 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 		fmt.Fprintf(w, ") -> '%s':\n", name)
 		mod.genGetDocstring(w, res)
 		fmt.Fprintf(w,
-			"        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))\n")
+			"        opts = khulnasoft.ResourceOptions.merge(opts, khulnasoft.ResourceOptions(id=id))\n")
 		fmt.Fprintf(w, "\n")
 		if hasStateInputs {
 			fmt.Fprintf(w, "        __props__ = _%[1]sState.__new__(_%[1]sState)\n\n", name)
@@ -1616,7 +1616,7 @@ func (mod *modContext) genResource(res *schema.Resource) (string, error) {
 	// Write out Python property getters for each of the resource's properties.
 	mod.genProperties(w, res.Properties, false /*setters*/, "", func(prop *schema.Property) string {
 		ty := mod.typeString(prop.Type, false /*input*/, false /*acceptMapping*/, false /*forDict*/)
-		return fmt.Sprintf("pulumi.Output[%s]", ty)
+		return fmt.Sprintf("khulnasoft.Output[%s]", ty)
 	})
 
 	// Write out methods.
@@ -1636,9 +1636,9 @@ func (mod *modContext) genProperties(w io.Writer, properties []*schema.Property,
 		ty := propType(prop)
 		fmt.Fprintf(w, "%s    @property\n", indent)
 		if pname == prop.Name {
-			fmt.Fprintf(w, "%s    @pulumi.getter\n", indent)
+			fmt.Fprintf(w, "%s    @khulnasoft.getter\n", indent)
 		} else {
-			fmt.Fprintf(w, "%s    @pulumi.getter(name=%q)\n", indent, prop.Name)
+			fmt.Fprintf(w, "%s    @khulnasoft.getter(name=%q)\n", indent, prop.Name)
 		}
 		if prop.DeprecationMessage != "" {
 			escaped := strings.ReplaceAll(prop.DeprecationMessage, `"`, `\"`)
@@ -1648,12 +1648,12 @@ func (mod *modContext) genProperties(w io.Writer, properties []*schema.Property,
 		if prop.Comment != "" {
 			printComment(w, prop.Comment, indent+"        ")
 		}
-		fmt.Fprintf(w, "%s        return pulumi.get(self, %q)\n\n", indent, pname)
+		fmt.Fprintf(w, "%s        return khulnasoft.get(self, %q)\n\n", indent, pname)
 
 		if setters {
 			fmt.Fprintf(w, "%s    @%s.setter\n", indent, pname)
 			fmt.Fprintf(w, "%s    def %s(self, value: %s):\n", indent, pname, ty)
-			fmt.Fprintf(w, "%s        pulumi.set(self, %q, value)\n\n", indent, pname)
+			fmt.Fprintf(w, "%s        khulnasoft.set(self, %q, value)\n\n", indent, pname)
 		}
 	}
 	var propNamedProperty *schema.Property
@@ -1692,7 +1692,7 @@ func (mod *modContext) genMethodReturnType(w io.Writer, method *schema.Method) s
 	name := pyClassName(title(method.Name)) + "Result"
 
 	// Produce a class definition with optional """ comment.
-	fmt.Fprintf(w, "    @pulumi.output_type\n")
+	fmt.Fprintf(w, "    @khulnasoft.output_type\n")
 	fmt.Fprintf(w, "    class %s:\n", name)
 	printComment(w, comment, "        ")
 
@@ -1710,7 +1710,7 @@ func (mod *modContext) genMethodReturnType(w io.Writer, method *schema.Method) s
 		fmt.Fprintf(w, "                raise TypeError(\"Expected argument '%s' to be a %s\")\n", pname, ptype)
 
 		// Now perform the assignment.
-		fmt.Fprintf(w, "            pulumi.set(__self__, \"%[1]s\", %[1]s)\n", pname)
+		fmt.Fprintf(w, "            khulnasoft.set(__self__, \"%[1]s\", %[1]s)\n", pname)
 	}
 	fmt.Fprintf(w, "\n")
 
@@ -1737,9 +1737,9 @@ func (mod *modContext) genMethods(w io.Writer, res *schema.Resource) {
 		if returnType != nil || fun.ReturnTypePlain {
 			retTypeName = mod.genMethodReturnType(w, method)
 			retTypeNameQualified = fmt.Sprintf("%s.%s", resourceName(res), retTypeName)
-			retTypeNameQualifiedOutput = fmt.Sprintf("pulumi.Output['%s']", retTypeNameQualified)
+			retTypeNameQualifiedOutput = fmt.Sprintf("khulnasoft.Output['%s']", retTypeNameQualified)
 			if shouldLiftReturn {
-				methodRetType = fmt.Sprintf("pulumi.Output['%s']", mod.pyType(returnType.Properties[0].Type))
+				methodRetType = fmt.Sprintf("khulnasoft.Output['%s']", mod.pyType(returnType.Properties[0].Type))
 			} else if fun.ReturnTypePlain {
 				if returnType != nil {
 					methodRetType = retTypeName
@@ -1813,7 +1813,7 @@ func (mod *modContext) genMethods(w io.Writer, res *schema.Resource) {
 		printComment(w, docs.String(), "        ")
 
 		if fun.DeprecationMessage != "" {
-			fmt.Fprintf(w, "        pulumi.log.warn(\"\"\"%s is deprecated: %s\"\"\")\n", methodName,
+			fmt.Fprintf(w, "        khulnasoft.log.warn(\"\"\"%s is deprecated: %s\"\"\")\n", methodName,
 				fun.DeprecationMessage)
 		}
 
@@ -1849,14 +1849,14 @@ func (mod *modContext) genMethods(w io.Writer, res *schema.Resource) {
 			fmt.Fprintf(w, "        return _utilities.call_plain('%s', __args__, res=__self__%s)%s\n",
 				fun.Token, trailingArgs, property)
 		} else if returnType == nil {
-			fmt.Fprintf(w, "        pulumi.runtime.call('%s', __args__, res=__self__%s)\n", fun.Token, trailingArgs)
+			fmt.Fprintf(w, "        khulnasoft.runtime.call('%s', __args__, res=__self__%s)\n", fun.Token, trailingArgs)
 		} else if shouldLiftReturn {
 			// Store the return in a variable and return the property output
-			fmt.Fprintf(w, "        __result__ = pulumi.runtime.call('%s', __args__, res=__self__%s)\n", fun.Token, trailingArgs)
+			fmt.Fprintf(w, "        __result__ = khulnasoft.runtime.call('%s', __args__, res=__self__%s)\n", fun.Token, trailingArgs)
 			fmt.Fprintf(w, "        return __result__.%s\n", PyName(returnType.Properties[0].Name))
 		} else {
 			// Otherwise return the call directly
-			fmt.Fprintf(w, "        return pulumi.runtime.call('%s', __args__, res=__self__%s)\n", fun.Token, trailingArgs)
+			fmt.Fprintf(w, "        return khulnasoft.runtime.call('%s', __args__, res=__self__%s)\n", fun.Token, trailingArgs)
 		}
 
 		fmt.Fprintf(w, "\n")
@@ -1921,11 +1921,11 @@ func (mod *modContext) genFunction(fun *schema.Function) (string, error) {
 	if returnType != nil {
 		retTypeName, rets = mod.genAwaitableType(w, returnType), returnType.Properties
 		originalOutputTypeName, _ := awaitableTypeNames(returnType.Token)
-		retTypeNameOutput = fmt.Sprintf("pulumi.Output[%s]", originalOutputTypeName)
+		retTypeNameOutput = fmt.Sprintf("khulnasoft.Output[%s]", originalOutputTypeName)
 		fmt.Fprintf(w, "\n\n")
 	} else {
 		retTypeName = "Awaitable[None]"
-		retTypeNameOutput = "pulumi.Output[None]"
+		retTypeNameOutput = "khulnasoft.Output[None]"
 	}
 
 	var args []*schema.Property
@@ -1951,7 +1951,7 @@ func (mod *modContext) genFunction(fun *schema.Function) (string, error) {
 			fmt.Fprintf(w, "    __args__['%s'] = %s\n", arg.Name, PyName(arg.Name))
 		}
 		// If the caller explicitly specified a version, use it, otherwise inject this package's version.
-		fmt.Fprintf(w, "    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)\n")
+		fmt.Fprintf(w, "    opts = khulnasoft.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)\n")
 
 		// Now simply invoke the runtime function with the arguments.
 		trailingArgs := ""
@@ -1976,7 +1976,7 @@ func (mod *modContext) genFunction(fun *schema.Function) (string, error) {
 			runtimeFunction = "invoke_output"
 		}
 
-		fmt.Fprintf(w, "    __ret__ = pulumi.runtime.%s('%s', __args__, opts=opts%s)",
+		fmt.Fprintf(w, "    __ret__ = khulnasoft.runtime.%s('%s', __args__, opts=opts%s)",
 			runtimeFunction,
 			fun.Token,
 			trailingArgs)
@@ -2004,10 +2004,10 @@ func (mod *modContext) genFunction(fun *schema.Function) (string, error) {
 				if i > 0 {
 					fmt.Fprintf(w, ",")
 				}
-				// Use the `pulumi.get()` utility instead of calling `__ret__.field` directly.
+				// Use the `khulnasoft.get()` utility instead of calling `__ret__.field` directly.
 				// This avoids calling getter functions which will print deprecation messages on unused
 				// fields and should be hidden from the user during Result instantiation.
-				fmt.Fprintf(w, "\n        %[1]s=pulumi.get(%[2]s, '%[1]s')", PyName(ret.Name), getter)
+				fmt.Fprintf(w, "\n        %[1]s=khulnasoft.get(%[2]s, '%[1]s')", PyName(ret.Name), getter)
 			}
 
 			if plain {
@@ -2062,7 +2062,7 @@ func (mod *modContext) genFunDeprecationMessage(w io.Writer, fun *schema.Functio
 		return
 	}
 	name := PyName(tokenToName(fun.Token))
-	fmt.Fprintf(w, "    pulumi.log.warn(\"\"\"%s is deprecated: %s\"\"\")\n", name, fun.DeprecationMessage)
+	fmt.Fprintf(w, "    khulnasoft.log.warn(\"\"\"%s is deprecated: %s\"\"\")\n", name, fun.DeprecationMessage)
 }
 
 // Generates the function signature line `def fn(...):` without the body.
@@ -2094,7 +2094,7 @@ func (mod *modContext) genFunDef(w io.Writer, name, retTypeName string, args []*
 		ty := mod.typeString(argType, true /*input*/, true /*acceptMapping*/, false /*forDict*/)
 		fmt.Fprintf(w, "%s%s: %s = None,\n", ind, pname, ty)
 	}
-	fmt.Fprintf(w, "%sopts: Optional[pulumi.InvokeOptions] = None", indent)
+	fmt.Fprintf(w, "%sopts: Optional[khulnasoft.InvokeOptions] = None", indent)
 	if retTypeName != "" {
 		fmt.Fprintf(w, ") -> %s:\n", retTypeName)
 	} else {
@@ -2340,7 +2340,7 @@ func genPackageMetadata(
 	fmt.Fprintf(w, "      package_data={\n")
 	fmt.Fprintf(w, "          '%s': [\n", pyPkgName)
 	fmt.Fprintf(w, "              'py.typed',\n")
-	fmt.Fprintf(w, "              'pulumi-plugin.json',\n")
+	fmt.Fprintf(w, "              'khulnasoft-plugin.json',\n")
 
 	fmt.Fprintf(w, "          ]\n")
 	fmt.Fprintf(w, "      },\n")
@@ -2437,7 +2437,7 @@ func (mod *modContext) genInitDocstring(w io.Writer, res *schema.Resource, resou
 		fmt.Fprintf(b, ":param %s args: The arguments to use to populate this resource's properties.\n",
 			resourceArgsName)
 	}
-	fmt.Fprintln(b, ":param pulumi.ResourceOptions opts: Options for the resource.")
+	fmt.Fprintln(b, ":param khulnasoft.ResourceOptions opts: Options for the resource.")
 	if !argOverload {
 		for _, prop := range res.InputProperties {
 			mod.genPropDocstring(b, InitParamName(prop.Name), prop, true /*acceptMapping*/)
@@ -2457,8 +2457,8 @@ func (mod *modContext) genGetDocstring(w io.Writer, res *schema.Resource) {
 	fmt.Fprintln(b, "")
 
 	fmt.Fprintln(b, ":param str resource_name: The unique name of the resulting resource.")
-	fmt.Fprintln(b, ":param pulumi.Input[str] id: The unique provider ID of the resource to lookup.")
-	fmt.Fprintln(b, ":param pulumi.ResourceOptions opts: Options for the resource.")
+	fmt.Fprintln(b, ":param khulnasoft.Input[str] id: The unique provider ID of the resource to lookup.")
+	fmt.Fprintln(b, ":param khulnasoft.ResourceOptions opts: Options for the resource.")
 	if res.StateInputs != nil {
 		for _, prop := range res.StateInputs.Properties {
 			mod.genPropDocstring(b, InitParamName(prop.Name), prop, true /*acceptMapping*/)
@@ -2523,7 +2523,7 @@ func (mod *modContext) typeString(t schema.Type, input, acceptMapping bool, forD
 		if typ == "Any" {
 			return typ
 		}
-		return fmt.Sprintf("pulumi.Input[%s]", typ)
+		return fmt.Sprintf("khulnasoft.Input[%s]", typ)
 	case *schema.EnumType:
 		return mod.enumType(t)
 	case *schema.ArrayType:
@@ -2544,7 +2544,7 @@ func (mod *modContext) typeString(t schema.Type, input, acceptMapping bool, forD
 		pkg, err := t.PackageReference.Definition()
 		contract.AssertNoErrorf(err, "error loading definition for package %q", t.PackageReference.Name())
 		info, ok := pkg.Language["python"].(PackageInfo)
-		// TODO[https://github.com/pulumi/pulumi/issues/16702]
+		// TODO[https://github.com/khulnasoft/khulnasoft/issues/16702]
 		// We don't yet assume that external packages support TypedDicts by default.
 		// Remove samePackage condition to enable TypedDicts for external packages by default.
 		samePackage := codegen.PkgEquals(t.PackageReference, mod.pkg)
@@ -2552,7 +2552,7 @@ func (mod *modContext) typeString(t schema.Type, input, acceptMapping bool, forD
 		if typedDicts && input {
 			return fmt.Sprintf("Union[%s, %s]", typ, mod.objectType(t, input, true /*dictType*/))
 		}
-		return fmt.Sprintf("pulumi.InputType[%s]", typ)
+		return fmt.Sprintf("khulnasoft.InputType[%s]", typ)
 	case *schema.ResourceType:
 		return fmt.Sprintf("'%s'", mod.resourceType(t))
 	case *schema.TokenType:
@@ -2601,9 +2601,9 @@ func (mod *modContext) typeString(t schema.Type, input, acceptMapping bool, forD
 		case schema.StringType:
 			return "str"
 		case schema.ArchiveType:
-			return "pulumi.Archive"
+			return "khulnasoft.Archive"
 		case schema.AssetType:
-			return "Union[pulumi.Asset, pulumi.Archive]"
+			return "Union[khulnasoft.Asset, khulnasoft.Archive]"
 		case schema.JSONType:
 			fallthrough
 		case schema.AnyType:
@@ -2644,9 +2644,9 @@ func (mod *modContext) pyType(typ schema.Type) string {
 		case schema.StringType:
 			return "str"
 		case schema.ArchiveType:
-			return "pulumi.Archive"
+			return "khulnasoft.Archive"
 		case schema.AssetType:
-			return "Union[pulumi.Asset, pulumi.Archive]"
+			return "Union[khulnasoft.Asset, khulnasoft.Archive]"
 		default:
 			return "dict"
 		}
@@ -2665,7 +2665,7 @@ func isStringType(t schema.Type) bool {
 
 // pyPack returns the suggested package name for the given string.
 func pyPack(s string) string {
-	return "pulumi_" + strings.ReplaceAll(s, "-", "_")
+	return "khulnasoft_" + strings.ReplaceAll(s, "-", "_")
 }
 
 // pyClassName turns a raw name into one that is suitable as a Python class name.
@@ -2709,9 +2709,9 @@ func (mod *modContext) genType(w io.Writer, name, comment string, properties []*
 		}
 	})
 
-	decorator := "@pulumi.output_type"
+	decorator := "@khulnasoft.output_type"
 	if input {
-		decorator = "@pulumi.input_type"
+		decorator = "@khulnasoft.input_type"
 	}
 
 	var suffix string
@@ -2753,7 +2753,7 @@ func (mod *modContext) genType(w io.Writer, name, comment string, properties []*
 			}
 			fmt.Fprintf(w, "\n")
 			fmt.Fprintf(w, "        if suggest:\n")
-			fmt.Fprintf(w, "            pulumi.log.warn(f\"Key '{key}' not found in %s. Access the value via the '{suggest}' property getter instead.\")\n", name)
+			fmt.Fprintf(w, "            khulnasoft.log.warn(f\"Key '{key}' not found in %s. Access the value via the '{suggest}' property getter instead.\")\n", name)
 			fmt.Fprintf(w, "\n")
 			fmt.Fprintf(w, "    def __getitem__(self, key: str) -> Any:\n")
 			fmt.Fprintf(w, "        %s.__key_warning(key)\n", name)
@@ -2800,7 +2800,7 @@ func (mod *modContext) genType(w io.Writer, name, comment string, properties []*
 			escaped := strings.ReplaceAll(prop.DeprecationMessage, `"`, `\"`)
 			fmt.Fprintf(w, "        if %s is not None:\n", pname)
 			fmt.Fprintf(w, "            warnings.warn(\"\"\"%s\"\"\", DeprecationWarning)\n", escaped)
-			fmt.Fprintf(w, "            pulumi.log.warn(\"\"\"%s is deprecated: %s\"\"\")\n", pname, escaped)
+			fmt.Fprintf(w, "            khulnasoft.log.warn(\"\"\"%s is deprecated: %s\"\"\")\n", pname, escaped)
 		}
 
 		// Fill in computed defaults for arguments.
@@ -2829,7 +2829,7 @@ func (mod *modContext) genType(w io.Writer, name, comment string, properties []*
 			indent = "    "
 		}
 
-		fmt.Fprintf(w, "%s        pulumi.set(__self__, \"%s\", %s)\n", indent, pname, arg)
+		fmt.Fprintf(w, "%s        khulnasoft.set(__self__, \"%s\", %s)\n", indent, pname, arg)
 	}
 	fmt.Fprintf(w, "\n")
 
@@ -2859,7 +2859,7 @@ func (mod *modContext) genDictType(w io.Writer, name, comment string, properties
 	indent := "    "
 	name = pythonCase(name)
 
-	// TODO[pulumi/pulumi/issues/16408]
+	// TODO[khulnasoft/khulnasoft/issues/16408]
 	// Running mypy gets very slow when there are a lot of TypedDicts.
 	// https://github.com/python/mypy/issues/17231
 	// For now we only use the TypedDict types when using a typechecker
@@ -2967,7 +2967,7 @@ func generateModuleContextMap(tool string, pkg *schema.Package, info PackageInfo
 	// determine whether to use the default Python package name
 	pyPkgName := info.PackageName
 	if pyPkgName == "" {
-		pyPkgName = "pulumi_" + strings.ReplaceAll(pkg.Name, "-", "_")
+		pyPkgName = "khulnasoft_" + strings.ReplaceAll(pkg.Name, "-", "_")
 	}
 
 	// group resources, types, and functions into modules
@@ -3156,7 +3156,7 @@ type LanguageResource struct {
 	*schema.Resource
 
 	Name    string // The resource name (e.g. Deployment)
-	Package string // The package name (e.g. pulumi_kubernetes.apps.v1)
+	Package string // The package name (e.g. khulnasoft_kubernetes.apps.v1)
 }
 
 // LanguageResources returns a map of resources that can be used by downstream codegen. The map
@@ -3225,12 +3225,12 @@ func GeneratePackage(tool string, pkg *schema.Package, extraFiles map[string][]b
 		}
 	}
 
-	// Generate pulumi-plugin.json
+	// Generate khulnasoft-plugin.json
 	plugin, err := genPulumiPluginFile(pkg)
 	if err != nil {
 		return nil, err
 	}
-	files.Add(filepath.Join(pkgName, "pulumi-plugin.json"), plugin)
+	files.Add(filepath.Join(pkgName, "khulnasoft-plugin.json"), plugin)
 
 	// Next, emit the package metadata (setup.py).
 	if !info.PyProject.Enabled {
@@ -3316,10 +3316,10 @@ func genPyprojectTOML(tool string,
 	// requires = ["setuptools>=61.0"]
 	// build-backend = "setuptools.build_meta"
 	// [tool.setuptools.package-data]
-	// pulumi_kubernetes = ["py.typed", "pulumi-plugin.json"]
+	// khulnasoft_kubernetes = ["py.typed", "khulnasoft-plugin.json"]
 	//
 	// This ensures that `python -m build` can proceed without `setup.py` present, while still
-	// including the required files `py.typed` and `pulumi-plugin.json` in the distro.
+	// including the required files `py.typed` and `khulnasoft-plugin.json` in the distro.
 
 	schema.BuildSystem = &BuildSystem{
 		Requires:     []string{"setuptools>=61.0"},
@@ -3331,7 +3331,7 @@ func genPyprojectTOML(tool string,
 			"package-data": map[string]interface{}{
 				*schema.Project.Name: []string{
 					"py.typed",
-					"pulumi-plugin.json",
+					"khulnasoft-plugin.json",
 				},
 			},
 		},
@@ -3392,7 +3392,7 @@ func setDependencies(schema *PyprojectSchema, pkg *schema.Package) error {
 	}
 	for _, dep := range deps {
 		// Append the dep constraint to the end of the dep name.
-		// e.g. pulumi>=3.50.1
+		// e.g. khulnasoft>=3.50.1
 		depConstraint := fmt.Sprintf("%s%s", dep[0], dep[1])
 		schema.Project.Dependencies = append(schema.Project.Dependencies, depConstraint)
 	}
@@ -3413,13 +3413,13 @@ var MinimumValidParameterizationSDKVersion = ">=3.134.0,<4.0.0"
 // this list correctly includes the Pulumi Python package.
 // It returns a map that correctly specifies the dependency.
 // This function does not modify the argument. Instead, it returns
-// a copy of the original map, except that the `pulumi` key is guaranteed to have
+// a copy of the original map, except that the `khulnasoft` key is guaranteed to have
 // a valid value.
 // This function returns an error if the provided Pulumi version fails to
 // validate.
 func ensureValidPulumiVersion(parameterized bool, requires map[string]string) (map[string]string, error) {
 	deps := map[string]string{}
-	// Special case: if the map is empty, we return just pulumi with the minimum version constraint.
+	// Special case: if the map is empty, we return just khulnasoft with the minimum version constraint.
 
 	minimumVersion := MinimumValidSDKVersion
 	if parameterized {
@@ -3428,21 +3428,21 @@ func ensureValidPulumiVersion(parameterized bool, requires map[string]string) (m
 
 	if len(requires) == 0 {
 		result := map[string]string{
-			"pulumi": minimumVersion,
+			"khulnasoft": minimumVersion,
 		}
 		return result, nil
 	}
-	// If the pulumi dep is missing, we require it to fall within
+	// If the khulnasoft dep is missing, we require it to fall within
 	// our major version constraint.
-	if pulumiDep, ok := requires["pulumi"]; !ok {
-		deps["pulumi"] = minimumVersion
+	if khulnasoftDep, ok := requires["khulnasoft"]; !ok {
+		deps["khulnasoft"] = minimumVersion
 	} else {
 		// Since a value was provided, we check to make sure it's
 		// within an acceptable version range.
 		// We expect a specific pattern of ">=version,<version" here.
-		matches := requirementRegex.FindStringSubmatch(pulumiDep)
+		matches := requirementRegex.FindStringSubmatch(khulnasoftDep)
 		if len(matches) != 2 {
-			return nil, fmt.Errorf("invalid requirement specifier \"%s\"; expected \">=version1,<version2\"", pulumiDep)
+			return nil, fmt.Errorf("invalid requirement specifier \"%s\"; expected \">=version1,<version2\"", khulnasoftDep)
 		}
 
 		lowerBound, err := pep440VersionToSemver(matches[1])
@@ -3454,12 +3454,12 @@ func ensureValidPulumiVersion(parameterized bool, requires map[string]string) (m
 		}
 		// The provided Pulumi version is valid, so we're copy it into
 		// the new map.
-		deps["pulumi"] = pulumiDep
+		deps["khulnasoft"] = khulnasoftDep
 	}
 
 	// Copy the rest of the dependencies listed into deps.
 	for k, v := range requires {
-		if k == "pulumi" {
+		if k == "khulnasoft" {
 			continue
 		}
 		deps[k] = v

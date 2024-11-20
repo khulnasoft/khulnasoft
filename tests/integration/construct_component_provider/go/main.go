@@ -7,23 +7,23 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Provider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 
-	Message pulumi.StringOutput `pulumi:"message"`
+	Message khulnasoft.StringOutput `khulnasoft:"message"`
 }
 
-func NewProvider(ctx *pulumi.Context,
-	name string, args *ProviderArgs, opts ...pulumi.ResourceOption,
+func NewProvider(ctx *khulnasoft.Context,
+	name string, args *ProviderArgs, opts ...khulnasoft.ResourceOption,
 ) (*Provider, error) {
 	if args == nil {
 		args = &ProviderArgs{}
 	}
 	var resource Provider
-	err := ctx.RegisterResource("pulumi:providers:testcomponent", name, args, &resource, opts...)
+	err := ctx.RegisterResource("khulnasoft:providers:testcomponent", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -31,11 +31,11 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	Message string `pulumi:"message"`
+	Message string `khulnasoft:"message"`
 }
 
 type ProviderArgs struct {
-	Message pulumi.StringInput
+	Message khulnasoft.StringInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -43,12 +43,12 @@ func (ProviderArgs) ElementType() reflect.Type {
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Message pulumi.StringOutput `pulumi:"message"`
+	Message khulnasoft.StringOutput `khulnasoft:"message"`
 }
 
-func NewComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, nil, &resource, opts...)
 	if err != nil {
@@ -58,15 +58,15 @@ func NewComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOptio
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		provider, err := NewProvider(ctx, "myprovider", &ProviderArgs{
-			Message: pulumi.String("hello world"),
+			Message: khulnasoft.String("hello world"),
 		})
 		if err != nil {
 			return err
 		}
 
-		component, err := NewComponent(ctx, "mycomponent", pulumi.Providers(provider))
+		component, err := NewComponent(ctx, "mycomponent", khulnasoft.Providers(provider))
 		if err != nil {
 			return err
 		}

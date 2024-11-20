@@ -9,6 +9,6 @@
         "uuid": "^8.3.2"
     },
     "peerDependencies": {
-        "@pulumi/pulumi": "latest"
+        "@khulnasoft/khulnasoft": "latest"
     }
 }

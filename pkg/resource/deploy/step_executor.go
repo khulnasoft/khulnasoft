@@ -21,11 +21,11 @@ import (
 	"sync"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/gsync"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/promise"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/promise"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 const (
@@ -423,7 +423,7 @@ func (se *stepExecutor) executeStep(workerID int, step Step) error {
 	// of registered resources. We skip this for replace steps because while they _do_ have a "new" side to them that
 	// state may have already been added to the snapshot manager (in the case of create before delete replacements
 	// because the Create step is run before the Replace step) and mutating the state again causes dataraces (see
-	// https://github.com/pulumi/pulumi/issues/14994).
+	// https://github.com/khulnasoft/khulnasoft/issues/14994).
 	if step.New() != nil && step.Op() != OpReplace {
 		newState := step.New()
 		newState.Lock.Lock()
@@ -432,13 +432,13 @@ func (se *stepExecutor) executeStep(workerID int, step Step) error {
 			if k == "id" {
 				se.deployment.Diag().Warningf(&diag.Diag{
 					URN:     step.URN(),
-					Message: "The 'id' property cannot be made secret. See pulumi/pulumi#2717 for more details.",
+					Message: "The 'id' property cannot be made secret. See khulnasoft/khulnasoft#2717 for more details.",
 				})
 			} else {
 				if v, has := newState.Outputs[k]; has && !v.IsSecret() {
 					newState.Outputs[k] = resource.MakeSecret(v)
-				} else if !has { //nolint:staticcheck // https://github.com/pulumi/pulumi/issues/9926
-					// TODO (https://github.com/pulumi/pulumi/issues/9926): We want to re-enable this warning
+				} else if !has { //nolint:staticcheck // https://github.com/khulnasoft/khulnasoft/issues/9926
+					// TODO (https://github.com/khulnasoft/khulnasoft/issues/9926): We want to re-enable this warning
 					// but it requires that providers always return back _every_ output even in preview. We
 					// might need to add a new "unset" PropertyValue to do this as there might be optional
 					// secret outputs and the engine needs to be able to tell the difference between "this

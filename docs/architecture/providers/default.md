@@ -8,19 +8,19 @@ instance). Consider for example the following TypeScript program that creates
 an S3 bucket in AWS:
 
 ```typescript
-import * as aws from "@pulumi/aws"
+import * as aws from "@khulnasoft/aws"
 
 new aws.s3.Bucket("my-bucket")
 ```
 
-The `Bucket` constructor will yield a [](pulumirpc.RegisterResourceRequest) such
+The `Bucket` constructor will yield a [](khulnasoftrpc.RegisterResourceRequest) such
 as the following:
 
 ```
 RegisterResourceRequest{
   type: "aws:s3/bucket:Bucket",
   name: "my-bucket",
-  parent: "urn:pulumi:dev::project::pulumi:pulumi:Stack::project",
+  parent: "urn:khulnasoft:dev::project::khulnasoft:khulnasoft:Stack::project",
   custom: true,
   object: {},
   version: "4.16.0",
@@ -29,7 +29,7 @@ RegisterResourceRequest{
 
 The absence of a `provider` field in this request will cause the engine to use a
 default provider for the `aws` package at version 4.16.0. The engine's
-[](pulumirpc.ResourceMonitor) implementation ensures that only a single default
+[](khulnasoftrpc.ResourceMonitor) implementation ensures that only a single default
 provider instance exists for each package version, and only creates default
 provider instances on demand (that is, when a resource that requires one is
 registered). Default provider instances are created by synthesizing appropriate
@@ -42,7 +42,7 @@ Changing the above example to use an explicit provider will prevent a default
 provider from being used:
 
 ```typescript
-import * as aws from "@pulumi/aws"
+import * as aws from "@khulnasoft/aws"
 
 const usWest2 = new aws.Provider("us-west-2", { region: "us-west-2" })
 
@@ -56,10 +56,10 @@ the explicitly constructed entity:
 RegisterResourceRequest{
   type: "aws:s3/bucket:Bucket",
   name: "my-bucket",
-  parent: "urn:pulumi:dev::project::pulumi:pulumi:Stack::project",
+  parent: "urn:khulnasoft:dev::project::khulnasoft:khulnasoft:Stack::project",
   custom: true,
   object: {},
-  provider: "urn:pulumi:dev::project::pulumi:providers:aws::us-west-2::308b79ee-8249-40fb-a203-de190cb8faa8",
+  provider: "urn:khulnasoft:dev::project::khulnasoft:providers:aws::us-west-2::308b79ee-8249-40fb-a203-de190cb8faa8",
   version: "4.16.0",
 }
 ```

@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"nested-module/foo/internal"
 )
 
@@ -19,7 +19,7 @@ func (m *module) Version() semver.Version {
 	return m.version
 }
 
-func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+func (m *module) Construct(ctx *khulnasoft.Context, name, typ, urn string) (r khulnasoft.Resource, err error) {
 	switch typ {
 	case "foo:nested/module:Resource":
 		r = &Resource{}
@@ -27,7 +27,7 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
-	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err = ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return
 }
 
@@ -36,7 +36,7 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
-	pulumi.RegisterResourceModule(
+	khulnasoft.RegisterResourceModule(
 		"foo",
 		"nested/module",
 		&module{version},

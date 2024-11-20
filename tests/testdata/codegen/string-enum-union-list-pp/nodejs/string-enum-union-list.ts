@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as azure_native from "@pulumi/azure-native";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as azure_native from "@khulnasoft/azure-native";
 
 const namespaceAuthorizationRule = new azure_native.servicebus.NamespaceAuthorizationRule("namespaceAuthorizationRule", {
     authorizationRuleName: "sdk-AuthRules-1788",

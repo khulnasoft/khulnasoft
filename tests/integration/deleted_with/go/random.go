@@ -10,18 +10,18 @@ import (
 	"errors"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Random struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Length pulumi.IntOutput    `pulumi:"length"`
-	Result pulumi.StringOutput `pulumi:"result"`
+	Length khulnasoft.IntOutput    `khulnasoft:"length"`
+	Result khulnasoft.StringOutput `khulnasoft:"result"`
 }
 
-func NewRandom(ctx *pulumi.Context,
-	name string, args *RandomArgs, opts ...pulumi.ResourceOption,
+func NewRandom(ctx *khulnasoft.Context,
+	name string, args *RandomArgs, opts ...khulnasoft.ResourceOption,
 ) (*Random, error) {
 	if args == nil || args.Length == nil {
 		return nil, errors.New("missing required argument 'Length'")
@@ -38,11 +38,11 @@ func NewRandom(ctx *pulumi.Context,
 }
 
 type randomArgs struct {
-	Length int `pulumi:"length"`
+	Length int `khulnasoft:"length"`
 }
 
 type RandomArgs struct {
-	Length pulumi.IntInput
+	Length khulnasoft.IntInput
 }
 
 func (RandomArgs) ElementType() reflect.Type {

@@ -15,7 +15,7 @@
 package deploy
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 )
 
 // stateBuilder offers a fluent API for making edits to a resource.State object in a way that avoids mutation and

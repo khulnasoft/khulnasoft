@@ -21,7 +21,7 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -31,7 +31,7 @@ import (
 func TestDoublePendingDelete(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir:          "step1",
-		Dependencies: []string{"@pulumi/pulumi"},
+		Dependencies: []string{"@khulnasoft/khulnasoft"},
 		Quick:        true,
 		EditDirs: []integration.EditDir{
 			{

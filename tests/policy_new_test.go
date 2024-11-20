@@ -17,12 +17,12 @@ package tests
 import (
 	"testing"
 
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
 )
 
 func TestPolicyNewNonInteractive(t *testing.T) {
 	t.Parallel()
 	e := ptesting.NewEnvironment(t)
 	defer deleteIfNotFailed(e)
-	e.RunCommand("pulumi", "policy", "new", "aws-typescript", "--force", "--generate-only")
+	e.RunCommand("khulnasoft", "policy", "new", "aws-typescript", "--force", "--generate-only")
 }

@@ -2,20 +2,20 @@
 # Resource registration
 
 As a Pulumi program is executed by the language host, it will make
-[](pulumirpc.ResourceMonitor.RegisterResource) calls to the engine in order to
+[](khulnasoftrpc.ResourceMonitor.RegisterResource) calls to the engine in order to
 declare resources and their desired state. Each
-[](pulumirpc.RegisterResourceRequest) contains:
+[](khulnasoftrpc.RegisterResourceRequest) contains:
 
 * The resource's type and name.
-* The resource's [parent](https://www.pulumi.com/docs/concepts/options/parent/),
+* The resource's [parent](https://www.khulnasoft.com/docs/concepts/options/parent/),
   if it has one.
 * A reference to the
-  [provider](https://www.pulumi.com/docs/concepts/resources/providers/) that
+  [provider](https://www.khulnasoft.com/docs/concepts/resources/providers/) that
   manages the resource, if an explicit one has been specified. If no reference
   has been specified, Pulumi will use a [default provider](#default-providers)
   instance for the resource's package and version.
 * Values for the resource's input properties.
-* Any [resource options](https://www.pulumi.com/docs/concepts/options/) that
+* Any [resource options](https://www.khulnasoft.com/docs/concepts/options/) that
   have been specified for the resource.
 
 In order to determine what actions to take in order to arrive at the desired,
@@ -41,14 +41,14 @@ executor](step-execution).
 ## Resource monitor
 
 The *resource monitor* (largely represented by `resmon` in the codebase; see
-<gh-file:pulumi#pkg/resource/deploy/source_eval.go>) implements the
-[](pulumirpc.ResourceMonitor) interface, which is the primary communication
+<gh-file:khulnasoft#pkg/resource/deploy/source_eval.go>) implements the
+[](khulnasoftrpc.ResourceMonitor) interface, which is the primary communication
 channel between language hosts and the engine. There is a single resource
 monitor per deployment. Aside from being a marshalling and unmarshalling layer
 between the engine and its gRPC boundary, the resource monitor is also
 responsible for resolving [default providers](default-providers) and [component
 providers](component-providers), responding to
-[](pulumirpc.RegisterResourceRequest)s as follows:
+[](khulnasoftrpc.RegisterResourceRequest)s as follows:
 
 * The request is unmarshalled from the gRPC wire format into an engine-internal
   representation.
@@ -57,20 +57,20 @@ providers](component-providers), responding to
   version.
 * If the request registers a [remote component](component-providers), the
   resource monitor will dispatch an appropriate
-  [](pulumirpc.ResourceProvider.Construct) call to the component provider and
+  [](khulnasoftrpc.ResourceProvider.Construct) call to the component provider and
   await the result.
 * If the request does *not* register a remote component (a so-called *custom
   resource*, although this is in reality the default type of resource), the
   resource monitor will emit a `RegisterResourceEvent` and await a response.
 * When a result is received (either in response to a
-  [](pulumirpc.ResourceProvider.Construct) call or a `RegisterResourceEvent`),
+  [](khulnasoftrpc.ResourceProvider.Construct) call or a `RegisterResourceEvent`),
   the resource monitor will marshal the result back into the gRPC wire format
   and return it to the language host.
 
 (step-generation)=
 ## Step generation
 
-The *step generator* (<gh-file:pulumi#pkg/resource/deploy/step_generator.go>) is
+The *step generator* (<gh-file:khulnasoft#pkg/resource/deploy/step_generator.go>) is
 responsible for processing `RegisterResourceEvent`s emitted by the resource
 monitor. When an event is received, the step generator proceeds as follows:
 
@@ -86,12 +86,12 @@ monitor. When an event is received, the step generator proceeds as follows:
 4. If the event indicates that the resource should be imported, the step
    generator will emit an `ImportStep` and return.
 5. If the resource is not being imported, the step generator will continue by
-   calling the provider's [](pulumirpc.ResourceProvider.Check) method with both
+   calling the provider's [](khulnasoftrpc.ResourceProvider.Check) method with both
    the event's input properties and the resource's existing
    inputs.[^existing-inputs] `Check` will return a validated bag of input values
-   that may be used in later calls to [](pulumirpc.ResourceProvider.Diff),
-   [](pulumirpc.ResourceProvider.Create), and
-   [](pulumirpc.ResourceProvider.Update).
+   that may be used in later calls to [](khulnasoftrpc.ResourceProvider.Diff),
+   [](khulnasoftrpc.ResourceProvider.Create), and
+   [](khulnasoftrpc.ResourceProvider.Update).
 6. At this point, the step generator will invoke any *analyzers* that have been
    configured in the stack to perform additional validation on the resource's
    input properties.
@@ -102,7 +102,7 @@ monitor. When an event is received, the step generator proceeds as follows:
 9. If there are no changes, issue a `SameStep` and return.
 10. If the resource is not being replaced, issue an `UpdateStep` and return.
 11. If the resource is being replaced, call the resource provider's
-    [](pulumirpc.ResourceProvider.Check) method again, this time sending no
+    [](khulnasoftrpc.ResourceProvider.Check) method again, this time sending no
     existing inputs. This call ensures that the input properties used to create
     the replacement will not reuse generated defaults that should be unique to
     the existing resource.
@@ -143,7 +143,7 @@ results of each step back to the [resource monitor](resource-monitor).
 ### Diffing
 
 While in most cases diffing boils down to calling a provider's
-[](pulumirpc.ResourceProvider.Diff) method, there are a number of cases where
+[](khulnasoftrpc.ResourceProvider.Diff) method, there are a number of cases where
 this might not happen. The full algorithm that the engine currently implements
 is as follows:
 
@@ -160,7 +160,7 @@ is as follows:
    compare old and new inputs itself (without consulting the provider). If these
    differ, the resource must be updated.
 4. In all other cases, the engine will call the provider's
-   [](pulumirpc.ResourceProvider.Diff) method to determine whether the resource
+   [](khulnasoftrpc.ResourceProvider.Diff) method to determine whether the resource
    must be updated, replaced, or left as-is.
 
 (step-generation-deletions)=
@@ -183,10 +183,10 @@ then deleting the original (create-before-replace). There are cases however
 where Pulumi will delete the original first (a delete-before-replace):
 
 * If the resource's provider specifies that the resource must be deleted before
-  it can be replaced as using a [](pulumirpc.DiffResponse)'s
+  it can be replaced as using a [](khulnasoftrpc.DiffResponse)'s
   `deleteBeforeReplace` field.
 * If the program specifies the [`deleteBeforeReplace` resource
-  option](https://www.pulumi.com/docs/concepts/options/deletebeforereplace/) for
+  option](https://www.khulnasoft.com/docs/concepts/options/deletebeforereplace/) for
   the resource.
 
 In such cases, it may be necessary to first delete resources that depend on that
@@ -199,7 +199,7 @@ broken dependencies). The step generator does this as follows:
 2. Remove from this set any resources that would *not themselves be replaced* by
    changes to their dependencies. This is determined by substituting
    [unknown](output-unknowns) values for any inputs that stem from a dependency
-   and calling the provider's [](pulumirpc.ResourceProvider.Diff) method.
+   and calling the provider's [](khulnasoftrpc.ResourceProvider.Diff) method.
 3. Process the replacements in reverse topological order.
 
 To better illustrate this, consider the following example (written in
@@ -224,7 +224,7 @@ flowchart TD
 We see that the transitive set of resources that depend on `a` is `{b, c, d}`.
 In the event that `a` is subject to a delete-before-replace, then each of `b`,
 `c`, and `d` must also be considered. Since `b`'s relationship is only due to
-[`dependsOn`](https://www.pulumi.com/docs/concepts/options/dependson/), its
+[`dependsOn`](https://www.khulnasoft.com/docs/concepts/options/dependson/), its
 inputs will not be affected by the deletion of `a`, so it does not need to be
 replaced. `c`'s inputs are affected by the deletion of `a`, so we must call
 `Diff` to see whether it needs to be replaced or not. `d`'s dependency on `a` is

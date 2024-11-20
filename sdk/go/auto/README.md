@@ -5,21 +5,21 @@ Programmatic infrastructure.
 ## Godocs
 See the full godocs for the most extensive and up to date information including full examples coverage: 
 
-https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/auto?tab=doc
+https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/auto?tab=doc
 
 ## Examples
 
 Multiple full working examples with detailed walkthroughs can be found in this repo:
 
-https://github.com/pulumi/automation-api-examples
+https://github.com/khulnasoft/automation-api-examples
 
 
 ## Overview
 
 Package auto contains the Pulumi Automation API, the programmatic interface for driving Pulumi programs
 without the CLI.
-Generally this can be thought of as encapsulating the functionality of the CLI (`pulumi up`, `pulumi preview`,
-`pulumi destroy`, `pulumi stack init`, etc.) but with more flexibility. This still requires a
+Generally this can be thought of as encapsulating the functionality of the CLI (`khulnasoft up`, `khulnasoft preview`,
+`khulnasoft destroy`, `khulnasoft stack init`, etc.) but with more flexibility. This still requires a
 CLI binary to be installed and available on your $PATH.
 
 In addition to fine-grained building blocks, Automation API provides three out of the box ways to work with Stacks:
@@ -31,13 +31,13 @@ In addition to fine-grained building blocks, Automation API provides three out o
 2. Programs fetched from a Git URL (NewStackRemoteSource)
 ```go
 	stack, err := NewStackRemoteSource(ctx, "myOrg/myProj/myStack", GitRepo{
-		URL:         "https:github.com/pulumi/test-repo.git",
+		URL:         "https:github.com/khulnasoft/test-repo.git",
 		ProjectPath: filepath.Join("project", "path", "repo", "root", "relative"),
     })
 ```
 3. Programs defined as a function alongside your Automation API code (NewStackInlineSource)
 ```go
-	 stack, err := NewStackInlineSource(ctx, "myOrg/myProj/myStack", "myProj", func(pCtx *pulumi.Context) error {
+	 stack, err := NewStackInlineSource(ctx, "myOrg/myProj/myStack", "myProj", func(pCtx *khulnasoft.Context) error {
 		bucket, err := s3.NewBucket(pCtx, "bucket", nil)
 		if err != nil {
 			return err
@@ -61,12 +61,12 @@ The Automation API provides a natural way to orchestrate multiple stacks,
 feeding the output of one stack as an input to the next as shown in the package-level example below.
 The package can be used for a number of use cases:
 
-- Driving pulumi deployments within CI/CD workflows
+- Driving khulnasoft deployments within CI/CD workflows
 - Integration testing
 - Multi-stage deployments such as blue-green deployment patterns
 - Deployments involving application code like database migrations
-- Building higher level tools, custom CLIs over pulumi, etc
-- Using pulumi behind a REST or GRPC API
+- Building higher level tools, custom CLIs over khulnasoft, etc
+- Using khulnasoft behind a REST or GRPC API
 - Debugging Pulumi programs (by using a single main entrypoint with "inline" programs)
 
 To enable a broad range of runtime customization the API defines a `Workspace` interface.
@@ -80,7 +80,7 @@ Every Stack including those in the above examples are backed by a Workspace whic
 ```
 Workspaces can be explicitly created and customized beyond the three Stack creation helpers noted above:
 ```go
-	 w, err := NewLocalWorkspace(ctx, WorkDir(filepath.Join(".", "project", "path"), PulumiHome("~/.pulumi"))
+	 w, err := NewLocalWorkspace(ctx, WorkDir(filepath.Join(".", "project", "path"), PulumiHome("~/.khulnasoft"))
      s := NewStack(ctx, "org/proj/stack", w)
 ```
 A default implementation of workspace is provided as `LocalWorkspace`. This implementation relies on Pulumi.yaml
@@ -103,12 +103,12 @@ conflicts:
 ## Developing the Godocs
 This repo has extensive examples and godoc content. To test out your changes locally you can do the following:
 
-1. enlist in the appropriate pulumi branch:
-2. cd $GOPATH/src/github.com/pulumi/pulumi/sdk/go/auto
+1. enlist in the appropriate khulnasoft branch:
+2. cd $GOPATH/src/github.com/khulnasoft/khulnasoft/sdk/go/auto
 3. godoc -http=:6060
-4. Navigate to http://localhost:6060/pkg/github.com/pulumi/pulumi/sdk/v3/go/auto/
+4. Navigate to http://localhost:6060/pkg/github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/
 
 ## Known Issues
 
 Please upvote issues, add comments, and open new ones to help prioritize our efforts:
-https://github.com/pulumi/pulumi/issues?q=is%3Aissue+is%3Aopen+label%3Aarea%2Fautomation-api
+https://github.com/khulnasoft/khulnasoft/issues?q=is%3Aissue+is%3Aopen+label%3Aarea%2Fautomation-api

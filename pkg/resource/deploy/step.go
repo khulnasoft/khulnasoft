@@ -23,13 +23,13 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 // StepCompleteFunc is the type of functions returned from Step.Apply. These
@@ -447,8 +447,8 @@ func (d deleteProtectedError) Error() string {
 	return fmt.Sprintf("resource %[1]q cannot be deleted\n"+
 		"because it is protected. To unprotect the resource, "+
 		"either remove the `protect` flag from the resource in your Pulumi "+
-		"program and run `pulumi up`, or use the command:\n"+
-		"`pulumi state unprotect %[2]s`", d.urn, d.urn.Quote())
+		"program and run `khulnasoft up`, or use the command:\n"+
+		"`khulnasoft state unprotect %[2]s`", d.urn, d.urn.Quote())
 }
 
 func (s *DeleteStep) Apply() (resource.Status, StepCompleteFunc, error) {
@@ -1039,7 +1039,7 @@ func (s *RefreshStep) Apply() (resource.Status, StepCompleteFunc, error) {
 			//
 			// 1. Warn instead that during refresh we noticed the resource has become unhealthy.
 			// 2. Make sure the initialization errors are persisted in the state, so that the next
-			//    `pulumi up` will surface them to the user.
+			//    `khulnasoft up` will surface them to the user.
 			err = nil
 			msg := "Refreshed resource is in an unhealthy state:\n* " + strings.Join(initErrors, "\n* ")
 			s.Deployment().Diag().Warningf(diag.RawMessage(s.URN(), msg))
@@ -1320,7 +1320,7 @@ func (s *ImportStep) Apply() (resource.Status, StepCompleteFunc, error) {
 		s.new.PropertyDependencies, false, nil, nil, &s.new.CustomTimeouts, s.new.ImportID, s.new.RetainOnDelete,
 		s.new.DeletedWith, nil, nil, s.new.SourcePosition, s.new.IgnoreChanges)
 
-	// Import takes a resource that Pulumi did not create and imports it into pulumi state.
+	// Import takes a resource that Pulumi did not create and imports it into khulnasoft state.
 	now := time.Now().UTC()
 	s.new.Modified = &now
 	// Set Created to now as the resource has been created in the state.

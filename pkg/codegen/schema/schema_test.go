@@ -37,11 +37,11 @@ import (
 	"gopkg.in/yaml.v3"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/utils"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 func readSchemaFile(file string) (pkgSpec PackageSpec) {
@@ -67,7 +67,7 @@ func readSchemaFile(file string) (pkgSpec PackageSpec) {
 }
 
 func TestRoundtripRemoteTypeRef(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi/issues/13000
+	// Regression test for https://github.com/khulnasoft/khulnasoft/issues/13000
 	t.Parallel()
 
 	testdataPath := filepath.Join("..", "testing", "test", "testdata")
@@ -87,7 +87,7 @@ func TestRoundtripRemoteTypeRef(t *testing.T) {
 }
 
 func TestRoundtripLocalTypeRef(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi/issues/13671
+	// Regression test for https://github.com/khulnasoft/khulnasoft/issues/13671
 	t.Parallel()
 
 	testdataPath := filepath.Join("..", "testing", "test", "testdata")
@@ -107,7 +107,7 @@ func TestRoundtripLocalTypeRef(t *testing.T) {
 }
 
 func TestRoundtripEnum(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi/issues/13921
+	// Regression test for https://github.com/khulnasoft/khulnasoft/issues/13921
 	t.Parallel()
 
 	assertEnum := func(t *testing.T, pkg *Package) {
@@ -731,7 +731,7 @@ func Test_parseTypeSpecRef(t *testing.T) {
 				Package: "test",
 				Version: toVersionPtr("1.2.3"),
 				Kind:    "provider",
-				Token:   "pulumi:providers:test",
+				Token:   "khulnasoft:providers:test",
 			},
 		},
 		{
@@ -780,7 +780,7 @@ func Test_parseTypeSpecRef(t *testing.T) {
 				Package: "kubernetes",
 				Version: toVersionPtr("2.6.3"),
 				Kind:    "provider",
-				Token:   "pulumi:providers:kubernetes",
+				Token:   "khulnasoft:providers:kubernetes",
 			},
 		},
 		{
@@ -1798,7 +1798,7 @@ func TestLoaderRespectsDebugProviders(t *testing.T) {
 	handle, err := rpcutil.ServeWithOptions(rpcutil.ServeOptions{
 		Cancel: cancel,
 		Init: func(srv *grpc.Server) error {
-			pulumirpc.RegisterResourceProviderServer(srv, &debugProvidersHelperServer{})
+			khulnasoftrpc.RegisterResourceProviderServer(srv, &debugProvidersHelperServer{})
 			return nil
 		},
 	})
@@ -1821,12 +1821,12 @@ func TestLoaderRespectsDebugProviders(t *testing.T) {
 }
 
 type debugProvidersHelperServer struct {
-	pulumirpc.UnimplementedResourceProviderServer
+	khulnasoftrpc.UnimplementedResourceProviderServer
 }
 
 func (*debugProvidersHelperServer) GetSchema(
-	ctx context.Context, req *pulumirpc.GetSchemaRequest,
-) (*pulumirpc.GetSchemaResponse, error) {
+	ctx context.Context, req *khulnasoftrpc.GetSchemaRequest,
+) (*khulnasoftrpc.GetSchemaResponse, error) {
 	schema := PackageSpec{
 		Name:    "imaginary",
 		Version: "0.0.1",
@@ -1835,22 +1835,22 @@ func (*debugProvidersHelperServer) GetSchema(
 	if err != nil {
 		return nil, err
 	}
-	return &pulumirpc.GetSchemaResponse{Schema: string(bytes)}, nil
+	return &khulnasoftrpc.GetSchemaResponse{Schema: string(bytes)}, nil
 }
 
 func (*debugProvidersHelperServer) GetPluginInfo(
 	context.Context, *emptypb.Empty,
-) (*pulumirpc.PluginInfo, error) {
-	return &pulumirpc.PluginInfo{Version: "0.0.1"}, nil
+) (*khulnasoftrpc.PluginInfo, error) {
+	return &khulnasoftrpc.PluginInfo{Version: "0.0.1"}, nil
 }
 
 func (*debugProvidersHelperServer) Attach(
-	context.Context, *pulumirpc.PluginAttach,
+	context.Context, *khulnasoftrpc.PluginAttach,
 ) (*emptypb.Empty, error) {
 	return &emptypb.Empty{}, nil
 }
 
-// This is the host that pulumi-yaml is using. Somehow the test does not work with utils.NewHost,
+// This is the host that khulnasoft-yaml is using. Somehow the test does not work with utils.NewHost,
 // perhaps that does not support PULUMI_DEBUG_PROVIDERS yet.
 func debugProvidersHelperHost(t *testing.T) plugin.Host {
 	cwd := t.TempDir()
@@ -1863,7 +1863,7 @@ func debugProvidersHelperHost(t *testing.T) plugin.Host {
 }
 
 func TestProviderVersionIsAnError(t *testing.T) {
-	// c.f. https://github.com/pulumi/pulumi/issues/16757
+	// c.f. https://github.com/khulnasoft/khulnasoft/issues/16757
 	t.Parallel()
 
 	loader := NewPluginLoader(utils.NewHost(testdataPath))

@@ -25,10 +25,10 @@ import (
 	lt "github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/framework"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/urn"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/urn"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -100,10 +100,10 @@ func TestDestroyContinueOnError(t *testing.T) {
 	assert.ErrorContains(t, err, "intentionally failed delete")
 	assert.NotNil(t, snap)
 	assert.Len(t, snap.Resources, 4) // We expect 2 resources + 2 providers
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pulumi:providers:pkgA::default"), snap.Resources[0].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::dependency"), snap.Resources[1].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pulumi:providers:pkgB::default"), snap.Resources[2].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgB:m:typB::failing"), snap.Resources[3].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default"), snap.Resources[0].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::dependency"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::khulnasoft:providers:pkgB::default"), snap.Resources[2].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgB:m:typB::failing"), snap.Resources[3].URN)
 }
 
 func TestUpContinueOnErrorCreate(t *testing.T) {
@@ -111,7 +111,7 @@ func TestUpContinueOnErrorCreate(t *testing.T) {
 
 	// createFGenerator generates a create function that returns a different parameters on each call.
 	// This generator supports creating up to 3 resources and allows us to test all the different code paths within
-	// the create step's Apply method, which was overlooked and caused https://github.com/pulumi/pulumi/issues/16373.
+	// the create step's Apply method, which was overlooked and caused https://github.com/khulnasoft/khulnasoft/issues/16373.
 	createFGenerator := func() func(context.Context, plugin.CreateRequest) (plugin.CreateResponse, error) {
 		counter := 0
 		return func(context.Context, plugin.CreateRequest) (plugin.CreateResponse, error) {
@@ -151,24 +151,24 @@ func TestUpContinueOnErrorCreate(t *testing.T) {
 			SupportsResultReporting: true,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_FAIL, failingResp.Result)
+		assert.Equal(t, khulnasoftrpc.Result_FAIL, failingResp.Result)
 
 		failingResp2, err := monitor.RegisterResource("pkgB:m:typB", "failing2", true, deploytest.ResourceOptions{
 			SupportsResultReporting: true,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_FAIL, failingResp2.Result)
+		assert.Equal(t, khulnasoftrpc.Result_FAIL, failingResp2.Result)
 
 		failingResp3, err := monitor.RegisterResource("pkgB:m:typB", "failing3", true, deploytest.ResourceOptions{
 			SupportsResultReporting: true,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_FAIL, failingResp3.Result)
+		assert.Equal(t, khulnasoftrpc.Result_FAIL, failingResp3.Result)
 
 		respIndependent1, err := monitor.RegisterResource(
 			"pkgA:m:typA", "independent1", true, deploytest.ResourceOptions{SupportsResultReporting: true})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent1.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent1.Result)
 
 		respIndependent2, err := monitor.RegisterResource(
 			"pkgA:m:typA", "independent2", true, deploytest.ResourceOptions{
@@ -176,14 +176,14 @@ func TestUpContinueOnErrorCreate(t *testing.T) {
 				Dependencies:            []resource.URN{respIndependent1.URN},
 			})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent2.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent2.Result)
 
 		respIndependent3, err := monitor.RegisterResource("pkgA:m:typA", "independent3", true, deploytest.ResourceOptions{
 			SupportsResultReporting: true,
 			Dependencies:            []resource.URN{respIndependent2.URN},
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent3.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent3.Result)
 
 		respDepOnFailing, err := monitor.RegisterResource(
 			"pkgA:m:typA", "dependentOnFailing", true, deploytest.ResourceOptions{
@@ -191,7 +191,7 @@ func TestUpContinueOnErrorCreate(t *testing.T) {
 				Dependencies:            []resource.URN{failingResp.URN},
 			})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SKIP, respDepOnFailing.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SKIP, respDepOnFailing.Result)
 
 		return nil
 	})
@@ -216,13 +216,13 @@ func TestUpContinueOnErrorCreate(t *testing.T) {
 	require.NotNil(t, snap)
 
 	expectedURNs := []string{
-		"urn:pulumi:test::test::pulumi:providers:pkgB::default",
-		"urn:pulumi:test::test::pulumi:providers:pkgA::default",
-		"urn:pulumi:test::test::pkgA:m:typA::independent1",
-		"urn:pulumi:test::test::pkgA:m:typA::independent2",
-		"urn:pulumi:test::test::pkgA:m:typA::independent3",
-		"urn:pulumi:test::test::pkgB:m:typB::failing2",
-		"urn:pulumi:test::test::pkgB:m:typB::failing3",
+		"urn:khulnasoft:test::test::khulnasoft:providers:pkgB::default",
+		"urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default",
+		"urn:khulnasoft:test::test::pkgA:m:typA::independent1",
+		"urn:khulnasoft:test::test::pkgA:m:typA::independent2",
+		"urn:khulnasoft:test::test::pkgA:m:typA::independent3",
+		"urn:khulnasoft:test::test::pkgB:m:typB::failing2",
+		"urn:khulnasoft:test::test::pkgB:m:typB::failing3",
 	}
 
 	assert.Equal(t, len(expectedURNs), len(snap.Resources))
@@ -243,7 +243,7 @@ func TestUpContinueOnErrorUpdate(t *testing.T) {
 	// on the second call. This is so we can test when UpdateF returns different statuses,
 	// while using the same provider. This allows us to test all the different code paths
 	// the step's Apply method, which was overlooked
-	// and caused https://github.com/pulumi/pulumi/issues/16373.
+	// and caused https://github.com/khulnasoft/khulnasoft/issues/16373.
 	statusGenerator := func() func() resource.Status {
 		counter := 0
 		return func() resource.Status {
@@ -283,10 +283,10 @@ func TestUpContinueOnErrorUpdate(t *testing.T) {
 		})
 		assert.NoError(t, err)
 		if update {
-			assert.Equal(t, pulumirpc.Result_FAIL, resp.Result)
+			assert.Equal(t, khulnasoftrpc.Result_FAIL, resp.Result)
 		} else {
 			// On creation we expect to succeed
-			assert.Equal(t, pulumirpc.Result_SUCCESS, resp.Result)
+			assert.Equal(t, khulnasoftrpc.Result_SUCCESS, resp.Result)
 		}
 
 		resp2, err := monitor.RegisterResource("pkgB:m:typB", "failing2", true, deploytest.ResourceOptions{
@@ -295,10 +295,10 @@ func TestUpContinueOnErrorUpdate(t *testing.T) {
 		})
 		assert.NoError(t, err)
 		if update {
-			assert.Equal(t, pulumirpc.Result_FAIL, resp2.Result)
+			assert.Equal(t, khulnasoftrpc.Result_FAIL, resp2.Result)
 		} else {
 			// On creation we expect to succeed
-			assert.Equal(t, pulumirpc.Result_SUCCESS, resp2.Result)
+			assert.Equal(t, khulnasoftrpc.Result_SUCCESS, resp2.Result)
 		}
 
 		if update {
@@ -307,7 +307,7 @@ func TestUpContinueOnErrorUpdate(t *testing.T) {
 					SupportsResultReporting: true,
 				})
 			assert.NoError(t, err)
-			assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent1.Result)
+			assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent1.Result)
 
 			respIndependent2, err := monitor.RegisterResource(
 				"pkgA:m:typA", "independent2", true, deploytest.ResourceOptions{
@@ -315,14 +315,14 @@ func TestUpContinueOnErrorUpdate(t *testing.T) {
 					Dependencies:            []resource.URN{respIndependent1.URN},
 				})
 			assert.NoError(t, err)
-			assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent2.Result)
+			assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent2.Result)
 
 			respIndependent3, err := monitor.RegisterResource("pkgA:m:typA", "independent3", true, deploytest.ResourceOptions{
 				SupportsResultReporting: true,
 				Dependencies:            []resource.URN{respIndependent2.URN},
 			})
 			assert.NoError(t, err)
-			assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent3.Result)
+			assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent3.Result)
 		}
 
 		return nil
@@ -358,13 +358,13 @@ func TestUpContinueOnErrorUpdate(t *testing.T) {
 	require.ErrorContains(t, err, "intentionally failed update")
 	assert.NotNil(t, snap)
 	expectedURNs := []string{
-		"urn:pulumi:test::test::pulumi:providers:pkgB::default",
-		"urn:pulumi:test::test::pulumi:providers:pkgA::default",
-		"urn:pulumi:test::test::pkgA:m:typA::independent1",
-		"urn:pulumi:test::test::pkgA:m:typA::independent2",
-		"urn:pulumi:test::test::pkgA:m:typA::independent3",
-		"urn:pulumi:test::test::pkgB:m:typB::failing",
-		"urn:pulumi:test::test::pkgB:m:typB::failing2",
+		"urn:khulnasoft:test::test::khulnasoft:providers:pkgB::default",
+		"urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default",
+		"urn:khulnasoft:test::test::pkgA:m:typA::independent1",
+		"urn:khulnasoft:test::test::pkgA:m:typA::independent2",
+		"urn:khulnasoft:test::test::pkgA:m:typA::independent3",
+		"urn:khulnasoft:test::test::pkgB:m:typB::failing",
+		"urn:khulnasoft:test::test::pkgB:m:typB::failing2",
 	}
 	assert.Equal(t, len(expectedURNs), len(snap.Resources)) // 4 resources + 2 providers
 
@@ -376,7 +376,7 @@ func TestUpContinueOnErrorUpdate(t *testing.T) {
 		assert.NotEqual(t, -1, idx, "Expected URN %s not found in snapshot", urn)
 
 		switch urn {
-		case "urn:pulumi:test::test::pkgB:m:typB::failing", "urn:pulumi:test::test::pkgB:m:typB::failing2":
+		case "urn:khulnasoft:test::test::pkgB:m:typB::failing", "urn:khulnasoft:test::test::pkgB:m:typB::failing2":
 			assert.Equal(t, resource.NewStringProperty("bar"), snap.Resources[idx].Inputs["foo"])
 		}
 	}
@@ -412,10 +412,10 @@ func TestUpContinueOnErrorUpdateWithRefresh(t *testing.T) {
 		})
 		assert.NoError(t, err)
 		if update {
-			assert.Equal(t, pulumirpc.Result_FAIL, resp.Result)
+			assert.Equal(t, khulnasoftrpc.Result_FAIL, resp.Result)
 		} else {
 			// On creation we expect to succeed
-			assert.Equal(t, pulumirpc.Result_SUCCESS, resp.Result)
+			assert.Equal(t, khulnasoftrpc.Result_SUCCESS, resp.Result)
 		}
 
 		if update {
@@ -424,7 +424,7 @@ func TestUpContinueOnErrorUpdateWithRefresh(t *testing.T) {
 					SupportsResultReporting: true,
 				})
 			assert.NoError(t, err)
-			assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent1.Result)
+			assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent1.Result)
 
 			respIndependent2, err := monitor.RegisterResource(
 				"pkgA:m:typA", "independent2", true, deploytest.ResourceOptions{
@@ -432,14 +432,14 @@ func TestUpContinueOnErrorUpdateWithRefresh(t *testing.T) {
 					Dependencies:            []resource.URN{respIndependent1.URN},
 				})
 			assert.NoError(t, err)
-			assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent2.Result)
+			assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent2.Result)
 
 			respIndependent3, err := monitor.RegisterResource("pkgA:m:typA", "independent3", true, deploytest.ResourceOptions{
 				SupportsResultReporting: true,
 				Dependencies:            []resource.URN{respIndependent2.URN},
 			})
 			assert.NoError(t, err)
-			assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent3.Result)
+			assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent3.Result)
 		}
 
 		return nil
@@ -475,12 +475,12 @@ func TestUpContinueOnErrorUpdateWithRefresh(t *testing.T) {
 	require.ErrorContains(t, err, "intentionally failed update")
 	assert.NotNil(t, snap)
 	assert.Equal(t, 6, len(snap.Resources)) // 4 resources + 2 providers
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pulumi:providers:pkgB::default"), snap.Resources[0].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pulumi:providers:pkgA::default"), snap.Resources[1].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::independent1"), snap.Resources[2].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::independent2"), snap.Resources[3].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::independent3"), snap.Resources[4].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgB:m:typB::failing"), snap.Resources[5].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::khulnasoft:providers:pkgB::default"), snap.Resources[0].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::independent1"), snap.Resources[2].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::independent2"), snap.Resources[3].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::independent3"), snap.Resources[4].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgB:m:typB::failing"), snap.Resources[5].URN)
 	// Refresh didn't return the input so we expect it to be empty
 	assert.Equal(t, resource.PropertyValue{}, snap.Resources[5].Inputs["foo"])
 }
@@ -511,7 +511,7 @@ func TestUpContinueOnErrorNoSDKSupport(t *testing.T) {
 		respIndependent1, err := monitor.RegisterResource(
 			"pkgA:m:typA", "independent1", true, deploytest.ResourceOptions{SupportsResultReporting: false})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent1.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent1.Result)
 
 		respIndependent2, err := monitor.RegisterResource(
 			"pkgA:m:typA", "independent2", true, deploytest.ResourceOptions{
@@ -519,14 +519,14 @@ func TestUpContinueOnErrorNoSDKSupport(t *testing.T) {
 				Dependencies:            []resource.URN{respIndependent1.URN},
 			})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent2.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent2.Result)
 
 		respIndependent3, err := monitor.RegisterResource("pkgA:m:typA", "independent3", true, deploytest.ResourceOptions{
 			SupportsResultReporting: false,
 			Dependencies:            []resource.URN{respIndependent2.URN},
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SUCCESS, respIndependent3.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SUCCESS, respIndependent3.Result)
 
 		return nil
 	})
@@ -549,11 +549,11 @@ func TestUpContinueOnErrorNoSDKSupport(t *testing.T) {
 	require.ErrorContains(t, err, "intentionally failed create")
 	require.NotNil(t, snap)
 	require.Equal(t, 5, len(snap.Resources)) // 3 resources + 2 providers
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pulumi:providers:pkgB::default"), snap.Resources[0].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pulumi:providers:pkgA::default"), snap.Resources[1].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::independent1"), snap.Resources[2].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::independent2"), snap.Resources[3].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::independent3"), snap.Resources[4].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::khulnasoft:providers:pkgB::default"), snap.Resources[0].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::independent1"), snap.Resources[2].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::independent2"), snap.Resources[3].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::independent3"), snap.Resources[4].URN)
 }
 
 func TestUpContinueOnErrorUpdateNoSDKSupport(t *testing.T) {
@@ -644,12 +644,12 @@ func TestUpContinueOnErrorUpdateNoSDKSupport(t *testing.T) {
 	require.ErrorContains(t, err, "intentionally failed update")
 	assert.NotNil(t, snap)
 	assert.Equal(t, 6, len(snap.Resources)) // 4 resources + 2 providers
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pulumi:providers:pkgB::default"), snap.Resources[0].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pulumi:providers:pkgA::default"), snap.Resources[1].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::independent1"), snap.Resources[2].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::independent2"), snap.Resources[3].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::independent3"), snap.Resources[4].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgB:m:typB::failing"), snap.Resources[5].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::khulnasoft:providers:pkgB::default"), snap.Resources[0].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::independent1"), snap.Resources[2].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::independent2"), snap.Resources[3].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::independent3"), snap.Resources[4].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgB:m:typB::failing"), snap.Resources[5].URN)
 	assert.Equal(t, resource.NewStringProperty("bar"), snap.Resources[5].Inputs["foo"])
 }
 
@@ -705,15 +705,15 @@ func TestDestroyContinueOnErrorDeleteAfterFailedUp(t *testing.T) {
 	require.NoError(t, err)
 	assert.NotNil(t, snap)
 	assert.Len(t, snap.Resources, 2) // We expect 1 resource + 1 provider
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pulumi:providers:pkgA::default"), snap.Resources[0].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::willBeDeleted"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default"), snap.Resources[0].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::willBeDeleted"), snap.Resources[1].URN)
 
 	update = true
 	snap, err = lt.TestOp(Update).RunStep(project, p.GetTarget(t, snap), p.Options, false, p.BackendClient, nil, "1")
 	assert.ErrorContains(t, err, "intentionally failed create")
 	assert.NotNil(t, snap)
 	assert.Len(t, snap.Resources, 1) // We expect 1 provider
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pulumi:providers:pkgB::default"), snap.Resources[0].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::khulnasoft:providers:pkgB::default"), snap.Resources[0].URN)
 }
 
 func TestContinueOnErrorImport(t *testing.T) {
@@ -791,46 +791,46 @@ func TestUpContinueOnErrorFailedDependencies(t *testing.T) {
 			SupportsResultReporting: true,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_FAIL, parent.Result)
+		assert.Equal(t, khulnasoftrpc.Result_FAIL, parent.Result)
 
 		child, err := monitor.RegisterResource("pkgA:m:typA", "child", true, deploytest.ResourceOptions{
 			SupportsResultReporting: true,
 			Parent:                  parent.URN,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SKIP, child.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SKIP, child.Result)
 
 		deletedWith, err := monitor.RegisterResource("pkgB:m:typB", "deletedWith", true, deploytest.ResourceOptions{
 			SupportsResultReporting: true,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_FAIL, deletedWith.Result)
+		assert.Equal(t, khulnasoftrpc.Result_FAIL, deletedWith.Result)
 
 		deletedWithDep, err := monitor.RegisterResource("pkgA:m:typA", "deletedWithDep", true, deploytest.ResourceOptions{
 			SupportsResultReporting: true,
 			DeletedWith:             deletedWith.URN,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SKIP, deletedWithDep.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SKIP, deletedWithDep.Result)
 
 		propDep, err := monitor.RegisterResource("pkgB:m:typB", "propDep", true, deploytest.ResourceOptions{
 			SupportsResultReporting: true,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_FAIL, propDep.Result)
+		assert.Equal(t, khulnasoftrpc.Result_FAIL, propDep.Result)
 
 		propDepChild, err := monitor.RegisterResource("pkgA:m:typA", "propDepChild", true, deploytest.ResourceOptions{
 			SupportsResultReporting: true,
 			PropertyDeps:            map[resource.PropertyKey][]urn.URN{resource.PropertyKey("foo"): {propDep.URN}},
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SKIP, propDepChild.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SKIP, propDepChild.Result)
 
 		independent, err := monitor.RegisterResource("pkgA:m:typA", "independent", true, deploytest.ResourceOptions{
 			SupportsResultReporting: true,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, pulumirpc.Result_SUCCESS, independent.Result)
+		assert.Equal(t, khulnasoftrpc.Result_SUCCESS, independent.Result)
 
 		return nil
 	})
@@ -855,9 +855,9 @@ func TestUpContinueOnErrorFailedDependencies(t *testing.T) {
 	require.NotNil(t, snap)
 
 	expectedURNs := []string{
-		"urn:pulumi:test::test::pulumi:providers:pkgB::default",
-		"urn:pulumi:test::test::pulumi:providers:pkgA::default",
-		"urn:pulumi:test::test::pkgA:m:typA::independent",
+		"urn:khulnasoft:test::test::khulnasoft:providers:pkgB::default",
+		"urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default",
+		"urn:khulnasoft:test::test::pkgA:m:typA::independent",
 	}
 
 	assert.Equal(t, len(expectedURNs), len(snap.Resources))

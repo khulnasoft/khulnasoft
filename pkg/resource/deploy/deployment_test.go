@@ -20,9 +20,9 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/b64"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/version"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -73,35 +73,35 @@ func TestGlobUrn(t *testing.T) {
 		{
 			input: "**",
 			expected: []resource.URN{
-				"urn:pulumi:stack::test::typ$aws:resource::aname",
-				"urn:pulumi:stack::test::typ$aws:resource::bar",
-				"urn:pulumi:stack::test::typ$azure:resource::bar",
+				"urn:khulnasoft:stack::test::typ$aws:resource::aname",
+				"urn:khulnasoft:stack::test::typ$aws:resource::bar",
+				"urn:khulnasoft:stack::test::typ$azure:resource::bar",
 			},
 		},
 		{
-			input: "urn:pulumi:stack::test::typ*:resource::bar",
+			input: "urn:khulnasoft:stack::test::typ*:resource::bar",
 			expected: []resource.URN{
-				"urn:pulumi:stack::test::typ$aws:resource::bar",
-				"urn:pulumi:stack::test::typ$azure:resource::bar",
+				"urn:khulnasoft:stack::test::typ$aws:resource::bar",
+				"urn:khulnasoft:stack::test::typ$azure:resource::bar",
 			},
 			unexpected: []resource.URN{
-				"urn:pulumi:stack::test::ty:resource::bar",
-				"urn:pulumi:stack::test::type:resource::foobar",
+				"urn:khulnasoft:stack::test::ty:resource::bar",
+				"urn:khulnasoft:stack::test::type:resource::foobar",
 			},
 		},
 		{
 			input:      "**:aname",
-			expected:   []resource.URN{"urn:pulumi:stack::test::typ$aws:resource::aname"},
-			unexpected: []resource.URN{"urn:pulumi:stack::test::typ$aws:resource::somename"},
+			expected:   []resource.URN{"urn:khulnasoft:stack::test::typ$aws:resource::aname"},
+			unexpected: []resource.URN{"urn:khulnasoft:stack::test::typ$aws:resource::somename"},
 		},
 		{
 			input: "*:*:stack::test::typ$aws:resource::*",
 			expected: []resource.URN{
-				"urn:pulumi:stack::test::typ$aws:resource::aname",
-				"urn:pulumi:stack::test::typ$aws:resource::bar",
+				"urn:khulnasoft:stack::test::typ$aws:resource::aname",
+				"urn:khulnasoft:stack::test::typ$aws:resource::bar",
 			},
 			unexpected: []resource.URN{
-				"urn:pulumi:stack::test::typ$azure:resource::aname",
+				"urn:khulnasoft:stack::test::typ$azure:resource::aname",
 			},
 		},
 		{

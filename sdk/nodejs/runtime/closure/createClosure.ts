@@ -523,8 +523,8 @@ async function analyzeFunctionInfoAsync(
         if (parseFunctionModule.isNativeFunction(functionString)) {
             try {
                 const { targetFunctionText, boundThisValue, boundArgsValues } = await v8.getBoundFunction(func);
-                const boundThis = "__pulumi_bound_this";
-                const boundArgs = boundArgsValues.map((_: any, i: number) => `__pulumi_bound_arg_${i}`).join(", ");
+                const boundThis = "__khulnasoft_bound_this";
+                const boundArgs = boundArgsValues.map((_: any, i: number) => `__khulnasoft_bound_arg_${i}`).join(", ");
                 const boundArgsString = boundArgs.length > 0 ? `, ${boundArgs}` : "";
 
                 functionString =
@@ -535,7 +535,7 @@ async function analyzeFunctionInfoAsync(
                     `}`;
 
                 const serializedName = await getOrCreateNameEntryAsync(
-                    "__pulumi_bound_this",
+                    "__khulnasoft_bound_this",
                     undefined,
                     context,
                     serialize,
@@ -552,7 +552,7 @@ async function analyzeFunctionInfoAsync(
 
                 for (const [i, boundArg] of boundArgsValues.entries()) {
                     const name = await getOrCreateNameEntryAsync(
-                        `__pulumi_bound_arg_${i}`,
+                        `__khulnasoft_bound_arg_${i}`,
                         undefined,
                         context,
                         serialize,
@@ -695,10 +695,10 @@ async function analyzeFunctionInfoAsync(
             throwOnFailure: boolean,
         ): Promise<void> {
             for (const name of capturedVariables.keys()) {
-                // We have a special case for __pulumi_bound_this and __pulumi_bound_arg_X.
+                // We have a special case for __khulnasoft_bound_this and __khulnasoft_bound_arg_X.
                 // We manually inject these variables into the closure environment of a
                 // function when we rewrite bound functions.
-                if (name.startsWith("__pulumi_bound_")) {
+                if (name.startsWith("__khulnasoft_bound_")) {
                     continue;
                 }
                 let value: any;
@@ -1372,10 +1372,10 @@ async function getOrCreateEntryAsync(
             // Try to serialize deployment-time and local-modules by-value.
             //
             // A deployment-only modules can't ever be successfully 'required' on the 'inside'. But
-            // parts of it may be serializable on the inside (i.e. pulumi.Config).  So just try to
+            // parts of it may be serializable on the inside (i.e. khulnasoft.Config).  So just try to
             // capture this as a value.  If it fails, we will give the user a good message.
             // Otherwise, it may succeed if the user is only using a small part of the API that is
-            // serializable (like pulumi.Config)
+            // serializable (like khulnasoft.Config)
             //
             // Or this is a reference to a local module (i.e. starts with '.', but isn't in
             // /node_modules/ somewhere). Always capture the local module as a value.  We do this

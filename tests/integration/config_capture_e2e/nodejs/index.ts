@@ -5,7 +5,7 @@ import * as crypto from "crypto";
 import * as os from "os";
 import * as fs from "fs";
 import * as path from "path";
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 function tempDirName(prefix: string) {
     const b = crypto.randomBytes(4);
@@ -14,15 +14,15 @@ function tempDirName(prefix: string) {
 
 (async function() {
     // Just test that basic config works.
-    const config = new pulumi.Config();
+    const config = new khulnasoft.Config();
 
-    const outsideCapture = await pulumi.runtime.serializeFunction(() => {
+    const outsideCapture = await khulnasoft.runtime.serializeFunction(() => {
         assert("it works" == config.require("value"));
         console.log("outside capture works")
     });
 
-    const insideCapture = await pulumi.runtime.serializeFunction(() => {
-        const config = new pulumi.Config();
+    const insideCapture = await khulnasoft.runtime.serializeFunction(() => {
+        const config = new khulnasoft.Config();
         assert("it works" == config.require("value"));
         console.log("inside capture works")
     });

@@ -115,17 +115,17 @@ jobs:
           aws-region: us-east-2
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           role-duration-seconds: 3600
-          role-external-id: upload-pulumi-release
-          role-session-name: pulumi@githubActions
+          role-external-id: upload-khulnasoft-release
+          role-session-name: khulnasoft@githubActions
           role-to-assume: ${{ secrets.AWS_UPLOAD_ROLE_ARN }}
       - name: Download release artifacts
         run: |
           mkdir -p artifacts
-          gh release download "v${PULUMI_VERSION}" --dir ./artifacts --pattern 'pulumi-*'
+          gh release download "v${PULUMI_VERSION}" --dir ./artifacts --pattern 'khulnasoft-*'
           find artifacts
       - name: Publish Blobs
         run: |
-          aws s3 sync artifacts s3://get.pulumi.com/releases/sdk --acl public-read
+          aws s3 sync artifacts s3://get.khulnasoft.com/releases/sdk --acl public-read
 
   pr:
     # Relies on the Go SDK being published to update pkg
@@ -152,17 +152,17 @@ jobs:
       matrix:
         job:
           - name: Update Templates Version
-            run-command: pulumictl dispatch -r pulumi/templates -c update-templates "${PULUMI_VERSION}"
+            run-command: khulnasoftctl dispatch -r khulnasoft/templates -c update-templates "${PULUMI_VERSION}"
           - name: Chocolatey Update
-            run-command: pulumictl create choco-deploy "${PULUMI_VERSION}"
+            run-command: khulnasoftctl create choco-deploy "${PULUMI_VERSION}"
           - name: Winget Update
-            run-command: pulumictl winget-deploy
+            run-command: khulnasoftctl winget-deploy
           - name: Build Package Docs
-            run-command: pulumictl create cli-docs-build "${PULUMI_VERSION}"
+            run-command: khulnasoftctl create cli-docs-build "${PULUMI_VERSION}"
           - name: Homebrew
-            run-command: pulumictl create homebrew-bump "${PULUMI_VERSION}" "$(git rev-parse HEAD)"
+            run-command: khulnasoftctl create homebrew-bump "${PULUMI_VERSION}" "$(git rev-parse HEAD)"
           - name: Docker containers
-            run-command: pulumictl dispatch -r pulumi/pulumi-docker-containers -c release-build "${PULUMI_VERSION}"
+            run-command: khulnasoftctl dispatch -r khulnasoft/khulnasoft-docker-containers -c release-build "${PULUMI_VERSION}"
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -173,7 +173,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PULUMI_BOT_TOKEN }}
         with:
-          repo: pulumi/pulumictl
+          repo: khulnasoft/khulnasoftctl
           tag: v0.0.42
           cache: enable
       - name: Repository Dispatch

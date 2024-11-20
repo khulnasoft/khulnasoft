@@ -29,12 +29,12 @@ import (
 	"sync"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 const Type = "passphrase"
@@ -64,7 +64,7 @@ func symmetricCrypterFromPhraseAndState(phrase string, state string) (config.Cry
 	// symmetricCrypter does not use ctx, safe to pass context.Background()
 	ignoredCtx := context.Background()
 	decrypted, err := decrypter.DecryptValue(ignoredCtx, state[indexN(state, ":", 2)+1:])
-	if err != nil || decrypted != "pulumi" {
+	if err != nil || decrypted != "khulnasoft" {
 		logging.V(7).Infof("incorrect passphrase: %v", err)
 		return nil, ErrIncorrectPassphrase
 	}
@@ -171,7 +171,7 @@ func NewPassphraseSecretsManager(phrase string) (string, secrets.Manager, error)
 
 	// symmetricCrypter does not use ctx, safe to use context.Background()
 	ignoredCtx := context.Background()
-	msg, err := crypter.EncryptValue(ignoredCtx, "pulumi")
+	msg, err := crypter.EncryptValue(ignoredCtx, "khulnasoft")
 	contract.AssertNoErrorf(err, "could not encrypt message")
 
 	// Encode the salt as the passphrase secrets manager state.

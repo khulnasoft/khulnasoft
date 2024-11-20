@@ -1,11 +1,11 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as dynamic from "@pulumi/pulumi/dynamic";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as dynamic from "@khulnasoft/khulnasoft/dynamic";
 
 export interface RArgs {
-    prefix: pulumi.Input<string>
+    prefix: khulnasoft.Input<string>
 }
 
-const provider: pulumi.dynamic.ResourceProvider = {
+const provider: khulnasoft.dynamic.ResourceProvider = {
     async create(inputs) {
         return { id: "1", outs: {
             prefix: inputs["prefix"]
@@ -14,9 +14,9 @@ const provider: pulumi.dynamic.ResourceProvider = {
 }
 
 export class R extends dynamic.Resource {
-    public prefix!: pulumi.Output<string>;
+    public prefix!: khulnasoft.Output<string>;
 
-    constructor(name: string, props: RArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, props: RArgs, opts?: khulnasoft.CustomResourceOptions) {
         super(provider, name, props, opts)
     }
 }

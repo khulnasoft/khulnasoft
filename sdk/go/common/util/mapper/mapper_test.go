@@ -104,11 +104,11 @@ func TestFieldMapper(t *testing.T) {
 }
 
 type bagtag struct {
-	String        string                 `pulumi:"s"`
-	StringSkip    string                 `pulumi:"sc,skip"`
-	StringOpt     string                 `pulumi:"so,optional"`
-	StringSkipOpt string                 `pulumi:"sco,skip,optional"`
-	MapOpt        map[string]interface{} `pulumi:"mo,optional"`
+	String        string                 `khulnasoft:"s"`
+	StringSkip    string                 `khulnasoft:"sc,skip"`
+	StringOpt     string                 `khulnasoft:"so,optional"`
+	StringSkipOpt string                 `khulnasoft:"sco,skip,optional"`
+	MapOpt        map[string]interface{} `khulnasoft:"mo,optional"`
 }
 
 type AnInterface interface {
@@ -296,14 +296,14 @@ func TestMapperDecode(t *testing.T) {
 }
 
 type bog struct {
-	Boggy    bogger     `pulumi:"boggy"`
-	BoggyP   *bogger    `pulumi:"boggyp"`
-	Boggers  []bogger   `pulumi:"boggers"`
-	BoggersP *[]*bogger `pulumi:"boggersp"`
+	Boggy    bogger     `khulnasoft:"boggy"`
+	BoggyP   *bogger    `khulnasoft:"boggyp"`
+	Boggers  []bogger   `khulnasoft:"boggers"`
+	BoggersP *[]*bogger `khulnasoft:"boggersp"`
 }
 
 type bogger struct {
-	Num float64 `pulumi:"num"`
+	Num float64 `khulnasoft:"num"`
 }
 
 func TestNestedMapper(t *testing.T) {
@@ -346,8 +346,8 @@ func TestNestedMapper(t *testing.T) {
 }
 
 type boggerdybogger struct {
-	Bogs  map[string]bog   `pulumi:"bogs"`
-	BogsP *map[string]*bog `pulumi:"bogsp"`
+	Bogs  map[string]bog   `khulnasoft:"bogs"`
+	BogsP *map[string]*bog `khulnasoft:"bogsp"`
 }
 
 func TestMultiplyNestedMapper(t *testing.T) {
@@ -433,12 +433,12 @@ func TestMultiplyNestedMapper(t *testing.T) {
 }
 
 type hasmap struct {
-	Entries  map[string]mapentry  `pulumi:"entries"`
-	EntriesP map[string]*mapentry `pulumi:"entriesp"`
+	Entries  map[string]mapentry  `khulnasoft:"entries"`
+	EntriesP map[string]*mapentry `khulnasoft:"entriesp"`
 }
 
 type mapentry struct {
-	Title string `pulumi:"title"`
+	Title string `khulnasoft:"title"`
 }
 
 func TestMapMapper(t *testing.T) {
@@ -470,8 +470,8 @@ func TestMapMapper(t *testing.T) {
 }
 
 type wrap struct {
-	C  customStruct    `pulumi:"c"`
-	CI customInterface `pulumi:"ci"`
+	C  customStruct    `khulnasoft:"c"`
+	CI customInterface `khulnasoft:"ci"`
 }
 
 type customInterface interface {
@@ -480,8 +480,8 @@ type customInterface interface {
 }
 
 type customStruct struct {
-	X float64 `pulumi:"x"`
-	Y float64 `pulumi:"y"`
+	X float64 `khulnasoft:"x"`
+	Y float64 `khulnasoft:"y"`
 }
 
 func (s *customStruct) GetX() float64 { return s.X }
@@ -539,18 +539,18 @@ func decodeCustomStruct(m Mapper, tree map[string]interface{}) (interface{}, err
 }
 
 type outer struct {
-	Inners *[]inner `pulumi:"inners,optional"`
+	Inners *[]inner `khulnasoft:"inners,optional"`
 }
 
 type inner struct {
-	A string   `pulumi:"a"`
-	B *string  `pulumi:"b,optional"`
-	C *string  `pulumi:"c,optional"`
-	D float64  `pulumi:"d"`
-	E *float64 `pulumi:"e,optional"`
-	F *float64 `pulumi:"f,optional"`
-	G *inner   `pulumi:"g,optional"`
-	H *[]inner `pulumi:"h,optional"`
+	A string   `khulnasoft:"a"`
+	B *string  `khulnasoft:"b,optional"`
+	C *string  `khulnasoft:"c,optional"`
+	D float64  `khulnasoft:"d"`
+	E *float64 `khulnasoft:"e,optional"`
+	F *float64 `khulnasoft:"f,optional"`
+	G *inner   `khulnasoft:"g,optional"`
+	H *[]inner `khulnasoft:"h,optional"`
 }
 
 func TestBasicUnmap(t *testing.T) {
@@ -685,7 +685,7 @@ func TestReproduceMapStringPointerTurnaroundIssue(t *testing.T) {
 	t.Parallel()
 
 	type X struct {
-		Args map[string]*string `pulumi:"args,optional"`
+		Args map[string]*string `khulnasoft:"args,optional"`
 	}
 
 	xToMap := func(build X) (map[string]interface{}, error) {

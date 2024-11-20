@@ -17,16 +17,16 @@ package auto
 import (
 	"context"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optdestroy"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/opthistory"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optpreview"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optrefresh"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optremotedestroy"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optremotepreview"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optremoterefresh"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optremoteup"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optup"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optdestroy"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/opthistory"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optpreview"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optrefresh"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optremotedestroy"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optremotepreview"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optremoterefresh"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optremoteup"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optup"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 )
 
 // RemoteStack is an isolated, independently configurable instance of a Pulumi program that is
@@ -41,7 +41,7 @@ func (s *RemoteStack) Name() string {
 }
 
 // Preview preforms a dry-run update to a stack, returning pending changes.
-// https://www.pulumi.com/docs/cli/commands/pulumi_preview/
+// https://www.khulnasoft.com/docs/cli/commands/khulnasoft_preview/
 // This operation runs remotely.
 func (s *RemoteStack) Preview(ctx context.Context, opts ...optremotepreview.Option) (PreviewResult, error) {
 	preOpts := &optremotepreview.Options{}
@@ -64,7 +64,7 @@ func (s *RemoteStack) Preview(ctx context.Context, opts ...optremotepreview.Opti
 }
 
 // Up creates or updates the resources in a stack by executing the program in the Workspace.
-// https://www.pulumi.com/docs/cli/commands/pulumi_up/
+// https://www.khulnasoft.com/docs/cli/commands/khulnasoft_up/
 // This operation runs remotely.
 func (s *RemoteStack) Up(ctx context.Context, opts ...optremoteup.Option) (UpResult, error) {
 	upOpts := &optremoteup.Options{}

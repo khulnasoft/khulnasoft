@@ -1,6 +1,6 @@
 {
     "name": "npm-and-yarn-workspaces",
-    "description": "A project that uses npm and yarn workspaces. `pulumi install` should successfully install dependencies.",
+    "description": "A project that uses npm and yarn workspaces. `khulnasoft install` should successfully install dependencies.",
     "private": true,
     "workspaces": [
         "packages/*",

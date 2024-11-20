@@ -23,66 +23,66 @@ Resources are created with functions called constructors. To learn more about de
 
 ### Constructor syntax
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">ConfigMapList</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">ConfigMapList</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#CustomResourceOptions">CustomResourceOptions</a></span><span class="p">);</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="javascript,typescript">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">ConfigMapList</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">ConfigMapList</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#CustomResourceOptions">CustomResourceOptions</a></span><span class="p">);</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">ConfigMapList</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
                   <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">ConfigMapListArgs</a></span><span class="p">,</span>
-                  <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
+                  <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
 <span></span>
 <span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">ConfigMapList</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
-                  <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">,</span>
+                  <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">,</span>
                   <span class="nx">items</span><span class="p">:</span> <span class="nx">Optional[Sequence[ConfigMapArgs]]</span> = None<span class="p">,</span>
                   <span class="nx">metadata</span><span class="p">:</span> <span class="nx">Optional[_meta.v1.ListMetaArgs]</span> = None<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewConfigMapList</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> </span><span class="nx"><a href="#inputs">ConfigMapListArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">ConfigMapList</span>, error)</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="go">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewConfigMapList</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> </span><span class="nx"><a href="#inputs">ConfigMapListArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">ConfigMapList</span>, error)</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public </span><span class="nx">ConfigMapList</span><span class="p">(</span><span class="nx">string</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ConfigMapListArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.CustomResourceOptions.html">CustomResourceOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <div class="no-copy"><div class="highlight"><pre class="chroma">
 <code class="language-java" data-lang="java"><span class="k">public </span><span class="nx">ConfigMapList</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ConfigMapListArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">)</span>
 <span class="k">public </span><span class="nx">ConfigMapList</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ConfigMapListArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx">CustomResourceOptions</span><span class="p"> </span><span class="nx">options<span class="p">)</span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">type: <span class="nx">kubernetes:core/v1:ConfigMapList</span><span class="p"></span>
 <span class="p">properties</span><span class="p">: </span><span class="c">#&nbsp;The arguments to resource properties.</span>
 <span class="p"></span><span class="p">options</span><span class="p">: </span><span class="c">#&nbsp;Bag of options to control resource&#39;s behavior.</span>
 <span class="p"></span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 #### Parameters
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -100,15 +100,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#CustomResourceOptions">CustomResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#CustomResourceOptions">CustomResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -126,21 +126,21 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">ResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">ResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 <dl class="resources-properties"><dt
         class="property-optional" title="Optional">
         <span>ctx</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span>
     </dt>
     <dd>Context object for the current deployment.</dd><dt
         class="property-required" title="Required">
@@ -158,15 +158,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -188,11 +188,11 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -214,7 +214,7 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -223,12 +223,12 @@ Resources are created with functions called constructors. To learn more about de
 
 The following reference example uses placeholder values for all [input properties](#inputs).
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 ```csharp
 var configMapListResource = new Kubernetes.Core.V1.ConfigMapList("configMapListResource", new()
@@ -313,88 +313,88 @@ var configMapListResource = new Kubernetes.Core.V1.ConfigMapList("configMapListR
 });
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 ```go
 example, err := corev1.NewConfigMapList(ctx, "configMapListResource", &corev1.ConfigMapListArgs{
 	Items: corev1.ConfigMapTypeArray{
 		&corev1.ConfigMapTypeArgs{
-			ApiVersion: pulumi.String("v1"),
-			BinaryData: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			ApiVersion: khulnasoft.String("v1"),
+			BinaryData: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
-			Data: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			Data: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
-			Immutable: pulumi.Bool(false),
-			Kind:      pulumi.String("ConfigMap"),
+			Immutable: khulnasoft.Bool(false),
+			Kind:      khulnasoft.String("ConfigMap"),
 			Metadata: &metav1.ObjectMetaArgs{
-				Annotations: pulumi.StringMap{
-					"string": pulumi.String("string"),
+				Annotations: khulnasoft.StringMap{
+					"string": khulnasoft.String("string"),
 				},
-				ClusterName:                pulumi.String("string"),
-				CreationTimestamp:          pulumi.String("string"),
-				DeletionGracePeriodSeconds: pulumi.Int(0),
-				DeletionTimestamp:          pulumi.String("string"),
-				Finalizers: pulumi.StringArray{
-					pulumi.String("string"),
+				ClusterName:                khulnasoft.String("string"),
+				CreationTimestamp:          khulnasoft.String("string"),
+				DeletionGracePeriodSeconds: khulnasoft.Int(0),
+				DeletionTimestamp:          khulnasoft.String("string"),
+				Finalizers: khulnasoft.StringArray{
+					khulnasoft.String("string"),
 				},
-				GenerateName: pulumi.String("string"),
-				Generation:   pulumi.Int(0),
-				Labels: pulumi.StringMap{
-					"string": pulumi.String("string"),
+				GenerateName: khulnasoft.String("string"),
+				Generation:   khulnasoft.Int(0),
+				Labels: khulnasoft.StringMap{
+					"string": khulnasoft.String("string"),
 				},
 				ManagedFields: metav1.ManagedFieldsEntryArray{
 					&metav1.ManagedFieldsEntryArgs{
-						ApiVersion:  pulumi.String("string"),
-						FieldsType:  pulumi.String("string"),
-						FieldsV1:    pulumi.Any("{}"),
-						Manager:     pulumi.String("string"),
-						Operation:   pulumi.String("string"),
-						Subresource: pulumi.String("string"),
-						Time:        pulumi.String("string"),
+						ApiVersion:  khulnasoft.String("string"),
+						FieldsType:  khulnasoft.String("string"),
+						FieldsV1:    khulnasoft.Any("{}"),
+						Manager:     khulnasoft.String("string"),
+						Operation:   khulnasoft.String("string"),
+						Subresource: khulnasoft.String("string"),
+						Time:        khulnasoft.String("string"),
 					},
 				},
-				Name:      pulumi.String("string"),
-				Namespace: pulumi.String("string"),
+				Name:      khulnasoft.String("string"),
+				Namespace: khulnasoft.String("string"),
 				OwnerReferences: metav1.OwnerReferenceArray{
 					&metav1.OwnerReferenceArgs{
-						ApiVersion:         pulumi.String("string"),
-						Kind:               pulumi.String("string"),
-						Name:               pulumi.String("string"),
-						Uid:                pulumi.String("string"),
-						BlockOwnerDeletion: pulumi.Bool(false),
-						Controller:         pulumi.Bool(false),
+						ApiVersion:         khulnasoft.String("string"),
+						Kind:               khulnasoft.String("string"),
+						Name:               khulnasoft.String("string"),
+						Uid:                khulnasoft.String("string"),
+						BlockOwnerDeletion: khulnasoft.Bool(false),
+						Controller:         khulnasoft.Bool(false),
 					},
 				},
-				ResourceVersion: pulumi.String("string"),
-				SelfLink:        pulumi.String("string"),
-				Uid:             pulumi.String("string"),
+				ResourceVersion: khulnasoft.String("string"),
+				SelfLink:        khulnasoft.String("string"),
+				Uid:             khulnasoft.String("string"),
 			},
 		},
 	},
-	ApiVersion: pulumi.String("string"),
-	Kind:       pulumi.String("string"),
+	ApiVersion: khulnasoft.String("string"),
+	Kind:       khulnasoft.String("string"),
 	Metadata: &metav1.ListMetaArgs{
-		Continue:           pulumi.String("string"),
-		RemainingItemCount: pulumi.Int(0),
-		ResourceVersion:    pulumi.String("string"),
-		SelfLink:           pulumi.String("string"),
+		Continue:           khulnasoft.String("string"),
+		RemainingItemCount: khulnasoft.Int(0),
+		ResourceVersion:    khulnasoft.String("string"),
+		SelfLink:           khulnasoft.String("string"),
 	},
 })
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 ```java
 var configMapListResource = new ConfigMapList("configMapListResource", ConfigMapListArgs.builder()
@@ -449,12 +449,12 @@ var configMapListResource = new ConfigMapList("configMapListResource", ConfigMap
     .build());
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 ```python
 config_map_list_resource = kubernetes.core.v1.ConfigMapList("configMapListResource",
@@ -516,12 +516,12 @@ config_map_list_resource = kubernetes.core.v1.ConfigMapList("configMapListResour
     })
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="typescript">
+<khulnasoft-choosable type="language" values="typescript">
 
 ```typescript
 const configMapListResource = new kubernetes.core.v1.ConfigMapList("configMapListResource", {
@@ -584,12 +584,12 @@ const configMapListResource = new kubernetes.core.v1.ConfigMapList("configMapLis
 });
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 
 ```yaml
 type: kubernetes:core/v1:ConfigMapList
@@ -644,7 +644,7 @@ properties:
         selfLink: string
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -655,18 +655,18 @@ To learn more about resource properties and how to use them, see [Inputs and Out
 
 ### Inputs
 
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <p>
 In Python, inputs that are objects can be passed either as <a href="/docs/languages-sdks/python/#inputs-and-outputs">argument classes or as dictionary literals</a>.
 </p>
-</pulumi-choosable>
+</khulnasoft-choosable>
 
 The ConfigMapList resource accepts the following [input](/docs/intro/concepts/inputs-outputs) properties:
 
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="items_csharp">
@@ -684,11 +684,11 @@ The ConfigMapList resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type"><a href="#listmeta">Pulumi.<wbr>Kubernetes.<wbr>Meta.<wbr>V1.<wbr>Inputs.<wbr>List<wbr>Meta</a></span>
     </dt>
     <dd>More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="items_go">
@@ -706,11 +706,11 @@ The ConfigMapList resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type"><a href="#listmeta">List<wbr>Meta<wbr>Args</a></span>
     </dt>
     <dd>More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="items_java">
@@ -728,11 +728,11 @@ The ConfigMapList resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type"><a href="#listmeta">List<wbr>Meta</a></span>
     </dt>
     <dd>More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="items_nodejs">
@@ -750,11 +750,11 @@ The ConfigMapList resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type"><a href="#listmeta">meta.v1.<wbr>List<wbr>Meta</a></span>
     </dt>
     <dd>More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="items_python">
@@ -772,11 +772,11 @@ The ConfigMapList resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type"><a href="#listmeta">meta.v1.<wbr>List<wbr>Meta<wbr>Args</a></span>
     </dt>
     <dd>More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="items_yaml">
@@ -794,7 +794,7 @@ The ConfigMapList resource accepts the following [input](/docs/intro/concepts/in
         <span class="property-type"><a href="#listmeta">Property Map</a></span>
     </dt>
     <dd>More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -805,7 +805,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_csharp">
@@ -815,11 +815,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">string</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_go">
@@ -829,11 +829,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">string</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_java">
@@ -843,11 +843,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">String</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_nodejs">
@@ -857,11 +857,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">string</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_python">
@@ -871,11 +871,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">str</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_yaml">
@@ -885,7 +885,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">String</span>
     </dt>
     <dd>The provider-assigned unique ID for this managed resource.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -899,11 +899,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
 
 
 <h4 id="configmap">
-Config<wbr>Map<pulumi-choosable type="language" values="python,go" class="inline">, Config<wbr>Map<wbr>Args</pulumi-choosable>
+Config<wbr>Map<khulnasoft-choosable type="language" values="python,go" class="inline">, Config<wbr>Map<wbr>Args</khulnasoft-choosable>
 </h4>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="binarydata_csharp">
@@ -937,11 +937,11 @@ Config<wbr>Map<pulumi-choosable type="language" values="python,go" class="inline
         <span class="property-type"><a href="#objectmeta">Pulumi.<wbr>Kubernetes.<wbr>Meta.<wbr>V1.<wbr>Inputs.<wbr>Object<wbr>Meta</a></span>
     </dt>
     <dd>Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="binarydata_go">
@@ -975,11 +975,11 @@ Config<wbr>Map<pulumi-choosable type="language" values="python,go" class="inline
         <span class="property-type"><a href="#objectmeta">Object<wbr>Meta</a></span>
     </dt>
     <dd>Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="binarydata_java">
@@ -1013,11 +1013,11 @@ Config<wbr>Map<pulumi-choosable type="language" values="python,go" class="inline
         <span class="property-type"><a href="#objectmeta">Object<wbr>Meta</a></span>
     </dt>
     <dd>Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="binarydata_nodejs">
@@ -1051,11 +1051,11 @@ Config<wbr>Map<pulumi-choosable type="language" values="python,go" class="inline
         <span class="property-type"><a href="#objectmeta">meta.v1.<wbr>Object<wbr>Meta</a></span>
     </dt>
     <dd>Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="binary_data_python">
@@ -1089,11 +1089,11 @@ Config<wbr>Map<pulumi-choosable type="language" values="python,go" class="inline
         <span class="property-type"><a href="#objectmeta">meta.v1.<wbr>Object<wbr>Meta</a></span>
     </dt>
     <dd>Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="binarydata_yaml">
@@ -1127,15 +1127,15 @@ Config<wbr>Map<pulumi-choosable type="language" values="python,go" class="inline
         <span class="property-type"><a href="#objectmeta">Property Map</a></span>
     </dt>
     <dd>Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="listmeta">
-List<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inline">, List<wbr>Meta<wbr>Args</pulumi-choosable>
+List<wbr>Meta<khulnasoft-choosable type="language" values="python,go" class="inline">, List<wbr>Meta<wbr>Args</khulnasoft-choosable>
 </h4>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="continue_csharp">
@@ -1169,11 +1169,11 @@ List<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inline"
         <span class="property-type">string</span>
     </dt>
     <dd>Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="continue_go">
@@ -1207,11 +1207,11 @@ List<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inline"
         <span class="property-type">string</span>
     </dt>
     <dd>Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="continue__java">
@@ -1245,11 +1245,11 @@ List<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inline"
         <span class="property-type">String</span>
     </dt>
     <dd>Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="continue_nodejs">
@@ -1283,11 +1283,11 @@ List<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inline"
         <span class="property-type">string</span>
     </dt>
     <dd>Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="continue__python">
@@ -1321,11 +1321,11 @@ List<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inline"
         <span class="property-type">str</span>
     </dt>
     <dd>Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="continue_yaml">
@@ -1359,15 +1359,15 @@ List<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inline"
         <span class="property-type">String</span>
     </dt>
     <dd>Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="managedfieldsentry">
-Managed<wbr>Fields<wbr>Entry<pulumi-choosable type="language" values="python,go" class="inline">, Managed<wbr>Fields<wbr>Entry<wbr>Args</pulumi-choosable>
+Managed<wbr>Fields<wbr>Entry<khulnasoft-choosable type="language" values="python,go" class="inline">, Managed<wbr>Fields<wbr>Entry<wbr>Args</khulnasoft-choosable>
 </h4>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="apiversion_csharp">
@@ -1425,11 +1425,11 @@ Managed<wbr>Fields<wbr>Entry<pulumi-choosable type="language" values="python,go"
         <span class="property-type">string</span>
     </dt>
     <dd>Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="apiversion_go">
@@ -1487,11 +1487,11 @@ Managed<wbr>Fields<wbr>Entry<pulumi-choosable type="language" values="python,go"
         <span class="property-type">string</span>
     </dt>
     <dd>Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="apiversion_java">
@@ -1549,11 +1549,11 @@ Managed<wbr>Fields<wbr>Entry<pulumi-choosable type="language" values="python,go"
         <span class="property-type">String</span>
     </dt>
     <dd>Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="apiversion_nodejs">
@@ -1611,11 +1611,11 @@ Managed<wbr>Fields<wbr>Entry<pulumi-choosable type="language" values="python,go"
         <span class="property-type">string</span>
     </dt>
     <dd>Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="api_version_python">
@@ -1673,11 +1673,11 @@ Managed<wbr>Fields<wbr>Entry<pulumi-choosable type="language" values="python,go"
         <span class="property-type">str</span>
     </dt>
     <dd>Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="apiversion_yaml">
@@ -1735,15 +1735,15 @@ Managed<wbr>Fields<wbr>Entry<pulumi-choosable type="language" values="python,go"
         <span class="property-type">String</span>
     </dt>
     <dd>Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="objectmeta">
-Object<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inline">, Object<wbr>Meta<wbr>Args</pulumi-choosable>
+Object<wbr>Meta<khulnasoft-choosable type="language" values="python,go" class="inline">, Object<wbr>Meta<wbr>Args</khulnasoft-choosable>
 </h4>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="annotations_csharp">
@@ -1886,11 +1886,11 @@ Object<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inlin
     <dd><p>UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.</p>
 <p>Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids</p>
 </dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="annotations_go">
@@ -2033,11 +2033,11 @@ Object<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inlin
     <dd><p>UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.</p>
 <p>Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids</p>
 </dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="annotations_java">
@@ -2180,11 +2180,11 @@ Object<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inlin
     <dd><p>UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.</p>
 <p>Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids</p>
 </dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="annotations_nodejs">
@@ -2327,11 +2327,11 @@ Object<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inlin
     <dd><p>UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.</p>
 <p>Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids</p>
 </dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="annotations_python">
@@ -2474,11 +2474,11 @@ Object<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inlin
     <dd><p>UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.</p>
 <p>Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids</p>
 </dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="annotations_yaml">
@@ -2621,15 +2621,15 @@ Object<wbr>Meta<pulumi-choosable type="language" values="python,go" class="inlin
     <dd><p>UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.</p>
 <p>Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids</p>
 </dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <h4 id="ownerreference">
-Owner<wbr>Reference<pulumi-choosable type="language" values="python,go" class="inline">, Owner<wbr>Reference<wbr>Args</pulumi-choosable>
+Owner<wbr>Reference<khulnasoft-choosable type="language" values="python,go" class="inline">, Owner<wbr>Reference<wbr>Args</khulnasoft-choosable>
 </h4>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="apiversion_csharp">
@@ -2679,11 +2679,11 @@ Owner<wbr>Reference<pulumi-choosable type="language" values="python,go" class="i
         <span class="property-type">bool</span>
     </dt>
     <dd>If true, this reference points to the managing controller.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="apiversion_go">
@@ -2733,11 +2733,11 @@ Owner<wbr>Reference<pulumi-choosable type="language" values="python,go" class="i
         <span class="property-type">bool</span>
     </dt>
     <dd>If true, this reference points to the managing controller.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="apiversion_java">
@@ -2787,11 +2787,11 @@ Owner<wbr>Reference<pulumi-choosable type="language" values="python,go" class="i
         <span class="property-type">Boolean</span>
     </dt>
     <dd>If true, this reference points to the managing controller.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="apiversion_nodejs">
@@ -2841,11 +2841,11 @@ Owner<wbr>Reference<pulumi-choosable type="language" values="python,go" class="i
         <span class="property-type">boolean</span>
     </dt>
     <dd>If true, this reference points to the managing controller.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="api_version_python">
@@ -2895,11 +2895,11 @@ Owner<wbr>Reference<pulumi-choosable type="language" values="python,go" class="i
         <span class="property-type">bool</span>
     </dt>
     <dd>If true, this reference points to the managing controller.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="apiversion_yaml">
@@ -2949,14 +2949,14 @@ Owner<wbr>Reference<pulumi-choosable type="language" values="python,go" class="i
         <span class="property-type">Boolean</span>
     </dt>
     <dd>If true, this reference points to the managing controller.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <h2 id="package-details">Package Details</h2>
 <dl class="package-details">
 	<dt>Repository</dt>
-	<dd><a href="https://github.com/pulumi/pulumi-kubernetes">Kubernetes pulumi/pulumi-kubernetes</a></dd>
+	<dd><a href="https://github.com/khulnasoft/khulnasoft-kubernetes">Kubernetes khulnasoft/khulnasoft-kubernetes</a></dd>
 	<dt>License</dt>
 	<dd>Apache-2.0</dd>
 </dl>

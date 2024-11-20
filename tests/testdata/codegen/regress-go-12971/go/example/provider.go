@@ -7,39 +7,39 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"regress-go-12971/example/internal"
 )
 
 type Provider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
-func NewProvider(ctx *pulumi.Context,
-	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
+func NewProvider(ctx *khulnasoft.Context,
+	name string, args *ProviderArgs, opts ...khulnasoft.ResourceOption) (*Provider, error) {
 	if args == nil {
 		args = &ProviderArgs{}
 	}
 
 	if args.Name == nil {
 		if d := internal.GetEnvOrDefault(nil, nil, "WORLD_NAME"); d != nil {
-			args.Name = pulumi.StringPtr(d.(string))
+			args.Name = khulnasoft.StringPtr(d.(string))
 		}
 	}
 	if args.Populated == nil {
 		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "WORLD_POPULATED"); d != nil {
-			args.Populated = pulumi.BoolPtr(d.(bool))
+			args.Populated = khulnasoft.BoolPtr(d.(bool))
 		}
 	}
 	if args.RadiusKm == nil {
 		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvFloat, "WORLD_RADIUS_KM"); d != nil {
-			args.RadiusKm = pulumi.Float64Ptr(d.(float64))
+			args.RadiusKm = khulnasoft.Float64Ptr(d.(float64))
 		}
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
-	err := ctx.RegisterResource("pulumi:providers:world", name, args, &resource, opts...)
+	err := ctx.RegisterResource("khulnasoft:providers:world", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,16 +47,16 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	Name      *string  `pulumi:"name"`
-	Populated *bool    `pulumi:"populated"`
-	RadiusKm  *float64 `pulumi:"radiusKm"`
+	Name      *string  `khulnasoft:"name"`
+	Populated *bool    `khulnasoft:"populated"`
+	RadiusKm  *float64 `khulnasoft:"radiusKm"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	Name      pulumi.StringPtrInput
-	Populated pulumi.BoolPtrInput
-	RadiusKm  pulumi.Float64PtrInput
+	Name      khulnasoft.StringPtrInput
+	Populated khulnasoft.BoolPtrInput
+	RadiusKm  khulnasoft.Float64PtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -64,7 +64,7 @@ func (ProviderArgs) ElementType() reflect.Type {
 }
 
 type ProviderInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToProviderOutput() ProviderOutput
 	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
@@ -79,10 +79,10 @@ func (i *Provider) ToProviderOutput() ProviderOutput {
 }
 
 func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
-type ProviderOutput struct{ *pulumi.OutputState }
+type ProviderOutput struct{ *khulnasoft.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Provider)(nil)).Elem()
@@ -97,6 +97,6 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
-	pulumi.RegisterOutputType(ProviderOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
+	khulnasoft.RegisterOutputType(ProviderOutput{})
 }

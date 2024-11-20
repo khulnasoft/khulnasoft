@@ -26,8 +26,8 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/dotnet"
 	go_gen "github.com/khulnasoft/khulnasoft/pkg/v3/codegen/go"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 func isDotNetTypeNameBoundary(prev rune, next rune) bool {

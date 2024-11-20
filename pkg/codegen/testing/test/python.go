@@ -25,7 +25,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
-	"github.com/pulumi/pulumi/sdk/v3/python/toolchain"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/python/toolchain"
 )
 
 func GeneratePythonProgramTest(
@@ -35,11 +35,11 @@ func GeneratePythonProgramTest(
 ) {
 	expectedVersion := map[string]PkgVersionInfo{
 		"aws-resource-options-4.3.8": {
-			Pkg:          "pulumi-aws",
+			Pkg:          "khulnasoft-aws",
 			OpAndVersion: "==4.26.0",
 		},
 		"aws-resource-options-5.16.2": {
-			Pkg:          "pulumi-aws",
+			Pkg:          "khulnasoft-aws",
 			OpAndVersion: "==5.16.2",
 		},
 	}

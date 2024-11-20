@@ -15,9 +15,9 @@
 package deploy
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 )
 
 // Target represents information about a deployment target.
@@ -31,9 +31,9 @@ type Target struct {
 
 const (
 	// The package name for the NodeJS dynamic provider.
-	nodejsDynamicProviderPackage = "pulumi-nodejs"
+	nodejsDynamicProviderPackage = "khulnasoft-nodejs"
 	// The package name for the Python dynamic provider.
-	pythonDynamicProviderPackage = "pulumi-python"
+	pythonDynamicProviderPackage = "khulnasoft-python"
 )
 
 // Returns true if the given package refers to a dynamic provider.

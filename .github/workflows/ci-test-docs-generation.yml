@@ -80,37 +80,37 @@ jobs:
           dotnet-version: ${{ fromJson(needs.matrix.outputs.version-set).dotnet }}
           dotnet-quality: ga
       - name: Install Pulumi CLI
-        uses: pulumi/action-install-pulumi-cli@v1.0.1
+        uses: khulnasoft/action-install-khulnasoft-cli@v1.0.1
       - name: Check out source code
         uses: actions/checkout@v4
         with:
-          path: pulumi
+          path: khulnasoft
           ref: ${{ inputs.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check out pulumi-aws
+      - name: Check out khulnasoft-aws
         uses: actions/checkout@v4
         with:
-          repository: pulumi/pulumi-aws
-          path: pulumi-aws
+          repository: khulnasoft/khulnasoft-aws
+          path: khulnasoft-aws
           token: ${{ secrets.GITHUB_TOKEN}}
-      - name: Check out pulumi-kubernetes
+      - name: Check out khulnasoft-kubernetes
         uses: actions/checkout@v4
         with:
-          repository: pulumi/pulumi-kubernetes
-          path: pulumi-kubernetes
+          repository: khulnasoft/khulnasoft-kubernetes
+          path: khulnasoft-kubernetes
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Check out docs
         uses: actions/checkout@v4
         with:
           # Use the PAT and not the default GITHUB_TOKEN since we want to create a branch
-          # in this workflow and push it to a remote that is NOT the current repo, i.e. pulumi/pulumi.
+          # in this workflow and push it to a remote that is NOT the current repo, i.e. khulnasoft/khulnasoft.
           token: ${{ secrets.PULUMI_BOT_TOKEN }}
-          repository: pulumi/docs
+          repository: khulnasoft/docs
           path: docs
       - name: Check out registry
         uses: actions/checkout@v4
         with:
-          repository: pulumi/registry
+          repository: khulnasoft/registry
           path: registry
 
 
@@ -122,8 +122,8 @@ jobs:
 
           pushd registry/tools/resourcedocsgen
 
-          go mod edit -replace github.com/khulnasoft/khulnasoft/pkg/v3=../../../pulumi/pkg
-          go mod edit -replace github.com/pulumi/pulumi/sdk/v3=../../../pulumi/sdk
+          go mod edit -replace github.com/khulnasoft/khulnasoft/pkg/v3=../../../khulnasoft/pkg
+          go mod edit -replace github.com/khulnasoft/khulnasoft/sdk/v3=../../../khulnasoft/sdk
 
           go mod tidy
 
@@ -159,12 +159,12 @@ jobs:
           # generate the preview link.
           token: ${{ secrets.PULUMI_BOT_TOKEN }}
           path: docs
-          committer: Pulumi Bot <bot@pulumi.com>
-          author: Pulumi Bot <bot@pulumi.com>
+          committer: Pulumi Bot <bot@khulnasoft.com>
+          author: Pulumi Bot <bot@khulnasoft.com>
           commit-message: Regenerate resource docs
-          title: Preview resource docs changes for pulumi/pulumi#${{ steps.regenerate-resource-docs.outputs.prNumber }}
+          title: Preview resource docs changes for khulnasoft/khulnasoft#${{ steps.regenerate-resource-docs.outputs.prNumber }}
           body: |
-            This PR was auto-generated from pulumi/pulumi#${{ steps.regenerate-resource-docs.outputs.prNumber }}.
+            This PR was auto-generated from khulnasoft/khulnasoft#${{ steps.regenerate-resource-docs.outputs.prNumber }}.
             By default, this PR contains regenerated docs for AWS and Kubernetes only.
             After review, this PR should be manually closed.
           # Assign the draft PR to the author of the current PR.

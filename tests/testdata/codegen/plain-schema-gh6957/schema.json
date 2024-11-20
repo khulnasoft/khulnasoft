@@ -52,8 +52,8 @@
     },
     "nodejs": {
       "dependencies": {
-        "@pulumi/pulumi": "^3.12",
-        "@pulumi/aws": "^3.7.0"
+        "@khulnasoft/khulnasoft": "^3.12",
+        "@khulnasoft/aws": "^3.7.0"
       },
       "devDependencies": {
         "typescript": "^3.7.0"
@@ -61,8 +61,8 @@
     },
     "python": {
       "requires": {
-        "pulumi": ">=3.0.0,<4.0.0",
-        "pulumi-aws": ">=4.0.0,<5.0.0"
+        "khulnasoft": ">=3.0.0,<4.0.0",
+        "khulnasoft-aws": ">=4.0.0,<5.0.0"
       }
     }
   }

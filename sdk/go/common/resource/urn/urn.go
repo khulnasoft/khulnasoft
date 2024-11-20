@@ -20,8 +20,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // URN is a friendly, but unique, URN for a resource, most often auto-assigned by Pulumi.  These are
@@ -35,7 +35,7 @@ import (
 //
 // Each resource URN is of the form:
 //
-//	urn:pulumi:<Stack>::<Project>::<Qualified$Type$Name>::<Name>
+//	urn:khulnasoft:<Stack>::<Project>::<Qualified$Type$Name>::<Name>
 //
 // wherein each element is the following:
 //
@@ -50,7 +50,7 @@ type URN string
 
 const (
 	Prefix        = "urn:" + NamespaceID + ":" // the standard URN prefix
-	NamespaceID   = "pulumi"                   // the URN namespace
+	NamespaceID   = "khulnasoft"                   // the URN namespace
 	NameDelimiter = "::"                       // the delimiter between URN name elements
 	TypeDelimiter = "$"                        // the delimiter between URN type elements
 )

@@ -1,5 +1,5 @@
 // package: codegen
-// file: pulumi/codegen/mapper.proto
+// file: khulnasoft/codegen/mapper.proto
 
 /* tslint:disable */
 /* eslint-disable */
@@ -25,7 +25,7 @@ export class GetMappingRequest extends jspb.Message {
 export namespace GetMappingRequest {
     export type AsObject = {
         provider: string,
-        pulumiProvider: string,
+        khulnasoftProvider: string,
     }
 }
 

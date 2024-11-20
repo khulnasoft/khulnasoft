@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Regresses [pulumi/pulumi#8633]: sequential operations like
+# Regresses [khulnasoft/khulnasoft#8633]: sequential operations like
 # `stack.up` with inline programs should be isolated from each other,
 # so that errors from the first operation do not infect the subsequent
 # operations.
@@ -25,21 +25,21 @@ import uuid
 
 import pytest
 
-import pulumi
-from pulumi import automation
+import khulnasoft
+from khulnasoft import automation
 
 
-class BadResource(pulumi.CustomResource):
+class BadResource(khulnasoft.CustomResource):
     def __init__(
-        self, resource_name: str, opts: typing.Optional[pulumi.ResourceOptions] = None
+        self, resource_name: str, opts: typing.Optional[khulnasoft.ResourceOptions] = None
     ):
         if opts is None:
-            opts = pulumi.ResourceOptions()
+            opts = khulnasoft.ResourceOptions()
         super().__init__("badprovider::BadResource", resource_name, {}, opts)
 
 
 def program():
-    config = pulumi.Config()
+    config = khulnasoft.Config()
     bad = config.get_int("bad") or 0
     if bad == 1:
         BadResource("bad_resource")
@@ -116,7 +116,7 @@ async def test_parallel_updates():
     "PULUMI_ACCESS_TOKEN" not in os.environ, reason="PULUMI_ACCESS_TOKEN not set"
 )
 @pytest.mark.skipif(
-    sys.platform == "win32", reason="TODO[pulumi/pulumi#8716] fails on Windows"
+    sys.platform == "win32", reason="TODO[khulnasoft/khulnasoft#8716] fails on Windows"
 )
 def test_isolation():
     check_isolation()

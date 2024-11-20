@@ -16,8 +16,8 @@ import unittest
 from enum import Enum
 from typing import Any, Dict, List, NamedTuple, Mapping, Optional, Sequence
 
-from pulumi.runtime import rpc
-import pulumi
+from khulnasoft.runtime import rpc
+import khulnasoft
 
 camel_case_to_snake_case = {
     "firstArg": "first_arg",
@@ -29,102 +29,102 @@ def translate_output_property(prop: str) -> str:
     return camel_case_to_snake_case.get(prop) or prop
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class Foo(dict):
-    first_arg: str = pulumi.property("firstArg")
-    second_arg: float = pulumi.property("secondArg")
+    first_arg: str = khulnasoft.property("firstArg")
+    second_arg: float = khulnasoft.property("secondArg")
 
     def _translate_property(self, prop: str) -> str:
         return camel_case_to_snake_case.get(prop) or prop
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class Bar(dict):
-    third_arg: Foo = pulumi.property("thirdArg")
-    third_optional_arg: Optional[Foo] = pulumi.property("thirdOptionalArg")
+    third_arg: Foo = khulnasoft.property("thirdArg")
+    third_optional_arg: Optional[Foo] = khulnasoft.property("thirdOptionalArg")
 
-    fourth_arg: Dict[str, Foo] = pulumi.property("fourthArg")
-    fourth_optional_arg: Dict[str, Optional[Foo]] = pulumi.property("fourthOptionalArg")
+    fourth_arg: Dict[str, Foo] = khulnasoft.property("fourthArg")
+    fourth_optional_arg: Dict[str, Optional[Foo]] = khulnasoft.property("fourthOptionalArg")
 
-    fifth_arg: List[Foo] = pulumi.property("fifthArg")
-    fifth_optional_arg: List[Optional[Foo]] = pulumi.property("fifthOptionalArg")
+    fifth_arg: List[Foo] = khulnasoft.property("fifthArg")
+    fifth_optional_arg: List[Optional[Foo]] = khulnasoft.property("fifthOptionalArg")
 
-    sixth_arg: Dict[str, List[Foo]] = pulumi.property("sixthArg")
-    sixth_optional_arg: Dict[str, Optional[List[Foo]]] = pulumi.property(
+    sixth_arg: Dict[str, List[Foo]] = khulnasoft.property("sixthArg")
+    sixth_optional_arg: Dict[str, Optional[List[Foo]]] = khulnasoft.property(
         "sixthOptionalArg"
     )
     sixth_optional_optional_arg: Dict[str, Optional[List[Optional[Foo]]]] = (
-        pulumi.property("sixthOptionalOptionalArg")
+        khulnasoft.property("sixthOptionalOptionalArg")
     )
 
-    seventh_arg: List[Dict[str, Foo]] = pulumi.property("seventhArg")
-    seventh_optional_arg: List[Optional[Dict[str, Foo]]] = pulumi.property(
+    seventh_arg: List[Dict[str, Foo]] = khulnasoft.property("seventhArg")
+    seventh_optional_arg: List[Optional[Dict[str, Foo]]] = khulnasoft.property(
         "seventhOptionalArg"
     )
     seventh_optional_optional_arg: List[Optional[Dict[str, Optional[Foo]]]] = (
-        pulumi.property("seventhOptionalOptionalArg")
+        khulnasoft.property("seventhOptionalOptionalArg")
     )
 
-    eighth_arg: List[Dict[str, List[Foo]]] = pulumi.property("eighthArg")
-    eighth_optional_arg: List[Optional[Dict[str, List[Foo]]]] = pulumi.property(
+    eighth_arg: List[Dict[str, List[Foo]]] = khulnasoft.property("eighthArg")
+    eighth_optional_arg: List[Optional[Dict[str, List[Foo]]]] = khulnasoft.property(
         "eighthOptionalArg"
     )
     eighth_optional_optional_arg: List[Optional[Dict[str, Optional[List[Foo]]]]] = (
-        pulumi.property("eighthOptionalOptionalArg")
+        khulnasoft.property("eighthOptionalOptionalArg")
     )
     eighth_optional_optional_optional_arg: List[
         Optional[Dict[str, Optional[List[Optional[Foo]]]]]
-    ] = pulumi.property("eighthOptionalOptionalOptionalArg")
+    ] = khulnasoft.property("eighthOptionalOptionalOptionalArg")
 
     def _translate_property(self, prop: str) -> str:
         return camel_case_to_snake_case.get(prop) or prop
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class BarMappingSequence(dict):
-    third_arg: Foo = pulumi.property("thirdArg")
-    third_optional_arg: Optional[Foo] = pulumi.property("thirdOptionalArg")
+    third_arg: Foo = khulnasoft.property("thirdArg")
+    third_optional_arg: Optional[Foo] = khulnasoft.property("thirdOptionalArg")
 
-    fourth_arg: Mapping[str, Foo] = pulumi.property("fourthArg")
-    fourth_optional_arg: Mapping[str, Optional[Foo]] = pulumi.property(
+    fourth_arg: Mapping[str, Foo] = khulnasoft.property("fourthArg")
+    fourth_optional_arg: Mapping[str, Optional[Foo]] = khulnasoft.property(
         "fourthOptionalArg"
     )
 
-    fifth_arg: Sequence[Foo] = pulumi.property("fifthArg")
-    fifth_optional_arg: Sequence[Optional[Foo]] = pulumi.property("fifthOptionalArg")
+    fifth_arg: Sequence[Foo] = khulnasoft.property("fifthArg")
+    fifth_optional_arg: Sequence[Optional[Foo]] = khulnasoft.property("fifthOptionalArg")
 
-    sixth_arg: Mapping[str, Sequence[Foo]] = pulumi.property("sixthArg")
-    sixth_optional_arg: Mapping[str, Optional[Sequence[Foo]]] = pulumi.property(
+    sixth_arg: Mapping[str, Sequence[Foo]] = khulnasoft.property("sixthArg")
+    sixth_optional_arg: Mapping[str, Optional[Sequence[Foo]]] = khulnasoft.property(
         "sixthOptionalArg"
     )
     sixth_optional_optional_arg: Mapping[str, Optional[Sequence[Optional[Foo]]]] = (
-        pulumi.property("sixthOptionalOptionalArg")
+        khulnasoft.property("sixthOptionalOptionalArg")
     )
 
-    seventh_arg: Sequence[Mapping[str, Foo]] = pulumi.property("seventhArg")
-    seventh_optional_arg: Sequence[Optional[Mapping[str, Foo]]] = pulumi.property(
+    seventh_arg: Sequence[Mapping[str, Foo]] = khulnasoft.property("seventhArg")
+    seventh_optional_arg: Sequence[Optional[Mapping[str, Foo]]] = khulnasoft.property(
         "seventhOptionalArg"
     )
     seventh_optional_optional_arg: Sequence[Optional[Mapping[str, Optional[Foo]]]] = (
-        pulumi.property("seventhOptionalOptionalArg")
+        khulnasoft.property("seventhOptionalOptionalArg")
     )
 
-    eighth_arg: Sequence[Mapping[str, Sequence[Foo]]] = pulumi.property("eighthArg")
+    eighth_arg: Sequence[Mapping[str, Sequence[Foo]]] = khulnasoft.property("eighthArg")
     eighth_optional_arg: Sequence[Optional[Mapping[str, Sequence[Foo]]]] = (
-        pulumi.property("eighthOptionalArg")
+        khulnasoft.property("eighthOptionalArg")
     )
     eighth_optional_optional_arg: Sequence[
         Optional[Mapping[str, Optional[Sequence[Foo]]]]
-    ] = pulumi.property("eighthOptionalOptionalArg")
+    ] = khulnasoft.property("eighthOptionalOptionalArg")
     eighth_optional_optional_optional_arg: Sequence[
         Optional[Mapping[str, Optional[Sequence[Optional[Foo]]]]]
-    ] = pulumi.property("eighthOptionalOptionalOptionalArg")
+    ] = khulnasoft.property("eighthOptionalOptionalOptionalArg")
 
     def _translate_property(self, prop: str) -> str:
         return camel_case_to_snake_case.get(prop) or prop
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class BarDeclared(dict):
     def __init__(
         self,
@@ -147,95 +147,95 @@ class BarDeclared(dict):
             Optional[Dict[str, Optional[List[Optional[Foo]]]]]
         ],
     ):
-        pulumi.set(self, "third_arg", third_arg)
-        pulumi.set(self, "third_optional_arg", third_optional_arg)
-        pulumi.set(self, "fourth_arg", fourth_arg)
-        pulumi.set(self, "fourth_optional_arg", fourth_optional_arg)
-        pulumi.set(self, "fifth_arg", fifth_arg)
-        pulumi.set(self, "fifth_optional_arg", fifth_optional_arg)
-        pulumi.set(self, "sixth_arg", sixth_arg)
-        pulumi.set(self, "sixth_optional_arg", sixth_optional_arg)
-        pulumi.set(self, "sixth_optional_optional_arg", sixth_optional_optional_arg)
-        pulumi.set(self, "seventh_arg", seventh_arg)
-        pulumi.set(self, "seventh_optional_arg", seventh_optional_arg)
-        pulumi.set(self, "seventh_optional_optional_arg", seventh_optional_optional_arg)
-        pulumi.set(self, "eighth_arg", eighth_arg)
-        pulumi.set(self, "eighth_optional_arg", eighth_optional_arg)
-        pulumi.set(self, "eighth_optional_optional_arg", eighth_optional_optional_arg)
-        pulumi.set(
+        khulnasoft.set(self, "third_arg", third_arg)
+        khulnasoft.set(self, "third_optional_arg", third_optional_arg)
+        khulnasoft.set(self, "fourth_arg", fourth_arg)
+        khulnasoft.set(self, "fourth_optional_arg", fourth_optional_arg)
+        khulnasoft.set(self, "fifth_arg", fifth_arg)
+        khulnasoft.set(self, "fifth_optional_arg", fifth_optional_arg)
+        khulnasoft.set(self, "sixth_arg", sixth_arg)
+        khulnasoft.set(self, "sixth_optional_arg", sixth_optional_arg)
+        khulnasoft.set(self, "sixth_optional_optional_arg", sixth_optional_optional_arg)
+        khulnasoft.set(self, "seventh_arg", seventh_arg)
+        khulnasoft.set(self, "seventh_optional_arg", seventh_optional_arg)
+        khulnasoft.set(self, "seventh_optional_optional_arg", seventh_optional_optional_arg)
+        khulnasoft.set(self, "eighth_arg", eighth_arg)
+        khulnasoft.set(self, "eighth_optional_arg", eighth_optional_arg)
+        khulnasoft.set(self, "eighth_optional_optional_arg", eighth_optional_optional_arg)
+        khulnasoft.set(
             self,
             "eighth_optional_optional_optional_arg",
             eighth_optional_optional_optional_arg,
         )
 
     @property
-    @pulumi.getter(name="thirdArg")
+    @khulnasoft.getter(name="thirdArg")
     def third_arg(self) -> Foo: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="thirdOptionalArg")
+    @khulnasoft.getter(name="thirdOptionalArg")
     def third_optional_arg(self) -> Optional[Foo]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="fourthArg")
+    @khulnasoft.getter(name="fourthArg")
     def fourth_arg(self) -> Dict[str, Foo]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="fourthOptionalArg")
+    @khulnasoft.getter(name="fourthOptionalArg")
     def fourth_optional_arg(self) -> Dict[str, Optional[Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="fifthArg")
+    @khulnasoft.getter(name="fifthArg")
     def fifth_arg(self) -> List[Foo]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="fifthOptionalArg")
+    @khulnasoft.getter(name="fifthOptionalArg")
     def fifth_optional_arg(self) -> List[Optional[Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="sixthArg")
+    @khulnasoft.getter(name="sixthArg")
     def sixth_arg(self) -> Dict[str, List[Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="sixthOptionalArg")
+    @khulnasoft.getter(name="sixthOptionalArg")
     def sixth_optional_arg(self) -> Dict[str, Optional[List[Foo]]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="sixthOptionalOptionalArg")
+    @khulnasoft.getter(name="sixthOptionalOptionalArg")
     def sixth_optional_optional_arg(  # type: ignore
         self,
     ) -> Dict[str, Optional[List[Optional[Foo]]]]: ...
 
     @property
-    @pulumi.getter(name="seventhArg")
+    @khulnasoft.getter(name="seventhArg")
     def seventh_arg(self) -> List[Dict[str, Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="seventhOptionalArg")
+    @khulnasoft.getter(name="seventhOptionalArg")
     def seventh_optional_arg(self) -> List[Optional[Dict[str, Foo]]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="seventhOptionalOptionalArg")
+    @khulnasoft.getter(name="seventhOptionalOptionalArg")
     def seventh_optional_optional_arg(  # type: ignore
         self,
     ) -> List[Optional[Dict[str, Optional[Foo]]]]: ...
 
     @property
-    @pulumi.getter(name="eighthArg")
+    @khulnasoft.getter(name="eighthArg")
     def eighth_arg(self) -> List[Dict[str, List[Foo]]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="eighthOptionalArg")
+    @khulnasoft.getter(name="eighthOptionalArg")
     def eighth_optional_arg(self) -> List[Optional[Dict[str, List[Foo]]]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="eighthOptionalOptionalArg")
+    @khulnasoft.getter(name="eighthOptionalOptionalArg")
     def eighth_optional_optional_arg(  # type: ignore
         self,
     ) -> List[Optional[Dict[str, Optional[List[Foo]]]]]: ...
 
     @property
-    @pulumi.getter(name="eighthOptionalOptionalOptionalArg")
+    @khulnasoft.getter(name="eighthOptionalOptionalOptionalArg")
     def eighth_optional_optional_optional_arg(  # type: ignore
         self,
     ) -> List[Optional[Dict[str, Optional[List[Optional[Foo]]]]]]: ...
@@ -244,7 +244,7 @@ class BarDeclared(dict):
         return camel_case_to_snake_case.get(prop) or prop
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class BarMappingSequenceDeclared(dict):
     def __init__(
         self,
@@ -269,97 +269,97 @@ class BarMappingSequenceDeclared(dict):
             Optional[Mapping[str, Optional[Sequence[Optional[Foo]]]]]
         ],
     ):
-        pulumi.set(self, "third_arg", third_arg)
-        pulumi.set(self, "third_optional_arg", third_optional_arg)
-        pulumi.set(self, "fourth_arg", fourth_arg)
-        pulumi.set(self, "fourth_optional_arg", fourth_optional_arg)
-        pulumi.set(self, "fifth_arg", fifth_arg)
-        pulumi.set(self, "fifth_optional_arg", fifth_optional_arg)
-        pulumi.set(self, "sixth_arg", sixth_arg)
-        pulumi.set(self, "sixth_optional_arg", sixth_optional_arg)
-        pulumi.set(self, "sixth_optional_optional_arg", sixth_optional_optional_arg)
-        pulumi.set(self, "seventh_arg", seventh_arg)
-        pulumi.set(self, "seventh_optional_arg", seventh_optional_arg)
-        pulumi.set(self, "seventh_optional_optional_arg", seventh_optional_optional_arg)
-        pulumi.set(self, "eighth_arg", eighth_arg)
-        pulumi.set(self, "eighth_optional_arg", eighth_optional_arg)
-        pulumi.set(self, "eighth_optional_optional_arg", eighth_optional_optional_arg)
-        pulumi.set(
+        khulnasoft.set(self, "third_arg", third_arg)
+        khulnasoft.set(self, "third_optional_arg", third_optional_arg)
+        khulnasoft.set(self, "fourth_arg", fourth_arg)
+        khulnasoft.set(self, "fourth_optional_arg", fourth_optional_arg)
+        khulnasoft.set(self, "fifth_arg", fifth_arg)
+        khulnasoft.set(self, "fifth_optional_arg", fifth_optional_arg)
+        khulnasoft.set(self, "sixth_arg", sixth_arg)
+        khulnasoft.set(self, "sixth_optional_arg", sixth_optional_arg)
+        khulnasoft.set(self, "sixth_optional_optional_arg", sixth_optional_optional_arg)
+        khulnasoft.set(self, "seventh_arg", seventh_arg)
+        khulnasoft.set(self, "seventh_optional_arg", seventh_optional_arg)
+        khulnasoft.set(self, "seventh_optional_optional_arg", seventh_optional_optional_arg)
+        khulnasoft.set(self, "eighth_arg", eighth_arg)
+        khulnasoft.set(self, "eighth_optional_arg", eighth_optional_arg)
+        khulnasoft.set(self, "eighth_optional_optional_arg", eighth_optional_optional_arg)
+        khulnasoft.set(
             self,
             "eighth_optional_optional_optional_arg",
             eighth_optional_optional_optional_arg,
         )
 
     @property
-    @pulumi.getter(name="thirdArg")
+    @khulnasoft.getter(name="thirdArg")
     def third_arg(self) -> Foo: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="thirdOptionalArg")
+    @khulnasoft.getter(name="thirdOptionalArg")
     def third_optional_arg(self) -> Optional[Foo]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="fourthArg")
+    @khulnasoft.getter(name="fourthArg")
     def fourth_arg(self) -> Mapping[str, Foo]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="fourthOptionalArg")
+    @khulnasoft.getter(name="fourthOptionalArg")
     def fourth_optional_arg(self) -> Mapping[str, Optional[Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="fifthArg")
+    @khulnasoft.getter(name="fifthArg")
     def fifth_arg(self) -> Sequence[Foo]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="fifthOptionalArg")
+    @khulnasoft.getter(name="fifthOptionalArg")
     def fifth_optional_arg(self) -> Sequence[Optional[Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="sixthArg")
+    @khulnasoft.getter(name="sixthArg")
     def sixth_arg(self) -> Mapping[str, Sequence[Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="sixthOptionalArg")
+    @khulnasoft.getter(name="sixthOptionalArg")
     def sixth_optional_arg(self) -> Mapping[str, Optional[Sequence[Foo]]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="sixthOptionalOptionalArg")
+    @khulnasoft.getter(name="sixthOptionalOptionalArg")
     def sixth_optional_optional_arg(  # type: ignore
         self,
     ) -> Mapping[str, Optional[Sequence[Optional[Foo]]]]: ...
 
     @property
-    @pulumi.getter(name="seventhArg")
+    @khulnasoft.getter(name="seventhArg")
     def seventh_arg(self) -> Sequence[Mapping[str, Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="seventhOptionalArg")
+    @khulnasoft.getter(name="seventhOptionalArg")
     def seventh_optional_arg(self) -> Sequence[Optional[Mapping[str, Foo]]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="seventhOptionalOptionalArg")
+    @khulnasoft.getter(name="seventhOptionalOptionalArg")
     def seventh_optional_optional_arg(  # type: ignore
         self,
     ) -> Sequence[Optional[Mapping[str, Optional[Foo]]]]: ...
 
     @property
-    @pulumi.getter(name="eighthArg")
+    @khulnasoft.getter(name="eighthArg")
     def eighth_arg(self) -> Sequence[Mapping[str, Sequence[Foo]]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="eighthOptionalArg")
+    @khulnasoft.getter(name="eighthOptionalArg")
     def eighth_optional_arg(  # type: ignore
         self,
     ) -> Sequence[Optional[Mapping[str, Sequence[Foo]]]]: ...
 
     @property
-    @pulumi.getter(name="eighthOptionalOptionalArg")
+    @khulnasoft.getter(name="eighthOptionalOptionalArg")
     def eighth_optional_optional_arg(  # type: ignore
         self,
     ) -> Sequence[Optional[Mapping[str, Optional[Sequence[Foo]]]]]: ...
 
     @property
-    @pulumi.getter(name="eighthOptionalOptionalOptionalArg")
+    @khulnasoft.getter(name="eighthOptionalOptionalOptionalArg")
     def eighth_optional_optional_optional_arg(  # type: ignore
         self,
     ) -> Sequence[Optional[Mapping[str, Optional[Sequence[Optional[Foo]]]]]]: ...
@@ -368,277 +368,277 @@ class BarMappingSequenceDeclared(dict):
         return camel_case_to_snake_case.get(prop) or prop
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeStr(dict):
-    value: str = pulumi.property("value")
+    value: str = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredStr(dict):
     def __init__(self, value: str):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> str: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeOptionalStr(dict):
-    value: Optional[str] = pulumi.property("value")
+    value: Optional[str] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredOptionalStr(dict):
     def __init__(self, value: Optional[str]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Optional[str]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDictStr(dict):
-    value: Dict[str, str] = pulumi.property("value")
+    value: Dict[str, str] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeMappingStr(dict):
-    value: Mapping[str, str] = pulumi.property("value")
+    value: Mapping[str, str] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredDictStr(dict):
     def __init__(self, value: Dict[str, str]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Dict[str, str]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredMappingStr(dict):
     def __init__(self, value: Mapping[str, str]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Mapping[str, str]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeOptionalDictStr(dict):
-    value: Optional[Dict[str, str]] = pulumi.property("value")
+    value: Optional[Dict[str, str]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeOptionalMappingStr(dict):
-    value: Optional[Mapping[str, str]] = pulumi.property("value")
+    value: Optional[Mapping[str, str]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredOptionalDictStr(dict):
     def __init__(self, value: Optional[Dict[str, str]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Optional[Dict[str, str]]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredOptionalMappingStr(dict):
     def __init__(self, value: Optional[Mapping[str, str]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Optional[Mapping[str, str]]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDictOptionalStr(dict):
-    value: Dict[str, Optional[str]] = pulumi.property("value")
+    value: Dict[str, Optional[str]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeMappingOptionalStr(dict):
-    value: Mapping[str, Optional[str]] = pulumi.property("value")
+    value: Mapping[str, Optional[str]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredDictOptionalStr(dict):
     def __init__(self, value: Dict[str, Optional[str]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Dict[str, Optional[str]]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredMappingOptionalStr(dict):
     def __init__(self, value: Mapping[str, Optional[str]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Mapping[str, Optional[str]]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeOptionalDictOptionalStr(dict):
-    value: Optional[Dict[str, Optional[str]]] = pulumi.property("value")
+    value: Optional[Dict[str, Optional[str]]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeOptionalMappingOptionalStr(dict):
-    value: Optional[Mapping[str, Optional[str]]] = pulumi.property("value")
+    value: Optional[Mapping[str, Optional[str]]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredOptionalDictOptionalStr(dict):
     def __init__(self, value: Optional[Dict[str, Optional[str]]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Optional[Dict[str, Optional[str]]]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredOptionalMappingOptionalStr(dict):
     def __init__(self, value: Optional[Mapping[str, Optional[str]]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Optional[Mapping[str, Optional[str]]]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeListStr(dict):
-    value: List[str] = pulumi.property("value")
+    value: List[str] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeSequenceStr(dict):
-    value: Sequence[str] = pulumi.property("value")
+    value: Sequence[str] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredListStr(dict):
     def __init__(self, value: List[str]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> List[str]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredSequenceStr(dict):
     def __init__(self, value: Sequence[str]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Sequence[str]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeOptionalListStr(dict):
-    value: Optional[List[str]] = pulumi.property("value")
+    value: Optional[List[str]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeOptionalSequenceStr(dict):
-    value: Optional[Sequence[str]] = pulumi.property("value")
+    value: Optional[Sequence[str]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredOptionalListStr(dict):
     def __init__(self, value: Optional[List[str]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Optional[List[str]]: ...
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredOptionalSequenceStr(dict):
     def __init__(self, value: Optional[Sequence[str]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Optional[Sequence[str]]: ...
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeListOptionalStr(dict):
-    value: List[Optional[str]] = pulumi.property("value")
+    value: List[Optional[str]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeSequenceOptionalStr(dict):
-    value: Sequence[Optional[str]] = pulumi.property("value")
+    value: Sequence[Optional[str]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredListOptionalStr(dict):
     def __init__(self, value: List[Optional[str]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> List[Optional[str]]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredSequenceOptionalStr(dict):
     def __init__(self, value: Sequence[Optional[str]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Sequence[Optional[str]]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeOptionalListOptionalStr(dict):
-    value: Optional[List[Optional[str]]] = pulumi.property("value")
+    value: Optional[List[Optional[str]]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeOptionalSequenceOptionalStr(dict):
-    value: Optional[Sequence[Optional[str]]] = pulumi.property("value")
+    value: Optional[Sequence[Optional[str]]] = khulnasoft.property("value")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredOptionalListOptionalStr(dict):
     def __init__(self, value: Optional[List[Optional[str]]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Optional[List[Optional[str]]]: ...
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class InvalidTypeDeclaredOptionalSequenceOptionalStr(dict):
     def __init__(self, value: Optional[Sequence[Optional[str]]]):
-        pulumi.set(self, "value", value)
+        khulnasoft.set(self, "value", value)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def value(self) -> Optional[Sequence[Optional[str]]]: ...
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class OutputTypeWithAny(dict):
     value_dict: Any
     value_list: Any
@@ -1022,7 +1022,7 @@ class TranslateOutputPropertiesTests(unittest.TestCase):
         self.assertEqual("hello", result.value_str)
 
     def test_int(self):
-        @pulumi.output_type
+        @khulnasoft.output_type
         class OutputTypeWithInt(dict):
             value_dict: Dict[str, int]
             value_mapping: Mapping[str, int]
@@ -1055,14 +1055,14 @@ class TranslateOutputPropertiesTests(unittest.TestCase):
         self.assertIsInstance(result.value_int, int)
 
     def test_individual_values(self):
-        @pulumi.output_type
+        @khulnasoft.output_type
         class MyOutput:
-            first_arg: str = pulumi.property("firstArg")
-            second_arg: int = pulumi.property("secondArg")
+            first_arg: str = khulnasoft.property("firstArg")
+            second_arg: int = khulnasoft.property("secondArg")
 
             def __init__(self, first_arg: str, second_arg: int):
-                pulumi.set(self, "first_arg", first_arg)
-                pulumi.set(self, "second_arg", second_arg)
+                khulnasoft.set(self, "first_arg", first_arg)
+                khulnasoft.set(self, "second_arg", second_arg)
 
             def _translate_property(self, prop: str) -> str:
                 return camel_case_to_snake_case.get(prop) or prop

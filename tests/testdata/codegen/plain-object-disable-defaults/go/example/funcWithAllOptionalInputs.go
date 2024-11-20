@@ -7,12 +7,12 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"plain-object-disable-defaults/example/internal"
 )
 
 // Check codegen of functions with all optional inputs.
-func FuncWithAllOptionalInputs(ctx *pulumi.Context, args *FuncWithAllOptionalInputsArgs, opts ...pulumi.InvokeOption) (*FuncWithAllOptionalInputsResult, error) {
+func FuncWithAllOptionalInputs(ctx *khulnasoft.Context, args *FuncWithAllOptionalInputsArgs, opts ...khulnasoft.InvokeOption) (*FuncWithAllOptionalInputsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FuncWithAllOptionalInputsResult
 	err := ctx.Invoke("mypkg::funcWithAllOptionalInputs", args, &rv, opts...)
@@ -24,17 +24,17 @@ func FuncWithAllOptionalInputs(ctx *pulumi.Context, args *FuncWithAllOptionalInp
 
 type FuncWithAllOptionalInputsArgs struct {
 	// Property A
-	A *HelmReleaseSettings `pulumi:"a"`
+	A *HelmReleaseSettings `khulnasoft:"a"`
 	// Property B
-	B *string `pulumi:"b"`
+	B *string `khulnasoft:"b"`
 }
 
 type FuncWithAllOptionalInputsResult struct {
-	R string `pulumi:"r"`
+	R string `khulnasoft:"r"`
 }
 
-func FuncWithAllOptionalInputsOutput(ctx *pulumi.Context, args FuncWithAllOptionalInputsOutputArgs, opts ...pulumi.InvokeOption) FuncWithAllOptionalInputsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func FuncWithAllOptionalInputsOutput(ctx *khulnasoft.Context, args FuncWithAllOptionalInputsOutputArgs, opts ...khulnasoft.InvokeOption) FuncWithAllOptionalInputsResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (FuncWithAllOptionalInputsResultOutput, error) {
 			args := v.(FuncWithAllOptionalInputsArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -44,9 +44,9 @@ func FuncWithAllOptionalInputsOutput(ctx *pulumi.Context, args FuncWithAllOption
 				return FuncWithAllOptionalInputsResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(FuncWithAllOptionalInputsResultOutput)
+			output := khulnasoft.ToOutput(rv).(FuncWithAllOptionalInputsResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(FuncWithAllOptionalInputsResultOutput), nil
+				return khulnasoft.ToSecret(output).(FuncWithAllOptionalInputsResultOutput), nil
 			}
 			return output, nil
 		}).(FuncWithAllOptionalInputsResultOutput)
@@ -54,16 +54,16 @@ func FuncWithAllOptionalInputsOutput(ctx *pulumi.Context, args FuncWithAllOption
 
 type FuncWithAllOptionalInputsOutputArgs struct {
 	// Property A
-	A HelmReleaseSettingsPtrInput `pulumi:"a"`
+	A HelmReleaseSettingsPtrInput `khulnasoft:"a"`
 	// Property B
-	B pulumi.StringPtrInput `pulumi:"b"`
+	B khulnasoft.StringPtrInput `khulnasoft:"b"`
 }
 
 func (FuncWithAllOptionalInputsOutputArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithAllOptionalInputsArgs)(nil)).Elem()
 }
 
-type FuncWithAllOptionalInputsResultOutput struct{ *pulumi.OutputState }
+type FuncWithAllOptionalInputsResultOutput struct{ *khulnasoft.OutputState }
 
 func (FuncWithAllOptionalInputsResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithAllOptionalInputsResult)(nil)).Elem()
@@ -77,10 +77,10 @@ func (o FuncWithAllOptionalInputsResultOutput) ToFuncWithAllOptionalInputsResult
 	return o
 }
 
-func (o FuncWithAllOptionalInputsResultOutput) R() pulumi.StringOutput {
-	return o.ApplyT(func(v FuncWithAllOptionalInputsResult) string { return v.R }).(pulumi.StringOutput)
+func (o FuncWithAllOptionalInputsResultOutput) R() khulnasoft.StringOutput {
+	return o.ApplyT(func(v FuncWithAllOptionalInputsResult) string { return v.R }).(khulnasoft.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(FuncWithAllOptionalInputsResultOutput{})
+	khulnasoft.RegisterOutputType(FuncWithAllOptionalInputsResultOutput{})
 }

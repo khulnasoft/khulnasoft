@@ -26,10 +26,10 @@ import (
 	sdkDisplay "github.com/khulnasoft/khulnasoft/pkg/v3/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/result"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/result"
 )
 
 // ApplierOptions is a bag of configuration settings for an Applier.
@@ -291,7 +291,7 @@ func computeUpdateStats(events []engine.Event) updateStats {
 			continue
 		}
 
-		if p.Metadata.Type.String() != "pulumi:pulumi:Stack" {
+		if p.Metadata.Type.String() != "khulnasoft:khulnasoft:Stack" {
 			stats.numNonStackResources++
 		}
 

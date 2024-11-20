@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/pulumi/pulumi/master/pkg/codegen/schema/pulumi.json",
+  "$schema": "https://raw.githubusercontent.com/khulnasoft/khulnasoft/master/pkg/codegen/schema/khulnasoft.json",
   "name": "synthetic",
   "version": "0.1.0",
   "//": [
@@ -57,18 +57,18 @@
   },
   "language": {
     "nodejs": {
-      "packageName": "@pulumi/synthetic"
+      "packageName": "@khulnasoft/synthetic"
     },
     "csharp": {
       "rootNamespace": "Pulumi.Synthetic"
     },
     "python": {
-      "packageName": "pulumi_synthetic"
+      "packageName": "khulnasoft_synthetic"
     },
     "go": {
-      "importBasePath": "git.example.org/pulumi-synthetic",
+      "importBasePath": "git.example.org/khulnasoft-synthetic",
       "packageImportAliases": {
-        "git.example.org/pulumi-synthetic/resourceProperties": "resourceProperties"
+        "git.example.org/khulnasoft-synthetic/resourceProperties": "resourceProperties"
       }
     }
   }

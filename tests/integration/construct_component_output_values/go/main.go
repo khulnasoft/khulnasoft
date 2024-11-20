@@ -5,19 +5,19 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		if _, err := NewComponent(ctx, "component", &ComponentArgs{
 			Foo: &FooArgs{
-				Something: pulumi.String("hello"),
+				Something: khulnasoft.String("hello"),
 			},
 			Bar: &BarArgs{
-				Tags: pulumi.StringMap{
-					"a": pulumi.String("world"),
-					"b": pulumi.ToSecret("shh").(pulumi.StringOutput),
+				Tags: khulnasoft.StringMap{
+					"a": khulnasoft.String("world"),
+					"b": khulnasoft.ToSecret("shh").(khulnasoft.StringOutput),
 				},
 			},
 		}); err != nil {

@@ -31,9 +31,9 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 type GenerateProgramOptions struct {
@@ -91,7 +91,7 @@ func (g *generator) usingDefaultListInitializer() bool {
 }
 
 const (
-	pulumiPackage = "pulumi"
+	khulnasoftPackage = "khulnasoft"
 	dynamicType   = "dynamic"
 )
 
@@ -320,7 +320,7 @@ func GenerateProject(
 		}
 	}
 
-	if _, hasLocalPulumiReference := localDependencies[pulumiPackage]; !hasLocalPulumiReference {
+	if _, hasLocalPulumiReference := localDependencies[khulnasoftPackage]; !hasLocalPulumiReference {
 		csproj.WriteString("		<PackageReference Include=\"Pulumi\" Version=\"3.*\" />\n")
 	}
 
@@ -339,7 +339,7 @@ func GenerateProject(
 		if err := p.ImportLanguages(map[string]schema.Language{"csharp": Importer}); err != nil {
 			return err
 		}
-		if p.Name == pulumiPackage {
+		if p.Name == khulnasoftPackage {
 			continue
 		}
 
@@ -436,19 +436,19 @@ func (g *generator) genComment(w io.Writer, comment syntax.Comment) {
 
 type programUsings struct {
 	systemUsings        codegen.StringSet
-	pulumiUsings        codegen.StringSet
-	pulumiHelperMethods codegen.StringSet
+	khulnasoftUsings        codegen.StringSet
+	khulnasoftHelperMethods codegen.StringSet
 }
 
 func (g *generator) usingStatements(program *pcl.Program) programUsings {
 	systemUsings := codegen.NewStringSet("System.Linq", "System.Collections.Generic")
-	pulumiUsings := codegen.NewStringSet()
+	khulnasoftUsings := codegen.NewStringSet()
 	preambleHelperMethods := codegen.NewStringSet()
 	for _, n := range program.Nodes {
 		if r, isResource := n.(*pcl.Resource); isResource {
 			pcl.FixupPulumiPackageTokens(r)
 			pkg, _, _, _ := r.DecomposeToken()
-			if pkg != pulumiPackage {
+			if pkg != khulnasoftPackage {
 				namespace := namespaceName(g.namespaces[pkg], pkg)
 				var info CSharpPackageInfo
 				if r.Schema != nil && r.Schema.PackageReference != nil {
@@ -458,7 +458,7 @@ func (g *generator) usingStatements(program *pcl.Program) programUsings {
 						info = csharpinfo
 					}
 				}
-				pulumiUsings.Add(fmt.Sprintf("%s = %[2]s.%[1]s", namespace, info.GetRootNamespace()))
+				khulnasoftUsings.Add(fmt.Sprintf("%s = %[2]s.%[1]s", namespace, info.GetRootNamespace()))
 			}
 		}
 		diags := n.VisitExpressions(nil, func(n model.Expression) (model.Expression, hcl.Diagnostics) {
@@ -467,7 +467,7 @@ func (g *generator) usingStatements(program *pcl.Program) programUsings {
 					if strings.HasPrefix(i, "System") {
 						systemUsings.Add(i)
 					} else {
-						pulumiUsings.Add(i)
+						khulnasoftUsings.Add(i)
 					}
 				}
 
@@ -486,8 +486,8 @@ func (g *generator) usingStatements(program *pcl.Program) programUsings {
 
 	return programUsings{
 		systemUsings:        systemUsings,
-		pulumiUsings:        pulumiUsings,
-		pulumiHelperMethods: preambleHelperMethods,
+		khulnasoftUsings:        khulnasoftUsings,
+		khulnasoftHelperMethods: preambleHelperMethods,
 	}
 }
 
@@ -667,12 +667,12 @@ func (g *generator) genComponentPreamble(w io.Writer, componentName string, comp
 	// to sort them later on.
 	programUsings := g.usingStatements(component.Program)
 	systemUsings := programUsings.systemUsings
-	pulumiUsings := programUsings.pulumiUsings
+	khulnasoftUsings := programUsings.khulnasoftUsings
 	for _, pkg := range systemUsings.SortedValues() {
 		g.Fprintf(w, "using %v;\n", pkg)
 	}
 	g.Fprintln(w, `using Pulumi;`)
-	for _, pkg := range pulumiUsings.SortedValues() {
+	for _, pkg := range khulnasoftUsings.SortedValues() {
 		g.Fprintf(w, "using %v;\n", pkg)
 	}
 	configVars := component.Program.ConfigVariables()
@@ -780,7 +780,7 @@ func (g *generator) genComponentPreamble(w io.Writer, componentName string, comp
 			}
 
 			// If we collected any helper methods that should be added, write them
-			for _, preambleHelperMethodBody := range programUsings.pulumiHelperMethods.SortedValues() {
+			for _, preambleHelperMethodBody := range programUsings.khulnasoftHelperMethods.SortedValues() {
 				g.Fprintf(w, "        %s\n\n", preambleHelperMethodBody)
 			}
 
@@ -871,8 +871,8 @@ func (g *generator) genPreamble(w io.Writer, program *pcl.Program) {
 	// to sort them later on.
 	programUsings := g.usingStatements(program)
 	systemUsings := programUsings.systemUsings
-	pulumiUsings := programUsings.pulumiUsings
-	preambleHelperMethods := programUsings.pulumiHelperMethods
+	khulnasoftUsings := programUsings.khulnasoftUsings
+	preambleHelperMethods := programUsings.khulnasoftHelperMethods
 
 	if g.asyncInit {
 		systemUsings.Add("System.Threading.Tasks")
@@ -882,7 +882,7 @@ func (g *generator) genPreamble(w io.Writer, program *pcl.Program) {
 		g.Fprintf(w, "using %v;\n", pkg)
 	}
 	g.Fprintln(w, `using Pulumi;`)
-	for _, pkg := range pulumiUsings.SortedValues() {
+	for _, pkg := range khulnasoftUsings.SortedValues() {
 		g.Fprintf(w, "using %v;\n", pkg)
 	}
 

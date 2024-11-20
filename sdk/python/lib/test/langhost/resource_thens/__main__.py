@@ -13,7 +13,7 @@
 # limitations under the License.
 import asyncio
 from functools import partial
-from pulumi import CustomResource, Output
+from khulnasoft import CustomResource, Output
 
 
 def assert_eq(l, r):

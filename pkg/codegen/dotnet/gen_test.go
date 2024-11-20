@@ -55,7 +55,7 @@ func typeCheckGeneratedPackage(t *testing.T, pwd string) {
 	}
 
 	// dotnet build requires exclusive access to shared nuget package:
-	// https://github.com/pulumi/pulumi/runs/5436354735?check_suite_focus=true#step:36:277
+	// https://github.com/khulnasoft/khulnasoft/runs/5436354735?check_suite_focus=true#step:36:277
 	buildMutex.Lock()
 	defer buildMutex.Unlock()
 	test.RunCommand(t, "dotnet build", pwd, "dotnet", "build")

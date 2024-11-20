@@ -31,11 +31,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // Resource is an abstract representation of a resource graph
@@ -56,17 +56,17 @@ type Resource struct {
 
 // Ideally we'd get rid of this method, we probably shouldn't be talking in terms on `resource.Alias` in tests (they
 // should be tested against the rpc protocol), and we should probably be using a stricter type in the engine.
-func aliasesFromAliases(aliases []resource.Alias) []*pulumirpc.Alias {
-	result := make([]*pulumirpc.Alias, len(aliases))
+func aliasesFromAliases(aliases []resource.Alias) []*khulnasoftrpc.Alias {
+	result := make([]*khulnasoftrpc.Alias, len(aliases))
 	for i, alias := range aliases {
 		if alias.URN != "" {
-			result[i] = &pulumirpc.Alias{
-				Alias: &pulumirpc.Alias_Urn{
+			result[i] = &khulnasoftrpc.Alias{
+				Alias: &khulnasoftrpc.Alias_Urn{
 					Urn: string(alias.URN),
 				},
 			}
 		} else {
-			spec := &pulumirpc.Alias_Spec{
+			spec := &khulnasoftrpc.Alias_Spec{
 				Name:    alias.Name,
 				Type:    alias.Type,
 				Project: alias.Project,
@@ -74,17 +74,17 @@ func aliasesFromAliases(aliases []resource.Alias) []*pulumirpc.Alias {
 			}
 
 			if alias.Parent != "" {
-				spec.Parent = &pulumirpc.Alias_Spec_ParentUrn{
+				spec.Parent = &khulnasoftrpc.Alias_Spec_ParentUrn{
 					ParentUrn: string(alias.Parent),
 				}
 			} else if alias.NoParent {
-				spec.Parent = &pulumirpc.Alias_Spec_NoParent{
+				spec.Parent = &khulnasoftrpc.Alias_Spec_NoParent{
 					NoParent: alias.NoParent,
 				}
 			}
 
-			result[i] = &pulumirpc.Alias{
-				Alias: &pulumirpc.Alias_Spec_{
+			result[i] = &khulnasoftrpc.Alias{
+				Alias: &khulnasoftrpc.Alias_Spec_{
 					Spec: spec,
 				},
 			}
@@ -93,18 +93,18 @@ func aliasesFromAliases(aliases []resource.Alias) []*pulumirpc.Alias {
 	return result
 }
 
-func makeUrnAlias(urn string) *pulumirpc.Alias {
-	return &pulumirpc.Alias{
-		Alias: &pulumirpc.Alias_Urn{
+func makeUrnAlias(urn string) *khulnasoftrpc.Alias {
+	return &khulnasoftrpc.Alias{
+		Alias: &khulnasoftrpc.Alias_Urn{
 			Urn: urn,
 		},
 	}
 }
 
-func makeSpecAlias(name, typ, project, stack string) *pulumirpc.Alias {
-	return &pulumirpc.Alias{
-		Alias: &pulumirpc.Alias_Spec_{
-			Spec: &pulumirpc.Alias_Spec{
+func makeSpecAlias(name, typ, project, stack string) *khulnasoftrpc.Alias {
+	return &khulnasoftrpc.Alias{
+		Alias: &khulnasoftrpc.Alias_Spec_{
+			Spec: &khulnasoftrpc.Alias_Spec{
 				Name:    name,
 				Type:    typ,
 				Project: project,
@@ -114,15 +114,15 @@ func makeSpecAlias(name, typ, project, stack string) *pulumirpc.Alias {
 	}
 }
 
-func makeSpecAliasWithParent(name, typ, project, stack, parent string) *pulumirpc.Alias {
-	return &pulumirpc.Alias{
-		Alias: &pulumirpc.Alias_Spec_{
-			Spec: &pulumirpc.Alias_Spec{
+func makeSpecAliasWithParent(name, typ, project, stack, parent string) *khulnasoftrpc.Alias {
+	return &khulnasoftrpc.Alias{
+		Alias: &khulnasoftrpc.Alias_Spec_{
+			Spec: &khulnasoftrpc.Alias_Spec{
 				Name:    name,
 				Type:    typ,
 				Project: project,
 				Stack:   stack,
-				Parent: &pulumirpc.Alias_Spec_ParentUrn{
+				Parent: &khulnasoftrpc.Alias_Spec_ParentUrn{
 					ParentUrn: parent,
 				},
 			},
@@ -130,15 +130,15 @@ func makeSpecAliasWithParent(name, typ, project, stack, parent string) *pulumirp
 	}
 }
 
-func makeSpecAliasWithNoParent(name, typ, project, stack string, parent bool) *pulumirpc.Alias {
-	return &pulumirpc.Alias{
-		Alias: &pulumirpc.Alias_Spec_{
-			Spec: &pulumirpc.Alias_Spec{
+func makeSpecAliasWithNoParent(name, typ, project, stack string, parent bool) *khulnasoftrpc.Alias {
+	return &khulnasoftrpc.Alias{
+		Alias: &khulnasoftrpc.Alias_Spec_{
+			Spec: &khulnasoftrpc.Alias_Spec{
 				Name:    name,
 				Type:    typ,
 				Project: project,
 				Stack:   stack,
-				Parent: &pulumirpc.Alias_Spec_NoParent{
+				Parent: &khulnasoftrpc.Alias_Spec_NoParent{
 					NoParent: parent,
 				},
 			},
@@ -198,7 +198,7 @@ func createUpdateProgramWithResourceFuncForAliasTests(
 						for _, event := range events {
 							if event.Type == ResourcePreEvent {
 								payload := event.Payload().(ResourcePreEventPayload)
-								if payload.Metadata.Type == "pulumi:providers:pkgA" {
+								if payload.Metadata.Type == "khulnasoft:providers:pkgA" {
 									continue
 								}
 								assert.Subset(t, allowedOps, []display.StepOp{payload.Metadata.Op})
@@ -206,7 +206,7 @@ func createUpdateProgramWithResourceFuncForAliasTests(
 						}
 
 						for _, entry := range entries {
-							if entry.Step.Type() == "pulumi:providers:pkgA" {
+							if entry.Step.Type() == "khulnasoft:providers:pkgA" {
 								continue
 							}
 							switch entry.Kind {
@@ -277,7 +277,7 @@ func TestAliases(t *testing.T) {
 		t:    "pkgA:index:t1",
 		name: "n3",
 		aliases: []resource.Alias{
-			{URN: "urn:pulumi:test::test::pkgA:index:t1::n2"},
+			{URN: "urn:khulnasoft:test::test::pkgA:index:t1::n2"},
 			{Name: "n1"},
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "t1-n3-full")
@@ -287,7 +287,7 @@ func TestAliases(t *testing.T) {
 		t:    "pkgA:index:t1",
 		name: "n1",
 		aliases: []resource.Alias{
-			{URN: "urn:pulumi:test::test::pkgA:index:t1::n3"},
+			{URN: "urn:khulnasoft:test::test::pkgA:index:t1::n3"},
 			{Name: "n2"},
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "t1-n1-alias-back")
@@ -395,7 +395,7 @@ func TestAliases(t *testing.T) {
 	}, {
 		t:            "pkgA:index:t2",
 		name:         "n2",
-		dependencies: []resource.URN{"urn:pulumi:test::test::pkgA:index:t1::n1"},
+		dependencies: []resource.URN{"urn:khulnasoft:test::test::pkgA:index:t1::n1"},
 	}}, []display.StepOp{deploy.OpCreate}, false, "t1-start-again")
 
 	_ = updateProgramWithResource(snap, []Resource{{
@@ -411,7 +411,7 @@ func TestAliases(t *testing.T) {
 	}, {
 		t:            "pkgA:index:t2-new",
 		name:         "n2-new",
-		dependencies: []resource.URN{"urn:pulumi:test::test::pkgA:index:t1-new::n1-new"},
+		dependencies: []resource.URN{"urn:khulnasoft:test::test::pkgA:index:t1-new::n1-new"},
 		aliases: []resource.Alias{
 			{Type: "pkgA:index:t2", Name: "n2"},
 		},
@@ -429,7 +429,7 @@ func TestAliases(t *testing.T) {
 	}, {
 		t:      "pkgA:index:t2",
 		name:   "n2",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1::n1"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1::n1"),
 	}}, []display.StepOp{deploy.OpCreate}, false, "t1-t2-start-again")
 
 	_ = updateProgramWithResource(snap, []Resource{{
@@ -445,7 +445,7 @@ func TestAliases(t *testing.T) {
 	}, {
 		t:      "pkgA:index:t2-new",
 		name:   "n2-new",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1-new::n1-new"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-new::n1-new"),
 		aliases: []resource.Alias{
 			{Type: "pkgA:index:t2", Name: "n2"},
 		},
@@ -490,11 +490,11 @@ func TestAliases(t *testing.T) {
 	}, {
 		t:      "pkgA:index:t2",
 		name:   "n1-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1::n1"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1::n1"),
 	}, {
 		t:      "pkgA:index:t3",
 		name:   "n1-sub-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t2::n1-sub"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t2::n1-sub"),
 	}}, []display.StepOp{deploy.OpCreate}, false, "parents")
 
 	// Now change n1's name and type
@@ -507,14 +507,14 @@ func TestAliases(t *testing.T) {
 	}, {
 		t:      "pkgA:index:t2",
 		name:   "n1-new-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1-new::n1-new"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-new::n1-new"),
 		aliases: []resource.Alias{
 			{Type: "pkgA:index:t2", Name: "n1-sub"},
 		},
 	}, {
 		t:      "pkgA:index:t3",
 		name:   "n1-new-sub-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1-new$pkgA:index:t2::n1-new-sub"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-new$pkgA:index:t2::n1-new-sub"),
 		aliases: []resource.Alias{
 			{Type: "pkgA:index:t3", Name: "n1-sub-sub"},
 		},
@@ -528,11 +528,11 @@ func TestAliases(t *testing.T) {
 	}, {
 		t:      "pkgA:index:t2-v0",
 		name:   "n1-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1-v0::n1"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-v0::n1"),
 	}, {
 		t:      "pkgA:index:t3",
 		name:   "n1-sub-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1-v0$pkgA:index:t2-v0::n1-sub"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-v0$pkgA:index:t2-v0::n1-sub"),
 	}}, []display.StepOp{deploy.OpCreate}, false, "multiplication")
 
 	// Now change n1's name and type and n2's type, but also add a load of aliases and pre-multiply them out
@@ -542,12 +542,12 @@ func TestAliases(t *testing.T) {
 	n3Aliases := make([]resource.Alias, 0)
 	for i := 0; i < 100; i++ {
 		n1Aliases = append(n1Aliases, resource.Alias{URN: resource.URN(
-			fmt.Sprintf("urn:pulumi:test::test::pkgA:index:t1-v%d::n1", i),
+			fmt.Sprintf("urn:khulnasoft:test::test::pkgA:index:t1-v%d::n1", i),
 		)})
 
 		for j := 0; j < 10; j++ {
 			n2Aliases = append(n2Aliases, resource.Alias{
-				URN: resource.URN(fmt.Sprintf("urn:pulumi:test::test::pkgA:index:t1-v%d$pkgA:index:t2-v%d::n1-sub", i, j)),
+				URN: resource.URN(fmt.Sprintf("urn:khulnasoft:test::test::pkgA:index:t1-v%d$pkgA:index:t2-v%d::n1-sub", i, j)),
 			})
 			n3Aliases = append(n3Aliases, resource.Alias{
 				Name:    "n1-sub-sub",
@@ -565,12 +565,12 @@ func TestAliases(t *testing.T) {
 	}, {
 		t:       "pkgA:index:t2-v10",
 		name:    "n1-new-sub",
-		parent:  resource.URN("urn:pulumi:test::test::pkgA:index:t1-v100::n1-new"),
+		parent:  resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-v100::n1-new"),
 		aliases: n2Aliases,
 	}, {
 		t:       "pkgA:index:t3",
 		name:    "n1-new-sub-sub",
-		parent:  resource.URN("urn:pulumi:test::test::pkgA:index:t1-v100$pkgA:index:t2-v10::n1-new-sub"),
+		parent:  resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-v100$pkgA:index:t2-v10::n1-new-sub"),
 		aliases: n3Aliases,
 	}}, []display.StepOp{deploy.OpSame}, false, "many-alaises")
 
@@ -584,7 +584,7 @@ func TestAliases(t *testing.T) {
 		name: "parent",
 	}, {
 		t:      "pkgA:index:child",
-		parent: "urn:pulumi:test::test::pkgA:index:parent::parent",
+		parent: "urn:khulnasoft:test::test::pkgA:index:parent::parent",
 		name:   "child",
 	}}, []display.StepOp{deploy.OpCreate}, false, "start-again-parent-child")
 
@@ -594,7 +594,7 @@ func TestAliases(t *testing.T) {
 		name: "parent",
 	}, {
 		t:      "pkgA:index:child",
-		parent: "urn:pulumi:test::test::pkgA:index:parent::parent",
+		parent: "urn:khulnasoft:test::test::pkgA:index:parent::parent",
 		name:   "childnew",
 		aliases: []resource.Alias{
 			{Name: "child"},
@@ -607,7 +607,7 @@ func TestAliases(t *testing.T) {
 		name: "parent",
 	}, {
 		t:      "pkgA:index:child2",
-		parent: "urn:pulumi:test::test::pkgA:index:parent::parent",
+		parent: "urn:khulnasoft:test::test::pkgA:index:parent::parent",
 		name:   "childnew",
 		aliases: []resource.Alias{
 			{Type: "pkgA:index:child"},
@@ -620,11 +620,11 @@ func TestAliases(t *testing.T) {
 		name: "parent",
 	}, {
 		t:      "pkgA:index:t1",
-		parent: "urn:pulumi:test::test::pkgA:index:t1::parent",
+		parent: "urn:khulnasoft:test::test::pkgA:index:t1::parent",
 		name:   "sub",
 	}, {
 		t:      "pkgA:index:t1",
-		parent: "urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t1::sub",
+		parent: "urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t1::sub",
 		name:   "sub-sub",
 	}}, []display.StepOp{deploy.OpCreate}, false, "nested-children")
 
@@ -634,11 +634,11 @@ func TestAliases(t *testing.T) {
 		name: "parent",
 	}, {
 		t:      "pkgA:index:t1",
-		parent: "urn:pulumi:test::test::pkgA:index:t1::parent",
+		parent: "urn:khulnasoft:test::test::pkgA:index:t1::parent",
 		name:   "sub",
 	}, {
 		t:      "pkgA:index:t1",
-		parent: "urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t1::sub",
+		parent: "urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t1::sub",
 		name:   "sub-sub-new",
 		aliases: []resource.Alias{
 			{Name: "sub-sub"},
@@ -660,7 +660,7 @@ func TestAliases(t *testing.T) {
 		name: "one",
 	}, {
 		t:      "pkgA:index:t2",
-		parent: "urn:pulumi:test::test::pkgA:index:t1::one",
+		parent: "urn:khulnasoft:test::test::pkgA:index:t1::one",
 		name:   "two",
 		aliases: []resource.Alias{
 			{NoParent: true},
@@ -675,7 +675,7 @@ func TestAliases(t *testing.T) {
 		t:    "pkgA:index:t2",
 		name: "two",
 		aliases: []resource.Alias{
-			{Parent: "urn:pulumi:test::test::pkgA:index:t1::one"},
+			{Parent: "urn:khulnasoft:test::test::pkgA:index:t1::one"},
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "remove-parent-relationship")
 }
@@ -699,13 +699,13 @@ func TestAliasesNodeJSBackCompat(t *testing.T) {
 	}{
 		{
 			name:               "Old Node SDK",
-			grpcRequestHeaders: map[string]string{"pulumi-runtime": "nodejs"},
+			grpcRequestHeaders: map[string]string{"khulnasoft-runtime": "nodejs"},
 			// Old Node.js SDKs set Parent to "" rather than setting NoParent to true,
 			noParentAlias: resource.Alias{Parent: ""},
 		},
 		{
 			name:               "New Node SDK",
-			grpcRequestHeaders: map[string]string{"pulumi-runtime": "nodejs"},
+			grpcRequestHeaders: map[string]string{"khulnasoft-runtime": "nodejs"},
 			// Indicate we're sending alias specs correctly.
 			aliasSpecs: true,
 			// Properly set NoParent to true.
@@ -742,7 +742,7 @@ func TestAliasesNodeJSBackCompat(t *testing.T) {
 				grpcRequestHeaders: tt.grpcRequestHeaders,
 			}, {
 				t:      "pkgA:index:t2",
-				parent: "urn:pulumi:test::test::pkgA:index:t1::one",
+				parent: "urn:khulnasoft:test::test::pkgA:index:t1::one",
 				name:   "two",
 				aliases: []resource.Alias{
 					tt.noParentAlias,
@@ -759,7 +759,7 @@ func TestAliasesNodeJSBackCompat(t *testing.T) {
 				t:    "pkgA:index:t2",
 				name: "two",
 				aliases: []resource.Alias{
-					{Parent: "urn:pulumi:test::test::pkgA:index:t1::one"},
+					{Parent: "urn:khulnasoft:test::test::pkgA:index:t1::one"},
 				},
 				aliasSpecs:         tt.aliasSpecs,
 				grpcRequestHeaders: tt.grpcRequestHeaders,
@@ -799,7 +799,7 @@ func TestAliasURNs(t *testing.T) {
 	snap = updateProgramWithResource(snap, []Resource{{
 		t:         "pkgA:index:t1",
 		name:      "n2",
-		aliasURNs: []resource.URN{"urn:pulumi:test::test::pkgA:index:t1::n1"},
+		aliasURNs: []resource.URN{"urn:khulnasoft:test::test::pkgA:index:t1::n1"},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-t1-n2")
 
 	// Ensure that rename produces Same with multiple aliases
@@ -807,8 +807,8 @@ func TestAliasURNs(t *testing.T) {
 		t:    "pkgA:index:t1",
 		name: "n3",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
-			"urn:pulumi:test::test::pkgA:index:t1::n2",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n2",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-t1-n3")
 
@@ -817,8 +817,8 @@ func TestAliasURNs(t *testing.T) {
 		t:    "pkgA:index:t1",
 		name: "n3",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n2",
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n2",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-t1-n3-rename")
 
@@ -827,9 +827,9 @@ func TestAliasURNs(t *testing.T) {
 		t:    "pkgA:index:t1",
 		name: "n1",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n3",
-			"urn:pulumi:test::test::pkgA:index:t1::n2",
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n3",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n2",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-alias-original")
 
@@ -844,7 +844,7 @@ func TestAliasURNs(t *testing.T) {
 		t:    "pkgA:index:t2",
 		name: "n1",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-t2-n1")
 
@@ -853,8 +853,8 @@ func TestAliasURNs(t *testing.T) {
 		t:    "pkgA:othermod:t3",
 		name: "n1",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
-			"urn:pulumi:test::test::pkgA:index:t2::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t2::n1",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-change-type")
 
@@ -863,9 +863,9 @@ func TestAliasURNs(t *testing.T) {
 		t:    "pkgA:othermod:t3",
 		name: "n1",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
-			"urn:pulumi:test::test::pkgA:othermod:t3::n1",
-			"urn:pulumi:test::test::pkgA:index:t2::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:othermod:t3::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t2::n1",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-alias-order")
 
@@ -883,7 +883,7 @@ func TestAliasURNs(t *testing.T) {
 			resource.PropertyKey("x"): resource.NewNumberProperty(42),
 		},
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:othermod:t3::n1",
+			"urn:khulnasoft:test::test::pkgA:othermod:t3::n1",
 		},
 	}}, []display.StepOp{deploy.OpUpdate}, false, "urn-t4-n2")
 
@@ -895,7 +895,7 @@ func TestAliasURNs(t *testing.T) {
 			resource.PropertyKey("x"): resource.NewNumberProperty(1000),
 		},
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t4::n2",
+			"urn:khulnasoft:test::test::pkgA:index:t4::n2",
 		},
 	}}, []display.StepOp{deploy.OpUpdate}, false, "urn-change-everything-again")
 
@@ -907,7 +907,7 @@ func TestAliasURNs(t *testing.T) {
 			resource.PropertyKey("forcesReplacement"): resource.NewNumberProperty(1000),
 		},
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t5::n3",
+			"urn:khulnasoft:test::test::pkgA:index:t5::n3",
 		},
 	}}, []display.StepOp{deploy.OpReplace, deploy.OpCreateReplacement, deploy.OpDeleteReplaced}, false, "urn-t6-n4")
 
@@ -921,7 +921,7 @@ func TestAliasURNs(t *testing.T) {
 		},
 		deleteBeforeReplace: true,
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t6::n4",
+			"urn:khulnasoft:test::test::pkgA:index:t6::n4",
 		},
 	}}, []display.StepOp{deploy.OpReplace, deploy.OpCreateReplacement, deploy.OpDeleteReplaced}, false, "urn-force-new")
 
@@ -936,7 +936,7 @@ func TestAliasURNs(t *testing.T) {
 	}, {
 		t:            "pkgA:index:t2",
 		name:         "n2",
-		dependencies: []resource.URN{"urn:pulumi:test::test::pkgA:index:t1::n1"},
+		dependencies: []resource.URN{"urn:khulnasoft:test::test::pkgA:index:t1::n1"},
 	}}, []display.StepOp{deploy.OpCreate}, false, "urn-depends-relationship")
 
 	_ = updateProgramWithResource(snap, []Resource{{
@@ -947,14 +947,14 @@ func TestAliasURNs(t *testing.T) {
 		},
 		deleteBeforeReplace: true,
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
 		},
 	}, {
 		t:            "pkgA:index:t2-new",
 		name:         "n2-new",
-		dependencies: []resource.URN{"urn:pulumi:test::test::pkgA:index:t1-new::n1-new"},
+		dependencies: []resource.URN{"urn:khulnasoft:test::test::pkgA:index:t1-new::n1-new"},
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t2::n2",
+			"urn:khulnasoft:test::test::pkgA:index:t2::n2",
 		},
 	}}, []display.StepOp{deploy.OpSame, deploy.OpReplace, deploy.OpCreateReplacement, deploy.OpDeleteReplaced},
 		false, "urn-depends-relationship-2")
@@ -970,7 +970,7 @@ func TestAliasURNs(t *testing.T) {
 	}, {
 		t:      "pkgA:index:t2",
 		name:   "n2",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1::n1"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1::n1"),
 	}}, []display.StepOp{deploy.OpCreate}, false, "urn-parent-relationship")
 
 	_ = updateProgramWithResource(snap, []Resource{{
@@ -981,14 +981,14 @@ func TestAliasURNs(t *testing.T) {
 		},
 		deleteBeforeReplace: true,
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
 		},
 	}, {
 		t:      "pkgA:index:t2-new",
 		name:   "n2-new",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1-new::n1-new"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-new::n1-new"),
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t2::n2",
+			"urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t2::n2",
 		},
 	}}, []display.StepOp{deploy.OpSame, deploy.OpReplace, deploy.OpCreateReplacement, deploy.OpDeleteReplaced},
 		false, "urn-parent-relationship-2")
@@ -998,13 +998,13 @@ func TestAliasURNs(t *testing.T) {
 		t:    "pkgA:index:t1",
 		name: "n2",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
 		},
 	}, {
 		t:    "pkgA:index:t2",
 		name: "n3",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
 		},
 	}}, []display.StepOp{deploy.OpCreate}, true, "urn-fail-duplicate")
 
@@ -1013,13 +1013,13 @@ func TestAliasURNs(t *testing.T) {
 		t:    "pkgA:index:t1",
 		name: "n1",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
 		},
 	}, {
 		t:    "pkgA:index:t2",
 		name: "n2",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n2",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n2",
 		},
 	}}, []display.StepOp{deploy.OpCreate}, false, "urn-different-aliases")
 
@@ -1031,11 +1031,11 @@ func TestAliasURNs(t *testing.T) {
 	}, {
 		t:      "pkgA:index:t2",
 		name:   "n1-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1::n1"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1::n1"),
 	}, {
 		t:      "pkgA:index:t3",
 		name:   "n1-sub-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t2::n1-sub"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t2::n1-sub"),
 	}}, []display.StepOp{deploy.OpCreate}, false, "urn-parent-alias-resolution")
 
 	// Now change n1's name and type
@@ -1043,21 +1043,21 @@ func TestAliasURNs(t *testing.T) {
 		t:    "pkgA:index:t1-new",
 		name: "n1-new",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1::n1",
+			"urn:khulnasoft:test::test::pkgA:index:t1::n1",
 		},
 	}, {
 		t:      "pkgA:index:t2",
 		name:   "n1-new-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1-new::n1-new"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-new::n1-new"),
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t2::n1-sub",
+			"urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t2::n1-sub",
 		},
 	}, {
 		t:      "pkgA:index:t3",
 		name:   "n1-new-sub-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1-new$pkgA:index:t2::n1-new-sub"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-new$pkgA:index:t2::n1-new-sub"),
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t2$pkgA:index:t3::n1-sub-sub",
+			"urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t2$pkgA:index:t3::n1-sub-sub",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-n1-change-name-and-type")
 
@@ -1069,11 +1069,11 @@ func TestAliasURNs(t *testing.T) {
 	}, {
 		t:      "pkgA:index:t2-v0",
 		name:   "n1-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1-v0::n1"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-v0::n1"),
 	}, {
 		t:      "pkgA:index:t3",
 		name:   "n1-sub-sub",
-		parent: resource.URN("urn:pulumi:test::test::pkgA:index:t1-v0$pkgA:index:t2-v0::n1-sub"),
+		parent: resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-v0$pkgA:index:t2-v0::n1-sub"),
 	}}, []display.StepOp{deploy.OpCreate}, false, "urn-multiplication")
 
 	// Now change n1's name and type and n2's type, but also add a load of aliases and pre-multiply them out
@@ -1083,14 +1083,14 @@ func TestAliasURNs(t *testing.T) {
 	n3Aliases := make([]resource.URN, 0)
 	for i := 0; i < 100; i++ {
 		n1Aliases = append(n1Aliases, resource.URN(
-			fmt.Sprintf("urn:pulumi:test::test::pkgA:index:t1-v%d::n1", i)))
+			fmt.Sprintf("urn:khulnasoft:test::test::pkgA:index:t1-v%d::n1", i)))
 
 		for j := 0; j < 10; j++ {
 			n2Aliases = append(n2Aliases, resource.URN(
-				fmt.Sprintf("urn:pulumi:test::test::pkgA:index:t1-v%d$pkgA:index:t2-v%d::n1-sub", i, j)))
+				fmt.Sprintf("urn:khulnasoft:test::test::pkgA:index:t1-v%d$pkgA:index:t2-v%d::n1-sub", i, j)))
 
 			n3Aliases = append(n3Aliases, resource.URN(
-				fmt.Sprintf("urn:pulumi:test::test::pkgA:index:t1-v%d$pkgA:index:t2-v%d$pkgA:index:t3::n1-sub-sub", i, j)))
+				fmt.Sprintf("urn:khulnasoft:test::test::pkgA:index:t1-v%d$pkgA:index:t2-v%d$pkgA:index:t3::n1-sub-sub", i, j)))
 		}
 	}
 
@@ -1101,12 +1101,12 @@ func TestAliasURNs(t *testing.T) {
 	}, {
 		t:         "pkgA:index:t2-v10",
 		name:      "n1-new-sub",
-		parent:    resource.URN("urn:pulumi:test::test::pkgA:index:t1-v100::n1-new"),
+		parent:    resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-v100::n1-new"),
 		aliasURNs: n2Aliases,
 	}, {
 		t:         "pkgA:index:t3",
 		name:      "n1-new-sub-sub",
-		parent:    resource.URN("urn:pulumi:test::test::pkgA:index:t1-v100$pkgA:index:t2-v10::n1-new-sub"),
+		parent:    resource.URN("urn:khulnasoft:test::test::pkgA:index:t1-v100$pkgA:index:t2-v10::n1-new-sub"),
 		aliasURNs: n3Aliases,
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-multiple-aliases")
 
@@ -1120,7 +1120,7 @@ func TestAliasURNs(t *testing.T) {
 		name: "parent",
 	}, {
 		t:      "pkgA:index:child",
-		parent: "urn:pulumi:test::test::pkgA:index:parent::parent",
+		parent: "urn:khulnasoft:test::test::pkgA:index:parent::parent",
 		name:   "child",
 	}}, []display.StepOp{deploy.OpCreate}, false, "urn-parent-child")
 
@@ -1130,10 +1130,10 @@ func TestAliasURNs(t *testing.T) {
 		name: "parent",
 	}, {
 		t:      "pkgA:index:child",
-		parent: "urn:pulumi:test::test::pkgA:index:parent::parent",
+		parent: "urn:khulnasoft:test::test::pkgA:index:parent::parent",
 		name:   "childnew",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:parent$pkgA:index:child::child",
+			"urn:khulnasoft:test::test::pkgA:index:parent$pkgA:index:child::child",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-rename-child")
 
@@ -1143,10 +1143,10 @@ func TestAliasURNs(t *testing.T) {
 		name: "parent",
 	}, {
 		t:      "pkgA:index:child2",
-		parent: "urn:pulumi:test::test::pkgA:index:parent::parent",
+		parent: "urn:khulnasoft:test::test::pkgA:index:parent::parent",
 		name:   "childnew",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:parent$pkgA:index:child::childnew",
+			"urn:khulnasoft:test::test::pkgA:index:parent$pkgA:index:child::childnew",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-change-child-type")
 
@@ -1156,11 +1156,11 @@ func TestAliasURNs(t *testing.T) {
 		name: "parent",
 	}, {
 		t:      "pkgA:index:t1",
-		parent: "urn:pulumi:test::test::pkgA:index:t1::parent",
+		parent: "urn:khulnasoft:test::test::pkgA:index:t1::parent",
 		name:   "sub",
 	}, {
 		t:      "pkgA:index:t1",
-		parent: "urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t1::sub",
+		parent: "urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t1::sub",
 		name:   "sub-sub",
 	}}, []display.StepOp{deploy.OpCreate}, false, "urn-nested-children")
 
@@ -1170,14 +1170,14 @@ func TestAliasURNs(t *testing.T) {
 		name: "parent",
 	}, {
 		t:      "pkgA:index:t1",
-		parent: "urn:pulumi:test::test::pkgA:index:t1::parent",
+		parent: "urn:khulnasoft:test::test::pkgA:index:t1::parent",
 		name:   "sub",
 	}, {
 		t:      "pkgA:index:t1",
-		parent: "urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t1::sub",
+		parent: "urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t1::sub",
 		name:   "sub-sub-new",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t1$pkgA:index:t1::sub-sub",
+			"urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t1$pkgA:index:t1::sub-sub",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-rename-bottom-child")
 
@@ -1196,10 +1196,10 @@ func TestAliasURNs(t *testing.T) {
 		name: "one",
 	}, {
 		t:      "pkgA:index:t2",
-		parent: "urn:pulumi:test::test::pkgA:index:t1::one",
+		parent: "urn:khulnasoft:test::test::pkgA:index:t1::one",
 		name:   "two",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t2::two",
+			"urn:khulnasoft:test::test::pkgA:index:t2::two",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-make-two-child-of-one")
 
@@ -1211,7 +1211,7 @@ func TestAliasURNs(t *testing.T) {
 		t:    "pkgA:index:t2",
 		name: "two",
 		aliasURNs: []resource.URN{
-			"urn:pulumi:test::test::pkgA:index:t1$pkgA:index:t2::two",
+			"urn:khulnasoft:test::test::pkgA:index:t1$pkgA:index:t2::two",
 		},
 	}}, []display.StepOp{deploy.OpSame}, false, "urn-remove-parent-relationship")
 }
@@ -1219,7 +1219,7 @@ func TestAliasURNs(t *testing.T) {
 func TestDuplicatesDueToAliases(t *testing.T) {
 	t.Parallel()
 
-	// This is a test for https://github.com/pulumi/pulumi/issues/11173
+	// This is a test for https://github.com/khulnasoft/khulnasoft/issues/11173
 	// to check that we don't allow resource aliases to refer to other resources.
 	// That is if you have A, then try and add B saying it's alias is A we should error that's a duplicate.
 	// We need to be careful that we handle this regardless of the order we send the RegisterResource requests for A and B.
@@ -1265,7 +1265,7 @@ func TestDuplicatesDueToAliases(t *testing.T) {
 				"resB",
 				true,
 				deploytest.ResourceOptions{
-					Aliases: []*pulumirpc.Alias{
+					Aliases: []*khulnasoftrpc.Alias{
 						makeSpecAlias("resA", "", "", ""),
 					},
 				})
@@ -1278,7 +1278,7 @@ func TestDuplicatesDueToAliases(t *testing.T) {
 				"resB",
 				true,
 				deploytest.ResourceOptions{
-					Aliases: []*pulumirpc.Alias{
+					Aliases: []*khulnasoftrpc.Alias{
 						makeSpecAlias("resA", "", "", ""),
 					},
 				})
@@ -1307,7 +1307,7 @@ func TestDuplicatesDueToAliases(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, snap)
 	assert.Len(t, snap.Resources, 2)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 
 	// Set mode to try and create A then a B that aliases to it, this should fail
 	mode = 1
@@ -1315,7 +1315,7 @@ func TestDuplicatesDueToAliases(t *testing.T) {
 	assert.Error(t, err)
 	assert.NotNil(t, snap)
 	assert.Len(t, snap.Resources, 2)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 
 	// Set mode to try and create B first then a A, this should fail
 	mode = 2
@@ -1324,13 +1324,13 @@ func TestDuplicatesDueToAliases(t *testing.T) {
 	assert.NotNil(t, snap)
 	assert.Len(t, snap.Resources, 2)
 	// Because we made the B first that's what should end up in the state file
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resB"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resB"), snap.Resources[1].URN)
 }
 
 func TestCorrectResourceChosen(t *testing.T) {
 	t.Parallel()
 
-	// This is a test for https://github.com/pulumi/pulumi/issues/13848
+	// This is a test for https://github.com/khulnasoft/khulnasoft/issues/13848
 	// to check that a resource's URN is used first when looking for old resources in the state
 	// rather than aliases, and that we don't end up with a corrupt state after an update.
 
@@ -1388,7 +1388,7 @@ func TestCorrectResourceChosen(t *testing.T) {
 				"resB",
 				true,
 				deploytest.ResourceOptions{
-					Aliases: []*pulumirpc.Alias{
+					Aliases: []*khulnasoftrpc.Alias{
 						makeSpecAliasWithParent("", "", "", "", string(respA.URN)),
 					},
 				},
@@ -1411,9 +1411,9 @@ func TestCorrectResourceChosen(t *testing.T) {
 	assert.NotNil(t, snap)
 	assert.Nil(t, snap.VerifyIntegrity())
 	assert.Len(t, snap.Resources, 4)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typA::resB"), snap.Resources[2].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resB"), snap.Resources[3].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typA::resB"), snap.Resources[2].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resB"), snap.Resources[3].URN)
 
 	// Run the next case, with "resA" and "resB with no parent and alias to have resA as its parent".
 	mode = 1
@@ -1422,13 +1422,13 @@ func TestCorrectResourceChosen(t *testing.T) {
 	assert.NotNil(t, snap)
 	assert.Nil(t, snap.VerifyIntegrity())
 	assert.Len(t, snap.Resources, 3)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resB"), snap.Resources[2].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resB"), snap.Resources[2].URN)
 	assert.Len(t, snap.Resources[2].Aliases, 0)
 }
 
 func TestComponentToCustomUpdate(t *testing.T) {
-	// Test for https://github.com/pulumi/pulumi/issues/12550, check that if we change a component resource
+	// Test for https://github.com/khulnasoft/khulnasoft/issues/12550, check that if we change a component resource
 	// into a custom resource the engine handles that best it can. This depends on the provider being able to
 	// cope with the component state being passed as custom state.
 
@@ -1492,7 +1492,7 @@ func TestComponentToCustomUpdate(t *testing.T) {
 	createA = func(monitor *deploytest.ResourceMonitor) {
 		_, err := monitor.RegisterResource("pkgA:m:typA", "resA", true, deploytest.ResourceOptions{
 			Inputs: insA,
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				makeSpecAlias("", "prog::myType", "", ""),
 			},
 		})
@@ -1511,7 +1511,7 @@ func TestComponentToCustomUpdate(t *testing.T) {
 	createA = func(monitor *deploytest.ResourceMonitor) {
 		_, err := monitor.RegisterResource("prog::myType", "resA", false, deploytest.ResourceOptions{
 			Inputs: insA,
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				makeSpecAlias("", "pkgA:m:typA", "", ""),
 			},
 		})
@@ -1528,7 +1528,7 @@ func TestComponentToCustomUpdate(t *testing.T) {
 }
 
 func TestParentAlias(t *testing.T) {
-	// Test for https://github.com/pulumi/pulumi/issues/13324, check that if we change a parent resource which
+	// Test for https://github.com/khulnasoft/khulnasoft/issues/13324, check that if we change a parent resource which
 	// is also aliased at the same time that we track this correctly.
 
 	t.Parallel()
@@ -1568,7 +1568,7 @@ func TestParentAlias(t *testing.T) {
 		} else {
 			respB, err := monitor.RegisterResource("prog:index:myType", "resB", false, deploytest.ResourceOptions{
 				Parent: respA.URN,
-				Aliases: []*pulumirpc.Alias{
+				Aliases: []*khulnasoftrpc.Alias{
 					makeSpecAliasWithNoParent("", "", "", "", true),
 				},
 			})
@@ -1576,7 +1576,7 @@ func TestParentAlias(t *testing.T) {
 
 			_, err = monitor.RegisterResource("pkgA:m:typA", "resC", true, deploytest.ResourceOptions{
 				Parent: respA.URN,
-				Aliases: []*pulumirpc.Alias{
+				Aliases: []*khulnasoftrpc.Alias{
 					makeSpecAliasWithParent("", "", "", "", string(respB.URN)),
 				},
 			})
@@ -1652,7 +1652,7 @@ func TestEmptyParentAlias(t *testing.T) {
 		} else {
 			_, err := monitor.RegisterResource("prog:index:myType", "resC", false, deploytest.ResourceOptions{
 				Parent: respA.URN,
-				Aliases: []*pulumirpc.Alias{
+				Aliases: []*khulnasoftrpc.Alias{
 					makeSpecAliasWithParent("resB", "", "", "", ""),
 				},
 			})
@@ -1693,7 +1693,7 @@ func TestEmptyParentAlias(t *testing.T) {
 func TestSplitUpdateComponentAliases(t *testing.T) {
 	t.Parallel()
 
-	// This is a test for https://github.com/pulumi/pulumi/issues/13903 to check that if a component is
+	// This is a test for https://github.com/khulnasoft/khulnasoft/issues/13903 to check that if a component is
 	// aliased the internal resources follow it across a split deployment.
 
 	mode := 0
@@ -1751,7 +1751,7 @@ func TestSplitUpdateComponentAliases(t *testing.T) {
 				false,
 				deploytest.ResourceOptions{
 					AliasURNs: []resource.URN{
-						"urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typB::resB",
+						"urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typB::resB",
 					},
 				})
 			assert.NoError(t, err)
@@ -1766,7 +1766,7 @@ func TestSplitUpdateComponentAliases(t *testing.T) {
 				false,
 				deploytest.ResourceOptions{
 					AliasURNs: []resource.URN{
-						"urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typB::resB",
+						"urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typB::resB",
 					},
 				})
 			assert.NoError(t, err)
@@ -1796,13 +1796,13 @@ func TestSplitUpdateComponentAliases(t *testing.T) {
 	assert.NotNil(t, snap)
 	assert.Nil(t, snap.VerifyIntegrity())
 	assert.Len(t, snap.Resources, 4)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typB::resB"), snap.Resources[2].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[2].Parent)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typB::resB"), snap.Resources[2].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[2].Parent)
 	assert.Equal(t,
-		resource.URN("urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typB$pkgA:m:typC::resC"),
+		resource.URN("urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typB$pkgA:m:typC::resC"),
 		snap.Resources[3].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typB::resB"), snap.Resources[3].Parent)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typB::resB"), snap.Resources[3].Parent)
 
 	// Run the next case, resB should be re-parented to the root. A should still be left (because we couldn't
 	// tell it needed to delete due to the error), C should have it's old URN but new parent because it wasn't
@@ -1813,12 +1813,12 @@ func TestSplitUpdateComponentAliases(t *testing.T) {
 	assert.NotNil(t, snap)
 	assert.Nil(t, snap.VerifyIntegrity())
 	assert.Len(t, snap.Resources, 4)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typB::resB"), snap.Resources[0].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typB::resB"), snap.Resources[0].URN)
 	assert.Equal(t, resource.URN(""), snap.Resources[0].Parent)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[2].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[2].URN)
 	// Even though we didn't register C its URN must update to take the re-parenting into account.
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typB$pkgA:m:typC::resC"), snap.Resources[3].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typB::resB"), snap.Resources[3].Parent)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typB$pkgA:m:typC::resC"), snap.Resources[3].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typB::resB"), snap.Resources[3].Parent)
 
 	mode = 2
 	snap, err = lt.TestOp(Update).RunStep(project, p.GetTarget(t, snap), p.Options, false, p.BackendClient, nil, "2")
@@ -1826,16 +1826,16 @@ func TestSplitUpdateComponentAliases(t *testing.T) {
 	assert.NotNil(t, snap)
 	assert.Nil(t, snap.VerifyIntegrity())
 	assert.Len(t, snap.Resources, 3)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typB::resB"), snap.Resources[0].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typB::resB"), snap.Resources[0].URN)
 	assert.Equal(t, resource.URN(""), snap.Resources[0].Parent)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typB$pkgA:m:typC::resC"), snap.Resources[2].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typB::resB"), snap.Resources[2].Parent)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typB$pkgA:m:typC::resC"), snap.Resources[2].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typB::resB"), snap.Resources[2].Parent)
 }
 
 func TestFailDeleteDuplicateAliases(t *testing.T) {
 	t.Parallel()
 
-	// This is a test for https://github.com/pulumi/pulumi/issues/14041 to check that we don't courrupt state files when
+	// This is a test for https://github.com/khulnasoft/khulnasoft/issues/14041 to check that we don't courrupt state files when
 	// old aliased resources are left in state because they can't delete.
 	//
 	// Imagine the following update flow from an old engine version where we saved aliases to state:
@@ -1906,7 +1906,7 @@ func TestFailDeleteDuplicateAliases(t *testing.T) {
 				"resAX",
 				true,
 				deploytest.ResourceOptions{
-					Aliases: []*pulumirpc.Alias{
+					Aliases: []*khulnasoftrpc.Alias{
 						makeSpecAlias("resA", "", "", ""),
 					},
 				})
@@ -1928,7 +1928,7 @@ func TestFailDeleteDuplicateAliases(t *testing.T) {
 	assert.NotNil(t, snap)
 	assert.Nil(t, snap.VerifyIntegrity())
 	assert.Len(t, snap.Resources, 2)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
 
 	// Run the next case, resA should be aliased
 	mode = 1
@@ -1937,7 +1937,7 @@ func TestFailDeleteDuplicateAliases(t *testing.T) {
 	assert.NotNil(t, snap)
 	assert.Nil(t, snap.VerifyIntegrity())
 	assert.Len(t, snap.Resources, 2)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resAX"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resAX"), snap.Resources[1].URN)
 
 	// Run the last case, resAX should try to delete and resA should be created. We can't possibly know that resA ==
 	// resAX at this point because we're not being sent aliases.
@@ -1947,8 +1947,8 @@ func TestFailDeleteDuplicateAliases(t *testing.T) {
 	assert.NotNil(t, snap)
 	assert.Nil(t, snap.VerifyIntegrity())
 	assert.Len(t, snap.Resources, 3)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resAX"), snap.Resources[2].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), snap.Resources[1].URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resAX"), snap.Resources[2].URN)
 }
 
 // Tests that aliases in provider dependencies are correctly normalized when snapshots are written. That is, if a
@@ -1984,7 +1984,7 @@ func TestAliasesInProvidersAreNormalized(t *testing.T) {
 		res1, err := monitor.RegisterResource("pkgA:modA:type1", "res1", false, deploytest.ResourceOptions{})
 		require.NoError(t, err)
 
-		prov, err := monitor.RegisterResource("pulumi:providers:pkgA", "prov", true, deploytest.ResourceOptions{
+		prov, err := monitor.RegisterResource("khulnasoft:providers:pkgA", "prov", true, deploytest.ResourceOptions{
 			Parent: res1.URN,
 		})
 		require.NoError(t, err)
@@ -2020,13 +2020,13 @@ func TestAliasesInProvidersAreNormalized(t *testing.T) {
 		res1, err := monitor.RegisterResource("pkgA:modA:type1", "res1", false, deploytest.ResourceOptions{})
 		require.NoError(t, err)
 
-		prov, err := monitor.RegisterResource("pulumi:providers:pkgA", "prov", true, deploytest.ResourceOptions{
+		prov, err := monitor.RegisterResource("khulnasoft:providers:pkgA", "prov", true, deploytest.ResourceOptions{
 			Parent: res0.URN,
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				{
-					Alias: &pulumirpc.Alias_Spec_{
-						Spec: &pulumirpc.Alias_Spec{
-							Parent: &pulumirpc.Alias_Spec_ParentUrn{
+					Alias: &khulnasoftrpc.Alias_Spec_{
+						Spec: &khulnasoftrpc.Alias_Spec{
+							Parent: &khulnasoftrpc.Alias_Spec_ParentUrn{
 								ParentUrn: string(res1.URN),
 							},
 						},
@@ -2041,11 +2041,11 @@ func TestAliasesInProvidersAreNormalized(t *testing.T) {
 		_, err = monitor.RegisterResource("pkgA:modA:type3", "res3", true, deploytest.ResourceOptions{
 			Provider: provRef.String(),
 			Parent:   res0.URN,
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				{
-					Alias: &pulumirpc.Alias_Spec_{
-						Spec: &pulumirpc.Alias_Spec{
-							Parent: &pulumirpc.Alias_Spec_ParentUrn{
+					Alias: &khulnasoftrpc.Alias_Spec_{
+						Spec: &khulnasoftrpc.Alias_Spec{
+							Parent: &khulnasoftrpc.Alias_Spec_ParentUrn{
 								ParentUrn: string(res1.URN),
 							},
 						},
@@ -2137,11 +2137,11 @@ func TestAliasesInDependenciesAreNormalized(t *testing.T) {
 
 		res2, err := monitor.RegisterResource("pkgA:modA:type2", "res2", true, deploytest.ResourceOptions{
 			Parent: res0.URN,
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				{
-					Alias: &pulumirpc.Alias_Spec_{
-						Spec: &pulumirpc.Alias_Spec{
-							Parent: &pulumirpc.Alias_Spec_ParentUrn{
+					Alias: &khulnasoftrpc.Alias_Spec_{
+						Spec: &khulnasoftrpc.Alias_Spec{
+							Parent: &khulnasoftrpc.Alias_Spec_ParentUrn{
 								ParentUrn: string(res1.URN),
 							},
 						},
@@ -2154,11 +2154,11 @@ func TestAliasesInDependenciesAreNormalized(t *testing.T) {
 		_, err = monitor.RegisterResource("pkgA:modA:type3", "res3", true, deploytest.ResourceOptions{
 			Parent:       res0.URN,
 			Dependencies: []resource.URN{res2.URN},
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				{
-					Alias: &pulumirpc.Alias_Spec_{
-						Spec: &pulumirpc.Alias_Spec{
-							Parent: &pulumirpc.Alias_Spec_ParentUrn{
+					Alias: &khulnasoftrpc.Alias_Spec_{
+						Spec: &khulnasoftrpc.Alias_Spec{
+							Parent: &khulnasoftrpc.Alias_Spec_ParentUrn{
 								ParentUrn: string(res1.URN),
 							},
 						},
@@ -2250,11 +2250,11 @@ func TestAliasesInPropertyDependenciesAreNormalized(t *testing.T) {
 
 		res2, err := monitor.RegisterResource("pkgA:modA:type2", "res2", true, deploytest.ResourceOptions{
 			Parent: res0.URN,
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				{
-					Alias: &pulumirpc.Alias_Spec_{
-						Spec: &pulumirpc.Alias_Spec{
-							Parent: &pulumirpc.Alias_Spec_ParentUrn{
+					Alias: &khulnasoftrpc.Alias_Spec_{
+						Spec: &khulnasoftrpc.Alias_Spec{
+							Parent: &khulnasoftrpc.Alias_Spec_ParentUrn{
 								ParentUrn: string(res1.URN),
 							},
 						},
@@ -2267,11 +2267,11 @@ func TestAliasesInPropertyDependenciesAreNormalized(t *testing.T) {
 		_, err = monitor.RegisterResource("pkgA:modA:type3", "res3", true, deploytest.ResourceOptions{
 			Parent:       res0.URN,
 			PropertyDeps: map[resource.PropertyKey][]resource.URN{"propA": {res2.URN}},
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				{
-					Alias: &pulumirpc.Alias_Spec_{
-						Spec: &pulumirpc.Alias_Spec{
-							Parent: &pulumirpc.Alias_Spec_ParentUrn{
+					Alias: &khulnasoftrpc.Alias_Spec_{
+						Spec: &khulnasoftrpc.Alias_Spec{
+							Parent: &khulnasoftrpc.Alias_Spec_ParentUrn{
 								ParentUrn: string(res1.URN),
 							},
 						},
@@ -2363,11 +2363,11 @@ func TestAliasesInDeletedWithAreNormalized(t *testing.T) {
 
 		res2, err := monitor.RegisterResource("pkgA:modA:type2", "res2", true, deploytest.ResourceOptions{
 			Parent: res0.URN,
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				{
-					Alias: &pulumirpc.Alias_Spec_{
-						Spec: &pulumirpc.Alias_Spec{
-							Parent: &pulumirpc.Alias_Spec_ParentUrn{
+					Alias: &khulnasoftrpc.Alias_Spec_{
+						Spec: &khulnasoftrpc.Alias_Spec{
+							Parent: &khulnasoftrpc.Alias_Spec_ParentUrn{
 								ParentUrn: string(res1.URN),
 							},
 						},
@@ -2380,11 +2380,11 @@ func TestAliasesInDeletedWithAreNormalized(t *testing.T) {
 		_, err = monitor.RegisterResource("pkgA:modA:type3", "res3", true, deploytest.ResourceOptions{
 			Parent:      res0.URN,
 			DeletedWith: res2.URN,
-			Aliases: []*pulumirpc.Alias{
+			Aliases: []*khulnasoftrpc.Alias{
 				{
-					Alias: &pulumirpc.Alias_Spec_{
-						Spec: &pulumirpc.Alias_Spec{
-							Parent: &pulumirpc.Alias_Spec_ParentUrn{
+					Alias: &khulnasoftrpc.Alias_Spec_{
+						Spec: &khulnasoftrpc.Alias_Spec{
+							Parent: &khulnasoftrpc.Alias_Spec_ParentUrn{
 								ParentUrn: string(res1.URN),
 							},
 						},

@@ -8,11 +8,11 @@ import (
 	"reflect"
 
 	"assets-and-archives-go-generics-only/example/internal"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 )
 
-func GetAssets(ctx *pulumi.Context, args *GetAssetsArgs, opts ...pulumi.InvokeOption) (*GetAssetsResult, error) {
+func GetAssets(ctx *khulnasoft.Context, args *GetAssetsArgs, opts ...khulnasoft.InvokeOption) (*GetAssetsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAssetsResult
 	err := ctx.Invoke("example::GetAssets", args, &rv, opts...)
@@ -23,56 +23,56 @@ func GetAssets(ctx *pulumi.Context, args *GetAssetsArgs, opts ...pulumi.InvokeOp
 }
 
 type GetAssetsArgs struct {
-	Archive pulumi.Archive        `pulumi:"archive"`
-	Source  pulumi.AssetOrArchive `pulumi:"source"`
+	Archive khulnasoft.Archive        `khulnasoft:"archive"`
+	Source  khulnasoft.AssetOrArchive `khulnasoft:"source"`
 }
 
 type GetAssetsResult struct {
-	Archive pulumi.Archive        `pulumi:"archive"`
-	Source  pulumi.AssetOrArchive `pulumi:"source"`
+	Archive khulnasoft.Archive        `khulnasoft:"archive"`
+	Source  khulnasoft.AssetOrArchive `khulnasoft:"source"`
 }
 
-func GetAssetsOutput(ctx *pulumi.Context, args GetAssetsOutputArgs, opts ...pulumi.InvokeOption) GetAssetsResultOutput {
-	outputResult := pulumix.ApplyErr[*GetAssetsArgs](args.ToOutput(), func(plainArgs *GetAssetsArgs) (*GetAssetsResult, error) {
+func GetAssetsOutput(ctx *khulnasoft.Context, args GetAssetsOutputArgs, opts ...khulnasoft.InvokeOption) GetAssetsResultOutput {
+	outputResult := khulnasoftx.ApplyErr[*GetAssetsArgs](args.ToOutput(), func(plainArgs *GetAssetsArgs) (*GetAssetsResult, error) {
 		return GetAssets(ctx, plainArgs, opts...)
 	})
 
-	return pulumix.Cast[GetAssetsResultOutput, *GetAssetsResult](outputResult)
+	return khulnasoftx.Cast[GetAssetsResultOutput, *GetAssetsResult](outputResult)
 }
 
 type GetAssetsOutputArgs struct {
-	Archive pulumix.Input[pulumi.Archive]        `pulumi:"archive"`
-	Source  pulumix.Input[pulumi.AssetOrArchive] `pulumi:"source"`
+	Archive khulnasoftx.Input[khulnasoft.Archive]        `khulnasoft:"archive"`
+	Source  khulnasoftx.Input[khulnasoft.AssetOrArchive] `khulnasoft:"source"`
 }
 
-func (args GetAssetsOutputArgs) ToOutput() pulumix.Output[*GetAssetsArgs] {
-	allArgs := pulumix.All(
+func (args GetAssetsOutputArgs) ToOutput() khulnasoftx.Output[*GetAssetsArgs] {
+	allArgs := khulnasoftx.All(
 		args.Archive.ToOutput(context.Background()).AsAny(),
 		args.Source.ToOutput(context.Background()).AsAny())
-	return pulumix.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *GetAssetsArgs {
+	return khulnasoftx.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *GetAssetsArgs {
 		return &GetAssetsArgs{
-			Archive: resolvedArgs[0].(pulumi.Archive),
-			Source:  resolvedArgs[1].(pulumi.AssetOrArchive),
+			Archive: resolvedArgs[0].(khulnasoft.Archive),
+			Source:  resolvedArgs[1].(khulnasoft.AssetOrArchive),
 		}
 	})
 }
 
-type GetAssetsResultOutput struct{ *pulumi.OutputState }
+type GetAssetsResultOutput struct{ *khulnasoft.OutputState }
 
 func (GetAssetsResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetAssetsResult)(nil)).Elem()
 }
 
-func (o GetAssetsResultOutput) ToOutput(context.Context) pulumix.Output[*GetAssetsResult] {
-	return pulumix.Output[*GetAssetsResult]{
+func (o GetAssetsResultOutput) ToOutput(context.Context) khulnasoftx.Output[*GetAssetsResult] {
+	return khulnasoftx.Output[*GetAssetsResult]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o GetAssetsResultOutput) Archive() pulumix.Output[pulumi.Archive] {
-	return pulumix.Apply[*GetAssetsResult](o, func(v *GetAssetsResult) pulumi.Archive { return v.Archive })
+func (o GetAssetsResultOutput) Archive() khulnasoftx.Output[khulnasoft.Archive] {
+	return khulnasoftx.Apply[*GetAssetsResult](o, func(v *GetAssetsResult) khulnasoft.Archive { return v.Archive })
 }
 
-func (o GetAssetsResultOutput) Source() pulumix.Output[pulumi.AssetOrArchive] {
-	return pulumix.Apply[*GetAssetsResult](o, func(v *GetAssetsResult) pulumi.AssetOrArchive { return v.Source })
+func (o GetAssetsResultOutput) Source() khulnasoftx.Output[khulnasoft.AssetOrArchive] {
+	return khulnasoftx.Apply[*GetAssetsResult](o, func(v *GetAssetsResult) khulnasoft.AssetOrArchive { return v.Source })
 }

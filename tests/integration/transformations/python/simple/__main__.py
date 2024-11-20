@@ -1,8 +1,8 @@
 # Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
 import asyncio
-from pulumi import Output, ComponentResource, ResourceOptions, ResourceTransformationArgs, ResourceTransformationResult
-from pulumi.runtime import register_stack_transformation
+from khulnasoft import Output, ComponentResource, ResourceOptions, ResourceTransformationArgs, ResourceTransformationResult
+from khulnasoft.runtime import register_stack_transformation
 from random_ import Random
 
 class MyComponent(ComponentResource):

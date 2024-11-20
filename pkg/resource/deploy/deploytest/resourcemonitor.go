@@ -22,12 +22,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/metadata"
@@ -36,7 +36,7 @@ import (
 
 type ResourceMonitor struct {
 	conn   *grpc.ClientConn
-	resmon pulumirpc.ResourceMonitorClient
+	resmon khulnasoftrpc.ResourceMonitorClient
 
 	supportsSecrets            bool
 	supportsResourceReferences bool
@@ -52,7 +52,7 @@ func dialMonitor(ctx context.Context, endpoint string) (*ResourceMonitor, error)
 	if err != nil {
 		return nil, fmt.Errorf("could not connect to resource monitor: %w", err)
 	}
-	resmon := pulumirpc.NewResourceMonitorClient(conn)
+	resmon := khulnasoftrpc.NewResourceMonitorClient(conn)
 
 	// Check feature support.
 	supportsSecrets, err := supportsFeature(ctx, resmon, "secrets")
@@ -75,21 +75,21 @@ func dialMonitor(ctx context.Context, endpoint string) (*ResourceMonitor, error)
 	}, nil
 }
 
-func supportsFeature(ctx context.Context, resmon pulumirpc.ResourceMonitorClient, id string) (bool, error) {
-	resp, err := resmon.SupportsFeature(ctx, &pulumirpc.SupportsFeatureRequest{Id: id})
+func supportsFeature(ctx context.Context, resmon khulnasoftrpc.ResourceMonitorClient, id string) (bool, error) {
+	resp, err := resmon.SupportsFeature(ctx, &khulnasoftrpc.SupportsFeatureRequest{Id: id})
 	if err != nil {
 		return false, err
 	}
 	return resp.GetHasSupport(), nil
 }
 
-func parseSourcePosition(raw string) (*pulumirpc.SourcePosition, error) {
+func parseSourcePosition(raw string) (*khulnasoftrpc.SourcePosition, error) {
 	u, err := url.Parse(raw)
 	if err != nil {
 		return nil, err
 	}
 
-	pos := pulumirpc.SourcePosition{
+	pos := khulnasoftrpc.SourcePosition{
 		Uri: fmt.Sprintf("%v://%v", u.Scheme, u.Path),
 	}
 
@@ -118,7 +118,7 @@ func (rm *ResourceMonitor) Close() error {
 	return rm.conn.Close()
 }
 
-func NewResourceMonitor(resmon pulumirpc.ResourceMonitorClient) *ResourceMonitor {
+func NewResourceMonitor(resmon khulnasoftrpc.ResourceMonitorClient) *ResourceMonitor {
 	return &ResourceMonitor{resmon: resmon}
 }
 
@@ -136,7 +136,7 @@ type ResourceOptions struct {
 	IgnoreChanges           []string
 	ReplaceOnChanges        []string
 	AliasURNs               []resource.URN
-	Aliases                 []*pulumirpc.Alias
+	Aliases                 []*khulnasoftrpc.Alias
 	ImportID                resource.ID
 	CustomTimeouts          *resource.CustomTimeouts
 	RetainOnDelete          bool
@@ -152,7 +152,7 @@ type ResourceOptions struct {
 	DisableResourceReferences bool
 	GrpcRequestHeaders        map[string]string
 
-	Transforms []*pulumirpc.Callback
+	Transforms []*khulnasoftrpc.Callback
 
 	SupportsResultReporting bool
 	PackageRef              string
@@ -175,7 +175,7 @@ type RegisterResourceResponse struct {
 	ID           resource.ID
 	Outputs      resource.PropertyMap
 	Dependencies map[resource.PropertyKey][]resource.URN
-	Result       pulumirpc.Result
+	Result       khulnasoftrpc.Result
 }
 
 func (rm *ResourceMonitor) RegisterResource(t tokens.Type, name string, custom bool,
@@ -212,20 +212,20 @@ func (rm *ResourceMonitor) RegisterResource(t tokens.Type, name string, custom b
 		aliasStrings = append(aliasStrings, string(a))
 	}
 
-	inputDeps := make(map[string]*pulumirpc.RegisterResourceRequest_PropertyDependencies)
+	inputDeps := make(map[string]*khulnasoftrpc.RegisterResourceRequest_PropertyDependencies)
 	for pk, pd := range opts.PropertyDeps {
 		pdeps := []string{}
 		for _, d := range pd {
 			pdeps = append(pdeps, string(d))
 		}
-		inputDeps[string(pk)] = &pulumirpc.RegisterResourceRequest_PropertyDependencies{
+		inputDeps[string(pk)] = &khulnasoftrpc.RegisterResourceRequest_PropertyDependencies{
 			Urns: pdeps,
 		}
 	}
 
-	var timeouts *pulumirpc.RegisterResourceRequest_CustomTimeouts
+	var timeouts *khulnasoftrpc.RegisterResourceRequest_CustomTimeouts
 	if opts.CustomTimeouts != nil {
-		timeouts = &pulumirpc.RegisterResourceRequest_CustomTimeouts{
+		timeouts = &khulnasoftrpc.RegisterResourceRequest_CustomTimeouts{
 			Create: prepareTestTimeout(opts.CustomTimeouts.Create),
 			Update: prepareTestTimeout(opts.CustomTimeouts.Update),
 			Delete: prepareTestTimeout(opts.CustomTimeouts.Delete),
@@ -245,7 +245,7 @@ func (rm *ResourceMonitor) RegisterResource(t tokens.Type, name string, custom b
 		additionalSecretOutputs[i] = string(v)
 	}
 
-	var sourcePosition *pulumirpc.SourcePosition
+	var sourcePosition *khulnasoftrpc.SourcePosition
 	if opts.SourcePosition != "" {
 		sourcePosition, err = parseSourcePosition(opts.SourcePosition)
 		if err != nil {
@@ -253,7 +253,7 @@ func (rm *ResourceMonitor) RegisterResource(t tokens.Type, name string, custom b
 		}
 	}
 
-	requestInput := &pulumirpc.RegisterResourceRequest{
+	requestInput := &khulnasoftrpc.RegisterResourceRequest{
 		Type:                       string(t),
 		Name:                       name,
 		Custom:                     custom,
@@ -334,7 +334,7 @@ func (rm *ResourceMonitor) RegisterResourceOutputs(urn resource.URN, outputs res
 	}
 
 	// submit request
-	_, err = rm.resmon.RegisterResourceOutputs(context.Background(), &pulumirpc.RegisterResourceOutputsRequest{
+	_, err = rm.resmon.RegisterResourceOutputs(context.Background(), &khulnasoftrpc.RegisterResourceOutputsRequest{
 		Urn:     string(urn),
 		Outputs: outs,
 	})
@@ -353,7 +353,7 @@ func (rm *ResourceMonitor) ReadResource(t tokens.Type, name string, id resource.
 		return "", nil, err
 	}
 
-	var sourcePos *pulumirpc.SourcePosition
+	var sourcePos *khulnasoftrpc.SourcePosition
 	if sourcePosition != "" {
 		sourcePos, err = parseSourcePosition(sourcePosition)
 		if err != nil {
@@ -362,7 +362,7 @@ func (rm *ResourceMonitor) ReadResource(t tokens.Type, name string, id resource.
 	}
 
 	// submit request
-	resp, err := rm.resmon.ReadResource(context.Background(), &pulumirpc.ReadResourceRequest{
+	resp, err := rm.resmon.ReadResource(context.Background(), &khulnasoftrpc.ReadResourceRequest{
 		Type:           string(t),
 		Name:           name,
 		Id:             string(id),
@@ -388,7 +388,7 @@ func (rm *ResourceMonitor) ReadResource(t tokens.Type, name string, id resource.
 
 func (rm *ResourceMonitor) Invoke(tok tokens.ModuleMember, inputs resource.PropertyMap,
 	provider string, version string, packageRef string,
-) (resource.PropertyMap, []*pulumirpc.CheckFailure, error) {
+) (resource.PropertyMap, []*khulnasoftrpc.CheckFailure, error) {
 	// marshal inputs
 	ins, err := plugin.MarshalProperties(inputs, plugin.MarshalOptions{
 		KeepUnknowns:  true,
@@ -399,7 +399,7 @@ func (rm *ResourceMonitor) Invoke(tok tokens.ModuleMember, inputs resource.Prope
 	}
 
 	// submit request
-	resp, err := rm.resmon.Invoke(context.Background(), &pulumirpc.ResourceInvokeRequest{
+	resp, err := rm.resmon.Invoke(context.Background(), &khulnasoftrpc.ResourceInvokeRequest{
 		Tok:        string(tok),
 		Provider:   provider,
 		Args:       ins,
@@ -427,7 +427,7 @@ func (rm *ResourceMonitor) Invoke(tok tokens.ModuleMember, inputs resource.Prope
 func (rm *ResourceMonitor) Call(
 	tok tokens.ModuleMember, args resource.PropertyMap, argDependencies map[resource.PropertyKey][]resource.URN,
 	provider string, version string, packageRef string) (resource.PropertyMap, map[resource.PropertyKey][]resource.URN,
-	[]*pulumirpc.CheckFailure, error,
+	[]*khulnasoftrpc.CheckFailure, error,
 ) {
 	// marshal inputs
 	mArgs, err := plugin.MarshalProperties(args, plugin.MarshalOptions{
@@ -440,19 +440,19 @@ func (rm *ResourceMonitor) Call(
 		return nil, nil, nil, err
 	}
 
-	mArgDependencies := make(map[string]*pulumirpc.ResourceCallRequest_ArgumentDependencies)
+	mArgDependencies := make(map[string]*khulnasoftrpc.ResourceCallRequest_ArgumentDependencies)
 	for k, p := range argDependencies {
 		urns := make([]string, len(p))
 		for i, urn := range p {
 			urns[i] = string(urn)
 		}
-		mArgDependencies[string(k)] = &pulumirpc.ResourceCallRequest_ArgumentDependencies{
+		mArgDependencies[string(k)] = &khulnasoftrpc.ResourceCallRequest_ArgumentDependencies{
 			Urns: urns,
 		}
 	}
 
 	// submit request
-	resp, err := rm.resmon.Call(context.Background(), &pulumirpc.ResourceCallRequest{
+	resp, err := rm.resmon.Call(context.Background(), &khulnasoftrpc.ResourceCallRequest{
 		Tok:             string(tok),
 		Provider:        provider,
 		Args:            mArgs,
@@ -488,20 +488,20 @@ func (rm *ResourceMonitor) Call(
 	return outs, deps, nil, nil
 }
 
-func (rm *ResourceMonitor) RegisterStackTransform(callback *pulumirpc.Callback) error {
+func (rm *ResourceMonitor) RegisterStackTransform(callback *khulnasoftrpc.Callback) error {
 	_, err := rm.resmon.RegisterStackTransform(context.Background(), callback)
 	return err
 }
 
-func (rm *ResourceMonitor) RegisterStackInvokeTransform(callback *pulumirpc.Callback) error {
+func (rm *ResourceMonitor) RegisterStackInvokeTransform(callback *khulnasoftrpc.Callback) error {
 	_, err := rm.resmon.RegisterStackInvokeTransform(context.Background(), callback)
 	return err
 }
 
 func (rm *ResourceMonitor) RegisterPackage(pkg, version, downloadURL string, checksums map[string][]byte,
-	parameterization *pulumirpc.Parameterization,
+	parameterization *khulnasoftrpc.Parameterization,
 ) (string, error) {
-	resp, err := rm.resmon.RegisterPackage(context.Background(), &pulumirpc.RegisterPackageRequest{
+	resp, err := rm.resmon.RegisterPackage(context.Background(), &khulnasoftrpc.RegisterPackageRequest{
 		Name:             pkg,
 		Version:          version,
 		DownloadUrl:      downloadURL,

@@ -1,15 +1,15 @@
 // Copyright 2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 interface MyResourceArgs {
-    input?: pulumi.Input<string> | undefined;
+    input?: khulnasoft.Input<string> | undefined;
 }
 
-class MyResource extends pulumi.dynamic.Resource {
+class MyResource extends khulnasoft.dynamic.Resource {
     static latestId: number = 0;
 
-    constructor(name, args?: MyResourceArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name, args?: MyResourceArgs, opts?: khulnasoft.CustomResourceOptions) {
         super({
             async create(inputs: any) {
                 return { id: (MyResource.latestId++).toString() };
@@ -39,7 +39,7 @@ const e = new MyResource("e", { }, { dependsOn: b });
 const f = new MyResource("f", { }, { parent: a });
 const g = new MyResource("g", { }, { parent: b });
 const h = new MyResource("h",
-    { input: pulumi.all(([c.urn, d.urn])).apply(([curn, _])=>curn) },
+    { input: khulnasoft.all(([c.urn, d.urn])).apply(([curn, _])=>curn) },
     {
         dependsOn: [a, b],
         parent: f,

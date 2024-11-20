@@ -18,10 +18,10 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 func newEventSink(events eventEmitter, statusSink bool) diag.Sink {
@@ -131,7 +131,7 @@ func (s *eventSink) Stringify(sev diag.Severity, d *diag.Diag, args ...interface
 	buffer.WriteString(colors.Reset)
 	buffer.WriteRune('\n')
 
-	// TODO[pulumi/pulumi#15]: support Clang-style expressive diagnostics.  This would entail, for example, using
+	// TODO[khulnasoft/khulnasoft#15]: support Clang-style expressive diagnostics.  This would entail, for example, using
 	//     the buffer within the target document, to demonstrate the offending line/column range of code.
 
 	return prefix.String(), buffer.String()

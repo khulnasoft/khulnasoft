@@ -28,9 +28,9 @@ import (
 	lt "github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/framework"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 func TestImportOption(t *testing.T) {
@@ -456,7 +456,7 @@ func TestImportUpdatedID(t *testing.T) {
 	p.Steps = []lt.TestStep{{Op: Refresh, SkipPreview: true}}
 
 	// Refresh requires at least one resource in order to proceed.
-	stackURN := resource.URN("urn:pulumi:stack::stack::pulumi:pulumi:Stack::foo")
+	stackURN := resource.URN("urn:khulnasoft:stack::stack::khulnasoft:khulnasoft:Stack::foo")
 	stackResource := newResource(
 		stackURN,
 		"",
@@ -706,7 +706,7 @@ func TestImportPlanExistingImport(t *testing.T) {
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		resp, err := monitor.RegisterResource("pulumi:pulumi:Stack", "test", false)
+		resp, err := monitor.RegisterResource("khulnasoft:khulnasoft:Stack", "test", false)
 		require.NoError(t, err)
 
 		_, err = monitor.RegisterResource("pkgA:m:typA", "resA", true, deploytest.ResourceOptions{
@@ -850,7 +850,7 @@ func TestImportPlanSpecificProvider(t *testing.T) {
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:providers:pkgA", "provA", true)
+		_, err := monitor.RegisterResource("khulnasoft:providers:pkgA", "provA", true)
 		assert.NoError(t, err)
 		return nil
 	})
@@ -931,7 +931,7 @@ func TestImportPlanSpecificProperties(t *testing.T) {
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		_, err := monitor.RegisterResource("pulumi:providers:pkgA", "provA", true)
+		_, err := monitor.RegisterResource("khulnasoft:providers:pkgA", "provA", true)
 		assert.NoError(t, err)
 		return nil
 	})
@@ -1084,13 +1084,13 @@ func TestImportComponent(t *testing.T) {
 
 	// Ensure that the resource 2 is the component.
 	comp := snap.Resources[2]
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::my-component::comp"), comp.URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::my-component::comp"), comp.URN)
 	// Ensure it's marked as a component.
 	assert.False(t, comp.Custom, "expected component resource to not be marked as custom")
 
 	// Ensure resource 3 is the custom resource
 	custom := snap.Resources[3]
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::my-component$pkgA:m:typA::resB"), custom.URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::my-component$pkgA:m:typA::resB"), custom.URN)
 	// Ensure it's marked as custom.
 	assert.True(t, custom.Custom, "expected custom resource to be marked as custom")
 }
@@ -1158,18 +1158,18 @@ func TestImportRemoteComponent(t *testing.T) {
 
 	// Ensure that the resource 3 is the component.
 	comp := snap.Resources[3]
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::mlc:index:Component::comp"), comp.URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::mlc:index:Component::comp"), comp.URN)
 	// Ensure it's marked as a component.
 	assert.False(t, comp.Custom, "expected component resource to not be marked as custom")
 
 	// Ensure resource 4 is the custom resource
 	custom := snap.Resources[4]
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::mlc:index:Component$pkgA:m:typA::resB"), custom.URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::mlc:index:Component$pkgA:m:typA::resB"), custom.URN)
 	// Ensure it's marked as custom.
 	assert.True(t, custom.Custom, "expected custom resource to be marked as custom")
 }
 
-// Regression test for https://github.com/pulumi/pulumi-gcp/issues/1900
+// Regression test for https://github.com/khulnasoft/khulnasoft-gcp/issues/1900
 // Check that if a provider normalizes an input we don't display that as a diff.
 func TestImportInputDiff(t *testing.T) {
 	t.Parallel()

@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 
 	"simple-enum-schema/plant"
 	tree "simple-enum-schema/plant/tree/v1"
@@ -16,11 +16,11 @@ import (
 
 func TestEnumUsage(t *testing.T) {
 	t.Run("Success", func(t *testing.T) {
-		require.NoError(t, pulumi.RunErr(func(ctx *pulumi.Context) error {
+		require.NoError(t, khulnasoft.RunErr(func(ctx *khulnasoft.Context) error {
 			rubberTree, err := tree.NewRubberTree(ctx, "blah", &tree.RubberTreeArgs{
 				Container: &plant.ContainerArgs{
 					Color:    plant.ContainerColorRed,
-					Material: pulumi.String("ceramic"),
+					Material: khulnasoft.String("ceramic"),
 					Size:     plant.ContainerSizeFourInch,
 				},
 				Farm: tree.Farm_Plants_R_Us,
@@ -30,7 +30,7 @@ func TestEnumUsage(t *testing.T) {
 			require.NotNil(t, rubberTree)
 			var wg sync.WaitGroup
 			wg.Add(1)
-			pulumi.All(
+			khulnasoft.All(
 				rubberTree.URN(),
 				rubberTree.Container.Material(),
 				rubberTree.Container.Color(),
@@ -38,7 +38,7 @@ func TestEnumUsage(t *testing.T) {
 				rubberTree.Container.Brightness(),
 				rubberTree.Type,
 			).ApplyT(func(all []interface{}) error {
-				urn := all[0].(pulumi.URN)
+				urn := all[0].(khulnasoft.URN)
 				material := all[1].(*string)
 				color := all[2].(*string)
 				size := all[3].(*plant.ContainerSize)
@@ -54,15 +54,15 @@ func TestEnumUsage(t *testing.T) {
 			})
 			wg.Wait()
 			return nil
-		}, pulumi.WithMocks("project", "stack", mocks(0))))
+		}, khulnasoft.WithMocks("project", "stack", mocks(0))))
 	})
 
 	t.Run("StringsForRelaxedEnum", func(t *testing.T) {
-		require.NoError(t, pulumi.RunErr(func(ctx *pulumi.Context) error {
+		require.NoError(t, khulnasoft.RunErr(func(ctx *khulnasoft.Context) error {
 			rubberTree, err := tree.NewRubberTree(ctx, "blah", &tree.RubberTreeArgs{
 				Container: plant.ContainerArgs{
-					Color:    pulumi.String("Magenta"),
-					Material: pulumi.String("ceramic"),
+					Color:    khulnasoft.String("Magenta"),
+					Material: khulnasoft.String("ceramic"),
 					Size:     plant.ContainerSize(22),
 				},
 				Farm: tree.Farm_Plants_R_Us,
@@ -72,14 +72,14 @@ func TestEnumUsage(t *testing.T) {
 			require.NotNil(t, rubberTree)
 			var wg sync.WaitGroup
 			wg.Add(1)
-			pulumi.All(
+			khulnasoft.All(
 				rubberTree.URN(),
 				rubberTree.Container.Material(),
 				rubberTree.Container.Color(),
 				rubberTree.Container.Size(),
 				rubberTree.Type,
 			).ApplyT(func(all []interface{}) error {
-				urn := all[0].(pulumi.URN)
+				urn := all[0].(khulnasoft.URN)
 				material := all[1].(*string)
 				color := all[2].(*string)
 				size := all[3].(*plant.ContainerSize)
@@ -93,15 +93,15 @@ func TestEnumUsage(t *testing.T) {
 			})
 			wg.Wait()
 			return nil
-		}, pulumi.WithMocks("project", "stack", mocks(1))))
+		}, khulnasoft.WithMocks("project", "stack", mocks(1))))
 	})
 
 	t.Run("StringsForStrictEnum", func(t *testing.T) {
-		require.NoError(t, pulumi.RunErr(func(ctx *pulumi.Context) error {
+		require.NoError(t, khulnasoft.RunErr(func(ctx *khulnasoft.Context) error {
 			rubberTree, err := tree.NewRubberTree(ctx, "blah", &tree.RubberTreeArgs{
 				Container: plant.ContainerArgs{
-					Color:    pulumi.String("Magenta"),
-					Material: pulumi.String("ceramic"),
+					Color:    khulnasoft.String("Magenta"),
+					Material: khulnasoft.String("ceramic"),
 					Size:     plant.ContainerSize(22),
 				},
 				Farm: tree.Farm_Plants_R_Us,
@@ -111,14 +111,14 @@ func TestEnumUsage(t *testing.T) {
 			require.NotNil(t, rubberTree)
 			var wg sync.WaitGroup
 			wg.Add(1)
-			pulumi.All(
+			khulnasoft.All(
 				rubberTree.URN(),
 				rubberTree.Container.Material(),
 				rubberTree.Container.Color(),
 				rubberTree.Container.Size(),
 				rubberTree.Type,
 			).ApplyT(func(all []interface{}) error {
-				urn := all[0].(pulumi.URN)
+				urn := all[0].(khulnasoft.URN)
 				material := all[1].(*string)
 				color := all[2].(*string)
 				size := all[3].(*plant.ContainerSize)
@@ -132,15 +132,15 @@ func TestEnumUsage(t *testing.T) {
 			})
 			wg.Wait()
 			return nil
-		}, pulumi.WithMocks("project", "stack", mocks(1))))
+		}, khulnasoft.WithMocks("project", "stack", mocks(1))))
 	})
 
 	t.Run("EnumOutputs", func(t *testing.T) {
-		require.NoError(t, pulumi.RunErr(func(ctx *pulumi.Context) error {
+		require.NoError(t, khulnasoft.RunErr(func(ctx *khulnasoft.Context) error {
 			rubberTree, err := tree.NewRubberTree(ctx, "blah", &tree.RubberTreeArgs{
 				Container: plant.ContainerArgs{
 					Color:    plant.ContainerColor("Magenta").ToContainerColorOutput().ToStringOutput(),
-					Material: pulumi.String("ceramic").ToStringOutput(),
+					Material: khulnasoft.String("ceramic").ToStringOutput(),
 					Size:     plant.ContainerSize(22).ToContainerSizeOutput(),
 				},
 				Farm: tree.Farm_Plants_R_Us.ToFarmPtrOutput().ToStringPtrOutput(),
@@ -150,14 +150,14 @@ func TestEnumUsage(t *testing.T) {
 			require.NotNil(t, rubberTree)
 			var wg sync.WaitGroup
 			wg.Add(1)
-			pulumi.All(
+			khulnasoft.All(
 				rubberTree.URN(),
 				rubberTree.Container.Material(),
 				rubberTree.Container.Color(),
 				rubberTree.Container.Size(),
 				rubberTree.Type,
 			).ApplyT(func(all []interface{}) error {
-				urn := all[0].(pulumi.URN)
+				urn := all[0].(khulnasoft.URN)
 				material := all[1].(*string)
 				color := all[2].(*string)
 				size := all[3].(*plant.ContainerSize)
@@ -171,16 +171,16 @@ func TestEnumUsage(t *testing.T) {
 			})
 			wg.Wait()
 			return nil
-		}, pulumi.WithMocks("project", "stack", mocks(1))))
+		}, khulnasoft.WithMocks("project", "stack", mocks(1))))
 	})
 }
 
 type mocks int
 
-func (mocks) NewResource(args pulumi.MockResourceArgs) (string, resource.PropertyMap, error) {
+func (mocks) NewResource(args khulnasoft.MockResourceArgs) (string, resource.PropertyMap, error) {
 	return args.Name + "_id", args.Inputs, nil
 }
 
-func (mocks) Call(args pulumi.MockCallArgs) (resource.PropertyMap, error) {
+func (mocks) Call(args khulnasoft.MockCallArgs) (resource.PropertyMap, error) {
 	return args.Args, nil
 }

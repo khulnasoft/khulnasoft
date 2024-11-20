@@ -7,17 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"regress-go-10527/world/internal"
 )
 
 type Universe struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
 // NewUniverse registers a new resource with the given unique name, arguments, and options.
-func NewUniverse(ctx *pulumi.Context,
-	name string, args *UniverseArgs, opts ...pulumi.ResourceOption) (*Universe, error) {
+func NewUniverse(ctx *khulnasoft.Context,
+	name string, args *UniverseArgs, opts ...khulnasoft.ResourceOption) (*Universe, error) {
 	if args == nil {
 		args = &UniverseArgs{}
 	}
@@ -33,8 +33,8 @@ func NewUniverse(ctx *pulumi.Context,
 
 // GetUniverse gets an existing Universe resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetUniverse(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *UniverseState, opts ...pulumi.ResourceOption) (*Universe, error) {
+func GetUniverse(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *UniverseState, opts ...khulnasoft.ResourceOption) (*Universe, error) {
 	var resource Universe
 	err := ctx.ReadResource("world::Universe", name, id, state, &resource, opts...)
 	if err != nil {
@@ -55,7 +55,7 @@ func (UniverseState) ElementType() reflect.Type {
 }
 
 type universeArgs struct {
-	Worlds map[string]World `pulumi:"worlds"`
+	Worlds map[string]World `khulnasoft:"worlds"`
 }
 
 // The set of arguments for constructing a Universe resource.
@@ -68,7 +68,7 @@ func (UniverseArgs) ElementType() reflect.Type {
 }
 
 type UniverseInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToUniverseOutput() UniverseOutput
 	ToUniverseOutputWithContext(ctx context.Context) UniverseOutput
@@ -83,10 +83,10 @@ func (i *Universe) ToUniverseOutput() UniverseOutput {
 }
 
 func (i *Universe) ToUniverseOutputWithContext(ctx context.Context) UniverseOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UniverseOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(UniverseOutput)
 }
 
-type UniverseOutput struct{ *pulumi.OutputState }
+type UniverseOutput struct{ *khulnasoft.OutputState }
 
 func (UniverseOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Universe)(nil)).Elem()
@@ -101,6 +101,6 @@ func (o UniverseOutput) ToUniverseOutputWithContext(ctx context.Context) Univers
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*UniverseInput)(nil)).Elem(), &Universe{})
-	pulumi.RegisterOutputType(UniverseOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*UniverseInput)(nil)).Elem(), &Universe{})
+	khulnasoft.RegisterOutputType(UniverseOutput{})
 }

@@ -1,10 +1,10 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
-import * as provider from "@pulumi/pulumi/provider";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as provider from "@khulnasoft/khulnasoft/provider";
 
-class Component extends pulumi.ComponentResource {
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+class Component extends khulnasoft.ComponentResource {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("testcomponent:index:Component", name, undefined, opts);
     }
 }
@@ -12,8 +12,8 @@ class Component extends pulumi.ComponentResource {
 class Provider implements provider.Provider {
     public readonly version = "0.0.1";
 
-    async construct(name: string, type: string, inputs: pulumi.Inputs,
-              options: pulumi.ComponentResourceOptions): Promise<provider.ConstructResult> {
+    async construct(name: string, type: string, inputs: khulnasoft.Inputs,
+              options: khulnasoft.ComponentResourceOptions): Promise<provider.ConstructResult> {
         if (type != "testcomponent:index:Component") {
             throw new Error(`unknown resource type ${type}`);
         }
@@ -25,7 +25,7 @@ class Provider implements provider.Provider {
         };
     }
 
-    async call(token: string, inputs: pulumi.Inputs): Promise<provider.InvokeResult> {
+    async call(token: string, inputs: khulnasoft.Inputs): Promise<provider.InvokeResult> {
         switch (token) {
             case "testcomponent:index:Component/getMessage":
                 return {

@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
 // Create a new security group for port 80.
 const securityGroup = new aws.ec2.SecurityGroup("securityGroup", {ingress: [{

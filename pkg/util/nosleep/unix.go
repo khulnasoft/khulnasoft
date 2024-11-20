@@ -19,7 +19,7 @@ package nosleep
 
 import (
 	"github.com/godbus/dbus/v5"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 func keepRunning() DoneFunc {
@@ -28,7 +28,7 @@ func keepRunning() DoneFunc {
 		return func() {}
 	}
 
-	applicationName := "pulumi"
+	applicationName := "khulnasoft"
 	reasonForInhibit := "stay awake"
 	var cookie uint32
 	// Use the gnome power manager.  Wakepy also supports org.freedesktop.PowerManagement, but that seems to be deprecated.

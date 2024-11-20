@@ -1,21 +1,21 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		parent, err := NewRandom(ctx, "parent", &RandomArgs{
-			Length: pulumi.Int(8),
+			Length: khulnasoft.Int(8),
 		})
 		if err != nil {
 			return err
 		}
 
 		child, err := NewRandom(ctx, "child", &RandomArgs{
-			Length: pulumi.Int(4),
-		}, pulumi.Parent(parent))
+			Length: khulnasoft.Int(4),
+		}, khulnasoft.Parent(parent))
 		if err != nil {
 			return err
 		}

@@ -1,18 +1,18 @@
-import pulumi
-import pulumi_aws as aws
-import pulumi_aws_native as aws_native
+import khulnasoft
+import khulnasoft_aws as aws
+import khulnasoft_aws_native as aws_native
 
 site_bucket = aws_native.s3.Bucket("site-bucket", website_configuration={
     "index_document": "index.html",
 })
 index_html = aws.s3.BucketObject("index.html",
     bucket=site_bucket,
-    source=pulumi.FileAsset("./www/index.html"),
+    source=khulnasoft.FileAsset("./www/index.html"),
     acl="public-read",
     content_type="text/html")
 favicon_png = aws.s3.BucketObject("favicon.png",
     bucket=site_bucket,
-    source=pulumi.FileAsset("./www/favicon.png"),
+    source=khulnasoft.FileAsset("./www/favicon.png"),
     acl="public-read",
     content_type="image/png")
 bucket_policy = aws.s3.BucketPolicy("bucketPolicy",
@@ -29,5 +29,5 @@ bucket_policy = aws.s3.BucketPolicy("bucketPolicy",
   ]
 }}
 """))
-pulumi.export("bucketName", site_bucket.bucket_name)
-pulumi.export("websiteUrl", site_bucket.website_url)
+khulnasoft.export("bucketName", site_bucket.bucket_name)
+khulnasoft.export("websiteUrl", site_bucket.website_url)

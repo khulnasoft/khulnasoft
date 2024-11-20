@@ -26,8 +26,8 @@ import (
 	. "github.com/khulnasoft/khulnasoft/pkg/v3/engine" //nolint:revive
 	lt "github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/framework"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
 )
 
 // Tests that a delete-before-replace operation:
@@ -671,7 +671,7 @@ func TestPendingReplaceResumeWithUpdatedGoals(t *testing.T) {
 	assert.False(t, removeSnap.Resources[1].PendingReplacement)
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/17111
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/17111
 func TestInteruptedPendingReplace(t *testing.T) {
 	t.Parallel()
 

@@ -24,7 +24,7 @@ import (
 	"time"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	gosecrets "gocloud.dev/secrets"

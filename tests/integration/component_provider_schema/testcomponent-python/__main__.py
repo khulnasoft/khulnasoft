@@ -16,7 +16,7 @@ from typing import Optional
 import sys
 import os
 
-import pulumi.provider as provider
+import khulnasoft.provider as provider
 
 class Provider(provider.Provider):
     VERSION = "0.0.1"

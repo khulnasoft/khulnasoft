@@ -21,14 +21,14 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 
 	"github.com/hashicorp/hcl/v2"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model/format"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 )
 
 // titleCase replaces the first character in the given string with its upper-case equivalent.
@@ -142,7 +142,7 @@ func Linearize(p *Program) []Node {
 	return nodes
 }
 
-// Remaps the "pulumi:providers:$Package" token style to "$Package:index:Provider", consistent with code generation.
+// Remaps the "khulnasoft:providers:$Package" token style to "$Package:index:Provider", consistent with code generation.
 // This mapping is consistent with how provider resources are projected into the schema and removes special casing logic
 // to generate registering explicit providers.
 //
@@ -151,7 +151,7 @@ func MapProvidersAsResources(p *Program) {
 	for _, n := range p.Nodes {
 		if r, ok := n.(*Resource); ok && r.Schema != nil {
 			pkg, mod, name, _ := r.DecomposeToken()
-			if r.Schema.IsProvider && pkg == "pulumi" && mod == "providers" {
+			if r.Schema.IsProvider && pkg == "khulnasoft" && mod == "providers" {
 				// the binder emits tokens like this when the module is "index"
 				r.Token = name + "::Provider"
 			}
@@ -161,8 +161,8 @@ func MapProvidersAsResources(p *Program) {
 
 func FixupPulumiPackageTokens(r *Resource) {
 	pkg, mod, name, _ := r.DecomposeToken()
-	if pkg == "pulumi" && mod == "pulumi" {
-		r.Token = "pulumi::" + name
+	if pkg == "khulnasoft" && mod == "khulnasoft" {
+		r.Token = "khulnasoft::" + name
 	}
 }
 

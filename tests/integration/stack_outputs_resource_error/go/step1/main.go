@@ -5,13 +5,13 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		ctx.Export("xyz", pulumi.String("ABC"))
-		ctx.Export("foo", pulumi.Float64(42))
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		ctx.Export("xyz", khulnasoft.String("ABC"))
+		ctx.Export("foo", khulnasoft.Float64(42))
 		return nil
 	})
 }

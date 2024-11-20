@@ -13,22 +13,22 @@
 // limitations under the License.
 
 import * as assert from "assert";
-import * as pulumi from "..";
+import * as khulnasoft from "..";
 
-class TestMocks implements pulumi.runtime.Mocks {
+class TestMocks implements khulnasoft.runtime.Mocks {
     outputs: any;
 
     constructor(outputs: any) {
         this.outputs = outputs;
     }
 
-    call(args: pulumi.runtime.MockCallArgs): Record<string, any> {
+    call(args: khulnasoft.runtime.MockCallArgs): Record<string, any> {
         throw new Error(`unknown function ${args.token}`);
     }
 
-    newResource(args: pulumi.runtime.MockResourceArgs): { id: string | undefined; state: Record<string, any> } {
+    newResource(args: khulnasoft.runtime.MockResourceArgs): { id: string | undefined; state: Record<string, any> } {
         switch (args.type) {
-            case "pulumi:pulumi:StackReference":
+            case "khulnasoft:khulnasoft:StackReference":
                 return {
                     id: `${args.name}_id`,
                     state: {
@@ -46,12 +46,12 @@ describe("StackReference.getOutputDetails", () => {
     // if a map item is a secret, the entire map gets promoted to secret.
 
     it("supports plain text", async () => {
-        pulumi.runtime.setMocks(
+        khulnasoft.runtime.setMocks(
             new TestMocks({
                 bucket: "mybucket-1234",
             }),
         );
-        const ref = new pulumi.StackReference("foo");
+        const ref = new khulnasoft.StackReference("foo");
 
         assert.deepStrictEqual(await ref.getOutputDetails("bucket"), {
             value: "mybucket-1234",
@@ -59,12 +59,12 @@ describe("StackReference.getOutputDetails", () => {
     });
 
     it("supports secrets", async () => {
-        pulumi.runtime.setMocks(
+        khulnasoft.runtime.setMocks(
             new TestMocks({
-                password: pulumi.secret("supersecretpassword"),
+                password: khulnasoft.secret("supersecretpassword"),
             }),
         );
-        const ref = new pulumi.StackReference("foo");
+        const ref = new khulnasoft.StackReference("foo");
 
         assert.deepStrictEqual(await ref.getOutputDetails("password"), {
             secretValue: "supersecretpassword",
@@ -73,13 +73,13 @@ describe("StackReference.getOutputDetails", () => {
 
     it("types applies correctly", async () => {
         const passwordValue = "supersecretpassword";
-        pulumi.runtime.setMocks(
+        khulnasoft.runtime.setMocks(
             new TestMocks({
-                password: pulumi.secret(passwordValue),
+                password: khulnasoft.secret(passwordValue),
             }),
         );
-        const ref = new pulumi.StackReference("foo");
-        const password: pulumi.Output<number> = ref.outputs["password"].apply((x) => x.length);
+        const ref = new khulnasoft.StackReference("foo");
+        const password: khulnasoft.Output<number> = ref.outputs["password"].apply((x) => x.length);
 
         assert.deepStrictEqual(await password.promise(), passwordValue.length);
     });

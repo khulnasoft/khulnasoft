@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-from pulumi_example import _utilities
+from khulnasoft_example import _utilities
 
 
 def test_get_version():

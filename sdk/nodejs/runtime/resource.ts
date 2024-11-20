@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import * as grpc from "@grpc/grpc-js";
-import * as query from "@pulumi/query";
+import * as query from "@khulnasoft/query";
 import * as log from "../log";
 import * as utils from "../utils";
 
@@ -192,7 +192,7 @@ export function getResource(
             const inputs = await serializeProperties(label, { urn });
 
             const req = new resproto.ResourceInvokeRequest();
-            req.setTok("pulumi:pulumi:getResource");
+            req.setTok("khulnasoft:khulnasoft:getResource");
             req.setArgs(gstruct.Struct.fromJavaScript(inputs));
             req.setProvider("");
             req.setVersion("");
@@ -875,7 +875,7 @@ export async function prepareResource(
                 const pkg = componentOpts.provider.getPackage();
                 const message = `There is a conflict between the 'provider' field (${pkg}) and a member of the 'providers' map'. `;
                 const deprecationd =
-                    "This will become an error in a future version. See https://github.com/pulumi/pulumi/issues/8799 for more details";
+                    "This will become an error in a future version. See https://github.com/khulnasoft/khulnasoft/issues/8799 for more details";
                 log.warn(message + deprecationd);
             } else {
                 (<ProviderResource[]>componentOpts.providers).push(componentOpts.provider);
@@ -1203,7 +1203,7 @@ function isAny(o: any): o is any {
  * which may include ongoing updates. For example:
  *
  * ```typescript
- * const buckets = pulumi.runtime.listResourceOutput(aws.s3.Bucket.isInstance);
+ * const buckets = khulnasoft.runtime.listResourceOutput(aws.s3.Bucket.isInstance);
  * ```
  *
  * @param stackName
@@ -1222,12 +1222,12 @@ export function listResourceOutputs<U extends Resource>(
 
     return query
         .from(
-            invoke("pulumi:pulumi:readStackResourceOutputs", {
+            invoke("khulnasoft:khulnasoft:readStackResourceOutputs", {
                 stackName: stackName || getStack(),
             }).then<any[]>(({ outputs }) => utils.values(outputs)),
         )
         .map<ResolvedResource<U>>(({ type: typ, outputs }) => {
-            return { ...outputs, __pulumiType: typ };
+            return { ...outputs, __khulnasoftType: typ };
         })
         .filter(typeFilter);
 }
@@ -1237,7 +1237,7 @@ export function listResourceOutputs<U extends Resource>(
  * this, all resource operations will be entirely asynchronous, meaning the
  * dataflow graph that results will determine ordering of operations.  This
  * causes problems with some resource providers, so for now we will serialize
- * all of them.  The issue pulumi/pulumi#335 tracks coming up with a long-term
+ * all of them.  The issue khulnasoft/khulnasoft#335 tracks coming up with a long-term
  * solution here.
  */
 let resourceChain: Promise<void> = Promise.resolve();

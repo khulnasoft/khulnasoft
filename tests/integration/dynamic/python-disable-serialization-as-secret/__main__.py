@@ -2,8 +2,8 @@
 
 import binascii
 import os
-from pulumi import export
-from pulumi.dynamic import Resource, ResourceProvider, CreateResult
+from khulnasoft import export
+from khulnasoft.dynamic import Resource, ResourceProvider, CreateResult
 
 class RandomResourceProvider(ResourceProvider):
     serialize_as_secret_always = False

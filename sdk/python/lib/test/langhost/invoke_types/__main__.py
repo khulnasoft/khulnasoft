@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pulumi
-from pulumi.runtime import invoke
+import khulnasoft
+from khulnasoft.runtime import invoke
 
 import outputs
 
@@ -40,9 +40,9 @@ def assert_eq(l, r):
     assert l == r
 
 
-class MyResource(pulumi.CustomResource):
-    first_value: pulumi.Output[str]
-    second_value: pulumi.Output[float]
+class MyResource(khulnasoft.CustomResource):
+    first_value: khulnasoft.Output[str]
+    second_value: khulnasoft.Output[float]
 
     def __init__(self, name: str, first_value: str, second_value: float):
         super().__init__(

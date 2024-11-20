@@ -1,11 +1,11 @@
 import asyncio
-import pulumi
+import khulnasoft
 
 
 def unknownIfDryRun(value):
-    if pulumi.runtime.is_dry_run():
-        return pulumi.Output(resources=set(), future=fut(None), is_known=fut(False))
-    return pulumi.Output.from_input(value)
+    if khulnasoft.runtime.is_dry_run():
+        return khulnasoft.Output(resources=set(), future=fut(None), is_known=fut(False))
+    return khulnasoft.Output.from_input(value)
 
 
 def fut(x):

@@ -2,8 +2,8 @@ import json
 
 import pytest
 
-from pulumi import Config
-from pulumi.runtime.config import set_all_config
+from khulnasoft import Config
+from khulnasoft.runtime.config import set_all_config
 
 
 @pytest.fixture

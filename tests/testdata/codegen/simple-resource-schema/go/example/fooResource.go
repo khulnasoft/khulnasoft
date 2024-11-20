@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"simple-resource-schema/example/internal"
 )
 
 type FooResource struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Foo ResourceOutput `pulumi:"foo"`
+	Foo ResourceOutput `khulnasoft:"foo"`
 }
 
 // NewFooResource registers a new resource with the given unique name, arguments, and options.
-func NewFooResource(ctx *pulumi.Context,
-	name string, args *FooResourceArgs, opts ...pulumi.ResourceOption) (*FooResource, error) {
+func NewFooResource(ctx *khulnasoft.Context,
+	name string, args *FooResourceArgs, opts ...khulnasoft.ResourceOption) (*FooResource, error) {
 	if args == nil {
 		args = &FooResourceArgs{}
 	}
@@ -34,7 +34,7 @@ func NewFooResource(ctx *pulumi.Context,
 }
 
 type fooResourceArgs struct {
-	Foo *Resource `pulumi:"foo"`
+	Foo *Resource `khulnasoft:"foo"`
 }
 
 // The set of arguments for constructing a FooResource resource.
@@ -47,7 +47,7 @@ func (FooResourceArgs) ElementType() reflect.Type {
 }
 
 type FooResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToFooResourceOutput() FooResourceOutput
 	ToFooResourceOutputWithContext(ctx context.Context) FooResourceOutput
@@ -62,10 +62,10 @@ func (i *FooResource) ToFooResourceOutput() FooResourceOutput {
 }
 
 func (i *FooResource) ToFooResourceOutputWithContext(ctx context.Context) FooResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FooResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(FooResourceOutput)
 }
 
-type FooResourceOutput struct{ *pulumi.OutputState }
+type FooResourceOutput struct{ *khulnasoft.OutputState }
 
 func (FooResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**FooResource)(nil)).Elem()
@@ -84,6 +84,6 @@ func (o FooResourceOutput) Foo() ResourceOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*FooResourceInput)(nil)).Elem(), &FooResource{})
-	pulumi.RegisterOutputType(FooResourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*FooResourceInput)(nil)).Elem(), &FooResource{})
+	khulnasoft.RegisterOutputType(FooResourceOutput{})
 }

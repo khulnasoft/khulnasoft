@@ -21,7 +21,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pulumi/esc"
+	"github.com/khulnasoft/esc"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/display"
 	sdkDisplay "github.com/khulnasoft/khulnasoft/pkg/v3/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
@@ -30,12 +30,12 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/cancel"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // ErrNoPreviousDeployment is returned when there isn't a previous deployment.
@@ -63,7 +63,7 @@ func (e OverStackLimitError) Error() string {
 }
 
 // StackReference is an opaque type that refers to a stack managed by a backend.  The CLI uses the ParseStackReference
-// method to turn a string like "my-great-stack" or "pulumi/my-great-stack" into a stack reference that can be used to
+// method to turn a string like "my-great-stack" or "khulnasoft/my-great-stack" into a stack reference that can be used to
 // interact with the stack via the backend. Stack references are specific to a given backend and different back ends
 // may interpret the string passed to ParseStackReference differently.
 type StackReference interface {

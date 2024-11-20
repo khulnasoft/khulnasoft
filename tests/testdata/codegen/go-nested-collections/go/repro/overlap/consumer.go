@@ -7,17 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"go-nested-collections/repro/internal"
 )
 
 type Consumer struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
 // NewConsumer registers a new resource with the given unique name, arguments, and options.
-func NewConsumer(ctx *pulumi.Context,
-	name string, args *ConsumerArgs, opts ...pulumi.ResourceOption) (*Consumer, error) {
+func NewConsumer(ctx *khulnasoft.Context,
+	name string, args *ConsumerArgs, opts ...khulnasoft.ResourceOption) (*Consumer, error) {
 	if args == nil {
 		args = &ConsumerArgs{}
 	}
@@ -33,8 +33,8 @@ func NewConsumer(ctx *pulumi.Context,
 
 // GetConsumer gets an existing Consumer resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetConsumer(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ConsumerState, opts ...pulumi.ResourceOption) (*Consumer, error) {
+func GetConsumer(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ConsumerState, opts ...khulnasoft.ResourceOption) (*Consumer, error) {
 	var resource Consumer
 	err := ctx.ReadResource("repro:overlap:Consumer", name, id, state, &resource, opts...)
 	if err != nil {
@@ -55,8 +55,8 @@ func (ConsumerState) ElementType() reflect.Type {
 }
 
 type consumerArgs struct {
-	Typ  map[string]*SomeType `pulumi:"typ"`
-	TypM *SomeTypeMap         `pulumi:"typM"`
+	Typ  map[string]*SomeType `khulnasoft:"typ"`
+	TypM *SomeTypeMap         `khulnasoft:"typM"`
 }
 
 // The set of arguments for constructing a Consumer resource.
@@ -70,7 +70,7 @@ func (ConsumerArgs) ElementType() reflect.Type {
 }
 
 type ConsumerInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConsumerOutput() ConsumerOutput
 	ToConsumerOutputWithContext(ctx context.Context) ConsumerOutput
@@ -85,7 +85,7 @@ func (i *Consumer) ToConsumerOutput() ConsumerOutput {
 }
 
 func (i *Consumer) ToConsumerOutputWithContext(ctx context.Context) ConsumerOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConsumerOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConsumerOutput)
 }
 
 // ConsumerArrayInput is an input type that accepts ConsumerArray and ConsumerArrayOutput values.
@@ -93,7 +93,7 @@ func (i *Consumer) ToConsumerOutputWithContext(ctx context.Context) ConsumerOutp
 //
 //	ConsumerArray{ ConsumerArgs{...} }
 type ConsumerArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConsumerArrayOutput() ConsumerArrayOutput
 	ToConsumerArrayOutputWithContext(context.Context) ConsumerArrayOutput
@@ -110,7 +110,7 @@ func (i ConsumerArray) ToConsumerArrayOutput() ConsumerArrayOutput {
 }
 
 func (i ConsumerArray) ToConsumerArrayOutputWithContext(ctx context.Context) ConsumerArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConsumerArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConsumerArrayOutput)
 }
 
 // ConsumerMapInput is an input type that accepts ConsumerMap and ConsumerMapOutput values.
@@ -118,7 +118,7 @@ func (i ConsumerArray) ToConsumerArrayOutputWithContext(ctx context.Context) Con
 //
 //	ConsumerMap{ "key": ConsumerArgs{...} }
 type ConsumerMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConsumerMapOutput() ConsumerMapOutput
 	ToConsumerMapOutputWithContext(context.Context) ConsumerMapOutput
@@ -135,10 +135,10 @@ func (i ConsumerMap) ToConsumerMapOutput() ConsumerMapOutput {
 }
 
 func (i ConsumerMap) ToConsumerMapOutputWithContext(ctx context.Context) ConsumerMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConsumerMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConsumerMapOutput)
 }
 
-type ConsumerOutput struct{ *pulumi.OutputState }
+type ConsumerOutput struct{ *khulnasoft.OutputState }
 
 func (ConsumerOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Consumer)(nil)).Elem()
@@ -152,7 +152,7 @@ func (o ConsumerOutput) ToConsumerOutputWithContext(ctx context.Context) Consume
 	return o
 }
 
-type ConsumerArrayOutput struct{ *pulumi.OutputState }
+type ConsumerArrayOutput struct{ *khulnasoft.OutputState }
 
 func (ConsumerArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*Consumer)(nil)).Elem()
@@ -166,13 +166,13 @@ func (o ConsumerArrayOutput) ToConsumerArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o ConsumerArrayOutput) Index(i pulumi.IntInput) ConsumerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Consumer {
+func (o ConsumerArrayOutput) Index(i khulnasoft.IntInput) ConsumerOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *Consumer {
 		return vs[0].([]*Consumer)[vs[1].(int)]
 	}).(ConsumerOutput)
 }
 
-type ConsumerMapOutput struct{ *pulumi.OutputState }
+type ConsumerMapOutput struct{ *khulnasoft.OutputState }
 
 func (ConsumerMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*Consumer)(nil)).Elem()
@@ -186,17 +186,17 @@ func (o ConsumerMapOutput) ToConsumerMapOutputWithContext(ctx context.Context) C
 	return o
 }
 
-func (o ConsumerMapOutput) MapIndex(k pulumi.StringInput) ConsumerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Consumer {
+func (o ConsumerMapOutput) MapIndex(k khulnasoft.StringInput) ConsumerOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *Consumer {
 		return vs[0].(map[string]*Consumer)[vs[1].(string)]
 	}).(ConsumerOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ConsumerInput)(nil)).Elem(), &Consumer{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ConsumerArrayInput)(nil)).Elem(), ConsumerArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ConsumerMapInput)(nil)).Elem(), ConsumerMap{})
-	pulumi.RegisterOutputType(ConsumerOutput{})
-	pulumi.RegisterOutputType(ConsumerArrayOutput{})
-	pulumi.RegisterOutputType(ConsumerMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConsumerInput)(nil)).Elem(), &Consumer{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConsumerArrayInput)(nil)).Elem(), ConsumerArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConsumerMapInput)(nil)).Elem(), ConsumerMap{})
+	khulnasoft.RegisterOutputType(ConsumerOutput{})
+	khulnasoft.RegisterOutputType(ConsumerArrayOutput{})
+	khulnasoft.RegisterOutputType(ConsumerMapOutput{})
 }

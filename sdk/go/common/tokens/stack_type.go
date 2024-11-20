@@ -15,4 +15,4 @@
 package tokens
 
 // RootStackType is the type name that will be used for the root component in the Pulumi resource tree.
-const RootStackType Type = "pulumi:pulumi:Stack"
+const RootStackType Type = "khulnasoft:khulnasoft:Stack"

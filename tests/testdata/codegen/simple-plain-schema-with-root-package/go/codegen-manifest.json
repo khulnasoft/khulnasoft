@@ -3,10 +3,10 @@
     "component.go",
     "doc.go",
     "init.go",
-    "internal/pulumiUtilities.go",
-    "internal/pulumiVersion.go",
+    "internal/khulnasoftUtilities.go",
+    "internal/khulnasoftVersion.go",
     "provider.go",
-    "pulumi-plugin.json",
-    "pulumiTypes.go"
+    "khulnasoft-plugin.json",
+    "khulnasoftTypes.go"
   ]
 }

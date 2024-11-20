@@ -73,6 +73,6 @@ func TestGetValidDefaultProjectName(t *testing.T) {
 	assert.Equal(t, "project", getValidProjectName("("))
 	assert.Equal(t, "project", getValidProjectName(")"))
 	assert.Equal(t, "project", getValidProjectName("!@#$%^&*()"))
-	assert.Equal(t, "project", getValidProjectName("pulumi"))
-	assert.Equal(t, "project", getValidProjectName("pulumi.test"))
+	assert.Equal(t, "project", getValidProjectName("khulnasoft"))
+	assert.Equal(t, "project", getValidProjectName("khulnasoft.test"))
 }

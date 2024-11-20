@@ -19,7 +19,7 @@ This is a test package for pyproject.toml
 <h2 id="package-details">Package Details</h2>
 <dl class="package-details">
 	<dt>Repository</dt>
-	<dd><a href="https://github.com/pulumi/pulumi">example pulumi/pulumi</a></dd>
+	<dd><a href="https://github.com/khulnasoft/khulnasoft">example khulnasoft/khulnasoft</a></dd>
 	<dt>License</dt>
 	<dd>MIT</dd>
 	<dt>Version</dt>

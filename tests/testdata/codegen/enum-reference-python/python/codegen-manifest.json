@@ -1,17 +1,17 @@
 {
   "emittedFiles": [
-    "pulumi_example/README.md",
-    "pulumi_example/__init__.py",
-    "pulumi_example/_utilities.py",
-    "pulumi_example/gcp/__init__.py",
-    "pulumi_example/gcp/gke/__init__.py",
-    "pulumi_example/gcp/gke/outputs.py",
-    "pulumi_example/mymodule/__init__.py",
-    "pulumi_example/mymodule/iam_resource.py",
-    "pulumi_example/provider.py",
-    "pulumi_example/pulumi-plugin.json",
-    "pulumi_example/py.typed",
-    "pulumi_example/replicated_bucket.py",
+    "khulnasoft_example/README.md",
+    "khulnasoft_example/__init__.py",
+    "khulnasoft_example/_utilities.py",
+    "khulnasoft_example/gcp/__init__.py",
+    "khulnasoft_example/gcp/gke/__init__.py",
+    "khulnasoft_example/gcp/gke/outputs.py",
+    "khulnasoft_example/mymodule/__init__.py",
+    "khulnasoft_example/mymodule/iam_resource.py",
+    "khulnasoft_example/provider.py",
+    "khulnasoft_example/khulnasoft-plugin.json",
+    "khulnasoft_example/py.typed",
+    "khulnasoft_example/replicated_bucket.py",
     "setup.py"
   ]
 }

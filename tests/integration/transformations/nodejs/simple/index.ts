@@ -1,11 +1,11 @@
 // Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 import { Random } from "./random";
 
-class MyComponent extends pulumi.ComponentResource {
+class MyComponent extends khulnasoft.ComponentResource {
     child: Random;
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:component:MyComponent", name, {}, opts);
         this.child = new Random(`${name}-child`, { length: 5 }, {
             parent: this,
@@ -22,7 +22,7 @@ const res1 = new Random("res1", { length: 5 }, {
             console.log("res1 transformation");
             return {
                 props: props,
-                opts: pulumi.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
+                opts: khulnasoft.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
             };
         },
     ],
@@ -36,7 +36,7 @@ const res2 = new MyComponent("res2", {
             if (type === "testprovider:index:Random") {
                 return {
                     props: { prefix: "newDefault", ...props },
-                    opts: pulumi.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
+                    opts: khulnasoft.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
                 };
             }
         },
@@ -44,12 +44,12 @@ const res2 = new MyComponent("res2", {
 });
 
 // Scenario #3 - apply a transformation to the Stack to transform all (future) resources in the stack
-pulumi.runtime.registerStackTransformation(({ type, props, opts }) => {
+khulnasoft.runtime.registerStackTransformation(({ type, props, opts }) => {
     console.log("stack transformation");
     if (type === "testprovider:index:Random") {
         return {
             props: { ...props, prefix: "stackDefault" },
-            opts: pulumi.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
+            opts: khulnasoft.mergeOptions(opts, { additionalSecretOutputs: ["result"] }),
         };
     }
 });
@@ -85,10 +85,10 @@ const res4 = new MyComponent("res4", {
 });
 
 // Scenario #5 - cross-resource transformations that inject dependencies on one resource into another.
-class MyOtherComponent extends pulumi.ComponentResource {
+class MyOtherComponent extends khulnasoft.ComponentResource {
     child1: Random;
     child2: Random;
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:component:MyOtherComponent", name, {}, opts);
         this.child1 = new Random(`${name}-child1`, { length: 5 }, { parent: this });
         this.child2 = new Random(`${name}-child2`, { length: 5 }, { parent: this });
@@ -96,24 +96,24 @@ class MyOtherComponent extends pulumi.ComponentResource {
     }
 }
 
-const transformChild1DependsOnChild2: pulumi.ResourceTransformation = (() => {
+const transformChild1DependsOnChild2: khulnasoft.ResourceTransformation = (() => {
     console.log("res5 transformation")
 
     // Create a promise that wil be resolved once we find child2.  This is needed because we do not
     // know what order we will see the resource registrations of child1 and child2.
-    let child2Found: (res: pulumi.Resource) => void;
-    const child2 = new Promise<pulumi.Resource>((res) => child2Found = res);
+    let child2Found: (res: khulnasoft.Resource) => void;
+    const child2 = new Promise<khulnasoft.Resource>((res) => child2Found = res);
 
     // Return a transformation which will rewrite child1 to depend on the promise for child2, and
     // will resolve that promise when it finds child2.
-    return (args: pulumi.ResourceTransformationArgs) => {
+    return (args: khulnasoft.ResourceTransformationArgs) => {
         if (args.name.endsWith("-child2")) {
             // Resolve the child2 promise with the child2 resource.
             child2Found(args.resource);
             return undefined;
         } else if (args.name.endsWith("-child1")) {
             // Overwrite the `prefix` to child2 with a dependency on the `length` from child1.
-            const child2Result = pulumi.output(args.props["length"]).apply(async (input) => {
+            const child2Result = khulnasoft.output(args.props["length"]).apply(async (input) => {
                 if (input !== 5) {
                     // Not strictly necessary - but shows we can confirm invariants we expect to be
                     // true.

@@ -13,20 +13,20 @@ one or more `.proto` files, you should run `make build_proto` to regenerate the
 necessary stubs and commit the changes as part of the same piece of work.
 :::
 
-The <gh-file:pulumi#proto/generate.sh> script in this directory (called by the
-`build_proto` target in the top-level <gh-file:pulumi#Makefile>) generates types
+The <gh-file:khulnasoft#proto/generate.sh> script in this directory (called by the
+`build_proto` target in the top-level <gh-file:khulnasoft#Makefile>) generates types
 and gRPC clients for the languages supported in this repository (Go,
 NodeJS/TypeScript and Python). Generated code is committed to the repository,
 typically in `proto` directories at the relevant use sites (e.g.
-<gh-file:pulumi#sdk/nodejs/proto>).
+<gh-file:khulnasoft#sdk/nodejs/proto>).
 
 ## Documentation
 
 We use the [`protoc-gen-doc`
 plugin](https://github.com/pseudomuto/protoc-gen-doc) to `protoc` to generate
 Markdown documentation from the Protobuf files. This process is handled by the
-<gh-file:pulumi#docs/Makefile> in the `docs` directory and uses the
-<gh-file:pulumi#docs/references/proto.md.tmpl> template. Generated documentation ends
+<gh-file:khulnasoft#docs/Makefile> in the `docs` directory and uses the
+<gh-file:khulnasoft#docs/references/proto.md.tmpl> template. Generated documentation ends
 up in the `docs/_generated` directory (which is `.gitignore`d), so e.g. this
 index links to files in this folder.
 

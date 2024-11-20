@@ -2,13 +2,13 @@
 
 from typing import Any, Optional
 
-import pulumi
+import khulnasoft
 
-class Component(pulumi.ComponentResource):
-    echo: pulumi.Output[Any]
-    childId: pulumi.Output[str]
+class Component(khulnasoft.ComponentResource):
+    echo: khulnasoft.Output[Any]
+    childId: khulnasoft.Output[str]
 
-    def __init__(self, name: str, echo: pulumi.Input[Any], opts: Optional[pulumi.ResourceOptions] = None):
+    def __init__(self, name: str, echo: khulnasoft.Input[Any], opts: Optional[khulnasoft.ResourceOptions] = None):
         props = dict()
         props["echo"] = echo
         props["childId"] = None

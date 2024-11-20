@@ -19,7 +19,7 @@ package optremoteup
 import (
 	"io"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/events"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/events"
 )
 
 // ProgressStreams allows specifying one or more io.Writers to redirect incremental update stdout

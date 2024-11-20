@@ -30,20 +30,20 @@ import (
 	. "github.com/khulnasoft/khulnasoft/pkg/v3/engine" //nolint:revive
 	lt "github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/framework"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/urn"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/urn"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 func TransformFunction(
 	f func(
 		name, typ string, custom bool, parent string,
-		props resource.PropertyMap, opts *pulumirpc.TransformResourceOptions,
-	) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error),
+		props resource.PropertyMap, opts *khulnasoftrpc.TransformResourceOptions,
+	) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error),
 ) func([]byte) (proto.Message, error) {
 	return func(request []byte) (proto.Message, error) {
-		var transformationRequest pulumirpc.TransformRequest
+		var transformationRequest khulnasoftrpc.TransformRequest
 		err := proto.Unmarshal(request, &transformationRequest)
 		if err != nil {
 			return nil, fmt.Errorf("unmarshaling request: %w", err)
@@ -75,7 +75,7 @@ func TransformFunction(
 			return nil, err
 		}
 
-		return &pulumirpc.TransformResponse{
+		return &khulnasoftrpc.TransformResponse{
 			Properties: mret,
 			Options:    opts,
 		}, nil
@@ -84,11 +84,11 @@ func TransformFunction(
 
 func TransformInvokeFunction(
 	f func(
-		token string, props resource.PropertyMap, opts *pulumirpc.TransformInvokeOptions,
-	) (resource.PropertyMap, *pulumirpc.TransformInvokeOptions, error),
+		token string, props resource.PropertyMap, opts *khulnasoftrpc.TransformInvokeOptions,
+	) (resource.PropertyMap, *khulnasoftrpc.TransformInvokeOptions, error),
 ) func([]byte) (proto.Message, error) {
 	return func(request []byte) (proto.Message, error) {
-		var transformationRequest pulumirpc.TransformInvokeRequest
+		var transformationRequest khulnasoftrpc.TransformInvokeRequest
 		err := proto.Unmarshal(request, &transformationRequest)
 		if err != nil {
 			return nil, fmt.Errorf("unmarshaling request: %w", err)
@@ -119,7 +119,7 @@ func TransformInvokeFunction(
 			return nil, err
 		}
 
-		return &pulumirpc.TransformInvokeResponse{
+		return &khulnasoftrpc.TransformInvokeResponse{
 			Args:    mret,
 			Options: opts,
 		}, nil
@@ -159,8 +159,8 @@ func TestRemoteTransforms(t *testing.T) {
 
 		callback1, err := callbacks.Allocate(
 			TransformFunction(func(name, typ string, custom bool, parent string,
-				props resource.PropertyMap, opts *pulumirpc.TransformResourceOptions,
-			) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error) {
+				props resource.PropertyMap, opts *khulnasoftrpc.TransformResourceOptions,
+			) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error) {
 				props["foo"] = pvApply(props["foo"], func(v resource.PropertyValue) resource.PropertyValue {
 					return resource.NewNumberProperty(v.NumberValue() + 1)
 				})
@@ -173,8 +173,8 @@ func TestRemoteTransforms(t *testing.T) {
 
 		callback2, err := callbacks.Allocate(
 			TransformFunction(func(name, typ string, custom bool, parent string,
-				props resource.PropertyMap, opts *pulumirpc.TransformResourceOptions,
-			) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error) {
+				props resource.PropertyMap, opts *khulnasoftrpc.TransformResourceOptions,
+			) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error) {
 				props["foo"] = pvApply(props["foo"], func(v resource.PropertyValue) resource.PropertyValue {
 					return resource.NewNumberProperty(v.NumberValue() + 1)
 				})
@@ -192,8 +192,8 @@ func TestRemoteTransforms(t *testing.T) {
 
 		callback3, err := callbacks.Allocate(
 			TransformFunction(func(name, typ string, custom bool, parent string,
-				props resource.PropertyMap, opts *pulumirpc.TransformResourceOptions,
-			) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error) {
+				props resource.PropertyMap, opts *khulnasoftrpc.TransformResourceOptions,
+			) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error) {
 				props["foo"] = pvApply(props["foo"], func(v resource.PropertyValue) resource.PropertyValue {
 					return resource.NewNumberProperty(v.NumberValue() + 1)
 				})
@@ -209,7 +209,7 @@ func TestRemoteTransforms(t *testing.T) {
 			Inputs: resource.PropertyMap{
 				"foo": resource.NewNumberProperty(1),
 			},
-			Transforms: []*pulumirpc.Callback{
+			Transforms: []*khulnasoftrpc.Callback{
 				callback2,
 			},
 		})
@@ -219,7 +219,7 @@ func TestRemoteTransforms(t *testing.T) {
 			Inputs: resource.PropertyMap{
 				"foo": resource.NewNumberProperty(10),
 			},
-			Transforms: []*pulumirpc.Callback{
+			Transforms: []*khulnasoftrpc.Callback{
 				callback3,
 			},
 			Parent: respA.URN,
@@ -241,7 +241,7 @@ func TestRemoteTransforms(t *testing.T) {
 	assert.Len(t, snap.Resources, 3)
 	// Check Resources[1] is the resA resource
 	res := snap.Resources[1]
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA"), res.URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA"), res.URN)
 	// Check it's final input properties match what we expected from the transformations
 	assert.Equal(t, resource.PropertyMap{
 		"foo":  resource.NewNumberProperty(3),
@@ -251,7 +251,7 @@ func TestRemoteTransforms(t *testing.T) {
 
 	// Check Resources[2] is the resB resource
 	res = snap.Resources[2]
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA$pkgA:m:typA::resB"), res.URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA$pkgA:m:typA::resB"), res.URN)
 	// Check it's final input properties match what we expected from the transformations
 	assert.Equal(t, resource.PropertyMap{
 		"foo":  resource.NewNumberProperty(13),
@@ -277,7 +277,7 @@ func TestRemoteTransformBadResponse(t *testing.T) {
 
 		callback1, err := callbacks.Allocate(func(args []byte) (proto.Message, error) {
 			// return the wrong message type
-			return &pulumirpc.RegisterResourceResponse{
+			return &khulnasoftrpc.RegisterResourceResponse{
 				Urn: "boom",
 			}, nil
 		})
@@ -391,8 +391,8 @@ func TestRemoteTransformationsConstruct(t *testing.T) {
 
 		callback1, err := callbacks.Allocate(
 			TransformFunction(func(name, typ string, custom bool, parent string,
-				props resource.PropertyMap, opts *pulumirpc.TransformResourceOptions,
-			) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error) {
+				props resource.PropertyMap, opts *khulnasoftrpc.TransformResourceOptions,
+			) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error) {
 				if typ == "pkgA:m:typA" {
 					props["foo"] = pvApply(props["foo"], func(v resource.PropertyValue) resource.PropertyValue {
 						return resource.NewNumberProperty(v.NumberValue() + 1)
@@ -425,7 +425,7 @@ func TestRemoteTransformationsConstruct(t *testing.T) {
 	assert.Len(t, snap.Resources, 3)
 	// Check Resources[2] is the resA resource
 	res := snap.Resources[2]
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typC$pkgA:m:typA::resA"), res.URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typC$pkgA:m:typA::resA"), res.URN)
 	// Check it's final input properties match what we expected from the transformations
 	assert.Equal(t, resource.PropertyMap{
 		"foo": resource.NewNumberProperty(2),
@@ -442,9 +442,9 @@ func TestRemoteTransformsOptions(t *testing.T) {
 		}),
 	}
 
-	urnB := "urn:pulumi:test::test::pkgA:m:typA::resB"
-	urnC := "urn:pulumi:test::test::pkgA:m:typA::resC"
-	urnD := "urn:pulumi:test::test::pkgA:m:typA::resD"
+	urnB := "urn:khulnasoft:test::test::pkgA:m:typA::resB"
+	urnC := "urn:khulnasoft:test::test::pkgA:m:typA::resC"
+	urnD := "urn:khulnasoft:test::test::pkgA:m:typA::resD"
 
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
 		callbacks, err := deploytest.NewCallbacksServer()
@@ -461,11 +461,11 @@ func TestRemoteTransformsOptions(t *testing.T) {
 
 		callback1, err := callbacks.Allocate(
 			TransformFunction(func(name, typ string, custom bool, parent string,
-				props resource.PropertyMap, opts *pulumirpc.TransformResourceOptions,
-			) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error) {
+				props resource.PropertyMap, opts *khulnasoftrpc.TransformResourceOptions,
+			) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error) {
 				// Check that the options are passed through correctly
 				assert.Equal(t, []string{"foo"}, opts.AdditionalSecretOutputs)
-				assert.Equal(t, urnB, opts.Aliases[0].Alias.(*pulumirpc.Alias_Urn).Urn)
+				assert.Equal(t, urnB, opts.Aliases[0].Alias.(*khulnasoftrpc.Alias_Urn).Urn)
 				assert.Equal(t, "16m40s", opts.CustomTimeouts.Create)
 				assert.Equal(t, "33m20s", opts.CustomTimeouts.Update)
 				assert.Equal(t, "50m0s", opts.CustomTimeouts.Delete)
@@ -479,12 +479,12 @@ func TestRemoteTransformsOptions(t *testing.T) {
 				assert.Equal(t, "2.0.0", opts.Version)
 
 				// Modify all the options
-				opts = &pulumirpc.TransformResourceOptions{
+				opts = &khulnasoftrpc.TransformResourceOptions{
 					AdditionalSecretOutputs: []string{"bar"},
-					Aliases: []*pulumirpc.Alias{
-						{Alias: &pulumirpc.Alias_Urn{Urn: urnB}},
+					Aliases: []*khulnasoftrpc.Alias{
+						{Alias: &khulnasoftrpc.Alias_Urn{Urn: urnB}},
 					},
-					CustomTimeouts: &pulumirpc.RegisterResourceRequest_CustomTimeouts{
+					CustomTimeouts: &khulnasoftrpc.RegisterResourceRequest_CustomTimeouts{
 						Create: "1s",
 						Update: "2s",
 						Delete: "3s",
@@ -509,8 +509,8 @@ func TestRemoteTransformsOptions(t *testing.T) {
 		dbr := true
 		_, err = monitor.RegisterResource("pkgA:m:typA", "resD", true, deploytest.ResourceOptions{
 			AdditionalSecretOutputs: []resource.PropertyKey{"foo"},
-			Aliases: []*pulumirpc.Alias{
-				{Alias: &pulumirpc.Alias_Urn{Urn: urnB}},
+			Aliases: []*khulnasoftrpc.Alias{
+				{Alias: &khulnasoftrpc.Alias_Urn{Urn: urnB}},
 			},
 			CustomTimeouts: &resource.CustomTimeouts{
 				Create: 1000,
@@ -593,8 +593,8 @@ func TestRemoteTransformsDependencies(t *testing.T) {
 
 		callback, err := callbacks.Allocate(
 			TransformFunction(func(name, typ string, custom bool, parent string,
-				props resource.PropertyMap, opts *pulumirpc.TransformResourceOptions,
-			) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error) {
+				props resource.PropertyMap, opts *khulnasoftrpc.TransformResourceOptions,
+			) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error) {
 				// props should be tracking that it depends on resB
 				assert.True(t, props["foo"].IsOutput())
 				assert.Equal(t, []resource.URN{respB.URN}, props["foo"].OutputValue().Dependencies)
@@ -619,7 +619,7 @@ func TestRemoteTransformsDependencies(t *testing.T) {
 				PropertyDeps: map[resource.PropertyKey][]resource.URN{
 					"foo": {respB.URN},
 				},
-				Transforms: []*pulumirpc.Callback{
+				Transforms: []*khulnasoftrpc.Callback{
 					callback,
 				},
 			})
@@ -642,21 +642,21 @@ func TestRemoteTransformsDependencies(t *testing.T) {
 	assert.Len(t, snap.Resources, 4)
 	// Check Resources[3] is the resC resource
 	res := snap.Resources[3]
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typA::resC"), res.URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resC"), res.URN)
 	// Check it's final input properties match what we expected from the transformations
 	assert.Equal(t, resource.PropertyMap{
 		"foo": resource.NewNumberProperty(1),
 	}, res.Inputs)
 	// Check the dependencies are as expected
 	assert.Equal(t, map[resource.PropertyKey][]resource.URN{
-		"foo": {resource.URN("urn:pulumi:test::test::pkgA:m:typA::resA")},
+		"foo": {resource.URN("urn:khulnasoft:test::test::pkgA:m:typA::resA")},
 	}, res.PropertyDependencies)
 	assert.Equal(t, []resource.URN{
-		"urn:pulumi:test::test::pkgA:m:typA::resA",
+		"urn:khulnasoft:test::test::pkgA:m:typA::resA",
 	}, res.Dependencies)
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/15843. Ensure that if a component resource has a
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/15843. Ensure that if a component resource has a
 // transform that's saved and looked up by it's children.
 func TestRemoteComponentTransforms(t *testing.T) {
 	t.Parallel()
@@ -697,8 +697,8 @@ func TestRemoteComponentTransforms(t *testing.T) {
 
 		callback1, err := callbacks.Allocate(
 			TransformFunction(func(name, typ string, custom bool, parent string,
-				props resource.PropertyMap, opts *pulumirpc.TransformResourceOptions,
-			) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error) {
+				props resource.PropertyMap, opts *khulnasoftrpc.TransformResourceOptions,
+			) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error) {
 				if typ == "pkgA:m:typA" {
 					props["foo"] = pvApply(props["foo"], func(v resource.PropertyValue) resource.PropertyValue {
 						return resource.NewNumberProperty(v.NumberValue() + 1)
@@ -710,7 +710,7 @@ func TestRemoteComponentTransforms(t *testing.T) {
 
 		_, err = monitor.RegisterResource("pkgA:m:typC", "resC", false, deploytest.ResourceOptions{
 			Remote: true,
-			Transforms: []*pulumirpc.Callback{
+			Transforms: []*khulnasoftrpc.Callback{
 				callback1,
 			},
 		})
@@ -731,7 +731,7 @@ func TestRemoteComponentTransforms(t *testing.T) {
 	assert.Len(t, snap.Resources, 3)
 	// Check Resources[2] is the resA resource
 	res := snap.Resources[2]
-	assert.Equal(t, resource.URN("urn:pulumi:test::test::pkgA:m:typC$pkgA:m:typA::resA"), res.URN)
+	assert.Equal(t, resource.URN("urn:khulnasoft:test::test::pkgA:m:typC$pkgA:m:typA::resA"), res.URN)
 	// Check it's final input properties match what we expected from the transformations
 	assert.Equal(t, resource.PropertyMap{
 		"foo": resource.NewNumberProperty(2),
@@ -759,11 +759,11 @@ func TestTransformsProviderOpt(t *testing.T) {
 	var explicitProvider string
 	var implicitProvider string
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		resp, err := monitor.RegisterResource("pulumi:providers:pkgA", "explicit", true)
+		resp, err := monitor.RegisterResource("khulnasoft:providers:pkgA", "explicit", true)
 		require.NoError(t, err)
 		explicitProvider = string(resp.URN) + "::" + resp.ID.String()
 
-		resp, err = monitor.RegisterResource("pulumi:providers:pkgA", "implicit", true)
+		resp, err = monitor.RegisterResource("khulnasoft:providers:pkgA", "implicit", true)
 		require.NoError(t, err)
 		implicitProvider = string(resp.URN) + "::" + resp.ID.String()
 
@@ -771,8 +771,8 @@ func TestTransformsProviderOpt(t *testing.T) {
 		require.NoError(t, err)
 		callback, err := callbacks.Allocate(
 			TransformFunction(func(name, typ string, custom bool, parent string,
-				props resource.PropertyMap, opts *pulumirpc.TransformResourceOptions,
-			) (resource.PropertyMap, *pulumirpc.TransformResourceOptions, error) {
+				props resource.PropertyMap, opts *khulnasoftrpc.TransformResourceOptions,
+			) (resource.PropertyMap, *khulnasoftrpc.TransformResourceOptions, error) {
 				fmt.Println("provider: ", opts.Provider)
 				if opts.Provider == "" {
 					opts.Provider = implicitProvider
@@ -833,18 +833,18 @@ func TestTransformsProviderOpt(t *testing.T) {
 	sort.Slice(snap.Resources, func(i, j int) bool {
 		return snap.Resources[i].URN < snap.Resources[j].URN
 	})
-	assert.Equal(t, urn.URN("urn:pulumi:test::test::pkgA:m:typA::explicitProvider"), snap.Resources[0].URN)
+	assert.Equal(t, urn.URN("urn:khulnasoft:test::test::pkgA:m:typA::explicitProvider"), snap.Resources[0].URN)
 	assert.Equal(t, explicitProvider, snap.Resources[0].Provider)
-	assert.Equal(t, urn.URN("urn:pulumi:test::test::pkgA:m:typA::explicitProvidersMap"), snap.Resources[1].URN)
+	assert.Equal(t, urn.URN("urn:khulnasoft:test::test::pkgA:m:typA::explicitProvidersMap"), snap.Resources[1].URN)
 	assert.Equal(t, explicitProvider, snap.Resources[1].Provider)
-	assert.Equal(t, urn.URN("urn:pulumi:test::test::pkgA:m:typA::implicitProvider"), snap.Resources[2].URN)
+	assert.Equal(t, urn.URN("urn:khulnasoft:test::test::pkgA:m:typA::implicitProvider"), snap.Resources[2].URN)
 	assert.Equal(t, implicitProvider, snap.Resources[2].Provider)
 	assert.Equal(t,
-		urn.URN("urn:pulumi:test::test::xmy:component:resource$pkgA:m:typA::parentedResource"),
+		urn.URN("urn:khulnasoft:test::test::xmy:component:resource$pkgA:m:typA::parentedResource"),
 		snap.Resources[5].URN)
 	assert.Equal(t, explicitProvider, snap.Resources[5].Provider)
 	assert.Equal(t,
-		urn.URN("urn:pulumi:test::test::ymy:component:resource$pkgA:m:typA::parentedResource"),
+		urn.URN("urn:khulnasoft:test::test::ymy:component:resource$pkgA:m:typA::parentedResource"),
 		snap.Resources[7].URN)
 	assert.Equal(t, implicitProvider, snap.Resources[7].Provider)
 }
@@ -865,7 +865,7 @@ func TestTransformInvoke(t *testing.T) {
 
 	var implicitProvider string
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		resp, err := monitor.RegisterResource("pulumi:providers:pkgA", "implicit", true)
+		resp, err := monitor.RegisterResource("khulnasoft:providers:pkgA", "implicit", true)
 		require.NoError(t, err)
 		implicitProvider = string(resp.URN) + "::" + resp.ID.String()
 
@@ -873,8 +873,8 @@ func TestTransformInvoke(t *testing.T) {
 		require.NoError(t, err)
 		callback, err := callbacks.Allocate(
 			TransformInvokeFunction(func(token string,
-				args resource.PropertyMap, opts *pulumirpc.TransformInvokeOptions,
-			) (resource.PropertyMap, *pulumirpc.TransformInvokeOptions, error) {
+				args resource.PropertyMap, opts *khulnasoftrpc.TransformInvokeOptions,
+			) (resource.PropertyMap, *khulnasoftrpc.TransformInvokeOptions, error) {
 				args["foo"] = resource.NewStringProperty("bar")
 
 				return args, opts, nil
@@ -925,7 +925,7 @@ func TestTransformInvokeTransformProvider(t *testing.T) {
 
 	var implicitProvider string
 	programF := deploytest.NewLanguageRuntimeF(func(_ plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		resp, err := monitor.RegisterResource("pulumi:providers:pkgA", "implicit", true)
+		resp, err := monitor.RegisterResource("khulnasoft:providers:pkgA", "implicit", true)
 		require.NoError(t, err)
 		implicitProvider = string(resp.URN) + "::" + resp.ID.String()
 
@@ -933,8 +933,8 @@ func TestTransformInvokeTransformProvider(t *testing.T) {
 		require.NoError(t, err)
 		callback, err := callbacks.Allocate(
 			TransformInvokeFunction(func(token string,
-				args resource.PropertyMap, opts *pulumirpc.TransformInvokeOptions,
-			) (resource.PropertyMap, *pulumirpc.TransformInvokeOptions, error) {
+				args resource.PropertyMap, opts *khulnasoftrpc.TransformInvokeOptions,
+			) (resource.PropertyMap, *khulnasoftrpc.TransformInvokeOptions, error) {
 				if opts.Provider == "" {
 					opts.Provider = implicitProvider
 				}

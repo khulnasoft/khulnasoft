@@ -20,14 +20,14 @@ import (
 	"testing"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestAboutCommands(t *testing.T) {
 	t.Parallel()
 
-	// pulumi about --json
+	// khulnasoft about --json
 	t.Run("json", func(t *testing.T) {
 		t.Parallel()
 
@@ -35,7 +35,7 @@ func TestAboutCommands(t *testing.T) {
 		defer e.DeleteIfNotFailed()
 		integration.CreateBasicPulumiRepo(e)
 		e.SetBackend(e.LocalURL())
-		stdout, _ := e.RunCommand("pulumi", "about", "--json")
+		stdout, _ := e.RunCommand("khulnasoft", "about", "--json")
 		var res interface{}
 		assert.NoError(t, json.Unmarshal([]byte(stdout), &res), "Should be valid json")
 		assert.Regexp(t, `"goVersion": "go1\..*"`, stdout)
@@ -43,7 +43,7 @@ func TestAboutCommands(t *testing.T) {
 		assert.Contains(t, stdout, "Failed to get information about the current stack:")
 	})
 
-	// pulumi about
+	// khulnasoft about
 	t.Run("plain", func(t *testing.T) {
 		t.Parallel()
 
@@ -51,7 +51,7 @@ func TestAboutCommands(t *testing.T) {
 		defer e.DeleteIfNotFailed()
 		integration.CreateBasicPulumiRepo(e)
 		e.SetBackend(e.LocalURL())
-		stdout, _ := e.RunCommand("pulumi", "about")
+		stdout, _ := e.RunCommand("khulnasoft", "about")
 		assert.Regexp(t, `Go Version\s+go\d+.\d+`, stdout)
 		assert.Contains(t, stdout, runtime.Compiler)
 	})

@@ -94,7 +94,7 @@ function usage(): void {
     console.error(`        --stack=s           set the stack name to s`);
     console.error(`        --config.k=v...     set runtime config key k to value v`);
     console.error(`        --parallel=p        run up to p resource operations in parallel (default is serial)`);
-    console.error(`        --query-mode        true to run pulumi in query mode`);
+    console.error(`        --query-mode        true to run khulnasoft in query mode`);
     console.error(`        --dry-run           true to simulate resource changes, but without making them`);
     console.error(`        --pwd=pwd           change the working directory before running the program`);
     console.error(`        --monitor=addr      [required] the RPC address for a resource monitor to connect to`);
@@ -144,7 +144,7 @@ function main(args: string[]): void {
         return printErrorUsageAndExit("error: Missing program to execute");
     }
 
-    // Due to node module loading semantics, multiple copies of @pulumi/pulumi could be loaded at runtime. So we need
+    // Due to node module loading semantics, multiple copies of @khulnasoft/khulnasoft could be loaded at runtime. So we need
     // to squirel these settings in the environment such that other copies which may be loaded later can recover them.
     //
     // Config is already an environment variaible set by the language plugin.

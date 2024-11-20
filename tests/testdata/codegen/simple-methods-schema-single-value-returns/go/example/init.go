@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"simple-methods-schema-single-value-returns/example/internal"
 )
 
@@ -19,7 +19,7 @@ func (m *module) Version() semver.Version {
 	return m.version
 }
 
-func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+func (m *module) Construct(ctx *khulnasoft.Context, name, typ, urn string) (r khulnasoft.Resource, err error) {
 	switch typ {
 	case "example::Foo":
 		r = &Foo{}
@@ -27,7 +27,7 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
-	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err = ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return
 }
 
@@ -39,13 +39,13 @@ func (p *pkg) Version() semver.Version {
 	return p.version
 }
 
-func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pulumi.ProviderResource, error) {
-	if typ != "pulumi:providers:example" {
+func (p *pkg) ConstructProvider(ctx *khulnasoft.Context, name, typ, urn string) (khulnasoft.ProviderResource, error) {
+	if typ != "khulnasoft:providers:example" {
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
 	r := &Provider{}
-	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err := ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return r, err
 }
 
@@ -54,12 +54,12 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
-	pulumi.RegisterResourceModule(
+	khulnasoft.RegisterResourceModule(
 		"example",
 		"",
 		&module{version},
 	)
-	pulumi.RegisterResourcePackage(
+	khulnasoft.RegisterResourcePackage(
 		"example",
 		&pkg{version},
 	)

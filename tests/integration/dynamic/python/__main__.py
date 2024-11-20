@@ -2,8 +2,8 @@
 
 import binascii
 import os
-from pulumi import ComponentResource, export
-from pulumi.dynamic import Resource, ResourceProvider, CreateResult
+from khulnasoft import ComponentResource, export
+from khulnasoft.dynamic import Resource, ResourceProvider, CreateResult
 
 class RandomResourceProvider(ResourceProvider):
     def create(self, props):

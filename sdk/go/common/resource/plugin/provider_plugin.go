@@ -34,38 +34,38 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 	"google.golang.org/protobuf/types/known/structpb"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/promise"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/archive"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/asset"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil/rpcerror"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/promise"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/archive"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/asset"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil/rpcerror"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // The package name for the NodeJS dynamic provider.
-const nodejsDynamicProviderPackage = "pulumi-nodejs"
+const nodejsDynamicProviderPackage = "khulnasoft-nodejs"
 
 // The `Type()` for the NodeJS dynamic provider.  Logically, this is the same as calling
-// providers.MakeProviderType(tokens.Package("pulumi-nodejs")), but does not depend on the providers package
+// providers.MakeProviderType(tokens.Package("khulnasoft-nodejs")), but does not depend on the providers package
 // (a direct dependency would cause a cyclic import issue.
 //
 // This is needed because we have to handle some buggy behavior that previous versions of this provider implemented.
-const nodejsDynamicProviderType = "pulumi:providers:" + nodejsDynamicProviderPackage
+const nodejsDynamicProviderType = "khulnasoft:providers:" + nodejsDynamicProviderPackage
 
 // The `Type()` for the Kubernetes provider.  Logically, this is the same as calling
 // providers.MakeProviderType(tokens.Package("kubernetes")), but does not depend on the providers package
 // (a direct dependency would cause a cyclic import issue.
 //
 // This is needed because we have to handle some buggy behavior that previous versions of this provider implemented.
-const kubernetesProviderType = "pulumi:providers:kubernetes"
+const kubernetesProviderType = "khulnasoft:providers:kubernetes"
 
 // provider reflects a resource plugin, loaded dynamically for a single package.
 type provider struct {
@@ -74,7 +74,7 @@ type provider struct {
 	ctx                    *Context                         // a plugin context for caching, etc.
 	pkg                    tokens.Package                   // the Pulumi package containing this provider's resources.
 	plug                   *plugin                          // the actual plugin process wrapper.
-	clientRaw              pulumirpc.ResourceProviderClient // the raw provider client; usually unsafe to use directly.
+	clientRaw              khulnasoftrpc.ResourceProviderClient // the raw provider client; usually unsafe to use directly.
 	disableProviderPreview bool                             // true if previews for Create and Update are disabled.
 	legacyPreview          bool                             // enables legacy behavior for unconfigured provider previews.
 
@@ -195,7 +195,7 @@ func NewProvider(host Host, ctx *Context, pkg tokens.Package, version *semver.Ve
 		ctx:                    ctx,
 		pkg:                    pkg,
 		plug:                   plug,
-		clientRaw:              pulumirpc.NewResourceProviderClient(plug.Conn),
+		clientRaw:              khulnasoftrpc.NewResourceProviderClient(plug.Conn),
 		disableProviderPreview: disableProviderPreview,
 		legacyPreview:          legacyPreview,
 		configSource:           &promise.CompletionSource[pluginConfig]{},
@@ -252,7 +252,7 @@ func NewProviderFromPath(host Host, ctx *Context, path string) (Provider, error)
 	p := &provider{
 		ctx:           ctx,
 		plug:          plug,
-		clientRaw:     pulumirpc.NewResourceProviderClient(plug.Conn),
+		clientRaw:     khulnasoftrpc.NewResourceProviderClient(plug.Conn),
 		legacyPreview: legacyPreview,
 		configSource:  &promise.CompletionSource[pluginConfig]{},
 	}
@@ -267,7 +267,7 @@ func NewProviderFromPath(host Host, ctx *Context, path string) (Provider, error)
 	return p, nil
 }
 
-func NewProviderWithClient(ctx *Context, pkg tokens.Package, client pulumirpc.ResourceProviderClient,
+func NewProviderWithClient(ctx *Context, pkg tokens.Package, client khulnasoftrpc.ResourceProviderClient,
 	disableProviderPreview bool,
 ) Provider {
 	return &provider{
@@ -319,17 +319,17 @@ func isDiffCheckConfigLogicallyUnimplemented(err *rpcerror.Error, providerType t
 }
 
 func (p *provider) Parameterize(ctx context.Context, request ParameterizeRequest) (ParameterizeResponse, error) {
-	var params pulumirpc.ParameterizeRequest
+	var params khulnasoftrpc.ParameterizeRequest
 	switch p := request.Parameters.(type) {
 	case *ParameterizeArgs:
-		params.Parameters = &pulumirpc.ParameterizeRequest_Args{
-			Args: &pulumirpc.ParameterizeRequest_ParametersArgs{
+		params.Parameters = &khulnasoftrpc.ParameterizeRequest_Args{
+			Args: &khulnasoftrpc.ParameterizeRequest_ParametersArgs{
 				Args: p.Args,
 			},
 		}
 	case *ParameterizeValue:
-		params.Parameters = &pulumirpc.ParameterizeRequest_Value{
-			Value: &pulumirpc.ParameterizeRequest_ParametersValue{
+		params.Parameters = &khulnasoftrpc.ParameterizeRequest_Value{
+			Value: &khulnasoftrpc.ParameterizeRequest_ParametersValue{
 				Name:    p.Name,
 				Version: p.Version.String(),
 				Value:   p.Value,
@@ -358,7 +358,7 @@ func (p *provider) GetSchema(ctx context.Context, req GetSchemaRequest) (GetSche
 		subpackageVersion = req.SubpackageVersion.String()
 	}
 
-	resp, err := p.clientRaw.GetSchema(p.requestContext(), &pulumirpc.GetSchemaRequest{
+	resp, err := p.clientRaw.GetSchema(p.requestContext(), &khulnasoftrpc.GetSchemaRequest{
 		Version:           req.Version,
 		SubpackageName:    req.SubpackageName,
 		SubpackageVersion: subpackageVersion,
@@ -396,7 +396,7 @@ func (p *provider) CheckConfig(ctx context.Context, req CheckConfigRequest) (Che
 		return CheckConfigResponse{}, err
 	}
 
-	resp, err := p.clientRaw.CheckConfig(p.requestContext(), &pulumirpc.CheckRequest{
+	resp, err := p.clientRaw.CheckConfig(p.requestContext(), &khulnasoftrpc.CheckRequest{
 		Urn:  string(req.URN),
 		Name: req.URN.Name(),
 		Type: req.URN.Type().String(),
@@ -443,7 +443,7 @@ func (p *provider) CheckConfig(ctx context.Context, req CheckConfigRequest) (Che
 	return CheckConfigResponse{Properties: inputs, Failures: failures}, nil
 }
 
-func decodeDetailedDiff(resp *pulumirpc.DiffResponse) map[string]PropertyDiff {
+func decodeDetailedDiff(resp *khulnasoftrpc.DiffResponse) map[string]PropertyDiff {
 	if !resp.GetHasDetailedDiff() {
 		return nil
 	}
@@ -452,17 +452,17 @@ func decodeDetailedDiff(resp *pulumirpc.DiffResponse) map[string]PropertyDiff {
 	for k, v := range resp.GetDetailedDiff() {
 		var d DiffKind
 		switch v.GetKind() {
-		case pulumirpc.PropertyDiff_ADD:
+		case khulnasoftrpc.PropertyDiff_ADD:
 			d = DiffAdd
-		case pulumirpc.PropertyDiff_ADD_REPLACE:
+		case khulnasoftrpc.PropertyDiff_ADD_REPLACE:
 			d = DiffAddReplace
-		case pulumirpc.PropertyDiff_DELETE:
+		case khulnasoftrpc.PropertyDiff_DELETE:
 			d = DiffDelete
-		case pulumirpc.PropertyDiff_DELETE_REPLACE:
+		case khulnasoftrpc.PropertyDiff_DELETE_REPLACE:
 			d = DiffDeleteReplace
-		case pulumirpc.PropertyDiff_UPDATE:
+		case khulnasoftrpc.PropertyDiff_UPDATE:
 			d = DiffUpdate
-		case pulumirpc.PropertyDiff_UPDATE_REPLACE:
+		case khulnasoftrpc.PropertyDiff_UPDATE_REPLACE:
 			d = DiffUpdateReplace
 		default:
 			// Consider unknown diff kinds to be simple updates.
@@ -513,7 +513,7 @@ func (p *provider) DiffConfig(ctx context.Context, req DiffConfigRequest) (DiffC
 		return DiffResult{}, err
 	}
 
-	resp, err := p.clientRaw.DiffConfig(p.requestContext(), &pulumirpc.DiffRequest{
+	resp, err := p.clientRaw.DiffConfig(p.requestContext(), &khulnasoftrpc.DiffRequest{
 		Urn:           string(req.URN),
 		Name:          req.URN.Name(),
 		Type:          req.URN.Type().String(),
@@ -544,12 +544,12 @@ func (p *provider) DiffConfig(ctx context.Context, req DiffConfigRequest) (DiffC
 		}
 		logging.V(8).Infof("%s provider received rpc error `%s`: `%s`", label, rpcError.Code(),
 			rpcError.Message())
-		// https://github.com/pulumi/pulumi/issues/14529: Old versions of kubernetes would error on this
+		// https://github.com/khulnasoft/khulnasoft/issues/14529: Old versions of kubernetes would error on this
 		// call if "kubeconfig" was set to a file. This didn't cause issues later when the same config was
 		// passed to Configure, and for many years silently "worked".
-		// https://github.com/pulumi/pulumi/pull/14436 fixed this method to start returning errors which
+		// https://github.com/khulnasoft/khulnasoft/pull/14436 fixed this method to start returning errors which
 		// exposed this issue with the kubernetes provider, new versions will be fixed to not error on
-		// this (https://github.com/pulumi/pulumi-kubernetes/issues/2663) but so that the CLI continues to
+		// this (https://github.com/khulnasoft/khulnasoft-kubernetes/issues/2663) but so that the CLI continues to
 		// work for old versions we have an explicit ignore for this one error here.
 		if p.pkg == "kubernetes" &&
 			strings.Contains(rpcError.Error(), "cannot unmarshal string into Go value of type struct") {
@@ -789,7 +789,7 @@ func (p *provider) Configure(ctx context.Context, req ConfigureRequest) (Configu
 	// Spawn the configure to happen in parallel.  This ensures that we remain responsive elsewhere that might
 	// want to make forward progress, even as the configure call is happening.
 	go func() {
-		resp, err := p.clientRaw.Configure(p.requestContext(), &pulumirpc.ConfigureRequest{
+		resp, err := p.clientRaw.Configure(p.requestContext(), &khulnasoftrpc.ConfigureRequest{
 			AcceptSecrets:          true,
 			AcceptResources:        true,
 			SendsOldInputs:         true,
@@ -860,7 +860,7 @@ func (p *provider) Check(ctx context.Context, req CheckRequest) (CheckResponse, 
 		return CheckResponse{}, err
 	}
 
-	resp, err := client.Check(p.requestContext(), &pulumirpc.CheckRequest{
+	resp, err := client.Check(p.requestContext(), &khulnasoftrpc.CheckRequest{
 		Urn:        string(req.URN),
 		Name:       req.URN.Name(),
 		Type:       req.URN.Type().String(),
@@ -974,7 +974,7 @@ func (p *provider) Diff(ctx context.Context, req DiffRequest) (DiffResponse, err
 		return DiffResult{}, err
 	}
 
-	resp, err := client.Diff(p.requestContext(), &pulumirpc.DiffRequest{
+	resp, err := client.Diff(p.requestContext(), &khulnasoftrpc.DiffRequest{
 		Id:            string(req.ID),
 		Urn:           string(req.URN),
 		Name:          req.URN.Name(),
@@ -990,7 +990,7 @@ func (p *provider) Diff(ctx context.Context, req DiffRequest) (DiffResponse, err
 		return DiffResult{}, rpcError
 	}
 
-	// nil is semantically important to a lot of the pulumi system so we only pre-allocate if we have non-zero length.
+	// nil is semantically important to a lot of the khulnasoft system so we only pre-allocate if we have non-zero length.
 	replaces := slice.Prealloc[resource.PropertyKey](len(resp.GetReplaces()))
 	for _, replace := range resp.GetReplaces() {
 		replaces = append(replaces, resource.PropertyKey(replace))
@@ -1080,7 +1080,7 @@ func (p *provider) Create(ctx context.Context, req CreateRequest) (CreateRespons
 	var liveObject *structpb.Struct
 	var resourceError error
 	resourceStatus := resource.StatusOK
-	resp, err := client.Create(p.requestContext(), &pulumirpc.CreateRequest{
+	resp, err := client.Create(p.requestContext(), &khulnasoftrpc.CreateRequest{
 		Urn:        string(req.URN),
 		Name:       req.URN.Name(),
 		Type:       req.URN.Type().String(),
@@ -1192,7 +1192,7 @@ func (p *provider) Read(ctx context.Context, req ReadRequest) (ReadResponse, err
 	var liveInputs *structpb.Struct
 	var resourceError error
 	resourceStatus := resource.StatusOK
-	resp, err := client.Read(p.requestContext(), &pulumirpc.ReadRequest{
+	resp, err := client.Read(p.requestContext(), &khulnasoftrpc.ReadRequest{
 		Id:         string(req.ID),
 		Urn:        string(req.URN),
 		Name:       req.URN.Name(),
@@ -1345,7 +1345,7 @@ func (p *provider) Update(ctx context.Context, req UpdateRequest) (UpdateRespons
 	var liveObject *structpb.Struct
 	var resourceError error
 	resourceStatus := resource.StatusOK
-	resp, err := client.Update(p.requestContext(), &pulumirpc.UpdateRequest{
+	resp, err := client.Update(p.requestContext(), &khulnasoftrpc.UpdateRequest{
 		Id:            string(req.ID),
 		Urn:           string(req.URN),
 		Name:          req.URN.Name(),
@@ -1438,7 +1438,7 @@ func (p *provider) Delete(ctx context.Context, req DeleteRequest) (DeleteRespons
 	// We should only be calling {Create,Update,Delete} if the provider is fully configured.
 	contract.Assertf(pcfg.known, "Delete cannot be called if the configuration is unknown")
 
-	if _, err := client.Delete(p.requestContext(), &pulumirpc.DeleteRequest{
+	if _, err := client.Delete(p.requestContext(), &khulnasoftrpc.DeleteRequest{
 		Id:         string(req.ID),
 		Urn:        string(req.URN),
 		Name:       req.URN.Name(),
@@ -1484,8 +1484,8 @@ func (p *provider) Construct(ctx context.Context, req ConstructRequest) (Constru
 		if err != nil {
 			return ConstructResult{}, fmt.Errorf("could not connect to resource monitor: %w", err)
 		}
-		resmon := pulumirpc.NewResourceMonitorClient(conn)
-		resp, err := resmon.RegisterResource(ctx, &pulumirpc.RegisterResourceRequest{
+		resmon := khulnasoftrpc.NewResourceMonitorClient(conn)
+		resp, err := resmon.RegisterResource(ctx, &khulnasoftrpc.RegisterResourceRequest{
 			Type:   string(req.Type),
 			Name:   req.Name,
 			Parent: string(req.Parent),
@@ -1531,13 +1531,13 @@ func (p *provider) Construct(ctx context.Context, req ConstructRequest) (Constru
 	}
 
 	// Marshal the property dependencies.
-	inputDependencies := map[string]*pulumirpc.ConstructRequest_PropertyDependencies{}
+	inputDependencies := map[string]*khulnasoftrpc.ConstructRequest_PropertyDependencies{}
 	for name, dependencies := range req.Options.PropertyDependencies {
 		urns := make([]string, len(dependencies))
 		for i, urn := range dependencies {
 			urns[i] = string(urn)
 		}
-		inputDependencies[string(name)] = &pulumirpc.ConstructRequest_PropertyDependencies{Urns: urns}
+		inputDependencies[string(name)] = &khulnasoftrpc.ConstructRequest_PropertyDependencies{Urns: urns}
 	}
 
 	// Marshal the config.
@@ -1550,7 +1550,7 @@ func (p *provider) Construct(ctx context.Context, req ConstructRequest) (Constru
 		configSecretKeys = append(configSecretKeys, k.String())
 	}
 
-	rpcReq := &pulumirpc.ConstructRequest{
+	rpcReq := &khulnasoftrpc.ConstructRequest{
 		Project:                 req.Info.Project,
 		Stack:                   req.Info.Stack,
 		Config:                  config,
@@ -1576,7 +1576,7 @@ func (p *provider) Construct(ctx context.Context, req ConstructRequest) (Constru
 		AcceptsOutputValues:     true,
 	}
 	if ct := req.Options.CustomTimeouts; ct != nil {
-		rpcReq.CustomTimeouts = &pulumirpc.ConstructRequest_CustomTimeouts{
+		rpcReq.CustomTimeouts = &khulnasoftrpc.ConstructRequest_CustomTimeouts{
 			Create: ct.Create,
 			Update: ct.Update,
 			Delete: ct.Delete,
@@ -1644,7 +1644,7 @@ func (p *provider) Invoke(ctx context.Context, req InvokeRequest) (InvokeRespons
 		return InvokeResponse{}, err
 	}
 
-	resp, err := client.Invoke(p.requestContext(), &pulumirpc.InvokeRequest{
+	resp, err := client.Invoke(p.requestContext(), &khulnasoftrpc.InvokeRequest{
 		Tok:  string(req.Tok),
 		Args: margs,
 	})
@@ -1707,7 +1707,7 @@ func (p *provider) StreamInvoke(ctx context.Context, req StreamInvokeRequest) (S
 		return StreamInvokeResponse{}, err
 	}
 
-	streamClient, err := client.StreamInvoke(p.requestContext(), &pulumirpc.InvokeRequest{
+	streamClient, err := client.StreamInvoke(p.requestContext(), &khulnasoftrpc.InvokeRequest{
 		Tok:  string(req.Tok),
 		Args: margs,
 	})
@@ -1787,13 +1787,13 @@ func (p *provider) Call(_ context.Context, req CallRequest) (CallResponse, error
 	}
 
 	// Marshal the arg dependencies.
-	argDependencies := map[string]*pulumirpc.CallRequest_ArgumentDependencies{}
+	argDependencies := map[string]*khulnasoftrpc.CallRequest_ArgumentDependencies{}
 	for name, dependencies := range req.Options.ArgDependencies {
 		urns := make([]string, len(dependencies))
 		for i, urn := range dependencies {
 			urns[i] = string(urn)
 		}
-		argDependencies[string(name)] = &pulumirpc.CallRequest_ArgumentDependencies{Urns: urns}
+		argDependencies[string(name)] = &khulnasoftrpc.CallRequest_ArgumentDependencies{Urns: urns}
 	}
 
 	// Marshal the config.
@@ -1802,7 +1802,7 @@ func (p *provider) Call(_ context.Context, req CallRequest) (CallResponse, error
 		config[k.String()] = v
 	}
 
-	resp, err := client.Call(p.requestContext(), &pulumirpc.CallRequest{
+	resp, err := client.Call(p.requestContext(), &khulnasoftrpc.CallRequest{
 		Tok:                 string(req.Tok),
 		Args:                margs,
 		ArgDependencies:     argDependencies,
@@ -1895,7 +1895,7 @@ func (p *provider) Attach(address string) error {
 
 	// Calling Attach happens immediately after loading, and does not require configuration to proceed.
 	// Thus, we access the clientRaw property, rather than calling getClient.
-	_, err := p.clientRaw.Attach(p.requestContext(), &pulumirpc.PluginAttach{Address: address})
+	_, err := p.clientRaw.Attach(p.requestContext(), &khulnasoftrpc.PluginAttach{Address: address})
 	if err != nil {
 		rpcError := rpcerror.Convert(err)
 		logging.V(7).Infof("%s failed: err=%v", label, rpcError.Message())
@@ -1937,10 +1937,10 @@ func (p *provider) Close() error {
 func createConfigureError(rpcerr *rpcerror.Error) error {
 	var err error
 	for _, detail := range rpcerr.Details() {
-		if missingKeys, ok := detail.(*pulumirpc.ConfigureErrorMissingKeys); ok {
+		if missingKeys, ok := detail.(*khulnasoftrpc.ConfigureErrorMissingKeys); ok {
 			for _, missingKey := range missingKeys.MissingKeys {
 				singleError := fmt.Errorf("missing required configuration key \"%s\": %s\n"+
-					"Set a value using the command `pulumi config set %s <value>`.",
+					"Set a value using the command `khulnasoft config set %s <value>`.",
 					missingKey.Name, missingKey.Description, missingKey.Name)
 				err = multierror.Append(err, singleError)
 			}
@@ -1996,7 +1996,7 @@ func parseError(err error) (
 	// with the live properties of the object.
 	resourceErr = responseErr
 	for _, detail := range responseErr.Details() {
-		if initErr, ok := detail.(*pulumirpc.ErrorResourceInitFailed); ok {
+		if initErr, ok := detail.(*khulnasoftrpc.ErrorResourceInitFailed); ok {
 			id = resource.ID(initErr.GetId())
 			liveObject = initErr.GetProperties()
 			liveInputs = initErr.GetInputs()
@@ -2030,7 +2030,7 @@ func (ie *InitError) Error() string {
 
 func decorateSpanWithType(span opentracing.Span, urn string) {
 	if urn := resource.URN(urn); urn.IsValid() {
-		span.SetTag("pulumi-decorator", urn.Type())
+		span.SetTag("khulnasoft-decorator", urn.Type())
 	}
 }
 
@@ -2040,18 +2040,18 @@ func decorateProviderSpans(span opentracing.Span, method string, req, resp inter
 	}
 
 	switch method {
-	case "/pulumirpc.ResourceProvider/Check", "/pulumirpc.ResourceProvider/CheckConfig":
-		decorateSpanWithType(span, req.(*pulumirpc.CheckRequest).Urn)
-	case "/pulumirpc.ResourceProvider/Diff", "/pulumirpc.ResourceProvider/DiffConfig":
-		decorateSpanWithType(span, req.(*pulumirpc.DiffRequest).Urn)
-	case "/pulumirpc.ResourceProvider/Create":
-		decorateSpanWithType(span, req.(*pulumirpc.CreateRequest).Urn)
-	case "/pulumirpc.ResourceProvider/Update":
-		decorateSpanWithType(span, req.(*pulumirpc.UpdateRequest).Urn)
-	case "/pulumirpc.ResourceProvider/Delete":
-		decorateSpanWithType(span, req.(*pulumirpc.DeleteRequest).Urn)
-	case "/pulumirpc.ResourceProvider/Invoke":
-		span.SetTag("pulumi-decorator", req.(*pulumirpc.InvokeRequest).Tok)
+	case "/khulnasoftrpc.ResourceProvider/Check", "/khulnasoftrpc.ResourceProvider/CheckConfig":
+		decorateSpanWithType(span, req.(*khulnasoftrpc.CheckRequest).Urn)
+	case "/khulnasoftrpc.ResourceProvider/Diff", "/khulnasoftrpc.ResourceProvider/DiffConfig":
+		decorateSpanWithType(span, req.(*khulnasoftrpc.DiffRequest).Urn)
+	case "/khulnasoftrpc.ResourceProvider/Create":
+		decorateSpanWithType(span, req.(*khulnasoftrpc.CreateRequest).Urn)
+	case "/khulnasoftrpc.ResourceProvider/Update":
+		decorateSpanWithType(span, req.(*khulnasoftrpc.UpdateRequest).Urn)
+	case "/khulnasoftrpc.ResourceProvider/Delete":
+		decorateSpanWithType(span, req.(*khulnasoftrpc.DeleteRequest).Urn)
+	case "/khulnasoftrpc.ResourceProvider/Invoke":
+		span.SetTag("khulnasoft-decorator", req.(*khulnasoftrpc.InvokeRequest).Tok)
 	}
 }
 
@@ -2060,7 +2060,7 @@ func (p *provider) GetMapping(ctx context.Context, req GetMappingRequest) (GetMa
 	label := p.label() + ".GetMapping"
 	logging.V(7).Infof("%s executing: key=%s, provider=%s", label, req.Key, req.Provider)
 
-	resp, err := p.clientRaw.GetMapping(p.requestContext(), &pulumirpc.GetMappingRequest{
+	resp, err := p.clientRaw.GetMapping(p.requestContext(), &khulnasoftrpc.GetMappingRequest{
 		Key:      req.Key,
 		Provider: req.Provider,
 	})
@@ -2088,7 +2088,7 @@ func (p *provider) GetMappings(ctx context.Context, req GetMappingsRequest) (Get
 	label := p.label() + ".GetMappings"
 	logging.V(7).Infof("%s executing: key=%s", label, req.Key)
 
-	resp, err := p.clientRaw.GetMappings(p.requestContext(), &pulumirpc.GetMappingsRequest{
+	resp, err := p.clientRaw.GetMappings(p.requestContext(), &khulnasoftrpc.GetMappingsRequest{
 		Key: req.Key,
 	})
 	if err != nil {

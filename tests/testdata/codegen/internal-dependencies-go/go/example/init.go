@@ -7,9 +7,9 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	_ "github.com/pulumi/pulumi-random/sdk/v4/go/random"
-	_ "github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	_ "github.com/khulnasoft/khulnasoft-random/sdk/v4/go/random"
+	_ "github.com/khulnasoft/khulnasoft-tls/sdk/v4/go/tls"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"internal-dependencies-go/example/internal"
 )
 
@@ -21,13 +21,13 @@ func (p *pkg) Version() semver.Version {
 	return p.version
 }
 
-func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pulumi.ProviderResource, error) {
-	if typ != "pulumi:providers:example" {
+func (p *pkg) ConstructProvider(ctx *khulnasoft.Context, name, typ, urn string) (khulnasoft.ProviderResource, error) {
+	if typ != "khulnasoft:providers:example" {
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
 	r := &Provider{}
-	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err := ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return r, err
 }
 
@@ -36,7 +36,7 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
-	pulumi.RegisterResourcePackage(
+	khulnasoft.RegisterResourcePackage(
 		"example",
 		&pkg{version},
 	)

@@ -1,17 +1,17 @@
 {
-    "name": "@pulumi/plant",
+    "name": "@khulnasoft/plant",
     "version": "0.0.1",
     "scripts": {
         "build": "tsc"
     },
     "dependencies": {
-        "@pulumi/pulumi": "^3.12"
+        "@khulnasoft/khulnasoft": "^3.12"
     },
     "devDependencies": {
         "@types/node": "^14",
         "typescript": "^3.7.0"
     },
-    "pulumi": {
+    "khulnasoft": {
         "resource": true,
         "name": "plant",
         "version": "0.0.1"

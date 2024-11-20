@@ -15,25 +15,25 @@
 import asyncio
 import pytest
 
-import pulumi
+import khulnasoft
 
-from pulumi_gcp.compute.instance import Instance, InstanceArgs
-from pulumi_gcp.compute.instancebootdisk import InstanceBootDiskArgs
-from pulumi_gcp.compute.instancebootdiskinitializeparams import InstanceBootDiskInitializeParamsArgs
+from khulnasoft_gcp.compute.instance import Instance, InstanceArgs
+from khulnasoft_gcp.compute.instancebootdisk import InstanceBootDiskArgs
+from khulnasoft_gcp.compute.instancebootdiskinitializeparams import InstanceBootDiskInitializeParamsArgs
 
 
 @pytest.fixture
 def my_mocks():
-    old_settings = pulumi.runtime.settings.SETTINGS
+    old_settings = khulnasoft.runtime.settings.SETTINGS
     try:
         mocks = MyMocks()
-        pulumi.runtime.mocks.set_mocks(mocks)
+        khulnasoft.runtime.mocks.set_mocks(mocks)
         yield mocks
     finally:
-        pulumi.runtime.settings.configure(old_settings)
+        khulnasoft.runtime.settings.configure(old_settings)
 
 
-class MyMocks(pulumi.runtime.Mocks):
+class MyMocks(khulnasoft.runtime.Mocks):
     def call(self, args):
         return {}
     def new_resource(self, args):
@@ -52,7 +52,7 @@ def identity(x):
 
 
 def wrap_output(x):
-    return pulumi.Output.from_input(x)
+    return khulnasoft.Output.from_input(x)
 
 
 def wrap_future(x):
@@ -66,7 +66,7 @@ def wrap_future(x):
 @pytest.mark.parametrize("image_name_wrap", [identity, wrap_output, wrap_future])
 @pytest.mark.parametrize("initialize_params", ["initialize_params", "initializeParams"])
 @pytest.mark.parametrize("image_name", ["image_name", "imageName"])
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_dict(
     my_mocks,
     boot_disk_wrap,
@@ -88,7 +88,7 @@ def test_dict(
 @pytest.mark.parametrize("boot_disk_wrap", [identity, wrap_output, wrap_future])
 @pytest.mark.parametrize("initialize_params_wrap", [identity, wrap_output, wrap_future])
 @pytest.mark.parametrize("image_name_wrap", [identity, wrap_output, wrap_future])
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_input_types(
     my_mocks,
     boot_disk_wrap,
@@ -115,7 +115,7 @@ def test_input_types(
         ),
     )
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_mutate_input_types(my_mocks):
     initialize_params_args = InstanceBootDiskInitializeParamsArgs()
     initialize_params_args.image_name = "debian-cloud/debian-11"

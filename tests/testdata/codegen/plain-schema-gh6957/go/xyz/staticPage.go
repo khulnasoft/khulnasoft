@@ -8,23 +8,23 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/s3"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v4/go/aws/s3"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"plain-schema-gh6957/xyz/internal"
 )
 
 type StaticPage struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
 	// The bucket resource.
-	Bucket s3.BucketOutput `pulumi:"bucket"`
+	Bucket s3.BucketOutput `khulnasoft:"bucket"`
 	// The website URL.
-	WebsiteUrl pulumi.StringOutput `pulumi:"websiteUrl"`
+	WebsiteUrl khulnasoft.StringOutput `khulnasoft:"websiteUrl"`
 }
 
 // NewStaticPage registers a new resource with the given unique name, arguments, and options.
-func NewStaticPage(ctx *pulumi.Context,
-	name string, args *StaticPageArgs, opts ...pulumi.ResourceOption) (*StaticPage, error) {
+func NewStaticPage(ctx *khulnasoft.Context,
+	name string, args *StaticPageArgs, opts ...khulnasoft.ResourceOption) (*StaticPage, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -42,16 +42,16 @@ func NewStaticPage(ctx *pulumi.Context,
 }
 
 type staticPageArgs struct {
-	Foo *Foo `pulumi:"foo"`
+	Foo *Foo `khulnasoft:"foo"`
 	// The HTML content for index.html.
-	IndexContent string `pulumi:"indexContent"`
+	IndexContent string `khulnasoft:"indexContent"`
 }
 
 // The set of arguments for constructing a StaticPage resource.
 type StaticPageArgs struct {
 	Foo *FooArgs
 	// The HTML content for index.html.
-	IndexContent pulumi.StringInput
+	IndexContent khulnasoft.StringInput
 }
 
 func (StaticPageArgs) ElementType() reflect.Type {
@@ -59,7 +59,7 @@ func (StaticPageArgs) ElementType() reflect.Type {
 }
 
 type StaticPageInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToStaticPageOutput() StaticPageOutput
 	ToStaticPageOutputWithContext(ctx context.Context) StaticPageOutput
@@ -74,7 +74,7 @@ func (i *StaticPage) ToStaticPageOutput() StaticPageOutput {
 }
 
 func (i *StaticPage) ToStaticPageOutputWithContext(ctx context.Context) StaticPageOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticPageOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(StaticPageOutput)
 }
 
 // StaticPageArrayInput is an input type that accepts StaticPageArray and StaticPageArrayOutput values.
@@ -82,7 +82,7 @@ func (i *StaticPage) ToStaticPageOutputWithContext(ctx context.Context) StaticPa
 //
 //	StaticPageArray{ StaticPageArgs{...} }
 type StaticPageArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToStaticPageArrayOutput() StaticPageArrayOutput
 	ToStaticPageArrayOutputWithContext(context.Context) StaticPageArrayOutput
@@ -99,7 +99,7 @@ func (i StaticPageArray) ToStaticPageArrayOutput() StaticPageArrayOutput {
 }
 
 func (i StaticPageArray) ToStaticPageArrayOutputWithContext(ctx context.Context) StaticPageArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticPageArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(StaticPageArrayOutput)
 }
 
 // StaticPageMapInput is an input type that accepts StaticPageMap and StaticPageMapOutput values.
@@ -107,7 +107,7 @@ func (i StaticPageArray) ToStaticPageArrayOutputWithContext(ctx context.Context)
 //
 //	StaticPageMap{ "key": StaticPageArgs{...} }
 type StaticPageMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToStaticPageMapOutput() StaticPageMapOutput
 	ToStaticPageMapOutputWithContext(context.Context) StaticPageMapOutput
@@ -124,10 +124,10 @@ func (i StaticPageMap) ToStaticPageMapOutput() StaticPageMapOutput {
 }
 
 func (i StaticPageMap) ToStaticPageMapOutputWithContext(ctx context.Context) StaticPageMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticPageMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(StaticPageMapOutput)
 }
 
-type StaticPageOutput struct{ *pulumi.OutputState }
+type StaticPageOutput struct{ *khulnasoft.OutputState }
 
 func (StaticPageOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**StaticPage)(nil)).Elem()
@@ -147,11 +147,11 @@ func (o StaticPageOutput) Bucket() s3.BucketOutput {
 }
 
 // The website URL.
-func (o StaticPageOutput) WebsiteUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v *StaticPage) pulumi.StringOutput { return v.WebsiteUrl }).(pulumi.StringOutput)
+func (o StaticPageOutput) WebsiteUrl() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *StaticPage) khulnasoft.StringOutput { return v.WebsiteUrl }).(khulnasoft.StringOutput)
 }
 
-type StaticPageArrayOutput struct{ *pulumi.OutputState }
+type StaticPageArrayOutput struct{ *khulnasoft.OutputState }
 
 func (StaticPageArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*StaticPage)(nil)).Elem()
@@ -165,13 +165,13 @@ func (o StaticPageArrayOutput) ToStaticPageArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o StaticPageArrayOutput) Index(i pulumi.IntInput) StaticPageOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *StaticPage {
+func (o StaticPageArrayOutput) Index(i khulnasoft.IntInput) StaticPageOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *StaticPage {
 		return vs[0].([]*StaticPage)[vs[1].(int)]
 	}).(StaticPageOutput)
 }
 
-type StaticPageMapOutput struct{ *pulumi.OutputState }
+type StaticPageMapOutput struct{ *khulnasoft.OutputState }
 
 func (StaticPageMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*StaticPage)(nil)).Elem()
@@ -185,17 +185,17 @@ func (o StaticPageMapOutput) ToStaticPageMapOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o StaticPageMapOutput) MapIndex(k pulumi.StringInput) StaticPageOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *StaticPage {
+func (o StaticPageMapOutput) MapIndex(k khulnasoft.StringInput) StaticPageOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *StaticPage {
 		return vs[0].(map[string]*StaticPage)[vs[1].(string)]
 	}).(StaticPageOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticPageInput)(nil)).Elem(), &StaticPage{})
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticPageArrayInput)(nil)).Elem(), StaticPageArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticPageMapInput)(nil)).Elem(), StaticPageMap{})
-	pulumi.RegisterOutputType(StaticPageOutput{})
-	pulumi.RegisterOutputType(StaticPageArrayOutput{})
-	pulumi.RegisterOutputType(StaticPageMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*StaticPageInput)(nil)).Elem(), &StaticPage{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*StaticPageArrayInput)(nil)).Elem(), StaticPageArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*StaticPageMapInput)(nil)).Elem(), StaticPageMap{})
+	khulnasoft.RegisterOutputType(StaticPageOutput{})
+	khulnasoft.RegisterOutputType(StaticPageArrayOutput{})
+	khulnasoft.RegisterOutputType(StaticPageMapOutput{})
 }

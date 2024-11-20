@@ -16,7 +16,7 @@ package backend
 
 import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 )
 
 var _ = SnapshotPersister((*InMemoryPersister)(nil))

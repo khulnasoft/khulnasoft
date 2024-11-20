@@ -2,8 +2,8 @@
 
 from typing import Optional
 
-import pulumi
+import khulnasoft
 
-class Component(pulumi.ComponentResource):
-    def __init__(self, name: str, args: pulumi.Inputs, opts: Optional[pulumi.ResourceOptions] = None):
+class Component(khulnasoft.ComponentResource):
+    def __init__(self, name: str, args: khulnasoft.Inputs, opts: Optional[khulnasoft.ResourceOptions] = None):
         super().__init__("testcomponent:index:Component", name, args, opts, True)

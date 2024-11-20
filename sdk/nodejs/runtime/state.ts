@@ -38,7 +38,7 @@ const nodeEnvKeys = {
     organization: "PULUMI_NODEJS_ORGANIZATION",
 };
 
-const pulumiEnvKeys = {
+const khulnasoftEnvKeys = {
     legacyApply: "PULUMI_ENABLE_LEGACY_APPLY",
 };
 
@@ -128,7 +128,7 @@ export interface Store {
         monitor?: resrpc.IResourceMonitorClient;
         engine?: engrpc.IEngineClient;
         rpcDone: Promise<any>;
-        // Needed for legacy @pulumi/pulumi packages doing async feature checks.
+        // Needed for legacy @khulnasoft/khulnasoft packages doing async feature checks.
         featureSupport: Record<string, boolean>;
     };
     config: Record<string, string>;
@@ -222,7 +222,7 @@ export class LocalStore implements Store {
             engineAddr: process.env[nodeEnvKeys.engineAddr],
             syncDir: process.env[nodeEnvKeys.syncDir],
             cacheDynamicProviders: process.env[nodeEnvKeys.cacheDynamicProviders] !== "false",
-            legacyApply: process.env[pulumiEnvKeys.legacyApply] === "true",
+            legacyApply: process.env[khulnasoftEnvKeys.legacyApply] === "true",
             maximumProcessListeners: 30,
         },
         rpcDone: Promise.resolve(),

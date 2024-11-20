@@ -1,12 +1,12 @@
 // Copyright 2016-2023, Pulumi Corporation.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-class CustomResource extends pulumi.dynamic.Resource {
-    public readonly authenticated!: pulumi.Output<string>;
-    public readonly color!: pulumi.Output<string>;
+class CustomResource extends khulnasoft.dynamic.Resource {
+    public readonly authenticated!: khulnasoft.Output<string>;
+    public readonly color!: khulnasoft.Output<string>;
 
-    constructor(name: string, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ResourceOptions) {
         super(
             new DummyResourceProvider(),
             name,
@@ -21,16 +21,16 @@ class CustomResource extends pulumi.dynamic.Resource {
     }
 }
 
-class DummyResourceProvider implements pulumi.dynamic.ResourceProvider {
+class DummyResourceProvider implements khulnasoft.dynamic.ResourceProvider {
     private password: string;
     private color: string;
 
-    async configure(req: pulumi.dynamic.ConfigureRequest): Promise<any> {
+    async configure(req: khulnasoft.dynamic.ConfigureRequest): Promise<any> {
         this.password = req.config.require("password");
         this.color = req.config.get("colors:banana") ?? "blue";
     }
 
-    async create(props: any): Promise<pulumi.dynamic.CreateResult> {
+    async create(props: any): Promise<khulnasoft.dynamic.CreateResult> {
         return {
             id: "resource-id",
             outs: {

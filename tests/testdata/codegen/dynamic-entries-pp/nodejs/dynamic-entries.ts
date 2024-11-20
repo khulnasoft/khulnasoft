@@ -1,7 +1,7 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
-const config = new pulumi.Config();
+const config = new khulnasoft.Config();
 // A domain name for which the certificate should be issued
 const domainName = config.get("domainName") || "";
 // Which method to use for validation. DNS or EMAIL are valid, NONE can be used for certificates that were imported into ACM and then into Terraform.

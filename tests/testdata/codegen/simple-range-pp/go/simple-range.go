@@ -3,20 +3,20 @@ package main
 import (
 	"fmt"
 
-	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-random/sdk/v4/go/random"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		var numbers []*random.RandomInteger
 		for index := 0; index < 2; index++ {
 			key0 := index
 			val0 := index
 			__res, err := random.NewRandomInteger(ctx, fmt.Sprintf("numbers-%v", key0), &random.RandomIntegerArgs{
-				Min:  pulumi.Int(1),
-				Max:  pulumi.Int(val0),
-				Seed: pulumi.Sprintf("seed%v", val0),
+				Min:  khulnasoft.Int(1),
+				Max:  khulnasoft.Int(val0),
+				Seed: khulnasoft.Sprintf("seed%v", val0),
 			})
 			if err != nil {
 				return err

@@ -1,0 +1,11 @@
+{
+	"name": "l2-resource-config",
+	"devDependencies": {
+		"@types/node": "^14"
+	},
+	"dependencies": {
+		"typescript": "^4.0.0",
+		"@khulnasoft/khulnasoft": "ROOT/artifacts/khulnasoft-khulnasoft-CORE.VERSION.tgz",
+		"@khulnasoft/config": "ROOT/artifacts/khulnasoft-config-9.0.0.tgz"
+	}
+}

@@ -21,8 +21,8 @@ from semver import VersionInfo
 
 import pytest
 
-from pulumi import Config, export
-from pulumi.automation import (
+from khulnasoft import Config, export
+from khulnasoft.automation import (
     create_stack,
     create_or_select_stack,
     CommandError,
@@ -44,7 +44,7 @@ from pulumi.automation import (
     StackNotFoundError,
     fully_qualified_stack_name,
 )
-from pulumi.resource import (
+from khulnasoft.resource import (
     ComponentResource,
     CustomResource,
     ResourceOptions,
@@ -546,8 +546,8 @@ class TestLocalWorkspace(unittest.TestCase):
 
         # Lists tag values
         result = ws.list_tags(stack_name)
-        self.assertEqual(result["pulumi:project"], project_name)
-        self.assertEqual(result["pulumi:runtime"], runtime)
+        self.assertEqual(result["khulnasoft:project"], project_name)
+        self.assertEqual(result["khulnasoft:runtime"], runtime)
 
         # Sets tag values
         ws.set_tag(stack_name, "foo", "bar")
@@ -560,7 +560,7 @@ class TestLocalWorkspace(unittest.TestCase):
         self.assertTrue("foo" not in result)
 
         # Gets a single tag value
-        result = ws.get_tag(stack_name, "pulumi:project")
+        result = ws.get_tag(stack_name, "khulnasoft:project")
         self.assertEqual(result, project_name)
 
         ws.remove_stack(stack_name)
@@ -573,30 +573,30 @@ class TestLocalWorkspace(unittest.TestCase):
                     {
                         "name": "testorg1/testproj1/teststack1",
                         "current": False,
-                        "url": "https://app.pulumi.com/testorg1/testproj1/teststack1",
+                        "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack1",
                     },
                     {
                         "name": "testorg1/testproj1/teststack2",
                         "current": False,
-                        "url": "https://app.pulumi.com/testorg1/testproj1/teststack2",
+                        "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack2",
                     },
                 ]
             ),
             stderr="",
             code=0,
         )
-        ws = LocalWorkspace(pulumi_command=mock_with_returned_stacks)
+        ws = LocalWorkspace(khulnasoft_command=mock_with_returned_stacks)
         stacks = ws.list_stacks()
         self.assertEqual(len(stacks), 2)
         self.assertEqual(stacks[0].name, "testorg1/testproj1/teststack1")
         self.assertEqual(stacks[0].current, False)
         self.assertEqual(
-            stacks[0].url, "https://app.pulumi.com/testorg1/testproj1/teststack1"
+            stacks[0].url, "https://app.khulnasoft.com/testorg1/testproj1/teststack1"
         )
         self.assertEqual(stacks[1].name, "testorg1/testproj1/teststack2")
         self.assertEqual(stacks[1].current, False)
         self.assertEqual(
-            stacks[1].url, "https://app.pulumi.com/testorg1/testproj1/teststack2"
+            stacks[1].url, "https://app.khulnasoft.com/testorg1/testproj1/teststack2"
         )
 
     def test_list_stacks_with_correct_params(self):
@@ -610,12 +610,12 @@ class TestLocalWorkspace(unittest.TestCase):
                         {
                             "name": "testorg1/testproj1/teststack1",
                             "current": False,
-                            "url": "https://app.pulumi.com/testorg1/testproj1/teststack1",
+                            "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack1",
                         },
                         {
                             "name": "testorg1/testproj2/teststack2",
                             "current": False,
-                            "url": "https://app.pulumi.com/testorg1/testproj2/teststack2",
+                            "url": "https://app.khulnasoft.com/testorg1/testproj2/teststack2",
                         },
                     ]
                 ),
@@ -623,7 +623,7 @@ class TestLocalWorkspace(unittest.TestCase):
                 code=0,
             ),
         )[1]
-        ws = LocalWorkspace(pulumi_command=mock_with_returned_stacks)
+        ws = LocalWorkspace(khulnasoft_command=mock_with_returned_stacks)
         ws.list_stacks()
         self.assertEqual(captured_args[0], ["stack", "ls", "--json"])
 
@@ -635,30 +635,30 @@ class TestLocalWorkspace(unittest.TestCase):
                     {
                         "name": "testorg1/testproj1/teststack1",
                         "current": False,
-                        "url": "https://app.pulumi.com/testorg1/testproj1/teststack1",
+                        "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack1",
                     },
                     {
                         "name": "testorg1/testproj2/teststack2",
                         "current": False,
-                        "url": "https://app.pulumi.com/testorg1/testproj2/teststack2",
+                        "url": "https://app.khulnasoft.com/testorg1/testproj2/teststack2",
                     },
                 ]
             ),
             stderr="",
             code=0,
         )
-        ws = LocalWorkspace(pulumi_command=mock_with_returned_stacks)
+        ws = LocalWorkspace(khulnasoft_command=mock_with_returned_stacks)
         stacks = ws.list_stacks(include_all=True)
         self.assertEqual(len(stacks), 2)
         self.assertEqual(stacks[0].name, "testorg1/testproj1/teststack1")
         self.assertEqual(stacks[0].current, False)
         self.assertEqual(
-            stacks[0].url, "https://app.pulumi.com/testorg1/testproj1/teststack1"
+            stacks[0].url, "https://app.khulnasoft.com/testorg1/testproj1/teststack1"
         )
         self.assertEqual(stacks[1].name, "testorg1/testproj2/teststack2")
         self.assertEqual(stacks[1].current, False)
         self.assertEqual(
-            stacks[1].url, "https://app.pulumi.com/testorg1/testproj2/teststack2"
+            stacks[1].url, "https://app.khulnasoft.com/testorg1/testproj2/teststack2"
         )
 
     def test_list_all_stacks_with_correct_params(self):
@@ -672,12 +672,12 @@ class TestLocalWorkspace(unittest.TestCase):
                         {
                             "name": "testorg1/testproj1/teststack1",
                             "current": False,
-                            "url": "https://app.pulumi.com/testorg1/testproj1/teststack1",
+                            "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack1",
                         },
                         {
                             "name": "testorg1/testproj2/teststack2",
                             "current": False,
-                            "url": "https://app.pulumi.com/testorg1/testproj2/teststack2",
+                            "url": "https://app.khulnasoft.com/testorg1/testproj2/teststack2",
                         },
                     ]
                 ),
@@ -685,7 +685,7 @@ class TestLocalWorkspace(unittest.TestCase):
                 code=0,
             ),
         )[1]
-        ws = LocalWorkspace(pulumi_command=mock_with_returned_stacks)
+        ws = LocalWorkspace(khulnasoft_command=mock_with_returned_stacks)
         ws.list_stacks(include_all=True)
         self.assertEqual(captured_args[0], ["stack", "ls", "--json", "--all"])
 
@@ -716,7 +716,7 @@ class TestLocalWorkspace(unittest.TestCase):
         }
         stack.set_all_config(config)
 
-        # pulumi up
+        # khulnasoft up
         up_res = stack.up()
         self.assertEqual(len(up_res.outputs), 3)
         self.assertEqual(up_res.outputs["exp_static"].value, "foo")
@@ -728,16 +728,16 @@ class TestLocalWorkspace(unittest.TestCase):
         self.assertEqual(up_res.summary.kind, "update")
         self.assertEqual(up_res.summary.result, "succeeded")
 
-        # pulumi preview
+        # khulnasoft preview
         preview_result = stack.preview()
         self.assertEqual(preview_result.change_summary.get(OpType.SAME), 1)
 
-        # pulumi refresh
+        # khulnasoft refresh
         refresh_res = stack.refresh()
         self.assertEqual(refresh_res.summary.kind, "refresh")
         self.assertEqual(refresh_res.summary.result, "succeeded")
 
-        # pulumi destroy
+        # khulnasoft destroy
         destroy_res = stack.destroy()
         self.assertEqual(destroy_res.summary.kind, "destroy")
         self.assertEqual(destroy_res.summary.result, "succeeded")
@@ -748,7 +748,7 @@ class TestLocalWorkspace(unittest.TestCase):
         project_name = "inline_python"
         stack_name = stack_namer(project_name)
         stack = create_stack(
-            stack_name, program=pulumi_program, project_name=project_name
+            stack_name, program=khulnasoft_program, project_name=project_name
         )
 
         stack_config: ConfigMap = {
@@ -759,7 +759,7 @@ class TestLocalWorkspace(unittest.TestCase):
         try:
             stack.set_all_config(stack_config)
 
-            # pulumi up
+            # khulnasoft up
             up_res = stack.up()
             self.assertEqual(len(up_res.outputs), 3)
             self.assertEqual(up_res.outputs["exp_static"].value, "foo")
@@ -771,16 +771,16 @@ class TestLocalWorkspace(unittest.TestCase):
             self.assertEqual(up_res.summary.kind, "update")
             self.assertEqual(up_res.summary.result, "succeeded")
 
-            # pulumi preview
+            # khulnasoft preview
             preview_result = stack.preview()
             self.assertEqual(preview_result.change_summary.get(OpType.SAME), 1)
 
-            # pulumi refresh
+            # khulnasoft refresh
             refresh_res = stack.refresh()
             self.assertEqual(refresh_res.summary.kind, "refresh")
             self.assertEqual(refresh_res.summary.result, "succeeded")
 
-            # pulumi destroy
+            # khulnasoft destroy
             destroy_res = stack.destroy()
             self.assertEqual(destroy_res.summary.kind, "destroy")
             self.assertEqual(destroy_res.summary.result, "succeeded")
@@ -791,7 +791,7 @@ class TestLocalWorkspace(unittest.TestCase):
         project_name = "inline_python"
         stack_name = stack_namer(project_name)
         stack = create_stack(
-            stack_name, program=pulumi_program_with_resource, project_name=project_name
+            stack_name, program=khulnasoft_program_with_resource, project_name=project_name
         )
 
         stack.up()
@@ -813,7 +813,7 @@ class TestLocalWorkspace(unittest.TestCase):
         project_name = "inline_python"
         stack_name = stack_namer(project_name)
         stack = create_stack(
-            stack_name, program=pulumi_program_with_resource, project_name=project_name
+            stack_name, program=khulnasoft_program_with_resource, project_name=project_name
         )
 
         stack.up()
@@ -829,7 +829,7 @@ class TestLocalWorkspace(unittest.TestCase):
         project_name = "async_inline_python"
         stack_name = stack_namer(project_name)
         stack = create_stack(
-            stack_name, program=async_pulumi_program, project_name=project_name
+            stack_name, program=async_khulnasoft_program, project_name=project_name
         )
 
         stack_config: ConfigMap = {
@@ -840,7 +840,7 @@ class TestLocalWorkspace(unittest.TestCase):
         try:
             stack.set_all_config(stack_config)
 
-            # pulumi up
+            # khulnasoft up
             up_res = stack.up()
             self.assertEqual(len(up_res.outputs), 3)
             self.assertEqual(up_res.outputs["exp_static"].value, "foo")
@@ -852,16 +852,16 @@ class TestLocalWorkspace(unittest.TestCase):
             self.assertEqual(up_res.summary.kind, "update")
             self.assertEqual(up_res.summary.result, "succeeded")
 
-            # pulumi preview
+            # khulnasoft preview
             preview_result = stack.preview()
             self.assertEqual(preview_result.change_summary.get(OpType.SAME), 1)
 
-            # pulumi refresh
+            # khulnasoft refresh
             refresh_res = stack.refresh()
             self.assertEqual(refresh_res.summary.kind, "refresh")
             self.assertEqual(refresh_res.summary.result, "succeeded")
 
-            # pulumi destroy
+            # khulnasoft destroy
             destroy_res = stack.destroy()
             self.assertEqual(destroy_res.summary.kind, "destroy")
             self.assertEqual(destroy_res.summary.result, "succeeded")
@@ -894,13 +894,13 @@ class TestLocalWorkspace(unittest.TestCase):
         )
 
         try:
-            # pulumi up
+            # khulnasoft up
             stack.set_all_config({"protect": ConfigValue(value="true")})
             up_res = stack.up()
             self.assertEqual(up_res.summary.kind, "update")
             self.assertEqual(up_res.summary.result, "succeeded")
 
-            # pulumi destroy with exclude protected
+            # khulnasoft destroy with exclude protected
             destroy_res = stack.destroy(exclude_protected=True)
             self.assertEqual(destroy_res.summary.kind, "destroy")
             self.assertEqual(destroy_res.summary.result, "succeeded")
@@ -914,7 +914,7 @@ class TestLocalWorkspace(unittest.TestCase):
             self.assertEqual(up_res.summary.kind, "update")
             self.assertEqual(up_res.summary.result, "succeeded")
 
-            # pulumi destroy without exclude protected
+            # khulnasoft destroy without exclude protected
             destroy_res = stack.destroy()
             self.assertEqual(destroy_res.summary.kind, "destroy")
             self.assertEqual(destroy_res.summary.result, "succeeded")
@@ -926,7 +926,7 @@ class TestLocalWorkspace(unittest.TestCase):
         project_name = "inline_python"
         stack_name = stack_namer(project_name)
         stack = create_stack(
-            stack_name, program=pulumi_program, project_name=project_name
+            stack_name, program=khulnasoft_program, project_name=project_name
         )
 
         stack_config: ConfigMap = {
@@ -949,7 +949,7 @@ class TestLocalWorkspace(unittest.TestCase):
             initial_outputs = stack.outputs()
             self.assertEqual(len(initial_outputs), 0)
 
-            # pulumi up
+            # khulnasoft up
             up_res = stack.up()
             self.assertEqual(up_res.summary.kind, "update")
             self.assertEqual(up_res.summary.result, "succeeded")
@@ -958,7 +958,7 @@ class TestLocalWorkspace(unittest.TestCase):
             outputs_after_up = stack.outputs()
             assert_outputs(outputs_after_up)
 
-            # pulumi destroy
+            # khulnasoft destroy
             destroy_res = stack.destroy()
             self.assertEqual(destroy_res.summary.kind, "destroy")
             self.assertEqual(destroy_res.summary.result, "succeeded")
@@ -968,10 +968,10 @@ class TestLocalWorkspace(unittest.TestCase):
         finally:
             stack.workspace.remove_stack(stack_name)
 
-    def test_pulumi_version(self):
+    def test_khulnasoft_version(self):
         ws = LocalWorkspace()
-        self.assertIsNotNone(ws.pulumi_version)
-        self.assertRegex(ws.pulumi_version, r"(\d+\.)(\d+\.)(\d+)(-.*)?")
+        self.assertIsNotNone(ws.khulnasoft_version)
+        self.assertRegex(ws.khulnasoft_version, r"(\d+\.)(\d+\.)(\d+)(-.*)?")
 
     def test_refresh(self):
         ws = LocalWorkspace()
@@ -979,10 +979,10 @@ class TestLocalWorkspace(unittest.TestCase):
         project_name = "testrefresh"
         stack_name = stack_namer(project_name)
         stack = create_stack(
-            stack_name, program=pulumi_program, project_name=project_name
+            stack_name, program=khulnasoft_program, project_name=project_name
         )
 
-        # pulumi up
+        # khulnasoft up
         stack.up()
 
         # preview with refresh
@@ -997,19 +997,19 @@ class TestLocalWorkspace(unittest.TestCase):
         destroy_res = stack.destroy(refresh=True)
         self.assertRegex(destroy_res.stdout, r".*refreshing.*")
 
-    def test_pulumi_command(self):
+    def test_khulnasoft_command(self):
         p = PulumiCommand()
-        ws = LocalWorkspace(pulumi_command=p)
-        self.assertIsNotNone(ws.pulumi_version)
-        self.assertRegex(ws.pulumi_version, r"(\d+\.)(\d+\.)(\d+)(-.*)?")
-        self.assertEqual(p.version, ws.pulumi_command.version)
+        ws = LocalWorkspace(khulnasoft_command=p)
+        self.assertIsNotNone(ws.khulnasoft_version)
+        self.assertRegex(ws.khulnasoft_version, r"(\d+\.)(\d+\.)(\d+)(-.*)?")
+        self.assertEqual(p.version, ws.khulnasoft_command.version)
 
     def test_project_settings_respected(self):
         project_name = "correct_project"
         stack_name = stack_namer(project_name)
         stack = create_stack(
             stack_name,
-            program=pulumi_program,
+            program=khulnasoft_program,
             project_name=project_name,
             opts=LocalWorkspaceOptions(work_dir=get_test_path("data", project_name)),
         )
@@ -1032,7 +1032,7 @@ class TestLocalWorkspace(unittest.TestCase):
             )
             stack = create_stack(
                 stack_name,
-                program=pulumi_program,
+                program=khulnasoft_program,
                 project_name=project_name,
                 opts=LocalWorkspaceOptions(project_settings=project_settings),
             )
@@ -1044,7 +1044,7 @@ class TestLocalWorkspace(unittest.TestCase):
         project_name = "structured_events"
         stack_name = stack_namer(project_name)
         stack = create_stack(
-            stack_name, program=pulumi_program, project_name=project_name
+            stack_name, program=khulnasoft_program, project_name=project_name
         )
 
         stack_config: ConfigMap = {
@@ -1062,13 +1062,13 @@ class TestLocalWorkspace(unittest.TestCase):
                 if event.summary_event:
                     seen_summary_event[0] = True
 
-            # pulumi up
+            # khulnasoft up
             up_res = stack.up(on_event=find_summary_event)
             self.assertEqual(seen_summary_event[0], True, "No SummaryEvent for `up`")
             self.assertEqual(up_res.summary.kind, "update")
             self.assertEqual(up_res.summary.result, "succeeded")
 
-            # pulumi preview
+            # khulnasoft preview
             seen_summary_event[0] = False
             pre_res = stack.preview(on_event=find_summary_event)
             self.assertEqual(
@@ -1076,7 +1076,7 @@ class TestLocalWorkspace(unittest.TestCase):
             )
             self.assertEqual(pre_res.change_summary.get(OpType.SAME), 1)
 
-            # pulumi refresh
+            # khulnasoft refresh
             seen_summary_event[0] = False
             refresh_res = stack.refresh(on_event=find_summary_event)
             self.assertEqual(
@@ -1085,7 +1085,7 @@ class TestLocalWorkspace(unittest.TestCase):
             self.assertEqual(refresh_res.summary.kind, "refresh")
             self.assertEqual(refresh_res.summary.result, "succeeded")
 
-            # pulumi destroy
+            # khulnasoft destroy
             seen_summary_event[0] = False
             destroy_res = stack.destroy(on_event=find_summary_event)
             self.assertEqual(
@@ -1096,9 +1096,9 @@ class TestLocalWorkspace(unittest.TestCase):
         finally:
             stack.workspace.remove_stack(stack_name)
 
-    # TODO[pulumi/pulumi#7127]: Re-enabled the warning.
+    # TODO[khulnasoft/khulnasoft#7127]: Re-enabled the warning.
     @unittest.skip(
-        "Temporarily skipping test until we've re-enabled the warning - pulumi/pulumi#7127"
+        "Temporarily skipping test until we've re-enabled the warning - khulnasoft/khulnasoft#7127"
     )
     def test_secret_config_warnings(self):
         def program():
@@ -1275,11 +1275,11 @@ class TestLocalWorkspace(unittest.TestCase):
                             f"Unexpected ${unexpected}' found in warning",
                         )
 
-            # pulumi preview
+            # khulnasoft preview
             stack.preview(on_event=find_diagnostic_events)
             validate(events)
 
-            # pulumi up
+            # khulnasoft up
             events = []
             stack.up(on_event=find_diagnostic_events)
             validate(events)
@@ -1297,7 +1297,7 @@ class TestLocalWorkspace(unittest.TestCase):
                 return CommandResult(stdout="", stderr="", code=0)
 
         mock_cmd = MockCmd()
-        ws = LocalWorkspace(pulumi_command=mock_cmd)
+        ws = LocalWorkspace(khulnasoft_command=mock_cmd)
         ws.install()
         self.assertEqual(mock_cmd.args[0], ["install"])
         ws.install(no_dependencies=True)
@@ -1336,14 +1336,14 @@ class TestLocalWorkspace(unittest.TestCase):
         self.assertRaises(InvalidVersionError, ws.install)
 
 
-def pulumi_program():
+def khulnasoft_program():
     config = Config()
     export("exp_static", "foo")
     export("exp_cfg", config.get("bar"))
     export("exp_secret", config.get_secret("buzz"))
 
 
-def pulumi_program_with_resource():
+def khulnasoft_program_with_resource():
     class MyComponentResource(ComponentResource):
         def __init__(
             self,
@@ -1357,7 +1357,7 @@ def pulumi_program_with_resource():
     MyComponentResource("res")
 
 
-async def async_pulumi_program():
+async def async_khulnasoft_program():
     await asyncio.sleep(1)
     config = Config()
     export("exp_static", "foo")

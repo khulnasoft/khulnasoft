@@ -17,7 +17,7 @@ package resource
 import (
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/deepcopy"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/deepcopy"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -147,7 +147,7 @@ func TestPropertyPath(t *testing.T) {
 			PropertyPath{"root key with a .", 1},
 			`["root key with a ."][1]`,
 		},
-		// The following two cases are regressions for https://github.com/pulumi/pulumi/issues/14439. Ideally
+		// The following two cases are regressions for https://github.com/khulnasoft/khulnasoft/issues/14439. Ideally
 		// these would be a syntax error, but it seems providers have been emitting paths of this style and so
 		// we need to keep supporting them.
 		{
@@ -398,7 +398,7 @@ func TestPropertyPathContains(t *testing.T) {
 func TestAddResizePropertyPath(t *testing.T) {
 	t.Parallel()
 
-	// Regression test for https://github.com/pulumi/pulumi/issues/5871:
+	// Regression test for https://github.com/khulnasoft/khulnasoft/issues/5871:
 	// Ensure that adding a new element beyond the size of an array will resize it.
 	path, err := ParsePropertyPath("[1]")
 	assert.NoError(t, err)

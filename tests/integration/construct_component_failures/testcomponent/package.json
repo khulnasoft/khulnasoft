@@ -1,5 +1,5 @@
 {
-    "name": "pulumi-resource-testcomponent",
+    "name": "khulnasoft-resource-testcomponent",
     "main": "index.js",
     "devDependencies": {
         "@types/node": "ts3.9",
@@ -9,6 +9,6 @@
         "@grpc/grpc-js": "^1.11.0"
     },
     "peerDependencies": {
-        "@pulumi/pulumi": "latest"
+        "@khulnasoft/khulnasoft": "latest"
     }
 }

@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // GenWriter adds some convenient helpers atop a buffered writer.

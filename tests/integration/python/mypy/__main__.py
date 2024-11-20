@@ -2,7 +2,7 @@
 
 """An example program that type checks with mypy"""
 
-import pulumi
+import khulnasoft
 
 # This export won't work because the first argument is a number, not a string
-pulumi.export(42, 'bar')
+khulnasoft.export(42, 'bar')

@@ -21,8 +21,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/urn"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/urn"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 )
 
 func TestURNRoundTripping(t *testing.T) {
@@ -77,11 +77,11 @@ func TestIsValid(t *testing.T) {
 	t.Parallel()
 
 	goodUrns := []string{
-		"urn:pulumi:test::test::pulumi:pulumi:Stack::test-test",
-		"urn:pulumi:stack-name::project-name::my:customtype$aws:s3/bucket:Bucket::bob",
-		"urn:pulumi:stack::project::type::",
-		"urn:pulumi:stack::project::type::some really ::^&\n*():: crazy name",
-		"urn:pulumi:stack::project with whitespace::type::some name",
+		"urn:khulnasoft:test::test::khulnasoft:khulnasoft:Stack::test-test",
+		"urn:khulnasoft:stack-name::project-name::my:customtype$aws:s3/bucket:Bucket::bob",
+		"urn:khulnasoft:stack::project::type::",
+		"urn:khulnasoft:stack::project::type::some really ::^&\n*():: crazy name",
+		"urn:khulnasoft:stack::project with whitespace::type::some name",
 	}
 	for _, str := range goodUrns {
 		urn := urn.URN(str)
@@ -101,10 +101,10 @@ func TestComponentAccess(t *testing.T) {
 		t.Parallel()
 
 		cases := []ComponentTestCase{
-			{urn: "urn:pulumi:stack::test::pulumi:pulumi:Stack::test-test", expected: "stack"},
-			{urn: "urn:pulumi:stack::::::", expected: "stack"},
-			{urn: "urn:pulumi:::test::pulumi:pulumi:Stack::test-test", expected: ""},
-			{urn: "urn:pulumi:::::::", expected: ""},
+			{urn: "urn:khulnasoft:stack::test::khulnasoft:khulnasoft:Stack::test-test", expected: "stack"},
+			{urn: "urn:khulnasoft:stack::::::", expected: "stack"},
+			{urn: "urn:khulnasoft:::test::khulnasoft:khulnasoft:Stack::test-test", expected: ""},
+			{urn: "urn:khulnasoft:::::::", expected: ""},
 		}
 
 		for _, test := range cases {
@@ -121,10 +121,10 @@ func TestComponentAccess(t *testing.T) {
 		t.Parallel()
 
 		cases := []ComponentTestCase{
-			{urn: "urn:pulumi:stack::proj::pulumi:pulumi:Stack::test-test", expected: "proj"},
-			{urn: "urn:pulumi:::proj::::", expected: "proj"},
-			{urn: "urn:pulumi:stack::::pulumi:pulumi:Stack::test-test", expected: ""},
-			{urn: "urn:pulumi:::::::", expected: ""},
+			{urn: "urn:khulnasoft:stack::proj::khulnasoft:khulnasoft:Stack::test-test", expected: "proj"},
+			{urn: "urn:khulnasoft:::proj::::", expected: "proj"},
+			{urn: "urn:khulnasoft:stack::::khulnasoft:khulnasoft:Stack::test-test", expected: ""},
+			{urn: "urn:khulnasoft:::::::", expected: ""},
 		}
 
 		for _, test := range cases {
@@ -141,10 +141,10 @@ func TestComponentAccess(t *testing.T) {
 		t.Parallel()
 
 		cases := []ComponentTestCase{
-			{urn: "urn:pulumi:stack::proj::qualified$type::test-test", expected: "qualified$type"},
-			{urn: "urn:pulumi:::::qualified$type::", expected: "qualified$type"},
-			{urn: "urn:pulumi:stack::proj::::test-test", expected: ""},
-			{urn: "urn:pulumi:::::::", expected: ""},
+			{urn: "urn:khulnasoft:stack::proj::qualified$type::test-test", expected: "qualified$type"},
+			{urn: "urn:khulnasoft:::::qualified$type::", expected: "qualified$type"},
+			{urn: "urn:khulnasoft:stack::proj::::test-test", expected: ""},
+			{urn: "urn:khulnasoft:::::::", expected: ""},
 		}
 
 		for _, test := range cases {
@@ -161,14 +161,14 @@ func TestComponentAccess(t *testing.T) {
 		t.Parallel()
 
 		cases := []ComponentTestCase{
-			{urn: "urn:pulumi:stack::proj::very$qualified$type::test-test", expected: "type"},
-			{urn: "urn:pulumi:::::very$qualified$type::", expected: "type"},
-			{urn: "urn:pulumi:stack::proj::qualified$type::test-test", expected: "type"},
-			{urn: "urn:pulumi:::::qualified$type::", expected: "type"},
-			{urn: "urn:pulumi:stack::proj::qualified-type::test-test", expected: "qualified-type"},
-			{urn: "urn:pulumi:::::qualified-type::", expected: "qualified-type"},
-			{urn: "urn:pulumi:stack::proj::::test-test", expected: ""},
-			{urn: "urn:pulumi:::::::", expected: ""},
+			{urn: "urn:khulnasoft:stack::proj::very$qualified$type::test-test", expected: "type"},
+			{urn: "urn:khulnasoft:::::very$qualified$type::", expected: "type"},
+			{urn: "urn:khulnasoft:stack::proj::qualified$type::test-test", expected: "type"},
+			{urn: "urn:khulnasoft:::::qualified$type::", expected: "type"},
+			{urn: "urn:khulnasoft:stack::proj::qualified-type::test-test", expected: "qualified-type"},
+			{urn: "urn:khulnasoft:::::qualified-type::", expected: "qualified-type"},
+			{urn: "urn:khulnasoft:stack::proj::::test-test", expected: ""},
+			{urn: "urn:khulnasoft:::::::", expected: ""},
 		}
 
 		for _, test := range cases {
@@ -185,24 +185,24 @@ func TestComponentAccess(t *testing.T) {
 		t.Parallel()
 
 		cases := []ComponentTestCase{
-			{urn: "urn:pulumi:stack::proj::qualified$type::name", expected: "name"},
-			{urn: "urn:pulumi:::::::name", expected: "name"},
-			{urn: "urn:pulumi:stack::proj::qualified$type::", expected: ""},
-			{urn: "urn:pulumi:::::::", expected: ""},
+			{urn: "urn:khulnasoft:stack::proj::qualified$type::name", expected: "name"},
+			{urn: "urn:khulnasoft:::::::name", expected: "name"},
+			{urn: "urn:khulnasoft:stack::proj::qualified$type::", expected: ""},
+			{urn: "urn:khulnasoft:::::::", expected: ""},
 			{
-				urn:      "urn:pulumi::stack::proj::type::a-longer-name",
+				urn:      "urn:khulnasoft::stack::proj::type::a-longer-name",
 				expected: "a-longer-name",
 			},
 			{
-				urn:      "urn:pulumi::stack::proj::type::a name with spaces",
+				urn:      "urn:khulnasoft::stack::proj::type::a name with spaces",
 				expected: "a name with spaces",
 			},
 			{
-				urn:      "urn:pulumi::stack::proj::type::a-name-with::a-name-separator",
+				urn:      "urn:khulnasoft::stack::proj::type::a-name-with::a-name-separator",
 				expected: "a-name-with::a-name-separator",
 			},
 			{
-				urn:      "urn:pulumi::stack::proj::type::a-name-with::many::name::separators",
+				urn:      "urn:khulnasoft::stack::proj::type::a-name-with::many::name::separators",
 				expected: "a-name-with::many::name::separators",
 			},
 		}
@@ -225,11 +225,11 @@ func TestURNParse(t *testing.T) {
 		t.Parallel()
 
 		goodUrns := []string{
-			"urn:pulumi:test::test::pulumi:pulumi:Stack::test-test",
-			"urn:pulumi:stack-name::project-name::my:customtype$aws:s3/bucket:Bucket::bob",
-			"urn:pulumi:stack::project::type::",
-			"urn:pulumi:stack::project::type::some really ::^&\n*():: crazy name",
-			"urn:pulumi:stack::project with whitespace::type::some name",
+			"urn:khulnasoft:test::test::khulnasoft:khulnasoft:Stack::test-test",
+			"urn:khulnasoft:stack-name::project-name::my:customtype$aws:s3/bucket:Bucket::bob",
+			"urn:khulnasoft:stack::project::type::",
+			"urn:khulnasoft:stack::project::type::some really ::^&\n*():: crazy name",
+			"urn:khulnasoft:stack::project with whitespace::type::some name",
 		}
 		for _, str := range goodUrns {
 			urn, err := urn.Parse(str)
@@ -254,9 +254,9 @@ func TestURNParse(t *testing.T) {
 
 			invalidUrns := []string{
 				"URN:PULUMI:TEST::TEST::PULUMI:PULUMI:STACK::TEST-TEST",
-				"urn:not-pulumi:stack-name::project-name::my:customtype$aws:s3/bucket:Bucket::bob",
+				"urn:not-khulnasoft:stack-name::project-name::my:customtype$aws:s3/bucket:Bucket::bob",
 				"The quick brown fox",
-				"urn:pulumi:stack::too-few-elements",
+				"urn:khulnasoft:stack::too-few-elements",
 			}
 			for _, str := range invalidUrns {
 				urn, err := urn.Parse(str)
@@ -274,11 +274,11 @@ func TestParseOptionalURN(t *testing.T) {
 		t.Parallel()
 
 		goodUrns := []string{
-			"urn:pulumi:test::test::pulumi:pulumi:Stack::test-test",
-			"urn:pulumi:stack-name::project-name::my:customtype$aws:s3/bucket:Bucket::bob",
-			"urn:pulumi:stack::project::type::",
-			"urn:pulumi:stack::project::type::some really ::^&\n*():: crazy name",
-			"urn:pulumi:stack::project with whitespace::type::some name",
+			"urn:khulnasoft:test::test::khulnasoft:khulnasoft:Stack::test-test",
+			"urn:khulnasoft:stack-name::project-name::my:customtype$aws:s3/bucket:Bucket::bob",
+			"urn:khulnasoft:stack::project::type::",
+			"urn:khulnasoft:stack::project::type::some really ::^&\n*():: crazy name",
+			"urn:khulnasoft:stack::project with whitespace::type::some name",
 			"",
 		}
 		for _, str := range goodUrns {
@@ -293,9 +293,9 @@ func TestParseOptionalURN(t *testing.T) {
 
 		invalidUrns := []string{
 			"URN:PULUMI:TEST::TEST::PULUMI:PULUMI:STACK::TEST-TEST",
-			"urn:not-pulumi:stack-name::project-name::my:customtype$aws:s3/bucket:Bucket::bob",
+			"urn:not-khulnasoft:stack-name::project-name::my:customtype$aws:s3/bucket:Bucket::bob",
 			"The quick brown fox",
-			"urn:pulumi:stack::too-few-elements",
+			"urn:khulnasoft:stack::too-few-elements",
 		}
 		for _, str := range invalidUrns {
 			urn, err := urn.ParseOptional(str)
@@ -308,13 +308,13 @@ func TestParseOptionalURN(t *testing.T) {
 func TestQuote(t *testing.T) {
 	t.Parallel()
 
-	urn, err := urn.Parse("urn:pulumi:test::test::pulumi:pulumi:Stack::test-test")
+	urn, err := urn.Parse("urn:khulnasoft:test::test::khulnasoft:khulnasoft:Stack::test-test")
 	require.NoError(t, err)
 	require.NotEmpty(t, urn)
 
-	expected := "'urn:pulumi:test::test::pulumi:pulumi:Stack::test-test'"
+	expected := "'urn:khulnasoft:test::test::khulnasoft:khulnasoft:Stack::test-test'"
 	if runtime.GOOS == "windows" {
-		expected = "\"urn:pulumi:test::test::pulumi:pulumi:Stack::test-test\""
+		expected = "\"urn:khulnasoft:test::test::khulnasoft:khulnasoft:Stack::test-test\""
 	}
 
 	assert.Equal(t, expected, urn.Quote())

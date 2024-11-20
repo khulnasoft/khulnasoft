@@ -37,11 +37,11 @@ func TestUvVirtualenvPath(t *testing.T) {
 	t.Run("no virtualenv specified, in a subfolder", func(t *testing.T) {
 		t.Parallel()
 		root := t.TempDir()
-		pulumiRoot := filepath.Join(root, "subfolder")
+		khulnasoftRoot := filepath.Join(root, "subfolder")
 		require.NoError(t, os.WriteFile(filepath.Join(root, "uv.lock"), []byte{}, 0o600))
-		require.NoError(t, os.Mkdir(pulumiRoot, 0o755))
+		require.NoError(t, os.Mkdir(khulnasoftRoot, 0o755))
 
-		uv, err := newUv(pulumiRoot, "")
+		uv, err := newUv(khulnasoftRoot, "")
 		require.NoError(t, err)
 		require.Equal(t, filepath.Join(root, ".venv"), uv.virtualenvPath, "virtualenv is next to uv.lock")
 	})
@@ -49,14 +49,14 @@ func TestUvVirtualenvPath(t *testing.T) {
 	t.Run("no virtualenv specified, in a subfolder", func(t *testing.T) {
 		t.Parallel()
 		root := t.TempDir()
-		pulumiRoot := filepath.Join(root, "subfolder")
-		require.NoError(t, os.Mkdir(pulumiRoot, 0o700))
+		khulnasoftRoot := filepath.Join(root, "subfolder")
+		require.NoError(t, os.Mkdir(khulnasoftRoot, 0o700))
 		require.NoError(t, os.WriteFile(filepath.Join(root, "uv.lock"), []byte{}, 0o600))
-		require.NoError(t, os.WriteFile(filepath.Join(pulumiRoot, "uv.lock"), []byte{}, 0o600))
+		require.NoError(t, os.WriteFile(filepath.Join(khulnasoftRoot, "uv.lock"), []byte{}, 0o600))
 
-		uv, err := newUv(pulumiRoot, "")
+		uv, err := newUv(khulnasoftRoot, "")
 		require.NoError(t, err)
-		require.Equal(t, filepath.Join(pulumiRoot, ".venv"), uv.virtualenvPath,
+		require.Equal(t, filepath.Join(khulnasoftRoot, ".venv"), uv.virtualenvPath,
 			"virtualenv is next to the uv.lock closest to the project root")
 	})
 
@@ -72,12 +72,12 @@ func TestUvVirtualenvPath(t *testing.T) {
 	t.Run("virtualenv option is provided, in  subfolder", func(t *testing.T) {
 		t.Parallel()
 		root := t.TempDir()
-		pulumiRoot := filepath.Join(root, "subfolder")
-		require.NoError(t, os.Mkdir(pulumiRoot, 0o755))
+		khulnasoftRoot := filepath.Join(root, "subfolder")
+		require.NoError(t, os.Mkdir(khulnasoftRoot, 0o755))
 
-		uv, err := newUv(pulumiRoot, "banana")
+		uv, err := newUv(khulnasoftRoot, "banana")
 		require.NoError(t, err)
-		require.Equal(t, filepath.Join(pulumiRoot, "banana"), uv.virtualenvPath, "virtualenv is in the project root")
+		require.Equal(t, filepath.Join(khulnasoftRoot, "banana"), uv.virtualenvPath, "virtualenv is in the project root")
 	})
 }
 

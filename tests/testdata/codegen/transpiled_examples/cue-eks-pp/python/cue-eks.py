@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_eks as eks
+import khulnasoft
+import khulnasoft_eks as eks
 
 rawkode = eks.Cluster("rawkode",
     instance_type="t2.medium",

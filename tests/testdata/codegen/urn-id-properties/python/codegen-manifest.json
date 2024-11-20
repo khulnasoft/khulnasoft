@@ -1,14 +1,14 @@
 {
   "emittedFiles": [
-    "pulumi_urnid/README.md",
-    "pulumi_urnid/__init__.py",
-    "pulumi_urnid/_utilities.py",
-    "pulumi_urnid/outputs.py",
-    "pulumi_urnid/provider.py",
-    "pulumi_urnid/pulumi-plugin.json",
-    "pulumi_urnid/py.typed",
-    "pulumi_urnid/res.py",
-    "pulumi_urnid/test.py",
+    "khulnasoft_urnid/README.md",
+    "khulnasoft_urnid/__init__.py",
+    "khulnasoft_urnid/_utilities.py",
+    "khulnasoft_urnid/outputs.py",
+    "khulnasoft_urnid/provider.py",
+    "khulnasoft_urnid/khulnasoft-plugin.json",
+    "khulnasoft_urnid/py.typed",
+    "khulnasoft_urnid/res.py",
+    "khulnasoft_urnid/test.py",
     "setup.py"
   ]
 }

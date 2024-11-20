@@ -14,7 +14,7 @@
 
 // This module is use for testing to ensure that capturing a value from inside a deployment-time
 // module works properly.  We replicate the 'Config' type here as that's the principle case
-// of a value we want people to be able to capture from a project like pulumi.
+// of a value we want people to be able to capture from a project like khulnasoft.
 
 export * from "./config";
 export * from "./runtimeConfig";

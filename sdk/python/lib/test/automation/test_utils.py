@@ -15,7 +15,7 @@
 import os
 from random import random
 
-from pulumi.automation import fully_qualified_stack_name
+from khulnasoft.automation import fully_qualified_stack_name
 
 
 def get_test_org():

@@ -23,12 +23,12 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/gsync"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/urn"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/diagtest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/urn"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/diagtest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -124,11 +124,11 @@ func TestSameStep(t *testing.T) {
 					},
 				},
 				old: &resource.State{
-					URN: "urn:pulumi:stack::project::type::foo",
+					URN: "urn:khulnasoft:stack::project::type::foo",
 				},
 				new: &resource.State{
-					URN:  "urn:pulumi:stack::project::type::foo",
-					Type: "pulumi:providers:some-provider",
+					URN:  "urn:khulnasoft:stack::project::type::foo",
+					Type: "khulnasoft:providers:some-provider",
 				},
 			}
 			_, _, err := s.Apply()
@@ -154,7 +154,7 @@ func TestCreateStep(t *testing.T) {
 					new: &resource.State{
 						Custom: true,
 						// Use denydefaultprovider ID to ensure failure.
-						Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+						Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 					},
 				}
 				status, _, err := s.Apply()
@@ -265,7 +265,7 @@ func TestDeleteStep(t *testing.T) {
 					old: &resource.State{
 						Custom: true,
 						// Use denydefaultprovider ID to ensure failure.
-						Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+						Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 					},
 				}
 				status, _, err := s.Apply()
@@ -399,7 +399,7 @@ func TestUpdateStep(t *testing.T) {
 				new: &resource.State{
 					Custom: true,
 					// Use denydefaultprovider ID to ensure failure.
-					Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 				},
 			}
 			status, _, err := s.Apply()
@@ -414,7 +414,7 @@ func TestUpdateStep(t *testing.T) {
 				new: &resource.State{
 					Custom: true,
 					// Use denydefaultprovider ID to ensure failure.
-					Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 				},
 				deployment: &Deployment{
 					opts: &Options{
@@ -438,7 +438,7 @@ func TestUpdateStep(t *testing.T) {
 				new: &resource.State{
 					Custom: true,
 					// Use denydefaultprovider ID to ensure failure.
-					Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 				},
 				deployment: &Deployment{
 					opts: &Options{
@@ -499,7 +499,7 @@ func TestReadStep(t *testing.T) {
 				new: &resource.State{
 					Custom: true,
 					// Use denydefaultprovider ID to ensure failure.
-					Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 				},
 			}
 			status, _, err := s.Apply()
@@ -516,7 +516,7 @@ func TestReadStep(t *testing.T) {
 					ID:     "some-id",
 					Custom: true,
 					// Use denydefaultprovider ID to ensure failure.
-					Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 				},
 				deployment: &Deployment{
 					opts: &Options{
@@ -542,7 +542,7 @@ func TestReadStep(t *testing.T) {
 					ID:     "some-id",
 					Custom: true,
 					// Use denydefaultprovider ID to ensure failure.
-					Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 				},
 				deployment: &Deployment{
 					opts: &Options{
@@ -807,7 +807,7 @@ func TestRefreshStepPatterns(t *testing.T) {
 				ID:       "some-id",
 				Type:     "some-type",
 				Custom:   true,
-				Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+				Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 				Inputs:   tc.inputs,
 				Outputs:  tc.outputs,
 			},
@@ -854,7 +854,7 @@ func TestRefreshStep(t *testing.T) {
 				old: &resource.State{
 					Custom: true,
 					// Use denydefaultprovider ID to ensure failure.
-					Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 				},
 			}
 			status, _, err := s.Apply()
@@ -870,7 +870,7 @@ func TestRefreshStep(t *testing.T) {
 					ID:     "some-id",
 					Custom: true,
 					// Use denydefaultprovider ID to ensure failure.
-					Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 				},
 				deployment: &Deployment{
 					opts: &Options{
@@ -896,7 +896,7 @@ func TestRefreshStep(t *testing.T) {
 					Type:   "some-type",
 					Custom: true,
 					// Use denydefaultprovider ID to ensure failure.
-					Provider: "urn:pulumi:stack::project::pulumi:providers:aws::default_5_42_0::denydefaultprovider",
+					Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_5_42_0::denydefaultprovider",
 				},
 				deployment: &Deployment{
 					ctx: &plugin.Context{Diag: &deploytest.NoopSink{}},
@@ -948,7 +948,7 @@ func TestImportStep(t *testing.T) {
 			s := &ImportStep{
 				planned: true,
 				new: &resource.State{
-					Parent: "urn:pulumi:stack::project::foo:bar:Bar::name",
+					Parent: "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 				},
 				deployment: &Deployment{
 					opts: &Options{
@@ -973,7 +973,7 @@ func TestImportStep(t *testing.T) {
 					news: &gsync.Map[urn.URN, *resource.State]{},
 				},
 				new: &resource.State{
-					URN:    "urn:pulumi:stack::project::foo:bar:Bar::name",
+					URN:    "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 					ID:     "some-id",
 					Custom: true,
 				},
@@ -996,7 +996,7 @@ func TestImportStep(t *testing.T) {
 						news: &gsync.Map[urn.URN, *resource.State]{},
 					},
 					new: &resource.State{
-						URN:    "urn:pulumi:stack::project::foo:bar:Bar::name",
+						URN:    "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 						ID:     "some-id",
 						Custom: true,
 					},
@@ -1021,7 +1021,7 @@ func TestImportStep(t *testing.T) {
 						news: &gsync.Map[urn.URN, *resource.State]{},
 					},
 					new: &resource.State{
-						URN:    "urn:pulumi:stack::project::foo:bar:Bar::name",
+						URN:    "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 						ID:     "some-id",
 						Custom: true,
 					},
@@ -1051,7 +1051,7 @@ func TestImportStep(t *testing.T) {
 						news: &gsync.Map[urn.URN, *resource.State]{},
 					},
 					new: &resource.State{
-						URN:    "urn:pulumi:stack::project::foo:bar:Bar::name",
+						URN:    "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 						ID:     "some-id",
 						Custom: true,
 					},
@@ -1076,7 +1076,7 @@ func TestImportStep(t *testing.T) {
 						news: &gsync.Map[urn.URN, *resource.State]{},
 					},
 					new: &resource.State{
-						URN:    "urn:pulumi:stack::project::foo:bar:Bar::name",
+						URN:    "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 						ID:     "some-id",
 						Custom: true,
 					},
@@ -1112,7 +1112,7 @@ func TestImportStep(t *testing.T) {
 						news: &gsync.Map[urn.URN, *resource.State]{},
 					},
 					new: &resource.State{
-						URN:    "urn:pulumi:stack::project::foo:bar:Bar::name",
+						URN:    "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 						ID:     "some-id",
 						Type:   "foo:bar:Bar",
 						Custom: true,
@@ -1156,12 +1156,12 @@ func TestImportStep(t *testing.T) {
 						news: &gsync.Map[urn.URN, *resource.State]{},
 					},
 					new: &resource.State{
-						URN:      "urn:pulumi:stack::project::foo:bar:Bar::name",
+						URN:      "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 						ID:       "some-id",
 						Type:     "foo:bar:Bar",
 						Custom:   true,
-						Parent:   "urn:pulumi:stack::project::pulumi:pulumi:Stack::name",
-						Provider: "urn:pulumi:stack::project::pulumi:providers:provider::name::uuid",
+						Parent:   "urn:khulnasoft:stack::project::khulnasoft:khulnasoft:Stack::name",
+						Provider: "urn:khulnasoft:stack::project::khulnasoft:providers:provider::name::uuid",
 					},
 					planned:    true,
 					randomSeed: []byte{},
@@ -1219,7 +1219,7 @@ func TestImportStep(t *testing.T) {
 					ctx:  ctx,
 				},
 				new: &resource.State{
-					URN:    "urn:pulumi:stack::project::foo:bar:Bar::name",
+					URN:    "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 					ID:     "some-id",
 					Type:   "foo:bar:Bar",
 					Custom: true,
@@ -1266,7 +1266,7 @@ func TestImportStep(t *testing.T) {
 					ctx:  ctx,
 				},
 				new: &resource.State{
-					URN:    "urn:pulumi:stack::project::foo:bar:Bar::name",
+					URN:    "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 					ID:     "some-id",
 					Type:   "foo:bar:Bar",
 					Custom: true,
@@ -1302,7 +1302,7 @@ func TestImportStep(t *testing.T) {
 					ctx:  ctx,
 				},
 				new: &resource.State{
-					URN:    "urn:pulumi:stack::project::foo:bar:Bar::name",
+					URN:    "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 					ID:     "some-id",
 					Type:   "foo:bar:Bar",
 					Custom: true,
@@ -1350,7 +1350,7 @@ func TestImportStep(t *testing.T) {
 					ctx:  ctx,
 				},
 				new: &resource.State{
-					URN:    "urn:pulumi:stack::project::foo:bar:Bar::name",
+					URN:    "urn:khulnasoft:stack::project::foo:bar:Bar::name",
 					ID:     "some-id",
 					Type:   "foo:bar:Bar",
 					Custom: true,

@@ -2,12 +2,12 @@
   "name": "kubernetes",
   "description": "A Pulumi package for creating and managing Kubernetes resources.",
   "keywords": [
-    "pulumi",
+    "khulnasoft",
     "kubernetes"
   ],
-  "homepage": "https://pulumi.com",
+  "homepage": "https://khulnasoft.com",
   "license": "Apache-2.0",
-  "repository": "https://github.com/pulumi/pulumi-kubernetes",
+  "repository": "https://github.com/khulnasoft/khulnasoft-kubernetes",
   "config": {
     "variables": {
       "cluster": {
@@ -69,7 +69,7 @@
       },
       "suppressHelmReleaseBetaWarning": {
         "type": "boolean",
-        "description": "While Helm Release provider is in beta, by default 'pulumi up' will log a warning if the resource is used. If present and set to true, this warning is omitted."
+        "description": "While Helm Release provider is in beta, by default 'khulnasoft up' will log a warning if the resource is used. If present and set to true, this warning is omitted."
       }
     }
   },
@@ -1342,7 +1342,7 @@
           "description": "scale indicates the custom resource should serve a `/scale` subresource that returns an `autoscaling/v1` Scale object."
         },
         "status": {
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "status indicates the custom resource should serve a `/status` subresource. When enabled: 1. requests to the custom resource primary endpoint ignore changes to the `status` stanza of the object. 2. requests to the custom resource `/status` subresource ignore changes to anything other than the `status` stanza of the object."
         }
       },
@@ -1445,7 +1445,7 @@
           }
         },
         "default": {
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "default is a default value for undefined object fields. Defaulting is a beta feature under the CustomResourceDefaulting feature gate. Defaulting requires spec.preserveUnknownFields to be false."
         },
         "definitions": {
@@ -1476,11 +1476,11 @@
         "enum": {
           "type": "array",
           "items": {
-            "$ref": "pulumi.json#/Json"
+            "$ref": "khulnasoft.json#/Json"
           }
         },
         "example": {
-          "$ref": "pulumi.json#/Json"
+          "$ref": "khulnasoft.json#/Json"
         },
         "exclusiveMaximum": {
           "type": "boolean"
@@ -1506,7 +1506,7 @@
             {
               "type": "array",
               "items": {
-                "$ref": "pulumi.json#/Json"
+                "$ref": "khulnasoft.json#/Json"
               }
             }
           ]
@@ -2212,7 +2212,7 @@
           "description": "scale indicates the custom resource should serve a `/scale` subresource that returns an `autoscaling/v1` Scale object."
         },
         "status": {
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "status indicates the custom resource should serve a `/status` subresource. When enabled: 1. requests to the custom resource primary endpoint ignore changes to the `status` stanza of the object. 2. requests to the custom resource `/status` subresource ignore changes to anything other than the `status` stanza of the object."
         }
       },
@@ -2315,7 +2315,7 @@
           }
         },
         "default": {
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "default is a default value for undefined object fields. Defaulting is a beta feature under the CustomResourceDefaulting feature gate. CustomResourceDefinitions with defaults must be created using the v1 (or newer) CustomResourceDefinition API."
         },
         "definitions": {
@@ -2346,11 +2346,11 @@
         "enum": {
           "type": "array",
           "items": {
-            "$ref": "pulumi.json#/Json"
+            "$ref": "khulnasoft.json#/Json"
           }
         },
         "example": {
-          "$ref": "pulumi.json#/Json"
+          "$ref": "khulnasoft.json#/Json"
         },
         "exclusiveMaximum": {
           "type": "boolean"
@@ -2376,7 +2376,7 @@
             {
               "type": "array",
               "items": {
-                "$ref": "pulumi.json#/Json"
+                "$ref": "khulnasoft.json#/Json"
               }
             }
           ]
@@ -3036,7 +3036,7 @@
         },
         "data": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "Data is the serialized representation of the state."
         },
         "kind": {
@@ -4198,7 +4198,7 @@
         },
         "data": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "Data is the serialized representation of the state."
         },
         "kind": {
@@ -5005,7 +5005,7 @@
         },
         "data": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "Data is the serialized representation of the state."
         },
         "kind": {
@@ -9736,7 +9736,7 @@
       }
     },
     "kubernetes:batch/v1:Job": {
-      "description": "Job represents the configuration of a single job.\n\nThis resource waits until its status is ready before registering success\nfor create/update, and populating output properties from the current state of the resource.\nThe following conditions are used to determine whether the resource creation has\nsucceeded or failed:\n\n1. The Job's '.status.startTime' is set, which indicates that the Job has started running.\n2. The Job's '.status.conditions' has a status of type 'Complete', and a 'status' set\n   to 'True'.\n3. The Job's '.status.conditions' do not have a status of type 'Failed', with a\n\t'status' set to 'True'. If this condition is set, we should fail the Job immediately.\n\nIf the Job has not reached a Ready state after 10 minutes, it will\ntime out and mark the resource update as Failed. You can override the default timeout value\nby setting the 'customTimeouts' option on the resource.\n\nBy default, if a resource failed to become ready in a previous update, \nPulumi will continue to wait for readiness on the next update. If you would prefer\nto schedule a replacement for an unready resource on the next update, you can add the\n\"pulumi.com/replaceUnready\": \"true\" annotation to the resource definition.",
+      "description": "Job represents the configuration of a single job.\n\nThis resource waits until its status is ready before registering success\nfor create/update, and populating output properties from the current state of the resource.\nThe following conditions are used to determine whether the resource creation has\nsucceeded or failed:\n\n1. The Job's '.status.startTime' is set, which indicates that the Job has started running.\n2. The Job's '.status.conditions' has a status of type 'Complete', and a 'status' set\n   to 'True'.\n3. The Job's '.status.conditions' do not have a status of type 'Failed', with a\n\t'status' set to 'True'. If this condition is set, we should fail the Job immediately.\n\nIf the Job has not reached a Ready state after 10 minutes, it will\ntime out and mark the resource update as Failed. You can override the default timeout value\nby setting the 'customTimeouts' option on the resource.\n\nBy default, if a resource failed to become ready in a previous update, \nPulumi will continue to wait for readiness on the next update. If you would prefer\nto schedule a replacement for an unready resource on the next update, you can add the\n\"khulnasoft.com/replaceUnready\": \"true\" annotation to the resource definition.",
       "properties": {
         "apiVersion": {
           "type": "string",
@@ -17470,7 +17470,7 @@
       }
     },
     "kubernetes:core/v1:Service": {
-      "description": "Service is a named abstraction of software service (for example, mysql) consisting of local port (for example 3306) that the proxy listens on, and the selector that determines which pods will answer requests sent through the proxy.\n\nThis resource waits until its status is ready before registering success\nfor create/update, and populating output properties from the current state of the resource.\nThe following conditions are used to determine whether the resource creation has\nsucceeded or failed:\n\n1. Service object exists.\n2. Related Endpoint objects are created. Each time we get an update, wait 10 seconds\n   for any stragglers.\n3. The endpoints objects target some number of living objects (unless the Service is\n   an \"empty headless\" Service [1] or a Service with '.spec.type: ExternalName').\n4. External IP address is allocated (if Service has '.spec.type: LoadBalancer').\n\nKnown limitations: \nServices targeting ReplicaSets (and, by extension, Deployments,\nStatefulSets, etc.) with '.spec.replicas' set to 0 are not handled, and will time\nout. To work around this limitation, set 'pulumi.com/skipAwait: \"true\"' on\n'.metadata.annotations' for the Service. Work to handle this case is in progress [2].\n\n[1] https://kubernetes.io/docs/concepts/services-networking/service/#headless-services\n[2] https://github.com/pulumi/pulumi-kubernetes/pull/703\n\nIf the Service has not reached a Ready state after 10 minutes, it will\ntime out and mark the resource update as Failed. You can override the default timeout value\nby setting the 'customTimeouts' option on the resource.",
+      "description": "Service is a named abstraction of software service (for example, mysql) consisting of local port (for example 3306) that the proxy listens on, and the selector that determines which pods will answer requests sent through the proxy.\n\nThis resource waits until its status is ready before registering success\nfor create/update, and populating output properties from the current state of the resource.\nThe following conditions are used to determine whether the resource creation has\nsucceeded or failed:\n\n1. Service object exists.\n2. Related Endpoint objects are created. Each time we get an update, wait 10 seconds\n   for any stragglers.\n3. The endpoints objects target some number of living objects (unless the Service is\n   an \"empty headless\" Service [1] or a Service with '.spec.type: ExternalName').\n4. External IP address is allocated (if Service has '.spec.type: LoadBalancer').\n\nKnown limitations: \nServices targeting ReplicaSets (and, by extension, Deployments,\nStatefulSets, etc.) with '.spec.replicas' set to 0 are not handled, and will time\nout. To work around this limitation, set 'khulnasoft.com/skipAwait: \"true\"' on\n'.metadata.annotations' for the Service. Work to handle this case is in progress [2].\n\n[1] https://kubernetes.io/docs/concepts/services-networking/service/#headless-services\n[2] https://github.com/khulnasoft/khulnasoft-kubernetes/pull/703\n\nIf the Service has not reached a Ready state after 10 minutes, it will\ntime out and mark the resource update as Failed. You can override the default timeout value\nby setting the 'customTimeouts' option on the resource.",
       "properties": {
         "apiVersion": {
           "type": "string",
@@ -22848,7 +22848,7 @@
         "manifest": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "pulumi.json#/Any"
+            "$ref": "khulnasoft.json#/Any"
           },
           "description": "The rendered manifests as JSON. Not yet supported."
         },
@@ -22921,14 +22921,14 @@
         "valueYamlFiles": {
           "type": "array",
           "items": {
-            "$ref": "pulumi.json#/Asset"
+            "$ref": "khulnasoft.json#/Asset"
           },
           "description": "List of assets (raw yaml files). Content is read and merged with values. Not yet supported."
         },
         "values": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "pulumi.json#/Any"
+            "$ref": "khulnasoft.json#/Any"
           },
           "description": "Custom values set for the release."
         },
@@ -23561,7 +23561,7 @@
         },
         "fieldsV1": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "FieldsV1 holds the first JSON version format as described in the \"FieldsV1\" type."
         },
         "manager": {
@@ -23935,7 +23935,7 @@
       "properties": {
         "object": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "Object is:\n * If Type is Added or Modified: the new state of the object.\n * If Type is Deleted: the state of the object immediately before deletion.\n * If Type is Error: *Status is recommended; other types may make sense\n   depending on context."
         },
         "type": {
@@ -29998,7 +29998,7 @@
       },
       "suppressHelmReleaseBetaWarning": {
         "type": "boolean",
-        "description": "While Helm Release provider is in beta, by default 'pulumi up' will log a warning if the resource is used. If present and set to \"true\", this warning is omitted.",
+        "description": "While Helm Release provider is in beta, by default 'khulnasoft up' will log a warning if the resource is used. If present and set to \"true\", this warning is omitted.",
         "defaultInfo": {
           "environment": [
             "PULUMI_K8S_SUPPRESS_HELM_RELEASE_BETA_WARNING"
@@ -31086,7 +31086,7 @@
         },
         "data": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "Data is the serialized representation of the state."
         },
         "kind": {
@@ -31126,7 +31126,7 @@
         },
         "data": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "Data is the serialized representation of the state."
         },
         "kind": {
@@ -31766,7 +31766,7 @@
         },
         "data": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "Data is the serialized representation of the state."
         },
         "kind": {
@@ -31806,7 +31806,7 @@
         },
         "data": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "Data is the serialized representation of the state."
         },
         "kind": {
@@ -32177,7 +32177,7 @@
         },
         "data": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "Data is the serialized representation of the state."
         },
         "kind": {
@@ -32217,7 +32217,7 @@
         },
         "data": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "Data is the serialized representation of the state."
         },
         "kind": {
@@ -34250,7 +34250,7 @@
       ]
     },
     "kubernetes:batch/v1:Job": {
-      "description": "Job represents the configuration of a single job.\n\nThis resource waits until its status is ready before registering success\nfor create/update, and populating output properties from the current state of the resource.\nThe following conditions are used to determine whether the resource creation has\nsucceeded or failed:\n\n1. The Job's '.status.startTime' is set, which indicates that the Job has started running.\n2. The Job's '.status.conditions' has a status of type 'Complete', and a 'status' set\n   to 'True'.\n3. The Job's '.status.conditions' do not have a status of type 'Failed', with a\n\t'status' set to 'True'. If this condition is set, we should fail the Job immediately.\n\nIf the Job has not reached a Ready state after 10 minutes, it will\ntime out and mark the resource update as Failed. You can override the default timeout value\nby setting the 'customTimeouts' option on the resource.\n\nBy default, if a resource failed to become ready in a previous update, \nPulumi will continue to wait for readiness on the next update. If you would prefer\nto schedule a replacement for an unready resource on the next update, you can add the\n\"pulumi.com/replaceUnready\": \"true\" annotation to the resource definition.",
+      "description": "Job represents the configuration of a single job.\n\nThis resource waits until its status is ready before registering success\nfor create/update, and populating output properties from the current state of the resource.\nThe following conditions are used to determine whether the resource creation has\nsucceeded or failed:\n\n1. The Job's '.status.startTime' is set, which indicates that the Job has started running.\n2. The Job's '.status.conditions' has a status of type 'Complete', and a 'status' set\n   to 'True'.\n3. The Job's '.status.conditions' do not have a status of type 'Failed', with a\n\t'status' set to 'True'. If this condition is set, we should fail the Job immediately.\n\nIf the Job has not reached a Ready state after 10 minutes, it will\ntime out and mark the resource update as Failed. You can override the default timeout value\nby setting the 'customTimeouts' option on the resource.\n\nBy default, if a resource failed to become ready in a previous update, \nPulumi will continue to wait for readiness on the next update. If you would prefer\nto schedule a replacement for an unready resource on the next update, you can add the\n\"khulnasoft.com/replaceUnready\": \"true\" annotation to the resource definition.",
       "properties": {
         "apiVersion": {
           "type": "string",
@@ -37013,7 +37013,7 @@
       ]
     },
     "kubernetes:core/v1:Service": {
-      "description": "Service is a named abstraction of software service (for example, mysql) consisting of local port (for example 3306) that the proxy listens on, and the selector that determines which pods will answer requests sent through the proxy.\n\nThis resource waits until its status is ready before registering success\nfor create/update, and populating output properties from the current state of the resource.\nThe following conditions are used to determine whether the resource creation has\nsucceeded or failed:\n\n1. Service object exists.\n2. Related Endpoint objects are created. Each time we get an update, wait 10 seconds\n   for any stragglers.\n3. The endpoints objects target some number of living objects (unless the Service is\n   an \"empty headless\" Service [1] or a Service with '.spec.type: ExternalName').\n4. External IP address is allocated (if Service has '.spec.type: LoadBalancer').\n\nKnown limitations: \nServices targeting ReplicaSets (and, by extension, Deployments,\nStatefulSets, etc.) with '.spec.replicas' set to 0 are not handled, and will time\nout. To work around this limitation, set 'pulumi.com/skipAwait: \"true\"' on\n'.metadata.annotations' for the Service. Work to handle this case is in progress [2].\n\n[1] https://kubernetes.io/docs/concepts/services-networking/service/#headless-services\n[2] https://github.com/pulumi/pulumi-kubernetes/pull/703\n\nIf the Service has not reached a Ready state after 10 minutes, it will\ntime out and mark the resource update as Failed. You can override the default timeout value\nby setting the 'customTimeouts' option on the resource.",
+      "description": "Service is a named abstraction of software service (for example, mysql) consisting of local port (for example 3306) that the proxy listens on, and the selector that determines which pods will answer requests sent through the proxy.\n\nThis resource waits until its status is ready before registering success\nfor create/update, and populating output properties from the current state of the resource.\nThe following conditions are used to determine whether the resource creation has\nsucceeded or failed:\n\n1. Service object exists.\n2. Related Endpoint objects are created. Each time we get an update, wait 10 seconds\n   for any stragglers.\n3. The endpoints objects target some number of living objects (unless the Service is\n   an \"empty headless\" Service [1] or a Service with '.spec.type: ExternalName').\n4. External IP address is allocated (if Service has '.spec.type: LoadBalancer').\n\nKnown limitations: \nServices targeting ReplicaSets (and, by extension, Deployments,\nStatefulSets, etc.) with '.spec.replicas' set to 0 are not handled, and will time\nout. To work around this limitation, set 'khulnasoft.com/skipAwait: \"true\"' on\n'.metadata.annotations' for the Service. Work to handle this case is in progress [2].\n\n[1] https://kubernetes.io/docs/concepts/services-networking/service/#headless-services\n[2] https://github.com/khulnasoft/khulnasoft-kubernetes/pull/703\n\nIf the Service has not reached a Ready state after 10 minutes, it will\ntime out and mark the resource update as Failed. You can override the default timeout value\nby setting the 'customTimeouts' option on the resource.",
       "properties": {
         "apiVersion": {
           "type": "string",
@@ -39482,7 +39482,7 @@
         "manifest": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "pulumi.json#/Any"
+            "$ref": "khulnasoft.json#/Any"
           },
           "description": "The rendered manifests as JSON. Not yet supported."
         },
@@ -39555,14 +39555,14 @@
         "valueYamlFiles": {
           "type": "array",
           "items": {
-            "$ref": "pulumi.json#/Asset"
+            "$ref": "khulnasoft.json#/Asset"
           },
           "description": "List of assets (raw yaml files). Content is read and merged with values. Not yet supported."
         },
         "values": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "pulumi.json#/Any"
+            "$ref": "khulnasoft.json#/Any"
           },
           "description": "Custom values set for the release."
         },
@@ -39685,7 +39685,7 @@
         "manifest": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "pulumi.json#/Any"
+            "$ref": "khulnasoft.json#/Any"
           },
           "description": "The rendered manifests as JSON. Not yet supported."
         },
@@ -39754,14 +39754,14 @@
         "valueYamlFiles": {
           "type": "array",
           "items": {
-            "$ref": "pulumi.json#/Asset"
+            "$ref": "khulnasoft.json#/Asset"
           },
           "description": "List of assets (raw yaml files). Content is read and merged with values. Not yet supported."
         },
         "values": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "pulumi.json#/Any"
+            "$ref": "khulnasoft.json#/Any"
           },
           "description": "Custom values set for the release."
         },
@@ -45393,7 +45393,7 @@
     },
     "go": {
       "generateResourceContainerTypes": true,
-      "importBasePath": "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes",
+      "importBasePath": "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes",
       "moduleToPackage": {
         "admissionregistration.k8s.io/v1": "admissionregistration/v1",
         "admissionregistration.k8s.io/v1beta1": "admissionregistration/v1beta1",
@@ -45449,64 +45449,64 @@
         "storage.k8s.io/v1beta1": "storage/v1beta1"
       },
       "packageImportAliases": {
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/admissionregistration/v1": "admissionregistrationv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/admissionregistration/v1beta1": "admissionregistrationv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/apiextensions/v1": "apiextensionsv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/apiextensions/v1beta1": "apiextensionsv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/apiregistration/v1": "apiregistrationv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/apiregistration/v1beta1": "apiregistrationv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/apps/v1": "appsv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/apps/v1beta1": "appsv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/apps/v1beta2": "appsv1beta2",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/auditregistration/v1alpha1": "auditregistrationv1alpha1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/authentication/v1": "authenticationv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/authentication/v1beta1": "authenticationv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/authorization/v1": "authorizationv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/authorization/v1beta1": "authorizationv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/autoscaling/v1": "autoscalingv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/autoscaling/v2beta1": "autoscalingv2beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/autoscaling/v2beta2": "autoscalingv2beta2",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/batch/v1": "batchv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/batch/v1beta1": "batchv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/batch/v2alpha1": "batchv2alpha1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/certificates/v1": "certificatesv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/certificates/v1beta1": "certificatesv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/coordination/v1": "coordinationv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/coordination/v1beta1": "coordinationv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1": "corev1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/discovery/v1": "discoveryv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/discovery/v1beta1": "discoveryv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/events/v1": "eventsv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/events/v1beta1": "eventsv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/extensions/v1beta1": "extensionsv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/flowcontrol/v1alpha1": "flowcontrolv1alpha1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/flowcontrol/v1beta1": "flowcontrolv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/helm/v3": "helmv3",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/meta/v1": "metav1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/networking/v1": "networkingv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/networking/v1beta1": "networkingv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/node/v1": "nodev1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/node/v1alpha1": "nodev1alpha1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/node/v1beta1": "nodev1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/pkg/version": "pkgversion",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/policy/v1": "policyv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/policy/v1beta1": "policyv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/rbac/v1": "rbacv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/rbac/v1alpha1": "rbacv1alpha1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/rbac/v1beta1": "rbacv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/scheduling/v1": "schedulingv1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/scheduling/v1alpha1": "schedulingv1alpha1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/scheduling/v1beta1": "schedulingv1beta1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/settings/v1alpha1": "settingsv1alpha1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/storage/v1": "storagev1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/storage/v1alpha1": "storagev1alpha1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/storage/v1beta1": "storagev1beta1"
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/admissionregistration/v1": "admissionregistrationv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/admissionregistration/v1beta1": "admissionregistrationv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/apiextensions/v1": "apiextensionsv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/apiextensions/v1beta1": "apiextensionsv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/apiregistration/v1": "apiregistrationv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/apiregistration/v1beta1": "apiregistrationv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/apps/v1": "appsv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/apps/v1beta1": "appsv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/apps/v1beta2": "appsv1beta2",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/auditregistration/v1alpha1": "auditregistrationv1alpha1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/authentication/v1": "authenticationv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/authentication/v1beta1": "authenticationv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/authorization/v1": "authorizationv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/authorization/v1beta1": "authorizationv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/autoscaling/v1": "autoscalingv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/autoscaling/v2beta1": "autoscalingv2beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/autoscaling/v2beta2": "autoscalingv2beta2",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/batch/v1": "batchv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/batch/v1beta1": "batchv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/batch/v2alpha1": "batchv2alpha1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/certificates/v1": "certificatesv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/certificates/v1beta1": "certificatesv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/coordination/v1": "coordinationv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/coordination/v1beta1": "coordinationv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/core/v1": "corev1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/discovery/v1": "discoveryv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/discovery/v1beta1": "discoveryv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/events/v1": "eventsv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/events/v1beta1": "eventsv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/extensions/v1beta1": "extensionsv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/flowcontrol/v1alpha1": "flowcontrolv1alpha1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/flowcontrol/v1beta1": "flowcontrolv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/helm/v3": "helmv3",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/meta/v1": "metav1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/networking/v1": "networkingv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/networking/v1beta1": "networkingv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/node/v1": "nodev1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/node/v1alpha1": "nodev1alpha1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/node/v1beta1": "nodev1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/pkg/version": "pkgversion",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/policy/v1": "policyv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/policy/v1beta1": "policyv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/rbac/v1": "rbacv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/rbac/v1alpha1": "rbacv1alpha1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/rbac/v1beta1": "rbacv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/scheduling/v1": "schedulingv1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/scheduling/v1alpha1": "schedulingv1alpha1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/scheduling/v1beta1": "schedulingv1beta1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/settings/v1alpha1": "settingsv1alpha1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/storage/v1": "storagev1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/storage/v1alpha1": "storagev1alpha1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/storage/v1beta1": "storagev1beta1"
       }
     },
     "nodejs": {
       "compatibility": "kubernetes20",
       "dependencies": {
-        "@pulumi/pulumi": "^3.0.0",
+        "@khulnasoft/khulnasoft": "^3.0.0",
         "@types/glob": "^5.0.35",
         "@types/node-fetch": "^2.1.4",
         "@types/tmp": "^0.0.33",
@@ -45574,7 +45574,7 @@
         "storage.k8s.io/v1alpha1": "storage/v1alpha1",
         "storage.k8s.io/v1beta1": "storage/v1beta1"
       },
-      "readme": "The Kubernetes provider package offers support for all Kubernetes resources and their properties.\nResources are exposed as types from modules based on Kubernetes API groups such as 'apps', 'core',\n'rbac', and 'storage', among many others. Additionally, support for deploying Helm charts ('helm')\nand YAML files ('yaml') is available in this package. Using this package allows you to\nprogrammatically declare instances of any Kubernetes resources and any supported resource version\nusing infrastructure as code, which Pulumi then uses to drive the Kubernetes API.\n\nIf this is your first time using this package, these two resources may be helpful:\n\n* [Kubernetes Getting Started Guide](https://www.pulumi.com/docs/quickstart/kubernetes/): Get up and running quickly.\n* [Kubernetes Pulumi Setup Documentation](https://www.pulumi.com/docs/quickstart/kubernetes/configure/): How to configure Pulumi\n    for use with your Kubernetes cluster.\n\nUse the navigation below to see detailed documentation for each of the supported Kubernetes resources.\n"
+      "readme": "The Kubernetes provider package offers support for all Kubernetes resources and their properties.\nResources are exposed as types from modules based on Kubernetes API groups such as 'apps', 'core',\n'rbac', and 'storage', among many others. Additionally, support for deploying Helm charts ('helm')\nand YAML files ('yaml') is available in this package. Using this package allows you to\nprogrammatically declare instances of any Kubernetes resources and any supported resource version\nusing infrastructure as code, which Pulumi then uses to drive the Kubernetes API.\n\nIf this is your first time using this package, these two resources may be helpful:\n\n* [Kubernetes Getting Started Guide](https://www.khulnasoft.com/docs/quickstart/kubernetes/): Get up and running quickly.\n* [Kubernetes Pulumi Setup Documentation](https://www.khulnasoft.com/docs/quickstart/kubernetes/configure/): How to configure Pulumi\n    for use with your Kubernetes cluster.\n\nUse the navigation below to see detailed documentation for each of the supported Kubernetes resources.\n"
     },
     "python": {
       "compatibility": "kubernetes20",
@@ -45632,9 +45632,9 @@
         "storage.k8s.io/v1alpha1": "storage/v1alpha1",
         "storage.k8s.io/v1beta1": "storage/v1beta1"
       },
-      "readme": "The Kubernetes provider package offers support for all Kubernetes resources and their properties.\nResources are exposed as types from modules based on Kubernetes API groups such as 'apps', 'core',\n'rbac', and 'storage', among many others. Additionally, support for deploying Helm charts ('helm')\nand YAML files ('yaml') is available in this package. Using this package allows you to\nprogrammatically declare instances of any Kubernetes resources and any supported resource version\nusing infrastructure as code, which Pulumi then uses to drive the Kubernetes API.\n\nIf this is your first time using this package, these two resources may be helpful:\n\n* [Kubernetes Getting Started Guide](https://www.pulumi.com/docs/quickstart/kubernetes/): Get up and running quickly.\n* [Kubernetes Pulumi Setup Documentation](https://www.pulumi.com/docs/quickstart/kubernetes/configure/): How to configure Pulumi\n    for use with your Kubernetes cluster.\n",
+      "readme": "The Kubernetes provider package offers support for all Kubernetes resources and their properties.\nResources are exposed as types from modules based on Kubernetes API groups such as 'apps', 'core',\n'rbac', and 'storage', among many others. Additionally, support for deploying Helm charts ('helm')\nand YAML files ('yaml') is available in this package. Using this package allows you to\nprogrammatically declare instances of any Kubernetes resources and any supported resource version\nusing infrastructure as code, which Pulumi then uses to drive the Kubernetes API.\n\nIf this is your first time using this package, these two resources may be helpful:\n\n* [Kubernetes Getting Started Guide](https://www.khulnasoft.com/docs/quickstart/kubernetes/): Get up and running quickly.\n* [Kubernetes Pulumi Setup Documentation](https://www.khulnasoft.com/docs/quickstart/kubernetes/configure/): How to configure Pulumi\n    for use with your Kubernetes cluster.\n",
       "requires": {
-        "pulumi": ">=3.0.0,<4.0.0",
+        "khulnasoft": ">=3.0.0,<4.0.0",
         "pyyaml": ">=5.3.1,<6.0",
         "requests": ">=2.21,<3.0"
       },

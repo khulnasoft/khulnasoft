@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_random as random
+import khulnasoft
+import khulnasoft_random as random
 
 foo = random.RandomShuffle("foo", inputs=[
     """just one

@@ -8,7 +8,7 @@ It should not render any of the below examples in docInfo.description; only this
 ### DNS Validation with Route 53
 
 ```typescript
-import * as aws from \"@pulumi/aws\";
+import * as aws from \"@khulnasoft/aws\";
 
 const exampleCertificate = new aws.acm.Certificate(\"exampleCertificate\", {
  domainName: \"example.com\",
@@ -38,24 +38,24 @@ export const certificateArn = certCertificateValidation.certificateArn;
 package main
 
 import (
-	\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/acm\"
-	\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/route53\"
-	\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"
+	\"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/acm\"
+	\"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/route53\"
+	\"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft\"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
  exampleCertificate, err := acm.NewCertificate(ctx, \"exampleCertificate\", &acm.CertificateArgs{
- DomainName: pulumi.String(\"example.com\"),
- ValidationMethod: pulumi.String(\"DNS\"),
+ DomainName: khulnasoft.String(\"example.com\"),
+ ValidationMethod: khulnasoft.String(\"DNS\"),
  })
  if err != nil {
  return err
  }
  
  exampleZone, err := route53.LookupZone(ctx, &route53.LookupZoneArgs{
- Name: pulumi.StringRef(\"example.com\"),
- PrivateZone: pulumi.BoolRef(false),
+ Name: khulnasoft.StringRef(\"example.com\"),
+ PrivateZone: khulnasoft.BoolRef(false),
  }, nil)
  if err != nil {
  return err
@@ -68,17 +68,17 @@ func main() {
  certValidation, err := route53.NewRecord(ctx, \"certValidation\", &route53.RecordArgs{
  Name: domainValidationOption.ApplyT(func(option interface{}) string {
  return *option.(acm.CertificateDomainValidationOption).ResourceRecordName
- }).(pulumi.StringOutput),
+ }).(khulnasoft.StringOutput),
  Type: domainValidationOption.ApplyT(func(option interface{}) string {
  return *option.(acm.CertificateDomainValidationOption).ResourceRecordType
- }).(pulumi.StringOutput),
- Records: pulumi.StringArray{
+ }).(khulnasoft.StringOutput),
+ Records: khulnasoft.StringArray{
  domainValidationOption.ApplyT(func(option interface{}) string {
  return *option.(acm.CertificateDomainValidationOption).ResourceRecordValue
- }).(pulumi.StringOutput),
+ }).(khulnasoft.StringOutput),
  },
- Ttl: pulumi.Int(10 * 60),
- ZoneId: pulumi.String(exampleZone.ZoneId),
+ Ttl: khulnasoft.Int(10 * 60),
+ ZoneId: khulnasoft.String(exampleZone.ZoneId),
  })
  if err != nil {
  return err
@@ -86,7 +86,7 @@ func main() {
  
  certCertificateValidation, err := acm.NewCertificateValidation(ctx, \"cert\", &acm.CertificateValidationArgs{
  CertificateArn: exampleCertificate.Arn,
- ValidationRecordFqdns: pulumi.StringArray{
+ ValidationRecordFqdns: khulnasoft.StringArray{
  certValidation.Fqdn,
  },
  })
@@ -101,7 +101,7 @@ func main() {
 }
 ```
 ```python
-import pulumi_aws as aws
+import khulnasoft_aws as aws
 
 example_certificate = aws.acm.Certificate(\"exampleCertificate\",
  domain_name=\"example.com\",
@@ -121,7 +121,7 @@ cert_certificate_validation = aws.acm.CertificateValidation(\"cert\",
  certificate_arn=example_certificate.arn,
  validation_record_fqdns=[cert_validation.fqdn])
 
-pulumi.export(\"certificate_arn\", cert_certificate_validation.certificate_arn)
+khulnasoft.export(\"certificate_arn\", cert_certificate_validation.certificate_arn)
 ```
 ```csharp
 using Pulumi;
@@ -206,7 +206,7 @@ outputs:
 ### Email Validation
 
 ```typescript
-import * as aws from \"@pulumi/aws\";
+import * as aws from \"@khulnasoft/aws\";
 
 const exampleCertificate = new aws.acm.Certificate(\"exampleCertificate\", {
  domainName: \"example.com\",
@@ -221,15 +221,15 @@ const exampleCertificateValidation = new aws.acm.CertificateValidation(\"example
 package main
 
 import (
-	\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/acm\"
-	\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"
+	\"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/acm\"
+	\"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft\"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
  exampleCertificate, err := acm.NewCertificate(ctx, \"exampleCertificate\", &acm.CertificateArgs{
- DomainName: pulumi.String(\"example.com\"),
- ValidationMethod: pulumi.String(\"EMAIL\"),
+ DomainName: khulnasoft.String(\"example.com\"),
+ ValidationMethod: khulnasoft.String(\"EMAIL\"),
  })
  if err != nil {
  return err
@@ -246,7 +246,7 @@ func main() {
 }
 ```
 ```python
-import pulumi_aws as aws
+import khulnasoft_aws as aws
 
 example_certificate = aws.acm.Certificate(\"exampleCertificate\",
  domain_name=\"example.com\",

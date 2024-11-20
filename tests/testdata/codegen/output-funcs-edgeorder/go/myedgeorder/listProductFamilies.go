@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"example.com/pulumi-myedgeorder/sdk/go/myedgeorder/internal"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"example.com/khulnasoft-myedgeorder/sdk/go/myedgeorder/internal"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // The list of product families.
 // API Version: 2020-12-01-preview.
-func ListProductFamilies(ctx *pulumi.Context, args *ListProductFamiliesArgs, opts ...pulumi.InvokeOption) (*ListProductFamiliesResult, error) {
+func ListProductFamilies(ctx *khulnasoft.Context, args *ListProductFamiliesArgs, opts ...khulnasoft.InvokeOption) (*ListProductFamiliesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListProductFamiliesResult
 	err := ctx.Invoke("myedgeorder::listProductFamilies", args, &rv, opts...)
@@ -25,25 +25,25 @@ func ListProductFamilies(ctx *pulumi.Context, args *ListProductFamiliesArgs, opt
 
 type ListProductFamiliesArgs struct {
 	// Customer subscription properties. Clients can display available products to unregistered customers by explicitly passing subscription details
-	CustomerSubscriptionDetails *CustomerSubscriptionDetails `pulumi:"customerSubscriptionDetails"`
+	CustomerSubscriptionDetails *CustomerSubscriptionDetails `khulnasoft:"customerSubscriptionDetails"`
 	// $expand is supported on configurations parameter for product, which provides details on the configurations for the product.
-	Expand *string `pulumi:"expand"`
+	Expand *string `khulnasoft:"expand"`
 	// Dictionary of filterable properties on product family.
-	FilterableProperties map[string][]FilterableProperty `pulumi:"filterableProperties"`
+	FilterableProperties map[string][]FilterableProperty `khulnasoft:"filterableProperties"`
 	// $skipToken is supported on list of product families, which provides the next page in the list of product families.
-	SkipToken *string `pulumi:"skipToken"`
+	SkipToken *string `khulnasoft:"skipToken"`
 }
 
 // The list of product families.
 type ListProductFamiliesResult struct {
 	// Link for the next set of product families.
-	NextLink *string `pulumi:"nextLink"`
+	NextLink *string `khulnasoft:"nextLink"`
 	// List of product families.
-	Value []ProductFamilyResponse `pulumi:"value"`
+	Value []ProductFamilyResponse `khulnasoft:"value"`
 }
 
-func ListProductFamiliesOutput(ctx *pulumi.Context, args ListProductFamiliesOutputArgs, opts ...pulumi.InvokeOption) ListProductFamiliesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func ListProductFamiliesOutput(ctx *khulnasoft.Context, args ListProductFamiliesOutputArgs, opts ...khulnasoft.InvokeOption) ListProductFamiliesResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (ListProductFamiliesResultOutput, error) {
 			args := v.(ListProductFamiliesArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -53,9 +53,9 @@ func ListProductFamiliesOutput(ctx *pulumi.Context, args ListProductFamiliesOutp
 				return ListProductFamiliesResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(ListProductFamiliesResultOutput)
+			output := khulnasoft.ToOutput(rv).(ListProductFamiliesResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(ListProductFamiliesResultOutput), nil
+				return khulnasoft.ToSecret(output).(ListProductFamiliesResultOutput), nil
 			}
 			return output, nil
 		}).(ListProductFamiliesResultOutput)
@@ -63,13 +63,13 @@ func ListProductFamiliesOutput(ctx *pulumi.Context, args ListProductFamiliesOutp
 
 type ListProductFamiliesOutputArgs struct {
 	// Customer subscription properties. Clients can display available products to unregistered customers by explicitly passing subscription details
-	CustomerSubscriptionDetails CustomerSubscriptionDetailsPtrInput `pulumi:"customerSubscriptionDetails"`
+	CustomerSubscriptionDetails CustomerSubscriptionDetailsPtrInput `khulnasoft:"customerSubscriptionDetails"`
 	// $expand is supported on configurations parameter for product, which provides details on the configurations for the product.
-	Expand pulumi.StringPtrInput `pulumi:"expand"`
+	Expand khulnasoft.StringPtrInput `khulnasoft:"expand"`
 	// Dictionary of filterable properties on product family.
-	FilterableProperties FilterablePropertyArrayMapInput `pulumi:"filterableProperties"`
+	FilterableProperties FilterablePropertyArrayMapInput `khulnasoft:"filterableProperties"`
 	// $skipToken is supported on list of product families, which provides the next page in the list of product families.
-	SkipToken pulumi.StringPtrInput `pulumi:"skipToken"`
+	SkipToken khulnasoft.StringPtrInput `khulnasoft:"skipToken"`
 }
 
 func (ListProductFamiliesOutputArgs) ElementType() reflect.Type {
@@ -77,7 +77,7 @@ func (ListProductFamiliesOutputArgs) ElementType() reflect.Type {
 }
 
 // The list of product families.
-type ListProductFamiliesResultOutput struct{ *pulumi.OutputState }
+type ListProductFamiliesResultOutput struct{ *khulnasoft.OutputState }
 
 func (ListProductFamiliesResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ListProductFamiliesResult)(nil)).Elem()
@@ -92,8 +92,8 @@ func (o ListProductFamiliesResultOutput) ToListProductFamiliesResultOutputWithCo
 }
 
 // Link for the next set of product families.
-func (o ListProductFamiliesResultOutput) NextLink() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListProductFamiliesResult) *string { return v.NextLink }).(pulumi.StringPtrOutput)
+func (o ListProductFamiliesResultOutput) NextLink() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v ListProductFamiliesResult) *string { return v.NextLink }).(khulnasoft.StringPtrOutput)
 }
 
 // List of product families.
@@ -102,5 +102,5 @@ func (o ListProductFamiliesResultOutput) Value() ProductFamilyResponseArrayOutpu
 }
 
 func init() {
-	pulumi.RegisterOutputType(ListProductFamiliesResultOutput{})
+	khulnasoft.RegisterOutputType(ListProductFamiliesResultOutput{})
 }

@@ -7,11 +7,11 @@
     "example/init.go",
     "example/otherResource.go",
     "example/provider.go",
-    "example/pulumi-plugin.json",
-    "example/pulumiTypes.go",
+    "example/khulnasoft-plugin.json",
+    "example/khulnasoftTypes.go",
     "example/resource.go",
     "example/typeUses.go",
-    "example/utilities/pulumiUtilities.go",
-    "example/utilities/pulumiVersion.go"
+    "example/utilities/khulnasoftUtilities.go",
+    "example/utilities/khulnasoftVersion.go"
   ]
 }

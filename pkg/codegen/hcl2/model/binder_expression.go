@@ -20,7 +20,7 @@ import (
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	_syntax "github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 	"github.com/zclconf/go-cty/cty"
 )
 

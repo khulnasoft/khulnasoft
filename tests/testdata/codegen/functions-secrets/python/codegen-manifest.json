@@ -1,12 +1,12 @@
 {
   "emittedFiles": [
-    "pulumi_mypkg/README.md",
-    "pulumi_mypkg/__init__.py",
-    "pulumi_mypkg/_utilities.py",
-    "pulumi_mypkg/func_with_secrets.py",
-    "pulumi_mypkg/provider.py",
-    "pulumi_mypkg/pulumi-plugin.json",
-    "pulumi_mypkg/py.typed",
+    "khulnasoft_mypkg/README.md",
+    "khulnasoft_mypkg/__init__.py",
+    "khulnasoft_mypkg/_utilities.py",
+    "khulnasoft_mypkg/func_with_secrets.py",
+    "khulnasoft_mypkg/provider.py",
+    "khulnasoft_mypkg/khulnasoft-plugin.json",
+    "khulnasoft_mypkg/py.typed",
     "setup.py"
   ]
 }

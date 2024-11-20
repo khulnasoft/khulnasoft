@@ -1,6 +1,6 @@
 """A Python Pulumi program"""
 
-import pulumi
+import khulnasoft
 
 lst = []
 lst[0]

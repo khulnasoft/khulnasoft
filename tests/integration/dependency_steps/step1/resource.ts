@@ -1,15 +1,15 @@
 // Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 let currentID = 0;
 
-export class Provider implements pulumi.dynamic.ResourceProvider {
+export class Provider implements khulnasoft.dynamic.ResourceProvider {
     public static readonly instance = new Provider();
 
     private inject: Error | undefined;
 
-    public async diff(id: pulumi.ID, olds: any, news: any) {
+    public async diff(id: khulnasoft.ID, olds: any, news: any) {
         let replaces: string[] = [];
         let deleteBeforeReplace: boolean = false;
         if ((olds as ResourceProps).replace !== (news as ResourceProps).replace) {
@@ -35,14 +35,14 @@ export class Provider implements pulumi.dynamic.ResourceProvider {
         };
     }
 
-    public async update(id: pulumi.ID, olds: any, news: any) {
+    public async update(id: khulnasoft.ID, olds: any, news: any) {
         if (this.inject) {
             throw this.inject;
         }
         return {};
     }
 
-    public async delete(id: pulumi.ID, props: any) {
+    public async delete(id: khulnasoft.ID, props: any) {
         if (this.inject) {
             throw this.inject;
         }
@@ -55,8 +55,8 @@ export class Provider implements pulumi.dynamic.ResourceProvider {
     }
 }
 
-export class Resource extends pulumi.dynamic.Resource {
-    constructor(name: string, props: ResourceProps, opts?: pulumi.ResourceOptions) {
+export class Resource extends khulnasoft.dynamic.Resource {
+    constructor(name: string, props: ResourceProps, opts?: khulnasoft.ResourceOptions) {
         super(Provider.instance, name, props, opts);
     }
 }
@@ -65,5 +65,5 @@ export interface ResourceProps {
     state?: any; // arbitrary state bag that can be updated without replacing.
     replace?: any; // arbitrary state bag that requires replacement when updating.
     replaceDBR?: any; // arbitrary state bag that requires replacement (with delete-before-replace=true).
-    resource?: pulumi.Resource; // to force a dependency on a resource.
+    resource?: khulnasoft.Resource; // to force a dependency on a resource.
 }

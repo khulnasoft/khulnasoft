@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as runtime from "@pulumi/pulumi/runtime";
+import * as runtime from "@khulnasoft/khulnasoft/runtime";
 
 (async function() {
     const deps = await runtime.computeCodePaths();

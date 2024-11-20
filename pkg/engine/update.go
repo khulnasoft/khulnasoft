@@ -27,13 +27,13 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/display"
 	resourceanalyzer "github.com/khulnasoft/khulnasoft/pkg/v3/resource/analyzer"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // RequiredPolicy represents a set of policies to apply during an update.
@@ -651,7 +651,7 @@ func (acts *updateActions) OnResourceStepPost(
 		}
 	}
 
-	// See pulumi/pulumi#2011 for details. Terraform always returns the existing state with the diff applied to it in
+	// See khulnasoft/khulnasoft#2011 for details. Terraform always returns the existing state with the diff applied to it in
 	// the event of an update failure. It's appropriate that we save this new state in the output of the resource, but
 	// it is not appropriate to save the inputs, because the resource that exists was not created or updated
 	// successfully with those inputs.

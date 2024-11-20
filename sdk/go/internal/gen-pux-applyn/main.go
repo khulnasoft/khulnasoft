@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// gen-pux-applyn generates Apply functions for the pulumix package.
+// gen-pux-applyn generates Apply functions for the khulnasoftx package.
 // For each N in 1..8, it generates the following functions
 // (type parameters elided for brevity):
 //
@@ -23,7 +23,7 @@
 //
 //	// Where each Ti satisfies Input[Ii].
 //
-// The output of this program should be placed in the pulumix package.
+// The output of this program should be placed in the khulnasoftx package.
 // It assumes availability of unexported types and functions from that package.
 package main
 
@@ -41,7 +41,7 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-multierror"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 func main() {

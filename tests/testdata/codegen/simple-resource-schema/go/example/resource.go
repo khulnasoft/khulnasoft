@@ -7,28 +7,28 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"simple-resource-schema/example/internal"
 )
 
 type Resource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Bar pulumi.StringPtrOutput `pulumi:"bar"`
-	Baz pulumi.StringPtrOutput `pulumi:"baz"`
+	Bar khulnasoft.StringPtrOutput `khulnasoft:"bar"`
+	Baz khulnasoft.StringPtrOutput `khulnasoft:"baz"`
 }
 
 // NewResource registers a new resource with the given unique name, arguments, and options.
-func NewResource(ctx *pulumi.Context,
-	name string, args *ResourceArgs, opts ...pulumi.ResourceOption) (*Resource, error) {
+func NewResource(ctx *khulnasoft.Context,
+	name string, args *ResourceArgs, opts ...khulnasoft.ResourceOption) (*Resource, error) {
 	if args == nil {
 		args = &ResourceArgs{}
 	}
 
 	if args.Bar != nil {
-		args.Bar = pulumi.ToSecret(args.Bar).(pulumi.StringPtrInput)
+		args.Bar = khulnasoft.ToSecret(args.Bar).(khulnasoft.StringPtrInput)
 	}
-	secrets := pulumi.AdditionalSecretOutputs([]string{
+	secrets := khulnasoft.AdditionalSecretOutputs([]string{
 		"bar",
 		"baz",
 	})
@@ -44,8 +44,8 @@ func NewResource(ctx *pulumi.Context,
 
 // GetResource gets an existing Resource resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetResource(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ResourceState, opts ...pulumi.ResourceOption) (*Resource, error) {
+func GetResource(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ResourceState, opts ...khulnasoft.ResourceOption) (*Resource, error) {
 	var resource Resource
 	err := ctx.ReadResource("example::Resource", name, id, state, &resource, opts...)
 	if err != nil {
@@ -66,12 +66,12 @@ func (ResourceState) ElementType() reflect.Type {
 }
 
 type resourceArgs struct {
-	Bar *string `pulumi:"bar"`
+	Bar *string `khulnasoft:"bar"`
 }
 
 // The set of arguments for constructing a Resource resource.
 type ResourceArgs struct {
-	Bar pulumi.StringPtrInput
+	Bar khulnasoft.StringPtrInput
 }
 
 func (ResourceArgs) ElementType() reflect.Type {
@@ -79,7 +79,7 @@ func (ResourceArgs) ElementType() reflect.Type {
 }
 
 type ResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToResourceOutput() ResourceOutput
 	ToResourceOutputWithContext(ctx context.Context) ResourceOutput
@@ -94,10 +94,10 @@ func (i *Resource) ToResourceOutput() ResourceOutput {
 }
 
 func (i *Resource) ToResourceOutputWithContext(ctx context.Context) ResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ResourceOutput)
 }
 
-type ResourceOutput struct{ *pulumi.OutputState }
+type ResourceOutput struct{ *khulnasoft.OutputState }
 
 func (ResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Resource)(nil)).Elem()
@@ -111,15 +111,15 @@ func (o ResourceOutput) ToResourceOutputWithContext(ctx context.Context) Resourc
 	return o
 }
 
-func (o ResourceOutput) Bar() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Resource) pulumi.StringPtrOutput { return v.Bar }).(pulumi.StringPtrOutput)
+func (o ResourceOutput) Bar() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *Resource) khulnasoft.StringPtrOutput { return v.Bar }).(khulnasoft.StringPtrOutput)
 }
 
-func (o ResourceOutput) Baz() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Resource) pulumi.StringPtrOutput { return v.Baz }).(pulumi.StringPtrOutput)
+func (o ResourceOutput) Baz() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *Resource) khulnasoft.StringPtrOutput { return v.Baz }).(khulnasoft.StringPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ResourceInput)(nil)).Elem(), &Resource{})
-	pulumi.RegisterOutputType(ResourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ResourceInput)(nil)).Elem(), &Resource{})
+	khulnasoft.RegisterOutputType(ResourceOutput{})
 }

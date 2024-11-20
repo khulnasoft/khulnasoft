@@ -1,15 +1,15 @@
 {
   "emittedFiles": [
-    "pulumi_typedDictDisabledExample/README.md",
-    "pulumi_typedDictDisabledExample/__init__.py",
-    "pulumi_typedDictDisabledExample/_inputs.py",
-    "pulumi_typedDictDisabledExample/_utilities.py",
-    "pulumi_typedDictDisabledExample/component.py",
-    "pulumi_typedDictDisabledExample/my_function.py",
-    "pulumi_typedDictDisabledExample/outputs.py",
-    "pulumi_typedDictDisabledExample/provider.py",
-    "pulumi_typedDictDisabledExample/pulumi-plugin.json",
-    "pulumi_typedDictDisabledExample/py.typed",
+    "khulnasoft_typedDictDisabledExample/README.md",
+    "khulnasoft_typedDictDisabledExample/__init__.py",
+    "khulnasoft_typedDictDisabledExample/_inputs.py",
+    "khulnasoft_typedDictDisabledExample/_utilities.py",
+    "khulnasoft_typedDictDisabledExample/component.py",
+    "khulnasoft_typedDictDisabledExample/my_function.py",
+    "khulnasoft_typedDictDisabledExample/outputs.py",
+    "khulnasoft_typedDictDisabledExample/provider.py",
+    "khulnasoft_typedDictDisabledExample/khulnasoft-plugin.json",
+    "khulnasoft_typedDictDisabledExample/py.typed",
     "setup.py"
   ]
 }

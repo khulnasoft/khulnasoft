@@ -31,7 +31,7 @@ _utilities.register(
 [
  {
   "pkg": "foo-bar",
-  "token": "pulumi:providers:foo-bar",
+  "token": "khulnasoft:providers:foo-bar",
   "fqn": "foo_bar",
   "class": "Provider"
  }

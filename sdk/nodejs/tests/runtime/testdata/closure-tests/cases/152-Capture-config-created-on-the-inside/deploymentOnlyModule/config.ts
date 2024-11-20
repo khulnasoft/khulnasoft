@@ -20,9 +20,9 @@ import { getConfig } from "./runtimeConfig";
 /**
  * Config is a bag of related configuration state.  Each bag contains any number of configuration variables, indexed by
  * simple keys, and each has a name that uniquely identifies it; two bags with different names do not share values for
- * variables that otherwise share the same key.  For example, a bag whose name is `pulumi:foo`, with keys `a`, `b`,
- * and `c`, is entirely separate from a bag whose name is `pulumi:bar` with the same simple key names.  Each key has a
- * fully qualified names, such as `pulumi:foo:a`, ..., and `pulumi:bar:a`, respectively.
+ * variables that otherwise share the same key.  For example, a bag whose name is `khulnasoft:foo`, with keys `a`, `b`,
+ * and `c`, is entirely separate from a bag whose name is `khulnasoft:bar` with the same simple key names.  Each key has a
+ * fully qualified names, such as `khulnasoft:foo:a`, ..., and `khulnasoft:bar:a`, respectively.
  */
 export class Config {
     /**

@@ -85,7 +85,7 @@
   },
   "types": {
     "plant::CloudAuditOptionsLogName": {
-      "description": "The log_name to populate in the Cloud Audit Record. This is added to regress pulumi/pulumi issue #7913",
+      "description": "The log_name to populate in the Cloud Audit Record. This is added to regress khulnasoft/khulnasoft issue #7913",
       "type": "string",
       "enum": [
         {
@@ -249,7 +249,7 @@
     },
     "nodejs": {
       "dependencies": {
-        "@pulumi/pulumi": "^3.12"
+        "@khulnasoft/khulnasoft": "^3.12"
       },
       "devDependencies": {
         "typescript": "^3.7.0"

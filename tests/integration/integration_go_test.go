@@ -35,19 +35,19 @@ import (
 	"time"
 
 	dap "github.com/google/go-dap"
-	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-	"github.com/pulumi/appdash"
+	"github.com/grapl-security/khulnasoft-hcp/sdk/go/hcp"
+	"github.com/khulnasoft/appdash"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // This checks that the buildTarget option for Pulumi Go programs does build a binary.
@@ -58,10 +58,10 @@ func TestBuildTarget(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 	e.ImportDirectory(filepath.Join("go", "go-build-target"))
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", "go-build-target-test-stack")
-	e.RunCommand("pulumi", "stack", "select", "go-build-target-test-stack")
-	e.RunCommand("pulumi", "preview")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "stack", "init", "go-build-target-test-stack")
+	e.RunCommand("khulnasoft", "stack", "select", "go-build-target-test-stack")
+	e.RunCommand("khulnasoft", "preview")
 	_, err := os.Stat(filepath.Join(e.RootPath, "a.out"))
 	assert.NoError(t, err)
 }
@@ -74,7 +74,7 @@ func TestNoEmitExitStatus(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("go", "go-exit-5"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Stderr:        stderr,
 		ExpectFailure: true,
@@ -93,7 +93,7 @@ func TestPanickingProgram(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("go", "program-panic"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Stderr:        &stderr,
 		ExpectFailure: true,
@@ -118,7 +118,7 @@ func TestPanickingComponentConfigure(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("go", "component-configure-panic", "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		LocalProviders: []integration.LocalDependency{
 			{
@@ -146,7 +146,7 @@ func TestNoLogError(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("go", "go-exit-error"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Stdout:        stdout,
 		Stderr:        stderr,
@@ -172,7 +172,7 @@ func TestGoRunEnvFlag(t *testing.T) {
 		Env: []string{"PULUMI_GO_USE_RUN=true"},
 		Dir: filepath.Join("go", "go-exit-5"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Stderr:        stderr,
 		ExpectFailure: true,
@@ -192,7 +192,7 @@ func TestEmptyGoRun(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("empty", "gorun"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Quick: true,
 	})
@@ -205,7 +205,7 @@ func TestEmptyGoRunMain(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("empty", "gorun_main"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Quick: true,
 	})
@@ -218,7 +218,7 @@ func TestPrintfGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("printf", "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Quick:                  true,
 		ExtraRuntimeValidation: printfTestValidation,
@@ -231,7 +231,7 @@ func TestPrintfGo(t *testing.T) {
 func TestConfigBasicGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir:          filepath.Join("config_basic", "go"),
-		Dependencies: []string{"github.com/pulumi/pulumi/sdk/v3"},
+		Dependencies: []string{"github.com/khulnasoft/khulnasoft/sdk/v3"},
 		Quick:        true,
 		Config: map[string]string{
 			"aConfigValue": "this value is a value",
@@ -262,14 +262,14 @@ func TestConfigMissingGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("config_missing", "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Quick:         true,
 		ExpectFailure: true,
 		ExtraRuntimeValidation: func(t *testing.T, stackInfo integration.RuntimeValidationStackInfo) {
 			assert.NotEmpty(t, stackInfo.Events)
 			text1 := "Missing required configuration variable 'config_missing_go:notFound'"
-			text2 := "\tplease set a value using the command `pulumi config set --secret config_missing_go:notFound <value>`"
+			text2 := "\tplease set a value using the command `khulnasoft config set --secret config_missing_go:notFound <value>`"
 			var found1, found2 bool
 			for _, event := range stackInfo.Events {
 				if event.DiagnosticEvent != nil && strings.Contains(event.DiagnosticEvent.Message, text1) {
@@ -289,12 +289,12 @@ func TestConfigMissingGo(t *testing.T) {
 //
 //nolint:paralleltest // ProgramTest calls t.Parallel()
 func TestConfigSecretsWarnGo(t *testing.T) {
-	// TODO[pulumi/pulumi#7127]: Re-enabled the warning.
-	t.Skip("Temporarily skipping test until we've re-enabled the warning - pulumi/pulumi#7127")
+	// TODO[khulnasoft/khulnasoft#7127]: Re-enabled the warning.
+	t.Skip("Temporarily skipping test until we've re-enabled the warning - khulnasoft/khulnasoft#7127")
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("config_secrets_warn", "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Quick: true,
 		Config: map[string]string{
@@ -574,7 +574,7 @@ func TestConfigSecretsWarnGo(t *testing.T) {
 func TestLargeResourceGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Dir: filepath.Join("large_resource", "go"),
 	})
@@ -586,9 +586,9 @@ func TestConstructSlowGo(t *testing.T) {
 
 	localProvider := testComponentSlowLocalProvider(t)
 
-	// TODO[pulumi/pulumi#5455]: Dynamic providers fail to load when used from multi-lang components.
+	// TODO[khulnasoft/khulnasoft#5455]: Dynamic providers fail to load when used from multi-lang components.
 	// Until we've addressed this, set PULUMI_TEST_YARN_LINK_PULUMI, which tells the integration test
-	// module to run `yarn install && yarn link @pulumi/pulumi` in the Go program's directory, allowing
+	// module to run `yarn install && yarn link @khulnasoft/khulnasoft` in the Go program's directory, allowing
 	// the Node.js dynamic provider plugin to load.
 	// When the underlying issue has been fixed, the use of this environment variable inside the integration
 	// test module should be removed.
@@ -601,7 +601,7 @@ func TestConstructSlowGo(t *testing.T) {
 		Env: []string{testYarnLinkPulumiEnv},
 		Dir: filepath.Join(testDir, "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		LocalProviders: []integration.LocalDependency{localProvider},
 		Quick:          true,
@@ -634,9 +634,9 @@ func TestConstructPlainGo(t *testing.T) {
 		{
 			componentDir:          "testcomponent",
 			expectedResourceCount: 9,
-			// TODO[pulumi/pulumi#5455]: Dynamic providers fail to load when used from multi-lang components.
+			// TODO[khulnasoft/khulnasoft#5455]: Dynamic providers fail to load when used from multi-lang components.
 			// Until we've addressed this, set PULUMI_TEST_YARN_LINK_PULUMI, which tells the integration test
-			// module to run `yarn install && yarn link @pulumi/pulumi` in the Go program's directory, allowing
+			// module to run `yarn install && yarn link @khulnasoft/khulnasoft` in the Go program's directory, allowing
 			// the Node.js dynamic provider plugin to load.
 			// When the underlying issue has been fixed, the use of this environment variable inside the integration
 			// test module should be removed.
@@ -672,7 +672,7 @@ func optsForConstructPlainGo(
 		Env: env,
 		Dir: filepath.Join("construct_component_plain", "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		LocalProviders: localProviders,
 		Quick:          true,
@@ -686,7 +686,7 @@ func optsForConstructPlainGo(
 // Test remote component inputs properly handle unknowns.
 func TestConstructUnknownGo(t *testing.T) {
 	t.Parallel()
-	testConstructUnknown(t, "go", "github.com/pulumi/pulumi/sdk/v3")
+	testConstructUnknown(t, "go", "github.com/khulnasoft/khulnasoft/sdk/v3")
 }
 
 func TestConstructMethodsGo(t *testing.T) {
@@ -721,14 +721,14 @@ func TestConstructMethodsGo(t *testing.T) {
 				Env: test.env,
 				Dir: filepath.Join(testDir, "go"),
 				Dependencies: []string{
-					"github.com/pulumi/pulumi/sdk/v3",
+					"github.com/khulnasoft/khulnasoft/sdk/v3",
 				},
 				LocalProviders: []integration.LocalDependency{localProvider},
 				Quick:          true,
 				ExtraRuntimeValidation: func(t *testing.T, stackInfo integration.RuntimeValidationStackInfo) {
 					assert.Equal(t, "Hello World, Alice!", stackInfo.Outputs["message"])
 
-					// TODO[pulumi/pulumi#12471]: Only the Go SDK has been fixed such that rehydrated
+					// TODO[khulnasoft/khulnasoft#12471]: Only the Go SDK has been fixed such that rehydrated
 					// components are kept as dependencies. So only check this for the provider written
 					// in Go. Once the other SDKs are fixed, we can test the other providers as well.
 					if test.componentDir == "testcomponent-go" {
@@ -748,22 +748,22 @@ func TestConstructMethodsGo(t *testing.T) {
 
 func TestConstructMethodsUnknownGo(t *testing.T) {
 	t.Parallel()
-	testConstructMethodsUnknown(t, "go", "github.com/pulumi/pulumi/sdk/v3")
+	testConstructMethodsUnknown(t, "go", "github.com/khulnasoft/khulnasoft/sdk/v3")
 }
 
 func TestConstructMethodsResourcesGo(t *testing.T) {
 	t.Parallel()
-	testConstructMethodsResources(t, "go", "github.com/pulumi/pulumi/sdk/v3")
+	testConstructMethodsResources(t, "go", "github.com/khulnasoft/khulnasoft/sdk/v3")
 }
 
 func TestConstructMethodsErrorsGo(t *testing.T) {
 	t.Parallel()
-	testConstructMethodsErrors(t, "go", "github.com/pulumi/pulumi/sdk/v3")
+	testConstructMethodsErrors(t, "go", "github.com/khulnasoft/khulnasoft/sdk/v3")
 }
 
 func TestConstructMethodsProviderGo(t *testing.T) {
 	t.Parallel()
-	testConstructMethodsProvider(t, "go", "github.com/pulumi/pulumi/sdk/v3")
+	testConstructMethodsProvider(t, "go", "github.com/khulnasoft/khulnasoft/sdk/v3")
 }
 
 func TestConstructProviderGo(t *testing.T) {
@@ -796,7 +796,7 @@ func TestConstructProviderGo(t *testing.T) {
 			integration.ProgramTest(t, &integration.ProgramTestOptions{
 				Dir: filepath.Join(testDir, "go"),
 				Dependencies: []string{
-					"github.com/pulumi/pulumi/sdk/v3",
+					"github.com/khulnasoft/khulnasoft/sdk/v3",
 				},
 				LocalProviders: []integration.LocalDependency{localProvider},
 				Quick:          true,
@@ -816,7 +816,7 @@ func TestGetResourceGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		NoParallel: true,
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Dir:                      filepath.Join("get_resource", "go"),
 		AllowEmptyPreviewChanges: true,
@@ -838,13 +838,13 @@ func TestGetResourceGo(t *testing.T) {
 
 func TestComponentProviderSchemaGo(t *testing.T) {
 	t.Parallel()
-	// TODO[https://github.com/pulumi/pulumi/issues/12365] We no longer build the go-component in
+	// TODO[https://github.com/khulnasoft/khulnasoft/issues/12365] We no longer build the go-component in
 	// component_setup.sh so there's no native binary for the testComponentProviderSchema to just exec. It
 	// _ought_ to be rewritten to use the plugin host framework so that it starts the component up the same as
 	// all the other tests are doing (via shimless).
 	t.Skip("testComponentProviderSchema needs to be updated to use a plugin host to deal with non-native-binary providers")
 
-	path := filepath.Join("component_provider_schema", "testcomponent-go", "pulumi-resource-testcomponent")
+	path := filepath.Join("component_provider_schema", "testcomponent-go", "khulnasoft-resource-testcomponent")
 	if runtime.GOOS == WindowsOS {
 		path += ".exe"
 	}
@@ -859,7 +859,7 @@ func TestTracePropagationGo(t *testing.T) {
 
 	opts := &integration.ProgramTestOptions{
 		Dir:                    filepath.Join("empty", "go"),
-		Dependencies:           []string{"github.com/pulumi/pulumi/sdk/v3"},
+		Dependencies:           []string{"github.com/khulnasoft/khulnasoft/sdk/v3"},
 		SkipRefresh:            true,
 		SkipPreview:            true,
 		SkipUpdate:             false,
@@ -873,7 +873,7 @@ func TestTracePropagationGo(t *testing.T) {
 
 	integration.ProgramTest(t, opts)
 
-	store, err := ReadMemoryStoreFromFile(filepath.Join(dir, "pulumi-update-initial.trace"))
+	store, err := ReadMemoryStoreFromFile(filepath.Join(dir, "khulnasoft-update-initial.trace"))
 	assert.NoError(t, err)
 	assert.NotNil(t, store)
 
@@ -923,18 +923,18 @@ func TestAboutGo(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 	e.ImportDirectory(dir)
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", "about-stack")
-	e.RunCommand("pulumi", "stack", "select", "about-stack")
-	stdout, _ := e.RunCommand("pulumi", "about", "-t")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "stack", "init", "about-stack")
+	e.RunCommand("khulnasoft", "stack", "select", "about-stack")
+	stdout, _ := e.RunCommand("khulnasoft", "about", "-t")
 
 	// Assert we parsed the dependencies
-	assert.Contains(t, stdout, "github.com/pulumi/pulumi/sdk/v3")
+	assert.Contains(t, stdout, "github.com/khulnasoft/khulnasoft/sdk/v3")
 }
 
 func TestConstructOutputValuesGo(t *testing.T) {
 	t.Parallel()
-	testConstructOutputValues(t, "go", "github.com/pulumi/pulumi/sdk/v3")
+	testConstructOutputValues(t, "go", "github.com/khulnasoft/khulnasoft/sdk/v3")
 }
 
 // TestProjectMainGo tests out the ability to override the main entrypoint.
@@ -943,7 +943,7 @@ func TestConstructOutputValuesGo(t *testing.T) {
 func TestProjectMainGo(t *testing.T) {
 	test := integration.ProgramTestOptions{
 		Dir:          "project_main/go",
-		Dependencies: []string{"github.com/pulumi/pulumi/sdk/v3"},
+		Dependencies: []string{"github.com/khulnasoft/khulnasoft/sdk/v3"},
 		ExtraRuntimeValidation: func(t *testing.T, stackInfo integration.RuntimeValidationStackInfo) {
 			// Simple runtime validation that just ensures the checkpoint was written and read.
 			assert.NotNil(t, stackInfo.Deployment)
@@ -959,13 +959,13 @@ func TestRefreshGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("refresh", "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Quick: true,
 	})
 }
 
-// TestResourceRefsGetResourceGo tests that invoking the built-in 'pulumi:pulumi:getResource' function
+// TestResourceRefsGetResourceGo tests that invoking the built-in 'khulnasoft:khulnasoft:getResource' function
 // returns resource references for any resource reference in a resource's state.
 //
 //nolint:paralleltest // ProgramTest calls t.Parallel()
@@ -973,7 +973,7 @@ func TestResourceRefsGetResourceGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("resource_refs_get_resource", "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Quick: true,
 	})
@@ -986,7 +986,7 @@ func TestDeletedWithGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("deleted_with", "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		LocalProviders: []integration.LocalDependency{
 			{Package: "testprovider", Path: filepath.Join("..", "testprovider")},
@@ -998,24 +998,24 @@ func TestDeletedWithGo(t *testing.T) {
 func TestConstructProviderPropagationGo(t *testing.T) {
 	t.Parallel()
 
-	testConstructProviderPropagation(t, "go", []string{"github.com/pulumi/pulumi/sdk/v3"})
+	testConstructProviderPropagation(t, "go", []string{"github.com/khulnasoft/khulnasoft/sdk/v3"})
 }
 
 func TestConstructResourceOptionsGo(t *testing.T) {
 	t.Parallel()
 
-	testConstructResourceOptions(t, "go", []string{"github.com/pulumi/pulumi/sdk/v3"})
+	testConstructResourceOptions(t, "go", []string{"github.com/khulnasoft/khulnasoft/sdk/v3"})
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/13301.
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/13301.
 // The reproduction is a bit involved:
 //
 //   - Set up a fake Pulumi Go project that imports a specific non-Pulumi plugin.
 //     Specifically, the plugin MUST NOT be imported by any Go file in the project.
-//   - Install that plugin with 'pulumi plugin install'.
+//   - Install that plugin with 'khulnasoft plugin install'.
 //   - Run a Go Automation program that uses that plugin.
 //
-// The issue in #13301 was that this plugin would not be downloaded by `pulumi plugin install`,
+// The issue in #13301 was that this plugin would not be downloaded by `khulnasoft plugin install`,
 // causing a failure when the Automation program tried to use it.
 func TestAutomation_externalPluginDownload_issue13301(t *testing.T) {
 	t.Parallel()
@@ -1034,13 +1034,13 @@ func TestAutomation_externalPluginDownload_issue13301(t *testing.T) {
 		filepath.Join(e.CWD, "go.mod"),
 	))
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
 	// Plugins are installed globally in PULUMI_HOME.
 	// We will set that to a temporary directory,
 	// so this is not polluted by other tests.
-	pulumiHome := filepath.Join(e.RootPath, ".pulumi-home")
-	require.NoError(t, os.MkdirAll(pulumiHome, 0o700))
+	khulnasoftHome := filepath.Join(e.RootPath, ".khulnasoft-home")
+	require.NoError(t, os.MkdirAll(khulnasoftHome, 0o700))
 
 	// The commands that follow will make gRPC requests that
 	// we don't have a lot of visibility into.
@@ -1060,9 +1060,9 @@ func TestAutomation_externalPluginDownload_issue13301(t *testing.T) {
 	}()
 
 	e.Env = append(e.Env,
-		"PULUMI_HOME="+pulumiHome,
+		"PULUMI_HOME="+khulnasoftHome,
 		"PULUMI_DEBUG_GRPC="+grpcLog)
-	e.RunCommand("pulumi", "plugin", "install")
+	e.RunCommand("khulnasoft", "plugin", "install")
 
 	ws, err := auto.NewLocalWorkspace(ctx,
 		auto.Project(workspace.Project{
@@ -1070,7 +1070,7 @@ func TestAutomation_externalPluginDownload_issue13301(t *testing.T) {
 			Runtime: workspace.NewProjectRuntimeInfo("go", nil),
 		}),
 		auto.WorkDir(e.CWD),
-		auto.PulumiHome(pulumiHome),
+		auto.PulumiHome(khulnasoftHome),
 		auto.EnvVars(map[string]string{
 			"PULUMI_CONFIG_PASSPHRASE": "not-a-real-passphrase",
 			"PULUMI_DEBUG_COMMANDS":    "true",
@@ -1080,7 +1080,7 @@ func TestAutomation_externalPluginDownload_issue13301(t *testing.T) {
 	)
 	require.NoError(t, err)
 
-	ws.SetProgram(func(ctx *pulumi.Context) error {
+	ws.SetProgram(func(ctx *khulnasoft.Context) error {
 		provider, err := hcp.NewProvider(ctx, "hcp", &hcp.ProviderArgs{})
 		if err != nil {
 			return err
@@ -1100,7 +1100,7 @@ func TestAutomation_externalPluginDownload_issue13301(t *testing.T) {
 func TestConstructProviderExplicitGo(t *testing.T) {
 	t.Parallel()
 
-	testConstructProviderExplicit(t, "go", []string{"github.com/pulumi/pulumi/sdk/v3"})
+	testConstructProviderExplicit(t, "go", []string{"github.com/khulnasoft/khulnasoft/sdk/v3"})
 }
 
 // TestStackOutputsProgramErrorGo tests that when a program error occurs, we update any
@@ -1121,7 +1121,7 @@ func TestStackOutputsProgramErrorGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join(d, "step1"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Quick: true,
 		ExtraRuntimeValidation: validateOutputs(map[string]interface{}{
@@ -1160,7 +1160,7 @@ func TestStackOutputsResourceErrorGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join(d, "step1"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		LocalProviders: []integration.LocalDependency{
 			{Package: "testprovider", Path: filepath.Join("..", "testprovider")},
@@ -1211,12 +1211,12 @@ func TestParameterizedGo(t *testing.T) {
 	err = os.RemoveAll(filepath.Join("go", "parameterized", "sdk"))
 	require.NoError(t, err)
 
-	_, _ = e.RunCommand("pulumi", "package", "gen-sdk", "../../../testprovider", "pkg", "--language", "go")
+	_, _ = e.RunCommand("khulnasoft", "package", "gen-sdk", "../../../testprovider", "pkg", "--language", "go")
 
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("go", "parameterized"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		LocalProviders: []integration.LocalDependency{
 			{Package: "testprovider", Path: filepath.Join("..", "testprovider")},
@@ -1267,16 +1267,16 @@ func TestDebuggerAttach(t *testing.T) {
 	defer e.DeleteIfNotFailed()
 	e.ImportDirectory(filepath.Join("go", "go-build-target"))
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 
 	wg := sync.WaitGroup{}
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
 		e.Env = append(e.Env, "PULUMI_DEBUG_COMMANDS=true")
-		e.RunCommand("pulumi", "stack", "init", "debugger-test")
-		e.RunCommand("pulumi", "stack", "select", "debugger-test")
-		e.RunCommand("pulumi", "preview", "--attach-debugger",
+		e.RunCommand("khulnasoft", "stack", "init", "debugger-test")
+		e.RunCommand("khulnasoft", "stack", "select", "debugger-test")
+		e.RunCommand("khulnasoft", "preview", "--attach-debugger",
 			"--event-log", filepath.Join(e.RootPath, "debugger.log"))
 	}()
 
@@ -1309,9 +1309,9 @@ outer:
 	err = dap.WriteProtocolMessage(conn, &dap.InitializeRequest{
 		Request: newDAPRequest(seq, "initialize"),
 		Arguments: dap.InitializeRequestArguments{
-			ClientID:        "pulumi",
+			ClientID:        "khulnasoft",
 			ClientName:      "Pulumi",
-			AdapterID:       "pulumi",
+			AdapterID:       "khulnasoft",
 			Locale:          "en-us",
 			LinesStartAt1:   true,
 			ColumnsStartAt1: true,
@@ -1365,12 +1365,12 @@ outer:
 
 func TestConstructFailuresGo(t *testing.T) {
 	t.Parallel()
-	testConstructFailures(t, "go", "github.com/pulumi/pulumi/sdk/v3")
+	testConstructFailures(t, "go", "github.com/khulnasoft/khulnasoft/sdk/v3")
 }
 
 func TestCallFailuresGo(t *testing.T) {
 	t.Parallel()
-	testCallFailures(t, "go", "github.com/pulumi/pulumi/sdk/v3")
+	testCallFailures(t, "go", "github.com/khulnasoft/khulnasoft/sdk/v3")
 }
 
 // TestLogDebugGo tests that the amount of debug logs is reasonable.
@@ -1380,7 +1380,7 @@ func TestLogDebugGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("log_debug", "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Quick: true,
 		ExtraRuntimeValidation: func(t *testing.T, stack integration.RuntimeValidationStackInfo) {

@@ -21,7 +21,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/iotest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/iotest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -61,14 +61,14 @@ func TestRunCommandLog(t *testing.T) {
 func TestSanitizedPkg(t *testing.T) {
 	t.Parallel()
 
-	v2 := getSanitizedModulePath("github.com/pulumi/pulumi-docker/sdk/v2")
-	assert.Equal(t, "github.com/pulumi/pulumi-docker/sdk", v2)
+	v2 := getSanitizedModulePath("github.com/khulnasoft/khulnasoft-docker/sdk/v2")
+	assert.Equal(t, "github.com/khulnasoft/khulnasoft-docker/sdk", v2)
 
-	v3 := getSanitizedModulePath("github.com/pulumi/pulumi-aws/sdk/v3")
-	assert.Equal(t, "github.com/pulumi/pulumi-aws/sdk", v3)
+	v3 := getSanitizedModulePath("github.com/khulnasoft/khulnasoft-aws/sdk/v3")
+	assert.Equal(t, "github.com/khulnasoft/khulnasoft-aws/sdk", v3)
 
-	nonVersion := getSanitizedModulePath("github.com/pulumi/pulumi-auth/sdk")
-	assert.Equal(t, "github.com/pulumi/pulumi-auth/sdk", nonVersion)
+	nonVersion := getSanitizedModulePath("github.com/khulnasoft/khulnasoft-auth/sdk")
+	assert.Equal(t, "github.com/khulnasoft/khulnasoft-auth/sdk", nonVersion)
 }
 
 func TestDepRootCalc(t *testing.T) {
@@ -76,11 +76,11 @@ func TestDepRootCalc(t *testing.T) {
 
 	var dep string
 
-	dep = getRewritePath("github.com/pulumi/pulumi-docker/sdk/v2", "/gopath", "")
-	assert.Equal(t, "/gopath/src/github.com/pulumi/pulumi-docker/sdk", filepath.ToSlash(dep))
+	dep = getRewritePath("github.com/khulnasoft/khulnasoft-docker/sdk/v2", "/gopath", "")
+	assert.Equal(t, "/gopath/src/github.com/khulnasoft/khulnasoft-docker/sdk", filepath.ToSlash(dep))
 
-	dep = getRewritePath("github.com/pulumi/pulumi-gcp/sdk/v3", "/gopath", "/my-go-src")
-	assert.Equal(t, "/my-go-src/pulumi-gcp/sdk", filepath.ToSlash(dep))
+	dep = getRewritePath("github.com/khulnasoft/khulnasoft-gcp/sdk/v3", "/gopath", "/my-go-src")
+	assert.Equal(t, "/my-go-src/khulnasoft-gcp/sdk", filepath.ToSlash(dep))
 
 	dep = getRewritePath("github.com/example/foo/pkg/v2", "/gopath", "/my-go-src")
 	assert.Equal(t, "/my-go-src/foo/pkg", filepath.ToSlash(dep))
@@ -91,8 +91,8 @@ func TestDepRootCalc(t *testing.T) {
 	dep = getRewritePath("github.com/example/foo", "/gopath", "/my-go-src")
 	assert.Equal(t, "/my-go-src/foo", filepath.ToSlash(dep))
 
-	dep = getRewritePath("github.com/pulumi/pulumi-auth0/sdk", "gopath", "/my-go-src")
-	assert.Equal(t, "/my-go-src/pulumi-auth0/sdk", filepath.ToSlash(dep))
+	dep = getRewritePath("github.com/khulnasoft/khulnasoft-auth0/sdk", "gopath", "/my-go-src")
+	assert.Equal(t, "/my-go-src/khulnasoft-auth0/sdk", filepath.ToSlash(dep))
 }
 
 func TestGoModEdits(t *testing.T) {
@@ -139,7 +139,7 @@ func TestGoModEdits(t *testing.T) {
 		{
 			name:          "valid-path",
 			dep:           "../../../sdk",
-			expectedValue: "github.com/pulumi/pulumi/sdk/v3=" + filepath.Join(cwd, "../../../sdk"),
+			expectedValue: "github.com/khulnasoft/khulnasoft/sdk/v3=" + filepath.Join(cwd, "../../../sdk"),
 		},
 		{
 			name:          "invalid-path-non-existent",
@@ -154,28 +154,28 @@ func TestGoModEdits(t *testing.T) {
 		},
 		{
 			name:          "valid-module-name",
-			dep:           "github.com/pulumi/pulumi/sdk/v3",
-			expectedValue: "github.com/pulumi/pulumi/sdk/v3=" + filepath.Join(cwd, "../../../sdk"),
+			dep:           "github.com/khulnasoft/khulnasoft/sdk/v3",
+			expectedValue: "github.com/khulnasoft/khulnasoft/sdk/v3=" + filepath.Join(cwd, "../../../sdk"),
 		},
 		{
 			name:          "valid-module-name-version-skew",
-			dep:           "github.com/pulumi/pulumi/sdk",
-			expectedValue: "github.com/pulumi/pulumi/sdk=" + filepath.Join(cwd, "../../../sdk"),
+			dep:           "github.com/khulnasoft/khulnasoft/sdk",
+			expectedValue: "github.com/khulnasoft/khulnasoft/sdk=" + filepath.Join(cwd, "../../../sdk"),
 		},
 		{
 			name:          "valid-rel-path",
-			dep:           "github.com/pulumi/pulumi/sdk/v3=../../../sdk",
-			expectedValue: "github.com/pulumi/pulumi/sdk/v3=" + filepath.Join(cwd, "../../../sdk"),
+			dep:           "github.com/khulnasoft/khulnasoft/sdk/v3=../../../sdk",
+			expectedValue: "github.com/khulnasoft/khulnasoft/sdk/v3=" + filepath.Join(cwd, "../../../sdk"),
 		},
 		{
 			name:          "valid-rel-path-version-skew",
-			dep:           "github.com/pulumi/pulumi/sdk=../../../sdk",
-			expectedValue: "github.com/pulumi/pulumi/sdk=" + filepath.Join(cwd, "../../../sdk"),
+			dep:           "github.com/khulnasoft/khulnasoft/sdk=../../../sdk",
+			expectedValue: "github.com/khulnasoft/khulnasoft/sdk=" + filepath.Join(cwd, "../../../sdk"),
 		},
 		{
 			name:          "invalid-rel-path",
 			dep:           "github.com/khulnasoft/khulnasoft/pkg=../../../sdk",
-			expectedError: "found module path with prefix github.com/pulumi/pulumi/sdk, expected github.com/khulnasoft/khulnasoft/pkg",
+			expectedError: "found module path with prefix github.com/khulnasoft/khulnasoft/sdk, expected github.com/khulnasoft/khulnasoft/pkg",
 		},
 	}
 

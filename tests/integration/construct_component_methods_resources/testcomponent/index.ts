@@ -1,15 +1,15 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
-import * as provider from "@pulumi/pulumi/provider";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as provider from "@khulnasoft/khulnasoft/provider";
 import { Random } from "./random"
 
-class Component extends pulumi.ComponentResource {
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+class Component extends khulnasoft.ComponentResource {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("testcomponent:index:Component", name, undefined, opts);
     }
 
-    createRandom(length: pulumi.Input<number>): pulumi.Output<string> {
+    createRandom(length: khulnasoft.Input<number>): khulnasoft.Output<string> {
         const r = new Random("myrandom", { length }, { parent: this });
         return r.result;
     }
@@ -20,7 +20,7 @@ class Provider implements provider.Provider {
 
     constructor() {
         // Register any resources that can come back as resource references that need to be rehydrated.
-        pulumi.runtime.registerResourceModule("testcomponent", "index", {
+        khulnasoft.runtime.registerResourceModule("testcomponent", "index", {
             version: this.version,
             construct: (name, type, urn) => {
                 switch (type) {
@@ -33,8 +33,8 @@ class Provider implements provider.Provider {
         });
     }
 
-    async construct(name: string, type: string, inputs: pulumi.Inputs,
-              options: pulumi.ComponentResourceOptions): Promise<provider.ConstructResult> {
+    async construct(name: string, type: string, inputs: khulnasoft.Inputs,
+              options: khulnasoft.ComponentResourceOptions): Promise<provider.ConstructResult> {
         if (type != "testcomponent:index:Component") {
             throw new Error(`unknown resource type ${type}`);
         }
@@ -46,7 +46,7 @@ class Provider implements provider.Provider {
         };
     }
 
-    async call(token: string, inputs: pulumi.Inputs): Promise<provider.InvokeResult> {
+    async call(token: string, inputs: khulnasoft.Inputs): Promise<provider.InvokeResult> {
         if (token != "testcomponent:index:Component/createRandom") {
             throw new Error(`unknown method ${token}`);
         }

@@ -7,22 +7,22 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Provider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
-func NewProvider(ctx *pulumi.Context,
-	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
+func NewProvider(ctx *khulnasoft.Context,
+	name string, args *ProviderArgs, opts ...khulnasoft.ResourceOption) (*Provider, error) {
 	if args == nil {
 		args = &ProviderArgs{}
 	}
 
 	var resource Provider
-	err := ctx.RegisterResource("pulumi:providers:azure-native", name, args, &resource, opts...)
+	err := ctx.RegisterResource("khulnasoft:providers:azure-native", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func (ProviderArgs) ElementType() reflect.Type {
 }
 
 type ProviderInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToProviderOutput() ProviderOutput
 	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
@@ -56,10 +56,10 @@ func (i *Provider) ToProviderOutput() ProviderOutput {
 }
 
 func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
-type ProviderOutput struct{ *pulumi.OutputState }
+type ProviderOutput struct{ *khulnasoft.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Provider)(nil)).Elem()
@@ -74,5 +74,5 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 }
 
 func init() {
-	pulumi.RegisterOutputType(ProviderOutput{})
+	khulnasoft.RegisterOutputType(ProviderOutput{})
 }

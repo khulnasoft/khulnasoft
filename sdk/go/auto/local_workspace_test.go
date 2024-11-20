@@ -28,36 +28,36 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optimport"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optimport"
 
 	"github.com/blang/semver"
 	"github.com/go-git/go-git/v5"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/debug"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/events"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optdestroy"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optlist"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optpreview"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optrefresh"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optremove"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optup"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	resourceConfig "github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/debug"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/events"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optdestroy"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optlist"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optpreview"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optrefresh"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optremove"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optup"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	resourceConfig "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"
 )
 
-var pulumiOrg = getTestOrg()
+var khulnasoftOrg = getTestOrg()
 
 const (
 	pName         = "testproj"
-	agent         = "pulumi/pulumi/test"
-	pulumiTestOrg = "moolumi"
+	agent         = "khulnasoft/khulnasoft/test"
+	khulnasoftTestOrg = "moolumi"
 )
 
 type mockPulumiCommand struct {
@@ -90,7 +90,7 @@ func TestWorkspaceSecretsProvider(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 
 	mkstack := func(passphrase string) Stack {
 		opts := []LocalWorkspaceOption{
@@ -101,10 +101,10 @@ func TestWorkspaceSecretsProvider(t *testing.T) {
 		}
 
 		// initialize
-		s, err := UpsertStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+		s, err := UpsertStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 			c := config.New(ctx, "")
-			ctx.Export("exp_static", pulumi.String("foo"))
-			ctx.Export("exp_cfg", pulumi.String(c.Get("bar")))
+			ctx.Export("exp_static", khulnasoft.String("foo"))
+			ctx.Export("exp_cfg", khulnasoft.String(c.Get("bar")))
 			ctx.Export("exp_secret", c.GetSecret("buzz"))
 			return nil
 		}, opts...)
@@ -118,7 +118,7 @@ func TestWorkspaceSecretsProvider(t *testing.T) {
 		err := os.Unsetenv("PULUMI_CONFIG_PASSPHRASE")
 		assert.NoError(t, err, "failed to unset EnvVar.")
 
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -130,7 +130,7 @@ func TestWorkspaceSecretsProvider(t *testing.T) {
 		t.FailNow()
 	}
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx)
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
@@ -157,7 +157,7 @@ func TestWorkspaceSecretsProvider(t *testing.T) {
 	require.NoError(t, err)
 	s = mkstack("newpassphrase")
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx)
 	if err != nil {
@@ -173,7 +173,7 @@ func TestWorkspaceSecretsProvider(t *testing.T) {
 func TestRemoveWithForce(t *testing.T) {
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -216,7 +216,7 @@ func TestRemoveWithForce(t *testing.T) {
 	envvars = s.Workspace().GetEnvVars()
 	assert.NotNil(t, envvars, "failed to get environment values after unsetting.")
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx)
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
@@ -233,7 +233,7 @@ func TestRemoveWithForce(t *testing.T) {
 	assert.Equal(t, "update", res.Summary.Kind)
 	assert.Equal(t, "succeeded", res.Summary.Result)
 
-	const permalinkSearchStr = "https://app.pulumi.com"
+	const permalinkSearchStr = "https://app.khulnasoft.com"
 	startRegex := regexp.MustCompile(permalinkSearchStr)
 	permalink, err := GetPermalink(res.StdOut)
 	assert.NoError(t, err, "failed to get permalink.")
@@ -253,7 +253,7 @@ func TestRemoveWithForce(t *testing.T) {
 func TestNewStackLocalSource(t *testing.T) {
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -273,7 +273,7 @@ func TestNewStackLocalSource(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -302,7 +302,7 @@ func TestNewStackLocalSource(t *testing.T) {
 	envvars = s.Workspace().GetEnvVars()
 	assert.NotNil(t, envvars, "failed to get environment values after unsetting.")
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx, optup.UserAgent(agent))
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
@@ -319,13 +319,13 @@ func TestNewStackLocalSource(t *testing.T) {
 	assert.Equal(t, "update", res.Summary.Kind)
 	assert.Equal(t, "succeeded", res.Summary.Result)
 
-	const permalinkSearchStr = "https://app.pulumi.com"
+	const permalinkSearchStr = "https://app.khulnasoft.com"
 	startRegex := regexp.MustCompile(permalinkSearchStr)
 	permalink, err := GetPermalink(res.StdOut)
 	assert.NoError(t, err, "failed to get permalink.")
 	assert.True(t, startRegex.MatchString(permalink))
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 
 	var previewEvents []events.EngineEvent
 	prevCh := make(chan events.EngineEvent)
@@ -340,7 +340,7 @@ func TestNewStackLocalSource(t *testing.T) {
 	steps := countSteps(previewEvents)
 	assert.Equal(t, 1, steps)
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 
 	ref, err := s.Refresh(ctx, optrefresh.UserAgent(agent))
 	if err != nil {
@@ -350,7 +350,7 @@ func TestNewStackLocalSource(t *testing.T) {
 	assert.Equal(t, "refresh", ref.Summary.Kind)
 	assert.Equal(t, "succeeded", ref.Summary.Result)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx, optdestroy.UserAgent(agent))
 	if err != nil {
@@ -366,7 +366,7 @@ func TestNewStackLocalSource(t *testing.T) {
 func TestUpsertStackLocalSource(t *testing.T) {
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -386,7 +386,7 @@ func TestUpsertStackLocalSource(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -415,7 +415,7 @@ func TestUpsertStackLocalSource(t *testing.T) {
 	envvars = s.Workspace().GetEnvVars()
 	assert.NotNil(t, envvars, "failed to get environment values after unsetting.")
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx)
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
@@ -432,7 +432,7 @@ func TestUpsertStackLocalSource(t *testing.T) {
 	assert.Equal(t, "update", res.Summary.Kind)
 	assert.Equal(t, "succeeded", res.Summary.Result)
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 
 	var previewEvents []events.EngineEvent
 	prevCh := make(chan events.EngineEvent)
@@ -448,7 +448,7 @@ func TestUpsertStackLocalSource(t *testing.T) {
 	steps := countSteps(previewEvents)
 	assert.Equal(t, 1, steps)
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 	ref, err := s.Refresh(ctx)
 	if err != nil {
 		t.Errorf("refresh failed, err: %v", err)
@@ -458,7 +458,7 @@ func TestUpsertStackLocalSource(t *testing.T) {
 	assert.Equal(t, "refresh", ref.Summary.Kind)
 	assert.Equal(t, "succeeded", ref.Summary.Result)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 	dRes, err := s.Destroy(ctx)
 	if err != nil {
 		t.Errorf("destroy failed, err: %v", err)
@@ -475,7 +475,7 @@ func TestNewStackRemoteSource(t *testing.T) {
 	ctx := context.Background()
 	pName := "go_remote_proj"
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -486,7 +486,7 @@ func TestNewStackRemoteSource(t *testing.T) {
 		},
 	}
 	repo := GitRepo{
-		URL:         "https://github.com/pulumi/test-repo.git",
+		URL:         "https://github.com/khulnasoft/test-repo.git",
 		ProjectPath: "goproj",
 	}
 
@@ -498,7 +498,7 @@ func TestNewStackRemoteSource(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -509,7 +509,7 @@ func TestNewStackRemoteSource(t *testing.T) {
 		t.FailNow()
 	}
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx)
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
@@ -526,7 +526,7 @@ func TestNewStackRemoteSource(t *testing.T) {
 	assert.Equal(t, "update", res.Summary.Kind)
 	assert.Equal(t, "succeeded", res.Summary.Result)
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 
 	var previewEvents []events.EngineEvent
 	prevCh := make(chan events.EngineEvent)
@@ -541,7 +541,7 @@ func TestNewStackRemoteSource(t *testing.T) {
 	steps := countSteps(previewEvents)
 	assert.Equal(t, 1, steps)
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 
 	ref, err := s.Refresh(ctx)
 	if err != nil {
@@ -551,7 +551,7 @@ func TestNewStackRemoteSource(t *testing.T) {
 	assert.Equal(t, "refresh", ref.Summary.Kind)
 	assert.Equal(t, "succeeded", ref.Summary.Result)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx)
 	if err != nil {
@@ -569,7 +569,7 @@ func TestUpsertStackRemoteSource(t *testing.T) {
 	ctx := context.Background()
 	pName := "go_remote_proj"
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -580,7 +580,7 @@ func TestUpsertStackRemoteSource(t *testing.T) {
 		},
 	}
 	repo := GitRepo{
-		URL:         "https://github.com/pulumi/test-repo.git",
+		URL:         "https://github.com/khulnasoft/test-repo.git",
 		ProjectPath: "goproj",
 	}
 
@@ -592,7 +592,7 @@ func TestUpsertStackRemoteSource(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -603,7 +603,7 @@ func TestUpsertStackRemoteSource(t *testing.T) {
 		t.FailNow()
 	}
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx)
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
@@ -620,7 +620,7 @@ func TestUpsertStackRemoteSource(t *testing.T) {
 	assert.Equal(t, "update", res.Summary.Kind)
 	assert.Equal(t, "succeeded", res.Summary.Result)
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 
 	var previewEvents []events.EngineEvent
 	prevCh := make(chan events.EngineEvent)
@@ -635,7 +635,7 @@ func TestUpsertStackRemoteSource(t *testing.T) {
 	steps := countSteps(previewEvents)
 	assert.Equal(t, 1, steps)
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 
 	ref, err := s.Refresh(ctx)
 	if err != nil {
@@ -645,7 +645,7 @@ func TestUpsertStackRemoteSource(t *testing.T) {
 	assert.Equal(t, "refresh", ref.Summary.Kind)
 	assert.Equal(t, "succeeded", ref.Summary.Result)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx)
 	if err != nil {
@@ -663,7 +663,7 @@ func TestNewStackRemoteSourceWithSetup(t *testing.T) {
 	ctx := context.Background()
 	pName := "go_remote_proj"
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -678,7 +678,7 @@ func TestNewStackRemoteSourceWithSetup(t *testing.T) {
 		binName = binName + ".exe"
 	}
 	repo := GitRepo{
-		URL:         "https://github.com/pulumi/test-repo.git",
+		URL:         "https://github.com/khulnasoft/test-repo.git",
 		ProjectPath: "goproj",
 		Setup: func(ctx context.Context, workspace Workspace) error {
 			cmd := exec.Command("go", "build", "-o", binName, "main.go")
@@ -701,7 +701,7 @@ func TestNewStackRemoteSourceWithSetup(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -712,7 +712,7 @@ func TestNewStackRemoteSourceWithSetup(t *testing.T) {
 		t.FailNow()
 	}
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx)
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
@@ -729,7 +729,7 @@ func TestNewStackRemoteSourceWithSetup(t *testing.T) {
 	assert.Equal(t, "update", res.Summary.Kind)
 	assert.Equal(t, "succeeded", res.Summary.Result)
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 
 	var previewEvents []events.EngineEvent
 	prevCh := make(chan events.EngineEvent)
@@ -744,7 +744,7 @@ func TestNewStackRemoteSourceWithSetup(t *testing.T) {
 	steps := countSteps(previewEvents)
 	assert.Equal(t, 1, steps)
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 
 	ref, err := s.Refresh(ctx)
 	if err != nil {
@@ -754,7 +754,7 @@ func TestNewStackRemoteSourceWithSetup(t *testing.T) {
 	assert.Equal(t, "refresh", ref.Summary.Kind)
 	assert.Equal(t, "succeeded", ref.Summary.Result)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx)
 	if err != nil {
@@ -772,7 +772,7 @@ func TestUpsertStackRemoteSourceWithSetup(t *testing.T) {
 	ctx := context.Background()
 	pName := "go_remote_proj"
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -787,7 +787,7 @@ func TestUpsertStackRemoteSourceWithSetup(t *testing.T) {
 		binName = binName + ".exe"
 	}
 	repo := GitRepo{
-		URL:         "https://github.com/pulumi/test-repo.git",
+		URL:         "https://github.com/khulnasoft/test-repo.git",
 		ProjectPath: "goproj",
 		Setup: func(ctx context.Context, workspace Workspace) error {
 			cmd := exec.Command("go", "build", "-o", binName, "main.go")
@@ -810,7 +810,7 @@ func TestUpsertStackRemoteSourceWithSetup(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -821,7 +821,7 @@ func TestUpsertStackRemoteSourceWithSetup(t *testing.T) {
 		t.FailNow()
 	}
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx)
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
@@ -838,7 +838,7 @@ func TestUpsertStackRemoteSourceWithSetup(t *testing.T) {
 	assert.Equal(t, "update", res.Summary.Kind)
 	assert.Equal(t, "succeeded", res.Summary.Result)
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 
 	var previewEvents []events.EngineEvent
 	prevCh := make(chan events.EngineEvent)
@@ -853,7 +853,7 @@ func TestUpsertStackRemoteSourceWithSetup(t *testing.T) {
 	steps := countSteps(previewEvents)
 	assert.Equal(t, 1, steps)
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 
 	ref, err := s.Refresh(ctx)
 	if err != nil {
@@ -863,7 +863,7 @@ func TestUpsertStackRemoteSourceWithSetup(t *testing.T) {
 	assert.Equal(t, "refresh", ref.Summary.Kind)
 	assert.Equal(t, "succeeded", ref.Summary.Result)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx)
 	if err != nil {
@@ -880,7 +880,7 @@ func TestNewStackInlineSource(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -892,10 +892,10 @@ func TestNewStackInlineSource(t *testing.T) {
 	}
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 		c := config.New(ctx, "")
-		ctx.Export("exp_static", pulumi.String("foo"))
-		ctx.Export("exp_cfg", pulumi.String(c.Get("bar")))
+		ctx.Export("exp_static", khulnasoft.String("foo"))
+		ctx.Export("exp_cfg", khulnasoft.String(c.Get("bar")))
 		ctx.Export("exp_secret", c.GetSecret("buzz"))
 		return nil
 	})
@@ -905,14 +905,14 @@ func TestNewStackInlineSource(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
 
 	require.NoError(t, s.SetAllConfig(ctx, cfg))
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx, optup.UserAgent(agent), optup.Refresh())
 	require.NoError(t, err, "up failed")
 
@@ -927,7 +927,7 @@ func TestNewStackInlineSource(t *testing.T) {
 	assert.Equal(t, "succeeded", res.Summary.Result)
 	assert.Greater(t, res.Summary.Version, 0)
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 
 	var previewEvents []events.EngineEvent
 	prevCh := make(chan events.EngineEvent)
@@ -939,26 +939,26 @@ func TestNewStackInlineSource(t *testing.T) {
 	steps := countSteps(previewEvents)
 	assert.Equal(t, 2, steps)
 
-	// -- pulumi refresh --preview-only --
+	// -- khulnasoft refresh --preview-only --
 
 	pref, err := s.PreviewRefresh(ctx, optrefresh.UserAgent(agent))
 	assert.NoError(t, err, "preview-only refresh failed")
 	assert.Equal(t, 1, pref.ChangeSummary[apitype.OpSame])
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 
 	ref, err := s.Refresh(ctx, optrefresh.UserAgent(agent))
 	require.NoError(t, err, "refresh failed")
 	assert.Equal(t, "refresh", ref.Summary.Kind)
 	assert.Equal(t, "succeeded", ref.Summary.Result)
 
-	// -- pulumi destroy --preview-only --
+	// -- khulnasoft destroy --preview-only --
 
 	pdRes, err := s.PreviewDestroy(ctx, optdestroy.UserAgent(agent), optdestroy.Refresh())
 	assert.NoError(t, err, "preview-only destroy failed")
 	assert.Equal(t, map[apitype.OpType]int{apitype.OpDelete: 1}, pdRes.ChangeSummary)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx, optdestroy.UserAgent(agent), optdestroy.Refresh())
 	require.NoError(t, err, "destroy failed")
@@ -972,9 +972,9 @@ func TestStackLifecycleInlineProgramRemoveWithoutDestroy(t *testing.T) {
 	// Arrange.
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 		_, err := NewMyResource(ctx, "res")
 		if err != nil {
 			return err
@@ -1003,9 +1003,9 @@ func TestStackLifecycleInlineProgramDestroyWithRemove(t *testing.T) {
 	// Arrange.
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 		_, err := NewMyResource(ctx, "res")
 		if err != nil {
 			return err
@@ -1040,7 +1040,7 @@ func TestUpsertStackInlineSourceParallel(t *testing.T) {
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			t.Parallel()
 			sName := ptesting.RandomStackName()
-			stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+			stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 			cfg := ConfigMap{
 				"bar": ConfigValue{
 					Value: "abc",
@@ -1051,10 +1051,10 @@ func TestUpsertStackInlineSourceParallel(t *testing.T) {
 				},
 			}
 			// initialize or select
-			s, err := UpsertStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+			s, err := UpsertStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 				c := config.New(ctx, "")
-				ctx.Export("exp_static", pulumi.String("foo"))
-				ctx.Export("exp_cfg", pulumi.String(c.Get("bar")))
+				ctx.Export("exp_static", khulnasoft.String("foo"))
+				ctx.Export("exp_cfg", khulnasoft.String(c.Get("bar")))
 				ctx.Export("exp_secret", c.GetSecret("buzz"))
 				return nil
 			})
@@ -1064,7 +1064,7 @@ func TestUpsertStackInlineSourceParallel(t *testing.T) {
 			}
 
 			t.Cleanup(func() {
-				// -- pulumi stack rm --
+				// -- khulnasoft stack rm --
 				err = s.Workspace().RemoveStack(ctx, s.Name())
 				assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 			})
@@ -1075,7 +1075,7 @@ func TestUpsertStackInlineSourceParallel(t *testing.T) {
 				t.FailNow()
 			}
 
-			// -- pulumi up --
+			// -- khulnasoft up --
 			res, err := s.Up(ctx)
 			if err != nil {
 				t.Errorf("up failed, err: %v", err)
@@ -1092,7 +1092,7 @@ func TestUpsertStackInlineSourceParallel(t *testing.T) {
 			assert.Equal(t, "update", res.Summary.Kind)
 			assert.Equal(t, "succeeded", res.Summary.Result)
 
-			// -- pulumi preview --
+			// -- khulnasoft preview --
 
 			var previewEvents []events.EngineEvent
 			prevCh := make(chan events.EngineEvent)
@@ -1107,7 +1107,7 @@ func TestUpsertStackInlineSourceParallel(t *testing.T) {
 			steps := countSteps(previewEvents)
 			assert.Equal(t, 1, steps)
 
-			// -- pulumi refresh --
+			// -- khulnasoft refresh --
 
 			ref, err := s.Refresh(ctx)
 			if err != nil {
@@ -1117,7 +1117,7 @@ func TestUpsertStackInlineSourceParallel(t *testing.T) {
 			assert.Equal(t, "refresh", ref.Summary.Kind)
 			assert.Equal(t, "succeeded", ref.Summary.Result)
 
-			// -- pulumi destroy --
+			// -- khulnasoft destroy --
 
 			dRes, err := s.Destroy(ctx)
 			if err != nil {
@@ -1136,11 +1136,11 @@ func TestNestedStackFails(t *testing.T) {
 
 	testCtx := context.Background()
 	sName := ptesting.RandomStackName()
-	parentstackName := FullyQualifiedStackName(pulumiOrg, "parent", sName)
-	nestedstackName := FullyQualifiedStackName(pulumiOrg, "nested", sName)
+	parentstackName := FullyQualifiedStackName(khulnasoftOrg, "parent", sName)
+	nestedstackName := FullyQualifiedStackName(khulnasoftOrg, "nested", sName)
 
-	nestedStack, err := NewStackInlineSource(testCtx, nestedstackName, "nested", func(ctx *pulumi.Context) error {
-		ctx.Export("exp_static", pulumi.String("foo"))
+	nestedStack, err := NewStackInlineSource(testCtx, nestedstackName, "nested", func(ctx *khulnasoft.Context) error {
+		ctx.Export("exp_static", khulnasoft.String("foo"))
 		return nil
 	})
 	if err != nil {
@@ -1149,7 +1149,7 @@ func TestNestedStackFails(t *testing.T) {
 	}
 
 	// initialize
-	s, err := NewStackInlineSource(testCtx, parentstackName, "parent", func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(testCtx, parentstackName, "parent", func(ctx *khulnasoft.Context) error {
 		_, err := nestedStack.Up(testCtx)
 		return err
 	})
@@ -1159,7 +1159,7 @@ func TestNestedStackFails(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(testCtx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 
@@ -1173,7 +1173,7 @@ func TestNestedStackFails(t *testing.T) {
 
 	assert.ErrorContains(t, err, "nested stack operations are not supported")
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(testCtx)
 	if err != nil {
@@ -1198,7 +1198,7 @@ func TestErrorProgressStreams(t *testing.T) {
 	ctx := context.Background()
 	pName := "inline_error_progress_streams"
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 
 	logLevel := uint(4)
 	debugOptions := debug.LoggingOptions{
@@ -1207,7 +1207,7 @@ func TestErrorProgressStreams(t *testing.T) {
 	}
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 		return nil
 	})
 	if err != nil {
@@ -1216,12 +1216,12 @@ func TestErrorProgressStreams(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err := s.Workspace().RemoveStack(ctx, s.Name(), optremove.Force())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	var upErr bytes.Buffer
 	upRes, err := s.Up(ctx, optup.ErrorProgressStreams(&upErr), optup.DebugLogging(debugOptions))
 	if err != nil {
@@ -1231,7 +1231,7 @@ func TestErrorProgressStreams(t *testing.T) {
 	assert.Equal(t, upErr.String(), upRes.StdErr, "expected stderr writers to contain same contents")
 	assert.NotEmpty(t, upRes.StdErr)
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 	var refErr bytes.Buffer
 	refRes, err := s.Refresh(ctx, optrefresh.ErrorProgressStreams(&refErr), optrefresh.DebugLogging(debugOptions))
 	if err != nil {
@@ -1241,7 +1241,7 @@ func TestErrorProgressStreams(t *testing.T) {
 	assert.Equal(t, refErr.String(), refRes.StdErr, "expected stderr writers to contain same contents")
 	assert.NotEmpty(t, refRes.StdErr)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 	var desErr bytes.Buffer
 	desRes, err := s.Destroy(ctx, optdestroy.ErrorProgressStreams(&desErr), optdestroy.DebugLogging(debugOptions))
 	if err != nil {
@@ -1258,7 +1258,7 @@ func TestProgressStreams(t *testing.T) {
 	ctx := context.Background()
 	pName := "inline_progress_streams"
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -1270,10 +1270,10 @@ func TestProgressStreams(t *testing.T) {
 	}
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 		c := config.New(ctx, "")
-		ctx.Export("exp_static", pulumi.String("foo"))
-		ctx.Export("exp_cfg", pulumi.String(c.Get("bar")))
+		ctx.Export("exp_static", khulnasoft.String("foo"))
+		ctx.Export("exp_cfg", khulnasoft.String(c.Get("bar")))
 		ctx.Export("exp_secret", c.GetSecret("buzz"))
 		return nil
 	})
@@ -1283,7 +1283,7 @@ func TestProgressStreams(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -1294,7 +1294,7 @@ func TestProgressStreams(t *testing.T) {
 		t.FailNow()
 	}
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	var upOut bytes.Buffer
 	res, err := s.Up(ctx, optup.ProgressStreams(&upOut))
 	if err != nil {
@@ -1304,7 +1304,7 @@ func TestProgressStreams(t *testing.T) {
 
 	assert.Equal(t, upOut.String(), res.StdOut, "expected stdout writers to contain same contents")
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 	var refOut bytes.Buffer
 	ref, err := s.Refresh(ctx, optrefresh.ProgressStreams(&refOut))
 	if err != nil {
@@ -1313,7 +1313,7 @@ func TestProgressStreams(t *testing.T) {
 	}
 	assert.Equal(t, refOut.String(), ref.StdOut, "expected stdout writers to contain same contents")
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 	var desOut bytes.Buffer
 	dRes, err := s.Destroy(ctx, optdestroy.ProgressStreams(&desOut))
 	if err != nil {
@@ -1329,7 +1329,7 @@ func TestImportExportStack(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -1341,10 +1341,10 @@ func TestImportExportStack(t *testing.T) {
 	}
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 		c := config.New(ctx, "")
-		ctx.Export("exp_static", pulumi.String("foo"))
-		ctx.Export("exp_cfg", pulumi.String(c.Get("bar")))
+		ctx.Export("exp_static", khulnasoft.String("foo"))
+		ctx.Export("exp_cfg", khulnasoft.String(c.Get("bar")))
 		ctx.Export("exp_secret", c.GetSecret("buzz"))
 		return nil
 	})
@@ -1354,7 +1354,7 @@ func TestImportExportStack(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -1365,28 +1365,28 @@ func TestImportExportStack(t *testing.T) {
 		t.FailNow()
 	}
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	_, err = s.Up(ctx)
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
 		t.FailNow()
 	}
 
-	// -- pulumi stack export --
+	// -- khulnasoft stack export --
 	state, err := s.Export(ctx)
 	if err != nil {
 		t.Errorf("export failed, err: %v", err)
 		t.FailNow()
 	}
 
-	// -- pulumi stack import --
+	// -- khulnasoft stack import --
 	err = s.Import(ctx, state)
 	if err != nil {
 		t.Errorf("import failed, err: %v", err)
 		t.FailNow()
 	}
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx)
 	if err != nil {
@@ -1403,7 +1403,7 @@ func TestConfigFlagLike(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	// initialize
 	pDir := filepath.Join(".", "test", "testproj")
 	s, err := NewStackLocalSource(ctx, stackName, pDir)
@@ -1438,7 +1438,7 @@ func TestConfigWithOptions(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	// initialize
 	pDir := filepath.Join(".", "test", "testproj")
 	s, err := NewStackLocalSource(ctx, stackName, pDir)
@@ -1617,7 +1617,7 @@ func TestConfigAllWithOptions(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	// initialize
 	pDir := filepath.Join(".", "test", "testproj")
 	s, err := NewStackLocalSource(ctx, stackName, pDir)
@@ -1723,7 +1723,7 @@ func TestConfigAllWithOptions(t *testing.T) {
 func TestNestedConfig(t *testing.T) {
 	t.Parallel()
 	ctx := context.Background()
-	stackName := FullyQualifiedStackName(pulumiOrg, "nested_config", "dev")
+	stackName := FullyQualifiedStackName(khulnasoftOrg, "nested_config", "dev")
 
 	// initialize
 	pDir := filepath.Join(".", "test", "nested_config")
@@ -1782,13 +1782,13 @@ func TestNestedConfig(t *testing.T) {
 }
 
 func TestEnvFunctions(t *testing.T) {
-	if getTestOrg() != pulumiTestOrg {
+	if getTestOrg() != khulnasoftTestOrg {
 		t.Skip("Skipping test because the required environments are in the moolumi org.")
 	}
 	t.Parallel()
 
 	ctx := context.Background()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, ptesting.RandomStackName())
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, ptesting.RandomStackName())
 
 	pDir := filepath.Join(".", "test", pName)
 	s, err := UpsertStackLocalSource(ctx, stackName, pDir)
@@ -1852,7 +1852,7 @@ func TestTagFunctions(t *testing.T) {
 	t.Parallel()
 
 	ctx := context.Background()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, ptesting.RandomStackName())
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, ptesting.RandomStackName())
 
 	pDir := filepath.Join(".", "test", "testproj")
 	s, err := UpsertStackLocalSource(ctx, stackName, pDir)
@@ -1868,7 +1868,7 @@ func TestTagFunctions(t *testing.T) {
 		t.Errorf("failed to list tags, err: %v", err)
 		t.FailNow()
 	}
-	assert.Equal(t, pName, tags["pulumi:project"])
+	assert.Equal(t, pName, tags["khulnasoft:project"])
 
 	// -- sets tag values --
 	err = ws.SetTag(ctx, stackName, "foo", "bar")
@@ -1902,7 +1902,7 @@ func TestTagFunctions(t *testing.T) {
 func TestStructuredOutput(t *testing.T) {
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -1922,7 +1922,7 @@ func TestStructuredOutput(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -1951,7 +1951,7 @@ func TestStructuredOutput(t *testing.T) {
 	envvars = s.Workspace().GetEnvVars()
 	assert.NotNil(t, envvars, "failed to get environment values after unsetting.")
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	var upEvents []events.EngineEvent
 	upCh := make(chan events.EngineEvent)
 	wg := collectEvents(upCh, &upEvents)
@@ -1973,7 +1973,7 @@ func TestStructuredOutput(t *testing.T) {
 	assert.Equal(t, "succeeded", res.Summary.Result)
 	assert.True(t, containsSummary(upEvents))
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 	var previewEvents []events.EngineEvent
 	prevCh := make(chan events.EngineEvent)
 	wg = collectEvents(prevCh, &previewEvents)
@@ -1989,7 +1989,7 @@ func TestStructuredOutput(t *testing.T) {
 	assert.Equal(t, 1, steps)
 	assert.True(t, containsSummary(previewEvents))
 
-	// -- pulumi refresh --
+	// -- khulnasoft refresh --
 	var refreshEvents []events.EngineEvent
 	refCh := make(chan events.EngineEvent)
 	wg = collectEvents(refCh, &refreshEvents)
@@ -2004,7 +2004,7 @@ func TestStructuredOutput(t *testing.T) {
 	assert.Equal(t, "succeeded", ref.Summary.Result)
 	assert.True(t, containsSummary(refreshEvents))
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 	var destroyEvents []events.EngineEvent
 	desCh := make(chan events.EngineEvent)
 	wg = collectEvents(desCh, &destroyEvents)
@@ -2025,7 +2025,7 @@ func TestStackImportResources(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, "import", sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, "import", sName)
 	pDir := filepath.Join(".", "test", "import")
 	stack, err := UpsertStackLocalSource(ctx, stackName, pDir)
 	if err != nil {
@@ -2066,7 +2066,7 @@ func TestSupportsStackOutputs(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"bar": ConfigValue{
 			Value: "abc",
@@ -2078,15 +2078,15 @@ func TestSupportsStackOutputs(t *testing.T) {
 	}
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 		c := config.New(ctx, "")
 
-		nestedObj := pulumi.Map{
-			"not_a_secret": pulumi.String("foo"),
-			"is_a_secret":  pulumi.ToSecret("iamsecret"),
+		nestedObj := khulnasoft.Map{
+			"not_a_secret": khulnasoft.String("foo"),
+			"is_a_secret":  khulnasoft.ToSecret("iamsecret"),
 		}
-		ctx.Export("exp_static", pulumi.String("foo"))
-		ctx.Export("exp_cfg", pulumi.String(c.Get("bar")))
+		ctx.Export("exp_static", khulnasoft.String("foo"))
+		ctx.Export("exp_cfg", khulnasoft.String(c.Get("bar")))
 		ctx.Export("exp_secret", c.GetSecret("buzz"))
 		ctx.Export("nested_obj", nestedObj)
 		return nil
@@ -2097,7 +2097,7 @@ func TestSupportsStackOutputs(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -2131,7 +2131,7 @@ func TestSupportsStackOutputs(t *testing.T) {
 
 	assert.Equal(t, 0, len(initialOutputs))
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	res, err := s.Up(ctx)
 	if err != nil {
 		t.Errorf("up failed, err: %v", err)
@@ -2151,7 +2151,7 @@ func TestSupportsStackOutputs(t *testing.T) {
 
 	assertOutputs(t, outputsAfterUp)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 	dRes, err := s.Destroy(ctx)
 	if err != nil {
 		t.Errorf("destroy failed, err: %v", err)
@@ -2203,7 +2203,7 @@ func TestShallowClone(t *testing.T) {
 			t.Parallel()
 
 			repo := GitRepo{
-				URL:         "https://github.com/pulumi/test-repo.git",
+				URL:         "https://github.com/khulnasoft/test-repo.git",
 				ProjectPath: "goproj",
 				Shallow:     true,
 				Branch:      tt.repo.Branch,
@@ -2241,9 +2241,9 @@ func TestPulumiCommand(t *testing.T) {
 	t.Parallel()
 
 	ctx := context.Background()
-	pulumiCommand, err := NewPulumiCommand(nil)
-	require.NoError(t, err, "failed to create pulumi command: %s", err)
-	ws, err := NewLocalWorkspace(ctx, Pulumi(pulumiCommand))
+	khulnasoftCommand, err := NewPulumiCommand(nil)
+	require.NoError(t, err, "failed to create khulnasoft command: %s", err)
+	ws, err := NewLocalWorkspace(ctx, Pulumi(khulnasoftCommand))
 	require.NoError(t, err, "failed to create workspace: %s", err)
 	version := ws.PulumiVersion()
 	assert.NotEqual(t, "v0.0.0", version)
@@ -2253,7 +2253,7 @@ func TestPulumiCommand(t *testing.T) {
 func TestClIWithoutRemoteSupport(t *testing.T) {
 	t.Parallel()
 
-	// We inspect the output of `pulumi preview --help` to determine if the
+	// We inspect the output of `khulnasoft preview --help` to determine if the
 	// CLI supports remote operations. Set the output to `some output` to
 	// simulate a CLI version without remote support.
 	m := mockPulumiCommand{stdout: "some output"}
@@ -2266,7 +2266,7 @@ func TestClIWithoutRemoteSupport(t *testing.T) {
 func TestByPassesRemoteCheck(t *testing.T) {
 	t.Parallel()
 
-	// We inspect the output of `pulumi preview --help` to determine if the
+	// We inspect the output of `khulnasoft preview --help` to determine if the
 	// CLI supports remote operations. Set the output to `some output` to
 	// simulate a CLI version without remote support.
 	m := mockPulumiCommand{stdout: "some output"}
@@ -2283,14 +2283,14 @@ func TestProjectSettingsRespected(t *testing.T) {
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
 	pName := "correct_project"
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	badProjectName := "project_was_overwritten"
-	stack, err := NewStackInlineSource(ctx, stackName, badProjectName, func(ctx *pulumi.Context) error {
+	stack, err := NewStackInlineSource(ctx, stackName, badProjectName, func(ctx *khulnasoft.Context) error {
 		return nil
 	}, WorkDir(filepath.Join(".", "test", pName)))
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = stack.Workspace().RemoveStack(ctx, stack.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -2307,7 +2307,7 @@ func TestSaveStackSettings(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 
 	opts := []LocalWorkspaceOption{
 		SecretsProvider("passphrase"),
@@ -2317,17 +2317,17 @@ func TestSaveStackSettings(t *testing.T) {
 	}
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 		c := config.New(ctx, "")
-		ctx.Export("exp_static", pulumi.String("foo"))
-		ctx.Export("exp_cfg", pulumi.String(c.Get("bar")))
+		ctx.Export("exp_static", khulnasoft.String("foo"))
+		ctx.Export("exp_cfg", khulnasoft.String(c.Get("bar")))
 		ctx.Export("exp_secret", c.GetSecret("buzz"))
 		return nil
 	}, opts...)
 	require.NoError(t, err, "failed to initialize stack, err: %v", err)
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -2339,7 +2339,7 @@ func TestSaveStackSettings(t *testing.T) {
 	stackConfig.Config[resourceConfig.MustMakeKey(pName, "bar")] = resourceConfig.NewValue("baz")
 	assert.NoError(t, s.Workspace().SaveStackSettings(ctx, stackName, stackConfig))
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 
 	res, err := s.Up(ctx)
 	if err != nil {
@@ -2358,7 +2358,7 @@ func TestSaveStackSettings(t *testing.T) {
 	assert.Equal(t, stackConfig.EncryptionSalt, reloaded.EncryptionSalt)
 	assert.Equal(t, stackConfig.Config, reloaded.Config)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx)
 	if err != nil {
@@ -2372,11 +2372,11 @@ func TestSaveStackSettings(t *testing.T) {
 func TestConfigSecretWarnings(t *testing.T) {
 	t.Parallel()
 
-	// TODO[pulumi/pulumi#7127]: Re-enabled the warning.
-	t.Skip("Temporarily skipping test until we've re-enabled the warning - pulumi/pulumi#7127")
+	// TODO[khulnasoft/khulnasoft#7127]: Re-enabled the warning.
+	t.Skip("Temporarily skipping test until we've re-enabled the warning - khulnasoft/khulnasoft#7127")
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	cfg := ConfigMap{
 		"plainstr1":    ConfigValue{Value: "1"},
 		"plainstr2":    ConfigValue{Value: "2"},
@@ -2502,7 +2502,7 @@ func TestConfigSecretWarnings(t *testing.T) {
 
 	// initialize
 	//nolint:errcheck
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
 		c := config.New(ctx, "")
 
 		config.Get(ctx, "plainstr1")
@@ -2644,7 +2644,7 @@ func TestConfigSecretWarnings(t *testing.T) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -2776,7 +2776,7 @@ func TestConfigSecretWarnings(t *testing.T) {
 		}
 	}
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 	var upEvents []events.EngineEvent
 	upCh := make(chan events.EngineEvent)
 	wg := collectEvents(upCh, &upEvents)
@@ -2788,7 +2788,7 @@ func TestConfigSecretWarnings(t *testing.T) {
 	wg.Wait()
 	validate(upEvents)
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 	var previewEvents []events.EngineEvent
 	prevCh := make(chan events.EngineEvent)
 	wg = collectEvents(prevCh, &previewEvents)
@@ -2805,7 +2805,7 @@ func TestWhoAmIDetailed(t *testing.T) {
 	t.Parallel()
 
 	ctx := context.Background()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, ptesting.RandomStackName())
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, ptesting.RandomStackName())
 
 	// initialize
 	pDir := filepath.Join(".", "test", "testproj")
@@ -2845,10 +2845,10 @@ func TestListStacks(t *testing.T) {
 	m := mockPulumiCommand{
 		stdout: `[{"name": "testorg1/testproj1/teststack1",
 				   "current": false,
-				   "url": "https://app.pulumi.com/testorg1/testproj1/teststack1"},
+				   "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack1"},
 				  {"name": "testorg1/testproj1/teststack2",
 				   "current": false,
-				   "url": "https://app.pulumi.com/testorg1/testproj1/teststack2"}]`,
+				   "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack2"}]`,
 		stderr:   "",
 		exitCode: 0,
 		err:      nil,
@@ -2863,10 +2863,10 @@ func TestListStacks(t *testing.T) {
 	assert.Len(t, stacks, 2)
 	assert.Equal(t, "testorg1/testproj1/teststack1", stacks[0].Name)
 	assert.Equal(t, false, stacks[0].Current)
-	assert.Equal(t, "https://app.pulumi.com/testorg1/testproj1/teststack1", stacks[0].URL)
+	assert.Equal(t, "https://app.khulnasoft.com/testorg1/testproj1/teststack1", stacks[0].URL)
 	assert.Equal(t, "testorg1/testproj1/teststack2", stacks[1].Name)
 	assert.Equal(t, false, stacks[1].Current)
-	assert.Equal(t, "https://app.pulumi.com/testorg1/testproj1/teststack2", stacks[1].URL)
+	assert.Equal(t, "https://app.khulnasoft.com/testorg1/testproj1/teststack2", stacks[1].URL)
 }
 
 func TestListStacksCorrectArgs(t *testing.T) {
@@ -2878,10 +2878,10 @@ func TestListStacksCorrectArgs(t *testing.T) {
 	m := mockPulumiCommand{
 		stdout: `[{"name": "testorg1/testproj1/teststack1",
 				"current": false,
-				"url": "https://app.pulumi.com/testorg1/testproj1/teststack1"},
+				"url": "https://app.khulnasoft.com/testorg1/testproj1/teststack1"},
 				{"name": "testorg1/testproj1/teststack2",
 				"current": false,
-				"url": "https://app.pulumi.com/testorg1/testproj1/teststack2"}]`,
+				"url": "https://app.khulnasoft.com/testorg1/testproj1/teststack2"}]`,
 		stderr:   "",
 		exitCode: 0,
 		err:      nil,
@@ -2905,10 +2905,10 @@ func TestListAllStacks(t *testing.T) {
 	m := mockPulumiCommand{
 		stdout: `[{"name": "testorg1/testproj1/teststack1",
 				   "current": false,
-				   "url": "https://app.pulumi.com/testorg1/testproj1/teststack1"},
+				   "url": "https://app.khulnasoft.com/testorg1/testproj1/teststack1"},
 				  {"name": "testorg1/testproj2/teststack2",
 				   "current": false,
-				   "url": "https://app.pulumi.com/testorg1/testproj2/teststack2"}]`,
+				   "url": "https://app.khulnasoft.com/testorg1/testproj2/teststack2"}]`,
 		stderr:   "",
 		exitCode: 0,
 		err:      nil,
@@ -2923,10 +2923,10 @@ func TestListAllStacks(t *testing.T) {
 	assert.Len(t, stacks, 2)
 	assert.Equal(t, "testorg1/testproj1/teststack1", stacks[0].Name)
 	assert.Equal(t, false, stacks[0].Current)
-	assert.Equal(t, "https://app.pulumi.com/testorg1/testproj1/teststack1", stacks[0].URL)
+	assert.Equal(t, "https://app.khulnasoft.com/testorg1/testproj1/teststack1", stacks[0].URL)
 	assert.Equal(t, "testorg1/testproj2/teststack2", stacks[1].Name)
 	assert.Equal(t, false, stacks[1].Current)
-	assert.Equal(t, "https://app.pulumi.com/testorg1/testproj2/teststack2", stacks[1].URL)
+	assert.Equal(t, "https://app.khulnasoft.com/testorg1/testproj2/teststack2", stacks[1].URL)
 }
 
 func TestListStacksAllCorrectArgs(t *testing.T) {
@@ -2938,10 +2938,10 @@ func TestListStacksAllCorrectArgs(t *testing.T) {
 	m := mockPulumiCommand{
 		stdout: `[{"name": "testorg1/testproj1/teststack1",
 				"current": false,
-				"url": "https://app.pulumi.com/testorg1/testproj1/teststack1"},
+				"url": "https://app.khulnasoft.com/testorg1/testproj1/teststack1"},
 				{"name": "testorg1/testproj1/teststack2",
 				"current": false,
-				"url": "https://app.pulumi.com/testorg1/testproj1/teststack2"}]`,
+				"url": "https://app.khulnasoft.com/testorg1/testproj1/teststack2"}]`,
 		stderr:   "",
 		exitCode: 0,
 		err:      nil,
@@ -3074,10 +3074,10 @@ func TestInstallWithUseLanguageVersionTools(t *testing.T) {
 
 func BenchmarkBulkSetConfigMixed(b *testing.B) {
 	ctx := context.Background()
-	stackName := FullyQualifiedStackName(pulumiOrg, "set_config_mixed", "dev")
+	stackName := FullyQualifiedStackName(khulnasoftOrg, "set_config_mixed", "dev")
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, "set_config_mixed", func(ctx *pulumi.Context) error { return nil })
+	s, err := NewStackInlineSource(ctx, stackName, "set_config_mixed", func(ctx *khulnasoft.Context) error { return nil })
 	if err != nil {
 		b.Errorf("failed to initialize stack, err: %v", err)
 		b.FailNow()
@@ -3133,7 +3133,7 @@ func BenchmarkBulkSetConfigMixed(b *testing.B) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(b, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -3141,10 +3141,10 @@ func BenchmarkBulkSetConfigMixed(b *testing.B) {
 
 func BenchmarkBulkSetConfigPlain(b *testing.B) {
 	ctx := context.Background()
-	stackName := FullyQualifiedStackName(pulumiOrg, "set_config_plain", "dev")
+	stackName := FullyQualifiedStackName(khulnasoftOrg, "set_config_plain", "dev")
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, "set_config_plain", func(ctx *pulumi.Context) error { return nil })
+	s, err := NewStackInlineSource(ctx, stackName, "set_config_plain", func(ctx *khulnasoft.Context) error { return nil })
 	if err != nil {
 		b.Errorf("failed to initialize stack, err: %v", err)
 		b.FailNow()
@@ -3200,7 +3200,7 @@ func BenchmarkBulkSetConfigPlain(b *testing.B) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(b, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -3208,10 +3208,10 @@ func BenchmarkBulkSetConfigPlain(b *testing.B) {
 
 func BenchmarkBulkSetConfigSecret(b *testing.B) {
 	ctx := context.Background()
-	stackName := FullyQualifiedStackName(pulumiOrg, "set_config_plain", "dev")
+	stackName := FullyQualifiedStackName(khulnasoftOrg, "set_config_plain", "dev")
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, "set_config_plain", func(ctx *pulumi.Context) error { return nil })
+	s, err := NewStackInlineSource(ctx, stackName, "set_config_plain", func(ctx *khulnasoft.Context) error { return nil })
 	if err != nil {
 		b.Errorf("failed to initialize stack, err: %v", err)
 		b.FailNow()
@@ -3267,14 +3267,14 @@ func BenchmarkBulkSetConfigSecret(b *testing.B) {
 	}
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.NoError(b, err, "failed to remove stack. Resources have leaked.")
 	}()
 }
 
 func getTestOrg() string {
-	testOrg := pulumiTestOrg
+	testOrg := khulnasoftTestOrg
 	if _, set := os.LookupEnv("PULUMI_TEST_ORG"); set {
 		testOrg = os.Getenv("PULUMI_TEST_ORG")
 	}
@@ -3314,10 +3314,10 @@ func collectEvents(eventChannel <-chan events.EngineEvent, events *[]events.Engi
 }
 
 type MyResource struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewMyResource(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*MyResource, error) {
+func NewMyResource(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*MyResource, error) {
 	myResource := &MyResource{}
 	err := ctx.RegisterComponentResource("my:module:MyResource", name, myResource, opts...)
 	if err != nil {

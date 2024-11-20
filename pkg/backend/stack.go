@@ -23,12 +23,12 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/operations"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/gitutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/gitutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // Stack is used to manage stacks of resources against a pluggable backend.
@@ -192,7 +192,7 @@ func GetEnvironmentTagsForCurrentStack(root string,
 		}
 	}
 
-	// Grab any `pulumi:tag` config values and use those to update the stack's tags.
+	// Grab any `khulnasoft:tag` config values and use those to update the stack's tags.
 	configTags, has, err := cfg.Get(config.MustParseKey(apitype.PulumiTagsConfigKey), false)
 	contract.AssertNoErrorf(err, "Config.Get(\"%s\") failed unexpectedly", apitype.PulumiTagsConfigKey)
 	if has {

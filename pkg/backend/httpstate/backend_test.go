@@ -24,11 +24,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/b64"
 	pkgWorkspace "github.com/khulnasoft/khulnasoft/pkg/v3/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/diagtest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/diagtest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -116,23 +116,23 @@ func TestValueOrDefaultURL(t *testing.T) {
 		}
 
 		// Validate trailing slash gets cut
-		assert.Equal(t, "https://api-test1.pulumi.com", ValueOrDefaultURL(mock, "https://api-test1.pulumi.com/"))
+		assert.Equal(t, "https://api-test1.khulnasoft.com", ValueOrDefaultURL(mock, "https://api-test1.khulnasoft.com/"))
 
 		// Validate no-op case
-		assert.Equal(t, "https://api-test2.pulumi.com", ValueOrDefaultURL(mock, "https://api-test2.pulumi.com"))
+		assert.Equal(t, "https://api-test2.khulnasoft.com", ValueOrDefaultURL(mock, "https://api-test2.khulnasoft.com"))
 
 		// Validate trailing slash in pre-set env var is unchanged
-		t.Setenv("PULUMI_API", "https://api-test3.pulumi.com/")
-		assert.Equal(t, "https://api-test3.pulumi.com/", ValueOrDefaultURL(mock, ""))
+		t.Setenv("PULUMI_API", "https://api-test3.khulnasoft.com/")
+		assert.Equal(t, "https://api-test3.khulnasoft.com/", ValueOrDefaultURL(mock, ""))
 		t.Setenv("PULUMI_API", "")
 
 		// Validate current credentials URL is used
-		current = "https://api-test4.pulumi.com"
-		assert.Equal(t, "https://api-test4.pulumi.com", ValueOrDefaultURL(mock, ""))
+		current = "https://api-test4.khulnasoft.com"
+		assert.Equal(t, "https://api-test4.khulnasoft.com", ValueOrDefaultURL(mock, ""))
 
 		// Unless the current credentials URL is a filestate url
 		current = "s3://test"
-		assert.Equal(t, "https://api.pulumi.com", ValueOrDefaultURL(mock, ""))
+		assert.Equal(t, "https://api.khulnasoft.com", ValueOrDefaultURL(mock, ""))
 	})
 }
 
@@ -252,12 +252,12 @@ func TestDisableIntegrityChecking(t *testing.T) {
 		Deployment: json.RawMessage(`{
 			"resources": [
 				{
-					"urn": "urn:pulumi:stack::proj::type::name1",
+					"urn": "urn:khulnasoft:stack::proj::type::name1",
 					"type": "type",
-					"parent": "urn:pulumi:stack::proj::type::name2"
+					"parent": "urn:khulnasoft:stack::proj::type::name2"
 				},
 				{
-					"urn": "urn:pulumi:stack::proj::type::name2",
+					"urn": "urn:khulnasoft:stack::proj::type::name2",
 					"type": "type"
 				}
 			]
@@ -271,7 +271,7 @@ func TestDisableIntegrityChecking(t *testing.T) {
 	backend.DisableIntegrityChecking = false
 	snap, err := s.Snapshot(ctx, b64.Base64SecretsProvider)
 	require.ErrorContains(t, err,
-		"child resource urn:pulumi:stack::proj::type::name1's parent urn:pulumi:stack::proj::type::name2 comes after it")
+		"child resource urn:khulnasoft:stack::proj::type::name1's parent urn:khulnasoft:stack::proj::type::name2 comes after it")
 	assert.Nil(t, snap)
 
 	backend.DisableIntegrityChecking = true

@@ -7,23 +7,23 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Provider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 
-	Message pulumi.StringOutput `pulumi:"message"`
+	Message khulnasoft.StringOutput `khulnasoft:"message"`
 }
 
-func NewProvider(ctx *pulumi.Context,
-	name string, args *ProviderArgs, opts ...pulumi.ResourceOption,
+func NewProvider(ctx *khulnasoft.Context,
+	name string, args *ProviderArgs, opts ...khulnasoft.ResourceOption,
 ) (*Provider, error) {
 	if args == nil {
 		args = &ProviderArgs{}
 	}
 	var resource Provider
-	err := ctx.RegisterResource("pulumi:providers:testcomponent", name, args, &resource, opts...)
+	err := ctx.RegisterResource("khulnasoft:providers:testcomponent", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -31,11 +31,11 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	Message string `pulumi:"message"`
+	Message string `khulnasoft:"message"`
 }
 
 type ProviderArgs struct {
-	Message pulumi.StringInput
+	Message khulnasoft.StringInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -44,13 +44,13 @@ func (ProviderArgs) ElementType() reflect.Type {
 
 // A remote component resource.
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Message pulumi.StringOutput `pulumi:"message"`
+	Message khulnasoft.StringOutput `khulnasoft:"message"`
 }
 
 // Creates a remote component resource.
-func NewComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, nil, &resource, opts...)
 	if err != nil {
@@ -61,20 +61,20 @@ func NewComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOptio
 
 // A local component resource.
 type LocalComponent struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Message pulumi.StringOutput
+	Message khulnasoft.StringOutput
 }
 
 // Creates a regular local component resource, which creates a child remote component resource.
-func NewLocalComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*LocalComponent, error) {
+func NewLocalComponent(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*LocalComponent, error) {
 	var resource LocalComponent
 	err := ctx.RegisterComponentResource("my:index:LocalComponent", name, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 
-	component, err := NewComponent(ctx, name+"-mycomponent", pulumi.Parent(&resource))
+	component, err := NewComponent(ctx, name+"-mycomponent", khulnasoft.Parent(&resource))
 	if err != nil {
 		return nil, err
 	}
@@ -84,20 +84,20 @@ func NewLocalComponent(ctx *pulumi.Context, name string, opts ...pulumi.Resource
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		provider, err := NewProvider(ctx, "myprovider", &ProviderArgs{
-			Message: pulumi.String("hello world"),
+			Message: khulnasoft.String("hello world"),
 		})
 		if err != nil {
 			return err
 		}
 
-		component, err := NewComponent(ctx, "mycomponent", pulumi.Provider(provider))
+		component, err := NewComponent(ctx, "mycomponent", khulnasoft.Provider(provider))
 		if err != nil {
 			return err
 		}
 
-		localComponent, err := NewLocalComponent(ctx, "mylocalcomponent", pulumi.Providers(provider))
+		localComponent, err := NewLocalComponent(ctx, "mylocalcomponent", khulnasoft.Providers(provider))
 		if err != nil {
 			return err
 		}

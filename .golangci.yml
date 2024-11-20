@@ -58,13 +58,13 @@ linters-settings:
             desc: Use google.golang.org/protobuf instead
   importas:
     alias:
-    - pkg: github.com/pulumi/pulumi/sdk/v3/proto/go
-      alias: pulumirpc
-    - pkg: github.com/pulumi/pulumi/sdk/v3/proto/go/testing
+    - pkg: github.com/khulnasoft/khulnasoft/sdk/v3/proto/go
+      alias: khulnasoftrpc
+    - pkg: github.com/khulnasoft/khulnasoft/sdk/v3/proto/go/testing
       alias: testingrpc
     - pkg: github.com/deckarep/golang-set/v2
       alias: mapset
-    - pkg: github.com/pulumi/pulumi/sdk/v3/go/common/testing
+    - pkg: github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing
       alias: ptesting
   goheader:
     values:
@@ -108,16 +108,16 @@ issues:
       text: 'redefines-builtin-id: redefinition of the built-in function new'
 
   exclude:
-    # https://github.com/pulumi/pulumi/issues/9469
+    # https://github.com/khulnasoft/khulnasoft/issues/9469
     - 'Name is deprecated: Name returns the variable or declaration name of the resource'
 
-    # https://github.com/pulumi/pulumi/issues/11869
+    # https://github.com/khulnasoft/khulnasoft/issues/11869
     - '"github.com/golang/protobuf/[\w/]+" is deprecated'
 
-    # https://github.com/pulumi/pulumi/issues/11870
+    # https://github.com/khulnasoft/khulnasoft/issues/11870
     - 'strings.Title has been deprecated'
 
-    # https://github.com/pulumi/pulumi/issues/12328
+    # https://github.com/khulnasoft/khulnasoft/issues/12328
     - 'deprecated: Please use types in:? cloud.google.com/go/logging/apiv2/loggingpb'
 
   exclude-dirs:

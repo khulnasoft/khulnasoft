@@ -26,23 +26,23 @@ install_file () {
     done
 }
 
-install_file sdk/nodejs/dist/pulumi-analyzer-policy                         linux   darwin
-install_file sdk/nodejs/dist/pulumi-analyzer-policy.cmd                     windows
+install_file sdk/nodejs/dist/khulnasoft-analyzer-policy                         linux   darwin
+install_file sdk/nodejs/dist/khulnasoft-analyzer-policy.cmd                     windows
 
-install_file sdk/nodejs/dist/pulumi-resource-pulumi-nodejs                  linux   darwin
-install_file sdk/nodejs/dist/pulumi-resource-pulumi-nodejs.cmd              windows
+install_file sdk/nodejs/dist/khulnasoft-resource-khulnasoft-nodejs                  linux   darwin
+install_file sdk/nodejs/dist/khulnasoft-resource-khulnasoft-nodejs.cmd              windows
 
-install_file sdk/python/dist/pulumi-analyzer-policy-python                  linux   darwin
-install_file sdk/python/dist/pulumi-analyzer-policy-python.cmd              windows
+install_file sdk/python/dist/khulnasoft-analyzer-policy-python                  linux   darwin
+install_file sdk/python/dist/khulnasoft-analyzer-policy-python.cmd              windows
 
-install_file sdk/python/dist/pulumi-resource-pulumi-python                  linux   darwin
-install_file sdk/python/dist/pulumi-resource-pulumi-python.cmd              windows
+install_file sdk/python/dist/khulnasoft-resource-khulnasoft-python                  linux   darwin
+install_file sdk/python/dist/khulnasoft-resource-khulnasoft-python.cmd              windows
 
-install_file sdk/python/dist/pulumi-python-shim.cmd                         windows
-install_file sdk/python/dist/pulumi-python3-shim.cmd                        windows
+install_file sdk/python/dist/khulnasoft-python-shim.cmd                         windows
+install_file sdk/python/dist/khulnasoft-python3-shim.cmd                        windows
 
-install_file sdk/python/cmd/pulumi-language-python-exec          linux darwin windows
+install_file sdk/python/cmd/khulnasoft-language-python-exec          linux darwin windows
 
-# Get pulumi-watch binaries
-./scripts/get-pulumi-watch.sh "${LOCAL}"
+# Get khulnasoft-watch binaries
+./scripts/get-khulnasoft-watch.sh "${LOCAL}"
 ./scripts/get-language-providers.sh "${LOCAL}"

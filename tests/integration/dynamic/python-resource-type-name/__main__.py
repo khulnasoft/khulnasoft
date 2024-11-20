@@ -1,7 +1,7 @@
 # Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-from pulumi import export
-from pulumi.dynamic import CreateResult, Resource, ResourceProvider
+from khulnasoft import export
+from khulnasoft.dynamic import CreateResult, Resource, ResourceProvider
 
 
 class CustomResource(

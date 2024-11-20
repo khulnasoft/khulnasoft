@@ -64,7 +64,7 @@ jobs:
           # Update go module dependencies
           (
             cd pkg
-            go get -u "github.com/pulumi/pulumi/sdk/v3@v${PULUMI_VERSION}"
+            go get -u "github.com/khulnasoft/khulnasoft/sdk/v3@v${PULUMI_VERSION}"
           )
           make tidy
           git add -A

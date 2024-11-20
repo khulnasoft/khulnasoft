@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ecs"
-	awsxecs "github.com/pulumi/pulumi-awsx/sdk/go/awsx/ecs"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/ecs"
+	awsxecs "github.com/khulnasoft/khulnasoft-awsx/sdk/go/awsx/ecs"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		cluster, err := ecs.NewCluster(ctx, "cluster", nil)
 		if err != nil {
 			return err

@@ -35,12 +35,12 @@ import (
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 type typeDetails struct {
@@ -418,8 +418,8 @@ func (mod *modContext) typeString(t schema.Type, qualifier string, input, state,
 		}
 		return typ + mod.typeName(t, state, input, t.IsInputShape())
 	case *schema.ResourceType:
-		if strings.HasPrefix(t.Token, "pulumi:providers:") {
-			pkgName := strings.TrimPrefix(t.Token, "pulumi:providers:")
+		if strings.HasPrefix(t.Token, "khulnasoft:providers:") {
+			pkgName := strings.TrimPrefix(t.Token, "khulnasoft:providers:")
 			return fmt.Sprintf("%s.%s.Provider", mod.RootNamespace(), namespaceName(mod.namespaces, pkgName))
 		}
 
@@ -1335,7 +1335,7 @@ func (mod *modContext) genResource(w io.Writer, r *schema.Resource) error {
 
 func (mod *modContext) genFunctionFileCode(f *schema.Function) (string, error) {
 	buffer := &bytes.Buffer{}
-	importStrings := mod.pulumiImports()
+	importStrings := mod.khulnasoftImports()
 
 	// True if the function has a non-standard namespace.
 	nonStandardNamespace := mod.namespaceName != mod.tokenToNamespace(f.Token, "")
@@ -1800,7 +1800,7 @@ func (mod *modContext) genEnum(w io.Writer, enum *schema.EnumType) error {
 			fmt.Fprintf(w, "%s%s = %v,\n", indent, e.Name, e.Value)
 		}
 	default:
-		// Issue to implement boolean-based enums: https://github.com/pulumi/pulumi/issues/5652
+		// Issue to implement boolean-based enums: https://github.com/khulnasoft/khulnasoft/issues/5652
 		return fmt.Errorf("enums of type %s are not yet implemented for this language", enum.ElementType.String())
 	}
 
@@ -1843,9 +1843,9 @@ func (mod *modContext) genType(w io.Writer, obj *schema.ObjectType, propertyType
 	return nil
 }
 
-// pulumiImports is a slice of common imports that are used with the genHeader method.
-func (mod *modContext) pulumiImports() []string {
-	pulumiImports := []string{
+// khulnasoftImports is a slice of common imports that are used with the genHeader method.
+func (mod *modContext) khulnasoftImports() []string {
+	khulnasoftImports := []string{
 		"System",
 		"System.Collections.Generic",
 		"System.Collections.Immutable",
@@ -1853,9 +1853,9 @@ func (mod *modContext) pulumiImports() []string {
 		"Pulumi.Serialization",
 	}
 	if mod.RootNamespace() != "Pulumi" {
-		pulumiImports = append(pulumiImports, "Pulumi")
+		khulnasoftImports = append(khulnasoftImports, "Pulumi")
 	}
-	return pulumiImports
+	return khulnasoftImports
 }
 
 func (mod *modContext) genHeader(w io.Writer, using []string) {
@@ -2123,7 +2123,7 @@ func (mod *modContext) gen(fs codegen.Fs) error {
 		}
 
 		buffer := &bytes.Buffer{}
-		importStrings := mod.pulumiImports()
+		importStrings := mod.khulnasoftImports()
 		mod.genHeader(buffer, importStrings)
 
 		if err := mod.genResource(buffer, r); err != nil {
@@ -2156,7 +2156,7 @@ func (mod *modContext) gen(fs codegen.Fs) error {
 
 		if mod.details(t).inputType {
 			buffer := &bytes.Buffer{}
-			mod.genHeader(buffer, mod.pulumiImports())
+			mod.genHeader(buffer, mod.khulnasoftImports())
 
 			fmt.Fprintf(buffer, "namespace %s\n", mod.tokenToNamespace(t.Token, "Inputs"))
 			fmt.Fprintf(buffer, "{\n")
@@ -2175,7 +2175,7 @@ func (mod *modContext) gen(fs codegen.Fs) error {
 		}
 		if mod.details(t).stateType {
 			buffer := &bytes.Buffer{}
-			mod.genHeader(buffer, mod.pulumiImports())
+			mod.genHeader(buffer, mod.khulnasoftImports())
 
 			fmt.Fprintf(buffer, "namespace %s\n", mod.tokenToNamespace(t.Token, "Inputs"))
 			fmt.Fprintf(buffer, "{\n")
@@ -2187,7 +2187,7 @@ func (mod *modContext) gen(fs codegen.Fs) error {
 		}
 		if mod.details(t).outputType {
 			buffer := &bytes.Buffer{}
-			mod.genHeader(buffer, mod.pulumiImports())
+			mod.genHeader(buffer, mod.khulnasoftImports())
 
 			fmt.Fprintf(buffer, "namespace %s\n", mod.tokenToNamespace(t.Token, "Outputs"))
 			fmt.Fprintf(buffer, "{\n")
@@ -2248,21 +2248,21 @@ func genPackageMetadata(pkg *schema.Package,
 		return err
 	}
 
-	pulumiPlugin := &plugin.PulumiPluginJSON{
+	khulnasoftPlugin := &plugin.PulumiPluginJSON{
 		Resource: true,
 		Name:     pkg.Name,
 		Server:   pkg.PluginDownloadURL,
 		Version:  version,
 	}
 
-	plugin, err := (pulumiPlugin).JSON()
+	plugin, err := (khulnasoftPlugin).JSON()
 	if err != nil {
 		return err
 	}
 
 	files.Add(assemblyName+".csproj", projectFile)
 	files.Add("logo.png", logo)
-	files.Add("pulumi-plugin.json", plugin)
+	files.Add("khulnasoft-plugin.json", plugin)
 	return nil
 }
 
@@ -2343,7 +2343,7 @@ func getLogo(pkg *schema.Package) ([]byte, error) {
 	url := pkg.LogoURL
 	if url == "" {
 		// Default to a generic Pulumi logo from the parent repository.
-		url = "https://raw.githubusercontent.com/pulumi/pulumi/dbc96206bec722b7791a22ff50e895ab7c0abdc0/sdk/dotnet/pulumi_logo_64x64.png"
+		url = "https://raw.githubusercontent.com/khulnasoft/khulnasoft/dbc96206bec722b7791a22ff50e895ab7c0abdc0/sdk/dotnet/khulnasoft_logo_64x64.png"
 	}
 
 	// Get the data.

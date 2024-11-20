@@ -2,10 +2,10 @@
 
 from typing import Optional
 
-import pulumi
+import khulnasoft
 
-class FailsOnCreate(pulumi.CustomResource):
+class FailsOnCreate(khulnasoft.CustomResource):
     def __init__(self,
                  resource_name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None):
+                 opts: Optional[khulnasoft.ResourceOptions] = None):
         super().__init__("testprovider:index:FailsOnCreate", resource_name, {}, opts)

@@ -17,22 +17,22 @@ def readme():
         return "typedDictDisabledExample Pulumi Package - Development Version"
 
 
-setup(name='pulumi_typedDictDisabledExample',
+setup(name='khulnasoft_typedDictDisabledExample',
       python_requires='>=3.8',
       version=VERSION,
       long_description=readme(),
       long_description_content_type='text/markdown',
       packages=find_packages(),
       package_data={
-          'pulumi_typedDictDisabledExample': [
+          'khulnasoft_typedDictDisabledExample': [
               'py.typed',
-              'pulumi-plugin.json',
+              'khulnasoft-plugin.json',
           ]
       },
       install_requires=[
           'parver>=0.2.1',
-          'pulumi>=3.0.0,<4.0.0',
-          'pulumi-kubernetes>=3.0.0,<4.0.0',
+          'khulnasoft>=3.0.0,<4.0.0',
+          'khulnasoft-kubernetes>=3.0.0,<4.0.0',
           'semver>=2.8.1'
       ],
       zip_safe=False)

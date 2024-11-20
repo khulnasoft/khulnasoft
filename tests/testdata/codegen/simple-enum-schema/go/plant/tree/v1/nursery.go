@@ -8,18 +8,18 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"simple-enum-schema/plant/internal"
 )
 
 type Nursery struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
 // NewNursery registers a new resource with the given unique name, arguments, and options.
-func NewNursery(ctx *pulumi.Context,
-	name string, args *NurseryArgs, opts ...pulumi.ResourceOption) (*Nursery, error) {
+func NewNursery(ctx *khulnasoft.Context,
+	name string, args *NurseryArgs, opts ...khulnasoft.ResourceOption) (*Nursery, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -38,8 +38,8 @@ func NewNursery(ctx *pulumi.Context,
 
 // GetNursery gets an existing Nursery resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetNursery(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *NurseryState, opts ...pulumi.ResourceOption) (*Nursery, error) {
+func GetNursery(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *NurseryState, opts ...khulnasoft.ResourceOption) (*Nursery, error) {
 	var resource Nursery
 	err := ctx.ReadResource("plant:tree/v1:Nursery", name, id, state, &resource, opts...)
 	if err != nil {
@@ -61,9 +61,9 @@ func (NurseryState) ElementType() reflect.Type {
 
 type nurseryArgs struct {
 	// The sizes of trees available
-	Sizes map[string]TreeSize `pulumi:"sizes"`
+	Sizes map[string]TreeSize `khulnasoft:"sizes"`
 	// The varieties available
-	Varieties []RubberTreeVariety `pulumi:"varieties"`
+	Varieties []RubberTreeVariety `khulnasoft:"varieties"`
 }
 
 // The set of arguments for constructing a Nursery resource.
@@ -79,7 +79,7 @@ func (NurseryArgs) ElementType() reflect.Type {
 }
 
 type NurseryInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToNurseryOutput() NurseryOutput
 	ToNurseryOutputWithContext(ctx context.Context) NurseryOutput
@@ -94,16 +94,16 @@ func (i *Nursery) ToNurseryOutput() NurseryOutput {
 }
 
 func (i *Nursery) ToNurseryOutputWithContext(ctx context.Context) NurseryOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NurseryOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(NurseryOutput)
 }
 
-func (i *Nursery) ToOutput(ctx context.Context) pulumix.Output[*Nursery] {
-	return pulumix.Output[*Nursery]{
+func (i *Nursery) ToOutput(ctx context.Context) khulnasoftx.Output[*Nursery] {
+	return khulnasoftx.Output[*Nursery]{
 		OutputState: i.ToNurseryOutputWithContext(ctx).OutputState,
 	}
 }
 
-type NurseryOutput struct{ *pulumi.OutputState }
+type NurseryOutput struct{ *khulnasoft.OutputState }
 
 func (NurseryOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Nursery)(nil)).Elem()
@@ -117,13 +117,13 @@ func (o NurseryOutput) ToNurseryOutputWithContext(ctx context.Context) NurseryOu
 	return o
 }
 
-func (o NurseryOutput) ToOutput(ctx context.Context) pulumix.Output[*Nursery] {
-	return pulumix.Output[*Nursery]{
+func (o NurseryOutput) ToOutput(ctx context.Context) khulnasoftx.Output[*Nursery] {
+	return khulnasoftx.Output[*Nursery]{
 		OutputState: o.OutputState,
 	}
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*NurseryInput)(nil)).Elem(), &Nursery{})
-	pulumi.RegisterOutputType(NurseryOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*NurseryInput)(nil)).Elem(), &Nursery{})
+	khulnasoft.RegisterOutputType(NurseryOutput{})
 }

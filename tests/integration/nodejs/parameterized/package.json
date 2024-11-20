@@ -4,9 +4,9 @@
         "typescript": "^3.0.0"
     },
     "dependencies": {
-        "@pulumi/pkg": "file:./sdk/nodejs"
+        "@khulnasoft/pkg": "file:./sdk/nodejs"
     },
     "peerDependencies": {
-        "@pulumi/pulumi": "latest"
+        "@khulnasoft/khulnasoft": "latest"
     }
 }

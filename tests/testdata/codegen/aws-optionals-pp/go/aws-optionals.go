@@ -1,16 +1,16 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/iam"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		policyDocument, err := iam.GetPolicyDocument(ctx, &iam.GetPolicyDocumentArgs{
 			Statements: []iam.GetPolicyDocumentStatement{
 				{
-					Sid: pulumi.StringRef("1"),
+					Sid: khulnasoft.StringRef("1"),
 					Actions: []string{
 						"s3:ListAllMyBuckets",
 						"s3:GetBucketLocation",
@@ -25,9 +25,9 @@ func main() {
 			return err
 		}
 		_, err = iam.NewPolicy(ctx, "example", &iam.PolicyArgs{
-			Name:   pulumi.String("example_policy"),
-			Path:   pulumi.String("/"),
-			Policy: pulumi.String(policyDocument.Json),
+			Name:   khulnasoft.String("example_policy"),
+			Path:   khulnasoft.String("/"),
+			Policy: khulnasoft.String(policyDocument.Json),
 		})
 		if err != nil {
 			return err

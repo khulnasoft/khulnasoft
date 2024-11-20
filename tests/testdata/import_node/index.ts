@@ -1,8 +1,8 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as random from "@pulumi/random";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as random from "@khulnasoft/random";
 
-class MyComponent extends pulumi.ComponentResource {
-    constructor(name: string, opts: pulumi.ComponentResourceOptions) {
+class MyComponent extends khulnasoft.ComponentResource {
+    constructor(name: string, opts: khulnasoft.ComponentResourceOptions) {
         super("pkg:index:MyComponent", name, {}, opts);
 
         new random.RandomPet("username", {}, { parent: this });

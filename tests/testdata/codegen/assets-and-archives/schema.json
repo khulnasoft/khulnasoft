@@ -5,18 +5,18 @@
       "example:index:TypeWithAssets": {
         "properties": {
           "plainAsset": {
-            "$ref": "pulumi.json#/Asset",
+            "$ref": "khulnasoft.json#/Asset",
             "plain": true
           },
           "plainArchive": {
-            "$ref": "pulumi.json#/Archive",
+            "$ref": "khulnasoft.json#/Archive",
             "plain": true
           },
           "asset": {
-            "$ref": "pulumi.json#/Asset"
+            "$ref": "khulnasoft.json#/Asset"
           },
           "archive": {
-            "$ref": "pulumi.json#/Archive"
+            "$ref": "khulnasoft.json#/Archive"
           }
         },
         "required": ["asset", "plainArchive"],
@@ -27,10 +27,10 @@
       "example:index:ResourceWithAssets": {
         "properties": {
             "asset": {
-              "$ref": "pulumi.json#/Asset"
+              "$ref": "khulnasoft.json#/Asset"
             },
             "archive": {
-              "$ref": "pulumi.json#/Archive"
+              "$ref": "khulnasoft.json#/Archive"
             },
             "nested": {
                 "$ref": "#/types/example:index:TypeWithAssets"
@@ -39,10 +39,10 @@
         "required": ["asset", "archive"],
         "inputProperties": {
             "source": {
-                "$ref": "pulumi.json#/Asset"
+                "$ref": "khulnasoft.json#/Asset"
             },
             "archive": {
-                "$ref": "pulumi.json#/Archive"
+                "$ref": "khulnasoft.json#/Archive"
             },
             "nested": {
                 "$ref": "#/types/example:index:TypeWithAssets"
@@ -58,10 +58,10 @@
         "inputs": {
           "properties": {
             "source": {
-                "$ref": "pulumi.json#/Asset"
+                "$ref": "khulnasoft.json#/Asset"
             },
             "archive": {
-                "$ref": "pulumi.json#/Archive"
+                "$ref": "khulnasoft.json#/Archive"
             }
           },
           "required": ["source", "archive"],
@@ -72,10 +72,10 @@
             "required": ["source", "archive"],
             "properties": {
                 "source": {
-                    "$ref": "pulumi.json#/Asset"
+                    "$ref": "khulnasoft.json#/Asset"
                 },
                 "archive": {
-                    "$ref": "pulumi.json#/Archive"
+                    "$ref": "khulnasoft.json#/Archive"
                 }
             }
         }

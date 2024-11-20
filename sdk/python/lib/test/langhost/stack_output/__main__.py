@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from typing import Any, Dict
-import pulumi
+import khulnasoft
 
 
 class TestClass:
@@ -27,19 +27,19 @@ recursive: Dict[str, Any] = {"a": 1}
 recursive["b"] = 2
 recursive["c"] = recursive
 
-pulumi.export("string", "pulumi")
-pulumi.export("number", 1)
-pulumi.export("boolean", True)
-pulumi.export("list", [])
-pulumi.export("list_with_none", [None])
-pulumi.export("list_of_lists", [[], []])
-pulumi.export(
-    "list_of_outputs", [[pulumi.Output.from_input(1)], pulumi.Output.from_input([2])]
+khulnasoft.export("string", "khulnasoft")
+khulnasoft.export("number", 1)
+khulnasoft.export("boolean", True)
+khulnasoft.export("list", [])
+khulnasoft.export("list_with_none", [None])
+khulnasoft.export("list_of_lists", [[], []])
+khulnasoft.export(
+    "list_of_outputs", [[khulnasoft.Output.from_input(1)], khulnasoft.Output.from_input([2])]
 )
-pulumi.export("set", set(["val"]))
-pulumi.export("dict", {"a": 1})
-pulumi.export("output", pulumi.Output.from_input(1))
-pulumi.export("class", TestClass())
-pulumi.export("recursive", recursive)
-pulumi.export("duplicate_output_0", my_test_class_instance)
-pulumi.export("duplicate_output_1", my_test_class_instance)
+khulnasoft.export("set", set(["val"]))
+khulnasoft.export("dict", {"a": 1})
+khulnasoft.export("output", khulnasoft.Output.from_input(1))
+khulnasoft.export("class", TestClass())
+khulnasoft.export("recursive", recursive)
+khulnasoft.export("duplicate_output_0", my_test_class_instance)
+khulnasoft.export("duplicate_output_1", my_test_class_instance)

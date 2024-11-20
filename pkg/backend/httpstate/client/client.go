@@ -34,13 +34,13 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/validation"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // Client provides a slim wrapper around the Pulumi HTTP/REST API.
@@ -206,7 +206,7 @@ func getUpdatePath(update UpdateIdentifier, components ...string) string {
 	return getStackPath(update.StackIdentifier, components...)
 }
 
-// Copied from https://github.com/pulumi/pulumi-service/blob/master/pkg/apitype/users.go#L7-L16
+// Copied from https://github.com/khulnasoft/khulnasoft-service/blob/master/pkg/apitype/users.go#L7-L16
 type serviceUserInfo struct {
 	Name        string `json:"name"`
 	GitHubLogin string `json:"githubLogin"`
@@ -214,7 +214,7 @@ type serviceUserInfo struct {
 	Email       string `json:"email,omitempty"`
 }
 
-// Copied from https://github.com/pulumi/pulumi-service/blob/master/pkg/apitype/users.go#L20-L37
+// Copied from https://github.com/khulnasoft/khulnasoft-service/blob/master/pkg/apitype/users.go#L20-L37
 type serviceUser struct {
 	ID            string            `json:"id"`
 	GitHubLogin   string            `json:"githubLogin"`
@@ -227,7 +227,7 @@ type serviceUser struct {
 	TokenInfo     *serviceTokenInfo `json:"tokenInfo,omitempty"`
 }
 
-// Copied from https://github.com/pulumi/pulumi-service/blob/master/pkg/apitype/users.go#L39-L43
+// Copied from https://github.com/khulnasoft/khulnasoft-service/blob/master/pkg/apitype/users.go#L39-L43
 type serviceTokenInfo struct {
 	Name         string `json:"name"`
 	Organization string `json:"organization,omitempty"`
@@ -299,7 +299,7 @@ func (pc *Client) GetCLIVersionInfo(ctx context.Context) (semver.Version, semver
 
 	// If there is no dev version, return the latest and oldest
 	// versions.  This can happen if the server does not include
-	// https://github.com/pulumi/pulumi-service/pull/17429 yet
+	// https://github.com/khulnasoft/khulnasoft-service/pull/17429 yet
 	if versionInfo.LatestDevVersion == "" {
 		return latestSem, oldestSem, semver.Version{}, nil
 	}
@@ -772,7 +772,7 @@ func (pc *Client) PublishPolicyPack(ctx context.Context, orgName string,
 		Policies:    policies,
 	}
 
-	// Print a publishing message. We have to handle the case where an older version of pulumi/policy
+	// Print a publishing message. We have to handle the case where an older version of khulnasoft/policy
 	// is in use, which does not provide  a version tag.
 	var versionMsg string
 	if analyzerInfo.Version != "" {
@@ -809,8 +809,8 @@ func (pc *Client) PublishPolicyPack(ctx context.Context, orgName string,
 	// Step 3: Signal to the service that the PolicyPack publish operation is complete.
 	//
 
-	// If the version tag is empty, an older version of pulumi/policy is being used and
-	// we therefore need to use the version provided by the pulumi service.
+	// If the version tag is empty, an older version of khulnasoft/policy is being used and
+	// we therefore need to use the version provided by the khulnasoft service.
 	version := analyzerInfo.Version
 	if version == "" {
 		version = strconv.Itoa(resp.Version)
@@ -847,7 +847,7 @@ func convertPolicyConfigSchema(schema *plugin.AnalyzerPolicyConfigSchema) (*apit
 }
 
 // validatePolicyPackVersion validates the version of a Policy Pack. The version may be empty,
-// as it is likely an older version of pulumi/policy that does not gather the version.
+// as it is likely an older version of khulnasoft/policy that does not gather the version.
 func validatePolicyPackVersion(s string) error {
 	if s == "" {
 		return nil

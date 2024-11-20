@@ -3,14 +3,14 @@
   "displayName": "Kubernetes",
   "description": "A Pulumi package for creating and managing Kubernetes resources.",
   "keywords": [
-    "pulumi",
+    "khulnasoft",
     "kubernetes",
     "category/cloud",
     "kind/native"
   ],
-  "homepage": "https://pulumi.com",
+  "homepage": "https://khulnasoft.com",
   "license": "Apache-2.0",
-  "repository": "https://github.com/pulumi/pulumi-kubernetes",
+  "repository": "https://github.com/khulnasoft/khulnasoft-kubernetes",
   "publisher": "Pulumi",
   "language": {
     "csharp": {
@@ -32,7 +32,7 @@
     "go": {
       "generateExtraInputTypes": true,
       "generateResourceContainerTypes": true,
-      "importBasePath": "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes",
+      "importBasePath": "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes",
       "internalModuleName": "utilities",
       "moduleToPackage": {
         "core/v1": "core/v1",
@@ -41,10 +41,10 @@
         "meta/v1": "meta/v1"
       },
       "packageImportAliases": {
-        "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/core/v1": "corev1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/helm/v3": "helmv3",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/meta/v1": "metav1",
-        "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/yaml/v2": "yamlv2"
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/core/v1": "corev1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/helm/v3": "helmv3",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/meta/v1": "metav1",
+        "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/yaml/v2": "yamlv2"
       }
     },
     "java": {
@@ -57,7 +57,7 @@
     "nodejs": {
       "compatibility": "kubernetes20",
       "dependencies": {
-        "@pulumi/pulumi": "^3.25.0",
+        "@khulnasoft/khulnasoft": "^3.25.0",
         "@types/glob": "^5.0.35",
         "@types/node-fetch": "^2.1.4",
         "@types/tmp": "^0.0.33",
@@ -72,7 +72,7 @@
         "helm.sh/v3": "helm/v3",
         "meta/v1": "meta/v1"
       },
-      "readme": "The Kubernetes provider package offers support for all Kubernetes resources and their properties.\nResources are exposed as types from modules based on Kubernetes API groups such as 'apps', 'core',\n'rbac', and 'storage', among many others. Additionally, support for deploying Helm charts ('helm')\nand YAML files ('yaml') is available in this package. Using this package allows you to\nprogrammatically declare instances of any Kubernetes resources and any supported resource version\nusing infrastructure as code, which Pulumi then uses to drive the Kubernetes API.\n\nIf this is your first time using this package, these two resources may be helpful:\n\n* [Kubernetes Getting Started Guide](https://www.pulumi.com/docs/quickstart/kubernetes/): Get up and running quickly.\n* [Kubernetes Pulumi Setup Documentation](https://www.pulumi.com/docs/quickstart/kubernetes/configure/): How to configure Pulumi\n    for use with your Kubernetes cluster.\n\nUse the navigation below to see detailed documentation for each of the supported Kubernetes resources.\n"
+      "readme": "The Kubernetes provider package offers support for all Kubernetes resources and their properties.\nResources are exposed as types from modules based on Kubernetes API groups such as 'apps', 'core',\n'rbac', and 'storage', among many others. Additionally, support for deploying Helm charts ('helm')\nand YAML files ('yaml') is available in this package. Using this package allows you to\nprogrammatically declare instances of any Kubernetes resources and any supported resource version\nusing infrastructure as code, which Pulumi then uses to drive the Kubernetes API.\n\nIf this is your first time using this package, these two resources may be helpful:\n\n* [Kubernetes Getting Started Guide](https://www.khulnasoft.com/docs/quickstart/kubernetes/): Get up and running quickly.\n* [Kubernetes Pulumi Setup Documentation](https://www.khulnasoft.com/docs/quickstart/kubernetes/configure/): How to configure Pulumi\n    for use with your Kubernetes cluster.\n\nUse the navigation below to see detailed documentation for each of the supported Kubernetes resources.\n"
     },
     "python": {
       "compatibility": "kubernetes20",
@@ -85,9 +85,9 @@
       "pyproject": {
         "enabled": true
       },
-      "readme": "The Kubernetes provider package offers support for all Kubernetes resources and their properties.\nResources are exposed as types from modules based on Kubernetes API groups such as 'apps', 'core',\n'rbac', and 'storage', among many others. Additionally, support for deploying Helm charts ('helm')\nand YAML files ('yaml') is available in this package. Using this package allows you to\nprogrammatically declare instances of any Kubernetes resources and any supported resource version\nusing infrastructure as code, which Pulumi then uses to drive the Kubernetes API.\n\nIf this is your first time using this package, these two resources may be helpful:\n\n* [Kubernetes Getting Started Guide](https://www.pulumi.com/docs/quickstart/kubernetes/): Get up and running quickly.\n* [Kubernetes Pulumi Setup Documentation](https://www.pulumi.com/docs/quickstart/kubernetes/configure/): How to configure Pulumi\n    for use with your Kubernetes cluster.\n",
+      "readme": "The Kubernetes provider package offers support for all Kubernetes resources and their properties.\nResources are exposed as types from modules based on Kubernetes API groups such as 'apps', 'core',\n'rbac', and 'storage', among many others. Additionally, support for deploying Helm charts ('helm')\nand YAML files ('yaml') is available in this package. Using this package allows you to\nprogrammatically declare instances of any Kubernetes resources and any supported resource version\nusing infrastructure as code, which Pulumi then uses to drive the Kubernetes API.\n\nIf this is your first time using this package, these two resources may be helpful:\n\n* [Kubernetes Getting Started Guide](https://www.khulnasoft.com/docs/quickstart/kubernetes/): Get up and running quickly.\n* [Kubernetes Pulumi Setup Documentation](https://www.khulnasoft.com/docs/quickstart/kubernetes/configure/): How to configure Pulumi\n    for use with your Kubernetes cluster.\n",
       "requires": {
-        "pulumi": ">=3.25.0,<4.0.0",
+        "khulnasoft": ">=3.25.0,<4.0.0",
         "requests": ">=2.21,<3.0"
       },
       "usesIOClasses": true
@@ -221,7 +221,7 @@
         },
         "fieldsV1": {
           "type": "object",
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "description": "FieldsV1 holds the first JSON version format as described in the \"FieldsV1\" type."
         },
         "manager": {
@@ -671,14 +671,14 @@
         "valueYamlFiles": {
           "type": "array",
           "items": {
-            "$ref": "pulumi.json#/Asset"
+            "$ref": "khulnasoft.json#/Asset"
           },
           "description": "List of assets (raw yaml files). Content is read and merged with values (with values taking precedence)."
         },
         "values": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "pulumi.json#/Any"
+            "$ref": "khulnasoft.json#/Any"
           },
           "description": "Custom values set for the release."
         }
@@ -703,14 +703,14 @@
         "valueYamlFiles": {
           "type": "array",
           "items": {
-            "$ref": "pulumi.json#/Asset"
+            "$ref": "khulnasoft.json#/Asset"
           },
           "description": "List of assets (raw yaml files). Content is read and merged with values."
         },
         "values": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "pulumi.json#/Any"
+            "$ref": "khulnasoft.json#/Any"
           },
           "description": "Custom values set for the release."
         }
@@ -725,7 +725,7 @@
         "resources": {
           "type": "array",
           "items": {
-            "$ref": "pulumi.json#/Any"
+            "$ref": "khulnasoft.json#/Any"
           },
           "description": "Resources created by the ConfigGroup."
         }
@@ -749,12 +749,12 @@
         "objs": {
           "oneOf": [
             {
-              "$ref": "pulumi.json#/Any"
+              "$ref": "khulnasoft.json#/Any"
             },
             {
               "type": "array",
               "items": {
-                "$ref": "pulumi.json#/Any"
+                "$ref": "khulnasoft.json#/Any"
               }
             }
           ],
@@ -809,12 +809,12 @@
         "objs": {
           "oneOf": [
             {
-              "$ref": "pulumi.json#/Any"
+              "$ref": "khulnasoft.json#/Any"
             },
             {
               "type": "array",
               "items": {
-                "$ref": "pulumi.json#/Any"
+                "$ref": "khulnasoft.json#/Any"
               }
             }
           ],
@@ -827,7 +827,7 @@
         "transformations": {
           "type": "array",
           "items": {
-            "$ref": "pulumi.json#/Any"
+            "$ref": "khulnasoft.json#/Any"
           },
           "description": "A set of transformations to apply to Kubernetes resource definitions before registering with engine."
         },

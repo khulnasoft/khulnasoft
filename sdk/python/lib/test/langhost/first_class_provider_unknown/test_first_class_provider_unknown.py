@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from os import path
-from pulumi.runtime import rpc
+from khulnasoft.runtime import rpc
 from ..util import LanghostTest
 
 
@@ -54,7 +54,7 @@ class FirstClassProviderUnknown(LanghostTest):
         source_position,
     ):
         if name == "testprov":
-            self.assertEqual("pulumi:providers:test", ty)
+            self.assertEqual("khulnasoft:providers:test", ty)
             # Only provide an ID when doing an update. When doing a preview the ID will be unknown
             # and resources referencing this resource will need to use the unknown sentinel to do so.
             self.prov_urn = self.make_urn(ty, name)
@@ -67,7 +67,7 @@ class FirstClassProviderUnknown(LanghostTest):
         if name == "res":
             self.assertEqual("test:index:MyResource", ty)
             if _dry_run:
-                # During a preview, the ID of the pulumi:providers:test resource is unknown.
+                # During a preview, the ID of the khulnasoft:providers:test resource is unknown.
                 self.assertEqual(f"{self.prov_urn}::{rpc.UNKNOWN}", _provider)
             else:
                 # Otherwise, it's known to be exactly the above provider's ID.

@@ -2,11 +2,11 @@
   "emittedFiles": [
     "nestedTypes/doc.go",
     "nestedTypes/init.go",
-    "nestedTypes/internal/pulumiUtilities.go",
-    "nestedTypes/internal/pulumiVersion.go",
+    "nestedTypes/internal/khulnasoftUtilities.go",
+    "nestedTypes/internal/khulnasoftVersion.go",
     "nestedTypes/provider.go",
-    "nestedTypes/pulumi-plugin.json",
-    "nestedTypes/pulumiTypes.go",
+    "nestedTypes/khulnasoft-plugin.json",
+    "nestedTypes/khulnasoftTypes.go",
     "nestedTypes/resource.go"
   ]
 }

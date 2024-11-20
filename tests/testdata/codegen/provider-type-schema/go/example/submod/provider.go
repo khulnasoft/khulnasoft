@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"provider-type-schema/example/internal"
 )
 
 type Provider struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	A pulumi.BoolPtrOutput `pulumi:"a"`
+	A khulnasoft.BoolPtrOutput `khulnasoft:"a"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
-func NewProvider(ctx *pulumi.Context,
-	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
+func NewProvider(ctx *khulnasoft.Context,
+	name string, args *ProviderArgs, opts ...khulnasoft.ResourceOption) (*Provider, error) {
 	if args == nil {
 		args = &ProviderArgs{}
 	}
@@ -35,8 +35,8 @@ func NewProvider(ctx *pulumi.Context,
 
 // GetProvider gets an existing Provider resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetProvider(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ProviderState, opts ...pulumi.ResourceOption) (*Provider, error) {
+func GetProvider(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ProviderState, opts ...khulnasoft.ResourceOption) (*Provider, error) {
 	var resource Provider
 	err := ctx.ReadResource("providerType:submod:provider", name, id, state, &resource, opts...)
 	if err != nil {
@@ -57,7 +57,7 @@ func (ProviderState) ElementType() reflect.Type {
 }
 
 type providerArgs struct {
-	A *bool `pulumi:"a"`
+	A *bool `khulnasoft:"a"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -70,7 +70,7 @@ func (ProviderArgs) ElementType() reflect.Type {
 }
 
 type ProviderInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToProviderOutput() ProviderOutput
 	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
@@ -85,10 +85,10 @@ func (i *Provider) ToProviderOutput() ProviderOutput {
 }
 
 func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
-type ProviderOutput struct{ *pulumi.OutputState }
+type ProviderOutput struct{ *khulnasoft.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Provider)(nil)).Elem()
@@ -102,11 +102,11 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
-func (o ProviderOutput) A() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Provider) pulumi.BoolPtrOutput { return v.A }).(pulumi.BoolPtrOutput)
+func (o ProviderOutput) A() khulnasoft.BoolPtrOutput {
+	return o.ApplyT(func(v *Provider) khulnasoft.BoolPtrOutput { return v.A }).(khulnasoft.BoolPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
-	pulumi.RegisterOutputType(ProviderOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
+	khulnasoft.RegisterOutputType(ProviderOutput{})
 }

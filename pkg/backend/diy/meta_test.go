@@ -19,8 +19,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/diagtest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/diagtest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"gocloud.dev/blob/fileblob"
@@ -40,27 +40,27 @@ func TestEnsurePulumiMeta(t *testing.T) {
 		desc string
 		give map[string]string // files in the bucket
 		env  env.MapStore      // environment variables
-		want pulumiMeta
+		want khulnasoftMeta
 	}{
 		{
 			// Empty bucket should be initialized to
 			// the current version by default.
 			desc: "empty",
-			want: pulumiMeta{Version: 1},
+			want: khulnasoftMeta{Version: 1},
 		},
 		{
 			// Use legacy mode even for the new bucket
 			// because the environment variable is "1".
 			desc: "empty/legacy",
 			env:  mkmap("1"),
-			want: pulumiMeta{Version: 0},
+			want: khulnasoftMeta{Version: 0},
 		},
 		{
 			// Use legacy mode even for the new bucket
 			// because the environment variable is "true".
 			desc: "empty/legacy/true",
 			env:  mkmap("true"),
-			want: pulumiMeta{Version: 0},
+			want: khulnasoftMeta{Version: 0},
 		},
 		{
 			// Legacy mode is disabled by setting the env var
@@ -68,39 +68,39 @@ func TestEnsurePulumiMeta(t *testing.T) {
 			// This is also the default behavior.
 			desc: "empty/legacy/false",
 			env:  mkmap("false"),
-			want: pulumiMeta{Version: 1},
+			want: khulnasoftMeta{Version: 1},
 		},
 		{
 			// Non-empty bucket without a version file
 			// should get version 0 for legacy mode.
 			desc: "legacy",
 			give: map[string]string{
-				".pulumi/stacks/a.json": `{}`,
+				".khulnasoft/stacks/a.json": `{}`,
 			},
-			want: pulumiMeta{Version: 0},
+			want: khulnasoftMeta{Version: 0},
 		},
 		{
 			desc: "version 0",
 			give: map[string]string{
-				".pulumi/meta.yaml": `version: 0`,
+				".khulnasoft/meta.yaml": `version: 0`,
 			},
-			want: pulumiMeta{Version: 0},
+			want: khulnasoftMeta{Version: 0},
 		},
 		{
 			// Non-empty bucket with a version file
 			// should get whatever is in the file.
 			desc: "version 1",
 			give: map[string]string{
-				".pulumi/meta.yaml": `version: 1`,
+				".khulnasoft/meta.yaml": `version: 1`,
 			},
-			want: pulumiMeta{Version: 1},
+			want: khulnasoftMeta{Version: 1},
 		},
 		{
 			desc: "future version",
 			give: map[string]string{
-				".pulumi/meta.yaml": `version: 42`,
+				".khulnasoft/meta.yaml": `version: 42`,
 			},
-			want: pulumiMeta{Version: 42},
+			want: khulnasoftMeta{Version: 42},
 		},
 	}
 
@@ -133,17 +133,17 @@ func TestEnsurePulumiMeta_corruption(t *testing.T) {
 		{
 			desc:    "empty",
 			give:    ``,
-			wantErr: `corrupt store: missing version in ".pulumi/meta.yaml"`,
+			wantErr: `corrupt store: missing version in ".khulnasoft/meta.yaml"`,
 		},
 		{
 			desc:    "other fields",
 			give:    `foo: bar`,
-			wantErr: `corrupt store: missing version in ".pulumi/meta.yaml"`,
+			wantErr: `corrupt store: missing version in ".khulnasoft/meta.yaml"`,
 		},
 		{
 			desc:    "corrupt version",
 			give:    `version: foo`,
-			wantErr: `corrupt store: unmarshal ".pulumi/meta.yaml"`,
+			wantErr: `corrupt store: unmarshal ".khulnasoft/meta.yaml"`,
 		},
 	}
 
@@ -154,7 +154,7 @@ func TestEnsurePulumiMeta_corruption(t *testing.T) {
 
 			b := memblob.OpenBucket(nil)
 			ctx := context.Background()
-			require.NoError(t, b.WriteAll(ctx, ".pulumi/meta.yaml", []byte(tt.give), nil))
+			require.NoError(t, b.WriteAll(ctx, ".khulnasoft/meta.yaml", []byte(tt.give), nil))
 
 			_, err := ensurePulumiMeta(context.Background(), b, env.NewEnv(nil))
 			assert.ErrorContains(t, err, tt.wantErr)
@@ -168,11 +168,11 @@ func TestMeta_roundTrip(t *testing.T) {
 
 	tests := []struct {
 		desc string
-		give pulumiMeta
+		give khulnasoftMeta
 	}{
-		{desc: "zero", give: pulumiMeta{Version: 0}},
-		{desc: "one", give: pulumiMeta{Version: 1}},
-		{desc: "future", give: pulumiMeta{Version: 42}},
+		{desc: "zero", give: khulnasoftMeta{Version: 0}},
+		{desc: "one", give: khulnasoftMeta{Version: 1}},
+		{desc: "future", give: khulnasoftMeta{Version: 42}},
 	}
 
 	for _, tt := range tests {
@@ -184,7 +184,7 @@ func TestMeta_roundTrip(t *testing.T) {
 			// The bucket is always non-empty,
 			// so we won't automatically try to use version 1.
 			require.NoError(t,
-				b.WriteAll(context.Background(), ".pulumi/stacks/dev.json", []byte("bar"), nil))
+				b.WriteAll(context.Background(), ".khulnasoft/stacks/dev.json", []byte("bar"), nil))
 
 			ctx := context.Background()
 			require.NoError(t, tt.give.WriteTo(ctx, b))
@@ -205,11 +205,11 @@ func TestMeta_WriteTo_zero(t *testing.T) {
 	require.NoError(t, err)
 
 	ctx := context.Background()
-	require.NoError(t, (&pulumiMeta{
+	require.NoError(t, (&khulnasoftMeta{
 		Version: 0,
 	}).WriteTo(ctx, bucket))
 
-	assert.NoFileExists(t, filepath.Join(tmpDir, ".pulumi", "meta.yaml"))
+	assert.NoFileExists(t, filepath.Join(tmpDir, ".khulnasoft", "meta.yaml"))
 }
 
 // Verify that we don't create a metadata file with version 0 in buckets
@@ -221,11 +221,11 @@ func TestNew_noMetaOnInit(t *testing.T) {
 	bucket, err := fileblob.OpenBucket(tmpDir, nil)
 	require.NoError(t, err)
 	require.NoError(t,
-		bucket.WriteAll(context.Background(), ".pulumi/stacks/dev.json", []byte("bar"), nil))
+		bucket.WriteAll(context.Background(), ".khulnasoft/stacks/dev.json", []byte("bar"), nil))
 
 	ctx := context.Background()
 	_, err = New(ctx, diagtest.LogSink(t), "file://"+filepath.ToSlash(tmpDir), nil)
 	require.NoError(t, err)
 
-	assert.NoFileExists(t, filepath.Join(tmpDir, ".pulumi", "meta.yaml"))
+	assert.NoFileExists(t, filepath.Join(tmpDir, ".khulnasoft", "meta.yaml"))
 }

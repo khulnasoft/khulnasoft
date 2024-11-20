@@ -95,7 +95,7 @@ func TestColorizer(t *testing.T) {
 func TestColorizer_10351(t *testing.T) {
 	t.Parallel()
 
-	// Regression test for https://github.com/pulumi/pulumi/issues/10351. If the character codes "%}>" were
+	// Regression test for https://github.com/khulnasoft/khulnasoft/issues/10351. If the character codes "%}>" were
 	// present in a string our lookup for color delimiters could crash with out of range errors.
 
 	str := "%}>" + Red + "hello" + Reset + "\n"

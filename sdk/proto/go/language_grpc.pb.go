@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: pulumi/language.proto
+// source: khulnasoft/language.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	context "context"
@@ -31,7 +31,7 @@ type LanguageRuntimeClient interface {
 	GetPluginInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PluginInfo, error)
 	// InstallDependencies will install dependencies for the project, e.g. by running `npm install` for nodejs projects.
 	InstallDependencies(ctx context.Context, in *InstallDependenciesRequest, opts ...grpc.CallOption) (LanguageRuntime_InstallDependenciesClient, error)
-	// RuntimeOptionsPrompts returns a list of additional prompts to ask during `pulumi new`.
+	// RuntimeOptionsPrompts returns a list of additional prompts to ask during `khulnasoft new`.
 	RuntimeOptionsPrompts(ctx context.Context, in *RuntimeOptionsRequest, opts ...grpc.CallOption) (*RuntimeOptionsResponse, error)
 	// About returns information about the runtime for this language.
 	About(ctx context.Context, in *AboutRequest, opts ...grpc.CallOption) (*AboutResponse, error)
@@ -43,7 +43,7 @@ type LanguageRuntimeClient interface {
 	GenerateProgram(ctx context.Context, in *GenerateProgramRequest, opts ...grpc.CallOption) (*GenerateProgramResponse, error)
 	// GenerateProject generates a given PCL program into a project for this language.
 	GenerateProject(ctx context.Context, in *GenerateProjectRequest, opts ...grpc.CallOption) (*GenerateProjectResponse, error)
-	// GeneratePackage generates a given pulumi package into a package for this language.
+	// GeneratePackage generates a given khulnasoft package into a package for this language.
 	GeneratePackage(ctx context.Context, in *GeneratePackageRequest, opts ...grpc.CallOption) (*GeneratePackageResponse, error)
 	// Pack packs a package into a language specific artifact.
 	Pack(ctx context.Context, in *PackRequest, opts ...grpc.CallOption) (*PackResponse, error)
@@ -59,7 +59,7 @@ func NewLanguageRuntimeClient(cc grpc.ClientConnInterface) LanguageRuntimeClient
 
 func (c *languageRuntimeClient) GetRequiredPlugins(ctx context.Context, in *GetRequiredPluginsRequest, opts ...grpc.CallOption) (*GetRequiredPluginsResponse, error) {
 	out := new(GetRequiredPluginsResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.LanguageRuntime/GetRequiredPlugins", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.LanguageRuntime/GetRequiredPlugins", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,7 +68,7 @@ func (c *languageRuntimeClient) GetRequiredPlugins(ctx context.Context, in *GetR
 
 func (c *languageRuntimeClient) Run(ctx context.Context, in *RunRequest, opts ...grpc.CallOption) (*RunResponse, error) {
 	out := new(RunResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.LanguageRuntime/Run", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.LanguageRuntime/Run", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ func (c *languageRuntimeClient) Run(ctx context.Context, in *RunRequest, opts ..
 
 func (c *languageRuntimeClient) GetPluginInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PluginInfo, error) {
 	out := new(PluginInfo)
-	err := c.cc.Invoke(ctx, "/pulumirpc.LanguageRuntime/GetPluginInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.LanguageRuntime/GetPluginInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +85,7 @@ func (c *languageRuntimeClient) GetPluginInfo(ctx context.Context, in *emptypb.E
 }
 
 func (c *languageRuntimeClient) InstallDependencies(ctx context.Context, in *InstallDependenciesRequest, opts ...grpc.CallOption) (LanguageRuntime_InstallDependenciesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &LanguageRuntime_ServiceDesc.Streams[0], "/pulumirpc.LanguageRuntime/InstallDependencies", opts...)
+	stream, err := c.cc.NewStream(ctx, &LanguageRuntime_ServiceDesc.Streams[0], "/khulnasoftrpc.LanguageRuntime/InstallDependencies", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func (x *languageRuntimeInstallDependenciesClient) Recv() (*InstallDependenciesR
 
 func (c *languageRuntimeClient) RuntimeOptionsPrompts(ctx context.Context, in *RuntimeOptionsRequest, opts ...grpc.CallOption) (*RuntimeOptionsResponse, error) {
 	out := new(RuntimeOptionsResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.LanguageRuntime/RuntimeOptionsPrompts", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.LanguageRuntime/RuntimeOptionsPrompts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,7 +127,7 @@ func (c *languageRuntimeClient) RuntimeOptionsPrompts(ctx context.Context, in *R
 
 func (c *languageRuntimeClient) About(ctx context.Context, in *AboutRequest, opts ...grpc.CallOption) (*AboutResponse, error) {
 	out := new(AboutResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.LanguageRuntime/About", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.LanguageRuntime/About", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func (c *languageRuntimeClient) About(ctx context.Context, in *AboutRequest, opt
 
 func (c *languageRuntimeClient) GetProgramDependencies(ctx context.Context, in *GetProgramDependenciesRequest, opts ...grpc.CallOption) (*GetProgramDependenciesResponse, error) {
 	out := new(GetProgramDependenciesResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.LanguageRuntime/GetProgramDependencies", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.LanguageRuntime/GetProgramDependencies", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -144,7 +144,7 @@ func (c *languageRuntimeClient) GetProgramDependencies(ctx context.Context, in *
 }
 
 func (c *languageRuntimeClient) RunPlugin(ctx context.Context, in *RunPluginRequest, opts ...grpc.CallOption) (LanguageRuntime_RunPluginClient, error) {
-	stream, err := c.cc.NewStream(ctx, &LanguageRuntime_ServiceDesc.Streams[1], "/pulumirpc.LanguageRuntime/RunPlugin", opts...)
+	stream, err := c.cc.NewStream(ctx, &LanguageRuntime_ServiceDesc.Streams[1], "/khulnasoftrpc.LanguageRuntime/RunPlugin", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -177,7 +177,7 @@ func (x *languageRuntimeRunPluginClient) Recv() (*RunPluginResponse, error) {
 
 func (c *languageRuntimeClient) GenerateProgram(ctx context.Context, in *GenerateProgramRequest, opts ...grpc.CallOption) (*GenerateProgramResponse, error) {
 	out := new(GenerateProgramResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.LanguageRuntime/GenerateProgram", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.LanguageRuntime/GenerateProgram", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -186,7 +186,7 @@ func (c *languageRuntimeClient) GenerateProgram(ctx context.Context, in *Generat
 
 func (c *languageRuntimeClient) GenerateProject(ctx context.Context, in *GenerateProjectRequest, opts ...grpc.CallOption) (*GenerateProjectResponse, error) {
 	out := new(GenerateProjectResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.LanguageRuntime/GenerateProject", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.LanguageRuntime/GenerateProject", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -195,7 +195,7 @@ func (c *languageRuntimeClient) GenerateProject(ctx context.Context, in *Generat
 
 func (c *languageRuntimeClient) GeneratePackage(ctx context.Context, in *GeneratePackageRequest, opts ...grpc.CallOption) (*GeneratePackageResponse, error) {
 	out := new(GeneratePackageResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.LanguageRuntime/GeneratePackage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.LanguageRuntime/GeneratePackage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -204,7 +204,7 @@ func (c *languageRuntimeClient) GeneratePackage(ctx context.Context, in *Generat
 
 func (c *languageRuntimeClient) Pack(ctx context.Context, in *PackRequest, opts ...grpc.CallOption) (*PackResponse, error) {
 	out := new(PackResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.LanguageRuntime/Pack", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.LanguageRuntime/Pack", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -223,7 +223,7 @@ type LanguageRuntimeServer interface {
 	GetPluginInfo(context.Context, *emptypb.Empty) (*PluginInfo, error)
 	// InstallDependencies will install dependencies for the project, e.g. by running `npm install` for nodejs projects.
 	InstallDependencies(*InstallDependenciesRequest, LanguageRuntime_InstallDependenciesServer) error
-	// RuntimeOptionsPrompts returns a list of additional prompts to ask during `pulumi new`.
+	// RuntimeOptionsPrompts returns a list of additional prompts to ask during `khulnasoft new`.
 	RuntimeOptionsPrompts(context.Context, *RuntimeOptionsRequest) (*RuntimeOptionsResponse, error)
 	// About returns information about the runtime for this language.
 	About(context.Context, *AboutRequest) (*AboutResponse, error)
@@ -235,7 +235,7 @@ type LanguageRuntimeServer interface {
 	GenerateProgram(context.Context, *GenerateProgramRequest) (*GenerateProgramResponse, error)
 	// GenerateProject generates a given PCL program into a project for this language.
 	GenerateProject(context.Context, *GenerateProjectRequest) (*GenerateProjectResponse, error)
-	// GeneratePackage generates a given pulumi package into a package for this language.
+	// GeneratePackage generates a given khulnasoft package into a package for this language.
 	GeneratePackage(context.Context, *GeneratePackageRequest) (*GeneratePackageResponse, error)
 	// Pack packs a package into a language specific artifact.
 	Pack(context.Context, *PackRequest) (*PackResponse, error)
@@ -305,7 +305,7 @@ func _LanguageRuntime_GetRequiredPlugins_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.LanguageRuntime/GetRequiredPlugins",
+		FullMethod: "/khulnasoftrpc.LanguageRuntime/GetRequiredPlugins",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageRuntimeServer).GetRequiredPlugins(ctx, req.(*GetRequiredPluginsRequest))
@@ -323,7 +323,7 @@ func _LanguageRuntime_Run_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.LanguageRuntime/Run",
+		FullMethod: "/khulnasoftrpc.LanguageRuntime/Run",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageRuntimeServer).Run(ctx, req.(*RunRequest))
@@ -341,7 +341,7 @@ func _LanguageRuntime_GetPluginInfo_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.LanguageRuntime/GetPluginInfo",
+		FullMethod: "/khulnasoftrpc.LanguageRuntime/GetPluginInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageRuntimeServer).GetPluginInfo(ctx, req.(*emptypb.Empty))
@@ -380,7 +380,7 @@ func _LanguageRuntime_RuntimeOptionsPrompts_Handler(srv interface{}, ctx context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.LanguageRuntime/RuntimeOptionsPrompts",
+		FullMethod: "/khulnasoftrpc.LanguageRuntime/RuntimeOptionsPrompts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageRuntimeServer).RuntimeOptionsPrompts(ctx, req.(*RuntimeOptionsRequest))
@@ -398,7 +398,7 @@ func _LanguageRuntime_About_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.LanguageRuntime/About",
+		FullMethod: "/khulnasoftrpc.LanguageRuntime/About",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageRuntimeServer).About(ctx, req.(*AboutRequest))
@@ -416,7 +416,7 @@ func _LanguageRuntime_GetProgramDependencies_Handler(srv interface{}, ctx contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.LanguageRuntime/GetProgramDependencies",
+		FullMethod: "/khulnasoftrpc.LanguageRuntime/GetProgramDependencies",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageRuntimeServer).GetProgramDependencies(ctx, req.(*GetProgramDependenciesRequest))
@@ -455,7 +455,7 @@ func _LanguageRuntime_GenerateProgram_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.LanguageRuntime/GenerateProgram",
+		FullMethod: "/khulnasoftrpc.LanguageRuntime/GenerateProgram",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageRuntimeServer).GenerateProgram(ctx, req.(*GenerateProgramRequest))
@@ -473,7 +473,7 @@ func _LanguageRuntime_GenerateProject_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.LanguageRuntime/GenerateProject",
+		FullMethod: "/khulnasoftrpc.LanguageRuntime/GenerateProject",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageRuntimeServer).GenerateProject(ctx, req.(*GenerateProjectRequest))
@@ -491,7 +491,7 @@ func _LanguageRuntime_GeneratePackage_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.LanguageRuntime/GeneratePackage",
+		FullMethod: "/khulnasoftrpc.LanguageRuntime/GeneratePackage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageRuntimeServer).GeneratePackage(ctx, req.(*GeneratePackageRequest))
@@ -509,7 +509,7 @@ func _LanguageRuntime_Pack_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.LanguageRuntime/Pack",
+		FullMethod: "/khulnasoftrpc.LanguageRuntime/Pack",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LanguageRuntimeServer).Pack(ctx, req.(*PackRequest))
@@ -521,7 +521,7 @@ func _LanguageRuntime_Pack_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var LanguageRuntime_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pulumirpc.LanguageRuntime",
+	ServiceName: "khulnasoftrpc.LanguageRuntime",
 	HandlerType: (*LanguageRuntimeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -577,5 +577,5 @@ var LanguageRuntime_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "pulumi/language.proto",
+	Metadata: "khulnasoft/language.proto",
 }

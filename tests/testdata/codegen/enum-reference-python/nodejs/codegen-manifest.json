@@ -6,7 +6,7 @@
     "mymodule/index.ts",
     "package.json",
     "provider.ts",
-    "scripts/install-pulumi-plugin.js",
+    "scripts/install-khulnasoft-plugin.js",
     "tsconfig.json",
     "utilities.ts"
   ]

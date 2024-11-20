@@ -28,6 +28,6 @@ jobs:
         run: |
           mkdir test
           cd test
-          pulumi new random-go --generate-only --yes
-          go mod edit -replace github.com/pulumi/pulumi/sdk/v3=../sdk
-          GOPROXY=direct pulumi install
+          khulnasoft new random-go --generate-only --yes
+          go mod edit -replace github.com/khulnasoft/khulnasoft/sdk/v3=../sdk
+          GOPROXY=direct khulnasoft install

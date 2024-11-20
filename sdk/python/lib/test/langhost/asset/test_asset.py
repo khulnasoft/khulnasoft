@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from os import path
-from pulumi.asset import FileAsset, StringAsset, RemoteAsset
+from khulnasoft.asset import FileAsset, StringAsset, RemoteAsset
 from ..util import LanghostTest
 
 
@@ -52,7 +52,7 @@ class AssetTest(LanghostTest):
             self.assertEqual(_resource["asset"].text, "its a string")
         elif name == "remote":
             self.assertIsInstance(_resource["asset"], RemoteAsset)
-            self.assertEqual(_resource["asset"].uri, "https://pulumi.com")
+            self.assertEqual(_resource["asset"].uri, "https://khulnasoft.com")
         else:
             self.fail("unexpected resource name: " + name)
         return {

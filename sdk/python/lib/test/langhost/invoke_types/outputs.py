@@ -12,46 +12,46 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pulumi
+import khulnasoft
 
 import outputs
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class MyFunctionNestedResult:
-    first_value: str = pulumi.property("firstValue")
-    second_value: float = pulumi.property("secondValue")
+    first_value: str = khulnasoft.property("firstValue")
+    second_value: float = khulnasoft.property("secondValue")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class MyFunctionResult:
     # Deliberately using a qualified (with `outputs.`) forward reference
     # to mimic our provider codegen, to ensure the type can be resolved.
     nested: "outputs.MyFunctionNestedResult"
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class MyOtherFunctionNestedResult:
     def __init__(self, first_value: str, second_value: float):
-        pulumi.set(self, "first_value", first_value)
-        pulumi.set(self, "second_value", second_value)
+        khulnasoft.set(self, "first_value", first_value)
+        khulnasoft.set(self, "second_value", second_value)
 
     @property
-    @pulumi.getter(name="firstValue")
+    @khulnasoft.getter(name="firstValue")
     def first_value(self) -> str: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="secondValue")
+    @khulnasoft.getter(name="secondValue")
     def second_value(self) -> float: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class MyOtherFunctionResult:
     def __init__(self, nested: "outputs.MyOtherFunctionNestedResult"):
-        pulumi.set(self, "nested", nested)
+        khulnasoft.set(self, "nested", nested)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     # Deliberately using a qualified (with `outputs.`) forward reference
     # to mimic our provider codegen, to ensure the type can be resolved.
     def nested(self) -> "outputs.MyOtherFunctionNestedResult": ...

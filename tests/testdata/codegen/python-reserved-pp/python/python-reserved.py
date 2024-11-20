@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_lambda as lambda_
+import khulnasoft
+import khulnasoft_lambda as lambda_
 
 assert_ = lambda_.lambda_.Lambda("assert", lambda_="dns")
-pulumi.export("global", assert_.lambda_)
+khulnasoft.export("global", assert_.lambda_)

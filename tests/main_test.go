@@ -19,11 +19,11 @@ import (
 	"os"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
 )
 
 func TestMain(m *testing.M) {
-	// Disable stack backups for tests to avoid filling up ~/.pulumi/backups with unnecessary
+	// Disable stack backups for tests to avoid filling up ~/.khulnasoft/backups with unnecessary
 	// backups of test stacks.
 	disableCheckpointBackups := env.DIYBackendDisableCheckpointBackups.Var().Name()
 	if err := os.Setenv(disableCheckpointBackups, "1"); err != nil {

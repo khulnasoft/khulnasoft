@@ -33,7 +33,7 @@ func TestGoTransformations(t *testing.T) {
 			integration.ProgramTest(t, &integration.ProgramTestOptions{
 				Dir: d,
 				Dependencies: []string{
-					"github.com/pulumi/pulumi/sdk/v3",
+					"github.com/khulnasoft/khulnasoft/sdk/v3",
 				},
 				LocalProviders: []integration.LocalDependency{
 					{Package: "testprovider", Path: filepath.Join("..", "..", "testprovider")},

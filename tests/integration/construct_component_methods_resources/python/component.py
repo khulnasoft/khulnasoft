@@ -2,31 +2,31 @@
 
 from typing import Optional
 
-import pulumi
+import khulnasoft
 
-class Component(pulumi.ComponentResource):
+class Component(khulnasoft.ComponentResource):
     def __init__(self,
                  name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None):
+                 opts: Optional[khulnasoft.ResourceOptions] = None):
         super().__init__("testcomponent:index:Component", name, {}, opts, True)
 
-    @pulumi.output_type
+    @khulnasoft.output_type
     class CreateRandomResult:
         def __init__(self, result: str):
             if result and not isinstance(result, str):
                 raise TypeError("Expected argument 'result' to be a str")
-            pulumi.set(self, "result", result)
+            khulnasoft.set(self, "result", result)
 
         @property
-        @pulumi.getter
+        @khulnasoft.getter
         def result(self) -> str:
-            return pulumi.get(self, "result")
+            return khulnasoft.get(self, "result")
 
-    def create_random(__self__, length: pulumi.Input[int]) -> pulumi.Output['Component.CreateRandomResult']:
+    def create_random(__self__, length: khulnasoft.Input[int]) -> khulnasoft.Output['Component.CreateRandomResult']:
         __args__ = dict()
         __args__['__self__'] = __self__
         __args__['length'] = length
-        return pulumi.runtime.call('testcomponent:index:Component/createRandom',
+        return khulnasoft.runtime.call('testcomponent:index:Component/createRandom',
                                    __args__,
                                    res=__self__,
                                    typ=Component.CreateRandomResult)

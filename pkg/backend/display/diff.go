@@ -29,13 +29,13 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // ShowDiffEvents displays the engine events with the diff view.
@@ -390,7 +390,7 @@ func renderDiff(
 
 	var details string
 	// An OpSame might have a diff due to metadata changes (e.g. protect) but we should never print a property diff,
-	// even if the properties appear to have changed. See https://github.com/pulumi/pulumi/issues/15944 for context.
+	// even if the properties appear to have changed. See https://github.com/khulnasoft/khulnasoft/issues/15944 for context.
 	if metadata.Op != deploy.OpSame {
 		if metadata.DetailedDiff != nil {
 			var buf bytes.Buffer

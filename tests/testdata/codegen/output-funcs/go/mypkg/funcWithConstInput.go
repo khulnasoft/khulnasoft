@@ -4,12 +4,12 @@
 package mypkg
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"output-funcs/mypkg/internal"
 )
 
 // Codegen demo with const inputs
-func FuncWithConstInput(ctx *pulumi.Context, args *FuncWithConstInputArgs, opts ...pulumi.InvokeOption) error {
+func FuncWithConstInput(ctx *khulnasoft.Context, args *FuncWithConstInputArgs, opts ...khulnasoft.InvokeOption) error {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv struct{}
 	err := ctx.Invoke("mypkg::funcWithConstInput", args, &rv, opts...)
@@ -17,5 +17,5 @@ func FuncWithConstInput(ctx *pulumi.Context, args *FuncWithConstInputArgs, opts 
 }
 
 type FuncWithConstInputArgs struct {
-	PlainInput *string `pulumi:"plainInput"`
+	PlainInput *string `khulnasoft:"plainInput"`
 }

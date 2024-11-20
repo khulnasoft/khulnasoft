@@ -17,20 +17,20 @@ import threading
 
 cover_packages = [
     "github.com/khulnasoft/khulnasoft/pkg/v3/...",
-    "github.com/pulumi/pulumi/sdk/v3/...",
-    "github.com/pulumi/pulumi/sdk/go/pulumi-language-go/v3/...",
-    "github.com/pulumi/pulumi/sdk/nodejs/cmd/pulumi-language-nodejs/v3/...",
-    "github.com/pulumi/pulumi/sdk/python/cmd/pulumi-language-python/v3/...",
+    "github.com/khulnasoft/khulnasoft/sdk/v3/...",
+    "github.com/khulnasoft/khulnasoft/sdk/go/khulnasoft-language-go/v3/...",
+    "github.com/khulnasoft/khulnasoft/sdk/nodejs/cmd/khulnasoft-language-nodejs/v3/...",
+    "github.com/khulnasoft/khulnasoft/sdk/python/cmd/khulnasoft-language-python/v3/...",
 ]
 
 dryrun = os.environ.get("PULUMI_TEST_DRYRUN", None) == "true"
 
 def options(options_and_packages: List[str]):
-    return [o for o in options_and_packages if not o.startswith('github.com/pulumi/pulumi')]
+    return [o for o in options_and_packages if not o.startswith('github.com/khulnasoft/khulnasoft')]
 
 
 def packages(options_and_packages: List[str]):
-    return [o for o in options_and_packages if o.startswith('github.com/pulumi/pulumi')]
+    return [o for o in options_and_packages if o.startswith('github.com/khulnasoft/khulnasoft')]
 
 root = pathlib.Path(__file__).absolute().parent.parent
 integration_test_subset = os.environ.get('PULUMI_INTEGRATION_TESTS', None)

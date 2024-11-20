@@ -16,8 +16,8 @@ package backend
 
 import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/display"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
 )
 
 // UpdateMetadata describes optional metadata about an update.
@@ -68,7 +68,7 @@ const (
 	// VCSRepoRoot is the root directory of the project in the repo.
 	VCSRepoRoot = "vcs.root"
 
-	// CISystem is the name of the CI system running the pulumi operation.
+	// CISystem is the name of the CI system running the khulnasoft operation.
 	CISystem = "ci.system"
 	// CIBuildID is an opaque ID of the build in the CI system.
 	CIBuildID = "ci.build.id"

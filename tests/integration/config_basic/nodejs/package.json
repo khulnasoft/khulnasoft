@@ -6,7 +6,7 @@
         "typescript": "^2.5.3"
     },
     "peerDependencies": {
-        "pulumi": "latest"
+        "khulnasoft": "latest"
     },
     "dependencies": {
         "@types/node": "^8.0.0"

@@ -30,15 +30,15 @@
                   "plain": "ImmutableArray<string>"
                 },
                 "go": {
-                  "input": "[]pulumi.StringInput",
+                  "input": "[]khulnasoft.StringInput",
                   "plain": "[]string"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<string>[] | undefined",
+                  "input": "khulnasoft.Input<string>[] | undefined",
                   "plain": "string[] | undefined"
                 },
                 "python": {
-                  "input": "Optional[Sequence[pulumi.Input[str]]]",
+                  "input": "Optional[Sequence[khulnasoft.Input[str]]]",
                   "plain": "Optional[Sequence[str]]"
                 }
               }
@@ -58,15 +58,15 @@
                   "plain": "ImmutableDictionary<string, string>?"
                 },
                 "go": {
-                  "input": "pulumi.StringMapInput",
+                  "input": "khulnasoft.StringMapInput",
                   "plain": "map[string]string"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<{[key: string]: pulumi.Input<string>}> | undefined",
+                  "input": "khulnasoft.Input<{[key: string]: khulnasoft.Input<string>}> | undefined",
                   "plain": "{[key: string]: string} | undefined"
                 },
                 "python": {
-                  "input": "Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]",
+                  "input": "Optional[khulnasoft.Input[Mapping[str, khulnasoft.Input[str]]]]",
                   "plain": "Optional[Mapping[str, str]]"
                 }
               }
@@ -80,7 +80,7 @@
       "description": "Tests name generation for the primitive schame types. See https://pkg.go.dev/github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema#Type for a complete list",
       "properties": {
         "any": {
-          "$ref": "pulumi.json#/Any",
+          "$ref": "khulnasoft.json#/Any",
           "language": {
             "test": {
               "expected": {
@@ -89,7 +89,7 @@
                   "plain": "object?"
                 },
                 "go": {
-                  "input": "pulumi.Input",
+                  "input": "khulnasoft.Input",
                   "plain": "interface{}"
                 },
                 "nodejs": {
@@ -105,7 +105,7 @@
           }
         },
         "archive": {
-          "$ref": "pulumi.json#/Archive",
+          "$ref": "khulnasoft.json#/Archive",
           "language": {
             "test": {
               "expected": {
@@ -114,23 +114,23 @@
                   "plain": "Archive?"
                 },
                 "go": {
-                  "input": "pulumi.ArchiveInput",
-                  "plain": "pulumi.Archive"
+                  "input": "khulnasoft.ArchiveInput",
+                  "plain": "khulnasoft.Archive"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<pulumi.asset.Archive> | undefined",
-                  "plain": "pulumi.asset.Archive | undefined"
+                  "input": "khulnasoft.Input<khulnasoft.asset.Archive> | undefined",
+                  "plain": "khulnasoft.asset.Archive | undefined"
                 },
                 "python": {
-                  "input": "Optional[pulumi.Input[pulumi.Archive]]",
-                  "plain": "Optional[pulumi.Archive]"
+                  "input": "Optional[khulnasoft.Input[khulnasoft.Archive]]",
+                  "plain": "Optional[khulnasoft.Archive]"
                 }
               }
             }
           }
         },
         "asset": {
-          "$ref": "pulumi.json#/Asset",
+          "$ref": "khulnasoft.json#/Asset",
           "language": {
             "test": {
               "expected": {
@@ -139,16 +139,16 @@
                   "plain": "AssetOrArchive?"
                 },
                 "go": {
-                  "input": "pulumi.AssetOrArchiveInput",
-                  "plain": "pulumi.AssetOrArchive"
+                  "input": "khulnasoft.AssetOrArchiveInput",
+                  "plain": "khulnasoft.AssetOrArchive"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<pulumi.asset.Asset | pulumi.asset.Archive> | undefined",
-                  "plain": "pulumi.asset.Asset | pulumi.asset.Archive | undefined"
+                  "input": "khulnasoft.Input<khulnasoft.asset.Asset | khulnasoft.asset.Archive> | undefined",
+                  "plain": "khulnasoft.asset.Asset | khulnasoft.asset.Archive | undefined"
                 },
                 "python": {
-                  "input": "Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]]",
-                  "plain": "Optional[Union[pulumi.Asset, pulumi.Archive]]"
+                  "input": "Optional[khulnasoft.Input[Union[khulnasoft.Asset, khulnasoft.Archive]]]",
+                  "plain": "Optional[Union[khulnasoft.Asset, khulnasoft.Archive]]"
                 }
               }
             }
@@ -164,15 +164,15 @@
                   "plain": "bool?"
                 },
                 "go": {
-                  "input": "pulumi.BoolPtrInput",
+                  "input": "khulnasoft.BoolPtrInput",
                   "plain": "*bool"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<boolean> | undefined",
+                  "input": "khulnasoft.Input<boolean> | undefined",
                   "plain": "boolean | undefined"
                 },
                 "python": {
-                  "input": "Optional[pulumi.Input[bool]]",
+                  "input": "Optional[khulnasoft.Input[bool]]",
                   "plain": "Optional[bool]"
                 }
               }
@@ -189,15 +189,15 @@
                   "plain": "int?"
                 },
                 "go": {
-                  "input": "pulumi.IntPtrInput",
+                  "input": "khulnasoft.IntPtrInput",
                   "plain": "*int"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<number> | undefined",
+                  "input": "khulnasoft.Input<number> | undefined",
                   "plain": "number | undefined"
                 },
                 "python": {
-                  "input": "Optional[pulumi.Input[int]]",
+                  "input": "Optional[khulnasoft.Input[int]]",
                   "plain": "Optional[int]"
                 }
               }
@@ -205,7 +205,7 @@
           }
         },
         "json": {
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "language": {
             "test": {
               "expected": {
@@ -214,7 +214,7 @@
                   "plain": "System.Text.Json.JsonElement?"
                 },
                 "go": {
-                  "input": "pulumi.Input",
+                  "input": "khulnasoft.Input",
                   "plain": "interface{}"
                 },
                 "nodejs": {
@@ -239,15 +239,15 @@
                   "plain": "double?"
                 },
                 "go": {
-                  "input": "pulumi.Float64PtrInput",
+                  "input": "khulnasoft.Float64PtrInput",
                   "plain": "*float64"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<number> | undefined",
+                  "input": "khulnasoft.Input<number> | undefined",
                   "plain": "number | undefined"
                 },
                 "python": {
-                  "input": "Optional[pulumi.Input[float]]",
+                  "input": "Optional[khulnasoft.Input[float]]",
                   "plain": "Optional[float]"
                 }
               }
@@ -255,7 +255,7 @@
           }
         },
         "requiredAny": {
-          "$ref": "pulumi.json#/Any",
+          "$ref": "khulnasoft.json#/Any",
           "language": {
             "test": {
               "expected": {
@@ -264,7 +264,7 @@
                   "plain": "object"
                 },
                 "go": {
-                  "input": "pulumi.Input",
+                  "input": "khulnasoft.Input",
                   "plain": "interface{}"
                 },
                 "nodejs": {
@@ -280,7 +280,7 @@
           }
         },
         "requiredArchive": {
-          "$ref": "pulumi.json#/Archive",
+          "$ref": "khulnasoft.json#/Archive",
           "language": {
             "test": {
               "expected": {
@@ -289,23 +289,23 @@
                   "plain": "Archive"
                 },
                 "go": {
-                  "input": "pulumi.ArchiveInput",
-                  "plain": "pulumi.Archive"
+                  "input": "khulnasoft.ArchiveInput",
+                  "plain": "khulnasoft.Archive"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<pulumi.asset.Archive>",
-                  "plain": "pulumi.asset.Archive"
+                  "input": "khulnasoft.Input<khulnasoft.asset.Archive>",
+                  "plain": "khulnasoft.asset.Archive"
                 },
                 "python": {
-                  "input": "pulumi.Input[pulumi.Archive]",
-                  "plain": "pulumi.Archive"
+                  "input": "khulnasoft.Input[khulnasoft.Archive]",
+                  "plain": "khulnasoft.Archive"
                 }
               }
             }
           }
         },
         "requiredAsset": {
-          "$ref": "pulumi.json#/Asset",
+          "$ref": "khulnasoft.json#/Asset",
           "language": {
             "test": {
               "expected": {
@@ -314,16 +314,16 @@
                   "plain": "AssetOrArchive"
                 },
                 "go": {
-                  "input": "pulumi.AssetOrArchiveInput",
-                  "plain": "pulumi.AssetOrArchive"
+                  "input": "khulnasoft.AssetOrArchiveInput",
+                  "plain": "khulnasoft.AssetOrArchive"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<pulumi.asset.Asset | pulumi.asset.Archive>",
-                  "plain": "pulumi.asset.Asset | pulumi.asset.Archive"
+                  "input": "khulnasoft.Input<khulnasoft.asset.Asset | khulnasoft.asset.Archive>",
+                  "plain": "khulnasoft.asset.Asset | khulnasoft.asset.Archive"
                 },
                 "python": {
-                  "input": "pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]",
-                  "plain": "Union[pulumi.Asset, pulumi.Archive]"
+                  "input": "khulnasoft.Input[Union[khulnasoft.Asset, khulnasoft.Archive]]",
+                  "plain": "Union[khulnasoft.Asset, khulnasoft.Archive]"
                 }
               }
             }
@@ -339,15 +339,15 @@
                   "plain": "bool"
                 },
                 "go": {
-                  "input": "pulumi.BoolInput",
+                  "input": "khulnasoft.BoolInput",
                   "plain": "bool"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<boolean>",
+                  "input": "khulnasoft.Input<boolean>",
                   "plain": "boolean"
                 },
                 "python": {
-                  "input": "pulumi.Input[bool]",
+                  "input": "khulnasoft.Input[bool]",
                   "plain": "bool"
                 }
               }
@@ -364,15 +364,15 @@
                   "plain": "int"
                 },
                 "go": {
-                  "input": "pulumi.IntInput",
+                  "input": "khulnasoft.IntInput",
                   "plain": "int"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<number>",
+                  "input": "khulnasoft.Input<number>",
                   "plain": "number"
                 },
                 "python": {
-                  "input": "pulumi.Input[int]",
+                  "input": "khulnasoft.Input[int]",
                   "plain": "int"
                 }
               }
@@ -380,7 +380,7 @@
           }
         },
         "requiredJson": {
-          "$ref": "pulumi.json#/Json",
+          "$ref": "khulnasoft.json#/Json",
           "language": {
             "test": {
               "expected": {
@@ -389,7 +389,7 @@
                   "plain": "System.Text.Json.JsonElement"
                 },
                 "go": {
-                  "input": "pulumi.Input",
+                  "input": "khulnasoft.Input",
                   "plain": "interface{}"
                 },
                 "nodejs": {
@@ -414,15 +414,15 @@
                   "plain": "double"
                 },
                 "go": {
-                  "input": "pulumi.Float64Input",
+                  "input": "khulnasoft.Float64Input",
                   "plain": "float64"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<number>",
+                  "input": "khulnasoft.Input<number>",
                   "plain": "number"
                 },
                 "python": {
-                  "input": "pulumi.Input[float]",
+                  "input": "khulnasoft.Input[float]",
                   "plain": "float"
                 }
               }
@@ -439,15 +439,15 @@
                   "plain": "string"
                 },
                 "go": {
-                  "input": "pulumi.StringInput",
+                  "input": "khulnasoft.StringInput",
                   "plain": "string"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<string>",
+                  "input": "khulnasoft.Input<string>",
                   "plain": "string"
                 },
                 "python": {
-                  "input": "pulumi.Input[str]",
+                  "input": "khulnasoft.Input[str]",
                   "plain": "str"
                 }
               }
@@ -464,15 +464,15 @@
                   "plain": "string?"
                 },
                 "go": {
-                  "input": "pulumi.StringPtrInput",
+                  "input": "khulnasoft.StringPtrInput",
                   "plain": "*string"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<string> | undefined",
+                  "input": "khulnasoft.Input<string> | undefined",
                   "plain": "string | undefined"
                 },
                 "python": {
-                  "input": "Optional[pulumi.Input[str]]",
+                  "input": "Optional[khulnasoft.Input[str]]",
                   "plain": "Optional[str]"
                 }
               }
@@ -508,15 +508,15 @@
                   "plain": "ImmutableDictionary<string, string>?"
                 },
                 "go": {
-                  "input": "pulumi.StringMapInput",
+                  "input": "khulnasoft.StringMapInput",
                   "plain": "map[string]string"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<{[key: string]: pulumi.Input<string>}> | undefined",
+                  "input": "khulnasoft.Input<{[key: string]: khulnasoft.Input<string>}> | undefined",
                   "plain": "{[key: string]: string} | undefined"
                 },
                 "python": {
-                  "input": "Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]",
+                  "input": "Optional[khulnasoft.Input[Mapping[str, khulnasoft.Input[str]]]]",
                   "plain": "Optional[Mapping[str, str]]"
                 }
               }
@@ -526,8 +526,8 @@
       },
       "type": "object"
     },
-    "typetests:regressions:pulumi/pulumi/7454": {
-      "description": "Regression test for pulumi/pulumi#7454",
+    "typetests:regressions:khulnasoft/khulnasoft/7454": {
+      "description": "Regression test for khulnasoft/khulnasoft#7454",
       "properties": {
         "inputUnion": {
           "oneOf": [
@@ -537,7 +537,7 @@
             {
               "type": "array",
               "items": {
-                "$ref": "pulumi.json#/Json"
+                "$ref": "khulnasoft.json#/Json"
               }
             }
           ],
@@ -549,11 +549,11 @@
                   "plain": "Union<Object, ImmutableArray<System.Text.Json.JsonElement>>?"
                 },
                 "go": {
-                  "input": "pulumi.Input",
+                  "input": "khulnasoft.Input",
                   "plain": "interface{}"
                 },
                 "nodejs": {
-                  "input": "pulumi.Input<outputs.ObjectArgs | any[]> | undefined",
+                  "input": "khulnasoft.Input<outputs.ObjectArgs | any[]> | undefined",
                   "plain": "outputs.Object | any[] | undefined"
                 },
                 "python": {

@@ -8,17 +8,17 @@ import (
 	"reflect"
 
 	"enum-reference/example/internal"
-	iam "github.com/pulumi/pulumi-google-native/sdk/go/google/iam/v1"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	iam "github.com/khulnasoft/khulnasoft-google-native/sdk/go/google/iam/v1"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type IamResource struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 // NewIamResource registers a new resource with the given unique name, arguments, and options.
-func NewIamResource(ctx *pulumi.Context,
-	name string, args *IamResourceArgs, opts ...pulumi.ResourceOption) (*IamResource, error) {
+func NewIamResource(ctx *khulnasoft.Context,
+	name string, args *IamResourceArgs, opts ...khulnasoft.ResourceOption) (*IamResource, error) {
 	if args == nil {
 		args = &IamResourceArgs{}
 	}
@@ -33,7 +33,7 @@ func NewIamResource(ctx *pulumi.Context,
 }
 
 type iamResourceArgs struct {
-	Config *iam.AuditConfig `pulumi:"config"`
+	Config *iam.AuditConfig `khulnasoft:"config"`
 }
 
 // The set of arguments for constructing a IamResource resource.
@@ -46,7 +46,7 @@ func (IamResourceArgs) ElementType() reflect.Type {
 }
 
 type IamResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToIamResourceOutput() IamResourceOutput
 	ToIamResourceOutputWithContext(ctx context.Context) IamResourceOutput
@@ -61,10 +61,10 @@ func (i *IamResource) ToIamResourceOutput() IamResourceOutput {
 }
 
 func (i *IamResource) ToIamResourceOutputWithContext(ctx context.Context) IamResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IamResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(IamResourceOutput)
 }
 
-type IamResourceOutput struct{ *pulumi.OutputState }
+type IamResourceOutput struct{ *khulnasoft.OutputState }
 
 func (IamResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**IamResource)(nil)).Elem()
@@ -79,6 +79,6 @@ func (o IamResourceOutput) ToIamResourceOutputWithContext(ctx context.Context) I
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*IamResourceInput)(nil)).Elem(), &IamResource{})
-	pulumi.RegisterOutputType(IamResourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*IamResourceInput)(nil)).Elem(), &IamResource{})
+	khulnasoft.RegisterOutputType(IamResourceOutput{})
 }

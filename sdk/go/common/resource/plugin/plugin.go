@@ -37,19 +37,19 @@ import (
 	"google.golang.org/grpc/connectivity"
 	"google.golang.org/grpc/status"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // PulumiPluginJSON represents additional information about a package's associated Pulumi plugin.
-// For Python, the content is inside a pulumi-plugin.json file inside the package.
-// For Node.js, the content is within the package.json file, under the "pulumi" node.
-// For .NET, the content is inside a pulumi-plugin.json file inside the NuGet package.
-// For Go, the content is inside a pulumi-plugin.json file inside the module.
+// For Python, the content is inside a khulnasoft-plugin.json file inside the package.
+// For Node.js, the content is within the package.json file, under the "khulnasoft" node.
+// For .NET, the content is inside a khulnasoft-plugin.json file inside the NuGet package.
+// For Go, the content is inside a khulnasoft-plugin.json file inside the module.
 type PulumiPluginJSON struct {
 	// Indicates whether the package has an associated resource plugin. Set to false to indicate no plugin.
 	Resource bool `json:"resource"`
@@ -112,7 +112,7 @@ var nextStreamID int32
 
 // errRunPolicyModuleNotFound is returned when we determine that the plugin failed to load because
 // the stack's Pulumi SDK did not have the required modules. i.e. is too old.
-var errRunPolicyModuleNotFound = errors.New("pulumi SDK does not support policy as code")
+var errRunPolicyModuleNotFound = errors.New("khulnasoft SDK does not support policy as code")
 
 // errPluginNotFound is returned when we try to execute a plugin but it is not found on disk.
 var errPluginNotFound = errors.New("plugin not found")
@@ -130,7 +130,7 @@ func dialPlugin(portNum int, bin, prefix string, dialOptions []grpc.DialOption) 
 	// manually kick off a Connect() call and then wait until the state of the connection becomes Ready.
 	conn.Connect()
 
-	// TODO[pulumi/pulumi#337]: in theory, this should be unnecessary.  gRPC's default WaitForReady behavior
+	// TODO[khulnasoft/khulnasoft#337]: in theory, this should be unnecessary.  gRPC's default WaitForReady behavior
 	//     should auto-retry appropriately.  On Linux, however, we are observing different behavior.  In the meantime
 	//     while this bug exists, we'll simply do a bit of waiting of our own up front.
 	timeout, _ := context.WithTimeout(context.Background(), pluginRPCConnectionTimeout)
@@ -193,7 +193,7 @@ func newPlugin(ctx *Context, pwd, bin, prefix string, kind apitype.PluginKind,
 	opts := []opentracing.StartSpanOption{
 		opentracing.Tag{Key: "prefix", Value: prefix},
 		opentracing.Tag{Key: "bin", Value: bin},
-		opentracing.Tag{Key: "pulumi-decorator", Value: prefix + ":" + bin},
+		opentracing.Tag{Key: "khulnasoft-decorator", Value: prefix + ":" + bin},
 	}
 	if ctx != nil && ctx.tracingSpan != nil {
 		opts = append(opts, opentracing.ChildOf(ctx.tracingSpan.Context()))
@@ -230,11 +230,11 @@ func newPlugin(ctx *Context, pwd, bin, prefix string, kind apitype.PluginKind,
 			// The reason is that if the last line is missing a \n, we still want to include it.
 			if strings.TrimSpace(msg) != "" {
 				// We may be trying to run a plugin that isn't present in the SDK installed with the Policy Pack.
-				// e.g. the stack's package.json does not contain a recent enough @pulumi/pulumi.
+				// e.g. the stack's package.json does not contain a recent enough @khulnasoft/khulnasoft.
 				//
 				// Rather than fail with an opaque error because we didn't get the gRPC port, inspect if it
 				// is a well-known problem and return a better error as appropriate.
-				if strings.Contains(msg, "Cannot find module '@pulumi/pulumi/cmd/run-policy-pack'") {
+				if strings.Contains(msg, "Cannot find module '@khulnasoft/khulnasoft/cmd/run-policy-pack'") {
 					sawPolicyModuleNotFoundErr = true
 				}
 
@@ -419,7 +419,7 @@ func execPlugin(ctx *Context, bin, prefix string, kind apitype.PluginKind,
 		// it upstream
 		//
 		// In the case of PAC, note that the plugin usually _does_ exist.
-		// It is a shell script like "pulumi-analyzer-policy". But during
+		// It is a shell script like "khulnasoft-analyzer-policy". But during
 		// the execution of that script, it fails with the ENOENT error.
 		if pathErr, ok := err.(*os.PathError); ok {
 			syscallErr, ok := pathErr.Err.(syscall.Errno)

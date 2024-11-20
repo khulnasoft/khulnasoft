@@ -1,0 +1,11 @@
+{
+	"name": "l2-invoke-options",
+	"devDependencies": {
+		"@types/node": "^14"
+	},
+	"dependencies": {
+		"typescript": "^4.0.0",
+		"@khulnasoft/khulnasoft": "ROOT/artifacts/khulnasoft-khulnasoft-CORE.VERSION.tgz",
+		"@khulnasoft/simple-invoke": "ROOT/artifacts/khulnasoft-simple-invoke-10.0.0.tgz"
+	}
+}

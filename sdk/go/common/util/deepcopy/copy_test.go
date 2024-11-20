@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/internal"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/internal"
 	"github.com/stretchr/testify/assert"
 )
 

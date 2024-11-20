@@ -29,36 +29,36 @@ import (
 	"github.com/texttheater/golang-levenshtein/levenshtein"
 	"gopkg.in/yaml.v3"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/gitutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/gitutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 const (
 	// This file will be ignored when copying from the template cache to
 	// a project directory.
-	legacyPulumiTemplateManifestFile = ".pulumi.template.yaml"
+	legacyPulumiTemplateManifestFile = ".khulnasoft.template.yaml"
 
-	// pulumiLocalTemplatePathEnvVar is a path to the folder where templates are stored.
+	// khulnasoftLocalTemplatePathEnvVar is a path to the folder where templates are stored.
 	// It is used in sandboxed environments where the classic template folder may not be writable.
-	pulumiLocalTemplatePathEnvVar = "PULUMI_TEMPLATE_PATH"
+	khulnasoftLocalTemplatePathEnvVar = "PULUMI_TEMPLATE_PATH"
 
-	// pulumiLocalPolicyTemplatePathEnvVar is a path to the folder where policy templates are stored.
+	// khulnasoftLocalPolicyTemplatePathEnvVar is a path to the folder where policy templates are stored.
 	// It is used in sandboxed environments where the classic template folder may not be writable.
-	pulumiLocalPolicyTemplatePathEnvVar = "PULUMI_POLICY_TEMPLATE_PATH"
+	khulnasoftLocalPolicyTemplatePathEnvVar = "PULUMI_POLICY_TEMPLATE_PATH"
 )
 
 // These are variables instead of constants in order that they can be set using the `-X`
 // `ldflag` at build time, if necessary.
 var (
 	// The Git URL for Pulumi program templates
-	pulumiTemplateGitRepository = "https://github.com/pulumi/templates.git"
+	khulnasoftTemplateGitRepository = "https://github.com/khulnasoft/templates.git"
 	// The branch name for the template repository
-	pulumiTemplateBranch = "master"
+	khulnasoftTemplateBranch = "master"
 	// The Git URL for Pulumi Policy Pack templates
-	pulumiPolicyTemplateGitRepository = "https://github.com/pulumi/templates-policy.git"
+	khulnasoftPolicyTemplateGitRepository = "https://github.com/khulnasoft/templates-policy.git"
 	// The branch name for the policy pack template repository
-	pulumiPolicyTemplateBranch = "master"
+	khulnasoftPolicyTemplateBranch = "master"
 )
 
 // TemplateKind describes the form of a template.
@@ -227,7 +227,7 @@ func (t PolicyPackTemplate) Errored() bool {
 	return t.Error != nil
 }
 
-// cleanupLegacyTemplateDir deletes an existing ~/.pulumi/templates directory if it isn't a git repository.
+// cleanupLegacyTemplateDir deletes an existing ~/.khulnasoft/templates directory if it isn't a git repository.
 func cleanupLegacyTemplateDir(templateKind TemplateKind) error {
 	templateDir, err := GetTemplateDir(templateKind)
 	if err != nil {
@@ -251,9 +251,9 @@ func cleanupLegacyTemplateDir(templateKind TemplateKind) error {
 	// Select the appropriate remote
 	var url string
 	if templateKind == TemplateKindPolicyPack {
-		url = pulumiPolicyTemplateGitRepository
+		url = khulnasoftPolicyTemplateGitRepository
 	} else {
-		url = pulumiTemplateGitRepository
+		url = khulnasoftTemplateGitRepository
 	}
 	remotes, err := repo.Remotes()
 	if err != nil {
@@ -309,7 +309,7 @@ func retrieveURLTemplates(
 
 	// Create a temp dir.
 	var temp string
-	if temp, err = os.MkdirTemp("", "pulumi-template-"); err != nil {
+	if temp, err = os.MkdirTemp("", "khulnasoft-template-"); err != nil {
 		return TemplateRepository{}, err
 	}
 
@@ -336,7 +336,7 @@ func retrieveFileTemplates(path string) (TemplateRepository, error) {
 
 // retrievePulumiTemplates retrieves the "template repository" for Pulumi templates.
 // Instead of retrieving to a temporary directory, the Pulumi templates are managed from
-// ~/.pulumi/templates.
+// ~/.khulnasoft/templates.
 func retrievePulumiTemplates(
 	ctx context.Context, templateName string, offline bool, templateKind TemplateKind,
 ) (TemplateRepository, error) {
@@ -359,12 +359,12 @@ func retrievePulumiTemplates(
 	}
 
 	if !offline {
-		// Clone or update the pulumi/templates repo.
-		repo := pulumiTemplateGitRepository
-		branch := plumbing.NewBranchReferenceName(pulumiTemplateBranch)
+		// Clone or update the khulnasoft/templates repo.
+		repo := khulnasoftTemplateGitRepository
+		branch := plumbing.NewBranchReferenceName(khulnasoftTemplateBranch)
 		if templateKind == TemplateKindPolicyPack {
-			repo = pulumiPolicyTemplateGitRepository
-			branch = plumbing.NewBranchReferenceName(pulumiPolicyTemplateBranch)
+			repo = khulnasoftPolicyTemplateGitRepository
+			branch = plumbing.NewBranchReferenceName(khulnasoftPolicyTemplateBranch)
 		}
 		err := gitutil.GitCloneOrPull(ctx, repo, branch, templateDir, false /*shallow*/)
 		if err != nil {
@@ -614,9 +614,9 @@ func LoadPolicyPackTemplate(path string) (PolicyPackTemplate, error) {
 
 // GetTemplateDir returns the directory in which templates on the current machine are stored.
 func GetTemplateDir(templateKind TemplateKind) (string, error) {
-	envVar := pulumiLocalTemplatePathEnvVar
+	envVar := khulnasoftLocalTemplatePathEnvVar
 	if templateKind == TemplateKindPolicyPack {
-		envVar = pulumiLocalPolicyTemplatePathEnvVar
+		envVar = khulnasoftLocalPolicyTemplatePathEnvVar
 	}
 	// Allow the folder we use to store templates to be overridden.
 	dir := os.Getenv(envVar)

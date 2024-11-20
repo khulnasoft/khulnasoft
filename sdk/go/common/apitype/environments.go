@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/pulumi/esc"
+	"github.com/khulnasoft/esc"
 )
 
 type EnvironmentDiagnostic struct {

@@ -24,7 +24,7 @@ concurrency:
 jobs:
   info:
     name: info
-    uses: pulumi/pulumi/.github/workflows/ci-info.yml@master
+    uses: khulnasoft/khulnasoft/.github/workflows/ci-info.yml@master
     permissions:
       contents: read
     with:
@@ -52,7 +52,7 @@ jobs:
   ci:
     name: CI
     needs: [info]
-    uses: pulumi/pulumi/.github/workflows/ci.yml@master
+    uses: khulnasoft/khulnasoft/.github/workflows/ci.yml@master
     permissions:
       contents: read
       # To sign artifacts.

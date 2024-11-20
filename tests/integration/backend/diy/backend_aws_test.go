@@ -64,6 +64,6 @@ func TestAwsLogin(t *testing.T) {
 	t.Setenv("AWS_ACCESS_KEY_ID", creds.AccessKeyID)
 	t.Setenv("AWS_SECRET_ACCESS_KEY", creds.SecretAccessKey)
 	t.Setenv("AWS_SESSION_TOKEN", creds.SessionToken)
-	cloudURL := "s3://pulumitesting"
+	cloudURL := "s3://khulnasofttesting"
 	loginAndCreateStack(t, cloudURL)
 }

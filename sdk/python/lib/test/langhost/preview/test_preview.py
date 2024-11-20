@@ -17,7 +17,7 @@ from ..util import LanghostTest
 
 class PreviewTest(LanghostTest):
     """
-    Test that tests that pulumi.runtime.is_dry_run actually returns True on previews and False on updates.
+    Test that tests that khulnasoft.runtime.is_dry_run actually returns True on previews and False on updates.
     """
 
     def test_preview(self):

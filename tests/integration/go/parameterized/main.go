@@ -1,14 +1,14 @@
 package main
 
 import (
-	"example.com/pulumi-pkg/sdk/go/pkg"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"example.com/khulnasoft-pkg/sdk/go/pkg"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := pkg.NewRandom(ctx, "random", &pkg.RandomArgs{
-			Length: pulumi.Int(8),
+			Length: khulnasoft.Int(8),
 		})
 		if err != nil {
 			return err
@@ -23,7 +23,7 @@ func main() {
 		}
 
 		_ = pkg.DoEchoOutput(ctx, pkg.DoEchoOutputArgs{
-			Echo: pulumi.String("hello"),
+			Echo: khulnasoft.String("hello"),
 		})
 
 		p, err := pkg.NewEcho(ctx, "echo", &pkg.EchoArgs{})
@@ -32,7 +32,7 @@ func main() {
 		}
 
 		_, err = p.DoEchoMethod(ctx, &pkg.EchoDoEchoMethodArgs{
-			Echo: pulumi.String("hello"),
+			Echo: khulnasoft.String("hello"),
 		})
 		return err
 	})

@@ -14,21 +14,21 @@
 
 from typing import Optional
 
-import pulumi
+import khulnasoft
 
 
-class Instance(pulumi.CustomResource):
-    public_ip: pulumi.Output[str]
+class Instance(khulnasoft.CustomResource):
+    public_ip: khulnasoft.Output[str]
 
     def __init__(
         self,
         resource_name,
-        name: pulumi.Input[str] = None,
-        value: pulumi.Input[str] = None,
+        name: khulnasoft.Input[str] = None,
+        value: khulnasoft.Input[str] = None,
         opts=None,
     ):
         if opts is None:
-            opts = pulumi.ResourceOptions()
+            opts = khulnasoft.ResourceOptions()
         if name is None and not opts.urn:
             raise TypeError("Missing required property 'name'")
         __props__ = {}
@@ -40,46 +40,46 @@ class Instance(pulumi.CustomResource):
         )
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class DefaultLogGroupArgs:
     def __init__(self, *, skip: Optional[bool] = None):
         if skip is not None:
-            pulumi.set(self, "skip", skip)
+            khulnasoft.set(self, "skip", skip)
 
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def skip(self) -> Optional[bool]:
-        return pulumi.get(self, "skip")
+        return khulnasoft.get(self, "skip")
 
     @skip.setter
     def skip(self, value: Optional[bool]):
-        pulumi.set(self, "skip", value)
+        khulnasoft.set(self, "skip", value)
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class FargateTaskDefinitionArgs:
     def __init__(self, *, log_group: Optional[DefaultLogGroupArgs] = None):
         if log_group is not None:
-            pulumi.set(self, "log_group", log_group)
+            khulnasoft.set(self, "log_group", log_group)
 
     @property
-    @pulumi.getter(name="logGroup")
+    @khulnasoft.getter(name="logGroup")
     def log_group(self) -> Optional[DefaultLogGroupArgs]:
-        return pulumi.get(self, "log_group")
+        return khulnasoft.get(self, "log_group")
 
     @log_group.setter
     def log_group(self, value: Optional[DefaultLogGroupArgs]):
-        pulumi.set(self, "log_group", value)
+        khulnasoft.set(self, "log_group", value)
 
 
 # This resource has an input named `logGroup` typed as `DefaultLogGroupArgs` and an output named `logGroup` typed
 # as `Instance`. When the provider returns no value for `logGroup`, it should not try to set the output to the
 # input value due to the type mismatch.
-class FargateTaskDefinition(pulumi.ComponentResource):
+class FargateTaskDefinition(khulnasoft.ComponentResource):
     def __init__(
         self,
         resource_name: str,
-        log_group: Optional[pulumi.InputType[DefaultLogGroupArgs]] = None,
+        log_group: Optional[khulnasoft.InputType[DefaultLogGroupArgs]] = None,
     ):
         __props__ = FargateTaskDefinitionArgs.__new__(FargateTaskDefinitionArgs)
         __props__.__dict__["log_group"] = log_group
@@ -92,9 +92,9 @@ class FargateTaskDefinition(pulumi.ComponentResource):
         )
 
     @property
-    @pulumi.getter(name="logGroup")
-    def log_group(self) -> pulumi.Output[Optional[Instance]]:
-        return pulumi.get(self, "log_group")
+    @khulnasoft.getter(name="logGroup")
+    def log_group(self) -> khulnasoft.Output[Optional[Instance]]:
+        return khulnasoft.get(self, "log_group")
 
 
 task_def = FargateTaskDefinition("task_def", log_group=DefaultLogGroupArgs(skip=True))

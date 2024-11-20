@@ -12,28 +12,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pulumi
+import khulnasoft
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class MyResourceArgs:
-    def __init__(self, policy: pulumi.Input[str]):
-        pulumi.set(self, "policy", policy)
+    def __init__(self, policy: khulnasoft.Input[str]):
+        khulnasoft.set(self, "policy", policy)
 
     @property
-    @pulumi.getter
-    def policy(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "policy")
+    @khulnasoft.getter
+    def policy(self) -> khulnasoft.Input[str]:
+        return khulnasoft.get(self, "policy")
 
 
-class MyResource(pulumi.CustomResource):
+class MyResource(khulnasoft.CustomResource):
     def __init__(self, name, args: MyResourceArgs):
         super().__init__("test:index:MyResource", name, args)
 
     @property
-    @pulumi.getter
-    def policy(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "policy")
+    @khulnasoft.getter
+    def policy(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "policy")
 
 
 r1 = MyResource("testResource", MyResourceArgs(policy='{"hello": "world"}'))
@@ -45,5 +45,5 @@ r1 = MyResource("testResource", MyResourceArgs(policy='{"hello": "world"}'))
 # cases should continue to work as before without an error being raised by the SDK.
 r2 = MyResource("testResource", MyResourceArgs(policy={"hello": "world"}))
 
-pulumi.export("r1.policy", r1.policy)
-pulumi.export("r2.policy", r2.policy)
+khulnasoft.export("r1.policy", r1.policy)
+khulnasoft.export("r2.policy", r2.policy)

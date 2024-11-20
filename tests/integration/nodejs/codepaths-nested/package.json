@@ -3,7 +3,7 @@
     "description": "The package json is in a parent directory and we need to discover the node_modules from the parent directory when we compute the codepaths.",
     "main": "nested/index.ts",
     "dependencies": {
-        "@pulumi/pulumi": "latest",
+        "@khulnasoft/khulnasoft": "latest",
         "semver": "^7.6.0"
     }
 }

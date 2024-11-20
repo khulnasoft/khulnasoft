@@ -17,7 +17,7 @@ import (
 	"testing"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -29,20 +29,20 @@ func deleteIfNotFailed(e *ptesting.Environment) {
 	}
 }
 
-// assertHasNoHistory runs `pulumi history` and confirms an error that the stack has not
+// assertHasNoHistory runs `khulnasoft history` and confirms an error that the stack has not
 // ever been updated.
 func assertHasNoHistory(e *ptesting.Environment) {
-	// NOTE: pulumi returns with exit code 0 in this scenario.
-	out, err := e.RunCommand("pulumi", "stack", "history")
+	// NOTE: khulnasoft returns with exit code 0 in this scenario.
+	out, err := e.RunCommand("khulnasoft", "stack", "history")
 	assert.Equal(e.T, "", err)
 	assert.Equal(e.T, "Stack has never been updated\n", out)
 }
 
-// assertNoResultsOnPage runs `pulumi history` and confirms an error that the stack has no
+// assertNoResultsOnPage runs `khulnasoft history` and confirms an error that the stack has no
 // updates in the given pagination window
 func assertNoResultsOnPage(e *ptesting.Environment) {
-	// NOTE: pulumi returns with exit code 0 in this scenario.
-	out, err := e.RunCommand("pulumi", "stack", "history", "--page-size", "1", "--page", "10000000")
+	// NOTE: khulnasoft returns with exit code 0 in this scenario.
+	out, err := e.RunCommand("khulnasoft", "stack", "history", "--page-size", "1", "--page", "10000000")
 	assert.Equal(e.T, "", err)
 	assert.Equal(e.T, "No stack updates found on page '10000000'\n", out)
 }
@@ -57,8 +57,8 @@ func TestHistoryCommand(t *testing.T) {
 		e := ptesting.NewEnvironment(t)
 		defer deleteIfNotFailed(e)
 		integration.CreateBasicPulumiRepo(e)
-		e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-		out, err := e.RunCommandExpectError("pulumi", "stack", "history")
+		e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+		out, err := e.RunCommandExpectError("khulnasoft", "stack", "history")
 		assert.Equal(t, "", out)
 		assert.Contains(t, err, "error: no stack selected")
 	})
@@ -70,8 +70,8 @@ func TestHistoryCommand(t *testing.T) {
 		e := ptesting.NewEnvironment(t)
 		defer deleteIfNotFailed(e)
 		integration.CreateBasicPulumiRepo(e)
-		e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-		e.RunCommand("pulumi", "stack", "init", "no-updates-test")
+		e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+		e.RunCommand("khulnasoft", "stack", "init", "no-updates-test")
 		assertHasNoHistory(e)
 	})
 
@@ -83,30 +83,30 @@ func TestHistoryCommand(t *testing.T) {
 		defer deleteIfNotFailed(e)
 		integration.CreateBasicPulumiRepo(e)
 		e.ImportDirectory("integration/stack_dependencies")
-		e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+		e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 		e.ImportDirectory("integration/stack_outputs")
-		e.RunCommand("pulumi", "stack", "init", "stack-without-updates")
-		e.RunCommand("pulumi", "stack", "init", "history-test")
-		e.RunCommand("yarn", "link", "@pulumi/pulumi")
+		e.RunCommand("khulnasoft", "stack", "init", "stack-without-updates")
+		e.RunCommand("khulnasoft", "stack", "init", "history-test")
+		e.RunCommand("yarn", "link", "@khulnasoft/khulnasoft")
 		e.RunCommand("yarn", "install")
 		// Update the history-test stack.
-		e.RunCommand("pulumi", "up", "--non-interactive", "--yes", "--skip-preview", "-m", "this is an updated stack")
+		e.RunCommand("khulnasoft", "up", "--non-interactive", "--yes", "--skip-preview", "-m", "this is an updated stack")
 		// Confirm we see the update message in thie history output.
-		out, err := e.RunCommand("pulumi", "stack", "history")
+		out, err := e.RunCommand("khulnasoft", "stack", "history")
 		assert.Equal(t, "", err)
 		assert.Contains(t, out, "this is an updated stack")
 		// Confirm we see the update message in thie history output, with pagination.
-		out, err = e.RunCommand("pulumi", "stack", "history", "--page-size", "1")
+		out, err = e.RunCommand("khulnasoft", "stack", "history", "--page-size", "1")
 		assert.Equal(t, "", err)
 		assert.Contains(t, out, "this is an updated stack")
 		// Get an error message when we page too far
 		assertNoResultsOnPage(e)
 		// Change stack and confirm the history command honors the selected stack.
-		e.RunCommand("pulumi", "stack", "select", "stack-without-updates")
+		e.RunCommand("khulnasoft", "stack", "select", "stack-without-updates")
 		assertHasNoHistory(e)
 		// Change stack back, and confirm still has history.
-		e.RunCommand("pulumi", "stack", "select", "history-test")
-		out, err = e.RunCommand("pulumi", "stack", "history")
+		e.RunCommand("khulnasoft", "stack", "select", "history-test")
+		out, err = e.RunCommand("khulnasoft", "stack", "history")
 		assert.Equal(t, "", err)
 		assert.Contains(t, out, "this is an updated stack")
 	})

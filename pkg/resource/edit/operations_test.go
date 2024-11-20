@@ -23,9 +23,9 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/version"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -192,7 +192,7 @@ func TestDeletingDuplicateProviderURN(t *testing.T) {
 
 		err := DeleteResource(snap, pA0, nil, false /* targetDependents */)
 		require.ErrorContains(t, err,
-			"Can't delete resource \"urn:pulumi:test::test::pulumi:providers:a::p1\" due to dependent resources")
+			"Can't delete resource \"urn:khulnasoft:test::test::khulnasoft:providers:a::p1\" due to dependent resources")
 	})
 
 	t.Run("do-target-dependents-one-intermediate", func(t *testing.T) {
@@ -216,7 +216,7 @@ func TestDeletingDuplicateProviderURN(t *testing.T) {
 
 		err := DeleteResource(snap, pA0, nil, false /* targetDependents */)
 		require.ErrorContains(t, err,
-			"Can't delete resource \"urn:pulumi:test::test::pulumi:providers:a::p1\" due to dependent resources")
+			"Can't delete resource \"urn:khulnasoft:test::test::khulnasoft:providers:a::p1\" due to dependent resources")
 	})
 }
 
@@ -258,7 +258,7 @@ func TestDeletingDuplicateProviderURNWithDependents(t *testing.T) {
 
 		err := DeleteResource(snap, pA0, nil, false /* targetDependents */)
 		require.ErrorContains(t, err,
-			"Can't delete resource \"urn:pulumi:test::test::pulumi:providers:a::p1\" due to dependent resources")
+			"Can't delete resource \"urn:khulnasoft:test::test::khulnasoft:providers:a::p1\" due to dependent resources")
 	})
 }
 

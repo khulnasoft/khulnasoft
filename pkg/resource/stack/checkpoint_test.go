@@ -18,7 +18,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
 	"github.com/stretchr/testify/assert"
 )
 

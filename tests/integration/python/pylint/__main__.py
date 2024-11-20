@@ -4,8 +4,8 @@
 
 import binascii
 import os
-import pulumi
-from pulumi.dynamic import Resource, ResourceProvider, CreateResult
+import khulnasoft
+from khulnasoft.dynamic import Resource, ResourceProvider, CreateResult
 
 
 class RandomResourceProvider(ResourceProvider):
@@ -26,7 +26,7 @@ class Random(Resource):
 
 r = Random("foo")
 
-pulumi.export("cwd", os.getcwd())
-pulumi.export("random_urn", r.urn)
-pulumi.export("random_id", r.id)
-pulumi.export("random_val", r.val)
+khulnasoft.export("cwd", os.getcwd())
+khulnasoft.export("random_urn", r.urn)
+khulnasoft.export("random_id", r.id)
+khulnasoft.export("random_val", r.val)

@@ -14,19 +14,19 @@
 
 import * as assert from "assert";
 
-import * as pulumi from "..";
+import * as khulnasoft from "..";
 import * as internals from "../provider/internals";
 
 import * as gstruct from "google-protobuf/google/protobuf/struct_pb";
 
-class TestResource extends pulumi.CustomResource {
-    constructor(name: string, opts?: pulumi.CustomResourceOptions) {
+class TestResource extends khulnasoft.CustomResource {
+    constructor(name: string, opts?: khulnasoft.CustomResourceOptions) {
         super("test:index:TestResource", name, {}, opts);
     }
 }
 
-class TestModule implements pulumi.runtime.ResourceModule {
-    construct(name: string, type: string, urn: string): pulumi.Resource {
+class TestModule implements khulnasoft.runtime.ResourceModule {
+    construct(name: string, type: string, urn: string): khulnasoft.Resource {
         switch (type) {
             case "test:index:TestResource":
                 return new TestResource(name, { urn });
@@ -36,12 +36,12 @@ class TestModule implements pulumi.runtime.ResourceModule {
     }
 }
 
-class TestMocks implements pulumi.runtime.Mocks {
-    call(args: pulumi.runtime.MockCallArgs): Record<string, any> {
+class TestMocks implements khulnasoft.runtime.Mocks {
+    call(args: khulnasoft.runtime.MockCallArgs): Record<string, any> {
         throw new Error(`unknown function ${args.token}`);
     }
 
-    newResource(args: pulumi.runtime.MockResourceArgs): { id: string | undefined; state: Record<string, any> } {
+    newResource(args: khulnasoft.runtime.MockResourceArgs): { id: string | undefined; state: Record<string, any> } {
         return {
             id: args.name + "_id",
             state: args.inputs,
@@ -67,9 +67,9 @@ describe("provider", () => {
 
     describe("deserializeInputs", () => {
         beforeEach(() => {
-            pulumi.runtime._reset();
-            pulumi.runtime._resetResourcePackages();
-            pulumi.runtime._resetResourceModules();
+            khulnasoft.runtime._reset();
+            khulnasoft.runtime._resetResourcePackages();
+            khulnasoft.runtime._resetResourceModules();
         });
 
         async function assertOutputEqual(
@@ -77,9 +77,9 @@ describe("provider", () => {
             value: ((v: any) => Promise<void>) | any,
             known: boolean,
             secret: boolean,
-            deps?: pulumi.URN[],
+            deps?: khulnasoft.URN[],
         ) {
-            assert.ok(pulumi.Output.isInstance(actual));
+            assert.ok(khulnasoft.Output.isInstance(actual));
 
             if (typeof value === "function") {
                 await value(await actual.promise());
@@ -90,40 +90,40 @@ describe("provider", () => {
             assert.deepStrictEqual(await actual.isKnown, known);
             assert.deepStrictEqual(await actual.isSecret, secret);
 
-            const actualDeps = new Set<pulumi.URN>();
+            const actualDeps = new Set<khulnasoft.URN>();
             const resources = await actual.allResources!();
             for (const r of resources) {
                 const urn = await r.urn.promise();
                 actualDeps.add(urn);
             }
-            assert.deepStrictEqual(actualDeps, new Set<pulumi.URN>(deps ?? []));
+            assert.deepStrictEqual(actualDeps, new Set<khulnasoft.URN>(deps ?? []));
         }
 
         function createSecret(value: any) {
             return {
-                [pulumi.runtime.specialSigKey]: pulumi.runtime.specialSecretSig,
+                [khulnasoft.runtime.specialSigKey]: khulnasoft.runtime.specialSecretSig,
                 value,
             };
         }
 
-        function createResourceRef(urn: pulumi.URN, id?: pulumi.ID) {
+        function createResourceRef(urn: khulnasoft.URN, id?: khulnasoft.ID) {
             return {
-                [pulumi.runtime.specialSigKey]: pulumi.runtime.specialResourceSig,
+                [khulnasoft.runtime.specialSigKey]: khulnasoft.runtime.specialResourceSig,
                 urn,
                 ...(id && { id }),
             };
         }
 
-        function createOutputValue(value?: any, secret?: boolean, dependencies?: pulumi.URN[]) {
+        function createOutputValue(value?: any, secret?: boolean, dependencies?: khulnasoft.URN[]) {
             return {
-                [pulumi.runtime.specialSigKey]: pulumi.runtime.specialOutputValueSig,
+                [khulnasoft.runtime.specialSigKey]: khulnasoft.runtime.specialOutputValueSig,
                 ...(value !== undefined && { value }),
                 ...(secret && { secret }),
                 ...(dependencies && { dependencies }),
             };
         }
 
-        const testURN = "urn:pulumi:stack::project::test:index:TestResource::name";
+        const testURN = "urn:khulnasoft:stack::project::test:index:TestResource::name";
         const testID = "name_id";
 
         const tests: {
@@ -135,7 +135,7 @@ describe("provider", () => {
         }[] = [
             {
                 name: "unknown",
-                input: pulumi.runtime.unknownValue,
+                input: khulnasoft.runtime.unknownValue,
                 deps: ["fakeURN"],
                 assert: async (actual) => {
                     await assertOutputEqual(actual, undefined, false, false, ["fakeURN"]);
@@ -143,7 +143,7 @@ describe("provider", () => {
             },
             {
                 name: "array nested unknown",
-                input: [pulumi.runtime.unknownValue],
+                input: [khulnasoft.runtime.unknownValue],
                 deps: ["fakeURN"],
                 assert: async (actual) => {
                     await assertOutputEqual(actual, undefined, false, false, ["fakeURN"]);
@@ -151,7 +151,7 @@ describe("provider", () => {
             },
             {
                 name: "object nested unknown",
-                input: { foo: pulumi.runtime.unknownValue },
+                input: { foo: khulnasoft.runtime.unknownValue },
                 deps: ["fakeURN"],
                 assert: async (actual) => {
                     await assertOutputEqual(actual, undefined, false, false, ["fakeURN"]);
@@ -194,7 +194,7 @@ describe("provider", () => {
                 input: { foo: createOutputValue(undefined, false, ["fakeURN"]) },
                 deps: ["fakeURN"],
                 assert: async (actual) => {
-                    assert.ok(!pulumi.Output.isInstance(actual));
+                    assert.ok(!khulnasoft.Output.isInstance(actual));
                     await assertOutputEqual(actual.foo, undefined, false, false, ["fakeURN"]);
                 },
             },
@@ -202,7 +202,7 @@ describe("provider", () => {
                 name: "object nested unknown output value (no deps)",
                 input: { foo: createOutputValue(undefined, false, ["fakeURN"]) },
                 assert: async (actual) => {
-                    assert.ok(!pulumi.Output.isInstance(actual));
+                    assert.ok(!khulnasoft.Output.isInstance(actual));
                     await assertOutputEqual(actual.foo, undefined, false, false, ["fakeURN"]);
                 },
             },
@@ -258,7 +258,7 @@ describe("provider", () => {
                 input: { foo: createOutputValue("hi", false, ["fakeURN"]) },
                 deps: ["fakeURN"],
                 assert: async (actual) => {
-                    assert.ok(!pulumi.Output.isInstance(actual));
+                    assert.ok(!khulnasoft.Output.isInstance(actual));
                     await assertOutputEqual(actual.foo, "hi", true, false, ["fakeURN"]);
                 },
             },
@@ -266,7 +266,7 @@ describe("provider", () => {
                 name: "object nested string output value (no deps)",
                 input: { foo: createOutputValue("hi", false, ["fakeURN"]) },
                 assert: async (actual) => {
-                    assert.ok(!pulumi.Output.isInstance(actual));
+                    assert.ok(!khulnasoft.Output.isInstance(actual));
                     await assertOutputEqual(actual.foo, "hi", true, false, ["fakeURN"]);
                 },
             },
@@ -310,7 +310,7 @@ describe("provider", () => {
                 name: "object nested string secret output value (no deps)",
                 input: { foo: createOutputValue("shh", true) },
                 assert: async (actual) => {
-                    assert.ok(!pulumi.Output.isInstance(actual));
+                    assert.ok(!khulnasoft.Output.isInstance(actual));
                     await assertOutputEqual(actual.foo, "shh", true, true);
                 },
             },
@@ -351,7 +351,7 @@ describe("provider", () => {
                 input: { foo: createOutputValue("shh", true, ["fakeURN1", "fakeURN2"]) },
                 deps: ["fakeURN1", "fakeURN2"],
                 assert: async (actual) => {
-                    assert.ok(!pulumi.Output.isInstance(actual));
+                    assert.ok(!khulnasoft.Output.isInstance(actual));
                     await assertOutputEqual(actual.foo, "shh", true, true, ["fakeURN1", "fakeURN2"]);
                 },
             },
@@ -359,7 +359,7 @@ describe("provider", () => {
                 name: "object nested string secret output value (no deps)",
                 input: { foo: createOutputValue("shh", true, ["fakeURN1", "fakeURN2"]) },
                 assert: async (actual) => {
-                    assert.ok(!pulumi.Output.isInstance(actual));
+                    assert.ok(!khulnasoft.Output.isInstance(actual));
                     await assertOutputEqual(actual.foo, "shh", true, true, ["fakeURN1", "fakeURN2"]);
                 },
             },
@@ -469,7 +469,7 @@ describe("provider", () => {
                 },
                 deps: [testURN],
                 assert: async (actual) => {
-                    assert.ok(!pulumi.Output.isInstance(actual));
+                    assert.ok(!khulnasoft.Output.isInstance(actual));
                     assert.ok(actual.foo instanceof TestResource);
                     assert.deepStrictEqual(await actual.foo.urn.promise(), testURN);
                     assert.deepStrictEqual(await actual.foo.id.promise(), testID);
@@ -483,7 +483,7 @@ describe("provider", () => {
                     bar: createOutputValue("shh", true),
                 },
                 assert: async (actual) => {
-                    assert.ok(!pulumi.Output.isInstance(actual));
+                    assert.ok(!khulnasoft.Output.isInstance(actual));
                     assert.ok(actual.foo instanceof TestResource);
                     assert.deepStrictEqual(await actual.foo.urn.promise(), testURN);
                     assert.deepStrictEqual(await actual.foo.id.promise(), testID);
@@ -493,8 +493,8 @@ describe("provider", () => {
         ];
         for (const test of tests) {
             it(`deserializes '${test.name}' correctly`, async () => {
-                pulumi.runtime.setMocks(new TestMocks(), "project", "stack", true);
-                pulumi.runtime.registerResourceModule("test", "index", new TestModule());
+                khulnasoft.runtime.setMocks(new TestMocks(), "project", "stack", true);
+                khulnasoft.runtime.registerResourceModule("test", "index", new TestModule());
                 const res = new TestResource("name"); // Create an instance so it can be deserialized.
                 await res.urn.promise();
 
@@ -505,7 +505,7 @@ describe("provider", () => {
                         getUrnsList: () => test.deps,
                     }),
                 };
-                const result = await pulumi.provider.deserializeInputs(inputsStruct, inputDependencies);
+                const result = await khulnasoft.provider.deserializeInputs(inputsStruct, inputDependencies);
                 const actual = result["value"];
 
                 if (test.assert) {
@@ -525,38 +525,38 @@ describe("provider", () => {
         }[] = [
             {
                 name: "Output",
-                input: pulumi.Output.create("hi"),
+                input: khulnasoft.Output.create("hi"),
                 expected: true,
             },
             {
                 name: "[Output]",
-                input: [pulumi.Output.create("hi")],
+                input: [khulnasoft.Output.create("hi")],
                 expected: true,
             },
             {
                 name: "{ foo: Output }",
-                input: { foo: pulumi.Output.create("hi") },
+                input: { foo: khulnasoft.Output.create("hi") },
                 expected: true,
             },
             {
                 name: "Resource",
-                input: new pulumi.DependencyResource("fakeURN"),
+                input: new khulnasoft.DependencyResource("fakeURN"),
                 expected: false,
             },
             {
                 name: "[Resource]",
-                input: [new pulumi.DependencyResource("fakeURN")],
+                input: [new khulnasoft.DependencyResource("fakeURN")],
                 expected: false,
             },
             {
                 name: "{ foo: Resource }",
-                input: { foo: new pulumi.DependencyResource("fakeURN") },
+                input: { foo: new khulnasoft.DependencyResource("fakeURN") },
                 expected: false,
             },
         ];
         for (const test of tests) {
             it(`${test.name} should return ${test.expected}`, () => {
-                const actual = pulumi.provider.containsOutputs(test.input);
+                const actual = khulnasoft.provider.containsOutputs(test.input);
                 assert.strictEqual(actual, test.expected);
             });
         }

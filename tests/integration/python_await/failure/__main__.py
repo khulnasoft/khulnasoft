@@ -1,5 +1,5 @@
 import asyncio
-import pulumi
+import khulnasoft
 
-output = pulumi.Output.from_input(asyncio.sleep(1, []))
+output = khulnasoft.Output.from_input(asyncio.sleep(1, []))
 output.apply(lambda x: x[0])

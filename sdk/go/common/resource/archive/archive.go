@@ -34,17 +34,17 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/asset"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/sig"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/httputil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/asset"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/sig"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/httputil"
 )
 
 const (
 	// BookkeepingDir is the name of our bookkeeping folder, we store state here (like .git for git).
 	// Copied from workspace.BookkeepingDir to break import cycle.
-	BookkeepingDir = ".pulumi"
+	BookkeepingDir = ".khulnasoft"
 )
 
 // Archive is a serialized archive reference.  It is a union: thus, only one of its fields will be non-nil.  Several
@@ -500,8 +500,8 @@ func (a *Archive) readPath(wd string) (Reader, error) {
 				return fileerr
 			}
 
-			// If this is a .pulumi directory, we will skip this by default.
-			// TODO[pulumi/pulumi#122]: when we support .pulumiignore, this will be customizable.
+			// If this is a .khulnasoft directory, we will skip this by default.
+			// TODO[khulnasoft/khulnasoft#122]: when we support .khulnasoftignore, this will be customizable.
 			if f.Name() == BookkeepingDir {
 				if f.IsDir() {
 					return filepath.SkipDir

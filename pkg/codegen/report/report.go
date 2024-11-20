@@ -28,7 +28,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
 	hcl2 "github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/version"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/env"
 )
 
 var ExportTargetDir = env.String("CODEGEN_REPORT_DIR",

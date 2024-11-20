@@ -14,8 +14,8 @@
 
 // Package auto contains the Pulumi Automation API, the programmatic interface for driving Pulumi programs
 // without the CLI.
-// Generally this can be thought of as encapsulating the functionality of the CLI (`pulumi up`, `pulumi preview`,
-// pulumi destroy`, `pulumi stack init`, etc.) but with more flexibility. This still requires a
+// Generally this can be thought of as encapsulating the functionality of the CLI (`khulnasoft up`, `khulnasoft preview`,
+// khulnasoft destroy`, `khulnasoft stack init`, etc.) but with more flexibility. This still requires a
 // CLI binary to be installed and available on your $PATH.
 //
 // In addition to fine-grained building blocks, Automation API provides three out of the box ways to work with Stacks:
@@ -25,12 +25,12 @@
 //
 //  2. Programs fetched from a Git URL (NewStackRemoteSource)
 //     stack, err := NewStackRemoteSource(ctx, "myOrg/myProj/myStack", GitRepo{
-//     URL:         "https://github.com/pulumi/test-repo.git",
+//     URL:         "https://github.com/khulnasoft/test-repo.git",
 //     ProjectPath: filepath.Join("project", "path", "repo", "root", "relative"),
 //     })
 //
 //  3. Programs defined as a function alongside your Automation API code (NewStackInlineSource)
-//     stack, err := NewStackInlineSource(ctx, "myOrg/myProj/myStack", func(pCtx *pulumi.Context) error {
+//     stack, err := NewStackInlineSource(ctx, "myOrg/myProj/myStack", func(pCtx *khulnasoft.Context) error {
 //     bucket, err := s3.NewBucket(pCtx, "bucket", nil)
 //     if err != nil {
 //     return err
@@ -51,7 +51,7 @@
 // feeding the output of one stack as an input to the next as shown in the package-level example below.
 // The package can be used for a number of use cases:
 //
-//   - Driving pulumi deployments within CI/CD workflows
+//   - Driving khulnasoft deployments within CI/CD workflows
 //
 //   - Integration testing
 //
@@ -59,9 +59,9 @@
 //
 //   - Deployments involving application code like database migrations
 //
-//   - Building higher level tools, custom CLIs over pulumi, etc
+//   - Building higher level tools, custom CLIs over khulnasoft, etc
 //
-//   - Using pulumi behind a REST or GRPC API
+//   - Using khulnasoft behind a REST or GRPC API
 //
 //   - Debugging Pulumi programs (by using a single main entrypoint with "inline" programs)
 //
@@ -76,7 +76,7 @@
 //
 // Workspaces can be explicitly created and customized beyond the three Stack creation helpers noted above:
 //
-//	w, err := NewLocalWorkspace(ctx, WorkDir(filepath.Join(".", "project", "path"), PulumiHome("~/.pulumi"))
+//	w, err := NewLocalWorkspace(ctx, WorkDir(filepath.Join(".", "project", "path"), PulumiHome("~/.khulnasoft"))
 //	s := NewStack(ctx, "org/proj/stack", w)
 //
 // A default implementation of workspace is provided as `LocalWorkspace`. This implementation relies on Pulumi.yaml
@@ -110,32 +110,32 @@ import (
 	"sync"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optimport"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optimport"
 
 	"github.com/blang/semver"
 	"github.com/nxadm/tail"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/debug"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/events"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optdestroy"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/opthistory"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optpreview"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optrefresh"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optup"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/constant"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/debug"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/events"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optdestroy"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/opthistory"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optpreview"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optrefresh"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optup"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/constant"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // Stack is an isolated, independently configurable instance of a Pulumi program.
-// Stack exposes methods for the full pulumi lifecycle (up/preview/refresh/destroy), as well as managing configuration.
+// Stack exposes methods for the full khulnasoft lifecycle (up/preview/refresh/destroy), as well as managing configuration.
 // Multiple Stacks are commonly used to denote different phases of development
 // (such as development, staging and production) or feature branches (such as feature-x-dev, jane-feature-x-dev).
 type Stack struct {
@@ -148,7 +148,7 @@ type Stack struct {
 // Using this format avoids ambiguity in stack identity guards creating or selecting the wrong stack.
 // Note that legacy diy backends (local file, S3, Azure Blob) do not support stack names in this
 // format, and instead only use the stack name without an org/user or project to qualify it.
-// See: https://github.com/pulumi/pulumi/issues/2522.
+// See: https://github.com/khulnasoft/khulnasoft/issues/2522.
 // Non-legacy diy backends do support the org/project/stack format but org must be set to "organization".
 func FullyQualifiedStackName(org, project, stack string) string {
 	return fmt.Sprintf("%s/%s/%s", org, project, stack)
@@ -218,7 +218,7 @@ func (s *Stack) ChangeSecretsProvider(
 }
 
 // Preview preforms a dry-run update to a stack, returning pending changes.
-// https://www.pulumi.com/docs/cli/commands/pulumi_preview/
+// https://www.khulnasoft.com/docs/cli/commands/khulnasoft_preview/
 func (s *Stack) Preview(ctx context.Context, opts ...optpreview.Option) (PreviewResult, error) {
 	var res PreviewResult
 
@@ -359,7 +359,7 @@ func (s *Stack) Preview(ctx context.Context, opts ...optpreview.Option) (Preview
 }
 
 // Up creates or updates the resources in a stack by executing the program in the Workspace.
-// https://www.pulumi.com/docs/cli/commands/pulumi_up/
+// https://www.khulnasoft.com/docs/cli/commands/khulnasoft_up/
 func (s *Stack) Up(ctx context.Context, opts ...optup.Option) (UpResult, error) {
 	var res UpResult
 
@@ -499,7 +499,7 @@ func (s *Stack) ImportResources(ctx context.Context, opts ...optimport.Option) (
 		o.ApplyOption(importOpts)
 	}
 
-	tempDir, err := os.MkdirTemp("", "pulumi-import-")
+	tempDir, err := os.MkdirTemp("", "khulnasoft-import-")
 	if err != nil {
 		return res, fmt.Errorf("failed to create temp directory: %w", err)
 	}
@@ -590,7 +590,7 @@ func (s *Stack) ImportResources(ctx context.Context, opts ...optimport.Option) (
 func (s *Stack) PreviewRefresh(ctx context.Context, opts ...optrefresh.Option) (PreviewResult, error) {
 	var res PreviewResult
 
-	// 3.105.0 added this flag (https://github.com/pulumi/pulumi/releases/tag/v3.105.0)
+	// 3.105.0 added this flag (https://github.com/khulnasoft/khulnasoft/releases/tag/v3.105.0)
 	if s.Workspace().PulumiCommand().Version().LT(semver.Version{Major: 3, Minor: 105}) {
 		return res, errors.New("PreviewRefresh requires Pulumi CLI version >= 3.105.0")
 	}
@@ -771,7 +771,7 @@ func refreshOptsToCmd(o *optrefresh.Options, s *Stack, isPreview bool) []string 
 func (s *Stack) PreviewDestroy(ctx context.Context, opts ...optdestroy.Option) (PreviewResult, error) {
 	var res PreviewResult
 
-	// 3.105.0 added this flag (https://github.com/pulumi/pulumi/releases/tag/v3.105.0)
+	// 3.105.0 added this flag (https://github.com/khulnasoft/khulnasoft/releases/tag/v3.105.0)
 	if minVer := (semver.Version{Major: 3, Minor: 105}); s.Workspace().PulumiCommand().Version().LT(minVer) {
 		return res, fmt.Errorf("PreviewRefresh requires Pulumi CLI version >= %s", minVer)
 	}
@@ -891,7 +891,7 @@ func (s *Stack) Destroy(ctx context.Context, opts ...optdestroy.Option) (Destroy
 	}
 
 	// If `remove` was set, remove the stack now. We take this approach rather
-	// than passing `--remove` to `pulumi destroy` because the latter would make
+	// than passing `--remove` to `khulnasoft destroy` because the latter would make
 	// it impossible for us to retrieve a summary of the operation above for
 	// returning to the caller.
 	if destroyOpts.Remove {
@@ -1313,7 +1313,7 @@ func (s *Stack) runPulumiCmdSync(
 	}
 
 	if s.Workspace().PulumiHome() != "" {
-		homeEnv := fmt.Sprintf("%s=%s", pulumiHomeEnv, s.Workspace().PulumiHome())
+		homeEnv := fmt.Sprintf("%s=%s", khulnasoftHomeEnv, s.Workspace().PulumiHome())
 		env = append(env, homeEnv)
 	}
 	if envvars := s.Workspace().GetEnvVars(); envvars != nil {
@@ -1461,12 +1461,12 @@ const (
 )
 
 type languageRuntimeServer struct {
-	pulumirpc.UnimplementedLanguageRuntimeServer
+	khulnasoftrpc.UnimplementedLanguageRuntimeServer
 
 	m sync.Mutex
 	c *sync.Cond
 
-	fn      pulumi.RunFunc
+	fn      khulnasoft.RunFunc
 	address string
 
 	state  int
@@ -1474,7 +1474,7 @@ type languageRuntimeServer struct {
 	done   <-chan error
 }
 
-// isNestedInvocation returns true if pulumi.RunWithContext is on the stack.
+// isNestedInvocation returns true if khulnasoft.RunWithContext is on the stack.
 func isNestedInvocation() bool {
 	depth, callers := 0, make([]uintptr, 32)
 	for {
@@ -1486,16 +1486,16 @@ func isNestedInvocation() bool {
 
 		frames := runtime.CallersFrames(callers)
 		for f, more := frames.Next(); more; f, more = frames.Next() {
-			if f.Function == "github.com/pulumi/pulumi/sdk/v3/go/pulumi.RunWithContext" {
+			if f.Function == "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft.RunWithContext" {
 				return true
 			}
 		}
 	}
 }
 
-func startLanguageRuntimeServer(fn pulumi.RunFunc) (*languageRuntimeServer, error) {
+func startLanguageRuntimeServer(fn khulnasoft.RunFunc) (*languageRuntimeServer, error) {
 	if isNestedInvocation() {
-		return nil, errors.New("nested stack operations are not supported https://github.com/pulumi/pulumi/issues/5058")
+		return nil, errors.New("nested stack operations are not supported https://github.com/khulnasoft/khulnasoft/issues/5058")
 	}
 
 	s := &languageRuntimeServer{
@@ -1507,7 +1507,7 @@ func startLanguageRuntimeServer(fn pulumi.RunFunc) (*languageRuntimeServer, erro
 	handle, err := rpcutil.ServeWithOptions(rpcutil.ServeOptions{
 		Cancel: s.cancel,
 		Init: func(srv *grpc.Server) error {
-			pulumirpc.RegisterLanguageRuntimeServer(srv, s)
+			khulnasoftrpc.RegisterLanguageRuntimeServer(srv, s)
 			return nil
 		},
 		Options: rpcutil.OpenTracingServerInterceptorOptions(nil),
@@ -1541,12 +1541,12 @@ func (s *languageRuntimeServer) Close() error {
 }
 
 func (s *languageRuntimeServer) GetRequiredPlugins(ctx context.Context,
-	req *pulumirpc.GetRequiredPluginsRequest,
-) (*pulumirpc.GetRequiredPluginsResponse, error) {
-	return &pulumirpc.GetRequiredPluginsResponse{}, nil
+	req *khulnasoftrpc.GetRequiredPluginsRequest,
+) (*khulnasoftrpc.GetRequiredPluginsResponse, error) {
+	return &khulnasoftrpc.GetRequiredPluginsResponse{}, nil
 }
 
-func (s *languageRuntimeServer) Run(ctx context.Context, req *pulumirpc.RunRequest) (*pulumirpc.RunResponse, error) {
+func (s *languageRuntimeServer) Run(ctx context.Context, req *khulnasoftrpc.RunRequest) (*khulnasoftrpc.RunResponse, error) {
 	s.m.Lock()
 	if s.state == stateCanceled {
 		s.m.Unlock()
@@ -1566,7 +1566,7 @@ func (s *languageRuntimeServer) Run(ctx context.Context, req *pulumirpc.RunReque
 	if len(req.Args) > 0 {
 		engineAddress = req.Args[0]
 	}
-	runInfo := pulumi.RunInfo{
+	runInfo := khulnasoft.RunInfo{
 		EngineAddr:       engineAddress,
 		MonitorAddr:      req.GetMonitorAddress(),
 		Config:           req.GetConfig(),
@@ -1578,11 +1578,11 @@ func (s *languageRuntimeServer) Run(ctx context.Context, req *pulumirpc.RunReque
 		Organization:     req.GetOrganization(),
 	}
 
-	pulumiCtx, err := pulumi.NewContext(ctx, runInfo)
+	khulnasoftCtx, err := khulnasoft.NewContext(ctx, runInfo)
 	if err != nil {
 		return nil, err
 	}
-	defer pulumiCtx.Close()
+	defer khulnasoftCtx.Close()
 
 	err = func() (err error) {
 		defer func() {
@@ -1595,23 +1595,23 @@ func (s *languageRuntimeServer) Run(ctx context.Context, req *pulumirpc.RunReque
 			}
 		}()
 
-		return pulumi.RunWithContext(pulumiCtx, s.fn)
+		return khulnasoft.RunWithContext(khulnasoftCtx, s.fn)
 	}()
 	if err != nil {
-		return &pulumirpc.RunResponse{Error: err.Error()}, nil
+		return &khulnasoftrpc.RunResponse{Error: err.Error()}, nil
 	}
-	return &pulumirpc.RunResponse{}, nil
+	return &khulnasoftrpc.RunResponse{}, nil
 }
 
-func (s *languageRuntimeServer) GetPluginInfo(ctx context.Context, req *emptypb.Empty) (*pulumirpc.PluginInfo, error) {
-	return &pulumirpc.PluginInfo{
+func (s *languageRuntimeServer) GetPluginInfo(ctx context.Context, req *emptypb.Empty) (*khulnasoftrpc.PluginInfo, error) {
+	return &khulnasoftrpc.PluginInfo{
 		Version: "1.0.0",
 	}, nil
 }
 
 func (s *languageRuntimeServer) InstallDependencies(
-	req *pulumirpc.InstallDependenciesRequest,
-	server pulumirpc.LanguageRuntime_InstallDependenciesServer,
+	req *khulnasoftrpc.InstallDependenciesRequest,
+	server khulnasoftrpc.LanguageRuntime_InstallDependenciesServer,
 ) error {
 	return nil
 }

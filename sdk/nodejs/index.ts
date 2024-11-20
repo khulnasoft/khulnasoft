@@ -35,9 +35,9 @@ import * as runtime from "./runtime";
 import * as utils from "./utils";
 export { asset, automation, dynamic, iterable, log, provider, runtime, utils };
 
-// @pulumi is a deployment-only module.  If someone tries to capture it, and we fail for some reason
+// @khulnasoft is a deployment-only module.  If someone tries to capture it, and we fail for some reason
 // we want to give a good message about what the problem likely is.  Note that capturing a
-// deployment time module can be ok in some cases.  For example, using "new pulumi.Config" is fine.
+// deployment time module can be ok in some cases.  For example, using "new khulnasoft.Config" is fine.
 // However, in general, the majority of this API is not safe to use at 'run time' and will fail.
 /** @internal */
 export const deploymentOnlyModule = true;

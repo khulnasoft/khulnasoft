@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_random as random
+import khulnasoft
+import khulnasoft_random as random
 
 numbers = []
 for range in [{"value": i} for i in range(0, 2)]:
@@ -7,5 +7,5 @@ for range in [{"value": i} for i in range(0, 2)]:
         min=1,
         max=range["value"],
         seed=f"seed{range['value']}"))
-pulumi.export("first", numbers[0].id)
-pulumi.export("second", numbers[1].id)
+khulnasoft.export("first", numbers[0].id)
+khulnasoft.export("second", numbers[1].id)

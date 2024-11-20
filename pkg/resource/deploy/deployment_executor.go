@@ -23,12 +23,12 @@ import (
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/graph"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/urn"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/result"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/urn"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/result"
 )
 
 // deploymentExecutor is responsible for taking a deployment and driving it to completion.
@@ -93,10 +93,10 @@ func (ex *deploymentExecutor) printPendingOperationsWarning() {
 		"For example, if you are using AWS, you can confirm using the AWS Console.\n" +
 		"\n" +
 		"Once you have confirmed the status of the interrupted operations, you can repair your stack " +
-		"using `pulumi refresh` which will refresh the state from the provider you are using and " +
+		"using `khulnasoft refresh` which will refresh the state from the provider you are using and " +
 		"clear the pending operations if there are any.\n" +
 		"\n" +
-		"Note that `pulumi refresh` will need to be run interactively to clear pending CREATE operations."
+		"Note that `khulnasoft refresh` will need to be run interactively to clear pending CREATE operations."
 
 	warning := "Attempting to deploy or update resources " +
 		fmt.Sprintf("with %d pending operations from previous deployment.\n", len(ex.deployment.prev.PendingOperations)) +
@@ -158,7 +158,7 @@ func (ex *deploymentExecutor) Execute(callerCtx context.Context) (*Plan, error) 
 		}
 	} else if ex.deployment.prev != nil && len(ex.deployment.prev.PendingOperations) > 0 && !ex.deployment.opts.DryRun {
 		// Print a warning for users that there are pending operations.
-		// Explain that these operations can be cleared using pulumi refresh (except for CREATE operations)
+		// Explain that these operations can be cleared using khulnasoft refresh (except for CREATE operations)
 		// since these require user intevention:
 		ex.printPendingOperationsWarning()
 	}

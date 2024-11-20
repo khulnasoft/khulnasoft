@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from pulumi import (
+from khulnasoft import (
     ProviderResource,
     ComponentResource,
     CustomResource,
@@ -20,7 +20,7 @@ from pulumi import (
     ResourceOptions,
     log,
 )
-from pulumi.runtime import invoke
+from khulnasoft.runtime import invoke
 
 
 def assert_eq(l, r):

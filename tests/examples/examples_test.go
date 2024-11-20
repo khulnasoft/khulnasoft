@@ -24,8 +24,8 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 //nolint:paralleltest // uses parallel programtest
@@ -273,7 +273,7 @@ func TestAccSecrets(t *testing.T) {
 				}
 
 				for _, res := range stackInfo.Deployment.Resources {
-					if res.Type == "pulumi-nodejs:dynamic:Resource" {
+					if res.Type == "khulnasoft-nodejs:dynamic:Resource" {
 						switch res.URN.Name() {
 						case "sValue", "sApply", "cValue", "cApply":
 							assertEncryptedValue(res.Inputs, "value")

@@ -30,7 +30,7 @@ S3, Google Cloud Storage, and Azure Blob Storage.
 
 An *HTTP state backend* is one in which the state is managed by API calls to a
 remote HTTP service, which is responsible for managing the underlying state.
-[Pulumi Cloud](https://www.pulumi.com/product/pulumi-cloud/) is the primary
+[Pulumi Cloud](https://www.khulnasoft.com/product/khulnasoft-cloud/) is the primary
 example of this.
 
 (snapshot-integrity)=
@@ -38,7 +38,7 @@ example of this.
 
 *Integrity* is a property of a snapshot that ensures that the snapshot is
 consistent and can be safely operated upon. The
-[`Snapshot.VerifyIntegrity`](gh-file:pulumi#pkg/resource/deploy/snapshot.go)
+[`Snapshot.VerifyIntegrity`](gh-file:khulnasoft#pkg/resource/deploy/snapshot.go)
 method is responsible for performing these checks. When a snapshot has an
 integrity error, the Pulumi CLI will refuse to operate on it.[^sie-p1] Note that the
 Pulumi CLI will *not refuse to write a snapshot with integrity errors*, since
@@ -105,16 +105,16 @@ general principles may be useful:
   program -- in these cases, there will be an operation where the resource is in
   the state but the engine does not receive a registration (this may behave even
   more interestingly if that resource is or is not targeted in a targeted
-  operation -- see [](gh-issue:pulumi#17117) for an example of these kinds of
+  operation -- see [](gh-issue:khulnasoft#17117) for an example of these kinds of
   interactions).
 
 The following are examples of fixes for snapshot integrity issues that may serve
 as examples of applying the above principles and tracking down issues:
 
-* [Fix snapshot integrity on pending replacement](gh-issue:pulumi#17146)
-* [Propagate deleted parents of untargeted resources](gh-issue:pulumi#17117)
-* [Better handle property dependencies and `deletedWith`](gh-issue:pulumi#16088)
-* [Rewrite `DeletedWith` properties when renaming stacks](gh-issue:pulumi#16216)
+* [Fix snapshot integrity on pending replacement](gh-issue:khulnasoft#17146)
+* [Propagate deleted parents of untargeted resources](gh-issue:khulnasoft#17117)
+* [Better handle property dependencies and `deletedWith`](gh-issue:khulnasoft#16088)
+* [Rewrite `DeletedWith` properties when renaming stacks](gh-issue:khulnasoft#16216)
 
 [^sie-p1]:
     Snapshot integrity issues are generally "P1" issues, meaning that they are

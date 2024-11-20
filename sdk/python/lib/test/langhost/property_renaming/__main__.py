@@ -13,8 +13,8 @@
 # limitations under the License.
 from typing import Dict
 
-import pulumi
-from pulumi import CustomResource, Output, Input
+import khulnasoft
+from khulnasoft import CustomResource, Output, Input
 
 
 def assert_eq(l, r):
@@ -98,6 +98,6 @@ res = TranslatedResource("res", "some string")
 res.transformed_prop.apply(lambda s: assert_eq(s, "some string"))
 res.engine_output_prop.apply(lambda s: assert_eq(s, "some output string"))
 
-pulumi.export("transformed_prop", res.transformed_prop)
-pulumi.export("engine_output_prop", res.engine_output_prop)
-pulumi.export("recursive_prop", res.recursive_prop)
+khulnasoft.export("transformed_prop", res.transformed_prop)
+khulnasoft.export("engine_output_prop", res.engine_output_prop)
+khulnasoft.export("recursive_prop", res.recursive_prop)

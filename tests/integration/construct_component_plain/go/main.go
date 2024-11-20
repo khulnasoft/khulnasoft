@@ -7,15 +7,15 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewComponent(ctx *pulumi.Context, name string, args ComponentArgs,
-	opts ...pulumi.ResourceOption,
+func NewComponent(ctx *khulnasoft.Context, name string, args ComponentArgs,
+	opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, &args, &resource, opts...)
@@ -26,7 +26,7 @@ func NewComponent(ctx *pulumi.Context, name string, args ComponentArgs,
 }
 
 type componentArgs struct {
-	Children *int `pulumi:"children"`
+	Children *int `khulnasoft:"children"`
 }
 
 type ComponentArgs struct {
@@ -38,7 +38,7 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		children := 5
 		if _, err := NewComponent(ctx, "component", ComponentArgs{Children: &children}); err != nil {
 			return err

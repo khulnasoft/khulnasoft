@@ -1,17 +1,17 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-random/sdk/v4/go/random"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := random.NewRandomShuffle(ctx, "foo", &random.RandomShuffleArgs{
-			Inputs: pulumi.StringArray{
-				pulumi.String("just one\nnewline"),
-				pulumi.String("foo\nbar\nbaz\nqux\nquux\nqux"),
-				pulumi.String(`{
+			Inputs: khulnasoft.StringArray{
+				khulnasoft.String("just one\nnewline"),
+				khulnasoft.String("foo\nbar\nbaz\nqux\nquux\nqux"),
+				khulnasoft.String(`{
     "a": 1,
     "b": 2,
     "c": [

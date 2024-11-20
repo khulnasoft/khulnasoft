@@ -8,25 +8,25 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"secrets/mypkg/internal"
 )
 
 type Resource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Config      pulumix.GPtrOutput[Config, ConfigOutput]   `pulumi:"config"`
-	ConfigArray pulumix.GArrayOutput[Config, ConfigOutput] `pulumi:"configArray"`
-	ConfigMap   pulumix.GMapOutput[Config, ConfigOutput]   `pulumi:"configMap"`
-	Foo         pulumix.Output[string]                     `pulumi:"foo"`
-	FooArray    pulumix.ArrayOutput[string]                `pulumi:"fooArray"`
-	FooMap      pulumix.MapOutput[string]                  `pulumi:"fooMap"`
+	Config      khulnasoftx.GPtrOutput[Config, ConfigOutput]   `khulnasoft:"config"`
+	ConfigArray khulnasoftx.GArrayOutput[Config, ConfigOutput] `khulnasoft:"configArray"`
+	ConfigMap   khulnasoftx.GMapOutput[Config, ConfigOutput]   `khulnasoft:"configMap"`
+	Foo         khulnasoftx.Output[string]                     `khulnasoft:"foo"`
+	FooArray    khulnasoftx.ArrayOutput[string]                `khulnasoft:"fooArray"`
+	FooMap      khulnasoftx.MapOutput[string]                  `khulnasoft:"fooMap"`
 }
 
 // NewResource registers a new resource with the given unique name, arguments, and options.
-func NewResource(ctx *pulumi.Context,
-	name string, args *ResourceArgs, opts ...pulumi.ResourceOption) (*Resource, error) {
+func NewResource(ctx *khulnasoft.Context,
+	name string, args *ResourceArgs, opts ...khulnasoft.ResourceOption) (*Resource, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -50,30 +50,30 @@ func NewResource(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'FooMap'")
 	}
 	if args.Config != nil {
-		untypedSecretValue := pulumi.ToSecret(args.Config.ToOutput(ctx.Context()).Untyped())
-		args.Config = pulumix.MustConvertTyped[*ConfigArgs](untypedSecretValue)
+		untypedSecretValue := khulnasoft.ToSecret(args.Config.ToOutput(ctx.Context()).Untyped())
+		args.Config = khulnasoftx.MustConvertTyped[*ConfigArgs](untypedSecretValue)
 	}
 	if args.ConfigArray != nil {
-		untypedSecretValue := pulumi.ToSecret(args.ConfigArray.ToOutput(ctx.Context()).Untyped())
-		args.ConfigArray = pulumix.MustConvertTyped[[]*ConfigArgs](untypedSecretValue)
+		untypedSecretValue := khulnasoft.ToSecret(args.ConfigArray.ToOutput(ctx.Context()).Untyped())
+		args.ConfigArray = khulnasoftx.MustConvertTyped[[]*ConfigArgs](untypedSecretValue)
 	}
 	if args.ConfigMap != nil {
-		untypedSecretValue := pulumi.ToSecret(args.ConfigMap.ToOutput(ctx.Context()).Untyped())
-		args.ConfigMap = pulumix.MustConvertTyped[map[string]*ConfigArgs](untypedSecretValue)
+		untypedSecretValue := khulnasoft.ToSecret(args.ConfigMap.ToOutput(ctx.Context()).Untyped())
+		args.ConfigMap = khulnasoftx.MustConvertTyped[map[string]*ConfigArgs](untypedSecretValue)
 	}
 	if args.Foo != nil {
-		untypedSecretValue := pulumi.ToSecret(args.Foo.ToOutput(ctx.Context()).Untyped())
-		args.Foo = pulumix.MustConvertTyped[string](untypedSecretValue)
+		untypedSecretValue := khulnasoft.ToSecret(args.Foo.ToOutput(ctx.Context()).Untyped())
+		args.Foo = khulnasoftx.MustConvertTyped[string](untypedSecretValue)
 	}
 	if args.FooArray != nil {
-		untypedSecretValue := pulumi.ToSecret(args.FooArray.ToOutput(ctx.Context()).Untyped())
-		args.FooArray = pulumix.MustConvertTyped[[]string](untypedSecretValue)
+		untypedSecretValue := khulnasoft.ToSecret(args.FooArray.ToOutput(ctx.Context()).Untyped())
+		args.FooArray = khulnasoftx.MustConvertTyped[[]string](untypedSecretValue)
 	}
 	if args.FooMap != nil {
-		untypedSecretValue := pulumi.ToSecret(args.FooMap.ToOutput(ctx.Context()).Untyped())
-		args.FooMap = pulumix.MustConvertTyped[map[string]string](untypedSecretValue)
+		untypedSecretValue := khulnasoft.ToSecret(args.FooMap.ToOutput(ctx.Context()).Untyped())
+		args.FooMap = khulnasoftx.MustConvertTyped[map[string]string](untypedSecretValue)
 	}
-	secrets := pulumi.AdditionalSecretOutputs([]string{
+	secrets := khulnasoft.AdditionalSecretOutputs([]string{
 		"config",
 		"configArray",
 		"configMap",
@@ -93,8 +93,8 @@ func NewResource(ctx *pulumi.Context,
 
 // GetResource gets an existing Resource resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetResource(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ResourceState, opts ...pulumi.ResourceOption) (*Resource, error) {
+func GetResource(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ResourceState, opts ...khulnasoft.ResourceOption) (*Resource, error) {
 	var resource Resource
 	err := ctx.ReadResource("mypkg::Resource", name, id, state, &resource, opts...)
 	if err != nil {
@@ -115,29 +115,29 @@ func (ResourceState) ElementType() reflect.Type {
 }
 
 type resourceArgs struct {
-	Config      Config            `pulumi:"config"`
-	ConfigArray []Config          `pulumi:"configArray"`
-	ConfigMap   map[string]Config `pulumi:"configMap"`
-	Foo         string            `pulumi:"foo"`
-	FooArray    []string          `pulumi:"fooArray"`
-	FooMap      map[string]string `pulumi:"fooMap"`
+	Config      Config            `khulnasoft:"config"`
+	ConfigArray []Config          `khulnasoft:"configArray"`
+	ConfigMap   map[string]Config `khulnasoft:"configMap"`
+	Foo         string            `khulnasoft:"foo"`
+	FooArray    []string          `khulnasoft:"fooArray"`
+	FooMap      map[string]string `khulnasoft:"fooMap"`
 }
 
 // The set of arguments for constructing a Resource resource.
 type ResourceArgs struct {
-	Config      pulumix.Input[*ConfigArgs]
-	ConfigArray pulumix.Input[[]*ConfigArgs]
-	ConfigMap   pulumix.Input[map[string]*ConfigArgs]
-	Foo         pulumix.Input[string]
-	FooArray    pulumix.Input[[]string]
-	FooMap      pulumix.Input[map[string]string]
+	Config      khulnasoftx.Input[*ConfigArgs]
+	ConfigArray khulnasoftx.Input[[]*ConfigArgs]
+	ConfigMap   khulnasoftx.Input[map[string]*ConfigArgs]
+	Foo         khulnasoftx.Input[string]
+	FooArray    khulnasoftx.Input[[]string]
+	FooMap      khulnasoftx.Input[map[string]string]
 }
 
 func (ResourceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*resourceArgs)(nil)).Elem()
 }
 
-type ResourceOutput struct{ *pulumi.OutputState }
+type ResourceOutput struct{ *khulnasoft.OutputState }
 
 func (ResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Resource)(nil)).Elem()
@@ -151,47 +151,47 @@ func (o ResourceOutput) ToResourceOutputWithContext(ctx context.Context) Resourc
 	return o
 }
 
-func (o ResourceOutput) ToOutput(ctx context.Context) pulumix.Output[Resource] {
-	return pulumix.Output[Resource]{
+func (o ResourceOutput) ToOutput(ctx context.Context) khulnasoftx.Output[Resource] {
+	return khulnasoftx.Output[Resource]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o ResourceOutput) Config() pulumix.GPtrOutput[Config, ConfigOutput] {
-	value := pulumix.Apply[Resource](o, func(v Resource) pulumix.GPtrOutput[Config, ConfigOutput] { return v.Config })
-	unwrapped := pulumix.Flatten[*Config, pulumix.GPtrOutput[Config, ConfigOutput]](value)
-	return pulumix.GPtrOutput[Config, ConfigOutput]{OutputState: unwrapped.OutputState}
+func (o ResourceOutput) Config() khulnasoftx.GPtrOutput[Config, ConfigOutput] {
+	value := khulnasoftx.Apply[Resource](o, func(v Resource) khulnasoftx.GPtrOutput[Config, ConfigOutput] { return v.Config })
+	unwrapped := khulnasoftx.Flatten[*Config, khulnasoftx.GPtrOutput[Config, ConfigOutput]](value)
+	return khulnasoftx.GPtrOutput[Config, ConfigOutput]{OutputState: unwrapped.OutputState}
 }
 
-func (o ResourceOutput) ConfigArray() pulumix.GArrayOutput[Config, ConfigOutput] {
-	value := pulumix.Apply[Resource](o, func(v Resource) pulumix.GArrayOutput[Config, ConfigOutput] { return v.ConfigArray })
-	unwrapped := pulumix.Flatten[[]Config, pulumix.GArrayOutput[Config, ConfigOutput]](value)
-	return pulumix.GArrayOutput[Config, ConfigOutput]{OutputState: unwrapped.OutputState}
+func (o ResourceOutput) ConfigArray() khulnasoftx.GArrayOutput[Config, ConfigOutput] {
+	value := khulnasoftx.Apply[Resource](o, func(v Resource) khulnasoftx.GArrayOutput[Config, ConfigOutput] { return v.ConfigArray })
+	unwrapped := khulnasoftx.Flatten[[]Config, khulnasoftx.GArrayOutput[Config, ConfigOutput]](value)
+	return khulnasoftx.GArrayOutput[Config, ConfigOutput]{OutputState: unwrapped.OutputState}
 }
 
-func (o ResourceOutput) ConfigMap() pulumix.GMapOutput[Config, ConfigOutput] {
-	value := pulumix.Apply[Resource](o, func(v Resource) pulumix.GMapOutput[Config, ConfigOutput] { return v.ConfigMap })
-	unwrapped := pulumix.Flatten[map[string]Config, pulumix.GMapOutput[Config, ConfigOutput]](value)
-	return pulumix.GMapOutput[Config, ConfigOutput]{OutputState: unwrapped.OutputState}
+func (o ResourceOutput) ConfigMap() khulnasoftx.GMapOutput[Config, ConfigOutput] {
+	value := khulnasoftx.Apply[Resource](o, func(v Resource) khulnasoftx.GMapOutput[Config, ConfigOutput] { return v.ConfigMap })
+	unwrapped := khulnasoftx.Flatten[map[string]Config, khulnasoftx.GMapOutput[Config, ConfigOutput]](value)
+	return khulnasoftx.GMapOutput[Config, ConfigOutput]{OutputState: unwrapped.OutputState}
 }
 
-func (o ResourceOutput) Foo() pulumix.Output[string] {
-	value := pulumix.Apply[Resource](o, func(v Resource) pulumix.Output[string] { return v.Foo })
-	return pulumix.Flatten[string, pulumix.Output[string]](value)
+func (o ResourceOutput) Foo() khulnasoftx.Output[string] {
+	value := khulnasoftx.Apply[Resource](o, func(v Resource) khulnasoftx.Output[string] { return v.Foo })
+	return khulnasoftx.Flatten[string, khulnasoftx.Output[string]](value)
 }
 
-func (o ResourceOutput) FooArray() pulumix.ArrayOutput[string] {
-	value := pulumix.Apply[Resource](o, func(v Resource) pulumix.ArrayOutput[string] { return v.FooArray })
-	unwrapped := pulumix.Flatten[[]string, pulumix.ArrayOutput[string]](value)
-	return pulumix.ArrayOutput[string]{OutputState: unwrapped.OutputState}
+func (o ResourceOutput) FooArray() khulnasoftx.ArrayOutput[string] {
+	value := khulnasoftx.Apply[Resource](o, func(v Resource) khulnasoftx.ArrayOutput[string] { return v.FooArray })
+	unwrapped := khulnasoftx.Flatten[[]string, khulnasoftx.ArrayOutput[string]](value)
+	return khulnasoftx.ArrayOutput[string]{OutputState: unwrapped.OutputState}
 }
 
-func (o ResourceOutput) FooMap() pulumix.MapOutput[string] {
-	value := pulumix.Apply[Resource](o, func(v Resource) pulumix.MapOutput[string] { return v.FooMap })
-	unwrapped := pulumix.Flatten[map[string]string, pulumix.MapOutput[string]](value)
-	return pulumix.MapOutput[string]{OutputState: unwrapped.OutputState}
+func (o ResourceOutput) FooMap() khulnasoftx.MapOutput[string] {
+	value := khulnasoftx.Apply[Resource](o, func(v Resource) khulnasoftx.MapOutput[string] { return v.FooMap })
+	unwrapped := khulnasoftx.Flatten[map[string]string, khulnasoftx.MapOutput[string]](value)
+	return khulnasoftx.MapOutput[string]{OutputState: unwrapped.OutputState}
 }
 
 func init() {
-	pulumi.RegisterOutputType(ResourceOutput{})
+	khulnasoft.RegisterOutputType(ResourceOutput{})
 }

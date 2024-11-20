@@ -19,8 +19,8 @@ import (
 	"fmt"
 
 	"github.com/google/uuid"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/proto"
 )
@@ -34,7 +34,7 @@ func NewCallbacksServer() (*CallbackServer, error) {
 	handle, err := rpcutil.ServeWithOptions(rpcutil.ServeOptions{
 		Cancel: callbackServer.stop,
 		Init: func(srv *grpc.Server) error {
-			pulumirpc.RegisterCallbacksServer(srv, callbackServer)
+			khulnasoftrpc.RegisterCallbacksServer(srv, callbackServer)
 			return nil
 		},
 		Options: rpcutil.OpenTracingServerInterceptorOptions(nil),
@@ -48,7 +48,7 @@ func NewCallbacksServer() (*CallbackServer, error) {
 }
 
 type CallbackServer struct {
-	pulumirpc.UnsafeCallbacksServer
+	khulnasoftrpc.UnsafeCallbacksServer
 
 	stop      chan bool
 	handle    rpcutil.ServeHandle
@@ -63,18 +63,18 @@ func (s *CallbackServer) Close() error {
 func (s *CallbackServer) Allocate(
 	callback func(args []byte,
 	) (proto.Message, error),
-) (*pulumirpc.Callback, error) {
+) (*khulnasoftrpc.Callback, error) {
 	token := uuid.NewString()
 	s.callbacks[token] = callback
-	return &pulumirpc.Callback{
+	return &khulnasoftrpc.Callback{
 		Target: fmt.Sprintf("127.0.0.1:%d", s.handle.Port),
 		Token:  token,
 	}, nil
 }
 
 func (s *CallbackServer) Invoke(
-	ctx context.Context, req *pulumirpc.CallbackInvokeRequest,
-) (*pulumirpc.CallbackInvokeResponse, error) {
+	ctx context.Context, req *khulnasoftrpc.CallbackInvokeRequest,
+) (*khulnasoftrpc.CallbackInvokeResponse, error) {
 	callback, ok := s.callbacks[req.Token]
 	if !ok {
 		return nil, nil
@@ -90,7 +90,7 @@ func (s *CallbackServer) Invoke(
 		return nil, fmt.Errorf("marshaling response: %w", err)
 	}
 
-	return &pulumirpc.CallbackInvokeResponse{
+	return &khulnasoftrpc.CallbackInvokeResponse{
 		Response: responseBytes,
 	}, nil
 }

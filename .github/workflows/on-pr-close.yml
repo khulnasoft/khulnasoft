@@ -14,6 +14,6 @@ jobs:
       steps:
         - name: "Close existing Downstream PRs"
           run: |
-            for url in $(gh search prs --json url --owner pulumi --state open --match body "This is a downstream codegen test for pulumi/pulumi#${{ github.event.pull_request.number }}." | jq -r '.[].url'); do
+            for url in $(gh search prs --json url --owner khulnasoft --state open --match body "This is a downstream codegen test for khulnasoft/khulnasoft#${{ github.event.pull_request.number }}." | jq -r '.[].url'); do
                 gh pr close "$url"
             done

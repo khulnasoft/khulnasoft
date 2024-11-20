@@ -50,7 +50,7 @@ export class RemoteStack {
      * @param opts
      *  Options to customize the behavior of the update.
      *
-     * @see https://www.pulumi.com/docs/cli/commands/pulumi_up/
+     * @see https://www.khulnasoft.com/docs/cli/commands/khulnasoft_up/
      */
     up(opts?: RemoteUpOptions): Promise<UpResult> {
         return this.stack.up(opts);
@@ -63,7 +63,7 @@ export class RemoteStack {
      * @param opts
      *  Options to customize the behavior of the preview.
      *
-     * @see https://www.pulumi.com/docs/cli/commands/pulumi_preview/
+     * @see https://www.khulnasoft.com/docs/cli/commands/khulnasoft_preview/
      */
     preview(opts?: RemotePreviewOptions): Promise<PreviewResult> {
         return this.stack.preview(opts);

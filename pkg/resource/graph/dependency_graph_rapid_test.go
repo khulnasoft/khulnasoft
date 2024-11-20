@@ -39,7 +39,7 @@ import (
 
 	"pgregory.net/rapid"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -255,7 +255,7 @@ func TestRapidTransitiveDependenciesOf(t *testing.T) {
 // - Support Component resources
 // - Support non-nil r.Provider references
 func resourceStateSliceGenerator() *rapid.Generator[[]*resource.State] {
-	urnGen := rapid.StringMatching(`urn:pulumi:a::b::c:d:e::[abcd][123]`)
+	urnGen := rapid.StringMatching(`urn:khulnasoft:a::b::c:d:e::[abcd][123]`)
 
 	stateGen := rapid.Custom(func(t *rapid.T) *resource.State {
 		urn := urnGen.Draw(t, "URN")

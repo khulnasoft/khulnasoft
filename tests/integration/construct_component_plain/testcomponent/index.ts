@@ -1,13 +1,13 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved
 
-import * as pulumi from "@pulumi/pulumi";
-import * as dynamic from "@pulumi/pulumi/dynamic";
-import * as provider from "@pulumi/pulumi/provider";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as dynamic from "@khulnasoft/khulnasoft/dynamic";
+import * as provider from "@khulnasoft/khulnasoft/provider";
 
 let currentID = 0;
 
 class Resource extends dynamic.Resource {
-    constructor(name: string, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.CustomResourceOptions) {
         const provider = {
             create: async (inputs: any) => {
                 return {
@@ -24,8 +24,8 @@ interface ComponentArgs {
     children?: number;
 }
 
-class Component extends pulumi.ComponentResource {
-    constructor(name: string, args?: ComponentArgs, opts?: pulumi.ComponentResourceOptions) {
+class Component extends khulnasoft.ComponentResource {
+    constructor(name: string, args?: ComponentArgs, opts?: khulnasoft.ComponentResourceOptions) {
         super("testcomponent:index:Component", name, {}, opts);
         const children = args?.children ?? 0;
         if (children <= 0) {
@@ -40,8 +40,8 @@ class Component extends pulumi.ComponentResource {
 class Provider implements provider.Provider {
     public readonly version = "0.0.1";
 
-    construct(name: string, type: string, inputs: pulumi.Inputs,
-              options: pulumi.ComponentResourceOptions): Promise<provider.ConstructResult> {
+    construct(name: string, type: string, inputs: khulnasoft.Inputs,
+              options: khulnasoft.ComponentResourceOptions): Promise<provider.ConstructResult> {
         if (type != "testcomponent:index:Component") {
             throw new Error(`unknown resource type ${type}`);
         }

@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as random from "@pulumi/random";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as random from "@khulnasoft/random";
 
 const randomPassword = new random.RandomPassword("randomPassword", {
     length: 16,

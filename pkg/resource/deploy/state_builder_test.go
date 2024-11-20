@@ -19,7 +19,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -31,19 +31,19 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -77,20 +77,20 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -125,20 +125,20 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -174,19 +174,19 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:    "urn:pulumi:stack::project::type:name",
-			Parent: "urn:pulumi:stack::project::type:name::parent",
+			URN:    "urn:khulnasoft:stack::project::type:name",
+			Parent: "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -220,20 +220,20 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -268,20 +268,20 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -317,16 +317,16 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -360,20 +360,20 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -408,20 +408,20 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -453,14 +453,14 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -494,20 +494,20 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -542,20 +542,20 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -587,17 +587,17 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
 		}
@@ -633,20 +633,20 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()
@@ -681,20 +681,20 @@ func TestStateBuilder(t *testing.T) {
 
 		// Arrange.
 		s0 := &resource.State{
-			URN:      "urn:pulumi:stack::project::type:name",
-			Provider: "urn:pulumi:providers::pkgA::prov::v1",
-			Parent:   "urn:pulumi:stack::project::type:name::parent",
+			URN:      "urn:khulnasoft:stack::project::type:name",
+			Provider: "urn:khulnasoft:providers::pkgA::prov::v1",
+			Parent:   "urn:khulnasoft:stack::project::type:name::parent",
 			Dependencies: []resource.URN{
-				"urn:pulumi:stack::project::type:name::depA",
-				"urn:pulumi:stack::project::type:name::depB",
+				"urn:khulnasoft:stack::project::type:name::depA",
+				"urn:khulnasoft:stack::project::type:name::depB",
 			},
 			PropertyDependencies: map[resource.PropertyKey][]resource.URN{
 				"propA": {
-					"urn:pulumi:stack::project::type:name::propDepA",
-					"urn:pulumi:stack::project::type:name::propDepB",
+					"urn:khulnasoft:stack::project::type:name::propDepA",
+					"urn:khulnasoft:stack::project::type:name::propDepB",
 				},
 			},
-			DeletedWith: "urn:pulumi:stack::project::type:name::deletedWith",
+			DeletedWith: "urn:khulnasoft:stack::project::type:name::deletedWith",
 		}
 
 		sBefore := s0.Copy()

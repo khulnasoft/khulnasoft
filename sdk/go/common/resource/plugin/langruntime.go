@@ -24,10 +24,10 @@ import (
 	"strconv"
 
 	"github.com/hashicorp/hcl/v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	structpb "google.golang.org/protobuf/types/known/structpb"
 )
 
@@ -88,13 +88,13 @@ func (info ProgramInfo) String() string {
 	return fmt.Sprintf("root=%s, program=%s, entryPoint=%s", info.root, info.program, info.entryPoint)
 }
 
-func (info ProgramInfo) Marshal() (*pulumirpc.ProgramInfo, error) {
+func (info ProgramInfo) Marshal() (*khulnasoftrpc.ProgramInfo, error) {
 	opts, err := structpb.NewStruct(info.options)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal options: %w", err)
 	}
 
-	return &pulumirpc.ProgramInfo{
+	return &khulnasoftrpc.ProgramInfo{
 		RootDirectory:    info.root,
 		ProgramDirectory: info.program,
 		EntryPoint:       info.entryPoint,
@@ -259,7 +259,7 @@ type RuntimeOptionPrompt struct {
 	PromptType  RuntimeOptionType
 }
 
-func UnmarshallRuntimeOptionPrompt(p *pulumirpc.RuntimeOptionPrompt) (RuntimeOptionPrompt, error) {
+func UnmarshallRuntimeOptionPrompt(p *khulnasoftrpc.RuntimeOptionPrompt) (RuntimeOptionPrompt, error) {
 	choices := make([]RuntimeOptionValue, 0, len(p.Choices))
 	for _, choice := range p.Choices {
 		choices = append(choices, RuntimeOptionValue{
@@ -291,7 +291,7 @@ func UnmarshallRuntimeOptionPrompt(p *pulumirpc.RuntimeOptionPrompt) (RuntimeOpt
 
 // MakeRuntimeOptionPromptChoices creates a list of runtime option values from a list of executable names.
 // If an executable is not found, it will be listed with a `[not found]` suffix at the end of the list.
-func MakeExecutablePromptChoices(executables ...string) []*pulumirpc.RuntimeOptionPrompt_RuntimeOptionValue {
+func MakeExecutablePromptChoices(executables ...string) []*khulnasoftrpc.RuntimeOptionPrompt_RuntimeOptionValue {
 	type packagemanagers struct {
 		name  string
 		found bool
@@ -314,14 +314,14 @@ func MakeExecutablePromptChoices(executables ...string) []*pulumirpc.RuntimeOpti
 		return pms[i].found
 	})
 
-	choices := []*pulumirpc.RuntimeOptionPrompt_RuntimeOptionValue{}
+	choices := []*khulnasoftrpc.RuntimeOptionPrompt_RuntimeOptionValue{}
 	for _, pm := range pms {
 		displayName := pm.name
 		if !pm.found {
 			displayName += " [not found]"
 		}
-		choices = append(choices, &pulumirpc.RuntimeOptionPrompt_RuntimeOptionValue{
-			PromptType:  pulumirpc.RuntimeOptionPrompt_STRING,
+		choices = append(choices, &khulnasoftrpc.RuntimeOptionPrompt_RuntimeOptionValue{
+			PromptType:  khulnasoftrpc.RuntimeOptionPrompt_STRING,
 			StringValue: pm.name,
 			DisplayName: displayName,
 		})

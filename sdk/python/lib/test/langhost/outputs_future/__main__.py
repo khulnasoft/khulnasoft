@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import asyncio
-import pulumi
-from pulumi.runtime import invoke
+import khulnasoft
+from khulnasoft.runtime import invoke
 
 
 async def do_invoke():
@@ -22,4 +22,4 @@ async def do_invoke():
     return value["value"]
 
 
-pulumi.export("value", do_invoke())
+khulnasoft.export("value", do_invoke())

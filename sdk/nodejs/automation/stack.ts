@@ -139,7 +139,7 @@ export class Stack {
                 callback(event);
             } catch (e) {
                 log.warn(`Failed to parse engine event
-If you're seeing this warning, please comment on https://github.com/pulumi/pulumi/issues/6768 with the event and any
+If you're seeing this warning, please comment on https://github.com/khulnasoft/khulnasoft/issues/6768 with the event and any
 details about your environment.
 Event: ${line}\n${e.toString()}`);
             }
@@ -158,7 +158,7 @@ Event: ${line}\n${e.toString()}`);
      * @param opts
      *  Options to customize the behavior of the update.
      *
-     * @see https://www.pulumi.com/docs/cli/commands/pulumi_up/
+     * @see https://www.khulnasoft.com/docs/cli/commands/khulnasoft_up/
      */
     async up(opts?: UpOptions): Promise<UpResult> {
         const args = ["up", "--yes", "--skip-preview"];
@@ -278,7 +278,7 @@ Event: ${line}\n${e.toString()}`);
             await cleanUp(logFile, await logPromise);
         }
 
-        // TODO: do this in parallel after this is fixed https://github.com/pulumi/pulumi/issues/6050
+        // TODO: do this in parallel after this is fixed https://github.com/khulnasoft/khulnasoft/issues/6050
         const outputs = await this.outputs();
         // If it's a remote workspace, explicitly set showSecrets to false to prevent attempting to
         // load the project file.
@@ -297,7 +297,7 @@ Event: ${line}\n${e.toString()}`);
      *
      * @param opts Options to customize the behavior of the preview.
      *
-     * @see https://www.pulumi.com/docs/cli/commands/pulumi_preview/
+     * @see https://www.khulnasoft.com/docs/cli/commands/khulnasoft_preview/
      */
     async preview(opts?: PreviewOptions): Promise<PreviewResult> {
         const args = ["preview"];
@@ -569,7 +569,7 @@ Event: ${line}\n${e.toString()}`);
         const summary = await this.info(!this.isRemote && opts?.showSecrets);
 
         // If `opts.remove` was set, remove the stack now. We take this approach
-        // rather than passing `--remove` to `pulumi destroy` because the latter
+        // rather than passing `--remove` to `khulnasoft destroy` because the latter
         // would make it impossible for us to retrieve a summary of the
         // operation above for returning to the caller.
         if (opts?.remove) {
@@ -605,7 +605,7 @@ Event: ${line}\n${e.toString()}`);
         // we the output file to read the generated code and return it to the user
         let tempDir: string = "";
         try {
-            tempDir = await fs.promises.mkdtemp(pathlib.join(os.tmpdir(), "pulumi-import-"));
+            tempDir = await fs.promises.mkdtemp(pathlib.join(os.tmpdir(), "khulnasoft-import-"));
             const tempGeneratedCodeFile = pathlib.join(tempDir, "generated-code.txt");
             if (options.resources) {
                 // user has specified resources to import, write them to a temp import file
@@ -644,7 +644,7 @@ Event: ${line}\n${e.toString()}`);
                     //   converter: "terraform"
                     //   converterArgs: "./tfstate.json"
                     // }
-                    // would be equivalent to `pulumi import --from terraform ./tfstate.json`
+                    // would be equivalent to `khulnasoft import --from terraform ./tfstate.json`
                     args.push("--");
                     args.push(...options.converterArgs);
                 }
@@ -900,14 +900,14 @@ Event: ${line}\n${e.toString()}`);
         if (this.isRemote) {
             envs["PULUMI_EXPERIMENTAL"] = "true";
         }
-        const pulumiHome = this.workspace.pulumiHome;
-        if (pulumiHome) {
-            envs["PULUMI_HOME"] = pulumiHome;
+        const khulnasoftHome = this.workspace.khulnasoftHome;
+        if (khulnasoftHome) {
+            envs["PULUMI_HOME"] = khulnasoftHome;
         }
         envs = { ...envs, ...this.workspace.envVars };
         const additionalArgs = await this.workspace.serializeArgsForOp(this.name);
         args = [...args, "--stack", this.name, ...additionalArgs];
-        const result = await this.workspace.pulumiCommand.run(args, this.workspace.workDir, envs, onOutput, signal);
+        const result = await this.workspace.khulnasoftCommand.run(args, this.workspace.workDir, envs, onOutput, signal);
         await this.workspace.postCommandCallback(this.name);
         return result;
     }
@@ -964,7 +964,7 @@ function applyGlobalOpts(opts: GlobalOpts, args: string[]) {
  * stack names in this format, and instead only use the stack name without an
  * org/user or project to qualify it.
  *
- * See: https://github.com/pulumi/pulumi/issues/2522
+ * See: https://github.com/khulnasoft/khulnasoft/issues/2522
  *
  * Non-legacy DIY backends do support the `org/project/stack` format, but `org`
  * must be set to "organization".
@@ -1241,7 +1241,7 @@ export interface GlobalOpts {
     suppressProgress?: boolean;
 
     /**
-     * Save any creates seen during the preview into an import file to use with `pulumi import`.
+     * Save any creates seen during the preview into an import file to use with `khulnasoft import`.
      */
     importFile?: string;
 }

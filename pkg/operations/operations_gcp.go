@@ -27,17 +27,17 @@ import (
 	"google.golang.org/api/option"
 	loggingpb "google.golang.org/genproto/googleapis/logging/v2"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
-// TODO[pulumi/pulumi#54] This should be factored out behind an OperationsProvider RPC interface and versioned with the
-// `pulumi-gcp` repo instead of statically linked into the engine.
+// TODO[khulnasoft/khulnasoft#54] This should be factored out behind an OperationsProvider RPC interface and versioned with the
+// `khulnasoft-gcp` repo instead of statically linked into the engine.
 
 // GCPOperationsProvider creates an OperationsProvider capable of answering operational queries based on the
-// underlying resources of the `@pulumi/gcp` implementation.
+// underlying resources of the `@khulnasoft/gcp` implementation.
 func GCPOperationsProvider(
 	config map[config.Key]string,
 	component *Resource,

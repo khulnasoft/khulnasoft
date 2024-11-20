@@ -153,27 +153,27 @@ func TestArgumentTypeName(t *testing.T) {
 	plainIntType := g.argumentTypeName(model.IntType, false /*isInput*/)
 	assert.Equal(t, "int", plainIntType)
 	inputIntType := g.argumentTypeName(model.IntType, true /*isInput*/)
-	assert.Equal(t, "pulumi.Int", inputIntType)
+	assert.Equal(t, "khulnasoft.Int", inputIntType)
 
 	plainStringType := g.argumentTypeName(model.StringType, false /*isInput*/)
 	assert.Equal(t, "string", plainStringType)
 	inputStringType := g.argumentTypeName(model.StringType, true /*isInput*/)
-	assert.Equal(t, "pulumi.String", inputStringType)
+	assert.Equal(t, "khulnasoft.String", inputStringType)
 
 	plainBoolType := g.argumentTypeName(model.BoolType, false /*isInput*/)
 	assert.Equal(t, "bool", plainBoolType)
 	inputBoolType := g.argumentTypeName(model.BoolType, true /*isInput*/)
-	assert.Equal(t, "pulumi.Bool", inputBoolType)
+	assert.Equal(t, "khulnasoft.Bool", inputBoolType)
 
 	plainNumberType := g.argumentTypeName(model.NumberType, false /*isInput*/)
 	assert.Equal(t, "float64", plainNumberType)
 	inputNumberType := g.argumentTypeName(model.NumberType, true /*isInput*/)
-	assert.Equal(t, "pulumi.Float64", inputNumberType)
+	assert.Equal(t, "khulnasoft.Float64", inputNumberType)
 
 	plainDynamicType := g.argumentTypeName(model.DynamicType, false /*isInput*/)
 	assert.Equal(t, "interface{}", plainDynamicType)
 	inputDynamicType := g.argumentTypeName(model.DynamicType, true /*isInput*/)
-	assert.Equal(t, "pulumi.Any", inputDynamicType)
+	assert.Equal(t, "khulnasoft.Any", inputDynamicType)
 
 	objectType := model.NewObjectType(map[string]model.Type{
 		"foo": model.StringType,
@@ -183,7 +183,7 @@ func TestArgumentTypeName(t *testing.T) {
 	plainObjectType := g.argumentTypeName(objectType, false /*isInput*/)
 	assert.Equal(t, "map[string]interface{}", plainObjectType)
 	inputObjectType := g.argumentTypeName(objectType, true /*isInput*/)
-	assert.Equal(t, "pulumi.Map", inputObjectType)
+	assert.Equal(t, "khulnasoft.Map", inputObjectType)
 
 	uniformObjectType := model.NewObjectType(map[string]model.Type{
 		"x": model.IntType,
@@ -193,22 +193,22 @@ func TestArgumentTypeName(t *testing.T) {
 	plainUniformObjectType := g.argumentTypeName(uniformObjectType, false /*isInput*/)
 	assert.Equal(t, "map[string]interface{}", plainUniformObjectType)
 	inputUniformObjectType := g.argumentTypeName(uniformObjectType, true /*isInput*/)
-	assert.Equal(t, "pulumi.IntMap", inputUniformObjectType)
+	assert.Equal(t, "khulnasoft.IntMap", inputUniformObjectType)
 
 	plainMapType := g.argumentTypeName(model.NewMapType(model.StringType), false /*isInput*/)
 	assert.Equal(t, "map[string]string", plainMapType)
 	inputMapType := g.argumentTypeName(model.NewMapType(model.StringType), true /*isInput*/)
-	assert.Equal(t, "pulumi.StringMap", inputMapType)
+	assert.Equal(t, "khulnasoft.StringMap", inputMapType)
 
 	plainIntListType := g.argumentTypeName(model.NewListType(model.IntType), false /*isInput*/)
 	assert.Equal(t, "[]int", plainIntListType)
 	inputIntListType := g.argumentTypeName(model.NewListType(model.IntType), true /*isInput*/)
-	assert.Equal(t, "pulumi.IntArray", inputIntListType)
+	assert.Equal(t, "khulnasoft.IntArray", inputIntListType)
 
 	plainDynamicListType := g.argumentTypeName(model.NewListType(model.DynamicType), false /*isInput*/)
 	assert.Equal(t, "[]interface{}", plainDynamicListType)
 	inputDynamicListType := g.argumentTypeName(model.NewListType(model.DynamicType), true /*isInput*/)
-	assert.Equal(t, "pulumi.Array", inputDynamicListType)
+	assert.Equal(t, "khulnasoft.Array", inputDynamicListType)
 
 	// assert that the Output[T] + input=false is the same as T + input=true
 	// in this case where T = string
@@ -256,7 +256,7 @@ func TestGeneratingGoOptionalFunctions(t *testing.T) {
 					model.VariableReference(&model.Variable{Name: "foo"}),
 				},
 			},
-			generated: "pulumi.StringRef(foo)",
+			generated: "khulnasoft.StringRef(foo)",
 		},
 		{
 			expr: &model.FunctionCallExpression{
@@ -265,7 +265,7 @@ func TestGeneratingGoOptionalFunctions(t *testing.T) {
 					model.VariableReference(&model.Variable{Name: "foo"}),
 				},
 			},
-			generated: "pulumi.IntRef(foo)",
+			generated: "khulnasoft.IntRef(foo)",
 		},
 		{
 			expr: &model.FunctionCallExpression{
@@ -274,7 +274,7 @@ func TestGeneratingGoOptionalFunctions(t *testing.T) {
 					model.VariableReference(&model.Variable{Name: "foo"}),
 				},
 			},
-			generated: "pulumi.BoolRef(foo)",
+			generated: "khulnasoft.BoolRef(foo)",
 		},
 		{
 			expr: &model.FunctionCallExpression{
@@ -283,7 +283,7 @@ func TestGeneratingGoOptionalFunctions(t *testing.T) {
 					model.VariableReference(&model.Variable{Name: "foo"}),
 				},
 			},
-			generated: "pulumi.Float64Ref(foo)",
+			generated: "khulnasoft.Float64Ref(foo)",
 		},
 	}
 

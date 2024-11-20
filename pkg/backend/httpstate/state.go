@@ -22,11 +22,11 @@ import (
 	"time"
 
 	"github.com/jonboulle/clockwork"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/channel"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/channel"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/display"
@@ -35,9 +35,9 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 type cloudQuery struct {
@@ -183,7 +183,7 @@ func (b *cloudBackend) newUpdate(ctx context.Context, stackRef backend.StackRefe
 	// Create a token source for this update if necessary.
 	var tokenSource *tokenSource
 	if token != "" {
-		// TODO[pulumi/pulumi#10482] instead of assuming
+		// TODO[khulnasoft/khulnasoft#10482] instead of assuming
 		// expiration, consider expiration times returned by
 		// the backend, if any.
 		duration := 5 * time.Minute

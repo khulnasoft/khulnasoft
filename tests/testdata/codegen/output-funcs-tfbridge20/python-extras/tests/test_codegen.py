@@ -16,23 +16,23 @@
 import json
 import pytest
 
-import pulumi
+import khulnasoft
 
-from pulumi_mypkg import *
+from khulnasoft_mypkg import *
 
 
 @pytest.fixture
 def my_mocks():
-    old_settings = pulumi.runtime.settings.SETTINGS
+    old_settings = khulnasoft.runtime.settings.SETTINGS
     try:
         mocks = MyMocks()
-        pulumi.runtime.mocks.set_mocks(mocks)
+        khulnasoft.runtime.mocks.set_mocks(mocks)
         yield mocks
     finally:
-        pulumi.runtime.settings.configure(old_settings)
+        khulnasoft.runtime.settings.configure(old_settings)
 
 
-class MyMocks(pulumi.runtime.Mocks):
+class MyMocks(khulnasoft.runtime.Mocks):
     def call(self, args):
 
         if args.token == 'mypkg::listStorageAccountKeys':
@@ -70,7 +70,7 @@ def assert_function_matches_table(fn, table):
 
         return (args, kw, expected, transform)
 
-    return pulumi.Output.all([
+    return khulnasoft.Output.all([
         fn(*args, **kw).apply(check(expected, transform))
         for (args, kw, expected, transform) in (
                 unpack_entry(entry) for entry in table
@@ -78,7 +78,7 @@ def assert_function_matches_table(fn, table):
     ])
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_list_storage_accounts(my_mocks):
     return assert_function_matches_table(list_storage_account_keys_output,
         [(
@@ -117,4 +117,4 @@ def r(x):
 
 
 def out(x):
-    return pulumi.Output.from_input(x).apply(lambda x: x)
+    return khulnasoft.Output.from_input(x).apply(lambda x: x)

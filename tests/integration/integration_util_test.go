@@ -33,12 +33,12 @@ import (
 	"time"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/iotest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/fsutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/iotest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/fsutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
@@ -108,10 +108,10 @@ func testComponentProviderSchema(t *testing.T, path string) {
 				rpcutil.GrpcChannelOptions(),
 			)
 			assert.NoError(t, err)
-			client := pulumirpc.NewResourceProviderClient(conn)
+			client := khulnasoftrpc.NewResourceProviderClient(conn)
 
 			// Call GetSchema and verify the results.
-			resp, err := client.GetSchema(context.Background(), &pulumirpc.GetSchemaRequest{Version: test.version})
+			resp, err := client.GetSchema(context.Background(), &khulnasoftrpc.GetSchemaRequest{Version: test.version})
 			if test.expectedError != "" {
 				assert.ErrorContains(t, err, test.expectedError)
 			} else {

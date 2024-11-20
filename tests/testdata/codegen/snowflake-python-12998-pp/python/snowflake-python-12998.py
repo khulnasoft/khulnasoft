@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_snowflake as snowflake
+import khulnasoft
+import khulnasoft_snowflake as snowflake
 
 table_association = snowflake.TagAssociation("tableAssociation", object_identifiers=[{
     "name": test["name"],

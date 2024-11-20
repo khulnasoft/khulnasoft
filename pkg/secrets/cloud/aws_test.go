@@ -25,7 +25,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/iam"
 	"github.com/aws/aws-sdk-go-v2/service/kms"
 	"github.com/aws/aws-sdk-go-v2/service/sts"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -95,7 +95,7 @@ func TestAWSCloudManager_SessionToken(t *testing.T) {
 
 //nolint:paralleltest // mutates environment variables
 func TestAWSCloudManager_AssumedRole(t *testing.T) {
-	// Regression test for https://github.com/pulumi/pulumi/issues/11482
+	// Regression test for https://github.com/khulnasoft/khulnasoft/issues/11482
 	t.Setenv("AWS_REGION", "us-west-2")
 	ctx, cfg, caller := getAwsCaller(t)
 

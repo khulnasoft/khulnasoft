@@ -2,6 +2,6 @@
 
 """A Python project that uses the uv toolchain, without specifing the location for the virtualenv."""
 
-import pulumi
+import khulnasoft
 
-pulumi.export("foo", "bar")
+khulnasoft.export("foo", "bar")

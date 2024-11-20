@@ -2,31 +2,31 @@
 
 from typing import Optional
 
-import pulumi
+import khulnasoft
 
 
-class Provider(pulumi.ProviderResource):
-    message: pulumi.Output[str]
+class Provider(khulnasoft.ProviderResource):
+    message: khulnasoft.Output[str]
 
-    def __init__(self, name: str, message: pulumi.Input[str], opts: Optional[pulumi.ResourceOptions] = None) -> None:
+    def __init__(self, name: str, message: khulnasoft.Input[str], opts: Optional[khulnasoft.ResourceOptions] = None) -> None:
         super().__init__("testcomponent", name, {"message": message}, opts)
 
 
-class Component(pulumi.ComponentResource):
-    message: pulumi.Output[str]
+class Component(khulnasoft.ComponentResource):
+    message: khulnasoft.Output[str]
 
-    def __init__(self, name: str, opts: Optional[pulumi.ResourceOptions] = None) -> None:
+    def __init__(self, name: str, opts: Optional[khulnasoft.ResourceOptions] = None) -> None:
         props = {
             "message": None
         }
         super().__init__("testcomponent:index:Component", name, props, opts, True)
 
 
-component = Component("mycomponent", pulumi.ResourceOptions(
+component = Component("mycomponent", khulnasoft.ResourceOptions(
     providers={
         "testcomponent": Provider("myprovider", "hello world"),
     })
 )
 
 
-pulumi.export("message", component.message)
+khulnasoft.export("message", component.message)

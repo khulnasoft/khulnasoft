@@ -16,7 +16,7 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.20.1
-// source: pulumi/testing/language.proto
+// source: khulnasoft/testing/language.proto
 
 package testing
 
@@ -43,7 +43,7 @@ type GetLanguageTestsRequest struct {
 func (x *GetLanguageTestsRequest) Reset() {
 	*x = GetLanguageTestsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_testing_language_proto_msgTypes[0]
+		mi := &file_khulnasoft_testing_language_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -56,7 +56,7 @@ func (x *GetLanguageTestsRequest) String() string {
 func (*GetLanguageTestsRequest) ProtoMessage() {}
 
 func (x *GetLanguageTestsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_testing_language_proto_msgTypes[0]
+	mi := &file_khulnasoft_testing_language_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -69,7 +69,7 @@ func (x *GetLanguageTestsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLanguageTestsRequest.ProtoReflect.Descriptor instead.
 func (*GetLanguageTestsRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_testing_language_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_testing_language_proto_rawDescGZIP(), []int{0}
 }
 
 type GetLanguageTestsResponse struct {
@@ -83,7 +83,7 @@ type GetLanguageTestsResponse struct {
 func (x *GetLanguageTestsResponse) Reset() {
 	*x = GetLanguageTestsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_testing_language_proto_msgTypes[1]
+		mi := &file_khulnasoft_testing_language_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -96,7 +96,7 @@ func (x *GetLanguageTestsResponse) String() string {
 func (*GetLanguageTestsResponse) ProtoMessage() {}
 
 func (x *GetLanguageTestsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_testing_language_proto_msgTypes[1]
+	mi := &file_khulnasoft_testing_language_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -109,7 +109,7 @@ func (x *GetLanguageTestsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLanguageTestsResponse.ProtoReflect.Descriptor instead.
 func (*GetLanguageTestsResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_testing_language_proto_rawDescGZIP(), []int{1}
+	return file_khulnasoft_testing_language_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetLanguageTestsResponse) GetTests() []string {
@@ -140,7 +140,7 @@ type PrepareLanguageTestsRequest struct {
 func (x *PrepareLanguageTestsRequest) Reset() {
 	*x = PrepareLanguageTestsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_testing_language_proto_msgTypes[2]
+		mi := &file_khulnasoft_testing_language_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -153,7 +153,7 @@ func (x *PrepareLanguageTestsRequest) String() string {
 func (*PrepareLanguageTestsRequest) ProtoMessage() {}
 
 func (x *PrepareLanguageTestsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_testing_language_proto_msgTypes[2]
+	mi := &file_khulnasoft_testing_language_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -166,7 +166,7 @@ func (x *PrepareLanguageTestsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PrepareLanguageTestsRequest.ProtoReflect.Descriptor instead.
 func (*PrepareLanguageTestsRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_testing_language_proto_rawDescGZIP(), []int{2}
+	return file_khulnasoft_testing_language_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PrepareLanguageTestsRequest) GetLanguagePluginName() string {
@@ -236,7 +236,7 @@ type PrepareLanguageTestsResponse struct {
 func (x *PrepareLanguageTestsResponse) Reset() {
 	*x = PrepareLanguageTestsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_testing_language_proto_msgTypes[3]
+		mi := &file_khulnasoft_testing_language_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -249,7 +249,7 @@ func (x *PrepareLanguageTestsResponse) String() string {
 func (*PrepareLanguageTestsResponse) ProtoMessage() {}
 
 func (x *PrepareLanguageTestsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_testing_language_proto_msgTypes[3]
+	mi := &file_khulnasoft_testing_language_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -262,7 +262,7 @@ func (x *PrepareLanguageTestsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PrepareLanguageTestsResponse.ProtoReflect.Descriptor instead.
 func (*PrepareLanguageTestsResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_testing_language_proto_rawDescGZIP(), []int{3}
+	return file_khulnasoft_testing_language_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *PrepareLanguageTestsResponse) GetToken() string {
@@ -284,7 +284,7 @@ type RunLanguageTestRequest struct {
 func (x *RunLanguageTestRequest) Reset() {
 	*x = RunLanguageTestRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_testing_language_proto_msgTypes[4]
+		mi := &file_khulnasoft_testing_language_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -297,7 +297,7 @@ func (x *RunLanguageTestRequest) String() string {
 func (*RunLanguageTestRequest) ProtoMessage() {}
 
 func (x *RunLanguageTestRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_testing_language_proto_msgTypes[4]
+	mi := &file_khulnasoft_testing_language_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -310,7 +310,7 @@ func (x *RunLanguageTestRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RunLanguageTestRequest.ProtoReflect.Descriptor instead.
 func (*RunLanguageTestRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_testing_language_proto_rawDescGZIP(), []int{4}
+	return file_khulnasoft_testing_language_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *RunLanguageTestRequest) GetToken() string {
@@ -341,7 +341,7 @@ type RunLanguageTestResponse struct {
 func (x *RunLanguageTestResponse) Reset() {
 	*x = RunLanguageTestResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_testing_language_proto_msgTypes[5]
+		mi := &file_khulnasoft_testing_language_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -354,7 +354,7 @@ func (x *RunLanguageTestResponse) String() string {
 func (*RunLanguageTestResponse) ProtoMessage() {}
 
 func (x *RunLanguageTestResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_testing_language_proto_msgTypes[5]
+	mi := &file_khulnasoft_testing_language_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -367,7 +367,7 @@ func (x *RunLanguageTestResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RunLanguageTestResponse.ProtoReflect.Descriptor instead.
 func (*RunLanguageTestResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_testing_language_proto_rawDescGZIP(), []int{5}
+	return file_khulnasoft_testing_language_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *RunLanguageTestResponse) GetSuccess() bool {
@@ -411,7 +411,7 @@ type PrepareLanguageTestsRequest_Replacement struct {
 func (x *PrepareLanguageTestsRequest_Replacement) Reset() {
 	*x = PrepareLanguageTestsRequest_Replacement{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_testing_language_proto_msgTypes[6]
+		mi := &file_khulnasoft_testing_language_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -424,7 +424,7 @@ func (x *PrepareLanguageTestsRequest_Replacement) String() string {
 func (*PrepareLanguageTestsRequest_Replacement) ProtoMessage() {}
 
 func (x *PrepareLanguageTestsRequest_Replacement) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_testing_language_proto_msgTypes[6]
+	mi := &file_khulnasoft_testing_language_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -437,7 +437,7 @@ func (x *PrepareLanguageTestsRequest_Replacement) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use PrepareLanguageTestsRequest_Replacement.ProtoReflect.Descriptor instead.
 func (*PrepareLanguageTestsRequest_Replacement) Descriptor() ([]byte, []int) {
-	return file_pulumi_testing_language_proto_rawDescGZIP(), []int{2, 0}
+	return file_khulnasoft_testing_language_proto_rawDescGZIP(), []int{2, 0}
 }
 
 func (x *PrepareLanguageTestsRequest_Replacement) GetPath() string {
@@ -461,9 +461,9 @@ func (x *PrepareLanguageTestsRequest_Replacement) GetReplacement() string {
 	return ""
 }
 
-var File_pulumi_testing_language_proto protoreflect.FileDescriptor
+var File_khulnasoft_testing_language_proto protoreflect.FileDescriptor
 
-var file_pulumi_testing_language_proto_rawDesc = []byte{
+var file_khulnasoft_testing_language_proto_rawDesc = []byte{
 	0x0a, 0x1d, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x67,
 	0x2f, 0x6c, 0x61, 0x6e, 0x67, 0x75, 0x61, 0x67, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
 	0x11, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x72, 0x70, 0x63, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x69,
@@ -552,35 +552,35 @@ var file_pulumi_testing_language_proto_rawDesc = []byte{
 }
 
 var (
-	file_pulumi_testing_language_proto_rawDescOnce sync.Once
-	file_pulumi_testing_language_proto_rawDescData = file_pulumi_testing_language_proto_rawDesc
+	file_khulnasoft_testing_language_proto_rawDescOnce sync.Once
+	file_khulnasoft_testing_language_proto_rawDescData = file_khulnasoft_testing_language_proto_rawDesc
 )
 
-func file_pulumi_testing_language_proto_rawDescGZIP() []byte {
-	file_pulumi_testing_language_proto_rawDescOnce.Do(func() {
-		file_pulumi_testing_language_proto_rawDescData = protoimpl.X.CompressGZIP(file_pulumi_testing_language_proto_rawDescData)
+func file_khulnasoft_testing_language_proto_rawDescGZIP() []byte {
+	file_khulnasoft_testing_language_proto_rawDescOnce.Do(func() {
+		file_khulnasoft_testing_language_proto_rawDescData = protoimpl.X.CompressGZIP(file_khulnasoft_testing_language_proto_rawDescData)
 	})
-	return file_pulumi_testing_language_proto_rawDescData
+	return file_khulnasoft_testing_language_proto_rawDescData
 }
 
-var file_pulumi_testing_language_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
-var file_pulumi_testing_language_proto_goTypes = []interface{}{
-	(*GetLanguageTestsRequest)(nil),                 // 0: pulumirpc.testing.GetLanguageTestsRequest
-	(*GetLanguageTestsResponse)(nil),                // 1: pulumirpc.testing.GetLanguageTestsResponse
-	(*PrepareLanguageTestsRequest)(nil),             // 2: pulumirpc.testing.PrepareLanguageTestsRequest
-	(*PrepareLanguageTestsResponse)(nil),            // 3: pulumirpc.testing.PrepareLanguageTestsResponse
-	(*RunLanguageTestRequest)(nil),                  // 4: pulumirpc.testing.RunLanguageTestRequest
-	(*RunLanguageTestResponse)(nil),                 // 5: pulumirpc.testing.RunLanguageTestResponse
-	(*PrepareLanguageTestsRequest_Replacement)(nil), // 6: pulumirpc.testing.PrepareLanguageTestsRequest.Replacement
+var file_khulnasoft_testing_language_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_khulnasoft_testing_language_proto_goTypes = []interface{}{
+	(*GetLanguageTestsRequest)(nil),                 // 0: khulnasoftrpc.testing.GetLanguageTestsRequest
+	(*GetLanguageTestsResponse)(nil),                // 1: khulnasoftrpc.testing.GetLanguageTestsResponse
+	(*PrepareLanguageTestsRequest)(nil),             // 2: khulnasoftrpc.testing.PrepareLanguageTestsRequest
+	(*PrepareLanguageTestsResponse)(nil),            // 3: khulnasoftrpc.testing.PrepareLanguageTestsResponse
+	(*RunLanguageTestRequest)(nil),                  // 4: khulnasoftrpc.testing.RunLanguageTestRequest
+	(*RunLanguageTestResponse)(nil),                 // 5: khulnasoftrpc.testing.RunLanguageTestResponse
+	(*PrepareLanguageTestsRequest_Replacement)(nil), // 6: khulnasoftrpc.testing.PrepareLanguageTestsRequest.Replacement
 }
-var file_pulumi_testing_language_proto_depIdxs = []int32{
-	6, // 0: pulumirpc.testing.PrepareLanguageTestsRequest.snapshot_edits:type_name -> pulumirpc.testing.PrepareLanguageTestsRequest.Replacement
-	0, // 1: pulumirpc.testing.LanguageTest.GetLanguageTests:input_type -> pulumirpc.testing.GetLanguageTestsRequest
-	2, // 2: pulumirpc.testing.LanguageTest.PrepareLanguageTests:input_type -> pulumirpc.testing.PrepareLanguageTestsRequest
-	4, // 3: pulumirpc.testing.LanguageTest.RunLanguageTest:input_type -> pulumirpc.testing.RunLanguageTestRequest
-	1, // 4: pulumirpc.testing.LanguageTest.GetLanguageTests:output_type -> pulumirpc.testing.GetLanguageTestsResponse
-	3, // 5: pulumirpc.testing.LanguageTest.PrepareLanguageTests:output_type -> pulumirpc.testing.PrepareLanguageTestsResponse
-	5, // 6: pulumirpc.testing.LanguageTest.RunLanguageTest:output_type -> pulumirpc.testing.RunLanguageTestResponse
+var file_khulnasoft_testing_language_proto_depIdxs = []int32{
+	6, // 0: khulnasoftrpc.testing.PrepareLanguageTestsRequest.snapshot_edits:type_name -> khulnasoftrpc.testing.PrepareLanguageTestsRequest.Replacement
+	0, // 1: khulnasoftrpc.testing.LanguageTest.GetLanguageTests:input_type -> khulnasoftrpc.testing.GetLanguageTestsRequest
+	2, // 2: khulnasoftrpc.testing.LanguageTest.PrepareLanguageTests:input_type -> khulnasoftrpc.testing.PrepareLanguageTestsRequest
+	4, // 3: khulnasoftrpc.testing.LanguageTest.RunLanguageTest:input_type -> khulnasoftrpc.testing.RunLanguageTestRequest
+	1, // 4: khulnasoftrpc.testing.LanguageTest.GetLanguageTests:output_type -> khulnasoftrpc.testing.GetLanguageTestsResponse
+	3, // 5: khulnasoftrpc.testing.LanguageTest.PrepareLanguageTests:output_type -> khulnasoftrpc.testing.PrepareLanguageTestsResponse
+	5, // 6: khulnasoftrpc.testing.LanguageTest.RunLanguageTest:output_type -> khulnasoftrpc.testing.RunLanguageTestResponse
 	4, // [4:7] is the sub-list for method output_type
 	1, // [1:4] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -588,13 +588,13 @@ var file_pulumi_testing_language_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_pulumi_testing_language_proto_init() }
-func file_pulumi_testing_language_proto_init() {
-	if File_pulumi_testing_language_proto != nil {
+func init() { file_khulnasoft_testing_language_proto_init() }
+func file_khulnasoft_testing_language_proto_init() {
+	if File_khulnasoft_testing_language_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_pulumi_testing_language_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_testing_language_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetLanguageTestsRequest); i {
 			case 0:
 				return &v.state
@@ -606,7 +606,7 @@ func file_pulumi_testing_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_testing_language_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_testing_language_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetLanguageTestsResponse); i {
 			case 0:
 				return &v.state
@@ -618,7 +618,7 @@ func file_pulumi_testing_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_testing_language_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_testing_language_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PrepareLanguageTestsRequest); i {
 			case 0:
 				return &v.state
@@ -630,7 +630,7 @@ func file_pulumi_testing_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_testing_language_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_testing_language_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PrepareLanguageTestsResponse); i {
 			case 0:
 				return &v.state
@@ -642,7 +642,7 @@ func file_pulumi_testing_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_testing_language_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_testing_language_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RunLanguageTestRequest); i {
 			case 0:
 				return &v.state
@@ -654,7 +654,7 @@ func file_pulumi_testing_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_testing_language_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_testing_language_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RunLanguageTestResponse); i {
 			case 0:
 				return &v.state
@@ -666,7 +666,7 @@ func file_pulumi_testing_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_testing_language_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_testing_language_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PrepareLanguageTestsRequest_Replacement); i {
 			case 0:
 				return &v.state
@@ -683,18 +683,18 @@ func file_pulumi_testing_language_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pulumi_testing_language_proto_rawDesc,
+			RawDescriptor: file_khulnasoft_testing_language_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_pulumi_testing_language_proto_goTypes,
-		DependencyIndexes: file_pulumi_testing_language_proto_depIdxs,
-		MessageInfos:      file_pulumi_testing_language_proto_msgTypes,
+		GoTypes:           file_khulnasoft_testing_language_proto_goTypes,
+		DependencyIndexes: file_khulnasoft_testing_language_proto_depIdxs,
+		MessageInfos:      file_khulnasoft_testing_language_proto_msgTypes,
 	}.Build()
-	File_pulumi_testing_language_proto = out.File
-	file_pulumi_testing_language_proto_rawDesc = nil
-	file_pulumi_testing_language_proto_goTypes = nil
-	file_pulumi_testing_language_proto_depIdxs = nil
+	File_khulnasoft_testing_language_proto = out.File
+	file_khulnasoft_testing_language_proto_rawDesc = nil
+	file_khulnasoft_testing_language_proto_goTypes = nil
+	file_khulnasoft_testing_language_proto_depIdxs = nil
 }

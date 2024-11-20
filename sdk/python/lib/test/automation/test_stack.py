@@ -18,8 +18,8 @@ import tempfile
 import time
 import unittest
 
-from pulumi.automation._stack import _watch_logs
-from pulumi.automation import EngineEvent, StdoutEngineEvent
+from khulnasoft.automation._stack import _watch_logs
+from khulnasoft.automation import EngineEvent, StdoutEngineEvent
 
 
 class TestStack(unittest.IsolatedAsyncioTestCase):

@@ -27,16 +27,16 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 var ErrHostIsClosed = errors.New("plugin host is shutting down")
@@ -164,7 +164,7 @@ func wrapProviderWithGrpc(provider plugin.Provider) (plugin.Provider, io.Closer,
 	handle, err := rpcutil.ServeWithOptions(rpcutil.ServeOptions{
 		Cancel: wrapper.stop,
 		Init: func(srv *grpc.Server) error {
-			pulumirpc.RegisterResourceProviderServer(srv, plugin.NewProviderServer(provider))
+			khulnasoftrpc.RegisterResourceProviderServer(srv, plugin.NewProviderServer(provider))
 			return nil
 		},
 		Options: rpcutil.OpenTracingServerInterceptorOptions(nil),
@@ -183,12 +183,12 @@ func wrapProviderWithGrpc(provider plugin.Provider) (plugin.Provider, io.Closer,
 		contract.IgnoreClose(wrapper)
 		return nil, nil, fmt.Errorf("could not connect to resource provider service: %w", err)
 	}
-	wrapped := plugin.NewProviderWithClient(nil, provider.Pkg(), pulumirpc.NewResourceProviderClient(conn), false)
+	wrapped := plugin.NewProviderWithClient(nil, provider.Pkg(), khulnasoftrpc.NewResourceProviderClient(conn), false)
 	return wrapped, wrapper, nil
 }
 
 type hostEngine struct {
-	pulumirpc.UnsafeEngineServer // opt out of forward compat
+	khulnasoftrpc.UnsafeEngineServer // opt out of forward compat
 
 	sink       diag.Sink
 	statusSink diag.Sink
@@ -197,16 +197,16 @@ type hostEngine struct {
 	stop    chan bool
 }
 
-func (e *hostEngine) Log(_ context.Context, req *pulumirpc.LogRequest) (*emptypb.Empty, error) {
+func (e *hostEngine) Log(_ context.Context, req *khulnasoftrpc.LogRequest) (*emptypb.Empty, error) {
 	var sev diag.Severity
 	switch req.Severity {
-	case pulumirpc.LogSeverity_DEBUG:
+	case khulnasoftrpc.LogSeverity_DEBUG:
 		sev = diag.Debug
-	case pulumirpc.LogSeverity_INFO:
+	case khulnasoftrpc.LogSeverity_INFO:
 		sev = diag.Info
-	case pulumirpc.LogSeverity_WARNING:
+	case khulnasoftrpc.LogSeverity_WARNING:
 		sev = diag.Warning
-	case pulumirpc.LogSeverity_ERROR:
+	case khulnasoftrpc.LogSeverity_ERROR:
 		sev = diag.Error
 	default:
 		return nil, fmt.Errorf("Unrecognized logging severity: %v", req.Severity)
@@ -221,19 +221,19 @@ func (e *hostEngine) Log(_ context.Context, req *pulumirpc.LogRequest) (*emptypb
 }
 
 func (e *hostEngine) GetRootResource(_ context.Context,
-	req *pulumirpc.GetRootResourceRequest,
-) (*pulumirpc.GetRootResourceResponse, error) {
+	req *khulnasoftrpc.GetRootResourceRequest,
+) (*khulnasoftrpc.GetRootResourceResponse, error) {
 	return nil, errors.New("unsupported")
 }
 
 func (e *hostEngine) SetRootResource(_ context.Context,
-	req *pulumirpc.SetRootResourceRequest,
-) (*pulumirpc.SetRootResourceResponse, error) {
+	req *khulnasoftrpc.SetRootResourceRequest,
+) (*khulnasoftrpc.SetRootResourceResponse, error) {
 	return nil, errors.New("unsupported")
 }
 
 func (e *hostEngine) StartDebugging(ctx context.Context,
-	req *pulumirpc.StartDebuggingRequest,
+	req *khulnasoftrpc.StartDebuggingRequest,
 ) (*emptypb.Empty, error) {
 	return nil, errors.New("unsupported")
 }
@@ -279,7 +279,7 @@ func NewPluginHost(sink, statusSink diag.Sink, languageRuntime plugin.LanguageRu
 	handle, err := rpcutil.ServeWithOptions(rpcutil.ServeOptions{
 		Cancel: engine.stop,
 		Init: func(srv *grpc.Server) error {
-			pulumirpc.RegisterEngineServer(srv, engine)
+			khulnasoftrpc.RegisterEngineServer(srv, engine)
 			return nil
 		},
 		Options: rpcutil.OpenTracingServerInterceptorOptions(nil),

@@ -31,8 +31,8 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 type poetry struct {
@@ -343,7 +343,7 @@ func dependenciesFromRequirementsTxt(r io.Reader) (map[string]string, error) {
 		parts := strings.SplitN(line, "#", 2)
 		line = strings.TrimSpace(parts[0])
 
-		// find the version specififer: "pulumi>=3.0.0,<4.0.0" -> ">=3.0.0,<4.0.0".
+		// find the version specififer: "khulnasoft>=3.0.0,<4.0.0" -> ">=3.0.0,<4.0.0".
 		version := string(versionRe.Find([]byte(line)))
 		// package is everything before the version specififer.
 		pkg := strings.TrimSpace(strings.Replace(line, version, "", 1))

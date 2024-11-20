@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_aws as aws
+import khulnasoft
+import khulnasoft_aws as aws
 
 # Create a new security group for port 80.
 security_group = aws.ec2.SecurityGroup("securityGroup", ingress=[{
@@ -27,5 +27,5 @@ server = aws.ec2.Instance("server",
 echo "Hello, World!" > index.html
 nohup python -m SimpleHTTPServer 80 &
 """)
-pulumi.export("publicIp", server.public_ip)
-pulumi.export("publicHostName", server.public_dns)
+khulnasoft.export("publicIp", server.public_ip)
+khulnasoft.export("publicHostName", server.public_dns)

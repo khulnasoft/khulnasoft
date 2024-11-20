@@ -75,7 +75,7 @@ class PropertyRenamingTest(LanghostTest):
     def register_resource_outputs(
         self, _ctx, _dry_run, _urn, ty, _name, _resource, outputs
     ):
-        self.assertEqual(ty, "pulumi:pulumi:Stack")
+        self.assertEqual(ty, "khulnasoft:khulnasoft:Stack")
         # Despite operating entirely in terms of camelCase above in register resource, the outputs
         # received from the program are all in snake case.
         self.assertDictEqual(

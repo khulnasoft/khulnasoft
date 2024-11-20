@@ -1,5 +1,5 @@
-// package: pulumirpc
-// file: pulumi/plugin.proto
+// package: khulnasoftrpc
+// file: khulnasoft/plugin.proto
 
 /* tslint:disable */
 /* eslint-disable */

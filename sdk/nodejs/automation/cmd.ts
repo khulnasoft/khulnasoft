@@ -55,7 +55,7 @@ export interface PulumiCommandOptions {
     version?: semver.SemVer;
     /**
      * The directory to install the CLI in or where to look for an existing
-     * installation. Defaults to $HOME/.pulumi/versions/$VERSION.
+     * installation. Defaults to $HOME/.khulnasoft/versions/$VERSION.
      */
     root?: string;
     /**
@@ -72,7 +72,7 @@ export class PulumiCommand {
 
     /**
      * Get a new Pulumi instance that uses the installation in `opts.root`.
-     * Defaults to using the pulumi binary found in $PATH if no installation
+     * Defaults to using the khulnasoft binary found in $PATH if no installation
      * root is specified.  If `opts.version` is specified, it validates that
      * the CLI is compatible with the requested version and throws an error if
      * not. This validation can be skipped by setting the environment variable
@@ -82,7 +82,7 @@ export class PulumiCommand {
      * the validation with `opts.skipVersionCheck`.
      */
     static async get(opts?: PulumiCommandOptions): Promise<PulumiCommand> {
-        const command = opts?.root ? path.resolve(path.join(opts.root, "bin/pulumi")) : "pulumi";
+        const command = opts?.root ? path.resolve(path.join(opts.root, "bin/khulnasoft")) : "khulnasoft";
         const { stdout } = await exec(command, ["version"]);
         const skipVersionCheck = !!opts?.skipVersionCheck || !!process.env[SKIP_VERSION_CHECK_VAR];
         let min = minimumVersion;
@@ -114,7 +114,7 @@ export class PulumiCommand {
     }
 
     private static async installWindows(opts: Required<PulumiCommandOptions>): Promise<void> {
-        const response = await got("https://get.pulumi.com/install.ps1");
+        const response = await got("https://get.khulnasoft.com/install.ps1");
         const script = await writeTempFile(response.body, { extension: ".ps1" });
 
         try {
@@ -144,7 +144,7 @@ export class PulumiCommand {
     }
 
     private static async installPosix(opts: Required<PulumiCommandOptions>): Promise<void> {
-        const response = await got("https://get.pulumi.com/install.sh");
+        const response = await got("https://get.khulnasoft.com/install.sh");
         const script = await writeTempFile(response.body);
 
         try {
@@ -173,9 +173,9 @@ export class PulumiCommand {
         // Prepend the folder where the CLI is installed to the path to ensure
         // we pickup the matching bundled plugins.
         if (path.isAbsolute(this.command)) {
-            const pulumiBin = path.dirname(this.command);
+            const khulnasoftBin = path.dirname(this.command);
             const sep = os.platform() === "win32" ? ";" : ":";
-            const envPath = pulumiBin + sep + (additionalEnv["PATH"] || process.env.PATH);
+            const envPath = khulnasoftBin + sep + (additionalEnv["PATH"] || process.env.PATH);
             additionalEnv["PATH"] = envPath;
         }
 
@@ -233,7 +233,7 @@ function withDefaults(opts?: PulumiCommandOptions): Required<PulumiCommandOption
     }
     let root = opts?.root;
     if (!root) {
-        root = path.join(os.homedir(), ".pulumi", "versions", `${version}`);
+        root = path.join(os.homedir(), ".khulnasoft", "versions", `${version}`);
     }
     const skipVersionCheck = opts?.skipVersionCheck !== undefined ? opts.skipVersionCheck : false;
     return { version, root, skipVersionCheck };

@@ -48,31 +48,31 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ inputs.ref }}
-          path: pulumi
+          path: khulnasoft
       - name: Checkout tap repo
         uses: actions/checkout@v4
         with:
-          repository: pulumi/homebrew-tap
+          repository: khulnasoft/homebrew-tap
           path: homebrew-tap
           token: ${{ secrets.PULUMI_BOT_TOKEN }}
       - name: Update Homebrew Tap
         run: |
           set -euo pipefail
 
-          # Can simulate this by cloning pulumi/pulumi & pulumi/homebrew-tap to adacent directories
+          # Can simulate this by cloning khulnasoft/khulnasoft & khulnasoft/homebrew-tap to adacent directories
           # and running from their parent:
 
-          ./pulumi/.github/scripts/generate-homebrew-tap \
-            "${PULUMI_VERSION}" ./pulumi/.github/scripts/pulumi-tap-template.rb \
-            > ./homebrew-tap/Formula/pulumi.rb
+          ./khulnasoft/.github/scripts/generate-homebrew-tap \
+            "${PULUMI_VERSION}" ./khulnasoft/.github/scripts/khulnasoft-tap-template.rb \
+            > ./homebrew-tap/Formula/khulnasoft.rb
       - name: Commit updated formula
         working-directory: homebrew-tap
         run: |
           set -euo pipefail
 
-          git config user.name pulumi-bot
-          git config user.email bot@pulumi.com
-          git add Formula/pulumi.rb
+          git config user.name khulnasoft-bot
+          git config user.email bot@khulnasoft.com
+          git add Formula/khulnasoft.rb
           echo "::group::git diff"
           git  --no-pager diff
           echo "::endgroup::"

@@ -7,13 +7,13 @@ package main
 import (
 	"fmt"
 
-	random "github.com/pulumi/pulumi-random/sdk/v4/go/random"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	random "github.com/khulnasoft/khulnasoft-random/sdk/v4/go/random"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		conf := config.New(ctx, "")
 		mode := conf.Require("mode")
 		n := conf.RequireInt("n")
@@ -42,30 +42,30 @@ func nameResource(i int, mode string) string {
 }
 
 func makeResource(
-	ctx *pulumi.Context,
+	ctx *khulnasoft.Context,
 	parent *random.RandomInteger,
 	prev []*random.RandomInteger,
 	i int,
 	mode string,
 ) (*random.RandomInteger, error) {
 	name := nameResource(i, mode)
-	opts := []pulumi.ResourceOption{}
+	opts := []khulnasoft.ResourceOption{}
 	if len(prev) != 0 {
-		deps := []pulumi.Resource{}
+		deps := []khulnasoft.Resource{}
 		for _, p := range prev {
 			deps = append(deps, p)
 		}
-		opts = append(opts, pulumi.DependsOn(deps))
+		opts = append(opts, khulnasoft.DependsOn(deps))
 	} else if parent != nil {
-		opts = append(opts, pulumi.DependsOn([]pulumi.Resource{parent}))
+		opts = append(opts, khulnasoft.DependsOn([]khulnasoft.Resource{parent}))
 	}
 	if mode == "alias" {
-		alias := pulumi.Alias{
-			Name:     pulumi.String(nameResource(i, "new")),
-			NoParent: pulumi.Bool(true),
+		alias := khulnasoft.Alias{
+			Name:     khulnasoft.String(nameResource(i, "new")),
+			NoParent: khulnasoft.Bool(true),
 		}
-		opts = append(opts, pulumi.Aliases([]pulumi.Alias{alias}))
-		opts = append(opts, pulumi.Parent(parent))
+		opts = append(opts, khulnasoft.Aliases([]khulnasoft.Alias{alias}))
+		opts = append(opts, khulnasoft.Parent(parent))
 	}
 
 	if len(prev) != 0 {
@@ -74,10 +74,10 @@ func makeResource(
 			ints = append(ints, p.Result)
 		}
 
-		var derived pulumi.IntOutput = pulumi.All(ints...).ApplyT(func(data []interface{}) int {
+		var derived khulnasoft.IntOutput = khulnasoft.All(ints...).ApplyT(func(data []interface{}) int {
 			s := 10
 			return s
-		}).(pulumi.IntOutput)
+		}).(khulnasoft.IntOutput)
 
 		return random.NewRandomInteger(ctx,
 			name,
@@ -91,8 +91,8 @@ func makeResource(
 		return random.NewRandomInteger(ctx,
 			name,
 			&random.RandomIntegerArgs{
-				Min: pulumi.Int(0),
-				Max: pulumi.Int(100),
+				Min: khulnasoft.Int(0),
+				Max: khulnasoft.Int(100),
 			},
 			opts...)
 	}

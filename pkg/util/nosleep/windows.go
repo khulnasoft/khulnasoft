@@ -18,7 +18,7 @@
 package nosleep
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 	"golang.org/x/sys/windows"
 )
 

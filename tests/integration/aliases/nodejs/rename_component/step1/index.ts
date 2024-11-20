@@ -1,18 +1,18 @@
 // Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-class Resource extends pulumi.ComponentResource {
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+class Resource extends khulnasoft.ComponentResource {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:module:Resource", name, {}, opts);
     }
 }
 
 // Scenario #3 - rename a component (and all it's children)
-class ComponentThree extends pulumi.ComponentResource {
+class ComponentThree extends khulnasoft.ComponentResource {
     resource1: Resource;
     resource2: Resource;
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:module:ComponentThree", name, {}, opts);
         // Note that both un-prefixed and parent-name-prefixed child names are supported. For the later, the implicit
         // alias inherited from the parent alias will include replacing the name prefix to match the parent alias name.

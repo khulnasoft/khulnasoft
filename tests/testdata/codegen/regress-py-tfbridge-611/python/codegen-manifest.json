@@ -1,16 +1,16 @@
 {
   "emittedFiles": [
-    "pulumi_aws/README.md",
-    "pulumi_aws/__init__.py",
-    "pulumi_aws/_utilities.py",
-    "pulumi_aws/provider.py",
-    "pulumi_aws/pulumi-plugin.json",
-    "pulumi_aws/py.typed",
-    "pulumi_aws/x/__init__.py",
-    "pulumi_aws/x/_inputs.py",
-    "pulumi_aws/x/iam/__init__.py",
-    "pulumi_aws/x/iam/get_policy_document.py",
-    "pulumi_aws/x/outputs.py",
+    "khulnasoft_aws/README.md",
+    "khulnasoft_aws/__init__.py",
+    "khulnasoft_aws/_utilities.py",
+    "khulnasoft_aws/provider.py",
+    "khulnasoft_aws/khulnasoft-plugin.json",
+    "khulnasoft_aws/py.typed",
+    "khulnasoft_aws/x/__init__.py",
+    "khulnasoft_aws/x/_inputs.py",
+    "khulnasoft_aws/x/iam/__init__.py",
+    "khulnasoft_aws/x/iam/get_policy_document.py",
+    "khulnasoft_aws/x/outputs.py",
     "setup.py"
   ]
 }

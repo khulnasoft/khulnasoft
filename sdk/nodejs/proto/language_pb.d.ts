@@ -1,12 +1,12 @@
-// package: pulumirpc
-// file: pulumi/language.proto
+// package: khulnasoftrpc
+// file: khulnasoft/language.proto
 
 /* tslint:disable */
 /* eslint-disable */
 
 import * as jspb from "google-protobuf";
-import * as pulumi_codegen_hcl_pb from "./codegen/hcl_pb";
-import * as pulumi_plugin_pb from "./plugin_pb";
+import * as khulnasoft_codegen_hcl_pb from "./codegen/hcl_pb";
+import * as khulnasoft_plugin_pb from "./plugin_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
@@ -207,9 +207,9 @@ export namespace GetRequiredPluginsRequest {
 
 export class GetRequiredPluginsResponse extends jspb.Message { 
     clearPluginsList(): void;
-    getPluginsList(): Array<pulumi_plugin_pb.PluginDependency>;
-    setPluginsList(value: Array<pulumi_plugin_pb.PluginDependency>): GetRequiredPluginsResponse;
-    addPlugins(value?: pulumi_plugin_pb.PluginDependency, index?: number): pulumi_plugin_pb.PluginDependency;
+    getPluginsList(): Array<khulnasoft_plugin_pb.PluginDependency>;
+    setPluginsList(value: Array<khulnasoft_plugin_pb.PluginDependency>): GetRequiredPluginsResponse;
+    addPlugins(value?: khulnasoft_plugin_pb.PluginDependency, index?: number): khulnasoft_plugin_pb.PluginDependency;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetRequiredPluginsResponse.AsObject;
@@ -223,7 +223,7 @@ export class GetRequiredPluginsResponse extends jspb.Message {
 
 export namespace GetRequiredPluginsResponse {
     export type AsObject = {
-        pluginsList: Array<pulumi_plugin_pb.PluginDependency.AsObject>,
+        pluginsList: Array<khulnasoft_plugin_pb.PluginDependency.AsObject>,
     }
 }
 
@@ -623,9 +623,9 @@ export namespace GenerateProgramRequest {
 
 export class GenerateProgramResponse extends jspb.Message { 
     clearDiagnosticsList(): void;
-    getDiagnosticsList(): Array<pulumi_codegen_hcl_pb.Diagnostic>;
-    setDiagnosticsList(value: Array<pulumi_codegen_hcl_pb.Diagnostic>): GenerateProgramResponse;
-    addDiagnostics(value?: pulumi_codegen_hcl_pb.Diagnostic, index?: number): pulumi_codegen_hcl_pb.Diagnostic;
+    getDiagnosticsList(): Array<khulnasoft_codegen_hcl_pb.Diagnostic>;
+    setDiagnosticsList(value: Array<khulnasoft_codegen_hcl_pb.Diagnostic>): GenerateProgramResponse;
+    addDiagnostics(value?: khulnasoft_codegen_hcl_pb.Diagnostic, index?: number): khulnasoft_codegen_hcl_pb.Diagnostic;
 
     getSourceMap(): jspb.Map<string, Uint8Array | string>;
     clearSourceMap(): void;
@@ -642,7 +642,7 @@ export class GenerateProgramResponse extends jspb.Message {
 
 export namespace GenerateProgramResponse {
     export type AsObject = {
-        diagnosticsList: Array<pulumi_codegen_hcl_pb.Diagnostic.AsObject>,
+        diagnosticsList: Array<khulnasoft_codegen_hcl_pb.Diagnostic.AsObject>,
 
         sourceMap: Array<[string, Uint8Array | string]>,
     }
@@ -687,9 +687,9 @@ export namespace GenerateProjectRequest {
 
 export class GenerateProjectResponse extends jspb.Message { 
     clearDiagnosticsList(): void;
-    getDiagnosticsList(): Array<pulumi_codegen_hcl_pb.Diagnostic>;
-    setDiagnosticsList(value: Array<pulumi_codegen_hcl_pb.Diagnostic>): GenerateProjectResponse;
-    addDiagnostics(value?: pulumi_codegen_hcl_pb.Diagnostic, index?: number): pulumi_codegen_hcl_pb.Diagnostic;
+    getDiagnosticsList(): Array<khulnasoft_codegen_hcl_pb.Diagnostic>;
+    setDiagnosticsList(value: Array<khulnasoft_codegen_hcl_pb.Diagnostic>): GenerateProjectResponse;
+    addDiagnostics(value?: khulnasoft_codegen_hcl_pb.Diagnostic, index?: number): khulnasoft_codegen_hcl_pb.Diagnostic;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GenerateProjectResponse.AsObject;
@@ -703,7 +703,7 @@ export class GenerateProjectResponse extends jspb.Message {
 
 export namespace GenerateProjectResponse {
     export type AsObject = {
-        diagnosticsList: Array<pulumi_codegen_hcl_pb.Diagnostic.AsObject>,
+        diagnosticsList: Array<khulnasoft_codegen_hcl_pb.Diagnostic.AsObject>,
     }
 }
 
@@ -748,9 +748,9 @@ export namespace GeneratePackageRequest {
 
 export class GeneratePackageResponse extends jspb.Message { 
     clearDiagnosticsList(): void;
-    getDiagnosticsList(): Array<pulumi_codegen_hcl_pb.Diagnostic>;
-    setDiagnosticsList(value: Array<pulumi_codegen_hcl_pb.Diagnostic>): GeneratePackageResponse;
-    addDiagnostics(value?: pulumi_codegen_hcl_pb.Diagnostic, index?: number): pulumi_codegen_hcl_pb.Diagnostic;
+    getDiagnosticsList(): Array<khulnasoft_codegen_hcl_pb.Diagnostic>;
+    setDiagnosticsList(value: Array<khulnasoft_codegen_hcl_pb.Diagnostic>): GeneratePackageResponse;
+    addDiagnostics(value?: khulnasoft_codegen_hcl_pb.Diagnostic, index?: number): khulnasoft_codegen_hcl_pb.Diagnostic;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GeneratePackageResponse.AsObject;
@@ -764,7 +764,7 @@ export class GeneratePackageResponse extends jspb.Message {
 
 export namespace GeneratePackageResponse {
     export type AsObject = {
-        diagnosticsList: Array<pulumi_codegen_hcl_pb.Diagnostic.AsObject>,
+        diagnosticsList: Array<khulnasoft_codegen_hcl_pb.Diagnostic.AsObject>,
     }
 }
 

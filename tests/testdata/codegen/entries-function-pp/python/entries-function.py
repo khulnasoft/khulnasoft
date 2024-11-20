@@ -1,4 +1,4 @@
-import pulumi
+import khulnasoft
 
 data = [{
     "usingKey": entry["key"],

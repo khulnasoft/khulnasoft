@@ -18,7 +18,7 @@ import (
 	"testing"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
 )
 
 func TestLogin(t *testing.T) {
@@ -32,8 +32,8 @@ func TestLogin(t *testing.T) {
 
 		integration.CreateBasicPulumiRepo(e)
 
-		// Running pulumi logout --all twice shouldn't result in an error
-		e.RunCommand("pulumi", "logout", "--all")
-		e.RunCommand("pulumi", "logout", "--all")
+		// Running khulnasoft logout --all twice shouldn't result in an error
+		e.RunCommand("khulnasoft", "logout", "--all")
+		e.RunCommand("khulnasoft", "logout", "--all")
 	})
 }

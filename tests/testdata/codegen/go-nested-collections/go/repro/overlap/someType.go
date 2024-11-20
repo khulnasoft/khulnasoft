@@ -7,17 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"go-nested-collections/repro/internal"
 )
 
 type SomeType struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
 // NewSomeType registers a new resource with the given unique name, arguments, and options.
-func NewSomeType(ctx *pulumi.Context,
-	name string, args *SomeTypeArgs, opts ...pulumi.ResourceOption) (*SomeType, error) {
+func NewSomeType(ctx *khulnasoft.Context,
+	name string, args *SomeTypeArgs, opts ...khulnasoft.ResourceOption) (*SomeType, error) {
 	if args == nil {
 		args = &SomeTypeArgs{}
 	}
@@ -33,8 +33,8 @@ func NewSomeType(ctx *pulumi.Context,
 
 // GetSomeType gets an existing SomeType resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetSomeType(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *SomeTypeState, opts ...pulumi.ResourceOption) (*SomeType, error) {
+func GetSomeType(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *SomeTypeState, opts ...khulnasoft.ResourceOption) (*SomeType, error) {
 	var resource SomeType
 	err := ctx.ReadResource("repro:overlap:SomeType", name, id, state, &resource, opts...)
 	if err != nil {
@@ -66,7 +66,7 @@ func (SomeTypeArgs) ElementType() reflect.Type {
 }
 
 type SomeTypeInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToSomeTypeOutput() SomeTypeOutput
 	ToSomeTypeOutputWithContext(ctx context.Context) SomeTypeOutput
@@ -81,7 +81,7 @@ func (i *SomeType) ToSomeTypeOutput() SomeTypeOutput {
 }
 
 func (i *SomeType) ToSomeTypeOutputWithContext(ctx context.Context) SomeTypeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SomeTypeOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(SomeTypeOutput)
 }
 
 // SomeTypeArrayInput is an input type that accepts SomeTypeArray and SomeTypeArrayOutput values.
@@ -89,7 +89,7 @@ func (i *SomeType) ToSomeTypeOutputWithContext(ctx context.Context) SomeTypeOutp
 //
 //	SomeTypeArray{ SomeTypeArgs{...} }
 type SomeTypeArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToSomeTypeArrayOutput() SomeTypeArrayOutput
 	ToSomeTypeArrayOutputWithContext(context.Context) SomeTypeArrayOutput
@@ -106,7 +106,7 @@ func (i SomeTypeArray) ToSomeTypeArrayOutput() SomeTypeArrayOutput {
 }
 
 func (i SomeTypeArray) ToSomeTypeArrayOutputWithContext(ctx context.Context) SomeTypeArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SomeTypeArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(SomeTypeArrayOutput)
 }
 
 // SomeTypeMapInput is an input type that accepts SomeTypeMap and SomeTypeMapOutput values.
@@ -114,7 +114,7 @@ func (i SomeTypeArray) ToSomeTypeArrayOutputWithContext(ctx context.Context) Som
 //
 //	SomeTypeMap{ "key": SomeTypeArgs{...} }
 type SomeTypeMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToSomeTypeMapOutput() SomeTypeMapOutput
 	ToSomeTypeMapOutputWithContext(context.Context) SomeTypeMapOutput
@@ -131,10 +131,10 @@ func (i SomeTypeMap) ToSomeTypeMapOutput() SomeTypeMapOutput {
 }
 
 func (i SomeTypeMap) ToSomeTypeMapOutputWithContext(ctx context.Context) SomeTypeMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SomeTypeMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(SomeTypeMapOutput)
 }
 
-type SomeTypeOutput struct{ *pulumi.OutputState }
+type SomeTypeOutput struct{ *khulnasoft.OutputState }
 
 func (SomeTypeOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SomeType)(nil)).Elem()
@@ -148,7 +148,7 @@ func (o SomeTypeOutput) ToSomeTypeOutputWithContext(ctx context.Context) SomeTyp
 	return o
 }
 
-type SomeTypeArrayOutput struct{ *pulumi.OutputState }
+type SomeTypeArrayOutput struct{ *khulnasoft.OutputState }
 
 func (SomeTypeArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*SomeType)(nil)).Elem()
@@ -162,13 +162,13 @@ func (o SomeTypeArrayOutput) ToSomeTypeArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SomeTypeArrayOutput) Index(i pulumi.IntInput) SomeTypeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SomeType {
+func (o SomeTypeArrayOutput) Index(i khulnasoft.IntInput) SomeTypeOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *SomeType {
 		return vs[0].([]*SomeType)[vs[1].(int)]
 	}).(SomeTypeOutput)
 }
 
-type SomeTypeMapOutput struct{ *pulumi.OutputState }
+type SomeTypeMapOutput struct{ *khulnasoft.OutputState }
 
 func (SomeTypeMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*SomeType)(nil)).Elem()
@@ -182,17 +182,17 @@ func (o SomeTypeMapOutput) ToSomeTypeMapOutputWithContext(ctx context.Context) S
 	return o
 }
 
-func (o SomeTypeMapOutput) MapIndex(k pulumi.StringInput) SomeTypeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SomeType {
+func (o SomeTypeMapOutput) MapIndex(k khulnasoft.StringInput) SomeTypeOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *SomeType {
 		return vs[0].(map[string]*SomeType)[vs[1].(string)]
 	}).(SomeTypeOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*SomeTypeInput)(nil)).Elem(), &SomeType{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SomeTypeArrayInput)(nil)).Elem(), SomeTypeArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SomeTypeMapInput)(nil)).Elem(), SomeTypeMap{})
-	pulumi.RegisterOutputType(SomeTypeOutput{})
-	pulumi.RegisterOutputType(SomeTypeArrayOutput{})
-	pulumi.RegisterOutputType(SomeTypeMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*SomeTypeInput)(nil)).Elem(), &SomeType{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*SomeTypeArrayInput)(nil)).Elem(), SomeTypeArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*SomeTypeMapInput)(nil)).Elem(), SomeTypeMap{})
+	khulnasoft.RegisterOutputType(SomeTypeOutput{})
+	khulnasoft.RegisterOutputType(SomeTypeArrayOutput{})
+	khulnasoft.RegisterOutputType(SomeTypeMapOutput{})
 }

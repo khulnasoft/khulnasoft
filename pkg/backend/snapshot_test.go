@@ -25,11 +25,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/b64"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/version"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 )
 
 type MockRegisterResourceEvent struct {
@@ -262,8 +262,8 @@ func TestSamesWithDependencyChanges(t *testing.T) {
 func TestWriteCheckpointOnceUnsafe(t *testing.T) {
 	t.Setenv(env.SkipCheckpoints.Var().Name(), "1")
 
-	provider := NewResource("urn:pulumi:foo::bar::pulumi:providers:pkgUnsafe::provider")
-	provider.Custom, provider.Type, provider.ID = true, "pulumi:providers:pkgUnsafe", "id"
+	provider := NewResource("urn:khulnasoft:foo::bar::khulnasoft:providers:pkgUnsafe::provider")
+	provider.Custom, provider.Type, provider.ID = true, "khulnasoft:providers:pkgUnsafe", "id"
 
 	resourceP := NewResource("a-unique-urn-resource-p")
 	resourceA := NewResource("a-unique-urn-resource-a")
@@ -320,8 +320,8 @@ func TestWriteCheckpointOnceUnsafe(t *testing.T) {
 func TestSamesWithOtherMeaningfulChanges(t *testing.T) {
 	t.Parallel()
 
-	provider := NewResource("urn:pulumi:foo::bar::pulumi:providers:pkgA::provider")
-	provider.Custom, provider.Type, provider.ID = true, "pulumi:providers:pkgA", "id"
+	provider := NewResource("urn:khulnasoft:foo::bar::khulnasoft:providers:pkgA::provider")
+	provider.Custom, provider.Type, provider.ID = true, "khulnasoft:providers:pkgA", "id"
 
 	resourceP := NewResource(aUniqueUrnResourceP)
 	resourceA := NewResource(aUniqueUrnResourceA)
@@ -330,7 +330,7 @@ func TestSamesWithOtherMeaningfulChanges(t *testing.T) {
 
 	// Change the "custom" bit.
 	changes = append(changes, NewResource(resourceA.URN))
-	changes[0].Custom, changes[0].Provider = true, "urn:pulumi:foo::bar::pulumi:providers:pkgA::provider::id"
+	changes[0].Custom, changes[0].Provider = true, "urn:khulnasoft:foo::bar::khulnasoft:providers:pkgA::provider::id"
 
 	// Change the parent, this also has to change the URN.
 	changes = append(changes, NewResource(resourceA.URN))
@@ -402,12 +402,12 @@ func TestSamesWithOtherMeaningfulChanges(t *testing.T) {
 	}
 
 	// Set up a second provider and change the resource's provider reference.
-	provider2 := NewResource("urn:pulumi:foo::bar::pulumi:providers:pkgA::provider2")
-	provider2.Custom, provider2.Type, provider2.ID = true, "pulumi:providers:pkgA", "id2"
+	provider2 := NewResource("urn:khulnasoft:foo::bar::khulnasoft:providers:pkgA::provider2")
+	provider2.Custom, provider2.Type, provider2.ID = true, "khulnasoft:providers:pkgA", "id2"
 
 	resourceA.Custom = true
 	resourceA.ID = "id"
-	resourceA.Provider = "urn:pulumi:foo::bar::pulumi:providers:pkgA::provider::id"
+	resourceA.Provider = "urn:khulnasoft:foo::bar::khulnasoft:providers:pkgA::provider::id"
 
 	snap = NewSnapshot([]*resource.State{
 		provider,
@@ -416,7 +416,7 @@ func TestSamesWithOtherMeaningfulChanges(t *testing.T) {
 	})
 
 	changes = []*resource.State{NewResource(resourceA.URN)}
-	changes[0].Custom, changes[0].Provider = true, "urn:pulumi:foo::bar::pulumi:providers:pkgA::provider2::id2"
+	changes[0].Custom, changes[0].Provider = true, "urn:khulnasoft:foo::bar::khulnasoft:providers:pkgA::provider2::id2"
 
 	for _, c := range changes {
 		manager, sp := MockSetup(t, snap)

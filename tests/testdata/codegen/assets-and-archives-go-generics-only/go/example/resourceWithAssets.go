@@ -9,21 +9,21 @@ import (
 
 	"assets-and-archives-go-generics-only/example/internal"
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 )
 
 type ResourceWithAssets struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Archive pulumix.Output[pulumi.Archive]                           `pulumi:"archive"`
-	Asset   pulumix.Output[pulumi.AssetOrArchive]                    `pulumi:"asset"`
-	Nested  pulumix.GPtrOutput[TypeWithAssets, TypeWithAssetsOutput] `pulumi:"nested"`
+	Archive khulnasoftx.Output[khulnasoft.Archive]                           `khulnasoft:"archive"`
+	Asset   khulnasoftx.Output[khulnasoft.AssetOrArchive]                    `khulnasoft:"asset"`
+	Nested  khulnasoftx.GPtrOutput[TypeWithAssets, TypeWithAssetsOutput] `khulnasoft:"nested"`
 }
 
 // NewResourceWithAssets registers a new resource with the given unique name, arguments, and options.
-func NewResourceWithAssets(ctx *pulumi.Context,
-	name string, args *ResourceWithAssetsArgs, opts ...pulumi.ResourceOption) (*ResourceWithAssets, error) {
+func NewResourceWithAssets(ctx *khulnasoft.Context,
+	name string, args *ResourceWithAssetsArgs, opts ...khulnasoft.ResourceOption) (*ResourceWithAssets, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -42,8 +42,8 @@ func NewResourceWithAssets(ctx *pulumi.Context,
 
 // GetResourceWithAssets gets an existing ResourceWithAssets resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetResourceWithAssets(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ResourceWithAssetsState, opts ...pulumi.ResourceOption) (*ResourceWithAssets, error) {
+func GetResourceWithAssets(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ResourceWithAssetsState, opts ...khulnasoft.ResourceOption) (*ResourceWithAssets, error) {
 	var resource ResourceWithAssets
 	err := ctx.ReadResource("example:index:ResourceWithAssets", name, id, state, &resource, opts...)
 	if err != nil {
@@ -64,23 +64,23 @@ func (ResourceWithAssetsState) ElementType() reflect.Type {
 }
 
 type resourceWithAssetsArgs struct {
-	Archive pulumi.Archive        `pulumi:"archive"`
-	Nested  *TypeWithAssets       `pulumi:"nested"`
-	Source  pulumi.AssetOrArchive `pulumi:"source"`
+	Archive khulnasoft.Archive        `khulnasoft:"archive"`
+	Nested  *TypeWithAssets       `khulnasoft:"nested"`
+	Source  khulnasoft.AssetOrArchive `khulnasoft:"source"`
 }
 
 // The set of arguments for constructing a ResourceWithAssets resource.
 type ResourceWithAssetsArgs struct {
-	Archive pulumix.Input[*pulumi.Archive]
-	Nested  pulumix.Input[*TypeWithAssetsArgs]
-	Source  pulumix.Input[pulumi.AssetOrArchive]
+	Archive khulnasoftx.Input[*khulnasoft.Archive]
+	Nested  khulnasoftx.Input[*TypeWithAssetsArgs]
+	Source  khulnasoftx.Input[khulnasoft.AssetOrArchive]
 }
 
 func (ResourceWithAssetsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*resourceWithAssetsArgs)(nil)).Elem()
 }
 
-type ResourceWithAssetsOutput struct{ *pulumi.OutputState }
+type ResourceWithAssetsOutput struct{ *khulnasoft.OutputState }
 
 func (ResourceWithAssetsOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ResourceWithAssets)(nil)).Elem()
@@ -94,28 +94,28 @@ func (o ResourceWithAssetsOutput) ToResourceWithAssetsOutputWithContext(ctx cont
 	return o
 }
 
-func (o ResourceWithAssetsOutput) ToOutput(ctx context.Context) pulumix.Output[ResourceWithAssets] {
-	return pulumix.Output[ResourceWithAssets]{
+func (o ResourceWithAssetsOutput) ToOutput(ctx context.Context) khulnasoftx.Output[ResourceWithAssets] {
+	return khulnasoftx.Output[ResourceWithAssets]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o ResourceWithAssetsOutput) Archive() pulumix.Output[pulumi.Archive] {
-	value := pulumix.Apply[ResourceWithAssets](o, func(v ResourceWithAssets) pulumix.Output[pulumi.Archive] { return v.Archive })
-	return pulumix.Flatten[pulumi.Archive, pulumix.Output[pulumi.Archive]](value)
+func (o ResourceWithAssetsOutput) Archive() khulnasoftx.Output[khulnasoft.Archive] {
+	value := khulnasoftx.Apply[ResourceWithAssets](o, func(v ResourceWithAssets) khulnasoftx.Output[khulnasoft.Archive] { return v.Archive })
+	return khulnasoftx.Flatten[khulnasoft.Archive, khulnasoftx.Output[khulnasoft.Archive]](value)
 }
 
-func (o ResourceWithAssetsOutput) Asset() pulumix.Output[pulumi.AssetOrArchive] {
-	value := pulumix.Apply[ResourceWithAssets](o, func(v ResourceWithAssets) pulumix.Output[pulumi.AssetOrArchive] { return v.Asset })
-	return pulumix.Flatten[pulumi.AssetOrArchive, pulumix.Output[pulumi.AssetOrArchive]](value)
+func (o ResourceWithAssetsOutput) Asset() khulnasoftx.Output[khulnasoft.AssetOrArchive] {
+	value := khulnasoftx.Apply[ResourceWithAssets](o, func(v ResourceWithAssets) khulnasoftx.Output[khulnasoft.AssetOrArchive] { return v.Asset })
+	return khulnasoftx.Flatten[khulnasoft.AssetOrArchive, khulnasoftx.Output[khulnasoft.AssetOrArchive]](value)
 }
 
-func (o ResourceWithAssetsOutput) Nested() pulumix.GPtrOutput[TypeWithAssets, TypeWithAssetsOutput] {
-	value := pulumix.Apply[ResourceWithAssets](o, func(v ResourceWithAssets) pulumix.GPtrOutput[TypeWithAssets, TypeWithAssetsOutput] { return v.Nested })
-	unwrapped := pulumix.Flatten[*TypeWithAssets, pulumix.GPtrOutput[TypeWithAssets, TypeWithAssetsOutput]](value)
-	return pulumix.GPtrOutput[TypeWithAssets, TypeWithAssetsOutput]{OutputState: unwrapped.OutputState}
+func (o ResourceWithAssetsOutput) Nested() khulnasoftx.GPtrOutput[TypeWithAssets, TypeWithAssetsOutput] {
+	value := khulnasoftx.Apply[ResourceWithAssets](o, func(v ResourceWithAssets) khulnasoftx.GPtrOutput[TypeWithAssets, TypeWithAssetsOutput] { return v.Nested })
+	unwrapped := khulnasoftx.Flatten[*TypeWithAssets, khulnasoftx.GPtrOutput[TypeWithAssets, TypeWithAssetsOutput]](value)
+	return khulnasoftx.GPtrOutput[TypeWithAssets, TypeWithAssetsOutput]{OutputState: unwrapped.OutputState}
 }
 
 func init() {
-	pulumi.RegisterOutputType(ResourceWithAssetsOutput{})
+	khulnasoft.RegisterOutputType(ResourceWithAssetsOutput{})
 }

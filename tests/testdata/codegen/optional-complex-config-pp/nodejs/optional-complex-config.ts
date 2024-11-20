@@ -1,7 +1,7 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
-const config = new pulumi.Config();
+const config = new khulnasoft.Config();
 // The tag of the VPC
 const vpcTag = config.get("vpcTag");
 // The id of a VPC to use instead of creating a new one

@@ -3,11 +3,11 @@
     "repro/doc.go",
     "repro/ecs/fargateTaskDefinition.go",
     "repro/ecs/init.go",
-    "repro/ecs/pulumiTypes.go",
+    "repro/ecs/khulnasoftTypes.go",
     "repro/init.go",
-    "repro/internal/pulumiUtilities.go",
-    "repro/internal/pulumiVersion.go",
+    "repro/internal/khulnasoftUtilities.go",
+    "repro/internal/khulnasoftVersion.go",
     "repro/provider.go",
-    "repro/pulumi-plugin.json"
+    "repro/khulnasoft-plugin.json"
   ]
 }

@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_azure_native as azure_native
+import khulnasoft
+import khulnasoft_azure_native as azure_native
 
 front_door = azure_native.network.FrontDoor("frontDoor",
     resource_group_name="someGroupName",

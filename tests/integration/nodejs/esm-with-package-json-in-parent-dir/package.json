@@ -4,6 +4,6 @@
     "type": "module",
     "license": "Apache-2.0",
     "peerDependencies": {
-        "@pulumi/pulumi": "latest"
+        "@khulnasoft/khulnasoft": "latest"
     }
 }

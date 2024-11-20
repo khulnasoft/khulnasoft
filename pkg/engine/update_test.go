@@ -21,7 +21,7 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/cancel"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -81,12 +81,12 @@ func TestDeletingComponentResourceProducesResourceOutputsEvent(t *testing.T) {
 	acts.Opts.Events.ch = eventsChan
 
 	step := deploy.NewDeleteStep(&deploy.Deployment{}, map[resource.URN]bool{}, &resource.State{
-		URN:      resource.URN("urn:pulumi:stack::project::my:example:Foo::foo"),
+		URN:      resource.URN("urn:khulnasoft:stack::project::my:example:Foo::foo"),
 		ID:       "foo",
 		Custom:   false,
 		Provider: "unimportant",
 	})
-	acts.Seen[resource.URN("urn:pulumi:stack::project::my:example:Foo::foo")] = step
+	acts.Seen[resource.URN("urn:khulnasoft:stack::project::my:example:Foo::foo")] = step
 
 	err := acts.OnResourceStepPost(
 		&mockSnapshotMutation{}, step, resource.StatusOK,
@@ -99,7 +99,7 @@ func TestDeletingComponentResourceProducesResourceOutputsEvent(t *testing.T) {
 	case ResourceOutputsEvent:
 		e, ok := e.Payload().(ResourceOutputsEventPayload)
 		assert.True(t, ok)
-		assert.True(t, e.Metadata.URN == "urn:pulumi:stack::project::my:example:Foo::foo")
+		assert.True(t, e.Metadata.URN == "urn:khulnasoft:stack::project::my:example:Foo::foo")
 	default:
 		assert.Fail(t, "unexpected event type")
 	}

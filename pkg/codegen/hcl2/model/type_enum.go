@@ -25,7 +25,7 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model/pretty"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // EnumType represents values of a single type, and a closed set of possible values.
@@ -48,7 +48,7 @@ type EnumType struct {
 	// Failure to do so may lead to panics.
 	Token string
 	// TODO: Refactor the token out into NamedType<EnumType>
-	// See https://github.com/pulumi/pulumi/pull/9290#discussion_r851356288
+	// See https://github.com/khulnasoft/khulnasoft/pull/9290#discussion_r851356288
 
 	// Annotations records any annotations associated with the object type.
 	Annotations []interface{}

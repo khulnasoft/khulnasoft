@@ -29,18 +29,18 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/pulumi/esc/ast"
-	"github.com/pulumi/esc/eval"
+	"github.com/khulnasoft/esc/ast"
+	"github.com/khulnasoft/esc/eval"
 	"github.com/texttheater/golang-levenshtein/levenshtein"
 
 	"github.com/hashicorp/go-multierror"
 	"github.com/pgavlin/fx"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 	"github.com/santhosh-tekuri/jsonschema/v5"
 	"golang.org/x/exp/maps"
 	"gopkg.in/yaml.v3"
@@ -101,17 +101,17 @@ type ProjectTemplateConfigValue struct {
 // ProjectBackend is the configuration for where the backend state is stored. If unset, will use the
 // system's currently logged-in backend.
 //
-// Use the same URL format that is passed to "pulumi login", see
-// https://www.pulumi.com/docs/cli/commands/pulumi_login/
+// Use the same URL format that is passed to "khulnasoft login", see
+// https://www.khulnasoft.com/docs/cli/commands/khulnasoft_login/
 //
-// To explicitly use the Pulumi Cloud backend, use URL "https://api.pulumi.com"
+// To explicitly use the Pulumi Cloud backend, use URL "https://api.khulnasoft.com"
 type ProjectBackend struct {
 	// URL is optional field to explicitly set backend url
 	URL string `json:"url,omitempty" yaml:"url,omitempty"`
 }
 
 type ProjectOptions struct {
-	// Refresh is the ability to always run a refresh as part of a pulumi update / preview / destroy
+	// Refresh is the ability to always run a refresh as part of a khulnasoft update / preview / destroy
 	Refresh string `json:"refresh,omitempty" yaml:"refresh,omitempty"`
 }
 
@@ -162,7 +162,7 @@ func (configType *ProjectConfigType) TypeName() string {
 // in terms of the JSON tags) so we can directly marshall and unmarshall this struct using go-yaml an have the fields
 // in the serialized object match the order they are defined in this struct.
 //
-// TODO[pulumi/pulumi#423]: use DOM based marshalling so we can roundtrip the seralized structure perfectly.
+// TODO[khulnasoft/khulnasoft#423]: use DOM based marshalling so we can roundtrip the seralized structure perfectly.
 type Project struct {
 	// Name is a required fully qualified name.
 	Name tokens.PackageName `json:"name" yaml:"name"`
@@ -1144,14 +1144,14 @@ func save(path string, value interface{}, mkDirAll bool) error {
 }
 
 // To mitigate an import cycle, we define this here.
-const PulumiTagsConfigKey = "pulumi:tags"
+const PulumiTagsConfigKey = "khulnasoft:tags"
 
 // AddConfigStackTags sets the project tags config to the given map of tags.
 func (proj *Project) AddConfigStackTags(tags map[string]string) {
 	if proj.Config == nil {
 		proj.Config = map[string]ProjectConfigType{}
 	}
-	configTags, has := proj.Config["pulumi:tags"]
+	configTags, has := proj.Config["khulnasoft:tags"]
 	if !has {
 		configTags = ProjectConfigType{
 			Value: map[string]string{},
@@ -1163,11 +1163,11 @@ func (proj *Project) AddConfigStackTags(tags map[string]string) {
 
 	tagMap, ok := configTags.Value.(map[string]string)
 	if !ok {
-		logging.Warningf("overwriting non-object `%s` project config", "pulumi:tags")
+		logging.Warningf("overwriting non-object `%s` project config", "khulnasoft:tags")
 		tagMap = map[string]string{}
 	}
 	for k, v := range tags {
 		tagMap[k] = v
 	}
-	proj.Config["pulumi:tags"] = configTags
+	proj.Config["khulnasoft:tags"] = configTags
 }

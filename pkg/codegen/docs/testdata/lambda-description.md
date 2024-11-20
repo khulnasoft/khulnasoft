@@ -15,9 +15,9 @@ For information about Lambda and how to use it, see [What is AWS Lambda?](https:
 
 <!--Start PulumiCodeChooser -->
 ```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as archive from "@pulumi/archive";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as archive from "@khulnasoft/archive";
+import * as aws from "@khulnasoft/aws";
 
 const assumeRole = aws.iam.getPolicyDocument({
     statements: [{
@@ -36,7 +36,7 @@ const lambda = archive.getFile({
     outputPath: "lambda_function_payload.zip",
 });
 const testLambda = new aws.lambda.Function("testLambda", {
-    code: new pulumi.asset.FileArchive("lambda_function_payload.zip"),
+    code: new khulnasoft.asset.FileArchive("lambda_function_payload.zip"),
     role: iamForLambda.arn,
     handler: "index.test",
     runtime: "nodejs18.x",
@@ -48,9 +48,9 @@ const testLambda = new aws.lambda.Function("testLambda", {
 });
 ```
 ```python
-import pulumi
-import pulumi_archive as archive
-import pulumi_aws as aws
+import khulnasoft
+import khulnasoft_archive as archive
+import khulnasoft_aws as aws
 
 assume_role = aws.iam.get_policy_document(statements=[aws.iam.GetPolicyDocumentStatementArgs(
     effect="Allow",
@@ -65,7 +65,7 @@ lambda_ = archive.get_file(type="zip",
     source_file="lambda.js",
     output_path="lambda_function_payload.zip")
 test_lambda = aws.lambda_.Function("testLambda",
-    code=pulumi.FileArchive("lambda_function_payload.zip"),
+    code=khulnasoft.FileArchive("lambda_function_payload.zip"),
     role=iam_for_lambda.arn,
     handler="index.test",
     runtime="nodejs18.x",
@@ -143,18 +143,18 @@ return await Deployment.RunAsync(() =>
 package main
 
 import (
-	"github.com/pulumi/pulumi-archive/sdk/go/archive"
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/lambda"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-archive/sdk/go/archive"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v6/go/aws/iam"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v6/go/aws/lambda"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		assumeRole, err := iam.GetPolicyDocument(ctx, &iam.GetPolicyDocumentArgs{
 			Statements: []iam.GetPolicyDocumentStatement{
 				{
-					Effect: pulumi.StringRef("Allow"),
+					Effect: khulnasoft.StringRef("Allow"),
 					Principals: []iam.GetPolicyDocumentStatementPrincipal{
 						{
 							Type: "Service",
@@ -173,27 +173,27 @@ func main() {
 			return err
 		}
 		iamForLambda, err := iam.NewRole(ctx, "iamForLambda", &iam.RoleArgs{
-			AssumeRolePolicy: *pulumi.String(assumeRole.Json),
+			AssumeRolePolicy: *khulnasoft.String(assumeRole.Json),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = archive.LookupFile(ctx, &archive.LookupFileArgs{
 			Type:       "zip",
-			SourceFile: pulumi.StringRef("lambda.js"),
+			SourceFile: khulnasoft.StringRef("lambda.js"),
 			OutputPath: "lambda_function_payload.zip",
 		}, nil)
 		if err != nil {
 			return err
 		}
 		_, err = lambda.NewFunction(ctx, "testLambda", &lambda.FunctionArgs{
-			Code:    pulumi.NewFileArchive("lambda_function_payload.zip"),
+			Code:    khulnasoft.NewFileArchive("lambda_function_payload.zip"),
 			Role:    iamForLambda.Arn,
-			Handler: pulumi.String("index.test"),
-			Runtime: pulumi.String("nodejs18.x"),
+			Handler: khulnasoft.String("index.test"),
+			Runtime: khulnasoft.String("nodejs18.x"),
 			Environment: &lambda.FunctionEnvironmentArgs{
-				Variables: pulumi.StringMap{
-					"foo": pulumi.String("bar"),
+				Variables: khulnasoft.StringMap{
+					"foo": khulnasoft.String("bar"),
 				},
 			},
 		})
@@ -207,19 +207,19 @@ func main() {
 ```java
 package generated_program;
 
-import com.pulumi.Context;
-import com.pulumi.Pulumi;
-import com.pulumi.core.Output;
-import com.pulumi.aws.iam.IamFunctions;
-import com.pulumi.aws.iam.inputs.GetPolicyDocumentArgs;
-import com.pulumi.aws.iam.Role;
-import com.pulumi.aws.iam.RoleArgs;
-import com.pulumi.archive.ArchiveFunctions;
-import com.pulumi.archive.inputs.GetFileArgs;
-import com.pulumi.aws.lambda.Function;
-import com.pulumi.aws.lambda.FunctionArgs;
-import com.pulumi.aws.lambda.inputs.FunctionEnvironmentArgs;
-import com.pulumi.asset.FileArchive;
+import com.khulnasoft.Context;
+import com.khulnasoft.Pulumi;
+import com.khulnasoft.core.Output;
+import com.khulnasoft.aws.iam.IamFunctions;
+import com.khulnasoft.aws.iam.inputs.GetPolicyDocumentArgs;
+import com.khulnasoft.aws.iam.Role;
+import com.khulnasoft.aws.iam.RoleArgs;
+import com.khulnasoft.archive.ArchiveFunctions;
+import com.khulnasoft.archive.inputs.GetFileArgs;
+import com.khulnasoft.aws.lambda.Function;
+import com.khulnasoft.aws.lambda.FunctionArgs;
+import com.khulnasoft.aws.lambda.inputs.FunctionEnvironmentArgs;
+import com.khulnasoft.asset.FileArchive;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -313,16 +313,16 @@ variables:
 
 <!--Start PulumiCodeChooser -->
 ```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
 const exampleLayerVersion = new aws.lambda.LayerVersion("exampleLayerVersion", {});
 // ... other configuration ...
 const exampleFunction = new aws.lambda.Function("exampleFunction", {layers: [exampleLayerVersion.arn]});
 ```
 ```python
-import pulumi
-import pulumi_aws as aws
+import khulnasoft
+import khulnasoft_aws as aws
 
 example_layer_version = aws.lambda_.LayerVersion("exampleLayerVersion")
 # ... other configuration ...
@@ -353,18 +353,18 @@ return await Deployment.RunAsync(() =>
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/lambda"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v6/go/aws/lambda"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		exampleLayerVersion, err := lambda.NewLayerVersion(ctx, "exampleLayerVersion", nil)
 		if err != nil {
 			return err
 		}
 		_, err = lambda.NewFunction(ctx, "exampleFunction", &lambda.FunctionArgs{
-			Layers: pulumi.StringArray{
+			Layers: khulnasoft.StringArray{
 				exampleLayerVersion.Arn,
 			},
 		})
@@ -378,12 +378,12 @@ func main() {
 ```java
 package generated_program;
 
-import com.pulumi.Context;
-import com.pulumi.Pulumi;
-import com.pulumi.core.Output;
-import com.pulumi.aws.lambda.LayerVersion;
-import com.pulumi.aws.lambda.Function;
-import com.pulumi.aws.lambda.FunctionArgs;
+import com.khulnasoft.Context;
+import com.khulnasoft.Pulumi;
+import com.khulnasoft.core.Output;
+import com.khulnasoft.aws.lambda.LayerVersion;
+import com.khulnasoft.aws.lambda.Function;
+import com.khulnasoft.aws.lambda.FunctionArgs;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -425,8 +425,8 @@ Lambda Function Ephemeral Storage(`/tmp`) allows you to configure the storage up
 
 <!--Start PulumiCodeChooser -->
 ```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
 const assumeRole = aws.iam.getPolicyDocument({
     statements: [{
@@ -440,7 +440,7 @@ const assumeRole = aws.iam.getPolicyDocument({
 });
 const iamForLambda = new aws.iam.Role("iamForLambda", {assumeRolePolicy: assumeRole.then(assumeRole => assumeRole.json)});
 const testLambda = new aws.lambda.Function("testLambda", {
-    code: new pulumi.asset.FileArchive("lambda_function_payload.zip"),
+    code: new khulnasoft.asset.FileArchive("lambda_function_payload.zip"),
     role: iamForLambda.arn,
     handler: "index.test",
     runtime: "nodejs18.x",
@@ -450,8 +450,8 @@ const testLambda = new aws.lambda.Function("testLambda", {
 });
 ```
 ```python
-import pulumi
-import pulumi_aws as aws
+import khulnasoft
+import khulnasoft_aws as aws
 
 assume_role = aws.iam.get_policy_document(statements=[aws.iam.GetPolicyDocumentStatementArgs(
     effect="Allow",
@@ -463,7 +463,7 @@ assume_role = aws.iam.get_policy_document(statements=[aws.iam.GetPolicyDocumentS
 )])
 iam_for_lambda = aws.iam.Role("iamForLambda", assume_role_policy=assume_role.json)
 test_lambda = aws.lambda_.Function("testLambda",
-    code=pulumi.FileArchive("lambda_function_payload.zip"),
+    code=khulnasoft.FileArchive("lambda_function_payload.zip"),
     role=iam_for_lambda.arn,
     handler="index.test",
     runtime="nodejs18.x",
@@ -528,17 +528,17 @@ return await Deployment.RunAsync(() =>
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/lambda"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v6/go/aws/iam"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v6/go/aws/lambda"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		assumeRole, err := iam.GetPolicyDocument(ctx, &iam.GetPolicyDocumentArgs{
 			Statements: []iam.GetPolicyDocumentStatement{
 				{
-					Effect: pulumi.StringRef("Allow"),
+					Effect: khulnasoft.StringRef("Allow"),
 					Principals: []iam.GetPolicyDocumentStatementPrincipal{
 						{
 							Type: "Service",
@@ -557,18 +557,18 @@ func main() {
 			return err
 		}
 		iamForLambda, err := iam.NewRole(ctx, "iamForLambda", &iam.RoleArgs{
-			AssumeRolePolicy: *pulumi.String(assumeRole.Json),
+			AssumeRolePolicy: *khulnasoft.String(assumeRole.Json),
 		})
 		if err != nil {
 			return err
 		}
 		_, err = lambda.NewFunction(ctx, "testLambda", &lambda.FunctionArgs{
-			Code:    pulumi.NewFileArchive("lambda_function_payload.zip"),
+			Code:    khulnasoft.NewFileArchive("lambda_function_payload.zip"),
 			Role:    iamForLambda.Arn,
-			Handler: pulumi.String("index.test"),
-			Runtime: pulumi.String("nodejs18.x"),
+			Handler: khulnasoft.String("index.test"),
+			Runtime: khulnasoft.String("nodejs18.x"),
 			EphemeralStorage: &lambda.FunctionEphemeralStorageArgs{
-				Size: pulumi.Int(10240),
+				Size: khulnasoft.Int(10240),
 			},
 		})
 		if err != nil {
@@ -581,17 +581,17 @@ func main() {
 ```java
 package generated_program;
 
-import com.pulumi.Context;
-import com.pulumi.Pulumi;
-import com.pulumi.core.Output;
-import com.pulumi.aws.iam.IamFunctions;
-import com.pulumi.aws.iam.inputs.GetPolicyDocumentArgs;
-import com.pulumi.aws.iam.Role;
-import com.pulumi.aws.iam.RoleArgs;
-import com.pulumi.aws.lambda.Function;
-import com.pulumi.aws.lambda.FunctionArgs;
-import com.pulumi.aws.lambda.inputs.FunctionEphemeralStorageArgs;
-import com.pulumi.asset.FileArchive;
+import com.khulnasoft.Context;
+import com.khulnasoft.Pulumi;
+import com.khulnasoft.core.Output;
+import com.khulnasoft.aws.iam.IamFunctions;
+import com.khulnasoft.aws.iam.inputs.GetPolicyDocumentArgs;
+import com.khulnasoft.aws.iam.Role;
+import com.khulnasoft.aws.iam.RoleArgs;
+import com.khulnasoft.aws.lambda.Function;
+import com.khulnasoft.aws.lambda.FunctionArgs;
+import com.khulnasoft.aws.lambda.inputs.FunctionEphemeralStorageArgs;
+import com.khulnasoft.asset.FileArchive;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -671,8 +671,8 @@ Lambda File Systems allow you to connect an Amazon Elastic File System (EFS) fil
 
 <!--Start PulumiCodeChooser -->
 ```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
 // EFS file system
 const efsForLambda = new aws.efs.FileSystem("efsForLambda", {tags: {
@@ -716,8 +716,8 @@ const example = new aws.lambda.Function("example", {
 });
 ```
 ```python
-import pulumi
-import pulumi_aws as aws
+import khulnasoft
+import khulnasoft_aws as aws
 
 # EFS file system
 efs_for_lambda = aws.efs.FileSystem("efsForLambda", tags={
@@ -754,7 +754,7 @@ example = aws.lambda_.Function("example",
         subnet_ids=[aws_subnet["subnet_for_lambda"]["id"]],
         security_group_ids=[aws_security_group["sg_for_lambda"]["id"]],
     ),
-    opts=pulumi.ResourceOptions(depends_on=[alpha]))
+    opts=khulnasoft.ResourceOptions(depends_on=[alpha]))
 ```
 ```csharp
 using System.Collections.Generic;
@@ -839,16 +839,16 @@ return await Deployment.RunAsync(() =>
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/efs"
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/lambda"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v6/go/aws/efs"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v6/go/aws/lambda"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		efsForLambda, err := efs.NewFileSystem(ctx, "efsForLambda", &efs.FileSystemArgs{
-			Tags: pulumi.StringMap{
-				"Name": pulumi.String("efs_for_lambda"),
+			Tags: khulnasoft.StringMap{
+				"Name": khulnasoft.String("efs_for_lambda"),
 			},
 		})
 		if err != nil {
@@ -856,8 +856,8 @@ func main() {
 		}
 		alpha, err := efs.NewMountTarget(ctx, "alpha", &efs.MountTargetArgs{
 			FileSystemId: efsForLambda.ID(),
-			SubnetId:     pulumi.Any(aws_subnet.Subnet_for_lambda.Id),
-			SecurityGroups: pulumi.StringArray{
+			SubnetId:     khulnasoft.Any(aws_subnet.Subnet_for_lambda.Id),
+			SecurityGroups: khulnasoft.StringArray{
 				aws_security_group.Sg_for_lambda.Id,
 			},
 		})
@@ -867,16 +867,16 @@ func main() {
 		accessPointForLambda, err := efs.NewAccessPoint(ctx, "accessPointForLambda", &efs.AccessPointArgs{
 			FileSystemId: efsForLambda.ID(),
 			RootDirectory: &efs.AccessPointRootDirectoryArgs{
-				Path: pulumi.String("/lambda"),
+				Path: khulnasoft.String("/lambda"),
 				CreationInfo: &efs.AccessPointRootDirectoryCreationInfoArgs{
-					OwnerGid:    pulumi.Int(1000),
-					OwnerUid:    pulumi.Int(1000),
-					Permissions: pulumi.String("777"),
+					OwnerGid:    khulnasoft.Int(1000),
+					OwnerUid:    khulnasoft.Int(1000),
+					Permissions: khulnasoft.String("777"),
 				},
 			},
 			PosixUser: &efs.AccessPointPosixUserArgs{
-				Gid: pulumi.Int(1000),
-				Uid: pulumi.Int(1000),
+				Gid: khulnasoft.Int(1000),
+				Uid: khulnasoft.Int(1000),
 			},
 		})
 		if err != nil {
@@ -885,17 +885,17 @@ func main() {
 		_, err = lambda.NewFunction(ctx, "example", &lambda.FunctionArgs{
 			FileSystemConfig: &lambda.FunctionFileSystemConfigArgs{
 				Arn:            accessPointForLambda.Arn,
-				LocalMountPath: pulumi.String("/mnt/efs"),
+				LocalMountPath: khulnasoft.String("/mnt/efs"),
 			},
 			VpcConfig: &lambda.FunctionVpcConfigArgs{
-				SubnetIds: pulumi.StringArray{
+				SubnetIds: khulnasoft.StringArray{
 					aws_subnet.Subnet_for_lambda.Id,
 				},
-				SecurityGroupIds: pulumi.StringArray{
+				SecurityGroupIds: khulnasoft.StringArray{
 					aws_security_group.Sg_for_lambda.Id,
 				},
 			},
-		}, pulumi.DependsOn([]pulumi.Resource{
+		}, khulnasoft.DependsOn([]khulnasoft.Resource{
 			alpha,
 		}))
 		if err != nil {
@@ -908,23 +908,23 @@ func main() {
 ```java
 package generated_program;
 
-import com.pulumi.Context;
-import com.pulumi.Pulumi;
-import com.pulumi.core.Output;
-import com.pulumi.aws.efs.FileSystem;
-import com.pulumi.aws.efs.FileSystemArgs;
-import com.pulumi.aws.efs.MountTarget;
-import com.pulumi.aws.efs.MountTargetArgs;
-import com.pulumi.aws.efs.AccessPoint;
-import com.pulumi.aws.efs.AccessPointArgs;
-import com.pulumi.aws.efs.inputs.AccessPointRootDirectoryArgs;
-import com.pulumi.aws.efs.inputs.AccessPointRootDirectoryCreationInfoArgs;
-import com.pulumi.aws.efs.inputs.AccessPointPosixUserArgs;
-import com.pulumi.aws.lambda.Function;
-import com.pulumi.aws.lambda.FunctionArgs;
-import com.pulumi.aws.lambda.inputs.FunctionFileSystemConfigArgs;
-import com.pulumi.aws.lambda.inputs.FunctionVpcConfigArgs;
-import com.pulumi.resources.CustomResourceOptions;
+import com.khulnasoft.Context;
+import com.khulnasoft.Pulumi;
+import com.khulnasoft.core.Output;
+import com.khulnasoft.aws.efs.FileSystem;
+import com.khulnasoft.aws.efs.FileSystemArgs;
+import com.khulnasoft.aws.efs.MountTarget;
+import com.khulnasoft.aws.efs.MountTargetArgs;
+import com.khulnasoft.aws.efs.AccessPoint;
+import com.khulnasoft.aws.efs.AccessPointArgs;
+import com.khulnasoft.aws.efs.inputs.AccessPointRootDirectoryArgs;
+import com.khulnasoft.aws.efs.inputs.AccessPointRootDirectoryCreationInfoArgs;
+import com.khulnasoft.aws.efs.inputs.AccessPointPosixUserArgs;
+import com.khulnasoft.aws.lambda.Function;
+import com.khulnasoft.aws.lambda.FunctionArgs;
+import com.khulnasoft.aws.lambda.inputs.FunctionFileSystemConfigArgs;
+import com.khulnasoft.aws.lambda.inputs.FunctionVpcConfigArgs;
+import com.khulnasoft.resources.CustomResourceOptions;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -1038,10 +1038,10 @@ For more information about CloudWatch Logs for Lambda, see the [Lambda User Guid
 
 <!--Start PulumiCodeChooser -->
 ```typescript
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
-const config = new pulumi.Config();
+const config = new khulnasoft.Config();
 const lambdaFunctionName = config.get("lambdaFunctionName") || "lambda_function_name";
 // This is to optionally manage the CloudWatch Log Group for the Lambda Function.
 // If skipping this resource configuration, also add "logs:CreateLogGroup" to the IAM policy below.
@@ -1076,10 +1076,10 @@ const testLambda = new aws.lambda.Function("testLambda", {loggingConfig: {
 });
 ```
 ```python
-import pulumi
-import pulumi_aws as aws
+import khulnasoft
+import khulnasoft_aws as aws
 
-config = pulumi.Config()
+config = khulnasoft.Config()
 lambda_function_name = config.get("lambdaFunctionName")
 if lambda_function_name is None:
     lambda_function_name = "lambda_function_name"
@@ -1105,7 +1105,7 @@ lambda_logs = aws.iam.RolePolicyAttachment("lambdaLogs",
 test_lambda = aws.lambda_.Function("testLambda", logging_config=aws.lambda_.FunctionLoggingConfigArgs(
     log_format="Text",
 ),
-opts=pulumi.ResourceOptions(depends_on=[
+opts=khulnasoft.ResourceOptions(depends_on=[
         lambda_logs,
         example,
     ]))
@@ -1182,22 +1182,22 @@ return await Deployment.RunAsync(() =>
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/cloudwatch"
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
-	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/lambda"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v6/go/aws/cloudwatch"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v6/go/aws/iam"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v6/go/aws/lambda"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		cfg := config.New(ctx, "")
 		lambdaFunctionName := "lambda_function_name"
 		if param := cfg.Get("lambdaFunctionName"); param != "" {
 			lambdaFunctionName = param
 		}
 		example, err := cloudwatch.NewLogGroup(ctx, "example", &cloudwatch.LogGroupArgs{
-			RetentionInDays: pulumi.Int(14),
+			RetentionInDays: khulnasoft.Int(14),
 		})
 		if err != nil {
 			return err
@@ -1205,7 +1205,7 @@ func main() {
 		lambdaLoggingPolicyDocument, err := iam.GetPolicyDocument(ctx, &iam.GetPolicyDocumentArgs{
 			Statements: []iam.GetPolicyDocumentStatement{
 				{
-					Effect: pulumi.StringRef("Allow"),
+					Effect: khulnasoft.StringRef("Allow"),
 					Actions: []string{
 						"logs:CreateLogGroup",
 						"logs:CreateLogStream",
@@ -1221,15 +1221,15 @@ func main() {
 			return err
 		}
 		lambdaLoggingPolicy, err := iam.NewPolicy(ctx, "lambdaLoggingPolicy", &iam.PolicyArgs{
-			Path:        pulumi.String("/"),
-			Description: pulumi.String("IAM policy for logging from a lambda"),
-			Policy:      *pulumi.String(lambdaLoggingPolicyDocument.Json),
+			Path:        khulnasoft.String("/"),
+			Description: khulnasoft.String("IAM policy for logging from a lambda"),
+			Policy:      *khulnasoft.String(lambdaLoggingPolicyDocument.Json),
 		})
 		if err != nil {
 			return err
 		}
 		lambdaLogs, err := iam.NewRolePolicyAttachment(ctx, "lambdaLogs", &iam.RolePolicyAttachmentArgs{
-			Role:      pulumi.Any(aws_iam_role.Iam_for_lambda.Name),
+			Role:      khulnasoft.Any(aws_iam_role.Iam_for_lambda.Name),
 			PolicyArn: lambdaLoggingPolicy.Arn,
 		})
 		if err != nil {
@@ -1237,9 +1237,9 @@ func main() {
 		}
 		_, err = lambda.NewFunction(ctx, "testLambda", &lambda.FunctionArgs{
 			LoggingConfig: &lambda.FunctionLoggingConfigArgs{
-				LogFormat: pulumi.String("Text"),
+				LogFormat: khulnasoft.String("Text"),
 			},
-		}, pulumi.DependsOn([]pulumi.Resource{
+		}, khulnasoft.DependsOn([]khulnasoft.Resource{
 			lambdaLogs,
 			example,
 		}))
@@ -1253,21 +1253,21 @@ func main() {
 ```java
 package generated_program;
 
-import com.pulumi.Context;
-import com.pulumi.Pulumi;
-import com.pulumi.core.Output;
-import com.pulumi.aws.cloudwatch.LogGroup;
-import com.pulumi.aws.cloudwatch.LogGroupArgs;
-import com.pulumi.aws.iam.IamFunctions;
-import com.pulumi.aws.iam.inputs.GetPolicyDocumentArgs;
-import com.pulumi.aws.iam.Policy;
-import com.pulumi.aws.iam.PolicyArgs;
-import com.pulumi.aws.iam.RolePolicyAttachment;
-import com.pulumi.aws.iam.RolePolicyAttachmentArgs;
-import com.pulumi.aws.lambda.Function;
-import com.pulumi.aws.lambda.FunctionArgs;
-import com.pulumi.aws.lambda.inputs.FunctionLoggingConfigArgs;
-import com.pulumi.resources.CustomResourceOptions;
+import com.khulnasoft.Context;
+import com.khulnasoft.Pulumi;
+import com.khulnasoft.core.Output;
+import com.khulnasoft.aws.cloudwatch.LogGroup;
+import com.khulnasoft.aws.cloudwatch.LogGroupArgs;
+import com.khulnasoft.aws.iam.IamFunctions;
+import com.khulnasoft.aws.iam.inputs.GetPolicyDocumentArgs;
+import com.khulnasoft.aws.iam.Policy;
+import com.khulnasoft.aws.iam.PolicyArgs;
+import com.khulnasoft.aws.iam.RolePolicyAttachment;
+import com.khulnasoft.aws.iam.RolePolicyAttachmentArgs;
+import com.khulnasoft.aws.lambda.Function;
+import com.khulnasoft.aws.lambda.FunctionArgs;
+import com.khulnasoft.aws.lambda.inputs.FunctionLoggingConfigArgs;
+import com.khulnasoft.resources.CustomResourceOptions;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;

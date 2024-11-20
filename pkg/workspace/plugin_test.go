@@ -20,9 +20,9 @@ import (
 	"testing"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -46,8 +46,8 @@ func TestInstallPluginErrorText(t *testing.T) {
 					Kind: apitype.ResourcePlugin,
 				},
 			},
-			ExpectedError: "Could not automatically download and install resource plugin 'pulumi-resource-myplugin'," +
-				" install the plugin using `pulumi plugin install resource myplugin`: some error",
+			ExpectedError: "Could not automatically download and install resource plugin 'khulnasoft-resource-myplugin'," +
+				" install the plugin using `khulnasoft plugin install resource myplugin`: some error",
 		},
 		{
 			Name: "Different kind",
@@ -58,8 +58,8 @@ func TestInstallPluginErrorText(t *testing.T) {
 					Kind: apitype.ConverterPlugin,
 				},
 			},
-			ExpectedError: "Could not automatically download and install converter plugin 'pulumi-converter-myplugin'," +
-				" install the plugin using `pulumi plugin install converter myplugin`: some error",
+			ExpectedError: "Could not automatically download and install converter plugin 'khulnasoft-converter-myplugin'," +
+				" install the plugin using `khulnasoft plugin install converter myplugin`: some error",
 		},
 		{
 			Name: "Name and version",
@@ -71,8 +71,8 @@ func TestInstallPluginErrorText(t *testing.T) {
 					Version: &v1,
 				},
 			},
-			ExpectedError: "Could not automatically download and install resource plugin 'pulumi-resource-myplugin'" +
-				" at version v0.1.0, install the plugin using `pulumi plugin install resource myplugin v0.1.0`: some error",
+			ExpectedError: "Could not automatically download and install resource plugin 'khulnasoft-resource-myplugin'" +
+				" at version v0.1.0, install the plugin using `khulnasoft plugin install resource myplugin v0.1.0`: some error",
 		},
 		{
 			Name: "Name and version and URL",
@@ -85,8 +85,8 @@ func TestInstallPluginErrorText(t *testing.T) {
 					PluginDownloadURL: "github://owner/repo",
 				},
 			},
-			ExpectedError: "Could not automatically download and install resource plugin 'pulumi-resource-myplugin'" +
-				" at version v0.1.0, install the plugin using `pulumi plugin install resource myplugin v0.1.0" +
+			ExpectedError: "Could not automatically download and install resource plugin 'khulnasoft-resource-myplugin'" +
+				" at version v0.1.0, install the plugin using `khulnasoft plugin install resource myplugin v0.1.0" +
 				" --server github://owner/repo`: some error",
 		},
 		{
@@ -99,8 +99,8 @@ func TestInstallPluginErrorText(t *testing.T) {
 					PluginDownloadURL: "github://owner/repo",
 				},
 			},
-			ExpectedError: "Could not automatically download and install resource plugin 'pulumi-resource-myplugin'," +
-				" install the plugin using `pulumi plugin install resource myplugin" +
+			ExpectedError: "Could not automatically download and install resource plugin 'khulnasoft-resource-myplugin'," +
+				" install the plugin using `khulnasoft plugin install resource myplugin" +
 				" --server github://owner/repo`: some error",
 		},
 	}

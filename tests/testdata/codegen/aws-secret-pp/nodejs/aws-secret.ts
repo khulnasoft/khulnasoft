@@ -1,4 +1,4 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
-const dbCluster = new aws.rds.Cluster("dbCluster", {masterPassword: pulumi.secret("foobar")});
+const dbCluster = new aws.rds.Cluster("dbCluster", {masterPassword: khulnasoft.secret("foobar")});

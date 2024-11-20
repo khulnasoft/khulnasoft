@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 const (
@@ -58,17 +58,17 @@ func getCodeSection(doc string) []codeLocation {
 
 func markupBlock(block, supportedSnippetLanguages string) string {
 	languages := []struct{ tag, choosable string }{
-		{"typescript", "<div>\n<pulumi-choosable type=\"language\" values=\"javascript,typescript\">\n\n"},
-		{"python", "<div>\n<pulumi-choosable type=\"language\" values=\"python\">\n\n"},
-		{"go", "<div>\n<pulumi-choosable type=\"language\" values=\"go\">\n\n"},
-		{"csharp", "<div>\n<pulumi-choosable type=\"language\" values=\"csharp\">\n\n"},
-		{"java", "<div>\n<pulumi-choosable type=\"language\" values=\"java\">\n\n"},
-		{"yaml", "<div>\n<pulumi-choosable type=\"language\" values=\"yaml\">\n\n"},
+		{"typescript", "<div>\n<khulnasoft-choosable type=\"language\" values=\"javascript,typescript\">\n\n"},
+		{"python", "<div>\n<khulnasoft-choosable type=\"language\" values=\"python\">\n\n"},
+		{"go", "<div>\n<khulnasoft-choosable type=\"language\" values=\"go\">\n\n"},
+		{"csharp", "<div>\n<khulnasoft-choosable type=\"language\" values=\"csharp\">\n\n"},
+		{"java", "<div>\n<khulnasoft-choosable type=\"language\" values=\"java\">\n\n"},
+		{"yaml", "<div>\n<khulnasoft-choosable type=\"language\" values=\"yaml\">\n\n"},
 	}
 	const (
 		//nolint:lll
-		chooserStartFmt = "<div>\n<pulumi-chooser type=\"language\" options=\"%s\"></pulumi-chooser>\n</div>\n"
-		choosableEnd    = "</pulumi-choosable>\n</div>\n"
+		chooserStartFmt = "<div>\n<khulnasoft-chooser type=\"language\" options=\"%s\"></khulnasoft-chooser>\n</div>\n"
+		choosableEnd    = "</khulnasoft-choosable>\n</div>\n"
 	)
 
 	var markedUpBlock strings.Builder

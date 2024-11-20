@@ -34,6 +34,6 @@ func TestGcpLogin(t *testing.T) {
 		t.Skip("GOOGLE_APPLICATION_CREDENTIALS not set, skipping test")
 	}
 
-	cloudURL := "gs://pulumitesting"
+	cloudURL := "gs://khulnasofttesting"
 	loginAndCreateStack(t, cloudURL)
 }

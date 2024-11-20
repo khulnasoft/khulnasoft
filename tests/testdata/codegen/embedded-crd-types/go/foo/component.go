@@ -9,20 +9,20 @@ import (
 
 	"embedded-crd-types/foo/crd.k8s.amazonaws.com/v1alpha1"
 	"embedded-crd-types/foo/internal"
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	corev1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/core/v1"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	EniConfig v1alpha1.ENIConfigSpecMapOutput `pulumi:"eniConfig"`
-	Pod       *corev1.PodTypeOutput           `pulumi:"pod"`
+	EniConfig v1alpha1.ENIConfigSpecMapOutput `khulnasoft:"eniConfig"`
+	Pod       *corev1.PodTypeOutput           `khulnasoft:"pod"`
 }
 
 // NewComponent registers a new resource with the given unique name, arguments, and options.
-func NewComponent(ctx *pulumi.Context,
-	name string, args *ComponentArgs, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context,
+	name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	if args == nil {
 		args = &ComponentArgs{}
 	}
@@ -37,8 +37,8 @@ func NewComponent(ctx *pulumi.Context,
 }
 
 type componentArgs struct {
-	EniConfig map[string]v1alpha1.ENIConfigSpec `pulumi:"eniConfig"`
-	Pod       *corev1.PodType                   `pulumi:"pod"`
+	EniConfig map[string]v1alpha1.ENIConfigSpec `khulnasoft:"eniConfig"`
+	Pod       *corev1.PodType                   `khulnasoft:"pod"`
 }
 
 // The set of arguments for constructing a Component resource.
@@ -52,7 +52,7 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type ComponentInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToComponentOutput() ComponentOutput
 	ToComponentOutputWithContext(ctx context.Context) ComponentOutput
@@ -67,10 +67,10 @@ func (i *Component) ToComponentOutput() ComponentOutput {
 }
 
 func (i *Component) ToComponentOutputWithContext(ctx context.Context) ComponentOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ComponentOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ComponentOutput)
 }
 
-type ComponentOutput struct{ *pulumi.OutputState }
+type ComponentOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Component)(nil)).Elem()
@@ -93,6 +93,6 @@ func (o ComponentOutput) Pod() *corev1.PodTypeOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ComponentInput)(nil)).Elem(), &Component{})
-	pulumi.RegisterOutputType(ComponentOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ComponentInput)(nil)).Elem(), &Component{})
+	khulnasoft.RegisterOutputType(ComponentOutput{})
 }

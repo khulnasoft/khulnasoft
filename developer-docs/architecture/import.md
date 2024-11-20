@@ -21,8 +21,8 @@ between the state described in the program and the actual state of the imported 
 
 ## `import` resource option
 
-The oldest method supported of importing resources into a stack is the [`import`](https://www.pulumi.com/docs/intro/concepts/resources/#import)
-[resource option](https://www.pulumi.com/docs/intro/concepts/resources/#options). When set,
+The oldest method supported of importing resources into a stack is the [`import`](https://www.khulnasoft.com/docs/intro/concepts/resources/#import)
+[resource option](https://www.khulnasoft.com/docs/intro/concepts/resources/#options). When set,
 this option specifies the ID of an existing resource to import into the stack. The exact
 behavior of this option depends on the current state of the resource within the destination
 stack:
@@ -36,7 +36,7 @@ stack:
 The trickiest of these three situations is (2). This state transition is intended to allow
 users to import a resource and then continue to make changes to their program without
 requiring that they remove the resource option. For example, this allows a user to import
-a resource in one `pulumi up`, then successfully run another `pulumi up` without removing
+a resource in one `khulnasoft up`, then successfully run another `khulnasoft up` without removing
 the `import` option from their program and without attempting to import the resource a
 second time.
 
@@ -50,7 +50,7 @@ Pulumi program `Iₚ`, the engine performs the following sequence of operations:
    from its provider by calling the provider's [`Read` method](providers/implementers-guide.md#read).
    If the provider does not return a value for `Iₐ`, the provider does not support
    importing resources and the import fails.
-2. Process the [`ignoreChanges` resource option](https://www.pulumi.com/docs/intro/concepts/resources/#import)
+2. Process the [`ignoreChanges` resource option](https://www.khulnasoft.com/docs/intro/concepts/resources/#import)
    by copying the value for any ignored input property from `Iₐ` to `Iₚ`.
 3. Validate the resource's inputs and apply any programmatic defaults by passing `Iₚ` and
    `Iₐ` to the provider's [`Check` method](providers/implementers-guide.md#check). Let
@@ -81,16 +81,16 @@ run by the [step executor](resource-registration.md#the-step-executor).
 
 ![Import diagram](./import.svg)
 
-## `pulumi import`
+## `khulnasoft import`
 
-The second, newer method of importing resources into a stack is the [`pulumi import`
-command](https://www.pulumi.com/docs/cli/commands/pulumi_import/). This command accepts a
+The second, newer method of importing resources into a stack is the [`khulnasoft import`
+command](https://www.khulnasoft.com/docs/cli/commands/khulnasoft_import/). This command accepts a
 list of import specs to import, imports the resources into the destination stack, and
 generates definitions for the resources in the language used by the stack's Pulumi program.
 Each import spec is at least a type token, name, and ID, but may also specify a parent URN,
 provider reference, and package version.
 
-During a `pulumi import`, given a resource `R` of type `T` with import ID X and an empty
+During a `khulnasoft import`, given a resource `R` of type `T` with import ID X and an empty
 set of input properties `Iₚ`, the engine performs the following sequence of operations:
 
 1. Fetch the current inputs `Iₐ` and state `Sₐ` for the resource of type `T` with ID `X`
@@ -123,11 +123,11 @@ copy the generated definition into their Pulumi program.
 
 Graphically, the import process looks something like this:
 
-![`pulumi import` diagram](./pulumi-import.svg)
+![`khulnasoft import` diagram](./khulnasoft-import.svg)
 
 ### Challenges
 
-The primary challenge in generating appropriate code for `pulumi import` lies in
+The primary challenge in generating appropriate code for `khulnasoft import` lies in
 determining exactly what the input values for a particular resource should be. In many
 providers, it is not necessarily possible to accurately recover a resource's inputs from
 its state. This observation led to the diff-oriented approach described above, where the

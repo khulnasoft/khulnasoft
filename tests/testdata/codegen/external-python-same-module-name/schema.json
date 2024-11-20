@@ -19,8 +19,8 @@
     "language": {
         "python": {
             "requires": {
-                "pulumi": ">=3.0.0,<4.0.0",
-                "pulumi-aws": ">=4.37.1,<5.0.0"
+                "khulnasoft": ">=3.0.0,<4.0.0",
+                "khulnasoft-aws": ">=4.37.1,<5.0.0"
             }
         }
     }

@@ -14,18 +14,18 @@
 
 import unittest
 import unittest.mock
-import pulumi
+import khulnasoft
 
 
-class Resource1(pulumi.Resource):
+class Resource1(khulnasoft.Resource):
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def foo(self) -> str:
         return "foo"
 
     @property
-    @pulumi.getter
-    @pulumi.deprecated("bar is deprecated; use foo instead")
+    @khulnasoft.getter
+    @khulnasoft.deprecated("bar is deprecated; use foo instead")
     def bar(self) -> str:
         return "bar"
 
@@ -58,7 +58,7 @@ class DeprecatedTests(unittest.TestCase):
         prop = Resource1.__dict__["bar"]
 
         # Act.
-        f = prop.fget.__dict__.get("_pulumi_deprecated_callable")
+        f = prop.fget.__dict__.get("_khulnasoft_deprecated_callable")
 
         # Assert.
         self.assertIsNotNone(f)
@@ -66,7 +66,7 @@ class DeprecatedTests(unittest.TestCase):
     def test_deprecated_can_passthrough(self):
         # Arrange.
         prop = Resource1.__dict__["bar"]
-        f = prop.fget.__dict__.get("_pulumi_deprecated_callable")
+        f = prop.fget.__dict__.get("_khulnasoft_deprecated_callable")
         expected = "bar"
 
         # Act.
@@ -113,7 +113,7 @@ class DeprecatedTests(unittest.TestCase):
         prop = Resource1.__dict__["foo"]
 
         # Act.
-        f = prop.fget.__dict__.get("_pulumi_deprecated_callable")
+        f = prop.fget.__dict__.get("_khulnasoft_deprecated_callable")
 
         # Assert.
         self.assertIsNone(f)

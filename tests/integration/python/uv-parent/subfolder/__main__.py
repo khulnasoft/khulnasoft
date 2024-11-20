@@ -2,6 +2,6 @@
 
 """A Python project that uses the uv toolchain where the pyproject.toml is in a parent folder."""
 
-import pulumi
+import khulnasoft
 
-pulumi.export("foo", "bar")
+khulnasoft.export("foo", "bar")

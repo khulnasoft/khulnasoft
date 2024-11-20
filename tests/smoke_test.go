@@ -27,9 +27,9 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
 	"gopkg.in/yaml.v2"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -48,7 +48,7 @@ var Languages = map[string]string{
 
 // Quick sanity tests for each downstream language to check that a minimal example can be created and run.
 //
-//nolint:paralleltest // pulumi new is not parallel safe
+//nolint:paralleltest // khulnasoft new is not parallel safe
 func TestLanguageNewSmoke(t *testing.T) {
 	// make sure we can download needed plugins
 	t.Setenv("PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION", "false")
@@ -61,17 +61,17 @@ func TestLanguageNewSmoke(t *testing.T) {
 			defer deleteIfNotFailed(e)
 
 			// `new` wants to work in an empty directory but our use of local url means we have a
-			// ".pulumi" directory at root.
+			// ".khulnasoft" directory at root.
 			projectDir := filepath.Join(e.RootPath, "project")
 			err := os.Mkdir(projectDir, 0o700)
 			require.NoError(t, err)
 
 			e.CWD = projectDir
 
-			e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-			e.RunCommand("pulumi", "new", "random-"+Languages[runtime], "--yes")
-			e.RunCommand("pulumi", "up", "--yes")
-			e.RunCommand("pulumi", "destroy", "--yes")
+			e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+			e.RunCommand("khulnasoft", "new", "random-"+Languages[runtime], "--yes")
+			e.RunCommand("khulnasoft", "up", "--yes")
+			e.RunCommand("khulnasoft", "destroy", "--yes")
 		})
 	}
 }
@@ -89,10 +89,10 @@ func TestYamlConvertSmoke(t *testing.T) {
 	e.ImportDirectory("testdata/random_yaml")
 
 	// Make sure random is installed
-	e.RunCommand("pulumi", "plugin", "install", "resource", "random", "4.13.0")
+	e.RunCommand("khulnasoft", "plugin", "install", "resource", "random", "4.13.0")
 
 	e.RunCommand(
-		"pulumi", "convert", "--strict",
+		"khulnasoft", "convert", "--strict",
 		"--language", "pcl", "--from", "yaml", "--out", "out")
 
 	actualPcl, err := os.ReadFile(filepath.Join(e.RootPath, "out", "program.pp"))
@@ -123,18 +123,18 @@ func TestLanguageConvertSmoke(t *testing.T) {
 			e.ImportDirectory("testdata/random_pp")
 
 			// Make sure random is installed
-			e.RunCommand("pulumi", "plugin", "install", "resource", "random", "4.13.0")
+			e.RunCommand("khulnasoft", "plugin", "install", "resource", "random", "4.13.0")
 
-			e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+			e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 			e.RunCommand(
-				"pulumi", "convert", "--strict",
+				"khulnasoft", "convert", "--strict",
 				"--language", Languages[runtime], "--from", "pcl", "--out", "out")
 			e.CWD = filepath.Join(e.RootPath, "out")
-			e.RunCommand("pulumi", "stack", "init", "test")
+			e.RunCommand("khulnasoft", "stack", "init", "test")
 
-			e.RunCommand("pulumi", "install")
-			e.RunCommand("pulumi", "up", "--yes")
-			e.RunCommand("pulumi", "destroy", "--yes")
+			e.RunCommand("khulnasoft", "install")
+			e.RunCommand("khulnasoft", "up", "--yes")
+			e.RunCommand("khulnasoft", "destroy", "--yes")
 		})
 	}
 }
@@ -154,11 +154,11 @@ func TestLanguageConvertLenientSmoke(t *testing.T) {
 			e.ImportDirectory("testdata/bad_random_pp")
 
 			// Make sure random is installed
-			e.RunCommand("pulumi", "plugin", "install", "resource", "random", "4.13.0")
+			e.RunCommand("khulnasoft", "plugin", "install", "resource", "random", "4.13.0")
 
-			e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+			e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 			e.RunCommand(
-				"pulumi", "convert", "--generate-only",
+				"khulnasoft", "convert", "--generate-only",
 				"--language", Languages[runtime], "--from", "pcl", "--out", "out")
 			// We don't want care about running this program because it _will_ be incorrect.
 		})
@@ -187,19 +187,19 @@ func TestLanguageConvertComponentSmoke(t *testing.T) {
 			e.ImportDirectory("testdata/component_pp")
 
 			// Make sure random is installed
-			e.RunCommand("pulumi", "plugin", "install", "resource", "random", "4.13.0")
+			e.RunCommand("khulnasoft", "plugin", "install", "resource", "random", "4.13.0")
 
-			e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-			e.RunCommand("pulumi", "convert", "--language", Languages[runtime], "--from", "pcl", "--out", "out")
+			e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+			e.RunCommand("khulnasoft", "convert", "--language", Languages[runtime], "--from", "pcl", "--out", "out")
 			e.CWD = filepath.Join(e.RootPath, "out")
-			e.RunCommand("pulumi", "stack", "init", "test")
+			e.RunCommand("khulnasoft", "stack", "init", "test")
 
-			// TODO(https://github.com/pulumi/pulumi/issues/14339): This doesn't work for Go yet because the
+			// TODO(https://github.com/khulnasoft/khulnasoft/issues/14339): This doesn't work for Go yet because the
 			// source code convert emits is not valid
 			if runtime != "go" {
-				e.RunCommand("pulumi", "install")
-				e.RunCommand("pulumi", "up", "--yes")
-				e.RunCommand("pulumi", "destroy", "--yes")
+				e.RunCommand("khulnasoft", "install")
+				e.RunCommand("khulnasoft", "up", "--yes")
+				e.RunCommand("khulnasoft", "destroy", "--yes")
 			}
 		})
 	}
@@ -223,7 +223,7 @@ func TestLanguageGenerateSmoke(t *testing.T) {
 			defer deleteIfNotFailed(e)
 
 			e.ImportDirectory("testdata/simple_schema")
-			e.RunCommand("pulumi", "package", "gen-sdk", "--language", runtime, "schema.json")
+			e.RunCommand("khulnasoft", "package", "gen-sdk", "--language", runtime, "schema.json")
 		})
 	}
 }
@@ -235,7 +235,7 @@ func TestPackageGetSchema(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer deleteIfNotFailed(e)
 	removeRandomFromLocalPlugins := func() {
-		e.RunCommand("pulumi", "plugin", "rm", "resource", "random", "--all", "--yes")
+		e.RunCommand("khulnasoft", "plugin", "rm", "resource", "random", "--all", "--yes")
 	}
 
 	bindSchema := func(pkg, schemaJson string) *schema.Package {
@@ -253,22 +253,22 @@ func TestPackageGetSchema(t *testing.T) {
 	// Make sure the random provider is not installed locally
 	// So that we can test the `package get-schema` command works if the plugin
 	// is not installed locally on first run.
-	out, _ := e.RunCommand("pulumi", "plugin", "ls")
+	out, _ := e.RunCommand("khulnasoft", "plugin", "ls")
 	if strings.Contains(out, "random  resource") {
 		removeRandomFromLocalPlugins()
 	}
 
 	// get the schema and bind it
-	schemaJSON, _ := e.RunCommand("pulumi", "package", "get-schema", "random")
+	schemaJSON, _ := e.RunCommand("khulnasoft", "package", "get-schema", "random")
 	bindSchema("random", schemaJSON)
 
 	// try again using a specific version
 	removeRandomFromLocalPlugins()
-	schemaJSON, _ = e.RunCommand("pulumi", "package", "get-schema", "random@4.13.0")
+	schemaJSON, _ = e.RunCommand("khulnasoft", "package", "get-schema", "random@4.13.0")
 	bindSchema("random", schemaJSON)
 
 	// Now that the random provider is installed, run the command again without removing random from plugins
-	schemaJSON, _ = e.RunCommand("pulumi", "package", "get-schema", "random")
+	schemaJSON, _ = e.RunCommand("khulnasoft", "package", "get-schema", "random")
 	bindSchema("random", schemaJSON)
 
 	// Now try to get the schema from the path to the binary
@@ -276,18 +276,18 @@ func TestPackageGetSchema(t *testing.T) {
 		e.HomePath,
 		"plugins",
 		"resource-random-v4.13.0",
-		"pulumi-resource-random")
+		"khulnasoft-resource-random")
 	if runtime.GOOS == "windows" {
 		binaryPath += ".exe"
 	}
 
-	schemaJSON, _ = e.RunCommand("pulumi", "package", "get-schema", binaryPath)
+	schemaJSON, _ = e.RunCommand("khulnasoft", "package", "get-schema", binaryPath)
 	bindSchema("random", schemaJSON)
 
 	// Now try and get the parameterized schema from the test-provider
 	providerDir, err := filepath.Abs("testprovider")
 	require.NoError(t, err)
-	schemaJSON, _ = e.RunCommand("pulumi", "package", "get-schema", providerDir, "parameter")
+	schemaJSON, _ = e.RunCommand("khulnasoft", "package", "get-schema", providerDir, "parameter")
 	schema := bindSchema("testprovider", schemaJSON)
 	// Sub-schema is a very simple empty schema with the name set from the argument given
 	assert.Equal(t, "parameter", schema.Name)
@@ -300,18 +300,18 @@ func TestPackageGetMappingToFile(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer deleteIfNotFailed(e)
 	removeRandomFromLocalPlugins := func() {
-		e.RunCommand("pulumi", "plugin", "rm", "resource", "random", "--all", "--yes")
+		e.RunCommand("khulnasoft", "plugin", "rm", "resource", "random", "--all", "--yes")
 	}
 
 	// Make sure the random provider is not installed locally
 	// So that we can test the `package get-mapping` command works if the plugin
 	// is not installed locally on first run.
-	out, _ := e.RunCommand("pulumi", "plugin", "ls")
+	out, _ := e.RunCommand("khulnasoft", "plugin", "ls")
 	if strings.Contains(out, "random  resource") {
 		removeRandomFromLocalPlugins()
 	}
 
-	stdout, result := e.RunCommand("pulumi",
+	stdout, result := e.RunCommand("khulnasoft",
 		"package", "get-mapping", "terraform", "random@4.13.0",
 		"--out", "mapping.json")
 	require.Empty(t, stdout)
@@ -328,25 +328,25 @@ func TestPackageGetMapping(t *testing.T) {
 	e := ptesting.NewEnvironment(t)
 	defer deleteIfNotFailed(e)
 	removeRandomFromLocalPlugins := func() {
-		e.RunCommand("pulumi", "plugin", "rm", "resource", "random", "--all", "--yes")
+		e.RunCommand("khulnasoft", "plugin", "rm", "resource", "random", "--all", "--yes")
 	}
 
 	// Make sure the random provider is not installed locally
 	// So that we can test the `package get-mapping` command works if the plugin
 	// is not installed locally on first run.
-	out, _ := e.RunCommand("pulumi", "plugin", "ls")
+	out, _ := e.RunCommand("khulnasoft", "plugin", "ls")
 	if strings.Contains(out, "random  resource") {
 		removeRandomFromLocalPlugins()
 	}
 
-	schema, result := e.RunCommand("pulumi", "package", "get-mapping", "terraform", "random@4.13.0")
+	schema, result := e.RunCommand("khulnasoft", "package", "get-mapping", "terraform", "random@4.13.0")
 	require.Contains(t, result, "random@4.13.0 maps to provider random")
 	require.NotEmpty(t, schema, "mapping contents should be non-empty")
 }
 
 // Quick sanity tests for each downstream language to check that import works.
 //
-//nolint:paralleltest // pulumi new is not parallel safe
+//nolint:paralleltest // khulnasoft new is not parallel safe
 func TestLanguageImportSmoke(t *testing.T) {
 	t.Setenv("PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION", "false")
 
@@ -358,16 +358,16 @@ func TestLanguageImportSmoke(t *testing.T) {
 			defer deleteIfNotFailed(e)
 
 			// `new` wants to work in an empty directory but our use of local url means we have a
-			// ".pulumi" directory at root.
+			// ".khulnasoft" directory at root.
 			projectDir := filepath.Join(e.RootPath, "project")
 			err := os.Mkdir(projectDir, 0o700)
 			require.NoError(t, err)
 
 			e.CWD = projectDir
 
-			e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-			e.RunCommand("pulumi", "new", Languages[runtime], "--yes")
-			e.RunCommand("pulumi", "import", "--yes", "random:index/randomId:RandomId", "identifier", "p-9hUg")
+			e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+			e.RunCommand("khulnasoft", "new", Languages[runtime], "--yes")
+			e.RunCommand("khulnasoft", "import", "--yes", "random:index/randomId:RandomId", "identifier", "p-9hUg")
 		})
 	}
 }
@@ -382,21 +382,21 @@ func TestConvertDisableAutomaticPluginAcquisition(t *testing.T) {
 	e.ImportDirectory("testdata/aws_tf")
 
 	// Delete all cached plugins and disable plugin acquisition.
-	e.RunCommand("pulumi", "plugin", "rm", "--all", "--yes")
+	e.RunCommand("khulnasoft", "plugin", "rm", "--all", "--yes")
 	// Disable acquisition.
 	e.SetEnvVars("PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION=true")
 
 	// This should fail because of no terraform converter
 	_, stderr := e.RunCommandExpectError(
-		"pulumi", "convert",
+		"khulnasoft", "convert",
 		"--language", "pcl", "--from", "terraform", "--out", "out")
-	assert.Contains(t, stderr, "no converter plugin 'pulumi-converter-terraform' found")
+	assert.Contains(t, stderr, "no converter plugin 'khulnasoft-converter-terraform' found")
 
 	// Install a _specific_ version of the terraform converter (so this test doesn't change due to a new release)
-	e.RunCommand("pulumi", "plugin", "install", "converter", "terraform", "v1.0.8")
+	e.RunCommand("khulnasoft", "plugin", "install", "converter", "terraform", "v1.0.8")
 	// This should now convert, but won't use our full aws tokens
 	e.RunCommand(
-		"pulumi", "convert",
+		"khulnasoft", "convert",
 		"--language", "pcl", "--from", "terraform", "--out", "out")
 
 	output, err := os.ReadFile(filepath.Join(e.RootPath, "out", "main.pp"))
@@ -415,12 +415,12 @@ func TestPreviewImportFile(t *testing.T) {
 	e.ImportDirectory("testdata/import_node")
 
 	// Make sure random is installed
-	e.RunCommand("pulumi", "plugin", "install", "resource", "random", "4.12.0")
+	e.RunCommand("khulnasoft", "plugin", "install", "resource", "random", "4.12.0")
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", "test")
-	e.RunCommand("pulumi", "install")
-	e.RunCommand("pulumi", "preview", "--import-file", "import.json")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "stack", "init", "test")
+	e.RunCommand("khulnasoft", "install")
+	e.RunCommand("khulnasoft", "preview", "--import-file", "import.json")
 
 	expectedResources := []interface{}{
 		map[string]interface{}{
@@ -459,7 +459,7 @@ func TestPreviewImportFile(t *testing.T) {
 
 // Small integration test for relative plugin paths. It's hard to do this test via the standard ProgramTest because that
 // framework does it's own manipulation of plugin paths. Regression test for
-// https://github.com/pulumi/pulumi/issues/15467.
+// https://github.com/khulnasoft/khulnasoft/issues/15467.
 func TestRelativePluginPath(t *testing.T) {
 	t.Parallel()
 
@@ -472,13 +472,13 @@ func TestRelativePluginPath(t *testing.T) {
 	e.CWD, err = filepath.Abs("testdata/relative_plugin_node")
 	require.NoError(t, err)
 
-	e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-	e.RunCommand("pulumi", "stack", "init", "test")
-	e.RunCommand("pulumi", "install")
-	e.RunCommand("pulumi", "preview")
+	e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+	e.RunCommand("khulnasoft", "stack", "init", "test")
+	e.RunCommand("khulnasoft", "install")
+	e.RunCommand("khulnasoft", "preview")
 }
 
-// Quick sanity tests for https://github.com/pulumi/pulumi/issues/16248. Ensure we can run plugins and auto-fetch them.
+// Quick sanity tests for https://github.com/khulnasoft/khulnasoft/issues/16248. Ensure we can run plugins and auto-fetch them.
 //
 //nolint:paralleltest // changes env vars
 func TestPluginRun(t *testing.T) {
@@ -488,13 +488,13 @@ func TestPluginRun(t *testing.T) {
 	defer deleteIfNotFailed(e)
 
 	removeRandomFromLocalPlugins := func() {
-		e.RunCommand("pulumi", "plugin", "rm", "resource", "random", "--all", "--yes")
+		e.RunCommand("khulnasoft", "plugin", "rm", "resource", "random", "--all", "--yes")
 	}
 	removeRandomFromLocalPlugins()
 
-	_, stderr := e.RunCommandExpectError("pulumi", "plugin", "run", "--kind=resource", "random", "--", "--help")
+	_, stderr := e.RunCommandExpectError("khulnasoft", "plugin", "run", "--kind=resource", "random", "--", "--help")
 	assert.Contains(t, stderr, "flag: help requested")
-	_, stderr = e.RunCommandExpectError("pulumi", "plugin", "run", "--kind=resource", "random", "--", "--help")
+	_, stderr = e.RunCommandExpectError("khulnasoft", "plugin", "run", "--kind=resource", "random", "--", "--help")
 	assert.Contains(t, stderr, "flag: help requested")
 }
 
@@ -513,29 +513,29 @@ func TestInstall(t *testing.T) {
 
 			// Make sure the random provider is not installed locally
 			// so that we can test the `install` command works.
-			out, _ := e.RunCommand("pulumi", "plugin", "ls")
+			out, _ := e.RunCommand("khulnasoft", "plugin", "ls")
 			if strings.Contains(out, "random  resource") {
-				e.RunCommand("pulumi", "plugin", "rm", "resource", "random", "--all", "--yes")
+				e.RunCommand("khulnasoft", "plugin", "rm", "resource", "random", "--all", "--yes")
 			}
 
 			// `new` wants to work in an empty directory but our use of local url means we have a
-			// ".pulumi" directory at root.
+			// ".khulnasoft" directory at root.
 			projectDir := filepath.Join(e.RootPath, "project")
 			err := os.Mkdir(projectDir, 0o700)
 			require.NoError(t, err)
 
 			e.CWD = projectDir
 
-			e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
+			e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
 			// Pass `--generate-only` so dependencies are not installed as part of the `new` command.
-			e.RunCommand("pulumi", "new", "random-"+Languages[runtime], "--yes", "--generate-only")
+			e.RunCommand("khulnasoft", "new", "random-"+Languages[runtime], "--yes", "--generate-only")
 
 			// Ensure `install` works and subsequent `up` and `destroy` operations work.
-			_, stderr := e.RunCommand("pulumi", "install")
+			_, stderr := e.RunCommand("khulnasoft", "install")
 			assert.Regexp(t, regexp.MustCompile(`resource plugin random.+ installing`), stderr)
-			e.RunCommand("pulumi", "stack", "init", "test")
-			e.RunCommand("pulumi", "up", "--yes")
-			e.RunCommand("pulumi", "destroy", "--yes")
+			e.RunCommand("khulnasoft", "stack", "init", "test")
+			e.RunCommand("khulnasoft", "up", "--yes")
+			e.RunCommand("khulnasoft", "destroy", "--yes")
 		})
 	}
 }
@@ -623,7 +623,7 @@ backend:
 					initArgs = append(initArgs, "--secrets-provider", c.secretsProvider)
 				}
 
-				e.RunCommand("pulumi", initArgs...)
+				e.RunCommand("khulnasoft", initArgs...)
 
 				stackYAMLBytes, err := os.ReadFile(stackYAML)
 				require.NoError(t, err)
@@ -636,7 +636,7 @@ backend:
 					require.Equal(t, c.encryptionSalt, ps.EncryptionSalt)
 				}
 
-				stackJSONStr, _ := e.RunCommand("pulumi", "stack", "export")
+				stackJSONStr, _ := e.RunCommand("khulnasoft", "stack", "export")
 				stackJSON := apitype.UntypedDeployment{}
 				err = json.Unmarshal([]byte(stackJSONStr), &stackJSON)
 				require.NoError(t, err)
@@ -656,7 +656,7 @@ backend:
 // or empty and the PULUMI_FALLBACK_TO_STATE_SECRETS_MANAGER environment variable
 // is set.
 //
-//nolint:paralleltest // pulumi new is not parallel safe, and we set environment variables
+//nolint:paralleltest // khulnasoft new is not parallel safe, and we set environment variables
 func TestSecretsProvidersFallbackSmoke(t *testing.T) {
 	// Make sure we can download needed plugins
 	t.Setenv("PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION", "false")
@@ -681,18 +681,18 @@ func TestSecretsProvidersFallbackSmoke(t *testing.T) {
 			defer deleteIfNotFailed(e)
 
 			// `new` wants to work in an empty directory but our use of local url means we have a
-			// ".pulumi" directory at root.
+			// ".khulnasoft" directory at root.
 			projectDir := filepath.Join(e.RootPath, "project")
 			err := os.Mkdir(projectDir, 0o700)
 			require.NoError(t, err)
 
 			e.CWD = projectDir
 
-			e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-			e.RunCommand("pulumi", "new", "random-"+Languages[runtime], "--yes")
-			e.RunCommand("pulumi", "up", "--yes")
+			e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+			e.RunCommand("khulnasoft", "new", "random-"+Languages[runtime], "--yes")
+			e.RunCommand("khulnasoft", "up", "--yes")
 
-			stackJSONStr, _ := e.RunCommand("pulumi", "stack", "export")
+			stackJSONStr, _ := e.RunCommand("khulnasoft", "stack", "export")
 			stackJSON := apitype.UntypedDeployment{}
 			err = json.Unmarshal([]byte(stackJSONStr), &stackJSON)
 			require.NoError(t, err)
@@ -703,7 +703,7 @@ func TestSecretsProvidersFallbackSmoke(t *testing.T) {
 
 			for _, operation := range operations {
 				os.Remove(filepath.Join(projectDir, "Pulumi.dev.yaml"))
-				e.RunCommand("pulumi", operation...)
+				e.RunCommand("khulnasoft", operation...)
 
 				stackYamlStr, err := os.ReadFile(filepath.Join(projectDir, "Pulumi.dev.yaml"))
 				require.NoError(t, err)
@@ -716,7 +716,7 @@ func TestSecretsProvidersFallbackSmoke(t *testing.T) {
 				require.Contains(t, string(deployment.SecretsProviders.State), stack.EncryptionSalt)
 			}
 
-			e.RunCommand("pulumi", "destroy", "--yes")
+			e.RunCommand("khulnasoft", "destroy", "--yes")
 		})
 	}
 }

@@ -19,7 +19,7 @@ import (
 	"errors"
 	"testing"
 
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"github.com/stretchr/testify/require"
 
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -51,79 +51,79 @@ func TestMakeExecutablePromptChoices(t *testing.T) {
 }
 
 type MockLanguageRuntimeClient struct {
-	RunPluginF (func(ctx context.Context, info *pulumirpc.RunPluginRequest,
-	) (pulumirpc.LanguageRuntime_RunPluginClient, error))
+	RunPluginF (func(ctx context.Context, info *khulnasoftrpc.RunPluginRequest,
+	) (khulnasoftrpc.LanguageRuntime_RunPluginClient, error))
 }
 
 func (m *MockLanguageRuntimeClient) RunPlugin(
-	ctx context.Context, info *pulumirpc.RunPluginRequest, _ ...grpc.CallOption,
-) (pulumirpc.LanguageRuntime_RunPluginClient, error) {
+	ctx context.Context, info *khulnasoftrpc.RunPluginRequest, _ ...grpc.CallOption,
+) (khulnasoftrpc.LanguageRuntime_RunPluginClient, error) {
 	return m.RunPluginF(ctx, info)
 }
 
 func (m *MockLanguageRuntimeClient) GetRequiredPlugins(
-	ctx context.Context, in *pulumirpc.GetRequiredPluginsRequest, opts ...grpc.CallOption,
-) (*pulumirpc.GetRequiredPluginsResponse, error) {
+	ctx context.Context, in *khulnasoftrpc.GetRequiredPluginsRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.GetRequiredPluginsResponse, error) {
 	panic("not implemented")
 }
 
 func (m *MockLanguageRuntimeClient) Run(
-	ctx context.Context, in *pulumirpc.RunRequest, opts ...grpc.CallOption,
-) (*pulumirpc.RunResponse, error) {
+	ctx context.Context, in *khulnasoftrpc.RunRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.RunResponse, error) {
 	panic("not implemented")
 }
 
 func (m *MockLanguageRuntimeClient) GetPluginInfo(
 	ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption,
-) (*pulumirpc.PluginInfo, error) {
+) (*khulnasoftrpc.PluginInfo, error) {
 	panic("not implemented")
 }
 
 func (m *MockLanguageRuntimeClient) InstallDependencies(
-	ctx context.Context, in *pulumirpc.InstallDependenciesRequest, opts ...grpc.CallOption,
-) (pulumirpc.LanguageRuntime_InstallDependenciesClient, error) {
+	ctx context.Context, in *khulnasoftrpc.InstallDependenciesRequest, opts ...grpc.CallOption,
+) (khulnasoftrpc.LanguageRuntime_InstallDependenciesClient, error) {
 	panic("not implemented")
 }
 
 func (m *MockLanguageRuntimeClient) RuntimeOptionsPrompts(
-	ctx context.Context, in *pulumirpc.RuntimeOptionsRequest, opts ...grpc.CallOption,
-) (*pulumirpc.RuntimeOptionsResponse, error) {
+	ctx context.Context, in *khulnasoftrpc.RuntimeOptionsRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.RuntimeOptionsResponse, error) {
 	panic("not implemented")
 }
 
 func (m *MockLanguageRuntimeClient) About(
-	ctx context.Context, in *pulumirpc.AboutRequest, opts ...grpc.CallOption,
-) (*pulumirpc.AboutResponse, error) {
+	ctx context.Context, in *khulnasoftrpc.AboutRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.AboutResponse, error) {
 	panic("not implemented")
 }
 
 func (m *MockLanguageRuntimeClient) GetProgramDependencies(
-	ctx context.Context, in *pulumirpc.GetProgramDependenciesRequest, opts ...grpc.CallOption,
-) (*pulumirpc.GetProgramDependenciesResponse, error) {
+	ctx context.Context, in *khulnasoftrpc.GetProgramDependenciesRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.GetProgramDependenciesResponse, error) {
 	panic("not implemented")
 }
 
 func (m *MockLanguageRuntimeClient) GenerateProgram(
-	ctx context.Context, in *pulumirpc.GenerateProgramRequest, opts ...grpc.CallOption,
-) (*pulumirpc.GenerateProgramResponse, error) {
+	ctx context.Context, in *khulnasoftrpc.GenerateProgramRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.GenerateProgramResponse, error) {
 	panic("not implemented")
 }
 
 func (m *MockLanguageRuntimeClient) GenerateProject(
-	ctx context.Context, in *pulumirpc.GenerateProjectRequest, opts ...grpc.CallOption,
-) (*pulumirpc.GenerateProjectResponse, error) {
+	ctx context.Context, in *khulnasoftrpc.GenerateProjectRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.GenerateProjectResponse, error) {
 	panic("not implemented")
 }
 
 func (m *MockLanguageRuntimeClient) GeneratePackage(
-	ctx context.Context, in *pulumirpc.GeneratePackageRequest, opts ...grpc.CallOption,
-) (*pulumirpc.GeneratePackageResponse, error) {
+	ctx context.Context, in *khulnasoftrpc.GeneratePackageRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.GeneratePackageResponse, error) {
 	panic("not implemented")
 }
 
 func (m *MockLanguageRuntimeClient) Pack(
-	ctx context.Context, in *pulumirpc.PackRequest, opts ...grpc.CallOption,
-) (*pulumirpc.PackResponse, error) {
+	ctx context.Context, in *khulnasoftrpc.PackRequest, opts ...grpc.CallOption,
+) (*khulnasoftrpc.PackResponse, error) {
 	panic("not implemented")
 }
 
@@ -133,8 +133,8 @@ func TestRunPluginPassesCorrectPwd(t *testing.T) {
 	returnErr := errors.New("erroring so we don't need to implement the whole thing")
 	mockLanguageRuntime := &MockLanguageRuntimeClient{
 		RunPluginF: func(
-			ctx context.Context, info *pulumirpc.RunPluginRequest,
-		) (pulumirpc.LanguageRuntime_RunPluginClient, error) {
+			ctx context.Context, info *khulnasoftrpc.RunPluginRequest,
+		) (khulnasoftrpc.LanguageRuntime_RunPluginClient, error) {
 			require.Equal(t, "/tmp", info.Pwd)
 			return nil, returnErr
 		},

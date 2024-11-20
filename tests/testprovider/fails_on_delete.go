@@ -22,7 +22,7 @@ import (
 	"strconv"
 
 	pschema "github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	rpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	rpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 
 	"google.golang.org/protobuf/types/known/emptypb"
 )

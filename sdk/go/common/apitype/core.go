@@ -33,16 +33,16 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 )
 
 //go:embed deployments.json
 var deploymentSchema string
 
 // DeploymentSchemaID is the $id for the deployment schema.
-const DeploymentSchemaID = "https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/deployments.json"
+const DeploymentSchemaID = "https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/deployments.json"
 
 // DeploymentSchema returns a JSON schema that can be used to validate serialized deployments (i.e. `UntypedDeployment`
 // objects).
@@ -54,7 +54,7 @@ func DeploymentSchema() string {
 var resourceSchema string
 
 // ResourceSchemaID is the $id for the deployment schema.
-const ResourceSchemaID = "https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/resources.json"
+const ResourceSchemaID = "https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/resources.json"
 
 // ResourceSchema returns a JSON schema that can be used to validate serialized resource values (e.g. `ResourceV3`).
 func ResourceSchema() string {
@@ -65,7 +65,7 @@ func ResourceSchema() string {
 var propertyValueSchema string
 
 // PropertyValueSchemaID is the $id for the property value schema.
-const PropertyValueSchemaID = "https://github.com/pulumi/pulumi/blob/master/sdk/go/common/apitype/property-values.json"
+const PropertyValueSchemaID = "https://github.com/khulnasoft/khulnasoft/blob/master/sdk/go/common/apitype/property-values.json"
 
 // PropertyValueSchema returns a JSON schema that can be used to validate serialized property values.
 func PropertyValueSchema() string {
@@ -347,7 +347,7 @@ type ResourceV3 struct {
 	// If set, the providers Delete method will not be called for this resource
 	// if specified resource is being deleted as well.
 	DeletedWith resource.URN `json:"deletedWith,omitempty" yaml:"deletedWith,omitempty"`
-	// Created tracks when the remote resource was first added to state by pulumi. Checkpoints prior to early 2023 do not include this.
+	// Created tracks when the remote resource was first added to state by khulnasoft. Checkpoints prior to early 2023 do not include this.
 	Created *time.Time `json:"created,omitempty" yaml:"created,omitempty"`
 	// Modified tracks when the resource state was last altered. Checkpoints prior to early 2023 do not include this.
 	Modified *time.Time `json:"modified,omitempty" yaml:"modified,omitempty"`
@@ -405,16 +405,16 @@ type StackTagName = string
 
 const (
 	// ProjectNameTag is a tag that represents the name of a project (coresponds to the `name` property of Pulumi.yaml).
-	ProjectNameTag StackTagName = "pulumi:project"
+	ProjectNameTag StackTagName = "khulnasoft:project"
 	// ProjectRuntimeTag is a tag that represents the runtime of a project (the `runtime` property of Pulumi.yaml).
-	ProjectRuntimeTag StackTagName = "pulumi:runtime"
+	ProjectRuntimeTag StackTagName = "khulnasoft:runtime"
 	// ProjectDescriptionTag is a tag that represents the description of a project (Pulumi.yaml's `description`).
-	ProjectDescriptionTag StackTagName = "pulumi:description"
+	ProjectDescriptionTag StackTagName = "khulnasoft:description"
 	// ProjectTemplateTag is a tag that represents the template that was used to create a project.
-	ProjectTemplateTag StackTagName = "pulumi:template"
+	ProjectTemplateTag StackTagName = "khulnasoft:template"
 	// GitHubOwnerNameTag is a tag that represents the name of the owner on GitHub that this stack
 	// may be associated with (inferred by the CLI based on git remote info).
-	// TODO [pulumi/pulumi-service#2306] Once the UI is updated, we would no longer need the GitHub specific keys.
+	// TODO [khulnasoft/khulnasoft-service#2306] Once the UI is updated, we would no longer need the GitHub specific keys.
 	GitHubOwnerNameTag StackTagName = "gitHub:owner"
 	// GitHubRepositoryNameTag is a tag that represents the name of a repository on GitHub that this stack
 	// may be associated with (inferred by the CLI based on git remote info).
@@ -436,7 +436,7 @@ const (
 const (
 	// PulumiTagsConfigKey sets additional tags for a stack on a deployment. This is additive to any
 	// tags that are already set on the stack.
-	PulumiTagsConfigKey string = "pulumi:tags"
+	PulumiTagsConfigKey string = "khulnasoft:tags"
 )
 
 // Stack describes a Stack running on a Pulumi Cloud.

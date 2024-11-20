@@ -1,8 +1,8 @@
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 
-class Resource extends pulumi.ComponentResource {
-    constructor(name: string, _?: {}, opts?: pulumi.ComponentResourceOptions) {
+class Resource extends khulnasoft.ComponentResource {
+    constructor(name: string, _?: {}, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:module:Resource", name, {}, opts);
     }
 }
@@ -27,7 +27,7 @@ new Resource("provided-bucket-child-unprotected", {}, { parent: p, protect: fals
 // this. Doing a provider test with component resources is problematic because
 // `ComponentResources` don't have CRUD operations.
 //
-// import * as aws from "@pulumi/aws";
+// import * as aws from "@khulnasoft/aws";
 // new aws.s3.Bucket("provider-unprotected", {}, { provider: prov })
 // const p = new aws.s3.Bucket("provided-bucket", {}, { provider: prov, protect: true })
 // // Inherits protected status from `p`. This is protected in the state, and is thus safe.

@@ -18,11 +18,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/graph"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // OperationFunc is the type of functions that edit resources within a snapshot. The edits are made in-place to the
@@ -159,7 +159,7 @@ func RenameStack(deployment *apitype.DeploymentV3, newName tokens.StackName, new
 			project = newProject
 		}
 
-		// The pulumi:pulumi:Stack resource's name component is of the form `<project>-<stack>` so we want
+		// The khulnasoft:khulnasoft:Stack resource's name component is of the form `<project>-<stack>` so we want
 		// to rename the name portion as well.
 		if u.QualifiedType() == resource.RootStackType {
 			return resource.NewURN(newName.Q(), project, "", u.QualifiedType(), string(tokens.QName(project)+"-"+newName.Q()))

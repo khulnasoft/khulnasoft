@@ -24,12 +24,12 @@ import (
 type GoPackageInfo struct {
 	// Base path for package imports
 	//
-	//    github.com/pulumi/pulumi-kubernetes/sdk/go/kubernetes
+	//    github.com/khulnasoft/khulnasoft-kubernetes/sdk/go/kubernetes
 	ImportBasePath string `json:"importBasePath,omitempty"`
 
 	// Module path for go.mod
 	//
-	//   go get github.com/pulumi/pulumi-aws-native/sdk/go/aws@v0.16.0
+	//   go get github.com/khulnasoft/khulnasoft-aws-native/sdk/go/aws@v0.16.0
 	//          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ module path
 	//                                                  ~~~~~~ package path - can be any number of path parts
 	//                                                         ~~~~~~~ version
@@ -46,7 +46,7 @@ type GoPackageInfo struct {
 
 	// Map from package name -> package alias
 	//
-	//    { "github.com/pulumi/pulumi-kubernetes/sdk/go/kubernetes/flowcontrol/v1alpha1": "flowcontrolv1alpha1" }
+	//    { "github.com/khulnasoft/khulnasoft-kubernetes/sdk/go/kubernetes/flowcontrol/v1alpha1": "flowcontrolv1alpha1" }
 	//
 	PackageImportAliases map[string]string `json:"packageImportAliases,omitempty"`
 
@@ -61,8 +61,8 @@ type GoPackageInfo struct {
 	GenerateResourceContainerTypes bool `json:"generateResourceContainerTypes,omitempty"`
 
 	// The version of the Pulumi SDK used with this provider, e.g. 3.
-	// Used to generate doc links for pulumi builtin types. If omitted, the latest SDK version is used.
-	PulumiSDKVersion int `json:"pulumiSDKVersion,omitempty"`
+	// Used to generate doc links for khulnasoft builtin types. If omitted, the latest SDK version is used.
+	PulumiSDKVersion int `json:"khulnasoftSDKVersion,omitempty"`
 
 	// Feature flag to disable generating `$fnOutput` invoke
 	// function versions to save space.

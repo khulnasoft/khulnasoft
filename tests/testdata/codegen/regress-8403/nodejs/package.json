@@ -1,17 +1,17 @@
 {
-    "name": "@pulumi/mongodbatlas",
+    "name": "@khulnasoft/mongodbatlas",
     "version": "${VERSION}",
     "scripts": {
         "build": "tsc"
     },
     "dependencies": {
-        "@pulumi/pulumi": "^3.12"
+        "@khulnasoft/khulnasoft": "^3.12"
     },
     "devDependencies": {
         "@types/node": "^14",
         "typescript": "^3.7.0"
     },
-    "pulumi": {
+    "khulnasoft": {
         "resource": true,
         "name": "mongodbatlas"
     }

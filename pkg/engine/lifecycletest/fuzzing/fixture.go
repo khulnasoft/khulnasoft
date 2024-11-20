@@ -22,7 +22,7 @@ import (
 	lt "github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/framework"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/result"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/result"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"pgregory.net/rapid"
@@ -142,7 +142,7 @@ func GeneratedFixture(fo FixtureOptions) func(t *rapid.T) {
 
 // A regular expression pattern for matching URNs in error messages without slurping characters that might appear after
 // them such as commas, periods, or quotation marks.
-var urnPattern = regexp.MustCompile(`urn:pulumi:[^:]+::[^:]+::[^\s,.'"]+`)
+var urnPattern = regexp.MustCompile(`urn:khulnasoft:[^:]+::[^:]+::[^\s,.'"]+`)
 
 // writeReproTest writes the given string to a file in the directory specified by
 // PULUMI_LIFECYCLE_TEST_FUZZING_REPRO_DIR (which will be created if it does not exist), or to a temporary directory if

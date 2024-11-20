@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: pulumi/codegen/mapper.proto
+// source: khulnasoft/codegen/mapper.proto
 
 package codegen
 
@@ -103,5 +103,5 @@ var Mapper_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "pulumi/codegen/mapper.proto",
+	Metadata: "khulnasoft/codegen/mapper.proto",
 }

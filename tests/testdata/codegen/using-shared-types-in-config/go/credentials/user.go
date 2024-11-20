@@ -8,20 +8,20 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"using-shared-types-in-config/credentials/internal"
 )
 
 type User struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Name     pulumi.StringOutput `pulumi:"name"`
-	Password pulumi.StringOutput `pulumi:"password"`
+	Name     khulnasoft.StringOutput `khulnasoft:"name"`
+	Password khulnasoft.StringOutput `khulnasoft:"password"`
 }
 
 // NewUser registers a new resource with the given unique name, arguments, and options.
-func NewUser(ctx *pulumi.Context,
-	name string, args *UserArgs, opts ...pulumi.ResourceOption) (*User, error) {
+func NewUser(ctx *khulnasoft.Context,
+	name string, args *UserArgs, opts ...khulnasoft.ResourceOption) (*User, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -40,8 +40,8 @@ func NewUser(ctx *pulumi.Context,
 
 // GetUser gets an existing User resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetUser(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *UserState, opts ...pulumi.ResourceOption) (*User, error) {
+func GetUser(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *UserState, opts ...khulnasoft.ResourceOption) (*User, error) {
 	var resource User
 	err := ctx.ReadResource("credentials:index:User", name, id, state, &resource, opts...)
 	if err != nil {
@@ -62,7 +62,7 @@ func (UserState) ElementType() reflect.Type {
 }
 
 type userArgs struct {
-	Shared Shared `pulumi:"shared"`
+	Shared Shared `khulnasoft:"shared"`
 }
 
 // The set of arguments for constructing a User resource.
@@ -75,7 +75,7 @@ func (UserArgs) ElementType() reflect.Type {
 }
 
 type UserInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToUserOutput() UserOutput
 	ToUserOutputWithContext(ctx context.Context) UserOutput
@@ -90,10 +90,10 @@ func (i *User) ToUserOutput() UserOutput {
 }
 
 func (i *User) ToUserOutputWithContext(ctx context.Context) UserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(UserOutput)
 }
 
-type UserOutput struct{ *pulumi.OutputState }
+type UserOutput struct{ *khulnasoft.OutputState }
 
 func (UserOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**User)(nil)).Elem()
@@ -107,15 +107,15 @@ func (o UserOutput) ToUserOutputWithContext(ctx context.Context) UserOutput {
 	return o
 }
 
-func (o UserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o UserOutput) Name() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *User) khulnasoft.StringOutput { return v.Name }).(khulnasoft.StringOutput)
 }
 
-func (o UserOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+func (o UserOutput) Password() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *User) khulnasoft.StringOutput { return v.Password }).(khulnasoft.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*UserInput)(nil)).Elem(), &User{})
-	pulumi.RegisterOutputType(UserOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*UserInput)(nil)).Elem(), &User{})
+	khulnasoft.RegisterOutputType(UserOutput{})
 }

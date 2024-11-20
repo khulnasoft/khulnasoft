@@ -18,7 +18,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // Name is an identifier.  It conforms to NameRegexpPattern.
@@ -48,7 +48,7 @@ func IsName(s string) bool {
 }
 
 // QName is a qualified identifier.  The "/" character optionally delimits different pieces of the name.  Each element
-// conforms to NameRegexpPattern.  For example, "pulumi/pulumi/stack".
+// conforms to NameRegexpPattern.  For example, "khulnasoft/khulnasoft/stack".
 type QName string
 
 func (nm QName) String() string { return string(nm) }

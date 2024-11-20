@@ -29,7 +29,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 )
 
 // TestEmptyGo simply tests that we can build and run an empty Go project.
@@ -39,7 +39,7 @@ func TestEmptyGo(t *testing.T) {
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir: filepath.Join("empty", "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		Quick: true,
 	})
@@ -60,9 +60,9 @@ func TestConstructGo(t *testing.T) {
 		{
 			componentDir:          "testcomponent",
 			expectedResourceCount: 9,
-			// TODO[pulumi/pulumi#5455]: Dynamic providers fail to load when used from multi-lang components.
+			// TODO[khulnasoft/khulnasoft#5455]: Dynamic providers fail to load when used from multi-lang components.
 			// Until we've addressed this, set PULUMI_TEST_YARN_LINK_PULUMI, which tells the integration test
-			// module to run `yarn install && yarn link @pulumi/pulumi` in the Go program's directory, allowing
+			// module to run `yarn install && yarn link @khulnasoft/khulnasoft` in the Go program's directory, allowing
 			// the Node.js dynamic provider plugin to load.
 			// When the underlying issue has been fixed, the use of this environment variable inside the integration
 			// test module should be removed.
@@ -111,7 +111,7 @@ func optsForConstructGo(
 		Env: env,
 		Dir: filepath.Join(dir, "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3",
+			"github.com/khulnasoft/khulnasoft/sdk/v3",
 		},
 		LocalProviders: localProviders,
 		Secrets: map[string]string{
@@ -167,11 +167,11 @@ func TestConstructComponentConfigureProviderGo(t *testing.T) {
 
 	const testDir = "construct_component_configure_provider"
 	runComponentSetup(t, testDir)
-	pulumiRoot, err := filepath.Abs("../..")
+	khulnasoftRoot, err := filepath.Abs("../..")
 	require.NoError(t, err)
-	pulumiGoSDK := filepath.Join(pulumiRoot, "sdk")
-	componentSDK := filepath.Join(pulumiRoot, "tests/testdata/codegen/methods-return-plain-resource/go")
-	sdkPkg := "github.com/pulumi/pulumi/tests/testdata/codegen/methods-return-plain-resource/go"
+	khulnasoftGoSDK := filepath.Join(khulnasoftRoot, "sdk")
+	componentSDK := filepath.Join(khulnasoftRoot, "tests/testdata/codegen/methods-return-plain-resource/go")
+	sdkPkg := "github.com/khulnasoft/khulnasoft/tests/testdata/codegen/methods-return-plain-resource/go"
 
 	// The test relies on artifacts (go module) from a codegen test. Ensure the go SDK is generated.
 	cmd := exec.Command("go", "test", "-test.v", "-run", "TestGeneratePackage/methods-return-plain-resource")
@@ -179,7 +179,7 @@ func TestConstructComponentConfigureProviderGo(t *testing.T) {
 	stderr := &bytes.Buffer{}
 	cmd.Stdout = stdout
 	cmd.Stderr = stderr
-	cmd.Dir = filepath.Join(pulumiRoot, "pkg", "codegen", "go")
+	cmd.Dir = filepath.Join(khulnasoftRoot, "pkg", "codegen", "go")
 	cmd.Env = os.Environ()
 	cmd.Env = append(cmd.Env, "PULUMI_ACCEPT=1")
 	err = cmd.Run()
@@ -191,7 +191,7 @@ func TestConstructComponentConfigureProviderGo(t *testing.T) {
 	opts = opts.With(integration.ProgramTestOptions{
 		Dir: filepath.Join(testDir, "go"),
 		Dependencies: []string{
-			"github.com/pulumi/pulumi/sdk/v3=" + pulumiGoSDK,
+			"github.com/khulnasoft/khulnasoft/sdk/v3=" + khulnasoftGoSDK,
 			fmt.Sprintf("%s=%s", sdkPkg, componentSDK),
 		},
 		NoParallel: true,

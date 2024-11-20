@@ -2,11 +2,11 @@
 
 from typing import Optional
 
-import pulumi
+import khulnasoft
 
 
-class Child(pulumi.ComponentResource):
-    @pulumi.input_type
+class Child(khulnasoft.ComponentResource):
+    @khulnasoft.input_type
     class ChildArgs:
         pass
 
@@ -14,7 +14,7 @@ class Child(pulumi.ComponentResource):
         self,
         resource_name: str,
         message: Optional[str] = None,
-        opts: Optional[pulumi.ResourceOptions] = None,
+        opts: Optional[khulnasoft.ResourceOptions] = None,
     ):
         props = Container.ContainerArgs.__new__(Container.ContainerArgs)
         props.__dict__["message"] = message
@@ -24,13 +24,13 @@ class Child(pulumi.ComponentResource):
         self.register_outputs({ "message": message })
 
     @property
-    @pulumi.getter
-    def message(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "message")
+    @khulnasoft.getter
+    def message(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "message")
 
 
-class Container(pulumi.ComponentResource):
-    @pulumi.input_type
+class Container(khulnasoft.ComponentResource):
+    @khulnasoft.input_type
     class ContainerArgs:
         pass
 
@@ -38,7 +38,7 @@ class Container(pulumi.ComponentResource):
         self,
         resource_name: str,
         child: Optional[Child] = None,
-        opts: Optional[pulumi.ResourceOptions] = None,
+        opts: Optional[khulnasoft.ResourceOptions] = None,
     ):
         props = Container.ContainerArgs.__new__(Container.ContainerArgs)
         props.__dict__["child"] = child
@@ -48,23 +48,23 @@ class Container(pulumi.ComponentResource):
         self.register_outputs({ "child": child })
 
     @property
-    @pulumi.getter
-    def child(self) -> pulumi.Output[Child]:
-        return pulumi.get(self, "child")
+    @khulnasoft.getter
+    def child(self) -> khulnasoft.Output[Child]:
+        return khulnasoft.get(self, "child")
 
 
-class Module(pulumi.runtime.ResourceModule):
+class Module(khulnasoft.runtime.ResourceModule):
     def version(self):
         return "0.0.1"
 
-    def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+    def construct(self, name: str, typ: str, urn: str) -> khulnasoft.Resource:
         if typ == "test:index:Child":
-            return Child(name, opts=pulumi.ResourceOptions(urn=urn))
+            return Child(name, opts=khulnasoft.ResourceOptions(urn=urn))
         else:
             raise Exception(f"unknown resource type {typ}")
 
 
-pulumi.runtime.register_resource_module("test", "index", Module())
+khulnasoft.runtime.register_resource_module("test", "index", Module())
 
 
 child = Child("mychild", message="hello world!")
@@ -82,8 +82,8 @@ def assert_equal(args):
 
 
 def round_trip(urn: str):
-    round_tripped_container = Container("mycontainer", opts=pulumi.ResourceOptions(urn=urn))
-    pulumi.Output.all(
+    round_tripped_container = Container("mycontainer", opts=khulnasoft.ResourceOptions(urn=urn))
+    khulnasoft.Output.all(
         expected_urn=child.urn,
         actual_urn=round_tripped_container.child.urn,
         actual_message=round_tripped_container.child.message,

@@ -16,9 +16,9 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.20.1
-// source: pulumi/callback.proto
+// source: khulnasoft/callback.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -48,7 +48,7 @@ type Callback struct {
 func (x *Callback) Reset() {
 	*x = Callback{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_callback_proto_msgTypes[0]
+		mi := &file_khulnasoft_callback_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -61,7 +61,7 @@ func (x *Callback) String() string {
 func (*Callback) ProtoMessage() {}
 
 func (x *Callback) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_callback_proto_msgTypes[0]
+	mi := &file_khulnasoft_callback_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -74,7 +74,7 @@ func (x *Callback) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Callback.ProtoReflect.Descriptor instead.
 func (*Callback) Descriptor() ([]byte, []int) {
-	return file_pulumi_callback_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_callback_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Callback) GetTarget() string {
@@ -105,7 +105,7 @@ type CallbackInvokeRequest struct {
 func (x *CallbackInvokeRequest) Reset() {
 	*x = CallbackInvokeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_callback_proto_msgTypes[1]
+		mi := &file_khulnasoft_callback_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -118,7 +118,7 @@ func (x *CallbackInvokeRequest) String() string {
 func (*CallbackInvokeRequest) ProtoMessage() {}
 
 func (x *CallbackInvokeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_callback_proto_msgTypes[1]
+	mi := &file_khulnasoft_callback_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -131,7 +131,7 @@ func (x *CallbackInvokeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CallbackInvokeRequest.ProtoReflect.Descriptor instead.
 func (*CallbackInvokeRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_callback_proto_rawDescGZIP(), []int{1}
+	return file_khulnasoft_callback_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CallbackInvokeRequest) GetToken() string {
@@ -160,7 +160,7 @@ type CallbackInvokeResponse struct {
 func (x *CallbackInvokeResponse) Reset() {
 	*x = CallbackInvokeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_callback_proto_msgTypes[2]
+		mi := &file_khulnasoft_callback_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -173,7 +173,7 @@ func (x *CallbackInvokeResponse) String() string {
 func (*CallbackInvokeResponse) ProtoMessage() {}
 
 func (x *CallbackInvokeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_callback_proto_msgTypes[2]
+	mi := &file_khulnasoft_callback_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -186,7 +186,7 @@ func (x *CallbackInvokeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CallbackInvokeResponse.ProtoReflect.Descriptor instead.
 func (*CallbackInvokeResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_callback_proto_rawDescGZIP(), []int{2}
+	return file_khulnasoft_callback_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CallbackInvokeResponse) GetResponse() []byte {
@@ -196,9 +196,9 @@ func (x *CallbackInvokeResponse) GetResponse() []byte {
 	return nil
 }
 
-var File_pulumi_callback_proto protoreflect.FileDescriptor
+var File_khulnasoft_callback_proto protoreflect.FileDescriptor
 
-var file_pulumi_callback_proto_rawDesc = []byte{
+var file_khulnasoft_callback_proto_rawDesc = []byte{
 	0x0a, 0x15, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x63, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63,
 	0x6b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x72,
 	0x70, 0x63, 0x22, 0x38, 0x0a, 0x08, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x12, 0x16,
@@ -226,26 +226,26 @@ var file_pulumi_callback_proto_rawDesc = []byte{
 }
 
 var (
-	file_pulumi_callback_proto_rawDescOnce sync.Once
-	file_pulumi_callback_proto_rawDescData = file_pulumi_callback_proto_rawDesc
+	file_khulnasoft_callback_proto_rawDescOnce sync.Once
+	file_khulnasoft_callback_proto_rawDescData = file_khulnasoft_callback_proto_rawDesc
 )
 
-func file_pulumi_callback_proto_rawDescGZIP() []byte {
-	file_pulumi_callback_proto_rawDescOnce.Do(func() {
-		file_pulumi_callback_proto_rawDescData = protoimpl.X.CompressGZIP(file_pulumi_callback_proto_rawDescData)
+func file_khulnasoft_callback_proto_rawDescGZIP() []byte {
+	file_khulnasoft_callback_proto_rawDescOnce.Do(func() {
+		file_khulnasoft_callback_proto_rawDescData = protoimpl.X.CompressGZIP(file_khulnasoft_callback_proto_rawDescData)
 	})
-	return file_pulumi_callback_proto_rawDescData
+	return file_khulnasoft_callback_proto_rawDescData
 }
 
-var file_pulumi_callback_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_pulumi_callback_proto_goTypes = []interface{}{
-	(*Callback)(nil),               // 0: pulumirpc.Callback
-	(*CallbackInvokeRequest)(nil),  // 1: pulumirpc.CallbackInvokeRequest
-	(*CallbackInvokeResponse)(nil), // 2: pulumirpc.CallbackInvokeResponse
+var file_khulnasoft_callback_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_khulnasoft_callback_proto_goTypes = []interface{}{
+	(*Callback)(nil),               // 0: khulnasoftrpc.Callback
+	(*CallbackInvokeRequest)(nil),  // 1: khulnasoftrpc.CallbackInvokeRequest
+	(*CallbackInvokeResponse)(nil), // 2: khulnasoftrpc.CallbackInvokeResponse
 }
-var file_pulumi_callback_proto_depIdxs = []int32{
-	1, // 0: pulumirpc.Callbacks.Invoke:input_type -> pulumirpc.CallbackInvokeRequest
-	2, // 1: pulumirpc.Callbacks.Invoke:output_type -> pulumirpc.CallbackInvokeResponse
+var file_khulnasoft_callback_proto_depIdxs = []int32{
+	1, // 0: khulnasoftrpc.Callbacks.Invoke:input_type -> khulnasoftrpc.CallbackInvokeRequest
+	2, // 1: khulnasoftrpc.Callbacks.Invoke:output_type -> khulnasoftrpc.CallbackInvokeResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -253,13 +253,13 @@ var file_pulumi_callback_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_pulumi_callback_proto_init() }
-func file_pulumi_callback_proto_init() {
-	if File_pulumi_callback_proto != nil {
+func init() { file_khulnasoft_callback_proto_init() }
+func file_khulnasoft_callback_proto_init() {
+	if File_khulnasoft_callback_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_pulumi_callback_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_callback_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Callback); i {
 			case 0:
 				return &v.state
@@ -271,7 +271,7 @@ func file_pulumi_callback_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_callback_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_callback_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CallbackInvokeRequest); i {
 			case 0:
 				return &v.state
@@ -283,7 +283,7 @@ func file_pulumi_callback_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_callback_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_callback_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CallbackInvokeResponse); i {
 			case 0:
 				return &v.state
@@ -300,18 +300,18 @@ func file_pulumi_callback_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pulumi_callback_proto_rawDesc,
+			RawDescriptor: file_khulnasoft_callback_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_pulumi_callback_proto_goTypes,
-		DependencyIndexes: file_pulumi_callback_proto_depIdxs,
-		MessageInfos:      file_pulumi_callback_proto_msgTypes,
+		GoTypes:           file_khulnasoft_callback_proto_goTypes,
+		DependencyIndexes: file_khulnasoft_callback_proto_depIdxs,
+		MessageInfos:      file_khulnasoft_callback_proto_msgTypes,
 	}.Build()
-	File_pulumi_callback_proto = out.File
-	file_pulumi_callback_proto_rawDesc = nil
-	file_pulumi_callback_proto_goTypes = nil
-	file_pulumi_callback_proto_depIdxs = nil
+	File_khulnasoft_callback_proto = out.File
+	file_khulnasoft_callback_proto_rawDesc = nil
+	file_khulnasoft_callback_proto_goTypes = nil
+	file_khulnasoft_callback_proto_depIdxs = nil
 }

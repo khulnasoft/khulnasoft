@@ -18,10 +18,10 @@ import (
 	"context"
 	"time"
 
-	"github.com/pulumi/esc"
-	"github.com/pulumi/esc/cmd/esc/cli/client"
+	"github.com/khulnasoft/esc"
+	"github.com/khulnasoft/esc/cmd/esc/cli/client"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 )
 
 var _ = backend.EnvironmentsBackend((*cloudBackend)(nil))

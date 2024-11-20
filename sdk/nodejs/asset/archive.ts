@@ -25,7 +25,7 @@ export abstract class Archive {
      * @internal
      */
     // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
-    public readonly __pulumiArchive: boolean = true;
+    public readonly __khulnasoftArchive: boolean = true;
 
     /**
      * Returns true if the given object is an {@link Archive}. This is designed
@@ -33,7 +33,7 @@ export abstract class Archive {
      * the same process.
      */
     public static isInstance(obj: any): obj is Archive {
-        return utils.isInstance<Archive>(obj, "__pulumiArchive");
+        return utils.isInstance<Archive>(obj, "__khulnasoftArchive");
     }
 }
 

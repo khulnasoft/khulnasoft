@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pulumi
+import khulnasoft
 
-import pulumi_pkg
+import khulnasoft_pkg
 
 
-class MyResourceSubclass(pulumi_pkg.mod.MyResource):
-    combined_values: pulumi.Output[str]
+class MyResourceSubclass(khulnasoft_pkg.mod.MyResource):
+    combined_values: khulnasoft.Output[str]
 
     def __init__(self, name):
         super().__init__(name)
@@ -26,4 +26,4 @@ class MyResourceSubclass(pulumi_pkg.mod.MyResource):
 
 
 r = MyResourceSubclass("testResource")
-pulumi.export("combined_values", r.combined_values)
+khulnasoft.export("combined_values", r.combined_values)

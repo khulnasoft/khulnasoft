@@ -21,13 +21,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/events"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optdestroy"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optpreview"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optrefresh"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optup"
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/events"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optdestroy"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optpreview"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optrefresh"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optup"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -71,7 +71,7 @@ func TestUpdatePlans(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 
 	opts := []LocalWorkspaceOption{
 		SecretsProvider("passphrase"),
@@ -81,14 +81,14 @@ func TestUpdatePlans(t *testing.T) {
 	}
 
 	// initialize
-	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *pulumi.Context) error {
-		ctx.Export("exp_static", pulumi.String("foo"))
+	s, err := NewStackInlineSource(ctx, stackName, pName, func(ctx *khulnasoft.Context) error {
+		ctx.Export("exp_static", khulnasoft.String("foo"))
 		return nil
 	}, opts...)
 	require.NoError(t, err, "failed to initialize stack, err: %v", err)
 
 	defer func() {
-		// -- pulumi stack rm --
+		// -- khulnasoft stack rm --
 		err = s.Workspace().RemoveStack(ctx, s.Name())
 		assert.Nil(t, err, "failed to remove stack. Resources have leaked.")
 	}()
@@ -99,7 +99,7 @@ func TestUpdatePlans(t *testing.T) {
 	stackConfig.SecretsProvider = "passphrase"
 	assert.NoError(t, s.Workspace().SaveStackSettings(ctx, stackName, stackConfig))
 
-	// -- pulumi preview --
+	// -- khulnasoft preview --
 	tempFile, err := os.CreateTemp("", "update_plan.json")
 	defer os.Remove(tempFile.Name())
 
@@ -120,7 +120,7 @@ func TestUpdatePlans(t *testing.T) {
 		t.FailNow()
 	}
 
-	// -- pulumi up --
+	// -- khulnasoft up --
 
 	upResult, err := s.Up(ctx, optup.Plan(tempFile.Name()))
 	if err != nil {
@@ -130,7 +130,7 @@ func TestUpdatePlans(t *testing.T) {
 	assert.Equal(t, "update", upResult.Summary.Kind)
 	assert.Equal(t, "succeeded", upResult.Summary.Result)
 
-	// -- pulumi destroy --
+	// -- khulnasoft destroy --
 
 	dRes, err := s.Destroy(ctx)
 	if err != nil {
@@ -181,7 +181,7 @@ func TestDestroyOptsConfigFile(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	pDir := filepath.Join(".", "test", "testproj")
 
 	stack, err := NewStackLocalSource(ctx, stackName, pDir)
@@ -205,7 +205,7 @@ func TestRefreshOptsConfigFile(t *testing.T) {
 
 	ctx := context.Background()
 	sName := ptesting.RandomStackName()
-	stackName := FullyQualifiedStackName(pulumiOrg, pName, sName)
+	stackName := FullyQualifiedStackName(khulnasoftOrg, pName, sName)
 	pDir := filepath.Join(".", "test", "testproj")
 
 	stack, err := NewStackLocalSource(ctx, stackName, pDir)

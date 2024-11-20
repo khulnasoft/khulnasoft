@@ -8,19 +8,19 @@ import (
 	"reflect"
 
 	"external-resource-schema/example/internal"
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	corev1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/core/v1"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Workload struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Pod *corev1.PodTypeOutput `pulumi:"pod"`
+	Pod *corev1.PodTypeOutput `khulnasoft:"pod"`
 }
 
 // NewWorkload registers a new resource with the given unique name, arguments, and options.
-func NewWorkload(ctx *pulumi.Context,
-	name string, args *WorkloadArgs, opts ...pulumi.ResourceOption) (*Workload, error) {
+func NewWorkload(ctx *khulnasoft.Context,
+	name string, args *WorkloadArgs, opts ...khulnasoft.ResourceOption) (*Workload, error) {
 	if args == nil {
 		args = &WorkloadArgs{}
 	}
@@ -36,8 +36,8 @@ func NewWorkload(ctx *pulumi.Context,
 
 // GetWorkload gets an existing Workload resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetWorkload(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *WorkloadState, opts ...pulumi.ResourceOption) (*Workload, error) {
+func GetWorkload(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *WorkloadState, opts ...khulnasoft.ResourceOption) (*Workload, error) {
 	var resource Workload
 	err := ctx.ReadResource("example::Workload", name, id, state, &resource, opts...)
 	if err != nil {
@@ -69,7 +69,7 @@ func (WorkloadArgs) ElementType() reflect.Type {
 }
 
 type WorkloadInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToWorkloadOutput() WorkloadOutput
 	ToWorkloadOutputWithContext(ctx context.Context) WorkloadOutput
@@ -84,7 +84,7 @@ func (i *Workload) ToWorkloadOutput() WorkloadOutput {
 }
 
 func (i *Workload) ToWorkloadOutputWithContext(ctx context.Context) WorkloadOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WorkloadOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(WorkloadOutput)
 }
 
 // WorkloadArrayInput is an input type that accepts WorkloadArray and WorkloadArrayOutput values.
@@ -92,7 +92,7 @@ func (i *Workload) ToWorkloadOutputWithContext(ctx context.Context) WorkloadOutp
 //
 //	WorkloadArray{ WorkloadArgs{...} }
 type WorkloadArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToWorkloadArrayOutput() WorkloadArrayOutput
 	ToWorkloadArrayOutputWithContext(context.Context) WorkloadArrayOutput
@@ -109,7 +109,7 @@ func (i WorkloadArray) ToWorkloadArrayOutput() WorkloadArrayOutput {
 }
 
 func (i WorkloadArray) ToWorkloadArrayOutputWithContext(ctx context.Context) WorkloadArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WorkloadArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(WorkloadArrayOutput)
 }
 
 // WorkloadMapInput is an input type that accepts WorkloadMap and WorkloadMapOutput values.
@@ -117,7 +117,7 @@ func (i WorkloadArray) ToWorkloadArrayOutputWithContext(ctx context.Context) Wor
 //
 //	WorkloadMap{ "key": WorkloadArgs{...} }
 type WorkloadMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToWorkloadMapOutput() WorkloadMapOutput
 	ToWorkloadMapOutputWithContext(context.Context) WorkloadMapOutput
@@ -134,10 +134,10 @@ func (i WorkloadMap) ToWorkloadMapOutput() WorkloadMapOutput {
 }
 
 func (i WorkloadMap) ToWorkloadMapOutputWithContext(ctx context.Context) WorkloadMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WorkloadMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(WorkloadMapOutput)
 }
 
-type WorkloadOutput struct{ *pulumi.OutputState }
+type WorkloadOutput struct{ *khulnasoft.OutputState }
 
 func (WorkloadOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Workload)(nil)).Elem()
@@ -155,7 +155,7 @@ func (o WorkloadOutput) Pod() *corev1.PodTypeOutput {
 	return o.ApplyT(func(v *Workload) *corev1.PodTypeOutput { return v.Pod }).(*corev1.PodTypeOutput)
 }
 
-type WorkloadArrayOutput struct{ *pulumi.OutputState }
+type WorkloadArrayOutput struct{ *khulnasoft.OutputState }
 
 func (WorkloadArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*Workload)(nil)).Elem()
@@ -169,13 +169,13 @@ func (o WorkloadArrayOutput) ToWorkloadArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o WorkloadArrayOutput) Index(i pulumi.IntInput) WorkloadOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Workload {
+func (o WorkloadArrayOutput) Index(i khulnasoft.IntInput) WorkloadOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *Workload {
 		return vs[0].([]*Workload)[vs[1].(int)]
 	}).(WorkloadOutput)
 }
 
-type WorkloadMapOutput struct{ *pulumi.OutputState }
+type WorkloadMapOutput struct{ *khulnasoft.OutputState }
 
 func (WorkloadMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*Workload)(nil)).Elem()
@@ -189,17 +189,17 @@ func (o WorkloadMapOutput) ToWorkloadMapOutputWithContext(ctx context.Context) W
 	return o
 }
 
-func (o WorkloadMapOutput) MapIndex(k pulumi.StringInput) WorkloadOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Workload {
+func (o WorkloadMapOutput) MapIndex(k khulnasoft.StringInput) WorkloadOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *Workload {
 		return vs[0].(map[string]*Workload)[vs[1].(string)]
 	}).(WorkloadOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*WorkloadInput)(nil)).Elem(), &Workload{})
-	pulumi.RegisterInputType(reflect.TypeOf((*WorkloadArrayInput)(nil)).Elem(), WorkloadArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*WorkloadMapInput)(nil)).Elem(), WorkloadMap{})
-	pulumi.RegisterOutputType(WorkloadOutput{})
-	pulumi.RegisterOutputType(WorkloadArrayOutput{})
-	pulumi.RegisterOutputType(WorkloadMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*WorkloadInput)(nil)).Elem(), &Workload{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*WorkloadArrayInput)(nil)).Elem(), WorkloadArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*WorkloadMapInput)(nil)).Elem(), WorkloadMap{})
+	khulnasoft.RegisterOutputType(WorkloadOutput{})
+	khulnasoft.RegisterOutputType(WorkloadArrayOutput{})
+	khulnasoft.RegisterOutputType(WorkloadMapOutput{})
 }

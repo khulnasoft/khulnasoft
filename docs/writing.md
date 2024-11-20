@@ -3,8 +3,8 @@
 ## Contributing
 
 The sources of all the pages on this website are maintained in the
-[docs](https://github.com/pulumi/pulumi/tree/master/docs) folder of the
-[pulumi](https://github.com/pulumi/pulumi) GitHub repository. Pulumi welcomes contributions to the developer
+[docs](https://github.com/khulnasoft/khulnasoft/tree/master/docs) folder of the
+[khulnasoft](https://github.com/khulnasoft/khulnasoft) GitHub repository. Pulumi welcomes contributions to the developer
 documentation via Pull Requests.
 
 ## Conventions
@@ -108,8 +108,8 @@ prefixing sections with `sec-` and adhere to kebab-case.
 MyST supports custom URL schemes and we (ab)use these for convenient linking to
 GitHub issues and files:
 
-* <gh-issue:pulumi#1234> will link to issue 1234 in the `pulumi` repository.
-* <gh-file:pulumi#README.md> will link to the `README.md` file in the `pulumi`
+* <gh-issue:khulnasoft#1234> will link to issue 1234 in the `khulnasoft` repository.
+* <gh-file:khulnasoft#README.md> will link to the `README.md` file in the `khulnasoft`
   repository.
 ````
 
@@ -161,6 +161,6 @@ prefixing sections with `sec-` and adhere to kebab-case.
 MyST supports custom URL schemes and we (ab)use these for convenient linking to
 GitHub issues and files:
 
-* <gh-issue:pulumi#1234> will link to issue 1234 in the `pulumi` repository.
-* <gh-file:pulumi#README.md> will link to the `README.md` file in the `pulumi`
+* <gh-issue:khulnasoft#1234> will link to issue 1234 in the `khulnasoft` repository.
+* <gh-file:khulnasoft#README.md> will link to the `README.md` file in the `khulnasoft`
   repository.

@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"output-funcs-go-generics-only/mypkg/internal"
 )
 
 // Check codegen of functions with default values.
-func FuncWithDefaultValue(ctx *pulumi.Context, args *FuncWithDefaultValueArgs, opts ...pulumi.InvokeOption) (*FuncWithDefaultValueResult, error) {
+func FuncWithDefaultValue(ctx *khulnasoft.Context, args *FuncWithDefaultValueArgs, opts ...khulnasoft.InvokeOption) (*FuncWithDefaultValueResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FuncWithDefaultValueResult
 	err := ctx.Invoke("mypkg::funcWithDefaultValue", args.Defaults(), &rv, opts...)
@@ -24,8 +24,8 @@ func FuncWithDefaultValue(ctx *pulumi.Context, args *FuncWithDefaultValueArgs, o
 }
 
 type FuncWithDefaultValueArgs struct {
-	A string  `pulumi:"a"`
-	B *string `pulumi:"b"`
+	A string  `khulnasoft:"a"`
+	B *string `khulnasoft:"b"`
 }
 
 // Defaults sets the appropriate defaults for FuncWithDefaultValueArgs
@@ -42,27 +42,27 @@ func (val *FuncWithDefaultValueArgs) Defaults() *FuncWithDefaultValueArgs {
 }
 
 type FuncWithDefaultValueResult struct {
-	R string `pulumi:"r"`
+	R string `khulnasoft:"r"`
 }
 
-func FuncWithDefaultValueOutput(ctx *pulumi.Context, args FuncWithDefaultValueOutputArgs, opts ...pulumi.InvokeOption) FuncWithDefaultValueResultOutput {
-	outputResult := pulumix.ApplyErr[*FuncWithDefaultValueArgs](args.ToOutput(), func(plainArgs *FuncWithDefaultValueArgs) (*FuncWithDefaultValueResult, error) {
+func FuncWithDefaultValueOutput(ctx *khulnasoft.Context, args FuncWithDefaultValueOutputArgs, opts ...khulnasoft.InvokeOption) FuncWithDefaultValueResultOutput {
+	outputResult := khulnasoftx.ApplyErr[*FuncWithDefaultValueArgs](args.ToOutput(), func(plainArgs *FuncWithDefaultValueArgs) (*FuncWithDefaultValueResult, error) {
 		return FuncWithDefaultValue(ctx, plainArgs, opts...)
 	})
 
-	return pulumix.Cast[FuncWithDefaultValueResultOutput, *FuncWithDefaultValueResult](outputResult)
+	return khulnasoftx.Cast[FuncWithDefaultValueResultOutput, *FuncWithDefaultValueResult](outputResult)
 }
 
 type FuncWithDefaultValueOutputArgs struct {
-	A pulumix.Input[string]  `pulumi:"a"`
-	B pulumix.Input[*string] `pulumi:"b"`
+	A khulnasoftx.Input[string]  `khulnasoft:"a"`
+	B khulnasoftx.Input[*string] `khulnasoft:"b"`
 }
 
-func (args FuncWithDefaultValueOutputArgs) ToOutput() pulumix.Output[*FuncWithDefaultValueArgs] {
-	allArgs := pulumix.All(
+func (args FuncWithDefaultValueOutputArgs) ToOutput() khulnasoftx.Output[*FuncWithDefaultValueArgs] {
+	allArgs := khulnasoftx.All(
 		args.A.ToOutput(context.Background()).AsAny(),
 		args.B.ToOutput(context.Background()).AsAny())
-	return pulumix.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *FuncWithDefaultValueArgs {
+	return khulnasoftx.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *FuncWithDefaultValueArgs {
 		return &FuncWithDefaultValueArgs{
 			A: resolvedArgs[0].(string),
 			B: resolvedArgs[1].(*string),
@@ -70,18 +70,18 @@ func (args FuncWithDefaultValueOutputArgs) ToOutput() pulumix.Output[*FuncWithDe
 	})
 }
 
-type FuncWithDefaultValueResultOutput struct{ *pulumi.OutputState }
+type FuncWithDefaultValueResultOutput struct{ *khulnasoft.OutputState }
 
 func (FuncWithDefaultValueResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithDefaultValueResult)(nil)).Elem()
 }
 
-func (o FuncWithDefaultValueResultOutput) ToOutput(context.Context) pulumix.Output[*FuncWithDefaultValueResult] {
-	return pulumix.Output[*FuncWithDefaultValueResult]{
+func (o FuncWithDefaultValueResultOutput) ToOutput(context.Context) khulnasoftx.Output[*FuncWithDefaultValueResult] {
+	return khulnasoftx.Output[*FuncWithDefaultValueResult]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o FuncWithDefaultValueResultOutput) R() pulumix.Output[string] {
-	return pulumix.Apply[*FuncWithDefaultValueResult](o, func(v *FuncWithDefaultValueResult) string { return v.R })
+func (o FuncWithDefaultValueResultOutput) R() khulnasoftx.Output[string] {
+	return khulnasoftx.Apply[*FuncWithDefaultValueResult](o, func(v *FuncWithDefaultValueResult) string { return v.R })
 }

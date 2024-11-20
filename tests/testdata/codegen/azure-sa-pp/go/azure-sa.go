@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-azure/sdk/v4/go/azure/core"
-	"github.com/pulumi/pulumi-azure/sdk/v4/go/azure/storage"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"github.com/khulnasoft/khulnasoft-azure/sdk/v4/go/azure/core"
+	"github.com/khulnasoft/khulnasoft-azure/sdk/v4/go/azure/storage"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/config"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		cfg := config.New(ctx, "")
 		// The name of the storage account
 		storageAccountNameParam := cfg.Require("storageAccountNameParam")
@@ -33,12 +33,12 @@ func main() {
 			storageAccountTypeReplicationParam = param
 		}
 		storageAccountResource, err := storage.NewAccount(ctx, "storageAccountResource", &storage.AccountArgs{
-			Name:                   pulumi.String(storageAccountNameParam),
-			AccountKind:            pulumi.String("StorageV2"),
-			Location:               pulumi.String(locationParam),
-			ResourceGroupName:      pulumi.String(resourceGroupNameParam),
-			AccountTier:            pulumi.String(storageAccountTierParam),
-			AccountReplicationType: pulumi.String(storageAccountTypeReplicationParam),
+			Name:                   khulnasoft.String(storageAccountNameParam),
+			AccountKind:            khulnasoft.String("StorageV2"),
+			Location:               khulnasoft.String(locationParam),
+			ResourceGroupName:      khulnasoft.String(resourceGroupNameParam),
+			AccountTier:            khulnasoft.String(storageAccountTierParam),
+			AccountReplicationType: khulnasoft.String(storageAccountTypeReplicationParam),
 		})
 		if err != nil {
 			return err

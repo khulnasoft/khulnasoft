@@ -2,11 +2,11 @@
   "emittedFiles": [
     "foo/doc.go",
     "foo/init.go",
-    "foo/internal/pulumiUtilities.go",
-    "foo/internal/pulumiVersion.go",
+    "foo/internal/khulnasoftUtilities.go",
+    "foo/internal/khulnasoftVersion.go",
     "foo/provider.go",
-    "foo/pulumi-plugin.json",
-    "foo/pulumiTypes.go",
+    "foo/khulnasoft-plugin.json",
+    "foo/khulnasoftTypes.go",
     "foo/submodule1/fooencryptedBarClass.go",
     "foo/submodule1/init.go",
     "foo/submodule1/moduleResource.go"

@@ -25,14 +25,14 @@ download_release() {
   local filename="$3"
 
   if "${USE_GH}"; then
-    gh release download "${tag}" --repo "pulumi/pulumi-${lang}" -p "${filename}"
+    gh release download "${tag}" --repo "khulnasoft/khulnasoft-${lang}" -p "${filename}"
   else
-    curl -OL --fail "https://github.com/pulumi/pulumi-${lang}/releases/download/${tag}/${filename}"
+    curl -OL --fail "https://github.com/khulnasoft/khulnasoft-${lang}/releases/download/${tag}/${filename}"
   fi
 }
 
 # shellcheck disable=SC2043
-for i in "github.com/pulumi/pulumi-java java" "github.com/pulumi/pulumi-yaml yaml" "github.com/pulumi/pulumi-dotnet dotnet v3.67.1"; do
+for i in "github.com/khulnasoft/khulnasoft-java java" "github.com/khulnasoft/khulnasoft-yaml yaml" "github.com/khulnasoft/khulnasoft-dotnet dotnet v3.67.1"; do
   set -- $i # treat strings in loop as args
   REPO="$1"
   PULUMI_LANG="$2"
@@ -50,11 +50,11 @@ for i in "github.com/pulumi/pulumi-java java" "github.com/pulumi/pulumi-yaml yam
     # Currently avoiding a dependency on GH CLI in favor of curl, so
     # that this script works in the context of the Brew formula:
     #
-    # https://github.com/Homebrew/homebrew-core/blob/master/Formula/pulumi.rb
+    # https://github.com/Homebrew/homebrew-core/blob/master/Formula/khulnasoft.rb
     #
     # Formerly:
     #
-    # gh release download "${TAG}" --repo "pulumi/pulumi-${PULUMI_LANG}"
+    # gh release download "${TAG}" --repo "khulnasoft/khulnasoft-${PULUMI_LANG}"
 
     for j in "darwin" "linux" "windows .exe"; do
       set -- $j # treat strings in loop as args
@@ -64,21 +64,21 @@ for i in "github.com/pulumi/pulumi-java java" "github.com/pulumi/pulumi-yaml yam
       for k in "amd64 x64" "arm64 arm64"; do
         set -- $k # treat strings in loop as args
         DIST_ARCH="$1"
-        RENAMED_ARCH="$2" # goreleaser in pulumi/pulumi renames amd64 to x64
+        RENAMED_ARCH="$2" # goreleaser in khulnasoft/khulnasoft renames amd64 to x64
 
         # if TARGET is set and DIST_OS-DIST_ARCH does not match, skip
         if [ "${LOCAL}" = "local" ] && [ "$(go env GOOS)-$(go env GOARCH)" != "${DIST_OS}-${DIST_ARCH}" ]; then
             continue
         fi
 
-        ARCHIVE="pulumi-language-${PULUMI_LANG}-${TAG}-${DIST_OS}-${DIST_ARCH}"
+        ARCHIVE="khulnasoft-language-${PULUMI_LANG}-${TAG}-${DIST_OS}-${DIST_ARCH}"
 
         OUTDIR="${LANG_DIST}/$DIST_OS-$RENAMED_ARCH"
 
         mkdir -p "${OUTDIR}"
 
         download_release "${PULUMI_LANG}" "${TAG}" "${ARCHIVE}.tar.gz"
-        tar -xzvf "${ARCHIVE}.tar.gz" -C "${OUTDIR}" "pulumi-language-${PULUMI_LANG}${DIST_EXT}"
+        tar -xzvf "${ARCHIVE}.tar.gz" -C "${OUTDIR}" "khulnasoft-language-${PULUMI_LANG}${DIST_EXT}"
       done
     done
   )

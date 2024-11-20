@@ -32,16 +32,16 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 	"google.golang.org/protobuf/types/known/structpb"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil/rpcerror"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil/rpcerror"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // analyzer reflects an analyzer plugin, loaded dynamically for a single suite of checks.
@@ -49,7 +49,7 @@ type analyzer struct {
 	ctx     *Context
 	name    tokens.QName
 	plug    *plugin
-	client  pulumirpc.AnalyzerClient
+	client  khulnasoftrpc.AnalyzerClient
 	version string
 }
 
@@ -80,7 +80,7 @@ func NewAnalyzer(host Host, ctx *Context, name tokens.QName) (Analyzer, error) {
 		ctx:    ctx,
 		name:   name,
 		plug:   plug,
-		client: pulumirpc.NewAnalyzerClient(plug.Conn),
+		client: khulnasoftrpc.NewAnalyzerClient(plug.Conn),
 	}, nil
 }
 
@@ -101,7 +101,7 @@ func NewPolicyAnalyzer(
 		policyAnalyzerName = "policy-" + proj.Runtime.Name()
 	}
 
-	// Load the policy-booting analyzer plugin (i.e., `pulumi-analyzer-${policyAnalyzerName}`).
+	// Load the policy-booting analyzer plugin (i.e., `khulnasoft-analyzer-${policyAnalyzerName}`).
 	pluginPath, err := workspace.GetPluginPath(ctx.Diag,
 		apitype.AnalyzerPlugin, policyAnalyzerName, nil, host.GetProjectPlugins())
 
@@ -121,10 +121,10 @@ func NewPolicyAnalyzer(
 		return nil, err
 	}
 
-	// The `pulumi-analyzer-policy` plugin is a script that looks for the '@pulumi/pulumi/cmd/run-policy-pack'
+	// The `khulnasoft-analyzer-policy` plugin is a script that looks for the '@khulnasoft/khulnasoft/cmd/run-policy-pack'
 	// node module and runs it with node. To allow non-node Pulumi programs (e.g. Python, .NET, Go, etc.) to
 	// run node policy packs, we must set the plugin's pwd to the policy pack directory instead of the Pulumi
-	// program directory, so that the '@pulumi/pulumi/cmd/run-policy-pack' module from the policy pack's
+	// program directory, so that the '@khulnasoft/khulnasoft/cmd/run-policy-pack' module from the policy pack's
 	// node_modules is used.
 	pwd := policyPackPath
 
@@ -156,7 +156,7 @@ func NewPolicyAnalyzer(
 		ctx:     ctx,
 		name:    name,
 		plug:    plug,
-		client:  pulumirpc.NewAnalyzerClient(plug.Conn),
+		client:  khulnasoftrpc.NewAnalyzerClient(plug.Conn),
 		version: proj.Version,
 	}, nil
 }
@@ -185,7 +185,7 @@ func (a *analyzer) Analyze(r AnalyzerResource) ([]AnalyzeDiagnostic, error) {
 		return nil, err
 	}
 
-	resp, err := a.client.Analyze(a.ctx.Request(), &pulumirpc.AnalyzeRequest{
+	resp, err := a.client.Analyze(a.ctx.Request(), &khulnasoftrpc.AnalyzeRequest{
 		Urn:        string(urn),
 		Type:       string(t),
 		Name:       name,
@@ -213,7 +213,7 @@ func (a *analyzer) Analyze(r AnalyzerResource) ([]AnalyzeDiagnostic, error) {
 func (a *analyzer) AnalyzeStack(resources []AnalyzerStackResource) ([]AnalyzeDiagnostic, error) {
 	logging.V(7).Infof("%s.AnalyzeStack(#resources=%d) executing", a.label(), len(resources))
 
-	protoResources := make([]*pulumirpc.AnalyzerResource, len(resources))
+	protoResources := make([]*khulnasoftrpc.AnalyzerResource, len(resources))
 	for idx, resource := range resources {
 		props, err := MarshalProperties(resource.Properties,
 			MarshalOptions{KeepUnknowns: true, KeepSecrets: true, SkipInternalKeys: true})
@@ -226,7 +226,7 @@ func (a *analyzer) AnalyzeStack(resources []AnalyzerStackResource) ([]AnalyzeDia
 			return nil, err
 		}
 
-		propertyDeps := make(map[string]*pulumirpc.AnalyzerPropertyDependencies)
+		propertyDeps := make(map[string]*khulnasoftrpc.AnalyzerPropertyDependencies)
 		for pk, pd := range resource.PropertyDependencies {
 			// Skip properties that have no dependencies.
 			if len(pd) == 0 {
@@ -237,12 +237,12 @@ func (a *analyzer) AnalyzeStack(resources []AnalyzerStackResource) ([]AnalyzeDia
 			for _, d := range pd {
 				pdeps = append(pdeps, string(d))
 			}
-			propertyDeps[string(pk)] = &pulumirpc.AnalyzerPropertyDependencies{
+			propertyDeps[string(pk)] = &khulnasoftrpc.AnalyzerPropertyDependencies{
 				Urns: pdeps,
 			}
 		}
 
-		protoResources[idx] = &pulumirpc.AnalyzerResource{
+		protoResources[idx] = &khulnasoftrpc.AnalyzerResource{
 			Urn:                  string(resource.URN),
 			Type:                 string(resource.Type),
 			Name:                 resource.Name,
@@ -255,7 +255,7 @@ func (a *analyzer) AnalyzeStack(resources []AnalyzerStackResource) ([]AnalyzeDia
 		}
 	}
 
-	resp, err := a.client.AnalyzeStack(a.ctx.Request(), &pulumirpc.AnalyzeStackRequest{
+	resp, err := a.client.AnalyzeStack(a.ctx.Request(), &khulnasoftrpc.AnalyzeStackRequest{
 		Resources: protoResources,
 	})
 	if err != nil {
@@ -299,7 +299,7 @@ func (a *analyzer) Remediate(r AnalyzerResource) ([]Remediation, error) {
 		return nil, err
 	}
 
-	resp, err := a.client.Remediate(a.ctx.Request(), &pulumirpc.AnalyzeRequest{
+	resp, err := a.client.Remediate(a.ctx.Request(), &khulnasoftrpc.AnalyzeRequest{
 		Urn:        string(urn),
 		Type:       string(t),
 		Name:       name,
@@ -458,19 +458,19 @@ func (a *analyzer) Configure(policyConfig map[string]AnalyzerPolicyConfig) error
 		return nil
 	}
 
-	c := make(map[string]*pulumirpc.PolicyConfig)
+	c := make(map[string]*khulnasoftrpc.PolicyConfig)
 
 	for k, v := range policyConfig {
 		if !v.EnforcementLevel.IsValid() {
 			return fmt.Errorf("invalid enforcement level %q", v.EnforcementLevel)
 		}
-		c[k] = &pulumirpc.PolicyConfig{
+		c[k] = &khulnasoftrpc.PolicyConfig{
 			EnforcementLevel: marshalEnforcementLevel(v.EnforcementLevel),
 			Properties:       marshalMap(v.Properties),
 		}
 	}
 
-	_, err := a.client.Configure(a.ctx.Request(), &pulumirpc.ConfigureAnalyzerRequest{
+	_, err := a.client.Configure(a.ctx.Request(), &khulnasoftrpc.ConfigureAnalyzerRequest{
 		PolicyConfig: c,
 	})
 	if err != nil {
@@ -507,7 +507,7 @@ func analyzerPluginDialOptions(ctx *Context, name string) []grpc.DialOption {
 	return dialOpts
 }
 
-func marshalResourceOptions(opts AnalyzerResourceOptions) *pulumirpc.AnalyzerResourceOptions {
+func marshalResourceOptions(opts AnalyzerResourceOptions) *khulnasoftrpc.AnalyzerResourceOptions {
 	secs := make([]string, len(opts.AdditionalSecretOutputs))
 	for idx := range opts.AdditionalSecretOutputs {
 		secs[idx] = string(opts.AdditionalSecretOutputs[idx])
@@ -518,14 +518,14 @@ func marshalResourceOptions(opts AnalyzerResourceOptions) *pulumirpc.AnalyzerRes
 		deleteBeforeReplace = *opts.DeleteBeforeReplace
 	}
 
-	result := &pulumirpc.AnalyzerResourceOptions{
+	result := &khulnasoftrpc.AnalyzerResourceOptions{
 		Protect:                    opts.Protect,
 		IgnoreChanges:              opts.IgnoreChanges,
 		DeleteBeforeReplace:        deleteBeforeReplace,
 		DeleteBeforeReplaceDefined: opts.DeleteBeforeReplace != nil,
 		AdditionalSecretOutputs:    secs,
 		Aliases:                    convertAliases(opts.Aliases, opts.AliasURNs),
-		CustomTimeouts: &pulumirpc.AnalyzerResourceOptions_CustomTimeouts{
+		CustomTimeouts: &khulnasoftrpc.AnalyzerResourceOptions_CustomTimeouts{
 			Create: opts.CustomTimeouts.Create,
 			Update: opts.CustomTimeouts.Update,
 			Delete: opts.CustomTimeouts.Delete,
@@ -534,7 +534,7 @@ func marshalResourceOptions(opts AnalyzerResourceOptions) *pulumirpc.AnalyzerRes
 	return result
 }
 
-func marshalProvider(provider *AnalyzerProviderResource) (*pulumirpc.AnalyzerProviderResource, error) {
+func marshalProvider(provider *AnalyzerProviderResource) (*khulnasoftrpc.AnalyzerProviderResource, error) {
 	if provider == nil {
 		return nil, nil
 	}
@@ -545,7 +545,7 @@ func marshalProvider(provider *AnalyzerProviderResource) (*pulumirpc.AnalyzerPro
 		return nil, fmt.Errorf("marshalling properties: %w", err)
 	}
 
-	return &pulumirpc.AnalyzerProviderResource{
+	return &khulnasoftrpc.AnalyzerProviderResource{
 		Urn:        string(provider.URN),
 		Type:       string(provider.Type),
 		Name:       provider.Name,
@@ -553,16 +553,16 @@ func marshalProvider(provider *AnalyzerProviderResource) (*pulumirpc.AnalyzerPro
 	}, nil
 }
 
-func marshalEnforcementLevel(el apitype.EnforcementLevel) pulumirpc.EnforcementLevel {
+func marshalEnforcementLevel(el apitype.EnforcementLevel) khulnasoftrpc.EnforcementLevel {
 	switch el {
 	case apitype.Advisory:
-		return pulumirpc.EnforcementLevel_ADVISORY
+		return khulnasoftrpc.EnforcementLevel_ADVISORY
 	case apitype.Mandatory:
-		return pulumirpc.EnforcementLevel_MANDATORY
+		return khulnasoftrpc.EnforcementLevel_MANDATORY
 	case apitype.Remediate:
-		return pulumirpc.EnforcementLevel_REMEDIATE
+		return khulnasoftrpc.EnforcementLevel_REMEDIATE
 	case apitype.Disabled:
-		return pulumirpc.EnforcementLevel_DISABLED
+		return khulnasoftrpc.EnforcementLevel_DISABLED
 	}
 	contract.Failf("Unrecognized enforcement level %s", el)
 	return 0
@@ -689,15 +689,15 @@ func convertAliases(aliases []resource.Alias, aliasURNs []resource.URN) []string
 	return result
 }
 
-func convertEnforcementLevel(el pulumirpc.EnforcementLevel) (apitype.EnforcementLevel, error) {
+func convertEnforcementLevel(el khulnasoftrpc.EnforcementLevel) (apitype.EnforcementLevel, error) {
 	switch el {
-	case pulumirpc.EnforcementLevel_ADVISORY:
+	case khulnasoftrpc.EnforcementLevel_ADVISORY:
 		return apitype.Advisory, nil
-	case pulumirpc.EnforcementLevel_MANDATORY:
+	case khulnasoftrpc.EnforcementLevel_MANDATORY:
 		return apitype.Mandatory, nil
-	case pulumirpc.EnforcementLevel_REMEDIATE:
+	case khulnasoftrpc.EnforcementLevel_REMEDIATE:
 		return apitype.Remediate, nil
-	case pulumirpc.EnforcementLevel_DISABLED:
+	case khulnasoftrpc.EnforcementLevel_DISABLED:
 		return apitype.Disabled, nil
 
 	default:
@@ -705,7 +705,7 @@ func convertEnforcementLevel(el pulumirpc.EnforcementLevel) (apitype.Enforcement
 	}
 }
 
-func convertConfigSchema(schema *pulumirpc.PolicyConfigSchema) *AnalyzerPolicyConfigSchema {
+func convertConfigSchema(schema *khulnasoftrpc.PolicyConfigSchema) *AnalyzerPolicyConfigSchema {
 	if schema == nil {
 		return nil
 	}
@@ -722,7 +722,7 @@ func convertConfigSchema(schema *pulumirpc.PolicyConfigSchema) *AnalyzerPolicyCo
 	}
 }
 
-func convertDiagnostics(protoDiagnostics []*pulumirpc.AnalyzeDiagnostic, version string) ([]AnalyzeDiagnostic, error) {
+func convertDiagnostics(protoDiagnostics []*khulnasoftrpc.AnalyzeDiagnostic, version string) ([]AnalyzeDiagnostic, error) {
 	diagnostics := make([]AnalyzeDiagnostic, len(protoDiagnostics))
 	for idx := range protoDiagnostics {
 		protoD := protoDiagnostics[idx]

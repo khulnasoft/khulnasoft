@@ -1,4 +1,4 @@
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 function notImplemented(message: string) {
     throw new Error(message);

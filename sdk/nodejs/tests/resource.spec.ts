@@ -55,19 +55,19 @@ describe("createUrn", () => {
 
     it("handles name and type", async () => {
         const urn = await createUrn("n", "t").promise();
-        assert.strictEqual(urn, "urn:pulumi:mystack::myproject::t::n");
+        assert.strictEqual(urn, "urn:khulnasoft:mystack::myproject::t::n");
     });
 
     it("handles name and type and parent", async () => {
         const res = new MyResource("myres");
         const urn = await createUrn("n", "t", res).promise();
-        assert.strictEqual(urn, "urn:pulumi:mystack::myproject::my:mod:MyResource$t::n");
+        assert.strictEqual(urn, "urn:khulnasoft:mystack::myproject::my:mod:MyResource$t::n");
     });
 
     it("handles name and type and parent with parent", async () => {
         const res = new MyParentResource("myres");
         const urn = await createUrn("n", "t", res.child).promise();
-        assert.strictEqual(urn, "urn:pulumi:mystack::myproject::my:mod:MyParentResource$my:mod:MyResource$t::n");
+        assert.strictEqual(urn, "urn:khulnasoft:mystack::myproject::my:mod:MyParentResource$my:mod:MyResource$t::n");
     });
 });
 
@@ -99,22 +99,22 @@ describe("allAliases", () => {
             name: "one child alias (type), no parent aliases",
             parentAliases: [],
             childAliases: [{ type: "test:resource:child2" }],
-            results: ["urn:pulumi:stack::project::test:resource:type$test:resource:child2::myres-child"],
+            results: ["urn:khulnasoft:stack::project::test:resource:type$test:resource:child2::myres-child"],
         },
         {
             name: "one child alias (name), no parent aliases",
             parentAliases: [],
             childAliases: [{ name: "child2" }],
-            results: ["urn:pulumi:stack::project::test:resource:type$test:resource:child::child2"],
+            results: ["urn:khulnasoft:stack::project::test:resource:type$test:resource:child::child2"],
         },
         {
             name: "one child alias (name), one parent alias (type)",
             parentAliases: [{ type: "test:resource:type3" }],
             childAliases: [{ name: "myres-child2" }],
             results: [
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres-child2",
-                "urn:pulumi:stack::project::test:resource:type3$test:resource:child::myres-child",
-                "urn:pulumi:stack::project::test:resource:type3$test:resource:child::myres-child2",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres-child2",
+                "urn:khulnasoft:stack::project::test:resource:type3$test:resource:child::myres-child",
+                "urn:khulnasoft:stack::project::test:resource:type3$test:resource:child::myres-child2",
             ],
         },
         {
@@ -122,9 +122,9 @@ describe("allAliases", () => {
             parentAliases: [{ name: "myres2" }],
             childAliases: [{ name: "myres-child2" }],
             results: [
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres-child2",
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres2-child",
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres2-child2",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres-child2",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres2-child",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres2-child2",
             ],
         },
         {
@@ -132,17 +132,17 @@ describe("allAliases", () => {
             parentAliases: [{ name: "myres2" }, { type: "test:resource:type3" }, { name: "myres3" }],
             childAliases: [{ name: "myres-child2" }, { type: "test:resource:child2" }],
             results: [
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres-child2",
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child2::myres-child",
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres2-child",
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres2-child2",
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child2::myres2-child",
-                "urn:pulumi:stack::project::test:resource:type3$test:resource:child::myres-child",
-                "urn:pulumi:stack::project::test:resource:type3$test:resource:child::myres-child2",
-                "urn:pulumi:stack::project::test:resource:type3$test:resource:child2::myres-child",
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres3-child",
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres3-child2",
-                "urn:pulumi:stack::project::test:resource:type$test:resource:child2::myres3-child",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres-child2",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child2::myres-child",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres2-child",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres2-child2",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child2::myres2-child",
+                "urn:khulnasoft:stack::project::test:resource:type3$test:resource:child::myres-child",
+                "urn:khulnasoft:stack::project::test:resource:type3$test:resource:child::myres-child2",
+                "urn:khulnasoft:stack::project::test:resource:type3$test:resource:child2::myres-child",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres3-child",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres3-child2",
+                "urn:khulnasoft:stack::project::test:resource:type$test:resource:child2::myres3-child",
             ],
         },
     ];
@@ -164,7 +164,7 @@ describe("DependencyProviderResource", () => {
     describe("getPackage", () => {
         it("returns the expected package", () => {
             const res = new DependencyProviderResource(
-                "urn:pulumi:stack::project::pulumi:providers:aws::default_4_13_0",
+                "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_4_13_0",
             );
             assert.strictEqual(res.getPackage(), "aws");
         });
@@ -181,14 +181,14 @@ describe("CustomResource", () => {
         },
     });
 
-    // https://github.com/pulumi/pulumi/issues/13777
+    // https://github.com/khulnasoft/khulnasoft/issues/13777
     it("saves provider with same package as the resource in __prov", async () => {
         const provider = new MyProvider("prov");
         const custom = new MyCustomResource("custom", { provider: provider });
         assert.strictEqual(custom.__prov, provider);
     });
 
-    // https://github.com/pulumi/pulumi/issues/13777
+    // https://github.com/khulnasoft/khulnasoft/issues/13777
     it("does not save provider with different package as the resource in __prov", async () => {
         const provider = new MyOtherProvider("prov");
         const custom = new MyCustomResource("custom", { provider: provider });
@@ -206,7 +206,7 @@ describe("ComponentResource", () => {
         },
     });
 
-    // https://github.com/pulumi/pulumi/issues/12161
+    // https://github.com/khulnasoft/khulnasoft/issues/12161
     it("propagates provider to children", async () => {
         const provider = new MyProvider("prov");
         const component = new MyResource("comp", { provider: provider });
@@ -214,7 +214,7 @@ describe("ComponentResource", () => {
         assert.strictEqual(custom.__prov, provider);
     });
 
-    // https://github.com/pulumi/pulumi/issues/12161
+    // https://github.com/khulnasoft/khulnasoft/issues/12161
     it("propagates providers list to children", async () => {
         const provider = new MyProvider("prov");
         const component = new MyResource("comp", { providers: [provider] });
@@ -233,14 +233,14 @@ describe("RemoteComponentResource", () => {
         },
     });
 
-    // https://github.com/pulumi/pulumi/issues/13777
+    // https://github.com/khulnasoft/khulnasoft/issues/13777
     it("saves provider with same package as the resource in __prov", async () => {
         const provider = new MyProvider("prov");
         const comp = new MyRemoteComponentResource("comp", { provider: provider });
         assert.strictEqual(comp.__prov, provider);
     });
 
-    // https://github.com/pulumi/pulumi/issues/13777
+    // https://github.com/khulnasoft/khulnasoft/issues/13777
     it("does not save provider with different package as the resource in __prov", async () => {
         const provider = new MyOtherProvider("prov");
         const comp = new MyRemoteComponentResource("comp", { provider: provider });
@@ -272,7 +272,7 @@ class MyRemoteComponentResource extends ComponentResource {
     }
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/12032
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/12032
 describe("parent and dependsOn are the same 12032", () => {
     runtime.setMocks({
         call: (_) => {
@@ -283,7 +283,7 @@ describe("parent and dependsOn are the same 12032", () => {
         },
     });
 
-    // https://github.com/pulumi/pulumi/issues/12161
+    // https://github.com/khulnasoft/khulnasoft/issues/12161
     it("runs without error", async () => {
         const parent = new ComponentResource("pkg:index:first", "first");
         const child = new ComponentResource(

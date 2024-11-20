@@ -121,7 +121,7 @@
     },
     "nodejs": {
       "dependencies": {
-        "@pulumi/pulumi": "^3.12"
+        "@khulnasoft/khulnasoft": "^3.12"
       },
       "devDependencies": {
         "typescript": "^3.7.0"

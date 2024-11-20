@@ -28,7 +28,7 @@ func TestNodejsSimpleTransforms(t *testing.T) {
 	d := filepath.Join("nodejs", "simple")
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir:          d,
-		Dependencies: []string{"@pulumi/pulumi"},
+		Dependencies: []string{"@khulnasoft/khulnasoft"},
 		LocalProviders: []integration.LocalDependency{
 			{Package: "testprovider", Path: filepath.Join("..", "..", "testprovider")},
 		},
@@ -42,7 +42,7 @@ func TestNodejsSingleTransforms(t *testing.T) {
 	d := filepath.Join("nodejs", "single")
 	integration.ProgramTest(t, &integration.ProgramTestOptions{
 		Dir:          d,
-		Dependencies: []string{"@pulumi/pulumi"},
+		Dependencies: []string{"@khulnasoft/khulnasoft"},
 		LocalProviders: []integration.LocalDependency{
 			{Package: "testprovider", Path: filepath.Join("..", "..", "testprovider")},
 		},

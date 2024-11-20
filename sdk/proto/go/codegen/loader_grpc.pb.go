@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: pulumi/codegen/loader.proto
+// source: khulnasoft/codegen/loader.proto
 
 package codegen
 
@@ -103,5 +103,5 @@ var Loader_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "pulumi/codegen/loader.proto",
+	Metadata: "khulnasoft/codegen/loader.proto",
 }

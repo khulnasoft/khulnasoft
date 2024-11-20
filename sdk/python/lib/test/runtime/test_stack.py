@@ -16,8 +16,8 @@ import sys
 import traceback
 
 import pytest
-from pulumi.runtime import stack
-from pulumi.runtime.settings import _get_rpc_manager
+from khulnasoft.runtime import stack
+from khulnasoft.runtime.settings import _get_rpc_manager
 
 
 async def _explode(n=10):

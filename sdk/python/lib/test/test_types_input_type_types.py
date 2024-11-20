@@ -16,82 +16,82 @@ import unittest
 
 from typing import Optional
 
-from pulumi._types import input_type_types
-import pulumi
+from khulnasoft._types import input_type_types
+import khulnasoft
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class Foo:
     @property
-    @pulumi.getter()
-    def bar(self) -> pulumi.Input[str]: ...  # type: ignore
+    @khulnasoft.getter()
+    def bar(self) -> khulnasoft.Input[str]: ...  # type: ignore
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class MySimpleInputType:
     a: str
     b: Optional[str]
-    c: pulumi.Input[str]
-    d: Optional[pulumi.Input[str]]
+    c: khulnasoft.Input[str]
+    d: Optional[khulnasoft.Input[str]]
     e: Foo
     f: Optional[Foo]
-    g: pulumi.Input[Foo]
-    h: Optional[pulumi.Input[Foo]]
-    i: pulumi.InputType[Foo]
-    j: Optional[pulumi.InputType[Foo]]
-    k: pulumi.Input[pulumi.InputType[Foo]]
-    l: Optional[pulumi.Input[pulumi.InputType[Foo]]]
+    g: khulnasoft.Input[Foo]
+    h: Optional[khulnasoft.Input[Foo]]
+    i: khulnasoft.InputType[Foo]
+    j: Optional[khulnasoft.InputType[Foo]]
+    k: khulnasoft.Input[khulnasoft.InputType[Foo]]
+    l: Optional[khulnasoft.Input[khulnasoft.InputType[Foo]]]
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class MyPropertiesInputType:
     @property
-    @pulumi.getter()
+    @khulnasoft.getter()
     def a(self) -> str: ...  # type: ignore
 
     @property
-    @pulumi.getter()
+    @khulnasoft.getter()
     def b(self) -> Optional[str]: ...  # type: ignore
 
     @property
-    @pulumi.getter()
-    def c(self) -> pulumi.Input[str]: ...  # type: ignore
+    @khulnasoft.getter()
+    def c(self) -> khulnasoft.Input[str]: ...  # type: ignore
 
     @property
-    @pulumi.getter()
-    def d(self) -> Optional[pulumi.Input[str]]: ...  # type: ignore
+    @khulnasoft.getter()
+    def d(self) -> Optional[khulnasoft.Input[str]]: ...  # type: ignore
 
     @property
-    @pulumi.getter()
+    @khulnasoft.getter()
     def e(self) -> Foo: ...  # type: ignore
 
     @property
-    @pulumi.getter()
+    @khulnasoft.getter()
     def f(self) -> Optional[Foo]: ...  # type: ignore
 
     @property
-    @pulumi.getter()
-    def g(self) -> pulumi.Input[Foo]: ...  # type: ignore
+    @khulnasoft.getter()
+    def g(self) -> khulnasoft.Input[Foo]: ...  # type: ignore
 
     @property
-    @pulumi.getter()
-    def h(self) -> Optional[pulumi.Input[Foo]]: ...  # type: ignore
+    @khulnasoft.getter()
+    def h(self) -> Optional[khulnasoft.Input[Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter()
-    def i(self) -> pulumi.InputType[Foo]: ...  # type: ignore
+    @khulnasoft.getter()
+    def i(self) -> khulnasoft.InputType[Foo]: ...  # type: ignore
 
     @property
-    @pulumi.getter()
-    def j(self) -> Optional[pulumi.InputType[Foo]]: ...  # type: ignore
+    @khulnasoft.getter()
+    def j(self) -> Optional[khulnasoft.InputType[Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter()
-    def k(self) -> pulumi.Input[pulumi.InputType[Foo]]: ...  # type: ignore
+    @khulnasoft.getter()
+    def k(self) -> khulnasoft.Input[khulnasoft.InputType[Foo]]: ...  # type: ignore
 
     @property
-    @pulumi.getter()
-    def l(self) -> Optional[pulumi.Input[pulumi.InputType[Foo]]]: ...  # type: ignore
+    @khulnasoft.getter()
+    def l(self) -> Optional[khulnasoft.Input[khulnasoft.InputType[Foo]]]: ...  # type: ignore
 
 
 class InputTypeTypesTests(unittest.TestCase):

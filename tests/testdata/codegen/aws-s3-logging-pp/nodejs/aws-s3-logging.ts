@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
 const logs = new aws.s3.Bucket("logs", {});
 const bucket = new aws.s3.Bucket("bucket", {loggings: [{

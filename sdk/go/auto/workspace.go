@@ -18,12 +18,12 @@ import (
 	"context"
 	"io"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optlist"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optremove"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optlist"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optremove"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // Workspace is the execution context containing a single Pulumi project, a program, and multiple stacks.
@@ -139,11 +139,11 @@ type Workspace interface {
 	RemovePlugin(context.Context, string, string) error
 	// ListPlugins lists all installed plugins.
 	ListPlugins(context.Context) ([]workspace.PluginInfo, error)
-	// Program returns the program `pulumi.RunFunc` to be used for Preview/Update if any.
+	// Program returns the program `khulnasoft.RunFunc` to be used for Preview/Update if any.
 	// If none is specified, the stack will refer to ProjectSettings for this information.
-	Program() pulumi.RunFunc
-	// SetProgram sets the program associated with the Workspace to the specified `pulumi.RunFunc`.
-	SetProgram(pulumi.RunFunc)
+	Program() khulnasoft.RunFunc
+	// SetProgram sets the program associated with the Workspace to the specified `khulnasoft.RunFunc`.
+	SetProgram(khulnasoft.RunFunc)
 	// ExportStack exports the deployment state of the stack matching the given name.
 	// This can be combined with ImportStack to edit a stack's state (such as recovery from failed deployments).
 	ExportStack(context.Context, string) (apitype.UntypedDeployment, error)

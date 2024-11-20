@@ -1,8 +1,8 @@
-import pulumi
+import khulnasoft
 
-pulumi.export("strVar", "foo")
-pulumi.export("arrVar", [
+khulnasoft.export("strVar", "foo")
+khulnasoft.export("arrVar", [
     "fizz",
     "buzz",
 ])
-pulumi.export("readme", (lambda path: open(path).read())("./Pulumi.README.md"))
+khulnasoft.export("readme", (lambda path: open(path).read())("./Pulumi.README.md"))

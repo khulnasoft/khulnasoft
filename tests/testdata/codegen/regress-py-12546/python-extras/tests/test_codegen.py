@@ -13,37 +13,37 @@
 # limitations under the License.
 
 
-import pulumi
+import khulnasoft
 import pytest
 from unittest.mock import patch
 
-import pulumi_plant
+import khulnasoft_plant
 
 
 @pytest.fixture
 def my_mocks():
-    old_settings = pulumi.runtime.settings.SETTINGS
+    old_settings = khulnasoft.runtime.settings.SETTINGS
     try:
         mocks = MyMocks()
-        pulumi.runtime.mocks.set_mocks(mocks)
+        khulnasoft.runtime.mocks.set_mocks(mocks)
         yield mocks
     finally:
-        pulumi.runtime.settings.configure(old_settings)
+        khulnasoft.runtime.settings.configure(old_settings)
 
 
-class MyMocks(pulumi.runtime.Mocks):
+class MyMocks(khulnasoft.runtime.Mocks):
     def call(self, args):
         return {}
     def new_resource(self, args):
         return 'foo', args.inputs
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_default_value_does_not_trigger_deprecation_warning(my_mocks):
     """
     Constructs a resource with deprecated inputs with a default value
     and checks that the supplied default values don't trigger a deprecation warning.
     """
     with patch("warnings.warn") as mock_warn:
-        pulumi_plant.tree.v1.RubberTree("my-tree", pulumi_plant.tree.v1.RubberTreeArgs())
+        khulnasoft_plant.tree.v1.RubberTree("my-tree", khulnasoft_plant.tree.v1.RubberTreeArgs())
         mock_warn.assert_not_called()

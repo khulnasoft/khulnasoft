@@ -448,8 +448,8 @@ describe("runtime", () => {
             };
 
             const deserialized = runtime.deserializeProperty(outputs);
-            assert.ok((<ComponentResource>deserialized["component"]).__pulumiComponentResource);
-            assert.ok((<CustomResource>deserialized["custom"]).__pulumiCustomResource);
+            assert.ok((<ComponentResource>deserialized["component"]).__khulnasoftComponentResource);
+            assert.ok((<CustomResource>deserialized["custom"]).__khulnasoftCustomResource);
             assert.deepEqual(deserialized["unregistered"], unregisteredID);
         });
     });

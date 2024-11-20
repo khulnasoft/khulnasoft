@@ -21,7 +21,7 @@ class ChainedFailureTest(LanghostTest):
     attempting to prepare a resource for registration.
 
     In this test, the program raises an exception in an apply, which causes the preparation of resourceB to fail. This
-    test asserts that this does not cause a deadlock (as it previously did, pulumi/pulumi#2189) but instead terminates
+    test asserts that this does not cause a deadlock (as it previously did, khulnasoft/khulnasoft#2189) but instead terminates
     gracefully.
     """
 

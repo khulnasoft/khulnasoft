@@ -2,10 +2,10 @@
   "emittedFiles": [
     "example/doc.go",
     "example/init.go",
-    "example/internal/pulumiUtilities.go",
-    "example/internal/pulumiVersion.go",
+    "example/internal/khulnasoftUtilities.go",
+    "example/internal/khulnasoftVersion.go",
     "example/provider.go",
-    "example/pulumi-plugin.json",
-    "example/pulumiTypes.go"
+    "example/khulnasoft-plugin.json",
+    "example/khulnasoftTypes.go"
   ]
 }

@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_aws_static_website as aws_static_website
+import khulnasoft
+import khulnasoft_aws_static_website as aws_static_website
 
 website_resource = aws_static_website.Website("websiteResource",
     site_path="string",

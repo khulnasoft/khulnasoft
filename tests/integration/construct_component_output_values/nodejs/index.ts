@@ -1,6 +1,6 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 import { Component } from "./component";
 
@@ -11,7 +11,7 @@ new Component("component", {
     bar: {
         tags: {
             "a": "world",
-            "b": pulumi.secret("shh"),
+            "b": khulnasoft.secret("shh"),
         },
     },
 });

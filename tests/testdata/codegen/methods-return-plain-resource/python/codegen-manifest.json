@@ -1,12 +1,12 @@
 {
   "emittedFiles": [
-    "pulumi_metaprovider/README.md",
-    "pulumi_metaprovider/__init__.py",
-    "pulumi_metaprovider/_utilities.py",
-    "pulumi_metaprovider/configurer.py",
-    "pulumi_metaprovider/provider.py",
-    "pulumi_metaprovider/pulumi-plugin.json",
-    "pulumi_metaprovider/py.typed",
+    "khulnasoft_metaprovider/README.md",
+    "khulnasoft_metaprovider/__init__.py",
+    "khulnasoft_metaprovider/_utilities.py",
+    "khulnasoft_metaprovider/configurer.py",
+    "khulnasoft_metaprovider/provider.py",
+    "khulnasoft_metaprovider/khulnasoft-plugin.json",
+    "khulnasoft_metaprovider/py.typed",
     "setup.py"
   ]
 }

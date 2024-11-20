@@ -29,10 +29,10 @@ import (
 	. "github.com/khulnasoft/khulnasoft/pkg/v3/engine" //nolint:revive
 	lt "github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/framework"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	codegenrpc "github.com/pulumi/pulumi/sdk/v3/proto/go/codegen"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	codegenrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go/codegen"
 )
 
 func TestLoader(t *testing.T) {

@@ -7,33 +7,33 @@ import (
 	"context"
 	"reflect"
 
-	"example.com/pulumi-configstation/sdk/go/configstation/config"
-	"example.com/pulumi-configstation/sdk/go/configstation/internal"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"example.com/khulnasoft-configstation/sdk/go/configstation/config"
+	"example.com/khulnasoft-configstation/sdk/go/configstation/internal"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Provider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
-func NewProvider(ctx *pulumi.Context,
-	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
+func NewProvider(ctx *khulnasoft.Context,
+	name string, args *ProviderArgs, opts ...khulnasoft.ResourceOption) (*Provider, error) {
 	if args == nil {
 		args = &ProviderArgs{}
 	}
 
 	if args.FavoriteColor == nil {
 		if d := internal.GetEnvOrDefault(nil, nil, "FAVE_COLOR"); d != nil {
-			args.FavoriteColor = pulumi.StringPtr(d.(string))
+			args.FavoriteColor = khulnasoft.StringPtr(d.(string))
 		}
 	}
 	if args.SecretSandwiches != nil {
-		args.SecretSandwiches = pulumi.ToSecret(args.SecretSandwiches).(config.SandwichArrayInput)
+		args.SecretSandwiches = khulnasoft.ToSecret(args.SecretSandwiches).(config.SandwichArrayInput)
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
-	err := ctx.RegisterResource("pulumi:providers:configstation", name, args, &resource, opts...)
+	err := ctx.RegisterResource("khulnasoft:providers:configstation", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -42,15 +42,15 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	// this is a relaxed string enum which can also be set via env var
-	FavoriteColor *string `pulumi:"favoriteColor"`
+	FavoriteColor *string `khulnasoft:"favoriteColor"`
 	// Super duper secret sandwiches.
-	SecretSandwiches []config.Sandwich `pulumi:"secretSandwiches"`
+	SecretSandwiches []config.Sandwich `khulnasoft:"secretSandwiches"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	// this is a relaxed string enum which can also be set via env var
-	FavoriteColor pulumi.StringPtrInput
+	FavoriteColor khulnasoft.StringPtrInput
 	// Super duper secret sandwiches.
 	SecretSandwiches config.SandwichArrayInput
 }
@@ -60,7 +60,7 @@ func (ProviderArgs) ElementType() reflect.Type {
 }
 
 type ProviderInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToProviderOutput() ProviderOutput
 	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
@@ -75,10 +75,10 @@ func (i *Provider) ToProviderOutput() ProviderOutput {
 }
 
 func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
-type ProviderOutput struct{ *pulumi.OutputState }
+type ProviderOutput struct{ *khulnasoft.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Provider)(nil)).Elem()
@@ -93,6 +93,6 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
-	pulumi.RegisterOutputType(ProviderOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
+	khulnasoft.RegisterOutputType(ProviderOutput{})
 }

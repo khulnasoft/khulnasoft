@@ -17,7 +17,7 @@ package resource
 import (
 	"sort"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 )
 
 // ObjectDiff holds the results of diffing two object property maps.

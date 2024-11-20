@@ -25,7 +25,7 @@ export type CancelEvent = {};
 
 /**
  * An event emitted whenever a generic message is written, for example warnings
- * from the pulumi CLI itself. Less common than {@link DiagnosticEvent}
+ * from the khulnasoft CLI itself. Less common than {@link DiagnosticEvent}
  */
 export interface StdoutEngineEvent {
     message: string;

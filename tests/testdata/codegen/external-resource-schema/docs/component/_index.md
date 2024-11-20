@@ -21,70 +21,70 @@ Resources are created with functions called constructors. To learn more about de
 
 ### Constructor syntax
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">Component</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#CustomResourceOptions">CustomResourceOptions</a></span><span class="p">);</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="javascript,typescript">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">Component</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#CustomResourceOptions">CustomResourceOptions</a></span><span class="p">);</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">Component</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
               <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p">,</span>
-              <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
+              <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
 <span></span>
 <span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">Component</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
-              <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">,</span>
-              <span class="nx">required_metadata</span><span class="p">:</span> <span class="nx">Optional[pulumi_kubernetes.meta.v1.ObjectMetaArgs]</span> = None<span class="p">,</span>
-              <span class="nx">required_metadata_array</span><span class="p">:</span> <span class="nx">Optional[Sequence[pulumi_kubernetes.meta.v1.ObjectMetaArgs]]</span> = None<span class="p">,</span>
-              <span class="nx">required_metadata_map</span><span class="p">:</span> <span class="nx">Optional[Mapping[str, pulumi_kubernetes.meta.v1.ObjectMetaArgs]]</span> = None<span class="p">,</span>
-              <span class="nx">metadata</span><span class="p">:</span> <span class="nx">Optional[pulumi_kubernetes.meta.v1.ObjectMetaArgs]</span> = None<span class="p">,</span>
-              <span class="nx">metadata_array</span><span class="p">:</span> <span class="nx">Optional[Sequence[pulumi_kubernetes.meta.v1.ObjectMetaArgs]]</span> = None<span class="p">,</span>
-              <span class="nx">metadata_map</span><span class="p">:</span> <span class="nx">Optional[Mapping[str, pulumi_kubernetes.meta.v1.ObjectMetaArgs]]</span> = None<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+              <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">,</span>
+              <span class="nx">required_metadata</span><span class="p">:</span> <span class="nx">Optional[khulnasoft_kubernetes.meta.v1.ObjectMetaArgs]</span> = None<span class="p">,</span>
+              <span class="nx">required_metadata_array</span><span class="p">:</span> <span class="nx">Optional[Sequence[khulnasoft_kubernetes.meta.v1.ObjectMetaArgs]]</span> = None<span class="p">,</span>
+              <span class="nx">required_metadata_map</span><span class="p">:</span> <span class="nx">Optional[Mapping[str, khulnasoft_kubernetes.meta.v1.ObjectMetaArgs]]</span> = None<span class="p">,</span>
+              <span class="nx">metadata</span><span class="p">:</span> <span class="nx">Optional[khulnasoft_kubernetes.meta.v1.ObjectMetaArgs]</span> = None<span class="p">,</span>
+              <span class="nx">metadata_array</span><span class="p">:</span> <span class="nx">Optional[Sequence[khulnasoft_kubernetes.meta.v1.ObjectMetaArgs]]</span> = None<span class="p">,</span>
+              <span class="nx">metadata_map</span><span class="p">:</span> <span class="nx">Optional[Mapping[str, khulnasoft_kubernetes.meta.v1.ObjectMetaArgs]]</span> = None<span class="p">)</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewComponent</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> </span><span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">Component</span>, error)</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="go">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewComponent</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> </span><span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">Component</span>, error)</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public </span><span class="nx">Component</span><span class="p">(</span><span class="nx">string</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.CustomResourceOptions.html">CustomResourceOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <div class="no-copy"><div class="highlight"><pre class="chroma">
 <code class="language-java" data-lang="java"><span class="k">public </span><span class="nx">Component</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">)</span>
 <span class="k">public </span><span class="nx">Component</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx">CustomResourceOptions</span><span class="p"> </span><span class="nx">options<span class="p">)</span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">type: <span class="nx">example:Component</span><span class="p"></span>
 <span class="p">properties</span><span class="p">: </span><span class="c">#&nbsp;The arguments to resource properties.</span>
 <span class="p"></span><span class="p">options</span><span class="p">: </span><span class="c">#&nbsp;Bag of options to control resource&#39;s behavior.</span>
 <span class="p"></span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 #### Parameters
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -102,15 +102,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#CustomResourceOptions">CustomResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#CustomResourceOptions">CustomResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -128,21 +128,21 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">ResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">ResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 <dl class="resources-properties"><dt
         class="property-optional" title="Optional">
         <span>ctx</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span>
     </dt>
     <dd>Context object for the current deployment.</dd><dt
         class="property-required" title="Required">
@@ -160,15 +160,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -190,11 +190,11 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -216,7 +216,7 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -225,12 +225,12 @@ Resources are created with functions called constructors. To learn more about de
 
 The following reference example uses placeholder values for all [input properties](#inputs).
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 ```csharp
 var componentResource = new Example.Component("componentResource", new()
@@ -556,290 +556,290 @@ var componentResource = new Example.Component("componentResource", new()
 });
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 ```go
 example, err := example.NewComponent(ctx, "componentResource", &example.ComponentArgs{
 	RequiredMetadata: &metav1.ObjectMetaArgs{
-		Annotations: pulumi.StringMap{
-			"string": pulumi.String("string"),
+		Annotations: khulnasoft.StringMap{
+			"string": khulnasoft.String("string"),
 		},
-		ClusterName:                pulumi.String("string"),
-		CreationTimestamp:          pulumi.String("string"),
-		DeletionGracePeriodSeconds: pulumi.Int(0),
-		DeletionTimestamp:          pulumi.String("string"),
-		Finalizers: pulumi.StringArray{
-			pulumi.String("string"),
+		ClusterName:                khulnasoft.String("string"),
+		CreationTimestamp:          khulnasoft.String("string"),
+		DeletionGracePeriodSeconds: khulnasoft.Int(0),
+		DeletionTimestamp:          khulnasoft.String("string"),
+		Finalizers: khulnasoft.StringArray{
+			khulnasoft.String("string"),
 		},
-		GenerateName: pulumi.String("string"),
-		Generation:   pulumi.Int(0),
-		Labels: pulumi.StringMap{
-			"string": pulumi.String("string"),
+		GenerateName: khulnasoft.String("string"),
+		Generation:   khulnasoft.Int(0),
+		Labels: khulnasoft.StringMap{
+			"string": khulnasoft.String("string"),
 		},
 		ManagedFields: metav1.ManagedFieldsEntryArray{
 			&metav1.ManagedFieldsEntryArgs{
-				ApiVersion:  pulumi.String("string"),
-				FieldsType:  pulumi.String("string"),
-				FieldsV1:    pulumi.Any("{}"),
-				Manager:     pulumi.String("string"),
-				Operation:   pulumi.String("string"),
-				Subresource: pulumi.String("string"),
-				Time:        pulumi.String("string"),
+				ApiVersion:  khulnasoft.String("string"),
+				FieldsType:  khulnasoft.String("string"),
+				FieldsV1:    khulnasoft.Any("{}"),
+				Manager:     khulnasoft.String("string"),
+				Operation:   khulnasoft.String("string"),
+				Subresource: khulnasoft.String("string"),
+				Time:        khulnasoft.String("string"),
 			},
 		},
-		Name:      pulumi.String("string"),
-		Namespace: pulumi.String("string"),
+		Name:      khulnasoft.String("string"),
+		Namespace: khulnasoft.String("string"),
 		OwnerReferences: metav1.OwnerReferenceArray{
 			&metav1.OwnerReferenceArgs{
-				ApiVersion:         pulumi.String("string"),
-				Kind:               pulumi.String("string"),
-				Name:               pulumi.String("string"),
-				Uid:                pulumi.String("string"),
-				BlockOwnerDeletion: pulumi.Bool(false),
-				Controller:         pulumi.Bool(false),
+				ApiVersion:         khulnasoft.String("string"),
+				Kind:               khulnasoft.String("string"),
+				Name:               khulnasoft.String("string"),
+				Uid:                khulnasoft.String("string"),
+				BlockOwnerDeletion: khulnasoft.Bool(false),
+				Controller:         khulnasoft.Bool(false),
 			},
 		},
-		ResourceVersion: pulumi.String("string"),
-		SelfLink:        pulumi.String("string"),
-		Uid:             pulumi.String("string"),
+		ResourceVersion: khulnasoft.String("string"),
+		SelfLink:        khulnasoft.String("string"),
+		Uid:             khulnasoft.String("string"),
 	},
 	RequiredMetadataArray: metav1.ObjectMetaArray{
 		&metav1.ObjectMetaArgs{
-			Annotations: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			Annotations: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
-			ClusterName:                pulumi.String("string"),
-			CreationTimestamp:          pulumi.String("string"),
-			DeletionGracePeriodSeconds: pulumi.Int(0),
-			DeletionTimestamp:          pulumi.String("string"),
-			Finalizers: pulumi.StringArray{
-				pulumi.String("string"),
+			ClusterName:                khulnasoft.String("string"),
+			CreationTimestamp:          khulnasoft.String("string"),
+			DeletionGracePeriodSeconds: khulnasoft.Int(0),
+			DeletionTimestamp:          khulnasoft.String("string"),
+			Finalizers: khulnasoft.StringArray{
+				khulnasoft.String("string"),
 			},
-			GenerateName: pulumi.String("string"),
-			Generation:   pulumi.Int(0),
-			Labels: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			GenerateName: khulnasoft.String("string"),
+			Generation:   khulnasoft.Int(0),
+			Labels: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
 			ManagedFields: metav1.ManagedFieldsEntryArray{
 				&metav1.ManagedFieldsEntryArgs{
-					ApiVersion:  pulumi.String("string"),
-					FieldsType:  pulumi.String("string"),
-					FieldsV1:    pulumi.Any("{}"),
-					Manager:     pulumi.String("string"),
-					Operation:   pulumi.String("string"),
-					Subresource: pulumi.String("string"),
-					Time:        pulumi.String("string"),
+					ApiVersion:  khulnasoft.String("string"),
+					FieldsType:  khulnasoft.String("string"),
+					FieldsV1:    khulnasoft.Any("{}"),
+					Manager:     khulnasoft.String("string"),
+					Operation:   khulnasoft.String("string"),
+					Subresource: khulnasoft.String("string"),
+					Time:        khulnasoft.String("string"),
 				},
 			},
-			Name:      pulumi.String("string"),
-			Namespace: pulumi.String("string"),
+			Name:      khulnasoft.String("string"),
+			Namespace: khulnasoft.String("string"),
 			OwnerReferences: metav1.OwnerReferenceArray{
 				&metav1.OwnerReferenceArgs{
-					ApiVersion:         pulumi.String("string"),
-					Kind:               pulumi.String("string"),
-					Name:               pulumi.String("string"),
-					Uid:                pulumi.String("string"),
-					BlockOwnerDeletion: pulumi.Bool(false),
-					Controller:         pulumi.Bool(false),
+					ApiVersion:         khulnasoft.String("string"),
+					Kind:               khulnasoft.String("string"),
+					Name:               khulnasoft.String("string"),
+					Uid:                khulnasoft.String("string"),
+					BlockOwnerDeletion: khulnasoft.Bool(false),
+					Controller:         khulnasoft.Bool(false),
 				},
 			},
-			ResourceVersion: pulumi.String("string"),
-			SelfLink:        pulumi.String("string"),
-			Uid:             pulumi.String("string"),
+			ResourceVersion: khulnasoft.String("string"),
+			SelfLink:        khulnasoft.String("string"),
+			Uid:             khulnasoft.String("string"),
 		},
 	},
 	RequiredMetadataMap: metav1.ObjectMetaMap{
 		"string": &metav1.ObjectMetaArgs{
-			Annotations: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			Annotations: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
-			ClusterName:                pulumi.String("string"),
-			CreationTimestamp:          pulumi.String("string"),
-			DeletionGracePeriodSeconds: pulumi.Int(0),
-			DeletionTimestamp:          pulumi.String("string"),
-			Finalizers: pulumi.StringArray{
-				pulumi.String("string"),
+			ClusterName:                khulnasoft.String("string"),
+			CreationTimestamp:          khulnasoft.String("string"),
+			DeletionGracePeriodSeconds: khulnasoft.Int(0),
+			DeletionTimestamp:          khulnasoft.String("string"),
+			Finalizers: khulnasoft.StringArray{
+				khulnasoft.String("string"),
 			},
-			GenerateName: pulumi.String("string"),
-			Generation:   pulumi.Int(0),
-			Labels: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			GenerateName: khulnasoft.String("string"),
+			Generation:   khulnasoft.Int(0),
+			Labels: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
 			ManagedFields: metav1.ManagedFieldsEntryArray{
 				&metav1.ManagedFieldsEntryArgs{
-					ApiVersion:  pulumi.String("string"),
-					FieldsType:  pulumi.String("string"),
-					FieldsV1:    pulumi.Any("{}"),
-					Manager:     pulumi.String("string"),
-					Operation:   pulumi.String("string"),
-					Subresource: pulumi.String("string"),
-					Time:        pulumi.String("string"),
+					ApiVersion:  khulnasoft.String("string"),
+					FieldsType:  khulnasoft.String("string"),
+					FieldsV1:    khulnasoft.Any("{}"),
+					Manager:     khulnasoft.String("string"),
+					Operation:   khulnasoft.String("string"),
+					Subresource: khulnasoft.String("string"),
+					Time:        khulnasoft.String("string"),
 				},
 			},
-			Name:      pulumi.String("string"),
-			Namespace: pulumi.String("string"),
+			Name:      khulnasoft.String("string"),
+			Namespace: khulnasoft.String("string"),
 			OwnerReferences: metav1.OwnerReferenceArray{
 				&metav1.OwnerReferenceArgs{
-					ApiVersion:         pulumi.String("string"),
-					Kind:               pulumi.String("string"),
-					Name:               pulumi.String("string"),
-					Uid:                pulumi.String("string"),
-					BlockOwnerDeletion: pulumi.Bool(false),
-					Controller:         pulumi.Bool(false),
+					ApiVersion:         khulnasoft.String("string"),
+					Kind:               khulnasoft.String("string"),
+					Name:               khulnasoft.String("string"),
+					Uid:                khulnasoft.String("string"),
+					BlockOwnerDeletion: khulnasoft.Bool(false),
+					Controller:         khulnasoft.Bool(false),
 				},
 			},
-			ResourceVersion: pulumi.String("string"),
-			SelfLink:        pulumi.String("string"),
-			Uid:             pulumi.String("string"),
+			ResourceVersion: khulnasoft.String("string"),
+			SelfLink:        khulnasoft.String("string"),
+			Uid:             khulnasoft.String("string"),
 		},
 	},
 	Metadata: &metav1.ObjectMetaArgs{
-		Annotations: pulumi.StringMap{
-			"string": pulumi.String("string"),
+		Annotations: khulnasoft.StringMap{
+			"string": khulnasoft.String("string"),
 		},
-		ClusterName:                pulumi.String("string"),
-		CreationTimestamp:          pulumi.String("string"),
-		DeletionGracePeriodSeconds: pulumi.Int(0),
-		DeletionTimestamp:          pulumi.String("string"),
-		Finalizers: pulumi.StringArray{
-			pulumi.String("string"),
+		ClusterName:                khulnasoft.String("string"),
+		CreationTimestamp:          khulnasoft.String("string"),
+		DeletionGracePeriodSeconds: khulnasoft.Int(0),
+		DeletionTimestamp:          khulnasoft.String("string"),
+		Finalizers: khulnasoft.StringArray{
+			khulnasoft.String("string"),
 		},
-		GenerateName: pulumi.String("string"),
-		Generation:   pulumi.Int(0),
-		Labels: pulumi.StringMap{
-			"string": pulumi.String("string"),
+		GenerateName: khulnasoft.String("string"),
+		Generation:   khulnasoft.Int(0),
+		Labels: khulnasoft.StringMap{
+			"string": khulnasoft.String("string"),
 		},
 		ManagedFields: metav1.ManagedFieldsEntryArray{
 			&metav1.ManagedFieldsEntryArgs{
-				ApiVersion:  pulumi.String("string"),
-				FieldsType:  pulumi.String("string"),
-				FieldsV1:    pulumi.Any("{}"),
-				Manager:     pulumi.String("string"),
-				Operation:   pulumi.String("string"),
-				Subresource: pulumi.String("string"),
-				Time:        pulumi.String("string"),
+				ApiVersion:  khulnasoft.String("string"),
+				FieldsType:  khulnasoft.String("string"),
+				FieldsV1:    khulnasoft.Any("{}"),
+				Manager:     khulnasoft.String("string"),
+				Operation:   khulnasoft.String("string"),
+				Subresource: khulnasoft.String("string"),
+				Time:        khulnasoft.String("string"),
 			},
 		},
-		Name:      pulumi.String("string"),
-		Namespace: pulumi.String("string"),
+		Name:      khulnasoft.String("string"),
+		Namespace: khulnasoft.String("string"),
 		OwnerReferences: metav1.OwnerReferenceArray{
 			&metav1.OwnerReferenceArgs{
-				ApiVersion:         pulumi.String("string"),
-				Kind:               pulumi.String("string"),
-				Name:               pulumi.String("string"),
-				Uid:                pulumi.String("string"),
-				BlockOwnerDeletion: pulumi.Bool(false),
-				Controller:         pulumi.Bool(false),
+				ApiVersion:         khulnasoft.String("string"),
+				Kind:               khulnasoft.String("string"),
+				Name:               khulnasoft.String("string"),
+				Uid:                khulnasoft.String("string"),
+				BlockOwnerDeletion: khulnasoft.Bool(false),
+				Controller:         khulnasoft.Bool(false),
 			},
 		},
-		ResourceVersion: pulumi.String("string"),
-		SelfLink:        pulumi.String("string"),
-		Uid:             pulumi.String("string"),
+		ResourceVersion: khulnasoft.String("string"),
+		SelfLink:        khulnasoft.String("string"),
+		Uid:             khulnasoft.String("string"),
 	},
 	MetadataArray: metav1.ObjectMetaArray{
 		&metav1.ObjectMetaArgs{
-			Annotations: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			Annotations: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
-			ClusterName:                pulumi.String("string"),
-			CreationTimestamp:          pulumi.String("string"),
-			DeletionGracePeriodSeconds: pulumi.Int(0),
-			DeletionTimestamp:          pulumi.String("string"),
-			Finalizers: pulumi.StringArray{
-				pulumi.String("string"),
+			ClusterName:                khulnasoft.String("string"),
+			CreationTimestamp:          khulnasoft.String("string"),
+			DeletionGracePeriodSeconds: khulnasoft.Int(0),
+			DeletionTimestamp:          khulnasoft.String("string"),
+			Finalizers: khulnasoft.StringArray{
+				khulnasoft.String("string"),
 			},
-			GenerateName: pulumi.String("string"),
-			Generation:   pulumi.Int(0),
-			Labels: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			GenerateName: khulnasoft.String("string"),
+			Generation:   khulnasoft.Int(0),
+			Labels: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
 			ManagedFields: metav1.ManagedFieldsEntryArray{
 				&metav1.ManagedFieldsEntryArgs{
-					ApiVersion:  pulumi.String("string"),
-					FieldsType:  pulumi.String("string"),
-					FieldsV1:    pulumi.Any("{}"),
-					Manager:     pulumi.String("string"),
-					Operation:   pulumi.String("string"),
-					Subresource: pulumi.String("string"),
-					Time:        pulumi.String("string"),
+					ApiVersion:  khulnasoft.String("string"),
+					FieldsType:  khulnasoft.String("string"),
+					FieldsV1:    khulnasoft.Any("{}"),
+					Manager:     khulnasoft.String("string"),
+					Operation:   khulnasoft.String("string"),
+					Subresource: khulnasoft.String("string"),
+					Time:        khulnasoft.String("string"),
 				},
 			},
-			Name:      pulumi.String("string"),
-			Namespace: pulumi.String("string"),
+			Name:      khulnasoft.String("string"),
+			Namespace: khulnasoft.String("string"),
 			OwnerReferences: metav1.OwnerReferenceArray{
 				&metav1.OwnerReferenceArgs{
-					ApiVersion:         pulumi.String("string"),
-					Kind:               pulumi.String("string"),
-					Name:               pulumi.String("string"),
-					Uid:                pulumi.String("string"),
-					BlockOwnerDeletion: pulumi.Bool(false),
-					Controller:         pulumi.Bool(false),
+					ApiVersion:         khulnasoft.String("string"),
+					Kind:               khulnasoft.String("string"),
+					Name:               khulnasoft.String("string"),
+					Uid:                khulnasoft.String("string"),
+					BlockOwnerDeletion: khulnasoft.Bool(false),
+					Controller:         khulnasoft.Bool(false),
 				},
 			},
-			ResourceVersion: pulumi.String("string"),
-			SelfLink:        pulumi.String("string"),
-			Uid:             pulumi.String("string"),
+			ResourceVersion: khulnasoft.String("string"),
+			SelfLink:        khulnasoft.String("string"),
+			Uid:             khulnasoft.String("string"),
 		},
 	},
 	MetadataMap: metav1.ObjectMetaMap{
 		"string": &metav1.ObjectMetaArgs{
-			Annotations: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			Annotations: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
-			ClusterName:                pulumi.String("string"),
-			CreationTimestamp:          pulumi.String("string"),
-			DeletionGracePeriodSeconds: pulumi.Int(0),
-			DeletionTimestamp:          pulumi.String("string"),
-			Finalizers: pulumi.StringArray{
-				pulumi.String("string"),
+			ClusterName:                khulnasoft.String("string"),
+			CreationTimestamp:          khulnasoft.String("string"),
+			DeletionGracePeriodSeconds: khulnasoft.Int(0),
+			DeletionTimestamp:          khulnasoft.String("string"),
+			Finalizers: khulnasoft.StringArray{
+				khulnasoft.String("string"),
 			},
-			GenerateName: pulumi.String("string"),
-			Generation:   pulumi.Int(0),
-			Labels: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			GenerateName: khulnasoft.String("string"),
+			Generation:   khulnasoft.Int(0),
+			Labels: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
 			ManagedFields: metav1.ManagedFieldsEntryArray{
 				&metav1.ManagedFieldsEntryArgs{
-					ApiVersion:  pulumi.String("string"),
-					FieldsType:  pulumi.String("string"),
-					FieldsV1:    pulumi.Any("{}"),
-					Manager:     pulumi.String("string"),
-					Operation:   pulumi.String("string"),
-					Subresource: pulumi.String("string"),
-					Time:        pulumi.String("string"),
+					ApiVersion:  khulnasoft.String("string"),
+					FieldsType:  khulnasoft.String("string"),
+					FieldsV1:    khulnasoft.Any("{}"),
+					Manager:     khulnasoft.String("string"),
+					Operation:   khulnasoft.String("string"),
+					Subresource: khulnasoft.String("string"),
+					Time:        khulnasoft.String("string"),
 				},
 			},
-			Name:      pulumi.String("string"),
-			Namespace: pulumi.String("string"),
+			Name:      khulnasoft.String("string"),
+			Namespace: khulnasoft.String("string"),
 			OwnerReferences: metav1.OwnerReferenceArray{
 				&metav1.OwnerReferenceArgs{
-					ApiVersion:         pulumi.String("string"),
-					Kind:               pulumi.String("string"),
-					Name:               pulumi.String("string"),
-					Uid:                pulumi.String("string"),
-					BlockOwnerDeletion: pulumi.Bool(false),
-					Controller:         pulumi.Bool(false),
+					ApiVersion:         khulnasoft.String("string"),
+					Kind:               khulnasoft.String("string"),
+					Name:               khulnasoft.String("string"),
+					Uid:                khulnasoft.String("string"),
+					BlockOwnerDeletion: khulnasoft.Bool(false),
+					Controller:         khulnasoft.Bool(false),
 				},
 			},
-			ResourceVersion: pulumi.String("string"),
-			SelfLink:        pulumi.String("string"),
-			Uid:             pulumi.String("string"),
+			ResourceVersion: khulnasoft.String("string"),
+			SelfLink:        khulnasoft.String("string"),
+			Uid:             khulnasoft.String("string"),
 		},
 	},
 })
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 ```java
 var componentResource = new Component("componentResource", ComponentArgs.builder()
@@ -1044,12 +1044,12 @@ var componentResource = new Component("componentResource", ComponentArgs.builder
     .build());
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 ```python
 component_resource = example.Component("componentResource",
@@ -1281,12 +1281,12 @@ component_resource = example.Component("componentResource",
     })
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="typescript">
+<khulnasoft-choosable type="language" values="typescript">
 
 ```typescript
 const componentResource = new example.Component("componentResource", {
@@ -1519,12 +1519,12 @@ const componentResource = new example.Component("componentResource", {
 });
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 
 ```yaml
 type: example:Component
@@ -1731,7 +1731,7 @@ properties:
             uid: string
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -1742,18 +1742,18 @@ To learn more about resource properties and how to use them, see [Inputs and Out
 
 ### Inputs
 
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <p>
 In Python, inputs that are objects can be passed either as <a href="/docs/languages-sdks/python/#inputs-and-outputs">argument classes or as dictionary literals</a>.
 </p>
-</pulumi-choosable>
+</khulnasoft-choosable>
 
 The Component resource accepts the following [input](/docs/intro/concepts/inputs-outputs) properties:
 
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="requiredmetadata_csharp">
@@ -1803,11 +1803,11 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
         <span class="property-type">Dictionary&lt;string, Pulumi.<wbr>Kubernetes.<wbr>Types.<wbr>Inputs.<wbr>Meta.<wbr>V1.<wbr>Object<wbr>Meta<wbr>Args&gt;</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="requiredmetadata_go">
@@ -1857,11 +1857,11 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
         <span class="property-type">Object<wbr>Meta<wbr>Args</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="requiredmetadata_java">
@@ -1911,18 +1911,18 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
         <span class="property-type">Map&lt;String,Object<wbr>Meta<wbr>Args&gt;</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="requiredmetadata_nodejs">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#requiredmetadata_nodejs" style="color: inherit; text-decoration: inherit;">required<wbr>Metadata</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="#objectmeta">pulumi<wbr>Kubernetestypesinputmetav1Object<wbr>Meta</a></span>
+        <span class="property-type"><a href="#objectmeta">khulnasoft<wbr>Kubernetestypesinputmetav1Object<wbr>Meta</a></span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/kubernetes">Kubernetes</a> package.</dd><dt class="property-required"
             title="Required">
@@ -1930,7 +1930,7 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#requiredmetadataarray_nodejs" style="color: inherit; text-decoration: inherit;">required<wbr>Metadata<wbr>Array</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="#objectmeta">pulumi<wbr>Kubernetestypesinputmetav1Object<wbr>Meta[]</a></span>
+        <span class="property-type"><a href="#objectmeta">khulnasoft<wbr>Kubernetestypesinputmetav1Object<wbr>Meta[]</a></span>
     </dt>
     <dd></dd><dt class="property-required"
             title="Required">
@@ -1938,7 +1938,7 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#requiredmetadatamap_nodejs" style="color: inherit; text-decoration: inherit;">required<wbr>Metadata<wbr>Map</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">{[key: string]: pulumi<wbr>Kubernetestypesinputmetav1Object<wbr>Meta}</span>
+        <span class="property-type">{[key: string]: khulnasoft<wbr>Kubernetestypesinputmetav1Object<wbr>Meta}</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -1946,7 +1946,7 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#metadata_nodejs" style="color: inherit; text-decoration: inherit;">metadata</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="#objectmeta">pulumi<wbr>Kubernetestypesinputmetav1Object<wbr>Meta</a></span>
+        <span class="property-type"><a href="#objectmeta">khulnasoft<wbr>Kubernetestypesinputmetav1Object<wbr>Meta</a></span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/kubernetes">Kubernetes</a> package.</dd><dt class="property-optional"
             title="Optional">
@@ -1954,7 +1954,7 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#metadataarray_nodejs" style="color: inherit; text-decoration: inherit;">metadata<wbr>Array</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="#objectmeta">pulumi<wbr>Kubernetestypesinputmetav1Object<wbr>Meta[]</a></span>
+        <span class="property-type"><a href="#objectmeta">khulnasoft<wbr>Kubernetestypesinputmetav1Object<wbr>Meta[]</a></span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -1962,21 +1962,21 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#metadatamap_nodejs" style="color: inherit; text-decoration: inherit;">metadata<wbr>Map</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">{[key: string]: pulumi<wbr>Kubernetestypesinputmetav1Object<wbr>Meta}</span>
+        <span class="property-type">{[key: string]: khulnasoft<wbr>Kubernetestypesinputmetav1Object<wbr>Meta}</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="required_metadata_python">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#required_metadata_python" style="color: inherit; text-decoration: inherit;">required_<wbr>metadata</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="#objectmeta">pulumi_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args</a></span>
+        <span class="property-type"><a href="#objectmeta">khulnasoft_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args</a></span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/kubernetes">Kubernetes</a> package.</dd><dt class="property-required"
             title="Required">
@@ -1984,7 +1984,7 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#required_metadata_array_python" style="color: inherit; text-decoration: inherit;">required_<wbr>metadata_<wbr>array</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="#objectmeta">Sequence[pulumi_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args]</a></span>
+        <span class="property-type"><a href="#objectmeta">Sequence[khulnasoft_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args]</a></span>
     </dt>
     <dd></dd><dt class="property-required"
             title="Required">
@@ -1992,7 +1992,7 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#required_metadata_map_python" style="color: inherit; text-decoration: inherit;">required_<wbr>metadata_<wbr>map</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">Mapping[str, pulumi_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args]</span>
+        <span class="property-type">Mapping[str, khulnasoft_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args]</span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -2000,7 +2000,7 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#metadata_python" style="color: inherit; text-decoration: inherit;">metadata</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="#objectmeta">pulumi_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args</a></span>
+        <span class="property-type"><a href="#objectmeta">khulnasoft_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args</a></span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/kubernetes">Kubernetes</a> package.</dd><dt class="property-optional"
             title="Optional">
@@ -2008,7 +2008,7 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#metadata_array_python" style="color: inherit; text-decoration: inherit;">metadata_<wbr>array</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="#objectmeta">Sequence[pulumi_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args]</a></span>
+        <span class="property-type"><a href="#objectmeta">Sequence[khulnasoft_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args]</a></span>
     </dt>
     <dd></dd><dt class="property-optional"
             title="Optional">
@@ -2016,14 +2016,14 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#metadata_map_python" style="color: inherit; text-decoration: inherit;">metadata_<wbr>map</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">Mapping[str, pulumi_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args]</span>
+        <span class="property-type">Mapping[str, khulnasoft_<wbr>kubernetes.meta.v1.<wbr>Object<wbr>Meta<wbr>Args]</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="requiredmetadata_yaml">
@@ -2073,7 +2073,7 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
         <span class="property-type">Map&lt;Property Map&gt;</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -2084,7 +2084,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_csharp">
@@ -2109,7 +2109,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-indicator"></span>
         <span class="property-type">Pulumi.<wbr>Kubernetes.<wbr>Provider</span>
     </dt>
-    <dd>This type is defined in the <a href="/registry/packages/pulumi">pulumi</a> package.</dd><dt class="property-"
+    <dd>This type is defined in the <a href="/registry/packages/khulnasoft">khulnasoft</a> package.</dd><dt class="property-"
             title="">
         <span id="storageclasses_csharp">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#storageclasses_csharp" style="color: inherit; text-decoration: inherit;">Storage<wbr>Classes</a>
@@ -2118,11 +2118,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">Dictionary&lt;string, Pulumi.<wbr>Kubernetes.<wbr>Storage.<wbr>V1.<wbr>Storage<wbr>Class&gt;</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_go">
@@ -2147,7 +2147,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-indicator"></span>
         <span class="property-type">Provider</span>
     </dt>
-    <dd>This type is defined in the <a href="/registry/packages/pulumi">pulumi</a> package.</dd><dt class="property-"
+    <dd>This type is defined in the <a href="/registry/packages/khulnasoft">khulnasoft</a> package.</dd><dt class="property-"
             title="">
         <span id="storageclasses_go">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#storageclasses_go" style="color: inherit; text-decoration: inherit;">Storage<wbr>Classes</a>
@@ -2156,11 +2156,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">Storage<wbr>Class</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_java">
@@ -2185,7 +2185,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-indicator"></span>
         <span class="property-type">Provider</span>
     </dt>
-    <dd>This type is defined in the <a href="/registry/packages/pulumi">pulumi</a> package.</dd><dt class="property-"
+    <dd>This type is defined in the <a href="/registry/packages/khulnasoft">khulnasoft</a> package.</dd><dt class="property-"
             title="">
         <span id="storageclasses_java">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#storageclasses_java" style="color: inherit; text-decoration: inherit;">storage<wbr>Classes</a>
@@ -2194,11 +2194,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">Map&lt;String,Storage<wbr>Class&gt;</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_nodejs">
@@ -2213,7 +2213,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#securitygroup_nodejs" style="color: inherit; text-decoration: inherit;">security<wbr>Group</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi<wbr>Awsec2Security<wbr>Group</span>
+        <span class="property-type">khulnasoft<wbr>Awsec2Security<wbr>Group</span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/aws">AWS Classic</a> package.</dd><dt class="property-"
             title="">
@@ -2221,22 +2221,22 @@ All [input](#inputs) properties are implicitly available as output properties. A
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#provider_nodejs" style="color: inherit; text-decoration: inherit;">provider</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi<wbr>Kubernetes<wbr>Provider</span>
+        <span class="property-type">khulnasoft<wbr>Kubernetes<wbr>Provider</span>
     </dt>
-    <dd>This type is defined in the <a href="/registry/packages/pulumi">pulumi</a> package.</dd><dt class="property-"
+    <dd>This type is defined in the <a href="/registry/packages/khulnasoft">khulnasoft</a> package.</dd><dt class="property-"
             title="">
         <span id="storageclasses_nodejs">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#storageclasses_nodejs" style="color: inherit; text-decoration: inherit;">storage<wbr>Classes</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">{[key: string]: pulumi<wbr>Kubernetesstoragev1Storage<wbr>Class}</span>
+        <span class="property-type">{[key: string]: khulnasoft<wbr>Kubernetesstoragev1Storage<wbr>Class}</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_python">
@@ -2251,7 +2251,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#security_group_python" style="color: inherit; text-decoration: inherit;">security_<wbr>group</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi_<wbr>aws.ec2.<wbr>Security<wbr>Group</span>
+        <span class="property-type">khulnasoft_<wbr>aws.ec2.<wbr>Security<wbr>Group</span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/aws">AWS Classic</a> package.</dd><dt class="property-"
             title="">
@@ -2259,22 +2259,22 @@ All [input](#inputs) properties are implicitly available as output properties. A
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#provider_python" style="color: inherit; text-decoration: inherit;">provider</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi_<wbr>kubernetes.<wbr>Provider</span>
+        <span class="property-type">khulnasoft_<wbr>kubernetes.<wbr>Provider</span>
     </dt>
-    <dd>This type is defined in the <a href="/registry/packages/pulumi">pulumi</a> package.</dd><dt class="property-"
+    <dd>This type is defined in the <a href="/registry/packages/khulnasoft">khulnasoft</a> package.</dd><dt class="property-"
             title="">
         <span id="storage_classes_python">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#storage_classes_python" style="color: inherit; text-decoration: inherit;">storage_<wbr>classes</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">Mapping[str, pulumi_<wbr>kubernetes.storage.v1.<wbr>Storage<wbr>Class]</span>
+        <span class="property-type">Mapping[str, khulnasoft_<wbr>kubernetes.storage.v1.<wbr>Storage<wbr>Class]</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="id_yaml">
@@ -2297,9 +2297,9 @@ All [input](#inputs) properties are implicitly available as output properties. A
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#provider_yaml" style="color: inherit; text-decoration: inherit;">provider</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi:providers:kubernetes</span>
+        <span class="property-type">khulnasoft:providers:kubernetes</span>
     </dt>
-    <dd>This type is defined in the <a href="/registry/packages/pulumi">pulumi</a> package.</dd><dt class="property-"
+    <dd>This type is defined in the <a href="/registry/packages/khulnasoft">khulnasoft</a> package.</dd><dt class="property-"
             title="">
         <span id="storageclasses_yaml">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#storageclasses_yaml" style="color: inherit; text-decoration: inherit;">storage<wbr>Classes</a>
@@ -2308,7 +2308,7 @@ All [input](#inputs) properties are implicitly available as output properties. A
         <span class="property-type">Map&lt;kubernetes:storage.k8s.io/v1:Storage<wbr>Class&gt;</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 

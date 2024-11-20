@@ -1,10 +1,10 @@
 # Copyright 2016-2024, Pulumi Corporation.  All rights reserved.
 
-import pulumi
-from pulumi.dynamic import CreateResult, Resource, ResourceProvider
+import khulnasoft
+from khulnasoft.dynamic import CreateResult, Resource, ResourceProvider
 
 
-config = pulumi.Config()
+config = khulnasoft.Config()
 password = config.require_secret("password")
 
 
@@ -19,11 +19,11 @@ class SimpleProvider(ResourceProvider):
 
 
 class SimpleResource(Resource):
-    authenticated: pulumi.Output[str]
+    authenticated: khulnasoft.Output[str]
 
     def __init__(self, name):
         super().__init__(SimpleProvider(), name, { "authenticated": None })
 
 
 r = SimpleResource("foo")
-pulumi.export("out", r.authenticated)
+khulnasoft.export("out", r.authenticated)

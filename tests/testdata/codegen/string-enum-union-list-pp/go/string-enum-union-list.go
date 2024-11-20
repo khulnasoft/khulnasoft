@@ -1,19 +1,19 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-azure-native/sdk/go/azure/servicebus"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-azure-native/sdk/go/azure/servicebus"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := servicebus.NewNamespaceAuthorizationRule(ctx, "namespaceAuthorizationRule", &servicebus.NamespaceAuthorizationRuleArgs{
-			AuthorizationRuleName: pulumi.String("sdk-AuthRules-1788"),
-			NamespaceName:         pulumi.String("sdk-Namespace-6914"),
-			ResourceGroupName:     pulumi.String("ArunMonocle"),
-			Rights: pulumi.StringArray{
-				pulumi.String(servicebus.AccessRightsListen),
-				pulumi.String(servicebus.AccessRightsSend),
+			AuthorizationRuleName: khulnasoft.String("sdk-AuthRules-1788"),
+			NamespaceName:         khulnasoft.String("sdk-Namespace-6914"),
+			ResourceGroupName:     khulnasoft.String("ArunMonocle"),
+			Rights: khulnasoft.StringArray{
+				khulnasoft.String(servicebus.AccessRightsListen),
+				khulnasoft.String(servicebus.AccessRightsSend),
 			},
 		})
 		if err != nil {

@@ -3,7 +3,7 @@
 package utilities
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/internals"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/internals"
 )
 
 type envParser func(v string) interface{}
@@ -33,9 +33,9 @@ func ParseEnvFloat(v string) interface{} {
 }
 
 func ParseEnvStringArray(v string) interface{} {
-	var result pulumi.StringArray
+	var result khulnasoft.StringArray
 	for _, item := range strings.Split(v, ";") {
-		result = append(result, pulumi.String(item))
+		result = append(result, khulnasoft.String(item))
 	}
 	return result
 }
@@ -82,15 +82,15 @@ func IsZero(v interface{}) bool {
 }
 
 func CallPlain(
-	ctx *pulumi.Context,
+	ctx *khulnasoft.Context,
 	tok string,
-	args pulumi.Input,
-	output pulumi.Output,
-	self pulumi.Resource,
+	args khulnasoft.Input,
+	output khulnasoft.Output,
+	self khulnasoft.Resource,
 	property string,
 	resultPtr reflect.Value,
 	errorPtr *error,
-	opts ...pulumi.InvokeOption,
+	opts ...khulnasoft.InvokeOption,
 ) {
 	res, err := callPlainInner(ctx, tok, args, output, self, opts...)
 	if err != nil {
@@ -110,12 +110,12 @@ func CallPlain(
 }
 
 func callPlainInner(
-	ctx *pulumi.Context,
+	ctx *khulnasoft.Context,
 	tok string,
-	args pulumi.Input,
-	output pulumi.Output,
-	self pulumi.Resource,
-	opts ...pulumi.InvokeOption,
+	args khulnasoft.Input,
+	output khulnasoft.Output,
+	self khulnasoft.Resource,
+	opts ...khulnasoft.InvokeOption,
 ) (any, error) {
 	o, err := ctx.Call(tok, args, output, self, opts...)
 	if err != nil {

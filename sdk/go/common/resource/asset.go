@@ -15,8 +15,8 @@
 package resource
 
 // The contents of this file have been moved. The logic behind assets and archives now
-// lives in "github.com/pulumi/pulumi/sdk/v3/go/common/resource/asset" and
-// "github.com/pulumi/pulumi/sdk/v3/go/common/resource/archive", respectively. This file
+// lives in "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/asset" and
+// "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/archive", respectively. This file
 // exists to fulfill backwards-compatibility requirements. No new declarations should be
 // added here.
 
@@ -24,14 +24,14 @@ import (
 	"io"
 	"os"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/archive"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/asset"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/archive"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/asset"
 )
 
 const (
 	// BookkeepingDir is the name of our bookkeeping folder, we store state here (like .git for git).
 	// Copied from workspace.BookkeepingDir to break import cycle.
-	BookkeepingDir = ".pulumi"
+	BookkeepingDir = ".khulnasoft"
 )
 
 type (

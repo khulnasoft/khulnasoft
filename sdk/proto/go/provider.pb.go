@@ -16,9 +16,9 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.20.1
-// source: pulumi/provider.proto
+// source: khulnasoft/provider.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -85,11 +85,11 @@ func (x PropertyDiff_Kind) String() string {
 }
 
 func (PropertyDiff_Kind) Descriptor() protoreflect.EnumDescriptor {
-	return file_pulumi_provider_proto_enumTypes[0].Descriptor()
+	return file_khulnasoft_provider_proto_enumTypes[0].Descriptor()
 }
 
 func (PropertyDiff_Kind) Type() protoreflect.EnumType {
-	return &file_pulumi_provider_proto_enumTypes[0]
+	return &file_khulnasoft_provider_proto_enumTypes[0]
 }
 
 func (x PropertyDiff_Kind) Number() protoreflect.EnumNumber {
@@ -98,7 +98,7 @@ func (x PropertyDiff_Kind) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PropertyDiff_Kind.Descriptor instead.
 func (PropertyDiff_Kind) EnumDescriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{15, 0}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{15, 0}
 }
 
 // The type of high-level diff results.
@@ -139,11 +139,11 @@ func (x DiffResponse_DiffChanges) String() string {
 }
 
 func (DiffResponse_DiffChanges) Descriptor() protoreflect.EnumDescriptor {
-	return file_pulumi_provider_proto_enumTypes[1].Descriptor()
+	return file_khulnasoft_provider_proto_enumTypes[1].Descriptor()
 }
 
 func (DiffResponse_DiffChanges) Type() protoreflect.EnumType {
-	return &file_pulumi_provider_proto_enumTypes[1]
+	return &file_khulnasoft_provider_proto_enumTypes[1]
 }
 
 func (x DiffResponse_DiffChanges) Number() protoreflect.EnumNumber {
@@ -152,10 +152,10 @@ func (x DiffResponse_DiffChanges) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DiffResponse_DiffChanges.Descriptor instead.
 func (DiffResponse_DiffChanges) EnumDescriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{16, 0}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{16, 0}
 }
 
-// `ParameterizeRequest` is the type of requests sent as part of a [](pulumirpc.ResourceProvider.Parameterize) call. A
+// `ParameterizeRequest` is the type of requests sent as part of a [](khulnasoftrpc.ResourceProvider.Parameterize) call. A
 // `ParameterizeRequest` may contain either:
 //
 // * a string array (`ParametersArgs`), intended to represent a set of command-line arguments so as to support
@@ -181,7 +181,7 @@ type ParameterizeRequest struct {
 func (x *ParameterizeRequest) Reset() {
 	*x = ParameterizeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[0]
+		mi := &file_khulnasoft_provider_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -194,7 +194,7 @@ func (x *ParameterizeRequest) String() string {
 func (*ParameterizeRequest) ProtoMessage() {}
 
 func (x *ParameterizeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[0]
+	mi := &file_khulnasoft_provider_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -207,7 +207,7 @@ func (x *ParameterizeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParameterizeRequest.ProtoReflect.Descriptor instead.
 func (*ParameterizeRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{0}
 }
 
 func (m *ParameterizeRequest) GetParameters() isParameterizeRequest_Parameters {
@@ -249,7 +249,7 @@ func (*ParameterizeRequest_Args) isParameterizeRequest_Parameters() {}
 
 func (*ParameterizeRequest_Value) isParameterizeRequest_Parameters() {}
 
-// `ParameterizeResponse` is the type of responses sent by a [](pulumirpc.ResourceProvider.Parameterize) call. It
+// `ParameterizeResponse` is the type of responses sent by a [](khulnasoftrpc.ResourceProvider.Parameterize) call. It
 // contains a name and version that can be used to identify the sub-package that now exists as a result of
 // parameterization.
 type ParameterizeResponse struct {
@@ -266,7 +266,7 @@ type ParameterizeResponse struct {
 func (x *ParameterizeResponse) Reset() {
 	*x = ParameterizeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[1]
+		mi := &file_khulnasoft_provider_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -279,7 +279,7 @@ func (x *ParameterizeResponse) String() string {
 func (*ParameterizeResponse) ProtoMessage() {}
 
 func (x *ParameterizeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[1]
+	mi := &file_khulnasoft_provider_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -292,7 +292,7 @@ func (x *ParameterizeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParameterizeResponse.ProtoReflect.Descriptor instead.
 func (*ParameterizeResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{1}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ParameterizeResponse) GetName() string {
@@ -325,7 +325,7 @@ type GetSchemaRequest struct {
 func (x *GetSchemaRequest) Reset() {
 	*x = GetSchemaRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[2]
+		mi := &file_khulnasoft_provider_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -338,7 +338,7 @@ func (x *GetSchemaRequest) String() string {
 func (*GetSchemaRequest) ProtoMessage() {}
 
 func (x *GetSchemaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[2]
+	mi := &file_khulnasoft_provider_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -351,7 +351,7 @@ func (x *GetSchemaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSchemaRequest.ProtoReflect.Descriptor instead.
 func (*GetSchemaRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{2}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetSchemaRequest) GetVersion() int32 {
@@ -386,7 +386,7 @@ type GetSchemaResponse struct {
 func (x *GetSchemaResponse) Reset() {
 	*x = GetSchemaResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[3]
+		mi := &file_khulnasoft_provider_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -399,7 +399,7 @@ func (x *GetSchemaResponse) String() string {
 func (*GetSchemaResponse) ProtoMessage() {}
 
 func (x *GetSchemaResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[3]
+	mi := &file_khulnasoft_provider_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -412,7 +412,7 @@ func (x *GetSchemaResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSchemaResponse.ProtoReflect.Descriptor instead.
 func (*GetSchemaResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{3}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetSchemaResponse) GetSchema() string {
@@ -422,7 +422,7 @@ func (x *GetSchemaResponse) GetSchema() string {
 	return ""
 }
 
-// `ConfigureRequest` is the type of requests sent as part of a [](pulumirpc.ResourceProvider.Configure) call. Requests
+// `ConfigureRequest` is the type of requests sent as part of a [](khulnasoftrpc.ResourceProvider.Configure) call. Requests
 // include both provider-specific inputs (`variables` or `args`) and provider-agnostic ("protocol") configuration
 // (`acceptSecrets`, `acceptResources`, and so on).
 type ConfigureRequest struct {
@@ -459,7 +459,7 @@ type ConfigureRequest struct {
 	// A map of input properties for the provider.
 	//
 	// :::{warning}
-	// `args` may include secrets. Because `ConfigureRequest` is sent before [](pulumirpc.ConfigureResponse) can specify
+	// `args` may include secrets. Because `ConfigureRequest` is sent before [](khulnasoftrpc.ConfigureResponse) can specify
 	// whether or not the provider accepts secrets in general, providers *must* handle secrets if they appear in `args`.
 	// :::
 	Args *structpb.Struct `protobuf:"bytes,2,opt,name=args,proto3" json:"args,omitempty"`
@@ -469,12 +469,12 @@ type ConfigureRequest struct {
 	// True if and only if the caller supports strongly typed resources. If true, operations should return resources as
 	// strongly typed values if the provider supports them also.
 	AcceptResources bool `protobuf:"varint,4,opt,name=acceptResources,proto3" json:"acceptResources,omitempty"`
-	// True if and only if the caller supports sending old inputs as part of [](pulumirpc.ResourceProvider.Diff) and
-	// [](pulumirpc.ResourceProvider.Update) calls. If true, the provider should expect these fields to be populated in
+	// True if and only if the caller supports sending old inputs as part of [](khulnasoftrpc.ResourceProvider.Diff) and
+	// [](khulnasoftrpc.ResourceProvider.Update) calls. If true, the provider should expect these fields to be populated in
 	// these calls.
 	SendsOldInputs bool `protobuf:"varint,5,opt,name=sends_old_inputs,json=sendsOldInputs,proto3" json:"sends_old_inputs,omitempty"`
 	// True if and only if the caller supports sending old inputs and outputs as part of
-	// [](pulumirpc.ResourceProvider.Delete) calls. If true, the provider should expect these fields to be populated in
+	// [](khulnasoftrpc.ResourceProvider.Delete) calls. If true, the provider should expect these fields to be populated in
 	// these calls.
 	SendsOldInputsToDelete bool `protobuf:"varint,6,opt,name=sends_old_inputs_to_delete,json=sendsOldInputsToDelete,proto3" json:"sends_old_inputs_to_delete,omitempty"`
 }
@@ -482,7 +482,7 @@ type ConfigureRequest struct {
 func (x *ConfigureRequest) Reset() {
 	*x = ConfigureRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[4]
+		mi := &file_khulnasoft_provider_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -495,7 +495,7 @@ func (x *ConfigureRequest) String() string {
 func (*ConfigureRequest) ProtoMessage() {}
 
 func (x *ConfigureRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[4]
+	mi := &file_khulnasoft_provider_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -508,7 +508,7 @@ func (x *ConfigureRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigureRequest.ProtoReflect.Descriptor instead.
 func (*ConfigureRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{4}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ConfigureRequest) GetVariables() map[string]string {
@@ -553,7 +553,7 @@ func (x *ConfigureRequest) GetSendsOldInputsToDelete() bool {
 	return false
 }
 
-// `ConfigureResponse` is the type of responses sent by a [](pulumirpc.ResourceProvider.Configure) call. Its primary
+// `ConfigureResponse` is the type of responses sent by a [](khulnasoftrpc.ResourceProvider.Configure) call. Its primary
 // purpose is to communicate features that the provider supports back to the caller.
 type ConfigureResponse struct {
 	state         protoimpl.MessageState
@@ -563,8 +563,8 @@ type ConfigureResponse struct {
 	// True if and only if the provider supports secrets. If true, the caller should pass secrets as strongly typed
 	// values to the provider.
 	AcceptSecrets bool `protobuf:"varint,1,opt,name=acceptSecrets,proto3" json:"acceptSecrets,omitempty"`
-	// True if and only if the provider supports the `preview` field on [](pulumirpc.ResourceProvider.Create) and
-	// [](pulumirpc.ResourceProvider.Update) calls. If true, the engine should invoke these calls with `preview` set to
+	// True if and only if the provider supports the `preview` field on [](khulnasoftrpc.ResourceProvider.Create) and
+	// [](khulnasoftrpc.ResourceProvider.Update) calls. If true, the engine should invoke these calls with `preview` set to
 	// `true` during previews.
 	SupportsPreview bool `protobuf:"varint,2,opt,name=supportsPreview,proto3" json:"supportsPreview,omitempty"`
 	// True if and only if the provider supports strongly typed resources. If true, the caller should pass resources as
@@ -578,7 +578,7 @@ type ConfigureResponse struct {
 func (x *ConfigureResponse) Reset() {
 	*x = ConfigureResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[5]
+		mi := &file_khulnasoft_provider_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -591,7 +591,7 @@ func (x *ConfigureResponse) String() string {
 func (*ConfigureResponse) ProtoMessage() {}
 
 func (x *ConfigureResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[5]
+	mi := &file_khulnasoft_provider_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -604,7 +604,7 @@ func (x *ConfigureResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigureResponse.ProtoReflect.Descriptor instead.
 func (*ConfigureResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{5}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ConfigureResponse) GetAcceptSecrets() bool {
@@ -636,7 +636,7 @@ func (x *ConfigureResponse) GetAcceptOutputs() bool {
 }
 
 // `ConfigureErrorMissingKeys` is the type of error details that may be sent in response to a
-// [](pulumirpc.ResourceProvider.Configure) call when required configuration keys are missing.
+// [](khulnasoftrpc.ResourceProvider.Configure) call when required configuration keys are missing.
 type ConfigureErrorMissingKeys struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -649,7 +649,7 @@ type ConfigureErrorMissingKeys struct {
 func (x *ConfigureErrorMissingKeys) Reset() {
 	*x = ConfigureErrorMissingKeys{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[6]
+		mi := &file_khulnasoft_provider_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -662,7 +662,7 @@ func (x *ConfigureErrorMissingKeys) String() string {
 func (*ConfigureErrorMissingKeys) ProtoMessage() {}
 
 func (x *ConfigureErrorMissingKeys) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[6]
+	mi := &file_khulnasoft_provider_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -675,7 +675,7 @@ func (x *ConfigureErrorMissingKeys) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigureErrorMissingKeys.ProtoReflect.Descriptor instead.
 func (*ConfigureErrorMissingKeys) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{6}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ConfigureErrorMissingKeys) GetMissingKeys() []*ConfigureErrorMissingKeys_MissingKey {
@@ -697,7 +697,7 @@ type InvokeRequest struct {
 func (x *InvokeRequest) Reset() {
 	*x = InvokeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[7]
+		mi := &file_khulnasoft_provider_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -710,7 +710,7 @@ func (x *InvokeRequest) String() string {
 func (*InvokeRequest) ProtoMessage() {}
 
 func (x *InvokeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[7]
+	mi := &file_khulnasoft_provider_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -723,7 +723,7 @@ func (x *InvokeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InvokeRequest.ProtoReflect.Descriptor instead.
 func (*InvokeRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{7}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *InvokeRequest) GetTok() string {
@@ -752,7 +752,7 @@ type InvokeResponse struct {
 func (x *InvokeResponse) Reset() {
 	*x = InvokeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[8]
+		mi := &file_khulnasoft_provider_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -765,7 +765,7 @@ func (x *InvokeResponse) String() string {
 func (*InvokeResponse) ProtoMessage() {}
 
 func (x *InvokeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[8]
+	mi := &file_khulnasoft_provider_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -778,7 +778,7 @@ func (x *InvokeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InvokeResponse.ProtoReflect.Descriptor instead.
 func (*InvokeResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{8}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *InvokeResponse) GetReturn() *structpb.Struct {
@@ -817,7 +817,7 @@ type CallRequest struct {
 func (x *CallRequest) Reset() {
 	*x = CallRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[9]
+		mi := &file_khulnasoft_provider_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -830,7 +830,7 @@ func (x *CallRequest) String() string {
 func (*CallRequest) ProtoMessage() {}
 
 func (x *CallRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[9]
+	mi := &file_khulnasoft_provider_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -843,7 +843,7 @@ func (x *CallRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CallRequest.ProtoReflect.Descriptor instead.
 func (*CallRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{9}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CallRequest) GetTok() string {
@@ -947,7 +947,7 @@ type CallResponse struct {
 func (x *CallResponse) Reset() {
 	*x = CallResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[10]
+		mi := &file_khulnasoft_provider_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -960,7 +960,7 @@ func (x *CallResponse) String() string {
 func (*CallResponse) ProtoMessage() {}
 
 func (x *CallResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[10]
+	mi := &file_khulnasoft_provider_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -973,7 +973,7 @@ func (x *CallResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CallResponse.ProtoReflect.Descriptor instead.
 func (*CallResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{10}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CallResponse) GetReturn() *structpb.Struct {
@@ -997,9 +997,9 @@ func (x *CallResponse) GetReturnDependencies() map[string]*CallResponse_ReturnDe
 	return nil
 }
 
-// `CheckRequest` is the type of requests sent as part of [](pulumirpc.ResourceProvider.CheckConfig) and
-// [](pulumirpc.ResourceProvider.Check) calls. A `CheckRequest` primarily captures the URN and inputs of the resource
-// being checked. In the case of [](pulumirpc.ResourceProvider.CheckConfig), the URN will be the URN of the provider
+// `CheckRequest` is the type of requests sent as part of [](khulnasoftrpc.ResourceProvider.CheckConfig) and
+// [](khulnasoftrpc.ResourceProvider.Check) calls. A `CheckRequest` primarily captures the URN and inputs of the resource
+// being checked. In the case of [](khulnasoftrpc.ResourceProvider.CheckConfig), the URN will be the URN of the provider
 // resource being constructed, which may or may not be a [default provider](default-providers), and the inputs will be
 // the provider configuration.
 type CheckRequest struct {
@@ -1008,7 +1008,7 @@ type CheckRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The URN of the resource whose inputs are being checked. In the case of
-	// [](pulumirpc.ResourceProvider.CheckConfig), this will be the URN of the provider resource being constructed,
+	// [](khulnasoftrpc.ResourceProvider.CheckConfig), this will be the URN of the provider resource being constructed,
 	// which may or may not be a [default provider](default-providers).
 	Urn string `protobuf:"bytes,1,opt,name=urn,proto3" json:"urn,omitempty"`
 	// The old input properties or configuration for the resource, if any.
@@ -1017,7 +1017,7 @@ type CheckRequest struct {
 	//
 	// :::{note}
 	// If this resource has been specified with the
-	// [`ignoreChanges`](https://www.pulumi.com/docs/concepts/options/ignorechanges/), then the values in `news` may
+	// [`ignoreChanges`](https://www.khulnasoft.com/docs/concepts/options/ignorechanges/), then the values in `news` may
 	// differ from those written in the Pulumi program registering this resource. In such cases, the caller (e.g. the
 	// Pulumi engine) is expected to preprocess the `news` value by replacing every property matched by `ignoreChanges`
 	// with its corresponding `olds` value (effectively ignoring the change).
@@ -1036,7 +1036,7 @@ type CheckRequest struct {
 func (x *CheckRequest) Reset() {
 	*x = CheckRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[11]
+		mi := &file_khulnasoft_provider_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1049,7 +1049,7 @@ func (x *CheckRequest) String() string {
 func (*CheckRequest) ProtoMessage() {}
 
 func (x *CheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[11]
+	mi := &file_khulnasoft_provider_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1062,7 +1062,7 @@ func (x *CheckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckRequest.ProtoReflect.Descriptor instead.
 func (*CheckRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{11}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CheckRequest) GetUrn() string {
@@ -1107,12 +1107,12 @@ func (x *CheckRequest) GetType() string {
 	return ""
 }
 
-// `CheckResponse` is the type of responses sent by a [](pulumirpc.ResourceProvider.CheckConfig) or
-// [](pulumirpc.ResourceProvider.Check) call. A `CheckResponse` may contain either:
+// `CheckResponse` is the type of responses sent by a [](khulnasoftrpc.ResourceProvider.CheckConfig) or
+// [](khulnasoftrpc.ResourceProvider.Check) call. A `CheckResponse` may contain either:
 //
-// * a set of checked, known-valid `inputs`. In the case of [](pulumirpc.ResourceProvider.CheckConfig), these may
-//   subsequently be passed to [](pulumirpc.ResourceProvider.DiffConfig) and/or
-//   [](pulumirpc.ResourceProvider.Configure). In the case of [](pulumirpc.ResourceProvider.Check), these may be passed
+// * a set of checked, known-valid `inputs`. In the case of [](khulnasoftrpc.ResourceProvider.CheckConfig), these may
+//   subsequently be passed to [](khulnasoftrpc.ResourceProvider.DiffConfig) and/or
+//   [](khulnasoftrpc.ResourceProvider.Configure). In the case of [](khulnasoftrpc.ResourceProvider.Check), these may be passed
 //   to any of the supported lifecycle methods that accept provider inputs.
 // * a set of `failures` detailing invalid inputs.
 //
@@ -1132,7 +1132,7 @@ type CheckResponse struct {
 func (x *CheckResponse) Reset() {
 	*x = CheckResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[12]
+		mi := &file_khulnasoft_provider_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1145,7 +1145,7 @@ func (x *CheckResponse) String() string {
 func (*CheckResponse) ProtoMessage() {}
 
 func (x *CheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[12]
+	mi := &file_khulnasoft_provider_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1158,7 +1158,7 @@ func (x *CheckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckResponse.ProtoReflect.Descriptor instead.
 func (*CheckResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{12}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CheckResponse) GetInputs() *structpb.Struct {
@@ -1176,7 +1176,7 @@ func (x *CheckResponse) GetFailures() []*CheckFailure {
 }
 
 // A `CheckFailure` describes a single validation error that arose as part of a
-// [](pulumirpc.ResourceProvider.CheckConfig) or [](pulumirpc.ResourceProvider.Check) call.
+// [](khulnasoftrpc.ResourceProvider.CheckConfig) or [](khulnasoftrpc.ResourceProvider.Check) call.
 type CheckFailure struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1191,7 +1191,7 @@ type CheckFailure struct {
 func (x *CheckFailure) Reset() {
 	*x = CheckFailure{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[13]
+		mi := &file_khulnasoft_provider_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1204,7 +1204,7 @@ func (x *CheckFailure) String() string {
 func (*CheckFailure) ProtoMessage() {}
 
 func (x *CheckFailure) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[13]
+	mi := &file_khulnasoft_provider_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1217,7 +1217,7 @@ func (x *CheckFailure) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckFailure.ProtoReflect.Descriptor instead.
 func (*CheckFailure) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{13}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CheckFailure) GetProperty() string {
@@ -1234,19 +1234,19 @@ func (x *CheckFailure) GetReason() string {
 	return ""
 }
 
-// `DiffRequest` is the type of requests sent as part of [](pulumirpc.ResourceProvider.DiffConfig) and
-// [](pulumirpc.ResourceProvider.Diff) calls. A `DiffRequest` primarily captures:
+// `DiffRequest` is the type of requests sent as part of [](khulnasoftrpc.ResourceProvider.DiffConfig) and
+// [](khulnasoftrpc.ResourceProvider.Diff) calls. A `DiffRequest` primarily captures:
 //
 // * the URN of the resource whose properties are being compared;
 // * the old and new input properties of the resource; and
 // * the old output properties of the resource.
 //
-// In the case of [](pulumirpc.ResourceProvider.DiffConfig), the URN will be the URN of the provider resource being
+// In the case of [](khulnasoftrpc.ResourceProvider.DiffConfig), the URN will be the URN of the provider resource being
 // examined, which may or may not be a [default provider](default-providers), and the inputs and outputs will be the
-// provider configuration and state. Inputs supplied to a [](pulumirpc.ResourceProvider.DiffConfig) call should have
-// been previously checked by a call to [](pulumirpc.ResourceProvider.CheckConfig); inputs supplied to a
-// [](pulumirpc.ResourceProvider.Diff) call should have been previously checked by a call to
-// [](pulumirpc.ResourceProvider.Check).
+// provider configuration and state. Inputs supplied to a [](khulnasoftrpc.ResourceProvider.DiffConfig) call should have
+// been previously checked by a call to [](khulnasoftrpc.ResourceProvider.CheckConfig); inputs supplied to a
+// [](khulnasoftrpc.ResourceProvider.Diff) call should have been previously checked by a call to
+// [](khulnasoftrpc.ResourceProvider.Check).
 type DiffRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1259,7 +1259,7 @@ type DiffRequest struct {
 	// The old *output* properties of the resource being diffed.
 	Olds *structpb.Struct `protobuf:"bytes,3,opt,name=olds,proto3" json:"olds,omitempty"`
 	// The new *input* properties of the resource being diffed. These should have been validated by an appropriate call
-	// to [](pulumirpc.ResourceProvider.CheckConfig) or [](pulumirpc.ResourceProvider.Check).
+	// to [](khulnasoftrpc.ResourceProvider.CheckConfig) or [](khulnasoftrpc.ResourceProvider.Check).
 	News *structpb.Struct `protobuf:"bytes,4,opt,name=news,proto3" json:"news,omitempty"`
 	// A set of [property paths](property-paths) that should be treated as unchanged.
 	IgnoreChanges []string `protobuf:"bytes,5,rep,name=ignoreChanges,proto3" json:"ignoreChanges,omitempty"`
@@ -1276,7 +1276,7 @@ type DiffRequest struct {
 func (x *DiffRequest) Reset() {
 	*x = DiffRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[14]
+		mi := &file_khulnasoft_provider_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1289,7 +1289,7 @@ func (x *DiffRequest) String() string {
 func (*DiffRequest) ProtoMessage() {}
 
 func (x *DiffRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[14]
+	mi := &file_khulnasoft_provider_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1302,7 +1302,7 @@ func (x *DiffRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiffRequest.ProtoReflect.Descriptor instead.
 func (*DiffRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{14}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DiffRequest) GetId() string {
@@ -1370,7 +1370,7 @@ type PropertyDiff struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The kind of diff associated with this property.
-	Kind PropertyDiff_Kind `protobuf:"varint,1,opt,name=kind,proto3,enum=pulumirpc.PropertyDiff_Kind" json:"kind,omitempty"`
+	Kind PropertyDiff_Kind `protobuf:"varint,1,opt,name=kind,proto3,enum=khulnasoftrpc.PropertyDiff_Kind" json:"kind,omitempty"`
 	// True if and only if this difference represents one between a pair of old and new inputs, as opposed to a pair of
 	// old and new states.
 	InputDiff bool `protobuf:"varint,2,opt,name=inputDiff,proto3" json:"inputDiff,omitempty"`
@@ -1379,7 +1379,7 @@ type PropertyDiff struct {
 func (x *PropertyDiff) Reset() {
 	*x = PropertyDiff{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[15]
+		mi := &file_khulnasoft_provider_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1392,7 +1392,7 @@ func (x *PropertyDiff) String() string {
 func (*PropertyDiff) ProtoMessage() {}
 
 func (x *PropertyDiff) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[15]
+	mi := &file_khulnasoft_provider_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1405,7 +1405,7 @@ func (x *PropertyDiff) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PropertyDiff.ProtoReflect.Descriptor instead.
 func (*PropertyDiff) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{15}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *PropertyDiff) GetKind() PropertyDiff_Kind {
@@ -1422,8 +1422,8 @@ func (x *PropertyDiff) GetInputDiff() bool {
 	return false
 }
 
-// `DiffResponse` is the type of responses sent by a [](pulumirpc.ResourceProvider.DiffConfig) or
-// [](pulumirpc.ResourceProvider.Diff) call. A `DiffResponse` indicates whether a resource is unchanged, requires
+// `DiffResponse` is the type of responses sent by a [](khulnasoftrpc.ResourceProvider.DiffConfig) or
+// [](khulnasoftrpc.ResourceProvider.Diff) call. A `DiffResponse` indicates whether a resource is unchanged, requires
 // updating (that is, can be changed "in place"), or requires replacement (that is, must be destroyed and recreated
 // anew). Legacy implementations may also signal that it is unknown whether there are changes or not.
 //
@@ -1452,12 +1452,12 @@ type DiffResponse struct {
 	DeleteBeforeReplace bool `protobuf:"varint,3,opt,name=deleteBeforeReplace,proto3" json:"deleteBeforeReplace,omitempty"`
 	// The result of the diff. Indicates at a high level whether the resource has changed or not (or, in legacy cases,
 	// if the provider does not know).
-	Changes DiffResponse_DiffChanges `protobuf:"varint,4,opt,name=changes,proto3,enum=pulumirpc.DiffResponse_DiffChanges" json:"changes,omitempty"`
+	Changes DiffResponse_DiffChanges `protobuf:"varint,4,opt,name=changes,proto3,enum=khulnasoftrpc.DiffResponse_DiffChanges" json:"changes,omitempty"`
 	// The set of properties which have changed. This field only supports top-level properties. It *does not* support
 	// full [property paths](property-paths); implementations should use `detailedDiff` when this is required.
 	Diffs []string `protobuf:"bytes,5,rep,name=diffs,proto3" json:"diffs,omitempty"`
 	// `detailedDiff` can be used to implement more detailed diffs. A detailed diff is a map from [property
-	// paths](property-paths) to [](pulumirpc.PropertyDiff)s, which describe the kind of change that occurred to the
+	// paths](property-paths) to [](khulnasoftrpc.PropertyDiff)s, which describe the kind of change that occurred to the
 	// property located at that path. If a provider does not implement this, the caller (typically the Pulumi engine)
 	// will compute a representation based on the simple diff fields (`changes`, `replaces`, and so on).
 	DetailedDiff map[string]*PropertyDiff `protobuf:"bytes,6,rep,name=detailedDiff,proto3" json:"detailedDiff,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
@@ -1468,7 +1468,7 @@ type DiffResponse struct {
 func (x *DiffResponse) Reset() {
 	*x = DiffResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[16]
+		mi := &file_khulnasoft_provider_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1481,7 +1481,7 @@ func (x *DiffResponse) String() string {
 func (*DiffResponse) ProtoMessage() {}
 
 func (x *DiffResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[16]
+	mi := &file_khulnasoft_provider_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1494,7 +1494,7 @@ func (x *DiffResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiffResponse.ProtoReflect.Descriptor instead.
 func (*DiffResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{16}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *DiffResponse) GetReplaces() []string {
@@ -1546,7 +1546,7 @@ func (x *DiffResponse) GetHasDetailedDiff() bool {
 	return false
 }
 
-// `CreateRequest` is the type of requests sent as part of a [](pulumirpc.ResourceProvider.Create) call.
+// `CreateRequest` is the type of requests sent as part of a [](khulnasoftrpc.ResourceProvider.Create) call.
 type CreateRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1555,7 +1555,7 @@ type CreateRequest struct {
 	// The URN of the resource being created.
 	Urn string `protobuf:"bytes,1,opt,name=urn,proto3" json:"urn,omitempty"`
 	// The resource's input properties, to be set during creation. These should have been validated by a call to
-	// [](pulumirpc.ResourceProvider.Check).
+	// [](khulnasoftrpc.ResourceProvider.Check).
 	Properties *structpb.Struct `protobuf:"bytes,2,opt,name=properties,proto3" json:"properties,omitempty"`
 	// A timeout in seconds that the caller is prepared to wait for the operation to complete.
 	Timeout float64 `protobuf:"fixed64,3,opt,name=timeout,proto3" json:"timeout,omitempty"`
@@ -1573,7 +1573,7 @@ type CreateRequest struct {
 func (x *CreateRequest) Reset() {
 	*x = CreateRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[17]
+		mi := &file_khulnasoft_provider_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1586,7 +1586,7 @@ func (x *CreateRequest) String() string {
 func (*CreateRequest) ProtoMessage() {}
 
 func (x *CreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[17]
+	mi := &file_khulnasoft_provider_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1599,7 +1599,7 @@ func (x *CreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
 func (*CreateRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{17}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *CreateRequest) GetUrn() string {
@@ -1644,7 +1644,7 @@ func (x *CreateRequest) GetType() string {
 	return ""
 }
 
-// `CreateResponse` is the type of responses sent by a [](pulumirpc.ResourceProvider.Create) call. A `CreateResponse`
+// `CreateResponse` is the type of responses sent by a [](khulnasoftrpc.ResourceProvider.Create) call. A `CreateResponse`
 // contains the ID of the created resource, as well as any output properties that arose from the creation process.
 type CreateResponse struct {
 	state         protoimpl.MessageState
@@ -1661,7 +1661,7 @@ type CreateResponse struct {
 func (x *CreateResponse) Reset() {
 	*x = CreateResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[18]
+		mi := &file_khulnasoft_provider_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1674,7 +1674,7 @@ func (x *CreateResponse) String() string {
 func (*CreateResponse) ProtoMessage() {}
 
 func (x *CreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[18]
+	mi := &file_khulnasoft_provider_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1687,7 +1687,7 @@ func (x *CreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateResponse.ProtoReflect.Descriptor instead.
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{18}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *CreateResponse) GetId() string {
@@ -1704,7 +1704,7 @@ func (x *CreateResponse) GetProperties() *structpb.Struct {
 	return nil
 }
 
-// `ReadRequest` is the type of requests sent as part of a [](pulumirpc.ResourceProvider.Read) call.
+// `ReadRequest` is the type of requests sent as part of a [](khulnasoftrpc.ResourceProvider.Read) call.
 type ReadRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1717,7 +1717,7 @@ type ReadRequest struct {
 	// Any current state for the resource being read. This state should be sufficient to uniquely identify the resource.
 	Properties *structpb.Struct `protobuf:"bytes,3,opt,name=properties,proto3" json:"properties,omitempty"`
 	// Any current input properties for the resource being read. These will only be populated when the
-	// [](pulumirpc.ResourceProvider.Read) call is being made as part of a refresh operation.
+	// [](khulnasoftrpc.ResourceProvider.Read) call is being made as part of a refresh operation.
 	Inputs *structpb.Struct `protobuf:"bytes,4,opt,name=inputs,proto3" json:"inputs,omitempty"`
 	// The name of the resource being read. This must match the name specified by the `urn` field, and is passed so that
 	// providers do not have to implement URN parsing in order to extract the name of the resource.
@@ -1730,7 +1730,7 @@ type ReadRequest struct {
 func (x *ReadRequest) Reset() {
 	*x = ReadRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[19]
+		mi := &file_khulnasoft_provider_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1743,7 +1743,7 @@ func (x *ReadRequest) String() string {
 func (*ReadRequest) ProtoMessage() {}
 
 func (x *ReadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[19]
+	mi := &file_khulnasoft_provider_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1756,7 +1756,7 @@ func (x *ReadRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadRequest.ProtoReflect.Descriptor instead.
 func (*ReadRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{19}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ReadRequest) GetId() string {
@@ -1801,7 +1801,7 @@ func (x *ReadRequest) GetType() string {
 	return ""
 }
 
-// `ReadResponse` is the type of responses sent by a [](pulumirpc.ResourceProvider.Read) call. A `ReadResponse` contains
+// `ReadResponse` is the type of responses sent by a [](khulnasoftrpc.ResourceProvider.Read) call. A `ReadResponse` contains
 // the ID of the resource being read, as well as any state that was successfully read from the live environment.
 type ReadResponse struct {
 	state         protoimpl.MessageState
@@ -1813,14 +1813,14 @@ type ReadResponse struct {
 	// The output properties of the resource read from the live environment.
 	Properties *structpb.Struct `protobuf:"bytes,2,opt,name=properties,proto3" json:"properties,omitempty"`
 	// Output-derived input properties for the resource. These are returned as they would be returned from a
-	// [](pulumirpc.ResourceProvider.Check) call with the same values.
+	// [](khulnasoftrpc.ResourceProvider.Check) call with the same values.
 	Inputs *structpb.Struct `protobuf:"bytes,3,opt,name=inputs,proto3" json:"inputs,omitempty"`
 }
 
 func (x *ReadResponse) Reset() {
 	*x = ReadResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[20]
+		mi := &file_khulnasoft_provider_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1833,7 +1833,7 @@ func (x *ReadResponse) String() string {
 func (*ReadResponse) ProtoMessage() {}
 
 func (x *ReadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[20]
+	mi := &file_khulnasoft_provider_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1846,7 +1846,7 @@ func (x *ReadResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadResponse.ProtoReflect.Descriptor instead.
 func (*ReadResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{20}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ReadResponse) GetId() string {
@@ -1870,7 +1870,7 @@ func (x *ReadResponse) GetInputs() *structpb.Struct {
 	return nil
 }
 
-// `UpdateRequest` is the type of requests sent as part of a [](pulumirpc.ResourceProvider.Update) call.
+// `UpdateRequest` is the type of requests sent as part of a [](khulnasoftrpc.ResourceProvider.Update) call.
 type UpdateRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1883,7 +1883,7 @@ type UpdateRequest struct {
 	// The old *output* properties of the resource being updated.
 	Olds *structpb.Struct `protobuf:"bytes,3,opt,name=olds,proto3" json:"olds,omitempty"`
 	// The new input properties of the resource being updated. These should have been validated by a call to
-	// [](pulumirpc.ResourceProvider.Check).
+	// [](khulnasoftrpc.ResourceProvider.Check).
 	News *structpb.Struct `protobuf:"bytes,4,opt,name=news,proto3" json:"news,omitempty"`
 	// A timeout in seconds that the caller is prepared to wait for the operation to complete.
 	Timeout float64 `protobuf:"fixed64,5,opt,name=timeout,proto3" json:"timeout,omitempty"`
@@ -1905,7 +1905,7 @@ type UpdateRequest struct {
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[21]
+		mi := &file_khulnasoft_provider_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1918,7 +1918,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[21]
+	mi := &file_khulnasoft_provider_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1931,7 +1931,7 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{21}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *UpdateRequest) GetId() string {
@@ -2004,7 +2004,7 @@ func (x *UpdateRequest) GetType() string {
 	return ""
 }
 
-// `UpdateResponse` is the type of responses sent by a [](pulumirpc.ResourceProvider.Update) call.
+// `UpdateResponse` is the type of responses sent by a [](khulnasoftrpc.ResourceProvider.Update) call.
 type UpdateResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2018,7 +2018,7 @@ type UpdateResponse struct {
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[22]
+		mi := &file_khulnasoft_provider_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2031,7 +2031,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[22]
+	mi := &file_khulnasoft_provider_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2044,7 +2044,7 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{22}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *UpdateResponse) GetProperties() *structpb.Struct {
@@ -2054,7 +2054,7 @@ func (x *UpdateResponse) GetProperties() *structpb.Struct {
 	return nil
 }
 
-// `DeleteRequest` is the type of requests sent as part of a [](pulumirpc.ResourceProvider.Delete) call.
+// `DeleteRequest` is the type of requests sent as part of a [](khulnasoftrpc.ResourceProvider.Delete) call.
 type DeleteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2081,7 +2081,7 @@ type DeleteRequest struct {
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[23]
+		mi := &file_khulnasoft_provider_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2094,7 +2094,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[23]
+	mi := &file_khulnasoft_provider_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2107,7 +2107,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{23}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -2159,7 +2159,7 @@ func (x *DeleteRequest) GetType() string {
 	return ""
 }
 
-// `ConstructRequest` is the type of requests sent as part of a [](pulumirpc.ResourceProvider.Construct) call. A
+// `ConstructRequest` is the type of requests sent as part of a [](khulnasoftrpc.ResourceProvider.Construct) call. A
 // `ConstructRequest` captures enough data to be able to register nested components against the caller's resource
 // monitor.
 type ConstructRequest struct {
@@ -2179,7 +2179,7 @@ type ConstructRequest struct {
 	// The degree of parallelism that may be used for resource operations. A value less than or equal to 1 indicates
 	// that operations should be performed serially.
 	Parallel int32 `protobuf:"varint,5,opt,name=parallel,proto3" json:"parallel,omitempty"`
-	// The address of the [](pulumirpc.ResourceMonitor) that the provider should connect to in order to send [resource
+	// The address of the [](khulnasoftrpc.ResourceMonitor) that the provider should connect to in order to send [resource
 	// registrations](resource-registration) for its nested resources.
 	MonitorEndpoint string `protobuf:"bytes,6,opt,name=monitorEndpoint,proto3" json:"monitorEndpoint,omitempty"`
 	// The type of the component resource being constructed. This must match the type specified by the `urn` field, and
@@ -2191,9 +2191,9 @@ type ConstructRequest struct {
 	// An optional parent resource that the component (and by extension, its nested resources) should be children of.
 	Parent string `protobuf:"bytes,9,opt,name=parent,proto3" json:"parent,omitempty"`
 	// The component resource's input properties. Unlike the inputs of custom resources, these will *not* have been
-	// passed to a call to [](pulumirpc.ResourceProvider.Check). By virtue of their being a composition of other
+	// passed to a call to [](khulnasoftrpc.ResourceProvider.Check). By virtue of their being a composition of other
 	// resources, component resources are able to (and therefore expected) to validate their own inputs. Moreover,
-	// [](pulumirpc.ResourceProvider.Check) will be called on any inputs passed to nested custom resources as usual.
+	// [](khulnasoftrpc.ResourceProvider.Check) will be called on any inputs passed to nested custom resources as usual.
 	Inputs *structpb.Struct `protobuf:"bytes,10,opt,name=inputs,proto3" json:"inputs,omitempty"`
 	// A map of property dependencies for the component resource and its nested resources.
 	InputDependencies map[string]*ConstructRequest_PropertyDependencies `protobuf:"bytes,11,rep,name=inputDependencies,proto3" json:"inputDependencies,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
@@ -2219,7 +2219,7 @@ type ConstructRequest struct {
 	CustomTimeouts *ConstructRequest_CustomTimeouts `protobuf:"bytes,19,opt,name=customTimeouts,proto3" json:"customTimeouts,omitempty"`
 	// The URN of a resource that this resource (and thus its nested resources) will be implicitly deleted with. If the
 	// resource referred to by this URN is deleted in the same operation that this resource would be deleted, the
-	// [](pulumirpc.ResourceProvider.Delete) call for this resource will be elided (since this dependency signals that
+	// [](khulnasoftrpc.ResourceProvider.Delete) call for this resource will be elided (since this dependency signals that
 	// it will have already been deleted).
 	DeletedWith string `protobuf:"bytes,20,opt,name=deletedWith,proto3" json:"deletedWith,omitempty"`
 	// If true, this resource (and its nested resources) must be deleted *before* its replacement is created.
@@ -2228,19 +2228,19 @@ type ConstructRequest struct {
 	IgnoreChanges []string `protobuf:"bytes,22,rep,name=ignoreChanges,proto3" json:"ignoreChanges,omitempty"`
 	// A set of properties that, when changed, trigger a replacement.
 	ReplaceOnChanges []string `protobuf:"bytes,23,rep,name=replaceOnChanges,proto3" json:"replaceOnChanges,omitempty"`
-	// True if [](pulumirpc.ResourceProvider.Delete) should *not* be called when the resource (and by extension, its
+	// True if [](khulnasoftrpc.ResourceProvider.Delete) should *not* be called when the resource (and by extension, its
 	// nested resources) are removed from a Pulumi program.
 	RetainOnDelete bool `protobuf:"varint,24,opt,name=retainOnDelete,proto3" json:"retainOnDelete,omitempty"`
 	// True if the caller is capable of accepting output values in response to the call. If this is set, these outputs
 	// may be used to communicate dependency information and so there is no need to populate
-	// [](pulumirpc.ConstructResponse)'s `stateDependencies` field.
+	// [](khulnasoftrpc.ConstructResponse)'s `stateDependencies` field.
 	AcceptsOutputValues bool `protobuf:"varint,25,opt,name=accepts_output_values,json=acceptsOutputValues,proto3" json:"accepts_output_values,omitempty"`
 }
 
 func (x *ConstructRequest) Reset() {
 	*x = ConstructRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[24]
+		mi := &file_khulnasoft_provider_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2253,7 +2253,7 @@ func (x *ConstructRequest) String() string {
 func (*ConstructRequest) ProtoMessage() {}
 
 func (x *ConstructRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[24]
+	mi := &file_khulnasoft_provider_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2266,7 +2266,7 @@ func (x *ConstructRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConstructRequest.ProtoReflect.Descriptor instead.
 func (*ConstructRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{24}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ConstructRequest) GetProject() string {
@@ -2444,7 +2444,7 @@ func (x *ConstructRequest) GetAcceptsOutputValues() bool {
 	return false
 }
 
-// `ConstructResponse` is the type of responses sent by a [](pulumirpc.ResourceProvider.Construct) call.
+// `ConstructResponse` is the type of responses sent by a [](khulnasoftrpc.ResourceProvider.Construct) call.
 type ConstructResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2455,7 +2455,7 @@ type ConstructResponse struct {
 	// Any output properties that the component registered as part of its construction.
 	State *structpb.Struct `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
 	// A map of property dependencies for the component's outputs. This will be set if the caller indicated that it
-	// could not receive dependency-communicating [output](outputs) values by setting [](pulumirpc.ConstructRequest)'s
+	// could not receive dependency-communicating [output](outputs) values by setting [](khulnasoftrpc.ConstructRequest)'s
 	// `accepts_output_values` field to false.
 	StateDependencies map[string]*ConstructResponse_PropertyDependencies `protobuf:"bytes,3,rep,name=stateDependencies,proto3" json:"stateDependencies,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
@@ -2463,7 +2463,7 @@ type ConstructResponse struct {
 func (x *ConstructResponse) Reset() {
 	*x = ConstructResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[25]
+		mi := &file_khulnasoft_provider_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2476,7 +2476,7 @@ func (x *ConstructResponse) String() string {
 func (*ConstructResponse) ProtoMessage() {}
 
 func (x *ConstructResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[25]
+	mi := &file_khulnasoft_provider_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2489,7 +2489,7 @@ func (x *ConstructResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConstructResponse.ProtoReflect.Descriptor instead.
 func (*ConstructResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{25}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ConstructResponse) GetUrn() string {
@@ -2529,7 +2529,7 @@ type ErrorResourceInitFailed struct {
 func (x *ErrorResourceInitFailed) Reset() {
 	*x = ErrorResourceInitFailed{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[26]
+		mi := &file_khulnasoft_provider_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2542,7 +2542,7 @@ func (x *ErrorResourceInitFailed) String() string {
 func (*ErrorResourceInitFailed) ProtoMessage() {}
 
 func (x *ErrorResourceInitFailed) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[26]
+	mi := &file_khulnasoft_provider_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2555,7 +2555,7 @@ func (x *ErrorResourceInitFailed) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ErrorResourceInitFailed.ProtoReflect.Descriptor instead.
 func (*ErrorResourceInitFailed) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{26}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *ErrorResourceInitFailed) GetId() string {
@@ -2606,7 +2606,7 @@ type GetMappingRequest struct {
 func (x *GetMappingRequest) Reset() {
 	*x = GetMappingRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[27]
+		mi := &file_khulnasoft_provider_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2619,7 +2619,7 @@ func (x *GetMappingRequest) String() string {
 func (*GetMappingRequest) ProtoMessage() {}
 
 func (x *GetMappingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[27]
+	mi := &file_khulnasoft_provider_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2632,7 +2632,7 @@ func (x *GetMappingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMappingRequest.ProtoReflect.Descriptor instead.
 func (*GetMappingRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{27}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *GetMappingRequest) GetKey() string {
@@ -2665,7 +2665,7 @@ type GetMappingResponse struct {
 func (x *GetMappingResponse) Reset() {
 	*x = GetMappingResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[28]
+		mi := &file_khulnasoft_provider_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2678,7 +2678,7 @@ func (x *GetMappingResponse) String() string {
 func (*GetMappingResponse) ProtoMessage() {}
 
 func (x *GetMappingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[28]
+	mi := &file_khulnasoft_provider_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2691,7 +2691,7 @@ func (x *GetMappingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMappingResponse.ProtoReflect.Descriptor instead.
 func (*GetMappingResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{28}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *GetMappingResponse) GetProvider() string {
@@ -2722,7 +2722,7 @@ type GetMappingsRequest struct {
 func (x *GetMappingsRequest) Reset() {
 	*x = GetMappingsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[29]
+		mi := &file_khulnasoft_provider_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2735,7 +2735,7 @@ func (x *GetMappingsRequest) String() string {
 func (*GetMappingsRequest) ProtoMessage() {}
 
 func (x *GetMappingsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[29]
+	mi := &file_khulnasoft_provider_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2748,7 +2748,7 @@ func (x *GetMappingsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMappingsRequest.ProtoReflect.Descriptor instead.
 func (*GetMappingsRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{29}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *GetMappingsRequest) GetKey() string {
@@ -2772,7 +2772,7 @@ type GetMappingsResponse struct {
 func (x *GetMappingsResponse) Reset() {
 	*x = GetMappingsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[30]
+		mi := &file_khulnasoft_provider_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2785,7 +2785,7 @@ func (x *GetMappingsResponse) String() string {
 func (*GetMappingsResponse) ProtoMessage() {}
 
 func (x *GetMappingsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[30]
+	mi := &file_khulnasoft_provider_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2798,7 +2798,7 @@ func (x *GetMappingsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMappingsResponse.ProtoReflect.Descriptor instead.
 func (*GetMappingsResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{30}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *GetMappingsResponse) GetProviders() []string {
@@ -2821,7 +2821,7 @@ type ParameterizeRequest_ParametersArgs struct {
 func (x *ParameterizeRequest_ParametersArgs) Reset() {
 	*x = ParameterizeRequest_ParametersArgs{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[31]
+		mi := &file_khulnasoft_provider_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2834,7 +2834,7 @@ func (x *ParameterizeRequest_ParametersArgs) String() string {
 func (*ParameterizeRequest_ParametersArgs) ProtoMessage() {}
 
 func (x *ParameterizeRequest_ParametersArgs) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[31]
+	mi := &file_khulnasoft_provider_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2847,7 +2847,7 @@ func (x *ParameterizeRequest_ParametersArgs) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ParameterizeRequest_ParametersArgs.ProtoReflect.Descriptor instead.
 func (*ParameterizeRequest_ParametersArgs) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{0, 0}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{0, 0}
 }
 
 func (x *ParameterizeRequest_ParametersArgs) GetArgs() []string {
@@ -2875,7 +2875,7 @@ type ParameterizeRequest_ParametersValue struct {
 func (x *ParameterizeRequest_ParametersValue) Reset() {
 	*x = ParameterizeRequest_ParametersValue{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[32]
+		mi := &file_khulnasoft_provider_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2888,7 +2888,7 @@ func (x *ParameterizeRequest_ParametersValue) String() string {
 func (*ParameterizeRequest_ParametersValue) ProtoMessage() {}
 
 func (x *ParameterizeRequest_ParametersValue) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[32]
+	mi := &file_khulnasoft_provider_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2901,7 +2901,7 @@ func (x *ParameterizeRequest_ParametersValue) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ParameterizeRequest_ParametersValue.ProtoReflect.Descriptor instead.
 func (*ParameterizeRequest_ParametersValue) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{0, 1}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{0, 1}
 }
 
 func (x *ParameterizeRequest_ParametersValue) GetName() string {
@@ -2925,7 +2925,7 @@ func (x *ParameterizeRequest_ParametersValue) GetValue() []byte {
 	return nil
 }
 
-// The type of key-value pairs representing keys that are missing from a [](pulumirpc.ResourceProvider.Configure)
+// The type of key-value pairs representing keys that are missing from a [](khulnasoftrpc.ResourceProvider.Configure)
 // call.
 type ConfigureErrorMissingKeys_MissingKey struct {
 	state         protoimpl.MessageState
@@ -2946,7 +2946,7 @@ type ConfigureErrorMissingKeys_MissingKey struct {
 func (x *ConfigureErrorMissingKeys_MissingKey) Reset() {
 	*x = ConfigureErrorMissingKeys_MissingKey{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[34]
+		mi := &file_khulnasoft_provider_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2959,7 +2959,7 @@ func (x *ConfigureErrorMissingKeys_MissingKey) String() string {
 func (*ConfigureErrorMissingKeys_MissingKey) ProtoMessage() {}
 
 func (x *ConfigureErrorMissingKeys_MissingKey) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[34]
+	mi := &file_khulnasoft_provider_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2972,7 +2972,7 @@ func (x *ConfigureErrorMissingKeys_MissingKey) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ConfigureErrorMissingKeys_MissingKey.ProtoReflect.Descriptor instead.
 func (*ConfigureErrorMissingKeys_MissingKey) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{6, 0}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{6, 0}
 }
 
 func (x *ConfigureErrorMissingKeys_MissingKey) GetName() string {
@@ -3001,7 +3001,7 @@ type CallRequest_ArgumentDependencies struct {
 func (x *CallRequest_ArgumentDependencies) Reset() {
 	*x = CallRequest_ArgumentDependencies{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[35]
+		mi := &file_khulnasoft_provider_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3014,7 +3014,7 @@ func (x *CallRequest_ArgumentDependencies) String() string {
 func (*CallRequest_ArgumentDependencies) ProtoMessage() {}
 
 func (x *CallRequest_ArgumentDependencies) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[35]
+	mi := &file_khulnasoft_provider_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3027,7 +3027,7 @@ func (x *CallRequest_ArgumentDependencies) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CallRequest_ArgumentDependencies.ProtoReflect.Descriptor instead.
 func (*CallRequest_ArgumentDependencies) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{9, 0}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{9, 0}
 }
 
 func (x *CallRequest_ArgumentDependencies) GetUrns() []string {
@@ -3049,7 +3049,7 @@ type CallResponse_ReturnDependencies struct {
 func (x *CallResponse_ReturnDependencies) Reset() {
 	*x = CallResponse_ReturnDependencies{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[38]
+		mi := &file_khulnasoft_provider_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3062,7 +3062,7 @@ func (x *CallResponse_ReturnDependencies) String() string {
 func (*CallResponse_ReturnDependencies) ProtoMessage() {}
 
 func (x *CallResponse_ReturnDependencies) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[38]
+	mi := &file_khulnasoft_provider_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3075,7 +3075,7 @@ func (x *CallResponse_ReturnDependencies) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CallResponse_ReturnDependencies.ProtoReflect.Descriptor instead.
 func (*CallResponse_ReturnDependencies) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{10, 0}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{10, 0}
 }
 
 func (x *CallResponse_ReturnDependencies) GetUrns() []string {
@@ -3098,7 +3098,7 @@ type ConstructRequest_PropertyDependencies struct {
 func (x *ConstructRequest_PropertyDependencies) Reset() {
 	*x = ConstructRequest_PropertyDependencies{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[41]
+		mi := &file_khulnasoft_provider_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3111,7 +3111,7 @@ func (x *ConstructRequest_PropertyDependencies) String() string {
 func (*ConstructRequest_PropertyDependencies) ProtoMessage() {}
 
 func (x *ConstructRequest_PropertyDependencies) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[41]
+	mi := &file_khulnasoft_provider_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3124,7 +3124,7 @@ func (x *ConstructRequest_PropertyDependencies) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ConstructRequest_PropertyDependencies.ProtoReflect.Descriptor instead.
 func (*ConstructRequest_PropertyDependencies) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{24, 0}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{24, 0}
 }
 
 func (x *ConstructRequest_PropertyDependencies) GetUrns() []string {
@@ -3150,13 +3150,13 @@ type ConstructRequest_CustomTimeouts struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// How long a caller is prepared to wait for a nested resource's [](pulumirpc.ResourceProvider.Create) operation
+	// How long a caller is prepared to wait for a nested resource's [](khulnasoftrpc.ResourceProvider.Create) operation
 	// to complete.
 	Create string `protobuf:"bytes,1,opt,name=create,proto3" json:"create,omitempty"`
-	// How long a caller is prepared to wait for a nested resource's [](pulumirpc.ResourceProvider.Update) operation
+	// How long a caller is prepared to wait for a nested resource's [](khulnasoftrpc.ResourceProvider.Update) operation
 	// to complete.
 	Update string `protobuf:"bytes,2,opt,name=update,proto3" json:"update,omitempty"`
-	// How long a caller is prepared to wait for a nested resource's [](pulumirpc.ResourceProvider.Delete) operation
+	// How long a caller is prepared to wait for a nested resource's [](khulnasoftrpc.ResourceProvider.Delete) operation
 	// to complete.
 	Delete string `protobuf:"bytes,3,opt,name=delete,proto3" json:"delete,omitempty"`
 }
@@ -3164,7 +3164,7 @@ type ConstructRequest_CustomTimeouts struct {
 func (x *ConstructRequest_CustomTimeouts) Reset() {
 	*x = ConstructRequest_CustomTimeouts{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[42]
+		mi := &file_khulnasoft_provider_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3177,7 +3177,7 @@ func (x *ConstructRequest_CustomTimeouts) String() string {
 func (*ConstructRequest_CustomTimeouts) ProtoMessage() {}
 
 func (x *ConstructRequest_CustomTimeouts) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[42]
+	mi := &file_khulnasoft_provider_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3190,7 +3190,7 @@ func (x *ConstructRequest_CustomTimeouts) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConstructRequest_CustomTimeouts.ProtoReflect.Descriptor instead.
 func (*ConstructRequest_CustomTimeouts) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{24, 1}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{24, 1}
 }
 
 func (x *ConstructRequest_CustomTimeouts) GetCreate() string {
@@ -3227,7 +3227,7 @@ type ConstructResponse_PropertyDependencies struct {
 func (x *ConstructResponse_PropertyDependencies) Reset() {
 	*x = ConstructResponse_PropertyDependencies{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_provider_proto_msgTypes[46]
+		mi := &file_khulnasoft_provider_proto_msgTypes[46]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3240,7 +3240,7 @@ func (x *ConstructResponse_PropertyDependencies) String() string {
 func (*ConstructResponse_PropertyDependencies) ProtoMessage() {}
 
 func (x *ConstructResponse_PropertyDependencies) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_provider_proto_msgTypes[46]
+	mi := &file_khulnasoft_provider_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3253,7 +3253,7 @@ func (x *ConstructResponse_PropertyDependencies) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use ConstructResponse_PropertyDependencies.ProtoReflect.Descriptor instead.
 func (*ConstructResponse_PropertyDependencies) Descriptor() ([]byte, []int) {
-	return file_pulumi_provider_proto_rawDescGZIP(), []int{25, 0}
+	return file_khulnasoft_provider_proto_rawDescGZIP(), []int{25, 0}
 }
 
 func (x *ConstructResponse_PropertyDependencies) GetUrns() []string {
@@ -3263,9 +3263,9 @@ func (x *ConstructResponse_PropertyDependencies) GetUrns() []string {
 	return nil
 }
 
-var File_pulumi_provider_proto protoreflect.FileDescriptor
+var File_khulnasoft_provider_proto protoreflect.FileDescriptor
 
-var file_pulumi_provider_proto_rawDesc = []byte{
+var file_khulnasoft_provider_proto_rawDesc = []byte{
 	0x0a, 0x15, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65,
 	0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x72,
 	0x70, 0x63, 0x1a, 0x13, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x70, 0x6c, 0x75, 0x67, 0x69,
@@ -3839,166 +3839,166 @@ var file_pulumi_provider_proto_rawDesc = []byte{
 }
 
 var (
-	file_pulumi_provider_proto_rawDescOnce sync.Once
-	file_pulumi_provider_proto_rawDescData = file_pulumi_provider_proto_rawDesc
+	file_khulnasoft_provider_proto_rawDescOnce sync.Once
+	file_khulnasoft_provider_proto_rawDescData = file_khulnasoft_provider_proto_rawDesc
 )
 
-func file_pulumi_provider_proto_rawDescGZIP() []byte {
-	file_pulumi_provider_proto_rawDescOnce.Do(func() {
-		file_pulumi_provider_proto_rawDescData = protoimpl.X.CompressGZIP(file_pulumi_provider_proto_rawDescData)
+func file_khulnasoft_provider_proto_rawDescGZIP() []byte {
+	file_khulnasoft_provider_proto_rawDescOnce.Do(func() {
+		file_khulnasoft_provider_proto_rawDescData = protoimpl.X.CompressGZIP(file_khulnasoft_provider_proto_rawDescData)
 	})
-	return file_pulumi_provider_proto_rawDescData
+	return file_khulnasoft_provider_proto_rawDescData
 }
 
-var file_pulumi_provider_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_pulumi_provider_proto_msgTypes = make([]protoimpl.MessageInfo, 48)
-var file_pulumi_provider_proto_goTypes = []interface{}{
-	(PropertyDiff_Kind)(0),                      // 0: pulumirpc.PropertyDiff.Kind
-	(DiffResponse_DiffChanges)(0),               // 1: pulumirpc.DiffResponse.DiffChanges
-	(*ParameterizeRequest)(nil),                 // 2: pulumirpc.ParameterizeRequest
-	(*ParameterizeResponse)(nil),                // 3: pulumirpc.ParameterizeResponse
-	(*GetSchemaRequest)(nil),                    // 4: pulumirpc.GetSchemaRequest
-	(*GetSchemaResponse)(nil),                   // 5: pulumirpc.GetSchemaResponse
-	(*ConfigureRequest)(nil),                    // 6: pulumirpc.ConfigureRequest
-	(*ConfigureResponse)(nil),                   // 7: pulumirpc.ConfigureResponse
-	(*ConfigureErrorMissingKeys)(nil),           // 8: pulumirpc.ConfigureErrorMissingKeys
-	(*InvokeRequest)(nil),                       // 9: pulumirpc.InvokeRequest
-	(*InvokeResponse)(nil),                      // 10: pulumirpc.InvokeResponse
-	(*CallRequest)(nil),                         // 11: pulumirpc.CallRequest
-	(*CallResponse)(nil),                        // 12: pulumirpc.CallResponse
-	(*CheckRequest)(nil),                        // 13: pulumirpc.CheckRequest
-	(*CheckResponse)(nil),                       // 14: pulumirpc.CheckResponse
-	(*CheckFailure)(nil),                        // 15: pulumirpc.CheckFailure
-	(*DiffRequest)(nil),                         // 16: pulumirpc.DiffRequest
-	(*PropertyDiff)(nil),                        // 17: pulumirpc.PropertyDiff
-	(*DiffResponse)(nil),                        // 18: pulumirpc.DiffResponse
-	(*CreateRequest)(nil),                       // 19: pulumirpc.CreateRequest
-	(*CreateResponse)(nil),                      // 20: pulumirpc.CreateResponse
-	(*ReadRequest)(nil),                         // 21: pulumirpc.ReadRequest
-	(*ReadResponse)(nil),                        // 22: pulumirpc.ReadResponse
-	(*UpdateRequest)(nil),                       // 23: pulumirpc.UpdateRequest
-	(*UpdateResponse)(nil),                      // 24: pulumirpc.UpdateResponse
-	(*DeleteRequest)(nil),                       // 25: pulumirpc.DeleteRequest
-	(*ConstructRequest)(nil),                    // 26: pulumirpc.ConstructRequest
-	(*ConstructResponse)(nil),                   // 27: pulumirpc.ConstructResponse
-	(*ErrorResourceInitFailed)(nil),             // 28: pulumirpc.ErrorResourceInitFailed
-	(*GetMappingRequest)(nil),                   // 29: pulumirpc.GetMappingRequest
-	(*GetMappingResponse)(nil),                  // 30: pulumirpc.GetMappingResponse
-	(*GetMappingsRequest)(nil),                  // 31: pulumirpc.GetMappingsRequest
-	(*GetMappingsResponse)(nil),                 // 32: pulumirpc.GetMappingsResponse
-	(*ParameterizeRequest_ParametersArgs)(nil),  // 33: pulumirpc.ParameterizeRequest.ParametersArgs
-	(*ParameterizeRequest_ParametersValue)(nil), // 34: pulumirpc.ParameterizeRequest.ParametersValue
-	nil, // 35: pulumirpc.ConfigureRequest.VariablesEntry
-	(*ConfigureErrorMissingKeys_MissingKey)(nil), // 36: pulumirpc.ConfigureErrorMissingKeys.MissingKey
-	(*CallRequest_ArgumentDependencies)(nil),     // 37: pulumirpc.CallRequest.ArgumentDependencies
-	nil,                                          // 38: pulumirpc.CallRequest.ArgDependenciesEntry
-	nil,                                          // 39: pulumirpc.CallRequest.ConfigEntry
-	(*CallResponse_ReturnDependencies)(nil),      // 40: pulumirpc.CallResponse.ReturnDependencies
-	nil,                                          // 41: pulumirpc.CallResponse.ReturnDependenciesEntry
-	nil,                                          // 42: pulumirpc.DiffResponse.DetailedDiffEntry
-	(*ConstructRequest_PropertyDependencies)(nil), // 43: pulumirpc.ConstructRequest.PropertyDependencies
-	(*ConstructRequest_CustomTimeouts)(nil),       // 44: pulumirpc.ConstructRequest.CustomTimeouts
-	nil,                                           // 45: pulumirpc.ConstructRequest.ConfigEntry
-	nil,                                           // 46: pulumirpc.ConstructRequest.InputDependenciesEntry
-	nil,                                           // 47: pulumirpc.ConstructRequest.ProvidersEntry
-	(*ConstructResponse_PropertyDependencies)(nil), // 48: pulumirpc.ConstructResponse.PropertyDependencies
-	nil,                     // 49: pulumirpc.ConstructResponse.StateDependenciesEntry
+var file_khulnasoft_provider_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_khulnasoft_provider_proto_msgTypes = make([]protoimpl.MessageInfo, 48)
+var file_khulnasoft_provider_proto_goTypes = []interface{}{
+	(PropertyDiff_Kind)(0),                      // 0: khulnasoftrpc.PropertyDiff.Kind
+	(DiffResponse_DiffChanges)(0),               // 1: khulnasoftrpc.DiffResponse.DiffChanges
+	(*ParameterizeRequest)(nil),                 // 2: khulnasoftrpc.ParameterizeRequest
+	(*ParameterizeResponse)(nil),                // 3: khulnasoftrpc.ParameterizeResponse
+	(*GetSchemaRequest)(nil),                    // 4: khulnasoftrpc.GetSchemaRequest
+	(*GetSchemaResponse)(nil),                   // 5: khulnasoftrpc.GetSchemaResponse
+	(*ConfigureRequest)(nil),                    // 6: khulnasoftrpc.ConfigureRequest
+	(*ConfigureResponse)(nil),                   // 7: khulnasoftrpc.ConfigureResponse
+	(*ConfigureErrorMissingKeys)(nil),           // 8: khulnasoftrpc.ConfigureErrorMissingKeys
+	(*InvokeRequest)(nil),                       // 9: khulnasoftrpc.InvokeRequest
+	(*InvokeResponse)(nil),                      // 10: khulnasoftrpc.InvokeResponse
+	(*CallRequest)(nil),                         // 11: khulnasoftrpc.CallRequest
+	(*CallResponse)(nil),                        // 12: khulnasoftrpc.CallResponse
+	(*CheckRequest)(nil),                        // 13: khulnasoftrpc.CheckRequest
+	(*CheckResponse)(nil),                       // 14: khulnasoftrpc.CheckResponse
+	(*CheckFailure)(nil),                        // 15: khulnasoftrpc.CheckFailure
+	(*DiffRequest)(nil),                         // 16: khulnasoftrpc.DiffRequest
+	(*PropertyDiff)(nil),                        // 17: khulnasoftrpc.PropertyDiff
+	(*DiffResponse)(nil),                        // 18: khulnasoftrpc.DiffResponse
+	(*CreateRequest)(nil),                       // 19: khulnasoftrpc.CreateRequest
+	(*CreateResponse)(nil),                      // 20: khulnasoftrpc.CreateResponse
+	(*ReadRequest)(nil),                         // 21: khulnasoftrpc.ReadRequest
+	(*ReadResponse)(nil),                        // 22: khulnasoftrpc.ReadResponse
+	(*UpdateRequest)(nil),                       // 23: khulnasoftrpc.UpdateRequest
+	(*UpdateResponse)(nil),                      // 24: khulnasoftrpc.UpdateResponse
+	(*DeleteRequest)(nil),                       // 25: khulnasoftrpc.DeleteRequest
+	(*ConstructRequest)(nil),                    // 26: khulnasoftrpc.ConstructRequest
+	(*ConstructResponse)(nil),                   // 27: khulnasoftrpc.ConstructResponse
+	(*ErrorResourceInitFailed)(nil),             // 28: khulnasoftrpc.ErrorResourceInitFailed
+	(*GetMappingRequest)(nil),                   // 29: khulnasoftrpc.GetMappingRequest
+	(*GetMappingResponse)(nil),                  // 30: khulnasoftrpc.GetMappingResponse
+	(*GetMappingsRequest)(nil),                  // 31: khulnasoftrpc.GetMappingsRequest
+	(*GetMappingsResponse)(nil),                 // 32: khulnasoftrpc.GetMappingsResponse
+	(*ParameterizeRequest_ParametersArgs)(nil),  // 33: khulnasoftrpc.ParameterizeRequest.ParametersArgs
+	(*ParameterizeRequest_ParametersValue)(nil), // 34: khulnasoftrpc.ParameterizeRequest.ParametersValue
+	nil, // 35: khulnasoftrpc.ConfigureRequest.VariablesEntry
+	(*ConfigureErrorMissingKeys_MissingKey)(nil), // 36: khulnasoftrpc.ConfigureErrorMissingKeys.MissingKey
+	(*CallRequest_ArgumentDependencies)(nil),     // 37: khulnasoftrpc.CallRequest.ArgumentDependencies
+	nil,                                          // 38: khulnasoftrpc.CallRequest.ArgDependenciesEntry
+	nil,                                          // 39: khulnasoftrpc.CallRequest.ConfigEntry
+	(*CallResponse_ReturnDependencies)(nil),      // 40: khulnasoftrpc.CallResponse.ReturnDependencies
+	nil,                                          // 41: khulnasoftrpc.CallResponse.ReturnDependenciesEntry
+	nil,                                          // 42: khulnasoftrpc.DiffResponse.DetailedDiffEntry
+	(*ConstructRequest_PropertyDependencies)(nil), // 43: khulnasoftrpc.ConstructRequest.PropertyDependencies
+	(*ConstructRequest_CustomTimeouts)(nil),       // 44: khulnasoftrpc.ConstructRequest.CustomTimeouts
+	nil,                                           // 45: khulnasoftrpc.ConstructRequest.ConfigEntry
+	nil,                                           // 46: khulnasoftrpc.ConstructRequest.InputDependenciesEntry
+	nil,                                           // 47: khulnasoftrpc.ConstructRequest.ProvidersEntry
+	(*ConstructResponse_PropertyDependencies)(nil), // 48: khulnasoftrpc.ConstructResponse.PropertyDependencies
+	nil,                     // 49: khulnasoftrpc.ConstructResponse.StateDependenciesEntry
 	(*structpb.Struct)(nil), // 50: google.protobuf.Struct
 	(*emptypb.Empty)(nil),   // 51: google.protobuf.Empty
-	(*PluginAttach)(nil),    // 52: pulumirpc.PluginAttach
-	(*PluginInfo)(nil),      // 53: pulumirpc.PluginInfo
+	(*PluginAttach)(nil),    // 52: khulnasoftrpc.PluginAttach
+	(*PluginInfo)(nil),      // 53: khulnasoftrpc.PluginInfo
 }
-var file_pulumi_provider_proto_depIdxs = []int32{
-	33, // 0: pulumirpc.ParameterizeRequest.args:type_name -> pulumirpc.ParameterizeRequest.ParametersArgs
-	34, // 1: pulumirpc.ParameterizeRequest.value:type_name -> pulumirpc.ParameterizeRequest.ParametersValue
-	35, // 2: pulumirpc.ConfigureRequest.variables:type_name -> pulumirpc.ConfigureRequest.VariablesEntry
-	50, // 3: pulumirpc.ConfigureRequest.args:type_name -> google.protobuf.Struct
-	36, // 4: pulumirpc.ConfigureErrorMissingKeys.missingKeys:type_name -> pulumirpc.ConfigureErrorMissingKeys.MissingKey
-	50, // 5: pulumirpc.InvokeRequest.args:type_name -> google.protobuf.Struct
-	50, // 6: pulumirpc.InvokeResponse.return:type_name -> google.protobuf.Struct
-	15, // 7: pulumirpc.InvokeResponse.failures:type_name -> pulumirpc.CheckFailure
-	50, // 8: pulumirpc.CallRequest.args:type_name -> google.protobuf.Struct
-	38, // 9: pulumirpc.CallRequest.argDependencies:type_name -> pulumirpc.CallRequest.ArgDependenciesEntry
-	39, // 10: pulumirpc.CallRequest.config:type_name -> pulumirpc.CallRequest.ConfigEntry
-	50, // 11: pulumirpc.CallResponse.return:type_name -> google.protobuf.Struct
-	15, // 12: pulumirpc.CallResponse.failures:type_name -> pulumirpc.CheckFailure
-	41, // 13: pulumirpc.CallResponse.returnDependencies:type_name -> pulumirpc.CallResponse.ReturnDependenciesEntry
-	50, // 14: pulumirpc.CheckRequest.olds:type_name -> google.protobuf.Struct
-	50, // 15: pulumirpc.CheckRequest.news:type_name -> google.protobuf.Struct
-	50, // 16: pulumirpc.CheckResponse.inputs:type_name -> google.protobuf.Struct
-	15, // 17: pulumirpc.CheckResponse.failures:type_name -> pulumirpc.CheckFailure
-	50, // 18: pulumirpc.DiffRequest.olds:type_name -> google.protobuf.Struct
-	50, // 19: pulumirpc.DiffRequest.news:type_name -> google.protobuf.Struct
-	50, // 20: pulumirpc.DiffRequest.old_inputs:type_name -> google.protobuf.Struct
-	0,  // 21: pulumirpc.PropertyDiff.kind:type_name -> pulumirpc.PropertyDiff.Kind
-	1,  // 22: pulumirpc.DiffResponse.changes:type_name -> pulumirpc.DiffResponse.DiffChanges
-	42, // 23: pulumirpc.DiffResponse.detailedDiff:type_name -> pulumirpc.DiffResponse.DetailedDiffEntry
-	50, // 24: pulumirpc.CreateRequest.properties:type_name -> google.protobuf.Struct
-	50, // 25: pulumirpc.CreateResponse.properties:type_name -> google.protobuf.Struct
-	50, // 26: pulumirpc.ReadRequest.properties:type_name -> google.protobuf.Struct
-	50, // 27: pulumirpc.ReadRequest.inputs:type_name -> google.protobuf.Struct
-	50, // 28: pulumirpc.ReadResponse.properties:type_name -> google.protobuf.Struct
-	50, // 29: pulumirpc.ReadResponse.inputs:type_name -> google.protobuf.Struct
-	50, // 30: pulumirpc.UpdateRequest.olds:type_name -> google.protobuf.Struct
-	50, // 31: pulumirpc.UpdateRequest.news:type_name -> google.protobuf.Struct
-	50, // 32: pulumirpc.UpdateRequest.old_inputs:type_name -> google.protobuf.Struct
-	50, // 33: pulumirpc.UpdateResponse.properties:type_name -> google.protobuf.Struct
-	50, // 34: pulumirpc.DeleteRequest.properties:type_name -> google.protobuf.Struct
-	50, // 35: pulumirpc.DeleteRequest.old_inputs:type_name -> google.protobuf.Struct
-	45, // 36: pulumirpc.ConstructRequest.config:type_name -> pulumirpc.ConstructRequest.ConfigEntry
-	50, // 37: pulumirpc.ConstructRequest.inputs:type_name -> google.protobuf.Struct
-	46, // 38: pulumirpc.ConstructRequest.inputDependencies:type_name -> pulumirpc.ConstructRequest.InputDependenciesEntry
-	47, // 39: pulumirpc.ConstructRequest.providers:type_name -> pulumirpc.ConstructRequest.ProvidersEntry
-	44, // 40: pulumirpc.ConstructRequest.customTimeouts:type_name -> pulumirpc.ConstructRequest.CustomTimeouts
-	50, // 41: pulumirpc.ConstructResponse.state:type_name -> google.protobuf.Struct
-	49, // 42: pulumirpc.ConstructResponse.stateDependencies:type_name -> pulumirpc.ConstructResponse.StateDependenciesEntry
-	50, // 43: pulumirpc.ErrorResourceInitFailed.properties:type_name -> google.protobuf.Struct
-	50, // 44: pulumirpc.ErrorResourceInitFailed.inputs:type_name -> google.protobuf.Struct
-	37, // 45: pulumirpc.CallRequest.ArgDependenciesEntry.value:type_name -> pulumirpc.CallRequest.ArgumentDependencies
-	40, // 46: pulumirpc.CallResponse.ReturnDependenciesEntry.value:type_name -> pulumirpc.CallResponse.ReturnDependencies
-	17, // 47: pulumirpc.DiffResponse.DetailedDiffEntry.value:type_name -> pulumirpc.PropertyDiff
-	43, // 48: pulumirpc.ConstructRequest.InputDependenciesEntry.value:type_name -> pulumirpc.ConstructRequest.PropertyDependencies
-	48, // 49: pulumirpc.ConstructResponse.StateDependenciesEntry.value:type_name -> pulumirpc.ConstructResponse.PropertyDependencies
-	2,  // 50: pulumirpc.ResourceProvider.Parameterize:input_type -> pulumirpc.ParameterizeRequest
-	4,  // 51: pulumirpc.ResourceProvider.GetSchema:input_type -> pulumirpc.GetSchemaRequest
-	13, // 52: pulumirpc.ResourceProvider.CheckConfig:input_type -> pulumirpc.CheckRequest
-	16, // 53: pulumirpc.ResourceProvider.DiffConfig:input_type -> pulumirpc.DiffRequest
-	6,  // 54: pulumirpc.ResourceProvider.Configure:input_type -> pulumirpc.ConfigureRequest
-	9,  // 55: pulumirpc.ResourceProvider.Invoke:input_type -> pulumirpc.InvokeRequest
-	9,  // 56: pulumirpc.ResourceProvider.StreamInvoke:input_type -> pulumirpc.InvokeRequest
-	11, // 57: pulumirpc.ResourceProvider.Call:input_type -> pulumirpc.CallRequest
-	13, // 58: pulumirpc.ResourceProvider.Check:input_type -> pulumirpc.CheckRequest
-	16, // 59: pulumirpc.ResourceProvider.Diff:input_type -> pulumirpc.DiffRequest
-	19, // 60: pulumirpc.ResourceProvider.Create:input_type -> pulumirpc.CreateRequest
-	21, // 61: pulumirpc.ResourceProvider.Read:input_type -> pulumirpc.ReadRequest
-	23, // 62: pulumirpc.ResourceProvider.Update:input_type -> pulumirpc.UpdateRequest
-	25, // 63: pulumirpc.ResourceProvider.Delete:input_type -> pulumirpc.DeleteRequest
-	26, // 64: pulumirpc.ResourceProvider.Construct:input_type -> pulumirpc.ConstructRequest
-	51, // 65: pulumirpc.ResourceProvider.Cancel:input_type -> google.protobuf.Empty
-	51, // 66: pulumirpc.ResourceProvider.GetPluginInfo:input_type -> google.protobuf.Empty
-	52, // 67: pulumirpc.ResourceProvider.Attach:input_type -> pulumirpc.PluginAttach
-	29, // 68: pulumirpc.ResourceProvider.GetMapping:input_type -> pulumirpc.GetMappingRequest
-	31, // 69: pulumirpc.ResourceProvider.GetMappings:input_type -> pulumirpc.GetMappingsRequest
-	3,  // 70: pulumirpc.ResourceProvider.Parameterize:output_type -> pulumirpc.ParameterizeResponse
-	5,  // 71: pulumirpc.ResourceProvider.GetSchema:output_type -> pulumirpc.GetSchemaResponse
-	14, // 72: pulumirpc.ResourceProvider.CheckConfig:output_type -> pulumirpc.CheckResponse
-	18, // 73: pulumirpc.ResourceProvider.DiffConfig:output_type -> pulumirpc.DiffResponse
-	7,  // 74: pulumirpc.ResourceProvider.Configure:output_type -> pulumirpc.ConfigureResponse
-	10, // 75: pulumirpc.ResourceProvider.Invoke:output_type -> pulumirpc.InvokeResponse
-	10, // 76: pulumirpc.ResourceProvider.StreamInvoke:output_type -> pulumirpc.InvokeResponse
-	12, // 77: pulumirpc.ResourceProvider.Call:output_type -> pulumirpc.CallResponse
-	14, // 78: pulumirpc.ResourceProvider.Check:output_type -> pulumirpc.CheckResponse
-	18, // 79: pulumirpc.ResourceProvider.Diff:output_type -> pulumirpc.DiffResponse
-	20, // 80: pulumirpc.ResourceProvider.Create:output_type -> pulumirpc.CreateResponse
-	22, // 81: pulumirpc.ResourceProvider.Read:output_type -> pulumirpc.ReadResponse
-	24, // 82: pulumirpc.ResourceProvider.Update:output_type -> pulumirpc.UpdateResponse
-	51, // 83: pulumirpc.ResourceProvider.Delete:output_type -> google.protobuf.Empty
-	27, // 84: pulumirpc.ResourceProvider.Construct:output_type -> pulumirpc.ConstructResponse
-	51, // 85: pulumirpc.ResourceProvider.Cancel:output_type -> google.protobuf.Empty
-	53, // 86: pulumirpc.ResourceProvider.GetPluginInfo:output_type -> pulumirpc.PluginInfo
-	51, // 87: pulumirpc.ResourceProvider.Attach:output_type -> google.protobuf.Empty
-	30, // 88: pulumirpc.ResourceProvider.GetMapping:output_type -> pulumirpc.GetMappingResponse
-	32, // 89: pulumirpc.ResourceProvider.GetMappings:output_type -> pulumirpc.GetMappingsResponse
+var file_khulnasoft_provider_proto_depIdxs = []int32{
+	33, // 0: khulnasoftrpc.ParameterizeRequest.args:type_name -> khulnasoftrpc.ParameterizeRequest.ParametersArgs
+	34, // 1: khulnasoftrpc.ParameterizeRequest.value:type_name -> khulnasoftrpc.ParameterizeRequest.ParametersValue
+	35, // 2: khulnasoftrpc.ConfigureRequest.variables:type_name -> khulnasoftrpc.ConfigureRequest.VariablesEntry
+	50, // 3: khulnasoftrpc.ConfigureRequest.args:type_name -> google.protobuf.Struct
+	36, // 4: khulnasoftrpc.ConfigureErrorMissingKeys.missingKeys:type_name -> khulnasoftrpc.ConfigureErrorMissingKeys.MissingKey
+	50, // 5: khulnasoftrpc.InvokeRequest.args:type_name -> google.protobuf.Struct
+	50, // 6: khulnasoftrpc.InvokeResponse.return:type_name -> google.protobuf.Struct
+	15, // 7: khulnasoftrpc.InvokeResponse.failures:type_name -> khulnasoftrpc.CheckFailure
+	50, // 8: khulnasoftrpc.CallRequest.args:type_name -> google.protobuf.Struct
+	38, // 9: khulnasoftrpc.CallRequest.argDependencies:type_name -> khulnasoftrpc.CallRequest.ArgDependenciesEntry
+	39, // 10: khulnasoftrpc.CallRequest.config:type_name -> khulnasoftrpc.CallRequest.ConfigEntry
+	50, // 11: khulnasoftrpc.CallResponse.return:type_name -> google.protobuf.Struct
+	15, // 12: khulnasoftrpc.CallResponse.failures:type_name -> khulnasoftrpc.CheckFailure
+	41, // 13: khulnasoftrpc.CallResponse.returnDependencies:type_name -> khulnasoftrpc.CallResponse.ReturnDependenciesEntry
+	50, // 14: khulnasoftrpc.CheckRequest.olds:type_name -> google.protobuf.Struct
+	50, // 15: khulnasoftrpc.CheckRequest.news:type_name -> google.protobuf.Struct
+	50, // 16: khulnasoftrpc.CheckResponse.inputs:type_name -> google.protobuf.Struct
+	15, // 17: khulnasoftrpc.CheckResponse.failures:type_name -> khulnasoftrpc.CheckFailure
+	50, // 18: khulnasoftrpc.DiffRequest.olds:type_name -> google.protobuf.Struct
+	50, // 19: khulnasoftrpc.DiffRequest.news:type_name -> google.protobuf.Struct
+	50, // 20: khulnasoftrpc.DiffRequest.old_inputs:type_name -> google.protobuf.Struct
+	0,  // 21: khulnasoftrpc.PropertyDiff.kind:type_name -> khulnasoftrpc.PropertyDiff.Kind
+	1,  // 22: khulnasoftrpc.DiffResponse.changes:type_name -> khulnasoftrpc.DiffResponse.DiffChanges
+	42, // 23: khulnasoftrpc.DiffResponse.detailedDiff:type_name -> khulnasoftrpc.DiffResponse.DetailedDiffEntry
+	50, // 24: khulnasoftrpc.CreateRequest.properties:type_name -> google.protobuf.Struct
+	50, // 25: khulnasoftrpc.CreateResponse.properties:type_name -> google.protobuf.Struct
+	50, // 26: khulnasoftrpc.ReadRequest.properties:type_name -> google.protobuf.Struct
+	50, // 27: khulnasoftrpc.ReadRequest.inputs:type_name -> google.protobuf.Struct
+	50, // 28: khulnasoftrpc.ReadResponse.properties:type_name -> google.protobuf.Struct
+	50, // 29: khulnasoftrpc.ReadResponse.inputs:type_name -> google.protobuf.Struct
+	50, // 30: khulnasoftrpc.UpdateRequest.olds:type_name -> google.protobuf.Struct
+	50, // 31: khulnasoftrpc.UpdateRequest.news:type_name -> google.protobuf.Struct
+	50, // 32: khulnasoftrpc.UpdateRequest.old_inputs:type_name -> google.protobuf.Struct
+	50, // 33: khulnasoftrpc.UpdateResponse.properties:type_name -> google.protobuf.Struct
+	50, // 34: khulnasoftrpc.DeleteRequest.properties:type_name -> google.protobuf.Struct
+	50, // 35: khulnasoftrpc.DeleteRequest.old_inputs:type_name -> google.protobuf.Struct
+	45, // 36: khulnasoftrpc.ConstructRequest.config:type_name -> khulnasoftrpc.ConstructRequest.ConfigEntry
+	50, // 37: khulnasoftrpc.ConstructRequest.inputs:type_name -> google.protobuf.Struct
+	46, // 38: khulnasoftrpc.ConstructRequest.inputDependencies:type_name -> khulnasoftrpc.ConstructRequest.InputDependenciesEntry
+	47, // 39: khulnasoftrpc.ConstructRequest.providers:type_name -> khulnasoftrpc.ConstructRequest.ProvidersEntry
+	44, // 40: khulnasoftrpc.ConstructRequest.customTimeouts:type_name -> khulnasoftrpc.ConstructRequest.CustomTimeouts
+	50, // 41: khulnasoftrpc.ConstructResponse.state:type_name -> google.protobuf.Struct
+	49, // 42: khulnasoftrpc.ConstructResponse.stateDependencies:type_name -> khulnasoftrpc.ConstructResponse.StateDependenciesEntry
+	50, // 43: khulnasoftrpc.ErrorResourceInitFailed.properties:type_name -> google.protobuf.Struct
+	50, // 44: khulnasoftrpc.ErrorResourceInitFailed.inputs:type_name -> google.protobuf.Struct
+	37, // 45: khulnasoftrpc.CallRequest.ArgDependenciesEntry.value:type_name -> khulnasoftrpc.CallRequest.ArgumentDependencies
+	40, // 46: khulnasoftrpc.CallResponse.ReturnDependenciesEntry.value:type_name -> khulnasoftrpc.CallResponse.ReturnDependencies
+	17, // 47: khulnasoftrpc.DiffResponse.DetailedDiffEntry.value:type_name -> khulnasoftrpc.PropertyDiff
+	43, // 48: khulnasoftrpc.ConstructRequest.InputDependenciesEntry.value:type_name -> khulnasoftrpc.ConstructRequest.PropertyDependencies
+	48, // 49: khulnasoftrpc.ConstructResponse.StateDependenciesEntry.value:type_name -> khulnasoftrpc.ConstructResponse.PropertyDependencies
+	2,  // 50: khulnasoftrpc.ResourceProvider.Parameterize:input_type -> khulnasoftrpc.ParameterizeRequest
+	4,  // 51: khulnasoftrpc.ResourceProvider.GetSchema:input_type -> khulnasoftrpc.GetSchemaRequest
+	13, // 52: khulnasoftrpc.ResourceProvider.CheckConfig:input_type -> khulnasoftrpc.CheckRequest
+	16, // 53: khulnasoftrpc.ResourceProvider.DiffConfig:input_type -> khulnasoftrpc.DiffRequest
+	6,  // 54: khulnasoftrpc.ResourceProvider.Configure:input_type -> khulnasoftrpc.ConfigureRequest
+	9,  // 55: khulnasoftrpc.ResourceProvider.Invoke:input_type -> khulnasoftrpc.InvokeRequest
+	9,  // 56: khulnasoftrpc.ResourceProvider.StreamInvoke:input_type -> khulnasoftrpc.InvokeRequest
+	11, // 57: khulnasoftrpc.ResourceProvider.Call:input_type -> khulnasoftrpc.CallRequest
+	13, // 58: khulnasoftrpc.ResourceProvider.Check:input_type -> khulnasoftrpc.CheckRequest
+	16, // 59: khulnasoftrpc.ResourceProvider.Diff:input_type -> khulnasoftrpc.DiffRequest
+	19, // 60: khulnasoftrpc.ResourceProvider.Create:input_type -> khulnasoftrpc.CreateRequest
+	21, // 61: khulnasoftrpc.ResourceProvider.Read:input_type -> khulnasoftrpc.ReadRequest
+	23, // 62: khulnasoftrpc.ResourceProvider.Update:input_type -> khulnasoftrpc.UpdateRequest
+	25, // 63: khulnasoftrpc.ResourceProvider.Delete:input_type -> khulnasoftrpc.DeleteRequest
+	26, // 64: khulnasoftrpc.ResourceProvider.Construct:input_type -> khulnasoftrpc.ConstructRequest
+	51, // 65: khulnasoftrpc.ResourceProvider.Cancel:input_type -> google.protobuf.Empty
+	51, // 66: khulnasoftrpc.ResourceProvider.GetPluginInfo:input_type -> google.protobuf.Empty
+	52, // 67: khulnasoftrpc.ResourceProvider.Attach:input_type -> khulnasoftrpc.PluginAttach
+	29, // 68: khulnasoftrpc.ResourceProvider.GetMapping:input_type -> khulnasoftrpc.GetMappingRequest
+	31, // 69: khulnasoftrpc.ResourceProvider.GetMappings:input_type -> khulnasoftrpc.GetMappingsRequest
+	3,  // 70: khulnasoftrpc.ResourceProvider.Parameterize:output_type -> khulnasoftrpc.ParameterizeResponse
+	5,  // 71: khulnasoftrpc.ResourceProvider.GetSchema:output_type -> khulnasoftrpc.GetSchemaResponse
+	14, // 72: khulnasoftrpc.ResourceProvider.CheckConfig:output_type -> khulnasoftrpc.CheckResponse
+	18, // 73: khulnasoftrpc.ResourceProvider.DiffConfig:output_type -> khulnasoftrpc.DiffResponse
+	7,  // 74: khulnasoftrpc.ResourceProvider.Configure:output_type -> khulnasoftrpc.ConfigureResponse
+	10, // 75: khulnasoftrpc.ResourceProvider.Invoke:output_type -> khulnasoftrpc.InvokeResponse
+	10, // 76: khulnasoftrpc.ResourceProvider.StreamInvoke:output_type -> khulnasoftrpc.InvokeResponse
+	12, // 77: khulnasoftrpc.ResourceProvider.Call:output_type -> khulnasoftrpc.CallResponse
+	14, // 78: khulnasoftrpc.ResourceProvider.Check:output_type -> khulnasoftrpc.CheckResponse
+	18, // 79: khulnasoftrpc.ResourceProvider.Diff:output_type -> khulnasoftrpc.DiffResponse
+	20, // 80: khulnasoftrpc.ResourceProvider.Create:output_type -> khulnasoftrpc.CreateResponse
+	22, // 81: khulnasoftrpc.ResourceProvider.Read:output_type -> khulnasoftrpc.ReadResponse
+	24, // 82: khulnasoftrpc.ResourceProvider.Update:output_type -> khulnasoftrpc.UpdateResponse
+	51, // 83: khulnasoftrpc.ResourceProvider.Delete:output_type -> google.protobuf.Empty
+	27, // 84: khulnasoftrpc.ResourceProvider.Construct:output_type -> khulnasoftrpc.ConstructResponse
+	51, // 85: khulnasoftrpc.ResourceProvider.Cancel:output_type -> google.protobuf.Empty
+	53, // 86: khulnasoftrpc.ResourceProvider.GetPluginInfo:output_type -> khulnasoftrpc.PluginInfo
+	51, // 87: khulnasoftrpc.ResourceProvider.Attach:output_type -> google.protobuf.Empty
+	30, // 88: khulnasoftrpc.ResourceProvider.GetMapping:output_type -> khulnasoftrpc.GetMappingResponse
+	32, // 89: khulnasoftrpc.ResourceProvider.GetMappings:output_type -> khulnasoftrpc.GetMappingsResponse
 	70, // [70:90] is the sub-list for method output_type
 	50, // [50:70] is the sub-list for method input_type
 	50, // [50:50] is the sub-list for extension type_name
@@ -4006,14 +4006,14 @@ var file_pulumi_provider_proto_depIdxs = []int32{
 	0,  // [0:50] is the sub-list for field type_name
 }
 
-func init() { file_pulumi_provider_proto_init() }
-func file_pulumi_provider_proto_init() {
-	if File_pulumi_provider_proto != nil {
+func init() { file_khulnasoft_provider_proto_init() }
+func file_khulnasoft_provider_proto_init() {
+	if File_khulnasoft_provider_proto != nil {
 		return
 	}
-	file_pulumi_plugin_proto_init()
+	file_khulnasoft_plugin_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_pulumi_provider_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ParameterizeRequest); i {
 			case 0:
 				return &v.state
@@ -4025,7 +4025,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ParameterizeResponse); i {
 			case 0:
 				return &v.state
@@ -4037,7 +4037,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetSchemaRequest); i {
 			case 0:
 				return &v.state
@@ -4049,7 +4049,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetSchemaResponse); i {
 			case 0:
 				return &v.state
@@ -4061,7 +4061,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigureRequest); i {
 			case 0:
 				return &v.state
@@ -4073,7 +4073,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigureResponse); i {
 			case 0:
 				return &v.state
@@ -4085,7 +4085,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigureErrorMissingKeys); i {
 			case 0:
 				return &v.state
@@ -4097,7 +4097,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*InvokeRequest); i {
 			case 0:
 				return &v.state
@@ -4109,7 +4109,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*InvokeResponse); i {
 			case 0:
 				return &v.state
@@ -4121,7 +4121,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CallRequest); i {
 			case 0:
 				return &v.state
@@ -4133,7 +4133,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CallResponse); i {
 			case 0:
 				return &v.state
@@ -4145,7 +4145,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CheckRequest); i {
 			case 0:
 				return &v.state
@@ -4157,7 +4157,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CheckResponse); i {
 			case 0:
 				return &v.state
@@ -4169,7 +4169,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CheckFailure); i {
 			case 0:
 				return &v.state
@@ -4181,7 +4181,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DiffRequest); i {
 			case 0:
 				return &v.state
@@ -4193,7 +4193,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PropertyDiff); i {
 			case 0:
 				return &v.state
@@ -4205,7 +4205,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DiffResponse); i {
 			case 0:
 				return &v.state
@@ -4217,7 +4217,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateRequest); i {
 			case 0:
 				return &v.state
@@ -4229,7 +4229,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateResponse); i {
 			case 0:
 				return &v.state
@@ -4241,7 +4241,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ReadRequest); i {
 			case 0:
 				return &v.state
@@ -4253,7 +4253,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ReadResponse); i {
 			case 0:
 				return &v.state
@@ -4265,7 +4265,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateRequest); i {
 			case 0:
 				return &v.state
@@ -4277,7 +4277,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateResponse); i {
 			case 0:
 				return &v.state
@@ -4289,7 +4289,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteRequest); i {
 			case 0:
 				return &v.state
@@ -4301,7 +4301,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConstructRequest); i {
 			case 0:
 				return &v.state
@@ -4313,7 +4313,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConstructResponse); i {
 			case 0:
 				return &v.state
@@ -4325,7 +4325,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ErrorResourceInitFailed); i {
 			case 0:
 				return &v.state
@@ -4337,7 +4337,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetMappingRequest); i {
 			case 0:
 				return &v.state
@@ -4349,7 +4349,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetMappingResponse); i {
 			case 0:
 				return &v.state
@@ -4361,7 +4361,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetMappingsRequest); i {
 			case 0:
 				return &v.state
@@ -4373,7 +4373,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetMappingsResponse); i {
 			case 0:
 				return &v.state
@@ -4385,7 +4385,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ParameterizeRequest_ParametersArgs); i {
 			case 0:
 				return &v.state
@@ -4397,7 +4397,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ParameterizeRequest_ParametersValue); i {
 			case 0:
 				return &v.state
@@ -4409,7 +4409,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigureErrorMissingKeys_MissingKey); i {
 			case 0:
 				return &v.state
@@ -4421,7 +4421,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CallRequest_ArgumentDependencies); i {
 			case 0:
 				return &v.state
@@ -4433,7 +4433,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CallResponse_ReturnDependencies); i {
 			case 0:
 				return &v.state
@@ -4445,7 +4445,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConstructRequest_PropertyDependencies); i {
 			case 0:
 				return &v.state
@@ -4457,7 +4457,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConstructRequest_CustomTimeouts); i {
 			case 0:
 				return &v.state
@@ -4469,7 +4469,7 @@ func file_pulumi_provider_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_provider_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_provider_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConstructResponse_PropertyDependencies); i {
 			case 0:
 				return &v.state
@@ -4482,7 +4482,7 @@ func file_pulumi_provider_proto_init() {
 			}
 		}
 	}
-	file_pulumi_provider_proto_msgTypes[0].OneofWrappers = []interface{}{
+	file_khulnasoft_provider_proto_msgTypes[0].OneofWrappers = []interface{}{
 		(*ParameterizeRequest_Args)(nil),
 		(*ParameterizeRequest_Value)(nil),
 	}
@@ -4490,19 +4490,19 @@ func file_pulumi_provider_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pulumi_provider_proto_rawDesc,
+			RawDescriptor: file_khulnasoft_provider_proto_rawDesc,
 			NumEnums:      2,
 			NumMessages:   48,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_pulumi_provider_proto_goTypes,
-		DependencyIndexes: file_pulumi_provider_proto_depIdxs,
-		EnumInfos:         file_pulumi_provider_proto_enumTypes,
-		MessageInfos:      file_pulumi_provider_proto_msgTypes,
+		GoTypes:           file_khulnasoft_provider_proto_goTypes,
+		DependencyIndexes: file_khulnasoft_provider_proto_depIdxs,
+		EnumInfos:         file_khulnasoft_provider_proto_enumTypes,
+		MessageInfos:      file_khulnasoft_provider_proto_msgTypes,
 	}.Build()
-	File_pulumi_provider_proto = out.File
-	file_pulumi_provider_proto_rawDesc = nil
-	file_pulumi_provider_proto_goTypes = nil
-	file_pulumi_provider_proto_depIdxs = nil
+	File_khulnasoft_provider_proto = out.File
+	file_khulnasoft_provider_proto_rawDesc = nil
+	file_khulnasoft_provider_proto_goTypes = nil
+	file_khulnasoft_provider_proto_depIdxs = nil
 }

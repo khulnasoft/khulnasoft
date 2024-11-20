@@ -21,7 +21,7 @@ import (
 	"sort"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 )
 
 // Generates code to build and regsiter ResourceModule and
@@ -70,7 +70,7 @@ func jsonPythonLiteral(thing interface{}) (string, error) {
 //	{
 //	  "pkg": "azure-native",
 //	  "mod": "databricks",
-//	  "fqn": "pulumi_azure_native.databricks"
+//	  "fqn": "khulnasoft_azure_native.databricks"
 //	  "classes": {
 //	    "azure-native:databricks:Workspace": "Workspace",
 //	    "azure-native:databricks:vNetPeering": "VNetPeering"
@@ -140,8 +140,8 @@ func collectResourceModuleInfos(mctx *modContext) []resourceModuleInfo {
 //
 // {
 //   "pkg": "azure-native",
-//   "token": "pulumi:providers:azure-native"
-//   "fqn": "pulumi_azure_native"
+//   "token": "khulnasoft:providers:azure-native"
+//   "fqn": "khulnasoft_azure_native"
 //   "class": "Provider"
 // }
 

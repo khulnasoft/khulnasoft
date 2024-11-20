@@ -16,9 +16,9 @@ import asyncio
 import unittest
 import pytest
 
-import pulumi
-from pulumi.runtime import mocks
-from pulumi import StackReference, StackReferenceOutputDetails
+import khulnasoft
+from khulnasoft.runtime import mocks
+from khulnasoft import StackReference, StackReferenceOutputDetails
 
 
 @pytest.mark.asyncio
@@ -42,19 +42,19 @@ def simple_mock():
     yield mock
 
 
-class StackReferenceOutputMock(pulumi.runtime.Mocks):
+class StackReferenceOutputMock(khulnasoft.runtime.Mocks):
 
-    def new_resource(self, args: pulumi.runtime.MockResourceArgs):
-        assert "pulumi:pulumi:StackReference" == args.typ
+    def new_resource(self, args: khulnasoft.runtime.MockResourceArgs):
+        assert "khulnasoft:khulnasoft:StackReference" == args.typ
         return [
             args.name + "_id",
             {
                 "outputs": {
                     "bucket": "mybucket-1234",
-                    "password": pulumi.Output.secret("mypassword"),
+                    "password": khulnasoft.Output.secret("mypassword"),
                 },
             },
         ]
 
-    def call(self, args: pulumi.runtime.MockCallArgs):
+    def call(self, args: khulnasoft.runtime.MockCallArgs):
         return {}

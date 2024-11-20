@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_azure_native as azure_native
+import khulnasoft
+import khulnasoft_azure_native as azure_native
 
 namespace_authorization_rule = azure_native.servicebus.NamespaceAuthorizationRule("namespaceAuthorizationRule",
     authorization_rule_name="sdk-AuthRules-1788",

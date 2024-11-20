@@ -7,18 +7,18 @@ package main
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/internals"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/internals"
 )
 
 type componentArgs struct {
-	First  string `pulumi:"first"`
-	Second string `pulumi:"second"`
+	First  string `khulnasoft:"first"`
+	Second string `khulnasoft:"second"`
 }
 
 type ComponentArgs struct {
-	First  pulumi.StringInput
-	Second pulumi.StringInput
+	First  khulnasoft.StringInput
+	Second khulnasoft.StringInput
 }
 
 func (ComponentArgs) ElementType() reflect.Type {
@@ -26,11 +26,11 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 func NewComponent(
-	ctx *pulumi.Context, name string, args *ComponentArgs, opts ...pulumi.ResourceOption,
+	ctx *khulnasoft.Context, name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	var resource Component
 	err := ctx.RegisterRemoteComponentResource("testcomponent:index:Component", name, args, &resource, opts...)
@@ -41,7 +41,7 @@ func NewComponent(
 	return &resource, nil
 }
 
-func (c *Component) GetMessage(ctx *pulumi.Context, args *ComponentGetMessageArgs) (ComponentGetMessageResultOutput, error) {
+func (c *Component) GetMessage(ctx *khulnasoft.Context, args *ComponentGetMessageArgs) (ComponentGetMessageResultOutput, error) {
 	out, err := ctx.Call("testcomponent:index:Component/getMessage", args, ComponentGetMessageResultOutput{}, c)
 	if err != nil {
 		return ComponentGetMessageResultOutput{}, err
@@ -50,11 +50,11 @@ func (c *Component) GetMessage(ctx *pulumi.Context, args *ComponentGetMessageArg
 }
 
 type componentGetMessageArgs struct {
-	Name string `pulumi:"name"`
+	Name string `khulnasoft:"name"`
 }
 
 type ComponentGetMessageArgs struct {
-	Name pulumi.StringInput
+	Name khulnasoft.StringInput
 }
 
 func (ComponentGetMessageArgs) ElementType() reflect.Type {
@@ -62,17 +62,17 @@ func (ComponentGetMessageArgs) ElementType() reflect.Type {
 }
 
 type ComponentGetMessageResult struct {
-	Message string `pulumi:"message"`
+	Message string `khulnasoft:"message"`
 }
 
-type ComponentGetMessageResultOutput struct{ *pulumi.OutputState }
+type ComponentGetMessageResultOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentGetMessageResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ComponentGetMessageResult)(nil)).Elem()
 }
 
-func (o ComponentGetMessageResultOutput) Message() pulumi.StringOutput {
-	return o.ApplyT(func(v ComponentGetMessageResult) string { return v.Message }).(pulumi.StringOutput)
+func (o ComponentGetMessageResultOutput) Message() khulnasoft.StringOutput {
+	return o.ApplyT(func(v ComponentGetMessageResult) string { return v.Message }).(khulnasoft.StringOutput)
 }
 
 func (*Component) ElementType() reflect.Type {
@@ -80,20 +80,20 @@ func (*Component) ElementType() reflect.Type {
 }
 
 func init() {
-	pulumi.RegisterOutputType(ComponentGetMessageResultOutput{})
+	khulnasoft.RegisterOutputType(ComponentGetMessageResultOutput{})
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		component, err := NewComponent(ctx, "component", &ComponentArgs{
-			First:  pulumi.String("Hello"),
-			Second: pulumi.String("World"),
+			First:  khulnasoft.String("Hello"),
+			Second: khulnasoft.String("World"),
 		})
 		if err != nil {
 			return err
 		}
 		result, err := component.GetMessage(ctx, &ComponentGetMessageArgs{
-			Name: pulumi.String("Alice"),
+			Name: khulnasoft.String("Alice"),
 		})
 		if err != nil {
 			return err
@@ -106,12 +106,12 @@ func main() {
 	})
 }
 
-func awaitDependencies(ctx *pulumi.Context, o pulumi.Output) pulumi.URNArray {
+func awaitDependencies(ctx *khulnasoft.Context, o khulnasoft.Output) khulnasoft.URNArray {
 	r, err := internals.UnsafeAwaitOutput(ctx.Context(), o)
 	if err != nil {
 		panic(err)
 	}
-	var deps pulumi.URNArray
+	var deps khulnasoft.URNArray
 	for _, dep := range r.Dependencies {
 		deps = append(deps, dep.URN())
 	}

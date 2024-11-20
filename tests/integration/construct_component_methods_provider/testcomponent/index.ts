@@ -1,18 +1,18 @@
 // Copyright 2016-2023, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
-import * as provider from "@pulumi/pulumi/provider";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as provider from "@khulnasoft/khulnasoft/provider";
 
 interface ComponentArgs {
-    first: pulumi.Input<string>;
-    second: pulumi.Input<string>;
+    first: khulnasoft.Input<string>;
+    second: khulnasoft.Input<string>;
 }
 
-class Component extends pulumi.ComponentResource {
-    public readonly first!: pulumi.Output<string>;
-    public readonly second!: pulumi.Output<string>;
+class Component extends khulnasoft.ComponentResource {
+    public readonly first!: khulnasoft.Output<string>;
+    public readonly second!: khulnasoft.Output<string>;
 
-    constructor(name: string, args: ComponentArgs, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, args: ComponentArgs, opts?: khulnasoft.ComponentResourceOptions) {
         if (opts?.urn) {
             args = <any>{
                 first: undefined,
@@ -30,8 +30,8 @@ class Component extends pulumi.ComponentResource {
         this.registerOutputs(args);
     }
 
-    getMessage(name: pulumi.Input<string>): pulumi.Output<string> {
-        return pulumi.all([this.first, this.second, name]).apply(([frst, scnd, nm]) => `${frst} ${scnd}, ${nm}!`);
+    getMessage(name: khulnasoft.Input<string>): khulnasoft.Output<string> {
+        return khulnasoft.all([this.first, this.second, name]).apply(([frst, scnd, nm]) => `${frst} ${scnd}, ${nm}!`);
     }
 }
 
@@ -40,7 +40,7 @@ class Provider implements provider.Provider {
 
     constructor() {
         // Register any resources that can come back as resource references that need to be rehydrated.
-        pulumi.runtime.registerResourceModule("testcomponent", "index", {
+        khulnasoft.runtime.registerResourceModule("testcomponent", "index", {
             version: this.version,
             construct: (name, type, urn) => {
                 switch (type) {
@@ -53,8 +53,8 @@ class Provider implements provider.Provider {
         });
     }
 
-    async construct(name: string, type: string, inputs: pulumi.Inputs,
-              options: pulumi.ComponentResourceOptions): Promise<provider.ConstructResult> {
+    async construct(name: string, type: string, inputs: khulnasoft.Inputs,
+              options: khulnasoft.ComponentResourceOptions): Promise<provider.ConstructResult> {
         if (type != "testcomponent:index:Component") {
             throw new Error(`unknown resource type ${type}`);
         }
@@ -66,7 +66,7 @@ class Provider implements provider.Provider {
         };
     }
 
-    async call(token: string, inputs: pulumi.Inputs): Promise<provider.InvokeResult> {
+    async call(token: string, inputs: khulnasoft.Inputs): Promise<provider.InvokeResult> {
         switch (token) {
             case "testcomponent:index:Component/getMessage":
                 const self: Component = inputs.__self__;

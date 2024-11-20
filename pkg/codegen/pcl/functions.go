@@ -50,7 +50,7 @@ func getEntriesSignature(
 	return signature, diagnostics
 }
 
-func pulumiBuiltins(options bindOptions) map[string]*model.Function {
+func khulnasoftBuiltins(options bindOptions) map[string]*model.Function {
 	return map[string]*model.Function{
 		"element": model.NewFunction(model.GenericFunctionSignature(
 			func(args []model.Expression) (model.StaticFunctionSignature, hcl.Diagnostics) {
@@ -353,7 +353,7 @@ func pulumiBuiltins(options bindOptions) map[string]*model.Function {
 		"organization": model.NewFunction(model.StaticFunctionSignature{
 			ReturnType: model.StringType,
 		}),
-		// Returns the directory from which pulumi was run
+		// Returns the directory from which khulnasoft was run
 		"cwd": model.NewFunction(model.StaticFunctionSignature{
 			ReturnType: model.StringType,
 		}),

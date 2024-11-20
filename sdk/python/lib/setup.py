@@ -27,16 +27,16 @@ def readme():
         return "Pulumi's Python SDK - Development Version"
 
 
-setup(name='pulumi',
+setup(name='khulnasoft',
       version=VERSION,
       description='Pulumi\'s Python SDK',
       long_description=readme(),
       long_description_content_type='text/markdown',
-      url='https://github.com/pulumi/pulumi',
+      url='https://github.com/khulnasoft/khulnasoft',
       license='Apache 2.0',
       packages=find_packages(exclude=("test*",)),
       package_data={
-          'pulumi': [
+          'khulnasoft': [
               'py.typed'
           ]
       },

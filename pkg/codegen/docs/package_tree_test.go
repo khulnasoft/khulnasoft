@@ -71,7 +71,7 @@ func TestGeneratePackageTree(t *testing.T) {
 	})
 }
 
-// Original issues: pulumi/pulumi#14821, pulumi/pulumi#14820.
+// Original issues: khulnasoft/khulnasoft#14821, khulnasoft/khulnasoft#14820.
 func TestGeneratePackageTreeNested(t *testing.T) {
 	t.Parallel()
 

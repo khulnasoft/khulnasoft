@@ -20,30 +20,30 @@ import (
 	"fmt"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/provider"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	perrors "github.com/pulumi/pulumi/sdk/v3/go/pulumi/errors"
-	pulumiprovider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	perrors "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/errors"
+	khulnasoftprovider "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/provider"
 )
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Foo pulumi.StringOutput `pulumi:"foo"`
+	Foo khulnasoft.StringOutput `khulnasoft:"foo"`
 }
 
 type ComponentArgs struct {
-	Foo pulumi.StringInput `pulumi:"foo"`
+	Foo khulnasoft.StringInput `khulnasoft:"foo"`
 }
 
-func NewComponent(ctx *pulumi.Context, name string, args *ComponentArgs, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context, name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	component := &Component{}
 	err := ctx.RegisterComponentResource("testcomponent:index:Component", name, component, opts...)
 	if err != nil {
 		return nil, err
 	}
 
-	if err := ctx.RegisterResourceOutputs(component, pulumi.Map{
+	if err := ctx.RegisterResourceOutputs(component, khulnasoft.Map{
 		"foo": args.Foo,
 	}); err != nil {
 		return nil, err
@@ -61,9 +61,9 @@ func main() {
 	if err := provider.MainWithOptions(provider.Options{
 		Name:    providerName,
 		Version: version,
-		Construct: func(ctx *pulumi.Context, typ, name string, inputs pulumiprovider.ConstructInputs,
-			options pulumi.ResourceOption,
-		) (*pulumiprovider.ConstructResult, error) {
+		Construct: func(ctx *khulnasoft.Context, typ, name string, inputs khulnasoftprovider.ConstructInputs,
+			options khulnasoft.ResourceOption,
+		) (*khulnasoftprovider.ConstructResult, error) {
 			if typ != "testcomponent:index:Component" {
 				return nil, fmt.Errorf("unknown resource type %s", typ)
 			}
@@ -78,9 +78,9 @@ func main() {
 				return nil, fmt.Errorf("creating component: %w", err)
 			}
 
-			return pulumiprovider.NewConstructResult(component)
+			return khulnasoftprovider.NewConstructResult(component)
 		},
-		Call: func(ctx *pulumi.Context, tok string, args pulumiprovider.CallArgs) (*pulumiprovider.CallResult, error) {
+		Call: func(ctx *khulnasoft.Context, tok string, args khulnasoftprovider.CallArgs) (*khulnasoftprovider.CallResult, error) {
 			if tok != "testcomponent:index:Component/getMessage" {
 				return nil, fmt.Errorf("unknown method %s", tok)
 			}

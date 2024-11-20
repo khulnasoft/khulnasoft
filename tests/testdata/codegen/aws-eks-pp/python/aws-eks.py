@@ -1,6 +1,6 @@
-import pulumi
+import khulnasoft
 import json
-import pulumi_aws as aws
+import khulnasoft_aws as aws
 
 # VPC
 eks_vpc = aws.ec2.Vpc("eksVpc",
@@ -9,12 +9,12 @@ eks_vpc = aws.ec2.Vpc("eksVpc",
     enable_dns_hostnames=True,
     enable_dns_support=True,
     tags={
-        "Name": "pulumi-eks-vpc",
+        "Name": "khulnasoft-eks-vpc",
     })
 eks_igw = aws.ec2.InternetGateway("eksIgw",
     vpc_id=eks_vpc.id,
     tags={
-        "Name": "pulumi-vpc-ig",
+        "Name": "khulnasoft-vpc-ig",
     })
 eks_route_table = aws.ec2.RouteTable("eksRouteTable",
     vpc_id=eks_vpc.id,
@@ -23,7 +23,7 @@ eks_route_table = aws.ec2.RouteTable("eksRouteTable",
         "gateway_id": eks_igw.id,
     }],
     tags={
-        "Name": "pulumi-vpc-rt",
+        "Name": "khulnasoft-vpc-rt",
     })
 # Subnets, one for each AZ in a region
 zones = aws.get_availability_zones()
@@ -36,7 +36,7 @@ for range in [{"key": k, "value": v} for [k, v] in enumerate(zones.names)]:
         cidr_block=f"10.100.{range['key']}.0/24",
         availability_zone=range["value"],
         tags={
-            "Name": f"pulumi-sn-{range['value']}",
+            "Name": f"khulnasoft-sn-{range['value']}",
         }))
 rta = []
 for range in [{"key": k, "value": v} for [k, v] in enumerate(zones.names)]:
@@ -48,7 +48,7 @@ eks_security_group = aws.ec2.SecurityGroup("eksSecurityGroup",
     vpc_id=eks_vpc.id,
     description="Allow all HTTP(s) traffic to EKS Cluster",
     tags={
-        "Name": "pulumi-cluster-sg",
+        "Name": "khulnasoft-cluster-sg",
     },
     ingress=[
         {
@@ -109,7 +109,7 @@ registry_policy_attachment = aws.iam.RolePolicyAttachment("registryPolicyAttachm
 eks_cluster = aws.eks.Cluster("eksCluster",
     role_arn=eks_role.arn,
     tags={
-        "Name": "pulumi-eks-cluster",
+        "Name": "khulnasoft-eks-cluster",
     },
     vpc_config={
         "public_access_cidrs": ["0.0.0.0/0"],
@@ -118,19 +118,19 @@ eks_cluster = aws.eks.Cluster("eksCluster",
     })
 node_group = aws.eks.NodeGroup("nodeGroup",
     cluster_name=eks_cluster.name,
-    node_group_name="pulumi-eks-nodegroup",
+    node_group_name="khulnasoft-eks-nodegroup",
     node_role_arn=ec2_role.arn,
     subnet_ids=subnet_ids,
     tags={
-        "Name": "pulumi-cluster-nodeGroup",
+        "Name": "khulnasoft-cluster-nodeGroup",
     },
     scaling_config={
         "desired_size": 2,
         "max_size": 2,
         "min_size": 1,
     })
-pulumi.export("clusterName", eks_cluster.name)
-pulumi.export("kubeconfig", pulumi.Output.json_dumps({
+khulnasoft.export("clusterName", eks_cluster.name)
+khulnasoft.export("kubeconfig", khulnasoft.Output.json_dumps({
     "apiVersion": "v1",
     "clusters": [{
         "cluster": {

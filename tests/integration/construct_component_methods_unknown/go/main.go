@@ -5,12 +5,12 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		r, err := NewRandom(ctx, "resource", &RandomArgs{Length: pulumi.Int(10)})
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		r, err := NewRandom(ctx, "resource", &RandomArgs{Length: khulnasoft.Int(10)})
 		if err != nil {
 			return err
 		}

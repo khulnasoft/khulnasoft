@@ -24,14 +24,14 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/display/internal/terminal"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/channel"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/channel"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 // printPermalinkNonInteractive prints an update's permalink prefaced with `View Live: `.
@@ -135,7 +135,7 @@ func startEventLogger(events <-chan engine.Event, done chan<- bool, opts Options
 	// Before moving further, attempt to open the log file.
 	//
 	// Try setting O_APPEND to see if that helps with the malformed reads we've been seeing in automation api:
-	// https://github.com/pulumi/pulumi/issues/6768
+	// https://github.com/khulnasoft/khulnasoft/issues/6768
 	logFile, err := os.OpenFile(opts.EventLogPath, os.O_RDWR|os.O_CREATE|os.O_TRUNC|os.O_APPEND, 0o666)
 	if err != nil {
 		logging.V(7).Infof("could not create event log: %v", err)

@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"output-funcs/mypkg/internal"
 )
 
 // Check codegen of functions with a Dict<str,str> parameter.
-func FuncWithDictParam(ctx *pulumi.Context, args *FuncWithDictParamArgs, opts ...pulumi.InvokeOption) (*FuncWithDictParamResult, error) {
+func FuncWithDictParam(ctx *khulnasoft.Context, args *FuncWithDictParamArgs, opts ...khulnasoft.InvokeOption) (*FuncWithDictParamResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FuncWithDictParamResult
 	err := ctx.Invoke("mypkg::funcWithDictParam", args, &rv, opts...)
@@ -24,16 +24,16 @@ func FuncWithDictParam(ctx *pulumi.Context, args *FuncWithDictParamArgs, opts ..
 }
 
 type FuncWithDictParamArgs struct {
-	A map[string]string `pulumi:"a"`
-	B *string           `pulumi:"b"`
+	A map[string]string `khulnasoft:"a"`
+	B *string           `khulnasoft:"b"`
 }
 
 type FuncWithDictParamResult struct {
-	R string `pulumi:"r"`
+	R string `khulnasoft:"r"`
 }
 
-func FuncWithDictParamOutput(ctx *pulumi.Context, args FuncWithDictParamOutputArgs, opts ...pulumi.InvokeOption) FuncWithDictParamResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func FuncWithDictParamOutput(ctx *khulnasoft.Context, args FuncWithDictParamOutputArgs, opts ...khulnasoft.InvokeOption) FuncWithDictParamResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (FuncWithDictParamResultOutput, error) {
 			args := v.(FuncWithDictParamArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -43,24 +43,24 @@ func FuncWithDictParamOutput(ctx *pulumi.Context, args FuncWithDictParamOutputAr
 				return FuncWithDictParamResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(FuncWithDictParamResultOutput)
+			output := khulnasoft.ToOutput(rv).(FuncWithDictParamResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(FuncWithDictParamResultOutput), nil
+				return khulnasoft.ToSecret(output).(FuncWithDictParamResultOutput), nil
 			}
 			return output, nil
 		}).(FuncWithDictParamResultOutput)
 }
 
 type FuncWithDictParamOutputArgs struct {
-	A pulumi.StringMapInput `pulumi:"a"`
-	B pulumi.StringPtrInput `pulumi:"b"`
+	A khulnasoft.StringMapInput `khulnasoft:"a"`
+	B khulnasoft.StringPtrInput `khulnasoft:"b"`
 }
 
 func (FuncWithDictParamOutputArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithDictParamArgs)(nil)).Elem()
 }
 
-type FuncWithDictParamResultOutput struct{ *pulumi.OutputState }
+type FuncWithDictParamResultOutput struct{ *khulnasoft.OutputState }
 
 func (FuncWithDictParamResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithDictParamResult)(nil)).Elem()
@@ -74,16 +74,16 @@ func (o FuncWithDictParamResultOutput) ToFuncWithDictParamResultOutputWithContex
 	return o
 }
 
-func (o FuncWithDictParamResultOutput) ToOutput(ctx context.Context) pulumix.Output[FuncWithDictParamResult] {
-	return pulumix.Output[FuncWithDictParamResult]{
+func (o FuncWithDictParamResultOutput) ToOutput(ctx context.Context) khulnasoftx.Output[FuncWithDictParamResult] {
+	return khulnasoftx.Output[FuncWithDictParamResult]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o FuncWithDictParamResultOutput) R() pulumi.StringOutput {
-	return o.ApplyT(func(v FuncWithDictParamResult) string { return v.R }).(pulumi.StringOutput)
+func (o FuncWithDictParamResultOutput) R() khulnasoft.StringOutput {
+	return o.ApplyT(func(v FuncWithDictParamResult) string { return v.R }).(khulnasoft.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(FuncWithDictParamResultOutput{})
+	khulnasoft.RegisterOutputType(FuncWithDictParamResultOutput{})
 }

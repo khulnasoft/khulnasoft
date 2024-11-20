@@ -23,9 +23,9 @@ import (
 	"github.com/blang/semver"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/provider"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	pulumiprovider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	khulnasoftprovider "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/provider"
 )
 
 const (
@@ -46,7 +46,7 @@ func (m *module) Version() semver.Version {
 	return m.version
 }
 
-func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+func (m *module) Construct(ctx *khulnasoft.Context, name, typ, urn string) (r khulnasoft.Resource, err error) {
 	switch typ {
 	case configurerResourceToken:
 		r = &Configurer{}
@@ -54,11 +54,11 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
-	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err = ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return
 }
 
-func call(ctx *pulumi.Context, tok string, args pulumiprovider.CallArgs) (*pulumiprovider.CallResult, error) {
+func call(ctx *khulnasoft.Context, tok string, args khulnasoftprovider.CallArgs) (*khulnasoftprovider.CallResult, error) {
 	switch tok {
 	case tlsProviderMethodToken:
 		methodArgs := &TlsProviderArgs{}
@@ -71,7 +71,7 @@ func call(ctx *pulumi.Context, tok string, args pulumiprovider.CallArgs) (*pulum
 		if err != nil {
 			return nil, fmt.Errorf("calling method: %w", err)
 		}
-		return pulumiprovider.NewSingletonCallResult(result)
+		return khulnasoftprovider.NewSingletonCallResult(result)
 	case meaningOfLifeMethodToken:
 		methodArgs := &MeaningOfLifeArgs{}
 		res, err := args.CopyTo(methodArgs)
@@ -83,7 +83,7 @@ func call(ctx *pulumi.Context, tok string, args pulumiprovider.CallArgs) (*pulum
 		if err != nil {
 			return nil, fmt.Errorf("calling method: %w", err)
 		}
-		return pulumiprovider.NewSingletonCallResult(result)
+		return khulnasoftprovider.NewSingletonCallResult(result)
 	case objectMixMethodToken:
 		methodArgs := &ObjectMixArgs{}
 		res, err := args.CopyTo(methodArgs)
@@ -95,15 +95,15 @@ func call(ctx *pulumi.Context, tok string, args pulumiprovider.CallArgs) (*pulum
 		if err != nil {
 			return nil, fmt.Errorf("calling method: %w", err)
 		}
-		return pulumiprovider.NewCallResult(result)
+		return khulnasoftprovider.NewCallResult(result)
 	default:
 		return nil, fmt.Errorf("unknown method %s", tok)
 	}
 }
 
-func construct(ctx *pulumi.Context, typ, name string, inputs pulumiprovider.ConstructInputs,
-	options pulumi.ResourceOption,
-) (*pulumiprovider.ConstructResult, error) {
+func construct(ctx *khulnasoft.Context, typ, name string, inputs khulnasoftprovider.ConstructInputs,
+	options khulnasoft.ResourceOption,
+) (*khulnasoftprovider.ConstructResult, error) {
 	if typ != configurerResourceToken {
 		return nil, fmt.Errorf("unknown resource type %s", typ)
 	}
@@ -118,12 +118,12 @@ func construct(ctx *pulumi.Context, typ, name string, inputs pulumiprovider.Cons
 		return nil, fmt.Errorf("creating configurer: %w", err)
 	}
 
-	return pulumiprovider.NewConstructResult(component)
+	return khulnasoftprovider.NewConstructResult(component)
 }
 
 func main() {
 	// Register any resources that can come back as resource references that need to be rehydrated.
-	pulumi.RegisterResourceModule(providerName, mainModule, &module{semver.MustParse(version)})
+	khulnasoft.RegisterResourceModule(providerName, mainModule, &module{semver.MustParse(version)})
 
 	if err := provider.MainWithOptions(provider.Options{
 		Name:      providerName,

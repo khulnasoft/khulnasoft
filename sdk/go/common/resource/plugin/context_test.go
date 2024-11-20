@@ -19,7 +19,7 @@ import (
 	"testing"
 
 	"github.com/opentracing/opentracing-go/mocktracer"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/diagtest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/diagtest"
 	"github.com/stretchr/testify/require"
 )
 

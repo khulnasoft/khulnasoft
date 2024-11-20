@@ -16,12 +16,12 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.20.1
-// source: pulumi/language.proto
+// source: khulnasoft/language.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
-	codegen "github.com/pulumi/pulumi/sdk/v3/proto/go/codegen"
+	codegen "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go/codegen"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -67,11 +67,11 @@ func (x RuntimeOptionPrompt_RuntimeOptionType) String() string {
 }
 
 func (RuntimeOptionPrompt_RuntimeOptionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_pulumi_language_proto_enumTypes[0].Descriptor()
+	return file_khulnasoft_language_proto_enumTypes[0].Descriptor()
 }
 
 func (RuntimeOptionPrompt_RuntimeOptionType) Type() protoreflect.EnumType {
-	return &file_pulumi_language_proto_enumTypes[0]
+	return &file_khulnasoft_language_proto_enumTypes[0]
 }
 
 func (x RuntimeOptionPrompt_RuntimeOptionType) Number() protoreflect.EnumNumber {
@@ -80,7 +80,7 @@ func (x RuntimeOptionPrompt_RuntimeOptionType) Number() protoreflect.EnumNumber 
 
 // Deprecated: Use RuntimeOptionPrompt_RuntimeOptionType.Descriptor instead.
 func (RuntimeOptionPrompt_RuntimeOptionType) EnumDescriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{13, 0}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{13, 0}
 }
 
 // ProgramInfo are the common set of options that a language runtime needs to execute or query a program. This
@@ -107,7 +107,7 @@ type ProgramInfo struct {
 func (x *ProgramInfo) Reset() {
 	*x = ProgramInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[0]
+		mi := &file_khulnasoft_language_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -120,7 +120,7 @@ func (x *ProgramInfo) String() string {
 func (*ProgramInfo) ProtoMessage() {}
 
 func (x *ProgramInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[0]
+	mi := &file_khulnasoft_language_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -133,7 +133,7 @@ func (x *ProgramInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProgramInfo.ProtoReflect.Descriptor instead.
 func (*ProgramInfo) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ProgramInfo) GetRootDirectory() string {
@@ -175,7 +175,7 @@ type AboutRequest struct {
 func (x *AboutRequest) Reset() {
 	*x = AboutRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[1]
+		mi := &file_khulnasoft_language_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -188,7 +188,7 @@ func (x *AboutRequest) String() string {
 func (*AboutRequest) ProtoMessage() {}
 
 func (x *AboutRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[1]
+	mi := &file_khulnasoft_language_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -201,7 +201,7 @@ func (x *AboutRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AboutRequest.ProtoReflect.Descriptor instead.
 func (*AboutRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{1}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AboutRequest) GetInfo() *ProgramInfo {
@@ -225,7 +225,7 @@ type AboutResponse struct {
 func (x *AboutResponse) Reset() {
 	*x = AboutResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[2]
+		mi := &file_khulnasoft_language_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -238,7 +238,7 @@ func (x *AboutResponse) String() string {
 func (*AboutResponse) ProtoMessage() {}
 
 func (x *AboutResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[2]
+	mi := &file_khulnasoft_language_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -251,7 +251,7 @@ func (x *AboutResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AboutResponse.ProtoReflect.Descriptor instead.
 func (*AboutResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{2}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AboutResponse) GetExecutable() string {
@@ -293,7 +293,7 @@ type GetProgramDependenciesRequest struct {
 func (x *GetProgramDependenciesRequest) Reset() {
 	*x = GetProgramDependenciesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[3]
+		mi := &file_khulnasoft_language_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -306,7 +306,7 @@ func (x *GetProgramDependenciesRequest) String() string {
 func (*GetProgramDependenciesRequest) ProtoMessage() {}
 
 func (x *GetProgramDependenciesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[3]
+	mi := &file_khulnasoft_language_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -319,7 +319,7 @@ func (x *GetProgramDependenciesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProgramDependenciesRequest.ProtoReflect.Descriptor instead.
 func (*GetProgramDependenciesRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{3}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{3}
 }
 
 // Deprecated: Do not use.
@@ -372,7 +372,7 @@ type DependencyInfo struct {
 func (x *DependencyInfo) Reset() {
 	*x = DependencyInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[4]
+		mi := &file_khulnasoft_language_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -385,7 +385,7 @@ func (x *DependencyInfo) String() string {
 func (*DependencyInfo) ProtoMessage() {}
 
 func (x *DependencyInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[4]
+	mi := &file_khulnasoft_language_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -398,7 +398,7 @@ func (x *DependencyInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DependencyInfo.ProtoReflect.Descriptor instead.
 func (*DependencyInfo) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{4}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *DependencyInfo) GetName() string {
@@ -426,7 +426,7 @@ type GetProgramDependenciesResponse struct {
 func (x *GetProgramDependenciesResponse) Reset() {
 	*x = GetProgramDependenciesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[5]
+		mi := &file_khulnasoft_language_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -439,7 +439,7 @@ func (x *GetProgramDependenciesResponse) String() string {
 func (*GetProgramDependenciesResponse) ProtoMessage() {}
 
 func (x *GetProgramDependenciesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[5]
+	mi := &file_khulnasoft_language_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -452,7 +452,7 @@ func (x *GetProgramDependenciesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProgramDependenciesResponse.ProtoReflect.Descriptor instead.
 func (*GetProgramDependenciesResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{5}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetProgramDependenciesResponse) GetDependencies() []*DependencyInfo {
@@ -479,7 +479,7 @@ type GetRequiredPluginsRequest struct {
 func (x *GetRequiredPluginsRequest) Reset() {
 	*x = GetRequiredPluginsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[6]
+		mi := &file_khulnasoft_language_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -492,7 +492,7 @@ func (x *GetRequiredPluginsRequest) String() string {
 func (*GetRequiredPluginsRequest) ProtoMessage() {}
 
 func (x *GetRequiredPluginsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[6]
+	mi := &file_khulnasoft_language_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -505,7 +505,7 @@ func (x *GetRequiredPluginsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRequiredPluginsRequest.ProtoReflect.Descriptor instead.
 func (*GetRequiredPluginsRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{6}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{6}
 }
 
 // Deprecated: Do not use.
@@ -550,7 +550,7 @@ type GetRequiredPluginsResponse struct {
 func (x *GetRequiredPluginsResponse) Reset() {
 	*x = GetRequiredPluginsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[7]
+		mi := &file_khulnasoft_language_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -563,7 +563,7 @@ func (x *GetRequiredPluginsResponse) String() string {
 func (*GetRequiredPluginsResponse) ProtoMessage() {}
 
 func (x *GetRequiredPluginsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[7]
+	mi := &file_khulnasoft_language_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -576,7 +576,7 @@ func (x *GetRequiredPluginsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRequiredPluginsResponse.ProtoReflect.Descriptor instead.
 func (*GetRequiredPluginsResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{7}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetRequiredPluginsResponse) GetPlugins() []*PluginDependency {
@@ -615,7 +615,7 @@ type RunRequest struct {
 func (x *RunRequest) Reset() {
 	*x = RunRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[8]
+		mi := &file_khulnasoft_language_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -628,7 +628,7 @@ func (x *RunRequest) String() string {
 func (*RunRequest) ProtoMessage() {}
 
 func (x *RunRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[8]
+	mi := &file_khulnasoft_language_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -641,7 +641,7 @@ func (x *RunRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RunRequest.ProtoReflect.Descriptor instead.
 func (*RunRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{8}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *RunRequest) GetProject() string {
@@ -774,7 +774,7 @@ type RunResponse struct {
 func (x *RunResponse) Reset() {
 	*x = RunResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[9]
+		mi := &file_khulnasoft_language_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -787,7 +787,7 @@ func (x *RunResponse) String() string {
 func (*RunResponse) ProtoMessage() {}
 
 func (x *RunResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[9]
+	mi := &file_khulnasoft_language_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -800,7 +800,7 @@ func (x *RunResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RunResponse.ProtoReflect.Descriptor instead.
 func (*RunResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{9}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *RunResponse) GetError() string {
@@ -832,7 +832,7 @@ type InstallDependenciesRequest struct {
 func (x *InstallDependenciesRequest) Reset() {
 	*x = InstallDependenciesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[10]
+		mi := &file_khulnasoft_language_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -845,7 +845,7 @@ func (x *InstallDependenciesRequest) String() string {
 func (*InstallDependenciesRequest) ProtoMessage() {}
 
 func (x *InstallDependenciesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[10]
+	mi := &file_khulnasoft_language_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -858,7 +858,7 @@ func (x *InstallDependenciesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InstallDependenciesRequest.ProtoReflect.Descriptor instead.
 func (*InstallDependenciesRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{10}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{10}
 }
 
 // Deprecated: Do not use.
@@ -902,7 +902,7 @@ type InstallDependenciesResponse struct {
 func (x *InstallDependenciesResponse) Reset() {
 	*x = InstallDependenciesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[11]
+		mi := &file_khulnasoft_language_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -915,7 +915,7 @@ func (x *InstallDependenciesResponse) String() string {
 func (*InstallDependenciesResponse) ProtoMessage() {}
 
 func (x *InstallDependenciesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[11]
+	mi := &file_khulnasoft_language_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -928,7 +928,7 @@ func (x *InstallDependenciesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InstallDependenciesResponse.ProtoReflect.Descriptor instead.
 func (*InstallDependenciesResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{11}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *InstallDependenciesResponse) GetStdout() []byte {
@@ -956,7 +956,7 @@ type RuntimeOptionsRequest struct {
 func (x *RuntimeOptionsRequest) Reset() {
 	*x = RuntimeOptionsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[12]
+		mi := &file_khulnasoft_language_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -969,7 +969,7 @@ func (x *RuntimeOptionsRequest) String() string {
 func (*RuntimeOptionsRequest) ProtoMessage() {}
 
 func (x *RuntimeOptionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[12]
+	mi := &file_khulnasoft_language_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -982,7 +982,7 @@ func (x *RuntimeOptionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuntimeOptionsRequest.ProtoReflect.Descriptor instead.
 func (*RuntimeOptionsRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{12}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *RuntimeOptionsRequest) GetInfo() *ProgramInfo {
@@ -999,7 +999,7 @@ type RuntimeOptionPrompt struct {
 
 	Key         string                                    `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
 	Description string                                    `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	PromptType  RuntimeOptionPrompt_RuntimeOptionType     `protobuf:"varint,3,opt,name=promptType,proto3,enum=pulumirpc.RuntimeOptionPrompt_RuntimeOptionType" json:"promptType,omitempty"`
+	PromptType  RuntimeOptionPrompt_RuntimeOptionType     `protobuf:"varint,3,opt,name=promptType,proto3,enum=khulnasoftrpc.RuntimeOptionPrompt_RuntimeOptionType" json:"promptType,omitempty"`
 	Choices     []*RuntimeOptionPrompt_RuntimeOptionValue `protobuf:"bytes,4,rep,name=choices,proto3" json:"choices,omitempty"`
 	Default     *RuntimeOptionPrompt_RuntimeOptionValue   `protobuf:"bytes,5,opt,name=default,proto3" json:"default,omitempty"`
 }
@@ -1007,7 +1007,7 @@ type RuntimeOptionPrompt struct {
 func (x *RuntimeOptionPrompt) Reset() {
 	*x = RuntimeOptionPrompt{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[13]
+		mi := &file_khulnasoft_language_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1020,7 +1020,7 @@ func (x *RuntimeOptionPrompt) String() string {
 func (*RuntimeOptionPrompt) ProtoMessage() {}
 
 func (x *RuntimeOptionPrompt) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[13]
+	mi := &file_khulnasoft_language_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1033,7 +1033,7 @@ func (x *RuntimeOptionPrompt) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuntimeOptionPrompt.ProtoReflect.Descriptor instead.
 func (*RuntimeOptionPrompt) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{13}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *RuntimeOptionPrompt) GetKey() string {
@@ -1082,7 +1082,7 @@ type RuntimeOptionsResponse struct {
 func (x *RuntimeOptionsResponse) Reset() {
 	*x = RuntimeOptionsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[14]
+		mi := &file_khulnasoft_language_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1095,7 +1095,7 @@ func (x *RuntimeOptionsResponse) String() string {
 func (*RuntimeOptionsResponse) ProtoMessage() {}
 
 func (x *RuntimeOptionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[14]
+	mi := &file_khulnasoft_language_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1108,7 +1108,7 @@ func (x *RuntimeOptionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuntimeOptionsResponse.ProtoReflect.Descriptor instead.
 func (*RuntimeOptionsResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{14}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *RuntimeOptionsResponse) GetPrompts() []*RuntimeOptionPrompt {
@@ -1134,7 +1134,7 @@ type RunPluginRequest struct {
 func (x *RunPluginRequest) Reset() {
 	*x = RunPluginRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[15]
+		mi := &file_khulnasoft_language_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1147,7 +1147,7 @@ func (x *RunPluginRequest) String() string {
 func (*RunPluginRequest) ProtoMessage() {}
 
 func (x *RunPluginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[15]
+	mi := &file_khulnasoft_language_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1160,7 +1160,7 @@ func (x *RunPluginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RunPluginRequest.ProtoReflect.Descriptor instead.
 func (*RunPluginRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{15}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *RunPluginRequest) GetPwd() string {
@@ -1214,7 +1214,7 @@ type RunPluginResponse struct {
 func (x *RunPluginResponse) Reset() {
 	*x = RunPluginResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[16]
+		mi := &file_khulnasoft_language_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1227,7 +1227,7 @@ func (x *RunPluginResponse) String() string {
 func (*RunPluginResponse) ProtoMessage() {}
 
 func (x *RunPluginResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[16]
+	mi := &file_khulnasoft_language_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1240,7 +1240,7 @@ func (x *RunPluginResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RunPluginResponse.ProtoReflect.Descriptor instead.
 func (*RunPluginResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{16}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{16}
 }
 
 func (m *RunPluginResponse) GetOutput() isRunPluginResponse_Output {
@@ -1309,7 +1309,7 @@ type GenerateProgramRequest struct {
 func (x *GenerateProgramRequest) Reset() {
 	*x = GenerateProgramRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[17]
+		mi := &file_khulnasoft_language_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1322,7 +1322,7 @@ func (x *GenerateProgramRequest) String() string {
 func (*GenerateProgramRequest) ProtoMessage() {}
 
 func (x *GenerateProgramRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[17]
+	mi := &file_khulnasoft_language_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1335,7 +1335,7 @@ func (x *GenerateProgramRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateProgramRequest.ProtoReflect.Descriptor instead.
 func (*GenerateProgramRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{17}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GenerateProgramRequest) GetSource() map[string]string {
@@ -1373,7 +1373,7 @@ type GenerateProgramResponse struct {
 func (x *GenerateProgramResponse) Reset() {
 	*x = GenerateProgramResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[18]
+		mi := &file_khulnasoft_language_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1386,7 +1386,7 @@ func (x *GenerateProgramResponse) String() string {
 func (*GenerateProgramResponse) ProtoMessage() {}
 
 func (x *GenerateProgramResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[18]
+	mi := &file_khulnasoft_language_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1399,7 +1399,7 @@ func (x *GenerateProgramResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateProgramResponse.ProtoReflect.Descriptor instead.
 func (*GenerateProgramResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{18}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GenerateProgramResponse) GetDiagnostics() []*codegen.Diagnostic {
@@ -1425,7 +1425,7 @@ type GenerateProjectRequest struct {
 	SourceDirectory string `protobuf:"bytes,1,opt,name=source_directory,json=sourceDirectory,proto3" json:"source_directory,omitempty"`
 	// the directory to generate the project in.
 	TargetDirectory string `protobuf:"bytes,2,opt,name=target_directory,json=targetDirectory,proto3" json:"target_directory,omitempty"`
-	// the JSON-encoded pulumi project file.
+	// the JSON-encoded khulnasoft project file.
 	Project string `protobuf:"bytes,3,opt,name=project,proto3" json:"project,omitempty"`
 	// if PCL binding should be strict or not.
 	Strict bool `protobuf:"varint,4,opt,name=strict,proto3" json:"strict,omitempty"`
@@ -1439,7 +1439,7 @@ type GenerateProjectRequest struct {
 func (x *GenerateProjectRequest) Reset() {
 	*x = GenerateProjectRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[19]
+		mi := &file_khulnasoft_language_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1452,7 +1452,7 @@ func (x *GenerateProjectRequest) String() string {
 func (*GenerateProjectRequest) ProtoMessage() {}
 
 func (x *GenerateProjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[19]
+	mi := &file_khulnasoft_language_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1465,7 +1465,7 @@ func (x *GenerateProjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateProjectRequest.ProtoReflect.Descriptor instead.
 func (*GenerateProjectRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{19}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GenerateProjectRequest) GetSourceDirectory() string {
@@ -1522,7 +1522,7 @@ type GenerateProjectResponse struct {
 func (x *GenerateProjectResponse) Reset() {
 	*x = GenerateProjectResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[20]
+		mi := &file_khulnasoft_language_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1535,7 +1535,7 @@ func (x *GenerateProjectResponse) String() string {
 func (*GenerateProjectResponse) ProtoMessage() {}
 
 func (x *GenerateProjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[20]
+	mi := &file_khulnasoft_language_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1548,7 +1548,7 @@ func (x *GenerateProjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateProjectResponse.ProtoReflect.Descriptor instead.
 func (*GenerateProjectResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{20}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *GenerateProjectResponse) GetDiagnostics() []*codegen.Diagnostic {
@@ -1582,7 +1582,7 @@ type GeneratePackageRequest struct {
 func (x *GeneratePackageRequest) Reset() {
 	*x = GeneratePackageRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[21]
+		mi := &file_khulnasoft_language_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1595,7 +1595,7 @@ func (x *GeneratePackageRequest) String() string {
 func (*GeneratePackageRequest) ProtoMessage() {}
 
 func (x *GeneratePackageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[21]
+	mi := &file_khulnasoft_language_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1608,7 +1608,7 @@ func (x *GeneratePackageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GeneratePackageRequest.ProtoReflect.Descriptor instead.
 func (*GeneratePackageRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{21}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GeneratePackageRequest) GetDirectory() string {
@@ -1665,7 +1665,7 @@ type GeneratePackageResponse struct {
 func (x *GeneratePackageResponse) Reset() {
 	*x = GeneratePackageResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[22]
+		mi := &file_khulnasoft_language_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1678,7 +1678,7 @@ func (x *GeneratePackageResponse) String() string {
 func (*GeneratePackageResponse) ProtoMessage() {}
 
 func (x *GeneratePackageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[22]
+	mi := &file_khulnasoft_language_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1691,7 +1691,7 @@ func (x *GeneratePackageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GeneratePackageResponse.ProtoReflect.Descriptor instead.
 func (*GeneratePackageResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{22}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GeneratePackageResponse) GetDiagnostics() []*codegen.Diagnostic {
@@ -1715,7 +1715,7 @@ type PackRequest struct {
 func (x *PackRequest) Reset() {
 	*x = PackRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[23]
+		mi := &file_khulnasoft_language_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1728,7 +1728,7 @@ func (x *PackRequest) String() string {
 func (*PackRequest) ProtoMessage() {}
 
 func (x *PackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[23]
+	mi := &file_khulnasoft_language_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1741,7 +1741,7 @@ func (x *PackRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PackRequest.ProtoReflect.Descriptor instead.
 func (*PackRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{23}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *PackRequest) GetPackageDirectory() string {
@@ -1770,7 +1770,7 @@ type PackResponse struct {
 func (x *PackResponse) Reset() {
 	*x = PackResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[24]
+		mi := &file_khulnasoft_language_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1783,7 +1783,7 @@ func (x *PackResponse) String() string {
 func (*PackResponse) ProtoMessage() {}
 
 func (x *PackResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[24]
+	mi := &file_khulnasoft_language_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1796,7 +1796,7 @@ func (x *PackResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PackResponse.ProtoReflect.Descriptor instead.
 func (*PackResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{24}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *PackResponse) GetArtifactPath() string {
@@ -1811,7 +1811,7 @@ type RuntimeOptionPrompt_RuntimeOptionValue struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PromptType  RuntimeOptionPrompt_RuntimeOptionType `protobuf:"varint,1,opt,name=promptType,proto3,enum=pulumirpc.RuntimeOptionPrompt_RuntimeOptionType" json:"promptType,omitempty"`
+	PromptType  RuntimeOptionPrompt_RuntimeOptionType `protobuf:"varint,1,opt,name=promptType,proto3,enum=khulnasoftrpc.RuntimeOptionPrompt_RuntimeOptionType" json:"promptType,omitempty"`
 	StringValue string                                `protobuf:"bytes,2,opt,name=stringValue,proto3" json:"stringValue,omitempty"`
 	Int32Value  int32                                 `protobuf:"varint,3,opt,name=int32Value,proto3" json:"int32Value,omitempty"`
 	DisplayName string                                `protobuf:"bytes,4,opt,name=displayName,proto3" json:"displayName,omitempty"`
@@ -1820,7 +1820,7 @@ type RuntimeOptionPrompt_RuntimeOptionValue struct {
 func (x *RuntimeOptionPrompt_RuntimeOptionValue) Reset() {
 	*x = RuntimeOptionPrompt_RuntimeOptionValue{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_language_proto_msgTypes[27]
+		mi := &file_khulnasoft_language_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1833,7 +1833,7 @@ func (x *RuntimeOptionPrompt_RuntimeOptionValue) String() string {
 func (*RuntimeOptionPrompt_RuntimeOptionValue) ProtoMessage() {}
 
 func (x *RuntimeOptionPrompt_RuntimeOptionValue) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_language_proto_msgTypes[27]
+	mi := &file_khulnasoft_language_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1846,7 +1846,7 @@ func (x *RuntimeOptionPrompt_RuntimeOptionValue) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use RuntimeOptionPrompt_RuntimeOptionValue.ProtoReflect.Descriptor instead.
 func (*RuntimeOptionPrompt_RuntimeOptionValue) Descriptor() ([]byte, []int) {
-	return file_pulumi_language_proto_rawDescGZIP(), []int{13, 0}
+	return file_khulnasoft_language_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *RuntimeOptionPrompt_RuntimeOptionValue) GetPromptType() RuntimeOptionPrompt_RuntimeOptionType {
@@ -1877,9 +1877,9 @@ func (x *RuntimeOptionPrompt_RuntimeOptionValue) GetDisplayName() string {
 	return ""
 }
 
-var File_pulumi_language_proto protoreflect.FileDescriptor
+var File_khulnasoft_language_proto protoreflect.FileDescriptor
 
-var file_pulumi_language_proto_rawDesc = []byte{
+var file_khulnasoft_language_proto_rawDesc = []byte{
 	0x0a, 0x15, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x6c, 0x61, 0x6e, 0x67, 0x75, 0x61, 0x67,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x72,
 	0x70, 0x63, 0x1a, 0x18, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x63, 0x6f, 0x64, 0x65, 0x67,
@@ -2252,111 +2252,111 @@ var file_pulumi_language_proto_rawDesc = []byte{
 }
 
 var (
-	file_pulumi_language_proto_rawDescOnce sync.Once
-	file_pulumi_language_proto_rawDescData = file_pulumi_language_proto_rawDesc
+	file_khulnasoft_language_proto_rawDescOnce sync.Once
+	file_khulnasoft_language_proto_rawDescData = file_khulnasoft_language_proto_rawDesc
 )
 
-func file_pulumi_language_proto_rawDescGZIP() []byte {
-	file_pulumi_language_proto_rawDescOnce.Do(func() {
-		file_pulumi_language_proto_rawDescData = protoimpl.X.CompressGZIP(file_pulumi_language_proto_rawDescData)
+func file_khulnasoft_language_proto_rawDescGZIP() []byte {
+	file_khulnasoft_language_proto_rawDescOnce.Do(func() {
+		file_khulnasoft_language_proto_rawDescData = protoimpl.X.CompressGZIP(file_khulnasoft_language_proto_rawDescData)
 	})
-	return file_pulumi_language_proto_rawDescData
+	return file_khulnasoft_language_proto_rawDescData
 }
 
-var file_pulumi_language_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_pulumi_language_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
-var file_pulumi_language_proto_goTypes = []interface{}{
-	(RuntimeOptionPrompt_RuntimeOptionType)(0),     // 0: pulumirpc.RuntimeOptionPrompt.RuntimeOptionType
-	(*ProgramInfo)(nil),                            // 1: pulumirpc.ProgramInfo
-	(*AboutRequest)(nil),                           // 2: pulumirpc.AboutRequest
-	(*AboutResponse)(nil),                          // 3: pulumirpc.AboutResponse
-	(*GetProgramDependenciesRequest)(nil),          // 4: pulumirpc.GetProgramDependenciesRequest
-	(*DependencyInfo)(nil),                         // 5: pulumirpc.DependencyInfo
-	(*GetProgramDependenciesResponse)(nil),         // 6: pulumirpc.GetProgramDependenciesResponse
-	(*GetRequiredPluginsRequest)(nil),              // 7: pulumirpc.GetRequiredPluginsRequest
-	(*GetRequiredPluginsResponse)(nil),             // 8: pulumirpc.GetRequiredPluginsResponse
-	(*RunRequest)(nil),                             // 9: pulumirpc.RunRequest
-	(*RunResponse)(nil),                            // 10: pulumirpc.RunResponse
-	(*InstallDependenciesRequest)(nil),             // 11: pulumirpc.InstallDependenciesRequest
-	(*InstallDependenciesResponse)(nil),            // 12: pulumirpc.InstallDependenciesResponse
-	(*RuntimeOptionsRequest)(nil),                  // 13: pulumirpc.RuntimeOptionsRequest
-	(*RuntimeOptionPrompt)(nil),                    // 14: pulumirpc.RuntimeOptionPrompt
-	(*RuntimeOptionsResponse)(nil),                 // 15: pulumirpc.RuntimeOptionsResponse
-	(*RunPluginRequest)(nil),                       // 16: pulumirpc.RunPluginRequest
-	(*RunPluginResponse)(nil),                      // 17: pulumirpc.RunPluginResponse
-	(*GenerateProgramRequest)(nil),                 // 18: pulumirpc.GenerateProgramRequest
-	(*GenerateProgramResponse)(nil),                // 19: pulumirpc.GenerateProgramResponse
-	(*GenerateProjectRequest)(nil),                 // 20: pulumirpc.GenerateProjectRequest
-	(*GenerateProjectResponse)(nil),                // 21: pulumirpc.GenerateProjectResponse
-	(*GeneratePackageRequest)(nil),                 // 22: pulumirpc.GeneratePackageRequest
-	(*GeneratePackageResponse)(nil),                // 23: pulumirpc.GeneratePackageResponse
-	(*PackRequest)(nil),                            // 24: pulumirpc.PackRequest
-	(*PackResponse)(nil),                           // 25: pulumirpc.PackResponse
-	nil,                                            // 26: pulumirpc.AboutResponse.MetadataEntry
-	nil,                                            // 27: pulumirpc.RunRequest.ConfigEntry
-	(*RuntimeOptionPrompt_RuntimeOptionValue)(nil), // 28: pulumirpc.RuntimeOptionPrompt.RuntimeOptionValue
-	nil,                        // 29: pulumirpc.GenerateProgramRequest.SourceEntry
-	nil,                        // 30: pulumirpc.GenerateProgramResponse.SourceEntry
-	nil,                        // 31: pulumirpc.GenerateProjectRequest.LocalDependenciesEntry
-	nil,                        // 32: pulumirpc.GeneratePackageRequest.ExtraFilesEntry
-	nil,                        // 33: pulumirpc.GeneratePackageRequest.LocalDependenciesEntry
+var file_khulnasoft_language_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_khulnasoft_language_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_khulnasoft_language_proto_goTypes = []interface{}{
+	(RuntimeOptionPrompt_RuntimeOptionType)(0),     // 0: khulnasoftrpc.RuntimeOptionPrompt.RuntimeOptionType
+	(*ProgramInfo)(nil),                            // 1: khulnasoftrpc.ProgramInfo
+	(*AboutRequest)(nil),                           // 2: khulnasoftrpc.AboutRequest
+	(*AboutResponse)(nil),                          // 3: khulnasoftrpc.AboutResponse
+	(*GetProgramDependenciesRequest)(nil),          // 4: khulnasoftrpc.GetProgramDependenciesRequest
+	(*DependencyInfo)(nil),                         // 5: khulnasoftrpc.DependencyInfo
+	(*GetProgramDependenciesResponse)(nil),         // 6: khulnasoftrpc.GetProgramDependenciesResponse
+	(*GetRequiredPluginsRequest)(nil),              // 7: khulnasoftrpc.GetRequiredPluginsRequest
+	(*GetRequiredPluginsResponse)(nil),             // 8: khulnasoftrpc.GetRequiredPluginsResponse
+	(*RunRequest)(nil),                             // 9: khulnasoftrpc.RunRequest
+	(*RunResponse)(nil),                            // 10: khulnasoftrpc.RunResponse
+	(*InstallDependenciesRequest)(nil),             // 11: khulnasoftrpc.InstallDependenciesRequest
+	(*InstallDependenciesResponse)(nil),            // 12: khulnasoftrpc.InstallDependenciesResponse
+	(*RuntimeOptionsRequest)(nil),                  // 13: khulnasoftrpc.RuntimeOptionsRequest
+	(*RuntimeOptionPrompt)(nil),                    // 14: khulnasoftrpc.RuntimeOptionPrompt
+	(*RuntimeOptionsResponse)(nil),                 // 15: khulnasoftrpc.RuntimeOptionsResponse
+	(*RunPluginRequest)(nil),                       // 16: khulnasoftrpc.RunPluginRequest
+	(*RunPluginResponse)(nil),                      // 17: khulnasoftrpc.RunPluginResponse
+	(*GenerateProgramRequest)(nil),                 // 18: khulnasoftrpc.GenerateProgramRequest
+	(*GenerateProgramResponse)(nil),                // 19: khulnasoftrpc.GenerateProgramResponse
+	(*GenerateProjectRequest)(nil),                 // 20: khulnasoftrpc.GenerateProjectRequest
+	(*GenerateProjectResponse)(nil),                // 21: khulnasoftrpc.GenerateProjectResponse
+	(*GeneratePackageRequest)(nil),                 // 22: khulnasoftrpc.GeneratePackageRequest
+	(*GeneratePackageResponse)(nil),                // 23: khulnasoftrpc.GeneratePackageResponse
+	(*PackRequest)(nil),                            // 24: khulnasoftrpc.PackRequest
+	(*PackResponse)(nil),                           // 25: khulnasoftrpc.PackResponse
+	nil,                                            // 26: khulnasoftrpc.AboutResponse.MetadataEntry
+	nil,                                            // 27: khulnasoftrpc.RunRequest.ConfigEntry
+	(*RuntimeOptionPrompt_RuntimeOptionValue)(nil), // 28: khulnasoftrpc.RuntimeOptionPrompt.RuntimeOptionValue
+	nil,                        // 29: khulnasoftrpc.GenerateProgramRequest.SourceEntry
+	nil,                        // 30: khulnasoftrpc.GenerateProgramResponse.SourceEntry
+	nil,                        // 31: khulnasoftrpc.GenerateProjectRequest.LocalDependenciesEntry
+	nil,                        // 32: khulnasoftrpc.GeneratePackageRequest.ExtraFilesEntry
+	nil,                        // 33: khulnasoftrpc.GeneratePackageRequest.LocalDependenciesEntry
 	(*structpb.Struct)(nil),    // 34: google.protobuf.Struct
-	(*PluginDependency)(nil),   // 35: pulumirpc.PluginDependency
-	(*codegen.Diagnostic)(nil), // 36: pulumirpc.codegen.Diagnostic
+	(*PluginDependency)(nil),   // 35: khulnasoftrpc.PluginDependency
+	(*codegen.Diagnostic)(nil), // 36: khulnasoftrpc.codegen.Diagnostic
 	(*emptypb.Empty)(nil),      // 37: google.protobuf.Empty
-	(*PluginInfo)(nil),         // 38: pulumirpc.PluginInfo
+	(*PluginInfo)(nil),         // 38: khulnasoftrpc.PluginInfo
 }
-var file_pulumi_language_proto_depIdxs = []int32{
-	34, // 0: pulumirpc.ProgramInfo.options:type_name -> google.protobuf.Struct
-	1,  // 1: pulumirpc.AboutRequest.info:type_name -> pulumirpc.ProgramInfo
-	26, // 2: pulumirpc.AboutResponse.metadata:type_name -> pulumirpc.AboutResponse.MetadataEntry
-	1,  // 3: pulumirpc.GetProgramDependenciesRequest.info:type_name -> pulumirpc.ProgramInfo
-	5,  // 4: pulumirpc.GetProgramDependenciesResponse.dependencies:type_name -> pulumirpc.DependencyInfo
-	1,  // 5: pulumirpc.GetRequiredPluginsRequest.info:type_name -> pulumirpc.ProgramInfo
-	35, // 6: pulumirpc.GetRequiredPluginsResponse.plugins:type_name -> pulumirpc.PluginDependency
-	27, // 7: pulumirpc.RunRequest.config:type_name -> pulumirpc.RunRequest.ConfigEntry
-	34, // 8: pulumirpc.RunRequest.configPropertyMap:type_name -> google.protobuf.Struct
-	1,  // 9: pulumirpc.RunRequest.info:type_name -> pulumirpc.ProgramInfo
-	1,  // 10: pulumirpc.InstallDependenciesRequest.info:type_name -> pulumirpc.ProgramInfo
-	1,  // 11: pulumirpc.RuntimeOptionsRequest.info:type_name -> pulumirpc.ProgramInfo
-	0,  // 12: pulumirpc.RuntimeOptionPrompt.promptType:type_name -> pulumirpc.RuntimeOptionPrompt.RuntimeOptionType
-	28, // 13: pulumirpc.RuntimeOptionPrompt.choices:type_name -> pulumirpc.RuntimeOptionPrompt.RuntimeOptionValue
-	28, // 14: pulumirpc.RuntimeOptionPrompt.default:type_name -> pulumirpc.RuntimeOptionPrompt.RuntimeOptionValue
-	14, // 15: pulumirpc.RuntimeOptionsResponse.prompts:type_name -> pulumirpc.RuntimeOptionPrompt
-	1,  // 16: pulumirpc.RunPluginRequest.info:type_name -> pulumirpc.ProgramInfo
-	29, // 17: pulumirpc.GenerateProgramRequest.source:type_name -> pulumirpc.GenerateProgramRequest.SourceEntry
-	36, // 18: pulumirpc.GenerateProgramResponse.diagnostics:type_name -> pulumirpc.codegen.Diagnostic
-	30, // 19: pulumirpc.GenerateProgramResponse.source:type_name -> pulumirpc.GenerateProgramResponse.SourceEntry
-	31, // 20: pulumirpc.GenerateProjectRequest.local_dependencies:type_name -> pulumirpc.GenerateProjectRequest.LocalDependenciesEntry
-	36, // 21: pulumirpc.GenerateProjectResponse.diagnostics:type_name -> pulumirpc.codegen.Diagnostic
-	32, // 22: pulumirpc.GeneratePackageRequest.extra_files:type_name -> pulumirpc.GeneratePackageRequest.ExtraFilesEntry
-	33, // 23: pulumirpc.GeneratePackageRequest.local_dependencies:type_name -> pulumirpc.GeneratePackageRequest.LocalDependenciesEntry
-	36, // 24: pulumirpc.GeneratePackageResponse.diagnostics:type_name -> pulumirpc.codegen.Diagnostic
-	0,  // 25: pulumirpc.RuntimeOptionPrompt.RuntimeOptionValue.promptType:type_name -> pulumirpc.RuntimeOptionPrompt.RuntimeOptionType
-	7,  // 26: pulumirpc.LanguageRuntime.GetRequiredPlugins:input_type -> pulumirpc.GetRequiredPluginsRequest
-	9,  // 27: pulumirpc.LanguageRuntime.Run:input_type -> pulumirpc.RunRequest
-	37, // 28: pulumirpc.LanguageRuntime.GetPluginInfo:input_type -> google.protobuf.Empty
-	11, // 29: pulumirpc.LanguageRuntime.InstallDependencies:input_type -> pulumirpc.InstallDependenciesRequest
-	13, // 30: pulumirpc.LanguageRuntime.RuntimeOptionsPrompts:input_type -> pulumirpc.RuntimeOptionsRequest
-	2,  // 31: pulumirpc.LanguageRuntime.About:input_type -> pulumirpc.AboutRequest
-	4,  // 32: pulumirpc.LanguageRuntime.GetProgramDependencies:input_type -> pulumirpc.GetProgramDependenciesRequest
-	16, // 33: pulumirpc.LanguageRuntime.RunPlugin:input_type -> pulumirpc.RunPluginRequest
-	18, // 34: pulumirpc.LanguageRuntime.GenerateProgram:input_type -> pulumirpc.GenerateProgramRequest
-	20, // 35: pulumirpc.LanguageRuntime.GenerateProject:input_type -> pulumirpc.GenerateProjectRequest
-	22, // 36: pulumirpc.LanguageRuntime.GeneratePackage:input_type -> pulumirpc.GeneratePackageRequest
-	24, // 37: pulumirpc.LanguageRuntime.Pack:input_type -> pulumirpc.PackRequest
-	8,  // 38: pulumirpc.LanguageRuntime.GetRequiredPlugins:output_type -> pulumirpc.GetRequiredPluginsResponse
-	10, // 39: pulumirpc.LanguageRuntime.Run:output_type -> pulumirpc.RunResponse
-	38, // 40: pulumirpc.LanguageRuntime.GetPluginInfo:output_type -> pulumirpc.PluginInfo
-	12, // 41: pulumirpc.LanguageRuntime.InstallDependencies:output_type -> pulumirpc.InstallDependenciesResponse
-	15, // 42: pulumirpc.LanguageRuntime.RuntimeOptionsPrompts:output_type -> pulumirpc.RuntimeOptionsResponse
-	3,  // 43: pulumirpc.LanguageRuntime.About:output_type -> pulumirpc.AboutResponse
-	6,  // 44: pulumirpc.LanguageRuntime.GetProgramDependencies:output_type -> pulumirpc.GetProgramDependenciesResponse
-	17, // 45: pulumirpc.LanguageRuntime.RunPlugin:output_type -> pulumirpc.RunPluginResponse
-	19, // 46: pulumirpc.LanguageRuntime.GenerateProgram:output_type -> pulumirpc.GenerateProgramResponse
-	21, // 47: pulumirpc.LanguageRuntime.GenerateProject:output_type -> pulumirpc.GenerateProjectResponse
-	23, // 48: pulumirpc.LanguageRuntime.GeneratePackage:output_type -> pulumirpc.GeneratePackageResponse
-	25, // 49: pulumirpc.LanguageRuntime.Pack:output_type -> pulumirpc.PackResponse
+var file_khulnasoft_language_proto_depIdxs = []int32{
+	34, // 0: khulnasoftrpc.ProgramInfo.options:type_name -> google.protobuf.Struct
+	1,  // 1: khulnasoftrpc.AboutRequest.info:type_name -> khulnasoftrpc.ProgramInfo
+	26, // 2: khulnasoftrpc.AboutResponse.metadata:type_name -> khulnasoftrpc.AboutResponse.MetadataEntry
+	1,  // 3: khulnasoftrpc.GetProgramDependenciesRequest.info:type_name -> khulnasoftrpc.ProgramInfo
+	5,  // 4: khulnasoftrpc.GetProgramDependenciesResponse.dependencies:type_name -> khulnasoftrpc.DependencyInfo
+	1,  // 5: khulnasoftrpc.GetRequiredPluginsRequest.info:type_name -> khulnasoftrpc.ProgramInfo
+	35, // 6: khulnasoftrpc.GetRequiredPluginsResponse.plugins:type_name -> khulnasoftrpc.PluginDependency
+	27, // 7: khulnasoftrpc.RunRequest.config:type_name -> khulnasoftrpc.RunRequest.ConfigEntry
+	34, // 8: khulnasoftrpc.RunRequest.configPropertyMap:type_name -> google.protobuf.Struct
+	1,  // 9: khulnasoftrpc.RunRequest.info:type_name -> khulnasoftrpc.ProgramInfo
+	1,  // 10: khulnasoftrpc.InstallDependenciesRequest.info:type_name -> khulnasoftrpc.ProgramInfo
+	1,  // 11: khulnasoftrpc.RuntimeOptionsRequest.info:type_name -> khulnasoftrpc.ProgramInfo
+	0,  // 12: khulnasoftrpc.RuntimeOptionPrompt.promptType:type_name -> khulnasoftrpc.RuntimeOptionPrompt.RuntimeOptionType
+	28, // 13: khulnasoftrpc.RuntimeOptionPrompt.choices:type_name -> khulnasoftrpc.RuntimeOptionPrompt.RuntimeOptionValue
+	28, // 14: khulnasoftrpc.RuntimeOptionPrompt.default:type_name -> khulnasoftrpc.RuntimeOptionPrompt.RuntimeOptionValue
+	14, // 15: khulnasoftrpc.RuntimeOptionsResponse.prompts:type_name -> khulnasoftrpc.RuntimeOptionPrompt
+	1,  // 16: khulnasoftrpc.RunPluginRequest.info:type_name -> khulnasoftrpc.ProgramInfo
+	29, // 17: khulnasoftrpc.GenerateProgramRequest.source:type_name -> khulnasoftrpc.GenerateProgramRequest.SourceEntry
+	36, // 18: khulnasoftrpc.GenerateProgramResponse.diagnostics:type_name -> khulnasoftrpc.codegen.Diagnostic
+	30, // 19: khulnasoftrpc.GenerateProgramResponse.source:type_name -> khulnasoftrpc.GenerateProgramResponse.SourceEntry
+	31, // 20: khulnasoftrpc.GenerateProjectRequest.local_dependencies:type_name -> khulnasoftrpc.GenerateProjectRequest.LocalDependenciesEntry
+	36, // 21: khulnasoftrpc.GenerateProjectResponse.diagnostics:type_name -> khulnasoftrpc.codegen.Diagnostic
+	32, // 22: khulnasoftrpc.GeneratePackageRequest.extra_files:type_name -> khulnasoftrpc.GeneratePackageRequest.ExtraFilesEntry
+	33, // 23: khulnasoftrpc.GeneratePackageRequest.local_dependencies:type_name -> khulnasoftrpc.GeneratePackageRequest.LocalDependenciesEntry
+	36, // 24: khulnasoftrpc.GeneratePackageResponse.diagnostics:type_name -> khulnasoftrpc.codegen.Diagnostic
+	0,  // 25: khulnasoftrpc.RuntimeOptionPrompt.RuntimeOptionValue.promptType:type_name -> khulnasoftrpc.RuntimeOptionPrompt.RuntimeOptionType
+	7,  // 26: khulnasoftrpc.LanguageRuntime.GetRequiredPlugins:input_type -> khulnasoftrpc.GetRequiredPluginsRequest
+	9,  // 27: khulnasoftrpc.LanguageRuntime.Run:input_type -> khulnasoftrpc.RunRequest
+	37, // 28: khulnasoftrpc.LanguageRuntime.GetPluginInfo:input_type -> google.protobuf.Empty
+	11, // 29: khulnasoftrpc.LanguageRuntime.InstallDependencies:input_type -> khulnasoftrpc.InstallDependenciesRequest
+	13, // 30: khulnasoftrpc.LanguageRuntime.RuntimeOptionsPrompts:input_type -> khulnasoftrpc.RuntimeOptionsRequest
+	2,  // 31: khulnasoftrpc.LanguageRuntime.About:input_type -> khulnasoftrpc.AboutRequest
+	4,  // 32: khulnasoftrpc.LanguageRuntime.GetProgramDependencies:input_type -> khulnasoftrpc.GetProgramDependenciesRequest
+	16, // 33: khulnasoftrpc.LanguageRuntime.RunPlugin:input_type -> khulnasoftrpc.RunPluginRequest
+	18, // 34: khulnasoftrpc.LanguageRuntime.GenerateProgram:input_type -> khulnasoftrpc.GenerateProgramRequest
+	20, // 35: khulnasoftrpc.LanguageRuntime.GenerateProject:input_type -> khulnasoftrpc.GenerateProjectRequest
+	22, // 36: khulnasoftrpc.LanguageRuntime.GeneratePackage:input_type -> khulnasoftrpc.GeneratePackageRequest
+	24, // 37: khulnasoftrpc.LanguageRuntime.Pack:input_type -> khulnasoftrpc.PackRequest
+	8,  // 38: khulnasoftrpc.LanguageRuntime.GetRequiredPlugins:output_type -> khulnasoftrpc.GetRequiredPluginsResponse
+	10, // 39: khulnasoftrpc.LanguageRuntime.Run:output_type -> khulnasoftrpc.RunResponse
+	38, // 40: khulnasoftrpc.LanguageRuntime.GetPluginInfo:output_type -> khulnasoftrpc.PluginInfo
+	12, // 41: khulnasoftrpc.LanguageRuntime.InstallDependencies:output_type -> khulnasoftrpc.InstallDependenciesResponse
+	15, // 42: khulnasoftrpc.LanguageRuntime.RuntimeOptionsPrompts:output_type -> khulnasoftrpc.RuntimeOptionsResponse
+	3,  // 43: khulnasoftrpc.LanguageRuntime.About:output_type -> khulnasoftrpc.AboutResponse
+	6,  // 44: khulnasoftrpc.LanguageRuntime.GetProgramDependencies:output_type -> khulnasoftrpc.GetProgramDependenciesResponse
+	17, // 45: khulnasoftrpc.LanguageRuntime.RunPlugin:output_type -> khulnasoftrpc.RunPluginResponse
+	19, // 46: khulnasoftrpc.LanguageRuntime.GenerateProgram:output_type -> khulnasoftrpc.GenerateProgramResponse
+	21, // 47: khulnasoftrpc.LanguageRuntime.GenerateProject:output_type -> khulnasoftrpc.GenerateProjectResponse
+	23, // 48: khulnasoftrpc.LanguageRuntime.GeneratePackage:output_type -> khulnasoftrpc.GeneratePackageResponse
+	25, // 49: khulnasoftrpc.LanguageRuntime.Pack:output_type -> khulnasoftrpc.PackResponse
 	38, // [38:50] is the sub-list for method output_type
 	26, // [26:38] is the sub-list for method input_type
 	26, // [26:26] is the sub-list for extension type_name
@@ -2364,14 +2364,14 @@ var file_pulumi_language_proto_depIdxs = []int32{
 	0,  // [0:26] is the sub-list for field type_name
 }
 
-func init() { file_pulumi_language_proto_init() }
-func file_pulumi_language_proto_init() {
-	if File_pulumi_language_proto != nil {
+func init() { file_khulnasoft_language_proto_init() }
+func file_khulnasoft_language_proto_init() {
+	if File_khulnasoft_language_proto != nil {
 		return
 	}
-	file_pulumi_plugin_proto_init()
+	file_khulnasoft_plugin_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_pulumi_language_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ProgramInfo); i {
 			case 0:
 				return &v.state
@@ -2383,7 +2383,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AboutRequest); i {
 			case 0:
 				return &v.state
@@ -2395,7 +2395,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AboutResponse); i {
 			case 0:
 				return &v.state
@@ -2407,7 +2407,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetProgramDependenciesRequest); i {
 			case 0:
 				return &v.state
@@ -2419,7 +2419,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DependencyInfo); i {
 			case 0:
 				return &v.state
@@ -2431,7 +2431,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetProgramDependenciesResponse); i {
 			case 0:
 				return &v.state
@@ -2443,7 +2443,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRequiredPluginsRequest); i {
 			case 0:
 				return &v.state
@@ -2455,7 +2455,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRequiredPluginsResponse); i {
 			case 0:
 				return &v.state
@@ -2467,7 +2467,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RunRequest); i {
 			case 0:
 				return &v.state
@@ -2479,7 +2479,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RunResponse); i {
 			case 0:
 				return &v.state
@@ -2491,7 +2491,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*InstallDependenciesRequest); i {
 			case 0:
 				return &v.state
@@ -2503,7 +2503,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*InstallDependenciesResponse); i {
 			case 0:
 				return &v.state
@@ -2515,7 +2515,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RuntimeOptionsRequest); i {
 			case 0:
 				return &v.state
@@ -2527,7 +2527,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RuntimeOptionPrompt); i {
 			case 0:
 				return &v.state
@@ -2539,7 +2539,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RuntimeOptionsResponse); i {
 			case 0:
 				return &v.state
@@ -2551,7 +2551,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RunPluginRequest); i {
 			case 0:
 				return &v.state
@@ -2563,7 +2563,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RunPluginResponse); i {
 			case 0:
 				return &v.state
@@ -2575,7 +2575,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenerateProgramRequest); i {
 			case 0:
 				return &v.state
@@ -2587,7 +2587,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenerateProgramResponse); i {
 			case 0:
 				return &v.state
@@ -2599,7 +2599,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenerateProjectRequest); i {
 			case 0:
 				return &v.state
@@ -2611,7 +2611,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenerateProjectResponse); i {
 			case 0:
 				return &v.state
@@ -2623,7 +2623,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GeneratePackageRequest); i {
 			case 0:
 				return &v.state
@@ -2635,7 +2635,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GeneratePackageResponse); i {
 			case 0:
 				return &v.state
@@ -2647,7 +2647,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PackRequest); i {
 			case 0:
 				return &v.state
@@ -2659,7 +2659,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PackResponse); i {
 			case 0:
 				return &v.state
@@ -2671,7 +2671,7 @@ func file_pulumi_language_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_language_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_language_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RuntimeOptionPrompt_RuntimeOptionValue); i {
 			case 0:
 				return &v.state
@@ -2684,7 +2684,7 @@ func file_pulumi_language_proto_init() {
 			}
 		}
 	}
-	file_pulumi_language_proto_msgTypes[16].OneofWrappers = []interface{}{
+	file_khulnasoft_language_proto_msgTypes[16].OneofWrappers = []interface{}{
 		(*RunPluginResponse_Stdout)(nil),
 		(*RunPluginResponse_Stderr)(nil),
 		(*RunPluginResponse_Exitcode)(nil),
@@ -2693,19 +2693,19 @@ func file_pulumi_language_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pulumi_language_proto_rawDesc,
+			RawDescriptor: file_khulnasoft_language_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   33,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_pulumi_language_proto_goTypes,
-		DependencyIndexes: file_pulumi_language_proto_depIdxs,
-		EnumInfos:         file_pulumi_language_proto_enumTypes,
-		MessageInfos:      file_pulumi_language_proto_msgTypes,
+		GoTypes:           file_khulnasoft_language_proto_goTypes,
+		DependencyIndexes: file_khulnasoft_language_proto_depIdxs,
+		EnumInfos:         file_khulnasoft_language_proto_enumTypes,
+		MessageInfos:      file_khulnasoft_language_proto_msgTypes,
 	}.Build()
-	File_pulumi_language_proto = out.File
-	file_pulumi_language_proto_rawDesc = nil
-	file_pulumi_language_proto_goTypes = nil
-	file_pulumi_language_proto_depIdxs = nil
+	File_khulnasoft_language_proto = out.File
+	file_khulnasoft_language_proto_rawDesc = nil
+	file_khulnasoft_language_proto_goTypes = nil
+	file_khulnasoft_language_proto_depIdxs = nil
 }

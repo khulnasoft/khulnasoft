@@ -14,21 +14,21 @@
 
 from typing import Optional
 
-import pulumi
+import khulnasoft
 
 
-class MyComponent(pulumi.ComponentResource):
-    outprop: pulumi.Output[str]
-    def __init__(self, name, inprop: pulumi.Input[str] = None, opts = None):
+class MyComponent(khulnasoft.ComponentResource):
+    outprop: khulnasoft.Output[str]
+    def __init__(self, name, inprop: khulnasoft.Input[str] = None, opts = None):
         super().__init__("pkg:index:MyComponent", name, None, opts)
         if inprop is None:
             raise TypeError("Missing required property 'inprop'")
-        self.outprop = pulumi.Output.from_input(inprop).apply(lambda x: f"output: {x}")
+        self.outprop = khulnasoft.Output.from_input(inprop).apply(lambda x: f"output: {x}")
 
 
-class MyRemoteComponent(pulumi.ComponentResource):
-    outprop: pulumi.Output[str]
-    def __init__(self, name, inprop: pulumi.Input[str] = None, opts = None):
+class MyRemoteComponent(khulnasoft.ComponentResource):
+    outprop: khulnasoft.Output[str]
+    def __init__(self, name, inprop: khulnasoft.Input[str] = None, opts = None):
         if inprop is None:
             raise TypeError("Missing required property 'inprop'")
         __props__: dict = dict()
@@ -37,11 +37,11 @@ class MyRemoteComponent(pulumi.ComponentResource):
         super().__init__("pkg:index:MyRemoteComponent", name, __props__, opts, True)
 
 
-class Instance(pulumi.CustomResource):
-    public_ip: pulumi.Output[str]
-    def __init__(self, resource_name, name: pulumi.Input[str] = None, value: pulumi.Input[str] = None, opts = None):
+class Instance(khulnasoft.CustomResource):
+    public_ip: khulnasoft.Output[str]
+    def __init__(self, resource_name, name: khulnasoft.Input[str] = None, value: khulnasoft.Input[str] = None, opts = None):
         if opts is None:
-            opts = pulumi.ResourceOptions()
+            opts = khulnasoft.ResourceOptions()
         if name is None and not opts.urn:
             raise TypeError("Missing required property 'name'")
         __props__: dict = dict()
@@ -51,25 +51,25 @@ class Instance(pulumi.CustomResource):
         super(Instance, self).__init__("aws:ec2/instance:Instance", resource_name, __props__, opts)
 
 
-class Module(pulumi.runtime.ResourceModule):
+class Module(khulnasoft.runtime.ResourceModule):
     def version(self):
         return None
 
-    def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+    def construct(self, name: str, typ: str, urn: str) -> khulnasoft.Resource:
         if typ == "aws:ec2/instance:Instance":
-            return Instance(name, opts=pulumi.ResourceOptions(urn=urn))
+            return Instance(name, opts=khulnasoft.ResourceOptions(urn=urn))
         else:
             raise Exception(f"unknown resource type {typ}")
 
 
-class MyCustom(pulumi.CustomResource):
-    instance: pulumi.Output
+class MyCustom(khulnasoft.CustomResource):
+    instance: khulnasoft.Output
     def __init__(self, resource_name, props: Optional[dict] = None, opts = None):
         super(MyCustom, self).__init__("pkg:index:MyCustom", resource_name, props, opts)
 
 
 def do_invoke():
-    value = pulumi.runtime.invoke("test:index:MyFunction", props={"value": 41}).value
+    value = khulnasoft.runtime.invoke("test:index:MyFunction", props={"value": 41}).value
     return value["out_value"]
 
 
@@ -77,7 +77,7 @@ def define_resources():
     mycomponent = MyComponent("mycomponent", inprop="hello")
     myinstance = Instance("instance",
                           name="myvm",
-                          value=pulumi.Output.secret("secret_value"))
+                          value=khulnasoft.Output.secret("secret_value"))
     mycustom = MyCustom("mycustom", {"instance": myinstance})
     invoke_result = do_invoke()
     myremotecomponent = MyRemoteComponent("myremotecomponent", inprop=myinstance.id.apply(lambda v: f"hello: {v}"))
@@ -87,11 +87,11 @@ def define_resources():
     for x in range(5):
         MyCustom(f"mycustom{x}", {"instance": myinstance})
 
-    dns_ref = pulumi.StackReference("dns")
+    dns_ref = khulnasoft.StackReference("dns")
 
-    pulumi.export("hello", "world")
-    pulumi.export("outprop", mycomponent.outprop)
-    pulumi.export("public_ip", myinstance.public_ip)
+    khulnasoft.export("hello", "world")
+    khulnasoft.export("outprop", mycomponent.outprop)
+    khulnasoft.export("public_ip", myinstance.public_ip)
 
     return {
         'mycomponent': mycomponent,
@@ -103,4 +103,4 @@ def define_resources():
     }
 
 
-pulumi.runtime.register_resource_module("aws", "ec2/instance", Module())
+khulnasoft.runtime.register_resource_module("aws", "ec2/instance", Module())

@@ -47,7 +47,7 @@ func newAwaitCall(promise model.Expression) model.Expression {
 }
 
 // newInterpolateCall creates a new call to the interpolate intrinsic that represents a template literal that uses the
-// pulumi.interpolate function.
+// khulnasoft.interpolate function.
 func newInterpolateCall(args []model.Expression) *model.FunctionCallExpression {
 	return &model.FunctionCallExpression{
 		Name: intrinsicInterpolate,

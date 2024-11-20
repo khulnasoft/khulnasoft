@@ -5,31 +5,31 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // FooComponent is a component resource
 type FooResource struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 type FooComponent struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 type FooComponent2 struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 type FooComponent3 struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 type FooComponent4 struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewFooResource(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*FooResource, error) {
+func NewFooResource(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*FooResource, error) {
 	fooRes := &FooResource{}
 	err := ctx.RegisterComponentResource("my:module:FooResource", name, fooRes, opts...)
 	if err != nil {
@@ -38,24 +38,24 @@ func NewFooResource(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOpt
 	return fooRes, nil
 }
 
-func NewFooComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*FooComponent, error) {
+func NewFooComponent(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*FooComponent, error) {
 	fooComp := &FooComponent{}
 	err := ctx.RegisterComponentResource("my:module:FooComponent", name, fooComp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	var nilInput pulumi.StringInput
-	aliasURN := pulumi.CreateURN(
-		pulumi.StringInput(pulumi.String("res2")),
-		pulumi.StringInput(pulumi.String("my:module:FooResource")),
+	var nilInput khulnasoft.StringInput
+	aliasURN := khulnasoft.CreateURN(
+		khulnasoft.StringInput(khulnasoft.String("res2")),
+		khulnasoft.StringInput(khulnasoft.String("my:module:FooResource")),
 		nilInput,
-		pulumi.StringInput(pulumi.String(ctx.Project())),
-		pulumi.StringInput(pulumi.String(ctx.Stack())))
-	alias := &pulumi.Alias{
+		khulnasoft.StringInput(khulnasoft.String(ctx.Project())),
+		khulnasoft.StringInput(khulnasoft.String(ctx.Stack())))
+	alias := &khulnasoft.Alias{
 		URN: aliasURN,
 	}
-	aliasOpt := pulumi.Aliases([]pulumi.Alias{*alias})
-	parentOpt := pulumi.Parent(fooComp)
+	aliasOpt := khulnasoft.Aliases([]khulnasoft.Alias{*alias})
+	parentOpt := khulnasoft.Parent(fooComp)
 	_, err = NewFooResource(ctx, name+"-child", aliasOpt, parentOpt)
 	if err != nil {
 		return nil, err
@@ -63,7 +63,7 @@ func NewFooComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOp
 	return fooComp, nil
 }
 
-func NewFooComponent2(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*FooComponent2, error) {
+func NewFooComponent2(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*FooComponent2, error) {
 	fooComp := &FooComponent2{}
 	err := ctx.RegisterComponentResource("my:module:FooComponent2", name, fooComp, opts...)
 	if err != nil {
@@ -72,10 +72,10 @@ func NewFooComponent2(ctx *pulumi.Context, name string, opts ...pulumi.ResourceO
 	return fooComp, nil
 }
 
-func NewFooComponent3(ctx *pulumi.Context,
+func NewFooComponent3(ctx *khulnasoft.Context,
 	name string,
-	childAliasParent pulumi.Resource,
-	opts ...pulumi.ResourceOption,
+	childAliasParent khulnasoft.Resource,
+	opts ...khulnasoft.ResourceOption,
 ) (*FooComponent3, error) {
 	fooComp := &FooComponent3{}
 	err := ctx.RegisterComponentResource("my:module:FooComponent3", name, fooComp, opts...)
@@ -83,15 +83,15 @@ func NewFooComponent3(ctx *pulumi.Context,
 		return nil, err
 	}
 
-	alias := &pulumi.Alias{}
+	alias := &khulnasoft.Alias{}
 	if childAliasParent != nil {
 		alias.Parent = childAliasParent
 	} else {
-		alias.NoParent = pulumi.Bool(true)
+		alias.NoParent = khulnasoft.Bool(true)
 	}
 
-	aliasOpt := pulumi.Aliases([]pulumi.Alias{*alias})
-	parentOpt := pulumi.Parent(fooComp)
+	aliasOpt := khulnasoft.Aliases([]khulnasoft.Alias{*alias})
+	parentOpt := khulnasoft.Parent(fooComp)
 	_, err = NewFooComponent2(ctx, name+"-child", aliasOpt, parentOpt)
 	if err != nil {
 		return nil, err
@@ -99,13 +99,13 @@ func NewFooComponent3(ctx *pulumi.Context,
 	return fooComp, nil
 }
 
-func NewFooComponent4(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*FooComponent4, error) {
+func NewFooComponent4(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*FooComponent4, error) {
 	fooComp := &FooComponent4{}
-	alias := &pulumi.Alias{
+	alias := &khulnasoft.Alias{
 		Parent: nil,
 	}
-	aliasOpt := pulumi.Aliases([]pulumi.Alias{*alias, *alias})
-	o := []pulumi.ResourceOption{aliasOpt}
+	aliasOpt := khulnasoft.Aliases([]khulnasoft.Alias{*alias, *alias})
+	o := []khulnasoft.ResourceOption{aliasOpt}
 	o = append(o, opts...)
 	err := ctx.RegisterComponentResource("my:module:FooComponent4", name, fooComp, o...)
 	if err != nil {
@@ -115,16 +115,16 @@ func NewFooComponent4(ctx *pulumi.Context, name string, opts ...pulumi.ResourceO
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		comp2, err := NewFooComponent(ctx, "comp2")
 		if err != nil {
 			return err
 		}
-		alias := &pulumi.Alias{
-			NoParent: pulumi.Bool(true),
+		alias := &khulnasoft.Alias{
+			NoParent: khulnasoft.Bool(true),
 		}
-		aliasOpt := pulumi.Aliases([]pulumi.Alias{*alias})
-		parentOpt := pulumi.Parent(comp2)
+		aliasOpt := khulnasoft.Aliases([]khulnasoft.Alias{*alias})
+		parentOpt := khulnasoft.Parent(comp2)
 		_, err = NewFooComponent2(ctx, "unparented", aliasOpt, parentOpt)
 		if err != nil {
 			return err
@@ -133,12 +133,12 @@ func main() {
 		if err != nil {
 			return err
 		}
-		pbcOpt := pulumi.Parent(comp2)
+		pbcOpt := khulnasoft.Parent(comp2)
 		_, err = NewFooComponent3(ctx, "parentedbycomponent", comp2, pbcOpt)
 		if err != nil {
 			return err
 		}
-		dupeOpt := pulumi.Parent(comp2)
+		dupeOpt := khulnasoft.Parent(comp2)
 		_, err = NewFooComponent4(ctx, "duplicateAliases", dupeOpt)
 		if err != nil {
 			return err

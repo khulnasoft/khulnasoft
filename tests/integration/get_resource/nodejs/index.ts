@@ -1,9 +1,9 @@
 // Copyright 2016-2020, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-class MyResource extends pulumi.dynamic.Resource {
-    constructor(name: string, props: pulumi.Inputs, opts?: pulumi.CustomResourceOptions) {
+class MyResource extends khulnasoft.dynamic.Resource {
+    constructor(name: string, props: khulnasoft.Inputs, opts?: khulnasoft.CustomResourceOptions) {
         super({
             create: async (inputs: any) => {
                 return {
@@ -15,11 +15,11 @@ class MyResource extends pulumi.dynamic.Resource {
     }
 }
 
-class GetResource extends pulumi.Resource {
-    foo: pulumi.Output<string>;
-    bar: pulumi.Output<string>;
+class GetResource extends khulnasoft.Resource {
+    foo: khulnasoft.Output<string>;
+    bar: khulnasoft.Output<string>;
 
-    constructor(urn: pulumi.URN) {
+    constructor(urn: khulnasoft.URN) {
         const props = {
             foo: undefined,
             bar: undefined,
@@ -30,7 +30,7 @@ class GetResource extends pulumi.Resource {
 
 const a = new MyResource("a", {
     foo: "foo",
-    bar: pulumi.secret("my-$ecret"),
+    bar: khulnasoft.secret("my-$ecret"),
 });
 
 const getFoo = a.urn.apply(urn => {

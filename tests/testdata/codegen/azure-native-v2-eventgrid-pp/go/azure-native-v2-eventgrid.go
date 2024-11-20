@@ -1,19 +1,19 @@
 package main
 
 import (
-	eventgrid "github.com/pulumi/pulumi-azure-native-sdk/eventgrid/v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	eventgrid "github.com/khulnasoft/khulnasoft-azure-native-sdk/eventgrid/v2"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := eventgrid.NewEventSubscription(ctx, "example", &eventgrid.EventSubscriptionArgs{
 			Destination: &eventgrid.EventHubEventSubscriptionDestinationArgs{
-				EndpointType: pulumi.String("EventHub"),
-				ResourceId:   pulumi.String("example"),
+				EndpointType: khulnasoft.String("EventHub"),
+				ResourceId:   khulnasoft.String("example"),
 			},
-			ExpirationTimeUtc: pulumi.String("example"),
-			Scope:             pulumi.String("example"),
+			ExpirationTimeUtc: khulnasoft.String("example"),
+			Scope:             khulnasoft.String("example"),
 		})
 		if err != nil {
 			return err

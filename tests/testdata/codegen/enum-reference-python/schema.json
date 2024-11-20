@@ -44,8 +44,8 @@
     "language": {
         "python": {
             "requires": {
-                "pulumi": ">=3.0.0,<4.0.0",
-                "pulumi-aws": ">=4.37.1,<5.0.0"
+                "khulnasoft": ">=3.0.0,<4.0.0",
+                "khulnasoft-aws": ">=4.37.1,<5.0.0"
             }
         },
         "csharp": {
@@ -56,8 +56,8 @@
         },
         "nodejs": {
             "dependencies": {
-                "@pulumi/pulumi": "^3.12",
-                "@pulumi/google-native": "^0.20.0"
+                "@khulnasoft/khulnasoft": "^3.12",
+                "@khulnasoft/google-native": "^0.20.0"
             },
             "devDependencies": {
                 "typescript": "^3.7.0",

@@ -26,15 +26,15 @@ import (
 
 	"github.com/blang/semver"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optlist"
-	"github.com/pulumi/pulumi/sdk/v3/go/auto/optremove"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optlist"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optremove"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // LocalWorkspace is a default implementation of the Workspace interface.
@@ -48,8 +48,8 @@ import (
 // This is identical to the behavior of Pulumi CLI driven workspaces.
 type LocalWorkspace struct {
 	workDir                       string
-	pulumiHome                    string
-	program                       pulumi.RunFunc
+	khulnasoftHome                    string
+	program                       khulnasoft.RunFunc
 	envvars                       map[string]string
 	secretsProvider               string
 	repo                          *GitRepo
@@ -58,7 +58,7 @@ type LocalWorkspace struct {
 	preRunCommands                []string
 	remoteSkipInstallDependencies bool
 	remoteInheritSettings         bool
-	pulumiCommand                 PulumiCommand
+	khulnasoftCommand                 PulumiCommand
 	remoteExecutorImage           *ExecutorImage
 	remoteAgentPoolID             string
 }
@@ -76,8 +76,8 @@ func (l *LocalWorkspace) ProjectSettings(ctx context.Context) (*workspace.Projec
 // There can only be a single project per workspace. Fails is new project name does not match old.
 // LocalWorkspace writes this value to a Pulumi.yaml file in Workspace.WorkDir().
 func (l *LocalWorkspace) SaveProjectSettings(ctx context.Context, settings *workspace.Project) error {
-	pulumiYamlPath := filepath.Join(l.WorkDir(), "Pulumi.yaml")
-	return settings.Save(pulumiYamlPath)
+	khulnasoftYamlPath := filepath.Join(l.WorkDir(), "Pulumi.yaml")
+	return settings.Save(khulnasoftYamlPath)
 }
 
 // StackSettings returns the settings object for the stack matching the specified stack name if any.
@@ -139,8 +139,8 @@ func (l *LocalWorkspace) PostCommandCallback(ctx context.Context, stackName stri
 // per the ESC merge rules. The list of environments behaves as if it were the import list in an anonymous
 // environment.
 func (l *LocalWorkspace) AddEnvironments(ctx context.Context, stackName string, envs ...string) error {
-	// 3.95 added this command (https://github.com/pulumi/pulumi/releases/tag/v3.95.0)
-	if l.pulumiCommand.Version().LT(semver.Version{Major: 3, Minor: 95}) {
+	// 3.95 added this command (https://github.com/khulnasoft/khulnasoft/releases/tag/v3.95.0)
+	if l.khulnasoftCommand.Version().LT(semver.Version{Major: 3, Minor: 95}) {
 		return errors.New("AddEnvironments requires Pulumi CLI version >= 3.95.0")
 	}
 	args := []string{"config", "env", "add"}
@@ -155,8 +155,8 @@ func (l *LocalWorkspace) AddEnvironments(ctx context.Context, stackName string, 
 
 // ListEnvironments returns the list of environments from the provided stack's configuration.
 func (l *LocalWorkspace) ListEnvironments(ctx context.Context, stackName string) ([]string, error) {
-	// 3.99 added this command (https://github.com/pulumi/pulumi/releases/tag/v3.99.0)
-	if l.pulumiCommand.Version().LT(semver.Version{Major: 3, Minor: 99}) {
+	// 3.99 added this command (https://github.com/khulnasoft/khulnasoft/releases/tag/v3.99.0)
+	if l.khulnasoftCommand.Version().LT(semver.Version{Major: 3, Minor: 99}) {
 		return nil, errors.New("ListEnvironments requires Pulumi CLI version >= 3.99.0")
 	}
 	args := []string{"config", "env", "ls", "--stack", stackName, "--json"}
@@ -174,8 +174,8 @@ func (l *LocalWorkspace) ListEnvironments(ctx context.Context, stackName string)
 
 // RemoveEnvironment removes an environment from a stack's configuration.
 func (l *LocalWorkspace) RemoveEnvironment(ctx context.Context, stackName string, env string) error {
-	// 3.95 added this command (https://github.com/pulumi/pulumi/releases/tag/v3.95.0)
-	if l.pulumiCommand.Version().LT(semver.Version{Major: 3, Minor: 95}) {
+	// 3.95 added this command (https://github.com/khulnasoft/khulnasoft/releases/tag/v3.95.0)
+	if l.khulnasoftCommand.Version().LT(semver.Version{Major: 3, Minor: 95}) {
 		return errors.New("RemoveEnvironments requires Pulumi CLI version >= 3.95.0")
 	}
 	args := []string{"config", "env", "rm", env, "--yes", "--stack", stackName}
@@ -457,18 +457,18 @@ func (l *LocalWorkspace) WorkDir() string {
 
 // PulumiCommand returns the PulumiCommand instance that is used to execute commands.
 func (l *LocalWorkspace) PulumiCommand() PulumiCommand {
-	return l.pulumiCommand
+	return l.khulnasoftCommand
 }
 
 // PulumiHome returns the directory override for CLI metadata if set.
 // This customizes the location of $PULUMI_HOME where metadata is stored and plugins are installed.
 func (l *LocalWorkspace) PulumiHome() string {
-	return l.pulumiHome
+	return l.khulnasoftHome
 }
 
 // PulumiVersion returns the version of the underlying Pulumi CLI/Engine.
 func (l *LocalWorkspace) PulumiVersion() string {
-	return l.pulumiCommand.Version().String()
+	return l.khulnasoftCommand.Version().String()
 }
 
 // WhoAmI returns the currently authenticated user
@@ -483,8 +483,8 @@ func (l *LocalWorkspace) WhoAmI(ctx context.Context) (string, error) {
 // WhoAmIDetails returns detailed information about the currently
 // logged-in Pulumi identity.
 func (l *LocalWorkspace) WhoAmIDetails(ctx context.Context) (WhoAmIResult, error) {
-	// 3.58 added the --json flag (https://github.com/pulumi/pulumi/releases/tag/v3.58.0)
-	if l.pulumiCommand.Version().GTE(semver.Version{Major: 3, Minor: 58}) {
+	// 3.58 added the --json flag (https://github.com/khulnasoft/khulnasoft/releases/tag/v3.58.0)
+	if l.khulnasoftCommand.Version().GTE(semver.Version{Major: 3, Minor: 58}) {
 		var whoAmIDetailedInfo WhoAmIResult
 		stdout, stderr, errCode, err := l.runPulumiCmdSync(ctx, "whoami", "--json")
 		if err != nil {
@@ -560,7 +560,7 @@ func (l *LocalWorkspace) CreateStack(ctx context.Context, stackName string) erro
 // SelectStack selects and sets an existing stack matching the stack name, failing if none exists.
 func (l *LocalWorkspace) SelectStack(ctx context.Context, stackName string) error {
 	// If this is a remote workspace, we don't want to actually select the stack (which would modify global state);
-	// but we will ensure the stack exists by calling `pulumi stack`.
+	// but we will ensure the stack exists by calling `khulnasoft stack`.
 	args := []string{"stack"}
 	if !l.remote {
 		args = append(args, "select")
@@ -668,14 +668,14 @@ func (l *LocalWorkspace) ListPlugins(ctx context.Context) ([]workspace.PluginInf
 	return plugins, nil
 }
 
-// Program returns the program `pulumi.RunFunc` to be used for Preview/Update if any.
+// Program returns the program `khulnasoft.RunFunc` to be used for Preview/Update if any.
 // If none is specified, the stack will refer to ProjectSettings for this information.
-func (l *LocalWorkspace) Program() pulumi.RunFunc {
+func (l *LocalWorkspace) Program() khulnasoft.RunFunc {
 	return l.program
 }
 
-// SetProgram sets the program associated with the Workspace to the specified `pulumi.RunFunc`.
-func (l *LocalWorkspace) SetProgram(fn pulumi.RunFunc) {
+// SetProgram sets the program associated with the Workspace to the specified `khulnasoft.RunFunc`.
+func (l *LocalWorkspace) SetProgram(fn khulnasoft.RunFunc) {
 	l.program = fn
 }
 
@@ -782,7 +782,7 @@ func (l *LocalWorkspace) Install(ctx context.Context, opts *InstallOptions) erro
 	args := []string{"install"}
 	if opts != nil && opts.UseLanguageVersionTools {
 		// Pulumi 3.130.0 introduced the `--use-language-version-tools` flag.
-		if l.pulumiCommand.Version().LT(semver.Version{Major: 3, Minor: 130}) {
+		if l.khulnasoftCommand.Version().LT(semver.Version{Major: 3, Minor: 130}) {
 			return errors.New("UseLanguageVersionTools requires Pulumi CLI version >= 3.130.0")
 		}
 		args = append(args, "--use-language-version-tools")
@@ -812,7 +812,7 @@ func (l *LocalWorkspace) runPulumiInputCmdSync(
 ) (string, string, int, error) {
 	var env []string
 	if l.PulumiHome() != "" {
-		homeEnv := fmt.Sprintf("%s=%s", pulumiHomeEnv, l.PulumiHome())
+		homeEnv := fmt.Sprintf("%s=%s", khulnasoftHomeEnv, l.PulumiHome())
 		env = append(env, homeEnv)
 	}
 	if envvars := l.GetEnvVars(); envvars != nil {
@@ -875,7 +875,7 @@ func NewLocalWorkspace(ctx context.Context, opts ...LocalWorkspaceOption) (Works
 	if lwOpts.WorkDir != "" {
 		workDir = lwOpts.WorkDir
 	} else {
-		dir, err := os.MkdirTemp("", "pulumi_auto")
+		dir, err := os.MkdirTemp("", "khulnasoft_auto")
 		if err != nil {
 			return nil, fmt.Errorf("unable to create tmp directory for workspace: %w", err)
 		}
@@ -896,18 +896,18 @@ func NewLocalWorkspace(ctx context.Context, opts ...LocalWorkspaceOption) (Works
 		optOut = optOut || cmdutil.IsTruthy(val)
 	}
 
-	var pulumiCommand PulumiCommand
+	var khulnasoftCommand PulumiCommand
 	if lwOpts.PulumiCommand != nil {
-		pulumiCommand = lwOpts.PulumiCommand
+		khulnasoftCommand = lwOpts.PulumiCommand
 	} else {
 		p, err := NewPulumiCommand(&PulumiCommandOptions{SkipVersionCheck: optOut})
 		if err != nil {
 			return nil, err
 		}
-		pulumiCommand = p
+		khulnasoftCommand = p
 	}
 
-	var program pulumi.RunFunc
+	var program khulnasoft.RunFunc
 	if lwOpts.Program != nil {
 		program = lwOpts.Program
 	}
@@ -916,7 +916,7 @@ func NewLocalWorkspace(ctx context.Context, opts ...LocalWorkspaceOption) (Works
 		workDir:                       workDir,
 		preRunCommands:                lwOpts.PreRunCommands,
 		program:                       program,
-		pulumiHome:                    lwOpts.PulumiHome,
+		khulnasoftHome:                    lwOpts.PulumiHome,
 		remote:                        lwOpts.Remote,
 		remoteEnvVars:                 lwOpts.RemoteEnvVars,
 		remoteSkipInstallDependencies: lwOpts.RemoteSkipInstallDependencies,
@@ -924,12 +924,12 @@ func NewLocalWorkspace(ctx context.Context, opts ...LocalWorkspaceOption) (Works
 		remoteAgentPoolID:             lwOpts.RemoteAgentPoolID,
 		remoteInheritSettings:         lwOpts.RemoteInheritSettings,
 		repo:                          lwOpts.Repo,
-		pulumiCommand:                 pulumiCommand,
+		khulnasoftCommand:                 khulnasoftCommand,
 	}
 
 	// If remote was specified, ensure the CLI supports it.
 	if !optOut && l.remote {
-		// See if `--remote` is present in `pulumi preview --help`'s output.
+		// See if `--remote` is present in `khulnasoft preview --help`'s output.
 		supportsRemote, err := l.supportsPulumiCmdFlag(ctx, "--remote", "preview")
 		if err != nil {
 			return nil, err
@@ -990,8 +990,8 @@ type localWorkspaceOptions struct {
 	WorkDir string
 	// Program is the Pulumi Program to execute. If none is supplied,
 	// the program identified in $WORKDIR/Pulumi.yaml will be used instead.
-	Program pulumi.RunFunc
-	// PulumiHome overrides the metadata directory for pulumi commands.
+	Program khulnasoft.RunFunc
+	// PulumiHome overrides the metadata directory for khulnasoft commands.
 	// This customizes the location of $PULUMI_HOME where metadata is stored and plugins are installed.
 	PulumiHome string
 	// PulumiCommand is the PulumiCommand instance to use. If none is
@@ -1041,7 +1041,7 @@ func (o localWorkspaceOption) applyLocalWorkspaceOption(opts *localWorkspaceOpti
 type GitRepo struct {
 	// URL to clone git repo
 	URL string
-	// Optional path relative to the repo root specifying location of the pulumi program.
+	// Optional path relative to the repo root specifying location of the khulnasoft program.
 	// Specifying this option will update the Workspace's WorkDir accordingly.
 	ProjectPath string
 	// Optional branch to checkout.
@@ -1094,13 +1094,13 @@ func WorkDir(workDir string) LocalWorkspaceOption {
 
 // Program is the Pulumi Program to execute. If none is supplied,
 // the program identified in $WORKDIR/Pulumi.yaml will be used instead.
-func Program(program pulumi.RunFunc) LocalWorkspaceOption {
+func Program(program khulnasoft.RunFunc) LocalWorkspaceOption {
 	return localWorkspaceOption(func(lo *localWorkspaceOptions) {
 		lo.Program = program
 	})
 }
 
-// PulumiHome overrides the metadata directory for pulumi commands.
+// PulumiHome overrides the metadata directory for khulnasoft commands.
 func PulumiHome(dir string) LocalWorkspaceOption {
 	return localWorkspaceOption(func(lo *localWorkspaceOptions) {
 		lo.PulumiHome = dir
@@ -1110,9 +1110,9 @@ func PulumiHome(dir string) LocalWorkspaceOption {
 // PulumiCommand is the PulumiCommand instance to use. If none is
 // supplied, the workspace will create an instance using the PulumiCommand
 // CLI found in $PATH.
-func Pulumi(pulumi PulumiCommand) LocalWorkspaceOption {
+func Pulumi(khulnasoft PulumiCommand) LocalWorkspaceOption {
 	return localWorkspaceOption(func(lo *localWorkspaceOptions) {
-		lo.PulumiCommand = pulumi
+		lo.PulumiCommand = khulnasoft
 	})
 }
 
@@ -1319,7 +1319,7 @@ func NewStackInlineSource(
 	ctx context.Context,
 	stackName string,
 	projectName string,
-	program pulumi.RunFunc,
+	program khulnasoft.RunFunc,
 	opts ...LocalWorkspaceOption,
 ) (Stack, error) {
 	var stack Stack
@@ -1350,7 +1350,7 @@ func UpsertStackInlineSource(
 	ctx context.Context,
 	stackName string,
 	projectName string,
-	program pulumi.RunFunc,
+	program khulnasoft.RunFunc,
 	opts ...LocalWorkspaceOption,
 ) (Stack, error) {
 	var stack Stack
@@ -1380,7 +1380,7 @@ func SelectStackInlineSource(
 	ctx context.Context,
 	stackName string,
 	projectName string,
-	program pulumi.RunFunc,
+	program khulnasoft.RunFunc,
 	opts ...LocalWorkspaceOption,
 ) (Stack, error) {
 	var stack Stack
@@ -1419,7 +1419,7 @@ func defaultInlineProject(projectName string) (workspace.Project, error) {
 
 // stack names come in many forms:
 // s, o/p/s, u/p/s o/s
-// so just return the last chunk which is what will be used in pulumi.<stack>.yaml
+// so just return the last chunk which is what will be used in khulnasoft.<stack>.yaml
 func getStackSettingsName(stackName string) string {
 	parts := strings.Split(stackName, "/")
 	if len(parts) < 1 {
@@ -1428,7 +1428,7 @@ func getStackSettingsName(stackName string) string {
 	return parts[len(parts)-1]
 }
 
-const pulumiHomeEnv = "PULUMI_HOME"
+const khulnasoftHomeEnv = "PULUMI_HOME"
 
 func readProjectSettingsFromDir(ctx context.Context, workDir string) (*workspace.Project, error) {
 	for _, ext := range settingsExtensions {

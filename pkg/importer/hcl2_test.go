@@ -32,11 +32,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/utils"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 	"github.com/stretchr/testify/assert"
 	"github.com/zclconf/go-cty/cty"
 )
@@ -319,13 +319,13 @@ func TestGenerateHCL2DefinitionsWithDependantResources(t *testing.T) {
 
 	resources := []apitype.ResourceV3{
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucket:Bucket::exampleBucket",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucket:Bucket::exampleBucket",
 			ID:     "provider-generated-bucket-id-abc123",
 			Custom: true,
 			Type:   "aws:s3/bucket:Bucket",
 		},
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucketObject:BucketObject::exampleBucketObject",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucketObject:BucketObject::exampleBucketObject",
 			ID:     "provider-generated-bucket-object-id-abc123",
 			Custom: true,
 			Type:   "aws:s3/bucketObject:BucketObject",
@@ -383,7 +383,7 @@ func TestGenerateHCL2DefinitionsWithDependantResourcesUsingNameOrArnProperty(t *
 
 	resources := []apitype.ResourceV3{
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucket:Bucket::exampleBucket",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucket:Bucket::exampleBucket",
 			ID:     "provider-generated-bucket-id-abc123",
 			Custom: true,
 			Type:   "aws:s3/bucket:Bucket",
@@ -393,7 +393,7 @@ func TestGenerateHCL2DefinitionsWithDependantResourcesUsingNameOrArnProperty(t *
 			},
 		},
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucketObject:BucketObject::exampleBucketObject",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucketObject:BucketObject::exampleBucketObject",
 			ID:     "provider-generated-bucket-object-id-abc123",
 			Custom: true,
 			Type:   "aws:s3/bucketObject:BucketObject",
@@ -404,7 +404,7 @@ func TestGenerateHCL2DefinitionsWithDependantResourcesUsingNameOrArnProperty(t *
 			},
 		},
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucketObject:BucketObject::exampleBucketObjectUsingArn",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucketObject:BucketObject::exampleBucketObjectUsingArn",
 			ID:     "provider-generated-bucket-object-id-abc123",
 			Custom: true,
 			Type:   "aws:s3/bucketObject:BucketObject",
@@ -468,19 +468,19 @@ func TestGenerateHCL2DefinitionsWithAmbiguousReferencesMaintainsLiteralValue(t *
 
 	resources := []apitype.ResourceV3{
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucket:Bucket::firstBucket",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucket:Bucket::firstBucket",
 			ID:     "provider-generated-bucket-id-abc123",
 			Custom: true,
 			Type:   "aws:s3/bucket:Bucket",
 		},
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucket:Bucket::secondBucket",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucket:Bucket::secondBucket",
 			ID:     "provider-generated-bucket-id-abc123",
 			Custom: true,
 			Type:   "aws:s3/bucket:Bucket",
 		},
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucketObject:BucketObject::exampleBucketObject",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucketObject:BucketObject::exampleBucketObject",
 			ID:     "provider-generated-bucket-object-id-abc123",
 			Custom: true,
 			Type:   "aws:s3/bucketObject:BucketObject",
@@ -543,7 +543,7 @@ func TestGenerateHCL2DefinitionsDoesNotMakeSelfReferences(t *testing.T) {
 
 	resources := []apitype.ResourceV3{
 		{
-			URN:    "urn:pulumi:stack::project::aws:s3/bucketObject:BucketObject::exampleBucketObject",
+			URN:    "urn:khulnasoft:stack::project::aws:s3/bucketObject:BucketObject::exampleBucketObject",
 			ID:     "provider-generated-bucket-object-id-abc123",
 			Custom: true,
 			Type:   "aws:s3/bucketObject:BucketObject",

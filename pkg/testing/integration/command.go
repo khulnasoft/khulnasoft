@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
 )
 
 func RunCommand(t *testing.T, name string, args []string, wd string, opts *ProgramTestOptions) error {
@@ -39,7 +39,7 @@ func RunCommandPulumiHome(
 	args []string,
 	wd string,
 	opts *ProgramTestOptions,
-	pulumiHome string,
+	khulnasoftHome string,
 ) error {
 	path := args[0]
 	command := strings.Join(args, " ")
@@ -52,8 +52,8 @@ func RunCommandPulumiHome(
 	env = append(env, "PULUMI_DEBUG_COMMANDS=true")
 	env = append(env, "PULUMI_RETAIN_CHECKPOINTS=true")
 	env = append(env, "PULUMI_CONFIG_PASSPHRASE=correct horse battery staple")
-	if pulumiHome != "" {
-		env = append(env, "PULUMI_HOME="+pulumiHome)
+	if khulnasoftHome != "" {
+		env = append(env, "PULUMI_HOME="+khulnasoftHome)
 	}
 
 	cmd := exec.Cmd{

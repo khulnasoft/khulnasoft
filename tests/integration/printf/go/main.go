@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		for i := 0; i < 10; i++ {
 			fmt.Printf("Line %d\n", i)
 			fmt.Fprintf(os.Stderr, "Errln %d\n", i+10)

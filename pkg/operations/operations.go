@@ -52,5 +52,5 @@ type LogQuery struct {
 type Provider interface {
 	// GetLogs returns logs matching a query
 	GetLogs(query LogQuery) (*[]LogEntry, error)
-	// TODO[pulumi/pulumi#609] Add support for metrics
+	// TODO[khulnasoft/khulnasoft#609] Add support for metrics
 }

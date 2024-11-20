@@ -10,24 +10,24 @@ import (
 	"github.com/blang/semver"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/provider"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	pulumiprovider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	khulnasoftprovider "github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft/provider"
 )
 
 type Provider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 
-	Message pulumi.StringOutput `pulumi:"message"`
+	Message khulnasoft.StringOutput `khulnasoft:"message"`
 }
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Message pulumi.StringOutput `pulumi:"message"`
+	Message khulnasoft.StringOutput `khulnasoft:"message"`
 }
 
-func NewComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*Component, error) {
+func NewComponent(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*Component, error) {
 	component := &Component{}
 	err := ctx.RegisterComponentResource("testcomponent:index:Component", name, component, opts...)
 	if err != nil {
@@ -38,7 +38,7 @@ func NewComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOptio
 	provider := component.GetProvider("testcomponent::").(*Provider)
 	component.Message = provider.Message
 
-	if err := ctx.RegisterResourceOutputs(component, pulumi.Map{
+	if err := ctx.RegisterResourceOutputs(component, khulnasoft.Map{
 		"message": component.Message,
 	}); err != nil {
 		return nil, err
@@ -60,22 +60,22 @@ func (p *pkg) Version() semver.Version {
 	return p.version
 }
 
-func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pulumi.ProviderResource, error) {
-	if typ != "pulumi:providers:testcomponent" {
+func (p *pkg) ConstructProvider(ctx *khulnasoft.Context, name, typ, urn string) (khulnasoft.ProviderResource, error) {
+	if typ != "khulnasoft:providers:testcomponent" {
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
 	r := &Provider{}
-	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	err := ctx.RegisterResource(typ, name, nil, r, khulnasoft.URN_(urn))
 	return r, err
 }
 
 func main() {
-	pulumi.RegisterResourcePackage(providerName, &pkg{semver.MustParse(version)})
+	khulnasoft.RegisterResourcePackage(providerName, &pkg{semver.MustParse(version)})
 
-	if err := provider.ComponentMain(providerName, version, nil, func(ctx *pulumi.Context, typ, name string,
-		inputs pulumiprovider.ConstructInputs, options pulumi.ResourceOption,
-	) (*pulumiprovider.ConstructResult, error) {
+	if err := provider.ComponentMain(providerName, version, nil, func(ctx *khulnasoft.Context, typ, name string,
+		inputs khulnasoftprovider.ConstructInputs, options khulnasoft.ResourceOption,
+	) (*khulnasoftprovider.ConstructResult, error) {
 		if typ != "testcomponent:index:Component" {
 			return nil, fmt.Errorf("unknown resource type %s", typ)
 		}
@@ -85,7 +85,7 @@ func main() {
 			return nil, fmt.Errorf("creating component: %w", err)
 		}
 
-		return pulumiprovider.NewConstructResult(component)
+		return khulnasoftprovider.NewConstructResult(component)
 	}); err != nil {
 		cmdutil.ExitError(err.Error())
 	}

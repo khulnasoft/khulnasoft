@@ -15,10 +15,10 @@
 from typing import Any, Optional
 import sys
 
-from pulumi import Input, Inputs, ComponentResource, ResourceOptions
-import pulumi
-import pulumi.runtime.config as config
-import pulumi.provider as provider
+from khulnasoft import Input, Inputs, ComponentResource, ResourceOptions
+import khulnasoft
+import khulnasoft.runtime.config as config
+import khulnasoft.provider as provider
 
 from echo import Echo
 
@@ -26,7 +26,7 @@ from echo import Echo
 class Component(ComponentResource):
     def __init__(self, name: str, echo: Input[Any], secret: Input[str], opts: Optional[ResourceOptions]=None):
         super().__init__('testcomponent:index:Component', name, {}, opts)
-        self.echo = pulumi.Output.from_input(echo)
+        self.echo = khulnasoft.Output.from_input(echo)
         resource = Echo(f'child-{name}', echo, ResourceOptions(parent=self))
         self.child_id = resource.id
         self.secret = secret
@@ -51,7 +51,7 @@ class Provider(provider.Provider):
 
 
         secret_key = "secret"
-        cfg = pulumi.Config()
+        cfg = khulnasoft.Config()
         full_secret_key = cfg.full_key(secret_key)
         if not config.is_config_secret(full_secret_key):
             raise Exception('expected config for key to be secret: {}'.format(full_secret_key))

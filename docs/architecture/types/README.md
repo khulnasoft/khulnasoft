@@ -105,7 +105,7 @@ encoded using UTF-8), might be represented as any of the following:
 A value of type `Promise<T>` represents the result of an asynchronous
 computation. Promises which don't capture metadata (and thus qualify as
 [outputs](outputs)) are not all that common -- plain
-[](pulumirpc.ResourceProvider.Invoke)s (that is, provider function calls which
+[](khulnasoftrpc.ResourceProvider.Invoke)s (that is, provider function calls which
 do not accept [`Input`](inputs)s or return [`Output`](outputs)) are perhaps the
 primary example of their use.
 
@@ -125,15 +125,15 @@ AWS, Microsoft Azure, Google Cloud, or Kubernetes. Custom resources have a
 well-defined lifecycle built around the differences between their actual state
 and the desired state described by their input properties. They are
 [implemented](provider-implementers-guide) using
-[](pulumirpc.ResourceProvider.Create), [](pulumirpc.ResourceProvider.Read),
-[](pulumirpc.ResourceProvider.Update), and [](pulumirpc.ResourceProvider.Delete)
+[](khulnasoftrpc.ResourceProvider.Create), [](khulnasoftrpc.ResourceProvider.Read),
+[](khulnasoftrpc.ResourceProvider.Update), and [](khulnasoftrpc.ResourceProvider.Delete)
 operations defined by the [provider](providers).
 
 (component-resources)=
 ### Component resources
 
 [*Component
-resources*](https://www.pulumi.com/docs/concepts/resources/components/) are
+resources*](https://www.khulnasoft.com/docs/concepts/resources/components/) are
 logical groupings of other resources that create a larger, higher-level
 abstraction that encapsulates their implementation details. Component resources
 have no associated lifecycle of their own -- their only lifecycle semantics are
@@ -143,25 +143,25 @@ components are defined using program-level abstractions such as the
 `ComponentResource` class offered by e.g. the NodeJS and Python SDKs. *Remote*
 components are defined by [component providers](component-providers) and are
 constructed by [registering](resource-registration) child custom or component
-resources with the Pulumi engine in a [](pulumirpc.ResourceProvider.Construct)
+resources with the Pulumi engine in a [](khulnasoftrpc.ResourceProvider.Construct)
 operation.
 
 (urns)=
 ### URNs
 
 All resources have a required `String` `Name`. A resource's
-[*`Type`*](https://www.pulumi.com/docs/iac/concepts/resources/names/#types)
+[*`Type`*](https://www.khulnasoft.com/docs/iac/concepts/resources/names/#types)
 (often captured in a [schema](schema) in the case of a custom provider resource)
 specifies a set of [*input properties*](inputs) that define the resource's
 desired state, and a set of [*output properties*](outputs) that represent the
 last actual state that Pulumi recorded. A resource's [*uniform resource name*,
 or
-*`URN`*](https://www.pulumi.com/docs/iac/concepts/resources/names/#urns)[^urn-uniqueness]
+*`URN`*](https://www.khulnasoft.com/docs/iac/concepts/resources/names/#urns)[^urn-uniqueness]
 serves as its identifier to the Pulumi engine and is built from the stack and
 project a resource is located in, followed by its type, parent type and name:
 
 ```
-urn:pulumi:<stack>::<project>::<qualified-type>::<name>
+urn:khulnasoft:<stack>::<project>::<qualified-type>::<name>
 ```
 
 More formally, the
@@ -170,7 +170,7 @@ for a URN is as follows:
 
 (urn-ebnf)=
 ```ebnf
-urn = "urn:pulumi:" stack "::" project "::" qualified type name "::" name ;
+urn = "urn:khulnasoft:" stack "::" project "::" qualified type name "::" name ;
 
 stack   = string ;
 project = string ;
@@ -198,8 +198,8 @@ identifier = Unicode letter { Unicode letter | Unicode digit | "_" } ;
 (resource-ids)=
 ### IDs
 
-If a resource has been [created](pulumirpc.ResourceProvider.Create) or
-[read](pulumirpc.ResourceProvider.Read) by a [provider](providers), it will also
+If a resource has been [created](khulnasoftrpc.ResourceProvider.Create) or
+[read](khulnasoftrpc.ResourceProvider.Read) by a [provider](providers), it will also
 have a `String` `ID` corresponding to the instance in the provider. IDs are
 generally opaque to the engine and only have meaning in the context of the
 provider that created them.
@@ -229,7 +229,7 @@ correct order of operations is maintained when creating or updating resources.
 #### Unknowns
 
 An `Output<T>` may be *unknown* if it depends on the result of a resource
-operation that will not be run, for example because it is part of a `pulumi
+operation that will not be run, for example because it is part of a `khulnasoft
 preview`.[^explicit-unknowns] Previews typically produce unknowns for properties
 with values that cannot be determined until the resource is actually created or
 updated. If a value of type `Output<T>` is unknown, any computation that depends
@@ -265,9 +265,9 @@ expression that describes a path to one or more properties within a set of
 values, such as those that may comprise a resource's [input](inputs) or
 [output](outputs) properties. Property paths are used in many contexts, such as
 specifying a set of properties to
-[`ignoreChanges`](https://www.pulumi.com/docs/iac/concepts/options/ignorechanges/)
+[`ignoreChanges`](https://www.khulnasoft.com/docs/iac/concepts/options/ignorechanges/)
 for, or when identifying the set of properties responsible for a particular
-[](pulumirpc.DiffResponse). Example property paths include:
+[](khulnasoftrpc.DiffResponse). Example property paths include:
 
 ```
 root

@@ -7,21 +7,21 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/utilities"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/utilities"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // A non-overlay component resource.
 type ConfigGroup struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
 	// Resources created by the ConfigGroup.
-	Resources pulumi.ArrayOutput `pulumi:"resources"`
+	Resources khulnasoft.ArrayOutput `khulnasoft:"resources"`
 }
 
 // NewConfigGroup registers a new resource with the given unique name, arguments, and options.
-func NewConfigGroup(ctx *pulumi.Context,
-	name string, args *ConfigGroupArgs, opts ...pulumi.ResourceOption) (*ConfigGroup, error) {
+func NewConfigGroup(ctx *khulnasoft.Context,
+	name string, args *ConfigGroupArgs, opts ...khulnasoft.ResourceOption) (*ConfigGroup, error) {
 	if args == nil {
 		args = &ConfigGroupArgs{}
 	}
@@ -37,25 +37,25 @@ func NewConfigGroup(ctx *pulumi.Context,
 
 type configGroupArgs struct {
 	// Set of paths or a URLs that uniquely identify files.
-	Files interface{} `pulumi:"files"`
+	Files interface{} `khulnasoft:"files"`
 	// Objects representing Kubernetes resources.
-	Objs interface{} `pulumi:"objs"`
+	Objs interface{} `khulnasoft:"objs"`
 	// An optional prefix for the auto-generated resource names. Example: A resource created with resourcePrefix="foo" would produce a resource named "foo-resourceName".
-	ResourcePrefix *string `pulumi:"resourcePrefix"`
+	ResourcePrefix *string `khulnasoft:"resourcePrefix"`
 	// YAML text containing Kubernetes resource definitions.
-	Yaml interface{} `pulumi:"yaml"`
+	Yaml interface{} `khulnasoft:"yaml"`
 }
 
 // The set of arguments for constructing a ConfigGroup resource.
 type ConfigGroupArgs struct {
 	// Set of paths or a URLs that uniquely identify files.
-	Files pulumi.Input
+	Files khulnasoft.Input
 	// Objects representing Kubernetes resources.
-	Objs pulumi.Input
+	Objs khulnasoft.Input
 	// An optional prefix for the auto-generated resource names. Example: A resource created with resourcePrefix="foo" would produce a resource named "foo-resourceName".
-	ResourcePrefix pulumi.StringPtrInput
+	ResourcePrefix khulnasoft.StringPtrInput
 	// YAML text containing Kubernetes resource definitions.
-	Yaml pulumi.Input
+	Yaml khulnasoft.Input
 }
 
 func (ConfigGroupArgs) ElementType() reflect.Type {
@@ -63,7 +63,7 @@ func (ConfigGroupArgs) ElementType() reflect.Type {
 }
 
 type ConfigGroupInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConfigGroupOutput() ConfigGroupOutput
 	ToConfigGroupOutputWithContext(ctx context.Context) ConfigGroupOutput
@@ -78,7 +78,7 @@ func (i *ConfigGroup) ToConfigGroupOutput() ConfigGroupOutput {
 }
 
 func (i *ConfigGroup) ToConfigGroupOutputWithContext(ctx context.Context) ConfigGroupOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigGroupOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConfigGroupOutput)
 }
 
 // ConfigGroupArrayInput is an input type that accepts ConfigGroupArray and ConfigGroupArrayOutput values.
@@ -86,7 +86,7 @@ func (i *ConfigGroup) ToConfigGroupOutputWithContext(ctx context.Context) Config
 //
 //	ConfigGroupArray{ ConfigGroupArgs{...} }
 type ConfigGroupArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConfigGroupArrayOutput() ConfigGroupArrayOutput
 	ToConfigGroupArrayOutputWithContext(context.Context) ConfigGroupArrayOutput
@@ -103,7 +103,7 @@ func (i ConfigGroupArray) ToConfigGroupArrayOutput() ConfigGroupArrayOutput {
 }
 
 func (i ConfigGroupArray) ToConfigGroupArrayOutputWithContext(ctx context.Context) ConfigGroupArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigGroupArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConfigGroupArrayOutput)
 }
 
 // ConfigGroupMapInput is an input type that accepts ConfigGroupMap and ConfigGroupMapOutput values.
@@ -111,7 +111,7 @@ func (i ConfigGroupArray) ToConfigGroupArrayOutputWithContext(ctx context.Contex
 //
 //	ConfigGroupMap{ "key": ConfigGroupArgs{...} }
 type ConfigGroupMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConfigGroupMapOutput() ConfigGroupMapOutput
 	ToConfigGroupMapOutputWithContext(context.Context) ConfigGroupMapOutput
@@ -128,10 +128,10 @@ func (i ConfigGroupMap) ToConfigGroupMapOutput() ConfigGroupMapOutput {
 }
 
 func (i ConfigGroupMap) ToConfigGroupMapOutputWithContext(ctx context.Context) ConfigGroupMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigGroupMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConfigGroupMapOutput)
 }
 
-type ConfigGroupOutput struct{ *pulumi.OutputState }
+type ConfigGroupOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigGroupOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ConfigGroup)(nil)).Elem()
@@ -146,11 +146,11 @@ func (o ConfigGroupOutput) ToConfigGroupOutputWithContext(ctx context.Context) C
 }
 
 // Resources created by the ConfigGroup.
-func (o ConfigGroupOutput) Resources() pulumi.ArrayOutput {
-	return o.ApplyT(func(v *ConfigGroup) pulumi.ArrayOutput { return v.Resources }).(pulumi.ArrayOutput)
+func (o ConfigGroupOutput) Resources() khulnasoft.ArrayOutput {
+	return o.ApplyT(func(v *ConfigGroup) khulnasoft.ArrayOutput { return v.Resources }).(khulnasoft.ArrayOutput)
 }
 
-type ConfigGroupArrayOutput struct{ *pulumi.OutputState }
+type ConfigGroupArrayOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigGroupArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*ConfigGroup)(nil)).Elem()
@@ -164,13 +164,13 @@ func (o ConfigGroupArrayOutput) ToConfigGroupArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o ConfigGroupArrayOutput) Index(i pulumi.IntInput) ConfigGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ConfigGroup {
+func (o ConfigGroupArrayOutput) Index(i khulnasoft.IntInput) ConfigGroupOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *ConfigGroup {
 		return vs[0].([]*ConfigGroup)[vs[1].(int)]
 	}).(ConfigGroupOutput)
 }
 
-type ConfigGroupMapOutput struct{ *pulumi.OutputState }
+type ConfigGroupMapOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigGroupMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*ConfigGroup)(nil)).Elem()
@@ -184,17 +184,17 @@ func (o ConfigGroupMapOutput) ToConfigGroupMapOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o ConfigGroupMapOutput) MapIndex(k pulumi.StringInput) ConfigGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ConfigGroup {
+func (o ConfigGroupMapOutput) MapIndex(k khulnasoft.StringInput) ConfigGroupOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *ConfigGroup {
 		return vs[0].(map[string]*ConfigGroup)[vs[1].(string)]
 	}).(ConfigGroupOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ConfigGroupInput)(nil)).Elem(), &ConfigGroup{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ConfigGroupArrayInput)(nil)).Elem(), ConfigGroupArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ConfigGroupMapInput)(nil)).Elem(), ConfigGroupMap{})
-	pulumi.RegisterOutputType(ConfigGroupOutput{})
-	pulumi.RegisterOutputType(ConfigGroupArrayOutput{})
-	pulumi.RegisterOutputType(ConfigGroupMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConfigGroupInput)(nil)).Elem(), &ConfigGroup{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConfigGroupArrayInput)(nil)).Elem(), ConfigGroupArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConfigGroupMapInput)(nil)).Elem(), ConfigGroupMap{})
+	khulnasoft.RegisterOutputType(ConfigGroupOutput{})
+	khulnasoft.RegisterOutputType(ConfigGroupArrayOutput{})
+	khulnasoft.RegisterOutputType(ConfigGroupMapOutput{})
 }

@@ -20,7 +20,7 @@ import (
 	"math"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // ExpressionGenerator is an interface that can be implemented in order to generate code for semantically-analyzed HCL2

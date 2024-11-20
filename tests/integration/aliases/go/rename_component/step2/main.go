@@ -5,18 +5,18 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type FooResource struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 type FooComponent struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewFooResource(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*FooResource, error) {
+func NewFooResource(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*FooResource, error) {
 	fooRes := &FooResource{}
 	err := ctx.RegisterComponentResource("my:module:FooResource", name, fooRes, opts...)
 	if err != nil {
@@ -27,7 +27,7 @@ func NewFooResource(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOpt
 
 // Scenario #3 - rename a component (and all it's children)
 // No change to the component...
-func NewFooComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*FooComponent, error) {
+func NewFooComponent(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*FooComponent, error) {
 	fooComp := &FooComponent{}
 	err := ctx.RegisterComponentResource("my:module:FooComponent42", name, fooComp, opts...)
 	if err != nil {
@@ -35,7 +35,7 @@ func NewFooComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOp
 	}
 	// Note that both un-prefixed and parent-name-prefixed child names are supported. For the later, the implicit
 	// alias inherited from the parent alias will include replacing the name prefix to match the parent alias name.
-	parentOpt := pulumi.Parent(fooComp)
+	parentOpt := khulnasoft.Parent(fooComp)
 	_, err = NewFooResource(ctx, name+"-child", parentOpt)
 	if err != nil {
 		return nil, err
@@ -48,10 +48,10 @@ func NewFooComponent(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOp
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		// ...but applying an alias to the instance successfully renames both the component and the children.
-		alias := &pulumi.Alias{Name: pulumi.StringInput(pulumi.String("comp3"))}
-		aliasOpt := pulumi.Aliases([]pulumi.Alias{*alias})
+		alias := &khulnasoft.Alias{Name: khulnasoft.StringInput(khulnasoft.String("comp3"))}
+		aliasOpt := khulnasoft.Aliases([]khulnasoft.Alias{*alias})
 		_, err := NewFooComponent(ctx, "newcomp3", aliasOpt)
 		if err != nil {
 			return err

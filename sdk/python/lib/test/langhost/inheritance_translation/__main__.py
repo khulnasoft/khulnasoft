@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pulumi
+import khulnasoft
 
 
-class MyResource(pulumi.CustomResource):
+class MyResource(khulnasoft.CustomResource):
     def __init__(self, name):
-        # Pass a @pulumi.input_type to opt-in to new translation behavior.
-        @pulumi.input_type
+        # Pass a @khulnasoft.input_type to opt-in to new translation behavior.
+        @khulnasoft.input_type
         class Args:
             pass
 
@@ -28,35 +28,35 @@ class MyResource(pulumi.CustomResource):
         super().__init__("test:index:MyResource", name, props)
 
     @property
-    @pulumi.getter(name="someValue")
-    def some_value(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "some_value")
+    @khulnasoft.getter(name="someValue")
+    def some_value(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "some_value")
 
     @property
-    @pulumi.getter(name="anotherValue")
-    def another_value(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "another_value")
+    @khulnasoft.getter(name="anotherValue")
+    def another_value(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "another_value")
 
 
 class MyResourceSubclass(MyResource):
-    combined_values: pulumi.Output[str]
+    combined_values: khulnasoft.Output[str]
 
     def __init__(self, name):
         super().__init__(name)
-        self.combined_values = pulumi.Output.concat(
+        self.combined_values = khulnasoft.Output.concat(
             self.some_value, " ", self.another_value
         )
 
 
 class MyResourceSubclassSubclass(MyResourceSubclass):
-    new_value: pulumi.Output[str]
+    new_value: khulnasoft.Output[str]
 
     def __init__(self, name):
         super().__init__(name)
-        self.new_value = pulumi.Output.concat(self.combined_values, "!")
+        self.new_value = khulnasoft.Output.concat(self.combined_values, "!")
 
 
-class MyLegacyTranslationResource(pulumi.CustomResource):
+class MyLegacyTranslationResource(khulnasoft.CustomResource):
     def __init__(self, name):
         # Pass a regular dict to use the old translation behavior.
         props = {}
@@ -77,51 +77,51 @@ class MyLegacyTranslationResource(pulumi.CustomResource):
         }.get(prop) or prop
 
     @property
-    @pulumi.getter(name="someValue")
-    def some_value(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "some_value")
+    @khulnasoft.getter(name="someValue")
+    def some_value(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "some_value")
 
     @property
-    @pulumi.getter(name="anotherValue")
-    def another_value(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "another_value")
+    @khulnasoft.getter(name="anotherValue")
+    def another_value(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "another_value")
 
 
 class MyLegacyTranslationResourceSubclass(MyLegacyTranslationResource):
-    combined_values: pulumi.Output[str]
+    combined_values: khulnasoft.Output[str]
 
     def __init__(self, name):
         super().__init__(name)
-        self.combined_values = pulumi.Output.concat(
+        self.combined_values = khulnasoft.Output.concat(
             self.some_value, " ", self.another_value
         )
 
 
 class MyLegacyTranslationResourceSubclassSubclass(MyLegacyTranslationResourceSubclass):
-    new_value: pulumi.Output[str]
+    new_value: khulnasoft.Output[str]
 
     def __init__(self, name):
         super().__init__(name)
-        self.new_value = pulumi.Output.concat(self.combined_values, "!")
+        self.new_value = khulnasoft.Output.concat(self.combined_values, "!")
 
 
 r1 = MyResourceSubclass("testResource")
 r2 = MyResourceSubclassSubclass("testResource")
-pulumi.export("r1.some_value", r1.some_value)
-pulumi.export("r1.another_value", r1.another_value)
-pulumi.export("r1.combined_values", r1.combined_values)
-pulumi.export("r2.some_value", r2.some_value)
-pulumi.export("r2.another_value", r2.another_value)
-pulumi.export("r2.combined_values", r2.combined_values)
-pulumi.export("r2.new_value", r2.new_value)
+khulnasoft.export("r1.some_value", r1.some_value)
+khulnasoft.export("r1.another_value", r1.another_value)
+khulnasoft.export("r1.combined_values", r1.combined_values)
+khulnasoft.export("r2.some_value", r2.some_value)
+khulnasoft.export("r2.another_value", r2.another_value)
+khulnasoft.export("r2.combined_values", r2.combined_values)
+khulnasoft.export("r2.new_value", r2.new_value)
 
 
 r3 = MyLegacyTranslationResourceSubclass("testResource")
 r4 = MyLegacyTranslationResourceSubclassSubclass("testResource")
-pulumi.export("r3.some_value", r3.some_value)
-pulumi.export("r3.another_value", r3.another_value)
-pulumi.export("r3.combined_values", r3.combined_values)
-pulumi.export("r4.some_value", r4.some_value)
-pulumi.export("r4.another_value", r4.another_value)
-pulumi.export("r4.combined_values", r4.combined_values)
-pulumi.export("r4.new_value", r4.new_value)
+khulnasoft.export("r3.some_value", r3.some_value)
+khulnasoft.export("r3.another_value", r3.another_value)
+khulnasoft.export("r3.combined_values", r3.combined_values)
+khulnasoft.export("r4.some_value", r4.some_value)
+khulnasoft.export("r4.another_value", r4.another_value)
+khulnasoft.export("r4.combined_values", r4.combined_values)
+khulnasoft.export("r4.new_value", r4.new_value)

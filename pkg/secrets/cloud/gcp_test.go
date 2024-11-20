@@ -21,7 +21,7 @@ import (
 
 	kms "cloud.google.com/go/kms/apiv1"
 	"cloud.google.com/go/kms/apiv1/kmspb"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -29,7 +29,7 @@ import (
 func createGCPKey(ctx context.Context, t *testing.T) string {
 	keyName := "test-key-" + randomName(t)
 
-	parent := "projects/pulumi-development/locations/global/keyRings/pulumi-testing"
+	parent := "projects/khulnasoft-development/locations/global/keyRings/khulnasoft-testing"
 	client, err := kms.NewKeyManagementClient(ctx)
 	assert.NoError(t, err)
 
@@ -76,7 +76,7 @@ func TestGCPExistingKey(t *testing.T) {
 	}
 	ctx := context.Background()
 
-	url := "gcpkms://projects/pulumi-development/locations/global/keyRings/pulumi-testing/cryptoKeys/pulumi-ci-test-key"
+	url := "gcpkms://projects/khulnasoft-development/locations/global/keyRings/khulnasoft-testing/cryptoKeys/khulnasoft-ci-test-key"
 
 	//nolint:lll // this is a base64 encoded key
 	encryptedKeyBase64 := "CiQAAVPx+1LGEXNyhMLo89JUdLIUqqsHxB3GlqHHqsGgQB2O7IYSSQBzSboprGFFkoJKRp5baCnFKH5gkCiADJINnUF9luzY93RjYSlyQ23qj0kopX3ZuuXB+ZuzSEqaH0IOL9RoYP1kB+FIXGdkWXE="
@@ -109,7 +109,7 @@ func TestGCPExistingState(t *testing.T) {
 
 	//nolint:lll // this includes a base64 encoded key
 	cloudState := `{
-		"url": "gcpkms://projects/pulumi-development/locations/global/keyRings/pulumi-testing/cryptoKeys/pulumi-ci-test-key",
+		"url": "gcpkms://projects/khulnasoft-development/locations/global/keyRings/khulnasoft-testing/cryptoKeys/khulnasoft-ci-test-key",
 		"encryptedkey": "CiQAAVPx+1LGEXNyhMLo89JUdLIUqqsHxB3GlqHHqsGgQB2O7IYSSQBzSboprGFFkoJKRp5baCnFKH5gkCiADJINnUF9luzY93RjYSlyQ23qj0kopX3ZuuXB+ZuzSEqaH0IOL9RoYP1kB+FIXGdkWXE="
 	}`
 	manager, err := NewCloudSecretsManagerFromState([]byte(cloudState))
@@ -136,7 +136,7 @@ func TestGCPKeyEditProjectStack(t *testing.T) {
 	if os.Getenv("GOOGLE_APPLICATION_CREDENTIALS") == "" {
 		t.Skip("Skipping test because GOOGLE_APPLICATION_CREDENTIALS is not set")
 	}
-	url := "gcpkms://projects/pulumi-development/locations/global/keyRings/pulumi-testing/cryptoKeys/pulumi-ci-test-key"
+	url := "gcpkms://projects/khulnasoft-development/locations/global/keyRings/khulnasoft-testing/cryptoKeys/khulnasoft-ci-test-key"
 
 	//nolint:lll // this is a base64 encoded key
 	encryptedKeyBase64 := "CiQAAVPx+1LGEXNyhMLo89JUdLIUqqsHxB3GlqHHqsGgQB2O7IYSSQBzSboprGFFkoJKRp5baCnFKH5gkCiADJINnUF9luzY93RjYSlyQ23qj0kopX3ZuuXB+ZuzSEqaH0IOL9RoYP1kB+FIXGdkWXE="

@@ -26,12 +26,12 @@ setup(name='custom_py_package',
       package_data={
           'custom_py_package': [
               'py.typed',
-              'pulumi-plugin.json',
+              'khulnasoft-plugin.json',
           ]
       },
       install_requires=[
           'parver>=0.2.1',
-          'pulumi>=3.136.0,<4.0.0',
+          'khulnasoft>=3.136.0,<4.0.0',
           'semver>=2.8.1',
           'typing-extensions>=4.11,<5; python_version < "3.11"'
       ],

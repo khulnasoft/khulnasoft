@@ -135,7 +135,7 @@ func IsRuntimeError(e error) bool {
 	return false
 }
 
-// IsUnexpectedEngineError returns true if the pulumi core engine encountered an error (most likely a bug).
+// IsUnexpectedEngineError returns true if the khulnasoft core engine encountered an error (most likely a bug).
 func IsUnexpectedEngineError(e error) bool {
 	// TODO: figure out how to write a test for this
 	as, ok := e.(autoError)

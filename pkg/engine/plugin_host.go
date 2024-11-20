@@ -20,9 +20,9 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 type clientLanguageRuntimeHost struct {
@@ -38,7 +38,7 @@ func connectToLanguageRuntime(ctx *plugin.Context, address string) (plugin.Host,
 		return nil, fmt.Errorf("could not connect to language host: %w", err)
 	}
 
-	client := pulumirpc.NewLanguageRuntimeClient(conn)
+	client := khulnasoftrpc.NewLanguageRuntimeClient(conn)
 	return &clientLanguageRuntimeHost{
 		Host:            ctx.Host,
 		languageRuntime: plugin.NewLanguageRuntimeClient(ctx, clientRuntimeName, client),

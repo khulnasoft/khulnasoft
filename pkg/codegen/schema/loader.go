@@ -26,13 +26,13 @@ import (
 	"github.com/segmentio/encoding/json"
 
 	pkgWorkspace "github.com/khulnasoft/khulnasoft/pkg/v3/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 type ParameterizationDescriptor struct {
@@ -150,7 +150,7 @@ func (l *pluginLoader) LoadPackageReference(pkg string, version *semver.Version)
 func (l *pluginLoader) LoadPackageReferenceV2(
 	ctx context.Context, descriptor *PackageDescriptor,
 ) (PackageReference, error) {
-	if descriptor.Name == "pulumi" {
+	if descriptor.Name == "khulnasoft" {
 		return DefaultPulumiPackage.Reference(), nil
 	}
 

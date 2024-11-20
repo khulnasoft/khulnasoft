@@ -14,15 +14,15 @@
 
 import pytest
 
-import pulumi
-from pulumi import InvokeOptions
+import khulnasoft
+from khulnasoft import InvokeOptions
 
 
-class MyMocks(pulumi.runtime.Mocks):
-    def new_resource(self, args: pulumi.runtime.MockResourceArgs):
+class MyMocks(khulnasoft.runtime.Mocks):
+    def new_resource(self, args: khulnasoft.runtime.MockResourceArgs):
         return [args.name + "_id", args.inputs]
 
-    def call(self, args: pulumi.runtime.MockCallArgs):
+    def call(self, args: khulnasoft.runtime.MockCallArgs):
         return {} if args.args.get("empty") else {"result": "mock"}
 
 
@@ -83,13 +83,13 @@ class MyMocks(pulumi.runtime.Mocks):
         ("kubernetes:kustomize:directory", "1.0.0", False, {"result": "mock"}),
     ],
 )
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_invoke_empty_return(tok: str, version: str, empty: bool, expected) -> None:
-    pulumi.runtime.mocks.set_mocks(MyMocks())
+    khulnasoft.runtime.mocks.set_mocks(MyMocks())
 
     props = {"empty": True} if empty else {}
-    opts = pulumi.InvokeOptions(version=version) if version else None
-    assert pulumi.runtime.invoke(tok, props, opts).value == expected
+    opts = khulnasoft.InvokeOptions(version=version) if version else None
+    assert khulnasoft.runtime.invoke(tok, props, opts).value == expected
 
 
 @pytest.mark.parametrize(

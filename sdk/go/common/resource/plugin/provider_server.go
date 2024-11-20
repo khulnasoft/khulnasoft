@@ -24,22 +24,22 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil/rpcerror"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil/rpcerror"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 type providerServer struct {
-	pulumirpc.UnsafeResourceProviderServer // opt out of forward compat
+	khulnasoftrpc.UnsafeResourceProviderServer // opt out of forward compat
 
 	provider      Provider
 	keepSecrets   bool
 	keepResources bool
 }
 
-func NewProviderServer(provider Provider) pulumirpc.ResourceProviderServer {
+func NewProviderServer(provider Provider) khulnasoftrpc.ResourceProviderServer {
 	return &providerServer{provider: provider}
 }
 
@@ -69,20 +69,20 @@ func (p *providerServer) checkNYI(method string, err error) error {
 	return err
 }
 
-func (p *providerServer) marshalDiff(diff DiffResult) (*pulumirpc.DiffResponse, error) {
-	var changes pulumirpc.DiffResponse_DiffChanges
+func (p *providerServer) marshalDiff(diff DiffResult) (*khulnasoftrpc.DiffResponse, error) {
+	var changes khulnasoftrpc.DiffResponse_DiffChanges
 	switch diff.Changes {
 	case DiffNone:
-		changes = pulumirpc.DiffResponse_DIFF_NONE
+		changes = khulnasoftrpc.DiffResponse_DIFF_NONE
 	case DiffSome:
-		changes = pulumirpc.DiffResponse_DIFF_SOME
+		changes = khulnasoftrpc.DiffResponse_DIFF_SOME
 	case DiffUnknown:
-		changes = pulumirpc.DiffResponse_DIFF_UNKNOWN
+		changes = khulnasoftrpc.DiffResponse_DIFF_UNKNOWN
 	}
 
 	// Infer the result from the detailed diff.
 	var diffs, replaces []string
-	var detailedDiff map[string]*pulumirpc.PropertyDiff
+	var detailedDiff map[string]*khulnasoftrpc.PropertyDiff
 	if len(diff.DetailedDiff) == 0 {
 		diffs = make([]string, len(diff.ChangedKeys))
 		for i, k := range diff.ChangedKeys {
@@ -93,36 +93,36 @@ func (p *providerServer) marshalDiff(diff DiffResult) (*pulumirpc.DiffResponse, 
 			replaces[i] = string(k)
 		}
 	} else {
-		changes = pulumirpc.DiffResponse_DIFF_SOME
+		changes = khulnasoftrpc.DiffResponse_DIFF_SOME
 
-		detailedDiff = make(map[string]*pulumirpc.PropertyDiff)
+		detailedDiff = make(map[string]*khulnasoftrpc.PropertyDiff)
 		for path, diff := range diff.DetailedDiff {
 			diffs = append(diffs, path)
 
-			var kind pulumirpc.PropertyDiff_Kind
+			var kind khulnasoftrpc.PropertyDiff_Kind
 			switch diff.Kind {
 			case DiffAdd:
-				kind = pulumirpc.PropertyDiff_ADD
+				kind = khulnasoftrpc.PropertyDiff_ADD
 			case DiffAddReplace:
-				kind, replaces = pulumirpc.PropertyDiff_ADD_REPLACE, append(replaces, path)
+				kind, replaces = khulnasoftrpc.PropertyDiff_ADD_REPLACE, append(replaces, path)
 			case DiffDelete:
-				kind = pulumirpc.PropertyDiff_DELETE
+				kind = khulnasoftrpc.PropertyDiff_DELETE
 			case DiffDeleteReplace:
-				kind, replaces = pulumirpc.PropertyDiff_DELETE, append(replaces, path)
+				kind, replaces = khulnasoftrpc.PropertyDiff_DELETE, append(replaces, path)
 			case DiffUpdate:
-				kind = pulumirpc.PropertyDiff_UPDATE
+				kind = khulnasoftrpc.PropertyDiff_UPDATE
 			case DiffUpdateReplace:
-				kind, replaces = pulumirpc.PropertyDiff_UPDATE_REPLACE, append(replaces, path)
+				kind, replaces = khulnasoftrpc.PropertyDiff_UPDATE_REPLACE, append(replaces, path)
 			}
 
-			detailedDiff[path] = &pulumirpc.PropertyDiff{
+			detailedDiff[path] = &khulnasoftrpc.PropertyDiff{
 				Kind:      kind,
 				InputDiff: diff.InputDiff,
 			}
 		}
 	}
 
-	return &pulumirpc.DiffResponse{
+	return &khulnasoftrpc.DiffResponse{
 		Replaces:            replaces,
 		DeleteBeforeReplace: diff.DeleteBeforeReplace,
 		Changes:             changes,
@@ -132,13 +132,13 @@ func (p *providerServer) marshalDiff(diff DiffResult) (*pulumirpc.DiffResponse, 
 }
 
 func (p *providerServer) Parameterize(
-	ctx context.Context, req *pulumirpc.ParameterizeRequest,
-) (*pulumirpc.ParameterizeResponse, error) {
+	ctx context.Context, req *khulnasoftrpc.ParameterizeRequest,
+) (*khulnasoftrpc.ParameterizeResponse, error) {
 	var params ParameterizeParameters
 	switch p := req.Parameters.(type) {
-	case *pulumirpc.ParameterizeRequest_Args:
+	case *khulnasoftrpc.ParameterizeRequest_Args:
 		params = &ParameterizeArgs{Args: p.Args.GetArgs()}
-	case *pulumirpc.ParameterizeRequest_Value:
+	case *khulnasoftrpc.ParameterizeRequest_Value:
 		version, err := semver.Parse(p.Value.GetVersion())
 		if err != nil {
 			return nil, err
@@ -153,15 +153,15 @@ func (p *providerServer) Parameterize(
 	if err != nil {
 		return nil, err
 	}
-	return &pulumirpc.ParameterizeResponse{
+	return &khulnasoftrpc.ParameterizeResponse{
 		Name:    resp.Name,
 		Version: resp.Version.String(),
 	}, nil
 }
 
 func (p *providerServer) GetSchema(ctx context.Context,
-	req *pulumirpc.GetSchemaRequest,
-) (*pulumirpc.GetSchemaResponse, error) {
+	req *khulnasoftrpc.GetSchemaRequest,
+) (*khulnasoftrpc.GetSchemaResponse, error) {
 	var subpackageVersion *semver.Version
 	if req.SubpackageVersion != "" {
 		v, err := semver.ParseTolerant(req.SubpackageVersion)
@@ -179,18 +179,18 @@ func (p *providerServer) GetSchema(ctx context.Context,
 	if err != nil {
 		return nil, err
 	}
-	return &pulumirpc.GetSchemaResponse{Schema: string(schema.Schema)}, nil
+	return &khulnasoftrpc.GetSchemaResponse{Schema: string(schema.Schema)}, nil
 }
 
-func (p *providerServer) GetPluginInfo(ctx context.Context, req *emptypb.Empty) (*pulumirpc.PluginInfo, error) {
+func (p *providerServer) GetPluginInfo(ctx context.Context, req *emptypb.Empty) (*khulnasoftrpc.PluginInfo, error) {
 	info, err := p.provider.GetPluginInfo(ctx)
 	if err != nil {
 		return nil, err
 	}
-	return &pulumirpc.PluginInfo{Version: info.Version.String()}, nil
+	return &khulnasoftrpc.PluginInfo{Version: info.Version.String()}, nil
 }
 
-func (p *providerServer) Attach(ctx context.Context, req *pulumirpc.PluginAttach) (*emptypb.Empty, error) {
+func (p *providerServer) Attach(ctx context.Context, req *khulnasoftrpc.PluginAttach) (*emptypb.Empty, error) {
 	// NewProviderServer should take a GrpcProvider instead of Provider, but that's a breaking change
 	// so for now we type test here
 	if grpcProvider, ok := p.provider.(GrpcProvider); ok {
@@ -212,8 +212,8 @@ func (p *providerServer) Cancel(ctx context.Context, req *emptypb.Empty) (*empty
 }
 
 func (p *providerServer) CheckConfig(ctx context.Context,
-	req *pulumirpc.CheckRequest,
-) (*pulumirpc.CheckResponse, error) {
+	req *khulnasoftrpc.CheckRequest,
+) (*khulnasoftrpc.CheckResponse, error) {
 	urn := resource.URN(req.GetUrn())
 
 	// To support old engines fill in Name/Type if the engine didn't send them
@@ -257,15 +257,15 @@ func (p *providerServer) CheckConfig(ctx context.Context,
 		return nil, err
 	}
 
-	rpcFailures := make([]*pulumirpc.CheckFailure, len(resp.Failures))
+	rpcFailures := make([]*khulnasoftrpc.CheckFailure, len(resp.Failures))
 	for i, f := range resp.Failures {
-		rpcFailures[i] = &pulumirpc.CheckFailure{Property: string(f.Property), Reason: f.Reason}
+		rpcFailures[i] = &khulnasoftrpc.CheckFailure{Property: string(f.Property), Reason: f.Reason}
 	}
 
-	return &pulumirpc.CheckResponse{Inputs: rpcInputs, Failures: rpcFailures}, nil
+	return &khulnasoftrpc.CheckResponse{Inputs: rpcInputs, Failures: rpcFailures}, nil
 }
 
-func (p *providerServer) DiffConfig(ctx context.Context, req *pulumirpc.DiffRequest) (*pulumirpc.DiffResponse, error) {
+func (p *providerServer) DiffConfig(ctx context.Context, req *khulnasoftrpc.DiffRequest) (*khulnasoftrpc.DiffResponse, error) {
 	urn := resource.URN(req.GetUrn())
 
 	// To support old engines fill in Name/Type if the engine didn't send them
@@ -317,8 +317,8 @@ func (p *providerServer) DiffConfig(ctx context.Context, req *pulumirpc.DiffRequ
 }
 
 func (p *providerServer) Configure(ctx context.Context,
-	req *pulumirpc.ConfigureRequest,
-) (*pulumirpc.ConfigureResponse, error) {
+	req *khulnasoftrpc.ConfigureRequest,
+) (*khulnasoftrpc.ConfigureResponse, error) {
 	var inputs resource.PropertyMap
 	if req.GetArgs() != nil {
 		args, err := UnmarshalProperties(req.GetArgs(), p.unmarshalOptions("args", false /* keepOutputValues */))
@@ -350,12 +350,12 @@ func (p *providerServer) Configure(ctx context.Context,
 
 	p.keepSecrets = req.GetAcceptSecrets()
 	p.keepResources = req.GetAcceptResources()
-	return &pulumirpc.ConfigureResponse{
+	return &khulnasoftrpc.ConfigureResponse{
 		AcceptSecrets: true, SupportsPreview: true, AcceptResources: true, AcceptOutputs: true,
 	}, nil
 }
 
-func (p *providerServer) Check(ctx context.Context, req *pulumirpc.CheckRequest) (*pulumirpc.CheckResponse, error) {
+func (p *providerServer) Check(ctx context.Context, req *khulnasoftrpc.CheckRequest) (*khulnasoftrpc.CheckResponse, error) {
 	urn := resource.URN(req.GetUrn())
 
 	// To support old engines fill in Name/Type if the engine didn't send them
@@ -400,15 +400,15 @@ func (p *providerServer) Check(ctx context.Context, req *pulumirpc.CheckRequest)
 		return nil, err
 	}
 
-	rpcFailures := make([]*pulumirpc.CheckFailure, len(resp.Failures))
+	rpcFailures := make([]*khulnasoftrpc.CheckFailure, len(resp.Failures))
 	for i, f := range resp.Failures {
-		rpcFailures[i] = &pulumirpc.CheckFailure{Property: string(f.Property), Reason: f.Reason}
+		rpcFailures[i] = &khulnasoftrpc.CheckFailure{Property: string(f.Property), Reason: f.Reason}
 	}
 
-	return &pulumirpc.CheckResponse{Inputs: rpcInputs, Failures: rpcFailures}, nil
+	return &khulnasoftrpc.CheckResponse{Inputs: rpcInputs, Failures: rpcFailures}, nil
 }
 
-func (p *providerServer) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (*pulumirpc.DiffResponse, error) {
+func (p *providerServer) Diff(ctx context.Context, req *khulnasoftrpc.DiffRequest) (*khulnasoftrpc.DiffResponse, error) {
 	urn, id := resource.URN(req.GetUrn()), resource.ID(req.GetId())
 
 	// To support old engines fill in Name/Type if the engine didn't send them
@@ -460,7 +460,7 @@ func (p *providerServer) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 	return p.marshalDiff(diff)
 }
 
-func (p *providerServer) Create(ctx context.Context, req *pulumirpc.CreateRequest) (*pulumirpc.CreateResponse, error) {
+func (p *providerServer) Create(ctx context.Context, req *khulnasoftrpc.CreateRequest) (*khulnasoftrpc.CreateResponse, error) {
 	urn := resource.URN(req.GetUrn())
 
 	// To support old engines fill in Name/Type if the engine didn't send them
@@ -499,13 +499,13 @@ func (p *providerServer) Create(ctx context.Context, req *pulumirpc.CreateReques
 		return nil, err
 	}
 
-	return &pulumirpc.CreateResponse{
+	return &khulnasoftrpc.CreateResponse{
 		Id:         string(resp.ID),
 		Properties: rpcState,
 	}, nil
 }
 
-func (p *providerServer) Read(ctx context.Context, req *pulumirpc.ReadRequest) (*pulumirpc.ReadResponse, error) {
+func (p *providerServer) Read(ctx context.Context, req *khulnasoftrpc.ReadRequest) (*khulnasoftrpc.ReadResponse, error) {
 	urn, requestID := resource.URN(req.GetUrn()), resource.ID(req.GetId())
 
 	// To support old engines fill in Name/Type if the engine didn't send them
@@ -554,14 +554,14 @@ func (p *providerServer) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 		return nil, err
 	}
 
-	return &pulumirpc.ReadResponse{
+	return &khulnasoftrpc.ReadResponse{
 		Id:         string(resp.ID),
 		Properties: rpcState,
 		Inputs:     rpcInputs,
 	}, nil
 }
 
-func (p *providerServer) Update(ctx context.Context, req *pulumirpc.UpdateRequest) (*pulumirpc.UpdateResponse, error) {
+func (p *providerServer) Update(ctx context.Context, req *khulnasoftrpc.UpdateRequest) (*khulnasoftrpc.UpdateResponse, error) {
 	urn, id := resource.URN(req.GetUrn()), resource.ID(req.GetId())
 
 	// To support old engines fill in Name/Type if the engine didn't send them
@@ -617,10 +617,10 @@ func (p *providerServer) Update(ctx context.Context, req *pulumirpc.UpdateReques
 		return nil, err
 	}
 
-	return &pulumirpc.UpdateResponse{Properties: rpcState}, nil
+	return &khulnasoftrpc.UpdateResponse{Properties: rpcState}, nil
 }
 
-func (p *providerServer) Delete(ctx context.Context, req *pulumirpc.DeleteRequest) (*emptypb.Empty, error) {
+func (p *providerServer) Delete(ctx context.Context, req *khulnasoftrpc.DeleteRequest) (*emptypb.Empty, error) {
 	urn, id := resource.URN(req.GetUrn()), resource.ID(req.GetId())
 
 	// To support old engines fill in Name/Type if the engine didn't send them
@@ -663,8 +663,8 @@ func (p *providerServer) Delete(ctx context.Context, req *pulumirpc.DeleteReques
 }
 
 func (p *providerServer) Construct(ctx context.Context,
-	req *pulumirpc.ConstructRequest,
-) (*pulumirpc.ConstructResponse, error) {
+	req *khulnasoftrpc.ConstructRequest,
+) (*khulnasoftrpc.ConstructResponse, error) {
 	typ, name, parent := tokens.Type(req.GetType()), req.GetName(), resource.URN(req.GetParent())
 
 	inputs, err := UnmarshalProperties(req.GetInputs(), p.unmarshalOptions("inputs", true /* keepOutputValues */))
@@ -743,23 +743,23 @@ func (p *providerServer) Construct(ctx context.Context,
 		return nil, err
 	}
 
-	outputDependencies := map[string]*pulumirpc.ConstructResponse_PropertyDependencies{}
+	outputDependencies := map[string]*khulnasoftrpc.ConstructResponse_PropertyDependencies{}
 	for name, deps := range resp.OutputDependencies {
 		urns := make([]string, len(deps))
 		for i, urn := range deps {
 			urns[i] = string(urn)
 		}
-		outputDependencies[string(name)] = &pulumirpc.ConstructResponse_PropertyDependencies{Urns: urns}
+		outputDependencies[string(name)] = &khulnasoftrpc.ConstructResponse_PropertyDependencies{Urns: urns}
 	}
 
-	return &pulumirpc.ConstructResponse{
+	return &khulnasoftrpc.ConstructResponse{
 		Urn:               string(resp.URN),
 		State:             outputs,
 		StateDependencies: outputDependencies,
 	}, nil
 }
 
-func (p *providerServer) Invoke(ctx context.Context, req *pulumirpc.InvokeRequest) (*pulumirpc.InvokeResponse, error) {
+func (p *providerServer) Invoke(ctx context.Context, req *khulnasoftrpc.InvokeRequest) (*khulnasoftrpc.InvokeResponse, error) {
 	args, err := UnmarshalProperties(req.GetArgs(), p.unmarshalOptions("args", false /* keepOutputValues */))
 	if err != nil {
 		return nil, err
@@ -778,19 +778,19 @@ func (p *providerServer) Invoke(ctx context.Context, req *pulumirpc.InvokeReques
 		return nil, err
 	}
 
-	rpcFailures := make([]*pulumirpc.CheckFailure, len(resp.Failures))
+	rpcFailures := make([]*khulnasoftrpc.CheckFailure, len(resp.Failures))
 	for i, f := range resp.Failures {
-		rpcFailures[i] = &pulumirpc.CheckFailure{Property: string(f.Property), Reason: f.Reason}
+		rpcFailures[i] = &khulnasoftrpc.CheckFailure{Property: string(f.Property), Reason: f.Reason}
 	}
 
-	return &pulumirpc.InvokeResponse{
+	return &khulnasoftrpc.InvokeResponse{
 		Return:   rpcResult,
 		Failures: rpcFailures,
 	}, nil
 }
 
-func (p *providerServer) StreamInvoke(req *pulumirpc.InvokeRequest,
-	server pulumirpc.ResourceProvider_StreamInvokeServer,
+func (p *providerServer) StreamInvoke(req *khulnasoftrpc.InvokeRequest,
+	server khulnasoftrpc.ResourceProvider_StreamInvokeServer,
 ) error {
 	args, err := UnmarshalProperties(req.GetArgs(), p.unmarshalOptions("args", false /* keepOutputValues */))
 	if err != nil {
@@ -806,7 +806,7 @@ func (p *providerServer) StreamInvoke(req *pulumirpc.InvokeRequest,
 				return err
 			}
 
-			return server.Send(&pulumirpc.InvokeResponse{Return: rpcItem})
+			return server.Send(&khulnasoftrpc.InvokeResponse{Return: rpcItem})
 		},
 	})
 	if err != nil {
@@ -816,15 +816,15 @@ func (p *providerServer) StreamInvoke(req *pulumirpc.InvokeRequest,
 		return nil
 	}
 
-	rpcFailures := make([]*pulumirpc.CheckFailure, len(resp.Failures))
+	rpcFailures := make([]*khulnasoftrpc.CheckFailure, len(resp.Failures))
 	for i, f := range resp.Failures {
-		rpcFailures[i] = &pulumirpc.CheckFailure{Property: string(f.Property), Reason: f.Reason}
+		rpcFailures[i] = &khulnasoftrpc.CheckFailure{Property: string(f.Property), Reason: f.Reason}
 	}
 
-	return server.Send(&pulumirpc.InvokeResponse{Failures: rpcFailures})
+	return server.Send(&khulnasoftrpc.InvokeResponse{Failures: rpcFailures})
 }
 
-func (p *providerServer) Call(ctx context.Context, req *pulumirpc.CallRequest) (*pulumirpc.CallResponse, error) {
+func (p *providerServer) Call(ctx context.Context, req *khulnasoftrpc.CallRequest) (*khulnasoftrpc.CallResponse, error) {
 	args, err := UnmarshalProperties(req.GetArgs(), p.unmarshalOptions("args", true /* keepOutputValues */))
 	if err != nil {
 		return nil, err
@@ -876,21 +876,21 @@ func (p *providerServer) Call(ctx context.Context, req *pulumirpc.CallRequest) (
 		return nil, err
 	}
 
-	returnDependencies := map[string]*pulumirpc.CallResponse_ReturnDependencies{}
+	returnDependencies := map[string]*khulnasoftrpc.CallResponse_ReturnDependencies{}
 	for name, deps := range result.ReturnDependencies {
 		urns := make([]string, len(deps))
 		for i, urn := range deps {
 			urns[i] = string(urn)
 		}
-		returnDependencies[string(name)] = &pulumirpc.CallResponse_ReturnDependencies{Urns: urns}
+		returnDependencies[string(name)] = &khulnasoftrpc.CallResponse_ReturnDependencies{Urns: urns}
 	}
 
-	rpcFailures := make([]*pulumirpc.CheckFailure, len(result.Failures))
+	rpcFailures := make([]*khulnasoftrpc.CheckFailure, len(result.Failures))
 	for i, f := range result.Failures {
-		rpcFailures[i] = &pulumirpc.CheckFailure{Property: string(f.Property), Reason: f.Reason}
+		rpcFailures[i] = &khulnasoftrpc.CheckFailure{Property: string(f.Property), Reason: f.Reason}
 	}
 
-	return &pulumirpc.CallResponse{
+	return &khulnasoftrpc.CallResponse{
 		Return:             rpcResult,
 		ReturnDependencies: returnDependencies,
 		Failures:           rpcFailures,
@@ -898,8 +898,8 @@ func (p *providerServer) Call(ctx context.Context, req *pulumirpc.CallRequest) (
 }
 
 func (p *providerServer) GetMapping(ctx context.Context,
-	req *pulumirpc.GetMappingRequest,
-) (*pulumirpc.GetMappingResponse, error) {
+	req *khulnasoftrpc.GetMappingRequest,
+) (*khulnasoftrpc.GetMappingResponse, error) {
 	resp, err := p.provider.GetMapping(ctx, GetMappingRequest{
 		Key:      req.Key,
 		Provider: req.Provider,
@@ -907,17 +907,17 @@ func (p *providerServer) GetMapping(ctx context.Context,
 	if err != nil {
 		return nil, err
 	}
-	return &pulumirpc.GetMappingResponse{Data: resp.Data, Provider: resp.Provider}, nil
+	return &khulnasoftrpc.GetMappingResponse{Data: resp.Data, Provider: resp.Provider}, nil
 }
 
 func (p *providerServer) GetMappings(ctx context.Context,
-	req *pulumirpc.GetMappingsRequest,
-) (*pulumirpc.GetMappingsResponse, error) {
+	req *khulnasoftrpc.GetMappingsRequest,
+) (*khulnasoftrpc.GetMappingsResponse, error) {
 	providers, err := p.provider.GetMappings(ctx, GetMappingsRequest{
 		Key: req.Key,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return &pulumirpc.GetMappingsResponse{Providers: providers.Keys}, nil
+	return &khulnasoftrpc.GetMappingsResponse{Providers: providers.Keys}, nil
 }

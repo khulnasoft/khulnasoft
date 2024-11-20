@@ -28,10 +28,10 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 type propertyDependencies map[resource.PropertyKey][]resource.URN
@@ -616,7 +616,7 @@ func TestDependencyChangeDBR(t *testing.T) {
 	p.Run(t, snap)
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/15763. Check that if a resource gets implicated in a
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/15763. Check that if a resource gets implicated in a
 // replacement chain that it fails if the resource is protected.
 func TestDBRProtect(t *testing.T) {
 	t.Parallel()
@@ -686,8 +686,8 @@ func TestDBRProtect(t *testing.T) {
 	// Update A to trigger a replace this should error because of the protect flag on B.
 	inputsA["A"] = resource.NewStringProperty("bar")
 	_, err = lt.TestOp(Update).RunStep(project, p.GetTarget(t, snap), options, false, p.BackendClient, nil, "1")
-	assert.ErrorContains(t, err, "unable to replace resource \"urn:pulumi:test::test::pkgA:index:typ::resB\""+
-		" as part of replacing \"urn:pulumi:test::test::pkgA:index:typ::resA\" as it is currently marked for protection.")
+	assert.ErrorContains(t, err, "unable to replace resource \"urn:khulnasoft:test::test::pkgA:index:typ::resB\""+
+		" as part of replacing \"urn:khulnasoft:test::test::pkgA:index:typ::resA\" as it is currently marked for protection.")
 
 	// Remove the protect flag and try again
 	assert.Equal(t, snap.Resources[2].Protect, true)

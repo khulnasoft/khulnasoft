@@ -5,14 +5,14 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type BucketComponentV2 struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewBucketComponentV2(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*BucketComponentV2, error) {
+func NewBucketComponentV2(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*BucketComponentV2, error) {
 	component := &BucketComponentV2{}
 	err := ctx.RegisterRemoteComponentResource("wibble:index:BucketComponentV2", name, nil, component, opts...)
 	if err != nil {
@@ -22,7 +22,7 @@ func NewBucketComponentV2(ctx *pulumi.Context, name string, opts ...pulumi.Resou
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := NewBucketComponentV2(ctx, "main-bucket")
 		return err
 	})

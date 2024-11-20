@@ -23,18 +23,18 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type mocks int
 
 // Create the mock.
-func (mocks) NewResource(args pulumi.MockResourceArgs) (string, resource.PropertyMap, error) {
+func (mocks) NewResource(args khulnasoft.MockResourceArgs) (string, resource.PropertyMap, error) {
 	panic("NewResource not supported")
 }
 
-func (mocks) Call(args pulumi.MockCallArgs) (resource.PropertyMap, error) {
+func (mocks) Call(args khulnasoft.MockCallArgs) (resource.PropertyMap, error) {
 	if args.Token == "mypkg::listStorageAccountKeys" {
 
 		targs := mypkg.ListStorageAccountKeysArgs{}
@@ -139,10 +139,10 @@ func (mocks) Call(args pulumi.MockCallArgs) (resource.PropertyMap, error) {
 }
 
 func TestListStorageAccountKeysOutput(t *testing.T) {
-	pulumiTest(t, func(ctx *pulumi.Context) error {
+	khulnasoftTest(t, func(ctx *khulnasoft.Context) error {
 		output := mypkg.ListStorageAccountKeysOutput(ctx, mypkg.ListStorageAccountKeysOutputArgs{
-			AccountName:       pulumi.String("my-account-name"),
-			ResourceGroupName: pulumi.String("my-resource-group-name"),
+			AccountName:       khulnasoft.String("my-account-name"),
+			ResourceGroupName: khulnasoft.String("my-resource-group-name"),
 		})
 
 		keys := waitOut(t, output.Keys()).([]mypkg.StorageAccountKeyResponse)
@@ -154,9 +154,9 @@ func TestListStorageAccountKeysOutput(t *testing.T) {
 			keys[0].Value)
 
 		output = mypkg.ListStorageAccountKeysOutput(ctx, mypkg.ListStorageAccountKeysOutputArgs{
-			AccountName:       pulumi.String("my-account-name"),
-			ResourceGroupName: pulumi.String("my-resource-group-name"),
-			Expand:            pulumi.String("my-expand"),
+			AccountName:       khulnasoft.String("my-account-name"),
+			ResourceGroupName: khulnasoft.String("my-resource-group-name"),
+			Expand:            khulnasoft.String("my-expand"),
 		})
 
 		keys = waitOut(t, output.Keys()).([]mypkg.StorageAccountKeyResponse)
@@ -174,21 +174,21 @@ func TestListStorageAccountKeysOutput(t *testing.T) {
 func TestGetAmiIdsWorks(t *testing.T) {
 	makeFilter := func(n int) mypkg.GetAmiIdsFilterInput {
 		return &mypkg.GetAmiIdsFilterArgs{
-			Name: pulumi.Sprintf("filter-%d-name", n),
-			Values: pulumi.StringArray{
-				pulumi.Sprintf("value-%d-1", n),
-				pulumi.Sprintf("value-%d-2", n),
+			Name: khulnasoft.Sprintf("filter-%d-name", n),
+			Values: khulnasoft.StringArray{
+				khulnasoft.Sprintf("value-%d-1", n),
+				khulnasoft.Sprintf("value-%d-2", n),
 			},
 		}
 	}
 
-	pulumiTest(t, func(ctx *pulumi.Context) error {
+	khulnasoftTest(t, func(ctx *khulnasoft.Context) error {
 		output := mypkg.GetAmiIdsOutput(ctx, mypkg.GetAmiIdsOutputArgs{
-			NameRegex:     pulumi.String("[a-z]").ToStringPtrOutput(),
-			SortAscending: pulumi.Bool(true).ToBoolPtrOutput(),
-			Owners: pulumi.StringArray{
-				pulumi.String("owner-1"),
-				pulumi.String("owner-2"),
+			NameRegex:     khulnasoft.String("[a-z]").ToStringPtrOutput(),
+			SortAscending: khulnasoft.Bool(true).ToBoolPtrOutput(),
+			Owners: khulnasoft.StringArray{
+				khulnasoft.String("owner-1"),
+				khulnasoft.String("owner-2"),
 			}.ToStringArrayOutput(),
 			Filters: mypkg.GetAmiIdsFilterArray{
 				makeFilter(1),
@@ -215,12 +215,12 @@ func TestGetAmiIdsWorks(t *testing.T) {
 	})
 }
 
-func pulumiTest(t *testing.T, testBody func(ctx *pulumi.Context) error) {
-	err := pulumi.RunErr(testBody, pulumi.WithMocks("project", "stack", mocks(0)))
+func khulnasoftTest(t *testing.T, testBody func(ctx *khulnasoft.Context) error) {
+	err := khulnasoft.RunErr(testBody, khulnasoft.WithMocks("project", "stack", mocks(0)))
 	assert.NoError(t, err)
 }
 
-func waitOut(t *testing.T, output pulumi.Output) interface{} {
+func waitOut(t *testing.T, output khulnasoft.Output) interface{} {
 	result, err := waitOutput(output, 1*time.Second)
 	if err != nil {
 		t.Error(err)
@@ -229,7 +229,7 @@ func waitOut(t *testing.T, output pulumi.Output) interface{} {
 	return result
 }
 
-func waitOutput(output pulumi.Output, timeout time.Duration) (interface{}, error) {
+func waitOutput(output khulnasoft.Output, timeout time.Duration) (interface{}, error) {
 	c := make(chan interface{}, 2)
 	output.ApplyT(func(v interface{}) interface{} {
 		c <- v
@@ -243,7 +243,7 @@ func waitOutput(output pulumi.Output, timeout time.Duration) (interface{}, error
 
 	result := <-c
 	if result == timeoutMarker {
-		return nil, fmt.Errorf("Timed out waiting for pulumi.Output after %v", timeout)
+		return nil, fmt.Errorf("Timed out waiting for khulnasoft.Output after %v", timeout)
 	} else {
 		return result, nil
 	}

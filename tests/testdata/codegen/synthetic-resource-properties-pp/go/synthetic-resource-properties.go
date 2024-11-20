@@ -1,12 +1,12 @@
 package main
 
 import (
-	"git.example.org/pulumi-synthetic/resourceProperties"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"git.example.org/khulnasoft-synthetic/resourceProperties"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		rt, err := resourceProperties.NewRoot(ctx, "rt", nil)
 		if err != nil {
 			return err
@@ -18,7 +18,7 @@ func main() {
 		}).(resourceproperties.Obj2Output))
 		ctx.Export("complex", rt.Res1.ApplyT(func(res1 *resourceproperties.Res1) (*float64, error) {
 			return &res1.Obj1.Res2.Obj2.Answer, nil
-		}).(pulumi.Float64PtrOutput))
+		}).(khulnasoft.Float64PtrOutput))
 		return nil
 	})
 }

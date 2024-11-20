@@ -8,36 +8,36 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"plain-and-default/foo/internal"
 )
 
 type ModuleResource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	OptionalBool pulumi.BoolPtrOutput `pulumi:"optionalBool"`
+	OptionalBool khulnasoft.BoolPtrOutput `khulnasoft:"optionalBool"`
 }
 
 // NewModuleResource registers a new resource with the given unique name, arguments, and options.
-func NewModuleResource(ctx *pulumi.Context,
-	name string, args *ModuleResourceArgs, opts ...pulumi.ResourceOption) (*ModuleResource, error) {
+func NewModuleResource(ctx *khulnasoft.Context,
+	name string, args *ModuleResourceArgs, opts ...khulnasoft.ResourceOption) (*ModuleResource, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
 
 	if args.OptionalBool == nil {
-		args.OptionalBool = pulumi.BoolPtr(true)
+		args.OptionalBool = khulnasoft.BoolPtr(true)
 	}
-	args.OptionalConst = pulumi.StringPtr("val")
+	args.OptionalConst = khulnasoft.StringPtr("val")
 	if args.OptionalEnum == nil {
 		args.OptionalEnum = EnumThing(8)
 	}
 	if args.OptionalNumber == nil {
-		args.OptionalNumber = pulumi.Float64Ptr(42.0)
+		args.OptionalNumber = khulnasoft.Float64Ptr(42.0)
 	}
 	if args.OptionalString == nil {
-		args.OptionalString = pulumi.StringPtr("buzzer")
+		args.OptionalString = khulnasoft.StringPtr("buzzer")
 	}
 	if args.PlainOptionalBool == nil {
 		plainOptionalBool_ := true
@@ -64,16 +64,16 @@ func NewModuleResource(ctx *pulumi.Context,
 		args.PlainRequiredString = "buzzer"
 	}
 	if args.RequiredBool == nil {
-		args.RequiredBool = pulumi.Bool(true)
+		args.RequiredBool = khulnasoft.Bool(true)
 	}
 	if args.RequiredEnum == nil {
 		args.RequiredEnum = EnumThing(4)
 	}
 	if args.RequiredNumber == nil {
-		args.RequiredNumber = pulumi.Float64(42.0)
+		args.RequiredNumber = khulnasoft.Float64(42.0)
 	}
 	if args.RequiredString == nil {
-		args.RequiredString = pulumi.String("buzzer")
+		args.RequiredString = khulnasoft.String("buzzer")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ModuleResource
@@ -86,8 +86,8 @@ func NewModuleResource(ctx *pulumi.Context,
 
 // GetModuleResource gets an existing ModuleResource resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetModuleResource(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ModuleResourceState, opts ...pulumi.ResourceOption) (*ModuleResource, error) {
+func GetModuleResource(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ModuleResourceState, opts ...khulnasoft.ResourceOption) (*ModuleResource, error) {
 	var resource ModuleResource
 	err := ctx.ReadResource("foobar::ModuleResource", name, id, state, &resource, opts...)
 	if err != nil {
@@ -108,32 +108,32 @@ func (ModuleResourceState) ElementType() reflect.Type {
 }
 
 type moduleResourceArgs struct {
-	OptionalBool        *bool      `pulumi:"optionalBool"`
-	OptionalConst       *string    `pulumi:"optionalConst"`
-	OptionalEnum        *EnumThing `pulumi:"optionalEnum"`
-	OptionalNumber      *float64   `pulumi:"optionalNumber"`
-	OptionalString      *string    `pulumi:"optionalString"`
-	PlainOptionalBool   *bool      `pulumi:"plainOptionalBool"`
-	PlainOptionalConst  *string    `pulumi:"plainOptionalConst"`
-	PlainOptionalNumber *float64   `pulumi:"plainOptionalNumber"`
-	PlainOptionalString *string    `pulumi:"plainOptionalString"`
-	PlainRequiredBool   bool       `pulumi:"plainRequiredBool"`
-	PlainRequiredConst  string     `pulumi:"plainRequiredConst"`
-	PlainRequiredNumber float64    `pulumi:"plainRequiredNumber"`
-	PlainRequiredString string     `pulumi:"plainRequiredString"`
-	RequiredBool        bool       `pulumi:"requiredBool"`
-	RequiredEnum        EnumThing  `pulumi:"requiredEnum"`
-	RequiredNumber      float64    `pulumi:"requiredNumber"`
-	RequiredString      string     `pulumi:"requiredString"`
+	OptionalBool        *bool      `khulnasoft:"optionalBool"`
+	OptionalConst       *string    `khulnasoft:"optionalConst"`
+	OptionalEnum        *EnumThing `khulnasoft:"optionalEnum"`
+	OptionalNumber      *float64   `khulnasoft:"optionalNumber"`
+	OptionalString      *string    `khulnasoft:"optionalString"`
+	PlainOptionalBool   *bool      `khulnasoft:"plainOptionalBool"`
+	PlainOptionalConst  *string    `khulnasoft:"plainOptionalConst"`
+	PlainOptionalNumber *float64   `khulnasoft:"plainOptionalNumber"`
+	PlainOptionalString *string    `khulnasoft:"plainOptionalString"`
+	PlainRequiredBool   bool       `khulnasoft:"plainRequiredBool"`
+	PlainRequiredConst  string     `khulnasoft:"plainRequiredConst"`
+	PlainRequiredNumber float64    `khulnasoft:"plainRequiredNumber"`
+	PlainRequiredString string     `khulnasoft:"plainRequiredString"`
+	RequiredBool        bool       `khulnasoft:"requiredBool"`
+	RequiredEnum        EnumThing  `khulnasoft:"requiredEnum"`
+	RequiredNumber      float64    `khulnasoft:"requiredNumber"`
+	RequiredString      string     `khulnasoft:"requiredString"`
 }
 
 // The set of arguments for constructing a ModuleResource resource.
 type ModuleResourceArgs struct {
-	OptionalBool        pulumi.BoolPtrInput
-	OptionalConst       pulumi.StringPtrInput
+	OptionalBool        khulnasoft.BoolPtrInput
+	OptionalConst       khulnasoft.StringPtrInput
 	OptionalEnum        EnumThingPtrInput
-	OptionalNumber      pulumi.Float64PtrInput
-	OptionalString      pulumi.StringPtrInput
+	OptionalNumber      khulnasoft.Float64PtrInput
+	OptionalString      khulnasoft.StringPtrInput
 	PlainOptionalBool   *bool
 	PlainOptionalConst  *string
 	PlainOptionalNumber *float64
@@ -142,10 +142,10 @@ type ModuleResourceArgs struct {
 	PlainRequiredConst  string
 	PlainRequiredNumber float64
 	PlainRequiredString string
-	RequiredBool        pulumi.BoolInput
+	RequiredBool        khulnasoft.BoolInput
 	RequiredEnum        EnumThingInput
-	RequiredNumber      pulumi.Float64Input
-	RequiredString      pulumi.StringInput
+	RequiredNumber      khulnasoft.Float64Input
+	RequiredString      khulnasoft.StringInput
 }
 
 func (ModuleResourceArgs) ElementType() reflect.Type {
@@ -153,7 +153,7 @@ func (ModuleResourceArgs) ElementType() reflect.Type {
 }
 
 type ModuleResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToModuleResourceOutput() ModuleResourceOutput
 	ToModuleResourceOutputWithContext(ctx context.Context) ModuleResourceOutput
@@ -168,16 +168,16 @@ func (i *ModuleResource) ToModuleResourceOutput() ModuleResourceOutput {
 }
 
 func (i *ModuleResource) ToModuleResourceOutputWithContext(ctx context.Context) ModuleResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ModuleResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ModuleResourceOutput)
 }
 
-func (i *ModuleResource) ToOutput(ctx context.Context) pulumix.Output[*ModuleResource] {
-	return pulumix.Output[*ModuleResource]{
+func (i *ModuleResource) ToOutput(ctx context.Context) khulnasoftx.Output[*ModuleResource] {
+	return khulnasoftx.Output[*ModuleResource]{
 		OutputState: i.ToModuleResourceOutputWithContext(ctx).OutputState,
 	}
 }
 
-type ModuleResourceOutput struct{ *pulumi.OutputState }
+type ModuleResourceOutput struct{ *khulnasoft.OutputState }
 
 func (ModuleResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ModuleResource)(nil)).Elem()
@@ -191,17 +191,17 @@ func (o ModuleResourceOutput) ToModuleResourceOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o ModuleResourceOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleResource] {
-	return pulumix.Output[*ModuleResource]{
+func (o ModuleResourceOutput) ToOutput(ctx context.Context) khulnasoftx.Output[*ModuleResource] {
+	return khulnasoftx.Output[*ModuleResource]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o ModuleResourceOutput) OptionalBool() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ModuleResource) pulumi.BoolPtrOutput { return v.OptionalBool }).(pulumi.BoolPtrOutput)
+func (o ModuleResourceOutput) OptionalBool() khulnasoft.BoolPtrOutput {
+	return o.ApplyT(func(v *ModuleResource) khulnasoft.BoolPtrOutput { return v.OptionalBool }).(khulnasoft.BoolPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ModuleResourceInput)(nil)).Elem(), &ModuleResource{})
-	pulumi.RegisterOutputType(ModuleResourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ModuleResourceInput)(nil)).Elem(), &ModuleResource{})
+	khulnasoft.RegisterOutputType(ModuleResourceOutput{})
 }

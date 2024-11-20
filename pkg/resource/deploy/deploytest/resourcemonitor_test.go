@@ -19,8 +19,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
@@ -35,7 +35,7 @@ func TestResourceMonitor_Call_deps(t *testing.T) {
 	client := stubResourceMonitorClient{
 		// ResourceMonitorClient is unset
 		// so this will panic if an unexpected method is called.
-		CallFunc: func(req *pulumirpc.ResourceCallRequest) (*pulumirpc.CallResponse, error) {
+		CallFunc: func(req *khulnasoftrpc.ResourceCallRequest) (*khulnasoftrpc.CallResponse, error) {
 			assert.ElementsMatch(t, req.ArgDependencies["k1"].Urns, []string{"urn1", "urn2"})
 
 			res, err := structpb.NewStruct(map[string]interface{}{
@@ -44,9 +44,9 @@ func TestResourceMonitor_Call_deps(t *testing.T) {
 			})
 			require.NoError(t, err)
 
-			return &pulumirpc.CallResponse{
+			return &khulnasoftrpc.CallResponse{
 				Return: res,
-				ReturnDependencies: map[string]*pulumirpc.CallResponse_ReturnDependencies{
+				ReturnDependencies: map[string]*khulnasoftrpc.CallResponse_ReturnDependencies{
 					"foo": {Urns: []string{"urn1", "urn2"}},
 					"bar": {Urns: []string{"urn3", "urn4"}},
 				},
@@ -78,28 +78,28 @@ func TestResourceMonitor_RegisterResource_customTimeouts(t *testing.T) {
 	tests := []struct {
 		desc string
 		give *resource.CustomTimeouts
-		want *pulumirpc.RegisterResourceRequest_CustomTimeouts
+		want *khulnasoftrpc.RegisterResourceRequest_CustomTimeouts
 	}{
 		{desc: "nil", give: nil, want: nil},
 		{
 			desc: "create",
 			give: &resource.CustomTimeouts{Create: 1},
-			want: &pulumirpc.RegisterResourceRequest_CustomTimeouts{Create: "1s"},
+			want: &khulnasoftrpc.RegisterResourceRequest_CustomTimeouts{Create: "1s"},
 		},
 		{
 			desc: "update",
 			give: &resource.CustomTimeouts{Update: 1},
-			want: &pulumirpc.RegisterResourceRequest_CustomTimeouts{Update: "1s"},
+			want: &khulnasoftrpc.RegisterResourceRequest_CustomTimeouts{Update: "1s"},
 		},
 		{
 			desc: "delete",
 			give: &resource.CustomTimeouts{Delete: 1},
-			want: &pulumirpc.RegisterResourceRequest_CustomTimeouts{Delete: "1s"},
+			want: &khulnasoftrpc.RegisterResourceRequest_CustomTimeouts{Delete: "1s"},
 		},
 		{
 			desc: "all",
 			give: &resource.CustomTimeouts{Create: 1, Update: 2, Delete: 3},
-			want: &pulumirpc.RegisterResourceRequest_CustomTimeouts{
+			want: &khulnasoftrpc.RegisterResourceRequest_CustomTimeouts{
 				Create: "1s",
 				Update: "2s",
 				Delete: "3s",
@@ -114,10 +114,10 @@ func TestResourceMonitor_RegisterResource_customTimeouts(t *testing.T) {
 
 			client := stubResourceMonitorClient{
 				RegisterResourceFunc: func(
-					req *pulumirpc.RegisterResourceRequest,
-				) (*pulumirpc.RegisterResourceResponse, error) {
+					req *khulnasoftrpc.RegisterResourceRequest,
+				) (*khulnasoftrpc.RegisterResourceResponse, error) {
 					assert.Equal(t, tt.want, req.CustomTimeouts)
-					return &pulumirpc.RegisterResourceResponse{}, nil
+					return &khulnasoftrpc.RegisterResourceResponse{}, nil
 				},
 			}
 
@@ -132,17 +132,17 @@ func TestResourceMonitor_RegisterResource_customTimeouts(t *testing.T) {
 // stubResourceMonitorClient is a ResourceMonitorClient
 // that can stub out specific functions.
 type stubResourceMonitorClient struct {
-	pulumirpc.ResourceMonitorClient
+	khulnasoftrpc.ResourceMonitorClient
 
-	CallFunc             func(req *pulumirpc.ResourceCallRequest) (*pulumirpc.CallResponse, error)
-	RegisterResourceFunc func(req *pulumirpc.RegisterResourceRequest) (*pulumirpc.RegisterResourceResponse, error)
+	CallFunc             func(req *khulnasoftrpc.ResourceCallRequest) (*khulnasoftrpc.CallResponse, error)
+	RegisterResourceFunc func(req *khulnasoftrpc.RegisterResourceRequest) (*khulnasoftrpc.RegisterResourceResponse, error)
 }
 
 func (cl *stubResourceMonitorClient) Call(
 	ctx context.Context,
-	req *pulumirpc.ResourceCallRequest,
+	req *khulnasoftrpc.ResourceCallRequest,
 	opts ...grpc.CallOption,
-) (*pulumirpc.CallResponse, error) {
+) (*khulnasoftrpc.CallResponse, error) {
 	if cl.CallFunc != nil {
 		return cl.CallFunc(req)
 	}
@@ -151,9 +151,9 @@ func (cl *stubResourceMonitorClient) Call(
 
 func (cl *stubResourceMonitorClient) RegisterResource(
 	ctx context.Context,
-	req *pulumirpc.RegisterResourceRequest,
+	req *khulnasoftrpc.RegisterResourceRequest,
 	opts ...grpc.CallOption,
-) (*pulumirpc.RegisterResourceResponse, error) {
+) (*khulnasoftrpc.RegisterResourceResponse, error) {
 	if cl.RegisterResourceFunc != nil {
 		return cl.RegisterResourceFunc(req)
 	}

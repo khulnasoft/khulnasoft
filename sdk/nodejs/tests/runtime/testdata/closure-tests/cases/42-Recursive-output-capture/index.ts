@@ -13,7 +13,7 @@
 // limitations under the License.
 
 // @ts-ignore
-import { output } from "@pulumi/pulumi";
+import { output } from "@khulnasoft/khulnasoft";
 
 export const description = "Recursive output capture";
 

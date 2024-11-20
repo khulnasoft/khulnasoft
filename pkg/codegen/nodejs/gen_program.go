@@ -31,14 +31,14 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 	"github.com/zclconf/go-cty/cty"
 )
 
-const PulumiToken = "pulumi"
+const PulumiToken = "khulnasoft"
 
 type generator struct {
 	// The formatter to use when generating code.
@@ -217,11 +217,11 @@ func GenerateProject(
 		"typescript": "^4.0.0",
 		`, project.Name.String())
 
-	// Check if pulumi is a local dependency, else add it as a normal range dependency
-	if pulumiArtifact, has := localDependencies[PulumiToken]; has {
-		fmt.Fprintf(&packageJSON, `"@pulumi/pulumi": "%s"`, pulumiArtifact)
+	// Check if khulnasoft is a local dependency, else add it as a normal range dependency
+	if khulnasoftArtifact, has := localDependencies[PulumiToken]; has {
+		fmt.Fprintf(&packageJSON, `"@khulnasoft/khulnasoft": "%s"`, khulnasoftArtifact)
 	} else {
-		fmt.Fprintf(&packageJSON, `"@pulumi/pulumi": "^3.0.0"`)
+		fmt.Fprintf(&packageJSON, `"@khulnasoft/khulnasoft": "^3.0.0"`)
 	}
 
 	// For each package add a dependency line
@@ -230,7 +230,7 @@ func GenerateProject(
 		return err
 	}
 	// Sort the dependencies to ensure a deterministic package.json. Note that the typescript and
-	// @pulumi/pulumi dependencies are already added above and not sorted.
+	// @khulnasoft/khulnasoft dependencies are already added above and not sorted.
 	sortedPackageNames := make([]string, 0, len(packages))
 	for k := range packages {
 		sortedPackageNames = append(sortedPackageNames, k)
@@ -245,7 +245,7 @@ func GenerateProject(
 			return err
 		}
 
-		packageName := "@pulumi/" + p.Name
+		packageName := "@khulnasoft/" + p.Name
 		err := p.ImportLanguages(map[string]schema.Language{"nodejs": Importer})
 		if err != nil {
 			return err
@@ -369,7 +369,7 @@ type programImports struct {
 }
 
 func (g *generator) collectProgramImports(program *pcl.Program) programImports {
-	importSet := codegen.NewStringSet("@pulumi/pulumi")
+	importSet := codegen.NewStringSet("@khulnasoft/khulnasoft")
 	preambleHelperMethods := codegen.NewStringSet()
 	var componentImports []string
 
@@ -382,7 +382,7 @@ func (g *generator) collectProgramImports(program *pcl.Program) programImports {
 			if pkg == PulumiToken {
 				continue
 			}
-			pkgName := "@pulumi/" + pkg
+			pkgName := "@khulnasoft/" + pkg
 			if n.Schema != nil && n.Schema.PackageReference != nil {
 				def, err := n.Schema.PackageReference.Definition()
 				contract.AssertNoErrorf(err, "Should be able to retrieve definition for %s", n.Schema.Token)
@@ -421,7 +421,7 @@ func (g *generator) collectProgramImports(program *pcl.Program) programImports {
 	sortedValues := importSet.SortedValues()
 	imports := slice.Prealloc[string](len(sortedValues))
 	for _, pkg := range sortedValues {
-		if pkg == "@pulumi/pulumi" {
+		if pkg == "@khulnasoft/khulnasoft" {
 			continue
 		}
 		var as string
@@ -443,8 +443,8 @@ func (g *generator) collectProgramImports(program *pcl.Program) programImports {
 }
 
 func (g *generator) genPreamble(w io.Writer, program *pcl.Program) error {
-	// Print the @pulumi/pulumi import at the top.
-	g.Fprintln(w, `import * as pulumi from "@pulumi/pulumi";`)
+	// Print the @khulnasoft/khulnasoft import at the top.
+	g.Fprintln(w, `import * as khulnasoft from "@khulnasoft/khulnasoft";`)
 
 	programImports := g.collectProgramImports(program)
 
@@ -476,7 +476,7 @@ func componentElementType(pclType model.Type) string {
 			return elementType + "[]"
 		case *model.MapType:
 			elementType := componentElementType(pclType.ElementType)
-			return fmt.Sprintf("Record<string, pulumi.Input<%s>>", elementType)
+			return fmt.Sprintf("Record<string, khulnasoft.Input<%s>>", elementType)
 		case *model.OutputType:
 			// something is already an output
 			// get only the element type because we are wrapping these in Output<T> anyway
@@ -497,12 +497,12 @@ func componentElementType(pclType model.Type) string {
 
 func componentInputType(pclType model.Type) string {
 	elementType := componentElementType(pclType)
-	return fmt.Sprintf("pulumi.Input<%s>", elementType)
+	return fmt.Sprintf("khulnasoft.Input<%s>", elementType)
 }
 
 func componentOutputType(pclType model.Type) string {
 	elementType := componentElementType(pclType)
-	return fmt.Sprintf("pulumi.Output<%s>", elementType)
+	return fmt.Sprintf("khulnasoft.Output<%s>", elementType)
 }
 
 func (g *generator) genObjectTypedConfig(w io.Writer, objectType *model.ObjectType) {
@@ -528,8 +528,8 @@ func (g *generator) genObjectTypedConfig(w io.Writer, objectType *model.ObjectTy
 }
 
 func (g *generator) genComponentResourceDefinition(w io.Writer, componentName string, component *pcl.Component) {
-	// Print the @pulumi/pulumi import at the top.
-	g.Fprintln(w, `import * as pulumi from "@pulumi/pulumi";`)
+	// Print the @khulnasoft/khulnasoft import at the top.
+	g.Fprintln(w, `import * as khulnasoft from "@khulnasoft/khulnasoft";`)
 
 	programImports := g.collectProgramImports(component.Program)
 
@@ -602,7 +602,7 @@ func (g *generator) genComponentResourceDefinition(w io.Writer, componentName st
 
 	outputs := component.Program.OutputVariables()
 
-	g.Fgenf(w, "export class %s extends pulumi.ComponentResource {\n", componentName)
+	g.Fgenf(w, "export class %s extends khulnasoft.ComponentResource {\n", componentName)
 	g.Indented(func() {
 		for _, output := range outputs {
 			var outputType string
@@ -619,7 +619,7 @@ func (g *generator) genComponentResourceDefinition(w io.Writer, componentName st
 
 					qualifiedMemberName := fmt.Sprintf("%s%s.%s", pkg, module, memberName)
 					// special case: the output is a Resource type
-					outputType = fmt.Sprintf("pulumi.Output<%s>", qualifiedMemberName)
+					outputType = fmt.Sprintf("khulnasoft.Output<%s>", qualifiedMemberName)
 				} else {
 					outputType = componentOutputType(expr.Type())
 				}
@@ -634,7 +634,7 @@ func (g *generator) genComponentResourceDefinition(w io.Writer, componentName st
 
 		if len(configVars) == 0 {
 			g.Fgenf(w, "%s", g.Indent)
-			g.Fgen(w, "constructor(name: string, opts?: pulumi.ComponentResourceOptions) {\n")
+			g.Fgen(w, "constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {\n")
 			g.Indented(func() {
 				g.Fgenf(w, "%s", g.Indent)
 				g.Fgenf(w, "super(\"%s\", name, {}, opts);\n", token)
@@ -642,7 +642,7 @@ func (g *generator) genComponentResourceDefinition(w io.Writer, componentName st
 		} else {
 			g.Fgenf(w, "%s", g.Indent)
 			argsTypeName := componentName + "Args"
-			g.Fgenf(w, "constructor(name: string, args: %s, opts?: pulumi.ComponentResourceOptions) {\n",
+			g.Fgenf(w, "constructor(name: string, args: %s, opts?: khulnasoft.ComponentResourceOptions) {\n",
 				argsTypeName)
 			g.Indented(func() {
 				g.Fgenf(w, "%s", g.Indent)
@@ -704,7 +704,7 @@ func (g *generator) genComponentResourceDefinition(w io.Writer, componentName st
 					_, ok := expr.Parts[0].(*pcl.Resource)
 					if ok && len(expr.Parts) == 1 {
 						// special case: the output is a Resource type
-						g.Fgenf(w, "%sthis.%s = pulumi.output(%v);\n",
+						g.Fgenf(w, "%sthis.%s = khulnasoft.output(%v);\n",
 							g.Indent, outputProperty,
 							g.lowerExpression(output.Value, output.Type()))
 					} else {
@@ -942,8 +942,8 @@ func (g *generator) genResourceDeclaration(w io.Writer, r *pcl.Resource, needsDe
 						// If we only have a single output, just generate a normal `.apply`
 						g.Fgenf(w, "%.20v.apply(", applyArgs[0])
 					} else {
-						// Otherwise, generate a call to `pulumi.all([]).apply()`.
-						g.Fgen(w, "pulumi.all([")
+						// Otherwise, generate a call to `khulnasoft.all([]).apply()`.
+						g.Fgen(w, "khulnasoft.all([")
 						for i, o := range applyArgs {
 							if i > 0 {
 								g.Fgen(w, ", ")
@@ -996,8 +996,8 @@ func (g *generator) genResourceDeclaration(w io.Writer, r *pcl.Resource, needsDe
 			case *model.TupleConsExpression, *model.ForExpression:
 				// A list or list generator that contains outputs looks like list(output(T))
 				// ideally we want this to be output(list(T)) and then call apply:
-				// so we call pulumi.all to lift the elements of the list, then call apply
-				g.Fgenf(w, "pulumi.all(%.20v).apply(rangeBody => {\n", rangeExpr)
+				// so we call khulnasoft.all to lift the elements of the list, then call apply
+				g.Fgenf(w, "khulnasoft.all(%.20v).apply(rangeBody => {\n", rangeExpr)
 				g.Indented(func() {
 					r.Options.Range = model.VariableReference(&model.Variable{
 						Name:         "rangeBody",
@@ -1207,7 +1207,7 @@ func computeConfigTypeParam(configType model.Type) string {
 
 func (g *generator) genConfigVariable(w io.Writer, v *pcl.ConfigVariable) {
 	if !g.configCreated {
-		g.Fprintf(w, "%sconst config = new pulumi.Config();\n", g.Indent)
+		g.Fprintf(w, "%sconst config = new khulnasoft.Config();\n", g.Indent)
 		g.configCreated = true
 	}
 

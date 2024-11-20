@@ -1,39 +1,39 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 interface RandomArgs {
-    length: pulumi.Input<number>;
-    prefix?: pulumi.Input<string | undefined>;
+    length: khulnasoft.Input<number>;
+    prefix?: khulnasoft.Input<string | undefined>;
 }
 
-export class Random extends pulumi.CustomResource {
-    public readonly length!: pulumi.Output<number>;
-    public readonly result!: pulumi.Output<string>;
-    constructor(name: string, args: RandomArgs, opts?: pulumi.CustomResourceOptions) {
+export class Random extends khulnasoft.CustomResource {
+    public readonly length!: khulnasoft.Output<number>;
+    public readonly result!: khulnasoft.Output<string>;
+    constructor(name: string, args: RandomArgs, opts?: khulnasoft.CustomResourceOptions) {
         super("testprovider:index:Random", name, args, opts);
     }
 
     randomInvoke(args) {
-	return pulumi.runtime.invoke("testprovider:index:returnArgs", args);
+	return khulnasoft.runtime.invoke("testprovider:index:returnArgs", args);
     }
 }
 
 
 interface ComponentArgs {
-    length: pulumi.Input<number>;
+    length: khulnasoft.Input<number>;
 }
 
-export class Component extends pulumi.ComponentResource {
-    public readonly length!: pulumi.Output<number>;
-    public readonly childId!: pulumi.Output<string>;
-    constructor(name: string, args: ComponentArgs, opts?: pulumi.ComponentResourceOptions) {
+export class Component extends khulnasoft.ComponentResource {
+    public readonly length!: khulnasoft.Output<number>;
+    public readonly childId!: khulnasoft.Output<string>;
+    constructor(name: string, args: ComponentArgs, opts?: khulnasoft.ComponentResourceOptions) {
         super("testprovider:index:Component", name, args, opts, true);
     }
 }
 
-export class TestProvider extends pulumi.ProviderResource {
-    constructor(name: string, opts?: pulumi.ResourceOptions) {
+export class TestProvider extends khulnasoft.ProviderResource {
+    constructor(name: string, opts?: khulnasoft.ResourceOptions) {
         super("testprovider", name, {}, opts);
     }
 }

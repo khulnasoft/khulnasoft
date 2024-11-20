@@ -1,4 +1,4 @@
-import { PolicyPack, validateResourceOfType } from "@pulumi/policy";
+import { PolicyPack, validateResourceOfType } from "@khulnasoft/policy";
 
 new PolicyPack("typescript", {
     policies: [{

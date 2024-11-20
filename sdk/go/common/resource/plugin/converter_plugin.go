@@ -25,20 +25,20 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil/rpcerror"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil/rpcerror"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // converter reflects a converter plugin, loaded dynamically from another process over gRPC.
 type converter struct {
 	name      string
 	plug      *plugin                   // the actual plugin process wrapper.
-	clientRaw pulumirpc.ConverterClient // the raw provider client; usually unsafe to use directly.
+	clientRaw khulnasoftrpc.ConverterClient // the raw provider client; usually unsafe to use directly.
 }
 
 func NewConverter(ctx *Context, name string, version *semver.Version) (Converter, error) {
@@ -63,7 +63,7 @@ func NewConverter(ctx *Context, name string, version *semver.Version) (Converter
 	c := &converter{
 		name:      name,
 		plug:      plug,
-		clientRaw: pulumirpc.NewConverterClient(plug.Conn),
+		clientRaw: khulnasoftrpc.NewConverterClient(plug.Conn),
 	}
 
 	return c, nil
@@ -109,7 +109,7 @@ func (c *converter) ConvertState(ctx context.Context, req *ConvertStateRequest) 
 	label := c.label() + ".ConvertState"
 	logging.V(7).Infof("%s executing", label)
 
-	resp, err := c.clientRaw.ConvertState(ctx, &pulumirpc.ConvertStateRequest{
+	resp, err := c.clientRaw.ConvertState(ctx, &khulnasoftrpc.ConvertStateRequest{
 		MapperTarget: req.MapperTarget,
 		Args:         req.Args,
 	})
@@ -150,7 +150,7 @@ func (c *converter) ConvertProgram(ctx context.Context, req *ConvertProgramReque
 	label := c.label() + ".ConvertProgram"
 	logging.V(7).Infof("%s executing", label)
 
-	resp, err := c.clientRaw.ConvertProgram(ctx, &pulumirpc.ConvertProgramRequest{
+	resp, err := c.clientRaw.ConvertProgram(ctx, &khulnasoftrpc.ConvertProgramRequest{
 		SourceDirectory: req.SourceDirectory,
 		TargetDirectory: req.TargetDirectory,
 		MapperTarget:    req.MapperTarget,

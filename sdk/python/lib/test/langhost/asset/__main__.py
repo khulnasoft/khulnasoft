@@ -13,8 +13,8 @@
 # limitations under the License.
 from pathlib import Path
 
-from pulumi import CustomResource
-from pulumi.asset import FileAsset, StringAsset, RemoteAsset
+from khulnasoft import CustomResource
+from khulnasoft.asset import FileAsset, StringAsset, RemoteAsset
 
 
 class MyResource(CustomResource):
@@ -27,4 +27,4 @@ class MyResource(CustomResource):
 MyResource("file", FileAsset("./testfile.txt"))
 MyResource("file", FileAsset(Path(".") / "testfile.txt"))
 MyResource("string", StringAsset("its a string"))
-MyResource("remote", RemoteAsset("https://pulumi.com"))
+MyResource("remote", RemoteAsset("https://khulnasoft.com"))

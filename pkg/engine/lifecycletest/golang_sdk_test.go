@@ -29,30 +29,30 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type testResource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Foo pulumi.StringOutput `pulumi:"foo"`
+	Foo khulnasoft.StringOutput `khulnasoft:"foo"`
 }
 
 type testResourceArgs struct {
-	Foo  string `pulumi:"foo"`
-	Bar  string `pulumi:"bar"`
-	Baz  string `pulumi:"baz"`
-	Bang string `pulumi:"bang"`
+	Foo  string `khulnasoft:"foo"`
+	Bar  string `khulnasoft:"bar"`
+	Baz  string `khulnasoft:"baz"`
+	Bang string `khulnasoft:"bang"`
 }
 
 type testResourceInputs struct {
-	Foo  pulumi.StringInput
-	Bar  pulumi.StringInput
-	Baz  pulumi.StringInput
-	Bang pulumi.StringInput
+	Foo  khulnasoft.StringInput
+	Bar  khulnasoft.StringInput
+	Baz  khulnasoft.StringInput
+	Bang khulnasoft.StringInput
 }
 
 func (*testResourceInputs) ElementType() reflect.Type {
@@ -86,7 +86,7 @@ func TestSingleResourceDefaultProviderGolangLifecycle(t *testing.T) {
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(info plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		ctx, err := pulumi.NewContext(context.Background(), pulumi.RunInfo{
+		ctx, err := khulnasoft.NewContext(context.Background(), khulnasoft.RunInfo{
 			Project:     info.Project,
 			Stack:       info.Stack,
 			Parallel:    info.Parallel,
@@ -95,10 +95,10 @@ func TestSingleResourceDefaultProviderGolangLifecycle(t *testing.T) {
 		})
 		assert.NoError(t, err)
 
-		return pulumi.RunWithContext(ctx, func(ctx *pulumi.Context) error {
+		return khulnasoft.RunWithContext(ctx, func(ctx *khulnasoft.Context) error {
 			var resA testResource
 			err := ctx.RegisterResource("pkgA:m:typA", "resA", &testResourceInputs{
-				Foo: pulumi.String("bar"),
+				Foo: khulnasoft.String("bar"),
 			}, &resA)
 			assert.NoError(t, err)
 
@@ -106,7 +106,7 @@ func TestSingleResourceDefaultProviderGolangLifecycle(t *testing.T) {
 			err = ctx.RegisterResource("pkgA:m:typA", "resB", &testResourceInputs{
 				Baz: resA.Foo.ApplyT(func(v string) string {
 					return v + "bar"
-				}).(pulumi.StringOutput),
+				}).(khulnasoft.StringOutput),
 			}, &resB)
 			assert.NoError(t, err)
 
@@ -163,7 +163,7 @@ func TestIgnoreChangesGolangLifecycle(t *testing.T) {
 
 	setupAndRunProgram := func(ignoreChanges []string) *deploy.Snapshot {
 		programF := deploytest.NewLanguageRuntimeF(func(info plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-			ctx, err := pulumi.NewContext(context.Background(), pulumi.RunInfo{
+			ctx, err := khulnasoft.NewContext(context.Background(), khulnasoft.RunInfo{
 				Project:     info.Project,
 				Stack:       info.Stack,
 				Parallel:    info.Parallel,
@@ -172,9 +172,9 @@ func TestIgnoreChangesGolangLifecycle(t *testing.T) {
 			})
 			assert.NoError(t, err)
 
-			return pulumi.RunWithContext(ctx, func(ctx *pulumi.Context) error {
-				var res pulumi.CustomResourceState
-				err := ctx.RegisterResource("pkgA:m:typA", "resA", nil, &res, pulumi.IgnoreChanges(ignoreChanges))
+			return khulnasoft.RunWithContext(ctx, func(ctx *khulnasoft.Context) error {
+				var res khulnasoft.CustomResourceState
+				err := ctx.RegisterResource("pkgA:m:typA", "resA", nil, &res, khulnasoft.IgnoreChanges(ignoreChanges))
 				assert.NoError(t, err)
 
 				return nil
@@ -246,7 +246,7 @@ func TestExplicitDeleteBeforeReplaceGoSDK(t *testing.T) {
 		}),
 	}
 
-	inputsA := &testResourceInputs{Foo: pulumi.String("foo")}
+	inputsA := &testResourceInputs{Foo: khulnasoft.String("foo")}
 
 	dbrValue, dbrA := true, (*bool)(nil)
 	getDbr := func() bool {
@@ -256,10 +256,10 @@ func TestExplicitDeleteBeforeReplaceGoSDK(t *testing.T) {
 		return *dbrA
 	}
 
-	var stackURN, provURN, urnA resource.URN = "urn:pulumi:test::test::pulumi:pulumi:Stack::test-test",
-		"urn:pulumi:test::test::pulumi:providers:pkgA::provA", "urn:pulumi:test::test::pkgA:m:typA::resA"
+	var stackURN, provURN, urnA resource.URN = "urn:khulnasoft:test::test::khulnasoft:khulnasoft:Stack::test-test",
+		"urn:khulnasoft:test::test::khulnasoft:providers:pkgA::provA", "urn:khulnasoft:test::test::pkgA:m:typA::resA"
 	programF := deploytest.NewLanguageRuntimeF(func(info plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		ctx, err := pulumi.NewContext(context.Background(), pulumi.RunInfo{
+		ctx, err := khulnasoft.NewContext(context.Background(), khulnasoft.RunInfo{
 			Project:     info.Project,
 			Stack:       info.Stack,
 			Parallel:    info.Parallel,
@@ -268,14 +268,14 @@ func TestExplicitDeleteBeforeReplaceGoSDK(t *testing.T) {
 		})
 		assert.NoError(t, err)
 
-		return pulumi.RunWithContext(ctx, func(ctx *pulumi.Context) error {
-			provider := &pulumi.ProviderResourceState{}
+		return khulnasoft.RunWithContext(ctx, func(ctx *khulnasoft.Context) error {
+			provider := &khulnasoft.ProviderResourceState{}
 			err := ctx.RegisterResource(string(providers.MakeProviderType("pkgA")), "provA", nil, provider)
 			assert.NoError(t, err)
 
-			var res pulumi.CustomResourceState
+			var res khulnasoft.CustomResourceState
 			err = ctx.RegisterResource("pkgA:m:typA", "resA", inputsA, &res,
-				pulumi.Provider(provider), pulumi.DeleteBeforeReplace(getDbr()))
+				khulnasoft.Provider(provider), khulnasoft.DeleteBeforeReplace(getDbr()))
 			assert.NoError(t, err)
 
 			return nil
@@ -289,7 +289,7 @@ func TestExplicitDeleteBeforeReplaceGoSDK(t *testing.T) {
 	snap := p.Run(t, nil)
 
 	// Change the value of resA.A. Should create before replace
-	inputsA.Foo = pulumi.String("bar")
+	inputsA.Foo = khulnasoft.String("bar")
 	p.Steps = []lt.TestStep{{
 		Op: Update,
 
@@ -313,7 +313,7 @@ func TestExplicitDeleteBeforeReplaceGoSDK(t *testing.T) {
 
 	// Change the registration of resA such that it requires delete-before-replace and change the value of resA.A.
 	// replacement should be delete-before-replace.
-	dbrA, inputsA.Foo = &dbrValue, pulumi.String("baz")
+	dbrA, inputsA.Foo = &dbrValue, khulnasoft.String("baz")
 	p.Steps = []lt.TestStep{{
 		Op: Update,
 
@@ -355,12 +355,12 @@ func TestReadResourceGolangLifecycle(t *testing.T) {
 		}),
 	}
 
-	var stackURN, defaultProviderURN, urnA resource.URN = "urn:pulumi:test::test::pulumi:pulumi:Stack::test-test",
-		"urn:pulumi:test::test::pulumi:providers:pkgA::default", "urn:pulumi:test::test::pkgA:m:typA::resA"
+	var stackURN, defaultProviderURN, urnA resource.URN = "urn:khulnasoft:test::test::khulnasoft:khulnasoft:Stack::test-test",
+		"urn:khulnasoft:test::test::khulnasoft:providers:pkgA::default", "urn:khulnasoft:test::test::pkgA:m:typA::resA"
 
 	setupAndRunProgram := func() *deploy.Snapshot {
 		programF := deploytest.NewLanguageRuntimeF(func(info plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-			ctx, err := pulumi.NewContext(context.Background(), pulumi.RunInfo{
+			ctx, err := khulnasoft.NewContext(context.Background(), khulnasoft.RunInfo{
 				Project:     info.Project,
 				Stack:       info.Stack,
 				Parallel:    info.Parallel,
@@ -369,9 +369,9 @@ func TestReadResourceGolangLifecycle(t *testing.T) {
 			})
 			assert.NoError(t, err)
 
-			return pulumi.RunWithContext(ctx, func(ctx *pulumi.Context) error {
-				var res pulumi.CustomResourceState
-				err := ctx.ReadResource("pkgA:m:typA", "resA", pulumi.ID("someId"), nil, &res)
+			return khulnasoft.RunWithContext(ctx, func(ctx *khulnasoft.Context) error {
+				var res khulnasoft.CustomResourceState
+				err := ctx.ReadResource("pkgA:m:typA", "resA", khulnasoft.ID("someId"), nil, &res)
 				assert.NoError(t, err)
 
 				return nil
@@ -406,15 +406,15 @@ func TestReadResourceGolangLifecycle(t *testing.T) {
 	setupAndRunProgram()
 }
 
-// ensures that RegisterResource, ReadResource (TODO https://github.com/pulumi/pulumi/issues/3562),
+// ensures that RegisterResource, ReadResource (TODO https://github.com/khulnasoft/khulnasoft/issues/3562),
 // and Invoke all respect the provider hierarchy
 // most specific providers are used first 1. resource.provider, 2. resource.providers, 3. resource.parent.providers
 func TestProviderInheritanceGolangLifecycle(t *testing.T) {
 	t.Parallel()
 
 	type invokeArgs struct {
-		Bang string `pulumi:"bang"`
-		Bar  string `pulumi:"bar"`
+		Bang string `khulnasoft:"bang"`
+		Bar  string `khulnasoft:"bar"`
 	}
 
 	loaders := []*deploytest.ProviderLoader{
@@ -471,7 +471,7 @@ func TestProviderInheritanceGolangLifecycle(t *testing.T) {
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(info plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		ctx, err := pulumi.NewContext(context.Background(), pulumi.RunInfo{
+		ctx, err := khulnasoft.NewContext(context.Background(), khulnasoft.RunInfo{
 			Project:     info.Project,
 			Stack:       info.Stack,
 			Parallel:    info.Parallel,
@@ -480,42 +480,42 @@ func TestProviderInheritanceGolangLifecycle(t *testing.T) {
 		})
 		assert.NoError(t, err)
 
-		return pulumi.RunWithContext(ctx, func(ctx *pulumi.Context) error {
+		return khulnasoft.RunWithContext(ctx, func(ctx *khulnasoft.Context) error {
 			// register a couple of providers, pass in some props that we can use to indentify it during invoke
-			var providerA pulumi.ProviderResourceState
+			var providerA khulnasoft.ProviderResourceState
 			err := ctx.RegisterResource(string(providers.MakeProviderType("pkgA")), "prov1",
 				&testResourceInputs{
-					Foo: pulumi.String("1"),
+					Foo: khulnasoft.String("1"),
 				}, &providerA)
 			assert.NoError(t, err)
-			var providerB pulumi.ProviderResourceState
+			var providerB khulnasoft.ProviderResourceState
 			err = ctx.RegisterResource(string(providers.MakeProviderType("pkgB")), "prov2",
 				&testResourceInputs{
-					Bar:  pulumi.String("2"),
-					Bang: pulumi.String(""),
+					Bar:  khulnasoft.String("2"),
+					Bang: khulnasoft.String(""),
 				}, &providerB)
 			assert.NoError(t, err)
-			var providerBOverride pulumi.ProviderResourceState
+			var providerBOverride khulnasoft.ProviderResourceState
 			err = ctx.RegisterResource(string(providers.MakeProviderType("pkgB")), "prov3",
 				&testResourceInputs{
-					Bar:  pulumi.String(""),
-					Bang: pulumi.String("3"),
+					Bar:  khulnasoft.String(""),
+					Bang: khulnasoft.String("3"),
 				}, &providerBOverride)
 			assert.NoError(t, err)
-			parentProviders := make(map[string]pulumi.ProviderResource)
+			parentProviders := make(map[string]khulnasoft.ProviderResource)
 			parentProviders["pkgA"] = &providerA
 			parentProviders["pkgB"] = &providerB
 			// create a parent resource that uses provider map
-			var parentResource pulumi.CustomResourceState
-			err = ctx.RegisterResource("pkgA:m:typA", "resA", nil, &parentResource, pulumi.ProviderMap(parentProviders))
+			var parentResource khulnasoft.CustomResourceState
+			err = ctx.RegisterResource("pkgA:m:typA", "resA", nil, &parentResource, khulnasoft.ProviderMap(parentProviders))
 			assert.NoError(t, err)
 			// parent uses specified provider from map
 			parentResultProvider := parentResource.GetProvider("pkgA:m:typA")
 			assert.Equal(t, &providerA, parentResultProvider)
 
 			// create a child resource
-			var childResource pulumi.CustomResourceState
-			err = ctx.RegisterResource("pkgB:m:typB", "resBChild", nil, &childResource, pulumi.Parent(&parentResource))
+			var childResource khulnasoft.CustomResourceState
+			err = ctx.RegisterResource("pkgB:m:typB", "resBChild", nil, &childResource, khulnasoft.Parent(&parentResource))
 			assert.NoError(t, err)
 
 			// child uses provider value from parent
@@ -523,9 +523,9 @@ func TestProviderInheritanceGolangLifecycle(t *testing.T) {
 			assert.Equal(t, &providerB, childResultProvider)
 
 			// create a child with a provider specified
-			var childWithOverride pulumi.CustomResourceState
+			var childWithOverride khulnasoft.CustomResourceState
 			err = ctx.RegisterResource("pkgB:m:typB", "resBChildOverride", nil, &childWithOverride,
-				pulumi.Parent(&parentResource), pulumi.Provider(&providerBOverride))
+				khulnasoft.Parent(&parentResource), khulnasoft.Provider(&providerBOverride))
 			assert.NoError(t, err)
 
 			// child uses the specified provider, and not the provider from the parent
@@ -533,19 +533,19 @@ func TestProviderInheritanceGolangLifecycle(t *testing.T) {
 			assert.Equal(t, &providerBOverride, childWithOverrideProvider)
 
 			// pass in a fake ID
-			testID := pulumi.ID("testID")
+			testID := khulnasoft.ID("testID")
 
 			// read a resource that uses provider map
-			var rereadParent pulumi.CustomResourceState
-			err = ctx.ReadResource("pkgA:m:typA", "readResA", testID, nil, &rereadParent, pulumi.ProviderMap(parentProviders))
+			var rereadParent khulnasoft.CustomResourceState
+			err = ctx.ReadResource("pkgA:m:typA", "readResA", testID, nil, &rereadParent, khulnasoft.ProviderMap(parentProviders))
 			assert.NoError(t, err)
 			// parent uses specified provider from map
 			parentResultProvider = rereadParent.GetProvider("pkgA:m:typA")
 			assert.Equal(t, &providerA, parentResultProvider)
 
 			// read a child resource
-			var rereadChild pulumi.CustomResourceState
-			err = ctx.ReadResource("pkgB:m:typB", "readResBChild", testID, nil, &rereadChild, pulumi.Parent(&parentResource))
+			var rereadChild khulnasoft.CustomResourceState
+			err = ctx.ReadResource("pkgB:m:typB", "readResBChild", testID, nil, &rereadChild, khulnasoft.Parent(&parentResource))
 			assert.NoError(t, err)
 
 			// child uses provider value from parent
@@ -553,9 +553,9 @@ func TestProviderInheritanceGolangLifecycle(t *testing.T) {
 			assert.Equal(t, &providerB, childResultProvider)
 
 			// read a child with a provider specified
-			var rereadChildWithOverride pulumi.CustomResourceState
+			var rereadChildWithOverride khulnasoft.CustomResourceState
 			err = ctx.ReadResource("pkgB:m:typB", "readResBChildOverride", testID, nil, &rereadChildWithOverride,
-				pulumi.Parent(&parentResource), pulumi.Provider(&providerBOverride))
+				khulnasoft.Parent(&parentResource), khulnasoft.Provider(&providerBOverride))
 			assert.NoError(t, err)
 
 			// child uses the specified provider, and not the provider from the parent
@@ -566,19 +566,19 @@ func TestProviderInheritanceGolangLifecycle(t *testing.T) {
 			var invokeResult struct{}
 			err = ctx.Invoke("pkgB:do:something", invokeArgs{
 				Bang: "3",
-			}, &invokeResult, pulumi.Provider(&providerBOverride))
+			}, &invokeResult, khulnasoft.Provider(&providerBOverride))
 			assert.NoError(t, err)
 
 			// invoke with parent
 			err = ctx.Invoke("pkgB:do:something", invokeArgs{
 				Bar: "2",
-			}, &invokeResult, pulumi.Parent(&parentResource))
+			}, &invokeResult, khulnasoft.Parent(&parentResource))
 			assert.NoError(t, err)
 
 			// invoke with parent and provider
 			err = ctx.Invoke("pkgB:do:something", invokeArgs{
 				Bang: "3",
-			}, &invokeResult, pulumi.Parent(&parentResource), pulumi.Provider(&providerBOverride))
+			}, &invokeResult, khulnasoft.Parent(&parentResource), khulnasoft.Provider(&providerBOverride))
 			assert.NoError(t, err)
 
 			return nil
@@ -612,11 +612,11 @@ func TestReplaceOnChangesGolangLifecycle(t *testing.T) {
 	}
 
 	resourceProperties := &testResourceInputs{
-		Foo: pulumi.String("bar"),
+		Foo: khulnasoft.String("bar"),
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(info plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		ctx, err := pulumi.NewContext(context.Background(), pulumi.RunInfo{
+		ctx, err := khulnasoft.NewContext(context.Background(), khulnasoft.RunInfo{
 			Project:     info.Project,
 			Stack:       info.Stack,
 			Parallel:    info.Parallel,
@@ -625,10 +625,10 @@ func TestReplaceOnChangesGolangLifecycle(t *testing.T) {
 		})
 		assert.NoError(t, err)
 
-		return pulumi.RunWithContext(ctx, func(ctx *pulumi.Context) error {
-			var res pulumi.CustomResourceState
+		return khulnasoft.RunWithContext(ctx, func(ctx *khulnasoft.Context) error {
+			var res khulnasoft.CustomResourceState
 			err := ctx.RegisterResource("pkgA:m:typA", "resA", resourceProperties, &res,
-				pulumi.ReplaceOnChanges([]string{"foo"}))
+				khulnasoft.ReplaceOnChanges([]string{"foo"}))
 			assert.NoError(t, err)
 
 			return nil
@@ -650,7 +650,7 @@ func TestReplaceOnChangesGolangLifecycle(t *testing.T) {
 					for _, event := range events {
 						if event.Type == ResourcePreEvent {
 							payload := event.Payload().(ResourcePreEventPayload)
-							if payload.Metadata.URN == "urn:pulumi:test::test::pkgA:m:typA::resA" {
+							if payload.Metadata.URN == "urn:khulnasoft:test::test::pkgA:m:typA::resA" {
 								collectedOps = append(collectedOps, payload.Metadata.Op)
 							}
 						}
@@ -669,7 +669,7 @@ func TestReplaceOnChangesGolangLifecycle(t *testing.T) {
 
 	// Change the property Foo, should now replace
 	resourceProperties = &testResourceInputs{
-		Foo: pulumi.String("baz"),
+		Foo: khulnasoft.String("baz"),
 	}
 	expectedOps = []display.StepOp{deploy.OpCreateReplacement, deploy.OpReplace, deploy.OpDeleteReplaced}
 
@@ -678,13 +678,13 @@ func TestReplaceOnChangesGolangLifecycle(t *testing.T) {
 }
 
 type remoteComponentArgs struct {
-	Foo pulumi.URN `pulumi:"foo"`
-	Bar *string    `pulumi:"bar"`
+	Foo khulnasoft.URN `khulnasoft:"foo"`
+	Bar *string    `khulnasoft:"bar"`
 }
 
 type remoteComponentInputs struct {
-	Foo pulumi.URNInput       `pulumi:"foo"`
-	Bar pulumi.StringPtrInput `pulumi:"bar"`
+	Foo khulnasoft.URNInput       `khulnasoft:"foo"`
+	Bar khulnasoft.StringPtrInput `khulnasoft:"bar"`
 }
 
 func (*remoteComponentInputs) ElementType() reflect.Type {
@@ -692,10 +692,10 @@ func (*remoteComponentInputs) ElementType() reflect.Type {
 }
 
 type remoteComponent struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Foo pulumi.StringOutput `pulumi:"foo"`
-	Baz pulumi.StringOutput `pulumi:"baz"`
+	Foo khulnasoft.StringOutput `khulnasoft:"foo"`
+	Baz khulnasoft.StringOutput `khulnasoft:"baz"`
 }
 
 func TestRemoteComponentGolang(t *testing.T) {
@@ -741,7 +741,7 @@ func TestRemoteComponentGolang(t *testing.T) {
 	}
 
 	programF := deploytest.NewLanguageRuntimeF(func(info plugin.RunInfo, monitor *deploytest.ResourceMonitor) error {
-		ctx, err := pulumi.NewContext(context.Background(), pulumi.RunInfo{
+		ctx, err := khulnasoft.NewContext(context.Background(), khulnasoft.RunInfo{
 			Project:     info.Project,
 			Stack:       info.Stack,
 			Parallel:    info.Parallel,
@@ -750,9 +750,9 @@ func TestRemoteComponentGolang(t *testing.T) {
 		})
 		require.NoError(t, err)
 
-		return pulumi.RunWithContext(ctx, func(ctx *pulumi.Context) error {
-			var resB pulumi.CustomResourceState
-			err := ctx.RegisterResource("pkgA:index:typA", "resA", pulumi.Map{}, &resB)
+		return khulnasoft.RunWithContext(ctx, func(ctx *khulnasoft.Context) error {
+			var resB khulnasoft.CustomResourceState
+			err := ctx.RegisterResource("pkgA:index:typA", "resA", khulnasoft.Map{}, &resB)
 			require.NoError(t, err)
 
 			inputs := remoteComponentInputs{

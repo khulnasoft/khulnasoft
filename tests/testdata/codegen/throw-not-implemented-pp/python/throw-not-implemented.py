@@ -1,7 +1,7 @@
-import pulumi
+import khulnasoft
 
 
 def not_implemented(msg):
     raise NotImplementedError(msg)
 
-pulumi.export("result", not_implemented("expression here is not implemented yet"))
+khulnasoft.export("result", not_implemented("expression here is not implemented yet"))

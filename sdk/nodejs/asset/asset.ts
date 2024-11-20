@@ -25,7 +25,7 @@ export abstract class Asset {
      * @internal
      */
     // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle,id-blacklist,id-match
-    public readonly __pulumiAsset: boolean = true;
+    public readonly __khulnasoftAsset: boolean = true;
 
     /**
      * Returns true if the given object is an {@link Asset}. This is designed to
@@ -33,7 +33,7 @@ export abstract class Asset {
      * the same process.
      */
     public static isInstance(obj: any): obj is Asset {
-        return utils.isInstance<Asset>(obj, "__pulumiAsset");
+        return utils.isInstance<Asset>(obj, "__khulnasoftAsset");
     }
 }
 

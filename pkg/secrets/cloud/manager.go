@@ -34,8 +34,8 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/authhelpers"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // Type is the type of secrets managed by this secrets provider
@@ -46,7 +46,7 @@ type cloudSecretsManagerState struct {
 	EncryptedKey []byte `json:"encryptedkey"`
 }
 
-// openKeeper opens the keeper, handling pulumi-specifc cases in the URL.
+// openKeeper opens the keeper, handling khulnasoft-specifc cases in the URL.
 func openKeeper(ctx context.Context, url string) (*gosecrets.Keeper, error) {
 	u, err := netUrl.Parse(url)
 	if err != nil {
@@ -167,7 +167,7 @@ func NewCloudSecretsManagerFromState(state json.RawMessage) (secrets.Manager, er
 	if strings.HasPrefix(s.URL, "azurekeyvault://") {
 		wrappedKey, err := base64.RawURLEncoding.DecodeString(string(dataKey))
 		if err != nil {
-			// https://github.com/pulumi/pulumi/issues/15329 resulted in some non-encoded keys being written
+			// https://github.com/khulnasoft/khulnasoft/issues/15329 resulted in some non-encoded keys being written
 			// to state. This checks that case to see if there valid base64 data.
 			firstErr := err
 			_, err := base64.StdEncoding.DecodeString(string(wrappedKey))

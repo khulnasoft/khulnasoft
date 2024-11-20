@@ -49,7 +49,7 @@ language:
     }
   nodejs:
     {
-      "dependencies": { "@pulumi/pulumi": "^3.12" },
+      "dependencies": { "@khulnasoft/khulnasoft": "^3.12" },
       "devDependencies": { "typescript": "^3.7.0" },
     }
   python: {}

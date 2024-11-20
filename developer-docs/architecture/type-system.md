@@ -94,7 +94,7 @@ that depends on its concrete value also depends on `R`.
 ### Unknowns 
 
 An `Output<T>` may be unknown if it depends on the result of a resource operation that
-will not be run because it is part of a `pulumi preview`. Previews typically produce
+will not be run because it is part of a `khulnasoft preview`. Previews typically produce
 unknowns for properties with values that cannot be determined until the resource is
 actually created or updated.
 

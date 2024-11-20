@@ -1,11 +1,11 @@
-// package: pulumirpc
-// file: pulumi/converter.proto
+// package: khulnasoftrpc
+// file: khulnasoft/converter.proto
 
 /* tslint:disable */
 /* eslint-disable */
 
 import * as jspb from "google-protobuf";
-import * as pulumi_codegen_hcl_pb from "./codegen/hcl_pb";
+import * as khulnasoft_codegen_hcl_pb from "./codegen/hcl_pb";
 
 export class ConvertStateRequest extends jspb.Message { 
     getMapperTarget(): string;
@@ -79,9 +79,9 @@ export class ConvertStateResponse extends jspb.Message {
     setResourcesList(value: Array<ResourceImport>): ConvertStateResponse;
     addResources(value?: ResourceImport, index?: number): ResourceImport;
     clearDiagnosticsList(): void;
-    getDiagnosticsList(): Array<pulumi_codegen_hcl_pb.Diagnostic>;
-    setDiagnosticsList(value: Array<pulumi_codegen_hcl_pb.Diagnostic>): ConvertStateResponse;
-    addDiagnostics(value?: pulumi_codegen_hcl_pb.Diagnostic, index?: number): pulumi_codegen_hcl_pb.Diagnostic;
+    getDiagnosticsList(): Array<khulnasoft_codegen_hcl_pb.Diagnostic>;
+    setDiagnosticsList(value: Array<khulnasoft_codegen_hcl_pb.Diagnostic>): ConvertStateResponse;
+    addDiagnostics(value?: khulnasoft_codegen_hcl_pb.Diagnostic, index?: number): khulnasoft_codegen_hcl_pb.Diagnostic;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ConvertStateResponse.AsObject;
@@ -96,7 +96,7 @@ export class ConvertStateResponse extends jspb.Message {
 export namespace ConvertStateResponse {
     export type AsObject = {
         resourcesList: Array<ResourceImport.AsObject>,
-        diagnosticsList: Array<pulumi_codegen_hcl_pb.Diagnostic.AsObject>,
+        diagnosticsList: Array<khulnasoft_codegen_hcl_pb.Diagnostic.AsObject>,
     }
 }
 
@@ -136,9 +136,9 @@ export namespace ConvertProgramRequest {
 
 export class ConvertProgramResponse extends jspb.Message { 
     clearDiagnosticsList(): void;
-    getDiagnosticsList(): Array<pulumi_codegen_hcl_pb.Diagnostic>;
-    setDiagnosticsList(value: Array<pulumi_codegen_hcl_pb.Diagnostic>): ConvertProgramResponse;
-    addDiagnostics(value?: pulumi_codegen_hcl_pb.Diagnostic, index?: number): pulumi_codegen_hcl_pb.Diagnostic;
+    getDiagnosticsList(): Array<khulnasoft_codegen_hcl_pb.Diagnostic>;
+    setDiagnosticsList(value: Array<khulnasoft_codegen_hcl_pb.Diagnostic>): ConvertProgramResponse;
+    addDiagnostics(value?: khulnasoft_codegen_hcl_pb.Diagnostic, index?: number): khulnasoft_codegen_hcl_pb.Diagnostic;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ConvertProgramResponse.AsObject;
@@ -152,6 +152,6 @@ export class ConvertProgramResponse extends jspb.Message {
 
 export namespace ConvertProgramResponse {
     export type AsObject = {
-        diagnosticsList: Array<pulumi_codegen_hcl_pb.Diagnostic.AsObject>,
+        diagnosticsList: Array<khulnasoft_codegen_hcl_pb.Diagnostic.AsObject>,
     }
 }

@@ -3,22 +3,22 @@ package main
 import (
 	"fmt"
 
-	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-random/sdk/v4/go/random"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type SimpleComponentArgs struct {
 }
 
 type SimpleComponent struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 func NewSimpleComponent(
-	ctx *pulumi.Context,
+	ctx *khulnasoft.Context,
 	name string,
 	args *SimpleComponentArgs,
-	opts ...pulumi.ResourceOption,
+	opts ...khulnasoft.ResourceOption,
 ) (*SimpleComponent, error) {
 	var componentResource SimpleComponent
 	err := ctx.RegisterComponentResource("components:index:SimpleComponent", name, &componentResource, opts...)
@@ -26,20 +26,20 @@ func NewSimpleComponent(
 		return nil, err
 	}
 	_, err = random.NewRandomPassword(ctx, fmt.Sprintf("%s-firstPassword", name), &random.RandomPasswordArgs{
-		Length:  pulumi.Int(16),
-		Special: pulumi.Bool(true),
-	}, pulumi.Parent(&componentResource))
+		Length:  khulnasoft.Int(16),
+		Special: khulnasoft.Bool(true),
+	}, khulnasoft.Parent(&componentResource))
 	if err != nil {
 		return nil, err
 	}
 	_, err = random.NewRandomPassword(ctx, fmt.Sprintf("%s-secondPassword", name), &random.RandomPasswordArgs{
-		Length:  pulumi.Int(16),
-		Special: pulumi.Bool(true),
-	}, pulumi.Parent(&componentResource))
+		Length:  khulnasoft.Int(16),
+		Special: khulnasoft.Bool(true),
+	}, khulnasoft.Parent(&componentResource))
 	if err != nil {
 		return nil, err
 	}
-	err = ctx.RegisterResourceOutputs(&componentResource, pulumi.Map{})
+	err = ctx.RegisterResourceOutputs(&componentResource, khulnasoft.Map{})
 	if err != nil {
 		return nil, err
 	}

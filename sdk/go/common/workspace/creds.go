@@ -24,9 +24,9 @@ import (
 
 	"github.com/rogpeppe/go-internal/lockedfile"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 // PulumiCredentialsPathEnvVar is a path to the folder where credentials are stored.
@@ -142,21 +142,21 @@ type Credentials struct {
 // whether it exists or not.
 func getCredsFilePath() (string, error) {
 	// Allow the folder we use to store credentials to be overridden by tests
-	pulumiFolder := os.Getenv(PulumiCredentialsPathEnvVar)
-	if pulumiFolder == "" {
+	khulnasoftFolder := os.Getenv(PulumiCredentialsPathEnvVar)
+	if khulnasoftFolder == "" {
 		folder, err := GetPulumiHomeDir()
 		if err != nil {
 			return "", fmt.Errorf("failed to get the home path: %w", err)
 		}
-		pulumiFolder = folder
+		khulnasoftFolder = folder
 	}
 
-	err := os.MkdirAll(pulumiFolder, 0o700)
+	err := os.MkdirAll(khulnasoftFolder, 0o700)
 	if err != nil {
-		return "", fmt.Errorf("failed to create '%s': %w", pulumiFolder, err)
+		return "", fmt.Errorf("failed to create '%s': %w", khulnasoftFolder, err)
 	}
 
-	return filepath.Join(pulumiFolder, "credentials.json"), nil
+	return filepath.Join(khulnasoftFolder, "credentials.json"), nil
 }
 
 // GetStoredCredentials returns any credentials stored on the local machine.
@@ -232,21 +232,21 @@ type PulumiConfig struct {
 
 func getConfigFilePath() (string, error) {
 	// Allow the folder we use to store config in to be overridden by tests
-	pulumiFolder := os.Getenv(PulumiCredentialsPathEnvVar)
-	if pulumiFolder == "" {
+	khulnasoftFolder := os.Getenv(PulumiCredentialsPathEnvVar)
+	if khulnasoftFolder == "" {
 		folder, err := GetPulumiHomeDir()
 		if err != nil {
 			return "", fmt.Errorf("failed to get the home path: %w", err)
 		}
-		pulumiFolder = folder
+		khulnasoftFolder = folder
 	}
 
-	err := os.MkdirAll(pulumiFolder, 0o700)
+	err := os.MkdirAll(khulnasoftFolder, 0o700)
 	if err != nil {
-		return "", fmt.Errorf("failed to create '%s': %w", pulumiFolder, err)
+		return "", fmt.Errorf("failed to create '%s': %w", khulnasoftFolder, err)
 	}
 
-	return filepath.Join(pulumiFolder, "config.json"), nil
+	return filepath.Join(khulnasoftFolder, "config.json"), nil
 }
 
 func GetPulumiConfig() (PulumiConfig, error) {
@@ -283,7 +283,7 @@ func StorePulumiConfig(config PulumiConfig) error {
 	}
 
 	// Use a temporary file and atomic os.Rename to ensure the file contents are
-	// updated atomically to ensure concurrent `pulumi` CLI operations are safe.
+	// updated atomically to ensure concurrent `khulnasoft` CLI operations are safe.
 	tempConfigFile, err := os.CreateTemp(filepath.Dir(configFile), "config-*.json")
 	if err != nil {
 		return err

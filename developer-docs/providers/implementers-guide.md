@@ -23,7 +23,7 @@ the resource can be extracted from the provided URN. The structure of a URN is d
 by the grammar below.
 
 ```ebnf
-urn = "urn:pulumi:" stack "::" project "::" qualified type name "::" name ;
+urn = "urn:khulnasoft:" stack "::" project "::" qualified type name "::" name ;
 
 stack   = string ;
 project = string ;
@@ -185,8 +185,8 @@ lookup process proceeds as follows:
 - If `B` is empty, no compatible factory is available, and lookup fails
 
 Within the context of the Pulumi CLI, the list of available factories is the list of
-installed resource plugins plus the builtin `pulumi` provider. The list of installed
-resource plugins can be viewed by running `pulumi plugin ls`.
+installed resource plugins plus the builtin `khulnasoft` provider. The list of installed
+resource plugins can be viewed by running `khulnasoft plugin ls`.
 
 Once an appropriate factory has been found, it is used to construct a provider instance.
 
@@ -380,7 +380,7 @@ internal data structures).
 ###### ignoreChanges
 
 Note that if the user specifies the
-[ignoreChanges](https://www.pulumi.com/docs/concepts/options/ignorechanges/) resource
+[ignoreChanges](https://www.khulnasoft.com/docs/concepts/options/ignorechanges/) resource
 option, the value of `news` passed to `Check` may differ from the originals written in the
 program source or returned by Read. It will be pre-processed by replacing every
 `ignoreChanges` property by a matching value from the old inputs stored in the state.

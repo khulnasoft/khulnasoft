@@ -1,5 +1,5 @@
-// package: pulumirpc
-// file: pulumi/resource.proto
+// package: khulnasoftrpc
+// file: khulnasoft/resource.proto
 
 /* tslint:disable */
 /* eslint-disable */
@@ -7,10 +7,10 @@
 import * as jspb from "google-protobuf";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
-import * as pulumi_provider_pb from "./provider_pb";
-import * as pulumi_alias_pb from "./alias_pb";
-import * as pulumi_source_pb from "./source_pb";
-import * as pulumi_callback_pb from "./callback_pb";
+import * as khulnasoft_provider_pb from "./provider_pb";
+import * as khulnasoft_alias_pb from "./alias_pb";
+import * as khulnasoft_source_pb from "./source_pb";
+import * as khulnasoft_callback_pb from "./callback_pb";
 
 export class SupportsFeatureRequest extends jspb.Message { 
     getId(): string;
@@ -90,8 +90,8 @@ export class ReadResourceRequest extends jspb.Message {
 
     hasSourceposition(): boolean;
     clearSourceposition(): void;
-    getSourceposition(): pulumi_source_pb.SourcePosition | undefined;
-    setSourceposition(value?: pulumi_source_pb.SourcePosition): ReadResourceRequest;
+    getSourceposition(): khulnasoft_source_pb.SourcePosition | undefined;
+    setSourceposition(value?: khulnasoft_source_pb.SourcePosition): ReadResourceRequest;
     getPackageref(): string;
     setPackageref(value: string): ReadResourceRequest;
 
@@ -121,7 +121,7 @@ export namespace ReadResourceRequest {
         plugindownloadurl: string,
 
         pluginchecksumsMap: Array<[string, Uint8Array | string]>,
-        sourceposition?: pulumi_source_pb.SourcePosition.AsObject,
+        sourceposition?: khulnasoft_source_pb.SourcePosition.AsObject,
         packageref: string,
     }
 }
@@ -225,9 +225,9 @@ export class RegisterResourceRequest extends jspb.Message {
     getRetainondelete(): boolean;
     setRetainondelete(value: boolean): RegisterResourceRequest;
     clearAliasesList(): void;
-    getAliasesList(): Array<pulumi_alias_pb.Alias>;
-    setAliasesList(value: Array<pulumi_alias_pb.Alias>): RegisterResourceRequest;
-    addAliases(value?: pulumi_alias_pb.Alias, index?: number): pulumi_alias_pb.Alias;
+    getAliasesList(): Array<khulnasoft_alias_pb.Alias>;
+    setAliasesList(value: Array<khulnasoft_alias_pb.Alias>): RegisterResourceRequest;
+    addAliases(value?: khulnasoft_alias_pb.Alias, index?: number): khulnasoft_alias_pb.Alias;
     getDeletedwith(): string;
     setDeletedwith(value: string): RegisterResourceRequest;
     getAliasspecs(): boolean;
@@ -235,12 +235,12 @@ export class RegisterResourceRequest extends jspb.Message {
 
     hasSourceposition(): boolean;
     clearSourceposition(): void;
-    getSourceposition(): pulumi_source_pb.SourcePosition | undefined;
-    setSourceposition(value?: pulumi_source_pb.SourcePosition): RegisterResourceRequest;
+    getSourceposition(): khulnasoft_source_pb.SourcePosition | undefined;
+    setSourceposition(value?: khulnasoft_source_pb.SourcePosition): RegisterResourceRequest;
     clearTransformsList(): void;
-    getTransformsList(): Array<pulumi_callback_pb.Callback>;
-    setTransformsList(value: Array<pulumi_callback_pb.Callback>): RegisterResourceRequest;
-    addTransforms(value?: pulumi_callback_pb.Callback, index?: number): pulumi_callback_pb.Callback;
+    getTransformsList(): Array<khulnasoft_callback_pb.Callback>;
+    setTransformsList(value: Array<khulnasoft_callback_pb.Callback>): RegisterResourceRequest;
+    addTransforms(value?: khulnasoft_callback_pb.Callback, index?: number): khulnasoft_callback_pb.Callback;
     getSupportsresultreporting(): boolean;
     setSupportsresultreporting(value: boolean): RegisterResourceRequest;
     getPackageref(): string;
@@ -287,11 +287,11 @@ export namespace RegisterResourceRequest {
 
         pluginchecksumsMap: Array<[string, Uint8Array | string]>,
         retainondelete: boolean,
-        aliasesList: Array<pulumi_alias_pb.Alias.AsObject>,
+        aliasesList: Array<khulnasoft_alias_pb.Alias.AsObject>,
         deletedwith: string,
         aliasspecs: boolean,
-        sourceposition?: pulumi_source_pb.SourcePosition.AsObject,
-        transformsList: Array<pulumi_callback_pb.Callback.AsObject>,
+        sourceposition?: khulnasoft_source_pb.SourcePosition.AsObject,
+        transformsList: Array<khulnasoft_callback_pb.Callback.AsObject>,
         supportsresultreporting: boolean,
         packageref: string,
     }
@@ -464,8 +464,8 @@ export class ResourceInvokeRequest extends jspb.Message {
 
     hasSourceposition(): boolean;
     clearSourceposition(): void;
-    getSourceposition(): pulumi_source_pb.SourcePosition | undefined;
-    setSourceposition(value?: pulumi_source_pb.SourcePosition): ResourceInvokeRequest;
+    getSourceposition(): khulnasoft_source_pb.SourcePosition | undefined;
+    setSourceposition(value?: khulnasoft_source_pb.SourcePosition): ResourceInvokeRequest;
     getPackageref(): string;
     setPackageref(value: string): ResourceInvokeRequest;
 
@@ -489,7 +489,7 @@ export namespace ResourceInvokeRequest {
         plugindownloadurl: string,
 
         pluginchecksumsMap: Array<[string, Uint8Array | string]>,
-        sourceposition?: pulumi_source_pb.SourcePosition.AsObject,
+        sourceposition?: khulnasoft_source_pb.SourcePosition.AsObject,
         packageref: string,
     }
 }
@@ -517,8 +517,8 @@ export class ResourceCallRequest extends jspb.Message {
 
     hasSourceposition(): boolean;
     clearSourceposition(): void;
-    getSourceposition(): pulumi_source_pb.SourcePosition | undefined;
-    setSourceposition(value?: pulumi_source_pb.SourcePosition): ResourceCallRequest;
+    getSourceposition(): khulnasoft_source_pb.SourcePosition | undefined;
+    setSourceposition(value?: khulnasoft_source_pb.SourcePosition): ResourceCallRequest;
     getPackageref(): string;
     setPackageref(value: string): ResourceCallRequest;
 
@@ -543,7 +543,7 @@ export namespace ResourceCallRequest {
         plugindownloadurl: string,
 
         pluginchecksumsMap: Array<[string, Uint8Array | string]>,
-        sourceposition?: pulumi_source_pb.SourcePosition.AsObject,
+        sourceposition?: khulnasoft_source_pb.SourcePosition.AsObject,
         packageref: string,
     }
 
@@ -590,9 +590,9 @@ export class TransformResourceOptions extends jspb.Message {
     getVersion(): string;
     setVersion(value: string): TransformResourceOptions;
     clearAliasesList(): void;
-    getAliasesList(): Array<pulumi_alias_pb.Alias>;
-    setAliasesList(value: Array<pulumi_alias_pb.Alias>): TransformResourceOptions;
-    addAliases(value?: pulumi_alias_pb.Alias, index?: number): pulumi_alias_pb.Alias;
+    getAliasesList(): Array<khulnasoft_alias_pb.Alias>;
+    setAliasesList(value: Array<khulnasoft_alias_pb.Alias>): TransformResourceOptions;
+    addAliases(value?: khulnasoft_alias_pb.Alias, index?: number): khulnasoft_alias_pb.Alias;
     getProvider(): string;
     setProvider(value: string): TransformResourceOptions;
 
@@ -639,7 +639,7 @@ export namespace TransformResourceOptions {
         ignoreChangesList: Array<string>,
         replaceOnChangesList: Array<string>,
         version: string,
-        aliasesList: Array<pulumi_alias_pb.Alias.AsObject>,
+        aliasesList: Array<khulnasoft_alias_pb.Alias.AsObject>,
         provider: string,
         customTimeouts?: RegisterResourceRequest.CustomTimeouts.AsObject,
         pluginDownloadUrl: string,

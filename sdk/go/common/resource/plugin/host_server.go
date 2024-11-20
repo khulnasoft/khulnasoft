@@ -22,15 +22,15 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // hostServer is the server side of the host RPC machinery.
 type hostServer struct {
-	pulumirpc.UnsafeEngineServer // opt out of forward compat
+	khulnasoftrpc.UnsafeEngineServer // opt out of forward compat
 
 	host   Host         // the host for this RPC server.
 	ctx    *Context     // the associated plugin context.
@@ -55,7 +55,7 @@ func newHostServer(host Host, ctx *Context) (*hostServer, error) {
 	handle, err := rpcutil.ServeWithOptions(rpcutil.ServeOptions{
 		Cancel: engine.cancel,
 		Init: func(srv *grpc.Server) error {
-			pulumirpc.RegisterEngineServer(srv, engine)
+			khulnasoftrpc.RegisterEngineServer(srv, engine)
 			return nil
 		},
 		Options: rpcutil.OpenTracingServerInterceptorOptions(ctx.tracingSpan),
@@ -86,16 +86,16 @@ func (eng *hostServer) Cancel() error {
 }
 
 // Log logs a global message in the engine, including errors and warnings.
-func (eng *hostServer) Log(ctx context.Context, req *pulumirpc.LogRequest) (*emptypb.Empty, error) {
+func (eng *hostServer) Log(ctx context.Context, req *khulnasoftrpc.LogRequest) (*emptypb.Empty, error) {
 	var sev diag.Severity
 	switch req.Severity {
-	case pulumirpc.LogSeverity_DEBUG:
+	case khulnasoftrpc.LogSeverity_DEBUG:
 		sev = diag.Debug
-	case pulumirpc.LogSeverity_INFO:
+	case khulnasoftrpc.LogSeverity_INFO:
 		sev = diag.Info
-	case pulumirpc.LogSeverity_WARNING:
+	case khulnasoftrpc.LogSeverity_WARNING:
 		sev = diag.Warning
-	case pulumirpc.LogSeverity_ERROR:
+	case khulnasoftrpc.LogSeverity_ERROR:
 		sev = diag.Error
 	default:
 		return nil, fmt.Errorf("Unrecognized logging severity: %v", req.Severity)
@@ -112,9 +112,9 @@ func (eng *hostServer) Log(ctx context.Context, req *pulumirpc.LogRequest) (*emp
 // GetRootResource returns the current root resource's URN, which will serve as the parent of resources that are
 // otherwise left unparented.
 func (eng *hostServer) GetRootResource(ctx context.Context,
-	req *pulumirpc.GetRootResourceRequest,
-) (*pulumirpc.GetRootResourceResponse, error) {
-	var response pulumirpc.GetRootResourceResponse
+	req *khulnasoftrpc.GetRootResourceRequest,
+) (*khulnasoftrpc.GetRootResourceResponse, error) {
+	var response khulnasoftrpc.GetRootResourceResponse
 	response.Urn = eng.rootUrn.Load().(string)
 	return &response, nil
 }
@@ -122,15 +122,15 @@ func (eng *hostServer) GetRootResource(ctx context.Context,
 // SetRootResource sets the current root resource's URN. Generally only called on startup when the Stack resource is
 // registered.
 func (eng *hostServer) SetRootResource(ctx context.Context,
-	req *pulumirpc.SetRootResourceRequest,
-) (*pulumirpc.SetRootResourceResponse, error) {
-	var response pulumirpc.SetRootResourceResponse
+	req *khulnasoftrpc.SetRootResourceRequest,
+) (*khulnasoftrpc.SetRootResourceResponse, error) {
+	var response khulnasoftrpc.SetRootResourceResponse
 	eng.rootUrn.Store(req.GetUrn())
 	return &response, nil
 }
 
 func (eng *hostServer) StartDebugging(ctx context.Context,
-	req *pulumirpc.StartDebuggingRequest,
+	req *khulnasoftrpc.StartDebuggingRequest,
 ) (*emptypb.Empty, error) {
 	// fire an engine event to start the debugger
 	info := DebuggingInfo{

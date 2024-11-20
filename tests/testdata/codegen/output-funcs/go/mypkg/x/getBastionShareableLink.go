@@ -7,14 +7,14 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"output-funcs/mypkg/internal"
 )
 
 // Response for all the Bastion Shareable Link endpoints.
 // API Version: 2020-11-01.
-func GetBastionShareableLink(ctx *pulumi.Context, args *GetBastionShareableLinkArgs, opts ...pulumi.InvokeOption) (*GetBastionShareableLinkResult, error) {
+func GetBastionShareableLink(ctx *khulnasoft.Context, args *GetBastionShareableLinkArgs, opts ...khulnasoft.InvokeOption) (*GetBastionShareableLinkResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBastionShareableLinkResult
 	err := ctx.Invoke("mypkg::getBastionShareableLink", args, &rv, opts...)
@@ -26,42 +26,42 @@ func GetBastionShareableLink(ctx *pulumi.Context, args *GetBastionShareableLinkA
 
 type GetBastionShareableLinkArgs struct {
 	// The name of the Bastion Host.
-	BastionHostName string `pulumi:"bastionHostName"`
+	BastionHostName string `khulnasoft:"bastionHostName"`
 	// The name of the resource group.
-	ResourceGroupName string `pulumi:"resourceGroupName"`
+	ResourceGroupName string `khulnasoft:"resourceGroupName"`
 	// List of VM references.
-	Vms []BastionShareableLink `pulumi:"vms"`
+	Vms []BastionShareableLink `khulnasoft:"vms"`
 }
 
 // Response for all the Bastion Shareable Link endpoints.
 type GetBastionShareableLinkResult struct {
 	// The URL to get the next set of results.
-	NextLink *string `pulumi:"nextLink"`
+	NextLink *string `khulnasoft:"nextLink"`
 }
 
-func GetBastionShareableLinkOutput(ctx *pulumi.Context, args GetBastionShareableLinkOutputArgs, opts ...pulumi.InvokeOption) GetBastionShareableLinkResultOutput {
-	outputResult := pulumix.ApplyErr[*GetBastionShareableLinkArgs](args.ToOutput(), func(plainArgs *GetBastionShareableLinkArgs) (*GetBastionShareableLinkResult, error) {
+func GetBastionShareableLinkOutput(ctx *khulnasoft.Context, args GetBastionShareableLinkOutputArgs, opts ...khulnasoft.InvokeOption) GetBastionShareableLinkResultOutput {
+	outputResult := khulnasoftx.ApplyErr[*GetBastionShareableLinkArgs](args.ToOutput(), func(plainArgs *GetBastionShareableLinkArgs) (*GetBastionShareableLinkResult, error) {
 		return GetBastionShareableLink(ctx, plainArgs, opts...)
 	})
 
-	return pulumix.Cast[GetBastionShareableLinkResultOutput, *GetBastionShareableLinkResult](outputResult)
+	return khulnasoftx.Cast[GetBastionShareableLinkResultOutput, *GetBastionShareableLinkResult](outputResult)
 }
 
 type GetBastionShareableLinkOutputArgs struct {
 	// The name of the Bastion Host.
-	BastionHostName pulumix.Input[string] `pulumi:"bastionHostName"`
+	BastionHostName khulnasoftx.Input[string] `khulnasoft:"bastionHostName"`
 	// The name of the resource group.
-	ResourceGroupName pulumix.Input[string] `pulumi:"resourceGroupName"`
+	ResourceGroupName khulnasoftx.Input[string] `khulnasoft:"resourceGroupName"`
 	// List of VM references.
-	Vms pulumix.Input[[]*BastionShareableLinkArgs] `pulumi:"vms"`
+	Vms khulnasoftx.Input[[]*BastionShareableLinkArgs] `khulnasoft:"vms"`
 }
 
-func (args GetBastionShareableLinkOutputArgs) ToOutput() pulumix.Output[*GetBastionShareableLinkArgs] {
-	allArgs := pulumix.All(
+func (args GetBastionShareableLinkOutputArgs) ToOutput() khulnasoftx.Output[*GetBastionShareableLinkArgs] {
+	allArgs := khulnasoftx.All(
 		args.BastionHostName.ToOutput(context.Background()).AsAny(),
 		args.ResourceGroupName.ToOutput(context.Background()).AsAny(),
 		args.Vms.ToOutput(context.Background()).AsAny())
-	return pulumix.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *GetBastionShareableLinkArgs {
+	return khulnasoftx.Apply[[]any](allArgs, func(resolvedArgs []interface{}) *GetBastionShareableLinkArgs {
 		return &GetBastionShareableLinkArgs{
 			BastionHostName:   resolvedArgs[0].(string),
 			ResourceGroupName: resolvedArgs[1].(string),
@@ -70,18 +70,18 @@ func (args GetBastionShareableLinkOutputArgs) ToOutput() pulumix.Output[*GetBast
 	})
 }
 
-type GetBastionShareableLinkResultOutput struct{ *pulumi.OutputState }
+type GetBastionShareableLinkResultOutput struct{ *khulnasoft.OutputState }
 
 func (GetBastionShareableLinkResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetBastionShareableLinkResult)(nil)).Elem()
 }
 
-func (o GetBastionShareableLinkResultOutput) ToOutput(context.Context) pulumix.Output[*GetBastionShareableLinkResult] {
-	return pulumix.Output[*GetBastionShareableLinkResult]{
+func (o GetBastionShareableLinkResultOutput) ToOutput(context.Context) khulnasoftx.Output[*GetBastionShareableLinkResult] {
+	return khulnasoftx.Output[*GetBastionShareableLinkResult]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o GetBastionShareableLinkResultOutput) NextLink() pulumix.Output[*string] {
-	return pulumix.Apply[*GetBastionShareableLinkResult](o, func(v *GetBastionShareableLinkResult) *string { return v.NextLink })
+func (o GetBastionShareableLinkResultOutput) NextLink() khulnasoftx.Output[*string] {
+	return khulnasoftx.Apply[*GetBastionShareableLinkResult](o, func(v *GetBastionShareableLinkResult) *string { return v.NextLink })
 }

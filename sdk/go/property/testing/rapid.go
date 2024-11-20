@@ -17,8 +17,8 @@ package test
 import (
 	"pgregory.net/rapid"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/urn"
-	"github.com/pulumi/pulumi/sdk/v3/go/property"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/urn"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/property"
 )
 
 func Value(maxDepth int) *rapid.Generator[property.Value] {
@@ -99,7 +99,7 @@ func DependenciesOf(value *rapid.Generator[property.Value]) *rapid.Generator[pro
 
 // A rapid generator for resource.URN.
 //
-// Because the github.com/pulumi/pulumi/sdk/v3/go/property does not enforce URN validity,
+// Because the github.com/khulnasoft/khulnasoft/sdk/v3/go/property does not enforce URN validity,
 // we don't enforce it here.
 func URN() *rapid.Generator[urn.URN] {
 	return rapid.Custom(func(t *rapid.T) urn.URN {

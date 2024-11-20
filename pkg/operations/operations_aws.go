@@ -27,17 +27,17 @@ import (
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
 	"github.com/aws/aws-sdk-go/service/sts"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
-// TODO[pulumi/pulumi#54] This should be factored out behind an OperationsProvider RPC interface and versioned with the
-// `pulumi-aws` repo instead of statically linked into the engine.
+// TODO[khulnasoft/khulnasoft#54] This should be factored out behind an OperationsProvider RPC interface and versioned with the
+// `khulnasoft-aws` repo instead of statically linked into the engine.
 
 // AWSOperationsProvider creates an OperationsProvider capable of answering operational queries based on the
-// underlying resources of the `@pulumi/aws` implementation.
+// underlying resources of the `@khulnasoft/aws` implementation.
 func AWSOperationsProvider(
 	config map[config.Key]string,
 	component *Resource,
@@ -50,7 +50,7 @@ func AWSOperationsProvider(
 	// If provided, also pass along the access and secret keys so that we have permission to access operational data on
 	// resources in the target account.
 	//
-	// [pulumi/pulumi#608]: We are only approximating the actual logic that the AWS provider (via
+	// [khulnasoft/khulnasoft#608]: We are only approximating the actual logic that the AWS provider (via
 	// terraform-provdider-aws) uses to turn config into a valid AWS connection.  We should find some way to unify these
 	// as part of moving this code into a separate process on the other side of an RPC boundary.
 	awsAccessKey := config[accessKey]

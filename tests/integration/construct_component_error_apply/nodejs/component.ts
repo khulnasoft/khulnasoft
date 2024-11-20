@@ -1,15 +1,15 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 interface ComponentArgs {
-    foo: pulumi.Input<string>;
+    foo: khulnasoft.Input<string>;
 }
 
-export class Component extends pulumi.ComponentResource {
-    public readonly foo!: pulumi.Output<string>;
+export class Component extends khulnasoft.ComponentResource {
+    public readonly foo!: khulnasoft.Output<string>;
 
-    constructor(name: string, args: ComponentArgs, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, args: ComponentArgs, opts?: khulnasoft.ComponentResourceOptions) {
         const inputs: any = {};
         inputs["foo"] = args.foo;
 

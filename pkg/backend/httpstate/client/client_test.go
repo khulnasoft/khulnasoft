@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -83,7 +83,7 @@ func TestAPIErrorResponses(t *testing.T) {
 		unauthorizedClient := newMockClient(unauthorizedServer)
 		_, _, _, unauthorizedErr := unauthorizedClient.GetCLIVersionInfo(context.Background())
 
-		assert.EqualError(t, unauthorizedErr, "this command requires logging in; try running `pulumi login` first")
+		assert.EqualError(t, unauthorizedErr, "this command requires logging in; try running `khulnasoft login` first")
 	})
 	t.Run("TestRateLimitError", func(t *testing.T) {
 		t.Parallel()
@@ -95,7 +95,7 @@ func TestAPIErrorResponses(t *testing.T) {
 		rateLimitedClient := newMockClient(rateLimitedServer)
 		_, _, _, rateLimitErr := rateLimitedClient.GetCLIVersionInfo(context.Background())
 
-		assert.EqualError(t, rateLimitErr, "pulumi service: request rate-limit exceeded")
+		assert.EqualError(t, rateLimitErr, "khulnasoft service: request rate-limit exceeded")
 	})
 	t.Run("TestDefaultError", func(t *testing.T) {
 		t.Parallel()
@@ -282,7 +282,7 @@ func TestDeploymentSettingsApi(t *testing.T) {
 		payload := `{
     "sourceContext": {
         "git": {
-            "repoUrl": "git@github.com:pulumi/test-repo.git",
+            "repoUrl": "git@github.com:khulnasoft/test-repo.git",
             "branch": "main",
             "repoDir": ".",
             "gitAuth": {
@@ -332,7 +332,7 @@ func TestDeploymentSettingsApi(t *testing.T) {
 		assert.NotNil(t, resp.SourceContext)
 		assert.NotNil(t, resp.SourceContext.Git)
 		assert.Equal(t, "main", resp.SourceContext.Git.Branch)
-		assert.Equal(t, "git@github.com:pulumi/test-repo.git", resp.SourceContext.Git.RepoURL)
+		assert.Equal(t, "git@github.com:khulnasoft/test-repo.git", resp.SourceContext.Git.RepoURL)
 		assert.Equal(t, ".", resp.SourceContext.Git.RepoDir)
 		assert.NotNil(t, resp.SourceContext.Git.GitAuth)
 		assert.NotNil(t, resp.SourceContext.Git.GitAuth.BasicAuth)

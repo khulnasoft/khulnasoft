@@ -18,12 +18,12 @@ import os
 import unittest
 import pytest
 
-from pulumi.resource import DependencyProviderResource
-from pulumi.runtime import settings, mocks
-from pulumi.runtime.proto import resource_pb2
-from pulumi import ResourceOptions
-from pulumi.runtime.rpc import ERROR_ON_DEPENDENCY_CYCLES_VAR
-import pulumi
+from khulnasoft.resource import DependencyProviderResource
+from khulnasoft.runtime import settings, mocks
+from khulnasoft.runtime.proto import resource_pb2
+from khulnasoft import ResourceOptions
+from khulnasoft.runtime.rpc import ERROR_ON_DEPENDENCY_CYCLES_VAR
+import khulnasoft
 
 
 T = TypeVar("T")
@@ -32,7 +32,7 @@ T = TypeVar("T")
 class DependencyProviderResourceTests(unittest.TestCase):
     def test_get_package(self):
         res = DependencyProviderResource(
-            "urn:pulumi:stack::project::pulumi:providers:aws::default_4_13_0"
+            "urn:khulnasoft:stack::project::khulnasoft:providers:aws::default_4_13_0"
         )
         self.assertEqual("aws", res.package)
 
@@ -45,12 +45,12 @@ def clean_up_env_vars():
         pass
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_depends_on_accepts_outputs(dep_tracker):
     dep1 = MockResource(name="dep1")
     dep2 = MockResource(name="dep2")
     out = output_depending_on_resource(dep1, isKnown=True).apply(lambda _: dep2)
-    res = MockResource(name="res", opts=pulumi.ResourceOptions(depends_on=[out]))
+    res = MockResource(name="res", opts=khulnasoft.ResourceOptions(depends_on=[out]))
 
     def check(urns):
         (dep1_urn, dep2_urn, res_urn) = urns
@@ -62,10 +62,10 @@ def test_depends_on_accepts_outputs(dep_tracker):
             dep2_urn in res_deps
         ), "Failed to propagate direct dependencies via depends_on"
 
-    return pulumi.Output.all(dep1.urn, dep2.urn, res.urn).apply(check)
+    return khulnasoft.Output.all(dep1.urn, dep2.urn, res.urn).apply(check)
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_depends_on_outputs_works_in_presence_of_unknowns(dep_tracker_preview):
     dep1 = MockResource(name="dep1")
     dep2 = MockResource(name="dep2")
@@ -73,28 +73,28 @@ def test_depends_on_outputs_works_in_presence_of_unknowns(dep_tracker_preview):
     known = output_depending_on_resource(dep1, isKnown=True).apply(lambda _: dep2)
     unknown = output_depending_on_resource(dep2, isKnown=False).apply(lambda _: dep2)
     res = MockResource(
-        name="res", opts=pulumi.ResourceOptions(depends_on=[known, unknown])
+        name="res", opts=khulnasoft.ResourceOptions(depends_on=[known, unknown])
     )
 
     def check(urns):
         (dep1_urn, res_urn) = urns
         assert dep1_urn in dep_tracker_preview.dependencies[res_urn]
 
-    return pulumi.Output.all(dep1.urn, res.urn).apply(check)
+    return khulnasoft.Output.all(dep1.urn, res.urn).apply(check)
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_depends_on_respects_top_level_implicit_dependencies(dep_tracker):
     dep1 = MockResource(name="dep1")
     dep2 = MockResource(name="dep2")
     out = output_depending_on_resource(dep1, isKnown=True).apply(lambda _: [dep2])
-    res = MockResource(name="res", opts=pulumi.ResourceOptions(depends_on=out))
+    res = MockResource(name="res", opts=khulnasoft.ResourceOptions(depends_on=out))
 
     def check(urns):
         (dep1_urn, dep2_urn, res_urn) = urns
         assert set(dep_tracker.dependencies[res_urn]) == set([dep1_urn, dep2_urn])
 
-    return pulumi.Output.all(dep1.urn, dep2.urn, res.urn).apply(check)
+    return khulnasoft.Output.all(dep1.urn, dep2.urn, res.urn).apply(check)
 
 
 def promise(x: T) -> Awaitable[T]:
@@ -103,29 +103,29 @@ def promise(x: T) -> Awaitable[T]:
     return fut
 
 
-def out(x: T) -> pulumi.Output[T]:
-    return pulumi.Output.from_input(x)
+def out(x: T) -> khulnasoft.Output[T]:
+    return khulnasoft.Output.from_input(x)
 
 
-def depends_on_variations(dep: pulumi.Resource) -> List[pulumi.ResourceOptions]:
+def depends_on_variations(dep: khulnasoft.Resource) -> List[khulnasoft.ResourceOptions]:
     return [
-        pulumi.ResourceOptions(depends_on=None),
-        pulumi.ResourceOptions(depends_on=dep),
-        pulumi.ResourceOptions(depends_on=[dep]),
-        pulumi.ResourceOptions(depends_on=promise(dep)),
-        pulumi.ResourceOptions(depends_on=out(dep)),
-        pulumi.ResourceOptions(depends_on=promise([dep])),
-        pulumi.ResourceOptions(depends_on=out([dep])),
-        pulumi.ResourceOptions(depends_on=promise([promise(dep)])),
-        pulumi.ResourceOptions(depends_on=promise([out(dep)])),
-        pulumi.ResourceOptions(depends_on=out([promise(dep)])),
-        pulumi.ResourceOptions(depends_on=out([out(dep)])),
+        khulnasoft.ResourceOptions(depends_on=None),
+        khulnasoft.ResourceOptions(depends_on=dep),
+        khulnasoft.ResourceOptions(depends_on=[dep]),
+        khulnasoft.ResourceOptions(depends_on=promise(dep)),
+        khulnasoft.ResourceOptions(depends_on=out(dep)),
+        khulnasoft.ResourceOptions(depends_on=promise([dep])),
+        khulnasoft.ResourceOptions(depends_on=out([dep])),
+        khulnasoft.ResourceOptions(depends_on=promise([promise(dep)])),
+        khulnasoft.ResourceOptions(depends_on=promise([out(dep)])),
+        khulnasoft.ResourceOptions(depends_on=out([promise(dep)])),
+        khulnasoft.ResourceOptions(depends_on=out([out(dep)])),
     ]
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_depends_on_typing_variations(dep_tracker) -> None:
-    dep: pulumi.Resource = MockResource(name="dep1")
+    dep: khulnasoft.Resource = MockResource(name="dep1")
 
     def check(i, urns):
         (dep_urn, res_urn) = urns
@@ -137,9 +137,9 @@ def test_depends_on_typing_variations(dep_tracker) -> None:
 
     def check_opts(i, name, opts):
         res = MockResource(name, opts)
-        return pulumi.Output.all(dep.urn, res.urn).apply(lambda urns: check(i, urns))
+        return khulnasoft.Output.all(dep.urn, res.urn).apply(lambda urns: check(i, urns))
 
-    pulumi.Output.all(
+    khulnasoft.Output.all(
         [
             check_opts(i, f"res{i}", opts)
             for i, opts in enumerate(depends_on_variations(dep))
@@ -147,12 +147,12 @@ def test_depends_on_typing_variations(dep_tracker) -> None:
     )
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_depends_on_typechecks_sync():
-    # https://github.com/pulumi/pulumi/issues/13917
+    # https://github.com/khulnasoft/khulnasoft/issues/13917
     try:
         res = MockResource(
-            name="res", opts=pulumi.ResourceOptions(depends_on=["hello"])
+            name="res", opts=khulnasoft.ResourceOptions(depends_on=["hello"])
         )
         assert False, "should of failed"
     except TypeError as e:
@@ -166,11 +166,11 @@ def test_depends_on_typechecks_async():
         # Old versions of Python don't have asyncio.to_thread, just skip the test in that case.
         return
 
-    @pulumi.runtime.test
+    @khulnasoft.runtime.test
     def test():
-        # https://github.com/pulumi/pulumi/issues/13917
+        # https://github.com/khulnasoft/khulnasoft/issues/13917
         dep = asyncio.to_thread(lambda: "goodbye")
-        res = MockResource(name="res", opts=pulumi.ResourceOptions(depends_on=[dep]))
+        res = MockResource(name="res", opts=khulnasoft.ResourceOptions(depends_on=[dep]))
 
     try:
         test()
@@ -181,20 +181,20 @@ def test_depends_on_typechecks_async():
         )
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_component_resource_propagates_provider() -> None:
     mocks.set_mocks(MinimalMocks())
 
-    provider = pulumi.ProviderResource("test", "prov", {})
-    component = pulumi.ComponentResource(
+    provider = khulnasoft.ProviderResource("test", "prov", {})
+    component = khulnasoft.ComponentResource(
         "custom:foo:Component",
         "comp",
-        opts=pulumi.ResourceOptions(provider=provider),
+        opts=khulnasoft.ResourceOptions(provider=provider),
     )
-    custom = pulumi.CustomResource(
+    custom = khulnasoft.CustomResource(
         "test:index:Resource",
         "res",
-        opts=pulumi.ResourceOptions(parent=component),
+        opts=khulnasoft.ResourceOptions(parent=component),
     )
 
     assert (
@@ -202,20 +202,20 @@ def test_component_resource_propagates_provider() -> None:
     ), "Failed to propagate provider to child resource"
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_component_resource_propagates_providers_list() -> None:
     mocks.set_mocks(MinimalMocks())
 
-    provider = pulumi.ProviderResource("test", "prov", {})
-    component = pulumi.ComponentResource(
+    provider = khulnasoft.ProviderResource("test", "prov", {})
+    component = khulnasoft.ComponentResource(
         "custom:foo:Component",
         "comp",
-        opts=pulumi.ResourceOptions(providers=[provider]),
+        opts=khulnasoft.ResourceOptions(providers=[provider]),
     )
-    custom = pulumi.CustomResource(
+    custom = khulnasoft.CustomResource(
         "test:index:Resource",
         "res",
-        opts=pulumi.ResourceOptions(parent=component),
+        opts=khulnasoft.ResourceOptions(parent=component),
     )
 
     assert (
@@ -224,14 +224,14 @@ def test_component_resource_propagates_providers_list() -> None:
 
 
 def output_depending_on_resource(
-    r: pulumi.Resource, isKnown: bool
-) -> pulumi.Output[None]:
+    r: khulnasoft.Resource, isKnown: bool
+) -> khulnasoft.Output[None]:
     """Returns an output that depends on the given resource."""
-    o = pulumi.Output.from_input(None)
+    o = khulnasoft.Output.from_input(None)
     is_known_fut: asyncio.Future[bool] = asyncio.Future()
     is_known_fut.set_result(isKnown)
 
-    return pulumi.Output(resources=set([r]), is_known=is_known_fut, future=o.future())
+    return khulnasoft.Output(resources=set([r]), is_known=is_known_fut, future=o.future())
 
 
 @pytest.fixture
@@ -259,12 +259,12 @@ def build_dep_tracker(preview: bool = False):
         settings.configure(old_settings)
 
 
-class MinimalMocks(pulumi.runtime.Mocks):
+class MinimalMocks(khulnasoft.runtime.Mocks):
 
-    def new_resource(self, args: pulumi.runtime.MockResourceArgs):
+    def new_resource(self, args: khulnasoft.runtime.MockResourceArgs):
         return [args.name + "_id", args.inputs]
 
-    def call(self, args: pulumi.runtime.MockCallArgs):
+    def call(self, args: khulnasoft.runtime.MockCallArgs):
         return {}
 
 
@@ -285,8 +285,8 @@ class DependencyTrackingMonitorWrapper:
         return getattr(self.inner, attr)
 
 
-class MockResource(pulumi.CustomResource):
-    def __init__(self, name: str, opts: Optional[pulumi.ResourceOptions] = None):
+class MockResource(khulnasoft.CustomResource):
+    def __init__(self, name: str, opts: Optional[khulnasoft.ResourceOptions] = None):
         super().__init__("python:test:MockResource", name, {}, opts)
 
 
@@ -300,57 +300,57 @@ class MergeResourceOptions(unittest.TestCase):
         assert opts3.protect is True
 
 
-# Regression test for https://github.com/pulumi/pulumi/issues/12032
-@pulumi.runtime.test
+# Regression test for https://github.com/khulnasoft/khulnasoft/issues/12032
+@khulnasoft.runtime.test
 def test_parent_and_depends_on_are_the_same_12032():
     os.environ[ERROR_ON_DEPENDENCY_CYCLES_VAR] = "false"
     mocks.set_mocks(MinimalMocks())
 
-    parent = pulumi.ComponentResource("pkg:index:first", "first")
-    child = pulumi.ComponentResource(
+    parent = khulnasoft.ComponentResource("pkg:index:first", "first")
+    child = khulnasoft.ComponentResource(
         "pkg:index:second",
         "second",
-        opts=pulumi.ResourceOptions(parent=parent, depends_on=[parent]),
+        opts=khulnasoft.ResourceOptions(parent=parent, depends_on=[parent]),
     )
 
     # This would freeze before the fix.
-    pulumi.CustomResource(
+    khulnasoft.CustomResource(
         "foo:bar:baz",
         "myresource",
-        opts=pulumi.ResourceOptions(parent=child),
+        opts=khulnasoft.ResourceOptions(parent=child),
     )
 
 
-# Regression test for https://github.com/pulumi/pulumi/issues/12736
-@pulumi.runtime.test
+# Regression test for https://github.com/khulnasoft/khulnasoft/issues/12736
+@khulnasoft.runtime.test
 def test_complex_parent_child_dependencies():
     os.environ[ERROR_ON_DEPENDENCY_CYCLES_VAR] = "false"
     mocks.set_mocks(MinimalMocks())
 
-    class A(pulumi.ComponentResource):
+    class A(khulnasoft.ComponentResource):
         def __init__(self, name: str, opts=None):
             super().__init__("my:modules:A", name, {}, opts)
             self.b = B("a-b", opts=ResourceOptions(parent=self))
             self.c = C("a-c", opts=ResourceOptions(parent=self.b, depends_on=[self.b]))
 
-    class B(pulumi.ComponentResource):
+    class B(khulnasoft.ComponentResource):
         def __init__(self, name: str, opts=None):
             super().__init__("my:modules:B", name, {}, opts)
-            pulumi.CustomResource(
+            khulnasoft.CustomResource(
                 "my:module:Child", "b-child", opts=ResourceOptions(parent=self)
             )
 
-    class C(pulumi.ComponentResource):
+    class C(khulnasoft.ComponentResource):
         def __init__(self, name: str, opts=None):
             super().__init__("my:modules:C", name, {}, opts)
-            pulumi.CustomResource(
+            khulnasoft.CustomResource(
                 "my:module:Child", "c-child", opts=ResourceOptions(parent=self)
             )
 
-    class D(pulumi.ComponentResource):
+    class D(khulnasoft.ComponentResource):
         def __init__(self, name: str, opts=None):
             super().__init__("my:modules:D", name, {}, opts)
-            pulumi.CustomResource(
+            khulnasoft.CustomResource(
                 "my:module:Child", "d-child", opts=ResourceOptions(parent=self)
             )
 
@@ -359,13 +359,13 @@ def test_complex_parent_child_dependencies():
     D("d", opts=ResourceOptions(parent=a.b, depends_on=[a.b]))
 
 
-# Regression test for https://github.com/pulumi/pulumi/issues/13997
+# Regression test for https://github.com/khulnasoft/khulnasoft/issues/13997
 def test_bad_component_super_call():
-    class C(pulumi.ComponentResource):
+    class C(khulnasoft.ComponentResource):
         def __init__(self, name: str, arg: int, opts=None):
             super().__init__("my:module:C", name, arg, opts)
 
-    @pulumi.runtime.test
+    @khulnasoft.runtime.test
     def test():
         C("test", 4, None)
 

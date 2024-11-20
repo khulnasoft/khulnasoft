@@ -2,7 +2,7 @@
   "name": "nodejs-dynamic-provider-config",
   "license": "Apache-2.0",
   "dependencies": {
-    "@pulumi/pulumi": "latest",
+    "@khulnasoft/khulnasoft": "latest",
     "typescript": "^5"
   }
 }

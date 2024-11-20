@@ -31,10 +31,10 @@ import (
 	"time"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/diagtest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/iotest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/diagtest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/iotest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -369,26 +369,26 @@ func TestPluginDownload(t *testing.T) {
 		source, err := spec.GetSource()
 		require.NoError(t, err)
 		getHTTPResponse := func(req *http.Request) (io.ReadCloser, int64, error) {
-			if req.URL.String() == "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/tags/v4.30.0" {
+			if req.URL.String() == "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/tags/v4.30.0" {
 				assert.Equal(t, "", req.Header.Get("Authorization"))
 				assert.Equal(t, "application/json", req.Header.Get("Accept"))
 				// Minimal JSON from the releases API to get the test to pass
 				return newMockReadCloserString(`{
 					"assets": [
 					  {
-						"url": "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/654321",
-						"name": "pulumi-mockdl_4.30.0_checksums.txt"
+						"url": "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/654321",
+						"name": "khulnasoft-mockdl_4.30.0_checksums.txt"
 					  },
 					  {
-						"url": "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/123456",
-						"name": "pulumi-resource-mockdl-v4.30.0-darwin-amd64.tar.gz"
+						"url": "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/123456",
+						"name": "khulnasoft-resource-mockdl-v4.30.0-darwin-amd64.tar.gz"
 					  }
 					]
 				  }
 				`)
 			}
 
-			assert.Equal(t, "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/123456", req.URL.String())
+			assert.Equal(t, "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/123456", req.URL.String())
 			assert.Equal(t, "application/octet-stream", req.Header.Get("Accept"))
 			return newMockReadCloser(expectedBytes)
 		}
@@ -399,7 +399,7 @@ func TestPluginDownload(t *testing.T) {
 		assert.Equal(t, int(l), len(readBytes))
 		assert.Equal(t, expectedBytes, readBytes)
 	})
-	t.Run("get.pulumi.com", func(t *testing.T) {
+	t.Run("get.khulnasoft.com", func(t *testing.T) {
 		version := semver.MustParse("4.32.0")
 		spec := PluginSpec{
 			PluginDownloadURL: "",
@@ -411,11 +411,11 @@ func TestPluginDownload(t *testing.T) {
 		require.NoError(t, err)
 		getHTTPResponse := func(req *http.Request) (io.ReadCloser, int64, error) {
 			// Test that the asset isn't on github
-			if req.URL.String() == "https://api.github.com/repos/pulumi/pulumi-otherdl/releases/tags/v4.32.0" {
+			if req.URL.String() == "https://api.github.com/repos/khulnasoft/khulnasoft-otherdl/releases/tags/v4.32.0" {
 				return nil, -1, errors.New("404 not found")
 			}
 			assert.Equal(t,
-				"https://get.pulumi.com/releases/plugins/pulumi-resource-otherdl-v4.32.0-darwin-amd64.tar.gz",
+				"https://get.khulnasoft.com/releases/plugins/khulnasoft-resource-otherdl-v4.32.0-darwin-amd64.tar.gz",
 				req.URL.String())
 			return newMockReadCloser(expectedBytes)
 		}
@@ -429,7 +429,7 @@ func TestPluginDownload(t *testing.T) {
 	t.Run("Custom http URL", func(t *testing.T) {
 		version := semver.MustParse("4.32.0")
 		spec := PluginSpec{
-			PluginDownloadURL: "http://customurl.jfrog.io/artifactory/pulumi-packages/package-name/v${VERSION}/${OS}/${ARCH}",
+			PluginDownloadURL: "http://customurl.jfrog.io/artifactory/khulnasoft-packages/package-name/v${VERSION}/${OS}/${ARCH}",
 			Name:              "mockdl",
 			Version:           &version,
 			Kind:              apitype.PluginKind("resource"),
@@ -438,8 +438,8 @@ func TestPluginDownload(t *testing.T) {
 		require.NoError(t, err)
 		getHTTPResponse := func(req *http.Request) (io.ReadCloser, int64, error) {
 			assert.Equal(t,
-				"http://customurl.jfrog.io/artifactory/pulumi-packages/"+
-					"package-name/v4.32.0/darwin/amd64/pulumi-resource-mockdl-v4.32.0-darwin-amd64.tar.gz",
+				"http://customurl.jfrog.io/artifactory/khulnasoft-packages/"+
+					"package-name/v4.32.0/darwin/amd64/khulnasoft-resource-mockdl-v4.32.0-darwin-amd64.tar.gz",
 				req.URL.String())
 			return newMockReadCloser(expectedBytes)
 		}
@@ -453,7 +453,7 @@ func TestPluginDownload(t *testing.T) {
 	t.Run("Custom https URL", func(t *testing.T) {
 		version := semver.MustParse("4.32.0")
 		spec := PluginSpec{
-			PluginDownloadURL: "https://customurl.jfrog.io/artifactory/pulumi-packages/" +
+			PluginDownloadURL: "https://customurl.jfrog.io/artifactory/khulnasoft-packages/" +
 				"package-name/${NAME}/v${VERSION}/${OS}/${ARCH}/",
 			Name:    "mockdl",
 			Version: &version,
@@ -463,8 +463,8 @@ func TestPluginDownload(t *testing.T) {
 		require.NoError(t, err)
 		getHTTPResponse := func(req *http.Request) (io.ReadCloser, int64, error) {
 			assert.Equal(t,
-				"https://customurl.jfrog.io/artifactory/pulumi-packages/"+
-					"package-name/mockdl/v4.32.0/darwin/amd64/pulumi-resource-mockdl-v4.32.0-darwin-amd64.tar.gz",
+				"https://customurl.jfrog.io/artifactory/khulnasoft-packages/"+
+					"package-name/mockdl/v4.32.0/darwin/amd64/khulnasoft-resource-mockdl-v4.32.0-darwin-amd64.tar.gz",
 				req.URL.String())
 			return newMockReadCloser(expectedBytes)
 		}
@@ -487,26 +487,26 @@ func TestPluginDownload(t *testing.T) {
 		source, err := spec.GetSource()
 		require.NoError(t, err)
 		getHTTPResponse := func(req *http.Request) (io.ReadCloser, int64, error) {
-			if req.URL.String() == "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/tags/v4.32.0" {
+			if req.URL.String() == "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/tags/v4.32.0" {
 				assert.Equal(t, "token "+token, req.Header.Get("Authorization"))
 				assert.Equal(t, "application/json", req.Header.Get("Accept"))
 				// Minimal JSON from the releases API to get the test to pass
 				return newMockReadCloserString(`{
 					"assets": [
 					  {
-						"url": "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/654321",
-						"name": "pulumi-mockdl_4.32.0_checksums.txt"
+						"url": "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/654321",
+						"name": "khulnasoft-mockdl_4.32.0_checksums.txt"
 					  },
 					  {
-						"url": "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/123456",
-						"name": "pulumi-resource-mockdl-v4.32.0-darwin-amd64.tar.gz"
+						"url": "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/123456",
+						"name": "khulnasoft-resource-mockdl-v4.32.0-darwin-amd64.tar.gz"
 					  }
 					]
 				  }
 				`)
 			}
 
-			assert.Equal(t, "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/123456", req.URL.String())
+			assert.Equal(t, "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/123456", req.URL.String())
 			assert.Equal(t, "token "+token, req.Header.Get("Authorization"))
 			assert.Equal(t, "application/octet-stream", req.Header.Get("Accept"))
 			return newMockReadCloser(expectedBytes)
@@ -531,7 +531,7 @@ func TestPluginDownload(t *testing.T) {
 		require.NoError(t, err)
 		getHTTPResponse := func(req *http.Request) (io.ReadCloser, int64, error) {
 			// Test that the asset isn't on github
-			if req.URL.String() == "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/tags/v4.32.0" {
+			if req.URL.String() == "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/tags/v4.32.0" {
 				return nil, -1, errors.New("404 not found")
 			}
 
@@ -543,11 +543,11 @@ func TestPluginDownload(t *testing.T) {
 					"assets": [
 					  {
 						"url": "https://api.git.org/repos/ourorg/mock/releases/assets/654321",
-						"name": "pulumi-mockdl_4.32.0_checksums.txt"
+						"name": "khulnasoft-mockdl_4.32.0_checksums.txt"
 					  },
 					  {
 						"url": "https://api.git.org/repos/ourorg/mock/releases/assets/123456",
-						"name": "pulumi-resource-mockdl-v4.32.0-darwin-amd64.tar.gz"
+						"name": "khulnasoft-resource-mockdl-v4.32.0-darwin-amd64.tar.gz"
 					  }
 					]
 				  }
@@ -570,26 +570,26 @@ func TestPluginDownload(t *testing.T) {
 		t.Setenv("GITHUB_TOKEN", "")
 		version := semver.MustParse("4.30.0")
 		getHTTPResponse := func(req *http.Request) (io.ReadCloser, int64, error) {
-			if req.URL.String() == "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/tags/v4.30.0" {
+			if req.URL.String() == "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/tags/v4.30.0" {
 				assert.Equal(t, "", req.Header.Get("Authorization"))
 				assert.Equal(t, "application/json", req.Header.Get("Accept"))
 				// Minimal JSON from the releases API to get the test to pass
 				return newMockReadCloserString(`{
 					"assets": [
 					  {
-						"url": "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/654321",
-						"name": "pulumi-mockdl_4.30.0_checksums.txt"
+						"url": "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/654321",
+						"name": "khulnasoft-mockdl_4.30.0_checksums.txt"
 					  },
 					  {
-						"url": "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/123456",
-						"name": "pulumi-resource-mockdl-v4.30.0-darwin-amd64.tar.gz"
+						"url": "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/123456",
+						"name": "khulnasoft-resource-mockdl-v4.30.0-darwin-amd64.tar.gz"
 					  }
 					]
 				  }
 				`)
 			}
 
-			assert.Equal(t, "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/123456", req.URL.String())
+			assert.Equal(t, "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/123456", req.URL.String())
 			assert.Equal(t, "application/octet-stream", req.Header.Get("Accept"))
 			return newMockReadCloser(expectedBytes)
 		}
@@ -678,7 +678,7 @@ func TestPluginDownload(t *testing.T) {
 		getHTTPResponse := func(req *http.Request) (io.ReadCloser, int64, error) {
 			assert.Equal(t,
 				"https://gitlab.com/api/v4/projects/278964/releases/v1.23.4/downloads/"+
-					"pulumi-resource-mock-gitlab-v1.23.4-windows-arm64.tar.gz", req.URL.String())
+					"khulnasoft-resource-mock-gitlab-v1.23.4-windows-arm64.tar.gz", req.URL.String())
 			assert.Equal(t, "Bearer "+token, req.Header.Get("Authorization"))
 			assert.Equal(t, "application/octet-stream", req.Header.Get("Accept"))
 			return newMockReadCloser(expectedBytes)
@@ -710,26 +710,26 @@ func TestPluginDownload(t *testing.T) {
 				return nil, -1, &downloadError{code: 401}
 			}
 
-			if req.URL.String() == "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/tags/v4.32.0" {
+			if req.URL.String() == "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/tags/v4.32.0" {
 				assert.Equal(t, "", req.Header.Get("Authorization"))
 				assert.Equal(t, "application/json", req.Header.Get("Accept"))
 				// Minimal JSON from the releases API to get the test to pass
 				return newMockReadCloserString(`{
 					"assets": [
 					  {
-						"url": "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/654321",
-						"name": "pulumi-mockdl_4.32.0_checksums.txt"
+						"url": "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/654321",
+						"name": "khulnasoft-mockdl_4.32.0_checksums.txt"
 					  },
 					  {
-						"url": "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/123456",
-						"name": "pulumi-resource-mockdl-v4.32.0-darwin-amd64.tar.gz"
+						"url": "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/123456",
+						"name": "khulnasoft-resource-mockdl-v4.32.0-darwin-amd64.tar.gz"
 					  }
 					]
 				  }
 				`)
 			}
 
-			assert.Equal(t, "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/123456", req.URL.String())
+			assert.Equal(t, "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/123456", req.URL.String())
 			assert.Equal(t, "application/octet-stream", req.Header.Get("Accept"))
 			return newMockReadCloser(expectedBytes)
 		}
@@ -764,26 +764,26 @@ func TestPluginDownload(t *testing.T) {
 				}
 			}
 
-			if req.URL.String() == "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/tags/v5.32.0" {
+			if req.URL.String() == "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/tags/v5.32.0" {
 				assert.Equal(t, "", req.Header.Get("Authorization"))
 				assert.Equal(t, "application/json", req.Header.Get("Accept"))
 				// Minimal JSON from the releases API to get the test to pass
 				return newMockReadCloserString(`{
 					"assets": [
 					  {
-						"url": "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/654321",
-						"name": "pulumi-mockdl_5.32.0_checksums.txt"
+						"url": "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/654321",
+						"name": "khulnasoft-mockdl_5.32.0_checksums.txt"
 					  },
 					  {
-						"url": "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/123456",
-						"name": "pulumi-resource-mockdl-v5.32.0-darwin-amd64.tar.gz"
+						"url": "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/123456",
+						"name": "khulnasoft-resource-mockdl-v5.32.0-darwin-amd64.tar.gz"
 					  }
 					]
 				  }
 				`)
 			}
 
-			assert.Equal(t, "https://api.github.com/repos/pulumi/pulumi-mockdl/releases/assets/123456", req.URL.String())
+			assert.Equal(t, "https://api.github.com/repos/khulnasoft/khulnasoft-mockdl/releases/assets/123456", req.URL.String())
 			assert.Equal(t, "application/octet-stream", req.Header.Get("Accept"))
 			return newMockReadCloser(expectedBytes)
 		}
@@ -813,7 +813,7 @@ func TestPluginGetLatestVersion(t *testing.T) {
 		assert.NoError(t, err)
 		getHTTPResponse := func(req *http.Request) (io.ReadCloser, int64, error) {
 			assert.Equal(t,
-				"https://api.github.com/repos/pulumi/pulumi-mock-latest/releases/latest",
+				"https://api.github.com/repos/khulnasoft/khulnasoft-mock-latest/releases/latest",
 				req.URL.String())
 			// Minimal JSON from the releases API to get the test to pass
 			return newMockReadCloserString(`{
@@ -826,7 +826,7 @@ func TestPluginGetLatestVersion(t *testing.T) {
 	})
 	t.Run("Custom http URL", func(t *testing.T) {
 		spec := PluginSpec{
-			PluginDownloadURL: "http://customurl.jfrog.io/artifactory/pulumi-packages/package-name",
+			PluginDownloadURL: "http://customurl.jfrog.io/artifactory/khulnasoft-packages/package-name",
 			Name:              "mock-latest",
 			Kind:              apitype.PluginKind("resource"),
 		}
@@ -838,7 +838,7 @@ func TestPluginGetLatestVersion(t *testing.T) {
 	})
 	t.Run("Custom https URL", func(t *testing.T) {
 		spec := PluginSpec{
-			PluginDownloadURL: "https://customurl.jfrog.io/artifactory/pulumi-packages/package-name",
+			PluginDownloadURL: "https://customurl.jfrog.io/artifactory/khulnasoft-packages/package-name",
 			Name:              "mock-latest",
 			Kind:              apitype.PluginKind("resource"),
 		}
@@ -859,7 +859,7 @@ func TestPluginGetLatestVersion(t *testing.T) {
 		source, err := spec.GetSource()
 		require.NoError(t, err)
 		getHTTPResponse := func(req *http.Request) (io.ReadCloser, int64, error) {
-			if req.URL.String() == "https://api.github.com/repos/pulumi/pulumi-mock-private/releases/latest" {
+			if req.URL.String() == "https://api.github.com/repos/khulnasoft/khulnasoft-mock-private/releases/latest" {
 				assert.Equal(t, "token "+token, req.Header.Get("Authorization"))
 				assert.Equal(t, "application/json", req.Header.Get("Accept"))
 				// Minimal JSON from the releases API to get the test to pass
@@ -941,7 +941,7 @@ func TestPluginGetLatestVersion(t *testing.T) {
 		}
 		_, err = source.GetLatestVersion(context.Background(), getHTTPResponse)
 		assert.ErrorContains(t, err, "rate limit exceeded")
-		assert.ErrorContains(t, err, "https://api.github.com/repos/pulumi/pulumi-mock-latest/releases/latest")
+		assert.ErrorContains(t, err, "https://api.github.com/repos/khulnasoft/khulnasoft-mock-latest/releases/latest")
 	})
 }
 
@@ -1195,12 +1195,12 @@ func TestDownloadToFile_retries(t *testing.T) {
 	// when trying to download plugins,
 	// and that it calls the wrapper and retry functions as expected.
 	//
-	// Regression test for https://github.com/pulumi/pulumi/issues/12456.
+	// Regression test for https://github.com/khulnasoft/khulnasoft/issues/12456.
 
 	var numRequests int
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		assert.Equal(t, http.MethodGet, r.Method, "expected GET request")
-		assert.Regexp(t, `/pulumi-language-myplugin-v1.0.0-\S+\.tar\.gz`, r.URL.Path,
+		assert.Regexp(t, `/khulnasoft-language-myplugin-v1.0.0-\S+\.tar\.gz`, r.URL.Path,
 			"unexpected URL path")
 
 		// Fails all requests with a 500 error.
@@ -1322,7 +1322,7 @@ func TestPluginSpec_GetSource(t *testing.T) {
 				Kind: apitype.PluginKind("resource"),
 			},
 			expectedSourceType: "*workspace.fallbackSource",
-			expectedURL:        "github://api.github.com/pulumi/pulumi-test-plugin",
+			expectedURL:        "github://api.github.com/khulnasoft/khulnasoft-test-plugin",
 		},
 		{
 			name: "Apply override (HTTP)",
@@ -1356,7 +1356,7 @@ func TestPluginSpec_GetSource(t *testing.T) {
 				Checksums: map[string][]byte{"checksum1": []byte("checksum2")},
 			},
 			expectedSourceType: "*workspace.checksumSource",
-			expectedURL:        "github://api.github.com/pulumi/pulumi-test-plugin",
+			expectedURL:        "github://api.github.com/khulnasoft/khulnasoft-test-plugin",
 		},
 		{
 			name: "Invalid URL",
@@ -1413,7 +1413,7 @@ func TestMissingErrorText(t *testing.T) {
 				Version: &v1,
 			},
 			IncludeAmbient: true,
-			ExpectedError: "no resource plugin 'pulumi-resource-myplugin' found in the workspace at version v0.1.0 " +
+			ExpectedError: "no resource plugin 'khulnasoft-resource-myplugin' found in the workspace at version v0.1.0 " +
 				"or on your $PATH",
 		},
 		{
@@ -1424,7 +1424,7 @@ func TestMissingErrorText(t *testing.T) {
 				Version: &v1,
 			},
 			IncludeAmbient: false,
-			ExpectedError:  "no resource plugin 'pulumi-resource-myplugin' found in the workspace at version v0.1.0",
+			ExpectedError:  "no resource plugin 'khulnasoft-resource-myplugin' found in the workspace at version v0.1.0",
 		},
 		{
 			Name: "ResourceWithoutVersion",
@@ -1434,7 +1434,7 @@ func TestMissingErrorText(t *testing.T) {
 				Version: nil,
 			},
 			IncludeAmbient: true,
-			ExpectedError:  "no resource plugin 'pulumi-resource-myplugin' found in the workspace or on your $PATH",
+			ExpectedError:  "no resource plugin 'khulnasoft-resource-myplugin' found in the workspace or on your $PATH",
 		},
 		{
 			Name: "ResourceWithoutVersion_ExcludeAmbient",
@@ -1444,7 +1444,7 @@ func TestMissingErrorText(t *testing.T) {
 				Version: nil,
 			},
 			IncludeAmbient: false,
-			ExpectedError:  "no resource plugin 'pulumi-resource-myplugin' found in the workspace",
+			ExpectedError:  "no resource plugin 'khulnasoft-resource-myplugin' found in the workspace",
 		},
 		{
 			Name: "LanguageWithoutVersion",
@@ -1454,7 +1454,7 @@ func TestMissingErrorText(t *testing.T) {
 				Version: nil,
 			},
 			IncludeAmbient: true,
-			ExpectedError:  "no language plugin 'pulumi-language-dotnet' found in the workspace or on your $PATH",
+			ExpectedError:  "no language plugin 'khulnasoft-language-dotnet' found in the workspace or on your $PATH",
 		},
 	}
 
@@ -1475,7 +1475,7 @@ func TestBundledPluginSearch(t *testing.T) {
 	require.NoError(t, err)
 
 	// Create a fake side-by-side plugin next to this executable, it must match one of our bundled names
-	bundledPath := filepath.Join(filepath.Dir(exe), "pulumi-language-nodejs")
+	bundledPath := filepath.Join(filepath.Dir(exe), "khulnasoft-language-nodejs")
 	err = os.WriteFile(bundledPath, []byte{}, 0o700) //nolint: gosec // we intended to write an executable file here
 	require.NoError(t, err)
 	bundledPath, _ = filepath.EvalSymlinks(bundledPath)
@@ -1487,7 +1487,7 @@ func TestBundledPluginSearch(t *testing.T) {
 	// Create another copy of the fake plugin in $PATH
 	pathDir := t.TempDir()
 	t.Setenv("PATH", pathDir)
-	ambientPath := filepath.Join(pathDir, "pulumi-language-nodejs")
+	ambientPath := filepath.Join(pathDir, "khulnasoft-language-nodejs")
 	err = os.WriteFile(ambientPath, []byte{}, 0o700) //nolint: gosec
 	require.NoError(t, err)
 
@@ -1511,7 +1511,7 @@ func TestAmbientPluginsWarn(t *testing.T) {
 	// Create a fake plugin in the path
 	pathDir := t.TempDir()
 	t.Setenv("PATH", pathDir)
-	ambientPath := filepath.Join(pathDir, "pulumi-resource-mock")
+	ambientPath := filepath.Join(pathDir, "khulnasoft-resource-mock")
 	err := os.WriteFile(ambientPath, []byte{}, 0o700) //nolint: gosec
 	require.NoError(t, err)
 
@@ -1529,7 +1529,7 @@ func TestAmbientPluginsWarn(t *testing.T) {
 	assert.Equal(t, ambientPath, path)
 
 	// Check we get a warning about loading this plugin
-	expectedMessage := fmt.Sprintf("warning: using pulumi-resource-mock from $PATH at %s\n", ambientPath)
+	expectedMessage := fmt.Sprintf("warning: using khulnasoft-resource-mock from $PATH at %s\n", ambientPath)
 	assert.Equal(t, expectedMessage, stderr.String())
 }
 
@@ -1540,7 +1540,7 @@ func TestBundledPluginsDoNotWarn(t *testing.T) {
 	require.NoError(t, err)
 
 	// Create a fake side-by-side plugin next to this executable, it must match one of our bundled names
-	bundledPath := filepath.Join(filepath.Dir(exe), "pulumi-language-nodejs")
+	bundledPath := filepath.Join(filepath.Dir(exe), "khulnasoft-language-nodejs")
 	err = os.WriteFile(bundledPath, []byte{}, 0o700) //nolint: gosec // we intended to write an executable file here
 	require.NoError(t, err)
 	t.Cleanup(func() {
@@ -1568,7 +1568,7 @@ func TestBundledPluginsDoNotWarn(t *testing.T) {
 	assert.Empty(t, stderr.String())
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/13656
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/13656
 //
 //nolint:paralleltest // modifies environment variables
 func TestSymlinkPathPluginsDoNotWarn(t *testing.T) {
@@ -1577,7 +1577,7 @@ func TestSymlinkPathPluginsDoNotWarn(t *testing.T) {
 	require.NoError(t, err)
 
 	// Create a fake side-by-side plugin next to this executable, it must match one of our bundled names
-	bundledPath := filepath.Join(filepath.Dir(exe), "pulumi-language-nodejs")
+	bundledPath := filepath.Join(filepath.Dir(exe), "khulnasoft-language-nodejs")
 	err = os.WriteFile(bundledPath, []byte{}, 0o700) //nolint: gosec
 	require.NoError(t, err)
 	t.Cleanup(func() {
@@ -1588,7 +1588,7 @@ func TestSymlinkPathPluginsDoNotWarn(t *testing.T) {
 	// Create a fake plugin in the path that is a symlink to the bundled plugin
 	pathDir := t.TempDir()
 	t.Setenv("PATH", pathDir)
-	ambientPath := filepath.Join(pathDir, "pulumi-language-nodejs")
+	ambientPath := filepath.Join(pathDir, "khulnasoft-language-nodejs")
 	err = os.Symlink(bundledPath, ambientPath)
 	require.NoError(t, err)
 
@@ -1616,7 +1616,7 @@ func TestPluginInfoShimless(t *testing.T) {
 	// Create a fake plugin in temp
 	pathDir := t.TempDir()
 
-	pluginPath := filepath.Join(pathDir, "pulumi-resource-mock")
+	pluginPath := filepath.Join(pathDir, "khulnasoft-resource-mock")
 	err := os.MkdirAll(pluginPath, 0o700) //nolint: gosec
 	require.NoError(t, err)
 	err = os.WriteFile(filepath.Join(pluginPath, "PulumiPlugin.yaml"), []byte(`runtime: nodejs`), 0o600)
@@ -1654,7 +1654,7 @@ func TestPluginInfoShimless(t *testing.T) {
 func TestProjectPluginsWithUncleanPath(t *testing.T) {
 	tempdir := t.TempDir()
 
-	err := os.WriteFile(filepath.Join(tempdir, "pulumi-resource-aws"), []byte{}, 0o600)
+	err := os.WriteFile(filepath.Join(tempdir, "khulnasoft-resource-aws"), []byte{}, 0o600)
 	require.NoError(t, err)
 
 	t.Setenv("PULUMI_IGNORE_AMBIENT_PLUGINS", "false")
@@ -1666,7 +1666,7 @@ func TestProjectPluginsWithUncleanPath(t *testing.T) {
 		},
 	})
 	require.NoError(t, err)
-	assert.Equal(t, filepath.Join(tempdir, "pulumi-resource-aws"), path)
+	assert.Equal(t, filepath.Join(tempdir, "khulnasoft-resource-aws"), path)
 }
 
 //nolint:paralleltest // modifies environment variables
@@ -1677,7 +1677,7 @@ func TestProjectPluginsWithSymlink(t *testing.T) {
 	require.NoError(t, err)
 	err = os.Symlink(filepath.Join(tempdir, "subdir"), filepath.Join(tempdir, "symlink"))
 	require.NoError(t, err)
-	err = os.WriteFile(filepath.Join(tempdir, "subdir", "pulumi-resource-aws"), []byte{}, 0o600)
+	err = os.WriteFile(filepath.Join(tempdir, "subdir", "khulnasoft-resource-aws"), []byte{}, 0o600)
 	require.NoError(t, err)
 
 	t.Setenv("PULUMI_IGNORE_AMBIENT_PLUGINS", "false")
@@ -1689,5 +1689,5 @@ func TestProjectPluginsWithSymlink(t *testing.T) {
 		},
 	})
 	require.NoError(t, err)
-	assert.Equal(t, filepath.Join(tempdir, "symlink", "pulumi-resource-aws"), path)
+	assert.Equal(t, filepath.Join(tempdir, "symlink", "khulnasoft-resource-aws"), path)
 }

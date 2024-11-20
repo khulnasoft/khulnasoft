@@ -24,12 +24,12 @@ import (
 
 	"github.com/blang/semver"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // Workspace is the current workspace.
@@ -129,8 +129,8 @@ func NewPluginMapper(ws Workspace,
 	entries := map[string][]byte{}
 
 	// Enumerate _all_ our installed plugins to ask for any mappings they provide. This allows users to
-	// convert aws terraform code for example by just having 'pulumi-aws' plugin locally, without needing to
-	// specify it anywhere on the command line, and without tf2pulumi needing to know about every possible
+	// convert aws terraform code for example by just having 'khulnasoft-aws' plugin locally, without needing to
+	// specify it anywhere on the command line, and without tf2khulnasoft needing to know about every possible
 	// plugin.
 	allPlugins, err := ws.GetPlugins()
 	if err != nil {
@@ -311,8 +311,8 @@ func (l *pluginMapper) getMappingsForPlugin(pluginSpec *mapperPluginSpec, provid
 	return nil, false, nil
 }
 
-func (l *pluginMapper) GetMapping(ctx context.Context, provider string, pulumiProvider string) ([]byte, error) {
-	// See https://github.com/pulumi/pulumi/issues/14718 for why we need this lock. It may be possible to be
+func (l *pluginMapper) GetMapping(ctx context.Context, provider string, khulnasoftProvider string) ([]byte, error) {
+	// See https://github.com/khulnasoft/khulnasoft/issues/14718 for why we need this lock. It may be possible to be
 	// smarter about this and only lock when mutating, or at least splitting to a read/write lock, but this is
 	// a quick fix to unblock providers. If you do attempt this then write tests to ensure this doesn't
 	// regress #14718.
@@ -324,35 +324,35 @@ func (l *pluginMapper) GetMapping(ctx context.Context, provider string, pulumiPr
 		return entry, nil
 	}
 
-	// Converters might not set pulumiProvider so default it to the same name as the foreign provider.
-	if pulumiProvider == "" {
-		pulumiProvider = provider
+	// Converters might not set khulnasoftProvider so default it to the same name as the foreign provider.
+	if khulnasoftProvider == "" {
+		khulnasoftProvider = provider
 	}
-	pulumiProviderPkg := tokens.Package(pulumiProvider)
+	khulnasoftProviderPkg := tokens.Package(khulnasoftProvider)
 
 	// Optimization:
-	// If there's a plugin with a name that matches the expected pulumi provider name, move it to the front of
+	// If there's a plugin with a name that matches the expected khulnasoft provider name, move it to the front of
 	// the list.
 	// This is a common case, so we can avoid an expensive linear search through the rest of the plugins.
 	foundPulumiProvider := false
 	for i := 0; i < len(l.plugins); i++ {
 		pluginSpec := l.plugins[i]
-		if pluginSpec.name == pulumiProviderPkg {
+		if pluginSpec.name == khulnasoftProviderPkg {
 			l.plugins[0], l.plugins[i] = l.plugins[i], l.plugins[0]
 			foundPulumiProvider = true
 			break
 		}
 	}
 
-	// If we didn't find the pulumi provider in the list of plugins, then we want to try to install it. Note
+	// If we didn't find the khulnasoft provider in the list of plugins, then we want to try to install it. Note
 	// that we don't want to hard fail here because it might turn out the provider hint was bad.
 	if !foundPulumiProvider {
-		version := l.installProvider(pulumiProviderPkg)
+		version := l.installProvider(khulnasoftProviderPkg)
 		if version != nil {
 			// Insert at the front of the plugins list. Easiest way to do this is just append then swap.
 			i := len(l.plugins)
 			l.plugins = append(l.plugins, mapperPluginSpec{
-				name:    pulumiProviderPkg,
+				name:    khulnasoftProviderPkg,
 				version: *version,
 			})
 			l.plugins[0], l.plugins[i] = l.plugins[i], l.plugins[0]
@@ -361,7 +361,7 @@ func (l *pluginMapper) GetMapping(ctx context.Context, provider string, pulumiPr
 
 	// Before we begin the GetMappings loop below iff we've got a plugin at the head of the list which is the exact name
 	// match we'll try that plugin first (GetMappings, and then GetMapping) as it will normally be right.
-	if len(l.plugins) > 0 && l.plugins[0].name == pulumiProviderPkg {
+	if len(l.plugins) > 0 && l.plugins[0].name == khulnasoftProviderPkg {
 		data, found, err := l.getMappingsForPlugin(&l.plugins[0], provider)
 		if err != nil {
 			return nil, err
@@ -414,7 +414,7 @@ func (l *pluginMapper) GetMapping(ctx context.Context, provider string, pulumiPr
 
 	// No entry yet, start popping providers off the plugin list and return the first one that returns
 	// conversion data for this provider for the given key we're looking for. Second assumption is that only
-	// one pulumi provider will provide a mapping for each source mapping. This _might_ change in the future
+	// one khulnasoft provider will provide a mapping for each source mapping. This _might_ change in the future
 	// if we for example add support to convert terraform to azure/aws-native, or multiple community members
 	// bridge the same terraform provider. But as above the decisions here are based on what's locally
 	// installed so the user can manually edit their plugin cache to be the set of plugins they want to use.

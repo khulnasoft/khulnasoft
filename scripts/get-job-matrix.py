@@ -51,28 +51,28 @@ class PartitionPackage:
 
 
 INTEGRATION_TEST_PACKAGES = {
-    "github.com/khulnasoft/khulnasoft/pkg/v3/cmd/pulumi",
+    "github.com/khulnasoft/khulnasoft/pkg/v3/cmd/khulnasoft",
     "github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/utils",
     "github.com/khulnasoft/khulnasoft/pkg/v3/graph/dotconv",
     "github.com/khulnasoft/khulnasoft/pkg/v3/testing/integration",
-    "github.com/pulumi/pulumi/sdk/v3/go/auto",
-    "github.com/pulumi/pulumi/sdk/v3/go/auto/debug",
-    "github.com/pulumi/pulumi/sdk/v3/go/auto/optdestroy",
-    "github.com/pulumi/pulumi/sdk/v3/go/auto/optremove",
-    "github.com/pulumi/pulumi/sdk/v3/go/common/constant",
-    "github.com/pulumi/pulumi/sdk/v3/go/common/util/retry",
-    "github.com/pulumi/pulumi/sdk/v3/nodejs/npm",
+    "github.com/khulnasoft/khulnasoft/sdk/v3/go/auto",
+    "github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/debug",
+    "github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optdestroy",
+    "github.com/khulnasoft/khulnasoft/sdk/v3/go/auto/optremove",
+    "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/constant",
+    "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/retry",
+    "github.com/khulnasoft/khulnasoft/sdk/v3/nodejs/npm",
     # And the entirety of the 'tests' module
 }
 
 PERFORMANCE_TEST_PACKAGES = {
-    "github.com/pulumi/pulumi/tests/performance",
+    "github.com/khulnasoft/khulnasoft/tests/performance",
 }
 
 def is_unit_test(pkg: str) -> bool:
     """Checks if the package is a unit test"""
     return not (
-        pkg.startswith("github.com/pulumi/pulumi/tests")
+        pkg.startswith("github.com/khulnasoft/khulnasoft/tests")
         or pkg in INTEGRATION_TEST_PACKAGES
         or pkg in PERFORMANCE_TEST_PACKAGES
     )
@@ -130,8 +130,8 @@ ALL_PLATFORMS = ["ubuntu-latest", "windows-latest", "macos-latest"]
 
 
 # When updating the minumum and current versions, consider also updating the
-# versions in the the pulumi-docker-containers repo by updating the file
-# https://github.com/pulumi/pulumi-docker-containers/blob/main/.github/scripts/matrix/versions.py
+# versions in the the khulnasoft-docker-containers repo by updating the file
+# https://github.com/khulnasoft/khulnasoft-docker-containers/blob/main/.github/scripts/matrix/versions.py
 
 MINIMUM_SUPPORTED_VERSION_SET = {
     "name": "minimum",
@@ -188,7 +188,7 @@ def run_list_tests(pkg_dir: str, tags: List[str]) -> List[str]:
     # TestStackTagValidation
     # ...
     # TestPassphrasePrompting
-    # ok      github.com/pulumi/pulumi/tests/integration      0.093s
+    # ok      github.com/khulnasoft/khulnasoft/tests/integration      0.093s
     # ```
     #
     # That last line is emitted on stdout - so we skip any lines containing "ok".
@@ -196,11 +196,11 @@ def run_list_tests(pkg_dir: str, tags: List[str]) -> List[str]:
     # Neither relative paths nor package paths will work, as shown below:
     #
     # ```sh
-    # $ go test -tags all --list github.com/pulumi/pulumi/tests/integration
-    # no Go files in /home/friel/c/github.com/pulumi/pulumi
+    # $ go test -tags all --list github.com/khulnasoft/khulnasoft/tests/integration
+    # no Go files in /home/friel/c/github.com/khulnasoft/khulnasoft
     #
     # $ go test -tags all --list ./tests/integration
-    # no Go files in /home/friel/c/github.com/pulumi/pulumi
+    # no Go files in /home/friel/c/github.com/khulnasoft/khulnasoft
     # ```
     try:
         cmd = sp.run(

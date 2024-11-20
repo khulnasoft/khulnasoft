@@ -11,9 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from pulumi import Output, ResourceOptions
-from pulumi.resource import Alias, CustomResource
-from pulumi.runtime.resource import all_aliases
+from khulnasoft import Output, ResourceOptions
+from khulnasoft.resource import Alias, CustomResource
+from khulnasoft.runtime.resource import all_aliases
 
 
 class MyResource(CustomResource):
@@ -33,7 +33,7 @@ test_cases = [
         "parent_aliases": [],
         "child_aliases": [Alias(type_="test:resource:child2")],
         "results": [
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child2::myres2-child"
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child2::myres2-child"
         ],
     },
     {
@@ -41,7 +41,7 @@ test_cases = [
         "parent_aliases": [],
         "child_aliases": [Alias(name="child2")],
         "results": [
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child::child2"
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::child2"
         ],
     },
     {
@@ -49,9 +49,9 @@ test_cases = [
         "parent_aliases": [Alias(type_="test:resource:type3")],
         "child_aliases": [Alias(name="myres4-child2")],
         "results": [
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres4-child2",
-            "urn:pulumi:stack::project::test:resource:type3$test:resource:child::myres4-child",
-            "urn:pulumi:stack::project::test:resource:type3$test:resource:child::myres4-child2",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres4-child2",
+            "urn:khulnasoft:stack::project::test:resource:type3$test:resource:child::myres4-child",
+            "urn:khulnasoft:stack::project::test:resource:type3$test:resource:child::myres4-child2",
         ],
     },
     {
@@ -59,9 +59,9 @@ test_cases = [
         "parent_aliases": [Alias(name="myres52")],
         "child_aliases": [Alias(name="myres5-child2")],
         "results": [
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres5-child2",
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres52-child",
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres52-child2",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres5-child2",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres52-child",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres52-child2",
         ],
     },
     {
@@ -76,17 +76,17 @@ test_cases = [
             Alias(type_="test:resource:child2"),
         ],
         "results": [
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres6-child2",
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child2::myres6-child",
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres62-child",
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres62-child2",
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child2::myres62-child",
-            "urn:pulumi:stack::project::test:resource:type3$test:resource:child::myres6-child",
-            "urn:pulumi:stack::project::test:resource:type3$test:resource:child::myres6-child2",
-            "urn:pulumi:stack::project::test:resource:type3$test:resource:child2::myres6-child",
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres63-child",
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child::myres63-child2",
-            "urn:pulumi:stack::project::test:resource:type$test:resource:child2::myres63-child",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres6-child2",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child2::myres6-child",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres62-child",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres62-child2",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child2::myres62-child",
+            "urn:khulnasoft:stack::project::test:resource:type3$test:resource:child::myres6-child",
+            "urn:khulnasoft:stack::project::test:resource:type3$test:resource:child::myres6-child2",
+            "urn:khulnasoft:stack::project::test:resource:type3$test:resource:child2::myres6-child",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres63-child",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child::myres63-child2",
+            "urn:khulnasoft:stack::project::test:resource:type$test:resource:child2::myres63-child",
         ],
     },
 ]

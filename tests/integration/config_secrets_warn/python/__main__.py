@@ -1,8 +1,8 @@
 # Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import pulumi
+import khulnasoft
 
-config = pulumi.Config()
+config = khulnasoft.Config()
 
 config.get("plainstr1")
 config.require("plainstr2")

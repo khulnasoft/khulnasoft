@@ -2,12 +2,12 @@
 
 from typing import Any, Optional
 
-import pulumi
+import khulnasoft
 
-class Component(pulumi.ComponentResource):
+class Component(khulnasoft.ComponentResource):
     def __init__(self,
                  name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None,
+                 opts: Optional[khulnasoft.ResourceOptions] = None,
                  children: Optional[int] = None):
         props = dict()
         props["children"] = children

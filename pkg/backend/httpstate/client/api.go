@@ -32,12 +32,12 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/tracing"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/version"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/httputil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/httputil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 const (
@@ -46,7 +46,7 @@ const (
 )
 
 func UserAgent() string {
-	return fmt.Sprintf("pulumi-cli/1 (%s; %s)", version.Version, runtime.GOOS)
+	return fmt.Sprintf("khulnasoft-cli/1 (%s; %s)", version.Version, runtime.GOOS)
 }
 
 // StackIdentifier is the set of data needed to identify a Pulumi Cloud stack.
@@ -224,8 +224,8 @@ func (c *defaultHTTPClient) Do(req *http.Request, policy retryPolicy) (*http.Res
 	return httputil.DoWithRetryOpts(req, c.client, opts)
 }
 
-// pulumiAPICall makes an HTTP request to the Pulumi API.
-func pulumiAPICall(ctx context.Context,
+// khulnasoftAPICall makes an HTTP request to the Pulumi API.
+func khulnasoftAPICall(ctx context.Context,
 	requestSpan opentracing.Span,
 	d diag.Sink, client httpClient, cloudAPI, method, path string, body []byte,
 	tok accessToken, opts httpCallOptions,
@@ -280,7 +280,7 @@ func pulumiAPICall(ctx context.Context,
 	// backwards compatibility.
 	req.Header.Set("User-Agent", UserAgent())
 	// Specify the specific API version we accept.
-	req.Header.Set("Accept", "application/vnd.pulumi+8")
+	req.Header.Set("Accept", "application/vnd.khulnasoft+8")
 
 	// Apply credentials if provided.
 	creds, err := tok.Get(ctx)
@@ -335,12 +335,12 @@ func pulumiAPICall(ctx context.Context,
 
 	// Provide a better error if using an authenticated call without having logged in first.
 	if resp.StatusCode == 401 && tok.Kind() == accessTokenKindAPIToken && creds == "" {
-		return "", nil, errors.New("this command requires logging in; try running `pulumi login` first")
+		return "", nil, errors.New("this command requires logging in; try running `khulnasoft login` first")
 	}
 
 	// Provide a better error if rate-limit is exceeded(429: Too Many Requests)
 	if resp.StatusCode == 429 {
-		return "", nil, errors.New("pulumi service: request rate-limit exceeded")
+		return "", nil, errors.New("khulnasoft service: request rate-limit exceeded")
 	}
 
 	// For 4xx and 5xx failures, attempt to provide better diagnostics about what may have gone wrong.
@@ -427,7 +427,7 @@ func (c *defaultRESTClient) Call(ctx context.Context, diag diag.Sink, cloudAPI, 
 	}
 
 	// Make API call
-	url, resp, err := pulumiAPICall(
+	url, resp, err := khulnasoftAPICall(
 		ctx, requestSpan, diag, c.client, cloudAPI, method, path+querystring, reqBody, tok, opts)
 	if err != nil {
 		return err

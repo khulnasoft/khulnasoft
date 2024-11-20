@@ -1,7 +1,7 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
-const config = new pulumi.Config();
+const config = new khulnasoft.Config();
 const instanceType = config.get("InstanceType") || "t3.micro";
 const webSecGrp = new aws.ec2.SecurityGroup("WebSecGrp", {ingress: [{
     protocol: "tcp",

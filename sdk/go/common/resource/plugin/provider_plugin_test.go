@@ -30,11 +30,11 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 	"google.golang.org/protobuf/types/known/structpb"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/asset"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/diagtest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/asset"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/diagtest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 func TestAnnotateSecrets(t *testing.T) {
@@ -316,12 +316,12 @@ func TestProvider_DeleteRequests(t *testing.T) {
 
 	// Arrange.
 	id := resource.ID("foo")
-	urn := resource.NewURN("org/proj/dev", "foo", "", "pulumi:provider:aws", "qux")
+	urn := resource.NewURN("org/proj/dev", "foo", "", "khulnasoft:provider:aws", "qux")
 
 	tests := []struct {
 		desc string
 		give DeleteRequest
-		want *pulumirpc.DeleteRequest
+		want *khulnasoftrpc.DeleteRequest
 	}{
 		{
 			desc: "empty",
@@ -329,11 +329,11 @@ func TestProvider_DeleteRequests(t *testing.T) {
 				ID:  id,
 				URN: urn,
 			},
-			want: &pulumirpc.DeleteRequest{
+			want: &khulnasoftrpc.DeleteRequest{
 				Id:         string(id),
 				Urn:        string(urn),
 				Name:       "qux",
-				Type:       "pulumi:provider:aws",
+				Type:       "khulnasoft:provider:aws",
 				OldInputs:  &structpb.Struct{Fields: map[string]*structpb.Value{}},
 				Properties: &structpb.Struct{Fields: map[string]*structpb.Value{}},
 			},
@@ -347,11 +347,11 @@ func TestProvider_DeleteRequests(t *testing.T) {
 					"foo": resource.NewStringProperty("bar"),
 				},
 			},
-			want: &pulumirpc.DeleteRequest{
+			want: &khulnasoftrpc.DeleteRequest{
 				Id:   string(id),
 				Urn:  string(urn),
 				Name: "qux",
-				Type: "pulumi:provider:aws",
+				Type: "khulnasoft:provider:aws",
 				OldInputs: &structpb.Struct{
 					Fields: map[string]*structpb.Value{
 						"foo": {Kind: &structpb.Value_StringValue{StringValue: "bar"}},
@@ -369,11 +369,11 @@ func TestProvider_DeleteRequests(t *testing.T) {
 					"baz": resource.NewStringProperty("quux"),
 				},
 			},
-			want: &pulumirpc.DeleteRequest{
+			want: &khulnasoftrpc.DeleteRequest{
 				Id:        string(id),
 				Urn:       string(urn),
 				Name:      "qux",
-				Type:      "pulumi:provider:aws",
+				Type:      "khulnasoft:provider:aws",
 				OldInputs: &structpb.Struct{Fields: map[string]*structpb.Value{}},
 				Properties: &structpb.Struct{
 					Fields: map[string]*structpb.Value{
@@ -389,11 +389,11 @@ func TestProvider_DeleteRequests(t *testing.T) {
 				URN:     urn,
 				Timeout: 30,
 			},
-			want: &pulumirpc.DeleteRequest{
+			want: &khulnasoftrpc.DeleteRequest{
 				Id:         string(id),
 				Urn:        string(urn),
 				Name:       "qux",
-				Type:       "pulumi:provider:aws",
+				Type:       "khulnasoft:provider:aws",
 				OldInputs:  &structpb.Struct{Fields: map[string]*structpb.Value{}},
 				Properties: &structpb.Struct{Fields: map[string]*structpb.Value{}},
 				Timeout:    30,
@@ -412,11 +412,11 @@ func TestProvider_DeleteRequests(t *testing.T) {
 				},
 				Timeout: 30,
 			},
-			want: &pulumirpc.DeleteRequest{
+			want: &khulnasoftrpc.DeleteRequest{
 				Id:   string(id),
 				Urn:  string(urn),
 				Name: "qux",
-				Type: "pulumi:provider:aws",
+				Type: "khulnasoft:provider:aws",
 				OldInputs: &structpb.Struct{
 					Fields: map[string]*structpb.Value{
 						"foo": {Kind: &structpb.Value_StringValue{StringValue: "bar"}},
@@ -437,14 +437,14 @@ func TestProvider_DeleteRequests(t *testing.T) {
 		t.Run(tt.desc, func(t *testing.T) {
 			t.Parallel()
 
-			var got *pulumirpc.DeleteRequest
+			var got *khulnasoftrpc.DeleteRequest
 			client := &stubClient{
-				ConfigureF: func(req *pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error) {
-					return &pulumirpc.ConfigureResponse{
+				ConfigureF: func(req *khulnasoftrpc.ConfigureRequest) (*khulnasoftrpc.ConfigureResponse, error) {
+					return &khulnasoftrpc.ConfigureResponse{
 						AcceptSecrets: true,
 					}, nil
 				},
-				DeleteF: func(req *pulumirpc.DeleteRequest) error {
+				DeleteF: func(req *khulnasoftrpc.DeleteRequest) error {
 					got = req
 					return nil
 				},
@@ -489,25 +489,25 @@ func TestProvider_ConstructOptions(t *testing.T) {
 	tests := []struct {
 		desc   string
 		give   ConstructOptions
-		want   *pulumirpc.ConstructRequest
+		want   *khulnasoftrpc.ConstructRequest
 		parent resource.URN
 	}{
 		{
 			desc: "empty",
-			want: &pulumirpc.ConstructRequest{},
+			want: &khulnasoftrpc.ConstructRequest{},
 		},
 		{
 			desc: "aliases",
 			give: ConstructOptions{
 				Aliases: []resource.Alias{
-					{URN: resource.URN("urn:pulumi:stack::project::type::oldName")},
-					{URN: resource.URN("urn:pulumi:stack::project::type::anotherOldName")},
+					{URN: resource.URN("urn:khulnasoft:stack::project::type::oldName")},
+					{URN: resource.URN("urn:khulnasoft:stack::project::type::anotherOldName")},
 				},
 			},
-			want: &pulumirpc.ConstructRequest{
+			want: &khulnasoftrpc.ConstructRequest{
 				Aliases: []string{
-					"urn:pulumi:stack::project::type::oldName",
-					"urn:pulumi:stack::project::type::anotherOldName",
+					"urn:khulnasoft:stack::project::type::oldName",
+					"urn:khulnasoft:stack::project::type::anotherOldName",
 				},
 			},
 		},
@@ -515,14 +515,14 @@ func TestProvider_ConstructOptions(t *testing.T) {
 			desc: "dependencies",
 			give: ConstructOptions{
 				Dependencies: []resource.URN{
-					"urn:pulumi:stack::project::type::dep1",
-					"urn:pulumi:stack::project::type::dep2",
+					"urn:khulnasoft:stack::project::type::dep1",
+					"urn:khulnasoft:stack::project::type::dep2",
 				},
 			},
-			want: &pulumirpc.ConstructRequest{
+			want: &khulnasoftrpc.ConstructRequest{
 				Dependencies: []string{
-					"urn:pulumi:stack::project::type::dep1",
-					"urn:pulumi:stack::project::type::dep2",
+					"urn:khulnasoft:stack::project::type::dep1",
+					"urn:khulnasoft:stack::project::type::dep2",
 				},
 			},
 		},
@@ -531,7 +531,7 @@ func TestProvider_ConstructOptions(t *testing.T) {
 			give: ConstructOptions{
 				Protect: true,
 			},
-			want: &pulumirpc.ConstructRequest{
+			want: &khulnasoftrpc.ConstructRequest{
 				Protect: true,
 			},
 		},
@@ -543,7 +543,7 @@ func TestProvider_ConstructOptions(t *testing.T) {
 					"pkg2": "prov2",
 				},
 			},
-			want: &pulumirpc.ConstructRequest{
+			want: &khulnasoftrpc.ConstructRequest{
 				Providers: map[string]string{
 					"pkg1": "prov1",
 					"pkg2": "prov2",
@@ -554,14 +554,14 @@ func TestProvider_ConstructOptions(t *testing.T) {
 			desc: "property dependencies",
 			give: ConstructOptions{
 				PropertyDependencies: map[resource.PropertyKey][]resource.URN{
-					"foo": {"urn:pulumi:stack::project::type::dep1"},
-					"bar": {"urn:pulumi:stack::project::type::dep2"},
+					"foo": {"urn:khulnasoft:stack::project::type::dep1"},
+					"bar": {"urn:khulnasoft:stack::project::type::dep2"},
 				},
 			},
-			want: &pulumirpc.ConstructRequest{
-				InputDependencies: map[string]*pulumirpc.ConstructRequest_PropertyDependencies{
-					"foo": {Urns: []string{"urn:pulumi:stack::project::type::dep1"}},
-					"bar": {Urns: []string{"urn:pulumi:stack::project::type::dep2"}},
+			want: &khulnasoftrpc.ConstructRequest{
+				InputDependencies: map[string]*khulnasoftrpc.ConstructRequest_PropertyDependencies{
+					"foo": {Urns: []string{"urn:khulnasoft:stack::project::type::dep1"}},
+					"bar": {Urns: []string{"urn:khulnasoft:stack::project::type::dep2"}},
 				},
 			},
 		},
@@ -570,7 +570,7 @@ func TestProvider_ConstructOptions(t *testing.T) {
 			give: ConstructOptions{
 				AdditionalSecretOutputs: []string{"foo", "bar"},
 			},
-			want: &pulumirpc.ConstructRequest{
+			want: &khulnasoftrpc.ConstructRequest{
 				AdditionalSecretOutputs: []string{"foo", "bar"},
 			},
 		},
@@ -583,8 +583,8 @@ func TestProvider_ConstructOptions(t *testing.T) {
 					Delete: "3s",
 				},
 			},
-			want: &pulumirpc.ConstructRequest{
-				CustomTimeouts: &pulumirpc.ConstructRequest_CustomTimeouts{
+			want: &khulnasoftrpc.ConstructRequest{
+				CustomTimeouts: &khulnasoftrpc.ConstructRequest_CustomTimeouts{
 					Create: "1s",
 					Update: "2s",
 					Delete: "3s",
@@ -594,10 +594,10 @@ func TestProvider_ConstructOptions(t *testing.T) {
 		{
 			desc: "deleted with",
 			give: ConstructOptions{
-				DeletedWith: "urn:pulumi:stack::project::type::dep1",
+				DeletedWith: "urn:khulnasoft:stack::project::type::dep1",
 			},
-			want: &pulumirpc.ConstructRequest{
-				DeletedWith: "urn:pulumi:stack::project::type::dep1",
+			want: &khulnasoftrpc.ConstructRequest{
+				DeletedWith: "urn:khulnasoft:stack::project::type::dep1",
 			},
 		},
 		{
@@ -605,7 +605,7 @@ func TestProvider_ConstructOptions(t *testing.T) {
 			give: ConstructOptions{
 				DeleteBeforeReplace: true,
 			},
-			want: &pulumirpc.ConstructRequest{
+			want: &khulnasoftrpc.ConstructRequest{
 				DeleteBeforeReplace: true,
 			},
 		},
@@ -614,7 +614,7 @@ func TestProvider_ConstructOptions(t *testing.T) {
 			give: ConstructOptions{
 				IgnoreChanges: []string{"foo", "bar"},
 			},
-			want: &pulumirpc.ConstructRequest{
+			want: &khulnasoftrpc.ConstructRequest{
 				IgnoreChanges: []string{"foo", "bar"},
 			},
 		},
@@ -623,7 +623,7 @@ func TestProvider_ConstructOptions(t *testing.T) {
 			give: ConstructOptions{
 				ReplaceOnChanges: []string{"foo", "bar"},
 			},
-			want: &pulumirpc.ConstructRequest{
+			want: &khulnasoftrpc.ConstructRequest{
 				ReplaceOnChanges: []string{"foo", "bar"},
 			},
 		},
@@ -632,7 +632,7 @@ func TestProvider_ConstructOptions(t *testing.T) {
 			give: ConstructOptions{
 				RetainOnDelete: true,
 			},
-			want: &pulumirpc.ConstructRequest{
+			want: &khulnasoftrpc.ConstructRequest{
 				RetainOnDelete: true,
 			},
 		},
@@ -653,14 +653,14 @@ func TestProvider_ConstructOptions(t *testing.T) {
 			tt.want.Inputs = &structpb.Struct{Fields: make(map[string]*structpb.Value)}
 			tt.want.AcceptsOutputValues = true
 
-			var got *pulumirpc.ConstructRequest
+			var got *khulnasoftrpc.ConstructRequest
 			client := &stubClient{
-				ConfigureF: func(req *pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error) {
-					return &pulumirpc.ConfigureResponse{
+				ConfigureF: func(req *khulnasoftrpc.ConfigureRequest) (*khulnasoftrpc.ConfigureResponse, error) {
+					return &khulnasoftrpc.ConfigureResponse{
 						AcceptSecrets: true,
 					}, nil
 				},
-				ConstructF: func(req *pulumirpc.ConstructRequest) (*pulumirpc.ConstructResponse, error) {
+				ConstructF: func(req *khulnasoftrpc.ConstructRequest) (*khulnasoftrpc.ConstructResponse, error) {
 					// To keep test cases simple and avoid
 					// having to duplicate empty slices for
 					// them, nil out empty slices that are
@@ -671,8 +671,8 @@ func TestProvider_ConstructOptions(t *testing.T) {
 					nilIfEmpty(&req.InputDependencies)
 
 					got = req
-					return &pulumirpc.ConstructResponse{
-						Urn: "urn:pulumi:stack::project::type::name",
+					return &khulnasoftrpc.ConstructResponse{
+						Urn: "urn:khulnasoft:stack::project::type::name",
 					}, nil
 				},
 			}
@@ -702,7 +702,7 @@ func TestProvider_ConstructOptions(t *testing.T) {
 }
 
 // This test detects a data race between Configure and Delete
-// reported in https://github.com/pulumi/pulumi/issues/11971.
+// reported in https://github.com/khulnasoft/khulnasoft/issues/11971.
 //
 // The root cause of the data race was that
 // Delete read properties from provider
@@ -715,12 +715,12 @@ func TestProvider_ConfigureDeleteRace(t *testing.T) {
 
 	var gotSecret *structpb.Value
 	client := &stubClient{
-		ConfigureF: func(req *pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error) {
-			return &pulumirpc.ConfigureResponse{
+		ConfigureF: func(req *khulnasoftrpc.ConfigureRequest) (*khulnasoftrpc.ConfigureResponse, error) {
+			return &khulnasoftrpc.ConfigureResponse{
 				AcceptSecrets: true,
 			}, nil
 		},
-		DeleteF: func(req *pulumirpc.DeleteRequest) error {
+		DeleteF: func(req *khulnasoftrpc.DeleteRequest) error {
 			gotSecret = req.Properties.Fields["foo"]
 			return nil
 		},
@@ -785,19 +785,19 @@ func newTestContext(t testing.TB) *Context {
 }
 
 type stubClient struct {
-	pulumirpc.ResourceProviderClient
+	khulnasoftrpc.ResourceProviderClient
 
-	DiffConfigF func(*pulumirpc.DiffRequest) (*pulumirpc.DiffResponse, error)
-	ConstructF  func(*pulumirpc.ConstructRequest) (*pulumirpc.ConstructResponse, error)
-	ConfigureF  func(*pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error)
-	DeleteF     func(*pulumirpc.DeleteRequest) error
+	DiffConfigF func(*khulnasoftrpc.DiffRequest) (*khulnasoftrpc.DiffResponse, error)
+	ConstructF  func(*khulnasoftrpc.ConstructRequest) (*khulnasoftrpc.ConstructResponse, error)
+	ConfigureF  func(*khulnasoftrpc.ConfigureRequest) (*khulnasoftrpc.ConfigureResponse, error)
+	DeleteF     func(*khulnasoftrpc.DeleteRequest) error
 }
 
 func (c *stubClient) DiffConfig(
 	ctx context.Context,
-	req *pulumirpc.DiffRequest,
+	req *khulnasoftrpc.DiffRequest,
 	opts ...grpc.CallOption,
-) (*pulumirpc.DiffResponse, error) {
+) (*khulnasoftrpc.DiffResponse, error) {
 	if f := c.DiffConfigF; f != nil {
 		return f(req)
 	}
@@ -806,9 +806,9 @@ func (c *stubClient) DiffConfig(
 
 func (c *stubClient) Construct(
 	ctx context.Context,
-	req *pulumirpc.ConstructRequest,
+	req *khulnasoftrpc.ConstructRequest,
 	opts ...grpc.CallOption,
-) (*pulumirpc.ConstructResponse, error) {
+) (*khulnasoftrpc.ConstructResponse, error) {
 	if f := c.ConstructF; f != nil {
 		return f(req)
 	}
@@ -817,9 +817,9 @@ func (c *stubClient) Construct(
 
 func (c *stubClient) Configure(
 	ctx context.Context,
-	req *pulumirpc.ConfigureRequest,
+	req *khulnasoftrpc.ConfigureRequest,
 	opts ...grpc.CallOption,
-) (*pulumirpc.ConfigureResponse, error) {
+) (*khulnasoftrpc.ConfigureResponse, error) {
 	if f := c.ConfigureF; f != nil {
 		return f(req)
 	}
@@ -828,7 +828,7 @@ func (c *stubClient) Configure(
 
 func (c *stubClient) Delete(
 	ctx context.Context,
-	req *pulumirpc.DeleteRequest,
+	req *khulnasoftrpc.DeleteRequest,
 	opts ...grpc.CallOption,
 ) (*emptypb.Empty, error) {
 	if f := c.DeleteF; f != nil {
@@ -838,7 +838,7 @@ func (c *stubClient) Delete(
 	return c.ResourceProviderClient.Delete(ctx, req, opts...)
 }
 
-// Test for https://github.com/pulumi/pulumi/issues/14529, ensure a kubernetes DiffConfig error is ignored
+// Test for https://github.com/khulnasoft/khulnasoft/issues/14529, ensure a kubernetes DiffConfig error is ignored
 func TestKubernetesDiffError(t *testing.T) {
 	t.Parallel()
 
@@ -848,7 +848,7 @@ func TestKubernetesDiffError(t *testing.T) {
 				"{ APIVersion string \"json:\\\"apiVersion,omitempty\\\"\"; Kind string \"json:\\\"kind,omitempty\\\"\" }")))
 
 	client := &stubClient{
-		DiffConfigF: func(req *pulumirpc.DiffRequest) (*pulumirpc.DiffResponse, error) {
+		DiffConfigF: func(req *khulnasoftrpc.DiffRequest) (*khulnasoftrpc.DiffResponse, error) {
 			return nil, diffErr
 		},
 	}
@@ -856,7 +856,7 @@ func TestKubernetesDiffError(t *testing.T) {
 	// Test that the error from 14529 is NOT ignored if reported by something other than kubernetes
 	az := NewProviderWithClient(newTestContext(t), "azure", client, false /* disablePreview */)
 	_, err := az.DiffConfig(context.Background(), DiffConfigRequest{
-		resource.NewURN("org/proj/dev", "foo", "", "pulumi:provider:azure", "qux"),
+		resource.NewURN("org/proj/dev", "foo", "", "khulnasoft:provider:azure", "qux"),
 		"",
 		"",
 		resource.PropertyMap{},
@@ -870,7 +870,7 @@ func TestKubernetesDiffError(t *testing.T) {
 	// Test that the error from 14529 is ignored if reported by kubernetes
 	k8s := NewProviderWithClient(newTestContext(t), "kubernetes", client, false /* disablePreview */)
 	diff, err := k8s.DiffConfig(context.Background(), DiffConfigRequest{
-		resource.NewURN("org/proj/dev", "foo", "", "pulumi:provider:kubernetes", "qux"),
+		resource.NewURN("org/proj/dev", "foo", "", "khulnasoft:provider:kubernetes", "qux"),
 		"",
 		"",
 		resource.PropertyMap{},
@@ -885,7 +885,7 @@ func TestKubernetesDiffError(t *testing.T) {
 	// Test that some other error is not ignored if reported by kubernetes
 	diffErr = status.Errorf(codes.Unknown, "some other error")
 	_, err = k8s.DiffConfig(context.Background(), DiffConfigRequest{
-		resource.NewURN("org/proj/dev", "foo", "", "pulumi:provider:kubernetes", "qux"),
+		resource.NewURN("org/proj/dev", "foo", "", "khulnasoft:provider:kubernetes", "qux"),
 		"",
 		"",
 		resource.PropertyMap{},

@@ -94,7 +94,7 @@ func TestGitClone(t *testing.T) {
 		{branchName: "default", expectedHead: defaultHead},
 		{branchName: "nondefault", expectedHead: nondefaultHead},
 		{branchName: "branch/with/slashes", expectedHead: nondefaultHead},
-		// https://github.com/pulumi/pulumi-kubernetes-operator/issues/103#issuecomment-1107891475
+		// https://github.com/khulnasoft/khulnasoft-kubernetes-operator/issues/103#issuecomment-1107891475
 		// advises using `refs/heads/<default>` for the default, and `refs/remotes/origin/<branch>`
 		// for a non-default branch -- so we can expect all these varieties to be in use.
 		{branchName: "refs/heads/default", expectedHead: defaultHead},

@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pulumi import Output
-from pulumi.runtime import invoke, invoke_async
+from khulnasoft import Output
+from khulnasoft.runtime import invoke, invoke_async
 
 
 def assert_eq(l, r):

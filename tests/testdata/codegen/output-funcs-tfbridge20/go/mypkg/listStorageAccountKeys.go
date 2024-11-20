@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"output-funcs-tfbridge20/mypkg/internal"
 )
 
 // The response from the ListKeys operation.
 // API Version: 2021-02-01.
-func ListStorageAccountKeys(ctx *pulumi.Context, args *ListStorageAccountKeysArgs, opts ...pulumi.InvokeOption) (*ListStorageAccountKeysResult, error) {
+func ListStorageAccountKeys(ctx *khulnasoft.Context, args *ListStorageAccountKeysArgs, opts ...khulnasoft.InvokeOption) (*ListStorageAccountKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListStorageAccountKeysResult
 	err := ctx.Invoke("mypkg::listStorageAccountKeys", args, &rv, opts...)
@@ -25,21 +25,21 @@ func ListStorageAccountKeys(ctx *pulumi.Context, args *ListStorageAccountKeysArg
 
 type ListStorageAccountKeysArgs struct {
 	// The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
-	AccountName string `pulumi:"accountName"`
+	AccountName string `khulnasoft:"accountName"`
 	// Specifies type of the key to be listed. Possible value is kerb.
-	Expand *string `pulumi:"expand"`
+	Expand *string `khulnasoft:"expand"`
 	// The name of the resource group within the user's subscription. The name is case insensitive.
-	ResourceGroupName string `pulumi:"resourceGroupName"`
+	ResourceGroupName string `khulnasoft:"resourceGroupName"`
 }
 
 // The response from the ListKeys operation.
 type ListStorageAccountKeysResult struct {
 	// Gets the list of storage account keys and their properties for the specified storage account.
-	Keys []StorageAccountKeyResponse `pulumi:"keys"`
+	Keys []StorageAccountKeyResponse `khulnasoft:"keys"`
 }
 
-func ListStorageAccountKeysOutput(ctx *pulumi.Context, args ListStorageAccountKeysOutputArgs, opts ...pulumi.InvokeOption) ListStorageAccountKeysResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func ListStorageAccountKeysOutput(ctx *khulnasoft.Context, args ListStorageAccountKeysOutputArgs, opts ...khulnasoft.InvokeOption) ListStorageAccountKeysResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (ListStorageAccountKeysResultOutput, error) {
 			args := v.(ListStorageAccountKeysArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -49,9 +49,9 @@ func ListStorageAccountKeysOutput(ctx *pulumi.Context, args ListStorageAccountKe
 				return ListStorageAccountKeysResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(ListStorageAccountKeysResultOutput)
+			output := khulnasoft.ToOutput(rv).(ListStorageAccountKeysResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(ListStorageAccountKeysResultOutput), nil
+				return khulnasoft.ToSecret(output).(ListStorageAccountKeysResultOutput), nil
 			}
 			return output, nil
 		}).(ListStorageAccountKeysResultOutput)
@@ -59,11 +59,11 @@ func ListStorageAccountKeysOutput(ctx *pulumi.Context, args ListStorageAccountKe
 
 type ListStorageAccountKeysOutputArgs struct {
 	// The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
-	AccountName pulumi.StringInput `pulumi:"accountName"`
+	AccountName khulnasoft.StringInput `khulnasoft:"accountName"`
 	// Specifies type of the key to be listed. Possible value is kerb.
-	Expand pulumi.StringPtrInput `pulumi:"expand"`
+	Expand khulnasoft.StringPtrInput `khulnasoft:"expand"`
 	// The name of the resource group within the user's subscription. The name is case insensitive.
-	ResourceGroupName pulumi.StringInput `pulumi:"resourceGroupName"`
+	ResourceGroupName khulnasoft.StringInput `khulnasoft:"resourceGroupName"`
 }
 
 func (ListStorageAccountKeysOutputArgs) ElementType() reflect.Type {
@@ -71,7 +71,7 @@ func (ListStorageAccountKeysOutputArgs) ElementType() reflect.Type {
 }
 
 // The response from the ListKeys operation.
-type ListStorageAccountKeysResultOutput struct{ *pulumi.OutputState }
+type ListStorageAccountKeysResultOutput struct{ *khulnasoft.OutputState }
 
 func (ListStorageAccountKeysResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ListStorageAccountKeysResult)(nil)).Elem()
@@ -91,5 +91,5 @@ func (o ListStorageAccountKeysResultOutput) Keys() StorageAccountKeyResponseArra
 }
 
 func init() {
-	pulumi.RegisterOutputType(ListStorageAccountKeysResultOutput{})
+	khulnasoft.RegisterOutputType(ListStorageAccountKeysResultOutput{})
 }

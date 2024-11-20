@@ -18,7 +18,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
 )
 
 var (
@@ -50,8 +50,8 @@ func IsUserProgramCode(a *resource.Asset) bool {
 //  2. it normalizs the sha hashes we emit so that changes to them don't appear in the diff.
 //  3. it elides the with-capture headers, as changes there are not generally meaningful.
 //
-// TODO(https://github.com/pulumi/pulumi/issues/592) this is baking in a lot of knowledge about
-// pulumi serialized functions.  We should try to move to an alternative mode that isn't so brittle.
+// TODO(https://github.com/khulnasoft/khulnasoft/issues/592) this is baking in a lot of knowledge about
+// khulnasoft serialized functions.  We should try to move to an alternative mode that isn't so brittle.
 // Options include:
 //  1. Have a documented delimeter format that plan.go will look for.  Have the function serializer
 //     emit those delimeters around code that should be ignored.

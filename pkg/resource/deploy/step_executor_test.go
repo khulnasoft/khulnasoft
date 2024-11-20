@@ -20,8 +20,8 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/util/gsync"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -31,7 +31,7 @@ func TestRegisterResourceErrorsOnMissingPendingNew(t *testing.T) {
 	se := &stepExecutor{
 		pendingNews: gsync.Map[resource.URN, Step]{},
 	}
-	urn := resource.URN("urn:pulumi:stack::project::my:example:Foo::foo")
+	urn := resource.URN("urn:khulnasoft:stack::project::my:example:Foo::foo")
 	err := se.ExecuteRegisterResourceOutputs(&mockRegisterResourceOutputsEvent{
 		urn: urn,
 	})

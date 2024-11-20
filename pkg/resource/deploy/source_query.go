@@ -26,18 +26,18 @@ import (
 	"google.golang.org/grpc"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/result"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/result"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // QuerySource is used to synchronously wait for a query result.
@@ -267,7 +267,7 @@ func newQueryResourceMonitor(
 	handle, err := rpcutil.ServeWithOptions(rpcutil.ServeOptions{
 		Cancel: queryResmon.cancel,
 		Init: func(srv *grpc.Server) error {
-			pulumirpc.RegisterResourceMonitorServer(srv, queryResmon)
+			khulnasoftrpc.RegisterResourceMonitorServer(srv, queryResmon)
 			return nil
 		},
 		Options: rpcutil.OpenTracingServerInterceptorOptions(tracingSpan),
@@ -307,7 +307,7 @@ func newQueryResourceMonitor(
 	return queryResmon, nil
 }
 
-// queryResmon is a pulumirpc.ResourceMonitor that is meant to run in Pulumi's "query mode". It
+// queryResmon is a khulnasoftrpc.ResourceMonitor that is meant to run in Pulumi's "query mode". It
 // performs two critical functions:
 //
 //  1. Disallows all resource operations. `queryResmon` intercepts all resource operations and
@@ -315,7 +315,7 @@ func newQueryResourceMonitor(
 //  2. Services requests for stack snapshots. This is primarily to allow us to allow queries across
 //     stack snapshots.
 type queryResmon struct {
-	pulumirpc.UnimplementedResourceMonitorServer
+	khulnasoftrpc.UnimplementedResourceMonitorServer
 
 	builtins         *builtinProvider    // provides builtins such as `getStack`.
 	providers        ProviderSource      // the provider source itself.
@@ -392,8 +392,8 @@ func getProviderFromSource(
 
 // Invoke performs an invocation of a member located in a resource provider.
 func (rm *queryResmon) Invoke(
-	ctx context.Context, req *pulumirpc.ResourceInvokeRequest,
-) (*pulumirpc.InvokeResponse, error) {
+	ctx context.Context, req *khulnasoftrpc.ResourceInvokeRequest,
+) (*khulnasoftrpc.InvokeResponse, error) {
 	tok := tokens.ModuleMember(req.GetTok())
 	label := fmt.Sprintf("QueryResourceMonitor.Invoke(%s)", tok)
 
@@ -437,19 +437,19 @@ func (rm *queryResmon) Invoke(
 		return nil, fmt.Errorf("failed to marshal return: %w", err)
 	}
 
-	chkfails := slice.Prealloc[*pulumirpc.CheckFailure](len(resp.Failures))
+	chkfails := slice.Prealloc[*khulnasoftrpc.CheckFailure](len(resp.Failures))
 	for _, failure := range resp.Failures {
-		chkfails = append(chkfails, &pulumirpc.CheckFailure{
+		chkfails = append(chkfails, &khulnasoftrpc.CheckFailure{
 			Property: string(failure.Property),
 			Reason:   failure.Reason,
 		})
 	}
 
-	return &pulumirpc.InvokeResponse{Return: mret, Failures: chkfails}, nil
+	return &khulnasoftrpc.InvokeResponse{Return: mret, Failures: chkfails}, nil
 }
 
 func (rm *queryResmon) StreamInvoke(
-	req *pulumirpc.ResourceInvokeRequest, stream pulumirpc.ResourceMonitor_StreamInvokeServer,
+	req *khulnasoftrpc.ResourceInvokeRequest, stream khulnasoftrpc.ResourceMonitor_StreamInvokeServer,
 ) error {
 	tok := tokens.ModuleMember(req.GetTok())
 	label := fmt.Sprintf("QueryResourceMonitor.StreamInvoke(%s)", tok)
@@ -487,29 +487,29 @@ func (rm *queryResmon) StreamInvoke(
 				return fmt.Errorf("failed to marshal return: %w", err)
 			}
 
-			return stream.Send(&pulumirpc.InvokeResponse{Return: mret})
+			return stream.Send(&khulnasoftrpc.InvokeResponse{Return: mret})
 		},
 	})
 	if err != nil {
 		return fmt.Errorf("streaming invocation of %v returned an error: %w", tok, err)
 	}
 
-	chkfails := slice.Prealloc[*pulumirpc.CheckFailure](len(resp.Failures))
+	chkfails := slice.Prealloc[*khulnasoftrpc.CheckFailure](len(resp.Failures))
 	for _, failure := range resp.Failures {
-		chkfails = append(chkfails, &pulumirpc.CheckFailure{
+		chkfails = append(chkfails, &khulnasoftrpc.CheckFailure{
 			Property: string(failure.Property),
 			Reason:   failure.Reason,
 		})
 	}
 
 	if len(chkfails) > 0 {
-		return stream.Send(&pulumirpc.InvokeResponse{Failures: chkfails})
+		return stream.Send(&khulnasoftrpc.InvokeResponse{Failures: chkfails})
 	}
 	return nil
 }
 
 // Call dynamically executes a method in the provider associated with a component resource.
-func (rm *queryResmon) Call(ctx context.Context, req *pulumirpc.ResourceCallRequest) (*pulumirpc.CallResponse, error) {
+func (rm *queryResmon) Call(ctx context.Context, req *khulnasoftrpc.ResourceCallRequest) (*khulnasoftrpc.CallResponse, error) {
 	tok := tokens.ModuleMember(req.GetTok())
 	label := fmt.Sprintf("QueryResourceMonitor.Call(%s)", tok)
 
@@ -569,54 +569,54 @@ func (rm *queryResmon) Call(ctx context.Context, req *pulumirpc.ResourceCallRequ
 		return nil, fmt.Errorf("failed to marshal return: %w", err)
 	}
 
-	returnDependencies := map[string]*pulumirpc.CallResponse_ReturnDependencies{}
+	returnDependencies := map[string]*khulnasoftrpc.CallResponse_ReturnDependencies{}
 	for name, deps := range ret.ReturnDependencies {
 		urns := make([]string, len(deps))
 		for i, urn := range deps {
 			urns[i] = string(urn)
 		}
-		returnDependencies[string(name)] = &pulumirpc.CallResponse_ReturnDependencies{Urns: urns}
+		returnDependencies[string(name)] = &khulnasoftrpc.CallResponse_ReturnDependencies{Urns: urns}
 	}
 
-	chkfails := slice.Prealloc[*pulumirpc.CheckFailure](len(ret.Failures))
+	chkfails := slice.Prealloc[*khulnasoftrpc.CheckFailure](len(ret.Failures))
 	for _, failure := range ret.Failures {
-		chkfails = append(chkfails, &pulumirpc.CheckFailure{
+		chkfails = append(chkfails, &khulnasoftrpc.CheckFailure{
 			Property: string(failure.Property),
 			Reason:   failure.Reason,
 		})
 	}
 
-	return &pulumirpc.CallResponse{Return: mret, ReturnDependencies: returnDependencies, Failures: chkfails}, nil
+	return &khulnasoftrpc.CallResponse{Return: mret, ReturnDependencies: returnDependencies, Failures: chkfails}, nil
 }
 
 // ReadResource reads the current state associated with a resource from its provider plugin.
 func (rm *queryResmon) ReadResource(ctx context.Context,
-	req *pulumirpc.ReadResourceRequest,
-) (*pulumirpc.ReadResourceResponse, error) {
+	req *khulnasoftrpc.ReadResourceRequest,
+) (*khulnasoftrpc.ReadResourceResponse, error) {
 	return nil, errors.New("Query mode does not support reading resources")
 }
 
 // RegisterResource is invoked by a language process when a new resource has been allocated.
 func (rm *queryResmon) RegisterResource(ctx context.Context,
-	req *pulumirpc.RegisterResourceRequest,
-) (*pulumirpc.RegisterResourceResponse, error) {
+	req *khulnasoftrpc.RegisterResourceRequest,
+) (*khulnasoftrpc.RegisterResourceResponse, error) {
 	return nil, errors.New("Query mode does not support creating, updating, or deleting resources")
 }
 
 // RegisterResourceOutputs records some new output properties for a resource that have arrived after its initial
 // provisioning.  These will make their way into the eventual checkpoint state file for that resource.
 func (rm *queryResmon) RegisterResourceOutputs(ctx context.Context,
-	req *pulumirpc.RegisterResourceOutputsRequest,
+	req *khulnasoftrpc.RegisterResourceOutputsRequest,
 ) (*emptypb.Empty, error) {
 	return nil, errors.New("Query mode does not support registering resource operations")
 }
 
 // SupportsFeature the query resmon is able to have secrets passed to it, which may be arguments to invoke calls.
 func (rm *queryResmon) SupportsFeature(ctx context.Context,
-	req *pulumirpc.SupportsFeatureRequest,
-) (*pulumirpc.SupportsFeatureResponse, error) {
+	req *khulnasoftrpc.SupportsFeatureRequest,
+) (*khulnasoftrpc.SupportsFeatureResponse, error) {
 	hasSupport := false
-	return &pulumirpc.SupportsFeatureResponse{
+	return &khulnasoftrpc.SupportsFeatureResponse{
 		HasSupport: hasSupport,
 	}, nil
 }

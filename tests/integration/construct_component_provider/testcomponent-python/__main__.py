@@ -17,18 +17,18 @@ import sys
 
 from semver import VersionInfo as SemverVersion
 
-from pulumi import Inputs, ComponentResource, ResourceOptions
-import pulumi
-import pulumi.provider as provider
+from khulnasoft import Inputs, ComponentResource, ResourceOptions
+import khulnasoft
+import khulnasoft.provider as provider
 
 
 VERSION = "0.0.1"
 
 
-class Provider(pulumi.ProviderResource):
-    message: pulumi.Output[str]
+class Provider(khulnasoft.ProviderResource):
+    message: khulnasoft.Output[str]
 
-    def __init__(self, name: str, opts: Optional[pulumi.ResourceOptions] = None) -> None:
+    def __init__(self, name: str, opts: Optional[khulnasoft.ResourceOptions] = None) -> None:
         props = {
             "message": None, # out
         }
@@ -36,7 +36,7 @@ class Provider(pulumi.ProviderResource):
 
 
 class Component(ComponentResource):
-    message: pulumi.Output[str]
+    message: khulnasoft.Output[str]
 
     def __init__(self, name: str, opts: Optional[ResourceOptions] = None):
         super().__init__("testcomponent:index:Component", name, {}, opts)
@@ -49,22 +49,22 @@ class Component(ComponentResource):
         })
 
 
-class Package(pulumi.runtime.ResourcePackage):
+class Package(khulnasoft.runtime.ResourcePackage):
     _version = SemverVersion.parse(VERSION)
 
     def version(self):
         return self._version
 
-    def construct_provider(self, name: str, typ: str, urn: str) -> pulumi.ProviderResource:
-        if typ != "pulumi:providers:testcomponent":
+    def construct_provider(self, name: str, typ: str, urn: str) -> khulnasoft.ProviderResource:
+        if typ != "khulnasoft:providers:testcomponent":
             raise Exception(f"unknown provider type {typ}")
-        return Provider(name, pulumi.ResourceOptions(urn=urn))
+        return Provider(name, khulnasoft.ResourceOptions(urn=urn))
 
 
 class ProviderServer(provider.Provider):
     def __init__(self):
         super().__init__(VERSION)
-        pulumi.runtime.register_resource_package("testcomponent", Package())
+        khulnasoft.runtime.register_resource_package("testcomponent", Package())
 
     def construct(self, name: str, resource_type: str, inputs: Inputs,
                   options: Optional[ResourceOptions] = None) -> provider.ConstructResult:

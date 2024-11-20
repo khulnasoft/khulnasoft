@@ -26,14 +26,14 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tools"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/fsutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tools"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/fsutil"
 	"github.com/stretchr/testify/assert"
 )
 
 const (
 	//nolint:gosec
-	pulumiCredentialsPathEnvVar = "PULUMI_CREDENTIALS_PATH"
+	khulnasoftCredentialsPathEnvVar = "PULUMI_CREDENTIALS_PATH"
 )
 
 // Environment is an extension of the testing.T type that provides support for a test environment
@@ -56,7 +56,7 @@ type Environment struct {
 	Passphrase string
 	// Set to true to turn off setting PULUMI_CONFIG_PASSPHRASE.
 	NoPassphrase bool
-	// Set to true to use the local Pulumi dev build from ~/.pulumi-dev/bin/pulumi which get from `make install`
+	// Set to true to use the local Pulumi dev build from ~/.khulnasoft-dev/bin/khulnasoft which get from `make install`
 	UseLocalPulumiBuild bool
 	// Content to pass on stdin, if any
 	Stdin io.Reader
@@ -184,7 +184,7 @@ func (e *Environment) RunCommand(cmd string, args ...string) (string, string) {
 			e.Fatalf("Ran command %v args %v and expected success. Instead got failure.", cmd, args)
 		}
 		if home != "" {
-			cmd = filepath.Join(home, ".pulumi-dev", "bin", "pulumi")
+			cmd = filepath.Join(home, ".khulnasoft-dev", "bin", "khulnasoft")
 		}
 	}
 
@@ -258,7 +258,7 @@ func (e *Environment) SetupCommandIn(dir string, command string, args ...string)
 		cmd.Stdin = e.Stdin
 	}
 	cmd.Env = os.Environ()
-	cmd.Env = append(cmd.Env, fmt.Sprintf("%s=%s", pulumiCredentialsPathEnvVar, e.RootPath))
+	cmd.Env = append(cmd.Env, fmt.Sprintf("%s=%s", khulnasoftCredentialsPathEnvVar, e.RootPath))
 	cmd.Env = append(cmd.Env, "PULUMI_DEBUG_COMMANDS=true")
 	cmd.Env = append(cmd.Env, "PULUMI_HOME="+e.HomePath)
 	if !e.NoPassphrase {

@@ -19,10 +19,10 @@ import { readdirSync } from "fs";
 import * as path from "path";
 import * as semver from "semver";
 import * as typescript from "typescript";
-// @ts-ignore: The test installs @pulumi/pulumi
-import { runtime } from "@pulumi/pulumi";
-// @ts-ignore: The test installs @pulumi/pulumi
-import * as pkg from "@pulumi/pulumi/runtime/closure/package";
+// @ts-ignore: The test installs @khulnasoft/khulnasoft
+import { runtime } from "@khulnasoft/khulnasoft";
+// @ts-ignore: The test installs @khulnasoft/khulnasoft
+import * as pkg from "@khulnasoft/khulnasoft/runtime/closure/package";
 
 
 const platformIndependentEOL = /\r\n|\r|\n/g;
@@ -44,13 +44,13 @@ async function getSnapshot(testCase: string, typescriptVersion: string): Promise
 }
 
 // This test validates that the typescript version used by the closure tests
-// is the same as the one used by the pulumi package and that we are testing
+// is the same as the one used by the khulnasoft package and that we are testing
 // what we think we are testing ...
-it(`resolve to the correct typescript version within the pulumi package`,
+it(`resolve to the correct typescript version within the khulnasoft package`,
     async function () {
         const { stdout } = await execa("npm", ["ls", "typescript", "--json"], { cwd: __dirname, reject: false });
         const deps = JSON.parse(stdout);
-        const version = deps.dependencies["@pulumi/pulumi"].dependencies.typescript.version;
+        const version = deps.dependencies["@khulnasoft/khulnasoft"].dependencies.typescript.version;
         assert.strictEqual(version, typescript.version);
     });
 

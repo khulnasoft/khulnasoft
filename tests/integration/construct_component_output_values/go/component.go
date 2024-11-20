@@ -8,16 +8,16 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Component struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 // NewComponent registers a new resource with the given unique name, arguments, and options.
-func NewComponent(ctx *pulumi.Context,
-	name string, args *ComponentArgs, opts ...pulumi.ResourceOption,
+func NewComponent(ctx *khulnasoft.Context,
+	name string, args *ComponentArgs, opts ...khulnasoft.ResourceOption,
 ) (*Component, error) {
 	if args == nil {
 		args = &ComponentArgs{}
@@ -32,8 +32,8 @@ func NewComponent(ctx *pulumi.Context,
 }
 
 type componentArgs struct {
-	Bar *Bar `pulumi:"bar"`
-	Foo *Foo `pulumi:"foo"`
+	Bar *Bar `khulnasoft:"bar"`
+	Foo *Foo `khulnasoft:"foo"`
 }
 
 // The set of arguments for constructing a Component resource.
@@ -47,7 +47,7 @@ func (ComponentArgs) ElementType() reflect.Type {
 }
 
 type ComponentInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToComponentOutput() ComponentOutput
 	ToComponentOutputWithContext(ctx context.Context) ComponentOutput
@@ -62,7 +62,7 @@ func (i *Component) ToComponentOutput() ComponentOutput {
 }
 
 func (i *Component) ToComponentOutputWithContext(ctx context.Context) ComponentOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ComponentOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ComponentOutput)
 }
 
 func (i *Component) ToComponentPtrOutput() ComponentPtrOutput {
@@ -70,11 +70,11 @@ func (i *Component) ToComponentPtrOutput() ComponentPtrOutput {
 }
 
 func (i *Component) ToComponentPtrOutputWithContext(ctx context.Context) ComponentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ComponentPtrOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ComponentPtrOutput)
 }
 
 type ComponentPtrInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToComponentPtrOutput() ComponentPtrOutput
 	ToComponentPtrOutputWithContext(ctx context.Context) ComponentPtrOutput
@@ -91,7 +91,7 @@ func (i *componentPtrType) ToComponentPtrOutput() ComponentPtrOutput {
 }
 
 func (i *componentPtrType) ToComponentPtrOutputWithContext(ctx context.Context) ComponentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ComponentPtrOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ComponentPtrOutput)
 }
 
 // ComponentArrayInput is an input type that accepts ComponentArray and ComponentArrayOutput values.
@@ -99,7 +99,7 @@ func (i *componentPtrType) ToComponentPtrOutputWithContext(ctx context.Context) 
 //
 //	ComponentArray{ ComponentArgs{...} }
 type ComponentArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToComponentArrayOutput() ComponentArrayOutput
 	ToComponentArrayOutputWithContext(context.Context) ComponentArrayOutput
@@ -116,7 +116,7 @@ func (i ComponentArray) ToComponentArrayOutput() ComponentArrayOutput {
 }
 
 func (i ComponentArray) ToComponentArrayOutputWithContext(ctx context.Context) ComponentArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ComponentArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ComponentArrayOutput)
 }
 
 // ComponentMapInput is an input type that accepts ComponentMap and ComponentMapOutput values.
@@ -124,7 +124,7 @@ func (i ComponentArray) ToComponentArrayOutputWithContext(ctx context.Context) C
 //
 //	ComponentMap{ "key": ComponentArgs{...} }
 type ComponentMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToComponentMapOutput() ComponentMapOutput
 	ToComponentMapOutputWithContext(context.Context) ComponentMapOutput
@@ -141,10 +141,10 @@ func (i ComponentMap) ToComponentMapOutput() ComponentMapOutput {
 }
 
 func (i ComponentMap) ToComponentMapOutputWithContext(ctx context.Context) ComponentMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ComponentMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ComponentMapOutput)
 }
 
-type ComponentOutput struct{ *pulumi.OutputState }
+type ComponentOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Component)(nil))
@@ -168,7 +168,7 @@ func (o ComponentOutput) ToComponentPtrOutputWithContext(ctx context.Context) Co
 	}).(ComponentPtrOutput)
 }
 
-type ComponentPtrOutput struct{ *pulumi.OutputState }
+type ComponentPtrOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Component)(nil))
@@ -192,7 +192,7 @@ func (o ComponentPtrOutput) Elem() ComponentOutput {
 	}).(ComponentOutput)
 }
 
-type ComponentArrayOutput struct{ *pulumi.OutputState }
+type ComponentArrayOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Component)(nil))
@@ -206,13 +206,13 @@ func (o ComponentArrayOutput) ToComponentArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o ComponentArrayOutput) Index(i pulumi.IntInput) ComponentOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Component {
+func (o ComponentArrayOutput) Index(i khulnasoft.IntInput) ComponentOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) Component {
 		return vs[0].([]Component)[vs[1].(int)]
 	}).(ComponentOutput)
 }
 
-type ComponentMapOutput struct{ *pulumi.OutputState }
+type ComponentMapOutput struct{ *khulnasoft.OutputState }
 
 func (ComponentMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]Component)(nil))
@@ -226,19 +226,19 @@ func (o ComponentMapOutput) ToComponentMapOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o ComponentMapOutput) MapIndex(k pulumi.StringInput) ComponentOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Component {
+func (o ComponentMapOutput) MapIndex(k khulnasoft.StringInput) ComponentOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) Component {
 		return vs[0].(map[string]Component)[vs[1].(string)]
 	}).(ComponentOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ComponentInput)(nil)).Elem(), &Component{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ComponentPtrInput)(nil)).Elem(), &Component{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ComponentArrayInput)(nil)).Elem(), ComponentArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ComponentMapInput)(nil)).Elem(), ComponentMap{})
-	pulumi.RegisterOutputType(ComponentOutput{})
-	pulumi.RegisterOutputType(ComponentPtrOutput{})
-	pulumi.RegisterOutputType(ComponentArrayOutput{})
-	pulumi.RegisterOutputType(ComponentMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ComponentInput)(nil)).Elem(), &Component{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ComponentPtrInput)(nil)).Elem(), &Component{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ComponentArrayInput)(nil)).Elem(), ComponentArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ComponentMapInput)(nil)).Elem(), ComponentMap{})
+	khulnasoft.RegisterOutputType(ComponentOutput{})
+	khulnasoft.RegisterOutputType(ComponentPtrOutput{})
+	khulnasoft.RegisterOutputType(ComponentArrayOutput{})
+	khulnasoft.RegisterOutputType(ComponentMapOutput{})
 }

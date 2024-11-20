@@ -185,13 +185,13 @@ const csharpProjectFileTemplateText = `<Project Sdk="Microsoft.NET.Sdk">
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="pulumi-plugin.json" />
-    <None Include="pulumi-plugin.json" Pack="True" PackagePath="content" />
+    <EmbeddedResource Include="khulnasoft-plugin.json" />
+    <None Include="khulnasoft-plugin.json" Pack="True" PackagePath="content" />
   </ItemGroup>
 
   <ItemGroup>
     {{- range $package, $version := .PackageReferences}}
-    <PackageReference Include="{{$package}}" Version="{{$version}}"{{if ispulumipkg $package}} ExcludeAssets="contentFiles"{{end}} />
+    <PackageReference Include="{{$package}}" Version="{{$version}}"{{if iskhulnasoftpkg $package}} ExcludeAssets="contentFiles"{{end}} />
     {{- end}}
   </ItemGroup>
 
@@ -212,12 +212,12 @@ const csharpProjectFileTemplateText = `<Project Sdk="Microsoft.NET.Sdk">
 `
 
 var csharpProjectFileTemplate = template.Must(template.New("CSharpProject").Funcs(template.FuncMap{
-	// ispulumipkg is used in the template to conditionally emit `ExcludeAssets="contentFiles"`
+	// iskhulnasoftpkg is used in the template to conditionally emit `ExcludeAssets="contentFiles"`
 	// for `<PackageReference>`s that start with "Pulumi.", to prevent the references's contentFiles
 	// from being included in this project's package. Otherwise, if a reference has version.txt
 	// in its contentFiles, and we don't exclude contentFiles for the reference, the reference's
 	// version.txt will be used over this project's version.txt.
-	"ispulumipkg": func(s string) bool {
+	"iskhulnasoftpkg": func(s string) bool {
 		return strings.HasPrefix(s, "Pulumi.")
 	},
 }).Parse(csharpProjectFileTemplateText))

@@ -8,19 +8,19 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"regress-go-8664/example/internal"
 )
 
 type ConditionalAccessPolicy struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Conditions ConditionalAccessPolicyConditionsOutput `pulumi:"conditions"`
+	Conditions ConditionalAccessPolicyConditionsOutput `khulnasoft:"conditions"`
 }
 
 // NewConditionalAccessPolicy registers a new resource with the given unique name, arguments, and options.
-func NewConditionalAccessPolicy(ctx *pulumi.Context,
-	name string, args *ConditionalAccessPolicyArgs, opts ...pulumi.ResourceOption) (*ConditionalAccessPolicy, error) {
+func NewConditionalAccessPolicy(ctx *khulnasoft.Context,
+	name string, args *ConditionalAccessPolicyArgs, opts ...khulnasoft.ResourceOption) (*ConditionalAccessPolicy, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -39,8 +39,8 @@ func NewConditionalAccessPolicy(ctx *pulumi.Context,
 
 // GetConditionalAccessPolicy gets an existing ConditionalAccessPolicy resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetConditionalAccessPolicy(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ConditionalAccessPolicyState, opts ...pulumi.ResourceOption) (*ConditionalAccessPolicy, error) {
+func GetConditionalAccessPolicy(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ConditionalAccessPolicyState, opts ...khulnasoft.ResourceOption) (*ConditionalAccessPolicy, error) {
 	var resource ConditionalAccessPolicy
 	err := ctx.ReadResource("my8664::ConditionalAccessPolicy", name, id, state, &resource, opts...)
 	if err != nil {
@@ -51,7 +51,7 @@ func GetConditionalAccessPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ConditionalAccessPolicy resources.
 type conditionalAccessPolicyState struct {
-	Conditions *ConditionalAccessPolicyConditions `pulumi:"conditions"`
+	Conditions *ConditionalAccessPolicyConditions `khulnasoft:"conditions"`
 }
 
 type ConditionalAccessPolicyState struct {
@@ -63,7 +63,7 @@ func (ConditionalAccessPolicyState) ElementType() reflect.Type {
 }
 
 type conditionalAccessPolicyArgs struct {
-	Conditions ConditionalAccessPolicyConditions `pulumi:"conditions"`
+	Conditions ConditionalAccessPolicyConditions `khulnasoft:"conditions"`
 }
 
 // The set of arguments for constructing a ConditionalAccessPolicy resource.
@@ -76,7 +76,7 @@ func (ConditionalAccessPolicyArgs) ElementType() reflect.Type {
 }
 
 type ConditionalAccessPolicyInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConditionalAccessPolicyOutput() ConditionalAccessPolicyOutput
 	ToConditionalAccessPolicyOutputWithContext(ctx context.Context) ConditionalAccessPolicyOutput
@@ -91,10 +91,10 @@ func (i *ConditionalAccessPolicy) ToConditionalAccessPolicyOutput() ConditionalA
 }
 
 func (i *ConditionalAccessPolicy) ToConditionalAccessPolicyOutputWithContext(ctx context.Context) ConditionalAccessPolicyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConditionalAccessPolicyOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConditionalAccessPolicyOutput)
 }
 
-type ConditionalAccessPolicyOutput struct{ *pulumi.OutputState }
+type ConditionalAccessPolicyOutput struct{ *khulnasoft.OutputState }
 
 func (ConditionalAccessPolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ConditionalAccessPolicy)(nil)).Elem()
@@ -113,6 +113,6 @@ func (o ConditionalAccessPolicyOutput) Conditions() ConditionalAccessPolicyCondi
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ConditionalAccessPolicyInput)(nil)).Elem(), &ConditionalAccessPolicy{})
-	pulumi.RegisterOutputType(ConditionalAccessPolicyOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConditionalAccessPolicyInput)(nil)).Elem(), &ConditionalAccessPolicy{})
+	khulnasoft.RegisterOutputType(ConditionalAccessPolicyOutput{})
 }

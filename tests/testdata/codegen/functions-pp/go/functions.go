@@ -10,9 +10,9 @@ import (
 	"path"
 	"strings"
 
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/s3"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/s3"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func filebase64OrPanic(path string) string {
@@ -38,7 +38,7 @@ func sha1Hash(input string) string {
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		encoded := base64.StdEncoding.EncodeToString([]byte("haha business"))
 		tmpVar0, _ := base64.StdEncoding.DecodeString(encoded)
 		decoded := string(tmpVar0)
@@ -60,15 +60,15 @@ func main() {
 		if err != nil {
 			return err
 		}
-		_ = bucket.ID().ApplyT(func(id string) (pulumi.String, error) {
-			return pulumi.String(base64.StdEncoding.EncodeToString([]byte(id))), nil
-		}).(pulumi.StringOutput)
-		_ = bucket.ID().ApplyT(func(id string) (pulumi.String, error) {
+		_ = bucket.ID().ApplyT(func(id string) (khulnasoft.String, error) {
+			return khulnasoft.String(base64.StdEncoding.EncodeToString([]byte(id))), nil
+		}).(khulnasoft.StringOutput)
+		_ = bucket.ID().ApplyT(func(id string) (khulnasoft.String, error) {
 			value, _ := base64.StdEncoding.DecodeString(id)
-			return pulumi.String(value), nil
-		}).(pulumi.StringOutput)
-		secretValue := pulumi.ToSecret("hello").(pulumi.StringOutput)
-		_ = pulumi.Unsecret(secretValue).(pulumi.StringOutput)
+			return khulnasoft.String(value), nil
+		}).(khulnasoft.StringOutput)
+		secretValue := khulnasoft.ToSecret("hello").(khulnasoft.StringOutput)
+		_ = khulnasoft.Unsecret(secretValue).(khulnasoft.StringOutput)
 		currentStack := ctx.Stack()
 		currentProject := ctx.Project()
 		workingDirectory := func(cwd string, err error) string {
@@ -81,12 +81,12 @@ func main() {
 		// using the filebase64 function
 		_, err = s3.NewBucketObject(ctx, "first", &s3.BucketObjectArgs{
 			Bucket:      bucket.ID(),
-			Source:      pulumi.NewStringAsset(filebase64OrPanic("./base64.txt")),
-			ContentType: pulumi.String(fileMimeType),
-			Tags: pulumi.StringMap{
-				"stack":   pulumi.String(currentStack),
-				"project": pulumi.String(currentProject),
-				"cwd":     pulumi.String(workingDirectory),
+			Source:      khulnasoft.NewStringAsset(filebase64OrPanic("./base64.txt")),
+			ContentType: khulnasoft.String(fileMimeType),
+			Tags: khulnasoft.StringMap{
+				"stack":   khulnasoft.String(currentStack),
+				"project": khulnasoft.String(currentProject),
+				"cwd":     khulnasoft.String(workingDirectory),
 			},
 		})
 		if err != nil {
@@ -95,7 +95,7 @@ func main() {
 		// using the filebase64sha256 function
 		_, err = s3.NewBucketObject(ctx, "second", &s3.BucketObjectArgs{
 			Bucket: bucket.ID(),
-			Source: pulumi.NewStringAsset(filebase64sha256OrPanic("./base64.txt")),
+			Source: khulnasoft.NewStringAsset(filebase64sha256OrPanic("./base64.txt")),
 		})
 		if err != nil {
 			return err
@@ -103,7 +103,7 @@ func main() {
 		// using the sha1 function
 		_, err = s3.NewBucketObject(ctx, "third", &s3.BucketObjectArgs{
 			Bucket: bucket.ID(),
-			Source: pulumi.NewStringAsset(sha1Hash("content")),
+			Source: khulnasoft.NewStringAsset(sha1Hash("content")),
 		})
 		if err != nil {
 			return err

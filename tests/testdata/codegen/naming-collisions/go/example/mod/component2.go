@@ -7,17 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"naming-collisions/example/internal"
 )
 
 type Component2 struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
 // NewComponent2 registers a new resource with the given unique name, arguments, and options.
-func NewComponent2(ctx *pulumi.Context,
-	name string, args *Component2Args, opts ...pulumi.ResourceOption) (*Component2, error) {
+func NewComponent2(ctx *khulnasoft.Context,
+	name string, args *Component2Args, opts ...khulnasoft.ResourceOption) (*Component2, error) {
 	if args == nil {
 		args = &Component2Args{}
 	}
@@ -33,8 +33,8 @@ func NewComponent2(ctx *pulumi.Context,
 
 // GetComponent2 gets an existing Component2 resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetComponent2(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *Component2State, opts ...pulumi.ResourceOption) (*Component2, error) {
+func GetComponent2(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *Component2State, opts ...khulnasoft.ResourceOption) (*Component2, error) {
 	var resource Component2
 	err := ctx.ReadResource("example:mod:Component2", name, id, state, &resource, opts...)
 	if err != nil {
@@ -66,7 +66,7 @@ func (Component2Args) ElementType() reflect.Type {
 }
 
 type Component2Input interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToComponent2Output() Component2Output
 	ToComponent2OutputWithContext(ctx context.Context) Component2Output
@@ -81,10 +81,10 @@ func (i *Component2) ToComponent2Output() Component2Output {
 }
 
 func (i *Component2) ToComponent2OutputWithContext(ctx context.Context) Component2Output {
-	return pulumi.ToOutputWithContext(ctx, i).(Component2Output)
+	return khulnasoft.ToOutputWithContext(ctx, i).(Component2Output)
 }
 
-type Component2Output struct{ *pulumi.OutputState }
+type Component2Output struct{ *khulnasoft.OutputState }
 
 func (Component2Output) ElementType() reflect.Type {
 	return reflect.TypeOf((**Component2)(nil)).Elem()
@@ -99,6 +99,6 @@ func (o Component2Output) ToComponent2OutputWithContext(ctx context.Context) Com
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*Component2Input)(nil)).Elem(), &Component2{})
-	pulumi.RegisterOutputType(Component2Output{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*Component2Input)(nil)).Elem(), &Component2{})
+	khulnasoft.RegisterOutputType(Component2Output{})
 }

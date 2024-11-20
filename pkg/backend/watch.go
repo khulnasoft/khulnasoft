@@ -29,11 +29,11 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/operations"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
 )
 
 // Watch watches the project's working directory for changes and automatically updates the active
@@ -131,12 +131,12 @@ func watchPaths(root string, paths []string) (chan string, func(), error) {
 	go stdoutToChannel(scanner, events)
 	err = cmd.Start()
 	if err != nil {
-		return nil, nil, fmt.Errorf("error starting pulumi-watch: %w", err)
+		return nil, nil, fmt.Errorf("error starting khulnasoft-watch: %w", err)
 	}
 
 	stop := func() {
 		err := cmd.Process.Kill()
-		contract.AssertNoErrorf(err, "Unexpected error stopping pulumi-watch process: %v", err)
+		contract.AssertNoErrorf(err, "Unexpected error stopping khulnasoft-watch process: %v", err)
 	}
 
 	return events, stop, nil
@@ -145,12 +145,12 @@ func watchPaths(root string, paths []string) (chan string, func(), error) {
 const windowsGOOS = "windows"
 
 func getWatchUtil() (string, error) {
-	program := "pulumi-watch"
+	program := "khulnasoft-watch"
 	if runtime.GOOS == windowsGOOS {
-		program = "pulumi-watch.exe"
+		program = "khulnasoft-watch.exe"
 	}
 
-	watchCmd, err := exec.LookPath("pulumi-watch")
+	watchCmd, err := exec.LookPath("khulnasoft-watch")
 	if err == nil {
 		return watchCmd, nil
 	}
@@ -167,12 +167,12 @@ func getWatchUtil() (string, error) {
 				if stat.Mode()&0o100 != 0 || runtime.GOOS == windowsGOOS {
 					return candidate, nil
 				}
-				return "", fmt.Errorf("Could not locate an executable pulumi-watch, found %v without execute bit", fullPath)
+				return "", fmt.Errorf("Could not locate an executable khulnasoft-watch, found %v without execute bit", fullPath)
 			}
 		}
 	}
 
-	return "", errors.New("Could not locate pulumi-watch binary")
+	return "", errors.New("Could not locate khulnasoft-watch binary")
 }
 
 func stdoutToChannel(scanner *bufio.Scanner, out chan string) {

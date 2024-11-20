@@ -36,5 +36,5 @@ class TestOutputsFuture(LanghostTest):
     def register_resource_outputs(
         self, _ctx, _dry_run, _urn, ty, _name, _resource, outputs
     ):
-        self.assertEqual(ty, "pulumi:pulumi:Stack")
+        self.assertEqual(ty, "khulnasoft:khulnasoft:Stack")
         self.assertDictEqual({"value": 42}, outputs)

@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+	"github.com/khulnasoft/khulnasoft-random/sdk/v4/go/random"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/test/testdata/simple-methods-schema/go/example/internal"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/test/testdata/simple-methods-schema/go/example/nested"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type Foo struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
 // NewFoo registers a new resource with the given unique name, arguments, and options.
-func NewFoo(ctx *pulumi.Context,
-	name string, args *FooArgs, opts ...pulumi.ResourceOption) (*Foo, error) {
+func NewFoo(ctx *khulnasoft.Context,
+	name string, args *FooArgs, opts ...khulnasoft.ResourceOption) (*Foo, error) {
 	if args == nil {
 		args = &FooArgs{}
 	}
@@ -45,7 +45,7 @@ func (FooArgs) ElementType() reflect.Type {
 }
 
 // A description of bar.
-func (r *Foo) Bar(ctx *pulumi.Context, args *FooBarArgs) (FooBarResultOutput, error) {
+func (r *Foo) Bar(ctx *khulnasoft.Context, args *FooBarArgs) (FooBarResultOutput, error) {
 	out, err := ctx.Call("example::Foo/bar", args, FooBarResultOutput{}, r)
 	if err != nil {
 		return FooBarResultOutput{}, err
@@ -54,18 +54,18 @@ func (r *Foo) Bar(ctx *pulumi.Context, args *FooBarArgs) (FooBarResultOutput, er
 }
 
 type fooBarArgs struct {
-	Baz                 *nested.Baz       `pulumi:"baz"`
-	BazPlain            *nested.Baz       `pulumi:"bazPlain"`
-	BazRequired         nested.Baz        `pulumi:"bazRequired"`
-	BoolValue           *bool             `pulumi:"boolValue"`
-	BoolValuePlain      *bool             `pulumi:"boolValuePlain"`
-	BoolValueRequired   bool              `pulumi:"boolValueRequired"`
-	Name                *random.RandomPet `pulumi:"name"`
-	NamePlain           *random.RandomPet `pulumi:"namePlain"`
-	NameRequired        *random.RandomPet `pulumi:"nameRequired"`
-	StringValue         *string           `pulumi:"stringValue"`
-	StringValuePlain    *string           `pulumi:"stringValuePlain"`
-	StringValueRequired string            `pulumi:"stringValueRequired"`
+	Baz                 *nested.Baz       `khulnasoft:"baz"`
+	BazPlain            *nested.Baz       `khulnasoft:"bazPlain"`
+	BazRequired         nested.Baz        `khulnasoft:"bazRequired"`
+	BoolValue           *bool             `khulnasoft:"boolValue"`
+	BoolValuePlain      *bool             `khulnasoft:"boolValuePlain"`
+	BoolValueRequired   bool              `khulnasoft:"boolValueRequired"`
+	Name                *random.RandomPet `khulnasoft:"name"`
+	NamePlain           *random.RandomPet `khulnasoft:"namePlain"`
+	NameRequired        *random.RandomPet `khulnasoft:"nameRequired"`
+	StringValue         *string           `khulnasoft:"stringValue"`
+	StringValuePlain    *string           `khulnasoft:"stringValuePlain"`
+	StringValueRequired string            `khulnasoft:"stringValueRequired"`
 }
 
 // The set of arguments for the Bar method of the Foo resource.
@@ -73,15 +73,15 @@ type FooBarArgs struct {
 	Baz                 nested.BazPtrInput
 	BazPlain            *nested.BazArgs
 	BazRequired         nested.BazInput
-	BoolValue           pulumi.BoolPtrInput
+	BoolValue           khulnasoft.BoolPtrInput
 	BoolValuePlain      *bool
-	BoolValueRequired   pulumi.BoolInput
+	BoolValueRequired   khulnasoft.BoolInput
 	Name                random.RandomPetInput
 	NamePlain           *random.RandomPet
 	NameRequired        random.RandomPetInput
-	StringValue         pulumi.StringPtrInput
+	StringValue         khulnasoft.StringPtrInput
 	StringValuePlain    *string
-	StringValueRequired pulumi.StringInput
+	StringValueRequired khulnasoft.StringInput
 }
 
 func (FooBarArgs) ElementType() reflect.Type {
@@ -89,26 +89,26 @@ func (FooBarArgs) ElementType() reflect.Type {
 }
 
 type FooBarResult struct {
-	SomeValue string `pulumi:"someValue"`
+	SomeValue string `khulnasoft:"someValue"`
 }
 
-type FooBarResultOutput struct{ *pulumi.OutputState }
+type FooBarResultOutput struct{ *khulnasoft.OutputState }
 
 func (FooBarResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*FooBarResult)(nil)).Elem()
 }
 
-func (o FooBarResultOutput) SomeValue() pulumi.StringOutput {
-	return o.ApplyT(func(v FooBarResult) string { return v.SomeValue }).(pulumi.StringOutput)
+func (o FooBarResultOutput) SomeValue() khulnasoft.StringOutput {
+	return o.ApplyT(func(v FooBarResult) string { return v.SomeValue }).(khulnasoft.StringOutput)
 }
 
-func (r *Foo) Baz(ctx *pulumi.Context) error {
-	_, err := ctx.Call("example::Foo/baz", nil, pulumi.AnyOutput{}, r)
+func (r *Foo) Baz(ctx *khulnasoft.Context) error {
+	_, err := ctx.Call("example::Foo/baz", nil, khulnasoft.AnyOutput{}, r)
 	return err
 }
 
 // Do something with something else
-func (r *Foo) GenerateKubeconfig(ctx *pulumi.Context, args *FooGenerateKubeconfigArgs) (FooGenerateKubeconfigResultOutput, error) {
+func (r *Foo) GenerateKubeconfig(ctx *khulnasoft.Context, args *FooGenerateKubeconfigArgs) (FooGenerateKubeconfigResultOutput, error) {
 	out, err := ctx.Call("example::Foo/generateKubeconfig", args, FooGenerateKubeconfigResultOutput{}, r)
 	if err != nil {
 		return FooGenerateKubeconfigResultOutput{}, err
@@ -117,7 +117,7 @@ func (r *Foo) GenerateKubeconfig(ctx *pulumi.Context, args *FooGenerateKubeconfi
 }
 
 type fooGenerateKubeconfigArgs struct {
-	BoolValue bool `pulumi:"boolValue"`
+	BoolValue bool `khulnasoft:"boolValue"`
 }
 
 // The set of arguments for the GenerateKubeconfig method of the Foo resource.
@@ -130,21 +130,21 @@ func (FooGenerateKubeconfigArgs) ElementType() reflect.Type {
 }
 
 type FooGenerateKubeconfigResult struct {
-	Kubeconfig string `pulumi:"kubeconfig"`
+	Kubeconfig string `khulnasoft:"kubeconfig"`
 }
 
-type FooGenerateKubeconfigResultOutput struct{ *pulumi.OutputState }
+type FooGenerateKubeconfigResultOutput struct{ *khulnasoft.OutputState }
 
 func (FooGenerateKubeconfigResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*FooGenerateKubeconfigResult)(nil)).Elem()
 }
 
-func (o FooGenerateKubeconfigResultOutput) Kubeconfig() pulumi.StringOutput {
-	return o.ApplyT(func(v FooGenerateKubeconfigResult) string { return v.Kubeconfig }).(pulumi.StringOutput)
+func (o FooGenerateKubeconfigResultOutput) Kubeconfig() khulnasoft.StringOutput {
+	return o.ApplyT(func(v FooGenerateKubeconfigResult) string { return v.Kubeconfig }).(khulnasoft.StringOutput)
 }
 
 type FooInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToFooOutput() FooOutput
 	ToFooOutputWithContext(ctx context.Context) FooOutput
@@ -159,10 +159,10 @@ func (i *Foo) ToFooOutput() FooOutput {
 }
 
 func (i *Foo) ToFooOutputWithContext(ctx context.Context) FooOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FooOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(FooOutput)
 }
 
-type FooOutput struct{ *pulumi.OutputState }
+type FooOutput struct{ *khulnasoft.OutputState }
 
 func (FooOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Foo)(nil)).Elem()
@@ -177,8 +177,8 @@ func (o FooOutput) ToFooOutputWithContext(ctx context.Context) FooOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*FooInput)(nil)).Elem(), &Foo{})
-	pulumi.RegisterOutputType(FooOutput{})
-	pulumi.RegisterOutputType(FooBarResultOutput{})
-	pulumi.RegisterOutputType(FooGenerateKubeconfigResultOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*FooInput)(nil)).Elem(), &Foo{})
+	khulnasoft.RegisterOutputType(FooOutput{})
+	khulnasoft.RegisterOutputType(FooBarResultOutput{})
+	khulnasoft.RegisterOutputType(FooGenerateKubeconfigResultOutput{})
 }

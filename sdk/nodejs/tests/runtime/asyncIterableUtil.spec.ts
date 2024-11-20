@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { AsyncIterable } from "@pulumi/query/interfaces";
+import { AsyncIterable } from "@khulnasoft/query/interfaces";
 
 import * as assert from "assert";
 import { PushableAsyncIterable } from "../../runtime/asyncIterableUtil";

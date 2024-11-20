@@ -1,6 +1,6 @@
-import pulumi
-import pulumi_aws as aws
-import pulumi_awsx as awsx
+import khulnasoft
+import khulnasoft_aws as aws
+import khulnasoft_awsx as awsx
 
 cluster = aws.ecs.Cluster("cluster")
 lb = awsx.lb.ApplicationLoadBalancer("lb")
@@ -17,4 +17,4 @@ nginx = awsx.ecs.FargateService("nginx",
             }],
         },
     })
-pulumi.export("url", lb.load_balancer.dns_name)
+khulnasoft.export("url", lb.load_balancer.dns_name)

@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 import * as crypto from "crypto";
 import * as fs from "fs";
 
@@ -25,16 +25,16 @@ const zone2 = aws.getAvailabilityZones({});
 const bucket = new aws.s3.Bucket("bucket", {});
 const encoded2 = bucket.id.apply(id => Buffer.from(id).toString("base64"));
 const decoded2 = bucket.id.apply(id => Buffer.from(id, "base64").toString("utf8"));
-const secretValue = pulumi.secret("hello");
-const plainValue = pulumi.unsecret(secretValue);
-const currentStack = pulumi.getStack();
-const currentProject = pulumi.getProject();
+const secretValue = khulnasoft.secret("hello");
+const plainValue = khulnasoft.unsecret(secretValue);
+const currentStack = khulnasoft.getStack();
+const currentProject = khulnasoft.getProject();
 const workingDirectory = process.cwd();
 const fileMimeType = mimeType("./base64.txt");
 // using the filebase64 function
 const first = new aws.s3.BucketObject("first", {
     bucket: bucket.id,
-    source: new pulumi.asset.StringAsset(fs.readFileSync("./base64.txt", { encoding: "base64" })),
+    source: new khulnasoft.asset.StringAsset(fs.readFileSync("./base64.txt", { encoding: "base64" })),
     contentType: fileMimeType,
     tags: {
         stack: currentStack,
@@ -45,10 +45,10 @@ const first = new aws.s3.BucketObject("first", {
 // using the filebase64sha256 function
 const second = new aws.s3.BucketObject("second", {
     bucket: bucket.id,
-    source: new pulumi.asset.StringAsset(computeFilebase64sha256("./base64.txt")),
+    source: new khulnasoft.asset.StringAsset(computeFilebase64sha256("./base64.txt")),
 });
 // using the sha1 function
 const third = new aws.s3.BucketObject("third", {
     bucket: bucket.id,
-    source: new pulumi.asset.StringAsset(crypto.createHash('sha1').update("content").digest('hex')),
+    source: new khulnasoft.asset.StringAsset(crypto.createHash('sha1').update("content").digest('hex')),
 });

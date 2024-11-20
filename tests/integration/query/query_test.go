@@ -30,17 +30,17 @@ func TestQuery(t *testing.T) {
 		// Create Pulumi resources.
 		Dir:          "step1",
 		StackName:    "query-stack-781a480a-fcac-4e5a-ab08-a73bc8cbcdd2",
-		Dependencies: []string{"@pulumi/pulumi"},
+		Dependencies: []string{"@khulnasoft/khulnasoft"},
 		CloudURL:     integration.MakeTempBackend(t), // Required; we hard-code the stack name
 		EditDirs: []integration.EditDir{
-			// Try to create resources during `pulumi query`. This should fail.
+			// Try to create resources during `khulnasoft query`. This should fail.
 			{
 				Dir:           "step2",
 				Additive:      true,
 				QueryMode:     true,
 				ExpectFailure: true,
 			},
-			// Run a query during `pulumi query`. Should succeed.
+			// Run a query during `khulnasoft query`. Should succeed.
 			{
 				Dir:           "step3",
 				Additive:      true,

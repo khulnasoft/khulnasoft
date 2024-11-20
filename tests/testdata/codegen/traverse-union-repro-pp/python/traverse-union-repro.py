@@ -1,5 +1,5 @@
-import pulumi
-import pulumi_aws as aws
+import khulnasoft
+import khulnasoft_aws as aws
 
 test = aws.fsx.OpenZfsFileSystem("test",
     storage_capacity=64,

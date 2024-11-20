@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as pulumi from "@pulumi/pulumi";
-import * as dynamic from "@pulumi/pulumi/dynamic";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as dynamic from "@khulnasoft/khulnasoft/dynamic";
 
 export class Provider implements dynamic.ResourceProvider {
     public static readonly instance = new Provider();
@@ -26,7 +26,7 @@ export class Provider implements dynamic.ResourceProvider {
         }
     }
 
-    public async diff(id: pulumi.ID, olds: any, news: any): Promise<dynamic.DiffResult> {
+    public async diff(id: khulnasoft.ID, olds: any, news: any): Promise<dynamic.DiffResult> {
         if (news.state !== olds.state) {
             return {
                 changes: true,
@@ -50,7 +50,7 @@ export class Provider implements dynamic.ResourceProvider {
         throw Error("this resource is replace-only and can't be updated");
     }
 
-    public async read(id: pulumi.ID, props: any): Promise<dynamic.ReadResult> {
+    public async read(id: khulnasoft.ID, props: any): Promise<dynamic.ReadResult> {
         return {
             id: id,
             props: props,
@@ -58,10 +58,10 @@ export class Provider implements dynamic.ResourceProvider {
     }
 }
 
-export class Resource extends pulumi.dynamic.Resource {
-    public readonly state: pulumi.Output<any>;
+export class Resource extends khulnasoft.dynamic.Resource {
+    public readonly state: khulnasoft.Output<any>;
 
-    constructor(name: string, props: any, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, props: any, opts?: khulnasoft.ResourceOptions) {
         super(Provider.instance, name, props, opts);
     }
 }

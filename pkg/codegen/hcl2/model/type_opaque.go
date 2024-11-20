@@ -22,7 +22,7 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model/pretty"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // OpaqueType represents a type that is named by a string.

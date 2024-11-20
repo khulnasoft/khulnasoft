@@ -1,43 +1,43 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as random from "@pulumi/random";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as random from "@khulnasoft/random";
 import { SimpleComponent } from "./simpleComponent";
 
 interface ExampleComponentArgs {
     /**
      * A simple input
      */
-    input: pulumi.Input<string>,
+    input: khulnasoft.Input<string>,
     /**
      * The main CIDR blocks for the VPC
      * It is a map of strings
      */
-    cidrBlocks: pulumi.Input<Record<string, pulumi.Input<string>>>,
+    cidrBlocks: khulnasoft.Input<Record<string, khulnasoft.Input<string>>>,
     /**
      * GitHub app parameters, see your github app. Ensure the key is the base64-encoded `.pem` file (the output of `base64 app.private-key.pem`, not the content of `private-key.pem`).
      */
     githubApp: {
-        id?: pulumi.Input<string>,
-        keyBase64?: pulumi.Input<string>,
-        webhookSecret?: pulumi.Input<string>,
+        id?: khulnasoft.Input<string>,
+        keyBase64?: khulnasoft.Input<string>,
+        webhookSecret?: khulnasoft.Input<string>,
     },
     /**
      * A list of servers
      */
     servers: {
-        name?: pulumi.Input<string>,
+        name?: khulnasoft.Input<string>,
     }[],
     /**
      * A map between for zones
      */
     deploymentZones: Record<string, {
-        zone?: pulumi.Input<string>,
+        zone?: khulnasoft.Input<string>,
     }>,
-    ipAddress: pulumi.Input<number[]>,
+    ipAddress: khulnasoft.Input<number[]>,
 }
 
-export class ExampleComponent extends pulumi.ComponentResource {
-    public result: pulumi.Output<string>;
-    constructor(name: string, args: ExampleComponentArgs, opts?: pulumi.ComponentResourceOptions) {
+export class ExampleComponent extends khulnasoft.ComponentResource {
+    public result: khulnasoft.Output<string>;
+    constructor(name: string, args: ExampleComponentArgs, opts?: khulnasoft.ComponentResourceOptions) {
         super("components:index:ExampleComponent", name, args, opts);
         const password = new random.RandomPassword(`${name}-password`, {
             length: 16,

@@ -7,20 +7,20 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"resource-args-python-case-insensitive/example/internal"
 )
 
 type Person struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Name pulumi.StringPtrOutput `pulumi:"name"`
-	Pets PetTypeArrayOutput     `pulumi:"pets"`
+	Name khulnasoft.StringPtrOutput `khulnasoft:"name"`
+	Pets PetTypeArrayOutput     `khulnasoft:"pets"`
 }
 
 // NewPerson registers a new resource with the given unique name, arguments, and options.
-func NewPerson(ctx *pulumi.Context,
-	name string, args *PersonArgs, opts ...pulumi.ResourceOption) (*Person, error) {
+func NewPerson(ctx *khulnasoft.Context,
+	name string, args *PersonArgs, opts ...khulnasoft.ResourceOption) (*Person, error) {
 	if args == nil {
 		args = &PersonArgs{}
 	}
@@ -36,8 +36,8 @@ func NewPerson(ctx *pulumi.Context,
 
 // GetPerson gets an existing Person resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetPerson(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *PersonState, opts ...pulumi.ResourceOption) (*Person, error) {
+func GetPerson(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *PersonState, opts ...khulnasoft.ResourceOption) (*Person, error) {
 	var resource Person
 	err := ctx.ReadResource("example::Person", name, id, state, &resource, opts...)
 	if err != nil {
@@ -58,13 +58,13 @@ func (PersonState) ElementType() reflect.Type {
 }
 
 type personArgs struct {
-	Name *string   `pulumi:"name"`
-	Pets []PetType `pulumi:"pets"`
+	Name *string   `khulnasoft:"name"`
+	Pets []PetType `khulnasoft:"pets"`
 }
 
 // The set of arguments for constructing a Person resource.
 type PersonArgs struct {
-	Name pulumi.StringPtrInput
+	Name khulnasoft.StringPtrInput
 	Pets PetTypeArrayInput
 }
 
@@ -73,7 +73,7 @@ func (PersonArgs) ElementType() reflect.Type {
 }
 
 type PersonInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToPersonOutput() PersonOutput
 	ToPersonOutputWithContext(ctx context.Context) PersonOutput
@@ -88,7 +88,7 @@ func (i *Person) ToPersonOutput() PersonOutput {
 }
 
 func (i *Person) ToPersonOutputWithContext(ctx context.Context) PersonOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersonOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(PersonOutput)
 }
 
 // PersonArrayInput is an input type that accepts PersonArray and PersonArrayOutput values.
@@ -96,7 +96,7 @@ func (i *Person) ToPersonOutputWithContext(ctx context.Context) PersonOutput {
 //
 //	PersonArray{ PersonArgs{...} }
 type PersonArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToPersonArrayOutput() PersonArrayOutput
 	ToPersonArrayOutputWithContext(context.Context) PersonArrayOutput
@@ -113,7 +113,7 @@ func (i PersonArray) ToPersonArrayOutput() PersonArrayOutput {
 }
 
 func (i PersonArray) ToPersonArrayOutputWithContext(ctx context.Context) PersonArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersonArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(PersonArrayOutput)
 }
 
 // PersonMapInput is an input type that accepts PersonMap and PersonMapOutput values.
@@ -121,7 +121,7 @@ func (i PersonArray) ToPersonArrayOutputWithContext(ctx context.Context) PersonA
 //
 //	PersonMap{ "key": PersonArgs{...} }
 type PersonMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToPersonMapOutput() PersonMapOutput
 	ToPersonMapOutputWithContext(context.Context) PersonMapOutput
@@ -138,10 +138,10 @@ func (i PersonMap) ToPersonMapOutput() PersonMapOutput {
 }
 
 func (i PersonMap) ToPersonMapOutputWithContext(ctx context.Context) PersonMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersonMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(PersonMapOutput)
 }
 
-type PersonOutput struct{ *pulumi.OutputState }
+type PersonOutput struct{ *khulnasoft.OutputState }
 
 func (PersonOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Person)(nil)).Elem()
@@ -155,15 +155,15 @@ func (o PersonOutput) ToPersonOutputWithContext(ctx context.Context) PersonOutpu
 	return o
 }
 
-func (o PersonOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Person) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
+func (o PersonOutput) Name() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *Person) khulnasoft.StringPtrOutput { return v.Name }).(khulnasoft.StringPtrOutput)
 }
 
 func (o PersonOutput) Pets() PetTypeArrayOutput {
 	return o.ApplyT(func(v *Person) PetTypeArrayOutput { return v.Pets }).(PetTypeArrayOutput)
 }
 
-type PersonArrayOutput struct{ *pulumi.OutputState }
+type PersonArrayOutput struct{ *khulnasoft.OutputState }
 
 func (PersonArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*Person)(nil)).Elem()
@@ -177,13 +177,13 @@ func (o PersonArrayOutput) ToPersonArrayOutputWithContext(ctx context.Context) P
 	return o
 }
 
-func (o PersonArrayOutput) Index(i pulumi.IntInput) PersonOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Person {
+func (o PersonArrayOutput) Index(i khulnasoft.IntInput) PersonOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *Person {
 		return vs[0].([]*Person)[vs[1].(int)]
 	}).(PersonOutput)
 }
 
-type PersonMapOutput struct{ *pulumi.OutputState }
+type PersonMapOutput struct{ *khulnasoft.OutputState }
 
 func (PersonMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*Person)(nil)).Elem()
@@ -197,17 +197,17 @@ func (o PersonMapOutput) ToPersonMapOutputWithContext(ctx context.Context) Perso
 	return o
 }
 
-func (o PersonMapOutput) MapIndex(k pulumi.StringInput) PersonOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Person {
+func (o PersonMapOutput) MapIndex(k khulnasoft.StringInput) PersonOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *Person {
 		return vs[0].(map[string]*Person)[vs[1].(string)]
 	}).(PersonOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*PersonInput)(nil)).Elem(), &Person{})
-	pulumi.RegisterInputType(reflect.TypeOf((*PersonArrayInput)(nil)).Elem(), PersonArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*PersonMapInput)(nil)).Elem(), PersonMap{})
-	pulumi.RegisterOutputType(PersonOutput{})
-	pulumi.RegisterOutputType(PersonArrayOutput{})
-	pulumi.RegisterOutputType(PersonMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*PersonInput)(nil)).Elem(), &Person{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*PersonArrayInput)(nil)).Elem(), PersonArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*PersonMapInput)(nil)).Elem(), PersonMap{})
+	khulnasoft.RegisterOutputType(PersonOutput{})
+	khulnasoft.RegisterOutputType(PersonArrayOutput{})
+	khulnasoft.RegisterOutputType(PersonMapOutput{})
 }

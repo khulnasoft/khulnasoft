@@ -21,7 +21,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/display"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/httpstate/client"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 )
 
 type MockHTTPBackend struct {

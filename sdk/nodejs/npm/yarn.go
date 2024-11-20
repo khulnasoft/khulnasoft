@@ -24,7 +24,7 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // yarnClassic is an implementation of PackageManager that uses Yarn Classic,
@@ -99,9 +99,9 @@ func (yarn *yarnClassic) Pack(ctx context.Context, dir string, stderr io.Writer)
 	// a substitute buffer to intercept it.
 
 	// Create a tmpfile to write the tarball to.
-	// It will have the form "pulumi-tarball-12345.tgz", where 12345
+	// It will have the form "khulnasoft-tarball-12345.tgz", where 12345
 	// is a random string chosen by Go.
-	tmpfile, err := os.CreateTemp("", "pulumi-tarball-*.tgz")
+	tmpfile, err := os.CreateTemp("", "khulnasoft-tarball-*.tgz")
 	if err != nil {
 		return nil, err
 	}

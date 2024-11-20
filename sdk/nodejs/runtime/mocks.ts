@@ -131,7 +131,7 @@ export class MockMonitor {
             const parentType = qualifiedType.split("$").pop();
             type = parentType + "$" + type;
         }
-        return "urn:pulumi:" + [getStack(), getProject(), type, name].join("::");
+        return "urn:khulnasoft:" + [getStack(), getProject(), type, name].join("::");
     }
 
     public async invoke(req: any, callback: (err: any, innerResponse: any) => void) {
@@ -139,7 +139,7 @@ export class MockMonitor {
             const tok = req.getTok();
             const inputs = deserializeProperties(req.getArgs());
 
-            if (tok === "pulumi:pulumi:getResource") {
+            if (tok === "khulnasoft:khulnasoft:getResource") {
                 const registeredResource = this.resources.get(inputs.urn);
                 if (!registeredResource) {
                     throw new Error(`unknown resource ${inputs.urn}`);

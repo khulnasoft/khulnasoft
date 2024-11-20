@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: pulumi/resource.proto
+// source: khulnasoft/resource.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	context "context"
@@ -47,7 +47,7 @@ func NewResourceMonitorClient(cc grpc.ClientConnInterface) ResourceMonitorClient
 
 func (c *resourceMonitorClient) SupportsFeature(ctx context.Context, in *SupportsFeatureRequest, opts ...grpc.CallOption) (*SupportsFeatureResponse, error) {
 	out := new(SupportsFeatureResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceMonitor/SupportsFeature", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceMonitor/SupportsFeature", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *resourceMonitorClient) SupportsFeature(ctx context.Context, in *Support
 
 func (c *resourceMonitorClient) Invoke(ctx context.Context, in *ResourceInvokeRequest, opts ...grpc.CallOption) (*InvokeResponse, error) {
 	out := new(InvokeResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceMonitor/Invoke", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceMonitor/Invoke", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (c *resourceMonitorClient) Invoke(ctx context.Context, in *ResourceInvokeRe
 }
 
 func (c *resourceMonitorClient) StreamInvoke(ctx context.Context, in *ResourceInvokeRequest, opts ...grpc.CallOption) (ResourceMonitor_StreamInvokeClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ResourceMonitor_ServiceDesc.Streams[0], "/pulumirpc.ResourceMonitor/StreamInvoke", opts...)
+	stream, err := c.cc.NewStream(ctx, &ResourceMonitor_ServiceDesc.Streams[0], "/khulnasoftrpc.ResourceMonitor/StreamInvoke", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -97,7 +97,7 @@ func (x *resourceMonitorStreamInvokeClient) Recv() (*InvokeResponse, error) {
 
 func (c *resourceMonitorClient) Call(ctx context.Context, in *ResourceCallRequest, opts ...grpc.CallOption) (*CallResponse, error) {
 	out := new(CallResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceMonitor/Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceMonitor/Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -106,7 +106,7 @@ func (c *resourceMonitorClient) Call(ctx context.Context, in *ResourceCallReques
 
 func (c *resourceMonitorClient) ReadResource(ctx context.Context, in *ReadResourceRequest, opts ...grpc.CallOption) (*ReadResourceResponse, error) {
 	out := new(ReadResourceResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceMonitor/ReadResource", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceMonitor/ReadResource", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -115,7 +115,7 @@ func (c *resourceMonitorClient) ReadResource(ctx context.Context, in *ReadResour
 
 func (c *resourceMonitorClient) RegisterResource(ctx context.Context, in *RegisterResourceRequest, opts ...grpc.CallOption) (*RegisterResourceResponse, error) {
 	out := new(RegisterResourceResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceMonitor/RegisterResource", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceMonitor/RegisterResource", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -124,7 +124,7 @@ func (c *resourceMonitorClient) RegisterResource(ctx context.Context, in *Regist
 
 func (c *resourceMonitorClient) RegisterResourceOutputs(ctx context.Context, in *RegisterResourceOutputsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceMonitor/RegisterResourceOutputs", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceMonitor/RegisterResourceOutputs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -133,7 +133,7 @@ func (c *resourceMonitorClient) RegisterResourceOutputs(ctx context.Context, in 
 
 func (c *resourceMonitorClient) RegisterStackTransform(ctx context.Context, in *Callback, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceMonitor/RegisterStackTransform", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceMonitor/RegisterStackTransform", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -142,7 +142,7 @@ func (c *resourceMonitorClient) RegisterStackTransform(ctx context.Context, in *
 
 func (c *resourceMonitorClient) RegisterStackInvokeTransform(ctx context.Context, in *Callback, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceMonitor/RegisterStackInvokeTransform", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceMonitor/RegisterStackInvokeTransform", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -151,7 +151,7 @@ func (c *resourceMonitorClient) RegisterStackInvokeTransform(ctx context.Context
 
 func (c *resourceMonitorClient) RegisterPackage(ctx context.Context, in *RegisterPackageRequest, opts ...grpc.CallOption) (*RegisterPackageResponse, error) {
 	out := new(RegisterPackageResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.ResourceMonitor/RegisterPackage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.ResourceMonitor/RegisterPackage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -234,7 +234,7 @@ func _ResourceMonitor_SupportsFeature_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceMonitor/SupportsFeature",
+		FullMethod: "/khulnasoftrpc.ResourceMonitor/SupportsFeature",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceMonitorServer).SupportsFeature(ctx, req.(*SupportsFeatureRequest))
@@ -252,7 +252,7 @@ func _ResourceMonitor_Invoke_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceMonitor/Invoke",
+		FullMethod: "/khulnasoftrpc.ResourceMonitor/Invoke",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceMonitorServer).Invoke(ctx, req.(*ResourceInvokeRequest))
@@ -291,7 +291,7 @@ func _ResourceMonitor_Call_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceMonitor/Call",
+		FullMethod: "/khulnasoftrpc.ResourceMonitor/Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceMonitorServer).Call(ctx, req.(*ResourceCallRequest))
@@ -309,7 +309,7 @@ func _ResourceMonitor_ReadResource_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceMonitor/ReadResource",
+		FullMethod: "/khulnasoftrpc.ResourceMonitor/ReadResource",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceMonitorServer).ReadResource(ctx, req.(*ReadResourceRequest))
@@ -327,7 +327,7 @@ func _ResourceMonitor_RegisterResource_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceMonitor/RegisterResource",
+		FullMethod: "/khulnasoftrpc.ResourceMonitor/RegisterResource",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceMonitorServer).RegisterResource(ctx, req.(*RegisterResourceRequest))
@@ -345,7 +345,7 @@ func _ResourceMonitor_RegisterResourceOutputs_Handler(srv interface{}, ctx conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceMonitor/RegisterResourceOutputs",
+		FullMethod: "/khulnasoftrpc.ResourceMonitor/RegisterResourceOutputs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceMonitorServer).RegisterResourceOutputs(ctx, req.(*RegisterResourceOutputsRequest))
@@ -363,7 +363,7 @@ func _ResourceMonitor_RegisterStackTransform_Handler(srv interface{}, ctx contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceMonitor/RegisterStackTransform",
+		FullMethod: "/khulnasoftrpc.ResourceMonitor/RegisterStackTransform",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceMonitorServer).RegisterStackTransform(ctx, req.(*Callback))
@@ -381,7 +381,7 @@ func _ResourceMonitor_RegisterStackInvokeTransform_Handler(srv interface{}, ctx 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceMonitor/RegisterStackInvokeTransform",
+		FullMethod: "/khulnasoftrpc.ResourceMonitor/RegisterStackInvokeTransform",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceMonitorServer).RegisterStackInvokeTransform(ctx, req.(*Callback))
@@ -399,7 +399,7 @@ func _ResourceMonitor_RegisterPackage_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.ResourceMonitor/RegisterPackage",
+		FullMethod: "/khulnasoftrpc.ResourceMonitor/RegisterPackage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceMonitorServer).RegisterPackage(ctx, req.(*RegisterPackageRequest))
@@ -411,7 +411,7 @@ func _ResourceMonitor_RegisterPackage_Handler(srv interface{}, ctx context.Conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ResourceMonitor_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pulumirpc.ResourceMonitor",
+	ServiceName: "khulnasoftrpc.ResourceMonitor",
 	HandlerType: (*ResourceMonitorServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -458,5 +458,5 @@ var ResourceMonitor_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "pulumi/resource.proto",
+	Metadata: "khulnasoft/resource.proto",
 }

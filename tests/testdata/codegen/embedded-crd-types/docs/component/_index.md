@@ -21,66 +21,66 @@ Resources are created with functions called constructors. To learn more about de
 
 ### Constructor syntax
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">Component</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">?:</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#ComponentResourceOptions">ComponentResourceOptions</a></span><span class="p">);</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="javascript,typescript">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="k">new </span><span class="nx">Component</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p">?:</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#ComponentResourceOptions">ComponentResourceOptions</a></span><span class="p">);</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">Component</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
               <span class="nx">args</span><span class="p">:</span> <span class="nx"><a href="#inputs">Optional[ComponentArgs]</a></span> = None<span class="p">,</span>
-              <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
+              <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">)</span>
 <span></span>
 <span class=nd>@overload</span>
 <span class="k">def </span><span class="nx">Component</span><span class="p">(</span><span class="nx">resource_name</span><span class="p">:</span> <span class="nx">str</span><span class="p">,</span>
-              <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">,</span>
+              <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">Optional[ResourceOptions]</a></span> = None<span class="p">,</span>
               <span class="nx">eni_config</span><span class="p">:</span> <span class="nx">Optional[Mapping[str, _crd_k8s_amazonaws_com.v1alpha1.ENIConfigSpecArgs]]</span> = None<span class="p">,</span>
-              <span class="nx">pod</span><span class="p">:</span> <span class="nx">Optional[pulumi_kubernetes.core.v1.PodArgs]</span> = None<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+              <span class="nx">pod</span><span class="p">:</span> <span class="nx">Optional[khulnasoft_kubernetes.core.v1.PodArgs]</span> = None<span class="p">)</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
-<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewComponent</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">Component</span>, error)</span></code></pre></div>
-</div></pulumi-choosable>
+<khulnasoft-choosable type="language" values="go">
+<div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">func </span><span class="nx">NewComponent</span><span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">name</span><span class="p"> </span><span class="nx">string</span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span><span class="p">) (*<span class="nx">Component</span>, error)</span></code></pre></div>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public </span><span class="nx">Component</span><span class="p">(</span><span class="nx">string</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p">? </span><span class="nx">args = null<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.ComponentResourceOptions.html">ComponentResourceOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span></code></pre></div>
-</div></pulumi-choosable>
+</div></khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <div class="no-copy"><div class="highlight"><pre class="chroma">
 <code class="language-java" data-lang="java"><span class="k">public </span><span class="nx">Component</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">)</span>
 <span class="k">public </span><span class="nx">Component</span><span class="p">(</span><span class="nx">String</span><span class="p"> </span><span class="nx">name<span class="p">,</span> <span class="nx"><a href="#inputs">ComponentArgs</a></span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx">ComponentResourceOptions</span><span class="p"> </span><span class="nx">options<span class="p">)</span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <div class="no-copy"><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">type: <span class="nx">foo:Component</span><span class="p"></span>
 <span class="p">properties</span><span class="p">: </span><span class="c">#&nbsp;The arguments to resource properties.</span>
 <span class="p"></span><span class="p">options</span><span class="p">: </span><span class="c">#&nbsp;Bag of options to control resource&#39;s behavior.</span>
 <span class="p"></span>
 </code></pre></div></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 #### Parameters
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -98,15 +98,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#ComponentResourceOptions">ComponentResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#ComponentResourceOptions">ComponentResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -124,21 +124,21 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions">ResourceOptions</a></span>
+        <span class="property-type"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions">ResourceOptions</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 <dl class="resources-properties"><dt
         class="property-optional" title="Optional">
         <span>ctx</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span>
     </dt>
     <dd>Context object for the current deployment.</dd><dt
         class="property-required" title="Required">
@@ -156,15 +156,15 @@ Resources are created with functions called constructors. To learn more about de
         class="property-optional" title="Optional">
         <span>opts</span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#ResourceOption">ResourceOption</a></span>
+        <span class="property-type"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#ResourceOption">ResourceOption</a></span>
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -186,11 +186,11 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 <dl class="resources-properties"><dt
         class="property-required" title="Required">
@@ -212,7 +212,7 @@ Resources are created with functions called constructors. To learn more about de
     </dt>
     <dd>Bag of options to control resource&#39;s behavior.</dd></dl>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -221,12 +221,12 @@ Resources are created with functions called constructors. To learn more about de
 
 The following reference example uses placeholder values for all [input properties](#inputs).
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 
 ```csharp
 var componentResource = new Foo.Component("componentResource", new()
@@ -2382,339 +2382,339 @@ var componentResource = new Foo.Component("componentResource", new()
 });
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 
 ```go
 example, err := foo.NewComponent(ctx, "componentResource", &foo.ComponentArgs{
 	EniConfig: v1alpha1.ENIConfigSpecMap{
 		"string": &v1alpha1.ENIConfigSpecArgs{
-			SecurityGroups: pulumi.StringArray{
-				pulumi.String("string"),
+			SecurityGroups: khulnasoft.StringArray{
+				khulnasoft.String("string"),
 			},
-			Subnet: pulumi.String("string"),
+			Subnet: khulnasoft.String("string"),
 		},
 	},
 	Pod: &corev1.PodTypeArgs{
-		ApiVersion: pulumi.String("v1"),
-		Kind:       pulumi.String("Pod"),
+		ApiVersion: khulnasoft.String("v1"),
+		Kind:       khulnasoft.String("Pod"),
 		Metadata: &metav1.ObjectMetaArgs{
-			Annotations: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			Annotations: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
-			ClusterName:                pulumi.String("string"),
-			CreationTimestamp:          pulumi.String("string"),
-			DeletionGracePeriodSeconds: pulumi.Int(0),
-			DeletionTimestamp:          pulumi.String("string"),
-			Finalizers: pulumi.StringArray{
-				pulumi.String("string"),
+			ClusterName:                khulnasoft.String("string"),
+			CreationTimestamp:          khulnasoft.String("string"),
+			DeletionGracePeriodSeconds: khulnasoft.Int(0),
+			DeletionTimestamp:          khulnasoft.String("string"),
+			Finalizers: khulnasoft.StringArray{
+				khulnasoft.String("string"),
 			},
-			GenerateName: pulumi.String("string"),
-			Generation:   pulumi.Int(0),
-			Labels: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			GenerateName: khulnasoft.String("string"),
+			Generation:   khulnasoft.Int(0),
+			Labels: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
 			ManagedFields: metav1.ManagedFieldsEntryArray{
 				&metav1.ManagedFieldsEntryArgs{
-					ApiVersion:  pulumi.String("string"),
-					FieldsType:  pulumi.String("string"),
-					FieldsV1:    pulumi.Any("{}"),
-					Manager:     pulumi.String("string"),
-					Operation:   pulumi.String("string"),
-					Subresource: pulumi.String("string"),
-					Time:        pulumi.String("string"),
+					ApiVersion:  khulnasoft.String("string"),
+					FieldsType:  khulnasoft.String("string"),
+					FieldsV1:    khulnasoft.Any("{}"),
+					Manager:     khulnasoft.String("string"),
+					Operation:   khulnasoft.String("string"),
+					Subresource: khulnasoft.String("string"),
+					Time:        khulnasoft.String("string"),
 				},
 			},
-			Name:      pulumi.String("string"),
-			Namespace: pulumi.String("string"),
+			Name:      khulnasoft.String("string"),
+			Namespace: khulnasoft.String("string"),
 			OwnerReferences: metav1.OwnerReferenceArray{
 				&metav1.OwnerReferenceArgs{
-					ApiVersion:         pulumi.String("string"),
-					Kind:               pulumi.String("string"),
-					Name:               pulumi.String("string"),
-					Uid:                pulumi.String("string"),
-					BlockOwnerDeletion: pulumi.Bool(false),
-					Controller:         pulumi.Bool(false),
+					ApiVersion:         khulnasoft.String("string"),
+					Kind:               khulnasoft.String("string"),
+					Name:               khulnasoft.String("string"),
+					Uid:                khulnasoft.String("string"),
+					BlockOwnerDeletion: khulnasoft.Bool(false),
+					Controller:         khulnasoft.Bool(false),
 				},
 			},
-			ResourceVersion: pulumi.String("string"),
-			SelfLink:        pulumi.String("string"),
-			Uid:             pulumi.String("string"),
+			ResourceVersion: khulnasoft.String("string"),
+			SelfLink:        khulnasoft.String("string"),
+			Uid:             khulnasoft.String("string"),
 		},
 		Spec: &corev1.PodSpecArgs{
 			Containers: corev1.ContainerArray{
 				&corev1.ContainerArgs{
-					Name: pulumi.String("string"),
+					Name: khulnasoft.String("string"),
 					ReadinessProbe: &corev1.ProbeArgs{
 						Exec: &corev1.ExecActionArgs{
-							Command: pulumi.StringArray{
-								pulumi.String("string"),
+							Command: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						FailureThreshold: pulumi.Int(0),
+						FailureThreshold: khulnasoft.Int(0),
 						HttpGet: &corev1.HTTPGetActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 							HttpHeaders: corev1.HTTPHeaderArray{
 								&corev1.HTTPHeaderArgs{
-									Name:  pulumi.String("string"),
-									Value: pulumi.String("string"),
+									Name:  khulnasoft.String("string"),
+									Value: khulnasoft.String("string"),
 								},
 							},
-							Path:   pulumi.String("string"),
-							Scheme: pulumi.String("string"),
+							Path:   khulnasoft.String("string"),
+							Scheme: khulnasoft.String("string"),
 						},
-						InitialDelaySeconds: pulumi.Int(0),
-						PeriodSeconds:       pulumi.Int(0),
-						SuccessThreshold:    pulumi.Int(0),
+						InitialDelaySeconds: khulnasoft.Int(0),
+						PeriodSeconds:       khulnasoft.Int(0),
+						SuccessThreshold:    khulnasoft.Int(0),
 						TcpSocket: &corev1.TCPSocketActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 						},
-						TerminationGracePeriodSeconds: pulumi.Int(0),
-						TimeoutSeconds:                pulumi.Int(0),
+						TerminationGracePeriodSeconds: khulnasoft.Int(0),
+						TimeoutSeconds:                khulnasoft.Int(0),
 					},
-					ImagePullPolicy: pulumi.String("string"),
+					ImagePullPolicy: khulnasoft.String("string"),
 					Resources: &corev1.ResourceRequirementsArgs{
-						Limits: pulumi.StringMap{
-							"string": pulumi.String("string"),
+						Limits: khulnasoft.StringMap{
+							"string": khulnasoft.String("string"),
 						},
-						Requests: pulumi.StringMap{
-							"string": pulumi.String("string"),
+						Requests: khulnasoft.StringMap{
+							"string": khulnasoft.String("string"),
 						},
 					},
 					StartupProbe: &corev1.ProbeArgs{
 						Exec: &corev1.ExecActionArgs{
-							Command: pulumi.StringArray{
-								pulumi.String("string"),
+							Command: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						FailureThreshold: pulumi.Int(0),
+						FailureThreshold: khulnasoft.Int(0),
 						HttpGet: &corev1.HTTPGetActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 							HttpHeaders: corev1.HTTPHeaderArray{
 								&corev1.HTTPHeaderArgs{
-									Name:  pulumi.String("string"),
-									Value: pulumi.String("string"),
+									Name:  khulnasoft.String("string"),
+									Value: khulnasoft.String("string"),
 								},
 							},
-							Path:   pulumi.String("string"),
-							Scheme: pulumi.String("string"),
+							Path:   khulnasoft.String("string"),
+							Scheme: khulnasoft.String("string"),
 						},
-						InitialDelaySeconds: pulumi.Int(0),
-						PeriodSeconds:       pulumi.Int(0),
-						SuccessThreshold:    pulumi.Int(0),
+						InitialDelaySeconds: khulnasoft.Int(0),
+						PeriodSeconds:       khulnasoft.Int(0),
+						SuccessThreshold:    khulnasoft.Int(0),
 						TcpSocket: &corev1.TCPSocketActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 						},
-						TerminationGracePeriodSeconds: pulumi.Int(0),
-						TimeoutSeconds:                pulumi.Int(0),
+						TerminationGracePeriodSeconds: khulnasoft.Int(0),
+						TimeoutSeconds:                khulnasoft.Int(0),
 					},
 					SecurityContext: &corev1.SecurityContextArgs{
-						AllowPrivilegeEscalation: pulumi.Bool(false),
+						AllowPrivilegeEscalation: khulnasoft.Bool(false),
 						Capabilities: &corev1.CapabilitiesArgs{
-							Add: pulumi.StringArray{
-								pulumi.String("string"),
+							Add: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
-							Drop: pulumi.StringArray{
-								pulumi.String("string"),
+							Drop: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						Privileged:             pulumi.Bool(false),
-						ProcMount:              pulumi.String("string"),
-						ReadOnlyRootFilesystem: pulumi.Bool(false),
-						RunAsGroup:             pulumi.Int(0),
-						RunAsNonRoot:           pulumi.Bool(false),
-						RunAsUser:              pulumi.Int(0),
+						Privileged:             khulnasoft.Bool(false),
+						ProcMount:              khulnasoft.String("string"),
+						ReadOnlyRootFilesystem: khulnasoft.Bool(false),
+						RunAsGroup:             khulnasoft.Int(0),
+						RunAsNonRoot:           khulnasoft.Bool(false),
+						RunAsUser:              khulnasoft.Int(0),
 						SeLinuxOptions: &corev1.SELinuxOptionsArgs{
-							Level: pulumi.String("string"),
-							Role:  pulumi.String("string"),
-							Type:  pulumi.String("string"),
-							User:  pulumi.String("string"),
+							Level: khulnasoft.String("string"),
+							Role:  khulnasoft.String("string"),
+							Type:  khulnasoft.String("string"),
+							User:  khulnasoft.String("string"),
 						},
 						SeccompProfile: &corev1.SeccompProfileArgs{
-							Type:             pulumi.String("string"),
-							LocalhostProfile: pulumi.String("string"),
+							Type:             khulnasoft.String("string"),
+							LocalhostProfile: khulnasoft.String("string"),
 						},
 						WindowsOptions: &corev1.WindowsSecurityContextOptionsArgs{
-							GmsaCredentialSpec:     pulumi.String("string"),
-							GmsaCredentialSpecName: pulumi.String("string"),
-							HostProcess:            pulumi.Bool(false),
-							RunAsUserName:          pulumi.String("string"),
+							GmsaCredentialSpec:     khulnasoft.String("string"),
+							GmsaCredentialSpecName: khulnasoft.String("string"),
+							HostProcess:            khulnasoft.Bool(false),
+							RunAsUserName:          khulnasoft.String("string"),
 						},
 					},
 					Lifecycle: &corev1.LifecycleArgs{
 						PostStart: &corev1.HandlerArgs{
 							Exec: &corev1.ExecActionArgs{
-								Command: pulumi.StringArray{
-									pulumi.String("string"),
+								Command: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
 							},
 							HttpGet: &corev1.HTTPGetActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 								HttpHeaders: corev1.HTTPHeaderArray{
 									&corev1.HTTPHeaderArgs{
-										Name:  pulumi.String("string"),
-										Value: pulumi.String("string"),
+										Name:  khulnasoft.String("string"),
+										Value: khulnasoft.String("string"),
 									},
 								},
-								Path:   pulumi.String("string"),
-								Scheme: pulumi.String("string"),
+								Path:   khulnasoft.String("string"),
+								Scheme: khulnasoft.String("string"),
 							},
 							TcpSocket: &corev1.TCPSocketActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 							},
 						},
 						PreStop: &corev1.HandlerArgs{
 							Exec: &corev1.ExecActionArgs{
-								Command: pulumi.StringArray{
-									pulumi.String("string"),
+								Command: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
 							},
 							HttpGet: &corev1.HTTPGetActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 								HttpHeaders: corev1.HTTPHeaderArray{
 									&corev1.HTTPHeaderArgs{
-										Name:  pulumi.String("string"),
-										Value: pulumi.String("string"),
+										Name:  khulnasoft.String("string"),
+										Value: khulnasoft.String("string"),
 									},
 								},
-								Path:   pulumi.String("string"),
-								Scheme: pulumi.String("string"),
+								Path:   khulnasoft.String("string"),
+								Scheme: khulnasoft.String("string"),
 							},
 							TcpSocket: &corev1.TCPSocketActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 							},
 						},
 					},
 					LivenessProbe: &corev1.ProbeArgs{
 						Exec: &corev1.ExecActionArgs{
-							Command: pulumi.StringArray{
-								pulumi.String("string"),
+							Command: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						FailureThreshold: pulumi.Int(0),
+						FailureThreshold: khulnasoft.Int(0),
 						HttpGet: &corev1.HTTPGetActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 							HttpHeaders: corev1.HTTPHeaderArray{
 								&corev1.HTTPHeaderArgs{
-									Name:  pulumi.String("string"),
-									Value: pulumi.String("string"),
+									Name:  khulnasoft.String("string"),
+									Value: khulnasoft.String("string"),
 								},
 							},
-							Path:   pulumi.String("string"),
-							Scheme: pulumi.String("string"),
+							Path:   khulnasoft.String("string"),
+							Scheme: khulnasoft.String("string"),
 						},
-						InitialDelaySeconds: pulumi.Int(0),
-						PeriodSeconds:       pulumi.Int(0),
-						SuccessThreshold:    pulumi.Int(0),
+						InitialDelaySeconds: khulnasoft.Int(0),
+						PeriodSeconds:       khulnasoft.Int(0),
+						SuccessThreshold:    khulnasoft.Int(0),
 						TcpSocket: &corev1.TCPSocketActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 						},
-						TerminationGracePeriodSeconds: pulumi.Int(0),
-						TimeoutSeconds:                pulumi.Int(0),
+						TerminationGracePeriodSeconds: khulnasoft.Int(0),
+						TimeoutSeconds:                khulnasoft.Int(0),
 					},
-					Command: pulumi.StringArray{
-						pulumi.String("string"),
+					Command: khulnasoft.StringArray{
+						khulnasoft.String("string"),
 					},
 					Ports: corev1.ContainerPortArray{
 						&corev1.ContainerPortArgs{
-							ContainerPort: pulumi.Int(0),
-							HostIP:        pulumi.String("string"),
-							HostPort:      pulumi.Int(0),
-							Name:          pulumi.String("string"),
-							Protocol:      pulumi.String("string"),
+							ContainerPort: khulnasoft.Int(0),
+							HostIP:        khulnasoft.String("string"),
+							HostPort:      khulnasoft.Int(0),
+							Name:          khulnasoft.String("string"),
+							Protocol:      khulnasoft.String("string"),
 						},
 					},
-					Args: pulumi.StringArray{
-						pulumi.String("string"),
+					Args: khulnasoft.StringArray{
+						khulnasoft.String("string"),
 					},
 					EnvFrom: corev1.EnvFromSourceArray{
 						&corev1.EnvFromSourceArgs{
 							ConfigMapRef: &corev1.ConfigMapEnvSourceArgs{
-								Name:     pulumi.String("string"),
-								Optional: pulumi.Bool(false),
+								Name:     khulnasoft.String("string"),
+								Optional: khulnasoft.Bool(false),
 							},
-							Prefix: pulumi.String("string"),
+							Prefix: khulnasoft.String("string"),
 							SecretRef: &corev1.SecretEnvSourceArgs{
-								Name:     pulumi.String("string"),
-								Optional: pulumi.Bool(false),
+								Name:     khulnasoft.String("string"),
+								Optional: khulnasoft.Bool(false),
 							},
 						},
 					},
 					Env: corev1.EnvVarArray{
 						&corev1.EnvVarArgs{
-							Name:  pulumi.String("string"),
-							Value: pulumi.String("string"),
+							Name:  khulnasoft.String("string"),
+							Value: khulnasoft.String("string"),
 							ValueFrom: &corev1.EnvVarSourceArgs{
 								ConfigMapKeyRef: &corev1.ConfigMapKeySelectorArgs{
-									Key:      pulumi.String("string"),
-									Name:     pulumi.String("string"),
-									Optional: pulumi.Bool(false),
+									Key:      khulnasoft.String("string"),
+									Name:     khulnasoft.String("string"),
+									Optional: khulnasoft.Bool(false),
 								},
 								FieldRef: &corev1.ObjectFieldSelectorArgs{
-									FieldPath:  pulumi.String("string"),
-									ApiVersion: pulumi.String("string"),
+									FieldPath:  khulnasoft.String("string"),
+									ApiVersion: khulnasoft.String("string"),
 								},
 								ResourceFieldRef: &corev1.ResourceFieldSelectorArgs{
-									Resource:      pulumi.String("string"),
-									ContainerName: pulumi.String("string"),
-									Divisor:       pulumi.String("string"),
+									Resource:      khulnasoft.String("string"),
+									ContainerName: khulnasoft.String("string"),
+									Divisor:       khulnasoft.String("string"),
 								},
 								SecretKeyRef: &corev1.SecretKeySelectorArgs{
-									Key:      pulumi.String("string"),
-									Name:     pulumi.String("string"),
-									Optional: pulumi.Bool(false),
+									Key:      khulnasoft.String("string"),
+									Name:     khulnasoft.String("string"),
+									Optional: khulnasoft.Bool(false),
 								},
 							},
 						},
 					},
-					Image:                    pulumi.String("string"),
-					Stdin:                    pulumi.Bool(false),
-					StdinOnce:                pulumi.Bool(false),
-					TerminationMessagePath:   pulumi.String("string"),
-					TerminationMessagePolicy: pulumi.String("string"),
-					Tty:                      pulumi.Bool(false),
+					Image:                    khulnasoft.String("string"),
+					Stdin:                    khulnasoft.Bool(false),
+					StdinOnce:                khulnasoft.Bool(false),
+					TerminationMessagePath:   khulnasoft.String("string"),
+					TerminationMessagePolicy: khulnasoft.String("string"),
+					Tty:                      khulnasoft.Bool(false),
 					VolumeDevices: corev1.VolumeDeviceArray{
 						&corev1.VolumeDeviceArgs{
-							DevicePath: pulumi.String("string"),
-							Name:       pulumi.String("string"),
+							DevicePath: khulnasoft.String("string"),
+							Name:       khulnasoft.String("string"),
 						},
 					},
 					VolumeMounts: corev1.VolumeMountArray{
 						&corev1.VolumeMountArgs{
-							MountPath:        pulumi.String("string"),
-							Name:             pulumi.String("string"),
-							MountPropagation: pulumi.String("string"),
-							ReadOnly:         pulumi.Bool(false),
-							SubPath:          pulumi.String("string"),
-							SubPathExpr:      pulumi.String("string"),
+							MountPath:        khulnasoft.String("string"),
+							Name:             khulnasoft.String("string"),
+							MountPropagation: khulnasoft.String("string"),
+							ReadOnly:         khulnasoft.Bool(false),
+							SubPath:          khulnasoft.String("string"),
+							SubPathExpr:      khulnasoft.String("string"),
 						},
 					},
-					WorkingDir: pulumi.String("string"),
+					WorkingDir: khulnasoft.String("string"),
 				},
 			},
-			NodeSelector: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			NodeSelector: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
 			HostAliases: corev1.HostAliasArray{
 				&corev1.HostAliasArgs{
-					Hostnames: pulumi.StringArray{
-						pulumi.String("string"),
+					Hostnames: khulnasoft.StringArray{
+						khulnasoft.String("string"),
 					},
-					Ip: pulumi.String("string"),
+					Ip: khulnasoft.String("string"),
 				},
 			},
 			Affinity: &corev1.AffinityArgs{
@@ -2724,24 +2724,24 @@ example, err := foo.NewComponent(ctx, "componentResource", &foo.ComponentArgs{
 							Preference: &corev1.NodeSelectorTermArgs{
 								MatchExpressions: corev1.NodeSelectorRequirementArray{
 									&corev1.NodeSelectorRequirementArgs{
-										Key:      pulumi.String("string"),
-										Operator: pulumi.String("string"),
-										Values: pulumi.StringArray{
-											pulumi.String("string"),
+										Key:      khulnasoft.String("string"),
+										Operator: khulnasoft.String("string"),
+										Values: khulnasoft.StringArray{
+											khulnasoft.String("string"),
 										},
 									},
 								},
 								MatchFields: corev1.NodeSelectorRequirementArray{
 									&corev1.NodeSelectorRequirementArgs{
-										Key:      pulumi.String("string"),
-										Operator: pulumi.String("string"),
-										Values: pulumi.StringArray{
-											pulumi.String("string"),
+										Key:      khulnasoft.String("string"),
+										Operator: khulnasoft.String("string"),
+										Values: khulnasoft.StringArray{
+											khulnasoft.String("string"),
 										},
 									},
 								},
 							},
-							Weight: pulumi.Int(0),
+							Weight: khulnasoft.Int(0),
 						},
 					},
 					RequiredDuringSchedulingIgnoredDuringExecution: &corev1.NodeSelectorArgs{
@@ -2749,19 +2749,19 @@ example, err := foo.NewComponent(ctx, "componentResource", &foo.ComponentArgs{
 							&corev1.NodeSelectorTermArgs{
 								MatchExpressions: corev1.NodeSelectorRequirementArray{
 									&corev1.NodeSelectorRequirementArgs{
-										Key:      pulumi.String("string"),
-										Operator: pulumi.String("string"),
-										Values: pulumi.StringArray{
-											pulumi.String("string"),
+										Key:      khulnasoft.String("string"),
+										Operator: khulnasoft.String("string"),
+										Values: khulnasoft.StringArray{
+											khulnasoft.String("string"),
 										},
 									},
 								},
 								MatchFields: corev1.NodeSelectorRequirementArray{
 									&corev1.NodeSelectorRequirementArgs{
-										Key:      pulumi.String("string"),
-										Operator: pulumi.String("string"),
-										Values: pulumi.StringArray{
-											pulumi.String("string"),
+										Key:      khulnasoft.String("string"),
+										Operator: khulnasoft.String("string"),
+										Values: khulnasoft.StringArray{
+											khulnasoft.String("string"),
 										},
 									},
 								},
@@ -2773,75 +2773,75 @@ example, err := foo.NewComponent(ctx, "componentResource", &foo.ComponentArgs{
 					PreferredDuringSchedulingIgnoredDuringExecution: corev1.WeightedPodAffinityTermArray{
 						&corev1.WeightedPodAffinityTermArgs{
 							PodAffinityTerm: &corev1.PodAffinityTermArgs{
-								TopologyKey: pulumi.String("string"),
+								TopologyKey: khulnasoft.String("string"),
 								LabelSelector: &metav1.LabelSelectorArgs{
 									MatchExpressions: metav1.LabelSelectorRequirementArray{
 										&metav1.LabelSelectorRequirementArgs{
-											Key:      pulumi.String("string"),
-											Operator: pulumi.String("string"),
-											Values: pulumi.StringArray{
-												pulumi.String("string"),
+											Key:      khulnasoft.String("string"),
+											Operator: khulnasoft.String("string"),
+											Values: khulnasoft.StringArray{
+												khulnasoft.String("string"),
 											},
 										},
 									},
-									MatchLabels: pulumi.StringMap{
-										"string": pulumi.String("string"),
+									MatchLabels: khulnasoft.StringMap{
+										"string": khulnasoft.String("string"),
 									},
 								},
 								NamespaceSelector: &metav1.LabelSelectorArgs{
 									MatchExpressions: metav1.LabelSelectorRequirementArray{
 										&metav1.LabelSelectorRequirementArgs{
-											Key:      pulumi.String("string"),
-											Operator: pulumi.String("string"),
-											Values: pulumi.StringArray{
-												pulumi.String("string"),
+											Key:      khulnasoft.String("string"),
+											Operator: khulnasoft.String("string"),
+											Values: khulnasoft.StringArray{
+												khulnasoft.String("string"),
 											},
 										},
 									},
-									MatchLabels: pulumi.StringMap{
-										"string": pulumi.String("string"),
+									MatchLabels: khulnasoft.StringMap{
+										"string": khulnasoft.String("string"),
 									},
 								},
-								Namespaces: pulumi.StringArray{
-									pulumi.String("string"),
+								Namespaces: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
 							},
-							Weight: pulumi.Int(0),
+							Weight: khulnasoft.Int(0),
 						},
 					},
 					RequiredDuringSchedulingIgnoredDuringExecution: corev1.PodAffinityTermArray{
 						&corev1.PodAffinityTermArgs{
-							TopologyKey: pulumi.String("string"),
+							TopologyKey: khulnasoft.String("string"),
 							LabelSelector: &metav1.LabelSelectorArgs{
 								MatchExpressions: metav1.LabelSelectorRequirementArray{
 									&metav1.LabelSelectorRequirementArgs{
-										Key:      pulumi.String("string"),
-										Operator: pulumi.String("string"),
-										Values: pulumi.StringArray{
-											pulumi.String("string"),
+										Key:      khulnasoft.String("string"),
+										Operator: khulnasoft.String("string"),
+										Values: khulnasoft.StringArray{
+											khulnasoft.String("string"),
 										},
 									},
 								},
-								MatchLabels: pulumi.StringMap{
-									"string": pulumi.String("string"),
+								MatchLabels: khulnasoft.StringMap{
+									"string": khulnasoft.String("string"),
 								},
 							},
 							NamespaceSelector: &metav1.LabelSelectorArgs{
 								MatchExpressions: metav1.LabelSelectorRequirementArray{
 									&metav1.LabelSelectorRequirementArgs{
-										Key:      pulumi.String("string"),
-										Operator: pulumi.String("string"),
-										Values: pulumi.StringArray{
-											pulumi.String("string"),
+										Key:      khulnasoft.String("string"),
+										Operator: khulnasoft.String("string"),
+										Values: khulnasoft.StringArray{
+											khulnasoft.String("string"),
 										},
 									},
 								},
-								MatchLabels: pulumi.StringMap{
-									"string": pulumi.String("string"),
+								MatchLabels: khulnasoft.StringMap{
+									"string": khulnasoft.String("string"),
 								},
 							},
-							Namespaces: pulumi.StringArray{
-								pulumi.String("string"),
+							Namespaces: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
 					},
@@ -2850,966 +2850,966 @@ example, err := foo.NewComponent(ctx, "componentResource", &foo.ComponentArgs{
 					PreferredDuringSchedulingIgnoredDuringExecution: corev1.WeightedPodAffinityTermArray{
 						&corev1.WeightedPodAffinityTermArgs{
 							PodAffinityTerm: &corev1.PodAffinityTermArgs{
-								TopologyKey: pulumi.String("string"),
+								TopologyKey: khulnasoft.String("string"),
 								LabelSelector: &metav1.LabelSelectorArgs{
 									MatchExpressions: metav1.LabelSelectorRequirementArray{
 										&metav1.LabelSelectorRequirementArgs{
-											Key:      pulumi.String("string"),
-											Operator: pulumi.String("string"),
-											Values: pulumi.StringArray{
-												pulumi.String("string"),
+											Key:      khulnasoft.String("string"),
+											Operator: khulnasoft.String("string"),
+											Values: khulnasoft.StringArray{
+												khulnasoft.String("string"),
 											},
 										},
 									},
-									MatchLabels: pulumi.StringMap{
-										"string": pulumi.String("string"),
+									MatchLabels: khulnasoft.StringMap{
+										"string": khulnasoft.String("string"),
 									},
 								},
 								NamespaceSelector: &metav1.LabelSelectorArgs{
 									MatchExpressions: metav1.LabelSelectorRequirementArray{
 										&metav1.LabelSelectorRequirementArgs{
-											Key:      pulumi.String("string"),
-											Operator: pulumi.String("string"),
-											Values: pulumi.StringArray{
-												pulumi.String("string"),
+											Key:      khulnasoft.String("string"),
+											Operator: khulnasoft.String("string"),
+											Values: khulnasoft.StringArray{
+												khulnasoft.String("string"),
 											},
 										},
 									},
-									MatchLabels: pulumi.StringMap{
-										"string": pulumi.String("string"),
+									MatchLabels: khulnasoft.StringMap{
+										"string": khulnasoft.String("string"),
 									},
 								},
-								Namespaces: pulumi.StringArray{
-									pulumi.String("string"),
+								Namespaces: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
 							},
-							Weight: pulumi.Int(0),
+							Weight: khulnasoft.Int(0),
 						},
 					},
 					RequiredDuringSchedulingIgnoredDuringExecution: corev1.PodAffinityTermArray{
 						&corev1.PodAffinityTermArgs{
-							TopologyKey: pulumi.String("string"),
+							TopologyKey: khulnasoft.String("string"),
 							LabelSelector: &metav1.LabelSelectorArgs{
 								MatchExpressions: metav1.LabelSelectorRequirementArray{
 									&metav1.LabelSelectorRequirementArgs{
-										Key:      pulumi.String("string"),
-										Operator: pulumi.String("string"),
-										Values: pulumi.StringArray{
-											pulumi.String("string"),
+										Key:      khulnasoft.String("string"),
+										Operator: khulnasoft.String("string"),
+										Values: khulnasoft.StringArray{
+											khulnasoft.String("string"),
 										},
 									},
 								},
-								MatchLabels: pulumi.StringMap{
-									"string": pulumi.String("string"),
+								MatchLabels: khulnasoft.StringMap{
+									"string": khulnasoft.String("string"),
 								},
 							},
 							NamespaceSelector: &metav1.LabelSelectorArgs{
 								MatchExpressions: metav1.LabelSelectorRequirementArray{
 									&metav1.LabelSelectorRequirementArgs{
-										Key:      pulumi.String("string"),
-										Operator: pulumi.String("string"),
-										Values: pulumi.StringArray{
-											pulumi.String("string"),
+										Key:      khulnasoft.String("string"),
+										Operator: khulnasoft.String("string"),
+										Values: khulnasoft.StringArray{
+											khulnasoft.String("string"),
 										},
 									},
 								},
-								MatchLabels: pulumi.StringMap{
-									"string": pulumi.String("string"),
+								MatchLabels: khulnasoft.StringMap{
+									"string": khulnasoft.String("string"),
 								},
 							},
-							Namespaces: pulumi.StringArray{
-								pulumi.String("string"),
+							Namespaces: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
 					},
 				},
 			},
 			DnsConfig: &corev1.PodDNSConfigArgs{
-				Nameservers: pulumi.StringArray{
-					pulumi.String("string"),
+				Nameservers: khulnasoft.StringArray{
+					khulnasoft.String("string"),
 				},
 				Options: corev1.PodDNSConfigOptionArray{
 					&corev1.PodDNSConfigOptionArgs{
-						Name:  pulumi.String("string"),
-						Value: pulumi.String("string"),
+						Name:  khulnasoft.String("string"),
+						Value: khulnasoft.String("string"),
 					},
 				},
-				Searches: pulumi.StringArray{
-					pulumi.String("string"),
+				Searches: khulnasoft.StringArray{
+					khulnasoft.String("string"),
 				},
 			},
-			Overhead: pulumi.StringMap{
-				"string": pulumi.String("string"),
+			Overhead: khulnasoft.StringMap{
+				"string": khulnasoft.String("string"),
 			},
-			EnableServiceLinks: pulumi.Bool(false),
+			EnableServiceLinks: khulnasoft.Bool(false),
 			EphemeralContainers: corev1.EphemeralContainerArray{
 				&corev1.EphemeralContainerArgs{
-					Name: pulumi.String("string"),
+					Name: khulnasoft.String("string"),
 					ReadinessProbe: &corev1.ProbeArgs{
 						Exec: &corev1.ExecActionArgs{
-							Command: pulumi.StringArray{
-								pulumi.String("string"),
+							Command: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						FailureThreshold: pulumi.Int(0),
+						FailureThreshold: khulnasoft.Int(0),
 						HttpGet: &corev1.HTTPGetActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 							HttpHeaders: corev1.HTTPHeaderArray{
 								&corev1.HTTPHeaderArgs{
-									Name:  pulumi.String("string"),
-									Value: pulumi.String("string"),
+									Name:  khulnasoft.String("string"),
+									Value: khulnasoft.String("string"),
 								},
 							},
-							Path:   pulumi.String("string"),
-							Scheme: pulumi.String("string"),
+							Path:   khulnasoft.String("string"),
+							Scheme: khulnasoft.String("string"),
 						},
-						InitialDelaySeconds: pulumi.Int(0),
-						PeriodSeconds:       pulumi.Int(0),
-						SuccessThreshold:    pulumi.Int(0),
+						InitialDelaySeconds: khulnasoft.Int(0),
+						PeriodSeconds:       khulnasoft.Int(0),
+						SuccessThreshold:    khulnasoft.Int(0),
 						TcpSocket: &corev1.TCPSocketActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 						},
-						TerminationGracePeriodSeconds: pulumi.Int(0),
-						TimeoutSeconds:                pulumi.Int(0),
+						TerminationGracePeriodSeconds: khulnasoft.Int(0),
+						TimeoutSeconds:                khulnasoft.Int(0),
 					},
 					EnvFrom: corev1.EnvFromSourceArray{
 						&corev1.EnvFromSourceArgs{
 							ConfigMapRef: &corev1.ConfigMapEnvSourceArgs{
-								Name:     pulumi.String("string"),
-								Optional: pulumi.Bool(false),
+								Name:     khulnasoft.String("string"),
+								Optional: khulnasoft.Bool(false),
 							},
-							Prefix: pulumi.String("string"),
+							Prefix: khulnasoft.String("string"),
 							SecretRef: &corev1.SecretEnvSourceArgs{
-								Name:     pulumi.String("string"),
-								Optional: pulumi.Bool(false),
+								Name:     khulnasoft.String("string"),
+								Optional: khulnasoft.Bool(false),
 							},
 						},
 					},
 					SecurityContext: &corev1.SecurityContextArgs{
-						AllowPrivilegeEscalation: pulumi.Bool(false),
+						AllowPrivilegeEscalation: khulnasoft.Bool(false),
 						Capabilities: &corev1.CapabilitiesArgs{
-							Add: pulumi.StringArray{
-								pulumi.String("string"),
+							Add: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
-							Drop: pulumi.StringArray{
-								pulumi.String("string"),
+							Drop: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						Privileged:             pulumi.Bool(false),
-						ProcMount:              pulumi.String("string"),
-						ReadOnlyRootFilesystem: pulumi.Bool(false),
-						RunAsGroup:             pulumi.Int(0),
-						RunAsNonRoot:           pulumi.Bool(false),
-						RunAsUser:              pulumi.Int(0),
+						Privileged:             khulnasoft.Bool(false),
+						ProcMount:              khulnasoft.String("string"),
+						ReadOnlyRootFilesystem: khulnasoft.Bool(false),
+						RunAsGroup:             khulnasoft.Int(0),
+						RunAsNonRoot:           khulnasoft.Bool(false),
+						RunAsUser:              khulnasoft.Int(0),
 						SeLinuxOptions: &corev1.SELinuxOptionsArgs{
-							Level: pulumi.String("string"),
-							Role:  pulumi.String("string"),
-							Type:  pulumi.String("string"),
-							User:  pulumi.String("string"),
+							Level: khulnasoft.String("string"),
+							Role:  khulnasoft.String("string"),
+							Type:  khulnasoft.String("string"),
+							User:  khulnasoft.String("string"),
 						},
 						SeccompProfile: &corev1.SeccompProfileArgs{
-							Type:             pulumi.String("string"),
-							LocalhostProfile: pulumi.String("string"),
+							Type:             khulnasoft.String("string"),
+							LocalhostProfile: khulnasoft.String("string"),
 						},
 						WindowsOptions: &corev1.WindowsSecurityContextOptionsArgs{
-							GmsaCredentialSpec:     pulumi.String("string"),
-							GmsaCredentialSpecName: pulumi.String("string"),
-							HostProcess:            pulumi.Bool(false),
-							RunAsUserName:          pulumi.String("string"),
+							GmsaCredentialSpec:     khulnasoft.String("string"),
+							GmsaCredentialSpecName: khulnasoft.String("string"),
+							HostProcess:            khulnasoft.Bool(false),
+							RunAsUserName:          khulnasoft.String("string"),
 						},
 					},
-					Image:           pulumi.String("string"),
-					ImagePullPolicy: pulumi.String("string"),
+					Image:           khulnasoft.String("string"),
+					ImagePullPolicy: khulnasoft.String("string"),
 					Lifecycle: &corev1.LifecycleArgs{
 						PostStart: &corev1.HandlerArgs{
 							Exec: &corev1.ExecActionArgs{
-								Command: pulumi.StringArray{
-									pulumi.String("string"),
+								Command: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
 							},
 							HttpGet: &corev1.HTTPGetActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 								HttpHeaders: corev1.HTTPHeaderArray{
 									&corev1.HTTPHeaderArgs{
-										Name:  pulumi.String("string"),
-										Value: pulumi.String("string"),
+										Name:  khulnasoft.String("string"),
+										Value: khulnasoft.String("string"),
 									},
 								},
-								Path:   pulumi.String("string"),
-								Scheme: pulumi.String("string"),
+								Path:   khulnasoft.String("string"),
+								Scheme: khulnasoft.String("string"),
 							},
 							TcpSocket: &corev1.TCPSocketActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 							},
 						},
 						PreStop: &corev1.HandlerArgs{
 							Exec: &corev1.ExecActionArgs{
-								Command: pulumi.StringArray{
-									pulumi.String("string"),
+								Command: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
 							},
 							HttpGet: &corev1.HTTPGetActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 								HttpHeaders: corev1.HTTPHeaderArray{
 									&corev1.HTTPHeaderArgs{
-										Name:  pulumi.String("string"),
-										Value: pulumi.String("string"),
+										Name:  khulnasoft.String("string"),
+										Value: khulnasoft.String("string"),
 									},
 								},
-								Path:   pulumi.String("string"),
-								Scheme: pulumi.String("string"),
+								Path:   khulnasoft.String("string"),
+								Scheme: khulnasoft.String("string"),
 							},
 							TcpSocket: &corev1.TCPSocketActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 							},
 						},
 					},
 					LivenessProbe: &corev1.ProbeArgs{
 						Exec: &corev1.ExecActionArgs{
-							Command: pulumi.StringArray{
-								pulumi.String("string"),
+							Command: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						FailureThreshold: pulumi.Int(0),
+						FailureThreshold: khulnasoft.Int(0),
 						HttpGet: &corev1.HTTPGetActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 							HttpHeaders: corev1.HTTPHeaderArray{
 								&corev1.HTTPHeaderArgs{
-									Name:  pulumi.String("string"),
-									Value: pulumi.String("string"),
+									Name:  khulnasoft.String("string"),
+									Value: khulnasoft.String("string"),
 								},
 							},
-							Path:   pulumi.String("string"),
-							Scheme: pulumi.String("string"),
+							Path:   khulnasoft.String("string"),
+							Scheme: khulnasoft.String("string"),
 						},
-						InitialDelaySeconds: pulumi.Int(0),
-						PeriodSeconds:       pulumi.Int(0),
-						SuccessThreshold:    pulumi.Int(0),
+						InitialDelaySeconds: khulnasoft.Int(0),
+						PeriodSeconds:       khulnasoft.Int(0),
+						SuccessThreshold:    khulnasoft.Int(0),
 						TcpSocket: &corev1.TCPSocketActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 						},
-						TerminationGracePeriodSeconds: pulumi.Int(0),
-						TimeoutSeconds:                pulumi.Int(0),
+						TerminationGracePeriodSeconds: khulnasoft.Int(0),
+						TimeoutSeconds:                khulnasoft.Int(0),
 					},
-					Command: pulumi.StringArray{
-						pulumi.String("string"),
+					Command: khulnasoft.StringArray{
+						khulnasoft.String("string"),
 					},
 					StartupProbe: &corev1.ProbeArgs{
 						Exec: &corev1.ExecActionArgs{
-							Command: pulumi.StringArray{
-								pulumi.String("string"),
+							Command: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						FailureThreshold: pulumi.Int(0),
+						FailureThreshold: khulnasoft.Int(0),
 						HttpGet: &corev1.HTTPGetActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 							HttpHeaders: corev1.HTTPHeaderArray{
 								&corev1.HTTPHeaderArgs{
-									Name:  pulumi.String("string"),
-									Value: pulumi.String("string"),
+									Name:  khulnasoft.String("string"),
+									Value: khulnasoft.String("string"),
 								},
 							},
-							Path:   pulumi.String("string"),
-							Scheme: pulumi.String("string"),
+							Path:   khulnasoft.String("string"),
+							Scheme: khulnasoft.String("string"),
 						},
-						InitialDelaySeconds: pulumi.Int(0),
-						PeriodSeconds:       pulumi.Int(0),
-						SuccessThreshold:    pulumi.Int(0),
+						InitialDelaySeconds: khulnasoft.Int(0),
+						PeriodSeconds:       khulnasoft.Int(0),
+						SuccessThreshold:    khulnasoft.Int(0),
 						TcpSocket: &corev1.TCPSocketActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 						},
-						TerminationGracePeriodSeconds: pulumi.Int(0),
-						TimeoutSeconds:                pulumi.Int(0),
+						TerminationGracePeriodSeconds: khulnasoft.Int(0),
+						TimeoutSeconds:                khulnasoft.Int(0),
 					},
-					Args: pulumi.StringArray{
-						pulumi.String("string"),
+					Args: khulnasoft.StringArray{
+						khulnasoft.String("string"),
 					},
-					WorkingDir: pulumi.String("string"),
+					WorkingDir: khulnasoft.String("string"),
 					Env: corev1.EnvVarArray{
 						&corev1.EnvVarArgs{
-							Name:  pulumi.String("string"),
-							Value: pulumi.String("string"),
+							Name:  khulnasoft.String("string"),
+							Value: khulnasoft.String("string"),
 							ValueFrom: &corev1.EnvVarSourceArgs{
 								ConfigMapKeyRef: &corev1.ConfigMapKeySelectorArgs{
-									Key:      pulumi.String("string"),
-									Name:     pulumi.String("string"),
-									Optional: pulumi.Bool(false),
+									Key:      khulnasoft.String("string"),
+									Name:     khulnasoft.String("string"),
+									Optional: khulnasoft.Bool(false),
 								},
 								FieldRef: &corev1.ObjectFieldSelectorArgs{
-									FieldPath:  pulumi.String("string"),
-									ApiVersion: pulumi.String("string"),
+									FieldPath:  khulnasoft.String("string"),
+									ApiVersion: khulnasoft.String("string"),
 								},
 								ResourceFieldRef: &corev1.ResourceFieldSelectorArgs{
-									Resource:      pulumi.String("string"),
-									ContainerName: pulumi.String("string"),
-									Divisor:       pulumi.String("string"),
+									Resource:      khulnasoft.String("string"),
+									ContainerName: khulnasoft.String("string"),
+									Divisor:       khulnasoft.String("string"),
 								},
 								SecretKeyRef: &corev1.SecretKeySelectorArgs{
-									Key:      pulumi.String("string"),
-									Name:     pulumi.String("string"),
-									Optional: pulumi.Bool(false),
+									Key:      khulnasoft.String("string"),
+									Name:     khulnasoft.String("string"),
+									Optional: khulnasoft.Bool(false),
 								},
 							},
 						},
 					},
 					Ports: corev1.ContainerPortArray{
 						&corev1.ContainerPortArgs{
-							ContainerPort: pulumi.Int(0),
-							HostIP:        pulumi.String("string"),
-							HostPort:      pulumi.Int(0),
-							Name:          pulumi.String("string"),
-							Protocol:      pulumi.String("string"),
+							ContainerPort: khulnasoft.Int(0),
+							HostIP:        khulnasoft.String("string"),
+							HostPort:      khulnasoft.Int(0),
+							Name:          khulnasoft.String("string"),
+							Protocol:      khulnasoft.String("string"),
 						},
 					},
-					Stdin:                    pulumi.Bool(false),
-					StdinOnce:                pulumi.Bool(false),
-					TargetContainerName:      pulumi.String("string"),
-					TerminationMessagePath:   pulumi.String("string"),
-					TerminationMessagePolicy: pulumi.String("string"),
-					Tty:                      pulumi.Bool(false),
+					Stdin:                    khulnasoft.Bool(false),
+					StdinOnce:                khulnasoft.Bool(false),
+					TargetContainerName:      khulnasoft.String("string"),
+					TerminationMessagePath:   khulnasoft.String("string"),
+					TerminationMessagePolicy: khulnasoft.String("string"),
+					Tty:                      khulnasoft.Bool(false),
 					VolumeDevices: corev1.VolumeDeviceArray{
 						&corev1.VolumeDeviceArgs{
-							DevicePath: pulumi.String("string"),
-							Name:       pulumi.String("string"),
+							DevicePath: khulnasoft.String("string"),
+							Name:       khulnasoft.String("string"),
 						},
 					},
 					VolumeMounts: corev1.VolumeMountArray{
 						&corev1.VolumeMountArgs{
-							MountPath:        pulumi.String("string"),
-							Name:             pulumi.String("string"),
-							MountPropagation: pulumi.String("string"),
-							ReadOnly:         pulumi.Bool(false),
-							SubPath:          pulumi.String("string"),
-							SubPathExpr:      pulumi.String("string"),
+							MountPath:        khulnasoft.String("string"),
+							Name:             khulnasoft.String("string"),
+							MountPropagation: khulnasoft.String("string"),
+							ReadOnly:         khulnasoft.Bool(false),
+							SubPath:          khulnasoft.String("string"),
+							SubPathExpr:      khulnasoft.String("string"),
 						},
 					},
 					Resources: &corev1.ResourceRequirementsArgs{
-						Limits: pulumi.StringMap{
-							"string": pulumi.String("string"),
+						Limits: khulnasoft.StringMap{
+							"string": khulnasoft.String("string"),
 						},
-						Requests: pulumi.StringMap{
-							"string": pulumi.String("string"),
+						Requests: khulnasoft.StringMap{
+							"string": khulnasoft.String("string"),
 						},
 					},
 				},
 			},
-			PreemptionPolicy: pulumi.String("string"),
-			HostIPC:          pulumi.Bool(false),
-			Priority:         pulumi.Int(0),
-			HostPID:          pulumi.Bool(false),
-			Hostname:         pulumi.String("string"),
+			PreemptionPolicy: khulnasoft.String("string"),
+			HostIPC:          khulnasoft.Bool(false),
+			Priority:         khulnasoft.Int(0),
+			HostPID:          khulnasoft.Bool(false),
+			Hostname:         khulnasoft.String("string"),
 			ImagePullSecrets: corev1.LocalObjectReferenceArray{
 				&corev1.LocalObjectReferenceArgs{
-					Name: pulumi.String("string"),
+					Name: khulnasoft.String("string"),
 				},
 			},
 			InitContainers: corev1.ContainerArray{
 				&corev1.ContainerArgs{
-					Name: pulumi.String("string"),
+					Name: khulnasoft.String("string"),
 					ReadinessProbe: &corev1.ProbeArgs{
 						Exec: &corev1.ExecActionArgs{
-							Command: pulumi.StringArray{
-								pulumi.String("string"),
+							Command: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						FailureThreshold: pulumi.Int(0),
+						FailureThreshold: khulnasoft.Int(0),
 						HttpGet: &corev1.HTTPGetActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 							HttpHeaders: corev1.HTTPHeaderArray{
 								&corev1.HTTPHeaderArgs{
-									Name:  pulumi.String("string"),
-									Value: pulumi.String("string"),
+									Name:  khulnasoft.String("string"),
+									Value: khulnasoft.String("string"),
 								},
 							},
-							Path:   pulumi.String("string"),
-							Scheme: pulumi.String("string"),
+							Path:   khulnasoft.String("string"),
+							Scheme: khulnasoft.String("string"),
 						},
-						InitialDelaySeconds: pulumi.Int(0),
-						PeriodSeconds:       pulumi.Int(0),
-						SuccessThreshold:    pulumi.Int(0),
+						InitialDelaySeconds: khulnasoft.Int(0),
+						PeriodSeconds:       khulnasoft.Int(0),
+						SuccessThreshold:    khulnasoft.Int(0),
 						TcpSocket: &corev1.TCPSocketActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 						},
-						TerminationGracePeriodSeconds: pulumi.Int(0),
-						TimeoutSeconds:                pulumi.Int(0),
+						TerminationGracePeriodSeconds: khulnasoft.Int(0),
+						TimeoutSeconds:                khulnasoft.Int(0),
 					},
-					ImagePullPolicy: pulumi.String("string"),
+					ImagePullPolicy: khulnasoft.String("string"),
 					Resources: &corev1.ResourceRequirementsArgs{
-						Limits: pulumi.StringMap{
-							"string": pulumi.String("string"),
+						Limits: khulnasoft.StringMap{
+							"string": khulnasoft.String("string"),
 						},
-						Requests: pulumi.StringMap{
-							"string": pulumi.String("string"),
+						Requests: khulnasoft.StringMap{
+							"string": khulnasoft.String("string"),
 						},
 					},
 					StartupProbe: &corev1.ProbeArgs{
 						Exec: &corev1.ExecActionArgs{
-							Command: pulumi.StringArray{
-								pulumi.String("string"),
+							Command: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						FailureThreshold: pulumi.Int(0),
+						FailureThreshold: khulnasoft.Int(0),
 						HttpGet: &corev1.HTTPGetActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 							HttpHeaders: corev1.HTTPHeaderArray{
 								&corev1.HTTPHeaderArgs{
-									Name:  pulumi.String("string"),
-									Value: pulumi.String("string"),
+									Name:  khulnasoft.String("string"),
+									Value: khulnasoft.String("string"),
 								},
 							},
-							Path:   pulumi.String("string"),
-							Scheme: pulumi.String("string"),
+							Path:   khulnasoft.String("string"),
+							Scheme: khulnasoft.String("string"),
 						},
-						InitialDelaySeconds: pulumi.Int(0),
-						PeriodSeconds:       pulumi.Int(0),
-						SuccessThreshold:    pulumi.Int(0),
+						InitialDelaySeconds: khulnasoft.Int(0),
+						PeriodSeconds:       khulnasoft.Int(0),
+						SuccessThreshold:    khulnasoft.Int(0),
 						TcpSocket: &corev1.TCPSocketActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 						},
-						TerminationGracePeriodSeconds: pulumi.Int(0),
-						TimeoutSeconds:                pulumi.Int(0),
+						TerminationGracePeriodSeconds: khulnasoft.Int(0),
+						TimeoutSeconds:                khulnasoft.Int(0),
 					},
 					SecurityContext: &corev1.SecurityContextArgs{
-						AllowPrivilegeEscalation: pulumi.Bool(false),
+						AllowPrivilegeEscalation: khulnasoft.Bool(false),
 						Capabilities: &corev1.CapabilitiesArgs{
-							Add: pulumi.StringArray{
-								pulumi.String("string"),
+							Add: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
-							Drop: pulumi.StringArray{
-								pulumi.String("string"),
+							Drop: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						Privileged:             pulumi.Bool(false),
-						ProcMount:              pulumi.String("string"),
-						ReadOnlyRootFilesystem: pulumi.Bool(false),
-						RunAsGroup:             pulumi.Int(0),
-						RunAsNonRoot:           pulumi.Bool(false),
-						RunAsUser:              pulumi.Int(0),
+						Privileged:             khulnasoft.Bool(false),
+						ProcMount:              khulnasoft.String("string"),
+						ReadOnlyRootFilesystem: khulnasoft.Bool(false),
+						RunAsGroup:             khulnasoft.Int(0),
+						RunAsNonRoot:           khulnasoft.Bool(false),
+						RunAsUser:              khulnasoft.Int(0),
 						SeLinuxOptions: &corev1.SELinuxOptionsArgs{
-							Level: pulumi.String("string"),
-							Role:  pulumi.String("string"),
-							Type:  pulumi.String("string"),
-							User:  pulumi.String("string"),
+							Level: khulnasoft.String("string"),
+							Role:  khulnasoft.String("string"),
+							Type:  khulnasoft.String("string"),
+							User:  khulnasoft.String("string"),
 						},
 						SeccompProfile: &corev1.SeccompProfileArgs{
-							Type:             pulumi.String("string"),
-							LocalhostProfile: pulumi.String("string"),
+							Type:             khulnasoft.String("string"),
+							LocalhostProfile: khulnasoft.String("string"),
 						},
 						WindowsOptions: &corev1.WindowsSecurityContextOptionsArgs{
-							GmsaCredentialSpec:     pulumi.String("string"),
-							GmsaCredentialSpecName: pulumi.String("string"),
-							HostProcess:            pulumi.Bool(false),
-							RunAsUserName:          pulumi.String("string"),
+							GmsaCredentialSpec:     khulnasoft.String("string"),
+							GmsaCredentialSpecName: khulnasoft.String("string"),
+							HostProcess:            khulnasoft.Bool(false),
+							RunAsUserName:          khulnasoft.String("string"),
 						},
 					},
 					Lifecycle: &corev1.LifecycleArgs{
 						PostStart: &corev1.HandlerArgs{
 							Exec: &corev1.ExecActionArgs{
-								Command: pulumi.StringArray{
-									pulumi.String("string"),
+								Command: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
 							},
 							HttpGet: &corev1.HTTPGetActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 								HttpHeaders: corev1.HTTPHeaderArray{
 									&corev1.HTTPHeaderArgs{
-										Name:  pulumi.String("string"),
-										Value: pulumi.String("string"),
+										Name:  khulnasoft.String("string"),
+										Value: khulnasoft.String("string"),
 									},
 								},
-								Path:   pulumi.String("string"),
-								Scheme: pulumi.String("string"),
+								Path:   khulnasoft.String("string"),
+								Scheme: khulnasoft.String("string"),
 							},
 							TcpSocket: &corev1.TCPSocketActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 							},
 						},
 						PreStop: &corev1.HandlerArgs{
 							Exec: &corev1.ExecActionArgs{
-								Command: pulumi.StringArray{
-									pulumi.String("string"),
+								Command: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
 							},
 							HttpGet: &corev1.HTTPGetActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 								HttpHeaders: corev1.HTTPHeaderArray{
 									&corev1.HTTPHeaderArgs{
-										Name:  pulumi.String("string"),
-										Value: pulumi.String("string"),
+										Name:  khulnasoft.String("string"),
+										Value: khulnasoft.String("string"),
 									},
 								},
-								Path:   pulumi.String("string"),
-								Scheme: pulumi.String("string"),
+								Path:   khulnasoft.String("string"),
+								Scheme: khulnasoft.String("string"),
 							},
 							TcpSocket: &corev1.TCPSocketActionArgs{
-								Port: pulumi.Any(0),
-								Host: pulumi.String("string"),
+								Port: khulnasoft.Any(0),
+								Host: khulnasoft.String("string"),
 							},
 						},
 					},
 					LivenessProbe: &corev1.ProbeArgs{
 						Exec: &corev1.ExecActionArgs{
-							Command: pulumi.StringArray{
-								pulumi.String("string"),
+							Command: khulnasoft.StringArray{
+								khulnasoft.String("string"),
 							},
 						},
-						FailureThreshold: pulumi.Int(0),
+						FailureThreshold: khulnasoft.Int(0),
 						HttpGet: &corev1.HTTPGetActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 							HttpHeaders: corev1.HTTPHeaderArray{
 								&corev1.HTTPHeaderArgs{
-									Name:  pulumi.String("string"),
-									Value: pulumi.String("string"),
+									Name:  khulnasoft.String("string"),
+									Value: khulnasoft.String("string"),
 								},
 							},
-							Path:   pulumi.String("string"),
-							Scheme: pulumi.String("string"),
+							Path:   khulnasoft.String("string"),
+							Scheme: khulnasoft.String("string"),
 						},
-						InitialDelaySeconds: pulumi.Int(0),
-						PeriodSeconds:       pulumi.Int(0),
-						SuccessThreshold:    pulumi.Int(0),
+						InitialDelaySeconds: khulnasoft.Int(0),
+						PeriodSeconds:       khulnasoft.Int(0),
+						SuccessThreshold:    khulnasoft.Int(0),
 						TcpSocket: &corev1.TCPSocketActionArgs{
-							Port: pulumi.Any(0),
-							Host: pulumi.String("string"),
+							Port: khulnasoft.Any(0),
+							Host: khulnasoft.String("string"),
 						},
-						TerminationGracePeriodSeconds: pulumi.Int(0),
-						TimeoutSeconds:                pulumi.Int(0),
+						TerminationGracePeriodSeconds: khulnasoft.Int(0),
+						TimeoutSeconds:                khulnasoft.Int(0),
 					},
-					Command: pulumi.StringArray{
-						pulumi.String("string"),
+					Command: khulnasoft.StringArray{
+						khulnasoft.String("string"),
 					},
 					Ports: corev1.ContainerPortArray{
 						&corev1.ContainerPortArgs{
-							ContainerPort: pulumi.Int(0),
-							HostIP:        pulumi.String("string"),
-							HostPort:      pulumi.Int(0),
-							Name:          pulumi.String("string"),
-							Protocol:      pulumi.String("string"),
+							ContainerPort: khulnasoft.Int(0),
+							HostIP:        khulnasoft.String("string"),
+							HostPort:      khulnasoft.Int(0),
+							Name:          khulnasoft.String("string"),
+							Protocol:      khulnasoft.String("string"),
 						},
 					},
-					Args: pulumi.StringArray{
-						pulumi.String("string"),
+					Args: khulnasoft.StringArray{
+						khulnasoft.String("string"),
 					},
 					EnvFrom: corev1.EnvFromSourceArray{
 						&corev1.EnvFromSourceArgs{
 							ConfigMapRef: &corev1.ConfigMapEnvSourceArgs{
-								Name:     pulumi.String("string"),
-								Optional: pulumi.Bool(false),
+								Name:     khulnasoft.String("string"),
+								Optional: khulnasoft.Bool(false),
 							},
-							Prefix: pulumi.String("string"),
+							Prefix: khulnasoft.String("string"),
 							SecretRef: &corev1.SecretEnvSourceArgs{
-								Name:     pulumi.String("string"),
-								Optional: pulumi.Bool(false),
+								Name:     khulnasoft.String("string"),
+								Optional: khulnasoft.Bool(false),
 							},
 						},
 					},
 					Env: corev1.EnvVarArray{
 						&corev1.EnvVarArgs{
-							Name:  pulumi.String("string"),
-							Value: pulumi.String("string"),
+							Name:  khulnasoft.String("string"),
+							Value: khulnasoft.String("string"),
 							ValueFrom: &corev1.EnvVarSourceArgs{
 								ConfigMapKeyRef: &corev1.ConfigMapKeySelectorArgs{
-									Key:      pulumi.String("string"),
-									Name:     pulumi.String("string"),
-									Optional: pulumi.Bool(false),
+									Key:      khulnasoft.String("string"),
+									Name:     khulnasoft.String("string"),
+									Optional: khulnasoft.Bool(false),
 								},
 								FieldRef: &corev1.ObjectFieldSelectorArgs{
-									FieldPath:  pulumi.String("string"),
-									ApiVersion: pulumi.String("string"),
+									FieldPath:  khulnasoft.String("string"),
+									ApiVersion: khulnasoft.String("string"),
 								},
 								ResourceFieldRef: &corev1.ResourceFieldSelectorArgs{
-									Resource:      pulumi.String("string"),
-									ContainerName: pulumi.String("string"),
-									Divisor:       pulumi.String("string"),
+									Resource:      khulnasoft.String("string"),
+									ContainerName: khulnasoft.String("string"),
+									Divisor:       khulnasoft.String("string"),
 								},
 								SecretKeyRef: &corev1.SecretKeySelectorArgs{
-									Key:      pulumi.String("string"),
-									Name:     pulumi.String("string"),
-									Optional: pulumi.Bool(false),
+									Key:      khulnasoft.String("string"),
+									Name:     khulnasoft.String("string"),
+									Optional: khulnasoft.Bool(false),
 								},
 							},
 						},
 					},
-					Image:                    pulumi.String("string"),
-					Stdin:                    pulumi.Bool(false),
-					StdinOnce:                pulumi.Bool(false),
-					TerminationMessagePath:   pulumi.String("string"),
-					TerminationMessagePolicy: pulumi.String("string"),
-					Tty:                      pulumi.Bool(false),
+					Image:                    khulnasoft.String("string"),
+					Stdin:                    khulnasoft.Bool(false),
+					StdinOnce:                khulnasoft.Bool(false),
+					TerminationMessagePath:   khulnasoft.String("string"),
+					TerminationMessagePolicy: khulnasoft.String("string"),
+					Tty:                      khulnasoft.Bool(false),
 					VolumeDevices: corev1.VolumeDeviceArray{
 						&corev1.VolumeDeviceArgs{
-							DevicePath: pulumi.String("string"),
-							Name:       pulumi.String("string"),
+							DevicePath: khulnasoft.String("string"),
+							Name:       khulnasoft.String("string"),
 						},
 					},
 					VolumeMounts: corev1.VolumeMountArray{
 						&corev1.VolumeMountArgs{
-							MountPath:        pulumi.String("string"),
-							Name:             pulumi.String("string"),
-							MountPropagation: pulumi.String("string"),
-							ReadOnly:         pulumi.Bool(false),
-							SubPath:          pulumi.String("string"),
-							SubPathExpr:      pulumi.String("string"),
+							MountPath:        khulnasoft.String("string"),
+							Name:             khulnasoft.String("string"),
+							MountPropagation: khulnasoft.String("string"),
+							ReadOnly:         khulnasoft.Bool(false),
+							SubPath:          khulnasoft.String("string"),
+							SubPathExpr:      khulnasoft.String("string"),
 						},
 					},
-					WorkingDir: pulumi.String("string"),
+					WorkingDir: khulnasoft.String("string"),
 				},
 			},
-			NodeName:                     pulumi.String("string"),
-			ActiveDeadlineSeconds:        pulumi.Int(0),
-			DnsPolicy:                    pulumi.String("string"),
-			AutomountServiceAccountToken: pulumi.Bool(false),
-			HostNetwork:                  pulumi.Bool(false),
-			PriorityClassName:            pulumi.String("string"),
+			NodeName:                     khulnasoft.String("string"),
+			ActiveDeadlineSeconds:        khulnasoft.Int(0),
+			DnsPolicy:                    khulnasoft.String("string"),
+			AutomountServiceAccountToken: khulnasoft.Bool(false),
+			HostNetwork:                  khulnasoft.Bool(false),
+			PriorityClassName:            khulnasoft.String("string"),
 			ReadinessGates: corev1.PodReadinessGateArray{
 				&corev1.PodReadinessGateArgs{
-					ConditionType: pulumi.String("string"),
+					ConditionType: khulnasoft.String("string"),
 				},
 			},
-			RestartPolicy:    pulumi.String("string"),
-			RuntimeClassName: pulumi.String("string"),
-			SchedulerName:    pulumi.String("string"),
+			RestartPolicy:    khulnasoft.String("string"),
+			RuntimeClassName: khulnasoft.String("string"),
+			SchedulerName:    khulnasoft.String("string"),
 			SecurityContext: &corev1.PodSecurityContextArgs{
-				FsGroup:             pulumi.Int(0),
-				FsGroupChangePolicy: pulumi.String("string"),
-				RunAsGroup:          pulumi.Int(0),
-				RunAsNonRoot:        pulumi.Bool(false),
-				RunAsUser:           pulumi.Int(0),
+				FsGroup:             khulnasoft.Int(0),
+				FsGroupChangePolicy: khulnasoft.String("string"),
+				RunAsGroup:          khulnasoft.Int(0),
+				RunAsNonRoot:        khulnasoft.Bool(false),
+				RunAsUser:           khulnasoft.Int(0),
 				SeLinuxOptions: &corev1.SELinuxOptionsArgs{
-					Level: pulumi.String("string"),
-					Role:  pulumi.String("string"),
-					Type:  pulumi.String("string"),
-					User:  pulumi.String("string"),
+					Level: khulnasoft.String("string"),
+					Role:  khulnasoft.String("string"),
+					Type:  khulnasoft.String("string"),
+					User:  khulnasoft.String("string"),
 				},
 				SeccompProfile: &corev1.SeccompProfileArgs{
-					Type:             pulumi.String("string"),
-					LocalhostProfile: pulumi.String("string"),
+					Type:             khulnasoft.String("string"),
+					LocalhostProfile: khulnasoft.String("string"),
 				},
-				SupplementalGroups: pulumi.IntArray{
-					pulumi.Int(0),
+				SupplementalGroups: khulnasoft.IntArray{
+					khulnasoft.Int(0),
 				},
 				Sysctls: corev1.SysctlArray{
 					&corev1.SysctlArgs{
-						Name:  pulumi.String("string"),
-						Value: pulumi.String("string"),
+						Name:  khulnasoft.String("string"),
+						Value: khulnasoft.String("string"),
 					},
 				},
 				WindowsOptions: &corev1.WindowsSecurityContextOptionsArgs{
-					GmsaCredentialSpec:     pulumi.String("string"),
-					GmsaCredentialSpecName: pulumi.String("string"),
-					HostProcess:            pulumi.Bool(false),
-					RunAsUserName:          pulumi.String("string"),
+					GmsaCredentialSpec:     khulnasoft.String("string"),
+					GmsaCredentialSpecName: khulnasoft.String("string"),
+					HostProcess:            khulnasoft.Bool(false),
+					RunAsUserName:          khulnasoft.String("string"),
 				},
 			},
-			ServiceAccount:                pulumi.String("string"),
-			ServiceAccountName:            pulumi.String("string"),
-			SetHostnameAsFQDN:             pulumi.Bool(false),
-			ShareProcessNamespace:         pulumi.Bool(false),
-			Subdomain:                     pulumi.String("string"),
-			TerminationGracePeriodSeconds: pulumi.Int(0),
+			ServiceAccount:                khulnasoft.String("string"),
+			ServiceAccountName:            khulnasoft.String("string"),
+			SetHostnameAsFQDN:             khulnasoft.Bool(false),
+			ShareProcessNamespace:         khulnasoft.Bool(false),
+			Subdomain:                     khulnasoft.String("string"),
+			TerminationGracePeriodSeconds: khulnasoft.Int(0),
 			Tolerations: corev1.TolerationArray{
 				&corev1.TolerationArgs{
-					Effect:            pulumi.String("string"),
-					Key:               pulumi.String("string"),
-					Operator:          pulumi.String("string"),
-					TolerationSeconds: pulumi.Int(0),
-					Value:             pulumi.String("string"),
+					Effect:            khulnasoft.String("string"),
+					Key:               khulnasoft.String("string"),
+					Operator:          khulnasoft.String("string"),
+					TolerationSeconds: khulnasoft.Int(0),
+					Value:             khulnasoft.String("string"),
 				},
 			},
 			TopologySpreadConstraints: corev1.TopologySpreadConstraintArray{
 				&corev1.TopologySpreadConstraintArgs{
-					MaxSkew:           pulumi.Int(0),
-					TopologyKey:       pulumi.String("string"),
-					WhenUnsatisfiable: pulumi.String("string"),
+					MaxSkew:           khulnasoft.Int(0),
+					TopologyKey:       khulnasoft.String("string"),
+					WhenUnsatisfiable: khulnasoft.String("string"),
 					LabelSelector: &metav1.LabelSelectorArgs{
 						MatchExpressions: metav1.LabelSelectorRequirementArray{
 							&metav1.LabelSelectorRequirementArgs{
-								Key:      pulumi.String("string"),
-								Operator: pulumi.String("string"),
-								Values: pulumi.StringArray{
-									pulumi.String("string"),
+								Key:      khulnasoft.String("string"),
+								Operator: khulnasoft.String("string"),
+								Values: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
 							},
 						},
-						MatchLabels: pulumi.StringMap{
-							"string": pulumi.String("string"),
+						MatchLabels: khulnasoft.StringMap{
+							"string": khulnasoft.String("string"),
 						},
 					},
 				},
 			},
 			Volumes: corev1.VolumeArray{
 				&corev1.VolumeArgs{
-					Name: pulumi.String("string"),
+					Name: khulnasoft.String("string"),
 					GitRepo: &corev1.GitRepoVolumeSourceArgs{
-						Repository: pulumi.String("string"),
-						Directory:  pulumi.String("string"),
-						Revision:   pulumi.String("string"),
+						Repository: khulnasoft.String("string"),
+						Directory:  khulnasoft.String("string"),
+						Revision:   khulnasoft.String("string"),
 					},
 					ConfigMap: &corev1.ConfigMapVolumeSourceArgs{
-						DefaultMode: pulumi.Int(0),
+						DefaultMode: khulnasoft.Int(0),
 						Items: corev1.KeyToPathArray{
 							&corev1.KeyToPathArgs{
-								Key:  pulumi.String("string"),
-								Path: pulumi.String("string"),
-								Mode: pulumi.Int(0),
+								Key:  khulnasoft.String("string"),
+								Path: khulnasoft.String("string"),
+								Mode: khulnasoft.Int(0),
 							},
 						},
-						Name:     pulumi.String("string"),
-						Optional: pulumi.Bool(false),
+						Name:     khulnasoft.String("string"),
+						Optional: khulnasoft.Bool(false),
 					},
 					Glusterfs: &corev1.GlusterfsVolumeSourceArgs{
-						Endpoints: pulumi.String("string"),
-						Path:      pulumi.String("string"),
-						ReadOnly:  pulumi.Bool(false),
+						Endpoints: khulnasoft.String("string"),
+						Path:      khulnasoft.String("string"),
+						ReadOnly:  khulnasoft.Bool(false),
 					},
 					Cinder: &corev1.CinderVolumeSourceArgs{
-						VolumeID: pulumi.String("string"),
-						FsType:   pulumi.String("string"),
-						ReadOnly: pulumi.Bool(false),
+						VolumeID: khulnasoft.String("string"),
+						FsType:   khulnasoft.String("string"),
+						ReadOnly: khulnasoft.Bool(false),
 						SecretRef: &corev1.LocalObjectReferenceArgs{
-							Name: pulumi.String("string"),
+							Name: khulnasoft.String("string"),
 						},
 					},
 					HostPath: &corev1.HostPathVolumeSourceArgs{
-						Path: pulumi.String("string"),
-						Type: pulumi.String("string"),
+						Path: khulnasoft.String("string"),
+						Type: khulnasoft.String("string"),
 					},
 					Csi: &corev1.CSIVolumeSourceArgs{
-						Driver: pulumi.String("string"),
-						FsType: pulumi.String("string"),
+						Driver: khulnasoft.String("string"),
+						FsType: khulnasoft.String("string"),
 						NodePublishSecretRef: &corev1.LocalObjectReferenceArgs{
-							Name: pulumi.String("string"),
+							Name: khulnasoft.String("string"),
 						},
-						ReadOnly: pulumi.Bool(false),
-						VolumeAttributes: pulumi.StringMap{
-							"string": pulumi.String("string"),
+						ReadOnly: khulnasoft.Bool(false),
+						VolumeAttributes: khulnasoft.StringMap{
+							"string": khulnasoft.String("string"),
 						},
 					},
 					DownwardAPI: &corev1.DownwardAPIVolumeSourceArgs{
-						DefaultMode: pulumi.Int(0),
+						DefaultMode: khulnasoft.Int(0),
 						Items: corev1.DownwardAPIVolumeFileArray{
 							&corev1.DownwardAPIVolumeFileArgs{
-								Path: pulumi.String("string"),
+								Path: khulnasoft.String("string"),
 								FieldRef: &corev1.ObjectFieldSelectorArgs{
-									FieldPath:  pulumi.String("string"),
-									ApiVersion: pulumi.String("string"),
+									FieldPath:  khulnasoft.String("string"),
+									ApiVersion: khulnasoft.String("string"),
 								},
-								Mode: pulumi.Int(0),
+								Mode: khulnasoft.Int(0),
 								ResourceFieldRef: &corev1.ResourceFieldSelectorArgs{
-									Resource:      pulumi.String("string"),
-									ContainerName: pulumi.String("string"),
-									Divisor:       pulumi.String("string"),
+									Resource:      khulnasoft.String("string"),
+									ContainerName: khulnasoft.String("string"),
+									Divisor:       khulnasoft.String("string"),
 								},
 							},
 						},
 					},
 					EmptyDir: &corev1.EmptyDirVolumeSourceArgs{
-						Medium:    pulumi.String("string"),
-						SizeLimit: pulumi.String("string"),
+						Medium:    khulnasoft.String("string"),
+						SizeLimit: khulnasoft.String("string"),
 					},
 					Ephemeral: &corev1.EphemeralVolumeSourceArgs{
-						ReadOnly: pulumi.Bool(false),
+						ReadOnly: khulnasoft.Bool(false),
 						VolumeClaimTemplate: &corev1.PersistentVolumeClaimTemplateArgs{
 							Spec: &corev1.PersistentVolumeClaimSpecArgs{
-								AccessModes: pulumi.StringArray{
-									pulumi.String("string"),
+								AccessModes: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
 								DataSource: &corev1.TypedLocalObjectReferenceArgs{
-									Kind:     pulumi.String("string"),
-									Name:     pulumi.String("string"),
-									ApiGroup: pulumi.String("string"),
+									Kind:     khulnasoft.String("string"),
+									Name:     khulnasoft.String("string"),
+									ApiGroup: khulnasoft.String("string"),
 								},
 								DataSourceRef: &corev1.TypedLocalObjectReferenceArgs{
-									Kind:     pulumi.String("string"),
-									Name:     pulumi.String("string"),
-									ApiGroup: pulumi.String("string"),
+									Kind:     khulnasoft.String("string"),
+									Name:     khulnasoft.String("string"),
+									ApiGroup: khulnasoft.String("string"),
 								},
 								Resources: &corev1.ResourceRequirementsArgs{
-									Limits: pulumi.StringMap{
-										"string": pulumi.String("string"),
+									Limits: khulnasoft.StringMap{
+										"string": khulnasoft.String("string"),
 									},
-									Requests: pulumi.StringMap{
-										"string": pulumi.String("string"),
+									Requests: khulnasoft.StringMap{
+										"string": khulnasoft.String("string"),
 									},
 								},
 								Selector: &metav1.LabelSelectorArgs{
 									MatchExpressions: metav1.LabelSelectorRequirementArray{
 										&metav1.LabelSelectorRequirementArgs{
-											Key:      pulumi.String("string"),
-											Operator: pulumi.String("string"),
-											Values: pulumi.StringArray{
-												pulumi.String("string"),
+											Key:      khulnasoft.String("string"),
+											Operator: khulnasoft.String("string"),
+											Values: khulnasoft.StringArray{
+												khulnasoft.String("string"),
 											},
 										},
 									},
-									MatchLabels: pulumi.StringMap{
-										"string": pulumi.String("string"),
+									MatchLabels: khulnasoft.StringMap{
+										"string": khulnasoft.String("string"),
 									},
 								},
-								StorageClassName: pulumi.String("string"),
-								VolumeMode:       pulumi.String("string"),
-								VolumeName:       pulumi.String("string"),
+								StorageClassName: khulnasoft.String("string"),
+								VolumeMode:       khulnasoft.String("string"),
+								VolumeName:       khulnasoft.String("string"),
 							},
 							Metadata: &metav1.ObjectMetaArgs{
-								Annotations: pulumi.StringMap{
-									"string": pulumi.String("string"),
+								Annotations: khulnasoft.StringMap{
+									"string": khulnasoft.String("string"),
 								},
-								ClusterName:                pulumi.String("string"),
-								CreationTimestamp:          pulumi.String("string"),
-								DeletionGracePeriodSeconds: pulumi.Int(0),
-								DeletionTimestamp:          pulumi.String("string"),
-								Finalizers: pulumi.StringArray{
-									pulumi.String("string"),
+								ClusterName:                khulnasoft.String("string"),
+								CreationTimestamp:          khulnasoft.String("string"),
+								DeletionGracePeriodSeconds: khulnasoft.Int(0),
+								DeletionTimestamp:          khulnasoft.String("string"),
+								Finalizers: khulnasoft.StringArray{
+									khulnasoft.String("string"),
 								},
-								GenerateName: pulumi.String("string"),
-								Generation:   pulumi.Int(0),
-								Labels: pulumi.StringMap{
-									"string": pulumi.String("string"),
+								GenerateName: khulnasoft.String("string"),
+								Generation:   khulnasoft.Int(0),
+								Labels: khulnasoft.StringMap{
+									"string": khulnasoft.String("string"),
 								},
 								ManagedFields: metav1.ManagedFieldsEntryArray{
 									&metav1.ManagedFieldsEntryArgs{
-										ApiVersion:  pulumi.String("string"),
-										FieldsType:  pulumi.String("string"),
-										FieldsV1:    pulumi.Any("{}"),
-										Manager:     pulumi.String("string"),
-										Operation:   pulumi.String("string"),
-										Subresource: pulumi.String("string"),
-										Time:        pulumi.String("string"),
+										ApiVersion:  khulnasoft.String("string"),
+										FieldsType:  khulnasoft.String("string"),
+										FieldsV1:    khulnasoft.Any("{}"),
+										Manager:     khulnasoft.String("string"),
+										Operation:   khulnasoft.String("string"),
+										Subresource: khulnasoft.String("string"),
+										Time:        khulnasoft.String("string"),
 									},
 								},
-								Name:      pulumi.String("string"),
-								Namespace: pulumi.String("string"),
+								Name:      khulnasoft.String("string"),
+								Namespace: khulnasoft.String("string"),
 								OwnerReferences: metav1.OwnerReferenceArray{
 									&metav1.OwnerReferenceArgs{
-										ApiVersion:         pulumi.String("string"),
-										Kind:               pulumi.String("string"),
-										Name:               pulumi.String("string"),
-										Uid:                pulumi.String("string"),
-										BlockOwnerDeletion: pulumi.Bool(false),
-										Controller:         pulumi.Bool(false),
+										ApiVersion:         khulnasoft.String("string"),
+										Kind:               khulnasoft.String("string"),
+										Name:               khulnasoft.String("string"),
+										Uid:                khulnasoft.String("string"),
+										BlockOwnerDeletion: khulnasoft.Bool(false),
+										Controller:         khulnasoft.Bool(false),
 									},
 								},
-								ResourceVersion: pulumi.String("string"),
-								SelfLink:        pulumi.String("string"),
-								Uid:             pulumi.String("string"),
+								ResourceVersion: khulnasoft.String("string"),
+								SelfLink:        khulnasoft.String("string"),
+								Uid:             khulnasoft.String("string"),
 							},
 						},
 					},
 					Fc: &corev1.FCVolumeSourceArgs{
-						FsType:   pulumi.String("string"),
-						Lun:      pulumi.Int(0),
-						ReadOnly: pulumi.Bool(false),
-						TargetWWNs: pulumi.StringArray{
-							pulumi.String("string"),
+						FsType:   khulnasoft.String("string"),
+						Lun:      khulnasoft.Int(0),
+						ReadOnly: khulnasoft.Bool(false),
+						TargetWWNs: khulnasoft.StringArray{
+							khulnasoft.String("string"),
 						},
-						Wwids: pulumi.StringArray{
-							pulumi.String("string"),
+						Wwids: khulnasoft.StringArray{
+							khulnasoft.String("string"),
 						},
 					},
 					FlexVolume: &corev1.FlexVolumeSourceArgs{
-						Driver: pulumi.String("string"),
-						FsType: pulumi.String("string"),
-						Options: pulumi.StringMap{
-							"string": pulumi.String("string"),
+						Driver: khulnasoft.String("string"),
+						FsType: khulnasoft.String("string"),
+						Options: khulnasoft.StringMap{
+							"string": khulnasoft.String("string"),
 						},
-						ReadOnly: pulumi.Bool(false),
+						ReadOnly: khulnasoft.Bool(false),
 						SecretRef: &corev1.LocalObjectReferenceArgs{
-							Name: pulumi.String("string"),
+							Name: khulnasoft.String("string"),
 						},
 					},
 					Iscsi: &corev1.ISCSIVolumeSourceArgs{
-						Iqn:               pulumi.String("string"),
-						Lun:               pulumi.Int(0),
-						TargetPortal:      pulumi.String("string"),
-						ChapAuthDiscovery: pulumi.Bool(false),
-						ChapAuthSession:   pulumi.Bool(false),
-						FsType:            pulumi.String("string"),
-						InitiatorName:     pulumi.String("string"),
-						IscsiInterface:    pulumi.String("string"),
-						Portals: pulumi.StringArray{
-							pulumi.String("string"),
+						Iqn:               khulnasoft.String("string"),
+						Lun:               khulnasoft.Int(0),
+						TargetPortal:      khulnasoft.String("string"),
+						ChapAuthDiscovery: khulnasoft.Bool(false),
+						ChapAuthSession:   khulnasoft.Bool(false),
+						FsType:            khulnasoft.String("string"),
+						InitiatorName:     khulnasoft.String("string"),
+						IscsiInterface:    khulnasoft.String("string"),
+						Portals: khulnasoft.StringArray{
+							khulnasoft.String("string"),
 						},
-						ReadOnly: pulumi.Bool(false),
+						ReadOnly: khulnasoft.Bool(false),
 						SecretRef: &corev1.LocalObjectReferenceArgs{
-							Name: pulumi.String("string"),
+							Name: khulnasoft.String("string"),
 						},
 					},
 					GcePersistentDisk: &corev1.GCEPersistentDiskVolumeSourceArgs{
-						PdName:    pulumi.String("string"),
-						FsType:    pulumi.String("string"),
-						Partition: pulumi.Int(0),
-						ReadOnly:  pulumi.Bool(false),
+						PdName:    khulnasoft.String("string"),
+						FsType:    khulnasoft.String("string"),
+						Partition: khulnasoft.Int(0),
+						ReadOnly:  khulnasoft.Bool(false),
 					},
 					AwsElasticBlockStore: &corev1.AWSElasticBlockStoreVolumeSourceArgs{
-						VolumeID:  pulumi.String("string"),
-						FsType:    pulumi.String("string"),
-						Partition: pulumi.Int(0),
-						ReadOnly:  pulumi.Bool(false),
+						VolumeID:  khulnasoft.String("string"),
+						FsType:    khulnasoft.String("string"),
+						Partition: khulnasoft.Int(0),
+						ReadOnly:  khulnasoft.Bool(false),
 					},
 					Cephfs: &corev1.CephFSVolumeSourceArgs{
-						Monitors: pulumi.StringArray{
-							pulumi.String("string"),
+						Monitors: khulnasoft.StringArray{
+							khulnasoft.String("string"),
 						},
-						Path:       pulumi.String("string"),
-						ReadOnly:   pulumi.Bool(false),
-						SecretFile: pulumi.String("string"),
+						Path:       khulnasoft.String("string"),
+						ReadOnly:   khulnasoft.Bool(false),
+						SecretFile: khulnasoft.String("string"),
 						SecretRef: &corev1.LocalObjectReferenceArgs{
-							Name: pulumi.String("string"),
+							Name: khulnasoft.String("string"),
 						},
-						User: pulumi.String("string"),
+						User: khulnasoft.String("string"),
 					},
 					AzureFile: &corev1.AzureFileVolumeSourceArgs{
-						SecretName: pulumi.String("string"),
-						ShareName:  pulumi.String("string"),
-						ReadOnly:   pulumi.Bool(false),
+						SecretName: khulnasoft.String("string"),
+						ShareName:  khulnasoft.String("string"),
+						ReadOnly:   khulnasoft.Bool(false),
 					},
 					Flocker: &corev1.FlockerVolumeSourceArgs{
-						DatasetName: pulumi.String("string"),
-						DatasetUUID: pulumi.String("string"),
+						DatasetName: khulnasoft.String("string"),
+						DatasetUUID: khulnasoft.String("string"),
 					},
 					AzureDisk: &corev1.AzureDiskVolumeSourceArgs{
-						DiskName:    pulumi.String("string"),
-						DiskURI:     pulumi.String("string"),
-						CachingMode: pulumi.String("string"),
-						FsType:      pulumi.String("string"),
-						Kind:        pulumi.String("string"),
-						ReadOnly:    pulumi.Bool(false),
+						DiskName:    khulnasoft.String("string"),
+						DiskURI:     khulnasoft.String("string"),
+						CachingMode: khulnasoft.String("string"),
+						FsType:      khulnasoft.String("string"),
+						Kind:        khulnasoft.String("string"),
+						ReadOnly:    khulnasoft.Bool(false),
 					},
 					Nfs: &corev1.NFSVolumeSourceArgs{
-						Path:     pulumi.String("string"),
-						Server:   pulumi.String("string"),
-						ReadOnly: pulumi.Bool(false),
+						Path:     khulnasoft.String("string"),
+						Server:   khulnasoft.String("string"),
+						ReadOnly: khulnasoft.Bool(false),
 					},
 					PersistentVolumeClaim: &corev1.PersistentVolumeClaimVolumeSourceArgs{
-						ClaimName: pulumi.String("string"),
-						ReadOnly:  pulumi.Bool(false),
+						ClaimName: khulnasoft.String("string"),
+						ReadOnly:  khulnasoft.Bool(false),
 					},
 					PhotonPersistentDisk: &corev1.PhotonPersistentDiskVolumeSourceArgs{
-						PdID:   pulumi.String("string"),
-						FsType: pulumi.String("string"),
+						PdID:   khulnasoft.String("string"),
+						FsType: khulnasoft.String("string"),
 					},
 					PortworxVolume: &corev1.PortworxVolumeSourceArgs{
-						VolumeID: pulumi.String("string"),
-						FsType:   pulumi.String("string"),
-						ReadOnly: pulumi.Bool(false),
+						VolumeID: khulnasoft.String("string"),
+						FsType:   khulnasoft.String("string"),
+						ReadOnly: khulnasoft.Bool(false),
 					},
 					Projected: &corev1.ProjectedVolumeSourceArgs{
 						Sources: corev1.VolumeProjectionArray{
@@ -3817,27 +3817,27 @@ example, err := foo.NewComponent(ctx, "componentResource", &foo.ComponentArgs{
 								ConfigMap: &corev1.ConfigMapProjectionArgs{
 									Items: corev1.KeyToPathArray{
 										&corev1.KeyToPathArgs{
-											Key:  pulumi.String("string"),
-											Path: pulumi.String("string"),
-											Mode: pulumi.Int(0),
+											Key:  khulnasoft.String("string"),
+											Path: khulnasoft.String("string"),
+											Mode: khulnasoft.Int(0),
 										},
 									},
-									Name:     pulumi.String("string"),
-									Optional: pulumi.Bool(false),
+									Name:     khulnasoft.String("string"),
+									Optional: khulnasoft.Bool(false),
 								},
 								DownwardAPI: &corev1.DownwardAPIProjectionArgs{
 									Items: corev1.DownwardAPIVolumeFileArray{
 										&corev1.DownwardAPIVolumeFileArgs{
-											Path: pulumi.String("string"),
+											Path: khulnasoft.String("string"),
 											FieldRef: &corev1.ObjectFieldSelectorArgs{
-												FieldPath:  pulumi.String("string"),
-												ApiVersion: pulumi.String("string"),
+												FieldPath:  khulnasoft.String("string"),
+												ApiVersion: khulnasoft.String("string"),
 											},
-											Mode: pulumi.Int(0),
+											Mode: khulnasoft.Int(0),
 											ResourceFieldRef: &corev1.ResourceFieldSelectorArgs{
-												Resource:      pulumi.String("string"),
-												ContainerName: pulumi.String("string"),
-												Divisor:       pulumi.String("string"),
+												Resource:      khulnasoft.String("string"),
+												ContainerName: khulnasoft.String("string"),
+												Divisor:       khulnasoft.String("string"),
 											},
 										},
 									},
@@ -3845,85 +3845,85 @@ example, err := foo.NewComponent(ctx, "componentResource", &foo.ComponentArgs{
 								Secret: &corev1.SecretProjectionArgs{
 									Items: corev1.KeyToPathArray{
 										&corev1.KeyToPathArgs{
-											Key:  pulumi.String("string"),
-											Path: pulumi.String("string"),
-											Mode: pulumi.Int(0),
+											Key:  khulnasoft.String("string"),
+											Path: khulnasoft.String("string"),
+											Mode: khulnasoft.Int(0),
 										},
 									},
-									Name:     pulumi.String("string"),
-									Optional: pulumi.Bool(false),
+									Name:     khulnasoft.String("string"),
+									Optional: khulnasoft.Bool(false),
 								},
 								ServiceAccountToken: &corev1.ServiceAccountTokenProjectionArgs{
-									Path:              pulumi.String("string"),
-									Audience:          pulumi.String("string"),
-									ExpirationSeconds: pulumi.Int(0),
+									Path:              khulnasoft.String("string"),
+									Audience:          khulnasoft.String("string"),
+									ExpirationSeconds: khulnasoft.Int(0),
 								},
 							},
 						},
-						DefaultMode: pulumi.Int(0),
+						DefaultMode: khulnasoft.Int(0),
 					},
 					Quobyte: &corev1.QuobyteVolumeSourceArgs{
-						Registry: pulumi.String("string"),
-						Volume:   pulumi.String("string"),
-						Group:    pulumi.String("string"),
-						ReadOnly: pulumi.Bool(false),
-						Tenant:   pulumi.String("string"),
-						User:     pulumi.String("string"),
+						Registry: khulnasoft.String("string"),
+						Volume:   khulnasoft.String("string"),
+						Group:    khulnasoft.String("string"),
+						ReadOnly: khulnasoft.Bool(false),
+						Tenant:   khulnasoft.String("string"),
+						User:     khulnasoft.String("string"),
 					},
 					Rbd: &corev1.RBDVolumeSourceArgs{
-						Image: pulumi.String("string"),
-						Monitors: pulumi.StringArray{
-							pulumi.String("string"),
+						Image: khulnasoft.String("string"),
+						Monitors: khulnasoft.StringArray{
+							khulnasoft.String("string"),
 						},
-						FsType:   pulumi.String("string"),
-						Keyring:  pulumi.String("string"),
-						Pool:     pulumi.String("string"),
-						ReadOnly: pulumi.Bool(false),
+						FsType:   khulnasoft.String("string"),
+						Keyring:  khulnasoft.String("string"),
+						Pool:     khulnasoft.String("string"),
+						ReadOnly: khulnasoft.Bool(false),
 						SecretRef: &corev1.LocalObjectReferenceArgs{
-							Name: pulumi.String("string"),
+							Name: khulnasoft.String("string"),
 						},
-						User: pulumi.String("string"),
+						User: khulnasoft.String("string"),
 					},
 					ScaleIO: &corev1.ScaleIOVolumeSourceArgs{
-						Gateway: pulumi.String("string"),
+						Gateway: khulnasoft.String("string"),
 						SecretRef: &corev1.LocalObjectReferenceArgs{
-							Name: pulumi.String("string"),
+							Name: khulnasoft.String("string"),
 						},
-						System:           pulumi.String("string"),
-						FsType:           pulumi.String("string"),
-						ProtectionDomain: pulumi.String("string"),
-						ReadOnly:         pulumi.Bool(false),
-						SslEnabled:       pulumi.Bool(false),
-						StorageMode:      pulumi.String("string"),
-						StoragePool:      pulumi.String("string"),
-						VolumeName:       pulumi.String("string"),
+						System:           khulnasoft.String("string"),
+						FsType:           khulnasoft.String("string"),
+						ProtectionDomain: khulnasoft.String("string"),
+						ReadOnly:         khulnasoft.Bool(false),
+						SslEnabled:       khulnasoft.Bool(false),
+						StorageMode:      khulnasoft.String("string"),
+						StoragePool:      khulnasoft.String("string"),
+						VolumeName:       khulnasoft.String("string"),
 					},
 					Secret: &corev1.SecretVolumeSourceArgs{
-						DefaultMode: pulumi.Int(0),
+						DefaultMode: khulnasoft.Int(0),
 						Items: corev1.KeyToPathArray{
 							&corev1.KeyToPathArgs{
-								Key:  pulumi.String("string"),
-								Path: pulumi.String("string"),
-								Mode: pulumi.Int(0),
+								Key:  khulnasoft.String("string"),
+								Path: khulnasoft.String("string"),
+								Mode: khulnasoft.Int(0),
 							},
 						},
-						Optional:   pulumi.Bool(false),
-						SecretName: pulumi.String("string"),
+						Optional:   khulnasoft.Bool(false),
+						SecretName: khulnasoft.String("string"),
 					},
 					Storageos: &corev1.StorageOSVolumeSourceArgs{
-						FsType:   pulumi.String("string"),
-						ReadOnly: pulumi.Bool(false),
+						FsType:   khulnasoft.String("string"),
+						ReadOnly: khulnasoft.Bool(false),
 						SecretRef: &corev1.LocalObjectReferenceArgs{
-							Name: pulumi.String("string"),
+							Name: khulnasoft.String("string"),
 						},
-						VolumeName:      pulumi.String("string"),
-						VolumeNamespace: pulumi.String("string"),
+						VolumeName:      khulnasoft.String("string"),
+						VolumeNamespace: khulnasoft.String("string"),
 					},
 					VsphereVolume: &corev1.VsphereVirtualDiskVolumeSourceArgs{
-						VolumePath:        pulumi.String("string"),
-						FsType:            pulumi.String("string"),
-						StoragePolicyID:   pulumi.String("string"),
-						StoragePolicyName: pulumi.String("string"),
+						VolumePath:        khulnasoft.String("string"),
+						FsType:            khulnasoft.String("string"),
+						StoragePolicyID:   khulnasoft.String("string"),
+						StoragePolicyName: khulnasoft.String("string"),
 					},
 				},
 			},
@@ -3931,179 +3931,179 @@ example, err := foo.NewComponent(ctx, "componentResource", &foo.ComponentArgs{
 		Status: &corev1.PodStatusArgs{
 			Conditions: corev1.PodConditionArray{
 				&corev1.PodConditionArgs{
-					Status:             pulumi.String("string"),
-					Type:               pulumi.String("string"),
-					LastProbeTime:      pulumi.String("string"),
-					LastTransitionTime: pulumi.String("string"),
-					Message:            pulumi.String("string"),
-					Reason:             pulumi.String("string"),
+					Status:             khulnasoft.String("string"),
+					Type:               khulnasoft.String("string"),
+					LastProbeTime:      khulnasoft.String("string"),
+					LastTransitionTime: khulnasoft.String("string"),
+					Message:            khulnasoft.String("string"),
+					Reason:             khulnasoft.String("string"),
 				},
 			},
 			ContainerStatuses: corev1.ContainerStatusArray{
 				&corev1.ContainerStatusArgs{
-					Image:        pulumi.String("string"),
-					ImageID:      pulumi.String("string"),
-					Name:         pulumi.String("string"),
-					Ready:        pulumi.Bool(false),
-					RestartCount: pulumi.Int(0),
-					ContainerID:  pulumi.String("string"),
+					Image:        khulnasoft.String("string"),
+					ImageID:      khulnasoft.String("string"),
+					Name:         khulnasoft.String("string"),
+					Ready:        khulnasoft.Bool(false),
+					RestartCount: khulnasoft.Int(0),
+					ContainerID:  khulnasoft.String("string"),
 					LastState: &corev1.ContainerStateArgs{
 						Running: &corev1.ContainerStateRunningArgs{
-							StartedAt: pulumi.String("string"),
+							StartedAt: khulnasoft.String("string"),
 						},
 						Terminated: &corev1.ContainerStateTerminatedArgs{
-							ExitCode:    pulumi.Int(0),
-							ContainerID: pulumi.String("string"),
-							FinishedAt:  pulumi.String("string"),
-							Message:     pulumi.String("string"),
-							Reason:      pulumi.String("string"),
-							Signal:      pulumi.Int(0),
-							StartedAt:   pulumi.String("string"),
+							ExitCode:    khulnasoft.Int(0),
+							ContainerID: khulnasoft.String("string"),
+							FinishedAt:  khulnasoft.String("string"),
+							Message:     khulnasoft.String("string"),
+							Reason:      khulnasoft.String("string"),
+							Signal:      khulnasoft.Int(0),
+							StartedAt:   khulnasoft.String("string"),
 						},
 						Waiting: &corev1.ContainerStateWaitingArgs{
-							Message: pulumi.String("string"),
-							Reason:  pulumi.String("string"),
+							Message: khulnasoft.String("string"),
+							Reason:  khulnasoft.String("string"),
 						},
 					},
-					Started: pulumi.Bool(false),
+					Started: khulnasoft.Bool(false),
 					State: &corev1.ContainerStateArgs{
 						Running: &corev1.ContainerStateRunningArgs{
-							StartedAt: pulumi.String("string"),
+							StartedAt: khulnasoft.String("string"),
 						},
 						Terminated: &corev1.ContainerStateTerminatedArgs{
-							ExitCode:    pulumi.Int(0),
-							ContainerID: pulumi.String("string"),
-							FinishedAt:  pulumi.String("string"),
-							Message:     pulumi.String("string"),
-							Reason:      pulumi.String("string"),
-							Signal:      pulumi.Int(0),
-							StartedAt:   pulumi.String("string"),
+							ExitCode:    khulnasoft.Int(0),
+							ContainerID: khulnasoft.String("string"),
+							FinishedAt:  khulnasoft.String("string"),
+							Message:     khulnasoft.String("string"),
+							Reason:      khulnasoft.String("string"),
+							Signal:      khulnasoft.Int(0),
+							StartedAt:   khulnasoft.String("string"),
 						},
 						Waiting: &corev1.ContainerStateWaitingArgs{
-							Message: pulumi.String("string"),
-							Reason:  pulumi.String("string"),
+							Message: khulnasoft.String("string"),
+							Reason:  khulnasoft.String("string"),
 						},
 					},
 				},
 			},
 			EphemeralContainerStatuses: corev1.ContainerStatusArray{
 				&corev1.ContainerStatusArgs{
-					Image:        pulumi.String("string"),
-					ImageID:      pulumi.String("string"),
-					Name:         pulumi.String("string"),
-					Ready:        pulumi.Bool(false),
-					RestartCount: pulumi.Int(0),
-					ContainerID:  pulumi.String("string"),
+					Image:        khulnasoft.String("string"),
+					ImageID:      khulnasoft.String("string"),
+					Name:         khulnasoft.String("string"),
+					Ready:        khulnasoft.Bool(false),
+					RestartCount: khulnasoft.Int(0),
+					ContainerID:  khulnasoft.String("string"),
 					LastState: &corev1.ContainerStateArgs{
 						Running: &corev1.ContainerStateRunningArgs{
-							StartedAt: pulumi.String("string"),
+							StartedAt: khulnasoft.String("string"),
 						},
 						Terminated: &corev1.ContainerStateTerminatedArgs{
-							ExitCode:    pulumi.Int(0),
-							ContainerID: pulumi.String("string"),
-							FinishedAt:  pulumi.String("string"),
-							Message:     pulumi.String("string"),
-							Reason:      pulumi.String("string"),
-							Signal:      pulumi.Int(0),
-							StartedAt:   pulumi.String("string"),
+							ExitCode:    khulnasoft.Int(0),
+							ContainerID: khulnasoft.String("string"),
+							FinishedAt:  khulnasoft.String("string"),
+							Message:     khulnasoft.String("string"),
+							Reason:      khulnasoft.String("string"),
+							Signal:      khulnasoft.Int(0),
+							StartedAt:   khulnasoft.String("string"),
 						},
 						Waiting: &corev1.ContainerStateWaitingArgs{
-							Message: pulumi.String("string"),
-							Reason:  pulumi.String("string"),
+							Message: khulnasoft.String("string"),
+							Reason:  khulnasoft.String("string"),
 						},
 					},
-					Started: pulumi.Bool(false),
+					Started: khulnasoft.Bool(false),
 					State: &corev1.ContainerStateArgs{
 						Running: &corev1.ContainerStateRunningArgs{
-							StartedAt: pulumi.String("string"),
+							StartedAt: khulnasoft.String("string"),
 						},
 						Terminated: &corev1.ContainerStateTerminatedArgs{
-							ExitCode:    pulumi.Int(0),
-							ContainerID: pulumi.String("string"),
-							FinishedAt:  pulumi.String("string"),
-							Message:     pulumi.String("string"),
-							Reason:      pulumi.String("string"),
-							Signal:      pulumi.Int(0),
-							StartedAt:   pulumi.String("string"),
+							ExitCode:    khulnasoft.Int(0),
+							ContainerID: khulnasoft.String("string"),
+							FinishedAt:  khulnasoft.String("string"),
+							Message:     khulnasoft.String("string"),
+							Reason:      khulnasoft.String("string"),
+							Signal:      khulnasoft.Int(0),
+							StartedAt:   khulnasoft.String("string"),
 						},
 						Waiting: &corev1.ContainerStateWaitingArgs{
-							Message: pulumi.String("string"),
-							Reason:  pulumi.String("string"),
+							Message: khulnasoft.String("string"),
+							Reason:  khulnasoft.String("string"),
 						},
 					},
 				},
 			},
-			HostIP: pulumi.String("string"),
+			HostIP: khulnasoft.String("string"),
 			InitContainerStatuses: corev1.ContainerStatusArray{
 				&corev1.ContainerStatusArgs{
-					Image:        pulumi.String("string"),
-					ImageID:      pulumi.String("string"),
-					Name:         pulumi.String("string"),
-					Ready:        pulumi.Bool(false),
-					RestartCount: pulumi.Int(0),
-					ContainerID:  pulumi.String("string"),
+					Image:        khulnasoft.String("string"),
+					ImageID:      khulnasoft.String("string"),
+					Name:         khulnasoft.String("string"),
+					Ready:        khulnasoft.Bool(false),
+					RestartCount: khulnasoft.Int(0),
+					ContainerID:  khulnasoft.String("string"),
 					LastState: &corev1.ContainerStateArgs{
 						Running: &corev1.ContainerStateRunningArgs{
-							StartedAt: pulumi.String("string"),
+							StartedAt: khulnasoft.String("string"),
 						},
 						Terminated: &corev1.ContainerStateTerminatedArgs{
-							ExitCode:    pulumi.Int(0),
-							ContainerID: pulumi.String("string"),
-							FinishedAt:  pulumi.String("string"),
-							Message:     pulumi.String("string"),
-							Reason:      pulumi.String("string"),
-							Signal:      pulumi.Int(0),
-							StartedAt:   pulumi.String("string"),
+							ExitCode:    khulnasoft.Int(0),
+							ContainerID: khulnasoft.String("string"),
+							FinishedAt:  khulnasoft.String("string"),
+							Message:     khulnasoft.String("string"),
+							Reason:      khulnasoft.String("string"),
+							Signal:      khulnasoft.Int(0),
+							StartedAt:   khulnasoft.String("string"),
 						},
 						Waiting: &corev1.ContainerStateWaitingArgs{
-							Message: pulumi.String("string"),
-							Reason:  pulumi.String("string"),
+							Message: khulnasoft.String("string"),
+							Reason:  khulnasoft.String("string"),
 						},
 					},
-					Started: pulumi.Bool(false),
+					Started: khulnasoft.Bool(false),
 					State: &corev1.ContainerStateArgs{
 						Running: &corev1.ContainerStateRunningArgs{
-							StartedAt: pulumi.String("string"),
+							StartedAt: khulnasoft.String("string"),
 						},
 						Terminated: &corev1.ContainerStateTerminatedArgs{
-							ExitCode:    pulumi.Int(0),
-							ContainerID: pulumi.String("string"),
-							FinishedAt:  pulumi.String("string"),
-							Message:     pulumi.String("string"),
-							Reason:      pulumi.String("string"),
-							Signal:      pulumi.Int(0),
-							StartedAt:   pulumi.String("string"),
+							ExitCode:    khulnasoft.Int(0),
+							ContainerID: khulnasoft.String("string"),
+							FinishedAt:  khulnasoft.String("string"),
+							Message:     khulnasoft.String("string"),
+							Reason:      khulnasoft.String("string"),
+							Signal:      khulnasoft.Int(0),
+							StartedAt:   khulnasoft.String("string"),
 						},
 						Waiting: &corev1.ContainerStateWaitingArgs{
-							Message: pulumi.String("string"),
-							Reason:  pulumi.String("string"),
+							Message: khulnasoft.String("string"),
+							Reason:  khulnasoft.String("string"),
 						},
 					},
 				},
 			},
-			Message:           pulumi.String("string"),
-			NominatedNodeName: pulumi.String("string"),
-			Phase:             pulumi.String("string"),
-			PodIP:             pulumi.String("string"),
+			Message:           khulnasoft.String("string"),
+			NominatedNodeName: khulnasoft.String("string"),
+			Phase:             khulnasoft.String("string"),
+			PodIP:             khulnasoft.String("string"),
 			PodIPs: corev1.PodIPArray{
 				&corev1.PodIPArgs{
-					Ip: pulumi.String("string"),
+					Ip: khulnasoft.String("string"),
 				},
 			},
-			QosClass:  pulumi.String("string"),
-			Reason:    pulumi.String("string"),
-			StartTime: pulumi.String("string"),
+			QosClass:  khulnasoft.String("string"),
+			Reason:    khulnasoft.String("string"),
+			StartTime: khulnasoft.String("string"),
 		},
 	},
 })
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 
 ```java
 var componentResource = new Component("componentResource", ComponentArgs.builder()
@@ -5490,12 +5490,12 @@ var componentResource = new Component("componentResource", ComponentArgs.builder
     .build());
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 
 ```python
 component_resource = foo.Component("componentResource",
@@ -6935,12 +6935,12 @@ component_resource = foo.Component("componentResource",
     })
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="typescript">
+<khulnasoft-choosable type="language" values="typescript">
 
 ```typescript
 const componentResource = new foo.Component("componentResource", {
@@ -8381,12 +8381,12 @@ const componentResource = new foo.Component("componentResource", {
 });
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 
 ```yaml
 type: foo:Component
@@ -9576,7 +9576,7 @@ properties:
             startTime: string
 ```
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -9587,18 +9587,18 @@ To learn more about resource properties and how to use them, see [Inputs and Out
 
 ### Inputs
 
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <p>
 In Python, inputs that are objects can be passed either as <a href="/docs/languages-sdks/python/#inputs-and-outputs">argument classes or as dictionary literals</a>.
 </p>
-</pulumi-choosable>
+</khulnasoft-choosable>
 
 The Component resource accepts the following [input](/docs/intro/concepts/inputs-outputs) properties:
 
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="eniconfig_csharp">
@@ -9616,11 +9616,11 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
         <span class="property-type"><a href="#pod">Pulumi.<wbr>Kubernetes.<wbr>Types.<wbr>Inputs.<wbr>Core.<wbr>V1.<wbr>Pod</a></span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/kubernetes">Kubernetes</a> package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="eniconfig_go">
@@ -9638,11 +9638,11 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
         <span class="property-type"><a href="#pod">Pod<wbr>Type<wbr>Args</a></span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/kubernetes">Kubernetes</a> package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="eniconfig_java">
@@ -9660,11 +9660,11 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
         <span class="property-type"><a href="#pod">Pod</a></span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/kubernetes">Kubernetes</a> package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="eniconfig_nodejs">
@@ -9679,14 +9679,14 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#pod_nodejs" style="color: inherit; text-decoration: inherit;">pod</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="#pod">pulumi<wbr>Kubernetestypesinputcorev1Pod</a></span>
+        <span class="property-type"><a href="#pod">khulnasoft<wbr>Kubernetestypesinputcorev1Pod</a></span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/kubernetes">Kubernetes</a> package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="eni_config_python">
@@ -9701,14 +9701,14 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#pod_python" style="color: inherit; text-decoration: inherit;">pod</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type"><a href="#pod">pulumi_<wbr>kubernetes.core.v1.<wbr>Pod<wbr>Args</a></span>
+        <span class="property-type"><a href="#pod">khulnasoft_<wbr>kubernetes.core.v1.<wbr>Pod<wbr>Args</a></span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/kubernetes">Kubernetes</a> package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="eniconfig_yaml">
@@ -9726,7 +9726,7 @@ The Component resource accepts the following [input](/docs/intro/concepts/inputs
         <span class="property-type"><a href="#pod">Property Map</a></span>
     </dt>
     <dd>This type is defined in the <a href="/registry/packages/kubernetes">Kubernetes</a> package.</dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -9737,39 +9737,39 @@ All [input](#inputs) properties are implicitly available as output properties. A
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -9783,11 +9783,11 @@ All [input](#inputs) properties are implicitly available as output properties. A
 
 
 <h4 id="eniconfigspec">
-ENIConfig<wbr>Spec<pulumi-choosable type="language" values="python,go" class="inline">, ENIConfig<wbr>Spec<wbr>Args</pulumi-choosable>
+ENIConfig<wbr>Spec<khulnasoft-choosable type="language" values="python,go" class="inline">, ENIConfig<wbr>Spec<wbr>Args</khulnasoft-choosable>
 </h4>
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="securitygroups_csharp">
@@ -9805,11 +9805,11 @@ ENIConfig<wbr>Spec<pulumi-choosable type="language" values="python,go" class="in
         <span class="property-type">string</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="securitygroups_go">
@@ -9827,11 +9827,11 @@ ENIConfig<wbr>Spec<pulumi-choosable type="language" values="python,go" class="in
         <span class="property-type">string</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="securitygroups_java">
@@ -9849,11 +9849,11 @@ ENIConfig<wbr>Spec<pulumi-choosable type="language" values="python,go" class="in
         <span class="property-type">String</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="securitygroups_nodejs">
@@ -9871,11 +9871,11 @@ ENIConfig<wbr>Spec<pulumi-choosable type="language" values="python,go" class="in
         <span class="property-type">string</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="security_groups_python">
@@ -9893,11 +9893,11 @@ ENIConfig<wbr>Spec<pulumi-choosable type="language" values="python,go" class="in
         <span class="property-type">str</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-optional"
             title="Optional">
         <span id="securitygroups_yaml">
@@ -9915,7 +9915,7 @@ ENIConfig<wbr>Spec<pulumi-choosable type="language" values="python,go" class="in
         <span class="property-type">String</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 

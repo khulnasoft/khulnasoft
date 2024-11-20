@@ -53,7 +53,7 @@ func retrieveZIPTemplates(templateURL string) (TemplateRepository, error) {
 	var err error
 	// Create a temp dir.
 	var temp string
-	if temp, err = os.MkdirTemp("", "pulumi-template-"); err != nil {
+	if temp, err = os.MkdirTemp("", "khulnasoft-template-"); err != nil {
 		return TemplateRepository{}, err
 	}
 

@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/rds"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/rds"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := rds.NewCluster(ctx, "dbCluster", &rds.ClusterArgs{
-			MasterPassword: pulumi.ToSecret("foobar").(pulumi.StringOutput),
+			MasterPassword: khulnasoft.ToSecret("foobar").(khulnasoft.StringOutput),
 		})
 		if err != nil {
 			return err

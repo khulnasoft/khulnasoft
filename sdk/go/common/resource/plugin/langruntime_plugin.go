@@ -30,17 +30,17 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag/colors"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/rpcutil/rpcerror"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag/colors"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/rpcutil/rpcerror"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // langhost reflects a language host plugin, loaded dynamically for a single language/runtime pair.
@@ -48,7 +48,7 @@ type langhost struct {
 	ctx     *Context
 	runtime string
 	plug    *plugin
-	client  pulumirpc.LanguageRuntimeClient
+	client  khulnasoftrpc.LanguageRuntimeClient
 }
 
 // NewLanguageRuntime binds to a language's runtime plugin and then creates a gRPC connection to it.  If the
@@ -79,7 +79,7 @@ func NewLanguageRuntime(host Host, ctx *Context, runtime, workingDirectory strin
 		ctx:     ctx,
 		runtime: runtime,
 		plug:    plug,
-		client:  pulumirpc.NewLanguageRuntimeClient(plug.Conn),
+		client:  khulnasoftrpc.NewLanguageRuntimeClient(plug.Conn),
 	}, nil
 }
 
@@ -123,7 +123,7 @@ func buildArgsForNewPlugin(host Host, root string, options map[string]interface{
 	return args, nil
 }
 
-func NewLanguageRuntimeClient(ctx *Context, runtime string, client pulumirpc.LanguageRuntimeClient) LanguageRuntime {
+func NewLanguageRuntimeClient(ctx *Context, runtime string, client khulnasoftrpc.LanguageRuntimeClient) LanguageRuntime {
 	return &langhost{
 		ctx:     ctx,
 		runtime: runtime,
@@ -141,7 +141,7 @@ func (h *langhost) GetRequiredPlugins(info ProgramInfo) ([]workspace.PluginSpec,
 		return nil, err
 	}
 
-	resp, err := h.client.GetRequiredPlugins(h.ctx.Request(), &pulumirpc.GetRequiredPluginsRequest{
+	resp, err := h.client.GetRequiredPlugins(h.ctx.Request(), &khulnasoftrpc.GetRequiredPluginsRequest{
 		Project: "deprecated",
 		Pwd:     info.ProgramDirectory(),
 		Program: info.EntryPoint(),
@@ -214,7 +214,7 @@ func (h *langhost) Run(info RunInfo) (string, bool, error) {
 		return "", false, err
 	}
 
-	resp, err := h.client.Run(h.ctx.Request(), &pulumirpc.RunRequest{
+	resp, err := h.client.Run(h.ctx.Request(), &khulnasoftrpc.RunRequest{
 		MonitorAddress:    info.MonitorAddress,
 		Pwd:               info.Pwd,
 		Program:           info.Info.EntryPoint(),
@@ -295,7 +295,7 @@ func (h *langhost) InstallDependencies(request InstallDependenciesRequest) error
 		return err
 	}
 
-	resp, err := h.client.InstallDependencies(h.ctx.Request(), &pulumirpc.InstallDependenciesRequest{
+	resp, err := h.client.InstallDependencies(h.ctx.Request(), &khulnasoftrpc.InstallDependenciesRequest{
 		Directory:               request.Info.ProgramDirectory(),
 		IsTerminal:              cmdutil.GetGlobalColorization() != colors.Never,
 		Info:                    minfo,
@@ -349,7 +349,7 @@ func (h *langhost) RuntimeOptionsPrompts(info ProgramInfo) ([]RuntimeOptionPromp
 		return []RuntimeOptionPrompt{}, err
 	}
 
-	resp, err := h.client.RuntimeOptionsPrompts(h.ctx.Request(), &pulumirpc.RuntimeOptionsRequest{
+	resp, err := h.client.RuntimeOptionsPrompts(h.ctx.Request(), &khulnasoftrpc.RuntimeOptionsRequest{
 		Info: minfo,
 	})
 	if err != nil {
@@ -381,7 +381,7 @@ func (h *langhost) About(info ProgramInfo) (AboutInfo, error) {
 	if err != nil {
 		return AboutInfo{}, err
 	}
-	resp, err := h.client.About(h.ctx.Request(), &pulumirpc.AboutRequest{
+	resp, err := h.client.About(h.ctx.Request(), &khulnasoftrpc.AboutRequest{
 		Info: minfo,
 	})
 	if err != nil {
@@ -409,7 +409,7 @@ func (h *langhost) GetProgramDependencies(info ProgramInfo, transitiveDependenci
 	}
 
 	logging.V(7).Infof("%s executing", prefix)
-	resp, err := h.client.GetProgramDependencies(h.ctx.Request(), &pulumirpc.GetProgramDependenciesRequest{
+	resp, err := h.client.GetProgramDependencies(h.ctx.Request(), &khulnasoftrpc.GetProgramDependenciesRequest{
 		TransitiveDependencies: transitiveDependencies,
 		Info:                   minfo,
 	})
@@ -443,7 +443,7 @@ func (h *langhost) RunPlugin(info RunPluginInfo) (io.Reader, io.Reader, context.
 
 	ctx, kill := context.WithCancel(h.ctx.Request())
 
-	resp, err := h.client.RunPlugin(ctx, &pulumirpc.RunPluginRequest{
+	resp, err := h.client.RunPlugin(ctx, &khulnasoftrpc.RunPluginRequest{
 		Pwd:  info.WorkingDirectory,
 		Args: info.Args,
 		Env:  info.Env,
@@ -471,15 +471,15 @@ func (h *langhost) RunPlugin(info RunPluginInfo) (io.Reader, io.Reader, context.
 
 			logging.V(10).Infoln("Got plugin response: ", msg)
 
-			if value, ok := msg.Output.(*pulumirpc.RunPluginResponse_Stdout); ok {
+			if value, ok := msg.Output.(*khulnasoftrpc.RunPluginResponse_Stdout); ok {
 				n, err := outw.Write(value.Stdout)
 				contract.AssertNoErrorf(err, "failed to write to stdout pipe: %v", err)
 				contract.Assertf(n == len(value.Stdout), "wrote fewer bytes (%d) than expected (%d)", n, len(value.Stdout))
-			} else if value, ok := msg.Output.(*pulumirpc.RunPluginResponse_Stderr); ok {
+			} else if value, ok := msg.Output.(*khulnasoftrpc.RunPluginResponse_Stderr); ok {
 				n, err := errw.Write(value.Stderr)
 				contract.AssertNoErrorf(err, "failed to write to stderr pipe: %v", err)
 				contract.Assertf(n == len(value.Stderr), "wrote fewer bytes (%d) than expected (%d)", n, len(value.Stderr))
-			} else if _, ok := msg.Output.(*pulumirpc.RunPluginResponse_Exitcode); ok {
+			} else if _, ok := msg.Output.(*khulnasoftrpc.RunPluginResponse_Exitcode); ok {
 				// If stdout and stderr are empty we've flushed and are returning the exit code
 				outw.Close()
 				errw.Close()
@@ -496,7 +496,7 @@ func (h *langhost) GenerateProject(
 	loaderTarget string, localDependencies map[string]string,
 ) (hcl.Diagnostics, error) {
 	logging.V(7).Infof("langhost[%v].GenerateProject() executing", h.runtime)
-	resp, err := h.client.GenerateProject(h.ctx.Request(), &pulumirpc.GenerateProjectRequest{
+	resp, err := h.client.GenerateProject(h.ctx.Request(), &khulnasoftrpc.GenerateProjectRequest{
 		SourceDirectory:   sourceDirectory,
 		TargetDirectory:   targetDirectory,
 		Project:           project,
@@ -526,7 +526,7 @@ func (h *langhost) GeneratePackage(
 	local bool,
 ) (hcl.Diagnostics, error) {
 	logging.V(7).Infof("langhost[%v].GeneratePackage() executing", h.runtime)
-	resp, err := h.client.GeneratePackage(h.ctx.Request(), &pulumirpc.GeneratePackageRequest{
+	resp, err := h.client.GeneratePackage(h.ctx.Request(), &khulnasoftrpc.GeneratePackageRequest{
 		Directory:         directory,
 		Schema:            schema,
 		ExtraFiles:        extraFiles,
@@ -554,7 +554,7 @@ func (h *langhost) GeneratePackage(
 func (h *langhost) GenerateProgram(program map[string]string, loaderTarget string, strict bool,
 ) (map[string][]byte, hcl.Diagnostics, error) {
 	logging.V(7).Infof("langhost[%v].GenerateProgram() executing", h.runtime)
-	resp, err := h.client.GenerateProgram(h.ctx.Request(), &pulumirpc.GenerateProgramRequest{
+	resp, err := h.client.GenerateProgram(h.ctx.Request(), &khulnasoftrpc.GenerateProgramRequest{
 		Source:       program,
 		LoaderTarget: loaderTarget,
 		Strict:       strict,
@@ -591,7 +591,7 @@ func (h *langhost) Pack(
 		return "", err
 	}
 
-	req, err := h.client.Pack(h.ctx.Request(), &pulumirpc.PackRequest{
+	req, err := h.client.Pack(h.ctx.Request(), &khulnasoftrpc.PackRequest{
 		PackageDirectory:     packageDirectory,
 		DestinationDirectory: destinationDirectory,
 	})

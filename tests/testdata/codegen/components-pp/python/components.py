@@ -1,4 +1,4 @@
-import pulumi
+import khulnasoft
 from another_component import AnotherComponent
 from exampleComponent import ExampleComponent
 from simpleComponent import SimpleComponent
@@ -41,4 +41,4 @@ example_component = ExampleComponent("exampleComponent", {
             "zone": "Second zone",
         },
     }})
-pulumi.export("result", example_component.result)
+khulnasoft.export("result", example_component.result)

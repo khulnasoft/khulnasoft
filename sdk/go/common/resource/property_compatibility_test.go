@@ -20,16 +20,16 @@ import (
 	"github.com/stretchr/testify/assert"
 	"pgregory.net/rapid"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	pTest "github.com/pulumi/pulumi/sdk/v3/go/property/testing"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	pTest "github.com/khulnasoft/khulnasoft/sdk/v3/go/property/testing"
 )
 
 // Test that we can round trip through
-// github.com/pulumi/pulumi/sdk/v3/go/common/resource.PropertyValue without loosing
+// github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource.PropertyValue without loosing
 // information.
 //
 // Note: This is not possible in the other direction, since
-// github.com/pulumi/pulumi/sdk/v3/go/common/resource.PropertyValue can represent invalid
+// github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource.PropertyValue can represent invalid
 // states, such as Computed(Computed(Null)).
 func TestRoundTripConvert(t *testing.T) {
 	t.Parallel()

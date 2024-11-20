@@ -3,17 +3,17 @@
     "repro/doc.go",
     "repro/elementtype/elementType.go",
     "repro/elementtype/init.go",
-    "repro/elementtype/pulumiTypes.go",
+    "repro/elementtype/khulnasoftTypes.go",
     "repro/foo.go",
     "repro/init.go",
-    "repro/internal/pulumiUtilities.go",
-    "repro/internal/pulumiVersion.go",
+    "repro/internal/khulnasoftUtilities.go",
+    "repro/internal/khulnasoftVersion.go",
     "repro/overlap/consumer.go",
     "repro/overlap/init.go",
     "repro/overlap/someType.go",
     "repro/overlap/someTypeMap.go",
     "repro/provider.go",
-    "repro/pulumi-plugin.json",
-    "repro/pulumiTypes.go"
+    "repro/khulnasoft-plugin.json",
+    "repro/khulnasoftTypes.go"
   ]
 }

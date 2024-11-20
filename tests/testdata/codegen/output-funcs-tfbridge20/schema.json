@@ -44,7 +44,7 @@
       }
     },
     "mypkg::getAmiIds": {
-      "description": "Taken from pulumi-AWS to regress an issue",
+      "description": "Taken from khulnasoft-AWS to regress an issue",
       "inputs": {
         "description": "A collection of arguments for invoking getAmiIds.\n",
         "properties": {

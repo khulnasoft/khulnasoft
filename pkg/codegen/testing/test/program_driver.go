@@ -25,7 +25,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
 
 	"github.com/blang/semver"
 	"github.com/hashicorp/hcl/v2"
@@ -36,8 +36,8 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/utils"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 const (
@@ -96,8 +96,8 @@ var PulumiPulumiProgramTests = []ProgramTest{
 		Description: "AWS S3 Folder",
 		SkipCompile: codegen.NewStringSet(TestGo),
 		// Blocked on go:
-		//   TODO[pulumi/pulumi#8064]
-		//   TODO[pulumi/pulumi#8065]
+		//   TODO[khulnasoft/khulnasoft#8064]
+		//   TODO[khulnasoft/khulnasoft#8065]
 	},
 	{
 		Directory:   "aws-eks",
@@ -129,8 +129,8 @@ var PulumiPulumiProgramTests = []ProgramTest{
 		Directory:   "aws-s3-logging",
 		Description: "AWS S3 with logging",
 		SkipCompile: codegen.NewStringSet(TestGo),
-		// Blocked on nodejs: TODO[pulumi/pulumi#8068]
-		// Flaky in go: TODO[pulumi/pulumi#8123]
+		// Blocked on nodejs: TODO[khulnasoft/khulnasoft#8068]
+		// Flaky in go: TODO[khulnasoft/khulnasoft#8123]
 	},
 	{
 		Directory:   "aws-iam-policy",
@@ -170,8 +170,8 @@ var PulumiPulumiProgramTests = []ProgramTest{
 		Description: "Azure Native",
 		SkipCompile: codegen.NewStringSet(TestGo, TestDotnet),
 		// Blocked on go:
-		//   TODO[pulumi/pulumi#8073]
-		//   TODO[pulumi/pulumi#8074]
+		//   TODO[khulnasoft/khulnasoft#8073]
+		//   TODO[khulnasoft/khulnasoft#8074]
 	},
 	{
 		Directory:   "azure-native-v2-eventgrid",
@@ -189,7 +189,7 @@ var PulumiPulumiProgramTests = []ProgramTest{
 		Directory:   "string-enum-union-list",
 		Description: "Contains resource which has a property of type List<Union<String, Enum>>",
 		// skipping compiling on Go because it doesn't know to handle unions in lists
-		// and instead generates pulumi.StringArray
+		// and instead generates khulnasoft.StringArray
 		SkipCompile: codegen.NewStringSet(TestGo),
 	},
 	{
@@ -205,8 +205,8 @@ var PulumiPulumiProgramTests = []ProgramTest{
 		Description: "K8s Pod",
 		SkipCompile: codegen.NewStringSet(TestGo),
 		// Blocked on go:
-		//   TODO[pulumi/pulumi#8073]
-		//   TODO[pulumi/pulumi#8074]
+		//   TODO[khulnasoft/khulnasoft#8073]
+		//   TODO[khulnasoft/khulnasoft#8074]
 	},
 	{
 		Directory:   "kubernetes-template",
@@ -251,7 +251,7 @@ var PulumiPulumiProgramTests = []ProgramTest{
 		Skip:        codegen.NewStringSet(TestGo),
 	},
 	{
-		Directory:   "pulumi-stack-reference",
+		Directory:   "khulnasoft-stack-reference",
 		Description: "StackReference as resource",
 	},
 	{
@@ -303,7 +303,7 @@ var PulumiPulumiProgramTests = []ProgramTest{
 		Directory:   "entries-function",
 		Description: "Using the entries function",
 		// go and dotnet do fully not support GenForExpression yet
-		// Todo: https://github.com/pulumi/pulumi/issues/12606
+		// Todo: https://github.com/khulnasoft/khulnasoft/issues/12606
 		SkipCompile: allProgLanguages.Except(TestNodeJS).Except(TestPython),
 	},
 	{
@@ -321,12 +321,12 @@ var PulumiPulumiProgramTests = []ProgramTest{
 	{
 		Directory:   "config-variables",
 		Description: "Basic program with a bunch of config variables",
-		// TODO[https://github.com/pulumi/pulumi/issues/14957] - object config variables are broken here
+		// TODO[https://github.com/khulnasoft/khulnasoft/issues/14957] - object config variables are broken here
 		SkipCompile: codegen.NewStringSet(TestGo, TestDotnet),
 	},
 	{
 		Directory:   "regress-11176",
-		Description: "Regression test for https://github.com/pulumi/pulumi/issues/11176",
+		Description: "Regression test for https://github.com/khulnasoft/khulnasoft/issues/11176",
 		Skip:        allProgLanguages.Except(TestGo),
 	},
 	{
@@ -379,7 +379,7 @@ var PulumiPulumiProgramTests = []ProgramTest{
 	},
 	{
 		Directory:   "snowflake-python-12998",
-		Description: "Tests regression for issue https://github.com/pulumi/pulumi/issues/12998",
+		Description: "Tests regression for issue https://github.com/khulnasoft/khulnasoft/issues/12998",
 		Skip:        allProgLanguages.Except(TestPython),
 		SkipCompile: allProgLanguages,
 		BindOptions: []pcl.BindOption{pcl.AllowMissingVariables, pcl.AllowMissingProperties},
@@ -414,7 +414,7 @@ var PulumiPulumiProgramTests = []ProgramTest{
 	},
 	{
 		Directory:   "regress-node-12507",
-		Description: "Regression test for https://github.com/pulumi/pulumi/issues/12507",
+		Description: "Regression test for https://github.com/khulnasoft/khulnasoft/issues/12507",
 		Skip:        allProgLanguages.Except(TestNodeJS),
 		BindOptions: []pcl.BindOption{pcl.PreferOutputVersionedInvokes},
 	},
@@ -445,7 +445,7 @@ var PulumiPulumiProgramTests = []ProgramTest{
 }
 
 var PulumiPulumiYAMLProgramTests = []ProgramTest{
-	// PCL files from pulumi/yaml transpiled examples
+	// PCL files from khulnasoft/yaml transpiled examples
 	{
 		Directory:   transpiled("aws-eks"),
 		Description: "AWS EKS",
@@ -496,7 +496,7 @@ var PulumiPulumiYAMLProgramTests = []ProgramTest{
 		Skip:        codegen.NewStringSet(TestGo),
 	},
 	{
-		Directory:   transpiled("pulumi-variable"),
+		Directory:   transpiled("khulnasoft-variable"),
 		Description: "Pulumi variable",
 		Skip:        codegen.NewStringSet(TestGo, TestNodeJS, TestDotnet),
 	},
@@ -559,7 +559,7 @@ type ProgramCodegenOptions struct {
 	IsGenProject bool
 	GenProject   GenProject
 	// Maps a test file (i.e. "aws-resource-options") to a struct containing a package
-	// (i.e. "github.com/pulumi/pulumi-aws/sdk/v5", "pulumi-aws) and its
+	// (i.e. "github.com/khulnasoft/khulnasoft-aws/sdk/v5", "khulnasoft-aws) and its
 	// version prefixed by an operator (i.e. " v5.11.0", ==5.11.0")
 	ExpectedVersion map[string]PkgVersionInfo
 	DependencyFile  string
@@ -589,7 +589,7 @@ func TestProgramCodegen(
 	}
 
 	assert.NotNil(t, testcase.TestCases, "Caller must provide test cases")
-	pulumiAccept := cmdutil.IsTruthy(os.Getenv("PULUMI_ACCEPT"))
+	khulnasoftAccept := cmdutil.IsTruthy(os.Getenv("PULUMI_ACCEPT"))
 	skipCompile := cmdutil.IsTruthy(os.Getenv("PULUMI_SKIP_COMPILE_TEST"))
 
 	for _, tt := range testcase.TestCases {
@@ -628,7 +628,7 @@ func TestProgramCodegen(
 				expectedFile = filepath.Join(testDir, filepath.Base(tt.Directory)+"."+testcase.Extension)
 			}
 			expected, err := os.ReadFile(expectedFile)
-			if err != nil && !pulumiAccept {
+			if err != nil && !khulnasoftAccept {
 				t.Fatalf("could not read %v: %v", expectedFile, err)
 			}
 
@@ -707,7 +707,7 @@ func TestProgramCodegen(
 				t.Fatalf("failed to generate program:\n%s", buf)
 			}
 
-			if pulumiAccept {
+			if khulnasoftAccept {
 				err := os.WriteFile(expectedFile, files[testcase.OutputFile], 0o600)
 				require.NoError(t, err)
 				// generate the rest of the files
@@ -743,7 +743,7 @@ func collectExtraPulumiPackages(program *pcl.Program, extraPulumiPackages codege
 	for _, n := range program.Nodes {
 		if r, isResource := n.(*pcl.Resource); isResource {
 			pkg, _, _, _ := r.DecomposeToken()
-			if pkg != "pulumi" {
+			if pkg != "khulnasoft" {
 				extraPulumiPackages.Add(pkg)
 			}
 		}

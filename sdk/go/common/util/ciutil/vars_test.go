@@ -25,7 +25,7 @@ func TestDetectVars(t *testing.T) {
 	buildNumber := "123"
 	buildID := "87638724"
 	systemAndEnvVars := map[SystemName]map[string]string{
-		// Since the `pulumi/pulumi` repo runs on Travis,
+		// Since the `khulnasoft/khulnasoft` repo runs on Travis,
 		// we set the TRAVIS env var to an empty string for all test cases
 		// except for the Travis one itself.
 		// This way when the unit test runs on Travis, we don't pick-up Travis env vars.
@@ -103,7 +103,7 @@ func TestDetectVars(t *testing.T) {
 //nolint:paralleltest // mutates environment variables
 func TestDetectVarsBaseCI(t *testing.T) {
 	systemAndEnvVars := map[SystemName]map[string]string{
-		// Since the `pulumi/pulumi` repo runs on Travis,
+		// Since the `khulnasoft/khulnasoft` repo runs on Travis,
 		// we set the TRAVIS env var to an empty string for all test cases
 		// except for the Travis one itself.
 		// This way when the unit test runs on Travis, we don't pick-up Travis env vars.

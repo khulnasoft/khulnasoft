@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws from "@khulnasoft/aws";
 
 const aws_vpc = new aws.ec2.Vpc("aws_vpc", {
     cidrBlock: "10.0.0.0/16",
@@ -30,6 +30,6 @@ const amis = aws.ec2.getAmiIdsOutput({
     owners: [bar.id],
     filters: [{
         name: bar.id,
-        values: ["pulumi*"],
+        values: ["khulnasoft*"],
     }],
 });

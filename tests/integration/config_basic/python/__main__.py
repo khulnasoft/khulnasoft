@@ -1,9 +1,9 @@
 # Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
-import pulumi
+import khulnasoft
 
 # Just test that basic config works.
-config = pulumi.Config('config_basic_py')
+config = khulnasoft.Config('config_basic_py')
 
 # This value is plaintext and doesn't require encryption.
 value = config.require('aConfigValue')

@@ -31,9 +31,9 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/testing/test"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/testing/iotest"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/python/toolchain"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing/iotest"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/python/toolchain"
 )
 
 const venvRelDir = "venv"
@@ -188,7 +188,7 @@ func buildVirtualEnv(ctx context.Context) error {
 	pyCmd.Dir = hereDir
 	output, err := pyCmd.CombinedOutput()
 	if err != nil {
-		contract.Failf("failed to link venv against in-source pulumi: %v\nstdout/stderr:\n%s",
+		contract.Failf("failed to link venv against in-source khulnasoft: %v\nstdout/stderr:\n%s",
 			err, output)
 	}
 
@@ -320,7 +320,7 @@ func TestCalculateDeps(t *testing.T) {
 			// with semver and parver formatted differently from Pulumi.
 			// Pulumi should not have a version.
 			{"parver>=0.2.1", ""},
-			{"pulumi", ">=3.136.0,<4.0.0"},
+			{"khulnasoft", ">=3.136.0,<4.0.0"},
 			{"semver>=2.8.1"},
 		},
 	}, {
@@ -332,26 +332,26 @@ func TestCalculateDeps(t *testing.T) {
 		expected: [][2]string{
 			{"foobar", "7.10.8"},
 			{"parver>=0.2.1", ""},
-			{"pulumi", ">=3.136.0,<4.0.0"},
+			{"khulnasoft", ">=3.136.0,<4.0.0"},
 			{"semver>=2.8.1"},
 		},
 	}, {
-		// Test 3: If you provide pulumi, we expect the constraint to
+		// Test 3: If you provide khulnasoft, we expect the constraint to
 		// be respected.
 		inputDeps: map[string]string{
-			"pulumi": ">=3.0.0,<3.50.0",
+			"khulnasoft": ">=3.0.0,<3.50.0",
 		},
 		expected: [][2]string{
 			// We expect three alphabetized deps,
 			// with semver and parver formatted differently from Pulumi.
 			{"parver>=0.2.1", ""},
-			{"pulumi", ">=3.0.0,<3.50.0"},
+			{"khulnasoft", ">=3.0.0,<3.50.0"},
 			{"semver>=2.8.1"},
 		},
 	}, {
-		// Test 4: If you provide an illegal pulumi version, we expect an error.
+		// Test 4: If you provide an illegal khulnasoft version, we expect an error.
 		inputDeps: map[string]string{
-			"pulumi": ">=0.16.0,<4.0.0",
+			"khulnasoft": ">=0.16.0,<4.0.0",
 		},
 		expectedErr: fmt.Errorf("lower version bound must be at least %v", oldestAllowedPulumi),
 	}}

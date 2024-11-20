@@ -64,11 +64,11 @@ export interface CodePathOptions {
  * code and transitively walk its `dependencies` section to determine what
  * packages should be included.
  *
- * During this walk, if a package is encountered that contains a `"pulumi": {
+ * During this walk, if a package is encountered that contains a `"khulnasoft": {
  * ... }` section then the normal `"dependencies": { ... }` section of that
- * package will not be included.  These are "pulumi" packages, and those
+ * package will not be included.  These are "khulnasoft" packages, and those
  * dependencies are only intended for use at deployment time. However, a
- * "pulumi" package can also specify package that should be available at
+ * "khulnasoft" package can also specify package that should be available at
  * cloud-runtime.  These packages are found in a `"runtimeDependencies": { ...
  * }` section in the `package.json` file with the same format as the normal
  * `dependencies` section.
@@ -372,18 +372,18 @@ function addPackageAndDependenciesToSet(
     }
     seenPaths.add(normalizedPath);
 
-    if (child.package.pulumi) {
-        // This was a pulumi deployment-time package.  Check if it had a:
+    if (child.package.khulnasoft) {
+        // This was a khulnasoft deployment-time package.  Check if it had a:
         //
-        //    `pulumi: { runtimeDependencies: ... }`
+        //    `khulnasoft: { runtimeDependencies: ... }`
         //
         // section.  In this case, we don't want to add this specific package, but we do want to
         // include all the runtime dependencies it says are necessary.
-        recurse(child.package.pulumi.runtimeDependencies);
-    } else if (pkg.startsWith("@pulumi")) {
-        // exclude it if it's an @pulumi package.  These packages are intended for deployment
+        recurse(child.package.khulnasoft.runtimeDependencies);
+    } else if (pkg.startsWith("@khulnasoft")) {
+        // exclude it if it's an @khulnasoft package.  These packages are intended for deployment
         // time only and will only bloat up the serialized lambda package.  Note: this code can
-        // be removed once all pulumi packages add a "pulumi" section to their package.json.
+        // be removed once all khulnasoft packages add a "khulnasoft" section to their package.json.
         return;
     } else {
         // Normal package.  Add the normalized path to it, and all transitively add all of its

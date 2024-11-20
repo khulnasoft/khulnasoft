@@ -8,25 +8,25 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/utilities"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/utilities"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // A non-overlay, non-component, non-Kubernetes resource.
 type Release struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
 	// Chart name to be installed. A path may be used.
-	Chart pulumi.StringOutput `pulumi:"chart"`
+	Chart khulnasoft.StringOutput `khulnasoft:"chart"`
 	// List of assets (raw yaml files). Content is read and merged with values (with values taking precedence).
-	ValueYamlFiles pulumi.AssetOrArchiveArrayOutput `pulumi:"valueYamlFiles"`
+	ValueYamlFiles khulnasoft.AssetOrArchiveArrayOutput `khulnasoft:"valueYamlFiles"`
 	// Custom values set for the release.
-	Values pulumi.MapOutput `pulumi:"values"`
+	Values khulnasoft.MapOutput `khulnasoft:"values"`
 }
 
 // NewRelease registers a new resource with the given unique name, arguments, and options.
-func NewRelease(ctx *pulumi.Context,
-	name string, args *ReleaseArgs, opts ...pulumi.ResourceOption) (*Release, error) {
+func NewRelease(ctx *khulnasoft.Context,
+	name string, args *ReleaseArgs, opts ...khulnasoft.ResourceOption) (*Release, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -45,8 +45,8 @@ func NewRelease(ctx *pulumi.Context,
 
 // GetRelease gets an existing Release resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetRelease(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ReleaseState, opts ...pulumi.ResourceOption) (*Release, error) {
+func GetRelease(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ReleaseState, opts ...khulnasoft.ResourceOption) (*Release, error) {
 	var resource Release
 	err := ctx.ReadResource("kubernetes:helm.sh/v3:Release", name, id, state, &resource, opts...)
 	if err != nil {
@@ -68,21 +68,21 @@ func (ReleaseState) ElementType() reflect.Type {
 
 type releaseArgs struct {
 	// Chart name to be installed. A path may be used.
-	Chart string `pulumi:"chart"`
+	Chart string `khulnasoft:"chart"`
 	// List of assets (raw yaml files). Content is read and merged with values.
-	ValueYamlFiles []pulumi.AssetOrArchive `pulumi:"valueYamlFiles"`
+	ValueYamlFiles []khulnasoft.AssetOrArchive `khulnasoft:"valueYamlFiles"`
 	// Custom values set for the release.
-	Values map[string]interface{} `pulumi:"values"`
+	Values map[string]interface{} `khulnasoft:"values"`
 }
 
 // The set of arguments for constructing a Release resource.
 type ReleaseArgs struct {
 	// Chart name to be installed. A path may be used.
-	Chart pulumi.StringInput
+	Chart khulnasoft.StringInput
 	// List of assets (raw yaml files). Content is read and merged with values.
-	ValueYamlFiles pulumi.AssetOrArchiveArrayInput
+	ValueYamlFiles khulnasoft.AssetOrArchiveArrayInput
 	// Custom values set for the release.
-	Values pulumi.MapInput
+	Values khulnasoft.MapInput
 }
 
 func (ReleaseArgs) ElementType() reflect.Type {
@@ -90,7 +90,7 @@ func (ReleaseArgs) ElementType() reflect.Type {
 }
 
 type ReleaseInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToReleaseOutput() ReleaseOutput
 	ToReleaseOutputWithContext(ctx context.Context) ReleaseOutput
@@ -105,7 +105,7 @@ func (i *Release) ToReleaseOutput() ReleaseOutput {
 }
 
 func (i *Release) ToReleaseOutputWithContext(ctx context.Context) ReleaseOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReleaseOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ReleaseOutput)
 }
 
 // ReleaseArrayInput is an input type that accepts ReleaseArray and ReleaseArrayOutput values.
@@ -113,7 +113,7 @@ func (i *Release) ToReleaseOutputWithContext(ctx context.Context) ReleaseOutput 
 //
 //	ReleaseArray{ ReleaseArgs{...} }
 type ReleaseArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToReleaseArrayOutput() ReleaseArrayOutput
 	ToReleaseArrayOutputWithContext(context.Context) ReleaseArrayOutput
@@ -130,7 +130,7 @@ func (i ReleaseArray) ToReleaseArrayOutput() ReleaseArrayOutput {
 }
 
 func (i ReleaseArray) ToReleaseArrayOutputWithContext(ctx context.Context) ReleaseArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReleaseArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ReleaseArrayOutput)
 }
 
 // ReleaseMapInput is an input type that accepts ReleaseMap and ReleaseMapOutput values.
@@ -138,7 +138,7 @@ func (i ReleaseArray) ToReleaseArrayOutputWithContext(ctx context.Context) Relea
 //
 //	ReleaseMap{ "key": ReleaseArgs{...} }
 type ReleaseMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToReleaseMapOutput() ReleaseMapOutput
 	ToReleaseMapOutputWithContext(context.Context) ReleaseMapOutput
@@ -155,10 +155,10 @@ func (i ReleaseMap) ToReleaseMapOutput() ReleaseMapOutput {
 }
 
 func (i ReleaseMap) ToReleaseMapOutputWithContext(ctx context.Context) ReleaseMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReleaseMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ReleaseMapOutput)
 }
 
-type ReleaseOutput struct{ *pulumi.OutputState }
+type ReleaseOutput struct{ *khulnasoft.OutputState }
 
 func (ReleaseOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Release)(nil)).Elem()
@@ -173,21 +173,21 @@ func (o ReleaseOutput) ToReleaseOutputWithContext(ctx context.Context) ReleaseOu
 }
 
 // Chart name to be installed. A path may be used.
-func (o ReleaseOutput) Chart() pulumi.StringOutput {
-	return o.ApplyT(func(v *Release) pulumi.StringOutput { return v.Chart }).(pulumi.StringOutput)
+func (o ReleaseOutput) Chart() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *Release) khulnasoft.StringOutput { return v.Chart }).(khulnasoft.StringOutput)
 }
 
 // List of assets (raw yaml files). Content is read and merged with values (with values taking precedence).
-func (o ReleaseOutput) ValueYamlFiles() pulumi.AssetOrArchiveArrayOutput {
-	return o.ApplyT(func(v *Release) pulumi.AssetOrArchiveArrayOutput { return v.ValueYamlFiles }).(pulumi.AssetOrArchiveArrayOutput)
+func (o ReleaseOutput) ValueYamlFiles() khulnasoft.AssetOrArchiveArrayOutput {
+	return o.ApplyT(func(v *Release) khulnasoft.AssetOrArchiveArrayOutput { return v.ValueYamlFiles }).(khulnasoft.AssetOrArchiveArrayOutput)
 }
 
 // Custom values set for the release.
-func (o ReleaseOutput) Values() pulumi.MapOutput {
-	return o.ApplyT(func(v *Release) pulumi.MapOutput { return v.Values }).(pulumi.MapOutput)
+func (o ReleaseOutput) Values() khulnasoft.MapOutput {
+	return o.ApplyT(func(v *Release) khulnasoft.MapOutput { return v.Values }).(khulnasoft.MapOutput)
 }
 
-type ReleaseArrayOutput struct{ *pulumi.OutputState }
+type ReleaseArrayOutput struct{ *khulnasoft.OutputState }
 
 func (ReleaseArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*Release)(nil)).Elem()
@@ -201,13 +201,13 @@ func (o ReleaseArrayOutput) ToReleaseArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o ReleaseArrayOutput) Index(i pulumi.IntInput) ReleaseOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Release {
+func (o ReleaseArrayOutput) Index(i khulnasoft.IntInput) ReleaseOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *Release {
 		return vs[0].([]*Release)[vs[1].(int)]
 	}).(ReleaseOutput)
 }
 
-type ReleaseMapOutput struct{ *pulumi.OutputState }
+type ReleaseMapOutput struct{ *khulnasoft.OutputState }
 
 func (ReleaseMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*Release)(nil)).Elem()
@@ -221,17 +221,17 @@ func (o ReleaseMapOutput) ToReleaseMapOutputWithContext(ctx context.Context) Rel
 	return o
 }
 
-func (o ReleaseMapOutput) MapIndex(k pulumi.StringInput) ReleaseOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Release {
+func (o ReleaseMapOutput) MapIndex(k khulnasoft.StringInput) ReleaseOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *Release {
 		return vs[0].(map[string]*Release)[vs[1].(string)]
 	}).(ReleaseOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ReleaseInput)(nil)).Elem(), &Release{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ReleaseArrayInput)(nil)).Elem(), ReleaseArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ReleaseMapInput)(nil)).Elem(), ReleaseMap{})
-	pulumi.RegisterOutputType(ReleaseOutput{})
-	pulumi.RegisterOutputType(ReleaseArrayOutput{})
-	pulumi.RegisterOutputType(ReleaseMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ReleaseInput)(nil)).Elem(), &Release{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ReleaseArrayInput)(nil)).Elem(), ReleaseArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ReleaseMapInput)(nil)).Elem(), ReleaseMap{})
+	khulnasoft.RegisterOutputType(ReleaseOutput{})
+	khulnasoft.RegisterOutputType(ReleaseArrayOutput{})
+	khulnasoft.RegisterOutputType(ReleaseMapOutput{})
 }

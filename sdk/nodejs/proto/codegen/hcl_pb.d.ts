@@ -1,5 +1,5 @@
-// package: pulumirpc.codegen
-// file: pulumi/codegen/hcl.proto
+// package: khulnasoftrpc.codegen
+// file: khulnasoft/codegen/hcl.proto
 
 /* tslint:disable */
 /* eslint-disable */

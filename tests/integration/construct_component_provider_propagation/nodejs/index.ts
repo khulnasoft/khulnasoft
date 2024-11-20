@@ -1,11 +1,11 @@
 // Copyright 2016-2023, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-class Component extends pulumi.ComponentResource {
-    public readonly result!: pulumi.Output<string>;
+class Component extends khulnasoft.ComponentResource {
+    public readonly result!: khulnasoft.Output<string>;
 
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         const inputs = {
             result: undefined /*out*/,
         };
@@ -13,8 +13,8 @@ class Component extends pulumi.ComponentResource {
     }
 }
 
-class RandomProvider extends pulumi.ProviderResource {
-    constructor(name: string, opts?: pulumi.ResourceOptions) {
+class RandomProvider extends khulnasoft.ProviderResource {
+    constructor(name: string, opts?: khulnasoft.ResourceOptions) {
         super("testprovider", name, {}, opts);
     }
 }

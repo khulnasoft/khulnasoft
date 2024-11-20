@@ -7,17 +7,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"go-nested-collections/repro/internal"
 )
 
 type SomeTypeMapResource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
 // NewSomeTypeMapResource registers a new resource with the given unique name, arguments, and options.
-func NewSomeTypeMapResource(ctx *pulumi.Context,
-	name string, args *SomeTypeMapResourceArgs, opts ...pulumi.ResourceOption) (*SomeTypeMapResource, error) {
+func NewSomeTypeMapResource(ctx *khulnasoft.Context,
+	name string, args *SomeTypeMapResourceArgs, opts ...khulnasoft.ResourceOption) (*SomeTypeMapResource, error) {
 	if args == nil {
 		args = &SomeTypeMapResourceArgs{}
 	}
@@ -33,8 +33,8 @@ func NewSomeTypeMapResource(ctx *pulumi.Context,
 
 // GetSomeTypeMapResource gets an existing SomeTypeMapResource resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetSomeTypeMapResource(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *SomeTypeMapResourceState, opts ...pulumi.ResourceOption) (*SomeTypeMapResource, error) {
+func GetSomeTypeMapResource(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *SomeTypeMapResourceState, opts ...khulnasoft.ResourceOption) (*SomeTypeMapResource, error) {
 	var resource SomeTypeMapResource
 	err := ctx.ReadResource("repro:overlap:SomeTypeMap", name, id, state, &resource, opts...)
 	if err != nil {
@@ -66,7 +66,7 @@ func (SomeTypeMapResourceArgs) ElementType() reflect.Type {
 }
 
 type SomeTypeMapResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToSomeTypeMapResourceOutput() SomeTypeMapResourceOutput
 	ToSomeTypeMapResourceOutputWithContext(ctx context.Context) SomeTypeMapResourceOutput
@@ -81,7 +81,7 @@ func (i *SomeTypeMapResource) ToSomeTypeMapResourceOutput() SomeTypeMapResourceO
 }
 
 func (i *SomeTypeMapResource) ToSomeTypeMapResourceOutputWithContext(ctx context.Context) SomeTypeMapResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SomeTypeMapResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(SomeTypeMapResourceOutput)
 }
 
 // SomeTypeMapResourceArrayInput is an input type that accepts SomeTypeMapResourceArray and SomeTypeMapResourceArrayOutput values.
@@ -89,7 +89,7 @@ func (i *SomeTypeMapResource) ToSomeTypeMapResourceOutputWithContext(ctx context
 //
 //	SomeTypeMapResourceArray{ SomeTypeMapResourceArgs{...} }
 type SomeTypeMapResourceArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToSomeTypeMapResourceArrayOutput() SomeTypeMapResourceArrayOutput
 	ToSomeTypeMapResourceArrayOutputWithContext(context.Context) SomeTypeMapResourceArrayOutput
@@ -106,7 +106,7 @@ func (i SomeTypeMapResourceArray) ToSomeTypeMapResourceArrayOutput() SomeTypeMap
 }
 
 func (i SomeTypeMapResourceArray) ToSomeTypeMapResourceArrayOutputWithContext(ctx context.Context) SomeTypeMapResourceArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SomeTypeMapResourceArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(SomeTypeMapResourceArrayOutput)
 }
 
 // SomeTypeMapResourceMapInput is an input type that accepts SomeTypeMapResourceMap and SomeTypeMapResourceMapOutput values.
@@ -114,7 +114,7 @@ func (i SomeTypeMapResourceArray) ToSomeTypeMapResourceArrayOutputWithContext(ct
 //
 //	SomeTypeMapResourceMap{ "key": SomeTypeMapResourceArgs{...} }
 type SomeTypeMapResourceMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToSomeTypeMapResourceMapOutput() SomeTypeMapResourceMapOutput
 	ToSomeTypeMapResourceMapOutputWithContext(context.Context) SomeTypeMapResourceMapOutput
@@ -131,10 +131,10 @@ func (i SomeTypeMapResourceMap) ToSomeTypeMapResourceMapOutput() SomeTypeMapReso
 }
 
 func (i SomeTypeMapResourceMap) ToSomeTypeMapResourceMapOutputWithContext(ctx context.Context) SomeTypeMapResourceMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SomeTypeMapResourceMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(SomeTypeMapResourceMapOutput)
 }
 
-type SomeTypeMapResourceOutput struct{ *pulumi.OutputState }
+type SomeTypeMapResourceOutput struct{ *khulnasoft.OutputState }
 
 func (SomeTypeMapResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SomeTypeMapResource)(nil)).Elem()
@@ -148,7 +148,7 @@ func (o SomeTypeMapResourceOutput) ToSomeTypeMapResourceOutputWithContext(ctx co
 	return o
 }
 
-type SomeTypeMapResourceArrayOutput struct{ *pulumi.OutputState }
+type SomeTypeMapResourceArrayOutput struct{ *khulnasoft.OutputState }
 
 func (SomeTypeMapResourceArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*SomeTypeMapResource)(nil)).Elem()
@@ -162,13 +162,13 @@ func (o SomeTypeMapResourceArrayOutput) ToSomeTypeMapResourceArrayOutputWithCont
 	return o
 }
 
-func (o SomeTypeMapResourceArrayOutput) Index(i pulumi.IntInput) SomeTypeMapResourceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SomeTypeMapResource {
+func (o SomeTypeMapResourceArrayOutput) Index(i khulnasoft.IntInput) SomeTypeMapResourceOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *SomeTypeMapResource {
 		return vs[0].([]*SomeTypeMapResource)[vs[1].(int)]
 	}).(SomeTypeMapResourceOutput)
 }
 
-type SomeTypeMapResourceMapOutput struct{ *pulumi.OutputState }
+type SomeTypeMapResourceMapOutput struct{ *khulnasoft.OutputState }
 
 func (SomeTypeMapResourceMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*SomeTypeMapResource)(nil)).Elem()
@@ -182,17 +182,17 @@ func (o SomeTypeMapResourceMapOutput) ToSomeTypeMapResourceMapOutputWithContext(
 	return o
 }
 
-func (o SomeTypeMapResourceMapOutput) MapIndex(k pulumi.StringInput) SomeTypeMapResourceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SomeTypeMapResource {
+func (o SomeTypeMapResourceMapOutput) MapIndex(k khulnasoft.StringInput) SomeTypeMapResourceOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *SomeTypeMapResource {
 		return vs[0].(map[string]*SomeTypeMapResource)[vs[1].(string)]
 	}).(SomeTypeMapResourceOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*SomeTypeMapResourceInput)(nil)).Elem(), &SomeTypeMapResource{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SomeTypeMapResourceArrayInput)(nil)).Elem(), SomeTypeMapResourceArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SomeTypeMapResourceMapInput)(nil)).Elem(), SomeTypeMapResourceMap{})
-	pulumi.RegisterOutputType(SomeTypeMapResourceOutput{})
-	pulumi.RegisterOutputType(SomeTypeMapResourceArrayOutput{})
-	pulumi.RegisterOutputType(SomeTypeMapResourceMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*SomeTypeMapResourceInput)(nil)).Elem(), &SomeTypeMapResource{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*SomeTypeMapResourceArrayInput)(nil)).Elem(), SomeTypeMapResourceArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*SomeTypeMapResourceMapInput)(nil)).Elem(), SomeTypeMapResourceMap{})
+	khulnasoft.RegisterOutputType(SomeTypeMapResourceOutput{})
+	khulnasoft.RegisterOutputType(SomeTypeMapResourceArrayOutput{})
+	khulnasoft.RegisterOutputType(SomeTypeMapResourceMapOutput{})
 }

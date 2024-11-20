@@ -1,7 +1,7 @@
 // Copyright 2016-2022, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
-import * as dynamic from "@pulumi/pulumi/dynamic";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as dynamic from "@khulnasoft/khulnasoft/dynamic";
 
 export class Provider implements dynamic.ResourceProvider {
     public static readonly instance = new Provider();
@@ -30,7 +30,7 @@ export class Provider implements dynamic.ResourceProvider {
         };
     }
 
-    public async diff(id: pulumi.ID, olds: any, news: any): Promise<dynamic.DiffResult> {
+    public async diff(id: khulnasoft.ID, olds: any, news: any): Promise<dynamic.DiffResult> {
         if (olds.state !== news.state) {
             return {
                 changes: true,
@@ -52,16 +52,16 @@ export class Provider implements dynamic.ResourceProvider {
     }
 }
 
-export class Resource extends pulumi.dynamic.Resource {
-    public uniqueKey?: pulumi.Output<number>;
-    public state: pulumi.Output<number>;
+export class Resource extends khulnasoft.dynamic.Resource {
+    public uniqueKey?: khulnasoft.Output<number>;
+    public state: khulnasoft.Output<number>;
 
-    constructor(name: string, props: ResourceProps, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, props: ResourceProps, opts?: khulnasoft.ResourceOptions) {
         super(Provider.instance, name, props, opts);
     }
 }
 
 export interface ResourceProps {
-    readonly uniqueKey?: pulumi.Input<number>;
-    readonly state: pulumi.Input<number>;
+    readonly uniqueKey?: khulnasoft.Input<number>;
+    readonly state: khulnasoft.Input<number>;
 }

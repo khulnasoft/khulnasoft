@@ -67,7 +67,7 @@ jobs:
           source venv/bin/activate
           python -m pip install wheel setuptools
           python setup.py build bdist_wheel --python-tag py3
-      - name: Upload pulumi.whl
+      - name: Upload khulnasoft.whl
         uses: actions/upload-artifact@v4
         with:
           name: artifacts-python-sdk
@@ -117,7 +117,7 @@ jobs:
         run: |
           cd sdk/nodejs/bin
           npm pack
-      - name: Upload pulumi-node-sdk.tgz
+      - name: Upload khulnasoft-node-sdk.tgz
         uses: actions/upload-artifact@v4
         with:
           name: artifacts-nodejs-sdk

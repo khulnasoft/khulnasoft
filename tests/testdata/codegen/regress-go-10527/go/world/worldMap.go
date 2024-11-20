@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"regress-go-10527/world/internal"
 )
 
 type WorldMap struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Name pulumi.StringPtrOutput `pulumi:"name"`
+	Name khulnasoft.StringPtrOutput `khulnasoft:"name"`
 }
 
 // NewWorldMap registers a new resource with the given unique name, arguments, and options.
-func NewWorldMap(ctx *pulumi.Context,
-	name string, args *WorldMapArgs, opts ...pulumi.ResourceOption) (*WorldMap, error) {
+func NewWorldMap(ctx *khulnasoft.Context,
+	name string, args *WorldMapArgs, opts ...khulnasoft.ResourceOption) (*WorldMap, error) {
 	if args == nil {
 		args = &WorldMapArgs{}
 	}
@@ -35,8 +35,8 @@ func NewWorldMap(ctx *pulumi.Context,
 
 // GetWorldMap gets an existing WorldMap resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetWorldMap(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *WorldMapState, opts ...pulumi.ResourceOption) (*WorldMap, error) {
+func GetWorldMap(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *WorldMapState, opts ...khulnasoft.ResourceOption) (*WorldMap, error) {
 	var resource WorldMap
 	err := ctx.ReadResource("world::WorldMap", name, id, state, &resource, opts...)
 	if err != nil {
@@ -68,7 +68,7 @@ func (WorldMapArgs) ElementType() reflect.Type {
 }
 
 type WorldMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToWorldMapOutput() WorldMapOutput
 	ToWorldMapOutputWithContext(ctx context.Context) WorldMapOutput
@@ -83,10 +83,10 @@ func (i *WorldMap) ToWorldMapOutput() WorldMapOutput {
 }
 
 func (i *WorldMap) ToWorldMapOutputWithContext(ctx context.Context) WorldMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WorldMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(WorldMapOutput)
 }
 
-type WorldMapOutput struct{ *pulumi.OutputState }
+type WorldMapOutput struct{ *khulnasoft.OutputState }
 
 func (WorldMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**WorldMap)(nil)).Elem()
@@ -100,11 +100,11 @@ func (o WorldMapOutput) ToWorldMapOutputWithContext(ctx context.Context) WorldMa
 	return o
 }
 
-func (o WorldMapOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *WorldMap) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
+func (o WorldMapOutput) Name() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *WorldMap) khulnasoft.StringPtrOutput { return v.Name }).(khulnasoft.StringPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*WorldMapInput)(nil)).Elem(), &WorldMap{})
-	pulumi.RegisterOutputType(WorldMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*WorldMapInput)(nil)).Elem(), &WorldMap{})
+	khulnasoft.RegisterOutputType(WorldMapOutput{})
 }

@@ -17,24 +17,24 @@ package plugin
 import (
 	"context"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
-	codegenrpc "github.com/pulumi/pulumi/sdk/v3/proto/go/codegen"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
+	codegenrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go/codegen"
 )
 
 type converterServer struct {
-	pulumirpc.UnsafeConverterServer // opt out of forward compat
+	khulnasoftrpc.UnsafeConverterServer // opt out of forward compat
 
 	converter Converter
 }
 
-func NewConverterServer(converter Converter) pulumirpc.ConverterServer {
+func NewConverterServer(converter Converter) khulnasoftrpc.ConverterServer {
 	return &converterServer{converter: converter}
 }
 
 func (c *converterServer) ConvertState(ctx context.Context,
-	req *pulumirpc.ConvertStateRequest,
-) (*pulumirpc.ConvertStateResponse, error) {
+	req *khulnasoftrpc.ConvertStateRequest,
+) (*khulnasoftrpc.ConvertStateResponse, error) {
 	resp, err := c.converter.ConvertState(ctx, &ConvertStateRequest{
 		MapperTarget: req.MapperTarget,
 		Args:         req.Args,
@@ -43,9 +43,9 @@ func (c *converterServer) ConvertState(ctx context.Context,
 		return nil, err
 	}
 
-	resources := make([]*pulumirpc.ResourceImport, len(resp.Resources))
+	resources := make([]*khulnasoftrpc.ResourceImport, len(resp.Resources))
 	for i, resource := range resp.Resources {
-		resources[i] = &pulumirpc.ResourceImport{
+		resources[i] = &khulnasoftrpc.ResourceImport{
 			Type:              resource.Type,
 			Name:              resource.Name,
 			Id:                resource.ID,
@@ -63,7 +63,7 @@ func (c *converterServer) ConvertState(ctx context.Context,
 		diags = append(diags, HclDiagnosticToRPCDiagnostic(diag))
 	}
 
-	rpcResp := &pulumirpc.ConvertStateResponse{
+	rpcResp := &khulnasoftrpc.ConvertStateResponse{
 		Resources:   resources,
 		Diagnostics: diags,
 	}
@@ -71,8 +71,8 @@ func (c *converterServer) ConvertState(ctx context.Context,
 }
 
 func (c *converterServer) ConvertProgram(ctx context.Context,
-	req *pulumirpc.ConvertProgramRequest,
-) (*pulumirpc.ConvertProgramResponse, error) {
+	req *khulnasoftrpc.ConvertProgramRequest,
+) (*khulnasoftrpc.ConvertProgramResponse, error) {
 	resp, err := c.converter.ConvertProgram(ctx, &ConvertProgramRequest{
 		SourceDirectory: req.SourceDirectory,
 		TargetDirectory: req.TargetDirectory,
@@ -90,7 +90,7 @@ func (c *converterServer) ConvertProgram(ctx context.Context,
 		diags = append(diags, HclDiagnosticToRPCDiagnostic(diag))
 	}
 
-	return &pulumirpc.ConvertProgramResponse{
+	return &khulnasoftrpc.ConvertProgramResponse{
 		Diagnostics: diags,
 	}, nil
 }

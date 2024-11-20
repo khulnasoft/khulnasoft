@@ -15,84 +15,84 @@
 import unittest
 from typing import Optional
 
-import pulumi
-from pulumi import _types
+import khulnasoft
+from khulnasoft import _types
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class MySimpleInputType:
-    first_value: pulumi.Input[str] = pulumi.property("firstValue")
-    second_value: Optional[pulumi.Input[float]] = pulumi.property(
+    first_value: khulnasoft.Input[str] = khulnasoft.property("firstValue")
+    second_value: Optional[khulnasoft.Input[float]] = khulnasoft.property(
         "secondValue", default=None
     )
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class MyInputType:
-    first_value: pulumi.Input[str] = pulumi.property("firstValue")
-    second_value: Optional[pulumi.Input[float]] = pulumi.property("secondValue")
+    first_value: khulnasoft.Input[str] = khulnasoft.property("firstValue")
+    second_value: Optional[khulnasoft.Input[float]] = khulnasoft.property("secondValue")
 
     def __init__(
         self,
-        first_value: pulumi.Input[str],
-        second_value: Optional[pulumi.Input[float]] = None,
+        first_value: khulnasoft.Input[str],
+        second_value: Optional[khulnasoft.Input[float]] = None,
     ):
-        pulumi.set(self, "first_value", first_value)
-        pulumi.set(self, "second_value", second_value)
+        khulnasoft.set(self, "first_value", first_value)
+        khulnasoft.set(self, "second_value", second_value)
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class MyDeclaredPropertiesInputType:
     def __init__(
         self,
-        first_value: pulumi.Input[str],
-        second_value: Optional[pulumi.Input[float]] = None,
+        first_value: khulnasoft.Input[str],
+        second_value: Optional[khulnasoft.Input[float]] = None,
     ):
-        pulumi.set(self, "first_value", first_value)
-        pulumi.set(self, "second_value", second_value)
+        khulnasoft.set(self, "first_value", first_value)
+        khulnasoft.set(self, "second_value", second_value)
 
     # Property with empty getter/setter bodies.
     @property
-    @pulumi.getter(name="firstValue")
-    def first_value(self) -> pulumi.Input[str]:  # type: ignore
+    @khulnasoft.getter(name="firstValue")
+    def first_value(self) -> khulnasoft.Input[str]:  # type: ignore
         """First value docstring."""
         ...
 
     @first_value.setter
-    def first_value(self, value: pulumi.Input[str]): ...
+    def first_value(self, value: khulnasoft.Input[str]): ...
 
     # Property with implementations.
     @property
-    @pulumi.getter(name="secondValue")
-    def second_value(self) -> Optional[pulumi.Input[float]]:
+    @khulnasoft.getter(name="secondValue")
+    def second_value(self) -> Optional[khulnasoft.Input[float]]:
         """Second value docstring."""
-        return pulumi.get(self, "second_value")
+        return khulnasoft.get(self, "second_value")
 
     @second_value.setter
-    def second_value(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "second_value", value)
+    def second_value(self, value: Optional[khulnasoft.Input[float]]):
+        khulnasoft.set(self, "second_value", value)
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class DefaultArgs:
-    a: pulumi.Input[str] = pulumi.property("a", default="foo")
-    b: pulumi.Input[str] = pulumi.property("b", default="bar")
-    c: Optional[pulumi.Input[str]] = pulumi.property("c", default=None)
+    a: khulnasoft.Input[str] = khulnasoft.property("a", default="foo")
+    b: khulnasoft.Input[str] = khulnasoft.property("b", default="bar")
+    c: Optional[khulnasoft.Input[str]] = khulnasoft.property("c", default=None)
 
 
 class InputTypeTests(unittest.TestCase):
     def test_decorator_raises(self):
         with self.assertRaises(AssertionError) as cm:
 
-            @pulumi.input_type
-            @pulumi.input_type
+            @khulnasoft.input_type
+            @khulnasoft.input_type
             class Foo:
                 pass
 
         with self.assertRaises(AssertionError) as cm:
 
-            @pulumi.input_type
-            @pulumi.output_type
+            @khulnasoft.input_type
+            @khulnasoft.output_type
             class Bar:
                 pass
 
@@ -103,7 +103,7 @@ class InputTypeTests(unittest.TestCase):
         ]
         for typ in types:
             self.assertTrue(_types.is_input_type(typ))
-            self.assertEqual(True, typ._pulumi_input_type)
+            self.assertEqual(True, typ._khulnasoft_input_type)
 
     def test_input_type(self):
         types = [
@@ -124,28 +124,28 @@ class InputTypeTests(unittest.TestCase):
             self.assertIsInstance(first, property)
             self.assertTrue(callable(first.fget))
             self.assertEqual("first_value", first.fget.__name__)
-            self.assertEqual({"return": pulumi.Input[str]}, first.fget.__annotations__)
+            self.assertEqual({"return": khulnasoft.Input[str]}, first.fget.__annotations__)
             if has_doc:
                 self.assertEqual("First value docstring.", first.fget.__doc__)
-            self.assertEqual("firstValue", first.fget._pulumi_name)
+            self.assertEqual("firstValue", first.fget._khulnasoft_name)
             self.assertTrue(callable(first.fset))
             self.assertEqual("first_value", first.fset.__name__)
-            self.assertEqual({"value": pulumi.Input[str]}, first.fset.__annotations__)
+            self.assertEqual({"value": khulnasoft.Input[str]}, first.fset.__annotations__)
 
             second = typ.second_value
             self.assertIsInstance(second, property)
             self.assertTrue(callable(second.fget))
             self.assertEqual("second_value", second.fget.__name__)
             self.assertEqual(
-                {"return": Optional[pulumi.Input[float]]}, second.fget.__annotations__
+                {"return": Optional[khulnasoft.Input[float]]}, second.fget.__annotations__
             )
             if has_doc:
                 self.assertEqual("Second value docstring.", second.fget.__doc__)
-            self.assertEqual("secondValue", second.fget._pulumi_name)
+            self.assertEqual("secondValue", second.fget._khulnasoft_name)
             self.assertTrue(callable(second.fset))
             self.assertEqual("second_value", second.fset.__name__)
             self.assertEqual(
-                {"value": Optional[pulumi.Input[float]]}, second.fset.__annotations__
+                {"value": Optional[khulnasoft.Input[float]]}, second.fset.__annotations__
             )
 
             self.assertEqual(

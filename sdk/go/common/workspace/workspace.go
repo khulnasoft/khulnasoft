@@ -25,8 +25,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // W offers functionality for interacting with Pulumi workspaces.
@@ -73,7 +73,7 @@ func New() (W, error) {
 }
 
 // NewFrom creates a new Pulumi workspace in the given directory. Requires a Pulumi.yaml file be present in the
-// folder hierarchy between dir and the .pulumi folder.
+// folder hierarchy between dir and the .khulnasoft folder.
 func NewFrom(dir string) (W, error) {
 	absDir, err := filepath.Abs(dir)
 	if err != nil {
@@ -90,7 +90,7 @@ func NewFrom(dir string) (W, error) {
 		return nil, err
 	} else if path == "" {
 		return nil, fmt.Errorf("no Pulumi.yaml project file found (searching upwards from %s). If you have not "+
-			"created a project yet, use `pulumi new` to do so", dir)
+			"created a project yet, use `khulnasoft new` to do so", dir)
 	}
 
 	proj, err := LoadProject(path)
@@ -120,7 +120,7 @@ func (pw *projectWorkspace) Save() error {
 	settingsFile := pw.settingsPath()
 
 	// If the settings file is empty, don't write an new one, and delete the old one if present. Since we put workspaces
-	// under ~/.pulumi/workspaces, cleaning them out when possible prevents us from littering a bunch of files in the
+	// under ~/.khulnasoft/workspaces, cleaning them out when possible prevents us from littering a bunch of files in the
 	// home directory.
 	if pw.settings.IsEmpty() {
 		err := os.Remove(settingsFile)

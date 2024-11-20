@@ -22,7 +22,7 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/fuzzing"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/stack"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 	"github.com/stretchr/testify/require"
 	"pgregory.net/rapid"
 )
@@ -50,7 +50,7 @@ func TestFuzz(t *testing.T) {
 }
 
 // TestFuzzFromStateFile is a harness for running fuzz tests starting from a JSON state file such as that produced by a
-// `pulumi stack export` command. It can be used to try and reproduce errors that have occurred in a user's stack
+// `khulnasoft stack export` command. It can be used to try and reproduce errors that have occurred in a user's stack
 // without having access to the actual program that ran, or logs that might help infer the program that ran.
 //
 // Usage:

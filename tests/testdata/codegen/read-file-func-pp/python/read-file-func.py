@@ -1,4 +1,4 @@
-import pulumi
+import khulnasoft
 
 key = (lambda path: open(path).read())("key.pub")
-pulumi.export("result", key)
+khulnasoft.export("result", key)

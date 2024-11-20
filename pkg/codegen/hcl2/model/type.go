@@ -19,7 +19,7 @@ import (
 
 	"github.com/hashicorp/hcl/v2"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model/pretty"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 type lazyDiagnostics func() hcl.Diagnostics

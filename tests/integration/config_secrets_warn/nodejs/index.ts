@@ -1,8 +1,8 @@
 // Copyright 2016-2021, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-const config = new pulumi.Config();
+const config = new khulnasoft.Config();
 
 config.get("plainstr1");
 config.require("plainstr2");

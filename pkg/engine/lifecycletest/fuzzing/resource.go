@@ -21,9 +21,9 @@ import (
 
 	"github.com/mitchellh/copystructure"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 	"golang.org/x/exp/maps"
 	"pgregory.net/rapid"
 )
@@ -311,10 +311,10 @@ func GeneratedResourceType(pkg tokens.Package) *rapid.Generator[tokens.Type] {
 
 // A rapid.Generator that yields random provider types.
 //
-//	GeneratedProviderType.Draw(t, "ProviderType") = "pulumi:providers:<pkg>"
+//	GeneratedProviderType.Draw(t, "ProviderType") = "khulnasoft:providers:<pkg>"
 var GeneratedProviderType = rapid.Custom(func(t *rapid.T) tokens.Type {
 	pkg := rapid.StringMatching("^pkg-[a-z][A-Za-z0-9]{3}$").Draw(t, "ProviderType.Package")
-	return tokens.Type("pulumi:providers:" + pkg)
+	return tokens.Type("khulnasoft:providers:" + pkg)
 })
 
 // A rapid.Generator that yields random resource names.

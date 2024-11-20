@@ -1,25 +1,25 @@
 // Copyright 2016-2022, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-class Resource extends pulumi.ComponentResource {
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+class Resource extends khulnasoft.ComponentResource {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:module:Resource", name, {}, opts);
     }
 }
 
 // Scenario #6 - Nested parents changing types
-class ComponentSix extends pulumi.ComponentResource {
+class ComponentSix extends khulnasoft.ComponentResource {
     resource: Resource;
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:module:ComponentSix-v0", name, {}, opts);
         this.resource = new Resource("otherchild", {parent: this});
     }
 }
 
-class ComponentSixParent extends pulumi.ComponentResource {
+class ComponentSixParent extends khulnasoft.ComponentResource {
     child: ComponentSix;
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:module:ComponentSixParent-v0", name, {}, opts);
         this.child = new ComponentSix("child", {parent: this});
     }

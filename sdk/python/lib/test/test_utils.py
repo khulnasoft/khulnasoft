@@ -17,7 +17,7 @@ import os.path
 
 import unittest
 
-from pulumi._utils import is_empty_function, lazy_import
+from khulnasoft._utils import is_empty_function, lazy_import
 
 
 # Function with return value based on input, called in the non_empty function

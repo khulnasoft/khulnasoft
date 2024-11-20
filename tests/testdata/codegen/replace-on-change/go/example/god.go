@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"replace-on-change/example/internal"
 )
 
 type God struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Backwards DogOutput `pulumi:"backwards"`
+	Backwards DogOutput `khulnasoft:"backwards"`
 }
 
 // NewGod registers a new resource with the given unique name, arguments, and options.
-func NewGod(ctx *pulumi.Context,
-	name string, args *GodArgs, opts ...pulumi.ResourceOption) (*God, error) {
+func NewGod(ctx *khulnasoft.Context,
+	name string, args *GodArgs, opts ...khulnasoft.ResourceOption) (*God, error) {
 	if args == nil {
 		args = &GodArgs{}
 	}
@@ -35,8 +35,8 @@ func NewGod(ctx *pulumi.Context,
 
 // GetGod gets an existing God resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetGod(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *GodState, opts ...pulumi.ResourceOption) (*God, error) {
+func GetGod(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *GodState, opts ...khulnasoft.ResourceOption) (*God, error) {
 	var resource God
 	err := ctx.ReadResource("example::God", name, id, state, &resource, opts...)
 	if err != nil {
@@ -68,7 +68,7 @@ func (GodArgs) ElementType() reflect.Type {
 }
 
 type GodInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToGodOutput() GodOutput
 	ToGodOutputWithContext(ctx context.Context) GodOutput
@@ -83,7 +83,7 @@ func (i *God) ToGodOutput() GodOutput {
 }
 
 func (i *God) ToGodOutputWithContext(ctx context.Context) GodOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GodOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(GodOutput)
 }
 
 // GodArrayInput is an input type that accepts GodArray and GodArrayOutput values.
@@ -91,7 +91,7 @@ func (i *God) ToGodOutputWithContext(ctx context.Context) GodOutput {
 //
 //	GodArray{ GodArgs{...} }
 type GodArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToGodArrayOutput() GodArrayOutput
 	ToGodArrayOutputWithContext(context.Context) GodArrayOutput
@@ -108,7 +108,7 @@ func (i GodArray) ToGodArrayOutput() GodArrayOutput {
 }
 
 func (i GodArray) ToGodArrayOutputWithContext(ctx context.Context) GodArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GodArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(GodArrayOutput)
 }
 
 // GodMapInput is an input type that accepts GodMap and GodMapOutput values.
@@ -116,7 +116,7 @@ func (i GodArray) ToGodArrayOutputWithContext(ctx context.Context) GodArrayOutpu
 //
 //	GodMap{ "key": GodArgs{...} }
 type GodMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToGodMapOutput() GodMapOutput
 	ToGodMapOutputWithContext(context.Context) GodMapOutput
@@ -133,10 +133,10 @@ func (i GodMap) ToGodMapOutput() GodMapOutput {
 }
 
 func (i GodMap) ToGodMapOutputWithContext(ctx context.Context) GodMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GodMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(GodMapOutput)
 }
 
-type GodOutput struct{ *pulumi.OutputState }
+type GodOutput struct{ *khulnasoft.OutputState }
 
 func (GodOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**God)(nil)).Elem()
@@ -154,7 +154,7 @@ func (o GodOutput) Backwards() DogOutput {
 	return o.ApplyT(func(v *God) DogOutput { return v.Backwards }).(DogOutput)
 }
 
-type GodArrayOutput struct{ *pulumi.OutputState }
+type GodArrayOutput struct{ *khulnasoft.OutputState }
 
 func (GodArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*God)(nil)).Elem()
@@ -168,13 +168,13 @@ func (o GodArrayOutput) ToGodArrayOutputWithContext(ctx context.Context) GodArra
 	return o
 }
 
-func (o GodArrayOutput) Index(i pulumi.IntInput) GodOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *God {
+func (o GodArrayOutput) Index(i khulnasoft.IntInput) GodOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *God {
 		return vs[0].([]*God)[vs[1].(int)]
 	}).(GodOutput)
 }
 
-type GodMapOutput struct{ *pulumi.OutputState }
+type GodMapOutput struct{ *khulnasoft.OutputState }
 
 func (GodMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*God)(nil)).Elem()
@@ -188,14 +188,14 @@ func (o GodMapOutput) ToGodMapOutputWithContext(ctx context.Context) GodMapOutpu
 	return o
 }
 
-func (o GodMapOutput) MapIndex(k pulumi.StringInput) GodOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *God {
+func (o GodMapOutput) MapIndex(k khulnasoft.StringInput) GodOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *God {
 		return vs[0].(map[string]*God)[vs[1].(string)]
 	}).(GodOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GodOutput{})
-	pulumi.RegisterOutputType(GodArrayOutput{})
-	pulumi.RegisterOutputType(GodMapOutput{})
+	khulnasoft.RegisterOutputType(GodOutput{})
+	khulnasoft.RegisterOutputType(GodArrayOutput{})
+	khulnasoft.RegisterOutputType(GodMapOutput{})
 }

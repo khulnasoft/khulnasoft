@@ -32,7 +32,7 @@ import (
 var maxRPCMessageSize = 1024 * 1024 * 400
 
 // GrpcChannelOptions returns the defaultCallOptions with the max_receive_message_length increased to 400mb
-// We want to increase the default message size as per pulumi/pulumi#2319
+// We want to increase the default message size as per khulnasoft/khulnasoft#2319
 func GrpcChannelOptions() grpc.DialOption {
 	return grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(maxRPCMessageSize))
 }

@@ -21,10 +21,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/pulumi/esc"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/encoding"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/esc"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/encoding"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v2"
@@ -346,7 +346,7 @@ func TestProjectLoadJSONInformativeErrors(t *testing.T) {
   "name": "project",
   "runtime": "test",
   "backend": {
-    "url": "https://pulumi.com",
+    "url": "https://khulnasoft.com",
     "name": "test"
   }
 }`)
@@ -610,7 +610,7 @@ name: test
 runtime: dotnet
 config:
   aws:region: us-west-1
-  pulumi:disable-default-providers: ["*"]
+  khulnasoft:disable-default-providers: ["*"]
   instanceSize: t3.micro`
 
 	projectStackYaml := `
@@ -635,8 +635,8 @@ config:
 	assert.Equal(t, "t4.large", getConfigValue(t, stack.Config, "test:instanceSize"))
 	// aws:region is namespaced and is inherited from the project
 	assert.Equal(t, "us-west-1", getConfigValue(t, stack.Config, "aws:region"))
-	assert.Equal(t, "[\"*\"]", getConfigValue(t, stack.Config, "pulumi:disable-default-providers"))
-	assert.Equal(t, []interface{}{"*"}, getConfigValueUnmarshalled(t, stack.Config, "pulumi:disable-default-providers"))
+	assert.Equal(t, "[\"*\"]", getConfigValue(t, stack.Config, "khulnasoft:disable-default-providers"))
+	assert.Equal(t, []interface{}{"*"}, getConfigValueUnmarshalled(t, stack.Config, "khulnasoft:disable-default-providers"))
 }
 
 func TestLoadingStackConfigWithoutNamespacingTheProject(t *testing.T) {
@@ -1436,7 +1436,7 @@ runtime: yaml`
 		projectStackJSON := `{
     "environment": {
         "values": {
-            "pulumiConfig": {
+            "khulnasoftConfig": {
                 "aws:region": "us-west-2"
             }
         }
@@ -1455,7 +1455,7 @@ runtime: yaml`
             "env"
         ],
         "values": {
-            "pulumiConfig": {
+            "khulnasoftConfig": {
                 "aws:region": "us-west-2"
             }
         }
@@ -1475,7 +1475,7 @@ runtime: yaml`
             "env2"
         ],
         "values": {
-            "pulumiConfig": {
+            "khulnasoftConfig": {
                 "aws:region": "us-west-2"
             }
         }
@@ -1521,7 +1521,7 @@ runtime: yaml`
 
 		projectStackYaml := `environment:
   values:
-    pulumiConfig:
+    khulnasoftConfig:
       aws:region: us-west-2`
 
 		project, err := loadProjectFromText(t, projectYaml)
@@ -1531,7 +1531,7 @@ runtime: yaml`
 
 		expected := `environment:
   values:
-    pulumiConfig:
+    khulnasoftConfig:
       aws:region: us-west-2
   imports:
     - env
@@ -1544,7 +1544,7 @@ runtime: yaml`
 
 		expected = `environment:
   values:
-    pulumiConfig:
+    khulnasoftConfig:
       aws:region: us-west-2
   imports:
     - env
@@ -1630,7 +1630,7 @@ runtime: yaml`
             "env2"
         ],
         "values": {
-            "pulumiConfig": {
+            "khulnasoftConfig": {
                 "aws:region": "us-west-2"
             }
         }
@@ -1654,7 +1654,7 @@ runtime: yaml`
             "env"
         ],
         "values": {
-            "pulumiConfig": {
+            "khulnasoftConfig": {
                 "aws:region": "us-west-2"
             }
         }
@@ -1673,7 +1673,7 @@ runtime: yaml`
             "env"
         ],
         "values": {
-            "pulumiConfig": {
+            "khulnasoftConfig": {
                 "aws:region": "us-west-2"
             }
         }
@@ -1690,7 +1690,7 @@ runtime: yaml`
     "environment": {
         "imports": [],
         "values": {
-            "pulumiConfig": {
+            "khulnasoftConfig": {
                 "aws:region": "us-west-2"
             }
         }
@@ -1754,7 +1754,7 @@ runtime: yaml`
     - env
     - env2
   values:
-    pulumiConfig:
+    khulnasoftConfig:
       aws:region: us-west-2`
 
 		project, err := loadProjectFromText(t, projectYaml)
@@ -1767,7 +1767,7 @@ runtime: yaml`
     - {env2: {merge: false}}
     - env
   values:
-    pulumiConfig:
+    khulnasoftConfig:
       aws:region: us-west-2
 `
 
@@ -1780,7 +1780,7 @@ runtime: yaml`
   imports:
     - env
   values:
-    pulumiConfig:
+    khulnasoftConfig:
       aws:region: us-west-2
 `
 
@@ -1791,7 +1791,7 @@ runtime: yaml`
 
 		expected = `environment:
   values:
-    pulumiConfig:
+    khulnasoftConfig:
       aws:region: us-west-2
 `
 

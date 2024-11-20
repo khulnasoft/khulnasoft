@@ -1,9 +1,9 @@
 // Copyright 2016-2023, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-export class FailsOnDelete extends pulumi.CustomResource {
-    constructor(name: string, opts?: pulumi.CustomResourceOptions) {
+export class FailsOnDelete extends khulnasoft.CustomResource {
+    constructor(name: string, opts?: khulnasoft.CustomResourceOptions) {
         super("testprovider:index:FailsOnDelete", name, {}, opts);
     }
 }

@@ -1,12 +1,12 @@
 {
   "emittedFiles": [
-    "pulumi_registrygeoreplication/README.md",
-    "pulumi_registrygeoreplication/__init__.py",
-    "pulumi_registrygeoreplication/_utilities.py",
-    "pulumi_registrygeoreplication/provider.py",
-    "pulumi_registrygeoreplication/pulumi-plugin.json",
-    "pulumi_registrygeoreplication/py.typed",
-    "pulumi_registrygeoreplication/registry_geo_replication.py",
+    "khulnasoft_registrygeoreplication/README.md",
+    "khulnasoft_registrygeoreplication/__init__.py",
+    "khulnasoft_registrygeoreplication/_utilities.py",
+    "khulnasoft_registrygeoreplication/provider.py",
+    "khulnasoft_registrygeoreplication/khulnasoft-plugin.json",
+    "khulnasoft_registrygeoreplication/py.typed",
+    "khulnasoft_registrygeoreplication/registry_geo_replication.py",
     "setup.py"
   ]
 }

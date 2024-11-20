@@ -14,7 +14,7 @@
 
 import * as grpc from "@grpc/grpc-js";
 
-import { AsyncIterable } from "@pulumi/query/interfaces";
+import { AsyncIterable } from "@khulnasoft/query/interfaces";
 
 import { InvokeOptions } from "../invoke";
 import * as log from "../log";

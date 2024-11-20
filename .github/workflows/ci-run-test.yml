@@ -216,9 +216,9 @@ jobs:
       - name: Uninstall pre-installed Pulumi (windows)
         if: inputs.platform == 'windows-latest'
         run: |
-          if command -v pulumi.exe; then
-            echo "Deleting pulumi"
-            rm -rf "$(command -v pulumi.exe)/../pulumi*"
+          if command -v khulnasoft.exe; then
+            echo "Deleting khulnasoft"
+            rm -rf "$(command -v khulnasoft.exe)/../khulnasoft*"
           fi
       - name: Install yarn and pnpm
         run: |
@@ -250,7 +250,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo: pulumi/goteststats
+          repo: khulnasoft/goteststats
           tag: v0.0.7
           cache: enable
       - name: Generate artifact name
@@ -271,20 +271,20 @@ jobs:
             EXT=".exe"
           fi
 
-          if command -v "pulumi${EXT}"; then
-            PULUMI_INSTALL_DIR=$(dirname "$(command -v "pulumi${EXT}")")
+          if command -v "khulnasoft${EXT}"; then
+            PULUMI_INSTALL_DIR=$(dirname "$(command -v "khulnasoft${EXT}")")
             echo "Deleting Pulumi"
-            rm -v "$PULUMI_INSTALL_DIR"/pulumi*
+            rm -v "$PULUMI_INSTALL_DIR"/khulnasoft*
           fi
 
       # Integration and performance test only steps:
-      - name: Download pulumi-${{ steps.goenv.outputs.cli-target }}
+      - name: Download khulnasoft-${{ steps.goenv.outputs.cli-target }}
         if: ${{ inputs.is-integration-test }}
         uses: actions/download-artifact@v4
         with:
           name: artifacts-cli-${{ steps.goenv.outputs.cli-target }}-integration
           path: artifacts/cli
-      - name: Download pulumi-${{ steps.goenv.outputs.cli-target }}
+      - name: Download khulnasoft-${{ steps.goenv.outputs.cli-target }}
         if: ${{ inputs.is-performance-test }}
         uses: actions/download-artifact@v4
         with:
@@ -304,10 +304,10 @@ jobs:
           find "$PWD/artifacts/cli" -name '*.tar.gz' -print0 -exec tar -xzvf {} -C "$TMPDIR" \;
 
           # Windows .zip files have an extra "bin" path part, support both:
-          if [ -d "$TMPDIR/pulumi/bin" ]; then
-            mv "${TMPDIR}/pulumi/bin/"* "$PWD/bin/"
+          if [ -d "$TMPDIR/khulnasoft/bin" ]; then
+            mv "${TMPDIR}/khulnasoft/bin/"* "$PWD/bin/"
           else
-            mv "${TMPDIR}/pulumi/"* "$PWD/bin/"
+            mv "${TMPDIR}/khulnasoft/"* "$PWD/bin/"
           fi
 
           echo "Checking contents of $PWD/bin"
@@ -320,8 +320,8 @@ jobs:
         # /end integration and performance test steps
       - name: Verify Pulumi Version
         run: |
-          command -v pulumi || echo "no pulumi"
-          pulumi version    || echo "no pulumi"
+          command -v khulnasoft || echo "no khulnasoft"
+          khulnasoft version    || echo "no khulnasoft"
       - name: Ensure dependencies for the Node SDK
         run: |
           cd sdk/nodejs
@@ -354,8 +354,8 @@ jobs:
           AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
           AZURE_STORAGE_SAS_TOKEN: ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}
-          PULUMI_NODE_MODULES: ${{ runner.temp }}/opt/pulumi/node_modules
-          PULUMI_ROOT: ${{ runner.temp }}/opt/pulumi
+          PULUMI_NODE_MODULES: ${{ runner.temp }}/opt/khulnasoft/node_modules
+          PULUMI_ROOT: ${{ runner.temp }}/opt/khulnasoft
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/application_default_credentials.json
           AWS_ACCESS_KEY: ${{ secrets.AWS_CI_ACCESS_KEY }}

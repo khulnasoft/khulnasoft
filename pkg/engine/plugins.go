@@ -26,16 +26,16 @@ import (
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/cmdutil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 const (
@@ -78,7 +78,7 @@ func (p PluginSet) Deduplicate() PluginSet {
 			// v2.3.4` and `pkg example.com` in a single set. What we don't want to do is
 			// keep `pkg` in that same set since there are more specific versions used. In
 			// general, there will be a `pky vX.Y.Y` in the plugin set because the user
-			// depended on a language package `pulumi-pkg` with version `x.y.z`.
+			// depended on a language package `khulnasoft-pkg` with version `x.y.z`.
 
 			if p.Version == nil && p.PluginDownloadURL == "" {
 				// no new information
@@ -201,8 +201,8 @@ func EnsurePluginsAreInstalled(ctx context.Context, opts *deploymentOptions, d d
 	logging.V(preparePluginLog).Infof("ensurePluginsAreInstalled(): beginning")
 	var installTasks errgroup.Group
 	for _, plug := range plugins.Values() {
-		if plug.Name == "pulumi" && plug.Kind == apitype.ResourcePlugin {
-			logging.V(preparePluginLog).Infof("ensurePluginsAreInstalled(): pulumi is a builtin plugin")
+		if plug.Name == "khulnasoft" && plug.Kind == apitype.ResourcePlugin {
+			logging.V(preparePluginLog).Infof("ensurePluginsAreInstalled(): khulnasoft is a builtin plugin")
 			continue
 		}
 
@@ -370,7 +370,7 @@ func installPlugin(
 		workspace.TarPlugin(withInstallProgress(tarball)),
 		false,
 	); err != nil {
-		return fmt.Errorf("installing plugin; run `pulumi plugin install %s %s v%s` to retry manually: %w",
+		return fmt.Errorf("installing plugin; run `khulnasoft plugin install %s %s v%s` to retry manually: %w",
 			plugin.Kind, plugin.Name, plugin.Version, err)
 	}
 

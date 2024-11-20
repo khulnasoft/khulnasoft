@@ -1,12 +1,12 @@
 package main
 
 import (
-	"example.com/pulumi-splat/sdk/go/splat"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"example.com/khulnasoft-splat/sdk/go/splat"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		allKeys, err := splat.GetSshKeys(ctx, map[string]interface{}{}, nil)
 		if err != nil {
 			return err

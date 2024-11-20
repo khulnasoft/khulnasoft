@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"output-funcs/mypkg/internal"
 )
 
 // Check codegen of functions with default values.
-func FuncWithDefaultValue(ctx *pulumi.Context, args *FuncWithDefaultValueArgs, opts ...pulumi.InvokeOption) (*FuncWithDefaultValueResult, error) {
+func FuncWithDefaultValue(ctx *khulnasoft.Context, args *FuncWithDefaultValueArgs, opts ...khulnasoft.InvokeOption) (*FuncWithDefaultValueResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv FuncWithDefaultValueResult
 	err := ctx.Invoke("mypkg::funcWithDefaultValue", args.Defaults(), &rv, opts...)
@@ -24,8 +24,8 @@ func FuncWithDefaultValue(ctx *pulumi.Context, args *FuncWithDefaultValueArgs, o
 }
 
 type FuncWithDefaultValueArgs struct {
-	A string  `pulumi:"a"`
-	B *string `pulumi:"b"`
+	A string  `khulnasoft:"a"`
+	B *string `khulnasoft:"b"`
 }
 
 // Defaults sets the appropriate defaults for FuncWithDefaultValueArgs
@@ -42,11 +42,11 @@ func (val *FuncWithDefaultValueArgs) Defaults() *FuncWithDefaultValueArgs {
 }
 
 type FuncWithDefaultValueResult struct {
-	R string `pulumi:"r"`
+	R string `khulnasoft:"r"`
 }
 
-func FuncWithDefaultValueOutput(ctx *pulumi.Context, args FuncWithDefaultValueOutputArgs, opts ...pulumi.InvokeOption) FuncWithDefaultValueResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+func FuncWithDefaultValueOutput(ctx *khulnasoft.Context, args FuncWithDefaultValueOutputArgs, opts ...khulnasoft.InvokeOption) FuncWithDefaultValueResultOutput {
+	return khulnasoft.ToOutputWithContext(context.Background(), args).
 		ApplyT(func(v interface{}) (FuncWithDefaultValueResultOutput, error) {
 			args := v.(FuncWithDefaultValueArgs)
 			opts = internal.PkgInvokeDefaultOpts(opts)
@@ -56,24 +56,24 @@ func FuncWithDefaultValueOutput(ctx *pulumi.Context, args FuncWithDefaultValueOu
 				return FuncWithDefaultValueResultOutput{}, err
 			}
 
-			output := pulumi.ToOutput(rv).(FuncWithDefaultValueResultOutput)
+			output := khulnasoft.ToOutput(rv).(FuncWithDefaultValueResultOutput)
 			if secret {
-				return pulumi.ToSecret(output).(FuncWithDefaultValueResultOutput), nil
+				return khulnasoft.ToSecret(output).(FuncWithDefaultValueResultOutput), nil
 			}
 			return output, nil
 		}).(FuncWithDefaultValueResultOutput)
 }
 
 type FuncWithDefaultValueOutputArgs struct {
-	A pulumi.StringInput    `pulumi:"a"`
-	B pulumi.StringPtrInput `pulumi:"b"`
+	A khulnasoft.StringInput    `khulnasoft:"a"`
+	B khulnasoft.StringPtrInput `khulnasoft:"b"`
 }
 
 func (FuncWithDefaultValueOutputArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithDefaultValueArgs)(nil)).Elem()
 }
 
-type FuncWithDefaultValueResultOutput struct{ *pulumi.OutputState }
+type FuncWithDefaultValueResultOutput struct{ *khulnasoft.OutputState }
 
 func (FuncWithDefaultValueResultOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*FuncWithDefaultValueResult)(nil)).Elem()
@@ -87,16 +87,16 @@ func (o FuncWithDefaultValueResultOutput) ToFuncWithDefaultValueResultOutputWith
 	return o
 }
 
-func (o FuncWithDefaultValueResultOutput) ToOutput(ctx context.Context) pulumix.Output[FuncWithDefaultValueResult] {
-	return pulumix.Output[FuncWithDefaultValueResult]{
+func (o FuncWithDefaultValueResultOutput) ToOutput(ctx context.Context) khulnasoftx.Output[FuncWithDefaultValueResult] {
+	return khulnasoftx.Output[FuncWithDefaultValueResult]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o FuncWithDefaultValueResultOutput) R() pulumi.StringOutput {
-	return o.ApplyT(func(v FuncWithDefaultValueResult) string { return v.R }).(pulumi.StringOutput)
+func (o FuncWithDefaultValueResultOutput) R() khulnasoft.StringOutput {
+	return o.ApplyT(func(v FuncWithDefaultValueResult) string { return v.R }).(khulnasoft.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(FuncWithDefaultValueResultOutput{})
+	khulnasoft.RegisterOutputType(FuncWithDefaultValueResultOutput{})
 }

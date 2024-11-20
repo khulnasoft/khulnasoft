@@ -61,7 +61,7 @@ func TestPythonAliases(t *testing.T) {
 	}
 }
 
-// TestPythonAliasAfterFailedUpdate is a test for https://github.com/pulumi/pulumi/issues/13848.
+// TestPythonAliasAfterFailedUpdate is a test for https://github.com/khulnasoft/khulnasoft/issues/13848.
 func TestPythonAliasAfterFailedUpdate(t *testing.T) {
 	t.Parallel()
 

@@ -11,13 +11,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import pulumi
+import khulnasoft
 
 
-config = pulumi.Config("test")
-assert pulumi.get_organization() == "myorg"
-assert pulumi.get_project() == "myproject"
-assert pulumi.get_stack() == "mystack"
+config = khulnasoft.Config("test")
+assert khulnasoft.get_organization() == "myorg"
+assert khulnasoft.get_project() == "myproject"
+assert khulnasoft.get_stack() == "mystack"
 assert config.get("known") == "knownkey"
 assert config.get("unknown") is None
 assert config.get_bool("lowercase_true")
@@ -26,6 +26,6 @@ assert not config.get_bool("lowercase_false")
 assert not config.get_bool("uppercase_false")
 try:
     config.get_bool("not_a_bool")
-except pulumi.ConfigTypeError as exn:
+except khulnasoft.ConfigTypeError as exn:
     assert exn.key == "test:not_a_bool"
     assert exn.expect_type == "bool"

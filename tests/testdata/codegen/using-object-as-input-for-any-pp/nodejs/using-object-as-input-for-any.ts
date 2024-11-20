@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as aws_native from "@pulumi/aws-native";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as aws_native from "@khulnasoft/aws-native";
 
 const role = new aws_native.iam.Role("role", {
     roleName: "ScriptIAMRole",

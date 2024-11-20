@@ -1,6 +1,6 @@
 
-import * as runtime from "@pulumi/pulumi/runtime";
-import * as pulumi from "@pulumi/pulumi";
+import * as runtime from "@khulnasoft/khulnasoft/runtime";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
 export function getEnv(...vars: string[]): string | undefined {
     for (const v of vars) {
@@ -67,8 +67,8 @@ export function lazyLoad(exports: any, props: string[], loadModule: any) {
 
 export async function callAsync<T>(
     tok: string,
-    props: pulumi.Inputs,
-    res?: pulumi.Resource,
+    props: khulnasoft.Inputs,
+    res?: khulnasoft.Resource,
     opts?: {property?: string},
 ): Promise<T> {
     const o: any = runtime.call<T>(tok, props, res);

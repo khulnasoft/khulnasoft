@@ -16,12 +16,12 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.20.1
-// source: pulumi/converter.proto
+// source: khulnasoft/converter.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
-	codegen "github.com/pulumi/pulumi/sdk/v3/proto/go/codegen"
+	codegen "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go/codegen"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -42,7 +42,7 @@ type ConvertStateRequest struct {
 
 	// the gRPC target of the mapper service.
 	MapperTarget string `protobuf:"bytes,1,opt,name=mapper_target,json=mapperTarget,proto3" json:"mapper_target,omitempty"`
-	// the args passed to `pulumi import` for this conversion. Normally used to specifiy a state file to
+	// the args passed to `khulnasoft import` for this conversion. Normally used to specifiy a state file to
 	// import from.
 	Args []string `protobuf:"bytes,2,rep,name=args,proto3" json:"args,omitempty"`
 }
@@ -50,7 +50,7 @@ type ConvertStateRequest struct {
 func (x *ConvertStateRequest) Reset() {
 	*x = ConvertStateRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_converter_proto_msgTypes[0]
+		mi := &file_khulnasoft_converter_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -63,7 +63,7 @@ func (x *ConvertStateRequest) String() string {
 func (*ConvertStateRequest) ProtoMessage() {}
 
 func (x *ConvertStateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_converter_proto_msgTypes[0]
+	mi := &file_khulnasoft_converter_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -76,7 +76,7 @@ func (x *ConvertStateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConvertStateRequest.ProtoReflect.Descriptor instead.
 func (*ConvertStateRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_converter_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_converter_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ConvertStateRequest) GetMapperTarget() string {
@@ -120,7 +120,7 @@ type ResourceImport struct {
 func (x *ResourceImport) Reset() {
 	*x = ResourceImport{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_converter_proto_msgTypes[1]
+		mi := &file_khulnasoft_converter_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -133,7 +133,7 @@ func (x *ResourceImport) String() string {
 func (*ResourceImport) ProtoMessage() {}
 
 func (x *ResourceImport) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_converter_proto_msgTypes[1]
+	mi := &file_khulnasoft_converter_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -146,7 +146,7 @@ func (x *ResourceImport) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceImport.ProtoReflect.Descriptor instead.
 func (*ResourceImport) Descriptor() ([]byte, []int) {
-	return file_pulumi_converter_proto_rawDescGZIP(), []int{1}
+	return file_khulnasoft_converter_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ResourceImport) GetType() string {
@@ -219,7 +219,7 @@ type ConvertStateResponse struct {
 func (x *ConvertStateResponse) Reset() {
 	*x = ConvertStateResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_converter_proto_msgTypes[2]
+		mi := &file_khulnasoft_converter_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -232,7 +232,7 @@ func (x *ConvertStateResponse) String() string {
 func (*ConvertStateResponse) ProtoMessage() {}
 
 func (x *ConvertStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_converter_proto_msgTypes[2]
+	mi := &file_khulnasoft_converter_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -245,7 +245,7 @@ func (x *ConvertStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConvertStateResponse.ProtoReflect.Descriptor instead.
 func (*ConvertStateResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_converter_proto_rawDescGZIP(), []int{2}
+	return file_khulnasoft_converter_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ConvertStateResponse) GetResources() []*ResourceImport {
@@ -275,14 +275,14 @@ type ConvertProgramRequest struct {
 	MapperTarget string `protobuf:"bytes,3,opt,name=mapper_target,json=mapperTarget,proto3" json:"mapper_target,omitempty"`
 	// The target of a codegen.LoaderServer to use for loading schemas.
 	LoaderTarget string `protobuf:"bytes,4,opt,name=loader_target,json=loaderTarget,proto3" json:"loader_target,omitempty"`
-	// the args passed to `pulumi convert` for this conversion. Normally used to specifiy a root file, or conversion options.
+	// the args passed to `khulnasoft convert` for this conversion. Normally used to specifiy a root file, or conversion options.
 	Args []string `protobuf:"bytes,5,rep,name=args,proto3" json:"args,omitempty"`
 }
 
 func (x *ConvertProgramRequest) Reset() {
 	*x = ConvertProgramRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_converter_proto_msgTypes[3]
+		mi := &file_khulnasoft_converter_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -295,7 +295,7 @@ func (x *ConvertProgramRequest) String() string {
 func (*ConvertProgramRequest) ProtoMessage() {}
 
 func (x *ConvertProgramRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_converter_proto_msgTypes[3]
+	mi := &file_khulnasoft_converter_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -308,7 +308,7 @@ func (x *ConvertProgramRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConvertProgramRequest.ProtoReflect.Descriptor instead.
 func (*ConvertProgramRequest) Descriptor() ([]byte, []int) {
-	return file_pulumi_converter_proto_rawDescGZIP(), []int{3}
+	return file_khulnasoft_converter_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ConvertProgramRequest) GetSourceDirectory() string {
@@ -358,7 +358,7 @@ type ConvertProgramResponse struct {
 func (x *ConvertProgramResponse) Reset() {
 	*x = ConvertProgramResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_converter_proto_msgTypes[4]
+		mi := &file_khulnasoft_converter_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -371,7 +371,7 @@ func (x *ConvertProgramResponse) String() string {
 func (*ConvertProgramResponse) ProtoMessage() {}
 
 func (x *ConvertProgramResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_converter_proto_msgTypes[4]
+	mi := &file_khulnasoft_converter_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -384,7 +384,7 @@ func (x *ConvertProgramResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConvertProgramResponse.ProtoReflect.Descriptor instead.
 func (*ConvertProgramResponse) Descriptor() ([]byte, []int) {
-	return file_pulumi_converter_proto_rawDescGZIP(), []int{4}
+	return file_khulnasoft_converter_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ConvertProgramResponse) GetDiagnostics() []*codegen.Diagnostic {
@@ -394,9 +394,9 @@ func (x *ConvertProgramResponse) GetDiagnostics() []*codegen.Diagnostic {
 	return nil
 }
 
-var File_pulumi_converter_proto protoreflect.FileDescriptor
+var File_khulnasoft_converter_proto protoreflect.FileDescriptor
 
-var file_pulumi_converter_proto_rawDesc = []byte{
+var file_khulnasoft_converter_proto_rawDesc = []byte{
 	0x0a, 0x16, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x63, 0x6f, 0x6e, 0x76, 0x65, 0x72, 0x74,
 	0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69,
 	0x72, 0x70, 0x63, 0x1a, 0x18, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x63, 0x6f, 0x64, 0x65,
@@ -468,34 +468,34 @@ var file_pulumi_converter_proto_rawDesc = []byte{
 }
 
 var (
-	file_pulumi_converter_proto_rawDescOnce sync.Once
-	file_pulumi_converter_proto_rawDescData = file_pulumi_converter_proto_rawDesc
+	file_khulnasoft_converter_proto_rawDescOnce sync.Once
+	file_khulnasoft_converter_proto_rawDescData = file_khulnasoft_converter_proto_rawDesc
 )
 
-func file_pulumi_converter_proto_rawDescGZIP() []byte {
-	file_pulumi_converter_proto_rawDescOnce.Do(func() {
-		file_pulumi_converter_proto_rawDescData = protoimpl.X.CompressGZIP(file_pulumi_converter_proto_rawDescData)
+func file_khulnasoft_converter_proto_rawDescGZIP() []byte {
+	file_khulnasoft_converter_proto_rawDescOnce.Do(func() {
+		file_khulnasoft_converter_proto_rawDescData = protoimpl.X.CompressGZIP(file_khulnasoft_converter_proto_rawDescData)
 	})
-	return file_pulumi_converter_proto_rawDescData
+	return file_khulnasoft_converter_proto_rawDescData
 }
 
-var file_pulumi_converter_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
-var file_pulumi_converter_proto_goTypes = []interface{}{
-	(*ConvertStateRequest)(nil),    // 0: pulumirpc.ConvertStateRequest
-	(*ResourceImport)(nil),         // 1: pulumirpc.ResourceImport
-	(*ConvertStateResponse)(nil),   // 2: pulumirpc.ConvertStateResponse
-	(*ConvertProgramRequest)(nil),  // 3: pulumirpc.ConvertProgramRequest
-	(*ConvertProgramResponse)(nil), // 4: pulumirpc.ConvertProgramResponse
-	(*codegen.Diagnostic)(nil),     // 5: pulumirpc.codegen.Diagnostic
+var file_khulnasoft_converter_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_khulnasoft_converter_proto_goTypes = []interface{}{
+	(*ConvertStateRequest)(nil),    // 0: khulnasoftrpc.ConvertStateRequest
+	(*ResourceImport)(nil),         // 1: khulnasoftrpc.ResourceImport
+	(*ConvertStateResponse)(nil),   // 2: khulnasoftrpc.ConvertStateResponse
+	(*ConvertProgramRequest)(nil),  // 3: khulnasoftrpc.ConvertProgramRequest
+	(*ConvertProgramResponse)(nil), // 4: khulnasoftrpc.ConvertProgramResponse
+	(*codegen.Diagnostic)(nil),     // 5: khulnasoftrpc.codegen.Diagnostic
 }
-var file_pulumi_converter_proto_depIdxs = []int32{
-	1, // 0: pulumirpc.ConvertStateResponse.resources:type_name -> pulumirpc.ResourceImport
-	5, // 1: pulumirpc.ConvertStateResponse.diagnostics:type_name -> pulumirpc.codegen.Diagnostic
-	5, // 2: pulumirpc.ConvertProgramResponse.diagnostics:type_name -> pulumirpc.codegen.Diagnostic
-	0, // 3: pulumirpc.Converter.ConvertState:input_type -> pulumirpc.ConvertStateRequest
-	3, // 4: pulumirpc.Converter.ConvertProgram:input_type -> pulumirpc.ConvertProgramRequest
-	2, // 5: pulumirpc.Converter.ConvertState:output_type -> pulumirpc.ConvertStateResponse
-	4, // 6: pulumirpc.Converter.ConvertProgram:output_type -> pulumirpc.ConvertProgramResponse
+var file_khulnasoft_converter_proto_depIdxs = []int32{
+	1, // 0: khulnasoftrpc.ConvertStateResponse.resources:type_name -> khulnasoftrpc.ResourceImport
+	5, // 1: khulnasoftrpc.ConvertStateResponse.diagnostics:type_name -> khulnasoftrpc.codegen.Diagnostic
+	5, // 2: khulnasoftrpc.ConvertProgramResponse.diagnostics:type_name -> khulnasoftrpc.codegen.Diagnostic
+	0, // 3: khulnasoftrpc.Converter.ConvertState:input_type -> khulnasoftrpc.ConvertStateRequest
+	3, // 4: khulnasoftrpc.Converter.ConvertProgram:input_type -> khulnasoftrpc.ConvertProgramRequest
+	2, // 5: khulnasoftrpc.Converter.ConvertState:output_type -> khulnasoftrpc.ConvertStateResponse
+	4, // 6: khulnasoftrpc.Converter.ConvertProgram:output_type -> khulnasoftrpc.ConvertProgramResponse
 	5, // [5:7] is the sub-list for method output_type
 	3, // [3:5] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -503,13 +503,13 @@ var file_pulumi_converter_proto_depIdxs = []int32{
 	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_pulumi_converter_proto_init() }
-func file_pulumi_converter_proto_init() {
-	if File_pulumi_converter_proto != nil {
+func init() { file_khulnasoft_converter_proto_init() }
+func file_khulnasoft_converter_proto_init() {
+	if File_khulnasoft_converter_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_pulumi_converter_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_converter_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConvertStateRequest); i {
 			case 0:
 				return &v.state
@@ -521,7 +521,7 @@ func file_pulumi_converter_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_converter_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_converter_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResourceImport); i {
 			case 0:
 				return &v.state
@@ -533,7 +533,7 @@ func file_pulumi_converter_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_converter_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_converter_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConvertStateResponse); i {
 			case 0:
 				return &v.state
@@ -545,7 +545,7 @@ func file_pulumi_converter_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_converter_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_converter_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConvertProgramRequest); i {
 			case 0:
 				return &v.state
@@ -557,7 +557,7 @@ func file_pulumi_converter_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_converter_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_converter_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConvertProgramResponse); i {
 			case 0:
 				return &v.state
@@ -574,18 +574,18 @@ func file_pulumi_converter_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pulumi_converter_proto_rawDesc,
+			RawDescriptor: file_khulnasoft_converter_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_pulumi_converter_proto_goTypes,
-		DependencyIndexes: file_pulumi_converter_proto_depIdxs,
-		MessageInfos:      file_pulumi_converter_proto_msgTypes,
+		GoTypes:           file_khulnasoft_converter_proto_goTypes,
+		DependencyIndexes: file_khulnasoft_converter_proto_depIdxs,
+		MessageInfos:      file_khulnasoft_converter_proto_msgTypes,
 	}.Build()
-	File_pulumi_converter_proto = out.File
-	file_pulumi_converter_proto_rawDesc = nil
-	file_pulumi_converter_proto_goTypes = nil
-	file_pulumi_converter_proto_depIdxs = nil
+	File_khulnasoft_converter_proto = out.File
+	file_khulnasoft_converter_proto_rawDesc = nil
+	file_khulnasoft_converter_proto_goTypes = nil
+	file_khulnasoft_converter_proto_depIdxs = nil
 }

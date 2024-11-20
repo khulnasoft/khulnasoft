@@ -23,76 +23,76 @@ returns a Promise-wrapped result. The output form accepts
 Input-wrapped arguments and returns an Output-wrapped result.
 
 <div>
-<pulumi-chooser type="language" options="csharp,go,typescript,python,yaml,java"></pulumi-chooser>
+<khulnasoft-chooser type="language" options="csharp,go,typescript,python,yaml,java"></khulnasoft-chooser>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <div class="highlight"
 ><pre class="chroma"><code class="language-typescript" data-lang="typescript"
-><span class="k">function </span>getAssets<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">GetAssetsArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#InvokeOptions">InvokeOptions</a></span><span class="p">): Promise&lt;<span class="nx"><a href="#result">GetAssetsResult</a></span>></span
+><span class="k">function </span>getAssets<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">GetAssetsArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#InvokeOptions">InvokeOptions</a></span><span class="p">): Promise&lt;<span class="nx"><a href="#result">GetAssetsResult</a></span>></span
 ><span class="k">
-function </span>getAssetsOutput<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">GetAssetsOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/pulumi/pulumi/#InvokeOptions">InvokeOptions</a></span><span class="p">): Output&lt;<span class="nx"><a href="#result">GetAssetsResult</a></span>></span
+function </span>getAssetsOutput<span class="p">(</span><span class="nx">args</span><span class="p">:</span> <span class="nx">GetAssetsOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p">?:</span> <span class="nx"><a href="/docs/reference/pkg/nodejs/khulnasoft/khulnasoft/#InvokeOptions">InvokeOptions</a></span><span class="p">): Output&lt;<span class="nx"><a href="#result">GetAssetsResult</a></span>></span
 ></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"
-><span class="k">def </span>get_assets<span class="p">(</span><span class="nx">archive</span><span class="p">:</span> <span class="nx">Optional[pulumi.Archive]</span> = None<span class="p">,</span>
-               <span class="nx">source</span><span class="p">:</span> <span class="nx">Optional[Union[pulumi.Asset, pulumi.Archive]]</span> = None<span class="p">,</span>
-               <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>GetAssetsResult</span
+><span class="k">def </span>get_assets<span class="p">(</span><span class="nx">archive</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Archive]</span> = None<span class="p">,</span>
+               <span class="nx">source</span><span class="p">:</span> <span class="nx">Optional[Union[khulnasoft.Asset, khulnasoft.Archive]]</span> = None<span class="p">,</span>
+               <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>GetAssetsResult</span
 ><span class="k">
-def </span>get_assets_output<span class="p">(</span><span class="nx">archive</span><span class="p">:</span> <span class="nx">Optional[pulumi.Input[pulumi.Archive]]</span> = None<span class="p">,</span>
-               <span class="nx">source</span><span class="p">:</span> <span class="nx">Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]]</span> = None<span class="p">,</span>
-               <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/pulumi/#pulumi.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>Output[GetAssetsResult]</span
+def </span>get_assets_output<span class="p">(</span><span class="nx">archive</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Input[khulnasoft.Archive]]</span> = None<span class="p">,</span>
+               <span class="nx">source</span><span class="p">:</span> <span class="nx">Optional[khulnasoft.Input[Union[khulnasoft.Asset, khulnasoft.Archive]]]</span> = None<span class="p">,</span>
+               <span class="nx">opts</span><span class="p">:</span> <span class="nx"><a href="/docs/reference/pkg/python/khulnasoft/#khulnasoft.InvokeOptions">Optional[InvokeOptions]</a></span> = None<span class="p">) -&gt;</span> <span>Output[GetAssetsResult]</span
 ></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"
-><span class="k">func </span>GetAssets<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">GetAssetsArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) (*<span class="nx"><a href="#result">GetAssetsResult</a></span>, error)</span
+><span class="k">func </span>GetAssets<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">GetAssetsArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) (*<span class="nx"><a href="#result">GetAssetsResult</a></span>, error)</span
 ><span class="k">
-func </span>GetAssetsOutput<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">GetAssetsOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/pulumi/pulumi/sdk/v3/go/pulumi?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) GetAssetsResultOutput</span
+func </span>GetAssetsOutput<span class="p">(</span><span class="nx">ctx</span><span class="p"> *</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#Context">Context</a></span><span class="p">,</span> <span class="nx">args</span><span class="p"> *</span><span class="nx">GetAssetsOutputArgs</span><span class="p">,</span> <span class="nx">opts</span><span class="p"> ...</span><span class="nx"><a href="https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft?tab=doc#InvokeOption">InvokeOption</a></span><span class="p">) GetAssetsResultOutput</span
 ></code></pre></div>
 
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public static class </span><span class="nx">GetAssets </span><span class="p">
 {</span><span class="k">
     public static </span>Task&lt;<span class="nx"><a href="#result">GetAssetsResult</a></span>> <span class="p">InvokeAsync(</span><span class="nx">GetAssetsArgs</span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.InvokeOptions.html">InvokeOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span><span class="k">
     public static </span>Output&lt;<span class="nx"><a href="#result">GetAssetsResult</a></span>> <span class="p">Invoke(</span><span class="nx">GetAssetsInvokeArgs</span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx"><a href="/docs/reference/pkg/dotnet/Pulumi/Pulumi.InvokeOptions.html">InvokeOptions</a></span><span class="p">? </span><span class="nx">opts = null<span class="p">)</span><span class="p">
 }</span></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">public static CompletableFuture&lt;<span class="nx"><a href="#result">GetAssetsResult</a></span>> </span>getAssets<span class="p">(</span><span class="nx">GetAssetsArgs</span><span class="p"> </span><span class="nx">args<span class="p">,</span> <span class="nx">InvokeOptions</span><span class="p"> </span><span class="nx">options<span class="p">)</span>
 <span class="c">// Output-based functions aren't available in Java yet</span>
 </code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">fn::invoke:</span>
 <span class="k">&nbsp;&nbsp;function:</span> example:GetAssets
 <span class="k">&nbsp;&nbsp;arguments:</span>
 <span class="c">&nbsp;&nbsp;&nbsp;&nbsp;# arguments dictionary</span></code></pre></div>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -101,7 +101,7 @@ The following arguments are supported:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="archive_csharp">
@@ -119,18 +119,18 @@ The following arguments are supported:
         <span class="property-type">Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="archive_go">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_go" style="color: inherit; text-decoration: inherit;">Archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-required"
             title="Required">
@@ -138,14 +138,14 @@ The following arguments are supported:
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#source_go" style="color: inherit; text-decoration: inherit;">Source</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Asset<wbr>Or<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="archive_java">
@@ -163,18 +163,18 @@ The following arguments are supported:
         <span class="property-type">Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="archive_nodejs">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_nodejs" style="color: inherit; text-decoration: inherit;">archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-required"
             title="Required">
@@ -182,21 +182,21 @@ The following arguments are supported:
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#source_nodejs" style="color: inherit; text-decoration: inherit;">source</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Asset | pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Asset | khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="archive_python">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_python" style="color: inherit; text-decoration: inherit;">archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-required"
             title="Required">
@@ -204,14 +204,14 @@ The following arguments are supported:
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#source_python" style="color: inherit; text-decoration: inherit;">source</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">Union[pulumi.<wbr>Asset, pulumi.<wbr>Archive]</span>
+        <span class="property-type">Union[khulnasoft.<wbr>Asset, khulnasoft.<wbr>Archive]</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-required"
             title="Required">
         <span id="archive_yaml">
@@ -229,7 +229,7 @@ The following arguments are supported:
         <span class="property-type">Asset</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 
@@ -242,7 +242,7 @@ The following output properties are available:
 
 
 <div>
-<pulumi-choosable type="language" values="csharp">
+<khulnasoft-choosable type="language" values="csharp">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="archive_csharp">
@@ -260,18 +260,18 @@ The following output properties are available:
         <span class="property-type">Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="go">
+<khulnasoft-choosable type="language" values="go">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="archive_go">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_go" style="color: inherit; text-decoration: inherit;">Archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-"
             title="">
@@ -279,14 +279,14 @@ The following output properties are available:
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#source_go" style="color: inherit; text-decoration: inherit;">Source</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Asset<wbr>Or<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="java">
+<khulnasoft-choosable type="language" values="java">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="archive_java">
@@ -304,18 +304,18 @@ The following output properties are available:
         <span class="property-type">Asset<wbr>Or<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="javascript,typescript">
+<khulnasoft-choosable type="language" values="javascript,typescript">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="archive_nodejs">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_nodejs" style="color: inherit; text-decoration: inherit;">archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-"
             title="">
@@ -323,21 +323,21 @@ The following output properties are available:
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#source_nodejs" style="color: inherit; text-decoration: inherit;">source</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.asset.<wbr>Asset | pulumi.asset.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.asset.<wbr>Asset | khulnasoft.asset.<wbr>Archive</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="python">
+<khulnasoft-choosable type="language" values="python">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="archive_python">
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#archive_python" style="color: inherit; text-decoration: inherit;">archive</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">pulumi.<wbr>Archive</span>
+        <span class="property-type">khulnasoft.<wbr>Archive</span>
     </dt>
     <dd></dd><dt class="property-"
             title="">
@@ -345,14 +345,14 @@ The following output properties are available:
 <a data-swiftype-name="resource-property" data-swiftype-type="text" href="#source_python" style="color: inherit; text-decoration: inherit;">source</a>
 </span>
         <span class="property-indicator"></span>
-        <span class="property-type">Union[pulumi.<wbr>Asset, pulumi.<wbr>Archive]</span>
+        <span class="property-type">Union[khulnasoft.<wbr>Asset, khulnasoft.<wbr>Archive]</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 <div>
-<pulumi-choosable type="language" values="yaml">
+<khulnasoft-choosable type="language" values="yaml">
 <dl class="resources-properties"><dt class="property-"
             title="">
         <span id="archive_yaml">
@@ -370,7 +370,7 @@ The following output properties are available:
         <span class="property-type">Asset</span>
     </dt>
     <dd></dd></dl>
-</pulumi-choosable>
+</khulnasoft-choosable>
 </div>
 
 

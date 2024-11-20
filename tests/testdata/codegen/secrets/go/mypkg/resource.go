@@ -8,25 +8,25 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"secrets/mypkg/internal"
 )
 
 type Resource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Config      ConfigOutput             `pulumi:"config"`
-	ConfigArray ConfigArrayOutput        `pulumi:"configArray"`
-	ConfigMap   ConfigMapOutput          `pulumi:"configMap"`
-	Foo         pulumi.StringOutput      `pulumi:"foo"`
-	FooArray    pulumi.StringArrayOutput `pulumi:"fooArray"`
-	FooMap      pulumi.StringMapOutput   `pulumi:"fooMap"`
+	Config      ConfigOutput             `khulnasoft:"config"`
+	ConfigArray ConfigArrayOutput        `khulnasoft:"configArray"`
+	ConfigMap   ConfigMapOutput          `khulnasoft:"configMap"`
+	Foo         khulnasoft.StringOutput      `khulnasoft:"foo"`
+	FooArray    khulnasoft.StringArrayOutput `khulnasoft:"fooArray"`
+	FooMap      khulnasoft.StringMapOutput   `khulnasoft:"fooMap"`
 }
 
 // NewResource registers a new resource with the given unique name, arguments, and options.
-func NewResource(ctx *pulumi.Context,
-	name string, args *ResourceArgs, opts ...pulumi.ResourceOption) (*Resource, error) {
+func NewResource(ctx *khulnasoft.Context,
+	name string, args *ResourceArgs, opts ...khulnasoft.ResourceOption) (*Resource, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -50,24 +50,24 @@ func NewResource(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'FooMap'")
 	}
 	if args.Config != nil {
-		args.Config = pulumi.ToSecret(args.Config).(ConfigInput)
+		args.Config = khulnasoft.ToSecret(args.Config).(ConfigInput)
 	}
 	if args.ConfigArray != nil {
-		args.ConfigArray = pulumi.ToSecret(args.ConfigArray).(ConfigArrayInput)
+		args.ConfigArray = khulnasoft.ToSecret(args.ConfigArray).(ConfigArrayInput)
 	}
 	if args.ConfigMap != nil {
-		args.ConfigMap = pulumi.ToSecret(args.ConfigMap).(ConfigMapInput)
+		args.ConfigMap = khulnasoft.ToSecret(args.ConfigMap).(ConfigMapInput)
 	}
 	if args.Foo != nil {
-		args.Foo = pulumi.ToSecret(args.Foo).(pulumi.StringInput)
+		args.Foo = khulnasoft.ToSecret(args.Foo).(khulnasoft.StringInput)
 	}
 	if args.FooArray != nil {
-		args.FooArray = pulumi.ToSecret(args.FooArray).(pulumi.StringArrayInput)
+		args.FooArray = khulnasoft.ToSecret(args.FooArray).(khulnasoft.StringArrayInput)
 	}
 	if args.FooMap != nil {
-		args.FooMap = pulumi.ToSecret(args.FooMap).(pulumi.StringMapInput)
+		args.FooMap = khulnasoft.ToSecret(args.FooMap).(khulnasoft.StringMapInput)
 	}
-	secrets := pulumi.AdditionalSecretOutputs([]string{
+	secrets := khulnasoft.AdditionalSecretOutputs([]string{
 		"config",
 		"configArray",
 		"configMap",
@@ -87,8 +87,8 @@ func NewResource(ctx *pulumi.Context,
 
 // GetResource gets an existing Resource resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetResource(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ResourceState, opts ...pulumi.ResourceOption) (*Resource, error) {
+func GetResource(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ResourceState, opts ...khulnasoft.ResourceOption) (*Resource, error) {
 	var resource Resource
 	err := ctx.ReadResource("mypkg::Resource", name, id, state, &resource, opts...)
 	if err != nil {
@@ -109,12 +109,12 @@ func (ResourceState) ElementType() reflect.Type {
 }
 
 type resourceArgs struct {
-	Config      Config            `pulumi:"config"`
-	ConfigArray []Config          `pulumi:"configArray"`
-	ConfigMap   map[string]Config `pulumi:"configMap"`
-	Foo         string            `pulumi:"foo"`
-	FooArray    []string          `pulumi:"fooArray"`
-	FooMap      map[string]string `pulumi:"fooMap"`
+	Config      Config            `khulnasoft:"config"`
+	ConfigArray []Config          `khulnasoft:"configArray"`
+	ConfigMap   map[string]Config `khulnasoft:"configMap"`
+	Foo         string            `khulnasoft:"foo"`
+	FooArray    []string          `khulnasoft:"fooArray"`
+	FooMap      map[string]string `khulnasoft:"fooMap"`
 }
 
 // The set of arguments for constructing a Resource resource.
@@ -122,9 +122,9 @@ type ResourceArgs struct {
 	Config      ConfigInput
 	ConfigArray ConfigArrayInput
 	ConfigMap   ConfigMapInput
-	Foo         pulumi.StringInput
-	FooArray    pulumi.StringArrayInput
-	FooMap      pulumi.StringMapInput
+	Foo         khulnasoft.StringInput
+	FooArray    khulnasoft.StringArrayInput
+	FooMap      khulnasoft.StringMapInput
 }
 
 func (ResourceArgs) ElementType() reflect.Type {
@@ -132,7 +132,7 @@ func (ResourceArgs) ElementType() reflect.Type {
 }
 
 type ResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToResourceOutput() ResourceOutput
 	ToResourceOutputWithContext(ctx context.Context) ResourceOutput
@@ -147,16 +147,16 @@ func (i *Resource) ToResourceOutput() ResourceOutput {
 }
 
 func (i *Resource) ToResourceOutputWithContext(ctx context.Context) ResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ResourceOutput)
 }
 
-func (i *Resource) ToOutput(ctx context.Context) pulumix.Output[*Resource] {
-	return pulumix.Output[*Resource]{
+func (i *Resource) ToOutput(ctx context.Context) khulnasoftx.Output[*Resource] {
+	return khulnasoftx.Output[*Resource]{
 		OutputState: i.ToResourceOutputWithContext(ctx).OutputState,
 	}
 }
 
-type ResourceOutput struct{ *pulumi.OutputState }
+type ResourceOutput struct{ *khulnasoft.OutputState }
 
 func (ResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Resource)(nil)).Elem()
@@ -170,8 +170,8 @@ func (o ResourceOutput) ToResourceOutputWithContext(ctx context.Context) Resourc
 	return o
 }
 
-func (o ResourceOutput) ToOutput(ctx context.Context) pulumix.Output[*Resource] {
-	return pulumix.Output[*Resource]{
+func (o ResourceOutput) ToOutput(ctx context.Context) khulnasoftx.Output[*Resource] {
+	return khulnasoftx.Output[*Resource]{
 		OutputState: o.OutputState,
 	}
 }
@@ -188,19 +188,19 @@ func (o ResourceOutput) ConfigMap() ConfigMapOutput {
 	return o.ApplyT(func(v *Resource) ConfigMapOutput { return v.ConfigMap }).(ConfigMapOutput)
 }
 
-func (o ResourceOutput) Foo() pulumi.StringOutput {
-	return o.ApplyT(func(v *Resource) pulumi.StringOutput { return v.Foo }).(pulumi.StringOutput)
+func (o ResourceOutput) Foo() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *Resource) khulnasoft.StringOutput { return v.Foo }).(khulnasoft.StringOutput)
 }
 
-func (o ResourceOutput) FooArray() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *Resource) pulumi.StringArrayOutput { return v.FooArray }).(pulumi.StringArrayOutput)
+func (o ResourceOutput) FooArray() khulnasoft.StringArrayOutput {
+	return o.ApplyT(func(v *Resource) khulnasoft.StringArrayOutput { return v.FooArray }).(khulnasoft.StringArrayOutput)
 }
 
-func (o ResourceOutput) FooMap() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *Resource) pulumi.StringMapOutput { return v.FooMap }).(pulumi.StringMapOutput)
+func (o ResourceOutput) FooMap() khulnasoft.StringMapOutput {
+	return o.ApplyT(func(v *Resource) khulnasoft.StringMapOutput { return v.FooMap }).(khulnasoft.StringMapOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ResourceInput)(nil)).Elem(), &Resource{})
-	pulumi.RegisterOutputType(ResourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ResourceInput)(nil)).Elem(), &Resource{})
+	khulnasoft.RegisterOutputType(ResourceOutput{})
 }

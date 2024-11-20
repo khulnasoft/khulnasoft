@@ -24,7 +24,7 @@ import (
 	"fmt"
 
 	opentracing "github.com/opentracing/opentracing-go"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/promise"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/promise"
 )
 
 type deploymentDiffState struct {

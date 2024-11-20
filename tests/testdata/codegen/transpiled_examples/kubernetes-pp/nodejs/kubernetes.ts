@@ -1,7 +1,7 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as kubernetes from "@pulumi/kubernetes";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as kubernetes from "@khulnasoft/kubernetes";
 
-const config = new pulumi.Config();
+const config = new khulnasoft.Config();
 const hostname = config.get("hostname") || "example.com";
 const nginxDemo = new kubernetes.core.v1.Namespace("nginx-demo", {});
 const app = new kubernetes.apps.v1.Deployment("app", {

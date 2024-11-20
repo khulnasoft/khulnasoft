@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"simple-resource-schema-custom-pypackage-name/example/internal"
 )
 
 type OtherResource struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 
-	Foo ResourceOutput `pulumi:"foo"`
+	Foo ResourceOutput `khulnasoft:"foo"`
 }
 
 // NewOtherResource registers a new resource with the given unique name, arguments, and options.
-func NewOtherResource(ctx *pulumi.Context,
-	name string, args *OtherResourceArgs, opts ...pulumi.ResourceOption) (*OtherResource, error) {
+func NewOtherResource(ctx *khulnasoft.Context,
+	name string, args *OtherResourceArgs, opts ...khulnasoft.ResourceOption) (*OtherResource, error) {
 	if args == nil {
 		args = &OtherResourceArgs{}
 	}
@@ -34,7 +34,7 @@ func NewOtherResource(ctx *pulumi.Context,
 }
 
 type otherResourceArgs struct {
-	Foo *Resource `pulumi:"foo"`
+	Foo *Resource `khulnasoft:"foo"`
 }
 
 // The set of arguments for constructing a OtherResource resource.
@@ -47,7 +47,7 @@ func (OtherResourceArgs) ElementType() reflect.Type {
 }
 
 type OtherResourceInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToOtherResourceOutput() OtherResourceOutput
 	ToOtherResourceOutputWithContext(ctx context.Context) OtherResourceOutput
@@ -62,10 +62,10 @@ func (i *OtherResource) ToOtherResourceOutput() OtherResourceOutput {
 }
 
 func (i *OtherResource) ToOtherResourceOutputWithContext(ctx context.Context) OtherResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OtherResourceOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(OtherResourceOutput)
 }
 
-type OtherResourceOutput struct{ *pulumi.OutputState }
+type OtherResourceOutput struct{ *khulnasoft.OutputState }
 
 func (OtherResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**OtherResource)(nil)).Elem()
@@ -84,6 +84,6 @@ func (o OtherResourceOutput) Foo() ResourceOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*OtherResourceInput)(nil)).Elem(), &OtherResource{})
-	pulumi.RegisterOutputType(OtherResourceOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*OtherResourceInput)(nil)).Elem(), &OtherResource{})
+	khulnasoft.RegisterOutputType(OtherResourceOutput{})
 }

@@ -38,24 +38,24 @@ import (
 	"github.com/golang/glog"
 	"github.com/pgavlin/goldmark"
 
-	"github.com/pulumi/pulumi-java/pkg/codegen/java"
-	yaml "github.com/pulumi/pulumi-yaml/pkg/pulumiyaml/codegen"
+	"github.com/khulnasoft/khulnasoft-java/pkg/codegen/java"
+	yaml "github.com/khulnasoft/khulnasoft-yaml/pkg/khulnasoftyaml/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/dotnet"
 	go_gen "github.com/khulnasoft/khulnasoft/pkg/v3/codegen/go"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/nodejs"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/python"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 //go:embed templates/*.tmpl
 var packagedTemplates embed.FS
 
 // NOTE: This lookup map can be removed when all Pulumi-managed packages
-// have a DisplayName in their schema. See pulumi/pulumi#7813.
+// have a DisplayName in their schema. See khulnasoft/khulnasoft#7813.
 // This lookup table no longer needs to be updated for new providers
 // and is considered stale.
 //
@@ -135,7 +135,7 @@ func titleLookup(shortName string) (string, bool) {
 		"opsgenie":                             "Opsgenie",
 		"packet":                               "Packet",
 		"pagerduty":                            "PagerDuty",
-		"pulumi-std":                           "Pulumi Standard Library",
+		"khulnasoft-std":                           "Pulumi Standard Library",
 		"postgresql":                           "PostgreSQL",
 		"prometheus-helm":                      "Prometheus (Helm)",
 		"rabbitmq":                             "RabbitMQ",
@@ -625,7 +625,7 @@ func (mod *modContext) cleanTypeString(t schema.Type, langTypeString, lang, modN
 	cleanNodeJSName := func(objModName string) string {
 		// The nodejs codegen currently doesn't use the ModuleToPackage override available
 		// in the k8s package's schema. So we'll manually strip some known module names for k8s.
-		// TODO[pulumi/pulumi#4325]: Remove this block once the nodejs code gen is able to use the
+		// TODO[khulnasoft/khulnasoft#4325]: Remove this block once the nodejs code gen is able to use the
 		// package name overrides for modules.
 		if isKubernetesPackage(mod.pkg) {
 			langTypeString = strings.ReplaceAll(langTypeString, "k8s.io.", "")
@@ -652,7 +652,7 @@ func (mod *modContext) cleanTypeString(t schema.Type, langTypeString, lang, modN
 		// Therefore, type references for Python all have _ before module names.
 		// This is our implementation detail, so we shouldn't show those underscores
 		// in end-user documentation. Remove them here.
-		// We need to keep underscores inside module names though, as in 'pulumi_random'.
+		// We need to keep underscores inside module names though, as in 'khulnasoft_random'.
 		return removeLeadingUnderscores(objModName)
 	}
 
@@ -1076,7 +1076,7 @@ func (mod *modContext) genConstructorPython(r *schema.Resource, argsOptional, ar
 		Type: propertyType{
 			Name:            "Optional[ResourceOptions]",
 			DescriptionName: "ResourceOptions",
-			Link:            "/docs/reference/pkg/python/pulumi/#pulumi.ResourceOptions",
+			Link:            "/docs/reference/pkg/python/khulnasoft/#khulnasoft.ResourceOptions",
 		},
 		Comment: ctorOptsArgComment,
 	})
@@ -1826,7 +1826,7 @@ func (mod *modContext) genResource(r *schema.Resource) resourceDocArgs {
 	// pushback from third-party consumers who have legitimate use cases with more that 200 types.
 	// Therefore, we currently apply a smaller limit of 200 to packages that we know have some bloat in
 	// their types (AWS and AWS Native).
-	// See https://github.com/pulumi/pulumi/issues/15507#issuecomment-2064361317
+	// See https://github.com/khulnasoft/khulnasoft/issues/15507#issuecomment-2064361317
 	//
 	// Schema Tools will print a warning every time a new resources gets an increase in number of types
 	// that is beyond 200. This should help us catch new instances and make decisions whether to include all

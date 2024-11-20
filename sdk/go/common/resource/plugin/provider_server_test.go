@@ -18,8 +18,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -44,7 +44,7 @@ func TestProviderServer_Configure_variables(t *testing.T) {
 	srv := NewProviderServer(&provider)
 
 	ctx := context.Background()
-	_, err := srv.Configure(ctx, &pulumirpc.ConfigureRequest{
+	_, err := srv.Configure(ctx, &khulnasoftrpc.ConfigureRequest{
 		Variables: map[string]string{
 			"ns:foo": `"bar"`,
 			"ns:baz": "42",
@@ -107,8 +107,8 @@ func TestProviderServer_Read_respects_ID(t *testing.T) {
 	}
 	secret := "supersecretpassword"
 	srv := NewProviderServer(&provider)
-	resp, err := srv.Read(ctx, &pulumirpc.ReadRequest{
-		Urn: "urn:pulumi:v2::re::random:index/randomPassword:RandomPassword::newPassword",
+	resp, err := srv.Read(ctx, &khulnasoftrpc.ReadRequest{
+		Urn: "urn:khulnasoft:v2::re::random:index/randomPassword:RandomPassword::newPassword",
 		Id:  secret,
 	})
 	require.NoError(t, err)

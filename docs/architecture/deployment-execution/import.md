@@ -6,11 +6,11 @@ resources for management by Pulumi:
 
 * Migrating manually managed resources to an infrastructure-as-code solution;
 * Migrating from other infrastructure-as-code platforms to Pulumi;
-* Moving resources between Pulumi stacks in cases where e.g. `pulumi state move`
+* Moving resources between Pulumi stacks in cases where e.g. `khulnasoft state move`
   is not sufficient.
 
 Pulumi offers two approaches for importing resources: the `import` resource
-option and the `pulumi import` command. At a minimum, importing a resource
+option and the `khulnasoft import` command. At a minimum, importing a resource
 involves adding the resource's state to the destination stack's
 [state](state-snapshots). Once the resource has been added to the stack, the
 Pulumi CLI is able to manage the resource like any other.
@@ -18,9 +18,9 @@ Pulumi CLI is able to manage the resource like any other.
 ## The `import` resource option
 
 The [`import` resource
-option](https://www.pulumi.com/docs/iac/concepts/options/import/) accepts the
+option](https://www.khulnasoft.com/docs/iac/concepts/options/import/) accepts the
 [ID](resource-ids) of an existing resource whose state should be
-[](pulumirpc.ResourceProvider.Read) and imported into the stack.
+[](khulnasoftrpc.ResourceProvider.Read) and imported into the stack.
 
 Importing a resource using the `import` resource option requires that the
 desired state described by the Pulumi program for a resource being imported
@@ -31,18 +31,18 @@ of operations:
 
 1. Fetch the current inputs `Iₐ` and state `Sₐ` for the resource of type `T`
    with ID `X` from its provider by calling the provider's
-   [](pulumirpc.ResourceProvider.Read) method. If the provider does not return a
+   [](khulnasoftrpc.ResourceProvider.Read) method. If the provider does not return a
    value for `Iₐ`, the provider does not support importing resources and the
    import fails.
 2. Process the [`ignoreChanges` resource
-   option](https://www.pulumi.com/docs/iac/concepts/options/ignorechanges/) by
+   option](https://www.khulnasoft.com/docs/iac/concepts/options/ignorechanges/) by
    copying the value for any ignored input property from `Iₐ` to `Iₚ`.
 3. Validate the resource's inputs and apply any programmatic defaults by passing
-   `Iₚ` and `Iₐ` to the provider's [](pulumirpc.ResourceProvider.Check) method.
+   `Iₚ` and `Iₐ` to the provider's [](khulnasoftrpc.ResourceProvider.Check) method.
    Let `Iₖ` be the checked inputs; these inputs form the resource's desired
    state.
 4. Check for differences between `Iₖ` and `Sₐ` by calling the provider's
-   [](pulumirpc.ResourceProvider.Diff) method. If the provider reports any
+   [](khulnasoftrpc.ResourceProvider.Diff) method. If the provider reports any
    differences, the import either succeeds with a warning (in the case of a
    preview) or fails with an error (in the case of an update).
 
@@ -75,14 +75,14 @@ sequenceDiagram
     RM->>-LH: RegisterResourceResponse(URN, ID, current state)
 ```
 
-## `pulumi import`
+## `khulnasoft import`
 
-[`pulumi import`](https://www.pulumi.com/docs/cli/commands/pulumi_import/) is a
+[`khulnasoft import`](https://www.khulnasoft.com/docs/cli/commands/khulnasoft_import/) is a
 newer method of importing resources into a stack that also generates program
-code for imported resources. `pulumi import` accepts a list of *import specs*,
+code for imported resources. `khulnasoft import` accepts a list of *import specs*,
 where each spec comprises at minimum a [type token](urns), name, and
 [ID](resource-ids), but may also specify a parent URN, provider reference, and
-package version. Unlike the `import` resource option, `pulumi import` does not
+package version. Unlike the `import` resource option, `khulnasoft import` does not
 insist that the desired state of the resource in the Pulumi program matches the
 actual state of the resource as returned by the provider, since it is capable of
 generating code to match the actual state. Given a resource `R` of type `T` with
@@ -91,7 +91,7 @@ performs the following sequence of operations:
 
 1. Fetch the current inputs `Iₐ` and state `Sₐ` for the resource of type `T`
    with ID `X` from its provider by calling the provider's
-   [](pulumirpc.ResourceProvider.Read) method. If the provider does not return a
+   [](khulnasoftrpc.ResourceProvider.Read) method. If the provider does not return a
    value for `Iₐ`, the provider does not support importing resources and the
    import fails.
 2. Fetch the schema for resources of type `T` from the provider. If the provider
@@ -99,11 +99,11 @@ performs the following sequence of operations:
 3. Copy the value of each required input property defined in the schema for `T`
    from `Iₐ` to `Iₚ`.
 4. Validate the resource's inputs and apply any programmatic defaults by passing
-   `Iₚ` and `Iₐ` to the provider's [](pulumirpc.ResourceProvider.Check) method.
+   `Iₚ` and `Iₐ` to the provider's [](khulnasoftrpc.ResourceProvider.Check) method.
    Let `Iₖ` be the checked inputs; these inputs form the resource's desired
    state.
 5. Check for differences between `Iₖ` and `Sₐ` by calling the provider's
-   [](pulumirpc.ResourceProvider.Diff) method. If the provider reports any
+   [](khulnasoftrpc.ResourceProvider.Diff) method. If the provider reports any
    differences, the values of the differing properties are copied from `Sₐ` to
    `Iₚ`. This is intended to produce the smallest valid set of inputs necessary
    to avoid diffs. This does not use a fixed-point algorithm because there is no
@@ -123,11 +123,11 @@ stack's Pulumi program. The user can then copy the generated definition into
 their Pulumi program.
 
 ```mermaid
-:caption: Importing a resource using the `pulumi import` CLI
+:caption: Importing a resource using the `khulnasoft import` CLI
 :zoom:
 
 sequenceDiagram
-    participant PI as pulumi import
+    participant PI as khulnasoft import
     participant CV as PCL converter
     participant LH as Language host
     box Engine
@@ -156,13 +156,13 @@ sequenceDiagram
 
 ### Limitations and challenges
 
-The primary challenge in generating appropriate code for `pulumi import` lies in
+The primary challenge in generating appropriate code for `khulnasoft import` lies in
 determining exactly what the input values for a particular resource should be.
 In many providers, it is not necessarily possible to accurately recover a
 resource's inputs from its state. This observation led to the diff-oriented
 approach described above, where the importer begins with an extremely minimal
 set of inputs and attempts to derive the actual inputs from the results of a
-call to the provider's [](pulumirpc.ResourceProvider.Diff) method.
+call to the provider's [](khulnasoftrpc.ResourceProvider.Diff) method.
 Unfortunately, the results are not always satisfactory, and the relatively small
 set of inputs present in the generated code can make it difficult for users to
 determine what inputs they *actually* need to pass to the resource to describe

@@ -7,21 +7,21 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"go-overridden-internal-module-name/example/utilities"
 )
 
 type TypeUses struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Bar SomeOtherObjectPtrOutput              `pulumi:"bar"`
-	Baz ObjectWithNodeOptionalInputsPtrOutput `pulumi:"baz"`
-	Foo ObjectPtrOutput                       `pulumi:"foo"`
+	Bar SomeOtherObjectPtrOutput              `khulnasoft:"bar"`
+	Baz ObjectWithNodeOptionalInputsPtrOutput `khulnasoft:"baz"`
+	Foo ObjectPtrOutput                       `khulnasoft:"foo"`
 }
 
 // NewTypeUses registers a new resource with the given unique name, arguments, and options.
-func NewTypeUses(ctx *pulumi.Context,
-	name string, args *TypeUsesArgs, opts ...pulumi.ResourceOption) (*TypeUses, error) {
+func NewTypeUses(ctx *khulnasoft.Context,
+	name string, args *TypeUsesArgs, opts ...khulnasoft.ResourceOption) (*TypeUses, error) {
 	if args == nil {
 		args = &TypeUsesArgs{}
 	}
@@ -37,8 +37,8 @@ func NewTypeUses(ctx *pulumi.Context,
 
 // GetTypeUses gets an existing TypeUses resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetTypeUses(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *TypeUsesState, opts ...pulumi.ResourceOption) (*TypeUses, error) {
+func GetTypeUses(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *TypeUsesState, opts ...khulnasoft.ResourceOption) (*TypeUses, error) {
 	var resource TypeUses
 	err := ctx.ReadResource("example::TypeUses", name, id, state, &resource, opts...)
 	if err != nil {
@@ -59,9 +59,9 @@ func (TypeUsesState) ElementType() reflect.Type {
 }
 
 type typeUsesArgs struct {
-	Bar *SomeOtherObject              `pulumi:"bar"`
-	Baz *ObjectWithNodeOptionalInputs `pulumi:"baz"`
-	Foo *Object                       `pulumi:"foo"`
+	Bar *SomeOtherObject              `khulnasoft:"bar"`
+	Baz *ObjectWithNodeOptionalInputs `khulnasoft:"baz"`
+	Foo *Object                       `khulnasoft:"foo"`
 }
 
 // The set of arguments for constructing a TypeUses resource.
@@ -76,7 +76,7 @@ func (TypeUsesArgs) ElementType() reflect.Type {
 }
 
 type TypeUsesInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToTypeUsesOutput() TypeUsesOutput
 	ToTypeUsesOutputWithContext(ctx context.Context) TypeUsesOutput
@@ -91,10 +91,10 @@ func (i *TypeUses) ToTypeUsesOutput() TypeUsesOutput {
 }
 
 func (i *TypeUses) ToTypeUsesOutputWithContext(ctx context.Context) TypeUsesOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TypeUsesOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(TypeUsesOutput)
 }
 
-type TypeUsesOutput struct{ *pulumi.OutputState }
+type TypeUsesOutput struct{ *khulnasoft.OutputState }
 
 func (TypeUsesOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**TypeUses)(nil)).Elem()
@@ -121,6 +121,6 @@ func (o TypeUsesOutput) Foo() ObjectPtrOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*TypeUsesInput)(nil)).Elem(), &TypeUses{})
-	pulumi.RegisterOutputType(TypeUsesOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*TypeUsesInput)(nil)).Elem(), &TypeUses{})
+	khulnasoft.RegisterOutputType(TypeUsesOutput{})
 }

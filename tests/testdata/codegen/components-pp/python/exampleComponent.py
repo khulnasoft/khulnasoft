@@ -1,8 +1,8 @@
-import pulumi
-from pulumi import Input
+import khulnasoft
+from khulnasoft import Input
 from simpleComponent import SimpleComponent
 from typing import Optional, Dict, TypedDict, Any
-import pulumi_random as random
+import khulnasoft_random as random
 
 class DeploymentZones(TypedDict, total=False):
     zone: Input[str]
@@ -23,21 +23,21 @@ class ExampleComponentArgs(TypedDict, total=False):
     deploymentZones: Input[Dict[str, DeploymentZones]]
     ipAddress: Input[list[int]]
 
-class ExampleComponent(pulumi.ComponentResource):
-    def __init__(self, name: str, args: ExampleComponentArgs, opts:Optional[pulumi.ResourceOptions] = None):
+class ExampleComponent(khulnasoft.ComponentResource):
+    def __init__(self, name: str, args: ExampleComponentArgs, opts:Optional[khulnasoft.ResourceOptions] = None):
         super().__init__("components:index:ExampleComponent", name, args, opts)
 
         password = random.RandomPassword(f"{name}-password",
             length=16,
             special=True,
             override_special=args["input"],
-            opts = pulumi.ResourceOptions(parent=self))
+            opts = khulnasoft.ResourceOptions(parent=self))
 
         github_password = random.RandomPassword(f"{name}-githubPassword",
             length=16,
             special=True,
             override_special=args["githubApp"]["webhookSecret"],
-            opts = pulumi.ResourceOptions(parent=self))
+            opts = khulnasoft.ResourceOptions(parent=self))
 
         # Example of iterating a list of objects
         server_passwords = []
@@ -46,7 +46,7 @@ class ExampleComponent(pulumi.ComponentResource):
                 length=16,
                 special=True,
                 override_special=args["servers"][range["value"]]["name"],
-                opts = pulumi.ResourceOptions(parent=self)))
+                opts = khulnasoft.ResourceOptions(parent=self)))
 
         # Example of iterating a map of objects
         zone_passwords = []
@@ -55,9 +55,9 @@ class ExampleComponent(pulumi.ComponentResource):
                 length=16,
                 special=True,
                 override_special=range["value"]["zone"],
-                opts = pulumi.ResourceOptions(parent=self)))
+                opts = khulnasoft.ResourceOptions(parent=self)))
 
-        simple_component = SimpleComponent(f"{name}-simpleComponent", opts = pulumi.ResourceOptions(parent=self))
+        simple_component = SimpleComponent(f"{name}-simpleComponent", opts = khulnasoft.ResourceOptions(parent=self))
 
         self.result = password.result
         self.register_outputs({

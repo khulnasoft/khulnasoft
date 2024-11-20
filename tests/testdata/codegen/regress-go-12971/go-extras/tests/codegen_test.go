@@ -22,8 +22,8 @@ import (
 	"regress-go-12971/example"
 	"regress-go-12971/example/config"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -54,7 +54,7 @@ func TestEnvironmentDefaults(t *testing.T) {
 	}
 
 	checkConfig := func(t *testing.T, want example.World) {
-		err := pulumi.RunErr(func(ctx *pulumi.Context) error {
+		err := khulnasoft.RunErr(func(ctx *khulnasoft.Context) error {
 			// For configuration, there's no concept of unset.
 			// We use zero values instead.
 			// We can modify want because it's passed by value.
@@ -73,17 +73,17 @@ func TestEnvironmentDefaults(t *testing.T) {
 			assert.Equal(t, *want.RadiusKm, config.GetRadiusKm(ctx), "radiusKm")
 
 			return nil
-		}, pulumi.WithMocks("project", "stack", &mockResourceMonitor{}))
+		}, khulnasoft.WithMocks("project", "stack", &mockResourceMonitor{}))
 		require.NoError(t, err)
 	}
 
 	checkProvider := func(t *testing.T, want example.World) {
-		err := pulumi.RunErr(func(ctx *pulumi.Context) error {
+		err := khulnasoft.RunErr(func(ctx *khulnasoft.Context) error {
 			_, err := example.NewProvider(ctx, "prov", nil)
 			return err
-		}, pulumi.WithMocks("project", "stack", &mockResourceMonitor{
-			NewResourceF: func(args pulumi.MockResourceArgs) (string, resource.PropertyMap, error) {
-				require.Equal(t, "pulumi:providers:world", args.TypeToken, "provider type")
+		}, khulnasoft.WithMocks("project", "stack", &mockResourceMonitor{
+			NewResourceF: func(args khulnasoft.MockResourceArgs) (string, resource.PropertyMap, error) {
+				require.Equal(t, "khulnasoft:providers:world", args.TypeToken, "provider type")
 				require.Equal(t, "prov", args.Name, "provider name")
 
 				wantMap := make(map[string]any)
@@ -192,18 +192,18 @@ func TestEnvironmentDefaults(t *testing.T) {
 }
 
 type mockResourceMonitor struct {
-	CallF        func(pulumi.MockCallArgs) (resource.PropertyMap, error)
-	NewResourceF func(pulumi.MockResourceArgs) (string, resource.PropertyMap, error)
+	CallF        func(khulnasoft.MockCallArgs) (resource.PropertyMap, error)
+	NewResourceF func(khulnasoft.MockResourceArgs) (string, resource.PropertyMap, error)
 }
 
-func (m *mockResourceMonitor) Call(args pulumi.MockCallArgs) (resource.PropertyMap, error) {
+func (m *mockResourceMonitor) Call(args khulnasoft.MockCallArgs) (resource.PropertyMap, error) {
 	if m.CallF != nil {
 		return m.CallF(args)
 	}
 	return args.Args, nil
 }
 
-func (m *mockResourceMonitor) NewResource(args pulumi.MockResourceArgs) (string, resource.PropertyMap, error) {
+func (m *mockResourceMonitor) NewResource(args khulnasoft.MockResourceArgs) (string, resource.PropertyMap, error) {
 	if m.NewResourceF != nil {
 		return m.NewResourceF(args)
 	}
@@ -216,7 +216,7 @@ func ptr[T any](v T) *T { return &v }
 // waitForOutut blocks until the given output has resolved.
 // The test fails if the output does not resolve after a while.
 // This is a bit icky but it suffices for this test.
-func waitForOutput[T any](t testing.TB, o pulumi.Output) T {
+func waitForOutput[T any](t testing.TB, o khulnasoft.Output) T {
 	done := make(chan struct{})
 	var v T
 

@@ -27,7 +27,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	ptesting "github.com/pulumi/pulumi/sdk/v3/go/common/testing"
+	ptesting "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/testing"
 )
 
 func TestCancelSignal(t *testing.T) {
@@ -40,10 +40,10 @@ func TestCancelSignal(t *testing.T) {
 			defer e.DeleteIfNotFailed()
 			stackName := ptesting.RandomStackName()
 			e.ImportDirectory("cancel")
-			e.RunCommand("pulumi", "login", "--cloud-url", e.LocalURL())
-			e.RunCommand("pulumi", "install")
-			e.RunCommand("pulumi", "stack", "init", stackName)
-			cmd := e.SetupCommandIn(e.CWD, "pulumi", "up", "--skip-preview", "--yes")
+			e.RunCommand("khulnasoft", "login", "--cloud-url", e.LocalURL())
+			e.RunCommand("khulnasoft", "install")
+			e.RunCommand("khulnasoft", "stack", "init", stackName)
+			cmd := e.SetupCommandIn(e.CWD, "khulnasoft", "up", "--skip-preview", "--yes")
 
 			var outBuffer bytes.Buffer
 			var errBuffer bytes.Buffer

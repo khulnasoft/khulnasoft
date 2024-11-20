@@ -17,7 +17,7 @@ from enum import Enum
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Set, cast
 
 from google.protobuf import json_format, struct_pb2
-from pulumi.asset import (
+from khulnasoft.asset import (
     AssetArchive,
     FileArchive,
     FileAsset,
@@ -25,14 +25,14 @@ from pulumi.asset import (
     RemoteAsset,
     StringAsset,
 )
-from pulumi.resource import (
+from khulnasoft.resource import (
     ComponentResource,
     CustomResource,
     DependencyResource,
     Resource,
     ResourceOptions,
 )
-from pulumi.runtime import (
+from khulnasoft.runtime import (
     MockCallArgs,
     MockResourceArgs,
     Mocks,
@@ -44,8 +44,8 @@ from pulumi.runtime import (
     settings,
 )
 
-import pulumi
-from pulumi import UNKNOWN, Input, Output, input_type
+import khulnasoft
+from khulnasoft import UNKNOWN, Input, Output, input_type
 
 
 class FakeCustomResource(CustomResource):
@@ -109,38 +109,38 @@ class MyMocks(Mocks):
             raise Exception(f"unknown resource type {args.typ}")
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class MyOutputTypeDict(dict):
 
     def __init__(self, values: list, items: list, keys: list):
-        pulumi.set(self, "values", values)
-        pulumi.set(self, "items", items)
-        pulumi.set(self, "keys", keys)
+        khulnasoft.set(self, "values", values)
+        khulnasoft.set(self, "items", items)
+        khulnasoft.set(self, "keys", keys)
 
     # Property with empty body.
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def values(self) -> str:  # type: ignore
         """Values docstring."""
         ...
 
     # Property with empty body.
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def items(self) -> str:  # type: ignore
         """Items docstring."""
         ...
 
     # Property with empty body.
     @property
-    @pulumi.getter
+    @khulnasoft.getter
     def keys(self) -> str:  # type: ignore
         """Keys docstring."""
         ...
 
 
-def pulumi_test(coro):
-    wrapped = pulumi.runtime.test(coro)
+def khulnasoft_test(coro):
+    wrapped = khulnasoft.runtime.test(coro)
 
     def wrapper(*args, **kwargs):
         settings.configure(mocks.MockSettings(dry_run=False))
@@ -153,26 +153,26 @@ def pulumi_test(coro):
 
 
 class NextSerializationTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_list(self):
         test_list = [1, 2, 3]
         props = await rpc.serialize_property(test_list, [], None)
         self.assertEqual(test_list, props)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_tuple(self):
         test_tuple = tuple([1, 2, 3])
         props = await rpc.serialize_property(test_tuple, [], None)
         self.assertEqual([1, 2, 3], props)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_future(self):
         fut = asyncio.Future()
         fut.set_result(42)
         prop = await rpc.serialize_property(fut, [], None)
         self.assertEqual(42, prop)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_coro(self):
         async def fun():
             await asyncio.sleep(0.1)
@@ -181,7 +181,7 @@ class NextSerializationTests(unittest.TestCase):
         prop = await rpc.serialize_property(fun(), [], None)
         self.assertEqual(42, prop)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_dict(self):
         fut = asyncio.Future()
         fut.set_result(99)
@@ -189,7 +189,7 @@ class NextSerializationTests(unittest.TestCase):
         prop = await rpc.serialize_property(test_dict, [], None)
         self.assertDictEqual({"a": 42, "b": 99}, prop)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_custom_resource_preview(self):
         settings.SETTINGS.dry_run = True
         rpc.register_resource_module("test", "index", MyResourceModule())
@@ -220,7 +220,7 @@ class NextSerializationTests(unittest.TestCase):
         res = rpc.deserialize_properties(prop)
         self.assertEqual(id, res)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_custom_resource(self):
         rpc.register_resource_module("test", "index", MyResourceModule())
         set_mocks(MyMocks())
@@ -250,7 +250,7 @@ class NextSerializationTests(unittest.TestCase):
         res = rpc.deserialize_properties(prop)
         self.assertEqual(id, res)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_component_resource(self):
         rpc.register_resource_module("test", "index", MyResourceModule())
         set_mocks(MyMocks())
@@ -278,28 +278,28 @@ class NextSerializationTests(unittest.TestCase):
         res = rpc.deserialize_properties(prop)
         self.assertEqual(urn, res)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_string_asset(self):
         asset = StringAsset("Python 3 is cool")
         prop = await rpc.serialize_property(asset, [], None)
         self.assertEqual(rpc._special_asset_sig, prop[rpc._special_sig_key])
         self.assertEqual("Python 3 is cool", prop["text"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_file_asset(self):
         asset = FileAsset("hello.txt")
         prop = await rpc.serialize_property(asset, [], None)
         self.assertEqual(rpc._special_asset_sig, prop[rpc._special_sig_key])
         self.assertEqual("hello.txt", prop["path"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_remote_asset(self):
-        asset = RemoteAsset("https://pulumi.com")
+        asset = RemoteAsset("https://khulnasoft.com")
         prop = await rpc.serialize_property(asset, [], None)
         self.assertEqual(rpc._special_asset_sig, prop[rpc._special_sig_key])
-        self.assertEqual("https://pulumi.com", prop["uri"])
+        self.assertEqual("https://khulnasoft.com", prop["uri"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_output(self):
         existing = FakeCustomResource("existing-dependency")
         res = FakeCustomResource("some-dependency")
@@ -336,7 +336,7 @@ class NextSerializationTests(unittest.TestCase):
         # If the caller of future() explicitly accepts first-class unknowns, they should be present in the result.
         self.assertEqual(UNKNOWN, await out.future(with_unknowns=True))
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_output_all(self):
         res = FakeCustomResource("some-resource")
         fut = asyncio.Future()
@@ -355,14 +355,14 @@ class NextSerializationTests(unittest.TestCase):
         self.assertEqual([42, 99], prop)
         self.assertEqual({"out": 42, "other": 99}, prop_dict)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_output_all_no_inputs(self):
         empty_all = Output.all()
         deps = []
         prop = await rpc.serialize_property(empty_all, deps, None)
         self.assertEqual([], prop)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_output_all_failure_mixed_inputs(self):
         res = FakeCustomResource("some-resource")
         fut = asyncio.Future()
@@ -377,7 +377,7 @@ class NextSerializationTests(unittest.TestCase):
             ValueError, "Output.all() was supplied a mix of named and unnamed inputs"
         )
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_output_all_composes_dependencies(self):
         res = FakeCustomResource("some-resource")
         fut = asyncio.Future()
@@ -402,7 +402,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertEqual([42, 99], prop)
         self.assertEqual({"out": 42, "other_out": 99}, prop_dict)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_output_all_known_if_all_are_known(self):
         res = FakeCustomResource("some-resource")
         fut = asyncio.Future()
@@ -430,7 +430,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertEqual(rpc.UNKNOWN, prop)
         self.assertEqual(rpc.UNKNOWN, prop_dict)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unknown_output(self):
         res = FakeCustomResource("some-dependency")
         fut = asyncio.Future()
@@ -443,7 +443,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertListEqual(deps, [res])
         self.assertEqual(rpc.UNKNOWN, prop)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_asset_archive(self):
         archive = AssetArchive({"foo": StringAsset("bar")})
 
@@ -459,21 +459,21 @@ class NextSerializationTests(unittest.TestCase):
             prop,
         )
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_remote_archive(self):
-        asset = RemoteArchive("https://pulumi.com")
+        asset = RemoteArchive("https://khulnasoft.com")
         prop = await rpc.serialize_property(asset, [], None)
         self.assertEqual(rpc._special_archive_sig, prop[rpc._special_sig_key])
-        self.assertEqual("https://pulumi.com", prop["uri"])
+        self.assertEqual("https://khulnasoft.com", prop["uri"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_file_archive(self):
         asset = FileArchive("foo.tar.gz")
         prop = await rpc.serialize_property(asset, [], None)
         self.assertEqual(rpc._special_archive_sig, prop[rpc._special_sig_key])
         self.assertEqual("foo.tar.gz", prop["path"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_bad_inputs(self):
         class MyClass:
             def __init__(self):
@@ -488,13 +488,13 @@ class NextSerializationTests(unittest.TestCase):
         self.assertIsNotNone(error)
         self.assertEqual("unexpected input of type MyClass", str(error))
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_string(self):
         # Ensure strings are serialized as strings (and not sequences).
         prop = await rpc.serialize_property("hello world", [], None)
         self.assertEqual("hello world", prop)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_unsupported_sequences(self):
         cases = [
             range(10),
@@ -507,7 +507,7 @@ class NextSerializationTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 await rpc.serialize_property(case, [], None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_distinguished_unknown_output(self):
         fut = asyncio.Future()
         fut.set_result(UNKNOWN)
@@ -537,7 +537,7 @@ class NextSerializationTests(unittest.TestCase):
             return Output(set(), fut, known_fut, is_secret_fut)
         return Output(set(), fut, known_fut)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_can_run_on_known_value_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -547,7 +547,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_known())
         self.assertEqual(await r.future(), 1)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_can_run_on_known_awaitable_value_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -563,7 +563,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_known())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_can_run_on_known_known_output_value_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -573,7 +573,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_known())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_can_run_on_known_unknown_output_value_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -583,7 +583,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_known())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_produces_unknown_default_on_unknown_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -593,7 +593,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_known())
         self.assertEqual(await r.future(), None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_produces_unknown_default_on_unknown_awaitable_during_preview(
         self,
     ):
@@ -611,7 +611,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_known())
         self.assertEqual(await r.future(), None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_produces_unknown_default_on_unknown_known_output_during_preview(
         self,
     ):
@@ -623,7 +623,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_known())
         self.assertEqual(await r.future(), None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_produces_unknown_default_on_unknown_unknown_output_during_preview(
         self,
     ):
@@ -635,7 +635,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_known())
         self.assertEqual(await r.future(), None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_known_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -646,7 +646,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), 1)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_known_awaitable_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -663,7 +663,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_known_known_output_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -674,7 +674,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_known_unknown_output_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -685,7 +685,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_unknown_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -696,7 +696,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_unknown_awaitable_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -713,7 +713,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_unknown_known_output_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -724,7 +724,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_unknown_unknown_output_during_preview(
         self,
     ):
@@ -737,7 +737,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_propagates_secret_on_known_known_output_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -750,7 +750,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_propagates_secret_on_known_unknown_output_during_preview(self):
         settings.SETTINGS.dry_run = True
 
@@ -763,7 +763,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_does_not_propagate_secret_on_unknown_known_output_during_preview(
         self,
     ):
@@ -778,7 +778,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_secret())
         self.assertEqual(await r.future(), None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_does_not_propagate_secret_on_unknown_unknown_output_during_preview(
         self,
     ):
@@ -793,7 +793,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_secret())
         self.assertEqual(await r.future(), None)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_can_run_on_known_value(self):
         settings.SETTINGS.dry_run = False
 
@@ -803,7 +803,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_known())
         self.assertEqual(await r.future(), 1)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_can_run_on_known_awaitable_value(self):
         settings.SETTINGS.dry_run = False
 
@@ -819,7 +819,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_known())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_can_run_on_known_known_output_value(self):
         settings.SETTINGS.dry_run = False
 
@@ -829,7 +829,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_known())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_can_run_on_known_unknown_output_value(self):
         settings.SETTINGS.dry_run = False
 
@@ -839,7 +839,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_known())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_produces_unknown_on_unknown(self):
         settings.SETTINGS.dry_run = False
 
@@ -848,7 +848,7 @@ class NextSerializationTests(unittest.TestCase):
 
         self.assertFalse(await r.is_known())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_produces_unknown_on_unknown_awaitable(self):
         settings.SETTINGS.dry_run = False
 
@@ -863,7 +863,7 @@ class NextSerializationTests(unittest.TestCase):
 
         self.assertFalse(await r.is_known())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_produces_known_on_unknown_known_output(self):
         settings.SETTINGS.dry_run = False
 
@@ -872,7 +872,7 @@ class NextSerializationTests(unittest.TestCase):
 
         self.assertFalse(await r.is_known())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_produces_unknown_on_unknown_unknown_output(self):
         settings.SETTINGS.dry_run = False
 
@@ -881,7 +881,7 @@ class NextSerializationTests(unittest.TestCase):
 
         self.assertFalse(await r.is_known())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_known(self):
         settings.SETTINGS.dry_run = False
 
@@ -892,7 +892,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), 1)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_known_awaitable(self):
         settings.SETTINGS.dry_run = False
 
@@ -909,7 +909,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_known_known_output(self):
         settings.SETTINGS.dry_run = False
 
@@ -920,7 +920,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_known_unknown_output(self):
         settings.SETTINGS.dry_run = False
 
@@ -931,7 +931,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_unknown(self):
         settings.SETTINGS.dry_run = False
 
@@ -941,7 +941,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_known())
         self.assertTrue(await r.is_secret())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_unknown_awaitable(self):
         settings.SETTINGS.dry_run = False
 
@@ -957,7 +957,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_known())
         self.assertTrue(await r.is_secret())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_unknown_known_output(self):
         settings.SETTINGS.dry_run = False
 
@@ -967,7 +967,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_known())
         self.assertTrue(await r.is_secret())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_preserves_secret_on_unknown_unknown_output(self):
         settings.SETTINGS.dry_run = False
 
@@ -977,7 +977,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r.is_known())
         self.assertTrue(await r.is_secret())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_propagates_secret_on_known_known_output(self):
         settings.SETTINGS.dry_run = False
 
@@ -990,7 +990,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_propagates_secret_on_known_unknown_output(self):
         settings.SETTINGS.dry_run = False
 
@@ -1003,7 +1003,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r.is_secret())
         self.assertEqual(await r.future(), "inner")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_dangerous_prop_output(self):
         out = self.create_output(
             MyOutputTypeDict(
@@ -1018,7 +1018,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertEqual(prop["items"], ["yellow", "purple"])
         self.assertEqual(prop["keys"], ["yes", "no"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_apply_unknown_output(self):
         out = self.create_output("foo", is_known=True)
 
@@ -1036,7 +1036,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertFalse(await r5.is_known())
         self.assertFalse(await r6.is_known())
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_lifted_unknown(self):
         settings.SETTINGS.dry_run = True
 
@@ -1128,7 +1128,7 @@ class NextSerializationTests(unittest.TestCase):
         self.assertTrue(await r16.is_known())
         self.assertEqual(await r16.future(with_unknowns=True), "bar")
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_output_coros(self):
         # Ensure that Outputs function properly when the input value and is_known are coroutines. If the implementation
         # is not careful to wrap these coroutines in Futures, they will be awaited more than once and the runtime will
@@ -1326,14 +1326,14 @@ class DeserializationTests(unittest.TestCase):
 
 @input_type
 class FooArgs:
-    first_arg: Input[str] = pulumi.property("firstArg")
-    second_arg: Optional[Input[float]] = pulumi.property("secondArg")
+    first_arg: Input[str] = khulnasoft.property("firstArg")
+    second_arg: Optional[Input[float]] = khulnasoft.property("secondArg")
 
     def __init__(
         self, first_arg: Input[str], second_arg: Optional[Input[float]] = None
     ):
-        pulumi.set(self, "first_arg", first_arg)
-        pulumi.set(self, "second_arg", second_arg)
+        khulnasoft.set(self, "first_arg", first_arg)
+        khulnasoft.set(self, "second_arg", second_arg)
 
 
 @input_type
@@ -1350,28 +1350,28 @@ class ListDictInputArgs:
         c: Dict[str, Input[str]],
         d: Mapping[str, Input[str]],
     ):
-        pulumi.set(self, "a", a)
-        pulumi.set(self, "b", b)
-        pulumi.set(self, "c", c)
-        pulumi.set(self, "d", d)
+        khulnasoft.set(self, "a", a)
+        khulnasoft.set(self, "b", b)
+        khulnasoft.set(self, "c", c)
+        khulnasoft.set(self, "d", d)
 
 
 @input_type
 class BarArgs:
-    tag_args: Input[dict] = pulumi.property("tagArgs")
+    tag_args: Input[dict] = khulnasoft.property("tagArgs")
 
     def __init__(self, tag_args: Input[dict]):
-        pulumi.set(self, "tag_args", tag_args)
+        khulnasoft.set(self, "tag_args", tag_args)
 
 
 class InputTypeSerializationTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_simple_input_type(self):
         it = FooArgs(first_arg="hello", second_arg=42)
         prop = await rpc.serialize_property(it, [], None)
         self.assertEqual({"firstArg": "hello", "secondArg": 42}, prop)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_list_dict_input_type(self):
         it = ListDictInputArgs(
             a=["hi"], b=["there"], c={"hello": "world"}, d={"foo": "bar"}
@@ -1382,7 +1382,7 @@ class InputTypeSerializationTests(unittest.TestCase):
             prop,
         )
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_input_type_with_dict_property(self):
         def transformer(prop: str) -> str:
             return {
@@ -1422,85 +1422,85 @@ class FloatEnum(float, Enum):
 
 
 class EnumSerializationTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_string_enum(self):
         one = StrEnum.ONE
         prop = await rpc.serialize_property(one, [], None)
         self.assertEqual(StrEnum.ONE, prop)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_int_enum(self):
         one = IntEnum.ONE
         prop = await rpc.serialize_property(one, [], None)
         self.assertEqual(IntEnum.ONE, prop)
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_float_enum(self):
         one = FloatEnum.ZERO_POINT_ONE
         prop = await rpc.serialize_property(one, [], None)
         self.assertEqual(FloatEnum.ZERO_POINT_ONE, prop)
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class SomeFooArgs:
     def __init__(self, the_first: str, the_second: Mapping[str, str]):
-        pulumi.set(self, "the_first", the_first)
-        pulumi.set(self, "the_second", the_second)
+        khulnasoft.set(self, "the_first", the_first)
+        khulnasoft.set(self, "the_second", the_second)
 
     @property
-    @pulumi.getter(name="theFirst")
+    @khulnasoft.getter(name="theFirst")
     def the_first(self) -> str: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="theSecond")
+    @khulnasoft.getter(name="theSecond")
     def the_second(self) -> Mapping[str, str]: ...  # type: ignore
 
 
-@pulumi.input_type
+@khulnasoft.input_type
 class SerializationArgs:
     def __init__(
         self,
-        some_value: pulumi.Input[str],
-        some_foo: pulumi.Input[pulumi.InputType[SomeFooArgs]],
-        some_bar: pulumi.Input[
-            Mapping[str, pulumi.Input[pulumi.InputType[SomeFooArgs]]]
+        some_value: khulnasoft.Input[str],
+        some_foo: khulnasoft.Input[khulnasoft.InputType[SomeFooArgs]],
+        some_bar: khulnasoft.Input[
+            Mapping[str, khulnasoft.Input[khulnasoft.InputType[SomeFooArgs]]]
         ],
     ):
-        pulumi.set(self, "some_value", some_value)
-        pulumi.set(self, "some_foo", some_foo)
-        pulumi.set(self, "some_bar", some_bar)
+        khulnasoft.set(self, "some_value", some_value)
+        khulnasoft.set(self, "some_foo", some_foo)
+        khulnasoft.set(self, "some_bar", some_bar)
 
     @property
-    @pulumi.getter(name="someValue")
-    def some_value(self) -> pulumi.Input[str]: ...  # type: ignore
+    @khulnasoft.getter(name="someValue")
+    def some_value(self) -> khulnasoft.Input[str]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="someFoo")
-    def some_foo(self) -> pulumi.Input[pulumi.InputType[SomeFooArgs]]: ...  # type: ignore
+    @khulnasoft.getter(name="someFoo")
+    def some_foo(self) -> khulnasoft.Input[khulnasoft.InputType[SomeFooArgs]]: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="someBar")
+    @khulnasoft.getter(name="someBar")
     def some_bar(  # type: ignore
         self,
-    ) -> pulumi.Input[Mapping[str, pulumi.Input[pulumi.InputType[SomeFooArgs]]]]: ...
+    ) -> khulnasoft.Input[Mapping[str, khulnasoft.Input[khulnasoft.InputType[SomeFooArgs]]]]: ...
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class SomeFooOutput(dict):
     def __init__(self, the_first: str, the_second: Mapping[str, str]):
-        pulumi.set(self, "the_first", the_first)
-        pulumi.set(self, "the_second", the_second)
+        khulnasoft.set(self, "the_first", the_first)
+        khulnasoft.set(self, "the_second", the_second)
 
     @property
-    @pulumi.getter(name="theFirst")
+    @khulnasoft.getter(name="theFirst")
     def the_first(self) -> str: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="theSecond")
+    @khulnasoft.getter(name="theSecond")
     def the_second(self) -> Mapping[str, str]: ...  # type: ignore
 
 
-@pulumi.output_type
+@khulnasoft.output_type
 class DeserializationOutput(dict):
     def __init__(
         self,
@@ -1508,25 +1508,25 @@ class DeserializationOutput(dict):
         some_foo: SomeFooOutput,
         some_bar: Mapping[str, SomeFooOutput],
     ):
-        pulumi.set(self, "some_value", some_value)
-        pulumi.set(self, "some_foo", some_foo)
-        pulumi.set(self, "some_bar", some_bar)
+        khulnasoft.set(self, "some_value", some_value)
+        khulnasoft.set(self, "some_foo", some_foo)
+        khulnasoft.set(self, "some_bar", some_bar)
 
     @property
-    @pulumi.getter(name="someValue")
+    @khulnasoft.getter(name="someValue")
     def some_value(self) -> str: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="someFoo")
+    @khulnasoft.getter(name="someFoo")
     def some_foo(self) -> SomeFooOutput: ...  # type: ignore
 
     @property
-    @pulumi.getter(name="someBar")
+    @khulnasoft.getter(name="someBar")
     def some_bar(self) -> Mapping[str, SomeFooOutput]: ...  # type: ignore
 
 
 class TypeMetaDataSerializationTests(unittest.TestCase):
-    @pulumi_test
+    @khulnasoft_test
     async def test_serialize(self):
         # The transformer should never be called.
         def transformer(key: str) -> str:
@@ -1577,7 +1577,7 @@ class TypeMetaDataSerializationTests(unittest.TestCase):
             )
             self.assertEqual("later", result["someBar"]["a"]["theSecond"]["the_second"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_output_translation(self):
         # The transformer should never be called.
         def transformer(key: str) -> str:
@@ -1629,7 +1629,7 @@ class OutputValueSerializationTests(unittest.TestCase):
             await urns(await first.resources()), await urns(await second.resources())
         )
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_serialize(self):
         settings.SETTINGS.feature_support["outputValues"] = True
 
@@ -1683,7 +1683,7 @@ class OutputValueSerializationTests(unittest.TestCase):
                 back = rpc.deserialize_properties(actual)
                 await self.assertOutputEqual(expected_round_trip, back["value"])
 
-    @pulumi_test
+    @khulnasoft_test
     async def test_serialize_nested_dict(self):
         settings.SETTINGS.feature_support["outputValues"] = True
 

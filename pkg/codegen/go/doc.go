@@ -26,10 +26,10 @@ import (
 	"github.com/golang/glog"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
-const pulumiSDKVersion = "v3"
+const khulnasoftSDKVersion = "v3"
 
 // DocLanguageHelper is the Go-specific implementation of the DocLanguageHelper.
 type DocLanguageHelper struct {
@@ -40,16 +40,16 @@ var _ codegen.DocLanguageHelper = DocLanguageHelper{}
 
 // GetDocLinkForPulumiType returns the doc link for a Pulumi type.
 func (d DocLanguageHelper) GetDocLinkForPulumiType(pkg *schema.Package, typeName string) string {
-	version := pulumiSDKVersion
+	version := khulnasoftSDKVersion
 	if info, ok := pkg.Language["go"].(GoPackageInfo); ok {
 		if info.PulumiSDKVersion == 1 {
-			return "https://pkg.go.dev/github.com/pulumi/pulumi/sdk/go/pulumi?tab=doc#" + typeName
+			return "https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/go/khulnasoft?tab=doc#" + typeName
 		}
 		if info.PulumiSDKVersion != 0 {
 			version = fmt.Sprintf("v%d", info.PulumiSDKVersion)
 		}
 	}
-	return fmt.Sprintf("https://pkg.go.dev/github.com/pulumi/pulumi/sdk/%s/go/pulumi?tab=doc#%s", version, typeName)
+	return fmt.Sprintf("https://pkg.go.dev/github.com/khulnasoft/khulnasoft/sdk/%s/go/khulnasoft?tab=doc#%s", version, typeName)
 }
 
 // GetDocLinkForResourceType returns the godoc URL for a type belonging to a resource provider.
@@ -66,7 +66,7 @@ func (d DocLanguageHelper) GetDocLinkForResourceType(pkg *schema.Package, module
 		}
 	}
 
-	return fmt.Sprintf("https://pkg.go.dev/github.com/pulumi/pulumi-%s/sdk/%sgo/%s?tab=doc#%s", pkg.Name, moduleVersion, path, typeName)
+	return fmt.Sprintf("https://pkg.go.dev/github.com/khulnasoft/khulnasoft-%s/sdk/%sgo/%s?tab=doc#%s", pkg.Name, moduleVersion, path, typeName)
 }
 
 // GetDocLinkForResourceInputOrOutputType returns the godoc URL for an input or output type.

@@ -22,10 +22,10 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 type testWorkspace struct {
@@ -120,14 +120,14 @@ func TestPluginMapper_MappedNameDiffersFromPulumiName(t *testing.T) {
 	ws := &testWorkspace{
 		infos: []workspace.PluginInfo{
 			{
-				Name:    "pulumiProvider",
+				Name:    "khulnasoftProvider",
 				Kind:    apitype.ResourcePlugin,
 				Version: semverMustParse("1.0.0"),
 			},
 		},
 	}
 	testProvider := &testProvider{
-		pkg: tokens.Package("pulumiProvider"),
+		pkg: tokens.Package("khulnasoftProvider"),
 		mapping: func(key, provider string) ([]byte, string, error) {
 			assert.Equal(t, "key", key)
 			assert.Equal(t, "", provider)
@@ -143,7 +143,7 @@ func TestPluginMapper_MappedNameDiffersFromPulumiName(t *testing.T) {
 	installPlugin := func(pkg tokens.Package) *semver.Version {
 		// GetMapping will try to install "yetAnotherProvider", but for this test were testing the case where
 		// that doesn't match and can't be installed, but we should still return the mapping because
-		// "pulumiProvider" is already installed and will return a mapping for "otherProvider".
+		// "khulnasoftProvider" is already installed and will return a mapping for "otherProvider".
 		assert.Equal(t, "otherProvider", string(pkg))
 		return nil
 	}
@@ -165,7 +165,7 @@ func TestPluginMapper_NoPluginMatches(t *testing.T) {
 	ws := &testWorkspace{
 		infos: []workspace.PluginInfo{
 			{
-				Name:    "pulumiProvider",
+				Name:    "khulnasoftProvider",
 				Kind:    apitype.ResourcePlugin,
 				Version: semverMustParse("1.0.0"),
 			},
@@ -209,7 +209,7 @@ func TestPluginMapper_NoPluginMatches(t *testing.T) {
 		t.Parallel()
 
 		testProvider := &testProvider{
-			pkg: tokens.Package("pulumiProvider"),
+			pkg: tokens.Package("khulnasoftProvider"),
 			mapping: func(key, provider string) ([]byte, string, error) {
 				assert.Equal(t, "key", key)
 				assert.Equal(t, "", provider)
@@ -294,19 +294,19 @@ func TestPluginMapper_MappedNamesDifferFromPulumiName(t *testing.T) {
 	ws := &testWorkspace{
 		infos: []workspace.PluginInfo{
 			{
-				Name:    "pulumiProviderAws",
+				Name:    "khulnasoftProviderAws",
 				Kind:    apitype.ResourcePlugin,
 				Version: semverMustParse("1.0.0"),
 			},
 			{
-				Name:    "pulumiProviderGcp",
+				Name:    "khulnasoftProviderGcp",
 				Kind:    apitype.ResourcePlugin,
 				Version: semverMustParse("1.0.0"),
 			},
 		},
 	}
 	testProviderAws := &testProvider{
-		pkg: tokens.Package("pulumiProviderAws"),
+		pkg: tokens.Package("khulnasoftProviderAws"),
 		mapping: func(key, provider string) ([]byte, string, error) {
 			assert.Equal(t, "key", key)
 			assert.Equal(t, "", provider)
@@ -314,7 +314,7 @@ func TestPluginMapper_MappedNamesDifferFromPulumiName(t *testing.T) {
 		},
 	}
 	testProviderGcp := &testProvider{
-		pkg: tokens.Package("pulumiProviderGcp"),
+		pkg: tokens.Package("khulnasoftProviderGcp"),
 		mapping: func(key, provider string) ([]byte, string, error) {
 			assert.Equal(t, "key", key)
 			assert.Equal(t, "", provider)
@@ -333,7 +333,7 @@ func TestPluginMapper_MappedNamesDifferFromPulumiName(t *testing.T) {
 	}
 
 	installPlugin := func(pkg tokens.Package) *semver.Version {
-		// This will want to install the "gcp" package, but we're calling the pulumi name "pulumiProviderGcp"
+		// This will want to install the "gcp" package, but we're calling the khulnasoft name "khulnasoftProviderGcp"
 		// for this test.
 		assert.Equal(t, "gcp", string(pkg))
 		return nil
@@ -362,19 +362,19 @@ func TestPluginMapper_MappedNamesDifferFromPulumiNameWithHint(t *testing.T) {
 	ws := &testWorkspace{
 		infos: []workspace.PluginInfo{
 			{
-				Name:    "pulumiProviderAws",
+				Name:    "khulnasoftProviderAws",
 				Kind:    apitype.ResourcePlugin,
 				Version: semverMustParse("1.0.0"),
 			},
 			{
-				Name:    "pulumiProviderGcp",
+				Name:    "khulnasoftProviderGcp",
 				Kind:    apitype.ResourcePlugin,
 				Version: semverMustParse("1.0.0"),
 			},
 		},
 	}
 	testProvider := &testProvider{
-		pkg: tokens.Package("pulumiProviderGcp"),
+		pkg: tokens.Package("khulnasoftProviderGcp"),
 		mapping: func(key, provider string) ([]byte, string, error) {
 			assert.Equal(t, "key", key)
 			assert.Equal(t, "", provider)
@@ -398,13 +398,13 @@ func TestPluginMapper_MappedNamesDifferFromPulumiNameWithHint(t *testing.T) {
 
 	ctx := context.Background()
 
-	// Get the mapping for the GCP provider, telling the mapper that it's pulumi name is "pulumiProviderGcp".
-	data, err := mapper.GetMapping(ctx, "gcp", "pulumiProviderGcp")
+	// Get the mapping for the GCP provider, telling the mapper that it's khulnasoft name is "khulnasoftProviderGcp".
+	data, err := mapper.GetMapping(ctx, "gcp", "khulnasoftProviderGcp")
 	assert.NoError(t, err)
 	assert.Equal(t, []byte("datagcp"), data)
 }
 
-// Regression test for https://github.com/pulumi/pulumi/issues/13105
+// Regression test for https://github.com/khulnasoft/khulnasoft/issues/13105
 func TestPluginMapper_MissingProviderOnlyTriesToInstallOnce(t *testing.T) {
 	t.Parallel()
 
@@ -418,7 +418,7 @@ func TestPluginMapper_MissingProviderOnlyTriesToInstallOnce(t *testing.T) {
 	called := 0
 	installPlugin := func(pkg tokens.Package) *semver.Version {
 		called++
-		assert.Equal(t, "pulumiProviderGcp", string(pkg))
+		assert.Equal(t, "khulnasoftProviderGcp", string(pkg))
 		return nil
 	}
 
@@ -428,12 +428,12 @@ func TestPluginMapper_MissingProviderOnlyTriesToInstallOnce(t *testing.T) {
 
 	ctx := context.Background()
 
-	// Try to get the mapping for the GCP provider, telling the mapper that it's pulumi name is "pulumiProviderGcp".
-	data, err := mapper.GetMapping(ctx, "gcp", "pulumiProviderGcp")
+	// Try to get the mapping for the GCP provider, telling the mapper that it's khulnasoft name is "khulnasoftProviderGcp".
+	data, err := mapper.GetMapping(ctx, "gcp", "khulnasoftProviderGcp")
 	assert.NoError(t, err)
 	assert.Equal(t, []byte{}, data)
 	// Try and get the mapping again
-	data, err = mapper.GetMapping(ctx, "gcp", "pulumiProviderGcp")
+	data, err = mapper.GetMapping(ctx, "gcp", "khulnasoftProviderGcp")
 	assert.NoError(t, err)
 	assert.Equal(t, []byte{}, data)
 	// Install should have only been called once
@@ -449,7 +449,7 @@ func TestPluginMapper_GetMappingsIsUsed(t *testing.T) {
 	ws := &testWorkspace{
 		infos: []workspace.PluginInfo{
 			{
-				Name:    "pulumiProviderK8s",
+				Name:    "khulnasoftProviderK8s",
 				Kind:    apitype.ResourcePlugin,
 				Version: semverMustParse("1.0.0"),
 			},
@@ -459,7 +459,7 @@ func TestPluginMapper_GetMappingsIsUsed(t *testing.T) {
 	var mappingCalls []string
 
 	testProvider := &testProvider{
-		pkg: tokens.Package("pulumiProviderK8s"),
+		pkg: tokens.Package("khulnasoftProviderK8s"),
 		mapping: func(key, provider string) ([]byte, string, error) {
 			mappingCalls = append(mappingCalls, provider)
 
@@ -516,19 +516,19 @@ func TestPluginMapper_GetMappingIsntCalledOnValidMappings(t *testing.T) {
 	ws := &testWorkspace{
 		infos: []workspace.PluginInfo{
 			{
-				Name:    "pulumiProviderAws",
+				Name:    "khulnasoftProviderAws",
 				Kind:    apitype.ResourcePlugin,
 				Version: semverMustParse("1.0.0"),
 			},
 			{
-				Name:    "pulumiProviderGcp",
+				Name:    "khulnasoftProviderGcp",
 				Kind:    apitype.ResourcePlugin,
 				Version: semverMustParse("1.0.0"),
 			},
 		},
 	}
 	testProviderAws := &testProvider{
-		pkg: tokens.Package("pulumiProviderAws"),
+		pkg: tokens.Package("khulnasoftProviderAws"),
 		mapping: func(key, provider string) ([]byte, string, error) {
 			assert.Equal(t, "key", key)
 			assert.Equal(t, "aws", provider)
@@ -540,7 +540,7 @@ func TestPluginMapper_GetMappingIsntCalledOnValidMappings(t *testing.T) {
 		},
 	}
 	testProviderGcp := &testProvider{
-		pkg: tokens.Package("pulumiProviderGcp"),
+		pkg: tokens.Package("khulnasoftProviderGcp"),
 		mapping: func(key, provider string) ([]byte, string, error) {
 			assert.Equal(t, "key", key)
 			assert.Equal(t, "", provider)
@@ -588,14 +588,14 @@ func TestPluginMapper_InfiniteLoopRegression(t *testing.T) {
 	ws := &testWorkspace{
 		infos: []workspace.PluginInfo{
 			{
-				Name:    "pulumiProviderAws",
+				Name:    "khulnasoftProviderAws",
 				Kind:    apitype.ResourcePlugin,
 				Version: semverMustParse("1.0.0"),
 			},
 		},
 	}
 	testProviderAws := &testProvider{
-		pkg: tokens.Package("pulumiProviderAws"),
+		pkg: tokens.Package("khulnasoftProviderAws"),
 		mapping: func(key, provider string) ([]byte, string, error) {
 			assert.Equal(t, "key", key)
 			assert.Equal(t, "aws", provider)

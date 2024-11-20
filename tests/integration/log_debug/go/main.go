@@ -5,14 +5,14 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type MyComponent struct {
-	pulumi.ResourceState
+	khulnasoft.ResourceState
 }
 
-func NewMyComponent(ctx *pulumi.Context, name string) (*MyComponent, error) {
+func NewMyComponent(ctx *khulnasoft.Context, name string) (*MyComponent, error) {
 	component := &MyComponent{}
 
 	err := ctx.RegisterComponentResource("test:index:MyComponent", name, component)
@@ -24,7 +24,7 @@ func NewMyComponent(ctx *pulumi.Context, name string) (*MyComponent, error) {
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		err := ctx.Log.Debug("A debug message", nil)
 		if err != nil {
 			return err

@@ -20,10 +20,10 @@ import * as process from "process";
 import * as tmp from "tmp";
 import { pack } from "./pack";
 
-// Write a package.json that installs the local pulumi package and optional dependencies.
+// Write a package.json that installs the local khulnasoft package and optional dependencies.
 async function writePackageJSON(
     dir: string,
-    pulumiPackagePath: string,
+    khulnasoftPackagePath: string,
     dependencies: Record<string, string | undefined>,
 ) {
     const packageJSON = {
@@ -31,7 +31,7 @@ async function writePackageJSON(
         version: "1.0.0",
         license: "Apache-2.0",
         dependencies: {
-            "@pulumi/pulumi": pulumiPackagePath,
+            "@khulnasoft/khulnasoft": khulnasoftPackagePath,
             ...dependencies,
         },
     };
@@ -65,8 +65,8 @@ async function writeTSConfig(dir: string) {
 
 // A simple TypeScript Pulumi program to test that we can load and run TypeScript code.
 async function writeProgram(dir: string, projectName: string) {
-    const indexTS = `import * as pulumi from "@pulumi/pulumi";
-pulumi.runtime.serializeFunction(() => 42);
+    const indexTS = `import * as khulnasoft from "@khulnasoft/khulnasoft";
+khulnasoft.runtime.serializeFunction(() => 42);
 export const test: number = 42;
 `;
     await fs.writeFile(path.join(dir, "index.ts"), indexTS);
@@ -88,12 +88,12 @@ async function exec(command: string, args: string[], options: execa.Options): Pr
 async function main() {
     const sdkRoot = path.join(__dirname, "..", "..", "..");
     const sdkRootBin = path.join(sdkRoot, "bin");
-    const tmpPackageDir = tmp.dirSync({ prefix: "pulumi-package-", unsafeCleanup: true });
+    const tmpPackageDir = tmp.dirSync({ prefix: "khulnasoft-package-", unsafeCleanup: true });
     try {
         // Add a random suffix to the package name to avoid any issues with yarn caching the tgz.
-        const packageName = `pulumi-${randomInt(10000, 99999)}.tgz`;
-        const pulumiPackagePath = path.join(tmpPackageDir.name, packageName);
-        await pack(sdkRootBin, pulumiPackagePath);
+        const packageName = `khulnasoft-${randomInt(10000, 99999)}.tgz`;
+        const khulnasoftPackagePath = path.join(tmpPackageDir.name, packageName);
+        await pack(sdkRootBin, khulnasoftPackagePath);
 
         const packageManagers = [
             {
@@ -150,7 +150,7 @@ async function main() {
             for (const deps of dependencies) {
                 const tmpDir = tmp.dirSync({ prefix: "install-test-", unsafeCleanup: true });
                 try {
-                    await runTest(tmpDir, pulumiPackagePath, pm.name, pm.version, deps);
+                    await runTest(tmpDir, khulnasoftPackagePath, pm.name, pm.version, deps);
                 } finally {
                     tmpDir.removeCallback();
                 }
@@ -163,12 +163,12 @@ async function main() {
 
 async function runTest(
     tmpDir: tmp.DirResult,
-    pulumiPackagePath: string,
+    khulnasoftPackagePath: string,
     packageManager: string,
     packageManagerVersion: string,
     peerDeps: Record<string, string | undefined>,
 ) {
-    await writePackageJSON(tmpDir.name, pulumiPackagePath, peerDeps);
+    await writePackageJSON(tmpDir.name, khulnasoftPackagePath, peerDeps);
     await writeTSConfig(tmpDir.name);
     const projectName = `install-test-${packageManager}-${packageManagerVersion}`.replace(/[^a-zA-Z0-9]/g, "-");
     await writeProgram(tmpDir.name, projectName);
@@ -193,11 +193,11 @@ async function runTest(
     // Up and down a test stack to ensure we're able to load & run typescript code.
     const stackName = `install-test-${randomInt(10000, 99999)}`;
     try {
-        logs += await exec("pulumi", ["stack", "init", stackName], {
+        logs += await exec("khulnasoft", ["stack", "init", stackName], {
             cwd: tmpDir.name,
             env,
         });
-        logs += await exec("pulumi", ["up", "--stack", stackName, "--skip-preview"], {
+        logs += await exec("khulnasoft", ["up", "--stack", stackName, "--skip-preview"], {
             cwd: tmpDir.name,
             env,
         });
@@ -210,11 +210,11 @@ async function runTest(
         console.log(`Captured stdout: ${logs}`);
         throw err;
     } finally {
-        await exec("pulumi", ["destroy", "--stack", stackName, "--yes"], {
+        await exec("khulnasoft", ["destroy", "--stack", stackName, "--yes"], {
             cwd: tmpDir.name,
             env,
         });
-        await exec("pulumi", ["stack", "rm", stackName, "--yes"], {
+        await exec("khulnasoft", ["stack", "rm", stackName, "--yes"], {
             cwd: tmpDir.name,
             env,
         });

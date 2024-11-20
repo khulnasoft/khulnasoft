@@ -18,9 +18,9 @@ import (
 	"runtime/debug"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // SetKnownPluginDownloadURL sets the PluginDownloadURL for the given PluginSpec if it's a known plugin.
@@ -31,7 +31,7 @@ func SetKnownPluginDownloadURL(spec *workspace.PluginSpec) bool {
 		return false
 	}
 
-	pulumiversePlugins := []string{
+	khulnasoftversePlugins := []string{
 		"acme",
 		"aquasec",
 		"astra",
@@ -59,9 +59,9 @@ func SetKnownPluginDownloadURL(spec *workspace.PluginSpec) bool {
 		"zitadel",
 	}
 	if spec.Kind == apitype.ResourcePlugin {
-		for _, plugin := range pulumiversePlugins {
+		for _, plugin := range khulnasoftversePlugins {
 			if spec.Name == plugin {
-				spec.PluginDownloadURL = "github://api.github.com/pulumiverse"
+				spec.PluginDownloadURL = "github://api.github.com/khulnasoftverse"
 				return true
 			}
 		}
@@ -84,7 +84,7 @@ func SetKnownPluginVersion(spec *workspace.PluginSpec) bool {
 		info, ok := debug.ReadBuildInfo()
 		contract.Assertf(ok, "expected to be able to read build info")
 		for _, dep := range info.Deps {
-			if dep.Path == "github.com/pulumi/pulumi-yaml" {
+			if dep.Path == "github.com/khulnasoft/khulnasoft-yaml" {
 				v, err := semver.ParseTolerant(dep.Version)
 				contract.AssertNoErrorf(err, "expected to be able to parse version for yaml got %q", dep.Version)
 				spec.Version = &v

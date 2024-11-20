@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: pulumi/callback.proto
+// source: khulnasoft/callback.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ func NewCallbacksClient(cc grpc.ClientConnInterface) CallbacksClient {
 
 func (c *callbacksClient) Invoke(ctx context.Context, in *CallbackInvokeRequest, opts ...grpc.CallOption) (*CallbackInvokeResponse, error) {
 	out := new(CallbackInvokeResponse)
-	err := c.cc.Invoke(ctx, "/pulumirpc.Callbacks/Invoke", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoftrpc.Callbacks/Invoke", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func _Callbacks_Invoke_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pulumirpc.Callbacks/Invoke",
+		FullMethod: "/khulnasoftrpc.Callbacks/Invoke",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CallbacksServer).Invoke(ctx, req.(*CallbackInvokeRequest))
@@ -94,7 +94,7 @@ func _Callbacks_Invoke_Handler(srv interface{}, ctx context.Context, dec func(in
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Callbacks_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pulumirpc.Callbacks",
+	ServiceName: "khulnasoftrpc.Callbacks",
 	HandlerType: (*CallbacksServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -103,5 +103,5 @@ var Callbacks_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "pulumi/callback.proto",
+	Metadata: "khulnasoft/callback.proto",
 }

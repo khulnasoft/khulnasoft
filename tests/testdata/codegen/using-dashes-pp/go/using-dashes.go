@@ -1,14 +1,14 @@
 package main
 
 import (
-	usingdashes "example.com/pulumi-using-dashes/sdk/go/using-dashes"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	usingdashes "example.com/khulnasoft-using-dashes/sdk/go/using-dashes"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		_, err := usingdashes.NewDash(ctx, "main", &usingdashes.DashArgs{
-			Stack: pulumi.String("dev"),
+			Stack: khulnasoft.String("dev"),
 		})
 		if err != nil {
 			return err

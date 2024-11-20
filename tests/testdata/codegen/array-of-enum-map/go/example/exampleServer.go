@@ -8,18 +8,18 @@ import (
 	"reflect"
 
 	"array-of-enum-map/example/internal"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type ExampleServer struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	MapArrayEnum AnnotationStoreSchemaValueTypeMapArrayOutput `pulumi:"mapArrayEnum"`
+	MapArrayEnum AnnotationStoreSchemaValueTypeMapArrayOutput `khulnasoft:"mapArrayEnum"`
 }
 
 // NewExampleServer registers a new resource with the given unique name, arguments, and options.
-func NewExampleServer(ctx *pulumi.Context,
-	name string, args *ExampleServerArgs, opts ...pulumi.ResourceOption) (*ExampleServer, error) {
+func NewExampleServer(ctx *khulnasoft.Context,
+	name string, args *ExampleServerArgs, opts ...khulnasoft.ResourceOption) (*ExampleServer, error) {
 	if args == nil {
 		args = &ExampleServerArgs{}
 	}
@@ -35,8 +35,8 @@ func NewExampleServer(ctx *pulumi.Context,
 
 // GetExampleServer gets an existing ExampleServer resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetExampleServer(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ExampleServerState, opts ...pulumi.ResourceOption) (*ExampleServer, error) {
+func GetExampleServer(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ExampleServerState, opts ...khulnasoft.ResourceOption) (*ExampleServer, error) {
 	var resource ExampleServer
 	err := ctx.ReadResource("example:index:ExampleServer", name, id, state, &resource, opts...)
 	if err != nil {
@@ -57,7 +57,7 @@ func (ExampleServerState) ElementType() reflect.Type {
 }
 
 type exampleServerArgs struct {
-	MapArrayEnum []map[string]AnnotationStoreSchemaValueType `pulumi:"mapArrayEnum"`
+	MapArrayEnum []map[string]AnnotationStoreSchemaValueType `khulnasoft:"mapArrayEnum"`
 }
 
 // The set of arguments for constructing a ExampleServer resource.
@@ -70,7 +70,7 @@ func (ExampleServerArgs) ElementType() reflect.Type {
 }
 
 type ExampleServerInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToExampleServerOutput() ExampleServerOutput
 	ToExampleServerOutputWithContext(ctx context.Context) ExampleServerOutput
@@ -85,10 +85,10 @@ func (i *ExampleServer) ToExampleServerOutput() ExampleServerOutput {
 }
 
 func (i *ExampleServer) ToExampleServerOutputWithContext(ctx context.Context) ExampleServerOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExampleServerOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ExampleServerOutput)
 }
 
-type ExampleServerOutput struct{ *pulumi.OutputState }
+type ExampleServerOutput struct{ *khulnasoft.OutputState }
 
 func (ExampleServerOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ExampleServer)(nil)).Elem()
@@ -107,6 +107,6 @@ func (o ExampleServerOutput) MapArrayEnum() AnnotationStoreSchemaValueTypeMapArr
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ExampleServerInput)(nil)).Elem(), &ExampleServer{})
-	pulumi.RegisterOutputType(ExampleServerOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ExampleServerInput)(nil)).Elem(), &ExampleServer{})
+	khulnasoft.RegisterOutputType(ExampleServerOutput{})
 }

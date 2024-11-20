@@ -1,0 +1,6 @@
+{
+  "name": "khulnasoft-main",
+  "dependencies": {
+    "@khulnasoft/khulnasoft": "latest"
+  }
+}

@@ -3,15 +3,15 @@ package main
 import (
 	"fmt"
 
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/s3"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/s3"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		mybucket, err := s3.NewBucket(ctx, "mybucket", &s3.BucketArgs{
 			Website: &s3.BucketWebsiteArgs{
-				IndexDocument: pulumi.String("index.html"),
+				IndexDocument: khulnasoft.String("index.html"),
 			},
 		})
 		if err != nil {
@@ -19,16 +19,16 @@ func main() {
 		}
 		_, err = s3.NewBucketObject(ctx, "indexhtml", &s3.BucketObjectArgs{
 			Bucket:      mybucket.ID(),
-			Source:      pulumi.NewStringAsset("<h1>Hello, world!</h1>"),
-			Acl:         pulumi.String("public-read"),
-			ContentType: pulumi.String("text/html"),
+			Source:      khulnasoft.NewStringAsset("<h1>Hello, world!</h1>"),
+			Acl:         khulnasoft.String("public-read"),
+			ContentType: khulnasoft.String("text/html"),
 		})
 		if err != nil {
 			return err
 		}
 		ctx.Export("bucketEndpoint", mybucket.WebsiteEndpoint.ApplyT(func(websiteEndpoint string) (string, error) {
 			return fmt.Sprintf("http://%v", websiteEndpoint), nil
-		}).(pulumi.StringOutput))
+		}).(khulnasoft.StringOutput))
 		return nil
 	})
 }

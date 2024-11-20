@@ -15,30 +15,30 @@
 package plugin
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/mapper"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/mapper"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // NewCheckResponse produces a response with property validation failures from the given array of mapper failures.
-func NewCheckResponse(err error) *pulumirpc.CheckResponse {
-	var failures []*pulumirpc.CheckFailure
+func NewCheckResponse(err error) *khulnasoftrpc.CheckResponse {
+	var failures []*khulnasoftrpc.CheckFailure
 	if err != nil {
 		switch e := err.(type) {
 		case mapper.MappingError:
 			for _, failure := range e.Failures() {
 				switch f := failure.(type) {
 				case mapper.FieldError:
-					failures = append(failures, &pulumirpc.CheckFailure{
+					failures = append(failures, &khulnasoftrpc.CheckFailure{
 						Property: f.Field(),
 						Reason:   f.Reason(),
 					})
 				default:
-					failures = append(failures, &pulumirpc.CheckFailure{Reason: f.Error()})
+					failures = append(failures, &khulnasoftrpc.CheckFailure{Reason: f.Error()})
 				}
 			}
 		default:
-			failures = append(failures, &pulumirpc.CheckFailure{Reason: e.Error()})
+			failures = append(failures, &khulnasoftrpc.CheckFailure{Reason: e.Error()})
 		}
 	}
-	return &pulumirpc.CheckResponse{Failures: failures}
+	return &khulnasoftrpc.CheckResponse{Failures: failures}
 }

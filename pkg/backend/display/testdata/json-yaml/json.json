@@ -11,11 +11,11 @@
     "resourcePreEvent": {
         "metadata": {
             "op": "update",
-            "urn": "urn:pulumi:dev::pulumi-stack-output-diff::pulumi:pulumi:Stack::pulumi-stack-output-diff-dev",
-            "type": "pulumi:pulumi:Stack",
+            "urn": "urn:khulnasoft:dev::khulnasoft-stack-output-diff::khulnasoft:khulnasoft:Stack::khulnasoft-stack-output-diff-dev",
+            "type": "khulnasoft:khulnasoft:Stack",
             "old": {
-                "type": "pulumi:pulumi:Stack",
-                "urn": "urn:pulumi:dev::pulumi-stack-output-diff::pulumi:pulumi:Stack::pulumi-stack-output-diff-dev",
+                "type": "khulnasoft:khulnasoft:Stack",
+                "urn": "urn:khulnasoft:dev::khulnasoft-stack-output-diff::khulnasoft:khulnasoft:Stack::khulnasoft-stack-output-diff-dev",
                 "id": "",
                 "parent": "",
                 "inputs": {},
@@ -27,8 +27,8 @@
                 "provider": ""
             },
             "new": {
-                "type": "pulumi:pulumi:Stack",
-                "urn": "urn:pulumi:dev::pulumi-stack-output-diff::pulumi:pulumi:Stack::pulumi-stack-output-diff-dev",
+                "type": "khulnasoft:khulnasoft:Stack",
+                "urn": "urn:khulnasoft:dev::khulnasoft-stack-output-diff::khulnasoft:khulnasoft:Stack::khulnasoft-stack-output-diff-dev",
                 "id": "",
                 "parent": "",
                 "inputs": {},

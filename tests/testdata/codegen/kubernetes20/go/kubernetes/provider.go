@@ -7,18 +7,18 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/utilities"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/utilities"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // The provider type for the kubernetes package.
 type Provider struct {
-	pulumi.ProviderResourceState
+	khulnasoft.ProviderResourceState
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
-func NewProvider(ctx *pulumi.Context,
-	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
+func NewProvider(ctx *khulnasoft.Context,
+	name string, args *ProviderArgs, opts ...khulnasoft.ResourceOption) (*Provider, error) {
 	if args == nil {
 		args = &ProviderArgs{}
 	}
@@ -28,12 +28,12 @@ func NewProvider(ctx *pulumi.Context,
 	}
 	if args.Kubeconfig == nil {
 		if d := utilities.GetEnvOrDefault(nil, nil, "KUBECONFIG"); d != nil {
-			args.Kubeconfig = pulumi.StringPtr(d.(string))
+			args.Kubeconfig = khulnasoft.StringPtr(d.(string))
 		}
 	}
 	opts = utilities.PkgResourceDefaultOpts(opts)
 	var resource Provider
-	err := ctx.RegisterResource("pulumi:providers:kubernetes", name, args, &resource, opts...)
+	err := ctx.RegisterResource("khulnasoft:providers:kubernetes", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -42,16 +42,16 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	// Options for tuning the Kubernetes client used by a Provider.
-	KubeClientSettings *KubeClientSettings `pulumi:"kubeClientSettings"`
+	KubeClientSettings *KubeClientSettings `khulnasoft:"kubeClientSettings"`
 	// The contents of a kubeconfig file or the path to a kubeconfig file.
-	Kubeconfig *string `pulumi:"kubeconfig"`
+	Kubeconfig *string `khulnasoft:"kubeconfig"`
 	// If present, the default namespace to use. This flag is ignored for cluster-scoped resources.
 	//
 	// A namespace can be specified in multiple places, and the precedence is as follows:
 	// 1. `.metadata.namespace` set on the resource.
 	// 2. This `namespace` parameter.
 	// 3. `namespace` set for the active context in the kubeconfig.
-	Namespace *string `pulumi:"namespace"`
+	Namespace *string `khulnasoft:"namespace"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -59,14 +59,14 @@ type ProviderArgs struct {
 	// Options for tuning the Kubernetes client used by a Provider.
 	KubeClientSettings KubeClientSettingsPtrInput
 	// The contents of a kubeconfig file or the path to a kubeconfig file.
-	Kubeconfig pulumi.StringPtrInput
+	Kubeconfig khulnasoft.StringPtrInput
 	// If present, the default namespace to use. This flag is ignored for cluster-scoped resources.
 	//
 	// A namespace can be specified in multiple places, and the precedence is as follows:
 	// 1. `.metadata.namespace` set on the resource.
 	// 2. This `namespace` parameter.
 	// 3. `namespace` set for the active context in the kubeconfig.
-	Namespace pulumi.StringPtrInput
+	Namespace khulnasoft.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -74,7 +74,7 @@ func (ProviderArgs) ElementType() reflect.Type {
 }
 
 type ProviderInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToProviderOutput() ProviderOutput
 	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
@@ -89,10 +89,10 @@ func (i *Provider) ToProviderOutput() ProviderOutput {
 }
 
 func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
-type ProviderOutput struct{ *pulumi.OutputState }
+type ProviderOutput struct{ *khulnasoft.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Provider)(nil)).Elem()
@@ -107,6 +107,6 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
-	pulumi.RegisterOutputType(ProviderOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
+	khulnasoft.RegisterOutputType(ProviderOutput{})
 }

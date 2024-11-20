@@ -1,5 +1,5 @@
-import * as pulumi from "@pulumi/pulumi";
-import * as basic_unions from "@pulumi/basic-unions";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
+import * as basic_unions from "@khulnasoft/basic-unions";
 
 // properties field is bound to union case ServerPropertiesForReplica
 const replica = new basic_unions.ExampleServer("replica", {properties: {

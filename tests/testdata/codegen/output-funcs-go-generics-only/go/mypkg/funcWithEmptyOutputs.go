@@ -4,12 +4,12 @@
 package mypkg
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"output-funcs-go-generics-only/mypkg/internal"
 )
 
 // n/a
-func FuncWithEmptyOutputs(ctx *pulumi.Context, args *FuncWithEmptyOutputsArgs, opts ...pulumi.InvokeOption) error {
+func FuncWithEmptyOutputs(ctx *khulnasoft.Context, args *FuncWithEmptyOutputsArgs, opts ...khulnasoft.InvokeOption) error {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv struct{}
 	err := ctx.Invoke("mypkg::funcWithEmptyOutputs", args, &rv, opts...)
@@ -18,5 +18,5 @@ func FuncWithEmptyOutputs(ctx *pulumi.Context, args *FuncWithEmptyOutputsArgs, o
 
 type FuncWithEmptyOutputsArgs struct {
 	// The Name of the FeatureGroup.
-	Name string `pulumi:"name"`
+	Name string `khulnasoft:"name"`
 }

@@ -7,19 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 	"resource-args-python/example/internal"
 )
 
 type Pet struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Name pulumi.StringPtrOutput `pulumi:"name"`
+	Name khulnasoft.StringPtrOutput `khulnasoft:"name"`
 }
 
 // NewPet registers a new resource with the given unique name, arguments, and options.
-func NewPet(ctx *pulumi.Context,
-	name string, args *PetArgs, opts ...pulumi.ResourceOption) (*Pet, error) {
+func NewPet(ctx *khulnasoft.Context,
+	name string, args *PetArgs, opts ...khulnasoft.ResourceOption) (*Pet, error) {
 	if args == nil {
 		args = &PetArgs{}
 	}
@@ -35,8 +35,8 @@ func NewPet(ctx *pulumi.Context,
 
 // GetPet gets an existing Pet resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetPet(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *PetState, opts ...pulumi.ResourceOption) (*Pet, error) {
+func GetPet(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *PetState, opts ...khulnasoft.ResourceOption) (*Pet, error) {
 	var resource Pet
 	err := ctx.ReadResource("example::Pet", name, id, state, &resource, opts...)
 	if err != nil {
@@ -57,12 +57,12 @@ func (PetState) ElementType() reflect.Type {
 }
 
 type petArgs struct {
-	Name *string `pulumi:"name"`
+	Name *string `khulnasoft:"name"`
 }
 
 // The set of arguments for constructing a Pet resource.
 type PetArgs struct {
-	Name pulumi.StringPtrInput
+	Name khulnasoft.StringPtrInput
 }
 
 func (PetArgs) ElementType() reflect.Type {
@@ -70,7 +70,7 @@ func (PetArgs) ElementType() reflect.Type {
 }
 
 type PetInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToPetOutput() PetOutput
 	ToPetOutputWithContext(ctx context.Context) PetOutput
@@ -85,7 +85,7 @@ func (i *Pet) ToPetOutput() PetOutput {
 }
 
 func (i *Pet) ToPetOutputWithContext(ctx context.Context) PetOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PetOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(PetOutput)
 }
 
 // PetArrayInput is an input type that accepts PetArray and PetArrayOutput values.
@@ -93,7 +93,7 @@ func (i *Pet) ToPetOutputWithContext(ctx context.Context) PetOutput {
 //
 //	PetArray{ PetArgs{...} }
 type PetArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToPetArrayOutput() PetArrayOutput
 	ToPetArrayOutputWithContext(context.Context) PetArrayOutput
@@ -110,7 +110,7 @@ func (i PetArray) ToPetArrayOutput() PetArrayOutput {
 }
 
 func (i PetArray) ToPetArrayOutputWithContext(ctx context.Context) PetArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PetArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(PetArrayOutput)
 }
 
 // PetMapInput is an input type that accepts PetMap and PetMapOutput values.
@@ -118,7 +118,7 @@ func (i PetArray) ToPetArrayOutputWithContext(ctx context.Context) PetArrayOutpu
 //
 //	PetMap{ "key": PetArgs{...} }
 type PetMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToPetMapOutput() PetMapOutput
 	ToPetMapOutputWithContext(context.Context) PetMapOutput
@@ -135,10 +135,10 @@ func (i PetMap) ToPetMapOutput() PetMapOutput {
 }
 
 func (i PetMap) ToPetMapOutputWithContext(ctx context.Context) PetMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PetMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(PetMapOutput)
 }
 
-type PetOutput struct{ *pulumi.OutputState }
+type PetOutput struct{ *khulnasoft.OutputState }
 
 func (PetOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Pet)(nil)).Elem()
@@ -152,11 +152,11 @@ func (o PetOutput) ToPetOutputWithContext(ctx context.Context) PetOutput {
 	return o
 }
 
-func (o PetOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Pet) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
+func (o PetOutput) Name() khulnasoft.StringPtrOutput {
+	return o.ApplyT(func(v *Pet) khulnasoft.StringPtrOutput { return v.Name }).(khulnasoft.StringPtrOutput)
 }
 
-type PetArrayOutput struct{ *pulumi.OutputState }
+type PetArrayOutput struct{ *khulnasoft.OutputState }
 
 func (PetArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*Pet)(nil)).Elem()
@@ -170,13 +170,13 @@ func (o PetArrayOutput) ToPetArrayOutputWithContext(ctx context.Context) PetArra
 	return o
 }
 
-func (o PetArrayOutput) Index(i pulumi.IntInput) PetOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Pet {
+func (o PetArrayOutput) Index(i khulnasoft.IntInput) PetOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *Pet {
 		return vs[0].([]*Pet)[vs[1].(int)]
 	}).(PetOutput)
 }
 
-type PetMapOutput struct{ *pulumi.OutputState }
+type PetMapOutput struct{ *khulnasoft.OutputState }
 
 func (PetMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*Pet)(nil)).Elem()
@@ -190,17 +190,17 @@ func (o PetMapOutput) ToPetMapOutputWithContext(ctx context.Context) PetMapOutpu
 	return o
 }
 
-func (o PetMapOutput) MapIndex(k pulumi.StringInput) PetOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Pet {
+func (o PetMapOutput) MapIndex(k khulnasoft.StringInput) PetOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *Pet {
 		return vs[0].(map[string]*Pet)[vs[1].(string)]
 	}).(PetOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*PetInput)(nil)).Elem(), &Pet{})
-	pulumi.RegisterInputType(reflect.TypeOf((*PetArrayInput)(nil)).Elem(), PetArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*PetMapInput)(nil)).Elem(), PetMap{})
-	pulumi.RegisterOutputType(PetOutput{})
-	pulumi.RegisterOutputType(PetArrayOutput{})
-	pulumi.RegisterOutputType(PetMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*PetInput)(nil)).Elem(), &Pet{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*PetArrayInput)(nil)).Elem(), PetArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*PetMapInput)(nil)).Elem(), PetMap{})
+	khulnasoft.RegisterOutputType(PetOutput{})
+	khulnasoft.RegisterOutputType(PetArrayOutput{})
+	khulnasoft.RegisterOutputType(PetMapOutput{})
 }

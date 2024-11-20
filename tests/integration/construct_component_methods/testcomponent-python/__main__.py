@@ -15,16 +15,16 @@
 from typing import Optional
 import sys
 
-import pulumi
-import pulumi.provider as provider
+import khulnasoft
+import khulnasoft.provider as provider
 
 
-class Component(pulumi.ComponentResource):
+class Component(khulnasoft.ComponentResource):
     def __init__(self,
                  resource_name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None,
-                 first: Optional[pulumi.Input[str]] = None,
-                 second: Optional[pulumi.Input[str]] = None) -> None:
+                 opts: Optional[khulnasoft.ResourceOptions] = None,
+                 first: Optional[khulnasoft.Input[str]] = None,
+                 second: Optional[khulnasoft.Input[str]] = None) -> None:
 
         args = {
             "first": first,
@@ -38,38 +38,38 @@ class Component(pulumi.ComponentResource):
         self.register_outputs(args)
 
     @property
-    @pulumi.getter
-    def first(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "first")
+    @khulnasoft.getter
+    def first(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "first")
 
     @property
-    @pulumi.getter
-    def second(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "second")
+    @khulnasoft.getter
+    def second(self) -> khulnasoft.Output[str]:
+        return khulnasoft.get(self, "second")
 
-    def get_message(self, name: pulumi.Input[str]) -> pulumi.Output[str]:
-        return pulumi.Output.concat(self.first, " ", self.second, ", ", name, "!")
+    def get_message(self, name: khulnasoft.Input[str]) -> khulnasoft.Output[str]:
+        return khulnasoft.Output.concat(self.first, " ", self.second, ", ", name, "!")
 
 
 class Provider(provider.Provider):
     VERSION = "0.0.1"
 
-    class Module(pulumi.runtime.ResourceModule):
+    class Module(khulnasoft.runtime.ResourceModule):
         def version(self):
             return Provider.VERSION
 
-        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+        def construct(self, name: str, typ: str, urn: str) -> khulnasoft.Resource:
             if typ == "testcomponent:index:Component":
-                return Component(name, pulumi.ResourceOptions(urn=urn))
+                return Component(name, khulnasoft.ResourceOptions(urn=urn))
             else:
                 raise Exception(f"unknown resource type {typ}")
 
     def __init__(self):
         super().__init__(Provider.VERSION)
-        pulumi.runtime.register_resource_module("testcomponent", "index", Provider.Module())
+        khulnasoft.runtime.register_resource_module("testcomponent", "index", Provider.Module())
 
-    def construct(self, name: str, resource_type: str, inputs: pulumi.Inputs,
-                  options: Optional[pulumi.ResourceOptions] = None) -> provider.ConstructResult:
+    def construct(self, name: str, resource_type: str, inputs: khulnasoft.Inputs,
+                  options: Optional[khulnasoft.ResourceOptions] = None) -> provider.ConstructResult:
 
         if resource_type != "testcomponent:index:Component":
             raise Exception(f"unknown resource type {resource_type}")
@@ -80,7 +80,7 @@ class Provider(provider.Provider):
             urn=component.urn,
             state=inputs)
 
-    def call(self, token: str, args: pulumi.Inputs) -> provider.CallResult:
+    def call(self, token: str, args: khulnasoft.Inputs) -> provider.CallResult:
         if token != "testcomponent:index:Component/getMessage":
             raise Exception(f'unknown method {token}')
 

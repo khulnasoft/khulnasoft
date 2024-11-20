@@ -17,8 +17,8 @@ package workspace
 import (
 	"os"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
 )
 
 // GetCurrentCloudURL returns the URL of the cloud we are currently connected to. This may be empty if we

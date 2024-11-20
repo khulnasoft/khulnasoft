@@ -16,9 +16,9 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.20.1
-// source: pulumi/alias.proto
+// source: khulnasoft/alias.proto
 
-package pulumirpc
+package khulnasoftrpc
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -48,7 +48,7 @@ type Alias struct {
 func (x *Alias) Reset() {
 	*x = Alias{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_alias_proto_msgTypes[0]
+		mi := &file_khulnasoft_alias_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -61,7 +61,7 @@ func (x *Alias) String() string {
 func (*Alias) ProtoMessage() {}
 
 func (x *Alias) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_alias_proto_msgTypes[0]
+	mi := &file_khulnasoft_alias_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -74,7 +74,7 @@ func (x *Alias) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Alias.ProtoReflect.Descriptor instead.
 func (*Alias) Descriptor() ([]byte, []int) {
-	return file_pulumi_alias_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_alias_proto_rawDescGZIP(), []int{0}
 }
 
 func (m *Alias) GetAlias() isAlias_Alias {
@@ -134,7 +134,7 @@ type Alias_Spec struct {
 func (x *Alias_Spec) Reset() {
 	*x = Alias_Spec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_alias_proto_msgTypes[1]
+		mi := &file_khulnasoft_alias_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -147,7 +147,7 @@ func (x *Alias_Spec) String() string {
 func (*Alias_Spec) ProtoMessage() {}
 
 func (x *Alias_Spec) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_alias_proto_msgTypes[1]
+	mi := &file_khulnasoft_alias_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -160,7 +160,7 @@ func (x *Alias_Spec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Alias_Spec.ProtoReflect.Descriptor instead.
 func (*Alias_Spec) Descriptor() ([]byte, []int) {
-	return file_pulumi_alias_proto_rawDescGZIP(), []int{0, 0}
+	return file_khulnasoft_alias_proto_rawDescGZIP(), []int{0, 0}
 }
 
 func (x *Alias_Spec) GetName() string {
@@ -228,9 +228,9 @@ func (*Alias_Spec_ParentUrn) isAlias_Spec_Parent() {}
 
 func (*Alias_Spec_NoParent) isAlias_Spec_Parent() {}
 
-var File_pulumi_alias_proto protoreflect.FileDescriptor
+var File_khulnasoft_alias_proto protoreflect.FileDescriptor
 
-var file_pulumi_alias_proto_rawDesc = []byte{
+var file_khulnasoft_alias_proto_rawDesc = []byte{
 	0x0a, 0x12, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x61, 0x6c, 0x69, 0x61, 0x73, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x72, 0x70, 0x63, 0x22,
 	0xfa, 0x01, 0x0a, 0x05, 0x41, 0x6c, 0x69, 0x61, 0x73, 0x12, 0x12, 0x0a, 0x03, 0x75, 0x72, 0x6e,
@@ -256,24 +256,24 @@ var file_pulumi_alias_proto_rawDesc = []byte{
 }
 
 var (
-	file_pulumi_alias_proto_rawDescOnce sync.Once
-	file_pulumi_alias_proto_rawDescData = file_pulumi_alias_proto_rawDesc
+	file_khulnasoft_alias_proto_rawDescOnce sync.Once
+	file_khulnasoft_alias_proto_rawDescData = file_khulnasoft_alias_proto_rawDesc
 )
 
-func file_pulumi_alias_proto_rawDescGZIP() []byte {
-	file_pulumi_alias_proto_rawDescOnce.Do(func() {
-		file_pulumi_alias_proto_rawDescData = protoimpl.X.CompressGZIP(file_pulumi_alias_proto_rawDescData)
+func file_khulnasoft_alias_proto_rawDescGZIP() []byte {
+	file_khulnasoft_alias_proto_rawDescOnce.Do(func() {
+		file_khulnasoft_alias_proto_rawDescData = protoimpl.X.CompressGZIP(file_khulnasoft_alias_proto_rawDescData)
 	})
-	return file_pulumi_alias_proto_rawDescData
+	return file_khulnasoft_alias_proto_rawDescData
 }
 
-var file_pulumi_alias_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_pulumi_alias_proto_goTypes = []interface{}{
-	(*Alias)(nil),      // 0: pulumirpc.Alias
-	(*Alias_Spec)(nil), // 1: pulumirpc.Alias.Spec
+var file_khulnasoft_alias_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_khulnasoft_alias_proto_goTypes = []interface{}{
+	(*Alias)(nil),      // 0: khulnasoftrpc.Alias
+	(*Alias_Spec)(nil), // 1: khulnasoftrpc.Alias.Spec
 }
-var file_pulumi_alias_proto_depIdxs = []int32{
-	1, // 0: pulumirpc.Alias.spec:type_name -> pulumirpc.Alias.Spec
+var file_khulnasoft_alias_proto_depIdxs = []int32{
+	1, // 0: khulnasoftrpc.Alias.spec:type_name -> khulnasoftrpc.Alias.Spec
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -281,13 +281,13 @@ var file_pulumi_alias_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_pulumi_alias_proto_init() }
-func file_pulumi_alias_proto_init() {
-	if File_pulumi_alias_proto != nil {
+func init() { file_khulnasoft_alias_proto_init() }
+func file_khulnasoft_alias_proto_init() {
+	if File_khulnasoft_alias_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_pulumi_alias_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_alias_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Alias); i {
 			case 0:
 				return &v.state
@@ -299,7 +299,7 @@ func file_pulumi_alias_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_alias_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_alias_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Alias_Spec); i {
 			case 0:
 				return &v.state
@@ -312,11 +312,11 @@ func file_pulumi_alias_proto_init() {
 			}
 		}
 	}
-	file_pulumi_alias_proto_msgTypes[0].OneofWrappers = []interface{}{
+	file_khulnasoft_alias_proto_msgTypes[0].OneofWrappers = []interface{}{
 		(*Alias_Urn)(nil),
 		(*Alias_Spec_)(nil),
 	}
-	file_pulumi_alias_proto_msgTypes[1].OneofWrappers = []interface{}{
+	file_khulnasoft_alias_proto_msgTypes[1].OneofWrappers = []interface{}{
 		(*Alias_Spec_ParentUrn)(nil),
 		(*Alias_Spec_NoParent)(nil),
 	}
@@ -324,18 +324,18 @@ func file_pulumi_alias_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pulumi_alias_proto_rawDesc,
+			RawDescriptor: file_khulnasoft_alias_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_pulumi_alias_proto_goTypes,
-		DependencyIndexes: file_pulumi_alias_proto_depIdxs,
-		MessageInfos:      file_pulumi_alias_proto_msgTypes,
+		GoTypes:           file_khulnasoft_alias_proto_goTypes,
+		DependencyIndexes: file_khulnasoft_alias_proto_depIdxs,
+		MessageInfos:      file_khulnasoft_alias_proto_msgTypes,
 	}.Build()
-	File_pulumi_alias_proto = out.File
-	file_pulumi_alias_proto_rawDesc = nil
-	file_pulumi_alias_proto_goTypes = nil
-	file_pulumi_alias_proto_depIdxs = nil
+	File_khulnasoft_alias_proto = out.File
+	file_khulnasoft_alias_proto_rawDesc = nil
+	file_khulnasoft_alias_proto_goTypes = nil
+	file_khulnasoft_alias_proto_depIdxs = nil
 }

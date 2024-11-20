@@ -5,16 +5,16 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type FailsOnCreate struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Value pulumi.Float64Output `pulumi:"value"`
+	Value khulnasoft.Float64Output `khulnasoft:"value"`
 }
 
-func NewFailsOnCreate(ctx *pulumi.Context, name string, opts ...pulumi.ResourceOption) (*FailsOnCreate, error) {
+func NewFailsOnCreate(ctx *khulnasoft.Context, name string, opts ...khulnasoft.ResourceOption) (*FailsOnCreate, error) {
 	var resource FailsOnCreate
 	err := ctx.RegisterResource("testprovider:index:FailsOnCreate", name, nil, &resource, opts...)
 	if err != nil {
@@ -24,10 +24,10 @@ func NewFailsOnCreate(ctx *pulumi.Context, name string, opts ...pulumi.ResourceO
 }
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		ctx.Export("xyz", pulumi.String("DEF"))
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
+		ctx.Export("xyz", khulnasoft.String("DEF"))
 		NewFailsOnCreate(ctx, "test")
-		ctx.Export("foo", pulumi.Float64(1))
+		ctx.Export("foo", khulnasoft.Float64(1))
 		return nil
 	})
 }

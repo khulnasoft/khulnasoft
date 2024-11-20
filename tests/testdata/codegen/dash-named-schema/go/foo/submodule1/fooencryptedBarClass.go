@@ -8,16 +8,16 @@ import (
 	"reflect"
 
 	"dash-named-schema/foo/internal"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 type FOOEncryptedBarClass struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 }
 
 // NewFOOEncryptedBarClass registers a new resource with the given unique name, arguments, and options.
-func NewFOOEncryptedBarClass(ctx *pulumi.Context,
-	name string, args *FOOEncryptedBarClassArgs, opts ...pulumi.ResourceOption) (*FOOEncryptedBarClass, error) {
+func NewFOOEncryptedBarClass(ctx *khulnasoft.Context,
+	name string, args *FOOEncryptedBarClassArgs, opts ...khulnasoft.ResourceOption) (*FOOEncryptedBarClass, error) {
 	if args == nil {
 		args = &FOOEncryptedBarClassArgs{}
 	}
@@ -33,8 +33,8 @@ func NewFOOEncryptedBarClass(ctx *pulumi.Context,
 
 // GetFOOEncryptedBarClass gets an existing FOOEncryptedBarClass resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetFOOEncryptedBarClass(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *FOOEncryptedBarClassState, opts ...pulumi.ResourceOption) (*FOOEncryptedBarClass, error) {
+func GetFOOEncryptedBarClass(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *FOOEncryptedBarClassState, opts ...khulnasoft.ResourceOption) (*FOOEncryptedBarClass, error) {
 	var resource FOOEncryptedBarClass
 	err := ctx.ReadResource("foo-bar:submodule1:FOOEncryptedBarClass", name, id, state, &resource, opts...)
 	if err != nil {
@@ -66,7 +66,7 @@ func (FOOEncryptedBarClassArgs) ElementType() reflect.Type {
 }
 
 type FOOEncryptedBarClassInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToFOOEncryptedBarClassOutput() FOOEncryptedBarClassOutput
 	ToFOOEncryptedBarClassOutputWithContext(ctx context.Context) FOOEncryptedBarClassOutput
@@ -81,10 +81,10 @@ func (i *FOOEncryptedBarClass) ToFOOEncryptedBarClassOutput() FOOEncryptedBarCla
 }
 
 func (i *FOOEncryptedBarClass) ToFOOEncryptedBarClassOutputWithContext(ctx context.Context) FOOEncryptedBarClassOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FOOEncryptedBarClassOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(FOOEncryptedBarClassOutput)
 }
 
-type FOOEncryptedBarClassOutput struct{ *pulumi.OutputState }
+type FOOEncryptedBarClassOutput struct{ *khulnasoft.OutputState }
 
 func (FOOEncryptedBarClassOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**FOOEncryptedBarClass)(nil)).Elem()
@@ -99,6 +99,6 @@ func (o FOOEncryptedBarClassOutput) ToFOOEncryptedBarClassOutputWithContext(ctx 
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*FOOEncryptedBarClassInput)(nil)).Elem(), &FOOEncryptedBarClass{})
-	pulumi.RegisterOutputType(FOOEncryptedBarClassOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*FOOEncryptedBarClassInput)(nil)).Elem(), &FOOEncryptedBarClass{})
+	khulnasoft.RegisterOutputType(FOOEncryptedBarClassOutput{})
 }

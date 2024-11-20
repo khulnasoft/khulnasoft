@@ -2,7 +2,7 @@
 
 import copy
 
-from pulumi import Alias, ComponentResource, ResourceOptions
+from khulnasoft import Alias, ComponentResource, ResourceOptions
 
 
 class Resource(ComponentResource):

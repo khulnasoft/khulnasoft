@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import * as assert from "assert";
-import * as pulumi from "../index";
+import * as khulnasoft from "../index";
 import { CustomResourceOptions } from "../resource";
 import { MockCallArgs, MockCallResult, MockResourceArgs, MockResourceResult } from "../runtime";
 
@@ -58,36 +58,36 @@ const newResourceMock = (args: MockResourceArgs): MockResourceResult => {
 };
 const asyncNewResourceMock = (args: MockResourceArgs) => Promise.resolve(newResourceMock(args));
 
-class MyComponent extends pulumi.ComponentResource {
-    outprop: pulumi.Output<string>;
-    constructor(name: string, inprop: pulumi.Input<string>, opts?: pulumi.ComponentResourceOptions) {
+class MyComponent extends khulnasoft.ComponentResource {
+    outprop: khulnasoft.Output<string>;
+    constructor(name: string, inprop: khulnasoft.Input<string>, opts?: khulnasoft.ComponentResourceOptions) {
         super("pkg:index:MyComponent", name, {}, opts);
-        this.outprop = pulumi.output(inprop).apply((x) => `output: ${x}`);
+        this.outprop = khulnasoft.output(inprop).apply((x) => `output: ${x}`);
     }
 }
 
-class MyRemoteComponent extends pulumi.ComponentResource {
-    outprop!: pulumi.Output<string>;
-    constructor(name: string, inprop: pulumi.Input<string>, opts?: pulumi.ComponentResourceOptions) {
+class MyRemoteComponent extends khulnasoft.ComponentResource {
+    outprop!: khulnasoft.Output<string>;
+    constructor(name: string, inprop: khulnasoft.Input<string>, opts?: khulnasoft.ComponentResourceOptions) {
         super("pkg:index:MyRemoteComponent", name, { inprop, outprop: undefined }, opts, true);
     }
 }
 
-class Instance extends pulumi.CustomResource {
-    publicIP!: pulumi.Output<string>;
+class Instance extends khulnasoft.CustomResource {
+    publicIP!: khulnasoft.Output<string>;
     constructor(name: string, opts?: CustomResourceOptions) {
         const props = { publicIP: undefined };
         super("aws:ec2/instance:Instance", name, props, opts);
     }
 }
 
-class MyCustom extends pulumi.CustomResource {
-    instance!: pulumi.Output<Instance>;
+class MyCustom extends khulnasoft.CustomResource {
+    instance!: khulnasoft.Output<Instance>;
     static get(
         name: string,
-        id: pulumi.Input<pulumi.ID>,
+        id: khulnasoft.Input<khulnasoft.ID>,
         state?: Record<string, any>,
-        opts?: pulumi.CustomResourceOptions,
+        opts?: khulnasoft.CustomResourceOptions,
     ): MyCustom {
         return new MyCustom(name, state, { ...opts, id });
     }
@@ -98,7 +98,7 @@ class MyCustom extends pulumi.CustomResource {
 }
 
 async function invoke(): Promise<number> {
-    const value = await pulumi.runtime.invoke("test:index:MyFunction", { value: 41 });
+    const value = await khulnasoft.runtime.invoke("test:index:MyFunction", { value: 41 });
     return value["out_value"];
 }
 
@@ -118,13 +118,13 @@ setups.forEach(([test, isAsyncNewResource, isAsyncCall]) => {
         let remoteComponent: MyRemoteComponent;
 
         before(() => {
-            pulumi.runtime.setMocks({
+            khulnasoft.runtime.setMocks({
                 call: isAsyncCall ? asyncCallMock : callMock,
                 newResource: isAsyncNewResource ? asyncNewResourceMock : newResourceMock,
             });
 
-            pulumi.runtime.registerResourceModule("aws", "ec2/instance", {
-                construct: (name: string, type: string, urn: string): pulumi.Resource => {
+            khulnasoft.runtime.registerResourceModule("aws", "ec2/instance", {
+                construct: (name: string, type: string, urn: string): khulnasoft.Resource => {
                     switch (type) {
                         case "aws:ec2/instance:Instance":
                             return new Instance(name, { urn });
@@ -139,7 +139,7 @@ setups.forEach(([test, isAsyncNewResource, isAsyncCall]) => {
             custom = new MyCustom("mycustom", { instance: instance });
             read = MyCustom.get("mycustom", "read");
             invokeResult = invoke();
-            remoteComponent = new MyRemoteComponent("myremotecomponent", pulumi.interpolate`hello: ${instance.id}`);
+            remoteComponent = new MyRemoteComponent("myremotecomponent", khulnasoft.interpolate`hello: ${instance.id}`);
         });
 
         describe("component", function () {

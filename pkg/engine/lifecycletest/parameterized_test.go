@@ -28,12 +28,12 @@ import (
 	lt "github.com/khulnasoft/khulnasoft/pkg/v3/engine/lifecycletest/framework"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/deploytest"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/promise"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/promise"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 )
 
 // TestPackageRef tests we can request a package ref from the engine and then use that, instead of Version,
@@ -189,7 +189,7 @@ func TestReplacementParameterizedProvider(t *testing.T) {
 					assert.Equal(t, "pkgExt:index:call", req.Tok.String())
 					assert.Equal(t, resource.NewStringProperty("in"), req.Args["input"])
 					assert.Equal(t, map[resource.PropertyKey][]resource.URN{
-						"input": {"urn:pulumi:stack::m::typA::resB"},
+						"input": {"urn:khulnasoft:stack::m::typA::resB"},
 					}, req.Options.ArgDependencies)
 
 					return plugin.CallResponse{
@@ -197,7 +197,7 @@ func TestReplacementParameterizedProvider(t *testing.T) {
 							"output": resource.NewStringProperty("output"),
 						},
 						ReturnDependencies: map[resource.PropertyKey][]resource.URN{
-							"output": {"urn:pulumi:stack::m::typA::resB"},
+							"output": {"urn:khulnasoft:stack::m::typA::resB"},
 						},
 						Failures: nil,
 					}, nil
@@ -221,7 +221,7 @@ func TestReplacementParameterizedProvider(t *testing.T) {
 							"output": resource.NewStringProperty("output"),
 						},
 						OutputDependencies: map[resource.PropertyKey][]resource.URN{
-							"output": {"urn:pulumi:stack::m::typA::resB"},
+							"output": {"urn:khulnasoft:stack::m::typA::resB"},
 						},
 					}, nil
 				},
@@ -250,11 +250,11 @@ func TestReplacementParameterizedProvider(t *testing.T) {
 			"output": resource.NewStringProperty("output"),
 		}, mlcA.Outputs)
 		assert.Equal(t, map[resource.PropertyKey][]resource.URN{
-			"output": {"urn:pulumi:stack::m::typA::resB"},
+			"output": {"urn:khulnasoft:stack::m::typA::resB"},
 		}, mlcA.Dependencies)
 
 		// Now register a replacement provider
-		extRef, err := monitor.RegisterPackage("pkgA", "1.0.0", "", nil, &pulumirpc.Parameterization{
+		extRef, err := monitor.RegisterPackage("pkgA", "1.0.0", "", nil, &khulnasoftrpc.Parameterization{
 			Name:    "pkgExt",
 			Version: "0.5.0",
 			Value:   []byte("replacement"),
@@ -278,7 +278,7 @@ func TestReplacementParameterizedProvider(t *testing.T) {
 			"output": resource.NewStringProperty("output"),
 		}, mlcB.Outputs)
 		assert.Equal(t, map[resource.PropertyKey][]resource.URN{
-			"output": {"urn:pulumi:stack::m::typA::resB"},
+			"output": {"urn:khulnasoft:stack::m::typA::resB"},
 		}, mlcB.Dependencies)
 
 		// Test invoking a function on the replacement provider
@@ -301,7 +301,7 @@ func TestReplacementParameterizedProvider(t *testing.T) {
 				"input": resource.NewStringProperty("in"),
 			},
 			map[resource.PropertyKey][]resource.URN{
-				"input": {"urn:pulumi:stack::m::typA::resB"},
+				"input": {"urn:khulnasoft:stack::m::typA::resB"},
 			},
 			"", /*provider*/
 			"", /*version*/
@@ -312,12 +312,12 @@ func TestReplacementParameterizedProvider(t *testing.T) {
 			"output": resource.NewStringProperty("output"),
 		}, callOuts)
 		assert.Equal(t, map[resource.PropertyKey][]resource.URN{
-			"output": {"urn:pulumi:stack::m::typA::resB"},
+			"output": {"urn:khulnasoft:stack::m::typA::resB"},
 		}, callDeps)
 		assert.Nil(t, callFailures)
 
 		// Test that we can create an explicit replacement provider and can use it
-		prov, err := monitor.RegisterResource("pulumi:providers:pkgExt", "provider", true, deploytest.ResourceOptions{
+		prov, err := monitor.RegisterResource("khulnasoft:providers:pkgExt", "provider", true, deploytest.ResourceOptions{
 			PackageRef: extRef,
 		})
 		assert.NoError(t, err)
@@ -353,7 +353,7 @@ func TestReplacementParameterizedProvider(t *testing.T) {
 
 	// Check the state of the parameterized provider is what we expect
 	prov := snap.Resources[2]
-	assert.Equal(t, tokens.Type("pulumi:providers:pkgExt"), prov.Type)
+	assert.Equal(t, tokens.Type("khulnasoft:providers:pkgExt"), prov.Type)
 	assert.Equal(t, "default_0_5_0", prov.URN.Name())
 	assert.Equal(t, resource.NewPropertyMapFromMap(map[string]any{
 		"version": "0.5.0",
@@ -379,7 +379,7 @@ func TestReplacementParameterizedProvider(t *testing.T) {
 
 // TestReplacementParameterizedProviderConfig tests that we can register a parameterized provider that uses config keys
 // like "name" without clashing against the internal state the engine tracks for parameterization. c.f.
-// https://github.com/pulumi/pulumi/issues/16757.
+// https://github.com/khulnasoft/khulnasoft/issues/16757.
 func TestReplacementParameterizedProviderConfig(t *testing.T) {
 	t.Parallel()
 
@@ -446,7 +446,7 @@ func TestReplacementParameterizedProviderConfig(t *testing.T) {
 		require.NoError(t, err)
 
 		// Now register a replacement provider
-		extRef, err := monitor.RegisterPackage("pkgA", "1.0.0", "", nil, &pulumirpc.Parameterization{
+		extRef, err := monitor.RegisterPackage("pkgA", "1.0.0", "", nil, &khulnasoftrpc.Parameterization{
 			Name:    "pkgExt",
 			Version: "0.5.0",
 			Value:   []byte("replacement"),
@@ -478,7 +478,7 @@ func TestReplacementParameterizedProviderConfig(t *testing.T) {
 
 	// Check the state of the parameterized provider is what we expect
 	prov := snap.Resources[2]
-	assert.Equal(t, tokens.Type("pulumi:providers:pkgExt"), prov.Type)
+	assert.Equal(t, tokens.Type("khulnasoft:providers:pkgExt"), prov.Type)
 	assert.Equal(t, resource.NewPropertyMapFromMap(map[string]any{
 		"version": "0.5.0",
 		"name":    "testingExt",
@@ -568,7 +568,7 @@ func TestReplacementParameterizedProviderImport(t *testing.T) {
 		require.NoError(t, err)
 
 		// Now register a replacement provider
-		extRef, err := monitor.RegisterPackage("pkgA", "1.0.0", "", nil, &pulumirpc.Parameterization{
+		extRef, err := monitor.RegisterPackage("pkgA", "1.0.0", "", nil, &khulnasoftrpc.Parameterization{
 			Name:    "pkgExt",
 			Version: "0.5.0",
 			Value:   []byte("replacement"),
@@ -586,7 +586,7 @@ func TestReplacementParameterizedProviderImport(t *testing.T) {
 		require.NoError(t, err)
 
 		// Test that we can create an explicit replacement provider and can use it
-		prov, err := monitor.RegisterResource("pulumi:providers:pkgExt", "provider", true, deploytest.ResourceOptions{
+		prov, err := monitor.RegisterResource("khulnasoft:providers:pkgExt", "provider", true, deploytest.ResourceOptions{
 			PackageRef: extRef,
 		})
 		assert.NoError(t, err)
@@ -626,7 +626,7 @@ func TestReplacementParameterizedProviderImport(t *testing.T) {
 
 	// Check the state of the parameterized provider is what we expect
 	prov := snap.Resources[2]
-	assert.Equal(t, tokens.Type("pulumi:providers:pkgExt"), prov.Type)
+	assert.Equal(t, tokens.Type("khulnasoft:providers:pkgExt"), prov.Type)
 	assert.Equal(t, "default_0_5_0", prov.URN.Name())
 	assert.Equal(t, resource.NewPropertyMapFromMap(map[string]any{
 		"version": "0.5.0",

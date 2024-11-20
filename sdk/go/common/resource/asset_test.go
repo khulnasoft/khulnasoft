@@ -30,16 +30,16 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	rarchive "github.com/pulumi/pulumi/sdk/v3/go/common/resource/archive"
-	rasset "github.com/pulumi/pulumi/sdk/v3/go/common/resource/asset"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	rarchive "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/archive"
+	rasset "github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/asset"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 const (
 	go19Version = "go1.9"
 )
 
-// TODO[pulumi/pulumi#8647]
+// TODO[khulnasoft/khulnasoft#8647]
 func skipWindows(t *testing.T) {
 	if runtime.GOOS == "windows" {
 		t.Skip("Skipped on Windows: TODO handle Windows local paths in URIs")
@@ -517,7 +517,7 @@ func findRepositoryRoot() (string, error) {
 func TestArchiveTarFiles(t *testing.T) {
 	t.Parallel()
 
-	// TODO[pulumi/pulumi#7976] flaky
+	// TODO[khulnasoft/khulnasoft#7976] flaky
 	t.Skip("Disabled due to flakiness. See #7976.")
 
 	repoRoot, err := findRepositoryRoot()
@@ -533,7 +533,7 @@ func TestArchiveTarFiles(t *testing.T) {
 func TestArchiveZipFiles(t *testing.T) {
 	t.Parallel()
 
-	t.Skip() // TODO[pulumi/pulumi#7147]
+	t.Skip() // TODO[khulnasoft/khulnasoft#7147]
 	repoRoot, err := findRepositoryRoot()
 	assert.NoError(t, err)
 

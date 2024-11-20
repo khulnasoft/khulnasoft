@@ -1,53 +1,53 @@
 package main
 
 import (
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/meta/v1"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	corev1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/core/v1"
+	metav1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v3/go/kubernetes/meta/v1"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		bar, err := corev1.NewPod(ctx, "bar", &corev1.PodArgs{
-			ApiVersion: pulumi.String("v1"),
+			ApiVersion: khulnasoft.String("v1"),
 			Metadata: &metav1.ObjectMetaArgs{
-				Namespace: pulumi.String("foo"),
-				Name:      pulumi.String("bar"),
-				Labels: pulumi.StringMap{
-					"app.kubernetes.io/name":    pulumi.String("cilium-agent"),
-					"app.kubernetes.io/part-of": pulumi.String("cilium"),
-					"k8s-app":                   pulumi.String("cilium"),
+				Namespace: khulnasoft.String("foo"),
+				Name:      khulnasoft.String("bar"),
+				Labels: khulnasoft.StringMap{
+					"app.kubernetes.io/name":    khulnasoft.String("cilium-agent"),
+					"app.kubernetes.io/part-of": khulnasoft.String("cilium"),
+					"k8s-app":                   khulnasoft.String("cilium"),
 				},
 			},
 			Spec: &corev1.PodSpecArgs{
 				Containers: corev1.ContainerArray{
 					&corev1.ContainerArgs{
-						Name:  pulumi.String("nginx"),
-						Image: pulumi.String("nginx:1.14-alpine"),
+						Name:  khulnasoft.String("nginx"),
+						Image: khulnasoft.String("nginx:1.14-alpine"),
 						Ports: corev1.ContainerPortArray{
 							&corev1.ContainerPortArgs{
-								ContainerPort: pulumi.Int(80),
+								ContainerPort: khulnasoft.Int(80),
 							},
 						},
 						Resources: &corev1.ResourceRequirementsArgs{
-							Limits: pulumi.StringMap{
-								"memory": pulumi.String("20Mi"),
-								"cpu":    pulumi.String("0.2"),
+							Limits: khulnasoft.StringMap{
+								"memory": khulnasoft.String("20Mi"),
+								"cpu":    khulnasoft.String("0.2"),
 							},
 						},
 					},
 					&corev1.ContainerArgs{
-						Name:  pulumi.String("nginx2"),
-						Image: pulumi.String("nginx:1.14-alpine"),
+						Name:  khulnasoft.String("nginx2"),
+						Image: khulnasoft.String("nginx:1.14-alpine"),
 						Ports: corev1.ContainerPortArray{
 							&corev1.ContainerPortArgs{
-								ContainerPort: pulumi.Int(80),
+								ContainerPort: khulnasoft.Int(80),
 							},
 						},
 						Resources: &corev1.ResourceRequirementsArgs{
-							Limits: pulumi.StringMap{
-								"memory": pulumi.String("20Mi"),
-								"cpu":    pulumi.String("0.2"),
+							Limits: khulnasoft.StringMap{
+								"memory": khulnasoft.String("20Mi"),
+								"cpu":    khulnasoft.String("0.2"),
 							},
 						},
 					},

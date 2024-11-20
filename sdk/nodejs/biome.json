@@ -11,7 +11,7 @@
             "node_modules",
             ".nyc_output/",
             ".direnv/",
-            "cmd/pulumi-language-nodejs",
+            "cmd/khulnasoft-language-nodejs",
             "tests/mockpackage/lib/",
             "tests/runtime/testdata/closure-tests",
             "vendor/"

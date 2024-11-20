@@ -156,9 +156,9 @@
     },
     "nodejs": {
       "dependencies": {
-        "@pulumi/random": "^4.2.0",
-        "@pulumi/aws": "^4.19.0",
-        "@pulumi/kubernetes": "^3.7.0"
+        "@khulnasoft/random": "^4.2.0",
+        "@khulnasoft/aws": "^4.19.0",
+        "@khulnasoft/kubernetes": "^3.7.0"
       }
     },
     "python": {}

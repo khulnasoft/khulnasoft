@@ -51,12 +51,12 @@ func ParsePulumiOperation(o string) (PulumiOperation, error) {
 	case "remediate-drift":
 		return RemediateDrift, nil
 	default:
-		return "", fmt.Errorf("invalid pulumi operation; %q", o)
+		return "", fmt.Errorf("invalid khulnasoft operation; %q", o)
 	}
 }
 
 // DeploymentDuration, wrapper over time.Duration to properly marshall
-// time durations according to pulumi cloud spec.
+// time durations according to khulnasoft cloud spec.
 type DeploymentDuration time.Duration
 
 func (v DeploymentDuration) MarshalJSON() ([]byte, error) {
@@ -155,7 +155,7 @@ type ExecutorContext struct {
 	// WorkingDirectory defines the path where the work should be done when executing.
 	WorkingDirectory string `json:"workingDirectory" yaml:"workingDirectory,omitempty"`
 
-	// Defines the image that the pulumi operations should run in.
+	// Defines the image that the khulnasoft operations should run in.
 	ExecutorImage *DockerImage `json:"executorImage,omitempty" yaml:"executorImage,omitempty"`
 }
 
@@ -264,7 +264,7 @@ type OperationContext struct {
 	OIDC *OperationContextOIDCConfiguration `json:"oidc,omitempty" yaml:"oidc,omitempty"`
 	// PreRunCommands is an optional list of arbitrary commands to run before Pulumi
 	// is invoked.
-	// ref: https://github.com/pulumi/pulumi/issues/9397
+	// ref: https://github.com/khulnasoft/khulnasoft/issues/9397
 	PreRunCommands []string `json:"preRunCommands" yaml:"preRunCommands,omitempty"`
 
 	// Operation is what we plan on doing.

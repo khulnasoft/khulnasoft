@@ -16,7 +16,7 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.20.1
-// source: pulumi/codegen/hcl.proto
+// source: khulnasoft/codegen/hcl.proto
 
 package codegen
 
@@ -74,11 +74,11 @@ func (x DiagnosticSeverity) String() string {
 }
 
 func (DiagnosticSeverity) Descriptor() protoreflect.EnumDescriptor {
-	return file_pulumi_codegen_hcl_proto_enumTypes[0].Descriptor()
+	return file_khulnasoft_codegen_hcl_proto_enumTypes[0].Descriptor()
 }
 
 func (DiagnosticSeverity) Type() protoreflect.EnumType {
-	return &file_pulumi_codegen_hcl_proto_enumTypes[0]
+	return &file_khulnasoft_codegen_hcl_proto_enumTypes[0]
 }
 
 func (x DiagnosticSeverity) Number() protoreflect.EnumNumber {
@@ -87,7 +87,7 @@ func (x DiagnosticSeverity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DiagnosticSeverity.Descriptor instead.
 func (DiagnosticSeverity) EnumDescriptor() ([]byte, []int) {
-	return file_pulumi_codegen_hcl_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_codegen_hcl_proto_rawDescGZIP(), []int{0}
 }
 
 // Pos represents a single position in a source file, by addressing the start byte of a unicode character
@@ -117,7 +117,7 @@ type Pos struct {
 func (x *Pos) Reset() {
 	*x = Pos{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_codegen_hcl_proto_msgTypes[0]
+		mi := &file_khulnasoft_codegen_hcl_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -130,7 +130,7 @@ func (x *Pos) String() string {
 func (*Pos) ProtoMessage() {}
 
 func (x *Pos) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_codegen_hcl_proto_msgTypes[0]
+	mi := &file_khulnasoft_codegen_hcl_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -143,7 +143,7 @@ func (x *Pos) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Pos.ProtoReflect.Descriptor instead.
 func (*Pos) Descriptor() ([]byte, []int) {
-	return file_pulumi_codegen_hcl_proto_rawDescGZIP(), []int{0}
+	return file_khulnasoft_codegen_hcl_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Pos) GetLine() int64 {
@@ -183,7 +183,7 @@ type Range struct {
 func (x *Range) Reset() {
 	*x = Range{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_codegen_hcl_proto_msgTypes[1]
+		mi := &file_khulnasoft_codegen_hcl_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -196,7 +196,7 @@ func (x *Range) String() string {
 func (*Range) ProtoMessage() {}
 
 func (x *Range) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_codegen_hcl_proto_msgTypes[1]
+	mi := &file_khulnasoft_codegen_hcl_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -209,7 +209,7 @@ func (x *Range) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Range.ProtoReflect.Descriptor instead.
 func (*Range) Descriptor() ([]byte, []int) {
-	return file_pulumi_codegen_hcl_proto_rawDescGZIP(), []int{1}
+	return file_khulnasoft_codegen_hcl_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Range) GetFilename() string {
@@ -239,7 +239,7 @@ type Diagnostic struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Severity DiagnosticSeverity `protobuf:"varint,1,opt,name=severity,proto3,enum=pulumirpc.codegen.DiagnosticSeverity" json:"severity,omitempty"`
+	Severity DiagnosticSeverity `protobuf:"varint,1,opt,name=severity,proto3,enum=khulnasoftrpc.codegen.DiagnosticSeverity" json:"severity,omitempty"`
 	// Summary and Detail contain the English-language description of the
 	// problem. Summary is a terse description of the general problem and
 	// detail is a more elaborate, often-multi-sentence description of
@@ -263,7 +263,7 @@ type Diagnostic struct {
 func (x *Diagnostic) Reset() {
 	*x = Diagnostic{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pulumi_codegen_hcl_proto_msgTypes[2]
+		mi := &file_khulnasoft_codegen_hcl_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -276,7 +276,7 @@ func (x *Diagnostic) String() string {
 func (*Diagnostic) ProtoMessage() {}
 
 func (x *Diagnostic) ProtoReflect() protoreflect.Message {
-	mi := &file_pulumi_codegen_hcl_proto_msgTypes[2]
+	mi := &file_khulnasoft_codegen_hcl_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -289,7 +289,7 @@ func (x *Diagnostic) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Diagnostic.ProtoReflect.Descriptor instead.
 func (*Diagnostic) Descriptor() ([]byte, []int) {
-	return file_pulumi_codegen_hcl_proto_rawDescGZIP(), []int{2}
+	return file_khulnasoft_codegen_hcl_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Diagnostic) GetSeverity() DiagnosticSeverity {
@@ -327,9 +327,9 @@ func (x *Diagnostic) GetContext() *Range {
 	return nil
 }
 
-var File_pulumi_codegen_hcl_proto protoreflect.FileDescriptor
+var File_khulnasoft_codegen_hcl_proto protoreflect.FileDescriptor
 
-var file_pulumi_codegen_hcl_proto_rawDesc = []byte{
+var file_khulnasoft_codegen_hcl_proto_rawDesc = []byte{
 	0x0a, 0x18, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2f, 0x63, 0x6f, 0x64, 0x65, 0x67, 0x65, 0x6e,
 	0x2f, 0x68, 0x63, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x11, 0x70, 0x75, 0x6c, 0x75,
 	0x6d, 0x69, 0x72, 0x70, 0x63, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x67, 0x65, 0x6e, 0x22, 0x45, 0x0a,
@@ -372,31 +372,31 @@ var file_pulumi_codegen_hcl_proto_rawDesc = []byte{
 }
 
 var (
-	file_pulumi_codegen_hcl_proto_rawDescOnce sync.Once
-	file_pulumi_codegen_hcl_proto_rawDescData = file_pulumi_codegen_hcl_proto_rawDesc
+	file_khulnasoft_codegen_hcl_proto_rawDescOnce sync.Once
+	file_khulnasoft_codegen_hcl_proto_rawDescData = file_khulnasoft_codegen_hcl_proto_rawDesc
 )
 
-func file_pulumi_codegen_hcl_proto_rawDescGZIP() []byte {
-	file_pulumi_codegen_hcl_proto_rawDescOnce.Do(func() {
-		file_pulumi_codegen_hcl_proto_rawDescData = protoimpl.X.CompressGZIP(file_pulumi_codegen_hcl_proto_rawDescData)
+func file_khulnasoft_codegen_hcl_proto_rawDescGZIP() []byte {
+	file_khulnasoft_codegen_hcl_proto_rawDescOnce.Do(func() {
+		file_khulnasoft_codegen_hcl_proto_rawDescData = protoimpl.X.CompressGZIP(file_khulnasoft_codegen_hcl_proto_rawDescData)
 	})
-	return file_pulumi_codegen_hcl_proto_rawDescData
+	return file_khulnasoft_codegen_hcl_proto_rawDescData
 }
 
-var file_pulumi_codegen_hcl_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_pulumi_codegen_hcl_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_pulumi_codegen_hcl_proto_goTypes = []interface{}{
-	(DiagnosticSeverity)(0), // 0: pulumirpc.codegen.DiagnosticSeverity
-	(*Pos)(nil),             // 1: pulumirpc.codegen.Pos
-	(*Range)(nil),           // 2: pulumirpc.codegen.Range
-	(*Diagnostic)(nil),      // 3: pulumirpc.codegen.Diagnostic
+var file_khulnasoft_codegen_hcl_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_khulnasoft_codegen_hcl_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_khulnasoft_codegen_hcl_proto_goTypes = []interface{}{
+	(DiagnosticSeverity)(0), // 0: khulnasoftrpc.codegen.DiagnosticSeverity
+	(*Pos)(nil),             // 1: khulnasoftrpc.codegen.Pos
+	(*Range)(nil),           // 2: khulnasoftrpc.codegen.Range
+	(*Diagnostic)(nil),      // 3: khulnasoftrpc.codegen.Diagnostic
 }
-var file_pulumi_codegen_hcl_proto_depIdxs = []int32{
-	1, // 0: pulumirpc.codegen.Range.start:type_name -> pulumirpc.codegen.Pos
-	1, // 1: pulumirpc.codegen.Range.end:type_name -> pulumirpc.codegen.Pos
-	0, // 2: pulumirpc.codegen.Diagnostic.severity:type_name -> pulumirpc.codegen.DiagnosticSeverity
-	2, // 3: pulumirpc.codegen.Diagnostic.subject:type_name -> pulumirpc.codegen.Range
-	2, // 4: pulumirpc.codegen.Diagnostic.context:type_name -> pulumirpc.codegen.Range
+var file_khulnasoft_codegen_hcl_proto_depIdxs = []int32{
+	1, // 0: khulnasoftrpc.codegen.Range.start:type_name -> khulnasoftrpc.codegen.Pos
+	1, // 1: khulnasoftrpc.codegen.Range.end:type_name -> khulnasoftrpc.codegen.Pos
+	0, // 2: khulnasoftrpc.codegen.Diagnostic.severity:type_name -> khulnasoftrpc.codegen.DiagnosticSeverity
+	2, // 3: khulnasoftrpc.codegen.Diagnostic.subject:type_name -> khulnasoftrpc.codegen.Range
+	2, // 4: khulnasoftrpc.codegen.Diagnostic.context:type_name -> khulnasoftrpc.codegen.Range
 	5, // [5:5] is the sub-list for method output_type
 	5, // [5:5] is the sub-list for method input_type
 	5, // [5:5] is the sub-list for extension type_name
@@ -404,13 +404,13 @@ var file_pulumi_codegen_hcl_proto_depIdxs = []int32{
 	0, // [0:5] is the sub-list for field type_name
 }
 
-func init() { file_pulumi_codegen_hcl_proto_init() }
-func file_pulumi_codegen_hcl_proto_init() {
-	if File_pulumi_codegen_hcl_proto != nil {
+func init() { file_khulnasoft_codegen_hcl_proto_init() }
+func file_khulnasoft_codegen_hcl_proto_init() {
+	if File_khulnasoft_codegen_hcl_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_pulumi_codegen_hcl_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_codegen_hcl_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Pos); i {
 			case 0:
 				return &v.state
@@ -422,7 +422,7 @@ func file_pulumi_codegen_hcl_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_codegen_hcl_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_codegen_hcl_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Range); i {
 			case 0:
 				return &v.state
@@ -434,7 +434,7 @@ func file_pulumi_codegen_hcl_proto_init() {
 				return nil
 			}
 		}
-		file_pulumi_codegen_hcl_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_khulnasoft_codegen_hcl_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Diagnostic); i {
 			case 0:
 				return &v.state
@@ -451,19 +451,19 @@ func file_pulumi_codegen_hcl_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pulumi_codegen_hcl_proto_rawDesc,
+			RawDescriptor: file_khulnasoft_codegen_hcl_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_pulumi_codegen_hcl_proto_goTypes,
-		DependencyIndexes: file_pulumi_codegen_hcl_proto_depIdxs,
-		EnumInfos:         file_pulumi_codegen_hcl_proto_enumTypes,
-		MessageInfos:      file_pulumi_codegen_hcl_proto_msgTypes,
+		GoTypes:           file_khulnasoft_codegen_hcl_proto_goTypes,
+		DependencyIndexes: file_khulnasoft_codegen_hcl_proto_depIdxs,
+		EnumInfos:         file_khulnasoft_codegen_hcl_proto_enumTypes,
+		MessageInfos:      file_khulnasoft_codegen_hcl_proto_msgTypes,
 	}.Build()
-	File_pulumi_codegen_hcl_proto = out.File
-	file_pulumi_codegen_hcl_proto_rawDesc = nil
-	file_pulumi_codegen_hcl_proto_goTypes = nil
-	file_pulumi_codegen_hcl_proto_depIdxs = nil
+	File_khulnasoft_codegen_hcl_proto = out.File
+	file_khulnasoft_codegen_hcl_proto_rawDesc = nil
+	file_khulnasoft_codegen_hcl_proto_goTypes = nil
+	file_khulnasoft_codegen_hcl_proto_depIdxs = nil
 }

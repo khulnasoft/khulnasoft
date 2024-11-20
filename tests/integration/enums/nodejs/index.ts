@@ -1,9 +1,9 @@
 // Copyright 2016-2020, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-class PlantProvider implements pulumi.dynamic.ResourceProvider {
-    public create: (inputs: any) => Promise<pulumi.dynamic.CreateResult>;
+class PlantProvider implements khulnasoft.dynamic.ResourceProvider {
+    public create: (inputs: any) => Promise<khulnasoft.dynamic.CreateResult>;
 
     constructor() {
         this.create = async (inputs: any) => {
@@ -16,16 +16,16 @@ class PlantProvider implements pulumi.dynamic.ResourceProvider {
 }
 
 interface RubberTreeArgs {
-    readonly farm?: pulumi.Input<Farm | string>;
-    readonly type: pulumi.Input<RubberTreeVariety>;
+    readonly farm?: khulnasoft.Input<Farm | string>;
+    readonly type: khulnasoft.Input<RubberTreeVariety>;
 }
 
-class RubberTree extends pulumi.dynamic.Resource {
-    public readonly farm!: pulumi.Output<Farm | string | undefined>;
-    public readonly type!: pulumi.Output<RubberTreeVariety>;
+class RubberTree extends khulnasoft.dynamic.Resource {
+    public readonly farm!: khulnasoft.Output<Farm | string | undefined>;
+    public readonly type!: khulnasoft.Output<RubberTreeVariety>;
 
     constructor(name: string, args: RubberTreeArgs) {
-        const inputs: pulumi.Inputs = {
+        const inputs: khulnasoft.Inputs = {
             farm: args.farm,
             type: args.type,
         };
@@ -54,5 +54,5 @@ export const myTreeType = myTree.type
 
 export const myTreeFarmChanged = myTree.farm.apply(f => f + "foo");
 
-export const mySentence = pulumi.all([myTree.type, myTree.farm])
+export const mySentence = khulnasoft.all([myTree.type, myTree.farm])
     .apply(([type, farm])=> `My ${type} Rubber tree is from ${farm}`)

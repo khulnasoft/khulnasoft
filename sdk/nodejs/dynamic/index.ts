@@ -302,6 +302,6 @@ export abstract class Resource extends resource.CustomResource {
         }
         props[providerKey] = serializeProvider(provider);
 
-        super(`pulumi-nodejs:dynamic${module ? `/${module}` : ""}:${type}`, name, props, opts);
+        super(`khulnasoft-nodejs:dynamic${module ? `/${module}` : ""}:${type}`, name, props, opts);
     }
 }

@@ -17,34 +17,34 @@ import asyncio
 import json
 import pytest
 
-import pulumi
+import khulnasoft
 
-from pulumi_mypkg import *
+from khulnasoft_mypkg import *
 
 
 @pytest.fixture
 def my_mocks():
-    old_settings = pulumi.runtime.settings.SETTINGS
+    old_settings = khulnasoft.runtime.settings.SETTINGS
     try:
         mocks = MyMocks()
-        pulumi.runtime.mocks.set_mocks(mocks)
+        khulnasoft.runtime.mocks.set_mocks(mocks)
         yield mocks
     finally:
-        pulumi.runtime.settings.configure(old_settings)
+        khulnasoft.runtime.settings.configure(old_settings)
 
 
 @pytest.fixture
 def my_preview_mocks():
-    old_settings = pulumi.runtime.settings.SETTINGS
+    old_settings = khulnasoft.runtime.settings.SETTINGS
     try:
         mocks = MyMocks()
-        pulumi.runtime.mocks.set_mocks(mocks, preview=True)
+        khulnasoft.runtime.mocks.set_mocks(mocks, preview=True)
         yield mocks
     finally:
-        pulumi.runtime.settings.configure(old_settings)
+        khulnasoft.runtime.settings.configure(old_settings)
 
 
-class MyMocks(pulumi.runtime.Mocks):
+class MyMocks(khulnasoft.runtime.Mocks):
     def call(self, args):
 
         if args.token in ['mypkg::funcWithAllOptionalInputs',
@@ -69,7 +69,7 @@ class MyMocks(pulumi.runtime.Mocks):
                     'The argument "account_name" is required, '
                     'but no definition was found')
 
-            keys_value = "{}" if pulumi.contains_unknowns(args.args) else jstr(args.args)
+            keys_value = "{}" if khulnasoft.contains_unknowns(args.args) else jstr(args.args)
             return {'keys': [
                 dict(creationTime='my-creation-time',
                      keyName='my-key-name',
@@ -104,7 +104,7 @@ def assert_function_matches_table(fn, table):
 
         return (args, kw, expected, transform)
 
-    return pulumi.Output.all([
+    return khulnasoft.Output.all([
         fn(*args, **kw).apply(check(expected, transform))
         for (args, kw, expected, transform) in (
                 unpack_entry(entry) for entry in table
@@ -112,7 +112,7 @@ def assert_function_matches_table(fn, table):
     ])
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_func_with_all_optional_inputs(my_mocks):
     return assert_function_matches_table(func_with_all_optional_inputs_output,
         [
@@ -125,10 +125,10 @@ def test_func_with_all_optional_inputs(my_mocks):
         ])
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_func_with_default_value(my_mocks):
     # TODO defaults from schema not recognized
-    # https://github.com/pulumi/pulumi/issues/7815
+    # https://github.com/khulnasoft/khulnasoft/issues/7815
     return assert_function_matches_table(func_with_default_value_output,
         [
             ({}, 'a=None b=None', r),
@@ -137,7 +137,7 @@ def test_func_with_default_value(my_mocks):
         ])
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_func_with_dict_param(my_mocks):
     d = {'key-a': 'value-a', 'key-b': 'value-b'}
     return assert_function_matches_table(func_with_dict_param_output,
@@ -148,7 +148,7 @@ def test_func_with_dict_param(my_mocks):
         ])
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_func_with_list_param(my_mocks):
     l = ['a', 'b', 'c']
     return assert_function_matches_table(func_with_list_param_output,
@@ -159,7 +159,7 @@ def test_func_with_list_param(my_mocks):
         ])
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_get_integration_runtime_object_metadatum(my_mocks):
     return assert_function_matches_table(get_integration_runtime_object_metadatum_output,
         [(
@@ -184,7 +184,7 @@ def test_get_integration_runtime_object_metadatum(my_mocks):
         )])
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_list_storage_accounts(my_mocks):
     return assert_function_matches_table(list_storage_account_keys_output,
         [(
@@ -214,7 +214,7 @@ def test_list_storage_accounts(my_mocks):
         )])
 
 
-@pulumi.runtime.test
+@khulnasoft.runtime.test
 def test_preview_with_unknowns(my_preview_mocks):
 
     def check(r):
@@ -232,7 +232,7 @@ def r(x):
 
 
 def out(x):
-    return pulumi.Output.from_input(x).apply(lambda x: x)
+    return khulnasoft.Output.from_input(x).apply(lambda x: x)
 
 
 def unknown():
@@ -242,5 +242,5 @@ def unknown():
     is_secret_fut.set_result(False)
 
     value_fut: asyncio.Future[Any] = asyncio.Future()
-    value_fut.set_result(pulumi.UNKNOWN)
-    return pulumi.Output(set(), value_fut, is_known_fut, is_secret_fut)
+    value_fut.set_result(khulnasoft.UNKNOWN)
+    return khulnasoft.Output(set(), value_fut, is_known_fut, is_secret_fut)

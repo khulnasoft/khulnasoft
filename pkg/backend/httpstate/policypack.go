@@ -29,14 +29,14 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/backend/httpstate/client"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/engine"
 	resourceanalyzer "github.com/khulnasoft/khulnasoft/pkg/v3/resource/analyzer"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/archive"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	"github.com/pulumi/pulumi/sdk/v3/nodejs/npm"
-	"github.com/pulumi/pulumi/sdk/v3/python/toolchain"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/archive"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/logging"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/nodejs/npm"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/python/toolchain"
 )
 
 type cloudRequiredPolicy struct {
@@ -65,7 +65,7 @@ func (rp *cloudRequiredPolicy) Install(ctx context.Context) (string, error) {
 	policy := rp.RequiredPolicy
 
 	// If version tag is empty, we use the version tag. This is to support older version of
-	// pulumi/policy that do not have a version tag.
+	// khulnasoft/policy that do not have a version tag.
 	version := policy.VersionTag
 	if version == "" {
 		version = strconv.Itoa(policy.Version)
@@ -189,7 +189,7 @@ func (pack *cloudPolicyPack) Publish(
 
 	var packTarball []byte
 
-	// TODO[pulumi/pulumi#1334]: move to the language plugins so we don't have to hard code here.
+	// TODO[khulnasoft/khulnasoft#1334]: move to the language plugins so we don't have to hard code here.
 	runtime := op.PolicyPack.Runtime.Name()
 	if strings.EqualFold(runtime, "nodejs") {
 		packTarball, err = npm.Pack(ctx, npm.AutoPackageManager, op.PlugCtx.Pwd, os.Stderr)
@@ -302,7 +302,7 @@ func installRequiredPolicy(ctx context.Context, finalDir string, tgz io.ReadClos
 		return fmt.Errorf("failed to load policy project at %s: %w", finalDir, err)
 	}
 
-	// TODO[pulumi/pulumi#1334]: move to the language plugins so we don't have to hard code here.
+	// TODO[khulnasoft/khulnasoft#1334]: move to the language plugins so we don't have to hard code here.
 	if strings.EqualFold(proj.Runtime.Name(), "nodejs") {
 		if err := completeNodeJSInstall(ctx, finalDir); err != nil {
 			return err
@@ -330,7 +330,7 @@ func completeNodeJSInstall(ctx context.Context, finalDir string) error {
 
 func completePythonInstall(ctx context.Context, finalDir, projPath string, proj *workspace.PolicyPackProject) error {
 	const venvDir = "venv"
-	// TODO[pulumi/pulumi/issues/16286]: Allow using different toolchains for policy packs.
+	// TODO[khulnasoft/khulnasoft/issues/16286]: Allow using different toolchains for policy packs.
 	tc, err := toolchain.ResolveToolchain(toolchain.PythonOptions{
 		Toolchain:  toolchain.Pip,
 		Root:       finalDir,

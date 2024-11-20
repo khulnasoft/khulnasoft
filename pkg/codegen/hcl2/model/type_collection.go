@@ -16,7 +16,7 @@ package model
 
 import (
 	"github.com/hashicorp/hcl/v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
 )
 
 // unwrapIterableSourceType removes any eventual types that wrap a type intended for iteration.

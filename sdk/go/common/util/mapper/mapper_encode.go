@@ -17,7 +17,7 @@ package mapper
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 // Encode encodes a strongly typed struct into a weakly typed JSON-like property bag.
@@ -41,7 +41,7 @@ func (md *mapper) encode(vsrc reflect.Value) (map[string]interface{}, MappingErr
 		vsrcType = vsrc.Type()
 	}
 	contract.Assertf(vsrcType.Kind() == reflect.Struct,
-		"Source %v must be a struct type with `pulumi:\"x\"` tags to direct encoding (kind %v)",
+		"Source %v must be a struct type with `khulnasoft:\"x\"` tags to direct encoding (kind %v)",
 		vsrcType, vsrcType.Kind())
 
 	// Fetch the source type, allocate a fresh object, and start encoding into it.

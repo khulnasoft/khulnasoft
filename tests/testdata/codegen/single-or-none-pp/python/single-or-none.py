@@ -1,4 +1,4 @@
-import pulumi
+import khulnasoft
 
 def single_or_none(elements):
     if len(elements) != 1:
@@ -6,4 +6,4 @@ def single_or_none(elements):
     return elements[0]
 
 
-pulumi.export("result", single_or_none([1]))
+khulnasoft.export("result", single_or_none([1]))

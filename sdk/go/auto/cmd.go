@@ -27,10 +27,10 @@ import (
 	"strings"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/env"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/slice"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/httputil"
+	"github.com/khulnasoft/khulnasoft/sdk/v3"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/env"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/slice"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/httputil"
 )
 
 const unknownErrorCode = -2
@@ -60,7 +60,7 @@ type PulumiCommandOptions struct {
 
 // withDefaults returns a new copy of the options with default values set.
 // Version defaults to the CLI version matching the current SDK release. Root
-// defaults to $HOME/.pulumi/versions/$VERSION.
+// defaults to $HOME/.khulnasoft/versions/$VERSION.
 func (opts *PulumiCommandOptions) withDefaults() (*PulumiCommandOptions, error) {
 	newOpts := &PulumiCommandOptions{
 		Version:          opts.Version,
@@ -76,13 +76,13 @@ func (opts *PulumiCommandOptions) withDefaults() (*PulumiCommandOptions, error) 
 		if err != nil {
 			return nil, err
 		}
-		newOpts.Root = filepath.Join(home, ".pulumi", "versions", newOpts.Version.String())
+		newOpts.Root = filepath.Join(home, ".khulnasoft", "versions", newOpts.Version.String())
 	}
 
 	return newOpts, nil
 }
 
-type pulumiCommand struct {
+type khulnasoftCommand struct {
 	version semver.Version
 	command string
 }
@@ -100,9 +100,9 @@ func NewPulumiCommand(opts *PulumiCommandOptions) (PulumiCommand, error) {
 	if opts == nil {
 		opts = &PulumiCommandOptions{}
 	}
-	command := "pulumi"
+	command := "khulnasoft"
 	if opts.Root != "" {
-		command = filepath.Join(opts.Root, "bin", "pulumi")
+		command = filepath.Join(opts.Root, "bin", "khulnasoft")
 		if runtime.GOOS == "windows" {
 			command += ".exe"
 		}
@@ -111,7 +111,7 @@ func NewPulumiCommand(opts *PulumiCommandOptions) (PulumiCommand, error) {
 	cmd := exec.Command(command, "version")
 	out, err := cmd.Output()
 	if err != nil {
-		return pulumiCommand{}, fmt.Errorf("failed to run `pulumi version`: %w", err)
+		return khulnasoftCommand{}, fmt.Errorf("failed to run `khulnasoft version`: %w", err)
 	}
 	currentVersion := strings.TrimSpace(string(out))
 	min := minimumVersion
@@ -121,10 +121,10 @@ func NewPulumiCommand(opts *PulumiCommandOptions) (PulumiCommand, error) {
 	skipVersionCheck := opts.SkipVersionCheck || env.SkipVersionCheck.Value()
 	version, err := parseAndValidatePulumiVersion(min, currentVersion, skipVersionCheck)
 	if err != nil {
-		return pulumiCommand{}, err
+		return khulnasoftCommand{}, err
 	}
 
-	return pulumiCommand{
+	return khulnasoftCommand{
 		version: version,
 		command: command,
 	}, nil
@@ -132,7 +132,7 @@ func NewPulumiCommand(opts *PulumiCommandOptions) (PulumiCommand, error) {
 
 // InstallPulumiCommand downloads and installs the Pulumi CLI. By default the
 // CLI version matching the current SDK release is installed in
-// $HOME/.pulumi/versions/$VERSION. Set `opts.Root` to specify a different
+// $HOME/.khulnasoft/versions/$VERSION. Set `opts.Root` to specify a different
 // directory, and `opts.Version` to install a custom version.
 func InstallPulumiCommand(ctx context.Context, opts *PulumiCommandOptions) (
 	PulumiCommand,
@@ -143,20 +143,20 @@ func InstallPulumiCommand(ctx context.Context, opts *PulumiCommandOptions) (
 	}
 	opts, err := opts.withDefaults()
 	if err != nil {
-		return pulumiCommand{}, err
+		return khulnasoftCommand{}, err
 	}
-	pulumi, err := NewPulumiCommand(opts)
+	khulnasoft, err := NewPulumiCommand(opts)
 	if err == nil {
 		// Found an installation and it satisfies the version requirement
-		return pulumi, nil
+		return khulnasoft, nil
 	}
 	if runtime.GOOS == "windows" {
 		if err := installWindows(ctx, opts.Version, opts.Root); err != nil {
-			return pulumiCommand{}, err
+			return khulnasoftCommand{}, err
 		}
 	} else {
 		if err := installPosix(ctx, opts.Version, opts.Root); err != nil {
-			return pulumiCommand{}, err
+			return khulnasoftCommand{}, err
 		}
 	}
 	return NewPulumiCommand(opts)
@@ -203,7 +203,7 @@ func downloadToTmpFile(ctx context.Context, url, filePattern string) (_ string, 
 }
 
 func installWindows(ctx context.Context, version semver.Version, root string) error {
-	scriptPath, err := downloadToTmpFile(ctx, "https://get.pulumi.com/install.ps1", "install-*.ps1")
+	scriptPath, err := downloadToTmpFile(ctx, "https://get.khulnasoft.com/install.ps1", "install-*.ps1")
 	if err != nil {
 		return err
 	}
@@ -235,7 +235,7 @@ func installWindows(ctx context.Context, version semver.Version, root string) er
 }
 
 func installPosix(ctx context.Context, version semver.Version, root string) error {
-	scriptPath, err := downloadToTmpFile(ctx, "https://get.pulumi.com/install.sh", "install-*.sh")
+	scriptPath, err := downloadToTmpFile(ctx, "https://get.khulnasoft.com/install.sh", "install-*.sh")
 	if err != nil {
 		return err
 	}
@@ -254,7 +254,7 @@ func installPosix(ctx context.Context, version semver.Version, root string) erro
 }
 
 // Run executes a Pulumi CLI command.
-func (p pulumiCommand) Run(ctx context.Context,
+func (p khulnasoftCommand) Run(ctx context.Context,
 	workdir string,
 	stdin io.Reader,
 	additionalOutput []io.Writer,
@@ -269,8 +269,8 @@ func (p pulumiCommand) Run(ctx context.Context,
 	cmd.Dir = workdir
 	env := append(os.Environ(), additionalEnv...)
 	if filepath.IsAbs(p.command) {
-		pulumiBin := filepath.Dir(p.command)
-		env = fixupPath(env, pulumiBin)
+		khulnasoftBin := filepath.Dir(p.command)
+		env = fixupPath(env, khulnasoftBin)
 	}
 	cmd.Env = env
 
@@ -294,7 +294,7 @@ func (p pulumiCommand) Run(ctx context.Context,
 }
 
 // The version of the current Pulumi CLI installation.
-func (p pulumiCommand) Version() semver.Version {
+func (p khulnasoftCommand) Version() semver.Version {
 	return p.version
 }
 
@@ -314,8 +314,8 @@ func withNonInteractiveArg(args []string) []string {
 }
 
 // fixupPath returns a new copy of `env` where the `PATH` entry contains
-// pulumiBin as the first path.
-func fixupPath(env []string, pulumiBin string) []string {
+// khulnasoftBin as the first path.
+func fixupPath(env []string, khulnasoftBin string) []string {
 	newEnv := make([]string, len(env))
 	copy(newEnv, env)
 	pathIndex := -1
@@ -327,14 +327,14 @@ func fixupPath(env []string, pulumiBin string) []string {
 		}
 	}
 	if pathIndex >= 0 {
-		pathEntry := pulumiBin
+		pathEntry := khulnasoftBin
 		oldPath := env[pathIndex][5:]
 		if oldPath != "" {
-			pathEntry = pulumiBin + string(os.PathListSeparator) + oldPath
+			pathEntry = khulnasoftBin + string(os.PathListSeparator) + oldPath
 		}
 		newEnv[pathIndex] = "PATH=" + pathEntry
 	} else {
-		newEnv = append(newEnv, "PATH="+pulumiBin)
+		newEnv = append(newEnv, "PATH="+khulnasoftBin)
 	}
 	return newEnv
 }

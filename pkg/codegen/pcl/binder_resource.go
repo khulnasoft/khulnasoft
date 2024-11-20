@@ -17,7 +17,7 @@ package pcl
 import (
 	"fmt"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
 
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
@@ -25,7 +25,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/syntax"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 	"github.com/zclconf/go-cty/cty"
 )
 
@@ -287,7 +287,7 @@ func (b *binder) bindResourceTypes(node *Resource) hcl.Diagnostics {
 	}
 
 	isProvider := false
-	if pkg == "pulumi" && module == "providers" {
+	if pkg == "khulnasoft" && module == "providers" {
 		pkg, isProvider = name, true
 	}
 	var pkgSchema *packageSchema
@@ -557,7 +557,7 @@ func (b *binder) bindResourceBody(node *Resource) hcl.Diagnostics {
 
 					node.VariableType = condExpr.Type()
 				case model.InputType(model.NumberType).ConversionFrom(typ) == model.SafeConversion:
-					functions := pulumiBuiltins(b.options)
+					functions := khulnasoftBuiltins(b.options)
 					rangeArgs := []model.Expression{expr}
 					rangeSig, _ := functions["range"].GetSignature(rangeArgs)
 

@@ -8,28 +8,28 @@ import (
 	"reflect"
 
 	"errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/meta/v1"
-	"github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/utilities"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	metav1 "github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/meta/v1"
+	"github.com/khulnasoft/khulnasoft-kubernetes/sdk/v4/go/kubernetes/utilities"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 // A Kubernetes list resource.
 type ConfigMapList struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
 	// APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	ApiVersion pulumi.StringOutput `pulumi:"apiVersion"`
+	ApiVersion khulnasoft.StringOutput `khulnasoft:"apiVersion"`
 	// Items is the list of ConfigMaps.
-	Items ConfigMapTypeArrayOutput `pulumi:"items"`
+	Items ConfigMapTypeArrayOutput `khulnasoft:"items"`
 	// Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	Kind pulumi.StringOutput `pulumi:"kind"`
+	Kind khulnasoft.StringOutput `khulnasoft:"kind"`
 	// More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-	Metadata metav1.ListMetaOutput `pulumi:"metadata"`
+	Metadata metav1.ListMetaOutput `khulnasoft:"metadata"`
 }
 
 // NewConfigMapList registers a new resource with the given unique name, arguments, and options.
-func NewConfigMapList(ctx *pulumi.Context,
-	name string, args *ConfigMapListArgs, opts ...pulumi.ResourceOption) (*ConfigMapList, error) {
+func NewConfigMapList(ctx *khulnasoft.Context,
+	name string, args *ConfigMapListArgs, opts ...khulnasoft.ResourceOption) (*ConfigMapList, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -37,8 +37,8 @@ func NewConfigMapList(ctx *pulumi.Context,
 	if args.Items == nil {
 		return nil, errors.New("invalid value for required argument 'Items'")
 	}
-	args.ApiVersion = pulumi.StringPtr("v1")
-	args.Kind = pulumi.StringPtr("ConfigMapList")
+	args.ApiVersion = khulnasoft.StringPtr("v1")
+	args.Kind = khulnasoft.StringPtr("ConfigMapList")
 	opts = utilities.PkgResourceDefaultOpts(opts)
 	var resource ConfigMapList
 	err := ctx.RegisterResource("kubernetes:core/v1:ConfigMapList", name, args, &resource, opts...)
@@ -50,8 +50,8 @@ func NewConfigMapList(ctx *pulumi.Context,
 
 // GetConfigMapList gets an existing ConfigMapList resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetConfigMapList(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ConfigMapListState, opts ...pulumi.ResourceOption) (*ConfigMapList, error) {
+func GetConfigMapList(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *ConfigMapListState, opts ...khulnasoft.ResourceOption) (*ConfigMapList, error) {
 	var resource ConfigMapList
 	err := ctx.ReadResource("kubernetes:core/v1:ConfigMapList", name, id, state, &resource, opts...)
 	if err != nil {
@@ -73,23 +73,23 @@ func (ConfigMapListState) ElementType() reflect.Type {
 
 type configMapListArgs struct {
 	// APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	ApiVersion *string `pulumi:"apiVersion"`
+	ApiVersion *string `khulnasoft:"apiVersion"`
 	// Items is the list of ConfigMaps.
-	Items []ConfigMapType `pulumi:"items"`
+	Items []ConfigMapType `khulnasoft:"items"`
 	// Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	Kind *string `pulumi:"kind"`
+	Kind *string `khulnasoft:"kind"`
 	// More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-	Metadata *metav1.ListMeta `pulumi:"metadata"`
+	Metadata *metav1.ListMeta `khulnasoft:"metadata"`
 }
 
 // The set of arguments for constructing a ConfigMapList resource.
 type ConfigMapListArgs struct {
 	// APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	ApiVersion pulumi.StringPtrInput
+	ApiVersion khulnasoft.StringPtrInput
 	// Items is the list of ConfigMaps.
 	Items ConfigMapTypeArrayInput
 	// Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	Kind pulumi.StringPtrInput
+	Kind khulnasoft.StringPtrInput
 	// More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 	Metadata metav1.ListMetaPtrInput
 }
@@ -99,7 +99,7 @@ func (ConfigMapListArgs) ElementType() reflect.Type {
 }
 
 type ConfigMapListInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConfigMapListOutput() ConfigMapListOutput
 	ToConfigMapListOutputWithContext(ctx context.Context) ConfigMapListOutput
@@ -114,7 +114,7 @@ func (i *ConfigMapList) ToConfigMapListOutput() ConfigMapListOutput {
 }
 
 func (i *ConfigMapList) ToConfigMapListOutputWithContext(ctx context.Context) ConfigMapListOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapListOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConfigMapListOutput)
 }
 
 // ConfigMapListArrayInput is an input type that accepts ConfigMapListArray and ConfigMapListArrayOutput values.
@@ -122,7 +122,7 @@ func (i *ConfigMapList) ToConfigMapListOutputWithContext(ctx context.Context) Co
 //
 //	ConfigMapListArray{ ConfigMapListArgs{...} }
 type ConfigMapListArrayInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConfigMapListArrayOutput() ConfigMapListArrayOutput
 	ToConfigMapListArrayOutputWithContext(context.Context) ConfigMapListArrayOutput
@@ -139,7 +139,7 @@ func (i ConfigMapListArray) ToConfigMapListArrayOutput() ConfigMapListArrayOutpu
 }
 
 func (i ConfigMapListArray) ToConfigMapListArrayOutputWithContext(ctx context.Context) ConfigMapListArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapListArrayOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConfigMapListArrayOutput)
 }
 
 // ConfigMapListMapInput is an input type that accepts ConfigMapListMap and ConfigMapListMapOutput values.
@@ -147,7 +147,7 @@ func (i ConfigMapListArray) ToConfigMapListArrayOutputWithContext(ctx context.Co
 //
 //	ConfigMapListMap{ "key": ConfigMapListArgs{...} }
 type ConfigMapListMapInput interface {
-	pulumi.Input
+	khulnasoft.Input
 
 	ToConfigMapListMapOutput() ConfigMapListMapOutput
 	ToConfigMapListMapOutputWithContext(context.Context) ConfigMapListMapOutput
@@ -164,10 +164,10 @@ func (i ConfigMapListMap) ToConfigMapListMapOutput() ConfigMapListMapOutput {
 }
 
 func (i ConfigMapListMap) ToConfigMapListMapOutputWithContext(ctx context.Context) ConfigMapListMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapListMapOutput)
+	return khulnasoft.ToOutputWithContext(ctx, i).(ConfigMapListMapOutput)
 }
 
-type ConfigMapListOutput struct{ *pulumi.OutputState }
+type ConfigMapListOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigMapListOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ConfigMapList)(nil)).Elem()
@@ -182,8 +182,8 @@ func (o ConfigMapListOutput) ToConfigMapListOutputWithContext(ctx context.Contex
 }
 
 // APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-func (o ConfigMapListOutput) ApiVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v *ConfigMapList) pulumi.StringOutput { return v.ApiVersion }).(pulumi.StringOutput)
+func (o ConfigMapListOutput) ApiVersion() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *ConfigMapList) khulnasoft.StringOutput { return v.ApiVersion }).(khulnasoft.StringOutput)
 }
 
 // Items is the list of ConfigMaps.
@@ -192,8 +192,8 @@ func (o ConfigMapListOutput) Items() ConfigMapTypeArrayOutput {
 }
 
 // Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-func (o ConfigMapListOutput) Kind() pulumi.StringOutput {
-	return o.ApplyT(func(v *ConfigMapList) pulumi.StringOutput { return v.Kind }).(pulumi.StringOutput)
+func (o ConfigMapListOutput) Kind() khulnasoft.StringOutput {
+	return o.ApplyT(func(v *ConfigMapList) khulnasoft.StringOutput { return v.Kind }).(khulnasoft.StringOutput)
 }
 
 // More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
@@ -201,7 +201,7 @@ func (o ConfigMapListOutput) Metadata() metav1.ListMetaOutput {
 	return o.ApplyT(func(v *ConfigMapList) metav1.ListMetaOutput { return v.Metadata }).(metav1.ListMetaOutput)
 }
 
-type ConfigMapListArrayOutput struct{ *pulumi.OutputState }
+type ConfigMapListArrayOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigMapListArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]*ConfigMapList)(nil)).Elem()
@@ -215,13 +215,13 @@ func (o ConfigMapListArrayOutput) ToConfigMapListArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o ConfigMapListArrayOutput) Index(i pulumi.IntInput) ConfigMapListOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ConfigMapList {
+func (o ConfigMapListArrayOutput) Index(i khulnasoft.IntInput) ConfigMapListOutput {
+	return khulnasoft.All(o, i).ApplyT(func(vs []interface{}) *ConfigMapList {
 		return vs[0].([]*ConfigMapList)[vs[1].(int)]
 	}).(ConfigMapListOutput)
 }
 
-type ConfigMapListMapOutput struct{ *pulumi.OutputState }
+type ConfigMapListMapOutput struct{ *khulnasoft.OutputState }
 
 func (ConfigMapListMapOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*map[string]*ConfigMapList)(nil)).Elem()
@@ -235,17 +235,17 @@ func (o ConfigMapListMapOutput) ToConfigMapListMapOutputWithContext(ctx context.
 	return o
 }
 
-func (o ConfigMapListMapOutput) MapIndex(k pulumi.StringInput) ConfigMapListOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ConfigMapList {
+func (o ConfigMapListMapOutput) MapIndex(k khulnasoft.StringInput) ConfigMapListOutput {
+	return khulnasoft.All(o, k).ApplyT(func(vs []interface{}) *ConfigMapList {
 		return vs[0].(map[string]*ConfigMapList)[vs[1].(string)]
 	}).(ConfigMapListOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ConfigMapListInput)(nil)).Elem(), &ConfigMapList{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ConfigMapListArrayInput)(nil)).Elem(), ConfigMapListArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ConfigMapListMapInput)(nil)).Elem(), ConfigMapListMap{})
-	pulumi.RegisterOutputType(ConfigMapListOutput{})
-	pulumi.RegisterOutputType(ConfigMapListArrayOutput{})
-	pulumi.RegisterOutputType(ConfigMapListMapOutput{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConfigMapListInput)(nil)).Elem(), &ConfigMapList{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConfigMapListArrayInput)(nil)).Elem(), ConfigMapListArray{})
+	khulnasoft.RegisterInputType(reflect.TypeOf((*ConfigMapListMapInput)(nil)).Elem(), ConfigMapListMap{})
+	khulnasoft.RegisterOutputType(ConfigMapListOutput{})
+	khulnasoft.RegisterOutputType(ConfigMapListArrayOutput{})
+	khulnasoft.RegisterOutputType(ConfigMapListMapOutput{})
 }

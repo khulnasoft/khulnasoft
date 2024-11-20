@@ -24,15 +24,15 @@ import (
 	"github.com/blang/semver"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/resource/deploy/providers"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/diag"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/result"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/workspace"
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/diag"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/plugin"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/tokens"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/result"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/workspace"
+	khulnasoftrpc "github.com/khulnasoft/khulnasoft/sdk/v3/proto/go"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
@@ -252,7 +252,7 @@ func TestQueryResourceMonitor(t *testing.T) {
 				t.Parallel()
 
 				rm := &queryResmon{}
-				_, err := rm.Invoke(context.Background(), &pulumirpc.ResourceInvokeRequest{
+				_, err := rm.Invoke(context.Background(), &khulnasoftrpc.ResourceInvokeRequest{
 					Tok:     "pkgA:index:func",
 					Version: "bad-version",
 				})
@@ -281,7 +281,7 @@ func TestQueryResourceMonitor(t *testing.T) {
 					}
 					wg.Done()
 				}()
-				_, err := rm.Invoke(context.Background(), &pulumirpc.ResourceInvokeRequest{
+				_, err := rm.Invoke(context.Background(), &khulnasoftrpc.ResourceInvokeRequest{
 					Tok:     "pkgA:index:func",
 					Version: "1.0.0",
 				})
@@ -319,19 +319,19 @@ type mockResmon struct {
 	CancelF func() error
 
 	InvokeF func(ctx context.Context,
-		req *pulumirpc.ResourceInvokeRequest) (*pulumirpc.InvokeResponse, error)
+		req *khulnasoftrpc.ResourceInvokeRequest) (*khulnasoftrpc.InvokeResponse, error)
 
 	CallF func(ctx context.Context,
-		req *pulumirpc.ResourceCallRequest) (*pulumirpc.CallResponse, error)
+		req *khulnasoftrpc.ResourceCallRequest) (*khulnasoftrpc.CallResponse, error)
 
 	ReadResourceF func(ctx context.Context,
-		req *pulumirpc.ReadResourceRequest) (*pulumirpc.ReadResourceResponse, error)
+		req *khulnasoftrpc.ReadResourceRequest) (*khulnasoftrpc.ReadResourceResponse, error)
 
 	RegisterResourceF func(ctx context.Context,
-		req *pulumirpc.RegisterResourceRequest) (*pulumirpc.RegisterResourceResponse, error)
+		req *khulnasoftrpc.RegisterResourceRequest) (*khulnasoftrpc.RegisterResourceResponse, error)
 
 	RegisterResourceOutputsF func(ctx context.Context,
-		req *pulumirpc.RegisterResourceOutputsRequest) (*emptypb.Empty, error)
+		req *khulnasoftrpc.RegisterResourceOutputsRequest) (*emptypb.Empty, error)
 
 	AbortChanF func() <-chan bool
 }
@@ -360,8 +360,8 @@ func (rm *mockResmon) Cancel() error {
 }
 
 func (rm *mockResmon) Invoke(ctx context.Context,
-	req *pulumirpc.ResourceInvokeRequest,
-) (*pulumirpc.InvokeResponse, error) {
+	req *khulnasoftrpc.ResourceInvokeRequest,
+) (*khulnasoftrpc.InvokeResponse, error) {
 	if rm.InvokeF != nil {
 		return rm.InvokeF(ctx, req)
 	}
@@ -369,8 +369,8 @@ func (rm *mockResmon) Invoke(ctx context.Context,
 }
 
 func (rm *mockResmon) Call(ctx context.Context,
-	req *pulumirpc.ResourceCallRequest,
-) (*pulumirpc.CallResponse, error) {
+	req *khulnasoftrpc.ResourceCallRequest,
+) (*khulnasoftrpc.CallResponse, error) {
 	if rm.CallF != nil {
 		return rm.CallF(ctx, req)
 	}
@@ -378,8 +378,8 @@ func (rm *mockResmon) Call(ctx context.Context,
 }
 
 func (rm *mockResmon) ReadResource(ctx context.Context,
-	req *pulumirpc.ReadResourceRequest,
-) (*pulumirpc.ReadResourceResponse, error) {
+	req *khulnasoftrpc.ReadResourceRequest,
+) (*khulnasoftrpc.ReadResourceResponse, error) {
 	if rm.ReadResourceF != nil {
 		return rm.ReadResourceF(ctx, req)
 	}
@@ -387,8 +387,8 @@ func (rm *mockResmon) ReadResource(ctx context.Context,
 }
 
 func (rm *mockResmon) RegisterResource(ctx context.Context,
-	req *pulumirpc.RegisterResourceRequest,
-) (*pulumirpc.RegisterResourceResponse, error) {
+	req *khulnasoftrpc.RegisterResourceRequest,
+) (*khulnasoftrpc.RegisterResourceResponse, error) {
 	if rm.RegisterResourceF != nil {
 		return rm.RegisterResourceF(ctx, req)
 	}
@@ -396,7 +396,7 @@ func (rm *mockResmon) RegisterResource(ctx context.Context,
 }
 
 func (rm *mockResmon) RegisterResourceOutputs(ctx context.Context,
-	req *pulumirpc.RegisterResourceOutputsRequest,
+	req *khulnasoftrpc.RegisterResourceOutputsRequest,
 ) (*emptypb.Empty, error) {
 	if rm.RegisterResourceOutputsF != nil {
 		return rm.RegisterResourceOutputsF(ctx, req)

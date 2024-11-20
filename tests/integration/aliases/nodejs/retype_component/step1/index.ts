@@ -1,17 +1,17 @@
 // Copyright 2016-2018, Pulumi Corporation.  All rights reserved.
 
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 
-class Resource extends pulumi.ComponentResource {
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+class Resource extends khulnasoft.ComponentResource {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:module:Resource", name, {}, opts);
     }
 }
 
 // Scenario #4 - change the type of a component
-class ComponentFour extends pulumi.ComponentResource {
+class ComponentFour extends khulnasoft.ComponentResource {
     resource: Resource;
-    constructor(name: string, opts?: pulumi.ComponentResourceOptions) {
+    constructor(name: string, opts?: khulnasoft.ComponentResourceOptions) {
         super("my:module:ComponentFour", name, {}, opts);
         this.resource = new Resource("otherchild", {parent: this});
     }

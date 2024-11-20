@@ -6,7 +6,7 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@pulumi/pulumi": "latest",
+        "@khulnasoft/khulnasoft": "latest",
         "typescript": "^3.8.3",
         "semver": "^7.6.0"
     },

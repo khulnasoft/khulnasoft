@@ -14,9 +14,9 @@
 
 # pyright: strict
 
-import pulumi_cloudinit
+import khulnasoft_cloudinit
 
 
-pulumi_cloudinit.Config("name")
+khulnasoft_cloudinit.Config("name")
 
-pulumi_cloudinit.get_config()
+khulnasoft_cloudinit.get_config()

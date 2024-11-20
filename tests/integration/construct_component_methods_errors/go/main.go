@@ -5,17 +5,17 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		component, err := NewComponent(ctx, "component")
 		if err != nil {
 			return err
 		}
 		_, err = component.GetMessage(ctx, &ComponentGetMessageArgs{
-			Echo: pulumi.String("hello"),
+			Echo: khulnasoft.String("hello"),
 		})
 		if err != nil {
 			return err

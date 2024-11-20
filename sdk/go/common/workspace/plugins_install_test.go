@@ -26,7 +26,7 @@ import (
 	"testing"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/apitype"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/apitype"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -68,9 +68,9 @@ func prepareTestPluginTGZ(t *testing.T, files map[string][]byte) io.ReadCloser {
 
 	// Add plugin binary to included files.
 	if runtime.GOOS == "windows" {
-		files["pulumi-resource-test.exe"] = nil
+		files["khulnasoft-resource-test.exe"] = nil
 	} else {
-		files["pulumi-resource-test"] = nil
+		files["khulnasoft-resource-test"] = nil
 	}
 
 	tgz, err := createTGZ(files)

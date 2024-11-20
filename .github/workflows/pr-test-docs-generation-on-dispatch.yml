@@ -35,7 +35,7 @@ jobs:
   ci-docs-gen:
     name: CI Codegen
     if: github.event_name == 'pull_request'
-    uses: pulumi/pulumi./.github/workflows/ci-test-docs-generation.yml@master
+    uses: khulnasoft/khulnasoft./.github/workflows/ci-test-docs-generation.yml@master
     permissions:
       contents: read
     with:

@@ -23,8 +23,8 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/cloud"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/passphrase"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/secrets/service"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/config"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/resource/config"
 )
 
 // DefaultSecretsProvider is the default SecretsProvider to use when deserializing deployments.

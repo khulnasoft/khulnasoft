@@ -30,7 +30,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/pcl"
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 )
 
 type nameInfo int
@@ -183,8 +183,8 @@ func (g *generator) genApply(w io.Writer, expr *model.FunctionCallExpression) {
 		// If we only have a single output, just generate a normal `.apply`.
 		g.Fgenf(w, "%.16v.apply(%.v)", applyArgs[0], then)
 	} else {
-		// Otherwise, generate a call to `pulumi.all([]).apply()`.
-		g.Fgen(w, "pulumi.Output.all(\n")
+		// Otherwise, generate a call to `khulnasoft.all([]).apply()`.
+		g.Fgen(w, "khulnasoft.Output.all(\n")
 		g.Indented(func() {
 			for i, arg := range applyArgs {
 				argName := then.Signature.Parameters[i].Name
@@ -212,12 +212,12 @@ func functionName(tokenArg model.Expression) (string, string, string, hcl.Diagno
 }
 
 var functionImports = map[string][]string{
-	"fileArchive":      {"pulumi"},
-	"remoteArchive":    {"pulumi"},
-	"assetArchive":     {"pulumi"},
-	"fileAsset":        {"pulumi"},
-	"stringAsset":      {"pulumi"},
-	"remoteAsset":      {"pulumi"},
+	"fileArchive":      {"khulnasoft"},
+	"remoteArchive":    {"khulnasoft"},
+	"assetArchive":     {"khulnasoft"},
+	"fileAsset":        {"khulnasoft"},
+	"stringAsset":      {"khulnasoft"},
+	"remoteAsset":      {"khulnasoft"},
 	"filebase64":       {"base64"},
 	"filebase64sha256": {"base64", "hashlib"},
 	"readDir":          {"os"},
@@ -225,9 +225,9 @@ var functionImports = map[string][]string{
 	"fromBase64":       {"base64"},
 	"toJSON":           {"json"},
 	"sha1":             {"hashlib"},
-	"stack":            {"pulumi"},
-	"project":          {"pulumi"},
-	"organization":     {"pulumi"},
+	"stack":            {"khulnasoft"},
+	"project":          {"khulnasoft"},
+	"organization":     {"khulnasoft"},
 	"cwd":              {"os"},
 	"mimeType":         {"mimetypes"},
 }
@@ -239,7 +239,7 @@ func (g *generator) getFunctionImports(x *model.FunctionCallExpression) []string
 
 	pkg, _, _, diags := functionName(x.Args[0])
 	contract.Assertf(len(diags) == 0, "unexpected diagnostics: %v", diags)
-	return []string{"pulumi_" + pkg}
+	return []string{"khulnasoft_" + pkg}
 }
 
 func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionCallExpression) {
@@ -310,17 +310,17 @@ func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionC
 	case "entries":
 		g.Fgenf(w, `[{"key": k, "value": v} for k, v in %.v]`, expr.Args[0])
 	case "fileArchive":
-		g.Fgenf(w, "pulumi.FileArchive(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.FileArchive(%.v)", expr.Args[0])
 	case "remoteArchive":
-		g.Fgenf(w, "pulumi.RemoteArchive(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.RemoteArchive(%.v)", expr.Args[0])
 	case "assetArchive":
-		g.Fgenf(w, "pulumi.AssetArchive(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.AssetArchive(%.v)", expr.Args[0])
 	case "fileAsset":
-		g.Fgenf(w, "pulumi.FileAsset(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.FileAsset(%.v)", expr.Args[0])
 	case "stringAsset":
-		g.Fgenf(w, "pulumi.StringAsset(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.StringAsset(%.v)", expr.Args[0])
 	case "remoteAsset":
-		g.Fgenf(w, "pulumi.RemoteAsset(%.v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.RemoteAsset(%.v)", expr.Args[0])
 	case "filebase64":
 		g.Fgenf(w, "(lambda path: base64.b64encode(open(path).read().encode()).decode())(%.v)", expr.Args[0])
 	case "filebase64sha256":
@@ -360,7 +360,7 @@ func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionC
 		if len(expr.Args) == 3 {
 			var buf bytes.Buffer
 			if invokeOptions, ok := expr.Args[2].(*model.ObjectConsExpression); ok {
-				g.Fgen(&buf, ", opts=pulumi.InvokeOptions(")
+				g.Fgen(&buf, ", opts=khulnasoft.InvokeOptions(")
 				for i, item := range invokeOptions.Items {
 					last := i == len(invokeOptions.Items)-1
 					key := PyName(pcl.LiteralValueString(item.Key))
@@ -435,9 +435,9 @@ func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionC
 	case "readDir":
 		g.Fgenf(w, "os.listdir(%.v)", expr.Args[0])
 	case "secret":
-		g.Fgenf(w, "pulumi.Output.secret(%v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.Output.secret(%v)", expr.Args[0])
 	case "unsecret":
-		g.Fgenf(w, "pulumi.Output.unsecret(%v)", expr.Args[0])
+		g.Fgenf(w, "khulnasoft.Output.unsecret(%v)", expr.Args[0])
 	case "split":
 		g.Fgenf(w, "%.16v.split(%.v)", expr.Args[1], expr.Args[0])
 	case "toBase64":
@@ -446,18 +446,18 @@ func (g *generator) GenFunctionCallExpression(w io.Writer, expr *model.FunctionC
 		g.Fgenf(w, "base64.b64decode(%.16v.encode()).decode()", expr.Args[0])
 	case "toJSON":
 		if model.ContainsOutputs(expr.Args[0].Type()) {
-			g.Fgenf(w, "pulumi.Output.json_dumps(%.v)", expr.Args[0])
+			g.Fgenf(w, "khulnasoft.Output.json_dumps(%.v)", expr.Args[0])
 		} else {
 			g.Fgenf(w, "json.dumps(%.v)", expr.Args[0])
 		}
 	case "sha1":
 		g.Fgenf(w, "hashlib.sha1(%v.encode()).hexdigest()", expr.Args[0])
 	case "project":
-		g.Fgen(w, "pulumi.get_project()")
+		g.Fgen(w, "khulnasoft.get_project()")
 	case "stack":
-		g.Fgen(w, "pulumi.get_stack()")
+		g.Fgen(w, "khulnasoft.get_stack()")
 	case "organization":
-		g.Fgen(w, "pulumi.get_organization()")
+		g.Fgen(w, "khulnasoft.get_organization()")
 	case "cwd":
 		g.Fgen(w, "os.getcwd()")
 	case "getOutput":

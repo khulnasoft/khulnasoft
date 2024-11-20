@@ -22,7 +22,7 @@ import (
 	"testing"
 
 	"github.com/khulnasoft/khulnasoft/pkg/v3/codegen/hcl2/model"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/common/util/contract"
 
 	"github.com/spf13/afero"
 
@@ -372,7 +372,7 @@ func TestLengthFunctionCanBeUsedWithDynamic(t *testing.T) {
 func TestBindingUnknownResourceWhenSkippingResourceTypeChecking(t *testing.T) {
 	t.Parallel()
 	source := `
-resource provider "pulumi:providers:unknown" { }
+resource provider "khulnasoft:providers:unknown" { }
 
 resource main "unknown:index:main" {
     first = "hello"

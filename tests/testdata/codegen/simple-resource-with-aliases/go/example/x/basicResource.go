@@ -8,20 +8,20 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoftx"
 	"simple-resource-with-aliases/example/internal"
 )
 
 type BasicResource struct {
-	pulumi.CustomResourceState
+	khulnasoft.CustomResourceState
 
-	Bar pulumix.Output[string] `pulumi:"bar"`
+	Bar khulnasoftx.Output[string] `khulnasoft:"bar"`
 }
 
 // NewBasicResource registers a new resource with the given unique name, arguments, and options.
-func NewBasicResource(ctx *pulumi.Context,
-	name string, args *BasicResourceArgs, opts ...pulumi.ResourceOption) (*BasicResource, error) {
+func NewBasicResource(ctx *khulnasoft.Context,
+	name string, args *BasicResourceArgs, opts ...khulnasoft.ResourceOption) (*BasicResource, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -40,8 +40,8 @@ func NewBasicResource(ctx *pulumi.Context,
 
 // GetBasicResource gets an existing BasicResource resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetBasicResource(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *BasicResourceState, opts ...pulumi.ResourceOption) (*BasicResource, error) {
+func GetBasicResource(ctx *khulnasoft.Context,
+	name string, id khulnasoft.IDInput, state *BasicResourceState, opts ...khulnasoft.ResourceOption) (*BasicResource, error) {
 	var resource BasicResource
 	err := ctx.ReadResource("example:index:BasicResource", name, id, state, &resource, opts...)
 	if err != nil {
@@ -62,19 +62,19 @@ func (BasicResourceState) ElementType() reflect.Type {
 }
 
 type basicResourceArgs struct {
-	Bar string `pulumi:"bar"`
+	Bar string `khulnasoft:"bar"`
 }
 
 // The set of arguments for constructing a BasicResource resource.
 type BasicResourceArgs struct {
-	Bar pulumix.Input[string]
+	Bar khulnasoftx.Input[string]
 }
 
 func (BasicResourceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*basicResourceArgs)(nil)).Elem()
 }
 
-type BasicResourceOutput struct{ *pulumi.OutputState }
+type BasicResourceOutput struct{ *khulnasoft.OutputState }
 
 func (BasicResourceOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*BasicResource)(nil)).Elem()
@@ -88,17 +88,17 @@ func (o BasicResourceOutput) ToBasicResourceOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o BasicResourceOutput) ToOutput(ctx context.Context) pulumix.Output[BasicResource] {
-	return pulumix.Output[BasicResource]{
+func (o BasicResourceOutput) ToOutput(ctx context.Context) khulnasoftx.Output[BasicResource] {
+	return khulnasoftx.Output[BasicResource]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o BasicResourceOutput) Bar() pulumix.Output[string] {
-	value := pulumix.Apply[BasicResource](o, func(v BasicResource) pulumix.Output[string] { return v.Bar })
-	return pulumix.Flatten[string, pulumix.Output[string]](value)
+func (o BasicResourceOutput) Bar() khulnasoftx.Output[string] {
+	value := khulnasoftx.Apply[BasicResource](o, func(v BasicResource) khulnasoftx.Output[string] { return v.Bar })
+	return khulnasoftx.Flatten[string, khulnasoftx.Output[string]](value)
 }
 
 func init() {
-	pulumi.RegisterOutputType(BasicResourceOutput{})
+	khulnasoft.RegisterOutputType(BasicResourceOutput{})
 }

@@ -3,12 +3,12 @@ package main
 import (
 	"encoding/json"
 
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/khulnasoft/khulnasoft-aws/sdk/v5/go/aws/iam"
+	"github.com/khulnasoft/khulnasoft/sdk/v3/go/khulnasoft"
 )
 
 func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
+	khulnasoft.Run(func(ctx *khulnasoft.Context) error {
 		tmpJSON0, err := json.Marshal(map[string]interface{}{
 			"Version": "2012-10-17",
 			"Statement": []map[string]interface{}{
@@ -38,9 +38,9 @@ func main() {
 		json0 := string(tmpJSON0)
 		// Create a policy with multiple Condition keys
 		policy, err := iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
-			Path:        pulumi.String("/"),
-			Description: pulumi.String("My test policy"),
-			Policy:      pulumi.String(json0),
+			Path:        khulnasoft.String("/"),
+			Description: khulnasoft.String("My test policy"),
+			Policy:      khulnasoft.String(json0),
 		})
 		if err != nil {
 			return err

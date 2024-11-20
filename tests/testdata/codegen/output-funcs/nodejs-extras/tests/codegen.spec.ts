@@ -14,14 +14,14 @@
 
 import "mocha";
 import * as assert from "assert";
-import * as pulumi from "@pulumi/pulumi";
+import * as khulnasoft from "@khulnasoft/khulnasoft";
 import * as sut from "..";
 
-pulumi.runtime.setMocks({
-    newResource: function(_: pulumi.runtime.MockResourceArgs): {id: string, state: any} {
+khulnasoft.runtime.setMocks({
+    newResource: function(_: khulnasoft.runtime.MockResourceArgs): {id: string, state: any} {
         throw new Error("newResource not implemented");
     },
-    call: function(args: pulumi.runtime.MockCallArgs) {
+    call: function(args: khulnasoft.runtime.MockCallArgs) {
         if (args.token == "mypkg::listStorageAccountKeys") {
             return {
                 "keys": [{
@@ -46,8 +46,8 @@ pulumi.runtime.setMocks({
     },
 });
 
-function checkTable(done: any, transform: (res: any) => any, table: {given: pulumi.Output<any>, expect: any}[]) {
-    checkOutput(done, pulumi.all(table.map(x => x.given)), res => {
+function checkTable(done: any, transform: (res: any) => any, table: {given: khulnasoft.Output<any>, expect: any}[]) {
+    checkOutput(done, khulnasoft.all(table.map(x => x.given)), res => {
         res.map((actual, i) => {
             assert.deepStrictEqual(transform(actual), table[i].expect);
         });
@@ -59,23 +59,23 @@ describe("output-funcs", () => {
         checkTable(done, res => JSON.parse(res.r), [
             {given: sut.funcWithAllOptionalInputsOutput({}),
              expect: {}},
-            {given: sut.funcWithAllOptionalInputsOutput({a: pulumi.output("my-a")}),
+            {given: sut.funcWithAllOptionalInputsOutput({a: khulnasoft.output("my-a")}),
              expect: {"a": "my-a"}},
-            {given: sut.funcWithAllOptionalInputsOutput({a: pulumi.output("my-a"),
-                                                         b: pulumi.output("my-b")}),
+            {given: sut.funcWithAllOptionalInputsOutput({a: khulnasoft.output("my-a"),
+                                                         b: khulnasoft.output("my-b")}),
              expect: {"a": "my-a", "b": "my-b"}}
         ]);
     });
 
-    // TODO[pulumi/pulumi#7973] Node codegen does not respect default
+    // TODO[khulnasoft/khulnasoft#7973] Node codegen does not respect default
     // values at the moment, otherwise "b" parameter would receive the
     // default value from the schema.
     it("funcWithDefaultValueOutput", (done) => {
         checkTable(done, res => JSON.parse(res.r), [
-            {given: sut.funcWithDefaultValueOutput({"a": pulumi.output("my-a")}),
+            {given: sut.funcWithDefaultValueOutput({"a": khulnasoft.output("my-a")}),
              expect: {"a": "my-a"}},
-            {given: sut.funcWithDefaultValueOutput({"a": pulumi.output("my-a"),
-                                                    "b": pulumi.output("my-b")}),
+            {given: sut.funcWithDefaultValueOutput({"a": khulnasoft.output("my-a"),
+                                                    "b": khulnasoft.output("my-b")}),
              expect: {"a": "my-a", "b": "my-b"}}
         ]);
     });
@@ -85,10 +85,10 @@ describe("output-funcs", () => {
         checkTable(done, res => JSON.parse(res.r), [
             {given: sut.funcWithListParamOutput({}),
              expect: {}},
-            {given: sut.funcWithListParamOutput({"a": pulumi.output(l)}),
+            {given: sut.funcWithListParamOutput({"a": khulnasoft.output(l)}),
              expect: {"a": l}},
-            {given: sut.funcWithListParamOutput({"a": pulumi.output(l),
-                                                 "b": pulumi.output("my-b")}),
+            {given: sut.funcWithListParamOutput({"a": khulnasoft.output(l),
+                                                 "b": khulnasoft.output("my-b")}),
              expect: {"a": l, "b": "my-b"}},
         ]);
     });
@@ -98,18 +98,18 @@ describe("output-funcs", () => {
         checkTable(done, res => JSON.parse(res.r), [
             {given: sut.funcWithDictParamOutput({}),
              expect: {}},
-            {given: sut.funcWithDictParamOutput({"a": pulumi.output(d)}),
+            {given: sut.funcWithDictParamOutput({"a": khulnasoft.output(d)}),
              expect: {"a": d}},
-            {given: sut.funcWithDictParamOutput({"a": pulumi.output(d),
-                                                 "b": pulumi.output("my-b")}),
+            {given: sut.funcWithDictParamOutput({"a": khulnasoft.output(d),
+                                                 "b": khulnasoft.output("my-b")}),
              expect: {"a": d, "b": "my-b"}},
         ]);
     });
 
     it("listStorageAccountKeysOutput", (done) => {
         const output = sut.listStorageAccountKeysOutput({
-            accountName: pulumi.output("my-account-name"),
-            resourceGroupName: pulumi.output("my-resource-group-name"),
+            accountName: khulnasoft.output("my-account-name"),
+            resourceGroupName: khulnasoft.output("my-resource-group-name"),
         });
         checkOutput(done, output, (res: sut.ListStorageAccountKeysResult) => {
             assert.equal(res.keys.length, 1);
@@ -126,9 +126,9 @@ describe("output-funcs", () => {
 
     it("listStorageAccountKeysOutput with optional arg set", (done) => {
         const output = sut.listStorageAccountKeysOutput({
-            accountName: pulumi.output("my-account-name"),
-            resourceGroupName: pulumi.output("my-resource-group-name"),
-            expand: pulumi.output("my-expand"),
+            accountName: khulnasoft.output("my-account-name"),
+            resourceGroupName: khulnasoft.output("my-resource-group-name"),
+            expand: khulnasoft.output("my-expand"),
         });
         checkOutput(done, output, (res: sut.ListStorageAccountKeysResult) => {
             assert.equal(res.keys.length, 1);
@@ -146,9 +146,9 @@ describe("output-funcs", () => {
 
     it("listStorageAccountKeysOutput with unknown inputs returns unknown", (done) => {
         const output = sut.listStorageAccountKeysOutput({
-            accountName: pulumi.output("my-account-name"),
-            resourceGroupName: pulumi.output("my-resource-group-name"),
-            expand: pulumi.unknown as any,
+            accountName: khulnasoft.output("my-account-name"),
+            resourceGroupName: khulnasoft.output("my-resource-group-name"),
+            expand: khulnasoft.unknown as any,
         });
 
         output.apply((res) => {
@@ -164,10 +164,10 @@ describe("output-funcs", () => {
             (res: sut.GetIntegrationRuntimeObjectMetadatumResult) =>
                 JSON.parse(res.nextLink || "{}"),
             [{given: sut.getIntegrationRuntimeObjectMetadatumOutput({
-                factoryName: pulumi.output("my-factory-name"),
-                integrationRuntimeName: pulumi.output("my-integration-runtime-name"),
-                metadataPath: pulumi.output("my-metadata-path"),
-                resourceGroupName: pulumi.output("my-resource-group-name")}),
+                factoryName: khulnasoft.output("my-factory-name"),
+                integrationRuntimeName: khulnasoft.output("my-integration-runtime-name"),
+                metadataPath: khulnasoft.output("my-metadata-path"),
+                resourceGroupName: khulnasoft.output("my-resource-group-name")}),
               expect: {"factoryName": "my-factory-name",
                        "integrationRuntimeName": "my-integration-runtime-name",
                        "metadataPath": "my-metadata-path",
@@ -177,7 +177,7 @@ describe("output-funcs", () => {
  });
 
 
-function checkOutput<T>(done: any, output: pulumi.Output<T>, check: (value: T) => void) {
+function checkOutput<T>(done: any, output: khulnasoft.Output<T>, check: (value: T) => void) {
     output.apply(value => {
         try {
             check(value);

@@ -1,34 +1,34 @@
-import pulumi
-import pulumi_kubernetes as kubernetes
+import khulnasoft
+import khulnasoft_kubernetes as kubernetes
 
-pulumi_kubernetes_operator_deployment = kubernetes.apps.v1.Deployment("pulumi_kubernetes_operatorDeployment",
+khulnasoft_kubernetes_operator_deployment = kubernetes.apps.v1.Deployment("khulnasoft_kubernetes_operatorDeployment",
     api_version="apps/v1",
     kind="Deployment",
     metadata={
-        "name": "pulumi-kubernetes-operator",
+        "name": "khulnasoft-kubernetes-operator",
     },
     spec={
         "replicas": 1,
         "selector": {
             "match_labels": {
-                "name": "pulumi-kubernetes-operator",
+                "name": "khulnasoft-kubernetes-operator",
             },
         },
         "template": {
             "metadata": {
                 "labels": {
-                    "name": "pulumi-kubernetes-operator",
+                    "name": "khulnasoft-kubernetes-operator",
                 },
             },
             "spec": {
-                "service_account_name": "pulumi-kubernetes-operator",
+                "service_account_name": "khulnasoft-kubernetes-operator",
                 "image_pull_secrets": [{
-                    "name": "pulumi-kubernetes-operator",
+                    "name": "khulnasoft-kubernetes-operator",
                 }],
                 "containers": [{
-                    "name": "pulumi-kubernetes-operator",
-                    "image": "pulumi/pulumi-kubernetes-operator:v0.0.2",
-                    "command": ["pulumi-kubernetes-operator"],
+                    "name": "khulnasoft-kubernetes-operator",
+                    "image": "khulnasoft/khulnasoft-kubernetes-operator:v0.0.2",
+                    "command": ["khulnasoft-kubernetes-operator"],
                     "args": ["--zap-level=debug"],
                     "image_pull_policy": "Always",
                     "env": [
@@ -50,19 +50,19 @@ pulumi_kubernetes_operator_deployment = kubernetes.apps.v1.Deployment("pulumi_ku
                         },
                         {
                             "name": "OPERATOR_NAME",
-                            "value": "pulumi-kubernetes-operator",
+                            "value": "khulnasoft-kubernetes-operator",
                         },
                     ],
                 }],
             },
         },
     })
-pulumi_kubernetes_operator_role = kubernetes.rbac.v1.Role("pulumi_kubernetes_operatorRole",
+khulnasoft_kubernetes_operator_role = kubernetes.rbac.v1.Role("khulnasoft_kubernetes_operatorRole",
     api_version="rbac.authorization.k8s.io/v1",
     kind="Role",
     metadata={
         "creation_timestamp": None,
-        "name": "pulumi-kubernetes-operator",
+        "name": "khulnasoft-kubernetes-operator",
     },
     rules=[
         {
@@ -115,7 +115,7 @@ pulumi_kubernetes_operator_role = kubernetes.rbac.v1.Role("pulumi_kubernetes_ope
         },
         {
             "api_groups": ["apps"],
-            "resource_names": ["pulumi-kubernetes-operator"],
+            "resource_names": ["khulnasoft-kubernetes-operator"],
             "resources": ["deployments/finalizers"],
             "verbs": ["update"],
         },
@@ -133,7 +133,7 @@ pulumi_kubernetes_operator_role = kubernetes.rbac.v1.Role("pulumi_kubernetes_ope
             "verbs": ["get"],
         },
         {
-            "api_groups": ["pulumi.com"],
+            "api_groups": ["khulnasoft.com"],
             "resources": ["*"],
             "verbs": [
                 "create",
@@ -146,24 +146,24 @@ pulumi_kubernetes_operator_role = kubernetes.rbac.v1.Role("pulumi_kubernetes_ope
             ],
         },
     ])
-pulumi_kubernetes_operator_role_binding = kubernetes.rbac.v1.RoleBinding("pulumi_kubernetes_operatorRoleBinding",
+khulnasoft_kubernetes_operator_role_binding = kubernetes.rbac.v1.RoleBinding("khulnasoft_kubernetes_operatorRoleBinding",
     kind="RoleBinding",
     api_version="rbac.authorization.k8s.io/v1",
     metadata={
-        "name": "pulumi-kubernetes-operator",
+        "name": "khulnasoft-kubernetes-operator",
     },
     subjects=[{
         "kind": "ServiceAccount",
-        "name": "pulumi-kubernetes-operator",
+        "name": "khulnasoft-kubernetes-operator",
     }],
     role_ref={
         "kind": "Role",
-        "name": "pulumi-kubernetes-operator",
+        "name": "khulnasoft-kubernetes-operator",
         "api_group": "rbac.authorization.k8s.io",
     })
-pulumi_kubernetes_operator_service_account = kubernetes.core.v1.ServiceAccount("pulumi_kubernetes_operatorServiceAccount",
+khulnasoft_kubernetes_operator_service_account = kubernetes.core.v1.ServiceAccount("khulnasoft_kubernetes_operatorServiceAccount",
     api_version="v1",
     kind="ServiceAccount",
     metadata={
-        "name": "pulumi-kubernetes-operator",
+        "name": "khulnasoft-kubernetes-operator",
     })
