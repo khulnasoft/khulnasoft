@@ -7,29 +7,58 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 
-msgid "Not found..."
-msgstr "Nicht gefunden..."
-
-msgid "Not Found | %s"
-msgstr "Nicht gefunden... | %s"
-
-msgid "This view failed to update automatically, data may be out of date. Check your network connection if the problem persists."
-msgstr "Diese Ansicht konnte nicht automatisch aktualisiert werden, möglicherweise sind die Daten veraltet. Überprüfe deine Netzwerkverbindung, falls das Problem weiterhin auftritt."
-
-msgid "Fetching and aggregating the latest data"
-msgstr "Abrufen und Zusammenstellen der neuesten Daten"
-
-msgid "Auditorium | %s"
-msgstr "Auditorium | %s"
-
 msgid "Checking your consent status"
 msgstr "Prüfe deinen Zustimmung"
 
-msgid "Fetching and decrypting the latest data"
-msgstr "Abrufen und Entschlüsseln der aktuellen Daten"
+msgid "This instance is already set up."
+msgstr "Diese Instanz ist bereits eingerichtet."
+
+msgid "Preparing setup..."
+msgstr "Einrichtung vorbereiten..."
+
+msgid "Console | %s"
+msgstr "Konsole | %s"
+
+msgid "Passwords did not match"
+msgstr "Passwörter stimmten nicht überein"
+
+msgid "Your account has been set up, you can now log in."
+msgstr "Dein Account wurde eingerichtet, du kannst dich jetzt anmelden."
+
+msgid "Could not handle your request, please try again."
+msgstr "Deine Anfrage konnte nicht bearbeitet werden, bitte versuche es noch einmal."
+
+msgid "Join KhulnaSoft Fair Web Analytics"
+msgstr "Bei KhulnaSoft Fair Web Analytics mitmachen"
+
+msgid "Email address"
+msgstr "E-Mail Adresse"
+
+msgid "Password"
+msgstr "Passwort"
+
+msgid "Repeat password"
+msgstr "Passwort wiederholen"
+
+msgid "Accept invite"
+msgstr "Einladung annehmen"
 
 msgid "You currently do not have any active accounts. You can create one below."
 msgstr "Du hast derzeit keine aktiven Accounts. Weiter unten kannst du einen erstellen."
+
+#. #-#-#-#-#  server.po  #-#-#-#-#
+#. ~ line 53 "public/static/index.go.html"
+msgid "KhulnaSoft Fair Web Analytics"
+msgstr "KhulnaSoft Fair Web Analytics"
+
+msgid "An error occurred: %s"
+msgstr "Ein Fehler ist aufgetreten: %s"
+
+msgid "<a href=\"https://www.khulnasoft.com/\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">KhulnaSoft Fair Web Analytics</a>"
+msgstr "<a href=\"https://www.khulnasoft.com/\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">KhulnaSoft Fair Web Analytics</a>"
+
+msgid "Found an issue, need help or want to add something?<br><a href=\"mailto:admin@khulnasoft.com\" class=\"%s\" target=\"_blank\">Send an email</a> or file an <a href=\"https://github.com/khulnasoft/khulnasoft\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">issue.</a>"
+msgstr "Hast du einen Fehler gefunden,<br>brauchst du Hilfe oder möchtest etwas hinzufügen?<br><a href=\"mailto:admin@khulnasoft.com\" class=\"%s\" target=\"_blank\">Schicke eine E-Mail</a> oder erstelle eine <a href=\"https://github.com/khulnasoft/khulnasoft\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">Issue.</a>"
 
 msgid "weak"
 msgstr "schwach"
@@ -91,82 +120,53 @@ msgstr "Abbrechen"
 msgid "One moment..."
 msgstr "Einen Moment..."
 
-#. #-#-#-#-#  server.po  #-#-#-#-#
-#. ~ line 53 "public/static/index.go.html"
-msgid "KhulnaSoft Fair Web Analytics"
-msgstr "KhulnaSoft Fair Web Analytics"
-
-msgid "An error occurred: %s"
-msgstr "Ein Fehler ist aufgetreten: %s"
-
-msgid "<a href=\"https://www.khulnasoft.com/\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">KhulnaSoft Fair Web Analytics</a>"
-msgstr "<a href=\"https://www.khulnasoft.com/\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">KhulnaSoft Fair Web Analytics</a>"
-
-msgid "Found an issue, need help or want to add something?<br><a href=\"mailto:admin@khulnasoft.com\" class=\"%s\" target=\"_blank\">Send an email</a> or file an <a href=\"https://github.com/khulnasoft/khulnasoft\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">issue.</a>"
-msgstr "Hast du einen Fehler gefunden,<br>brauchst du Hilfe oder möchtest etwas hinzufügen?<br><a href=\"mailto:admin@khulnasoft.com\" class=\"%s\" target=\"_blank\">Schicke eine E-Mail</a> oder erstelle eine <a href=\"https://github.com/khulnasoft/khulnasoft\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">Issue.</a>"
-
 msgid "Please log in using your credentials."
 msgstr "Bitte melden dich mit deinen Daten an."
 
 msgid "Checking authentication"
 msgstr "Authentifikation überprüfen"
 
-msgid "Bar"
-msgstr "Balken"
+msgid "Choose account"
+msgstr "Account wählen"
 
-msgid "/user-access-widget-bar-en.svg"
-msgstr "/user-access-widget-bar-de.svg"
+msgid "Select"
+msgstr "Auswählen"
 
-msgid "Fair web analytics"
-msgstr "Fair web analytics"
+msgid "Initial %d days"
+msgstr "Erste %d Tage"
 
-msgid "Access your usage data"
+msgid "%d days later"
+msgstr "%d Tage später"
+
+msgid "%d days earlier"
+msgstr "%d Tage eher"
+
+msgid "Real time"
+msgstr "Echtzeit"
+
+msgid "Active users on site"
+msgstr "Aktive Nutzerinnen und Nutzer auf der Webseite"
+
+msgid "Active pages"
+msgstr "Aktive Seiten"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Visitors"
+msgstr "Besuchende"
+
+msgid "Share this account"
+msgstr "Diesen Account teilen"
+
+msgid "Share your KhulnaSoft Fair Web Analytics account <em class=\"%s\">%s</em> via email invitation. If granted admin privileges, invited users have full access to a shared account and can also create further accounts for this instance."
+msgstr "Gib deinen KhulnaSoft Fair Web Analytics Account <em class=\"%s\">%s</em> per E-Mail Einladung frei. Eingeladene Nutzerinnen und Nutzer haben, wenn sie über Admin Rechte verfügen, vollen Zugriff auf einen freigegebenen Account und können auch weitere Accounts für diese KhulnaSoft Instanz erstellen."
+
+msgid "You are viewing data as operator with account <em class=\"%s\">%s</em>."
+msgstr "Du siehst hier Daten des Accounts <em class=\"%s\">%s</em>."
+
+msgid "You are viewing your usage data."
 msgstr "Du siehst deine Nutzungsdaten."
-
-msgid "Box"
-msgstr "Box"
-
-msgid "/user-access-widget-box-en.svg"
-msgstr "/user-access-widget-box-de.svg"
-
-msgid "Access your data"
-msgstr "Deine Nutzungsdaten hier"
-
-msgid "Circle"
-msgstr "Kreis"
-
-msgid "/user-access-widget-circle-en.svg"
-msgstr "/user-access-widget-circle-de.svg"
-
-msgid "Let users access their data"
-msgstr "Gewähre Nutzerinnen und Nutzern Zugriff auf ihre Daten"
-
-msgid "Toggle display of awareness widgets"
-msgstr "Anzeige Embed Code umschalten"
-
-msgid "Let users access their data on every page of your website. Link directly to the User Auditorium or use the HTML widget."
-msgstr "Gewähre Nutzerinnen und Nutzern auf jeder Seite Zugriff auf ihre Daten. Verlinke das  direkt oder verwende das HTML-Widget."
-
-msgid "User Auditorium link"
-msgstr "Auditorium öffnen"
-
-msgid "Successfully copied link to clipboard."
-msgstr "Erfolgreich den Link in die Zwischenablage kopiert."
-
-msgid "Copy link"
-msgstr "Link kopieren"
-
-msgid "HTML Widget"
-msgstr "HTML Widget"
-
-msgid "Preview"
-msgstr "Preview"
-
-msgid "Successfully copied widget code to clipboard."
-msgstr "Erfolgreich den Widget Code in die Zwischenablage kopiert."
-
-msgid "Copy widget"
-msgstr "Widget kopieren"
 
 msgid "Your custom CSS here"
 msgstr "Dein eigenes CSS hier"
@@ -192,6 +192,9 @@ msgstr "Passe das Styling der Banner dieses Accounts an. Grundlegendes CSS ist e
 msgid "<a class=\"%s\" href=\"%s\" target=\"_blank\" rel=\"noopener\">Read the Docs - Customizing the consent banner</a>"
 msgstr "<a class=\"%s\" href=\"%s\" target=\"_blank\" rel=\"noopener\">Read the Docs - Customizing the consent banner</a>"
 
+msgid "Preview"
+msgstr "Preview"
+
 msgid "Update preview"
 msgstr "Preview aktualisieren"
 
@@ -200,51 +203,6 @@ msgstr "Wende deine eigenen Styles auf die Banner für dieses Konto an. Änderun
 
 msgid "Apply styles"
 msgstr "Styles anwenden"
-
-msgid "Basic Terms"
-msgstr "Allgemeine Begriffe"
-
-msgid "Auditorium"
-msgstr "Auditorium"
-
-msgid "You are viewing the Auditorium right now. Only available after opt-in, it is the interface where you can review and delete your usage data or opt out entirely."
-msgstr "Du bist gerade im Auditorium. Es ist nur nach Zustimmung verfügbar und die Seite, auf der du deine Nutzungsdaten einsehen, löschen und deine Zustimmung widerrufen kannst."
-
-msgid "KhulnaSoft Fair Web Analytics installation"
-msgstr "KhulnaSoft Fair Web Analytics Installation"
-
-msgid "One KhulnaSoft Fair Web Analytics installation can include several websites. All metrics of all websites in this installation are displayed in the <a href=\"#terms-auditorium\" class=\"%s\">Auditorium.</a> Metrics generated on websites of other installations can only be viewed in the associated <a href=\"#terms-auditorium\" class=\"%s\">Auditorium.</a>"
-msgstr "Eine KhulnaSoft Fair Web Analytics Installation kann mehrere Webseiten umfassen. Die Metriken aller Webseiten der Installation werden im <a href=\"#terms-auditorium\" class=\"%s\">Auditorium</a> angezeigt. Metriken, die auf Webseiten anderer Installationen erzeugt wurden, können nur im zugehörigen <a href=\"#terms-auditorium\" class=\"%s\">Auditorium</a> eingesehen werden."
-
-msgid "Cookies"
-msgstr "Cookies"
-
-msgid "When you visit a website where a <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> is active, small amounts of data are stored on your computer. These data elements are known as cookies. <a href=\"https://en.wikipedia.org/wiki/HTTP_cookie\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">Learn more.</a>"
-msgstr "Wenn du eine Webseite besuchst, auf der eine <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> aktiv ist, werden kleine Datenmengen auf deinem Computer gespeichert. Diese Elemente werden als Cookies bezeichnet. <a href=\"https://en.wikipedia.org/wiki/HTTP_cookie\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">Mehr erfahren.</a>"
-
-msgid "Operator"
-msgstr "Betreiberinnen und Betreiber"
-
-msgid "Operators are the owners of <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installations.</a> Only after you opted in, your usage data of a website is collected. Operators then can view it for maximum 6 months."
-msgstr "Betreiberinnen und Betreiber verwalten <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installationen.</a> Erst nachdem du zugestimmt hast, werden deine Nutzungsdaten einer Webseite gesammelt. Betreiberinnen und Betreiber können diese dann für maximal 6 Monate einsehen."
-
-msgid "Unique user"
-msgstr "Eindeutige Nutzerinnen und Nutzer"
-
-msgid "You are defined as a unique user after your opt-in to data collection. To measure this, a <a href=\"#terms-cookies\" class=\"%s\">cookie</a> is used to assign a user <a href=\"#terms-id\" class=\"%s\">ID</a> to you."
-msgstr "Du wirst nach der Zustimmung zur Sammlung von Nutzungsdaten als eindeutig definiert. Dafür wird ein <a href=\"#terms-cookies\" class=\"%s\">Cookie</a> verwendet, um dir eine Nutzungs <a href=\"#terms-id\" class=\"%s\">ID</a> zuzuordnen."
-
-msgid "Unique session"
-msgstr "Eindeutige Sitzung"
-
-msgid "A unique session is defined as a <a href=\"#terms-unique-user\" class=\"%s\">unique user</a> being actively engaged with a page during a browser session. To measure this, a <a href=\"#terms-cookies\" class=\"%s\">cookie</a> is used to assign a session <a href=\"#terms-id\" class=\"%s\">ID</a> to you."
-msgstr "Eine eindeutige Sitzung ist definiert wenn <a href=\"#terms-unique-user\" class=\"%s\">eindeutige Nutzerinnen und Nutzer</a> sich während einer Browser-Sitzung aktiv mit einer Seite beschäftigen. Zur Messung werden <a href=\"#terms-cookies\" class=\"%s\">Cookies</a> verwendet um jeweils eine Sitzungs <a href=\"#terms-id\" class=\"%s\">ID</a> zuzuordnen."
-
-msgid "ID"
-msgstr "ID"
-
-msgid "Originally: UUID. Full form: Universally unique identifier. KhulnaSoft Fair Web Analytics uses UUID of version 4. These IDs are generated randomly, unique and without using any personal data. On the individual KhulnaSoft Fair Web Analytics server, they are handled in an unrecognizable form. <a href=\"https://en.wikipedia.org/wiki/Universally_unique_identifier\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">Learn more.</a>"
-msgstr "Original: UUID. Ausgeschrieben: Universally unique identifier. KhulnaSoft Fair Web Analytics verwendet UUID der Version 4. Diese IDs werden zufällig, eindeutig und ohne Verwendung von persönlichen Daten generiert. Auf dem jeweiligen KhulnaSoft Fair Web Analytics Server werden sie in einer nicht zuordenbaren Form verarbeitet. <a href=\"https://en.wikipedia.org/wiki/Universally_unique_identifier\" class=\"%s\" target=\"_blank\" rel=\"noreferer noopener\">Mehr erfahren.</a>"
 
 msgid "Page views and %s"
 msgstr "Seitenaufrufe sowie %s"
@@ -263,330 +221,6 @@ msgstr "Leerzustand"
 
 msgid "No data available <br>for the selected time range."
 msgstr "Keine Daten verfügbar <br>für den gewählten Zeitraum."
-
-msgid "Choose account"
-msgstr "Account wählen"
-
-msgid "Successfully copied embed code to clipboard."
-msgstr "Erfolgreich den Embed Code in die Zwischenablage kopiert."
-
-msgid "Embed code"
-msgstr "Embed Code"
-
-msgid "Toggle display of embed code"
-msgstr "Anzeige Embed Code umschalten"
-
-msgid "To use KhulnaSoft Fair Web Analytics with the account <em class=\"%s\">%s</em> on your website, embed the following script on each page you want to appear in your statistics."
-msgstr "Um KhulnaSoft Fair Web Analytics mit dem Account <em class=\"%s\">%s</em> auf deiner Webseite zu verwenden, füge den folgenden Code auf jeder Seite ein, die in deiner Statistik erscheinen soll."
-
-msgid "In case you are serving multiple domains from your instance, please double check that the domain in this snippet matches the target account."
-msgstr "Falls du mehrere Domains von deiner Installation aus bedienst, überprüfe bitte, ob die Domain in diesem Code mit dem Ziel Account übereinstimmt."
-
-msgid "Copy code"
-msgstr "Code kopieren"
-
-msgid "Select"
-msgstr "Auswählen"
-
-msgid "No"
-msgstr "Nein"
-
-msgid "Yes"
-msgstr "Ja"
-
-msgid "s"
-msgstr "s"
-
-msgid "ms"
-msgstr "ms"
-
-msgid "M"
-msgstr "Mio."
-
-msgid "k"
-msgstr "Tsd."
-
-msgid "FAQ"
-msgstr "FAQ"
-
-msgid "What data is collected?"
-msgstr "Welche Daten werden gesammelt?"
-
-msgid "Only page views, sessions, referrer and the visited URL are collected. From this, other metrics such as for example the bounce rate are calculated."
-msgstr "Es werden nur Seitenaufrufe, Sitzungen, Referrer und die besuchte URL gesammelt. Daraus werden weitere Metriken wie z.B. die Absprungrate berechnet."
-
-msgid "What kind of data isn't collected?"
-msgstr "Welche Art von Daten wird nicht gesammelt?"
-
-msgid "Device information and engagement are not collected. There are also no fingerprinting technologies in use."
-msgstr "Geräteinformationen und Interaktionsbereitschaft werden nicht erfasst. Es sind auch keine Fingerprinting-Technologien im Einsatz."
-
-msgid "How is my data handled?"
-msgstr "Wie wird mit meinen Daten umgegangen?"
-
-msgid "Your usage data is encrypted end-to-end. It will be automatically deleted in maximum 6 months. You can delete your usage data yourself at any time in the privacy panel."
-msgstr "Deine Nutzungsdaten werden Ende-zu-Ende verschlüsselt. Sie werden spätestens nach 6 Monaten automatisch gelöscht. Du kannst deine Nutzungsdaten jederzeit selbst im Privacy Panel löschen."
-
-msgid "Why do I need to opt in or opt out?"
-msgstr "Warum muss ich zustimmen oder nicht zustimmen?"
-
-msgid "Our banner serves two purposes: We ask you to access your usage data and would like to obtain your consent for its use."
-msgstr "Unser Banner hat zwei Funktionen: Wir bitten dich um den Zugriff auf deine Nutzungsdaten und möchten dein Einverständnis für deren Verwendung einholen."
-
-msgid "Do you use cookies?"
-msgstr "Verwendet ihr Cookies?"
-
-msgid "Yes, in particular cookies are used to store your decision about granting access to your usage data. If you opt in, we also use <a href=\"#terms-cookies\" class=\"%s\">cookies</a> to store a user and a session <a href=\"#terms-id\" class=\"%s\">ID</a> for you."
-msgstr "Ja, insbesondere werden Cookies verwendet, um deine Entscheidung über die Zustimmung zum Zugriff auf deine Nutzungsdaten zu speichern. Wenn du zustimmst, verwenden wir außerdem <a href=\"#terms-cookies\" class=\"%s\">Cookies</a>, um eine Nutzungs und Sitzungs <a href=\"#terms-id\" class=\"%s\">ID</a> für dich zu speichern."
-
-msgid "How does it all work?"
-msgstr "Wie funktioniert das alles?"
-
-msgid "After opening a website where a <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> is active, you can explicitly opt in to the data collection and thereby help to improve the services you use. Only then you will be assigned a user and a session <a href=\"#terms-id\" class=\"%s\">ID</a> using a <a href=\"#terms-cookies\" class=\"%s\">cookie.</a> KhulnaSoft Fair Web Analytics handles these <a href=\"#terms-id\" class=\"%s\">IDs</a> in an unrecognizable form, i.e. no server will ever store this identifier."
-msgstr "Nach dem Aufruf einer Webseite, auf der eine <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> aktiv ist, kannst du der Datenerhebung explizit zustimmen und damit helfen, die von dir genutzten Dienste zu verbessern. Nur dann wird dir über einen <a href=\"#terms-cookies\" class=\"%s\">Cookie</a> eine Nutzungs und Sitzungs<a href=\"#terms-id\" class=\"%s\">ID</a> zugewiesen.</a> KhulnaSoft Fair Web Analytics behandelt diese <a href=\"#terms-id\" class=\"%s\">IDs</a> in einer nicht zuordenbaren Form, d.h. kein Server wird diese Kennung jemals speichern."
-
-msgid "You are viewing data as operator with account <em class=\"%s\">%s</em>."
-msgstr "Du siehst hier Daten des Accounts <em class=\"%s\">%s</em>."
-
-msgid "You are viewing your usage data."
-msgstr "Du siehst deine Nutzungsdaten."
-
-msgid "Admin console"
-msgstr "Admin Konsole"
-
-msgid "Toggle display of admin console navigation"
-msgstr "Anzeige Admin Konsolen Navigation umschalten"
-
-msgid "Share all accounts, create a new one, change your email address and password, log out from KhulnaSoft Fair Web Analytics"
-msgstr "Alle Accounts freigeben, einen neuen Account erstellen, deine E-Mail Adresse und dein Passwort ändern, aus KhulnaSoft Fair Web Analytics abmelden"
-
-msgid "Open admin console"
-msgstr "Admin Konsole öffnen"
-
-msgid "Real time"
-msgstr "Echtzeit"
-
-msgid "Active users on site"
-msgstr "Aktive Nutzerinnen und Nutzer auf der Webseite"
-
-msgid "Active pages"
-msgstr "Aktive Seiten"
-
-msgid "URL"
-msgstr "URL"
-
-msgid "Visitors"
-msgstr "Besuchende"
-
-msgid "Key metrics"
-msgstr "Kennzahlen"
-
-msgid "This panel displays the most significant metrics at a glance."
-msgstr "Dieses Panel zeigt die wichtigsten Metriken auf einen Blick an."
-
-msgid "Unique %s"
-msgstr "Eindeutige %s"
-
-msgid "The number of websites you have visited where the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> is active. This value will be 1 in many cases."
-msgstr "Die Anzahl von Webseiten die du besucht hast, auf denen die <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> aktiv ist. Dieser Wert wird in vielen Fällen 1 sein."
-
-msgid "Unique sessions"
-msgstr "Eindeutige Sitzungen"
-
-msgid "The number of <a href=\"#terms-unique-session\" class=\"%s\">unique sessions</a> you have created on pages where the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> is active."
-msgstr "Die Anzahl von <a href=\"#terms-unique-session\" class=\"%s\">Eindeutigen Sitzungen</a>, die du auf Seiten erzeugt hast, auf denen die <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> aktiv ist."
-
-msgid "Avg. page depth"
-msgstr "Durchschnittliche Seitentiefe"
-
-msgid "Full form: Average page depth. The average number of pages you have visited during all <a href=\"#terms-unique-session\" class=\"%s\">unique sessions</a> on all websites where the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> is active."
-msgstr "Die durchschnittliche Anzahl von Seiten, die du während aller <a href=\"#terms-unique-session\" class=\"%s\">Eindeutigen Sitzungen</a> auf allen Webseiten besucht hast, auf denen die <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> aktiv ist."
-
-msgid "Bounce rate"
-msgstr "Absprungrate"
-
-msgid "The percentage of <a href=\"#terms-unique-session\" class=\"%s\">unique sessions</a> where you only visited one page of the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation.</a> Therefore a website with only one page will always have a bounce rate of 100%."
-msgstr "Der Prozentsatz von <a href=\"#terms-unique-session\" class=\"%s\">Eindeutigen Sitzungen</a>, bei denen du nur eine Seite der <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> besucht hast. Eine Webseite mit nur einer Seite hat daher immer eine Absprungrate von 100 %."
-
-msgid "Returning users"
-msgstr "Nutzerinnen und Nutzer, die zurückkehren"
-
-msgid "Mobile users"
-msgstr "Mobil Nutzerinnen und Nutzer"
-
-msgid "Mobile user"
-msgstr "Mobilgerät"
-
-msgid "Shows whether you are considered to be using a mobile device. A check is made to see if your device thinks it can change its orientation. If so, it is considered mobile."
-msgstr "Zeigt an, ob davon ausgegangen wird, dass du ein mobiles Gerät verwendest. Dabei wird geprüft, ob dein Gerät annimmt, dass es seine Bildschirmausrichtung ändern kann. Wenn dies der Fall ist, wird es als mobil betrachtet."
-
-msgid "Avg. page load time"
-msgstr "Durchschnittliche Seitenladezeit"
-
-msgid "Full form: Average page load time. The average time it took for all pages of the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> you visited to become interactive."
-msgstr "Die durchschnittliche Zeit, die es dauerte, bis alle Seiten der <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a>, die du besucht hast, interaktiv wurden."
-
-msgid "Stay opted in,<br>only delete usage data"
-msgstr "Weiter zustimmen,<br>nur Nutzungsdaten löschen"
-
-msgid "Delete"
-msgstr "Löschen"
-
-msgid "Privacy"
-msgstr "Privacy"
-
-msgid "Opt out<br>and delete usage data."
-msgstr "Zustimmung widerrufen<br>und Nutzungsdaten löschen"
-
-msgid "Opt in and grant<br>access to your usage data."
-msgstr "Zustimmen und<br>Zugang zu deinen Nutzungsdaten gewähren."
-
-msgid "Opt out"
-msgstr "Zustimmung entziehen"
-
-msgid "Opt in"
-msgstr "Zustimmung geben"
-
-msgid "To review your data collected over time, <br class=\"dn db-l\">set a bookmark for this page."
-msgstr "Setze ein Lesezeichen für diese Seite, <br class=\"dn db-l\">um deine im Laufe der Zeit gesammelten Daten einzusehen."
-
-msgid "Yesterday"
-msgstr "Gestern"
-
-msgid "24 hours"
-msgstr "24 Stunden"
-
-msgid "7 days"
-msgstr "7 Tage"
-
-msgid "30 days"
-msgstr "30 Tage"
-
-msgid "6 weeks"
-msgstr "6 Wochen"
-
-msgid "12 weeks"
-msgstr "12 Wochen"
-
-msgid "6 months"
-msgstr "6 Monate"
-
-msgid "Not available"
-msgstr "Nicht verfügbar"
-
-msgid "Custom"
-msgstr "Individuell"
-
-msgid "Last"
-msgstr "Letzte"
-
-msgid "Show data from"
-msgstr "Zeige Daten"
-
-msgid "Here you can set the time frame for all displayed metrics. As all data is generally deleted after 6 months maximum, the selection is limited to this duration."
-msgstr "Hier kannst du den Zeitrahmen für alle angezeigten Metriken einstellen. Da alle Daten spätestens nach 6 Monaten gelöscht werden, ist die Auswahl auf diese Dauer beschränkt."
-
-msgid "Initial %d days"
-msgstr "Erste %d Tage"
-
-msgid "%d days later"
-msgstr "%d Tage später"
-
-msgid "%d days earlier"
-msgstr "%d Tage eher"
-
-msgid "If you retire the account <em class=\"%s\">%s,</em> it will not appear in your statistics anymore. Users will be able to access and manage their data for the account until it expires."
-msgstr "Wenn du den Account <em class=\"%s\">%s,</em> stilllegst, wird er nicht mehr in deiner Statistik angezeigt. Nutzerinnen und Nutzer können jedoch noch auf die Daten dieses Accounts zugreifen und diese verwalten, bis die Daten automatisch gelöscht werden."
-
-msgid "<em class=\"%s\">Danger zone! This action cannot be undone.</em>"
-msgstr "<em class=\"%s\">Achtung! Diese Aktion kann nicht rückgängig gemacht werden.</em>"
-
-msgid "Retire account"
-msgstr "Account stilllegen"
-
-msgid "To permanently retire the account, type its name <em class=\"%s\">\"%s\"</em> into the form below:"
-msgstr "Um den Account stillzulegen, gib seinen Namen <em class=\"%s\">\"%s\"</em> in das Feld unten ein:"
-
-msgid "The account <em class=\"%s\">\"%s\"</em> has been retired successfully. Log in again to continue."
-msgstr "Der Account <em class=\"%s\">\"%s\"</em> wurde erfolgreich stillgelegt. Melde dich erneut an, um fortzufahren."
-
-msgid "There was an error retiring the account, please try again."
-msgstr "Es gab einen Fehler beim Stilllegen des Accounts, bitte versuche es noch einmal."
-
-msgid "Retire this account"
-msgstr "Account stilllegen"
-
-msgid "Toggle display of retire account functionality"
-msgstr "Anzeige Account stillegen umschalten"
-
-msgid "Weekly retention"
-msgstr "Wöchentliche Retention"
-
-msgid "This panel displays your recurring visits of pages of the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> during the last 4 weeks. For each of the previous weeks, the percentage is calculated from the value of the current week."
-msgstr "Dieses Panel zeigt die wiederkehrenden Besuche von Seiten der <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> während der letzten 4 Wochen an. Für jede der vergangenen Wochen wird der Prozentsatz aus dem Wert der aktuellen Woche berechnet."
-
-msgid "No data available for this view."
-msgstr "Für diese Ansicht gibt es keine Daten."
-
-msgid "Show top %d only"
-msgstr "Nur Top %d anzeigen"
-
-msgid "Show all entries"
-msgstr "Alles anzeigen"
-
-msgid "Skip"
-msgstr "Überspringen"
-
-msgid "Welcome to the Auditorium, this is how it works."
-msgstr "Willkommen im Auditorium, so funktionierts."
-
-msgid "What <span class=\"%s\">%s</span> knows about you."
-msgstr "Was <span class=\"%s\">%s</span> über dich weiß."
-
-msgid "You have visited <span class=\"%s\">%s %d</span> times."
-msgstr "Du hast <span class=\"%s\">%s %d</span> mal besucht."
-
-msgid "It is probably your first time visiting <span class=\"%s\">%s</span> ."
-msgstr "Es ist wahrscheinlich dein erster Besuch bei <span class=\"%s\">%s</span>&nbsp;."
-
-msgid "You came via <span class=\"%s\">%s</span> ."
-msgstr "Du bist über <span class=\"%s\">%s</span> hierher gekommen."
-
-msgid "You are probably located in <span class=\"%s\">%s."
-msgstr "Wahrscheinlich befindest du dich in <span class=\"%s\">%s</span>."
-
-msgid "Most likely you are on a <span class=\"%s\">%s</span>."
-msgstr "Vermutlich benutzt du gerade ein <span class=\"%s\">%s</span>."
-
-msgid "mobile device"
-msgstr "Mobilgerät"
-
-msgid "desktop device"
-msgstr "Desktop Gerät"
-
-msgid "Next"
-msgstr "Weiter"
-
-msgid "Your data always stays yours."
-msgstr "Deine Daten gehören weiter dir."
-
-msgid "Review your data in the Auditorium. You can delete your data or opt out completely at any time in the Privacy tab."
-msgstr "Sieh deine Daten im Auditorium ein. Du kannst deine Daten jederzeit im Privacy Panel löschen oder deine Zustimmung widerrufen."
-
-msgid "Click this symbol to display detailed explanations of the respective terms."
-msgstr "Klicke auf dieses Symbol, um detaillierte Erklärungen zu den jeweiligen Begriffen anzuzeigen."
-
-msgid "Bookmark this page to come back later."
-msgstr "Setze ein Lesezeichen für diese Seite, um später wiederzukommen."
-
-msgid "Get an overall picture of your data collected over time. Come back here anytime to see what <span class=\"%s\">%s</span> knows about you."
-msgstr "Gewinne einen Gesamteindruck über deine im Laufe der Zeit gesammelten Daten. Komme jederzeit hierher zurück, um zu sehen, was <span class=\"%s\">%s</span> über dich weiß."
-
-msgid "Now let's get started!"
-msgstr "Lass uns anfangen!"
-
-msgid "Open Auditorium"
-msgstr "Auditorium öffnen"
 
 msgid "Remove this filter."
 msgstr "Diesen Filter entfernen."
@@ -666,47 +300,398 @@ msgstr "Ausstiege"
 msgid "A list of pages of the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> that you have opened last in all <a href=\"#terms-unique-session\" class=\"%s\">unique sessions.</a> For this to be counted you must have visited at least two pages."
 msgstr "Eine Liste der Seiten der <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a>, die du in allen <a href=\"#terms-unique-session\" class=\"%s\">Eindeutigen Sitzungen</a> zuletzt geöffnet hast.</a> Damit dies ausgewertet wird, musst du mindestens zwei Seiten besucht haben."
 
-msgid "Share this account"
-msgstr "Diesen Account teilen"
+msgid "Weekly retention"
+msgstr "Wöchentliche Retention"
 
-msgid "Share your KhulnaSoft Fair Web Analytics account <em class=\"%s\">%s</em> via email invitation. If granted admin privileges, invited users have full access to a shared account and can also create further accounts for this instance."
-msgstr "Gib deinen KhulnaSoft Fair Web Analytics Account <em class=\"%s\">%s</em> per E-Mail Einladung frei. Eingeladene Nutzerinnen und Nutzer haben, wenn sie über Admin Rechte verfügen, vollen Zugriff auf einen freigegebenen Account und können auch weitere Accounts für diese KhulnaSoft Instanz erstellen."
+msgid "This panel displays your recurring visits of pages of the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> during the last 4 weeks. For each of the previous weeks, the percentage is calculated from the value of the current week."
+msgstr "Dieses Panel zeigt die wiederkehrenden Besuche von Seiten der <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> während der letzten 4 Wochen an. Für jede der vergangenen Wochen wird der Prozentsatz aus dem Wert der aktuellen Woche berechnet."
 
-msgid "Please log in again using your updated email."
-msgstr "Bitte melde dich mit deiner aktualisierten E-Mail erneut an."
+msgid "Basic Terms"
+msgstr "Allgemeine Begriffe"
 
-msgid "Could not change email. Try again."
-msgstr "E-Mail konnte nicht geändert werden. Versuche es noch einmal."
+msgid "Auditorium"
+msgstr "Auditorium"
 
-msgid "Change email address"
-msgstr "E-Mail Adresse ändern"
+msgid "You are viewing the Auditorium right now. Only available after opt-in, it is the interface where you can review and delete your usage data or opt out entirely."
+msgstr "Du bist gerade im Auditorium. Es ist nur nach Zustimmung verfügbar und die Seite, auf der du deine Nutzungsdaten einsehen, löschen und deine Zustimmung widerrufen kannst."
 
-msgid "New email address"
-msgstr "Neue E-Mail Adresse"
+msgid "KhulnaSoft Fair Web Analytics installation"
+msgstr "KhulnaSoft Fair Web Analytics Installation"
 
-msgid "Current email address"
-msgstr "Aktuelle E-Mail Adresse"
+msgid "One KhulnaSoft Fair Web Analytics installation can include several websites. All metrics of all websites in this installation are displayed in the <a href=\"#terms-auditorium\" class=\"%s\">Auditorium.</a> Metrics generated on websites of other installations can only be viewed in the associated <a href=\"#terms-auditorium\" class=\"%s\">Auditorium.</a>"
+msgstr "Eine KhulnaSoft Fair Web Analytics Installation kann mehrere Webseiten umfassen. Die Metriken aller Webseiten der Installation werden im <a href=\"#terms-auditorium\" class=\"%s\">Auditorium</a> angezeigt. Metriken, die auf Webseiten anderer Installationen erzeugt wurden, können nur im zugehörigen <a href=\"#terms-auditorium\" class=\"%s\">Auditorium</a> eingesehen werden."
 
-msgid "Password"
-msgstr "Passwort"
+msgid "Cookies"
+msgstr "Cookies"
 
-msgid "Open account"
-msgstr "Account öffnen"
+msgid "When you visit a website where a <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> is active, small amounts of data are stored on your computer. These data elements are known as cookies. <a href=\"https://en.wikipedia.org/wiki/HTTP_cookie\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">Learn more.</a>"
+msgstr "Wenn du eine Webseite besuchst, auf der eine <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> aktiv ist, werden kleine Datenmengen auf deinem Computer gespeichert. Diese Elemente werden als Cookies bezeichnet. <a href=\"https://en.wikipedia.org/wiki/HTTP_cookie\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">Mehr erfahren.</a>"
 
-msgid "Passwords did not match. Please try again."
-msgstr "Die Passwörter stimmen nicht überein. Versuche es noch einmal."
+msgid "Operator"
+msgstr "Betreiberinnen und Betreiber"
 
-msgid "Please log in again using your new password."
-msgstr "Bitte melden dich mit deinem aktualisierten Passwort erneut an."
+msgid "Operators are the owners of <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installations.</a> Only after you opted in, your usage data of a website is collected. Operators then can view it for maximum 6 months."
+msgstr "Betreiberinnen und Betreiber verwalten <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installationen.</a> Erst nachdem du zugestimmt hast, werden deine Nutzungsdaten einer Webseite gesammelt. Betreiberinnen und Betreiber können diese dann für maximal 6 Monate einsehen."
 
-msgid "Could not change password. Try again."
-msgstr "Das Passwort konnte nicht geändert werden, bitte versuche es noch einmal."
+msgid "Unique user"
+msgstr "Eindeutige Nutzerinnen und Nutzer"
 
-msgid "Change password"
-msgstr "Passwort ändern"
+msgid "You are defined as a unique user after your opt-in to data collection. To measure this, a <a href=\"#terms-cookies\" class=\"%s\">cookie</a> is used to assign a user <a href=\"#terms-id\" class=\"%s\">ID</a> to you."
+msgstr "Du wirst nach der Zustimmung zur Sammlung von Nutzungsdaten als eindeutig definiert. Dafür wird ein <a href=\"#terms-cookies\" class=\"%s\">Cookie</a> verwendet, um dir eine Nutzungs <a href=\"#terms-id\" class=\"%s\">ID</a> zuzuordnen."
 
-msgid "Current password"
-msgstr "Aktuelles Passwort"
+msgid "Unique session"
+msgstr "Eindeutige Sitzung"
+
+msgid "A unique session is defined as a <a href=\"#terms-unique-user\" class=\"%s\">unique user</a> being actively engaged with a page during a browser session. To measure this, a <a href=\"#terms-cookies\" class=\"%s\">cookie</a> is used to assign a session <a href=\"#terms-id\" class=\"%s\">ID</a> to you."
+msgstr "Eine eindeutige Sitzung ist definiert wenn <a href=\"#terms-unique-user\" class=\"%s\">eindeutige Nutzerinnen und Nutzer</a> sich während einer Browser-Sitzung aktiv mit einer Seite beschäftigen. Zur Messung werden <a href=\"#terms-cookies\" class=\"%s\">Cookies</a> verwendet um jeweils eine Sitzungs <a href=\"#terms-id\" class=\"%s\">ID</a> zuzuordnen."
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Originally: UUID. Full form: Universally unique identifier. KhulnaSoft Fair Web Analytics uses UUID of version 4. These IDs are generated randomly, unique and without using any personal data. On the individual KhulnaSoft Fair Web Analytics server, they are handled in an unrecognizable form. <a href=\"https://en.wikipedia.org/wiki/Universally_unique_identifier\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">Learn more.</a>"
+msgstr "Original: UUID. Ausgeschrieben: Universally unique identifier. KhulnaSoft Fair Web Analytics verwendet UUID der Version 4. Diese IDs werden zufällig, eindeutig und ohne Verwendung von persönlichen Daten generiert. Auf dem jeweiligen KhulnaSoft Fair Web Analytics Server werden sie in einer nicht zuordenbaren Form verarbeitet. <a href=\"https://en.wikipedia.org/wiki/Universally_unique_identifier\" class=\"%s\" target=\"_blank\" rel=\"noreferer noopener\">Mehr erfahren.</a>"
+
+msgid "Skip"
+msgstr "Überspringen"
+
+msgid "Welcome to the Auditorium, this is how it works."
+msgstr "Willkommen im Auditorium, so funktionierts."
+
+msgid "What <span class=\"%s\">%s</span> knows about you."
+msgstr "Was <span class=\"%s\">%s</span> über dich weiß."
+
+msgid "You have visited <span class=\"%s\">%s %d</span> times."
+msgstr "Du hast <span class=\"%s\">%s %d</span> mal besucht."
+
+msgid "It is probably your first time visiting <span class=\"%s\">%s</span> ."
+msgstr "Es ist wahrscheinlich dein erster Besuch bei <span class=\"%s\">%s</span>&nbsp;."
+
+msgid "You came via <span class=\"%s\">%s</span> ."
+msgstr "Du bist über <span class=\"%s\">%s</span> hierher gekommen."
+
+msgid "You are probably located in <span class=\"%s\">%s."
+msgstr "Wahrscheinlich befindest du dich in <span class=\"%s\">%s</span>."
+
+msgid "Most likely you are on a <span class=\"%s\">%s</span>."
+msgstr "Vermutlich benutzt du gerade ein <span class=\"%s\">%s</span>."
+
+msgid "mobile device"
+msgstr "Mobilgerät"
+
+msgid "desktop device"
+msgstr "Desktop Gerät"
+
+msgid "Next"
+msgstr "Weiter"
+
+msgid "Your data always stays yours."
+msgstr "Deine Daten gehören weiter dir."
+
+msgid "Review your data in the Auditorium. You can delete your data or opt out completely at any time in the Privacy tab."
+msgstr "Sieh deine Daten im Auditorium ein. Du kannst deine Daten jederzeit im Privacy Panel löschen oder deine Zustimmung widerrufen."
+
+msgid "Click this symbol to display detailed explanations of the respective terms."
+msgstr "Klicke auf dieses Symbol, um detaillierte Erklärungen zu den jeweiligen Begriffen anzuzeigen."
+
+msgid "Bookmark this page to come back later."
+msgstr "Setze ein Lesezeichen für diese Seite, um später wiederzukommen."
+
+msgid "Get an overall picture of your data collected over time. Come back here anytime to see what <span class=\"%s\">%s</span> knows about you."
+msgstr "Gewinne einen Gesamteindruck über deine im Laufe der Zeit gesammelten Daten. Komme jederzeit hierher zurück, um zu sehen, was <span class=\"%s\">%s</span> über dich weiß."
+
+msgid "Now let's get started!"
+msgstr "Lass uns anfangen!"
+
+msgid "Open Auditorium"
+msgstr "Auditorium öffnen"
+
+msgid "If you retire the account <em class=\"%s\">%s,</em> it will not appear in your statistics anymore. Users will be able to access and manage their data for the account until it expires."
+msgstr "Wenn du den Account <em class=\"%s\">%s,</em> stilllegst, wird er nicht mehr in deiner Statistik angezeigt. Nutzerinnen und Nutzer können jedoch noch auf die Daten dieses Accounts zugreifen und diese verwalten, bis die Daten automatisch gelöscht werden."
+
+msgid "<em class=\"%s\">Danger zone! This action cannot be undone.</em>"
+msgstr "<em class=\"%s\">Achtung! Diese Aktion kann nicht rückgängig gemacht werden.</em>"
+
+msgid "Retire account"
+msgstr "Account stilllegen"
+
+msgid "To permanently retire the account, type its name <em class=\"%s\">\"%s\"</em> into the form below:"
+msgstr "Um den Account stillzulegen, gib seinen Namen <em class=\"%s\">\"%s\"</em> in das Feld unten ein:"
+
+msgid "The account <em class=\"%s\">\"%s\"</em> has been retired successfully. Log in again to continue."
+msgstr "Der Account <em class=\"%s\">\"%s\"</em> wurde erfolgreich stillgelegt. Melde dich erneut an, um fortzufahren."
+
+msgid "There was an error retiring the account, please try again."
+msgstr "Es gab einen Fehler beim Stilllegen des Accounts, bitte versuche es noch einmal."
+
+msgid "Retire this account"
+msgstr "Account stilllegen"
+
+msgid "Toggle display of retire account functionality"
+msgstr "Anzeige Account stillegen umschalten"
+
+msgid "Successfully copied embed code to clipboard."
+msgstr "Erfolgreich den Embed Code in die Zwischenablage kopiert."
+
+msgid "Embed code"
+msgstr "Embed Code"
+
+msgid "Toggle display of embed code"
+msgstr "Anzeige Embed Code umschalten"
+
+msgid "To use KhulnaSoft Fair Web Analytics with the account <em class=\"%s\">%s</em> on your website, embed the following script on each page you want to appear in your statistics."
+msgstr "Um KhulnaSoft Fair Web Analytics mit dem Account <em class=\"%s\">%s</em> auf deiner Webseite zu verwenden, füge den folgenden Code auf jeder Seite ein, die in deiner Statistik erscheinen soll."
+
+msgid "In case you are serving multiple domains from your instance, please double check that the domain in this snippet matches the target account."
+msgstr "Falls du mehrere Domains von deiner Installation aus bedienst, überprüfe bitte, ob die Domain in diesem Code mit dem Ziel Account übereinstimmt."
+
+msgid "Copy code"
+msgstr "Code kopieren"
+
+msgid "Stay opted in,<br>only delete usage data"
+msgstr "Weiter zustimmen,<br>nur Nutzungsdaten löschen"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Privacy"
+msgstr "Privacy"
+
+msgid "Opt out<br>and delete usage data."
+msgstr "Zustimmung widerrufen<br>und Nutzungsdaten löschen"
+
+msgid "Opt in and grant<br>access to your usage data."
+msgstr "Zustimmen und<br>Zugang zu deinen Nutzungsdaten gewähren."
+
+msgid "Opt out"
+msgstr "Zustimmung entziehen"
+
+msgid "Opt in"
+msgstr "Zustimmung geben"
+
+msgid "To review your data collected over time, <br class=\"dn db-l\">set a bookmark for this page."
+msgstr "Setze ein Lesezeichen für diese Seite, <br class=\"dn db-l\">um deine im Laufe der Zeit gesammelten Daten einzusehen."
+
+msgid "Yesterday"
+msgstr "Gestern"
+
+msgid "24 hours"
+msgstr "24 Stunden"
+
+msgid "7 days"
+msgstr "7 Tage"
+
+msgid "30 days"
+msgstr "30 Tage"
+
+msgid "6 weeks"
+msgstr "6 Wochen"
+
+msgid "12 weeks"
+msgstr "12 Wochen"
+
+msgid "6 months"
+msgstr "6 Monate"
+
+msgid "Not available"
+msgstr "Nicht verfügbar"
+
+msgid "Custom"
+msgstr "Individuell"
+
+msgid "Last"
+msgstr "Letzte"
+
+msgid "Show data from"
+msgstr "Zeige Daten"
+
+msgid "Here you can set the time frame for all displayed metrics. As all data is generally deleted after 6 months maximum, the selection is limited to this duration."
+msgstr "Hier kannst du den Zeitrahmen für alle angezeigten Metriken einstellen. Da alle Daten spätestens nach 6 Monaten gelöscht werden, ist die Auswahl auf diese Dauer beschränkt."
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "What data is collected?"
+msgstr "Welche Daten werden gesammelt?"
+
+msgid "Only page views, sessions, referrer and the visited URL are collected. From this, other metrics such as for example the bounce rate are calculated."
+msgstr "Es werden nur Seitenaufrufe, Sitzungen, Referrer und die besuchte URL gesammelt. Daraus werden weitere Metriken wie z.B. die Absprungrate berechnet."
+
+msgid "What kind of data isn't collected?"
+msgstr "Welche Art von Daten wird nicht gesammelt?"
+
+msgid "Device information and engagement are not collected. There are also no fingerprinting technologies in use."
+msgstr "Geräteinformationen und Interaktionsbereitschaft werden nicht erfasst. Es sind auch keine Fingerprinting-Technologien im Einsatz."
+
+msgid "How is my data handled?"
+msgstr "Wie wird mit meinen Daten umgegangen?"
+
+msgid "Your usage data is encrypted end-to-end. It will be automatically deleted in maximum 6 months. You can delete your usage data yourself at any time in the privacy panel."
+msgstr "Deine Nutzungsdaten werden Ende-zu-Ende verschlüsselt. Sie werden spätestens nach 6 Monaten automatisch gelöscht. Du kannst deine Nutzungsdaten jederzeit selbst im Privacy Panel löschen."
+
+msgid "Why do I need to opt in or opt out?"
+msgstr "Warum muss ich zustimmen oder nicht zustimmen?"
+
+msgid "Our banner serves two purposes: We ask you to access your usage data and would like to obtain your consent for its use."
+msgstr "Unser Banner hat zwei Funktionen: Wir bitten dich um den Zugriff auf deine Nutzungsdaten und möchten dein Einverständnis für deren Verwendung einholen."
+
+msgid "Do you use cookies?"
+msgstr "Verwendet ihr Cookies?"
+
+msgid "Yes, in particular cookies are used to store your decision about granting access to your usage data. If you opt in, we also use <a href=\"#terms-cookies\" class=\"%s\">cookies</a> to store a user and a session <a href=\"#terms-id\" class=\"%s\">ID</a> for you."
+msgstr "Ja, insbesondere werden Cookies verwendet, um deine Entscheidung über die Zustimmung zum Zugriff auf deine Nutzungsdaten zu speichern. Wenn du zustimmst, verwenden wir außerdem <a href=\"#terms-cookies\" class=\"%s\">Cookies</a>, um eine Nutzungs und Sitzungs <a href=\"#terms-id\" class=\"%s\">ID</a> für dich zu speichern."
+
+msgid "How does it all work?"
+msgstr "Wie funktioniert das alles?"
+
+msgid "After opening a website where a <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> is active, you can explicitly opt in to the data collection and thereby help to improve the services you use. Only then you will be assigned a user and a session <a href=\"#terms-id\" class=\"%s\">ID</a> using a <a href=\"#terms-cookies\" class=\"%s\">cookie.</a> KhulnaSoft Fair Web Analytics handles these <a href=\"#terms-id\" class=\"%s\">IDs</a> in an unrecognizable form, i.e. no server will ever store this identifier."
+msgstr "Nach dem Aufruf einer Webseite, auf der eine <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> aktiv ist, kannst du der Datenerhebung explizit zustimmen und damit helfen, die von dir genutzten Dienste zu verbessern. Nur dann wird dir über einen <a href=\"#terms-cookies\" class=\"%s\">Cookie</a> eine Nutzungs und Sitzungs<a href=\"#terms-id\" class=\"%s\">ID</a> zugewiesen.</a> KhulnaSoft Fair Web Analytics behandelt diese <a href=\"#terms-id\" class=\"%s\">IDs</a> in einer nicht zuordenbaren Form, d.h. kein Server wird diese Kennung jemals speichern."
+
+msgid "No data available for this view."
+msgstr "Für diese Ansicht gibt es keine Daten."
+
+msgid "Show top %d only"
+msgstr "Nur Top %d anzeigen"
+
+msgid "Show all entries"
+msgstr "Alles anzeigen"
+
+msgid "Key metrics"
+msgstr "Kennzahlen"
+
+msgid "This panel displays the most significant metrics at a glance."
+msgstr "Dieses Panel zeigt die wichtigsten Metriken auf einen Blick an."
+
+msgid "Unique %s"
+msgstr "Eindeutige %s"
+
+msgid "The number of websites you have visited where the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> is active. This value will be 1 in many cases."
+msgstr "Die Anzahl von Webseiten die du besucht hast, auf denen die <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> aktiv ist. Dieser Wert wird in vielen Fällen 1 sein."
+
+msgid "Unique sessions"
+msgstr "Eindeutige Sitzungen"
+
+msgid "The number of <a href=\"#terms-unique-session\" class=\"%s\">unique sessions</a> you have created on pages where the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> is active."
+msgstr "Die Anzahl von <a href=\"#terms-unique-session\" class=\"%s\">Eindeutigen Sitzungen</a>, die du auf Seiten erzeugt hast, auf denen die <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> aktiv ist."
+
+msgid "Avg. page depth"
+msgstr "Durchschnittliche Seitentiefe"
+
+msgid "Full form: Average page depth. The average number of pages you have visited during all <a href=\"#terms-unique-session\" class=\"%s\">unique sessions</a> on all websites where the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> is active."
+msgstr "Die durchschnittliche Anzahl von Seiten, die du während aller <a href=\"#terms-unique-session\" class=\"%s\">Eindeutigen Sitzungen</a> auf allen Webseiten besucht hast, auf denen die <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> aktiv ist."
+
+msgid "Bounce rate"
+msgstr "Absprungrate"
+
+msgid "The percentage of <a href=\"#terms-unique-session\" class=\"%s\">unique sessions</a> where you only visited one page of the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation.</a> Therefore a website with only one page will always have a bounce rate of 100%."
+msgstr "Der Prozentsatz von <a href=\"#terms-unique-session\" class=\"%s\">Eindeutigen Sitzungen</a>, bei denen du nur eine Seite der <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a> besucht hast. Eine Webseite mit nur einer Seite hat daher immer eine Absprungrate von 100 %."
+
+msgid "Returning users"
+msgstr "Nutzerinnen und Nutzer, die zurückkehren"
+
+msgid "Mobile users"
+msgstr "Mobil Nutzerinnen und Nutzer"
+
+msgid "Mobile user"
+msgstr "Mobilgerät"
+
+msgid "Shows whether you are considered to be using a mobile device. A check is made to see if your device thinks it can change its orientation. If so, it is considered mobile."
+msgstr "Zeigt an, ob davon ausgegangen wird, dass du ein mobiles Gerät verwendest. Dabei wird geprüft, ob dein Gerät annimmt, dass es seine Bildschirmausrichtung ändern kann. Wenn dies der Fall ist, wird es als mobil betrachtet."
+
+msgid "Avg. page load time"
+msgstr "Durchschnittliche Seitenladezeit"
+
+msgid "Full form: Average page load time. The average time it took for all pages of the <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics installation</a> you visited to become interactive."
+msgstr "Die durchschnittliche Zeit, die es dauerte, bis alle Seiten der <a href=\"#terms-khulnasoft-installation\" class=\"%s\">KhulnaSoft Fair Web Analytics Installation</a>, die du besucht hast, interaktiv wurden."
+
+msgid "Bar"
+msgstr "Balken"
+
+msgid "/user-access-widget-bar-en.svg"
+msgstr "/user-access-widget-bar-de.svg"
+
+msgid "Fair web analytics"
+msgstr "Fair web analytics"
+
+msgid "Access your usage data"
+msgstr "Du siehst deine Nutzungsdaten."
+
+msgid "Box"
+msgstr "Box"
+
+msgid "/user-access-widget-box-en.svg"
+msgstr "/user-access-widget-box-de.svg"
+
+msgid "Access your data"
+msgstr "Deine Nutzungsdaten hier"
+
+msgid "Circle"
+msgstr "Kreis"
+
+msgid "/user-access-widget-circle-en.svg"
+msgstr "/user-access-widget-circle-de.svg"
+
+msgid "Let users access their data"
+msgstr "Gewähre Nutzerinnen und Nutzern Zugriff auf ihre Daten"
+
+msgid "Toggle display of awareness widgets"
+msgstr "Anzeige Embed Code umschalten"
+
+msgid "Let users access their data on every page of your website. Link directly to the User Auditorium or use the HTML widget."
+msgstr "Gewähre Nutzerinnen und Nutzern auf jeder Seite Zugriff auf ihre Daten. Verlinke das  direkt oder verwende das HTML-Widget."
+
+msgid "User Auditorium link"
+msgstr "Auditorium öffnen"
+
+msgid "Successfully copied link to clipboard."
+msgstr "Erfolgreich den Link in die Zwischenablage kopiert."
+
+msgid "Copy link"
+msgstr "Link kopieren"
+
+msgid "HTML Widget"
+msgstr "HTML Widget"
+
+msgid "Successfully copied widget code to clipboard."
+msgstr "Erfolgreich den Widget Code in die Zwischenablage kopiert."
+
+msgid "Copy widget"
+msgstr "Widget kopieren"
+
+msgid "Admin console"
+msgstr "Admin Konsole"
+
+msgid "Toggle display of admin console navigation"
+msgstr "Anzeige Admin Konsolen Navigation umschalten"
+
+msgid "Share all accounts, create a new one, change your email address and password, log out from KhulnaSoft Fair Web Analytics"
+msgstr "Alle Accounts freigeben, einen neuen Account erstellen, deine E-Mail Adresse und dein Passwort ändern, aus KhulnaSoft Fair Web Analytics abmelden"
+
+msgid "Open admin console"
+msgstr "Admin Konsole öffnen"
+
+msgid "No"
+msgstr "Nein"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "s"
+msgstr "s"
+
+msgid "ms"
+msgstr "ms"
+
+msgid "M"
+msgstr "Mio."
+
+msgid "k"
+msgstr "Tsd."
+
+msgid "There has been an error resetting your password, please try again."
+msgstr "Beim Zurücksetzen deines Passworts ist ein Fehler aufgetreten, bitte versuche es noch einmal."
+
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
 
 msgid "New password"
 msgstr "Neues Passwort"
@@ -714,65 +699,29 @@ msgstr "Neues Passwort"
 msgid "Repeat new password"
 msgstr "Neues Passwort wiederholen"
 
-msgid "Log in again to use the newly created account <em class=\"%s\">\"%s\"</em>."
-msgstr "Melde dich erneut an, um den neuen Account <em class=\"%s\">\"%s\"</em> zu verwenden."
+msgid "Reset Password"
+msgstr "Passwort zurücksetzen"
 
-msgid "There was an error creating the account, please try again."
-msgstr "Beim Erstellen des Accounts ist ein Fehler aufgetreten, bitte versuche es noch einmal."
+msgid "Passwords did not match. Please try again."
+msgstr "Die Passwörter stimmen nicht überein. Versuche es noch einmal."
 
-msgid "Create new account"
-msgstr "Neuen Account erstellen"
+msgid "You can now log in using the provided credentials."
+msgstr "Du kannst dich jetzt mit den bereitgestellten Daten anmelden."
 
-msgid "Account name"
+msgid "Set up your instance by creating your first account."
+msgstr "Richte deine Instanz ein, indem du deinen ersten Account erstellst."
+
+msgid "The account name"
 msgstr "Account Name"
 
-msgid "Create account"
-msgstr "Account anlegen"
+msgid "Setup instance"
+msgstr "Instanz einrichten"
 
-msgid "Your email"
-msgstr "Deine E-Mail"
+msgid "Are you the operator of this installation? Log in to your account."
+msgstr "Betreibst du diese Installation? Melde dich hier an."
 
-msgid "You have been logged out."
-msgstr "Du wurdest abgemeldet."
-
-msgid "There was an error terminating your session, please try again."
-msgstr "Es ist ein Fehler beim Beenden der Session aufgetreten, bitte versuche es noch einmal."
-
-msgid "Logout"
-msgstr "Abmelden"
-
-msgid "You are logged in as operator."
-msgstr "Du bist angemeldet."
-
-msgid "Share all accounts"
-msgstr "Alle Accounts teilen"
-
-msgid "Share all your KhulnaSoft Fair Web Analytics accounts via email invitation. When granted Admin privilges, invited users have full access to shared accounts and can create new accounts on this instance."
-msgstr "Gib alle deine KhulnaSoft Fair Web Analytics Accounts per E-Mail Einladung frei. Eingeladene mit Admin Rechten haben vollen Zugriff auf die freigegebenen Konten und können neue Konten auf dieser Instanz erstellen."
-
-msgid "Check your inbox and follow the instructions in the email."
-msgstr "Schau in deinen Posteingang und folge der Anleitung in unserer E-Mail."
-
-msgid "Could not handle your request, please try again."
-msgstr "Deine Anfrage konnte nicht bearbeitet werden, bitte versuche es noch einmal."
-
-msgid "Request link to reset password"
-msgstr "Link zum Zurücksetzen des Passworts anfordern"
-
-msgid "Email address"
-msgstr "E-Mail Adresse"
-
-msgid "Send Email"
-msgstr "E-Mail senden"
-
-msgid "You have opted in."
-msgstr "Du hast zugestimmt."
-
-msgid "You have opted out."
-msgstr "Du hast nicht zugestimmt."
-
-msgid "It seems like your browser is blocking cookies."
-msgstr "Anscheinend blockiert dein Browser Cookies."
+msgid "Log in as operator"
+msgstr "Anmelden"
 
 msgid "KhulnaSoft Fair Web Analytics requires cookies to function properly."
 msgstr "KhulnaSoft Fair Web Analytics benötigt Cookies, um richtig zu funktionieren."
@@ -800,27 +749,6 @@ msgstr "Ich stimme zu"
 
 msgid "I don't allow"
 msgstr "Ich stimme nicht zu"
-
-msgid "Are you the operator of this installation? Log in to your account."
-msgstr "Betreibst du diese Installation? Melde dich hier an."
-
-msgid "Log in as operator"
-msgstr "Anmelden"
-
-msgid "Passwords did not match"
-msgstr "Passwörter stimmten nicht überein"
-
-msgid "Your account has been set up, you can now log in."
-msgstr "Dein Account wurde eingerichtet, du kannst dich jetzt anmelden."
-
-msgid "Join KhulnaSoft Fair Web Analytics"
-msgstr "Bei KhulnaSoft Fair Web Analytics mitmachen"
-
-msgid "Repeat password"
-msgstr "Passwort wiederholen"
-
-msgid "Accept invite"
-msgstr "Einladung annehmen"
 
 msgid "How can I review and delete my usage data or opt out?"
 msgstr "Wie kann ich meine Nutzungsdaten einsehen, löschen oder mich abmelden?"
@@ -852,6 +780,93 @@ msgstr "Ja, insbesondere verwenden wir Cookies, um deine Entscheidung über die 
 msgid "After opening a website where an KhulnaSoft Fair Web Analytics installation is active, you can explicitly opt in to the data collection and thereby help to improve the services you use. Only then you will be assigned a user and a session ID using a cookie. KhulnaSoft Fair Web Analytics handles these IDs in an unrecognizable form. <a href=\"https://en.wikipedia.org/wiki/HTTP_cookie\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">Learn more about cookies here.</a>"
 msgstr "Nach dem Aufruf einer Webseite, auf der eine KhulnaSoft Fair Web Analytics Installation aktiv ist, kannst du der Datenerhebung explizit zustimmen und damit helfen, die von dir genutzten Dienste zu verbessern. Nur dann wird dir über einen Cookie eine Nutzungs und Sitzungs ID zugewiesen. KhulnaSoft Fair Web Analytics behandelt diese IDs in einer nicht zuordenbaren Form. <a href=\"https://en.wikipedia.org/wiki/HTTP_cookie\" class=\"%s\" target=\"_blank\" rel=\"noreferrer noopener\">Erfahre hier mehr über Cookies.</a>"
 
+msgid "You have opted in."
+msgstr "Du hast zugestimmt."
+
+msgid "You have opted out."
+msgstr "Du hast nicht zugestimmt."
+
+msgid "It seems like your browser is blocking cookies."
+msgstr "Anscheinend blockiert dein Browser Cookies."
+
+msgid "Log in again to use the newly created account <em class=\"%s\">\"%s\"</em>."
+msgstr "Melde dich erneut an, um den neuen Account <em class=\"%s\">\"%s\"</em> zu verwenden."
+
+msgid "There was an error creating the account, please try again."
+msgstr "Beim Erstellen des Accounts ist ein Fehler aufgetreten, bitte versuche es noch einmal."
+
+msgid "Create new account"
+msgstr "Neuen Account erstellen"
+
+msgid "Account name"
+msgstr "Account Name"
+
+msgid "Create account"
+msgstr "Account anlegen"
+
+msgid "Your email"
+msgstr "Deine E-Mail"
+
+msgid "Open account"
+msgstr "Account öffnen"
+
+msgid "Please log in again using your updated email."
+msgstr "Bitte melde dich mit deiner aktualisierten E-Mail erneut an."
+
+msgid "Could not change email. Try again."
+msgstr "E-Mail konnte nicht geändert werden. Versuche es noch einmal."
+
+msgid "Change email address"
+msgstr "E-Mail Adresse ändern"
+
+msgid "New email address"
+msgstr "Neue E-Mail Adresse"
+
+msgid "Current email address"
+msgstr "Aktuelle E-Mail Adresse"
+
+msgid "Share all accounts"
+msgstr "Alle Accounts teilen"
+
+msgid "Share all your KhulnaSoft Fair Web Analytics accounts via email invitation. When granted Admin privilges, invited users have full access to shared accounts and can create new accounts on this instance."
+msgstr "Gib alle deine KhulnaSoft Fair Web Analytics Accounts per E-Mail Einladung frei. Eingeladene mit Admin Rechten haben vollen Zugriff auf die freigegebenen Konten und können neue Konten auf dieser Instanz erstellen."
+
+msgid "You are logged in as operator."
+msgstr "Du bist angemeldet."
+
+msgid "You have been logged out."
+msgstr "Du wurdest abgemeldet."
+
+msgid "There was an error terminating your session, please try again."
+msgstr "Es ist ein Fehler beim Beenden der Session aufgetreten, bitte versuche es noch einmal."
+
+msgid "Logout"
+msgstr "Abmelden"
+
+msgid "Check your inbox and follow the instructions in the email."
+msgstr "Schau in deinen Posteingang und folge der Anleitung in unserer E-Mail."
+
+msgid "Request link to reset password"
+msgstr "Link zum Zurücksetzen des Passworts anfordern"
+
+msgid "Send Email"
+msgstr "E-Mail senden"
+
+msgid "Please log in again using your new password."
+msgstr "Bitte melden dich mit deinem aktualisierten Passwort erneut an."
+
+msgid "Could not change password. Try again."
+msgstr "Das Passwort konnte nicht geändert werden, bitte versuche es noch einmal."
+
+msgid "Change password"
+msgstr "Passwort ändern"
+
+msgid "Current password"
+msgstr "Aktuelles Passwort"
+
+msgid "Not the operator of this installation? Manage your data in the <a href=\"%s\" class=\"%s\" >User Auditorium.</a>"
+msgstr "Du betreibst diese Installation nicht? Verwalten deine gesammelten Nutzungsdaten im <a href=\"%s\" class=\"%s\" >Auditorium für Nutzerinnen und Nutzer.</a>"
+
 msgid "Could not log in using the given credentials. Try again."
 msgstr "Du konntest mit diesen Daten nicht angemeldet werden. Versuche es noch einmal."
 
@@ -861,38 +876,23 @@ msgstr "Anmelden"
 msgid "Forgot password?"
 msgstr "Passwort vergessen?"
 
-msgid "Not the operator of this installation? Manage your data in the <a href=\"%s\" class=\"%s\" >User Auditorium.</a>"
-msgstr "Du betreibst diese Installation nicht? Verwalten deine gesammelten Nutzungsdaten im <a href=\"%s\" class=\"%s\" >Auditorium für Nutzerinnen und Nutzer.</a>"
+msgid "This view failed to update automatically, data may be out of date. Check your network connection if the problem persists."
+msgstr "Diese Ansicht konnte nicht automatisch aktualisiert werden, möglicherweise sind die Daten veraltet. Überprüfe deine Netzwerkverbindung, falls das Problem weiterhin auftritt."
 
-msgid "Console | %s"
-msgstr "Konsole | %s"
+msgid "Fetching and aggregating the latest data"
+msgstr "Abrufen und Zusammenstellen der neuesten Daten"
 
-msgid "You can now log in using the provided credentials."
-msgstr "Du kannst dich jetzt mit den bereitgestellten Daten anmelden."
+msgid "Auditorium | %s"
+msgstr "Auditorium | %s"
 
-msgid "Set up your instance by creating your first account."
-msgstr "Richte deine Instanz ein, indem du deinen ersten Account erstellst."
+msgid "Fetching and decrypting the latest data"
+msgstr "Abrufen und Entschlüsseln der aktuellen Daten"
 
-msgid "The account name"
-msgstr "Account Name"
+msgid "Not found..."
+msgstr "Nicht gefunden..."
 
-msgid "Setup instance"
-msgstr "Instanz einrichten"
-
-msgid "There has been an error resetting your password, please try again."
-msgstr "Beim Zurücksetzen deines Passworts ist ein Fehler aufgetreten, bitte versuche es noch einmal."
-
-msgid "Reset password"
-msgstr "Passwort zurücksetzen"
-
-msgid "Reset Password"
-msgstr "Passwort zurücksetzen"
-
-msgid "This instance is already set up."
-msgstr "Diese Instanz ist bereits eingerichtet."
-
-msgid "Preparing setup..."
-msgstr "Einrichtung vorbereiten..."
+msgid "Not Found | %s"
+msgstr "Nicht gefunden... | %s"
 
 msgid "Thanks for your help to make this website better."
 msgstr "Danke für deine Hilfe, diese Webseite zu verbessern."
