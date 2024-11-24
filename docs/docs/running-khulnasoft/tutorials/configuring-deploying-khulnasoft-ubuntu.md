@@ -92,13 +92,13 @@ KhulnaSoft Fair Web Analytics is using a secret to sign login cookies and tokens
 
 ```
 $ khulnasoft secret
-INFO[0000] Created 16 bytes secret                       secret="S2dR9JYYTNG3+5QN+jxiwA=="
+INFO[0000] Created 16 bytes secret                       secret="eYKqqc8curxqRYzgqhAWMQ=="
 ```
 
 Populate the `KHULNASOFT_SECRET` key with the value you just generated:
 
 ```
-KHULNASOFT_SECRET="S2dR9JYYTNG3+5QN+jxiwA==" # do not use this secret in production
+KHULNASOFT_SECRET="eYKqqc8curxqRYzgqhAWMQ==" # do not use this secret in production
 ```
 
 __Heads Up__
@@ -145,7 +145,7 @@ KhulnaSoft Fair Web Analytics will run without these values being set and try to
 Before you start the application, it's a good idea to double check the setup. Your config file at `/etc/khulnasoft/khulnasoft.env` should now contain an entry for each of these values:
 
 ```
-KHULNASOFT_SECRET="uNrZP7r5fY3sfS35tbzR9w==" # do not use this secret in production
+KHULNASOFT_SECRET="eYKqqc8curxqRYzgqhAWMQ==" # do not use this secret in production
 KHULNASOFT_SERVER_AUTOTLS="khulnasoft.mysite.com"
 KHULNASOFT_SMTP_HOST="smtp.mysite.com"
 KHULNASOFT_SMTP_USER="me"

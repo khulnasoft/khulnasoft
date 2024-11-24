@@ -103,7 +103,7 @@ When finished, the command has created an account for you, using the given name 
 Your `khulnasoft.env` file will now look something like this:
 
 ```
-KHULNASOFT_SECRET="uNrZP7r5fY3sfS35tbzR9w==" # do not use this secret in production
+KHULNASOFT_SECRET="eYKqqc8curxqRYzgqhAWMQ==" # do not use this secret in production
 ```
 
 ---
@@ -159,7 +159,7 @@ KhulnaSoft Fair Web Analytics will start without these values being set, but you
 Before you start the application, it's a good idea to double check the setup. Your config file should now contain an entry for each of these values:
 
 ```
-KHULNASOFT_SECRET="uNrZP7r5fY3sfS35tbzR9w==" # do not use this secret in production
+KHULNASOFT_SECRET="eYKqqc8curxqRYzgqhAWMQ==" # do not use this secret in production
 KHULNASOFT_SERVER_AUTOTLS="khulnasoft.mysite.com"
 KHULNASOFT_SMTP_HOST="smtp.mysite.com"
 KHULNASOFT_SMTP_USER="me"

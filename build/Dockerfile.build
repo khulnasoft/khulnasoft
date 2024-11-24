@@ -30,7 +30,7 @@ ARG skip_locales
 ENV SKIP_LOCALES=$skip_locales
 COPY ./script/package.json ./script/package-lock.json /code/deps/
 WORKDIR /code/deps
-RUN npm ci
+RUN npm install
 COPY ./script /code/script
 COPY ./banner.txt /code/banner.txt
 COPY ./locales /code/script/locales
@@ -45,7 +45,7 @@ ARG skip_locales
 ENV SKIP_LOCALES=$skip_locales
 COPY ./vault/package.json ./vault/package-lock.json /code/deps/
 WORKDIR /code/deps
-RUN npm ci
+RUN npm install
 COPY ./vault /code/vault
 COPY ./banner.txt /code/banner.txt
 COPY ./locales /code/vault/locales
@@ -59,7 +59,7 @@ RUN npm run licenses
 FROM khulnasoft_node AS packages
 COPY ./packages/package.json ./packages/package-lock.json /code/deps/
 WORKDIR /code/deps
-RUN npm ci
+RUN npm install
 WORKDIR /code/packages
 RUN cp -a /code/deps/node_modules /code/packages/
 ENV NODE_ENV production
