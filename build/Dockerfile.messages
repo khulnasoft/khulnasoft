@@ -12,7 +12,7 @@ WORKDIR /code/deps
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 ENV ADBLOCK true
 ENV DISABLE_OPENCOLLECTIVE true
-RUN npm install
+RUN npm install && npm ci
 COPY ./auditorium /code/auditorium
 WORKDIR /code/auditorium
 RUN cp -a /code/deps/node_modules /code/auditorium/
@@ -29,7 +29,7 @@ WORKDIR /code/deps
 ENV ADBLOCK true
 ENV DISABLE_OPENCOLLECTIVE true
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-RUN npm install
+RUN npm install && npm ci
 COPY ./script /code/script
 COPY ./banner.txt /code/banner.txt
 COPY ./locales /code/script/locales
@@ -48,7 +48,7 @@ WORKDIR /code/deps
 ENV ADBLOCK true
 ENV DISABLE_OPENCOLLECTIVE true
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-RUN npm install
+RUN npm install && npm ci
 COPY ./vault /code/vault
 COPY ./banner.txt /code/banner.txt
 COPY ./locales /code/vault/locales
@@ -66,7 +66,7 @@ WORKDIR /code/deps
 ENV ADBLOCK true
 ENV DISABLE_OPENCOLLECTIVE true
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-RUN npm install
+RUN npm install && npm ci
 COPY ./packages /code/packages
 COPY ./banner.txt /code/banner.txt
 COPY ./locales /code/packages/locales

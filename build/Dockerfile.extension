@@ -13,7 +13,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 COPY ./extension/package.json ./extension/package-lock.json /code/deps/
 WORKDIR /code/deps
-RUN npm install
+RUN npm install && npm ci
 COPY ./extension /code/extension
 WORKDIR /code/extension
 RUN cp -a /code/deps/node_modules /code/extension/
