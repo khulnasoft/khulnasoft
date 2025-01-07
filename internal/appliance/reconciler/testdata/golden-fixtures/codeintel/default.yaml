@@ -174,7 +174,7 @@ resources:
                 - sh
                 - -c
                 - if [ -d /data/pgdata-12 ]; then chmod 750 /data/pgdata-12; fi
-              image: index.docker.io/sourcegraph/alpine-3.14:5.3.9104
+              image: index.docker.io/khulnasoft/alpine-3.14:5.3.9104
               imagePullPolicy: IfNotPresent
               name: correct-data-dir-permissions
               resources:

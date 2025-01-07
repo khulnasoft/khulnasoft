@@ -1,13 +1,13 @@
 {
-  "private": true,
   "name": "@sourcegraph/testing",
-  "version": "0.0.1",
   "description": "Khulnasoft testing API",
-  "main": "./src/index.ts",
-  "sideEffects": false,
+  "version": "0.0.1",
   "license": "Apache-2.0",
+  "main": "./src/index.ts",
+  "private": true,
   "scripts": {
     "lint:js": "eslint --cache 'src/**/*.[jt]s?(x)'",
     "test": "echo no tests"
-  }
+  },
+  "sideEffects": false
 }

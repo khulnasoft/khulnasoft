@@ -1591,7 +1591,7 @@ All notable changes to Khulnasoft are documented in this file.
 
 - Added documentation for merging site-config files. Available since 3.32 [#21220](https://github.com/khulnasoft/khulnasoft/issues/21220)
 - Added site config variable `cloneProgressLog` to optionally enable logging of clone progress to temporary files for debugging. Disabled by default. [#26568](https://github.com/khulnasoft/khulnasoft/pull/26568)
-- GNU's `wget` has been added to all `sourcegraph/*` Docker images that use `sourcegraph/alpine` as its base [#26823](https://github.com/khulnasoft/khulnasoft/pull/26823)
+- GNU's `wget` has been added to all `sourcegraph/*` Docker images that use `khulnasoft/alpine` as its base [#26823](https://github.com/khulnasoft/khulnasoft/pull/26823)
 - Added the "no results page", a help page shown if a search doesn't return any results [#26154](https://github.com/khulnasoft/khulnasoft/pull/26154)
 - Added monitoring page for Redis databases [#26967](https://github.com/khulnasoft/khulnasoft/issues/26967)
 - The search indexer only polls repositories that have been marked as changed. This reduces a large source of load in installations with a large number of repositories. If you notice index staleness, you can try disabling by setting the environment variable `SRC_SEARCH_INDEXER_EFFICIENT_POLLING_DISABLED` on `sourcegraph-frontend`. [#27058](https://github.com/khulnasoft/khulnasoft/issues/27058)

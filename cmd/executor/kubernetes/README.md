@@ -60,7 +60,7 @@ IMAGE=executor-kubernetes ../../executor-kubernetes/build.sh
 If you are running Server Side Batch Changes, you will need to build the batches helper image.
 
 ```bash
-IMAGE=sourcegraph/batcheshelper:insiders ../../batcheshelper/build.sh
+IMAGE=khulnasoft/batcheshelper:insiders ../../batcheshelper/build.sh
 ```
 
 ## Secrets

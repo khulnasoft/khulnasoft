@@ -153,7 +153,7 @@ resources:
                 - sh
                 - -c
                 - if [ -d /var/lib/postgresql/data/pgdata ]; then chmod 750 /var/lib/postgresql/data/pgdata; fi
-              image: index.docker.io/sourcegraph/alpine-3.14:5.3.9104
+              image: index.docker.io/khulnasoft/alpine-3.14:5.3.9104
               imagePullPolicy: IfNotPresent
               name: correct-data-dir-permissions
               resources:

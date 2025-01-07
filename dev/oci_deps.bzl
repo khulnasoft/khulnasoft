@@ -28,7 +28,7 @@ def oci_deps():
     oci_pull(
         name = "legacy_alpine-3.14_base",
         digest = "sha256:581afabd476b4918b14295ae6dd184f4a3783c64bab8bde9ad7b11ea984498a8",
-        image = "index.docker.io/sourcegraph/alpine-3.14",
+        image = "index.docker.io/khulnasoft/alpine-3.14",
     )
 
     # https://hub.docker.com/_/docker/tags?name=dind

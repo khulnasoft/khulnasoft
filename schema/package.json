@@ -1,6 +1,6 @@
 {
-  "private": true,
   "name": "@khulnasoft/schema",
+  "description": "Schema files",
   "version": "0.0.1",
-  "description": "Schema files"
+  "private": true
 }

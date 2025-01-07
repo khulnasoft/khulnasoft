@@ -1,18 +1,18 @@
 {
-  "private": true,
   "name": "@sourcegraph/observability-server",
-  "version": "0.0.1",
   "description": "Khulnasoft server observability tools",
-  "main": "./src/index.ts",
-  "sideEffects": false,
+  "version": "0.0.1",
+  "devDependencies": {
+    "@sourcegraph/build-config": "0.0.1"
+  },
   "license": "Apache-2.0",
+  "main": "./src/index.ts",
+  "private": true,
   "scripts": {
     "bundlesize:web:upload": "NODE_ENV=production ts-node-transpile-only ./src/webBundleSize",
     "honeycomb:clone-boards": "ts-node-transpile-only ./src/honeycomb/clone-boards.ts",
     "lint:js": "eslint --cache 'src/**/*.[jt]s?(x)'",
     "test": "vitest"
   },
-  "devDependencies": {
-    "@sourcegraph/build-config": "workspace:*"
-  }
+  "sideEffects": false
 }

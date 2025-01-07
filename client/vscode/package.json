@@ -1,32 +1,15 @@
 {
-  "private": true,
   "name": "@sourcegraph/vscode",
-  "displayName": "Search by Khulnasoft",
-  "version": "2.2.17",
   "description": "Search all of your repositories across all branches and all code hosts",
-  "publisher": "sourcegraph",
-  "sideEffects": true,
-  "license": "Apache-2.0",
-  "icon": "images/logo.png",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/khulnasoft/khulnasoft.git",
-    "directory": "client/vscode"
-  },
-  "bugs": {
-    "url": "https://github.com/khulnasoft/khulnasoft/issues/new?labels=team/integrations,vscode-extension&title=VSCode+Bug+report:+&projects=Integrations%20Project%20Board"
-  },
-  "engines": {
-    "vscode": "^1.63.2"
-  },
-  "categories": [
-    "Other"
-  ],
+  "version": "2.2.17",
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./dist/node/extension.js",
   "browser": "./dist/webworker/extension.js",
+  "bugs": "https://github.com/khulnasoft/khulnasoft/issues/new?labels=team/integrations,vscode-extension&title=VSCode+Bug+report:+&projects=Integrations%20Project%20Board",
+  "categories": [
+    "Other"
+  ],
   "contributes": {
     "commands": [
       {
@@ -245,34 +228,49 @@
       ]
     }
   },
+  "dependencies": {
+    "@sourcegraph/branded": "1.0.0",
+    "@sourcegraph/client-api": "0.0.1",
+    "@sourcegraph/codeintellify": "0.0.1",
+    "@sourcegraph/common": "0.0.1",
+    "@sourcegraph/http-client": "0.0.1",
+    "@sourcegraph/shared": "1.0.0",
+    "@sourcegraph/wildcard": "0.0.1"
+  },
+  "devDependencies": {
+    "@sourcegraph/build-config": "0.0.1",
+    "@sourcegraph/extension-api-types": "2.1.0",
+    "vsce": "^2.7.0"
+  },
+  "displayName": "Search by Khulnasoft",
+  "engines": {
+    "vscode": "^1.63.2"
+  },
+  "icon": "images/logo.png",
+  "license": "Apache-2.0",
+  "main": "./dist/node/extension.js",
+  "private": true,
+  "publisher": "sourcegraph",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khulnasoft/khulnasoft.git",
+    "directory": "client/vscode"
+  },
   "scripts": {
+    "build": "pnpm run prebuild && NODE_ENV=development ts-node-transpile-only scripts/build.ts",
+    "build-inline-extensions": "node scripts/build-inline-extensions",
+    "build:test": "IS_TEST=1 pnpm run build",
     "lint:js": "eslint --cache '**/*.[jt]s?(x)'",
     "package": "ts-node ./scripts/package.ts",
     "prebuild": "pnpm -w run generate && pnpm build-inline-extensions",
-    "build-inline-extensions": "node scripts/build-inline-extensions",
-    "build": "pnpm run prebuild && NODE_ENV=development ts-node-transpile-only scripts/build.ts",
-    "build:test": "IS_TEST=1 pnpm run build",
-    "watch": "WATCH=1 pnpm run build",
-    "watch:test": "IS_TEST=1 pnpm run watch",
-    "test-integration": "TS_NODE_PROJECT=tests/tsconfig.json mocha --parallel=${CI:-\"false\"} --retries=2 ./tests/**/*.test.ts",
     "release": "ts-node ./scripts/publish.ts",
     "release:major": "VSCE_RELEASE_TYPE=major ts-node ./scripts/release.ts",
     "release:minor": "VSCE_RELEASE_TYPE=minor ts-node ./scripts/release.ts",
     "release:patch": "VSCE_RELEASE_TYPE=patch ts-node ./scripts/release.ts",
-    "release:pre": "VSCE_RELEASE_TYPE=prerelease ts-node ./scripts/release.ts"
+    "release:pre": "VSCE_RELEASE_TYPE=prerelease ts-node ./scripts/release.ts",
+    "test-integration": "TS_NODE_PROJECT=tests/tsconfig.json mocha --parallel=${CI:-\"false\"} --retries=2 ./tests/**/*.test.ts",
+    "watch": "WATCH=1 pnpm run build",
+    "watch:test": "IS_TEST=1 pnpm run watch"
   },
-  "devDependencies": {
-    "vsce": "^2.7.0",
-    "@sourcegraph/build-config": "workspace:*",
-    "@sourcegraph/extension-api-types": "workspace:*"
-  },
-  "dependencies": {
-    "@sourcegraph/branded": "workspace:*",
-    "@sourcegraph/client-api": "workspace:*",
-    "@sourcegraph/codeintellify": "workspace:*",
-    "@sourcegraph/common": "workspace:*",
-    "@sourcegraph/http-client": "workspace:*",
-    "@sourcegraph/shared": "workspace:*",
-    "@sourcegraph/wildcard": "workspace:*"
-  }
+  "sideEffects": true
 }

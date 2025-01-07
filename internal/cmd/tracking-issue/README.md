@@ -20,7 +20,7 @@ Usage of ./tracking-issue:
 
 The `tracking-issue` tool is deployed with [this GitHub action](../../../.github/workflows/tracking-issue.yml).
 
-In order to deploy a new version, first run `docker build -t sourcegraph/tracking-issue .` and then `docker push sourcegraph/tracking-issue`.
+In order to deploy a new version, first run `docker build -t khulnasoft/tracking-issue .` and then `docker push khulnasoft/tracking-issue`.
 
 ## Testing
 

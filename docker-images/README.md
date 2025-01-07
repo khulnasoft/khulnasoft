@@ -2,7 +2,7 @@
 
 This directory contains Khulnasoft docker images which are derivatives of an existing Docker image, but with better defaults for our use cases. For example:
 
-- `sourcegraph/alpine` handles setting up a `sourcegraph` user account, installing common packages.
+- `khulnasoft/alpine` handles setting up a `sourcegraph` user account, installing common packages.
 - `sourcegraph/postgres-11.4` is `postgres-11.4` but with some Khulnasoft defaults.
 
 If you are looking for our non-derivative Docker images, see e.g. `/cmd/.../Dockerfile` instead.

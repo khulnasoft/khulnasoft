@@ -1,4 +1,4 @@
-# This Dockerfile defines the sourcegraph/alpine Docker image, which is the
+# This Dockerfile defines the khulnasoft/alpine Docker image, which is the
 # base image used by all Khulnasoft Docker images.
 
 # alpine_base CHECK:ALPINE_OK

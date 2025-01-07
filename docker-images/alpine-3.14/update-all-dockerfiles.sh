@@ -8,7 +8,7 @@
 # $ ./update-all-dockerfiles.sh <old image> <new image> <tag>
 #
 # Example:
-# $ ./update-all-dockerfiles.sh sourcegraph/alpine-1.12 sourcegraph/alpine-1.14 117627_2021-11-24_7ab43a9
+# $ ./update-all-dockerfiles.sh khulnasoft/alpine-1.12 khulnasoft/alpine-1.14 117627_2021-11-24_7ab43a9
 
 OLD_IMAGE=$1
 NEW_IMAGE=$2

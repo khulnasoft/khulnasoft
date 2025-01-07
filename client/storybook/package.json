@@ -1,24 +1,24 @@
 {
-  "private": true,
   "name": "@sourcegraph/storybook",
-  "version": "0.0.1",
   "description": "Khulnasoft Storybook configuration",
-  "sideEffects": false,
-  "license": "Apache-2.0",
-  "main": "./src/index.ts",
-  "scripts": {
-    "lint:js": "eslint --cache 'src/**/*.[jt]s?(x)'",
-    "start": "TS_NODE_TRANSPILE_ONLY=true sb dev -p 9001 -c ./src",
-    "build": "TS_NODE_TRANSPILE_ONLY=true sb build -c ./src",
-    "test": "echo no tests"
-  },
+  "version": "0.0.1",
   "dependencies": {
-    "@sourcegraph/wildcard": "workspace:*",
-    "@sourcegraph/common": "workspace:*",
-    "@sourcegraph/http-client": "workspace:*",
-    "@sourcegraph/shared": "workspace:*"
+    "@sourcegraph/common": "0.0.1",
+    "@sourcegraph/http-client": "0.0.1",
+    "@sourcegraph/shared": "1.0.0",
+    "@sourcegraph/wildcard": "0.0.1"
   },
   "devDependencies": {
-    "@sourcegraph/build-config": "workspace:*"
-  }
+    "@sourcegraph/build-config": "0.0.1"
+  },
+  "license": "Apache-2.0",
+  "main": "./src/index.ts",
+  "private": true,
+  "scripts": {
+    "build": "TS_NODE_TRANSPILE_ONLY=true sb build -c ./src",
+    "lint:js": "eslint --cache 'src/**/*.[jt]s?(x)'",
+    "start": "TS_NODE_TRANSPILE_ONLY=true sb dev -p 9001 -c ./src",
+    "test": "echo no tests"
+  },
+  "sideEffects": false
 }

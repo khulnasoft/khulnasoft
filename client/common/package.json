@@ -1,16 +1,16 @@
 {
-  "private": true,
   "name": "@sourcegraph/common",
-  "version": "0.0.1",
   "description": "Khulnasoft common utilities",
-  "main": "./src/index.ts",
-  "sideEffects": false,
+  "version": "0.0.1",
+  "devDependencies": {
+    "@sourcegraph/extension-api-types": "2.1.0"
+  },
   "license": "Apache-2.0",
+  "main": "./src/index.ts",
+  "private": true,
   "scripts": {
     "lint:js": "eslint --cache 'src/**/*.[jt]s?(x)'",
     "test": "vitest"
   },
-  "devDependencies": {
-    "@sourcegraph/extension-api-types": "workspace:*"
-  }
+  "sideEffects": false
 }

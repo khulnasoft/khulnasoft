@@ -1,33 +1,33 @@
 {
-  "private": true,
   "name": "@sourcegraph/shared",
   "version": "1.0.0",
-  "license": "Apache-2.0",
-  "scripts": {
-    "storybook": "STORIES_GLOB='client/shared/src/**/*.story.tsx' pnpm --filter @sourcegraph/storybook run start",
-    "lint:js": "eslint --cache '**/*.[jt]s?(x)'",
-    "lint:css": "stylelint 'src/**/*.scss' --quiet",
-    "test": "vitest",
-    "build-ts": "tsc --build tsconfig.json --emitDeclarationOnly",
-    "generate": "concurrently -r npm:generate:*",
-    "generate:graphql-operations": "ts-node -T dev/generateGraphQlOperations.ts",
-    "generate:schema": "ts-node -T dev/generateSchema.ts json-schema-draft-07 settings site batch_spec opencodegraph",
-    "generate:css-modules-types": "ts-node -T dev/generateCssModulesTypes.ts"
+  "dependencies": {
+    "@sourcegraph/client-api": "0.0.1",
+    "@sourcegraph/codeintellify": "0.0.1",
+    "@sourcegraph/common": "0.0.1",
+    "@sourcegraph/http-client": "0.0.1",
+    "@sourcegraph/telemetry": "^0.16.0",
+    "@sourcegraph/template-parser": "0.0.1",
+    "@sourcegraph/wildcard": "0.0.1"
   },
   "devDependencies": {
-    "@sourcegraph/build-config": "workspace:*",
-    "@sourcegraph/extension-api-types": "workspace:*",
-    "@sourcegraph/testing": "workspace:*",
-    "sourcegraph": "workspace:*"
+    "@sourcegraph/build-config": "0.0.1",
+    "@sourcegraph/extension-api-types": "2.1.0",
+    "@sourcegraph/testing": "0.0.1",
+    "sourcegraph": "25.7.0"
   },
-  "dependencies": {
-    "@sourcegraph/client-api": "workspace:*",
-    "@sourcegraph/codeintellify": "workspace:*",
-    "@sourcegraph/common": "workspace:*",
-    "@sourcegraph/http-client": "workspace:*",
-    "@sourcegraph/telemetry": "^0.16.0",
-    "@sourcegraph/template-parser": "workspace:*",
-    "@sourcegraph/wildcard": "workspace:*"
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "build-ts": "tsc --build tsconfig.json --emitDeclarationOnly",
+    "generate": "concurrently -r npm:generate:*",
+    "generate:css-modules-types": "ts-node -T dev/generateCssModulesTypes.ts",
+    "generate:graphql-operations": "ts-node -T dev/generateGraphQlOperations.ts",
+    "generate:schema": "ts-node -T dev/generateSchema.ts json-schema-draft-07 settings site batch_spec opencodegraph",
+    "lint:css": "stylelint 'src/**/*.scss' --quiet",
+    "lint:js": "eslint --cache '**/*.[jt]s?(x)'",
+    "storybook": "STORIES_GLOB='client/shared/src/**/*.story.tsx' pnpm --filter @sourcegraph/storybook run start",
+    "test": "vitest"
   },
   "sideEffects": true
 }

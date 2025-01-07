@@ -1,32 +1,30 @@
 {
   "name": "sourcegraph",
-  "version": "25.7.0",
-  "license": "Apache-2.0",
   "description": "Khulnasoft extension API: build extensions that enhance reading and reviewing code in your existing tools",
+  "version": "25.7.0",
   "author": "Khulnasoft",
-  "bugs": {
-    "url": "https://github.com/khulnasoft/khulnasoft/issues"
+  "bugs": "https://github.com/khulnasoft/khulnasoft/issues",
+  "devDependencies": {
+    "typedoc": "0.27.6"
+  },
+  "files": [
+    "src",
+    "dist/docs"
+  ],
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "graphql": "^15.4.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/khulnasoft/khulnasoft",
     "directory": "client/extension-api"
   },
-  "types": "src/sourcegraph.d.ts",
-  "files": [
-    "src",
-    "dist/docs"
-  ],
-  "sideEffects": false,
   "scripts": {
-    "lint:js": "pnpm eslint 'src/*.[jt]s?(x)'",
     "docs": "pnpm typedoc",
+    "lint:js": "pnpm eslint 'src/*.[jt]s?(x)'",
     "prepublish": "pnpm eslint && pnpm run docs"
   },
-  "devDependencies": {
-    "typedoc": "^0.17.8"
-  },
-  "peerDependencies": {
-    "graphql": "^15.4.0"
-  }
+  "sideEffects": false,
+  "types": "src/sourcegraph.d.ts"
 }

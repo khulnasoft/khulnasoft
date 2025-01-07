@@ -15,7 +15,7 @@ if [ ! -e "${DISK}" ]; then
   mkdir -p "${DISK}"
 fi
 
-IMAGE=sourcegraph/codeinsights-db:dev
+IMAGE=khulnasoft/codeinsights-db:dev
 CONTAINER=codeinsights-db
 PORT=5435
 
