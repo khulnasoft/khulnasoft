@@ -7,13 +7,10 @@ go 1.22.4
 // These entries indicate permanent replace directives due to significant changes from upstream
 // or intentional forks.
 replace (
+	github.com/khulnasoft/khulnasoft => ./
 	// We publish 'dev/ci/images' as a package for import in other tooling.
 	// When developing Khulnasoft itself, this replace uses the local package instead of a pushed version.
 	github.com/khulnasoft/khulnasoft/dev/ci/images => ./dev/ci/images
-	// We use a fork of Alertmanager to allow prom-wrapper to better manipulate Alertmanager configuration.
-	// See https://docs-legacy.khulnasoft.com/dev/background-information/observability/prometheus
-	github.com/prometheus/alertmanager => github.com/sourcegraph/alertmanager v0.24.1-0.20240619011019-3695ef8bcc9a
-	github.com/khulnasoft/khulnasoft => ./
 	// We publish 'lib' as a package for import in other tooling.
 	// When developing Khulnasoft itself, this replace uses the local package instead of a pushed version.
 	github.com/khulnasoft/khulnasoft/lib => ./lib
@@ -25,6 +22,9 @@ replace (
 	// We publish 'monitoring' as a package for import in other tooling.
 	// When developing Khulnasoft itself, this replace uses the local package instead of a pushed version.
 	github.com/khulnasoft/khulnasoft/monitoring => ./monitoring
+	// We use a fork of Alertmanager to allow prom-wrapper to better manipulate Alertmanager configuration.
+	// See https://docs-legacy.khulnasoft.com/dev/background-information/observability/prometheus
+	github.com/prometheus/alertmanager => github.com/sourcegraph/alertmanager v0.24.1-0.20240619011019-3695ef8bcc9a
 
 	// https://github.com/khulnasoft/khulnasoft/security/dependabot/397 archived but has a vulnerability
 	gopkg.in/square/go-jose.v2 v2.6.0 => gopkg.in/go-jose/go-jose.v2 v2.6.3
@@ -295,6 +295,9 @@ require (
 	github.com/jackc/pgerrcode v0.0.0-20220416144525-469b46aa5efa
 	github.com/jackc/pgx/v5 v5.5.5
 	github.com/jomei/notionapi v1.13.0
+	github.com/khulnasoft/khulnasoft/lib v0.0.0-20240524140455-2589fef13ea8
+	github.com/khulnasoft/khulnasoft/lib/managedservicesplatform v0.0.0-00010101000000-000000000000
+	github.com/khulnasoft/khulnasoft/monitoring v0.0.0-00010101000000-000000000000
 	github.com/life4/genesis v1.10.3
 	github.com/maxbrunsfeld/counterfeiter/v6 v6.8.1
 	github.com/mitchellh/hashstructure/v2 v2.0.2
@@ -321,11 +324,7 @@ require (
 	github.com/sourcegraph/managed-services-platform-cdktf/gen/tfe v0.0.0-20240513203650-e2b1273f1c1a
 	github.com/sourcegraph/notionreposync v0.0.0-20240517090426-98b2d4b017d7
 	github.com/sourcegraph/scip v0.4.1-0.20240802084008-0504a347d36d
-	github.com/khulnasoft/khulnasoft v0.0.0-00010101000000-000000000000
 	github.com/sourcegraph/sourcegraph-accounts-sdk-go v0.0.0-20240702160611-15589d6d8eac
-	github.com/khulnasoft/khulnasoft/lib v0.0.0-20240524140455-2589fef13ea8
-	github.com/khulnasoft/khulnasoft/lib/managedservicesplatform v0.0.0-00010101000000-000000000000
-	github.com/khulnasoft/khulnasoft/monitoring v0.0.0-00010101000000-000000000000
 	github.com/tmaxmax/go-sse v0.8.0
 	github.com/vektah/gqlparser/v2 v2.4.5
 	github.com/vvakame/gcplogurl v0.2.0

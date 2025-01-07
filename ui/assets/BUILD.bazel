@@ -7,7 +7,7 @@ go_library(
         "doc.go",
         "manifest.go",
     ],
-    importpath = "github.com/sourcegraph/sourcegraph/ui/assets",
+    importpath = "github.com/khulnasoft/khulnasoft/ui/assets",
     visibility = ["//visibility:public"],
     deps = ["//lib/errors"],
 )
