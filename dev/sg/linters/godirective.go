@@ -1,0 +1,30 @@
+package linters
+
+import (
+	"context"
+	"strings"
+
+	"github.com/grafana/regexp"
+
+	"github.com/khulnasoft/khulnasoft/dev/sg/internal/repo"
+	"github.com/khulnasoft/khulnasoft/dev/sg/internal/std"
+	"github.com/khulnasoft/khulnasoft/lib/errors"
+)
+
+func lintGoDirectives() *linter {
+	return runCheck("Lint Go directives", func(ctx context.Context, out *std.Output, state *repo.State) error {
+		directivesRegexp := regexp.MustCompile("^// go:[a-z]+")
+
+		diff, err := state.GetDiff("**/*.go")
+		if err != nil {
+			return err
+		}
+
+		return diff.IterateHunks(func(file string, hunk repo.DiffHunk) error {
+			if directivesRegexp.MatchString(strings.Join(hunk.AddedLines, "\n")) {
+				return errors.New("Go compiler directives must have no spaces between the // and 'go'")
+			}
+			return nil
+		})
+	})
+}

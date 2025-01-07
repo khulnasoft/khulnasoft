@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "terraform",
+    srcs = ["terraform.go"],
+    importpath = "github.com/khulnasoft/khulnasoft/dev/managedservicesplatform/internal/terraform",
+    tags = [TAG_INFRA_CORESERVICES],
+    visibility = ["//dev/managedservicesplatform:__subpackages__"],
+)

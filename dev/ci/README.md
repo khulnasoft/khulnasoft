@@ -1,0 +1,4 @@
+# Buildkite Pipeline for khulnasoft/khulnasoft
+
+We dynamically generate our CI pipeline for [Buildkite](https://buildkite.com/khulnasoft/khulnasoft) based on the output of [gen-pipeline.go](./gen-pipeline.go).
+To learn more, refer to the [continuous integration docs](https://docs-legacy.sourcegraph.com/dev/background-information/ci).
