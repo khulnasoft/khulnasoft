@@ -88,7 +88,7 @@ func NewJob() *telemetryGatewayExporter {
 }
 
 func (t *telemetryGatewayExporter) Description() string {
-	return "A background routine that exports telemetry events to Sourcegraph's Telemetry Gateway"
+	return "A background routine that exports telemetry events to Khulnasoft's Telemetry Gateway"
 }
 
 func (t *telemetryGatewayExporter) Config() []env.Config {

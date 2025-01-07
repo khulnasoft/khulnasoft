@@ -1,10 +1,10 @@
 # Continuous integration development
 
-This document covers information about contributing to [Sourcegraph's continuous integration tools](./index.md).
+This document covers information about contributing to [Khulnasoft's continuous integration tools](./index.md).
 
 ## Pipeline generator
 
-The source code of [Sourcegraph's Buildkite pipelines](./index.md#buildkite-pipelines) generator is in [`/dev/ci`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/tree/dev/ci).
+The source code of [Khulnasoft's Buildkite pipelines](./index.md#buildkite-pipelines) generator is in [`/dev/ci`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/tree/dev/ci).
 Internally, the pipeline generator determines what gets run over contributions based on:
 
 1. [Run types](#run-types), determined by branch naming conventions, tags, and environment variables
@@ -19,7 +19,7 @@ If you are looking to modify the pipeline, some good rules of thumbs for which c
 - Adding an entirely new pipeline type for the `sourcegraph/sourcegraph` repository? Take a look at how [run types](#run-types) are implemented.
 - Does your check or test need a secret? Take a look at [how to manage secrets](#managing-secrets).
 
-> WARNING: Sourcegraph's pipeline generator and its generated output are under the [Sourcegraph Enterprise license](https://github.com/khulnasoft/khulnasoft/blob/main/LICENSE.enterprise).
+> WARNING: Khulnasoft's pipeline generator and its generated output are under the [Sourcegraph Enterprise license](https://github.com/khulnasoft/khulnasoft/blob/main/LICENSE.enterprise).
 
 ### Run types
 

@@ -10,7 +10,7 @@ This approach offers a great deal of flexibility.
 
 ## Configuration
 
-Sourcegraph's OpenTelemetry Collector is deployed with a [custom image, `sourcegraph/opentelemetry-collector`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/docker-images/opentelemetry-collector), and is configured with a configuration YAML file.
+Khulnasoft's OpenTelemetry Collector is deployed with a [custom image, `sourcegraph/opentelemetry-collector`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/docker-images/opentelemetry-collector), and is configured with a configuration YAML file.
 By default, `sourcegraph/opentelemetry-collector` is configured to not do anything with the data it receives, but [exporters to various backends](#exporters) can be configured for each signal we currently support—**currently, only [traces data](#tracing) is supported**.
 
 Refer to the [documentation](https://opentelemetry.io/docs/collector/configuration/) for an in-depth explanation of the parts that compose a full collector pipeline.

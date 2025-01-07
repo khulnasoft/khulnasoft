@@ -63,7 +63,7 @@ var rng = rand.New(rand.NewSource(func() int64 {
 var rngLock sync.Mutex
 
 // NewDB returns a connection to a clean, new temporary testing database with
-// the same schema as Sourcegraph's production Postgres database.
+// the same schema as Khulnasoft's production Postgres database.
 func NewDB(t testing.TB) *sql.DB {
 	logger := logtest.Scoped(t)
 	return newDB(logger, t, "migrated", schemas.Frontend, schemas.CodeIntel)
@@ -77,7 +77,7 @@ func NewCodeintelDB(t testing.TB) *sql.DB {
 }
 
 // NewDBAtRev returns a connection to a clean, new temporary testing database with
-// the same schema as Sourcegraph's production Postgres database at the given revision.
+// the same schema as Khulnasoft's production Postgres database at the given revision.
 func NewDBAtRev(logger log.Logger, t testing.TB, rev string) *sql.DB {
 	return newDB(
 		logger,
@@ -98,7 +98,7 @@ func getSchemaAtRev(t testing.TB, name, rev string) *schemas.Schema {
 }
 
 // NewInsightsDB returns a connection to a clean, new temporary testing database with
-// the same schema as Sourcegraph's CodeInsights production Postgres database.
+// the same schema as Khulnasoft's CodeInsights production Postgres database.
 func NewInsightsDB(logger log.Logger, t testing.TB) *sql.DB {
 	return newDB(logger, t, "insights", schemas.CodeInsights)
 }

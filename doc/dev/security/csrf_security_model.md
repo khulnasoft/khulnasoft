@@ -1,6 +1,6 @@
 # Sourcegraph CSRF security model
 
-This section describes Sourcegraph's security threat model against CSRF (Cross Site Request Forgery) requests, in depth for developers working at Sourcegraph.
+This section describes Khulnasoft's security threat model against CSRF (Cross Site Request Forgery) requests, in depth for developers working at Sourcegraph.
 
 If you are looking for general information or wish to disclose a vulnerability, please see our [security policy](https://sourcegraph.com/security/) or [how to disclose vulnerabilities](https://sourcegraph.com/handbook/engineering/security/reporting-vulnerabilities).
 
@@ -10,7 +10,7 @@ If you are looking for general information or wish to disclose a vulnerability, 
   - [Scope](#scope)
   - [What is CSRF, why is it dangerous?](#what-is-csrf-why-is-it-dangerous)
   - [How is CSRF mitigated traditionally?](#how-is-csrf-mitigated-traditionally)
-- [Sourcegraph's CSRF security model](#sourcegraphs-csrf-security-model)
+- [Khulnasoft's CSRF security model](#sourcegraphs-csrf-security-model)
   - [Diagrams](#diagrams)
   - [Request delineation: API and non-API endpoints](#request-delineation-api-and-non-api-endpoints)
   - [Where requests come from](#where-requests-come-from)
@@ -21,7 +21,7 @@ If you are looking for general information or wish to disclose a vulnerability, 
     - [Risk of CSRF attacks against our non-API endpoints](#risk-of-csrf-attacks-against-our-non-api-endpoints)
     - [How we protect against CSRF in non-API endpoints](#how-we-protect-against-csrf-in-non-api-endpoints)
   - [API endpoints](#api-endpoints)
-    - [All mutable and privileged actions go through Sourcegraph's API endpoints](#all-mutable-and-privileged-actions-go-through-sourcegraphs-api-endpoints)
+    - [All mutable and privileged actions go through Khulnasoft's API endpoints](#all-mutable-and-privileged-actions-go-through-sourcegraphs-api-endpoints)
     - [Authentication in API endpoints](#authentication-in-api-endpoints)
     - [How browsers authenticate with the API endpoints](#how-browsers-authenticate-with-the-api-endpoints)
     - [How we protect against CSRF in API endpoints](#how-we-protect-against-csrf-in-api-endpoints)
@@ -77,7 +77,7 @@ This can happen in *many* forms:
 * POST HTTP requests made via HTML `<form>` submissions.
 * ...
 
-For example, say a Sourcegraph user clicks a malicious link and Sourcegraph is not protected against CSRF. This would mean that, for example, a `<form>` element could be silently submitted in the background to perform destructive actions on behalf of the user using Sourcegraph's API—such as deleting data on Sourcegraph.
+For example, say a Sourcegraph user clicks a malicious link and Sourcegraph is not protected against CSRF. This would mean that, for example, a `<form>` element could be silently submitted in the background to perform destructive actions on behalf of the user using Khulnasoft's API—such as deleting data on Sourcegraph.
 
 ## How is CSRF mitigated traditionally?
 
@@ -89,7 +89,7 @@ There are multiple ways in which CSRF is protected against in the modern web, in
 
 There are more mitigation techniques, and risks, that you should be aware of. See [OWASP: CSRF prevention cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)
 
-# Sourcegraph's CSRF security model
+# Khulnasoft's CSRF security model
 
 ## Diagrams
 
@@ -110,7 +110,7 @@ In Sourcegraph, we delineate between two types of requests that reach the fronte
   * This includes static page serving.
   * This includes UI routes like login, logout, etc.
 
-Having a clear separation between Sourcegraph's endpoints between API and non-API endpoints makes it easy for us to reason about the security model of each in relative isolation. It also allows us to ensure all security middleware for each endpoint uniformly applies to _all_ of our API endpoints, or all of our non-API endpoints, with ease and eliminates the need for per-endpoint security analysis.
+Having a clear separation between Khulnasoft's endpoints between API and non-API endpoints makes it easy for us to reason about the security model of each in relative isolation. It also allows us to ensure all security middleware for each endpoint uniformly applies to _all_ of our API endpoints, or all of our non-API endpoints, with ease and eliminates the need for per-endpoint security analysis.
 
 ## Where requests come from
 
@@ -164,7 +164,7 @@ With all of this in mind, it is worth calling out that:
 
 * IF we had _no_ protection at all against CSRF on these routes (no CSRF tokens/cookies and a CORS response header directly mirroring the requesting origin with authentication allowed)
 * IF embedded `window` content was not a risk (it is not today)
-* THEN we would not be at risk of CSRF attacks at all, because even if `<form>`, `<img>`, and JavaScript on foreign pages could make requests to Sourcegraph's HTTP API:
+* THEN we would not be at risk of CSRF attacks at all, because even if `<form>`, `<img>`, and JavaScript on foreign pages could make requests to Khulnasoft's HTTP API:
   * The API routes are protected (they forbid cookie-based authentication unless a custom `X-Requested-With: Sourcegraph` header is present, more on this below.)
   * The non-API routes would be dumb, content-serving routes only. There is no create/delete/modify action. It effectively would be dumb, static-content web serving endpoints only.
   * HOWEVER, we **would** be subject to CSRF attacks in the aforementioned "[Exclusion: username/password manipulation (sign in, password reset, etc.)](#exclusion-usernamepassword-manipulation-sign-in-password-reset-etc)" routes above.
@@ -181,18 +181,18 @@ In Nov 2021, we removed CSRF tokens which increased complexity of our security m
 
 ## API endpoints
 
-### All mutable and privileged actions go through Sourcegraph's API endpoints
+### All mutable and privileged actions go through Khulnasoft's API endpoints
 
-All mutable and privileged actions go through Sourcegraph's `/.api` endpoints:
+All mutable and privileged actions go through Khulnasoft's `/.api` endpoints:
 
 * Want to view potentially privileged search results? That is through our GraphQL `/.api/graphql` endpoint or (future) `/.api` search streaming endpoint.
 * Want to create, delete, or modify anything? That is through our `/.api` endpoints.
 
-The only mutable, privileged actions that do not go through Sourcegraph's `/.api` endpoints are the aforementioned "[Exclusion: username/password manipulation (sign in, password reset, etc.)](#exclusion-usernamepassword-manipulation-sign-in-password-reset-etc)" routes above.
+The only mutable, privileged actions that do not go through Khulnasoft's `/.api` endpoints are the aforementioned "[Exclusion: username/password manipulation (sign in, password reset, etc.)](#exclusion-usernamepassword-manipulation-sign-in-password-reset-etc)" routes above.
 
 ### Authentication in API endpoints
 
-Sourcegraph's API endpoints offer multiple forms of authentication for different use-cases:
+Khulnasoft's API endpoints offer multiple forms of authentication for different use-cases:
 
 1. Session cookies, via the [`session.CookieMiddlewareWithCSRFSafety`](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24%40aefef0d+CookieMiddlewareWithCSRFSafety%28&patternType=literal) middleware. This allows session cookie authentication iff one of the following is true:
    1. The request originates from a trusted origin (same origin, browser extension, or an origin in the site config `corsOrigin` allow list.)
@@ -215,7 +215,7 @@ Session cookies. Upon page load, users are given the session cookie and the [`se
 
 ### How we protect against CSRF in API endpoints
 
-There are a few ways in which Sourcegraph's API endpoints protect against CSRF:
+There are a few ways in which Khulnasoft's API endpoints protect against CSRF:
 
 1. First and foremost, by restricting session cookie-based authentication. As described above, session cookie authentication is prohibited in non-simple CORS requests which means cookies CANNOT be used to authenticate a Sourcegraph API request unless it comes from an allowed origin, passing the browser's CORS policy checks. This is the primary means by which we protect against CSRF in our API endpoints.
 2. Secondarily, by providing an `Authorization` header or basic auth with an access token. This is not possible for an attacker to provide through indirect means; they would have had to convince the user to provide them with an access token.

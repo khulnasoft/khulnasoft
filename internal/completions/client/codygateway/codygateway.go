@@ -23,7 +23,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-// NewClient instantiates a completions provider backed by Sourcegraph's managed
+// NewClient instantiates a completions provider backed by Khulnasoft's managed
 // Cody Gateway service.
 func NewClient(cli httpcli.Doer, endpoint, accessToken string, tokenManager tokenusage.Manager) (types.CompletionsClient, error) {
 	gatewayURL, err := url.Parse(endpoint)

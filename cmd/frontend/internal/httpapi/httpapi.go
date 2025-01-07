@@ -338,7 +338,7 @@ const (
 	gitUploadPack = "internal.git.upload-pack"
 )
 
-// RegisterInternalServices registers REST and gRPC handlers for Sourcegraph's internal API on the
+// RegisterInternalServices registers REST and gRPC handlers for Khulnasoft's internal API on the
 // provided mux.Router and gRPC server.
 //
 // 🚨 SECURITY: This handler should not be served on a publicly exposed port. 🚨

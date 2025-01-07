@@ -83,7 +83,7 @@ sshuttle -r user@host 0/0
 
 Grafana will be available at http://host:3370/-/debug/grafana.
 
-> WARNING: Our Grafana instance runs in anonymous mode with all authentication turned off, since we rely on Sourcegraph's built-in authentication.
+> WARNING: Our Grafana instance runs in anonymous mode with all authentication turned off, since we rely on Khulnasoft's built-in authentication.
 > Please be careful when exposing it directly to external traffic.
 
 ## Prometheus
@@ -96,7 +96,7 @@ For most use cases, you can query Prometheus through [Grafana](#grafana) using G
 
 #### High-level alerting metrics
 
-Sourcegraph's metrics include a single high-level metric `alert_count` which indicates the number of `level=critical` and `level=warning` alerts each service has fired over time for each Sourcegraph service.
+Khulnasoft's metrics include a single high-level metric `alert_count` which indicates the number of `level=critical` and `level=warning` alerts each service has fired over time for each Sourcegraph service.
 This is the same metric presented on the **Overview** Grafana dashboard.
 
 > NOTE: We provide [built-in alerting](./alerting.md) for these alerting metrics to help monitor the health of your Sourcegraph instance.
@@ -118,7 +118,7 @@ For example, `0.5` and `0.7` indicate no alerts are firing, while `1.2` indicate
 
 #### Complete reference
 
-A complete reference of Sourcegraph's vast set of Prometheus metrics is not yet available. If you are interested in this, please reach out by filing an issue or contacting us at [support@sourcegraph.com](mailto:support@sourcegraph.com).
+A complete reference of Khulnasoft's vast set of Prometheus metrics is not yet available. If you are interested in this, please reach out by filing an issue or contacting us at [support@sourcegraph.com](mailto:support@sourcegraph.com).
 
 ### Prometheus configuration
 
@@ -153,4 +153,4 @@ Prometheus will be available http://localhost:9090.
 
 ## Using a custom monitoring system
 
-Please refer to our FAQ item, ["Can I consume Sourcegraph's metrics in my own monitoring system (Datadog, New Relic, etc.)"](../faq.md#can-i-consume-sourcegraph-s-metrics-in-my-own-monitoring-system-datadog-new-relic-etc).
+Please refer to our FAQ item, ["Can I consume Khulnasoft's metrics in my own monitoring system (Datadog, New Relic, etc.)"](../faq.md#can-i-consume-sourcegraph-s-metrics-in-my-own-monitoring-system-datadog-new-relic-etc).

@@ -2,7 +2,7 @@
 
 *As of February 1, 2023*
 
-`gitserver` is Sourcegraph's interface to Git repositories.
+`gitserver` is Khulnasoft's interface to Git repositories.
 It clones repositories and exposes an API for interacting with that clone.
 
 `gitserver` used to expose a simple "run any Git command" interface, but that was removed.

@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-// CodyGatewayRateLimit indicates rate limits for Sourcegraph's managed Cody Gateway service.
+// CodyGatewayRateLimit indicates rate limits for Khulnasoft's managed Cody Gateway service.
 //
 // Zero values in either field indicates no access.
 type CodyGatewayRateLimit struct {

@@ -20,7 +20,7 @@ func GetAggregatedSearchStats(ctx context.Context, db database.DB) (*types.Searc
 }
 
 // groupAggregatedSearchStats takes a set of input events (originating from
-// Sourcegraph's Postgres table) and returns a SearchUsageStatistics data type
+// Khulnasoft's Postgres table) and returns a SearchUsageStatistics data type
 // that ends up being stored in BigQuery. SearchUsageStatistics corresponds to
 // the target DB schema.
 func groupAggregatedSearchStats(events []types.SearchAggregatedEvent) *types.SearchUsageStatistics {

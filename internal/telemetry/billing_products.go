@@ -6,7 +6,7 @@ package telemetry
 // and preventing strings from being cast to this type.
 type billingProduct string
 
-// All billing product IDs in Sourcegraph's Go services.
+// All billing product IDs in Khulnasoft's Go services.
 const (
 	BillingProductExample billingProduct = "EXAMPLE"
 )

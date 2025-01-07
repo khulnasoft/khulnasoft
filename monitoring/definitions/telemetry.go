@@ -47,7 +47,7 @@ func Telemetry() *monitoring.Dashboard {
 								- Check the "number of events exported per batch over 30m" dashboard panel to see if export throughput is at saturation.
 								- Increase 'TELEMETRY_GATEWAY_EXPORTER_EXPORT_BATCH_SIZE' to export more events per batch.
 								- Reduce 'TELEMETRY_GATEWAY_EXPORTER_EXPORT_INTERVAL' to schedule more export jobs.
-								- See worker logs in the 'worker.telemetrygateway-exporter' log scope for more details to see if any export errors are occuring - if logs only indicate that exports failed, reach out to Sourcegraph with relevant log entries, as this may be an issue in Sourcegraph's Telemetry Gateway service.
+								- See worker logs in the 'worker.telemetrygateway-exporter' log scope for more details to see if any export errors are occuring - if logs only indicate that exports failed, reach out to Sourcegraph with relevant log entries, as this may be an issue in Khulnasoft's Telemetry Gateway service.
 							`,
 						},
 					},
@@ -99,7 +99,7 @@ func Telemetry() *monitoring.Dashboard {
 					ErrorRate: shared.NoAlertsOption("none"),
 					Errors: shared.WarningOption(monitoring.Alert().Greater(0), `
 						- Failures indicate that exporting of telemetry events from Sourcegraph are failing. This may affect the performance of the database as the backlog grows.
-						- See worker logs in the 'worker.telemetrygateway-exporter' log scope for more details. If logs only indicate that exports failed, reach out to Sourcegraph with relevant log entries, as this may be an issue in Sourcegraph's Telemetry Gateway service.
+						- See worker logs in the 'worker.telemetrygateway-exporter' log scope for more details. If logs only indicate that exports failed, reach out to Sourcegraph with relevant log entries, as this may be an issue in Khulnasoft's Telemetry Gateway service.
 					`),
 				},
 			}),

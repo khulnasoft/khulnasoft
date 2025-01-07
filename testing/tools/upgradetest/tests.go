@@ -12,7 +12,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-// standardUpgradeTest initializes Sourcegraph's dbs and runs a standard upgrade
+// standardUpgradeTest initializes Khulnasoft's dbs and runs a standard upgrade
 // i.e. an upgrade test between some last minor version and the current release candidate
 func standardUpgradeTest(ctx context.Context, initVersion, targetVersion, latestStableVersion *semver.Version) Test {
 	postRelease := strings.TrimPrefix(ctx.Value(postReleaseKey{}).(string), "v") // Post release version string

@@ -6,7 +6,7 @@ package telemetry
 // and preventing strings from being cast to this type.
 type billingCategory string
 
-// All billing category IDs in Sourcegraph's Go services.
+// All billing category IDs in Khulnasoft's Go services.
 const (
 	BillingCategoryExample billingCategory = "EXAMPLE"
 )

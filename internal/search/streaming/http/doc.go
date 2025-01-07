@@ -1,3 +1,3 @@
-// package http contains Sourcegraph's streaming HTTP protocol, which is based
+// package http contains Khulnasoft's streaming HTTP protocol, which is based
 // on Server Sent Events (SSE).
 package http

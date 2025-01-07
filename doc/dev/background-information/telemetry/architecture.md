@@ -4,7 +4,7 @@
 >
 > To learn more about telemetry export, refer to the [Sourcegraph adminstrator documentation on telemetry](../../../admin/telemetry/index.md).
 
-This page outlines the architecture and components involved in Sourcegraph's new telemetry export system.
+This page outlines the architecture and components involved in Khulnasoft's new telemetry export system.
 
 In the [lifecycle of an event](./index.md#event-lifecycle), events are first [stored](#storing-events) then [exported](#exporting-events) to [Telemetry Gateway](#telemetry-gateway).
 

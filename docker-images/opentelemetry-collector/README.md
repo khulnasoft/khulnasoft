@@ -5,7 +5,7 @@ This distribution of the [OpenTelemetry collector](https://opentelemetry.io/docs
 - [selected integrations](#integrations) (receivers, exporters, and extensions) for the OpenTelemetry collector
 - [basic collector configuration](#configurations) that can be used out-of-the-box in `/etc/otel-collector/configs` with the `--config` flag for some common Sourcegraph deployment configurations.
 
-This custom build undergoes Sourcegraph's [image vulnerability scanning](https://docs-legacy.khulnasoft.com/dev/background-information/ci#image-vulnerability-scanning) to audit the bundled dependencies.
+This custom build undergoes Khulnasoft's [image vulnerability scanning](https://docs-legacy.khulnasoft.com/dev/background-information/ci#image-vulnerability-scanning) to audit the bundled dependencies.
 
 To get started:
 
@@ -24,7 +24,7 @@ See [`builder.template.yaml`](builder.template.yaml) to see what integrations ar
 
 Bundled configurations are in `/etc/otel-collector/configs` and can be used with the `--config` flag for some common Sourcegraph deployment configurations:
 
-- [`configs/jaeger.yaml`](configs/jaeger.yaml) - useful for sending traces to Sourcegraph's bundled Jaeger instance.
+- [`configs/jaeger.yaml`](configs/jaeger.yaml) - useful for sending traces to Khulnasoft's bundled Jaeger instance.
 - [`configs/honeycomb.yaml`](configs/honeycomb.yaml)
 - [`configs/logging.yaml`](configs/logging.yaml)
 

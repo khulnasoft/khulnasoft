@@ -1,6 +1,6 @@
-# Sourcegraph architecture overview
+# Khulnasoft architecture overview
 
-This document provides a high level overview of Sourcegraph's architecture so you can understand how our systems fit together.
+This document provides a high level overview of Khulnasoft's architecture so you can understand how our systems fit together.
 
 The **"Dependencies"** sections give a short, high-level overview of dependencies on other architecture components and the most important aspects of _how_ they are used.
 

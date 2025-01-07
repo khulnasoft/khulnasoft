@@ -1,6 +1,6 @@
 // Package license provides license key generation and verification.
 //
-// License keys are generated and signed using Sourcegraph's private key. Sourcegraph instances must
+// License keys are generated and signed using Khulnasoft's private key. Sourcegraph instances must
 // be able to verify the license key offline, so all license information (such as the max user
 // count) is encoded in the license itself.
 //

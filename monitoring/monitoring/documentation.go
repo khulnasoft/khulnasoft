@@ -23,10 +23,10 @@ const alertsReferenceHeader = `# Alerts reference
 
 <!-- DO NOT EDIT: generated via: bazel run //doc/admin/observability:write_monitoring_docs -->
 
-This document contains a complete reference of all alerts in Sourcegraph's monitoring, and next steps for when you find alerts that are firing.
+This document contains a complete reference of all alerts in Khulnasoft's monitoring, and next steps for when you find alerts that are firing.
 If your alert isn't mentioned here, or if the next steps don't help, [contact us](mailto:support@sourcegraph.com) for assistance.
 
-To learn more about Sourcegraph's alerting and how to set up alerts, see [our alerting guide](https://docs.sourcegraph.com/admin/observability/alerting).
+To learn more about Khulnasoft's alerting and how to set up alerts, see [our alerting guide](https://docs.sourcegraph.com/admin/observability/alerting).
 
 `
 
@@ -34,9 +34,9 @@ const dashboardsHeader = `# Dashboards reference
 
 <!-- DO NOT EDIT: generated via: bazel run //doc/admin/observability:write_monitoring_docs -->
 
-This document contains a complete reference on Sourcegraph's available dashboards, as well as details on how to interpret the panels and metrics.
+This document contains a complete reference on Khulnasoft's available dashboards, as well as details on how to interpret the panels and metrics.
 
-To learn more about Sourcegraph's metrics and how to view these dashboards, see [our metrics guide](https://sourcegraph.com/docs/admin/observability/metrics).
+To learn more about Khulnasoft's metrics and how to view these dashboards, see [our metrics guide](https://sourcegraph.com/docs/admin/observability/metrics).
 
 `
 

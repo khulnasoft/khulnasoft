@@ -32,7 +32,7 @@ type enryLangMatcher struct {
 }
 
 func (em *enryLangMatcher) Matches(path string, getContent func() ([]byte, error)) (bool, string) {
-	// We use Sourcegraph's wrapper around enry because it supports lazily fetching
+	// We use Khulnasoft's wrapper around enry because it supports lazily fetching
 	// content and contains some optimizations for ambiguous extensions.
 	langs, err := languages.GetLanguages(path, getContent)
 

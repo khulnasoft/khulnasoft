@@ -18,7 +18,7 @@ func Prometheus() *monitoring.Dashboard {
 	return &monitoring.Dashboard{
 		Name:                     "prometheus",
 		Title:                    "Prometheus",
-		Description:              "Sourcegraph's all-in-one Prometheus and Alertmanager service.",
+		Description:              "Khulnasoft's all-in-one Prometheus and Alertmanager service.",
 		NoSourcegraphDebugServer: true, // This is third-party service
 		Groups: []monitoring.Group{
 			{

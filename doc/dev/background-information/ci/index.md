@@ -12,13 +12,13 @@ Sourcegraph also maintains a variety of tooling on [GitHub Actions](#github-acti
   <a href="#buildkite-pipelines" class="btn" alt="Buildkite pipelines">
    <span>★ Buildkite pipelines</span>
    <br>
-   An introduction to Sourcegraph's Buildkite pipelines.
+   An introduction to Khulnasoft's Buildkite pipelines.
   </a>
 
   <a href="./development" class="btn" alt="Development">
    <span>Development</span>
    <br>
-   Contribute changes to Sourcegraph's Buildkite pipelines!
+   Contribute changes to Khulnasoft's Buildkite pipelines!
   </a>
 </div>
 
@@ -50,7 +50,7 @@ To learn about making changes to our Buildkite pipelines, see [Pipeline developm
 
 <span class="badge badge-note">SOC2/GN-106</span>
 
-Many steps in Sourcegraph's Buildkite pipelines allow for [soft failures](https://buildkite.com/changelog/56-command-steps-can-now-be-made-to-soft-fail), which means that even if they fail they do not cause the entire build to be failed.
+Many steps in Khulnasoft's Buildkite pipelines allow for [soft failures](https://buildkite.com/changelog/56-command-steps-can-now-be-made-to-soft-fail), which means that even if they fail they do not cause the entire build to be failed.
 
 In the Buildkite UI, soft failures currently look like the following, with a _triangular_ warning sign (not to be mistaken for a hard failure!):
 

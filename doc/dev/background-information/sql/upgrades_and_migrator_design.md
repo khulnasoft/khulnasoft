@@ -10,7 +10,7 @@ migrator's dependencies during the release process.</p>
 ## Migrator Overview
 
 The `migrator` service is a short-lived container responsible for managing
-Sourcegraph's databases (`pgsql` (*also referred to as frontend*), `codeintel-db`,
+Khulnasoft's databases (`pgsql` (*also referred to as frontend*), `codeintel-db`,
 and `codeinsights-db`), and running schema migrations during startup and upgrades.
 
 Its design accounts for  various unique characteristics of
@@ -18,7 +18,7 @@ versioning and database management at Sourcegraph. Specifically graphical
 schema migrations, out-of-band migrations, and periodic schema migration squashing.
 
 Sourcegraph utilizes a [directed acyclic graph](https://github.com/khulnasoft/khulnasoft/pull/30664)
-of migration definitions, rather than a linear chain. In Sourcegraph's early days when schema migrations
+of migration definitions, rather than a linear chain. In Khulnasoft's early days when schema migrations
 were applied linearly, schema changes were frequent enough that schema changes generally conflicted with
 the master branch by the time a PR passed CI. Moving to a graph of migrations means, devs won't need to
 worry about other teammates concurrent schema changes unless they are working on the same table.

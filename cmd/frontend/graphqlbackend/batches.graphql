@@ -59,7 +59,7 @@ The reconciler state of a changeset on Sourcegraph
 """
 enum ChangesetReconcilerState {
     """
-    The changeset is scheduled, and will be enqueued when its turn comes in Sourcegraph's rollout window.
+    The changeset is scheduled, and will be enqueued when its turn comes in Khulnasoft's rollout window.
     """
     SCHEDULED
     """
@@ -160,7 +160,7 @@ enum ChangesetState {
     """
     RETRYING
     """
-    The changeset is scheduled, and will be enqueued when its turn comes in Sourcegraph's rollout window.
+    The changeset is scheduled, and will be enqueued when its turn comes in Khulnasoft's rollout window.
     """
     SCHEDULED
     """

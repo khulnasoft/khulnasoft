@@ -1,9 +1,9 @@
 # Developing observability
 
-This documentation is for generalized, usecase-agnostic development of Sourcegraph's observability.
+This documentation is for generalized, usecase-agnostic development of Khulnasoft's observability.
 Sourcegraph employees should also refer to the [handbook's observability section](https://handbook.sourcegraph.com/engineering/observability) for Sourcegraph-specific documentation.
 
-> NOTE: For how to *use* Sourcegraph's observability and an overview of our observability features, refer to the [observability for site administrators documentation](../../../admin/observability/index.md).
+> NOTE: For how to *use* Khulnasoft's observability and an overview of our observability features, refer to the [observability for site administrators documentation](../../../admin/observability/index.md).
 
 ## Overview
 

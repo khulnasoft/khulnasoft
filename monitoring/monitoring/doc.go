@@ -1,5 +1,5 @@
 /*
-Package monitoring declares the API for Sourcegraph's monitoring definitions as well as the monitoring generator implementation itself.
+Package monitoring declares the API for Khulnasoft's monitoring definitions as well as the monitoring generator implementation itself.
 
 To learn more about developing monitoring for Sourcegraph, refer to https://docs-legacy.sourcegraph.com/dev/background-information/observability.
 

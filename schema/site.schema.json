@@ -1821,7 +1821,7 @@
           "type": "object",
           "properties": {
             "endpoint": {
-              "description": "OpenTelemetry tracing collector endpoint. By default, Sourcegraph's \"/-/debug/otlp\" endpoint forwards data to the configured collector backend.",
+              "description": "OpenTelemetry tracing collector endpoint. By default, Khulnasoft's \"/-/debug/otlp\" endpoint forwards data to the configured collector backend.",
               "type": "string",
               "examples": ["/-/debug/otlp", "https://COLLECTOR_ENDPOINT"],
               "default": "/-/debug/otlp"
@@ -1890,7 +1890,7 @@
       ]
     },
     "observability.alerts": {
-      "description": "Configure notifications for Sourcegraph's built-in alerts.",
+      "description": "Configure notifications for Khulnasoft's built-in alerts.",
       "type": "array",
       "items": {
         "type": "object",
@@ -3283,7 +3283,7 @@
       }
     },
     "SourcegraphModelConfig": {
-      "description": "If null, Cody will not use Sourcegraph's servers for model discovery.",
+      "description": "If null, Cody will not use Khulnasoft's servers for model discovery.",
       "type": ["object", "null"],
       "!go": {
         "pointer": true

@@ -208,7 +208,7 @@ const (
 	// This is to be used for all /.api routes, such as our GraphQL and search streaming APIs as we
 	// want third-party websites (such as e.g. github1s.com, or internal tools for on-prem
 	// customers) to be able to leverage our API. Their users will need to provide an access token,
-	// or the website would need to be added to Sourcegraph's CORS allow list in order to be granted
+	// or the website would need to be added to Khulnasoft's CORS allow list in order to be granted
 	// cookie/session-based authentication (which is dangerous to expose to untrusted domains.)
 	crossOriginPolicyAPI crossOriginPolicy = "API"
 

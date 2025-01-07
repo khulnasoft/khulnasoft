@@ -765,7 +765,7 @@ type Mutation {
     ): EmptyResponse!
 
     """
-    Sends an email for testing Sourcegraph's email configuration.
+    Sends an email for testing Khulnasoft's email configuration.
 
     Only administrators can use this API.
     """

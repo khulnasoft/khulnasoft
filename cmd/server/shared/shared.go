@@ -1,4 +1,4 @@
-// Package shared provides the entrypoint to Sourcegraph's single docker
+// Package shared provides the entrypoint to Khulnasoft's single docker
 // image. It has functionality to setup the shared environment variables, as
 // well as create the Procfile for goreman to run.
 package shared

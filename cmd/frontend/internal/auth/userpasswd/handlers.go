@@ -560,7 +560,7 @@ func httpLogError(logFunc func(string, ...log.Field), w http.ResponseWriter, msg
 	http.Error(w, msg, code)
 }
 
-// NormalizeUsername normalizes a proposed username into a format that meets Sourcegraph's
+// NormalizeUsername normalizes a proposed username into a format that meets Khulnasoft's
 // username formatting rules (based on, but not identical to
 // https://web.archive.org/web/20180215000330/https://help.github.com/enterprise/2.11/admin/guides/user-management/using-ldap):
 //

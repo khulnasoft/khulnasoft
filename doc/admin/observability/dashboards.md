@@ -2,9 +2,9 @@
 
 <!-- DO NOT EDIT: generated via: bazel run //doc/admin/observability:write_monitoring_docs -->
 
-This document contains a complete reference on Sourcegraph's available dashboards, as well as details on how to interpret the panels and metrics.
+This document contains a complete reference on Khulnasoft's available dashboards, as well as details on how to interpret the panels and metrics.
 
-To learn more about Sourcegraph's metrics and how to view these dashboards, see [our metrics guide](https://sourcegraph.com/docs/admin/observability/metrics).
+To learn more about Khulnasoft's metrics and how to view these dashboards, see [our metrics guide](https://sourcegraph.com/docs/admin/observability/metrics).
 
 ## Frontend
 
@@ -27708,7 +27708,7 @@ sum by(app) (up{app=~".*indexed-search"}) / count by (app) (up{app=~".*indexed-s
 
 ## Prometheus
 
-<p class="subtitle">Sourcegraph's all-in-one Prometheus and Alertmanager service.</p>
+<p class="subtitle">Khulnasoft's all-in-one Prometheus and Alertmanager service.</p>
 
 To see this dashboard, visit `/-/debug/grafana/d/prometheus/prometheus` on your Sourcegraph instance.
 

@@ -357,7 +357,7 @@ func NewGRPCInternalErrorMetricsGroup(opts GRPCInternalErrorMetricsOptions, owne
 		first := strings.Join([]string{
 			"**Note**: Internal errors are ones that appear to originate from the https://github.com/grpc/grpc-go library itself, rather than from any user-written application code.",
 			fmt.Sprintf("These errors can be caused by a variety of issues, and can originate from either the code-generated %q gRPC client or gRPC server.", opts.HumanServiceName),
-			"These errors might be solvable by adjusting the gRPC configuration, or they might indicate a bug from Sourcegraph's use of gRPC.",
+			"These errors might be solvable by adjusting the gRPC configuration, or they might indicate a bug from Khulnasoft's use of gRPC.",
 		}, " ")
 
 		second := "When debugging, knowing that a particular error comes from the grpc-go library itself (an 'internal error') as opposed to 'normal' application code can be helpful when trying to fix it."

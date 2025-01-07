@@ -25,7 +25,7 @@ import (
 )
 
 // configureTracing configures OpenTelemetry tracing if the GOOGLE_CLOUD_PROJECT is set.
-// It differs from Sourcegraph's default tracing because we need to export directly to GCP,
+// It differs from Khulnasoft's default tracing because we need to export directly to GCP,
 // and the use case is more niche as a standalone service.
 //
 // Based on https://cloud.google.com/trace/docs/setup/go-ot

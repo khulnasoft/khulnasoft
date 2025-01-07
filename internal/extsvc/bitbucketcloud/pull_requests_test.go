@@ -324,7 +324,7 @@ func TestClient_MergePullRequest(t *testing.T) {
 		FullName: "sourcegraph-testing/src-cli",
 	}
 
-	message := "This is a merge commit from Sourcegraph's test suite."
+	message := "This is a merge commit from Khulnasoft's test suite."
 	closeSourceBranch := true
 	mergeStrategy := MergeStrategySquash
 	opts := MergePullRequestOpts{

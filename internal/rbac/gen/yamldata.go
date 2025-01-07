@@ -210,7 +210,7 @@ func (n PermissionNamespace) String() string {
 
 %s
 
-// Valid checks if a namespace is valid and supported by Sourcegraph's RBAC system.
+// Valid checks if a namespace is valid and supported by Khulnasoft's RBAC system.
 func (n PermissionNamespace) Valid() bool {
 	switch n {
 	case %s:

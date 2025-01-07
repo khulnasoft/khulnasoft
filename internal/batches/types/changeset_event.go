@@ -264,7 +264,7 @@ func (e *ChangesetEvent) Changeset() int64 {
 }
 
 // Timestamp returns the time when the ChangesetEvent happened (or was updated)
-// on the codehost, not when it was created in Sourcegraph's database.
+// on the codehost, not when it was created in Khulnasoft's database.
 func (e *ChangesetEvent) Timestamp() time.Time {
 	var t time.Time
 

@@ -45,7 +45,7 @@ In general, the lifecycle of an event in the new system looks like this:
 1. [A telemetry event is recorded](#recording-events). This can happen in clients using SDKs like [`@sourcegraph/telemetry`](https://github.com/sourcegraph/telemetry), or using [`internal/telemetry/telemetryrecorder`](https://github.com/khulnasoft/khulnasoft/blob/main/internal/telemetry/telemetryrecorder/telemetryrecorder.go) in the backend.
 2. Within each telemetry SDK, additional metadata is automatically injected - in clients through [processors](https://github.com/sourcegraph/telemetry/blob/main/src/processors/index.ts) and [the GraphQL mutation](https://github.com/khulnasoft/khulnasoft/blob/main/cmd/frontend/internal/telemetry/resolvers/telemetrygateway.go), and in the backend through [the events adapter](https://github.com/khulnasoft/khulnasoft/blob/main/internal/telemetry/telemetrygateway.go).
 3. The telemetry event is translated into the existing `event_logs` table (for use in [admin analytics](../../../admin/analytics.md)), and stored in a temporary queue for export - see [storing events](./architecture.md#storing-events).
-4. Periodically, events are exported from the cache and exported to Sourcegraph's Telemetry Gateway service, which forwards it to our data warehouse - see [exported events](#exported-events) and [exporting events](./architecture.md#exporting-events).
+4. Periodically, events are exported from the cache and exported to Khulnasoft's Telemetry Gateway service, which forwards it to our data warehouse - see [exported events](#exported-events) and [exporting events](./architecture.md#exporting-events).
 
 See [telemetry export architecture](./architecture.md) for more details.
 

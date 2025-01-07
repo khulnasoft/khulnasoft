@@ -126,7 +126,7 @@ func NewProvider(op ProviderOp) *Provider {
 //
 // This is very similar to gologin's default StateHandler function, but we define our own, because
 // we encode the returnTo URL in the state. We could use the `redirect_uri` parameter to do this,
-// but doing so would require using Sourcegraph's external hostname and making sure it is consistent
+// but doing so would require using Khulnasoft's external hostname and making sure it is consistent
 // with what is specified in the OAuth app config as the "callback URL."
 func stateHandler(isLogin bool, providerID string, success func(oauth2.Config) http.Handler) func(oauth2.Config) http.Handler {
 	return func(oauthConfig oauth2.Config) http.Handler {

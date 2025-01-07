@@ -55,7 +55,7 @@ func composeMiddleware(middlewares ...*Middleware) *Middleware {
 	}
 }
 
-// NormalizeUsername normalizes a proposed username into a format that meets Sourcegraph's
+// NormalizeUsername normalizes a proposed username into a format that meets Khulnasoft's
 // username formatting rules.
 func NormalizeUsername(name string) (string, error) {
 	return userpasswd.NormalizeUsername(name)

@@ -359,7 +359,7 @@ All notable changes to Sourcegraph are documented in this file.
 - Recorded command logs can now be viewed for Git operations performed by Sourcegraph. This provides auditing and debugging capabilities. [#54997](https://github.com/khulnasoft/khulnasoft/issues/54997)
 - Disk usage metrics for gitservers are now displayed on the site admin Git Servers page, showing free/total disk space. This helps site admins monitor storage capacity on GitServers. [#55958](https://github.com/khulnasoft/khulnasoft/issues/55958)
 - Overhauled Admin Onboarding UI for enhanced user experience, introducing a license key modal with validation, automated navigation to Site Configuration Page, an interactive onboarding checklist button, and direct documentation links for SMTP and user authentication setup. [56366](https://github.com/khulnasoft/khulnasoft/pull/56366)
-- New experimental feature "Search Jobs". Search Jobs allows you to run search queries across your organization's codebase (all repositories, branches, and revisions) at scale. It enhances the existing Sourcegraph's search capabilities, enabling you to run searches without query timeouts or incomplete results. Please refer to the [documentation](https://docs.sourcegraph.com/code_search/how-to/search-jobs) for more information.
+- New experimental feature "Search Jobs". Search Jobs allows you to run search queries across your organization's codebase (all repositories, branches, and revisions) at scale. It enhances the existing Khulnasoft's search capabilities, enabling you to run searches without query timeouts or incomplete results. Please refer to the [documentation](https://docs.sourcegraph.com/code_search/how-to/search-jobs) for more information.
 
 ### Changed
 
@@ -368,7 +368,7 @@ All notable changes to Sourcegraph are documented in this file.
 - Newly created access tokens are now hidden by default in the Sourcegraph UI. To view a token, click "show" button next to the token. [#56481](https://github.com/khulnasoft/khulnasoft/pull/56481)
 - The GitHub proxy service has been removed and is no longer required. You can safely remove it from your deployment. [#55290](https://github.com/khulnasoft/khulnasoft/issues/55290)
 - On startup, Zoekt indexserver will now delete the `<DATA_DIR>/.indexserver.tmp` directory to remove leftover repository clones, possibly causing a brief delay. Due to a bug, this directory wasn't previously cleaned up and could cause unnecessary disk usage. [zoekt#646](https://github.com/sourcegraph/zoekt/pull/646).
-- gRPC is now used by default for all internal (service to service) communication. This change should be invisible to most customers. However, if you're running in an environment that places restrictions on Sourcegraph's internal traffic, some prior configuration might be required. See the ["Sourcegraph 5.2 gRPC Configuration Guide"](https://docs.sourcegraph.com/admin/updates/grpc) for more information. [#56738](https://github.com/khulnasoft/khulnasoft/pull/56738)
+- gRPC is now used by default for all internal (service to service) communication. This change should be invisible to most customers. However, if you're running in an environment that places restrictions on Khulnasoft's internal traffic, some prior configuration might be required. See the ["Sourcegraph 5.2 gRPC Configuration Guide"](https://docs.sourcegraph.com/admin/updates/grpc) for more information. [#56738](https://github.com/khulnasoft/khulnasoft/pull/56738)
 
 ### Fixed
 
@@ -1300,7 +1300,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Changed
 
-- Sourcegraph's docker images are now based on Alpine Linux 3.14. [#34508](https://github.com/khulnasoft/khulnasoft/pull/34508)
+- Khulnasoft's docker images are now based on Alpine Linux 3.14. [#34508](https://github.com/khulnasoft/khulnasoft/pull/34508)
 - Sourcegraph is now built with Go 1.18. [#34899](https://github.com/khulnasoft/khulnasoft/pull/34899)
 - Capture group Code Insights now use the Compute streaming endpoint. [#34905](https://github.com/khulnasoft/khulnasoft/pull/34905)
 - Code Insights will now automatically generate queries with a default value of `fork:no` and `archived:no` if these fields are not specified by the user. This removes the need to manually add these fields to have consistent behavior from historical to non-historical results. [#30204](https://github.com/khulnasoft/khulnasoft/issues/30204)
@@ -1495,7 +1495,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Changed
 
-- Sourcegraph's API (streaming search, GraphQL, etc.) may now be used from any domain when using an access token for authentication, or with no authentication in the case of Sourcegraph.com. [#28775](https://github.com/khulnasoft/khulnasoft/pull/28775)
+- Khulnasoft's API (streaming search, GraphQL, etc.) may now be used from any domain when using an access token for authentication, or with no authentication in the case of Sourcegraph.com. [#28775](https://github.com/khulnasoft/khulnasoft/pull/28775)
 - The endpoint `/search/stream` will be retired in favor of `/.api/search/stream`. This requires no action unless you have developed custom code against `/search/stream`. We will support both endpoints for a short period of time before removing `/search/stream`. Please refer to the [documentation](https://docs.sourcegraph.com/api/stream_api) for more information.
 - When displaying the content of symbolic links in the repository tree view, we will show the relative path to the link's target instead of the target's content. This behavior is consistent with how we display symbolic links in search results. [#29687](https://github.com/khulnasoft/khulnasoft/pull/29687)
 - A new janitor job, "sg maintenance" was added to gitserver. The new job replaces "garbage collect" with the goal to optimize the performance of git operations for large repositories. You can choose to enable "garbage collect" again by setting the environment variables "SRC_ENABLE_GC_AUTO" to "true" and "SRC_ENABLE_SG_MAINTENANCE" to "false" for gitserver. Note that you must not enable both options at the same time. [#28224](https://github.com/khulnasoft/khulnasoft/pull/28224).
@@ -1603,7 +1603,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 - Removed liveness probes from Kubernetes Prometheus deployment [#2970](https://github.com/sourcegraph/deploy-sourcegraph/pull/2970)
 - Batch Changes now requests the `workflow` scope on GitHub personal access tokens to allow batch changes to write to the `.github` directory in repositories. If you have already configured a GitHub PAT for use with Batch Changes, we suggest adding the scope to the others already granted. [#26606](https://github.com/khulnasoft/khulnasoft/issues/26606)
-- Sourcegraph's Prometheus and Alertmanager dependency has been upgraded to v2.31.1 and v0.23.0 respectively. [#27336](https://github.com/khulnasoft/khulnasoft/pull/27336)
+- Khulnasoft's Prometheus and Alertmanager dependency has been upgraded to v2.31.1 and v0.23.0 respectively. [#27336](https://github.com/khulnasoft/khulnasoft/pull/27336)
 - The search UI's repositories count as well as the GraphQL API's `search().repositories` and `search().repositoriesCount` have changed semantics from the set of searchable repositories to the set of repositories with matches. In a future release, we'll introduce separate fields for the set of searchable repositories backed by a [scalable implementation](https://github.com/khulnasoft/khulnasoft/issues/27274). [#26995](https://github.com/khulnasoft/khulnasoft/issues/26995)
 
 ### Fixed
@@ -1766,8 +1766,8 @@ All notable changes to Sourcegraph are documented in this file.
 - Docker Compose: the Jaeger container's `SAMPLING_STRATEGIES_FILE` now has a default value. If you are currently using a custom sampling strategies configuration, you may need to make sure your configuration is not overridden by the change when upgrading. [sourcegraph/deploy-sourcegraph#489](https://github.com/sourcegraph/deploy-sourcegraph-docker/pull/489)
 - Code Insights historical samples will record using the most recent commit to the start of the frame instead of the middle of the frame. [#23573](https://github.com/khulnasoft/khulnasoft/pull/23573)
 - The copy icon displayed next to files and repositories will now copy the file or repository path. Previously, this action copied the URL to clipboard. [#23390](https://github.com/khulnasoft/khulnasoft/pull/23390)
-- Sourcegraph's Prometheus dependency has been upgraded to v2.28.1. [23663](https://github.com/khulnasoft/khulnasoft/pull/23663)
-- Sourcegraph's Alertmanager dependency has been upgraded to v0.22.2. [23663](https://github.com/khulnasoft/khulnasoft/pull/23714)
+- Khulnasoft's Prometheus dependency has been upgraded to v2.28.1. [23663](https://github.com/khulnasoft/khulnasoft/pull/23663)
+- Khulnasoft's Alertmanager dependency has been upgraded to v0.22.2. [23663](https://github.com/khulnasoft/khulnasoft/pull/23714)
 - Code Insights will now schedule sample recordings for the first of the next month after creation or a previous recording. [#23799](https://github.com/khulnasoft/khulnasoft/pull/23799)
 - Code Insights now stores data in a new format. Data points will store complete vectors for all repositories even if the underlying Sourcegraph queries were compressed. [#23768](https://github.com/khulnasoft/khulnasoft/pull/23768)
 - Code Insights rate limit values have been tuned for a more reasonable performance. [#23860](https://github.com/khulnasoft/khulnasoft/pull/23860)
@@ -1901,7 +1901,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 - The experimental paginated search feature (the `stable:` keyword) has been removed, to be replaced with streaming search. [#22428](https://github.com/khulnasoft/khulnasoft/pull/22428)
 - The experimental extensions view page has been removed. [#22565](https://github.com/khulnasoft/khulnasoft/pull/22565)
-- A search query diagnostic that previously warned the user when quotes are interpreted literally has been removed. The literal meaning has been Sourcegraph's default search behavior for some time now. [#22892](https://github.com/khulnasoft/khulnasoft/pull/22892)
+- A search query diagnostic that previously warned the user when quotes are interpreted literally has been removed. The literal meaning has been Khulnasoft's default search behavior for some time now. [#22892](https://github.com/khulnasoft/khulnasoft/pull/22892)
 - Non-root overlays were removed for `deploy-sourcegraph` in favor of using `non-privileged`. [#3404](https://github.com/sourcegraph/deploy-sourcegraph/pull/3404)
 
 ### API docs (experimental)
@@ -2467,7 +2467,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 ### Added
 
 - Site admins can now force a specific user to re-authenticate on their next request or visit. [#13647](https://github.com/khulnasoft/khulnasoft/pull/13647)
-- Sourcegraph now watches its [configuration files](https://docs.sourcegraph.com/admin/config/advanced_config_file) (when using external files) and automatically applies the changes to Sourcegraph's configuration when they change. For example, this allows Sourcegraph to detect when a Kubernetes ConfigMap changes. [#13646](https://github.com/khulnasoft/khulnasoft/pull/13646)
+- Sourcegraph now watches its [configuration files](https://docs.sourcegraph.com/admin/config/advanced_config_file) (when using external files) and automatically applies the changes to Khulnasoft's configuration when they change. For example, this allows Sourcegraph to detect when a Kubernetes ConfigMap changes. [#13646](https://github.com/khulnasoft/khulnasoft/pull/13646)
 - To define repository groups (`search.repositoryGroups` in global, org, or user settings), you can now specify regular expressions in addition to single repository names. [#13730](https://github.com/khulnasoft/khulnasoft/pull/13730)
 - The new site configuration property `search.limits` configures the maximum search timeout and the maximum number of repositories to search for various types of searches. [#13448](https://github.com/khulnasoft/khulnasoft/pull/13448)
 - Files and directories can now be excluded from search by adding the file `.sourcegraph/ignore` to the root directory of a repository. Each line in the _ignore_ file is interpreted as a globbing pattern. [#13690](https://github.com/khulnasoft/khulnasoft/pull/13690)
@@ -3119,7 +3119,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 - Language statistics by commit are available via the API. [#6737](https://github.com/khulnasoft/khulnasoft/pull/6737)
 - Added a new page that shows [language statistics for the results of a search query](https://docs.sourcegraph.com/user/search#statistics).
 - Global settings can be configured from a local file using the environment variable `GLOBAL_SETTINGS_FILE`.
-- High-level health metrics and dashboards have been added to Sourcegraph's monitoring (found under the **Site admin** -> **Monitoring** area). [#7216](https://github.com/khulnasoft/khulnasoft/pull/7216)
+- High-level health metrics and dashboards have been added to Khulnasoft's monitoring (found under the **Site admin** -> **Monitoring** area). [#7216](https://github.com/khulnasoft/khulnasoft/pull/7216)
 - Logging for GraphQL API requests not issued by Sourcegraph is now much more verbose, allowing for easier debugging of problematic queries and where they originate from. [#5706](https://github.com/khulnasoft/khulnasoft/issues/5706)
 - A new campaign type finds and removes leaked npm credentials. [#6893](https://github.com/khulnasoft/khulnasoft/pull/6893)
 - Campaigns can now be retried to create failed changesets due to ephemeral errors (e.g. network problems when creating a pull request on GitHub). [#6718](https://github.com/khulnasoft/khulnasoft/issues/6718)
@@ -3413,7 +3413,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 ### Added
 
 - Syntax highlighting requests that fail are now logged and traced. A new Prometheus metric `src_syntax_highlighting_requests` allows monitoring and alerting. [#4877](https://github.com/khulnasoft/khulnasoft/issues/4877).
-- Sourcegraph's SAML authentication now supports RSA PKCS#1 v1.5. [#4869](https://github.com/khulnasoft/khulnasoft/pull/4869)
+- Khulnasoft's SAML authentication now supports RSA PKCS#1 v1.5. [#4869](https://github.com/khulnasoft/khulnasoft/pull/4869)
 
 ### Fixed
 
@@ -4290,7 +4290,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 - Custom language servers in the site config may now specify a `metadata` property containing things like homepage/docs/issues URLs for the language server project, as well as whether or not the language server should be considered experimental (not ready for prime-time). This `metadata` will be displayed in the UI to better communicate the status of a language server project.
 - Access tokens now have scopes (which define the set of operations they permit). All access tokens still provide full control of all resources associated with the user account (the `user:all` scope, which is now explicitly displayed).
 - The new access token scope `site-admin:sudo` allows the holder to perform any action as any other user. Only site admins may create this token.
-- Links to Sourcegraph's changelog have been added to the site admin Updates page and update alert.
+- Links to Khulnasoft's changelog have been added to the site admin Updates page and update alert.
 - If the site configuration is invalid or uses deprecated properties, a global alert will be shown to all site admins.
 - There is now a code intelligence status indicator when viewing files. It contains information about the capabailities of the language server that is providing code intelligence for the file.
 - Java code intelligence can now be enabled for repositories that aren't automatically supported using a

@@ -14,7 +14,7 @@ import (
 )
 
 // New creates a default EventRecorder for Telemetry V2, which exports recorded
-// events to Sourcegraph's Telemetry Gateway service.
+// events to Khulnasoft's Telemetry Gateway service.
 //
 // The current defaults tee events to both the legacy event_logs table, as well
 // as the new Telemetry Gateway export queue.
@@ -29,7 +29,7 @@ func New(db database.DB) *telemetry.EventRecorder {
 }
 
 // New creates a default BestEffortEventRecorder for Telemetry V2, which exports
-// recorded events to Sourcegraph's Telemetry Gateway service while logging any
+// recorded events to Khulnasoft's Telemetry Gateway service while logging any
 // recording errors and swallowing them.
 //
 // The current defaults tee events to both the legacy event_logs table, as well

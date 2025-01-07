@@ -95,7 +95,7 @@ type OpenAICompatibleEndpoint struct {
 }
 
 // SourcegraphProviderConfig is the configuration blog for configuring a provider
-// to be use Sourcegraph's Cody Gateway for requests.
+// to be use Khulnasoft's Cody Gateway for requests.
 type SourcegraphProviderConfig struct {
 	AccessToken string `json:"accessToken"`
 	Endpoint    string `json:"endpoint"`
