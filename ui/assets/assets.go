@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/sourcegraph/sourcegraph/lib/errors"
+	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
 // DefaultAssetPath is the default path where assets should be loaded from

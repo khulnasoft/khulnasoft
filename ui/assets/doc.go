@@ -7,7 +7,7 @@
 // Before using assets you have to call the package Init function, which sets up the global Provider
 // with the path to the assets, which by default is /assets-dist
 //
-// import "github.com/sourcegraph/sourcegraph/ui/assets"
+// import "github.com/khulnasoft/khulnasoft/ui/assets"
 //
 //	func main() {
 //		assets.Init()
