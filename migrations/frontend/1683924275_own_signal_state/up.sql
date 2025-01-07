@@ -15,4 +15,3 @@ ON CONFLICT DO NOTHING;
 INSERT INTO own_signal_configurations (id, name, enabled, description)
 VALUES (2, 'recent-views', FALSE, 'Indexes users that recently viewed files in Khulnasoft.')
 ON CONFLICT DO NOTHING;
-
