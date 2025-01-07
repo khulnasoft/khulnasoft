@@ -836,9 +836,9 @@ const (
 	RepoListSize      RepoListColumn = "gr.repo_size_bytes"
 )
 
-// List lists repositories in the Sourcegraph repository
+// List lists repositories in the Khulnasoft repository
 //
-// This will not return any repositories from external services that are not present in the Sourcegraph repository.
+// This will not return any repositories from external services that are not present in the Khulnasoft repository.
 // Matching is done with fuzzy matching, i.e. "query" will match any repo name that matches the regexp `q.*u.*e.*r.*y`
 func (s *repoStore) List(ctx context.Context, opt ReposListOptions) (results []*types.Repo, err error) {
 	tr, ctx := trace.New(ctx, "repos.List")

@@ -160,7 +160,7 @@ var Ubuntu = []category{
 		&dependency{
 			Name:  "src",
 			Check: checkAction(check.Combine(check.InPath("src"), checkSrcCliVersion(">= 4.0.2"))),
-			Fix:   cmdFix(`sudo curl -L https://sourcegraph.com/.api/src-cli/src_linux_amd64 -o /usr/local/bin/src && sudo chmod +x /usr/local/bin/src`),
+			Fix:   cmdFix(`sudo curl -L https://khulnasoft.com/.api/src-cli/src_linux_amd64 -o /usr/local/bin/src && sudo chmod +x /usr/local/bin/src`),
 		},
 	),
 	{

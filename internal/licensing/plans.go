@@ -74,7 +74,7 @@ func (info *Info) HasUnknownPlan() error {
 
 		plan := Plan(tag[len(planTagPrefix):])
 		if !plan.isKnown() {
-			return errors.Errorf("The license has an unrecognizable plan in tag %q, please contact Sourcegraph support.", tag)
+			return errors.Errorf("The license has an unrecognizable plan in tag %q, please contact Khulnasoft support.", tag)
 		}
 	}
 	return nil

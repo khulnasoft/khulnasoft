@@ -29,7 +29,7 @@ func NewRustPackagesSyncer(
 		logger:             log.Scoped("RustPackagesSyncer"),
 		typ:                "rust_packages",
 		scheme:             dependencies.RustPackagesScheme,
-		placeholder:        reposource.ParseRustVersionedPackage("sourcegraph.com/placeholder@0.0.0"),
+		placeholder:        reposource.ParseRustVersionedPackage("khulnasoft.com/placeholder@0.0.0"),
 		svc:                svc,
 		configDeps:         connection.Dependencies,
 		source:             &rustDependencySource{client: client},

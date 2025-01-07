@@ -1794,7 +1794,7 @@ func (gs *grpcServer) CommitLog(req *proto.CommitLogRequest, ss proto.GitserverS
 
 // checkRepoExists checks if a given repository is cloned on disk, and returns an
 // error otherwise.
-// On Sourcegraph.com, not all repos are managed by the scheduler. We thus
+// On Khulnasoft.com, not all repos are managed by the scheduler. We thus
 // need to enqueue a manual update of a repo that is visited but not cloned to
 // ensure it is cloned and managed.
 func (gs *grpcServer) checkRepoExists(repo api.RepoName) error {

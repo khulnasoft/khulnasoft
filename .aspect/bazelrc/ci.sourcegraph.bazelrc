@@ -29,7 +29,7 @@ common --test_env=BUILDKITE
 common --test_env=HEADLESS=false
 # if we set this to localhost, chrome will refuse to conenct since local host is in its HTTP Strict Transport Security
 # by setting the loopback address we get passed that
-common --test_env=SOURCEGRAPH_BASE_URL="http://127.0.0.1:7080"
+common --test_env=KHULNASOFT_BASE_URL="http://127.0.0.1:7080"
 common --test_env=DISPLAY=:99
 
 # Provides git commit, branch information to build targets via status file.

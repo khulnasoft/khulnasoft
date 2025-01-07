@@ -99,7 +99,7 @@ export const BatchChangesCreateGitHubAppPage: FC<BatchChangesCreateGitHubAppPage
                     </Link>
                 </>
             }
-            headerAnnotation={<FeedbackBadge status="beta" feedback={{ mailto: 'support@sourcegraph.com' }} />}
+            headerAnnotation={<FeedbackBadge status="beta" feedback={{ mailto: 'support@khulnasoft.com' }} />}
             appDomain={GitHubAppDomain.BATCHES}
             defaultAppName={defaultAppName}
             baseURL={baseURL?.length ? baseURL : undefined}

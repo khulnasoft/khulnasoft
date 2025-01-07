@@ -69,7 +69,7 @@ type AccessTokenStore interface {
 	Count(context.Context, AccessTokensListOptions) (int, error)
 
 	// Create creates an access token for the specified user. The secret token value itself is
-	// returned. The caller is responsible for presenting this value to the end user; Sourcegraph does
+	// returned. The caller is responsible for presenting this value to the end user; Khulnasoft does
 	// not retain it (only a hash of it).
 	//
 	// The secret token value consists of the prefix "sgp_" and then a long random string. It is
@@ -86,7 +86,7 @@ type AccessTokenStore interface {
 	Create(ctx context.Context, subjectUserID int32, scopes []string, note string, creatorUserID int32, expiresAt time.Time) (id int64, token string, err error)
 
 	// CreateInternal creates an *internal* access token for the specified user. An
-	// internal access token will be used by Sourcegraph to talk to its API from
+	// internal access token will be used by Khulnasoft to talk to its API from
 	// other services, i.e. executor jobs. Internal tokens do not show up in the UI.
 	//
 	// See the documentation for Create for more details.

@@ -240,7 +240,7 @@ go_library(
         "doc.go",
         "gen.go",
     ],
-    importpath = "github.com/sourcegraph/sourcegraph",
+    importpath = "github.com/khulnasoft/khulnasoft",
 )
 
 gazelle(

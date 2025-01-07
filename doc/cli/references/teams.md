@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-'src teams' is a tool that manages teams in a Sourcegraph instance.
+'src teams' is a tool that manages teams in a Khulnasoft instance.
 
 Usage:
 

@@ -30,7 +30,7 @@ func NewGoModulesSyncer(
 	fs gitserverfs.FS,
 	getRemoteURLSource func(ctx context.Context, name api.RepoName) (RemoteURLSource, error),
 ) VCSSyncer {
-	placeholder, err := reposource.ParseGoVersionedPackage("sourcegraph.com/placeholder@v0.0.0")
+	placeholder, err := reposource.ParseGoVersionedPackage("khulnasoft.com/placeholder@v0.0.0")
 	if err != nil {
 		panic(fmt.Sprintf("expected placeholder dependency to parse but got %v", err))
 	}

@@ -41,13 +41,13 @@ func printConfigValidation(logger log.Logger) {
 	logger = logger.Scoped("configValidation")
 	messages, err := conf.Validate(conf.Raw())
 	if err != nil {
-		logger.Warn("unable to validate Sourcegraph site configuration", log.Error(err))
+		logger.Warn("unable to validate Khulnasoft site configuration", log.Error(err))
 		return
 	}
 
 	if len(messages) > 0 {
 		logger.Warn("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		logger.Warn("⚠️ Warnings related to the Sourcegraph site configuration:")
+		logger.Warn("⚠️ Warnings related to the Khulnasoft site configuration:")
 		for _, verr := range messages {
 			logger.Warn(verr.String())
 		}
@@ -598,7 +598,7 @@ var (
 	indexedListTTL = func() time.Duration {
 		ttl, _ := time.ParseDuration(env.Get("SRC_INDEXED_SEARCH_LIST_CACHE_TTL", "", "Indexed search list cache TTL"))
 		if ttl == 0 {
-			if dotcom.SourcegraphDotComMode() {
+			if dotcom.KhulnasoftDotComMode() {
 				ttl = 30 * time.Second
 			} else {
 				ttl = 5 * time.Second

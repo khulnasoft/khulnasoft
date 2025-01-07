@@ -2,14 +2,14 @@ import { CodyProRoutes } from './codyProRoutes'
 
 // URL the user needs to navigate to in order to modify their Cody Pro subscription.
 export const manageSubscriptionRedirectURL = `${
-    window.context?.frontendCodyProConfig?.sscBaseUrl || 'https://accounts.sourcegraph.com/cody'
+    window.context?.frontendCodyProConfig?.sscBaseUrl || 'https://accounts.khulnasoft.com/cody'
 }/subscription`
 
 /**
- * useEmbeddedCodyProUi returns if we expect the Cody Pro UI to be served from sourcegraph.com. Meaning
+ * useEmbeddedCodyProUi returns if we expect the Cody Pro UI to be served from khulnasoft.com. Meaning
  * we should direct the user to `/cody/manage/subscription` for making changes.
  *
- * If false, we rely on the current behavior. Where users are directed to https://accounts.sourcegraph.com/cody
+ * If false, we rely on the current behavior. Where users are directed to https://accounts.khulnasoft.com/cody
  * for managing their Cody Pro subscription information.
  */
 export function isEmbeddedCodyProUIEnabled(): boolean {
@@ -38,7 +38,7 @@ export function isValidEmailAddress(emailAddress: string): boolean {
  *  - Contains at least one "." after the "@" that is not at the end.
  *
  * NOTE: Keep this in sync with `emailRegex` in the backend
- * (https://sourcegraph.sourcegraph.com/search?q=context:global+r:github.com/sourcegraph/sourcegraph-accounts+f:backend/internal/graph/*+%22var+emailRegex+%3D+regexp.%22&patternType=newStandardRC1&sm=1),
+ * (https://sourcegraph.khulnasoft.com/search?q=context:global+r:github.com/sourcegraph/sourcegraph-accounts+f:backend/internal/graph/*+%22var+emailRegex+%3D+regexp.%22&patternType=newStandardRC1&sm=1),
  * and keep in mind that the backend validation has the final say, validation in the web app is only for UX improvement.
  */
 const emailRegex = /^[^@]+@[^@]+\.[^@]+$/

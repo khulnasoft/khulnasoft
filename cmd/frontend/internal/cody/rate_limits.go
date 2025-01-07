@@ -93,7 +93,7 @@ func GetGatewayRateLimits(ctx context.Context, userID int32, db database.DB) ([]
 func requestGatewayWithUserCreds(ctx context.Context, userID int32, db database.DB, method string, pathname string, body io.Reader) (*http.Response, error) {
 	completionsConfig := conf.GetCompletionsConfig(conf.Get().SiteConfig())
 	// We don't need to do anything if the target is not Cody Gateway, but it's not an error either.
-	if completionsConfig.Provider != conftypes.CompletionsProviderNameSourcegraph {
+	if completionsConfig.Provider != conftypes.CompletionsProviderNameKhulnasoft {
 		return nil, nil
 	}
 

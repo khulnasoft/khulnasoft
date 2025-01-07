@@ -71,7 +71,7 @@ export const InferenceScriptPreview: React.FunctionComponent<InferenceScriptPrev
                         as={RepositoryField}
                         required={true}
                         aria-label="Repository"
-                        placeholder="Example: github.com/sourcegraph/sourcegraph"
+                        placeholder="Example: github.com/khulnasoft/khulnasoft"
                         {...getDefaultInputProps(repository)}
                         className={styles.actionInput}
                     />

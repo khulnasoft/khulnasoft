@@ -28,13 +28,13 @@ var (
 )
 
 // CountGoImporters returns the number of Go importers for the repository's Go subpackages. This is
-// a special case used only on Sourcegraph.com for repository badges.
+// a special case used only on Khulnasoft.com for repository badges.
 func CountGoImporters(ctx context.Context, cli httpcli.Doer, repo api.RepoName) (count int, err error) {
 	if MockCountGoImporters != nil {
 		return MockCountGoImporters(ctx, repo)
 	}
 
-	if !dotcom.SourcegraphDotComMode() {
+	if !dotcom.KhulnasoftDotComMode() {
 		// Avoid confusing users by exposing this on self-hosted instances, because it relies on the
 		// public godoc.org API.
 		return 0, errors.New("counting Go importers is not supported on self-hosted instances")
@@ -132,7 +132,7 @@ func countGoImportersSearchQuery(repo api.RepoName) string {
 	// - \s+ to match spaces between repo name and version identifier
 	// - v\d to match beginning of version identifier
 	//
-	// See: https://sourcegraph.com/search?q=context:global+type:file+f:%28%5E%7C/%29go%5C.mod%24+content:%5E%5Cs*github%5C.com/tsenart/vegeta%28/%5CS%2B%29%3F%5Cs%2Bv%5Cd+visibility:public+count:all&patternType=regexp
+	// See: https://khulnasoft.com/search?q=context:global+type:file+f:%28%5E%7C/%29go%5C.mod%24+content:%5E%5Cs*github%5C.com/tsenart/vegeta%28/%5CS%2B%29%3F%5Cs%2Bv%5Cd+visibility:public+count:all&patternType=regexp
 	return strings.Join([]string{
 		`type:file`,
 		`f:(^|/)go\.mod$`,

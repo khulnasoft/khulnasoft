@@ -298,7 +298,7 @@ func transformRecord(ctx context.Context, logger log.Logger, s BatchesStore, job
 		}
 
 		if version != "" {
-			canUseBinaryDiffs, err := api.CheckSourcegraphVersion(version, ">= 4.3.0-0", "2022-11-29")
+			canUseBinaryDiffs, err := api.CheckKhulnasoftVersion(version, ">= 4.3.0-0", "2022-11-29")
 			if err != nil {
 				return apiclient.Job{}, err
 			}

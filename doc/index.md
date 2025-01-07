@@ -26,9 +26,9 @@
 
 </style>
 
-<img alt="Sourcegraph logo" src="/assets/sourcegraph-logo-dark.svg" width="50%" class="theme-dark-only"><img alt="Sourcegraph logo" src="/assets/sourcegraph-logo-light.svg" width="50%" class="theme-light-only"><span class="sr-only">Sourcegraph</span>
+<img alt="Khulnasoft logo" src="/assets/sourcegraph-logo-dark.svg" width="50%" class="theme-dark-only"><img alt="Khulnasoft logo" src="/assets/sourcegraph-logo-light.svg" width="50%" class="theme-light-only"><span class="sr-only">Khulnasoft</span>
 
-Sourcegraph is a Code AI platform that deeply understands your code, no matter how large or where it’s hosted, to power modern developer experiences.
+Khulnasoft is a Code AI platform that deeply understands your code, no matter how large or where it’s hosted, to power modern developer experiences.
 
 - **Code search:** Search all of your repositories across all branches and all code hosts
 - **Code intelligence:** Navigate code, find references, see code owners, trace history, and more
@@ -38,18 +38,18 @@ Sourcegraph is a Code AI platform that deeply understands your code, no matter h
 ## Quickstart
 
 <div class="cards">
-  <a class="card text-left" href="https://sourcegraph.com/cody"><b>Get Cody</b><p>Write, fix, and maintain code with Sourcegraph’s AI coding assistant, Cody.
+  <a class="card text-left" href="https://khulnasoft.com/cody"><b>Get Cody</b><p>Write, fix, and maintain code with Khulnasoft’s AI coding assistant, Cody.
 </p></a>
-  <a class="card text-left" href="https://sourcegraph.com/search"><b>Try Code Search</b><p>Search all of your repositories across all branches and all code hosts.</p></a>
+  <a class="card text-left" href="https://khulnasoft.com/search"><b>Try Code Search</b><p>Search all of your repositories across all branches and all code hosts.</p></a>
 </div>
 <div class="cards">
-   <a class="card text-left" href="/getting-started"><b>Sourcegraph 101</b><p>Learn how to use Sourcegraph.</p></a>
-  <a class="card text-left" href="/getting-started/tour"><b>Sourcegaph Tour</b><p>Take a tour of Sourcegraph’s features using real-world examples and use cases.</p></a>
+   <a class="card text-left" href="/getting-started"><b>Khulnasoft 101</b><p>Learn how to use Khulnasoft.</p></a>
+  <a class="card text-left" href="/getting-started/tour"><b>Sourcegaph Tour</b><p>Take a tour of Khulnasoft’s features using real-world examples and use cases.</p></a>
 </div>
 
 ## Main Features
 
-Some of the main Sourcegraph features include:
+Some of the main Khulnasoft features include:
 
 | **Feature**                    | **Description**                                                                                                                        |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
@@ -62,8 +62,8 @@ Some of the main Sourcegraph features include:
 
 ## What's New
 
-Stay in sync and get the latest news on Sourcegaph products, technologies, and culture. [Read the blog →](https://sourcegraph.com/blog)
+Stay in sync and get the latest news on Sourcegaph products, technologies, and culture. [Read the blog →](https://khulnasoft.com/blog)
 
 ## Join our Community
 
-If you have questions about anything related to Sourcegraph, you're always welcome to [ask our community](https://community.sourcegraph.com), [Discord](https://discord.gg/s2qDtYGnAE), and [X](https://twitter.com/sourcegraph).
+If you have questions about anything related to Khulnasoft, you're always welcome to [ask our community](https://community.khulnasoft.com), [Discord](https://discord.gg/s2qDtYGnAE), and [X](https://twitter.com/sourcegraph).

@@ -42,7 +42,7 @@ if [ ! -d "$ORIGIN" ]; then
   cd "$ORIGIN"
   git init
 
-  git config user.email test@sourcegraph.com
+  git config user.email test@khulnasoft.com
   echo "foobar" > README.md
   git add README.md
   git commit -m "initial commit"
@@ -57,7 +57,7 @@ mkdir -p "$DIR"
 cd "$DIR"
 git init --bare .
 
-git config user.email test@sourcegraph.com
+git config user.email test@khulnasoft.com
 git remote add --no-tags sourcegraph "$ORIGIN"
 git config --replace-all remote.origin.fetch '+HEAD:refs/remotes/sourcegraph/master'
 

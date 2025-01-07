@@ -56,7 +56,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-The Subscription bag pattern is usually not needed when using React function components with our [`useObservable()` family of hooks](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/shared/src/util/useObservable.ts#L26:17), as they will handle the subscription under the hood.
+The Subscription bag pattern is usually not needed when using React function components with our [`useObservable()` family of hooks](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/shared/src/util/useObservable.ts#L26:17), as they will handle the subscription under the hood.
 
 ## Making invalid states impossible through union types
 
@@ -138,9 +138,9 @@ This makes it easy to compose them.
 Avoid having functions that take more data than they actually need just to return this part of the input verbatim, because it makes them harder to test and ties them to the context they are used in currently.
 This "merging" is better done by the caller.
 Instead of constructors, factory functions can be defined that create and return object literals (typed with an interface).
-These functions are conventionally named `create`+_name of interface_ (eg. [`createModelService()`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@b1ddeff4a2b94ceccda7cdf7021d5f82aa4522ed/-/blob/shared/src/api/client/services/modelService.ts#L99-167)).
+These functions are conventionally named `create`+_name of interface_ (eg. [`createModelService()`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@b1ddeff4a2b94ceccda7cdf7021d5f82aa4522ed/-/blob/shared/src/api/client/services/modelService.ts#L99-167)).
 
-There are a few places where we do use classes, e.g. [`ExtDocuments`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@fd9eef0b5893dfb3358d2a3358d15f3e9b14ca9e/-/blob/shared/src/api/extension/api/documents.ts#L21:20).
+There are a few places where we do use classes, e.g. [`ExtDocuments`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@fd9eef0b5893dfb3358d2a3358d15f3e9b14ca9e/-/blob/shared/src/api/extension/api/documents.ts#L21:20).
 These are usually where mutation is unavoidable.
 For example, our extension host web worker runs in a separate thread.
 We need to sync various data between the worker and the main thread, because requesting that data on demand every time  through message passing would not be performant.
@@ -162,7 +162,7 @@ useEffect(() => {
 
 ### Fetching data in componentDidMount
 
-A lot of components will fetch initial data using observables, calling `setState()` in the `subscribe()` callback. See [this example from `SiteUsageExploreSection`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@9997438a8ba2fdc54920f1f6ad22dd08d4a37215/-/blob/web/src/usageStatistics/explore/SiteUsageExploreSection.tsx?subtree=true#L32-38):
+A lot of components will fetch initial data using observables, calling `setState()` in the `subscribe()` callback. See [this example from `SiteUsageExploreSection`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@9997438a8ba2fdc54920f1f6ad22dd08d4a37215/-/blob/web/src/usageStatistics/explore/SiteUsageExploreSection.tsx?subtree=true#L32-38):
 
 ```typescript
     public componentDidMount(): void {
@@ -180,7 +180,7 @@ In function components, this pattern can be easily replaced with `useObservable(
 const usageStatisticsOrError = useObservable(fetchSiteUsageStatistics().pipe(catchError(error => [asError(error)])))
 ```
 
-If the function returning the Observable took props as parameters, you can rely on `useMemo()` to [re-create the Observable when props change](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@9997438a8ba2fdc54920f1f6ad22dd08d4a37215/-/blob/web/src/enterprise/site-admin/SiteAdminLsifUploadPage.tsx?subtree=true#L25-27):
+If the function returning the Observable took props as parameters, you can rely on `useMemo()` to [re-create the Observable when props change](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@9997438a8ba2fdc54920f1f6ad22dd08d4a37215/-/blob/web/src/enterprise/site-admin/SiteAdminLsifUploadPage.tsx?subtree=true#L25-27):
 
 ```typescript
 const uploadOrError = useObservable(
@@ -192,13 +192,13 @@ const uploadOrError = useObservable(
 
 A common pattern in our class components is to declare a Subject of the component's props, named `componentUpdates`. It can be used to trigger side-effects, such as fetching data or subscribing to an Observable passed as props, only when certain props change.
 
-See this example from [`<MonacoEditor/>`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@9997438a8ba2fdc54920f1f6ad22dd08d4a37215/-/blob/web/src/components/MonacoEditor.tsx?subtree=true#L129-137):
+See this example from [`<MonacoEditor/>`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@9997438a8ba2fdc54920f1f6ad22dd08d4a37215/-/blob/web/src/components/MonacoEditor.tsx?subtree=true#L129-137):
 
 ```typescript
 this.subscriptions.add(
     this.componentUpdates
         .pipe(
-            map(({ isLightTheme }) => (isLightTheme ? SOURCEGRAPH_LIGHT : SOURCEGRAPH_DARK)),
+            map(({ isLightTheme }) => (isLightTheme ? KHULNASOFT_LIGHT : KHULNASOFT_DARK)),
             distinctUntilChanged()
         )
         .subscribe(theme => monaco.editor.setTheme(theme))
@@ -209,7 +209,7 @@ this.componentUpdates.next(this.props)
 This can be easily refactored with hooks by passing the relevant property as a dependency:
 
 ```typescript
-const theme = isLightTheme ? SOURCEGRAPH_LIGHT : SOURCEGRAPH_DARK
+const theme = isLightTheme ? KHULNASOFT_LIGHT : KHULNASOFT_DARK
 useEffect(() => {
     monaco.editor.setTheme(theme)
 }, [theme])
@@ -217,7 +217,7 @@ useEffect(() => {
 
 ### Instance property subjects
 
-Some class components expose subjects as instance properties, that can be used to trigger a new fetch of the data. See [`SettingsArea.refreshRequests`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@9997438a8ba2fdc54920f1f6ad22dd08d4a37215/-/blob/web/src/settings/SettingsArea.tsx?subtree=true#L73):
+Some class components expose subjects as instance properties, that can be used to trigger a new fetch of the data. See [`SettingsArea.refreshRequests`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@9997438a8ba2fdc54920f1f6ad22dd08d4a37215/-/blob/web/src/settings/SettingsArea.tsx?subtree=true#L73):
 
 ```typescript
 // Load settings.
@@ -270,7 +270,7 @@ const [nextRefreshRequest, dataOrError] = useEventObservable(
 
 ### Uses of `tap()` to trigger side-effects in Observable pipes
 
-Some Observable pipes use `tap()` to trigger side-effects, such as [this pipe in `<RepoRevisionContainer/>`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@9997438a8ba2fdc54920f1f6ad22dd08d4a37215/-/blob/web/src/repo/RepoRevisionContainer.tsx?subtree=true#L127-167) with its multiple calls to `onResolvedRevisionOrError`:
+Some Observable pipes use `tap()` to trigger side-effects, such as [this pipe in `<RepoRevisionContainer/>`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@9997438a8ba2fdc54920f1f6ad22dd08d4a37215/-/blob/web/src/repo/RepoRevisionContainer.tsx?subtree=true#L127-167) with its multiple calls to `onResolvedRevisionOrError`:
 
 ```typescript
 // Fetch repository revision.

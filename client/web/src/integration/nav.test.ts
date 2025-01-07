@@ -24,14 +24,14 @@ import { createEditorAPI, removeContextFromQuery } from './utils'
 const commonSearchGraphQLResults: Partial<WebGraphQlOperations & SharedGraphQlOperations> = {
     ...commonWebGraphQlResults,
     FileNames: () => createFileNamesResult(),
-    ResolveRepoRev: () => createResolveRepoRevisionResult('/github.com/sourcegraph/sourcegraph'),
+    ResolveRepoRev: () => createResolveRepoRevisionResult('/github.com/khulnasoft/khulnasoft'),
     FileExternalLinks: ({ filePath, repoName, revision }) =>
         createFileExternalLinksResult(
             `https://${encodeURIPathComponent(repoName)}/blob/${encodeURIPathComponent(
                 revision
             )}/${encodeURIPathComponent(filePath)}`
         ),
-    TreeEntries: () => createTreeEntriesResult('/github.com/sourcegraph/sourcegraph', ['README.md']),
+    TreeEntries: () => createTreeEntriesResult('/github.com/khulnasoft/khulnasoft', ['README.md']),
     Blob: ({ filePath }) => createBlobContentResult(`content for: ${filePath}\nsecond line\nthird line`),
     FetchNotebook: ({ id }) => ({
         node: notebookFixture(id, 'Notebook Title', [

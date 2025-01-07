@@ -58,7 +58,7 @@ func Start(logger log.Logger, registerEnterpriseMigrators store.RegisterMigrator
 		},
 	}
 
-	out.WriteLine(output.Linef(output.EmojiAsterisk, output.StyleReset, "Sourcegraph migrator %s", version.Version()))
+	out.WriteLine(output.Linef(output.EmojiAsterisk, output.StyleReset, "Khulnasoft migrator %s", version.Version()))
 
 	args := os.Args
 	if len(args) == 1 {

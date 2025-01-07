@@ -16,7 +16,7 @@
   "labels": [],
   "source_branch": "a8n/campaign-list-filter",
   "target_branch": "master",
-  "web_url": "https://gitlab.com/sourcegraph/sourcegraph/-/merge_requests/2",
+  "web_url": "https://gitlab.com/khulnasoft/khulnasoft/-/merge_requests/2",
   "work_in_progress": false,
   "draft": false,
   "force_remove_source_branch": false,

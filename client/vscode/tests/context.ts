@@ -28,7 +28,7 @@ export interface VSCodeIntegrationTestContext
 export async function createVSCodeIntegrationTestContext(
     { currentTest, directory }: Omit<IntegrationTestOptions, 'driver'>,
     vsCodeFrontendPage: puppeteer.Page,
-    sourcegraphBaseUrl = 'https://sourcegraph.com'
+    sourcegraphBaseUrl = 'https://khulnasoft.com'
 ): Promise<VSCodeIntegrationTestContext> {
     const sharedTestContext = await createSharedIntegrationTestContext({
         driver: {

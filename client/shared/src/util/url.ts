@@ -128,7 +128,7 @@ export interface RenderModeSpec {
 }
 
 /**
- * Properties of a RepoURI (like git://github.com/gorilla/mux#mux.go) or a URL (like https://sourcegraph.com/github.com/gorilla/mux/-/blob/mux.go)
+ * Properties of a RepoURI (like git://github.com/gorilla/mux#mux.go) or a URL (like https://khulnasoft.com/github.com/gorilla/mux/-/blob/mux.go)
  */
 export interface ParsedRepoURI
     extends RepoSpec,

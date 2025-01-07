@@ -61,7 +61,7 @@ func New(logger log.Logger, db database.DB, gitserverClient gitserver.Client) Se
 			Gitserver:                   gitserverClient,
 		},
 		settingsService:       settings.NewService(db),
-		sourcegraphDotComMode: dotcom.SourcegraphDotComMode(),
+		sourcegraphDotComMode: dotcom.KhulnasoftDotComMode(),
 	}
 }
 
@@ -70,7 +70,7 @@ func Mocked(runtimeClients job.RuntimeClients) SearchClient {
 	return &searchClient{
 		runtimeClients:        runtimeClients,
 		settingsService:       settings.Mock(&schema.Settings{}),
-		sourcegraphDotComMode: dotcom.SourcegraphDotComMode(),
+		sourcegraphDotComMode: dotcom.KhulnasoftDotComMode(),
 	}
 }
 
@@ -147,7 +147,7 @@ func (s *searchClient) Plan(
 		OriginalQuery:          searchQuery,
 		SearchMode:             searchMode,
 		UserSettings:           settings,
-		OnSourcegraphDotCom:    s.sourcegraphDotComMode,
+		OnKhulnasoftDotCom:    s.sourcegraphDotComMode,
 		Features:               ToFeatures(featureflag.FromContext(ctx), s.runtimeClients.Logger),
 		PatternType:            searchType,
 		Protocol:               protocol,

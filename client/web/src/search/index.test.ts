@@ -78,7 +78,7 @@ describe('search/index', () => {
                 appendCaseFilter: true,
             })
         ).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph case:yes',
+            query: 'TEST repo:khulnasoft/khulnasoft case:yes',
             patternType: SearchPatternType.standard,
             caseSensitive: true,
             searchMode: SearchMode.Precise,
@@ -100,7 +100,7 @@ describe('search/index', () => {
                 appendCaseFilter: true,
             })
         ).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph case:yes',
+            query: 'TEST repo:khulnasoft/khulnasoft case:yes',
             patternType: SearchPatternType.regexp,
             caseSensitive: true,
             searchMode: SearchMode.Precise,
@@ -111,7 +111,7 @@ describe('search/index', () => {
                 appendCaseFilter: true,
             })
         ).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph case:yes',
+            query: 'TEST repo:khulnasoft/khulnasoft case:yes',
             patternType: SearchPatternType.standard,
             caseSensitive: true,
             searchMode: SearchMode.Precise,

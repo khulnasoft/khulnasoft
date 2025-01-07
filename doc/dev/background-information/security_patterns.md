@@ -8,7 +8,7 @@ Authorization is the gatekeeper for securing private resources by preventing una
 - Endpoints that can only be called by certain users (e.g. site admins)
 - User settings or organization settings
 
-Current forms of authorization in Sourcegraph include:
+Current forms of authorization in Khulnasoft include:
 
  - Site admin roles
  - Organization memberships
@@ -20,7 +20,7 @@ As a standard practice, users who do not have access to a given private resource
 
 ### Enforce authorization
 
-In Sourcegraph, there are two places to enforce authorization, both equally important:
+In Khulnasoft, there are two places to enforce authorization, both equally important:
 
 - At the GraphQL layer:
     - Some endpoints are restricted to certain users (e.g. site admins or the same user).
@@ -34,19 +34,19 @@ Within our Go code, such as the frontend and repo-updater services, metadata rep
 
 #### Actors
 
-The [`Actor`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@c764844ef9574cef5533147d756ae98e613d0ae6/-/blob/internal/actor/actor.go?L15&subtree=true) type represents the current actor. In most cases, this is the user who issued the request.
+The [`Actor`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@c764844ef9574cef5533147d756ae98e613d0ae6/-/blob/internal/actor/actor.go?L15&subtree=true) type represents the current actor. In most cases, this is the user who issued the request.
 
 More specifically, an actor will be one of these three cases:
 
 1. An authenticated user, in which case the `UID` field will be set to a non-zero value.
 2. A guest user, in which case the `UID` field will be zero.
-3. An internal actor, which indicates that the current operation was started by an internal Sourcegraph process.
+3. An internal actor, which indicates that the current operation was started by an internal Khulnasoft process.
 
 #### Checking authorization
 
 Care must be taken when checking an actor: it's possible to have a context that doesn't have an actor at all, in which case `actor.FromContext()` will return `nil`.
 
-Code in `cmd/frontend` can take advantage of [the helper functions available in `cmd/frontend/backend`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@c764844/-/docs/cmd/frontend/backend#func) such as `CheckCurrentUserIsSiteAdmin` and `CheckSiteAdminOrSameUser`. These functions already take the details of internal and user actors into account, and are the safest way to perform authorization checks at the frontend level (for example, in GraphQL resolvers).
+Code in `cmd/frontend` can take advantage of [the helper functions available in `cmd/frontend/backend`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@c764844/-/docs/cmd/frontend/backend#func) such as `CheckCurrentUserIsSiteAdmin` and `CheckSiteAdminOrSameUser`. These functions already take the details of internal and user actors into account, and are the safest way to perform authorization checks at the frontend level (for example, in GraphQL resolvers).
 
 Below the frontend level, or in other commands, you'll need to implement more of your own authorization logic. Two `nil`-safe methods are provided on the `Actor` type: `IsAuthenticated()` and `IsInternal()`, which are always safe to call. The `UID` field must only be accessed after calling `IsAuthenticated()`.
 

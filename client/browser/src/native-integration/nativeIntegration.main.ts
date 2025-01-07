@@ -34,9 +34,9 @@ function insertStyleSheet({ id, path, assetsURL }: InsertStyleSheetOptions): voi
 
 function init(): void {
     console.log('Khulnasoft native integration is running')
-    const sourcegraphURL = window.SOURCEGRAPH_URL
+    const sourcegraphURL = window.KHULNASOFT_URL
     if (!sourcegraphURL) {
-        throw new Error('window.SOURCEGRAPH_URL is undefined')
+        throw new Error('window.KHULNASOFT_URL is undefined')
     }
 
     const assetsURL = getAssetsURL(sourcegraphURL)
@@ -50,8 +50,8 @@ function init(): void {
     }
     insertStyleSheet({ id: 'sourcegraph-styles', path: 'css/app.bundle.css', assetsURL })
     insertStyleSheet({ id: 'sourcegraph-styles-css-modules', path: 'css/contentPage.main.bundle.css', assetsURL })
-    window.localStorage.setItem('SOURCEGRAPH_URL', sourcegraphURL)
-    window.SOURCEGRAPH_URL = sourcegraphURL
+    window.localStorage.setItem('KHULNASOFT_URL', sourcegraphURL)
+    window.KHULNASOFT_URL = sourcegraphURL
     // TODO handle subscription
     injectCodeIntelligence({ sourcegraphURL, assetsURL }, IS_EXTENSION).catch(error => {
         console.error('Error injecting Khulnasoft code navigation:', error)

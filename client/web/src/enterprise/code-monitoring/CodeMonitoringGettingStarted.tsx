@@ -152,7 +152,7 @@ export const CodeMonitoringGettingStarted: React.FunctionComponent<
                             <Text className="text-muted">
                                 Have a question or idea about code monitoring? We want to hear your feedback!
                             </Text>
-                            <Link to="mailto:feedback@sourcegraph.com" className="link">
+                            <Link to="mailto:feedback@khulnasoft.com" className="link">
                                 Share your thoughts
                             </Link>
                         </div>

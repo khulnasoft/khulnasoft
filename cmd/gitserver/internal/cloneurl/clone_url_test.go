@@ -314,11 +314,11 @@ func TestPerforceCloneURL(t *testing.T) {
 	}
 
 	repo := &perforce.Depot{
-		Depot: "//Sourcegraph/",
+		Depot: "//Khulnasoft/",
 	}
 
 	got := perforceCloneURL(repo, &cfg)
-	want := "perforce://admin:pa$$word@ssl:111.222.333.444:1666//Sourcegraph/"
+	want := "perforce://admin:pa$$word@ssl:111.222.333.444:1666//Khulnasoft/"
 	if got != want {
 		t.Fatalf("wrong cloneURL, got: %q, want: %q", got, want)
 	}

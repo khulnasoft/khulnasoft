@@ -60,7 +60,7 @@ describe('TreePage', () => {
             requestGraphQL: () => EMPTY,
             createExtensionHost: () => Promise.reject(new Error('createExtensionHost not implemented')),
             urlToFile: () => '',
-            sourcegraphURL: 'https://sourcegraph.com',
+            sourcegraphURL: 'https://khulnasoft.com',
             clientApplication: 'sourcegraph',
             telemetryRecorder: noOpTelemetryRecorder,
         },

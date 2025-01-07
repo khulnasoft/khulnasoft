@@ -53,7 +53,7 @@ type ExternalServiceStore interface {
 	//
 	// 🚨 SECURITY: The value of `es.Unrestricted` is disregarded and will always be
 	// recalculated based on whether "authorization" field is presented in
-	// `es.Config`. For Sourcegraph Dotcom, the `es.Unrestricted` will always be
+	// `es.Config`. For Khulnasoft Dotcom, the `es.Unrestricted` will always be
 	// false (i.e. enforce permissions).
 	Create(ctx context.Context, confGet func() *conf.Unified, es *types.ExternalService) error
 
@@ -135,7 +135,7 @@ type ExternalServiceStore interface {
 	//
 	// 🚨 SECURITY: The value of `es.Unrestricted` is disregarded and will always be
 	// recalculated based on whether "authorization" field is presented in
-	// `es.Config`. For Sourcegraph Cloud, the `es.Unrestricted` will always be
+	// `es.Config`. For Khulnasoft Cloud, the `es.Unrestricted` will always be
 	// false (i.e. enforce permissions).
 	Upsert(ctx context.Context, svcs ...*types.ExternalService) (err error)
 
@@ -439,8 +439,8 @@ func validateOtherExternalServiceConnection(c *schema.OtherExternalServiceConnec
 		parseRepo = baseURL.Parse
 	}
 
-	if !dotcom.SourcegraphDotComMode() && c.MakeReposPublicOnDotCom {
-		return errors.Errorf(`"makeReposPublicOnDotCom" can only be set when running on Sourcegraph.com`)
+	if !dotcom.KhulnasoftDotComMode() && c.MakeReposPublicOnDotCom {
+		return errors.Errorf(`"makeReposPublicOnDotCom" can only be set when running on Khulnasoft.com`)
 	}
 
 	for i, repo := range c.Repos {

@@ -15,7 +15,7 @@ func TestGitCLIBackend_LatestCommitTimestamp(t *testing.T) {
 	backend := BackendWithRepoCommands(t,
 		"echo line1 > f",
 		"git add f",
-		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@khulnasoft.com>'`,
 	)
 
 	have, err := backend.LatestCommitTimestamp(ctx)

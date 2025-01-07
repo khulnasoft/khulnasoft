@@ -1,4 +1,4 @@
-{"id":1,"type":"vertex","label":"metaData","version":"0.4.3","projectRoot":"file:///home/arrow/sourcegraph/sourcegraph","positionEncoding":"utf-16","toolInfo":{"name":"lsif-go","version":"dev","args":["--module-root=/home/arrow/khulnasoft/khulnasoft/lib"]}}
+{"id":1,"type":"vertex","label":"metaData","version":"0.4.3","projectRoot":"file:///home/arrow/khulnasoft/khulnasoft","positionEncoding":"utf-16","toolInfo":{"name":"lsif-go","version":"dev","args":["--module-root=/home/arrow/khulnasoft/khulnasoft/lib"]}}
 {"id":2,"type":"vertex","label":"project","kind":"go"}
 {"id":3,"type":"vertex","label":"document","uri":"file:///home/arrow/khulnasoft/khulnasoft/lib/codeintel/precise/diff/testdata/project1/test.go","languageId":"go"}
 {"id":4,"type":"vertex","label":"range","start":{"line":4,"character":25},"end":{"line":4,"character":29}}

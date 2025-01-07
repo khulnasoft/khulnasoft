@@ -21,7 +21,7 @@ import (
 
 // Init is the initalization function wired into the `frontend` application startup.
 // This registers the necessary watchers and hooks so that the `Service` can always
-// have an up-to-date view of this Sourcegraph instance's configuration data.
+// have an up-to-date view of this Khulnasoft instance's configuration data.
 func Init(
 	ctx context.Context,
 	observationCtx *observation.Context,
@@ -61,7 +61,7 @@ func Init(
 		siteModelConfig = nil
 	}
 
-	// Now build the initial view of the Sourcegraph instance's model configuration using this data.
+	// Now build the initial view of the Khulnasoft instance's model configuration using this data.
 	// This configManager will mediate how async changes get translated into new updates to the
 	// modelconfig.Service.
 	configManager := &manager{
@@ -76,7 +76,7 @@ func Init(
 	if err != nil {
 		// If somehow the configuration data is corrupted to the point we
 		// weren't able to actually know what LLMs are supported, we still
-		// want to allow the Sourcegraph instance to start up. And rely on
+		// want to allow the Khulnasoft instance to start up. And rely on
 		// the site config validators to surface any errors to site admins
 		// in the hope that they can address them.
 		logger.Error("error building initial model configuration", log.Error(err))
@@ -112,7 +112,7 @@ func Init(
 	return nil
 }
 
-// manager is responsible for keeping track of changes to the current Sourcegraph instance, and
+// manager is responsible for keeping track of changes to the current Khulnasoft instance, and
 // propagating model configuration changes. i.e. it wraps the builder type, providing hooks for
 // when inputs to the configuration system changes, and then pushes the results to singletonConfigService.
 type manager struct {
@@ -120,7 +120,7 @@ type manager struct {
 	builder *builder
 }
 
-// OnSiteConfigChange should be called whenever the Sourcegraph instance's site configuration changes.
+// OnSiteConfigChange should be called whenever the Khulnasoft instance's site configuration changes.
 // If there is an error while calculating the updated model configuration, no changes will be applied.
 // (e.g. whatever the previous configuration data was will remain in-place.)
 func (m *manager) OnSiteConfigChange() {
@@ -142,7 +142,7 @@ func (m *manager) applyNewSiteConfig(latestSiteConfig schema.SiteConfiguration) 
 	latestSiteModelConfiguration, err := maybeGetSiteModelConfiguration(m.logger, latestSiteConfig)
 	if err != nil {
 		// NOTE: If the site configuration data is somehow bad, we silently ignore
-		// the changes. This is bad, because there is no signal to the Sourcegraph
+		// the changes. This is bad, because there is no signal to the Khulnasoft
 		// admin that their configuration is invalid. Hopefully we can put the necessary
 		// validation logic inside the site configuration validation checks, so
 		// that they will be prevented from saving invalid config data in the first

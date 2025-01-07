@@ -12,7 +12,7 @@ import (
 // of this endpoint is to be compatible with OpenAI clients.
 // The structs and fields have no docs in this file but you can find the
 // descriptions in the OpenAPI spec. The goal is to document this API properly
-// on sourcegraph.com/docs using the same descriptions as in the OpenAPI spec.
+// on khulnasoft.com/docs using the same descriptions as in the OpenAPI spec.
 
 type CreateChatCompletionRequest struct {
 	Messages []ChatCompletionRequestMessage `json:"messages"`

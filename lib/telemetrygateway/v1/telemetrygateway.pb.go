@@ -1,7 +1,7 @@
 // 🔔 IMPORTANT: Be VERY careful not to introduce breaking changes to this
 // spec - raw protocol buffer wire format messages are persisted to database
-// as a cache, and Sourcegraph instances rely on this format to emit telemetry
-// to the managed Sourcegraph Telemetry Gateway service.
+// as a cache, and Khulnasoft instances rely on this format to emit telemetry
+// to the managed Khulnasoft Telemetry Gateway service.
 //
 // Tests in ./internal/telemetrygateway/backcompat_test.go can be used to
 // assert compatibility with snapshots created by older versions of this spec.
@@ -108,18 +108,18 @@ type isIdentifier_Identifier interface {
 }
 
 type Identifier_LicensedInstance struct {
-	// A licensed Sourcegraph instance.
+	// A licensed Khulnasoft instance.
 	LicensedInstance *Identifier_LicensedInstanceIdentifier `protobuf:"bytes,1,opt,name=licensed_instance,json=licensedInstance,proto3,oneof"`
 }
 
 type Identifier_UnlicensedInstance struct {
-	// An unlicensed Sourcegraph instance.
+	// An unlicensed Khulnasoft instance.
 	UnlicensedInstance *Identifier_UnlicensedInstanceIdentifier `protobuf:"bytes,2,opt,name=unlicensed_instance,json=unlicensedInstance,proto3,oneof"`
 }
 
 type Identifier_ManagedService struct {
-	// A service operated and managed by the Sourcegraph team, for example
-	// a service deployed by MSP: https://handbook.sourcegraph.com/departments/engineering/teams/core-services/managed-services/platform/
+	// A service operated and managed by the Khulnasoft team, for example
+	// a service deployed by MSP: https://handbook.khulnasoft.com/departments/engineering/teams/core-services/managed-services/platform/
 	//
 	// Valid SAMS client credentials are required to publish events under a
 	// managed service identifier. The required scope is
@@ -141,7 +141,7 @@ type RecordEventsRequestMetadata struct {
 
 	// Client-provided request identifier for diagnostics purposes.
 	RequestId string `protobuf:"bytes,1,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
-	// Telemetry publisher self-identification - for example, a Sourcegraph
+	// Telemetry publisher self-identification - for example, a Khulnasoft
 	// instance of some other kind of service.
 	Identifier *Identifier `protobuf:"bytes,2,opt,name=identifier,proto3" json:"identifier,omitempty"`
 }
@@ -443,16 +443,16 @@ type Event struct {
 	Parameters *EventParameters `protobuf:"bytes,6,opt,name=parameters,proto3" json:"parameters,omitempty"`
 	// Optional user associated with the event.
 	//
-	// This field should be hydrated by the Sourcegraph server, and not provided
+	// This field should be hydrated by the Khulnasoft server, and not provided
 	// by clients.
 	User *EventUser `protobuf:"bytes,7,opt,name=user,proto3,oneof" json:"user,omitempty"`
 	// Optional feature flags configured in the context of the event.
 	FeatureFlags *EventFeatureFlags `protobuf:"bytes,8,opt,name=feature_flags,json=featureFlags,proto3,oneof" json:"feature_flags,omitempty"`
 	// Optional marketing campaign tracking parameters.
 	//
-	// 🚨 SECURITY: This metadata is NEVER exported from single-tenant Sourcegraph
+	// 🚨 SECURITY: This metadata is NEVER exported from single-tenant Khulnasoft
 	// instances, and is only exported for events tracked in the public
-	// Sourcegraph.com instance and managed services.
+	// Khulnasoft.com instance and managed services.
 	MarketingTracking *EventMarketingTracking `protobuf:"bytes,9,opt,name=marketing_tracking,json=marketingTracking,proto3,oneof" json:"marketing_tracking,omitempty"`
 	// Optional metadata identifying the interaction that generated the event.
 	Interaction *EventInteraction `protobuf:"bytes,10,opt,name=interaction,proto3,oneof" json:"interaction,omitempty"`
@@ -781,10 +781,10 @@ type EventUser struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Sourcegraph instance database user ID of the user. User IDs are specific to
-	// a Sourcegraph instance, and are not universal across Sourcegraph instances.
+	// Khulnasoft instance database user ID of the user. User IDs are specific to
+	// a Khulnasoft instance, and are not universal across Khulnasoft instances.
 	//
-	// We use an int64 as an ID because in Sourcegraph, database user IDs are
+	// We use an int64 as an ID because in Khulnasoft, database user IDs are
 	// always integers.
 	UserId *int64 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3,oneof" json:"user_id,omitempty"`
 	// Randomized unique identifier representing the user (typically stored in
@@ -792,12 +792,12 @@ type EventUser struct {
 	// often used for unauthenticated users, but can persist to authenticated
 	// users as well.
 	AnonymousUserId *string `protobuf:"bytes,2,opt,name=anonymous_user_id,json=anonymousUserId,proto3,oneof" json:"anonymous_user_id,omitempty"`
-	// Sourcegraph Accounts Management System (SAMS) account associated with the
+	// Khulnasoft Accounts Management System (SAMS) account associated with the
 	// user, represented by a SAMS external user ID in a UUID format. This is only
 	// valid for services leveraging SAMS as an identity provider - in other words,
-	// traditional Sourcegraph instances will not provide this.
+	// traditional Khulnasoft instances will not provide this.
 	//
-	// Learn more about SAMS: https://handbook.sourcegraph.com/departments/engineering/teams/core-services/sams
+	// Learn more about SAMS: https://handbook.khulnasoft.com/departments/engineering/teams/core-services/sams
 	SamsExternalId *string `protobuf:"bytes,3,opt,name=sams_external_id,json=samsExternalId,proto3,oneof" json:"sams_external_id,omitempty"`
 }
 
@@ -863,7 +863,7 @@ type EventFeatureFlags struct {
 	// feature flags, but in the API we allow arbitrary string values for future
 	// extensibility.
 	//
-	// This field should be hydrated by the Sourcegraph server, and not provided
+	// This field should be hydrated by the Khulnasoft server, and not provided
 	// by clients.
 	Flags map[string]string `protobuf:"bytes,1,rep,name=flags,proto3" json:"flags,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
@@ -909,9 +909,9 @@ func (x *EventFeatureFlags) GetFlags() map[string]string {
 
 // Marketing campaign tracking metadata.
 //
-// 🚨 SECURITY: This metadata is NEVER exported from single-tenant Sourcegraph
+// 🚨 SECURITY: This metadata is NEVER exported from single-tenant Khulnasoft
 // instances, and is only exported for events tracked in the public
-// Sourcegraph.com instance and managed services.
+// Khulnasoft.com instance and managed services.
 type EventMarketingTracking struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -923,7 +923,7 @@ type EventMarketingTracking struct {
 	FirstSourceUrl *string `protobuf:"bytes,2,opt,name=first_source_url,json=firstSourceUrl,proto3,oneof" json:"first_source_url,omitempty"`
 	// Cohort ID to identify the user as part of a specific A/B test.
 	CohortId *string `protobuf:"bytes,3,opt,name=cohort_id,json=cohortId,proto3,oneof" json:"cohort_id,omitempty"`
-	// Referrer URL that refers the user to Sourcegraph.
+	// Referrer URL that refers the user to Khulnasoft.
 	Referrer *string `protobuf:"bytes,4,opt,name=referrer,proto3,oneof" json:"referrer,omitempty"`
 	// Last source URL visited by the user.
 	LastSourceUrl *string `protobuf:"bytes,5,opt,name=last_source_url,json=lastSourceUrl,proto3,oneof" json:"last_source_url,omitempty"`
@@ -1095,9 +1095,9 @@ type Identifier_LicensedInstanceIdentifier struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// License key configured in the Sourcegraph instance emitting the event.
+	// License key configured in the Khulnasoft instance emitting the event.
 	LicenseKey string `protobuf:"bytes,1,opt,name=license_key,json=licenseKey,proto3" json:"license_key,omitempty"`
-	// Self-reported Sourcegraph instance identifier.
+	// Self-reported Khulnasoft instance identifier.
 	InstanceId string `protobuf:"bytes,2,opt,name=instance_id,json=instanceId,proto3" json:"instance_id,omitempty"`
 	// Instance external URL defined in the instance site configuration.
 	ExternalUrl string `protobuf:"bytes,3,opt,name=external_url,json=externalUrl,proto3" json:"external_url,omitempty"`
@@ -1161,7 +1161,7 @@ type Identifier_UnlicensedInstanceIdentifier struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Self-reported Sourcegraph instance identifier.
+	// Self-reported Khulnasoft instance identifier.
 	InstanceId string `protobuf:"bytes,1,opt,name=instance_id,json=instanceId,proto3" json:"instance_id,omitempty"`
 	// Instance external URL defined in the instance site configuration.
 	ExternalUrl string `protobuf:"bytes,2,opt,name=external_url,json=externalUrl,proto3" json:"external_url,omitempty"`
@@ -1324,8 +1324,8 @@ type EventSource_Server struct {
 
 	// Version of the server emitting the event, corresponding to
 	// RecordEventsRequestMetadata.Identifier. For example, if the Identifier
-	// indicates the publisher is a Sourcegraph instance, the version represents
-	// the version of the Sourcegraph server.
+	// indicates the publisher is a Khulnasoft instance, the version represents
+	// the version of the Khulnasoft server.
 	Version string `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"`
 }
 

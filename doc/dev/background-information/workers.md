@@ -4,15 +4,15 @@ Workers are the consumer side of a producer/consumer relationship.
 
 Examples:
 
-- [Precise code-intel worker that handles uploads](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@b946a20362ee7dfedb3b1fbc7f8bb002135d7283/-/blob/enterprise/cmd/precise-code-intel-worker/internal/worker/worker.go)
-- [Insights query runner worker](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@b946a20362ee7dfedb3b1fbc7f8bb002135d7283/-/blob/internal/insights/background/queryrunner/worker.go?subtree=true#L29)
-- [Batch Changes background worker that reconciles changesets](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@b946a20362ee7dfedb3b1fbc7f8bb002135d7283/-/blob/enterprise/internal/batches/background/workers.go?subtree=true#L26)
+- [Precise code-intel worker that handles uploads](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@b946a20362ee7dfedb3b1fbc7f8bb002135d7283/-/blob/enterprise/cmd/precise-code-intel-worker/internal/worker/worker.go)
+- [Insights query runner worker](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@b946a20362ee7dfedb3b1fbc7f8bb002135d7283/-/blob/internal/insights/background/queryrunner/worker.go?subtree=true#L29)
+- [Batch Changes background worker that reconciles changesets](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@b946a20362ee7dfedb3b1fbc7f8bb002135d7283/-/blob/enterprise/internal/batches/background/workers.go?subtree=true#L26)
 
 ## Overview
 
 A **worker** is a generic process configured with a _store_ and a _handler_. In short, the store describes how to interact with where jobs are persisted; the handler (supplied by the user) describes how to process each job. Both of these components will be discussed in more detail below.
 
-The **store** is responsible for selecting the next available job from the backing persistence layer and suitably _locking_ it from other consumers as well as updating the job records as they make progress in the handler. Generally, this will be an instance of [dbworker/store.Store](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:%5Einternal/workerutil/dbworker/store/store%5C.go+NewStore&patternType=standard), although there are [other implementations](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@v4.1.3/-/blob/enterprise/cmd/executor/internal/apiclient/baseclient.go?L47:6).
+The **store** is responsible for selecting the next available job from the backing persistence layer and suitably _locking_ it from other consumers as well as updating the job records as they make progress in the handler. Generally, this will be an instance of [dbworker/store.Store](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:%5Einternal/workerutil/dbworker/store/store%5C.go+NewStore&patternType=standard), although there are [other implementations](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@v4.1.3/-/blob/enterprise/cmd/executor/internal/apiclient/baseclient.go?L47:6).
 
 The **handler** is responsible for handling a single job once dequeued from the associated store. Handlers can be fairly minimal, but there are a number of hooks which can be overridden to customize the behavior of the worker.
 
@@ -41,7 +41,7 @@ func (h *myHandler) PreHandle(ctx context.Context, logger log.Logger, record *Ex
 }
 ```
 
-The record value is what was dequeued from the backing store. It must be a type that implements [`github.com/khulnasoft/khulnasoft/internal/workerutil.Record`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/blob/internal/workerutil/store.go?L13:6)
+The record value is what was dequeued from the backing store. It must be a type that implements [`github.com/khulnasoft/khulnasoft/internal/workerutil.Record`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@main/-/blob/internal/workerutil/store.go?L13:6)
 
 Along with the `PostHandle` hook described below, these hooks can effectively maintain the worker budget discussed above: before processing each job we atomically decrease our worker's current _headroom_, and restore the headroom once the job has completed.
 
@@ -56,9 +56,9 @@ func (h *myHandler) Handle(ctx context.Context, logger log.Logger, record *Examp
 }
 ```
 
-The record value is what was dequeued from the backing store. It must be a type that implements [`github.com/khulnasoft/khulnasoft/internal/workerutil.Record`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/blob/internal/workerutil/store.go?L13:6)
+The record value is what was dequeued from the backing store. It must be a type that implements [`github.com/khulnasoft/khulnasoft/internal/workerutil.Record`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@main/-/blob/internal/workerutil/store.go?L13:6)
 
-After processing a job, the worker will update a job's state (via the store) according to the handle hook's return value. A nil error will result in a _complete_ job; a retryable error (according to [this function](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@v4.1.3/-/blob/internal/errcode/code.go?L172:6)) will result in an _errored_ job (which may be retried); any other error will result in a _failed_ job (which are not retried).
+After processing a job, the worker will update a job's state (via the store) according to the handle hook's return value. A nil error will result in a _complete_ job; a retryable error (according to [this function](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@v4.1.3/-/blob/internal/errcode/code.go?L172:6)) will result in an _errored_ job (which may be retried); any other error will result in a _failed_ job (which are not retried).
 
 #### Hook 4: PostHandle (optional)
 
@@ -70,7 +70,7 @@ func (h *myHandler) PostHandle(ctx context.Context, logger log.Logger, record *E
 }
 ```
 
-The record value is what was just processed. It must be a type that implements [`github.com/khulnasoft/khulnasoft/internal/workerutil.Record`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/blob/internal/workerutil/store.go?L13:6)
+The record value is what was just processed. It must be a type that implements [`github.com/khulnasoft/khulnasoft/internal/workerutil.Record`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@main/-/blob/internal/workerutil/store.go?L13:6)
 
 ### Worker configuration
 
@@ -78,7 +78,7 @@ The worker's throughput behavior can be modified by adjusting additional options
 
 ## Database-backed stores
 
-The most common way to use a worker is to use the database-backed store. When using the [dbworker/store.Store](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@v4.1.3/-/blob/internal/workerutil/dbworker/store/store.go#L204:6), you must also use the [dbworker.NewWorker](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@v4.1.3/-/blob/internal/workerutil/dbworker/worker.go#L10:6).
+The most common way to use a worker is to use the database-backed store. When using the [dbworker/store.Store](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@v4.1.3/-/blob/internal/workerutil/dbworker/store/store.go#L204:6), you must also use the [dbworker.NewWorker](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@v4.1.3/-/blob/internal/workerutil/dbworker/worker.go#L10:6).
 
 The store relies on a jobs table _specific to your worker_ to exist with the following columns. For a live example, see the [lsif_uploads table](https://github.com/khulnasoft/khulnasoft/blob/v4.1.3/internal/database/schema.md#table-publiclsif_uploads).
 
@@ -125,7 +125,7 @@ The database-backed store will dequeue a record from the target table using the 
 
 It may be the case that a job can be _orphaned_ at any stage after being selected. As everything occurs outside of transactions, there is no rollback to mark an _orphaned_ record as _queued_ again.
 
-To handle this case, register a [resetter](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@v4.1.3/-/blob/internal/workerutil/dbworker/resetter.go?L73:6) instance to periodically run in the background of the instance. This will select all records with the state _processing_ that have not been row-locked by some transaction and move them back to the _queued_ state.
+To handle this case, register a [resetter](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@v4.1.3/-/blob/internal/workerutil/dbworker/resetter.go?L73:6) instance to periodically run in the background of the instance. This will select all records with the state _processing_ that have not been row-locked by some transaction and move them back to the _queued_ state.
 
 This behavior can be controlled by setting the `StalledMaxAge` and `MaxNumResets` options on the database-backed store instance, which control the maximum grace period setting a record to _processing_ and locking it and number of times a record can be reset (to avoid poison messages from indefinitely crashing workers), respectively. Once a record hits the maximum number of resets, the resetter will move it from state _processing_ to _failed_ with a canned failure message.
 

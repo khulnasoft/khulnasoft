@@ -85,7 +85,7 @@ export const load: LayoutLoad = async ({ parent, params, url }) => {
 /**
  * Returns a store that indicates whether Cody is available for the current user and repository.
  * If cody is not enabled on the instance or for the current user, the store will always return false.
- * If this is sourcegraph.com, the store will always return true.
+ * If this is khulnasoft.com, the store will always return true.
  * Otherwise we'll check the site configuration to see if Cody is disabled for the current repository.
  * Initially the store will return false until the site configuration is loaded. If there is an
  * error loading the site configuration or processing it, the store will return false.
@@ -95,7 +95,7 @@ function createCodyAvailableStore(client: GraphQLClient, repoName: string): Read
         return readable(false)
     }
 
-    // Cody is always enabled on sourcegraph.com
+    // Cody is always enabled on khulnasoft.com
     if (window.context.sourcegraphDotComMode) {
         return readable(true)
     }

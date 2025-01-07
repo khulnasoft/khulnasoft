@@ -6,7 +6,7 @@
 # |\/| |__| | |\ |  |  |___ |\ | |__| |\ | |    |___
 # |  | |  | | | \|  |  |___ | \| |  | | \| |___ |___
 #
-#      Sourcegraph Appliance Maintenance UI
+#      Khulnasoft Appliance Maintenance UI
 
 server {
     listen       80;

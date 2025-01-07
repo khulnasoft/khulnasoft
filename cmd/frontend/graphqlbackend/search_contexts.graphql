@@ -129,12 +129,12 @@ type SearchContext implements Node {
     """
     spec: String!
     """
-    Whether the search context is autodefined by Sourcegraph.
+    Whether the search context is autodefined by Khulnasoft.
     The only autodefined context currently is the global search context ("global").
     """
     autoDefined: Boolean!
     """
-    Sourcegraph search query that defines the search context.
+    Khulnasoft search query that defines the search context.
     e.g. "r:^github\.com/org (rev:bar or rev:HEAD) file:^sub/dir"
     """
     query: String!
@@ -238,7 +238,7 @@ input SearchContextInput {
     """
     namespace: ID
     """
-    Sourcegraph search query that defines the search context.
+    Khulnasoft search query that defines the search context.
     e.g. "r:^github\.com/org (rev:bar or rev:HEAD) file:^sub/dir"
     """
     query: String!
@@ -268,7 +268,7 @@ input SearchContextEditInput {
     """
     public: Boolean!
     """
-    Sourcegraph search query that defines the search context.
+    Khulnasoft search query that defines the search context.
     e.g. "r:^github\.com/org (rev:bar or rev:HEAD) file:^sub/dir"
     """
     query: String!

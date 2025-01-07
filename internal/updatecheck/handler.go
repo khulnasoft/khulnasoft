@@ -28,18 +28,18 @@ import (
 )
 
 var (
-	// latestReleaseDockerServerImageBuild is only used by sourcegraph.com to tell existing
+	// latestReleaseDockerServerImageBuild is only used by khulnasoft.com to tell existing
 	// non-cluster, non-docker-compose, and non-pure-docker installations what the latest
 	// version is. The version here _must_ be available at https://hub.docker.com/r/sourcegraph/server/tags/
 	// before landing in master.
 	latestReleaseDockerServerImageBuild = newPingResponse("5.5.2463")
 
-	// latestReleaseKubernetesBuild is only used by sourcegraph.com to tell existing Sourcegraph
+	// latestReleaseKubernetesBuild is only used by khulnasoft.com to tell existing Khulnasoft
 	// cluster deployments what the latest version is. The version here _must_ be available in
 	// a tag at https://github.com/sourcegraph/deploy-sourcegraph before landing in master.
 	latestReleaseKubernetesBuild = newPingResponse("5.5.2463")
 
-	// latestReleaseDockerComposeOrPureDocker is only used by sourcegraph.com to tell existing Sourcegraph
+	// latestReleaseDockerComposeOrPureDocker is only used by khulnasoft.com to tell existing Khulnasoft
 	// Docker Compose or Pure Docker deployments what the latest version is. The version here _must_ be
 	// available in a tag at https://github.com/sourcegraph/deploy-sourcegraph-docker before landing in master.
 	latestReleaseDockerComposeOrPureDocker = newPingResponse("5.5.2463")
@@ -57,7 +57,7 @@ func getLatestRelease(deployType string) pingResponse {
 }
 
 // ForwardHandler returns a handler that forwards the request to
-// https://pings.sourcegraph.com.
+// https://pings.khulnasoft.com.
 func ForwardHandler() (http.HandlerFunc, error) {
 	remote, err := url.Parse(defaultUpdateCheckURL)
 	if err != nil {
@@ -82,7 +82,7 @@ type Meter struct {
 }
 
 // Handle handles the ping requests and responds with information about software
-// updates for Sourcegraph.
+// updates for Khulnasoft.
 func Handle(logger log.Logger, pubsubClient pubsub.TopicPublisher, meter *Meter, w http.ResponseWriter, r *http.Request) {
 	meter.RequestCounter.Add(r.Context(), 1)
 

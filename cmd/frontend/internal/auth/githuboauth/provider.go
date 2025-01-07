@@ -116,7 +116,7 @@ func validateClientIDAndSecret(clientIDOrSecret string) (valid bool) {
 
 func requestedScopes(p *schema.GitHubAuthProvider) []string {
 	scopes := []string{"user:email"}
-	if !dotcom.SourcegraphDotComMode() {
+	if !dotcom.KhulnasoftDotComMode() {
 		scopes = append(scopes, "repo")
 	}
 

@@ -2,8 +2,8 @@
 version: 1
 interactions:
 - request:
-    body: '{"title":"Sourcegraph test branch-00","description":"This is a PR created
-      by the Sourcegraph test suite.","source":{"branch":{"name":"branch-00"}},"destination":{"branch":{"name":"this-branch-should-never-exist"}}}'
+    body: '{"title":"Khulnasoft test branch-00","description":"This is a PR created
+      by the Khulnasoft test suite.","source":{"branch":{"name":"branch-00"}},"destination":{"branch":{"name":"this-branch-should-never-exist"}}}'
     form: {}
     headers:
       Content-Type:
@@ -67,8 +67,8 @@ interactions:
     code: 400
     duration: ""
 - request:
-    body: '{"title":"Sourcegraph test branch-00","description":"This is a PR created
-      by the Sourcegraph test suite.","source":{"branch":{"name":"branch-00"}},"destination":{"branch":{"name":"master"}}}'
+    body: '{"title":"Khulnasoft test branch-00","description":"This is a PR created
+      by the Khulnasoft test suite.","source":{"branch":{"name":"branch-00"}},"destination":{"branch":{"name":"master"}}}'
     form: {}
     headers:
       Content-Type:
@@ -76,12 +76,12 @@ interactions:
     url: https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests
     method: POST
   response:
-    body: '{"rendered": {"description": {"raw": "This is a PR created by the Sourcegraph
+    body: '{"rendered": {"description": {"raw": "This is a PR created by the Khulnasoft
       test suite.", "markup": "markdown", "html": "<p>This is a PR created by the
-      Sourcegraph test suite.</p>", "type": "rendered"}, "title": {"raw": "Sourcegraph
-      test branch-00", "markup": "markdown", "html": "<p>Sourcegraph test branch-00</p>",
+      Khulnasoft test suite.</p>", "type": "rendered"}, "title": {"raw": "Khulnasoft
+      test branch-00", "markup": "markdown", "html": "<p>Khulnasoft test branch-00</p>",
       "type": "rendered"}}, "type": "pullrequest", "description": "This is a PR created
-      by the Sourcegraph test suite.", "links": {"decline": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2/decline"},
+      by the Khulnasoft test suite.", "links": {"decline": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2/decline"},
       "diffstat": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/diffstat/sourcegraph-testing/src-cli:b4087d003ddc%0D12fba599d6b6?from_pullrequest_id=2"},
       "commits": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2/commits"},
       "self": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2"},
@@ -93,7 +93,7 @@ interactions:
       "diff": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/diff/sourcegraph-testing/src-cli:b4087d003ddc%0D12fba599d6b6?from_pullrequest_id=2"},
       "approve": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2/approve"},
       "statuses": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2/statuses"}},
-      "title": "Sourcegraph test branch-00", "close_source_branch": false, "reviewers":
+      "title": "Khulnasoft test branch-00", "close_source_branch": false, "reviewers":
       [], "id": 2, "destination": {"commit": {"hash": "12fba599d6b6", "type": "commit",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/commit/12fba599d6b6"},
       "html": {"href": "https://bitbucket.org/sourcegraph-testing/src-cli/commits/12fba599d6b6"}}},
@@ -103,8 +103,8 @@ interactions:
       "type": "repository", "name": "src-cli", "full_name": "sourcegraph-testing/src-cli",
       "uuid": "{b090a669-ac7b-44cd-9610-02d027cb39f3}"}, "branch": {"name": "master"}},
       "created_on": "2022-04-01T21:49:29.957136+00:00", "summary": {"raw": "This is
-      a PR created by the Sourcegraph test suite.", "markup": "markdown", "html":
-      "<p>This is a PR created by the Sourcegraph test suite.</p>", "type": "rendered"},
+      a PR created by the Khulnasoft test suite.", "markup": "markdown", "html":
+      "<p>This is a PR created by the Khulnasoft test suite.</p>", "type": "rendered"},
       "source": {"commit": {"hash": "b4087d003ddc", "type": "commit", "links": {"self":
       {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/commit/b4087d003ddc"},
       "html": {"href": "https://bitbucket.org/sourcegraph-testing/src-cli/commits/b4087d003ddc"}}},
@@ -115,11 +115,11 @@ interactions:
       "uuid": "{b090a669-ac7b-44cd-9610-02d027cb39f3}"}, "branch": {"name": "branch-00"}},
       "comment_count": 0, "state": "OPEN", "task_count": 0, "participants": [], "reason":
       "", "updated_on": "2022-04-01T21:49:30.347598+00:00", "author": {"display_name":
-      "Sourcegraph Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}", "links":
+      "Khulnasoft Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}", "links":
       {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"}},
-      "type": "user", "nickname": "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b"},
+      "type": "user", "nickname": "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b"},
       "merge_commit": null, "closed_by": null}'
     headers:
       Cache-Control:
@@ -175,8 +175,8 @@ interactions:
     code: 201
     duration: ""
 - request:
-    body: '{"title":"Sourcegraph test branch-00","description":"This is a PR created
-      by the Sourcegraph test suite.","source":{"branch":{"name":"branch-00"}},"destination":{"branch":{"name":"master"}}}'
+    body: '{"title":"Khulnasoft test branch-00","description":"This is a PR created
+      by the Khulnasoft test suite.","source":{"branch":{"name":"branch-00"}},"destination":{"branch":{"name":"master"}}}'
     form: {}
     headers:
       Content-Type:
@@ -184,12 +184,12 @@ interactions:
     url: https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests
     method: POST
   response:
-    body: '{"rendered": {"description": {"raw": "This is a PR created by the Sourcegraph
+    body: '{"rendered": {"description": {"raw": "This is a PR created by the Khulnasoft
       test suite.", "markup": "markdown", "html": "<p>This is a PR created by the
-      Sourcegraph test suite.</p>", "type": "rendered"}, "title": {"raw": "Sourcegraph
-      test branch-00", "markup": "markdown", "html": "<p>Sourcegraph test branch-00</p>",
+      Khulnasoft test suite.</p>", "type": "rendered"}, "title": {"raw": "Khulnasoft
+      test branch-00", "markup": "markdown", "html": "<p>Khulnasoft test branch-00</p>",
       "type": "rendered"}}, "type": "pullrequest", "description": "This is a PR created
-      by the Sourcegraph test suite.", "links": {"decline": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2/decline"},
+      by the Khulnasoft test suite.", "links": {"decline": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2/decline"},
       "diffstat": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/diffstat/sourcegraph-testing/src-cli:b4087d003ddc%0D12fba599d6b6?from_pullrequest_id=2"},
       "commits": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2/commits"},
       "self": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2"},
@@ -201,7 +201,7 @@ interactions:
       "diff": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/diff/sourcegraph-testing/src-cli:b4087d003ddc%0D12fba599d6b6?from_pullrequest_id=2"},
       "approve": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2/approve"},
       "statuses": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/2/statuses"}},
-      "title": "Sourcegraph test branch-00", "close_source_branch": false, "reviewers":
+      "title": "Khulnasoft test branch-00", "close_source_branch": false, "reviewers":
       [], "id": 2, "destination": {"commit": {"hash": "12fba599d6b6", "type": "commit",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/commit/12fba599d6b6"},
       "html": {"href": "https://bitbucket.org/sourcegraph-testing/src-cli/commits/12fba599d6b6"}}},
@@ -211,8 +211,8 @@ interactions:
       "type": "repository", "name": "src-cli", "full_name": "sourcegraph-testing/src-cli",
       "uuid": "{b090a669-ac7b-44cd-9610-02d027cb39f3}"}, "branch": {"name": "master"}},
       "created_on": "2022-04-01T21:49:29.957136+00:00", "summary": {"raw": "This is
-      a PR created by the Sourcegraph test suite.", "markup": "markdown", "html":
-      "<p>This is a PR created by the Sourcegraph test suite.</p>", "type": "rendered"},
+      a PR created by the Khulnasoft test suite.", "markup": "markdown", "html":
+      "<p>This is a PR created by the Khulnasoft test suite.</p>", "type": "rendered"},
       "source": {"commit": {"hash": "b4087d003ddc", "type": "commit", "links": {"self":
       {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/commit/b4087d003ddc"},
       "html": {"href": "https://bitbucket.org/sourcegraph-testing/src-cli/commits/b4087d003ddc"}}},
@@ -223,11 +223,11 @@ interactions:
       "uuid": "{b090a669-ac7b-44cd-9610-02d027cb39f3}"}, "branch": {"name": "branch-00"}},
       "comment_count": 0, "state": "OPEN", "task_count": 0, "participants": [], "reason":
       "", "updated_on": "2022-04-01T21:49:30.807955+00:00", "author": {"display_name":
-      "Sourcegraph Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}", "links":
+      "Khulnasoft Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}", "links":
       {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"}},
-      "type": "user", "nickname": "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b"},
+      "type": "user", "nickname": "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b"},
       "merge_commit": null, "closed_by": null}'
     headers:
       Cache-Control:

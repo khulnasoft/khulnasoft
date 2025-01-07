@@ -120,7 +120,7 @@ func TestExternalServicesStore_Create(t *testing.T) {
 	db := NewDB(logger, dbtest.NewDB(t))
 	ctx := actor.WithInternalActor(context.Background())
 
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	confGet := func() *conf.Unified { return &conf.Unified{} }
 
@@ -258,7 +258,7 @@ func TestExternalServicesStore_Update(t *testing.T) {
 	now := timeutil.Now()
 	codeHostURL := "https://github.com/"
 
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	// Create a new external service
 	confGet := func() *conf.Unified {
@@ -2330,7 +2330,7 @@ func Test_validateOtherExternalServiceConnection(t *testing.T) {
 	require.Error(t, err)
 
 	// On DotCom, no error should be returned
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	err = validateOtherExternalServiceConnection(conn)
 	require.NoError(t, err)

@@ -102,7 +102,7 @@ describe('github/codeHost', () => {
                         sourcegraphURL,
                         {
                             repoName: 'sourcegraph/sourcegraph',
-                            rawRepoName: 'github.com/sourcegraph/sourcegraph',
+                            rawRepoName: 'github.com/khulnasoft/khulnasoft',
                             revision: 'main',
                             filePath: 'browser/src/shared/code-hosts/code_intelligence.tsx',
                             position: {
@@ -124,7 +124,7 @@ describe('github/codeHost', () => {
                         sourcegraphURL,
                         {
                             repoName: 'sourcegraph/sourcegraph',
-                            rawRepoName: 'ghe.sgdev.org/sourcegraph/sourcegraph',
+                            rawRepoName: 'ghe.sgdev.org/khulnasoft/khulnasoft',
                             revision: 'main',
                             filePath: 'browser/src/shared/code-hosts/code_intelligence.tsx',
                             position: {
@@ -144,7 +144,7 @@ describe('github/codeHost', () => {
                         sourcegraphURL,
                         {
                             repoName: 'sourcegraph/sourcegraph',
-                            rawRepoName: 'github.com/sourcegraph/sourcegraph',
+                            rawRepoName: 'github.com/khulnasoft/khulnasoft',
                             revision: 'main',
                             filePath: 'browser/src/shared/code-hosts/code_intelligence.tsx',
                             position: {
@@ -173,7 +173,7 @@ describe('github/codeHost', () => {
                         sourcegraphURL,
                         {
                             repoName: 'sourcegraph/sourcegraph',
-                            rawRepoName: 'github.com/sourcegraph/sourcegraph',
+                            rawRepoName: 'github.com/khulnasoft/khulnasoft',
                             revision: 'core/gitserver-tracing',
                             filePath: 'cmd/gitserver/server/server.go',
                             position: {

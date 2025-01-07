@@ -75,7 +75,7 @@ export const createJsContext = ({ sourcegraphBaseUrl }: { sourcegraphBaseUrl: st
         },
         siteID: 'TestSiteID',
         siteGQLID: 'TestGQLSiteID',
-        sourcegraphDotComMode: ENVIRONMENT_CONFIG.SOURCEGRAPHDOTCOM_MODE,
+        sourcegraphDotComMode: ENVIRONMENT_CONFIG.KHULNASOFTDOTCOM_MODE,
         userAgentIsBot: false,
         version: '0.0.0',
         xhrHeaders: {},

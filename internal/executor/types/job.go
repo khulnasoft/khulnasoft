@@ -9,7 +9,7 @@ import (
 // Job describes a series of steps to perform within an executor.
 type Job struct {
 	// Version is used to version the shape of the Job payload, so that older
-	// executors can still talk to Sourcegraph. The dequeue endpoint takes an
+	// executors can still talk to Khulnasoft. The dequeue endpoint takes an
 	// executor version to determine which maximum version said executor supports.
 	Version int `json:"version,omitempty"`
 

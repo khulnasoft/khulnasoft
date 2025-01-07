@@ -27,7 +27,7 @@ type Appliance struct {
 	client                 client.Client
 	namespace              string
 	status                 config.Status
-	sourcegraph            *config.Sourcegraph
+	sourcegraph            *config.Khulnasoft
 	releaseRegistryClient  *releaseregistry.Client
 	pinnedReleasesFile     string
 	latestSupportedVersion string
@@ -65,7 +65,7 @@ func NewAppliance(
 		namespace:              namespace,
 		status:                 config.StatusInstall,
 		noResourceRestrictions: noResourceRestrictions,
-		sourcegraph:            &config.Sourcegraph{},
+		sourcegraph:            &config.Khulnasoft{},
 		logger:                 logger,
 	}
 	if err := app.reconcileBackingSecret(context.Background()); err != nil {
@@ -195,10 +195,10 @@ func (a *Appliance) reconcileConfigMap(ctx context.Context, configMap *corev1.Co
 	return a.client.Update(ctx, existingCfgMap)
 }
 
-// isSourcegraphFrontendReady is a "health check" that is used to be able to know when our backing sourcegraph
+// isKhulnasoftFrontendReady is a "health check" that is used to be able to know when our backing sourcegraph
 // deployment is ready. This is a "quick and dirty" function and should be replaced with a more comprehensive
 // health check in the very near future.
-func (a *Appliance) isSourcegraphFrontendReady(ctx context.Context) (bool, error) {
+func (a *Appliance) isKhulnasoftFrontendReady(ctx context.Context) (bool, error) {
 	frontendDeploymentName := types.NamespacedName{Name: "sourcegraph-frontend", Namespace: a.namespace}
 	frontendDeployment := &appsv1.Deployment{}
 	if err := a.client.Get(ctx, frontendDeploymentName, frontendDeployment); err != nil {

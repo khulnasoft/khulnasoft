@@ -18,7 +18,7 @@ import (
 )
 
 var (
-	KhulnasoftEndpoint = env.Get("SOURCEGRAPH_BASE_URL", "http://127.0.0.1:7080", "Khulnasoft frontend endpoint")
+	KhulnasoftEndpoint = env.Get("KHULNASOFT_BASE_URL", "http://127.0.0.1:7080", "Khulnasoft frontend endpoint")
 	githubToken         = env.Get("GITHUB_TOKEN", "", "GITHUB_TOKEN to clone the repositories")
 )
 
@@ -98,7 +98,7 @@ func main() {
 				Body:              "My first batch change!",
 				CommitMessage:     "Append Hello World to all README.md files",
 				CommitAuthorName:  "sourcegraph",
-				CommitAuthorEmail: "sourcegraph@sourcegraph.com",
+				CommitAuthorEmail: "sourcegraph@khulnasoft.com",
 				Diff:              []byte(expectedDiff),
 			},
 		},
@@ -209,7 +209,7 @@ var expectedState = gqltestutil.BatchSpecDeep{
 							Body:    "",
 							Author: gqltestutil.ChangesetSpecCommitAuthor{
 								Name:  "sourcegraph",
-								Email: "sourcegraph@sourcegraph.com",
+								Email: "sourcegraph@khulnasoft.com",
 							},
 						},
 					},

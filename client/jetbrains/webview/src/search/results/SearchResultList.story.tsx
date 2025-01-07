@@ -58,7 +58,7 @@ export const JetBrainsSearchResultListStory: StoryFn = () => {
         },
         {
             type: 'commit',
-            url: 'https://github.com/sourcegraph/sourcegraph',
+            url: 'https://github.com/khulnasoft/khulnasoft',
             repository: 'test-repository',
             oid: 'hunk12ef',
             message: 'Commit message',
@@ -80,7 +80,7 @@ export const JetBrainsSearchResultListStory: StoryFn = () => {
             commit: 'hunk12ef',
             symbols: [
                 {
-                    url: 'https://github.com/sourcegraph/sourcegraph',
+                    url: 'https://github.com/khulnasoft/khulnasoft',
                     name: 'TestSymbol',
                     containerName: 'TestContainer',
                     kind: SymbolKind.CONSTANT,

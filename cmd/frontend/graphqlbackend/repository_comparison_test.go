@@ -589,7 +589,7 @@ func TestDiffHunk2(t *testing.T) {
 	// https://github.com/khulnasoft/khulnasoft/pull/21068
 
 	ctx := context.Background()
-	// https://sourcegraph.com/github.com/dominikh/go-tools/-/blob/cmd/staticcheck/README.md
+	// https://khulnasoft.com/github.com/dominikh/go-tools/-/blob/cmd/staticcheck/README.md
 	// was used to produce this test diff.
 	filediff := `diff --git cmd/staticcheck/README.md cmd/staticcheck/README.md
 index 4d14577..10ef458 100644
@@ -600,7 +600,7 @@ index 4d14577..10ef458 100644
  [staticcheck.io](https://staticcheck.io/docs/).
 ` + " " + `
 +
-+(c) Copyright Sourcegraph 2013-2021.
++(c) Copyright Khulnasoft 2013-2021.
 \ No newline at end of file
 `
 	dr := godiff.NewMultiFileDiffReader(strings.NewReader(filediff))
@@ -648,7 +648,7 @@ index 4d14577..10ef458 100644
 				"<div><span class=\"hl-text hl-html hl-markdown\">[staticcheck.io](https://staticcheck.io/docs/).\n</span></div>",
 				"<div><span class=\"hl-text hl-html hl-markdown\">\n</span></div>",
 				"<div><span class=\"hl-text hl-html hl-markdown\">\n</span></div>",
-				"<div><span class=\"hl-text hl-html hl-markdown\">(c) Copyright Sourcegraph 2013-2021.</span></div>",
+				"<div><span class=\"hl-text hl-html hl-markdown\">(c) Copyright Khulnasoft 2013-2021.</span></div>",
 				"<div><span class=\"hl-text hl-html hl-markdown\">\n</span></div>",
 			},
 		}
@@ -671,7 +671,7 @@ func TestDiffHunk3(t *testing.T) {
 	// https://github.com/khulnasoft/khulnasoft/pull/25866
 
 	ctx := context.Background()
-	// https://sourcegraph.com/github.com/dominikh/go-tools/-/blob/cmd/staticcheck/README.md
+	// https://khulnasoft.com/github.com/dominikh/go-tools/-/blob/cmd/staticcheck/README.md
 	// was used to produce this test diff.
 	filediff := `diff --git cmd/staticcheck/README.md cmd/staticcheck/README.md
 index 4d14577..9fe9a4f 100644

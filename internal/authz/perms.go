@@ -169,7 +169,7 @@ func (p *UserGrantPermissions) Attrs() []attribute.KeyValue {
 
 // UserPendingPermissions defines permissions that a not-yet-created user has to
 // perform on a given set of object IDs. Not-yet-created users may exist on the
-// code host but not yet in Sourcegraph. "ServiceType", "ServiceID" and "BindID"
+// code host but not yet in Khulnasoft. "ServiceType", "ServiceID" and "BindID"
 // are used to map this stub user to an actual user when the user is created.
 type UserPendingPermissions struct {
 	// The auto-generated internal database ID.
@@ -178,13 +178,13 @@ type UserPendingPermissions struct {
 	// e.g. "github", "gitlab", "bitbucketServer" and "sourcegraph".
 	ServiceType string
 	// The ID of the code host as if it would be used as extsvc.AccountSpec.ServiceID,
-	// e.g. "https://github.com/", "https://gitlab.com/" and "https://sourcegraph.com/".
+	// e.g. "https://github.com/", "https://gitlab.com/" and "https://khulnasoft.com/".
 	ServiceID string
 	// The account ID that a code host (and its authz provider) uses to identify a user,
 	// e.g. a username (for Bitbucket Server), a GraphID ( for GitHub), or a user ID
 	// (for GitLab).
 	//
-	// When use the Sourcegraph authz provider, "BindID" can be either a username or
+	// When use the Khulnasoft authz provider, "BindID" can be either a username or
 	// an email based on site configuration.
 	BindID string
 	// The permissions this user has to the "IDs" of the "Type".

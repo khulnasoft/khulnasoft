@@ -29,7 +29,7 @@ import (
 
 const (
 	// DO NOT CHANGE. This timestamp needs to be stable so that JVM package
-	// repos consistently produce the same git revhash. Sourcegraph URLs
+	// repos consistently produce the same git revhash. Khulnasoft URLs
 	// can optionally include this hash, so changing the timestamp (and hence
 	// hashes) will cause existing links to JVM package repos to return 404s.
 	stableGitCommitDate = "Thu Apr 8 14:24:52 2021 +0200"
@@ -195,7 +195,7 @@ func (s *jvmPackagesSyncer) inferJVMVersionFromByteCode(ctx context.Context,
 	jvmVersion := majorVersion - jvmMajorVersion0
 
 	// The motivation to round the JVM version to the nearst stable release
-	// is so that we reduce the number of JDKs on sourcegraph.com. By having
+	// is so that we reduce the number of JDKs on khulnasoft.com. By having
 	// fewer JDK versions, features like "find references" will return
 	// aggregated results for non-LTS releases.
 	roundedJvmVersion := roundJVMVersionToNearestStableVersion(jvmVersion)

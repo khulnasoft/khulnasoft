@@ -72,9 +72,9 @@ Now, the tests for this new function can create their own `IDBConn` with whateve
 
 External HTTP APIs should be tested with the `"httptest"` package.
 
-For an example usage, see the [bundle manager client tests](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@0cb60598806d68e4c4edace9ed2a801e3f8495bf/-/blob/enterprise/internal/codeintel/bundles/client/bundle_client_test.go#L13), that mock the internal bundle manager service with canned responses. Request values are asserted in the test HTTP handler itself, comparing the requested HTTP method, path, and query args against the expected values.
+For an example usage, see the [bundle manager client tests](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@0cb60598806d68e4c4edace9ed2a801e3f8495bf/-/blob/enterprise/internal/codeintel/bundles/client/bundle_client_test.go#L13), that mock the internal bundle manager service with canned responses. Request values are asserted in the test HTTP handler itself, comparing the requested HTTP method, path, and query args against the expected values.
 
-If you need to test interactions with an external HTTP API, take a look at the `"httptestutil"` package. The `NewRecorder` function can be used to create an HTTP client that records and replays HTTP requests. See [`bitbucketcloud.NewTestClient`](https://github.com/khulnasoft/khulnasoft/blob/f2e55799acad8b6b28cb3b6fd47cc55993d36dc4/internal/extsvc/bitbucketcloud/testing.go#L22-L47) for an example. Or take a look at [other usages of `httptestutil.NewRecorder`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@master/-/blob/enterprise/internal/campaigns/resolvers/main_test.go#L37:27&tab=references).
+If you need to test interactions with an external HTTP API, take a look at the `"httptestutil"` package. The `NewRecorder` function can be used to create an HTTP client that records and replays HTTP requests. See [`bitbucketcloud.NewTestClient`](https://github.com/khulnasoft/khulnasoft/blob/f2e55799acad8b6b28cb3b6fd47cc55993d36dc4/internal/extsvc/bitbucketcloud/testing.go#L22-L47) for an example. Or take a look at [other usages of `httptestutil.NewRecorder`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@master/-/blob/enterprise/internal/campaigns/resolvers/main_test.go#L37:27&tab=references).
 
 ## Assertions
 
@@ -121,9 +121,9 @@ func TestCoolPlanets(t *testing.T) {
 
 ## Mocks
 
-If your code depends on a value defined as an interface (which all dependencies **should** be), you can use [derision-test/go-mockgen](https://github.com/derision-test/go-mockgen) to create programmable stubs that conform to the target interface. This replaces an old pattern in the code base that declared mocks defined as [globally settable functions](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@b5b5fc8d885710eb559ff3d6122c9360b31fec78/-/blob/internal/vcs/git/mocks.go#L15).
+If your code depends on a value defined as an interface (which all dependencies **should** be), you can use [derision-test/go-mockgen](https://github.com/derision-test/go-mockgen) to create programmable stubs that conform to the target interface. This replaces an old pattern in the code base that declared mocks defined as [globally settable functions](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@b5b5fc8d885710eb559ff3d6122c9360b31fec78/-/blob/internal/vcs/git/mocks.go#L15).
 
-For an example usage of generated mocks, see the [TestDefinitions](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@0cb60598806d68e4c4edace9ed2a801e3f8495bf/-/blob/enterprise/internal/codeintel/resolvers/query_test.go#L16) test for the code intel resolvers. Each method defined on an interface has a default implementation that returns zero-values for all of its results and can be configured to:
+For an example usage of generated mocks, see the [TestDefinitions](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@0cb60598806d68e4c4edace9ed2a801e3f8495bf/-/blob/enterprise/internal/codeintel/resolvers/query_test.go#L16) test for the code intel resolvers. Each method defined on an interface has a default implementation that returns zero-values for all of its results and can be configured to:
 
 - call a hook function on every invocation (via `SetDefaultHook`)
 - call a hook function for the _next_ invocation (via `PushHook`)
@@ -142,7 +142,7 @@ If you have code that requires use of the `"time"` package, your first action sh
 
 If all else fails, you can make use of [derision-test/glock](https://github.com/derision-test/glock) to mock the behavior of the time package. This requires that the code under test uses a `glock.Clock` value rather than the time package directly (see the [section above](#organizing-code-and-refactoring-for-testability) for tips on refactoring your code). This package provides a _real_ clock implementation, which is a light wrapper over the time package, and a _mock_ clock implementation that allows the clock (and underlying tickers) to be advanced arbitrarily during the test.
 
-For an example usage of a mock clock, see the [TestRetry](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@0cb60598806d68e4c4edace9ed2a801e3f8495bf/-/blob/enterprise/internal/codeintel/bundles/client/retry_test.go#L13) test, which tests a retry loop with a sleeping backoff. This test decouples wall time from the clock by advancing the clock in a goroutine as far as necessary to unstick the execution of the retry loop.
+For an example usage of a mock clock, see the [TestRetry](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@0cb60598806d68e4c4edace9ed2a801e3f8495bf/-/blob/enterprise/internal/codeintel/bundles/client/retry_test.go#L13) test, which tests a retry loop with a sleeping backoff. This test decouples wall time from the clock by advancing the clock in a goroutine as far as necessary to unstick the execution of the retry loop.
 
 ## Testing with a database
 

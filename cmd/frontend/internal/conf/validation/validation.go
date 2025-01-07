@@ -8,7 +8,7 @@ import (
 var contributedWarnings []conf.Validator
 
 // GetWarnings identifies problems with the configuration that a site
-// admin should address, but do not prevent Sourcegraph from running.
+// admin should address, but do not prevent Khulnasoft from running.
 func GetWarnings(db database.DB) (problems conf.Problems, err error) {
 	c := *conf.Get()
 	for i := range contributedWarnings {

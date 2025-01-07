@@ -2,14 +2,14 @@
 
 Background routines are long running processes in our backend binaries.
 
-They are defined in the [`goroutine`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@b946a20/-/blob/internal/goroutine/background.go?subtree=true#L22) package.
+They are defined in the [`goroutine`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@b946a20/-/blob/internal/goroutine/background.go?subtree=true#L22) package.
 
 Examples:
 
-- [`worker.NewWorker`](https://sourcegraph.com/search?q=repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+worker.NewWorker&patternType=literal), for example, produces a background routine, which in this case is a background worker.
-- [`batches.newSpecExpireWorker`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/batches/background/spec_expire.go?subtree=true#L13-27) returns a [`goroutine.PeriodicGoroutine`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@b946a20362ee7dfedb3b1fbc7f8bb002135d7283/-/blob/internal/goroutine/periodic.go?subtree=true#L14:78), which means it's invoked periodically.
+- [`worker.NewWorker`](https://khulnasoft.com/search?q=repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+worker.NewWorker&patternType=literal), for example, produces a background routine, which in this case is a background worker.
+- [`batches.newSpecExpireWorker`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/batches/background/spec_expire.go?subtree=true#L13-27) returns a [`goroutine.PeriodicGoroutine`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@b946a20362ee7dfedb3b1fbc7f8bb002135d7283/-/blob/internal/goroutine/periodic.go?subtree=true#L14:78), which means it's invoked periodically.
 - [out-of-band migrations](oobmigrations.md) are implemented as background routines.
-- [`HardDeleter`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@b946a20362ee7dfedb3b1fbc7f8bb002135d7283/-/blob/cmd/frontend/internal/codeintel/background/janitor/hard_delete.go?subtree=true#L33) is a periodic background routine that periodically hard-deletes soft-deleted upload records.
+- [`HardDeleter`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@b946a20362ee7dfedb3b1fbc7f8bb002135d7283/-/blob/cmd/frontend/internal/codeintel/background/janitor/hard_delete.go?subtree=true#L33) is a periodic background routine that periodically hard-deletes soft-deleted upload records.
 
 See also the [godocs.io examples for the `goroutine` package](https://godocs.io/github.com/khulnasoft/khulnasoft/internal/goroutine).
 

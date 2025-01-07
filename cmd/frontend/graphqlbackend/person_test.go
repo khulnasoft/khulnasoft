@@ -40,8 +40,8 @@ func TestPersonEmailIsAnonymized(t *testing.T) {
 	users := dbmocks.NewMockUserStore()
 
 	author := gitdomain.Signature{
-		Email: "nono@sourcegraph.com",
-		Name:  "Ñoñó Sourcegraph", // special characters should be stripped from anonymized emails
+		Email: "nono@khulnasoft.com",
+		Name:  "Ñoñó Khulnasoft", // special characters should be stripped from anonymized emails
 		Date:  time.Time{},
 	}
 
@@ -58,7 +58,7 @@ func TestPersonEmailIsAnonymized(t *testing.T) {
 		name:          "anonymous user cannot see real email",
 		context:       actor.WithActor(context.Background(), actor.FromAnonymousUser("anonymous")),
 		dotcom:        true,
-		expectedEmail: "nonosourcegraph@noreply.sourcegraph.com",
+		expectedEmail: "nonosourcegraph@noreply.khulnasoft.com",
 	}, {
 		name: "authenticated user can see real email",
 		currentAuthUser: &types.User{
@@ -68,16 +68,16 @@ func TestPersonEmailIsAnonymized(t *testing.T) {
 		},
 		context:       actor.WithActor(context.Background(), actor.FromUser(1)),
 		dotcom:        true,
-		expectedEmail: "nono@sourcegraph.com",
+		expectedEmail: "nono@khulnasoft.com",
 	}, {
 		name:          "works as usual with dotcom disabled",
 		dotcom:        false,
-		expectedEmail: "nono@sourcegraph.com",
+		expectedEmail: "nono@khulnasoft.com",
 	}}
 
 	for _, tc := range testcases {
 		t.Run(tc.name, func(t *testing.T) {
-			dotcom.MockSourcegraphDotComMode(t, tc.dotcom)
+			dotcom.MockKhulnasoftDotComMode(t, tc.dotcom)
 			users.GetByCurrentAuthUserFunc.SetDefaultReturn(tc.currentAuthUser, nil)
 
 			db.UsersFunc.SetDefaultReturn(users)

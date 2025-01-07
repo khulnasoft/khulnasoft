@@ -81,7 +81,7 @@ func (d *GoVersionedPackage) PackageVersion() string {
 	return d.Module.Version
 }
 
-// RepoName provides a name that is "globally unique" for a Sourcegraph instance.
+// RepoName provides a name that is "globally unique" for a Khulnasoft instance.
 //
 // The returned value is used for repo:... in queries.
 func (d *GoVersionedPackage) RepoName() api.RepoName {

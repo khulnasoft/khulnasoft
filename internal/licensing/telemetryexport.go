@@ -75,7 +75,7 @@ func newTelemetryEventsExportMode(licenseKey string, pk ssh.PublicKey) Telemetry
 		return TelemetryEventsExportAll // without licensing
 	}
 
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		return TelemetryEventsExportAll // dotcom mode
 	}
 

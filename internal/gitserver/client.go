@@ -468,7 +468,7 @@ type Client interface {
 	// ContributorCount returns the number of commits grouped by contributor
 	ContributorCount(ctx context.Context, repo api.RepoName, opt ContributorOptions) ([]*gitdomain.ContributorCount, error)
 
-	// SystemsInfo returns information about all gitserver instances associated with a Sourcegraph instance.
+	// SystemsInfo returns information about all gitserver instances associated with a Khulnasoft instance.
 	SystemsInfo(ctx context.Context) ([]protocol.SystemInfo, error)
 
 	// SystemInfo returns information about the gitserver instance at the given address.

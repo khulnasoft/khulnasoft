@@ -101,7 +101,7 @@ func configureTracing(ctx context.Context, logger log.Logger, config Config, res
 
 // defaultPropagator returns a propagator that supports a bunch of common formats like
 // W3C Trace Context, W3C Baggage, OpenTracing, and Jaeger (the latter two being
-// the more commonly used legacy formats at Sourcegraph). This helps ensure
+// the more commonly used legacy formats at Khulnasoft). This helps ensure
 // propagation between services continues to work.
 func defaultPropagator() propagation.TextMapPropagator {
 	return propagation.NewCompositeTextMapPropagator(

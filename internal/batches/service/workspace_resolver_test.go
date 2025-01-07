@@ -488,7 +488,7 @@ type defaultBranch struct {
 func TestFindWorkspaces(t *testing.T) {
 	repoRevs := []*RepoRevision{
 		{Repo: &types.Repo{ID: 1, Name: "github.com/sourcegraph/automation-testing"}, FileMatches: []string{}},
-		{Repo: &types.Repo{ID: 2, Name: "github.com/sourcegraph/sourcegraph"}, FileMatches: []string{}},
+		{Repo: &types.Repo{ID: 2, Name: "github.com/khulnasoft/khulnasoft"}, FileMatches: []string{}},
 		{Repo: &types.Repo{ID: 3, Name: "bitbucket.sgdev.org/SOUR/automation-testing"}, FileMatches: []string{}},
 		// This one has file matches.
 		{

@@ -89,7 +89,7 @@ func (j *alertJob) Attributes(v job.Verbosity) (res []attribute.KeyValue) {
 		res = append(res,
 			attribute.Stringer("features", j.inputs.Features),
 			attribute.Stringer("protocol", j.inputs.Protocol),
-			attribute.Bool("onSourcegraphDotCom", j.inputs.OnSourcegraphDotCom),
+			attribute.Bool("onKhulnasoftDotCom", j.inputs.OnKhulnasoftDotCom),
 		)
 		fallthrough
 	case job.VerbosityBasic:

@@ -213,9 +213,9 @@ func TestGithubSource_GetRepo(t *testing.T) {
 				t.Helper()
 
 				want := &types.Repo{
-					Name:        "github.com/sourcegraph/sourcegraph",
+					Name:        "github.com/khulnasoft/khulnasoft",
 					Description: "Code search and navigation tool (self-hosted)",
-					URI:         "github.com/sourcegraph/sourcegraph",
+					URI:         "github.com/khulnasoft/khulnasoft",
 					Stars:       2220,
 					ExternalRepo: api.ExternalRepoSpec{
 						ID:          "MDEwOlJlcG9zaXRvcnk0MTI4ODcwOA==",
@@ -225,7 +225,7 @@ func TestGithubSource_GetRepo(t *testing.T) {
 					Sources: map[string]*types.SourceInfo{
 						"extsvc:github:0": {
 							ID:       "extsvc:github:0",
-							CloneURL: "https://github.com/sourcegraph/sourcegraph",
+							CloneURL: "https://github.com/khulnasoft/khulnasoft",
 						},
 					},
 					Metadata: &github.Repository{
@@ -233,7 +233,7 @@ func TestGithubSource_GetRepo(t *testing.T) {
 						DatabaseID:         41288708,
 						NameWithOwner:      "sourcegraph/sourcegraph",
 						Description:        "Code search and navigation tool (self-hosted)",
-						URL:                "https://github.com/sourcegraph/sourcegraph",
+						URL:                "https://github.com/khulnasoft/khulnasoft",
 						StargazerCount:     2220,
 						ForkCount:          164,
 						DiskUsageKibibytes: 302301,
@@ -530,7 +530,7 @@ func TestMatchOrg(t *testing.T) {
 		"org:-sourcegraph":     "",
 		"org:source graph":     "",
 		"org:source org:graph": "",
-		"org:SOURCEGRAPH":      "SOURCEGRAPH",
+		"org:KHULNASOFT":      "KHULNASOFT",
 		"org:Game-club-3d-game-birds-gameapp-makerCo":  "Game-club-3d-game-birds-gameapp-makerCo",
 		"org:thisorgnameisfartoolongtomatchthisregexp": "",
 	}
@@ -651,7 +651,7 @@ func TestGithubSource_ListRepos(t *testing.T) {
 			name: "found",
 			assert: assertAllReposListed([]string{
 				"github.com/sourcegraph/about",
-				"github.com/sourcegraph/sourcegraph",
+				"github.com/khulnasoft/khulnasoft",
 			}),
 			conf: &schema.GitHubConnection{
 				Url:   "https://github.com",
@@ -668,7 +668,7 @@ func TestGithubSource_ListRepos(t *testing.T) {
 			mw:   githubGraphQLFailureMiddleware,
 			assert: assertAllReposListed([]string{
 				"github.com/sourcegraph/about",
-				"github.com/sourcegraph/sourcegraph",
+				"github.com/khulnasoft/khulnasoft",
 			}),
 			conf: &schema.GitHubConnection{
 				Url:   "https://github.com",
@@ -1130,7 +1130,7 @@ func TestGithubSource_SearchRepositories(t *testing.T) {
 			excludeRepos: []string{},
 			assert: assertReposSearched([]string{
 				"github.com/sourcegraph/about",
-				"github.com/sourcegraph/sourcegraph",
+				"github.com/khulnasoft/khulnasoft",
 				"github.com/sourcegraph/src-cli",
 				"github.com/sourcegraph/deploy-sourcegraph-docker",
 				"github.com/sourcegraph/deploy-sourcegraph",
@@ -1148,7 +1148,7 @@ func TestGithubSource_SearchRepositories(t *testing.T) {
 			first:        1,
 			excludeRepos: []string{},
 			assert: assertReposSearched([]string{
-				"github.com/sourcegraph/sourcegraph",
+				"github.com/khulnasoft/khulnasoft",
 			}),
 			conf: &schema.GitHubConnection{
 				Url:   "https://github.com",
@@ -1176,7 +1176,7 @@ func TestGithubSource_SearchRepositories(t *testing.T) {
 			first:        5,
 			excludeRepos: []string{"sourcegraph/about"},
 			assert: assertReposSearched([]string{
-				"github.com/sourcegraph/sourcegraph",
+				"github.com/khulnasoft/khulnasoft",
 				"github.com/sourcegraph/src-cli",
 				"github.com/sourcegraph/deploy-sourcegraph-docker",
 				"github.com/sourcegraph/deploy-sourcegraph",
@@ -1369,7 +1369,7 @@ EyAO2RYQG7mSE6w6CtTFiCjjmELpvdD2s1ygvPdCO1MJlCX264E3og==
 	_, err := ghAppsStore.Create(context.Background(), &ghtypes.GitHubApp{
 		AppID:        350528,
 		BaseURL:      "https://github.com/",
-		Name:         "SourcegraphForPetriWoop",
+		Name:         "KhulnasoftForPetriWoop",
 		Slug:         "sourcegraphforpetriwoop",
 		PrivateKey:   ghAppPrivateKey,
 		ClientID:     "Iv1.4e78f8613134c221",

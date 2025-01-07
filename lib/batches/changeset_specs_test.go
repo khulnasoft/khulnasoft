@@ -29,8 +29,8 @@ func TestCreateChangesetSpecs(t *testing.T) {
 				Version:     2,
 				Message:     "git commit message",
 				Diff:        []byte("cool diff"),
-				AuthorName:  "Sourcegraph",
-				AuthorEmail: "batch-changes@sourcegraph.com",
+				AuthorName:  "Khulnasoft",
+				AuthorEmail: "batch-changes@khulnasoft.com",
 			},
 		},
 		Published: PublishedValue{Val: false},
@@ -149,11 +149,11 @@ func TestCreateChangesetSpecs(t *testing.T) {
 		{
 			name:   "publish with fallback author",
 			input:  defaultInput,
-			author: &ChangesetSpecAuthor{Name: "Sourcegrapher", Email: "sourcegrapher@sourcegraph.com"},
+			author: &ChangesetSpecAuthor{Name: "Khulnasofter", Email: "sourcegrapher@khulnasoft.com"},
 			want: []*ChangesetSpec{
 				specWith(defaultChangesetSpec, func(s *ChangesetSpec) {
-					s.Commits[0].AuthorEmail = "sourcegrapher@sourcegraph.com"
-					s.Commits[0].AuthorName = "Sourcegrapher"
+					s.Commits[0].AuthorEmail = "sourcegrapher@khulnasoft.com"
+					s.Commits[0].AuthorName = "Khulnasofter"
 				}),
 			},
 			wantErr: "",

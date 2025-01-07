@@ -75,7 +75,7 @@ func k8sDiscovery(logger log.Logger, urlspec, ns string, clientFactory func() (*
 
 			if len(eps) == 0 {
 				err := errors.Errorf(
-					"no %s endpoints could be found (this may indicate more %s replicas are needed, contact support@sourcegraph.com for assistance)",
+					"no %s endpoints could be found (this may indicate more %s replicas are needed, contact support@khulnasoft.com for assistance)",
 					u.Service,
 					u.Service,
 				)

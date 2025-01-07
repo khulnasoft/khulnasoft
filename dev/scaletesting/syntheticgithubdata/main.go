@@ -31,7 +31,7 @@ type config struct {
 }
 
 var (
-	emailDomain = "scaletesting.sourcegraph.com"
+	emailDomain = "scaletesting.khulnasoft.com"
 
 	out      *output.Output
 	store    *state

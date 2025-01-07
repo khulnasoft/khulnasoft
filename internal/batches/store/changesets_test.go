@@ -2033,7 +2033,7 @@ func testStoreListChangesetsTextSearch(t *testing.T, ctx context.Context, s *Sto
 			Title:        "Fix a bunch of bugs on GitLab",
 			Description:  "This fixes a bunch of bugs",
 			State:        gitlab.MergeRequestStateOpened,
-			WebURL:       "https://gitlab.org/sourcegraph/sourcegraph/pull/12345",
+			WebURL:       "https://gitlab.org/khulnasoft/khulnasoft/pull/12345",
 			SourceBranch: "batch-changes/test",
 		},
 		createChangesetSpec("Fix a bunch of bugs"),

@@ -1,7 +1,7 @@
 import { ExternalServiceKind } from '$testing/graphql-type-mocks'
 import { expect, test } from '$testing/integration'
 
-const repoName = 'github.com/sourcegraph/sourcegraph'
+const repoName = 'github.com/khulnasoft/khulnasoft'
 const url = `/${repoName}/-/blob/src/index.js`
 const revision = '123'
 
@@ -157,7 +157,7 @@ test.describe('file header', () => {
         const link = page.getByLabel('Open in IntelliJ IDEA')
         await expect(link, 'links to correct editor').toHaveAttribute(
             'href',
-            `idea://open?file=${projectsPath}/sourcegraph/sourcegraph/src/readme.md&line=1&column=1`
+            `idea://open?file=${projectsPath}/khulnasoft/khulnasoft/src/readme.md&line=1&column=1`
         )
         await link.focus()
 

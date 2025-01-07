@@ -23,7 +23,7 @@ import (
 
 func NewEmbeddingsClient(config *conftypes.EmbeddingsConfig) (client.EmbeddingsClient, error) {
 	switch config.Provider {
-	case conftypes.EmbeddingsProviderNameSourcegraph:
+	case conftypes.EmbeddingsProviderNameKhulnasoft:
 		return sourcegraph.NewClient(httpcli.UncachedExternalClient, config), nil
 	case conftypes.EmbeddingsProviderNameOpenAI:
 		return openai.NewClient(httpcli.UncachedExternalClient, config), nil

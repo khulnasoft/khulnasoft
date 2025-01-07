@@ -128,10 +128,10 @@ func (r *schemaResolver) DeleteUsers(ctx context.Context, args *struct {
 		for _, acct := range extAccounts {
 			// If the delete target is a SOAP user, make sure the actor is also a SOAP
 			// user - regular users should not be able to delete SOAP users.
-			if acct.ServiceType == auth.SourcegraphOperatorProviderType {
-				if !a.SourcegraphOperator {
+			if acct.ServiceType == auth.KhulnasoftOperatorProviderType {
+				if !a.KhulnasoftOperator {
 					return nil, errors.Newf("%[1]q user %[2]d cannot be deleted by a non-%[1]q user",
-						auth.SourcegraphOperatorProviderType, user.ID)
+						auth.KhulnasoftOperatorProviderType, user.ID)
 				}
 			}
 
@@ -154,8 +154,8 @@ func (r *schemaResolver) DeleteUsers(ctx context.Context, args *struct {
 			emailStrs[i] = verifiedEmails[i].Email
 		}
 		accounts = append(accounts, &extsvc.Accounts{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			AccountIDs:  append(emailStrs, user.Username),
 		})
 

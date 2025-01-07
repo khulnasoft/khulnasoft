@@ -105,7 +105,5 @@ export function updateOverrideCounter(): void {
 }
 
 export function isKhulnasoftDev(authenticatedUser: Pick<AuthenticatedUser, 'emails'> | null): boolean {
-    return (
-        authenticatedUser?.emails?.some(email => email.verified && email.email?.endsWith('@sourcegraph.com')) ?? false
-    )
+    return authenticatedUser?.emails?.some(email => email.verified && email.email?.endsWith('@khulnasoft.com')) ?? false
 }

@@ -351,7 +351,7 @@ func isZoektRolloutError(ctx context.Context, err error) bool {
 
 func zoektRolloutReason(err error) string {
 	// Please only add very specific error checks here. An error can be added
-	// here if we see it correlated with rollouts on sourcegraph.com.
+	// here if we see it correlated with rollouts on khulnasoft.com.
 
 	var dnsErr *net.DNSError
 	if errors.As(err, &dnsErr) && dnsErr.IsNotFound {

@@ -1,11 +1,11 @@
 package auth
 
-// SourcegraphOperatorProviderType is the unique identifier of the Sourcegraph
+// KhulnasoftOperatorProviderType is the unique identifier of the Khulnasoft
 // Operator authentication provider, also referred to as "SOAP".  There can only
 // ever be one provider of this type, and it can only be provisioned through
 // Cloud site configuration (see github.com/khulnasoft/khulnasoft/internal/cloud)
 //
-// SOAP is used to provision accounts for Sourcegraph teammates in Sourcegraph
+// SOAP is used to provision accounts for Khulnasoft teammates in Khulnasoft
 // Cloud - for more details, refer to
-// https://handbook.sourcegraph.com/departments/cloud/technical-docs/oidc_site_admin/#faq
-const SourcegraphOperatorProviderType = "sourcegraph-operator"
+// https://handbook.khulnasoft.com/departments/cloud/technical-docs/oidc_site_admin/#faq
+const KhulnasoftOperatorProviderType = "sourcegraph-operator"

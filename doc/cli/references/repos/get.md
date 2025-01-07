@@ -10,8 +10,8 @@
 | `-get-curl` | Print the curl command for executing this query and exit (WARNING: includes printing your access token!) | `false` |
 | `-insecure-skip-verify` | Skip validation of TLS certificates against trusted chains | `false` |
 | `-name` | The name of the repository. (required) |  |
-| `-trace` | Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing | `false` |
-| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph | `true` |
+| `-trace` | Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing | `false` |
+| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft | `true` |
 
 
 ## Usage
@@ -29,9 +29,9 @@ Usage of 'src repos get':
   -name string
     	The name of the repository. (required)
   -trace
-    	Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing
+    	Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing
   -user-agent-telemetry
-    	Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph (default true)
+    	Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft (default true)
 
 Examples:
 

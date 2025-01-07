@@ -50,8 +50,8 @@ export const SearchUpsellPage: FC<Props> = ({ telemetryRecorder }) => {
     )
 
     const isLightTheme = useIsLightTheme()
-    const contactSalesLink = 'https://sourcegraph.com/contact/request-info'
-    const findOutMoreLink = 'https://sourcegraph.com/code-search'
+    const contactSalesLink = 'https://khulnasoft.com/contact/request-info'
+    const findOutMoreLink = 'https://khulnasoft.com/code-search'
     return (
         <div className={styles.container}>
             <section className={styles.hero}>
@@ -154,7 +154,7 @@ export const SearchUpsellPage: FC<Props> = ({ telemetryRecorder }) => {
                         by creating a declarative specification file.
                     </Text>
                     <Link
-                        to="https://sourcegraph.com/case-studies/indeed-accelerates-development-velocity"
+                        to="https://khulnasoft.com/case-studies/indeed-accelerates-development-velocity"
                         target="_blank"
                         rel="noreferrer"
                     >

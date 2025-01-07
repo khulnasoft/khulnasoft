@@ -8,7 +8,7 @@ There are currently three modes:
 * `"sampling": "none"` will disable all tracing.
 
 `"selective"` is the recommended default, because collecting traces on all requests can be quite memory- and network-intensive.
-If you have a large Sourcegraph instance (e.g,. more than 10k repositories), turn this on with caution.
+If you have a large Khulnasoft instance (e.g,. more than 10k repositories), turn this on with caution.
 Note that the policies above are implemented at an application level—to sample all traces, please configure your tracing backend directly.
 
 We support the following tracing backend types:
@@ -33,11 +33,11 @@ We generally follow the following algorithm to root-cause issues with traces:
    1. items near the leaves that take up a significant portion of the overall request time.
    2. spans that have errors attached to them
    3. [log entries](./logs.md) that correspond to spans in the trace (using the `TraceId` and `SpanId` fields)
-3. Report this information to Sourcegraph (via [issue](https://github.com/khulnasoft/khulnasoft/issues/new) or [reaching out directly](https://sourcegraph.com/contact/request-info/)) by screenshotting the relevant trace or sharing the trace JSON.
+3. Report this information to Khulnasoft (via [issue](https://github.com/khulnasoft/khulnasoft/issues/new) or [reaching out directly](https://khulnasoft.com/contact/request-info/)) by screenshotting the relevant trace or sharing the trace JSON.
 
 ### Trace a search query
 
-To trace a search query, run a search on your Sourcegraph instance with the `?trace=1` query parameter.
+To trace a search query, run a search on your Khulnasoft instance with the `?trace=1` query parameter.
 A link to the [exported trace](#tracing-backends) should be show up in the search results:
 
 ![link to trace](https://user-images.githubusercontent.com/23356519/184953302-099bcb62-ccdb-4eed-be5d-801b7fe16d97.png)
@@ -46,18 +46,18 @@ Note that getting a trace URL requires `urlTemplate` to be configured.
 
 ### Trace a GraphQL request
 
-To receive a traceID on a GraphQL request, include the header `X-Sourcegraph-Should-Trace: true` with the request.
+To receive a traceID on a GraphQL request, include the header `X-Khulnasoft-Should-Trace: true` with the request.
 The response headers of the response will now include an `x-trace-url` entry, which will have a URL the [exported trace](#tracing-backends).
 
 Note that getting a trace URL requires `urlTemplate` to be configured.
 
-Alternatively you can use the GraphQL API console: Log in to your Sourcegraph instance of choice, navigate
-to `/api/console` (e.g. https://sourcegraph.sourcegraph.com/api/console) and add the query parameter `trace=1` to your browser's URL.
+Alternatively you can use the GraphQL API console: Log in to your Khulnasoft instance of choice, navigate
+to `/api/console` (e.g. https://sourcegraph.khulnasoft.com/api/console) and add the query parameter `trace=1` to your browser's URL.
 Open the developer tools' network tab to inspect your request and find the tracing link in the response headers.
 
 ## Tracing backends
 
-Tracing backends can be configured for Sourcegraph to export traces to.
+Tracing backends can be configured for Khulnasoft to export traces to.
 We support exporting traces via [OpenTelemetry](#opentelemetry) (recommended), or directly to [Jaeger](#jaeger).
 
 When you use `sg`, you can run `sg start otel` to start the tracing backend. Requests with `trace=1` or the according
@@ -69,7 +69,7 @@ To learn about exporting traces to various backends using OpenTelemetry, review 
 Once configured, you can set up a `urlTemplate` that points to your traces backend, which allows you to use the following variables:
 
 * `{{ .TraceID }}` is the full trace ID
-* `{{ .ExternalURL }}` is the external URL of your Sourcegraph instance
+* `{{ .ExternalURL }}` is the external URL of your Khulnasoft instance
 
 For example, if you [export your traces to Honeycomb](./opentelemetry.md#otlp-compatible-backends), your configuration might look like:
 
@@ -93,9 +93,9 @@ There are two ways to export traces to Jaeger:
 
 We strongly recommend using option 1 to use Jaeger, which is supported via opt-in mechanisms for each of our core deployment methods—to learn more, refer to the [Jaeger exporter documentation](opentelemetry.md#jaeger).
 
-To use option 2 instead, which enables behaviour similar to how Sourcegraph exported traces before Sourcegraph 4.0, [Jaeger client environment variables](https://github.com/jaegertracing/jaeger-client-go#environment-variables) must be set on all services for traces to export to Jaeger correctly using `"observability.tracing": { "type": "jaeger" }`.
+To use option 2 instead, which enables behaviour similar to how Khulnasoft exported traces before Khulnasoft 4.0, [Jaeger client environment variables](https://github.com/jaegertracing/jaeger-client-go#environment-variables) must be set on all services for traces to export to Jaeger correctly using `"observability.tracing": { "type": "jaeger" }`.
 
-A mechanism within Sourcegraph is available to reverse-proxy a Jaeger instance by setting the `JAEGER_SERVER_URL` environment variable on the `frontend` service, which allows you to access Jaeger using `/-/debug/jaeger`.
+A mechanism within Khulnasoft is available to reverse-proxy a Jaeger instance by setting the `JAEGER_SERVER_URL` environment variable on the `frontend` service, which allows you to access Jaeger using `/-/debug/jaeger`.
 The Jaeger instance will also need `QUERY_BASE_PATH='/-/debug/jaeger'` to be configured.
 Once set up, you can use the following URL template for traces exported to Jaeger:
 

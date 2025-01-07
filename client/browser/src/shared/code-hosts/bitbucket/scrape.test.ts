@@ -40,7 +40,7 @@ describe('Bitbucket scrape.ts', () => {
     describe('getDiffFileInfoFromMultiFileDiffCodeView()', () => {
         it('should get the FileInfo for an added file', async () => {
             windowLocation__testingOnly.value = new URL(
-                'https://bitbucket.test/projects/SOURCEGRAPH/repos/mux/pull-requests/1/diff#dir/new_file.go'
+                'https://bitbucket.test/projects/KHULNASOFT/repos/mux/pull-requests/1/diff#dir/new_file.go'
             )
             const codeView = await getFixtureBody({
                 htmlFixturePath: `${__dirname}/__fixtures__/code-views/pull-request/split/added.html`,
@@ -51,14 +51,14 @@ describe('Bitbucket scrape.ts', () => {
                 changeType: 'ADD',
                 baseFilePath: 'dir/new_file.go',
                 filePath: 'dir/new_file.go',
-                project: 'SOURCEGRAPH',
+                project: 'KHULNASOFT',
                 repoSlug: 'mux',
-                rawRepoName: 'bitbucket.test/SOURCEGRAPH/mux',
+                rawRepoName: 'bitbucket.test/KHULNASOFT/mux',
             })
         })
         it('should get the FileInfo for a modified file', async () => {
             windowLocation__testingOnly.value = new URL(
-                'https://bitbucket.test/projects/SOURCEGRAPH/repos/mux/pull-requests/1/diff#dir/mux.go'
+                'https://bitbucket.test/projects/KHULNASOFT/repos/mux/pull-requests/1/diff#dir/mux.go'
             )
             const codeView = await getFixtureBody({
                 htmlFixturePath: `${__dirname}/__fixtures__/code-views/pull-request/split/modified.html`,
@@ -69,14 +69,14 @@ describe('Bitbucket scrape.ts', () => {
                 changeType: 'MODIFY',
                 baseFilePath: 'dir/mux.go',
                 filePath: 'dir/mux.go',
-                project: 'SOURCEGRAPH',
+                project: 'KHULNASOFT',
                 repoSlug: 'mux',
-                rawRepoName: 'bitbucket.test/SOURCEGRAPH/mux',
+                rawRepoName: 'bitbucket.test/KHULNASOFT/mux',
             })
         })
         it('should get the FileInfo for a deleted file', async () => {
             windowLocation__testingOnly.value = new URL(
-                'https://bitbucket.test/projects/SOURCEGRAPH/repos/mux/pull-requests/1/diff#dir/old_test.go'
+                'https://bitbucket.test/projects/KHULNASOFT/repos/mux/pull-requests/1/diff#dir/old_test.go'
             )
             const codeView = await getFixtureBody({
                 htmlFixturePath: `${__dirname}/__fixtures__/code-views/pull-request/split/deleted.html`,
@@ -87,14 +87,14 @@ describe('Bitbucket scrape.ts', () => {
                 changeType: 'DELETE',
                 baseFilePath: 'dir/old_test.go',
                 filePath: 'dir/old_test.go', // TODO should really be undefined?
-                project: 'SOURCEGRAPH',
+                project: 'KHULNASOFT',
                 repoSlug: 'mux',
-                rawRepoName: 'bitbucket.test/SOURCEGRAPH/mux',
+                rawRepoName: 'bitbucket.test/KHULNASOFT/mux',
             })
         })
         it('should get the FileInfo for a copied file', async () => {
             windowLocation__testingOnly.value = new URL(
-                'https://bitbucket.test/projects/SOURCEGRAPH/repos/mux/pull-requests/1/diff#dir/mux.1.go'
+                'https://bitbucket.test/projects/KHULNASOFT/repos/mux/pull-requests/1/diff#dir/mux.1.go'
             )
             const codeView = await getFixtureBody({
                 htmlFixturePath: `${__dirname}/__fixtures__/code-views/pull-request/split/copied.html`,
@@ -105,14 +105,14 @@ describe('Bitbucket scrape.ts', () => {
                 changeType: 'COPY',
                 baseFilePath: 'dir/mux.go',
                 filePath: 'dir/mux.1.go',
-                project: 'SOURCEGRAPH',
+                project: 'KHULNASOFT',
                 repoSlug: 'mux',
-                rawRepoName: 'bitbucket.test/SOURCEGRAPH/mux',
+                rawRepoName: 'bitbucket.test/KHULNASOFT/mux',
             })
         })
         it('should get the FileInfo for a renamed file', async () => {
             windowLocation__testingOnly.value = new URL(
-                'https://bitbucket.test/projects/SOURCEGRAPH/repos/mux/pull-requests/1/diff#dir/mux_test_moved.go'
+                'https://bitbucket.test/projects/KHULNASOFT/repos/mux/pull-requests/1/diff#dir/mux_test_moved.go'
             )
             const codeView = await getFixtureBody({
                 htmlFixturePath: `${__dirname}/__fixtures__/code-views/pull-request/split/renamed.html`,
@@ -123,14 +123,14 @@ describe('Bitbucket scrape.ts', () => {
                 changeType: 'RENAME',
                 baseFilePath: 'dir/mux_test.go',
                 filePath: 'dir/mux_test_moved.go',
-                project: 'SOURCEGRAPH',
+                project: 'KHULNASOFT',
                 repoSlug: 'mux',
-                rawRepoName: 'bitbucket.test/SOURCEGRAPH/mux',
+                rawRepoName: 'bitbucket.test/KHULNASOFT/mux',
             })
         })
         it('should get the FileInfo for a moved file', async () => {
             windowLocation__testingOnly.value = new URL(
-                'https://bitbucket.test/projects/SOURCEGRAPH/repos/mux/pull-requests/1/diff#dir/test-dir/route.go'
+                'https://bitbucket.test/projects/KHULNASOFT/repos/mux/pull-requests/1/diff#dir/test-dir/route.go'
             )
             const codeView = await getFixtureBody({
                 htmlFixturePath: `${__dirname}/__fixtures__/code-views/pull-request/split/moved.html`,
@@ -141,9 +141,9 @@ describe('Bitbucket scrape.ts', () => {
                 changeType: 'MOVE',
                 baseFilePath: 'dir/route.go',
                 filePath: 'dir/test-dir/route.go',
-                project: 'SOURCEGRAPH',
+                project: 'KHULNASOFT',
                 repoSlug: 'mux',
-                rawRepoName: 'bitbucket.test/SOURCEGRAPH/mux',
+                rawRepoName: 'bitbucket.test/KHULNASOFT/mux',
             })
         })
     })

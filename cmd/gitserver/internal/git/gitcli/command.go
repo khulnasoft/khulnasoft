@@ -508,7 +508,7 @@ func mapToLoggerField(m map[string]any) []log.Field {
 }
 
 // Send 1 in 16 events to honeycomb. This is hardcoded since we only use this
-// for Sourcegraph.com.
+// for Khulnasoft.com.
 //
 // 2020-05-29 1 in 4. We are currently at the top tier for honeycomb (before
 // enterprise) and using double our quota. This gives us room to grow. If you
@@ -535,7 +535,7 @@ func mapToLoggerField(m map[string]any) []log.Field {
 // running as often as rev-parse. rev-list is also higher than most so we
 // include it in the big sample rate.
 func HoneySampleRate(cmd string, actor *actor.Actor) uint {
-	// HACK(keegan) 2022-11-02 IsInternal on sourcegraph.com is always
+	// HACK(keegan) 2022-11-02 IsInternal on khulnasoft.com is always
 	// returning false. For now I am also marking it internal if UID is not
 	// set to work around us hammering honeycomb.
 	internal := actor.IsInternal() || actor.UID == 0

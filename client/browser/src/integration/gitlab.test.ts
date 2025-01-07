@@ -16,7 +16,7 @@ describe('GitLab', () => {
     before(async () => {
         driver = await createDriverForTest({ loadExtension: true })
         await closeInstallPageTab(driver.browser)
-        if (driver.sourcegraphBaseUrl !== 'https://sourcegraph.com') {
+        if (driver.sourcegraphBaseUrl !== 'https://khulnasoft.com') {
             await driver.setExtensionKhulnasoftUrl()
         }
     })

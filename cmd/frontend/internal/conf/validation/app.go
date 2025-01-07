@@ -12,7 +12,7 @@ func init() {
 			return nil
 		}
 		if c.SiteConfig().ExternalURL == "" {
-			problems = append(problems, conf.NewSiteProblem("`externalURL` is required to be set for many features of Sourcegraph to work correctly."))
+			problems = append(problems, conf.NewSiteProblem("`externalURL` is required to be set for many features of Khulnasoft to work correctly."))
 		}
 		return problems
 	})

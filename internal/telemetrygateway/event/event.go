@@ -23,7 +23,7 @@ import (
 var DefaultEventIDFunc = telemetrygatewayv1.DefaultEventIDFunc
 
 // New creates a uniform event with defaults filled in, including any relevant
-// data required from context. All constructors making raw events for Sourcegraph
+// data required from context. All constructors making raw events for Khulnasoft
 // instances to export MUST start with this.
 func New(ctx context.Context, now time.Time, newEventID func() string) *telemetrygatewayv1.Event {
 	return &telemetrygatewayv1.Event{

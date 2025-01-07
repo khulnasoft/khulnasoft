@@ -84,13 +84,13 @@ func calculateExecutorCompatibility(ev string) (*string, error) {
 
 	// check for version mismatch
 	if len(evm) > 1 && len(svm) <= 1 {
-		// this means that the executor is an insider version while the Sourcegraph
+		// this means that the executor is an insider version while the Khulnasoft
 		// instance is not.
 		return nil, nil
 	}
 
 	if len(evm) <= 1 && len(svm) > 1 {
-		// this means that the Sourcegraph instance is an insider version while the
+		// this means that the Khulnasoft instance is an insider version while the
 		// executor is not.
 		return nil, nil
 	}
@@ -116,7 +116,7 @@ func calculateExecutorCompatibility(ev string) (*string, error) {
 			// if this is true then we assume the executor's version is ahead.
 			compatibility = ExecutorCompatibilityVersionAhead
 		} else if et.Before(lst) {
-			// if the executor date is a release cycle behind the current build date of the Sourcegraph
+			// if the executor date is a release cycle behind the current build date of the Khulnasoft
 			// instance then we assume that the executor is outdated.
 			compatibility = ExecutorCompatibilityOutdated
 		}

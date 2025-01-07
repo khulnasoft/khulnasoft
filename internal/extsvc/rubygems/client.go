@@ -47,7 +47,7 @@ func (c *Client) GetPackageContents(ctx context.Context, dep reposource.Versione
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Add("User-Agent", "sourcegraph-rubygems-syncer (sourcegraph.com)")
+	req.Header.Add("User-Agent", "sourcegraph-rubygems-syncer (khulnasoft.com)")
 
 	body, err = c.do(c.uncachedClient, req)
 	if err != nil {

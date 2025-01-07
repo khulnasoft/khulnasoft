@@ -8,7 +8,7 @@ interface Props {
     className?: string
 }
 
-const productPageUrl = 'https://sourcegraph.com/code-insights'
+const productPageUrl = 'https://khulnasoft.com/code-insights'
 
 /**
  * The product description for Code Insights.

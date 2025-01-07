@@ -23,7 +23,7 @@ export const Default = (): JSX.Element => (
         <MarketingBlock>
             <H3 className="pr-3">Need help getting started?</H3>
             <div>
-                <Link to="https://sourcegraph.com/search">
+                <Link to="https://khulnasoft.com/search">
                     Speak to an engineer
                     <Icon className="ml-2" aria-hidden={true} svgPath={mdiArrowRight} />
                 </Link>
@@ -32,7 +32,7 @@ export const Default = (): JSX.Element => (
         <MarketingBlock variant="thin">
             <H3 className="pr-3">Need help getting started?</H3>
             <div>
-                <Link to="https://sourcegraph.com/search">
+                <Link to="https://khulnasoft.com/search">
                     Speak to an engineer
                     <Icon className="ml-2" aria-hidden={true} svgPath={mdiArrowRight} />
                 </Link>

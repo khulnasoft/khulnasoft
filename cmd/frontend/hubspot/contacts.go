@@ -42,7 +42,7 @@ type ContactProperties struct {
 	HasAgreedToToS               bool   `json:"has_agreed_to_tos_and_pp"`
 	VSCodyInstalledEmailsEnabled bool   `json:"vs_cody_installed_emails_enabled"`
 
-	// The URL of the first page a user landed on their first session on a Sourcegraph site.
+	// The URL of the first page a user landed on their first session on a Khulnasoft site.
 	// The cookie name for tracking the last visited URL within the current session has been updated to 'first_page_seen_url',
 	// however, in the HubSpot integration, we are still using the legacy HubSpot contact property 'first_source_url'
 	// for backward compatibility with existing HubSpot configurations and workflows.
@@ -54,7 +54,7 @@ type ContactProperties struct {
 	LastPageSeenMid   string `json:"last_page_seen_mid"`
 	LastPageSeenLong  string `json:"last_page_seen_long"`
 
-	// The URL of the first page a user landed on their latest session on a Sourcegraph site.
+	// The URL of the first page a user landed on their latest session on a Khulnasoft site.
 	// The cookie name for tracking the last visited URL within the current session has been updated to 'last_page_seen_url',
 	// however, in the HubSpot integration, we are still using the legacy HubSpot contact property 'last_source_url'
 	// for backward compatibility with existing HubSpot configurations and workflows.
@@ -63,7 +63,7 @@ type ContactProperties struct {
 	// The URL of the first page a user landed on the session when they signed up.
 	SignupSessionSourceURL string `json:"signup_session_source_url"`
 
-	// The referrer for a user on their latest session on a Sourcegraph site.
+	// The referrer for a user on their latest session on a Khulnasoft site.
 	MostRecentReferrerUrl string `json:"most_recent_referrer_url"`
 
 	// The referrer across multiple cookie duration sessions.

@@ -78,11 +78,11 @@ function _run_server_image() {
   if [ -z "$DB_STARTUP_TIMEOUT" ]; then
     echo "❌ DB_STARTUP_TIMEOUT must be defined"
   fi
-  if [ -z "$SOURCEGRAPH_LICENSE_GENERATION_KEY" ]; then
-    echo "❌ SOURCEGRAPH_LICENSE_GENERATION_KEY must be defined"
+  if [ -z "$KHULNASOFT_LICENSE_GENERATION_KEY" ]; then
+    echo "❌ KHULNASOFT_LICENSE_GENERATION_KEY must be defined"
   fi
-  if [ -z "$SOURCEGRAPH_LICENSE_KEY" ]; then
-    echo "❌ SOURCEGRAPH_LICENSE_KEY must be defined"
+  if [ -z "$KHULNASOFT_LICENSE_KEY" ]; then
+    echo "❌ KHULNASOFT_LICENSE_KEY must be defined"
   fi
 
   local image_tarball
@@ -106,8 +106,8 @@ function _run_server_image() {
   echo "-- Starting $image_name"
   echo "Listening at: $url"
   echo "Database startup timeout: $DB_STARTUP_TIMEOUT"
-  echo "License key generator present: $(is_present "$SOURCEGRAPH_LICENSE_GENERATION_KEY")"
-  echo "License key present: $(is_present "$SOURCEGRAPH_LICENSE_GENERATION_KEY")"
+  echo "License key generator present: $(is_present "$KHULNASOFT_LICENSE_GENERATION_KEY")"
+  echo "License key present: $(is_present "$KHULNASOFT_LICENSE_GENERATION_KEY")"
 
   echo "Allow single docker image code insights: $ALLOW_SINGLE_DOCKER_CODE_INSIGHTS"
 
@@ -119,7 +119,7 @@ function _run_server_image() {
     --platform linux/amd64 \
     -e BAZEL_SKIP_OOB_INFER_VERSION=true \
     -e ALLOW_SINGLE_DOCKER_CODE_INSIGHTS="$ALLOW_SINGLE_DOCKER_CODE_INSIGHTS" \
-    -e SOURCEGRAPH_LICENSE_GENERATION_KEY="$SOURCEGRAPH_LICENSE_GENERATION_KEY" \
+    -e KHULNASOFT_LICENSE_GENERATION_KEY="$KHULNASOFT_LICENSE_GENERATION_KEY" \
     -e DB_STARTUP_TIMEOUT="$DB_STARTUP_TIMEOUT" \
     "$image_name"
 

@@ -457,25 +457,25 @@ describe('Search', () => {
                 {
                     type: 'matches',
                     data: [
-                        { type: 'repo', repository: 'github.com/sourcegraph/sourcegraph' },
+                        { type: 'repo', repository: 'github.com/khulnasoft/khulnasoft' },
                         {
                             type: 'content',
                             lineMatches: [],
                             path: 'stream.ts',
-                            repository: 'github.com/sourcegraph/sourcegraph',
+                            repository: 'github.com/khulnasoft/khulnasoft',
                         },
                         {
                             type: 'content',
                             lineMatches: [],
                             path: 'stream.ts',
-                            repository: 'github.com/sourcegraph/sourcegraph',
+                            repository: 'github.com/khulnasoft/khulnasoft',
                             commit: 'abcd',
                         },
                         {
                             type: 'content',
                             lineMatches: [],
                             path: 'stream.ts',
-                            repository: 'github.com/sourcegraph/sourcegraph',
+                            repository: 'github.com/khulnasoft/khulnasoft',
                             branches: ['test/branch'],
                         },
                     ],
@@ -495,7 +495,7 @@ describe('Search', () => {
             )
             expect(results).toEqual([
                 'sourcegraph/sourcegraph',
-                'sourcegraph/sourcegraph › stream.ts',
+                'khulnasoft/khulnasoft › stream.ts',
                 'sourcegraph/sourcegraph@abcd › stream.ts',
                 'sourcegraph/sourcegraph@test/branch › stream.ts',
             ])

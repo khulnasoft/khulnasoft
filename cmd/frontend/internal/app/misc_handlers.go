@@ -30,8 +30,8 @@ func robotsTxtHelper(w io.Writer, allowRobots bool) {
 	fmt.Fprintln(&buf, "User-agent: *")
 	if allowRobots {
 		fmt.Fprintln(&buf, "Allow: /")
-		if dotcom.SourcegraphDotComMode() {
-			fmt.Fprintln(&buf, "Sitemap: https://sourcegraph.com/sitemap.xml.gz")
+		if dotcom.KhulnasoftDotComMode() {
+			fmt.Fprintln(&buf, "Sitemap: https://khulnasoft.com/sitemap.xml.gz")
 			fmt.Fprintln(&buf, "Disallow: /search?q=*")
 		}
 	} else {
@@ -42,7 +42,7 @@ func robotsTxtHelper(w io.Writer, allowRobots bool) {
 }
 
 func sitemapXmlGz(w http.ResponseWriter, r *http.Request) {
-	if dotcom.SourcegraphDotComMode() || deploy.Type() == deploy.Dev {
+	if dotcom.KhulnasoftDotComMode() || deploy.Type() == deploy.Dev {
 		number := mux.Vars(r)["number"]
 		http.Redirect(w, r, fmt.Sprintf("https://storage.googleapis.com/sitemap-sourcegraph-com/sitemap%s.xml.gz", number), http.StatusFound)
 		return

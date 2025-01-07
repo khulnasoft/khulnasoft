@@ -24,7 +24,7 @@ func TestScheduleRepositories(t *testing.T) {
 	db := database.NewDB(logger, dbtest.NewDB(t))
 	repoStore := db.Repos()
 
-	createdRepo := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	createdRepo := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, createdRepo)
 	require.NoError(t, err)
 
@@ -37,7 +37,7 @@ func TestScheduleRepositories(t *testing.T) {
 	gitserverClient.GetDefaultBranchFunc.SetDefaultReturn("main", "coffee", nil)
 
 	// By default, we shouldn't schedule a new job for the same revision
-	repoNames := []api.RepoName{"github.com/sourcegraph/sourcegraph"}
+	repoNames := []api.RepoName{"github.com/khulnasoft/khulnasoft"}
 	err = ScheduleRepositories(ctx, repoNames, false, db, store, gitserverClient)
 	require.NoError(t, err)
 	count, err := store.CountRepoEmbeddingJobs(ctx, repo.ListOpts{})
@@ -60,7 +60,7 @@ func TestScheduleMultipleReposForPolicy(t *testing.T) {
 	db := database.NewDB(logger, dbtest.NewDB(t))
 	repoStore := db.Repos()
 
-	createdRepo := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	createdRepo := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	createdRepo2 := &types.Repo{Name: "github.com/sourcegraph/zoekt", URI: "github.com/sourcegraph/zoekt", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, createdRepo, createdRepo2)
 	require.NoError(t, err)
@@ -91,7 +91,7 @@ func TestScheduleRepositoriesRepoNotFound(t *testing.T) {
 	db := database.NewDB(logger, dbtest.NewDB(t))
 	repoStore := db.Repos()
 
-	createdRepo0 := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	createdRepo0 := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, createdRepo0)
 	require.NoError(t, err)
 
@@ -101,11 +101,11 @@ func TestScheduleRepositoriesRepoNotFound(t *testing.T) {
 	gitserverClient := gitserver.NewMockClient()
 	gitserverClient.GetDefaultBranchFunc.PushReturn("main", "sgrevision", nil)
 
-	repoNames := []api.RepoName{"github.com/sourcegraph/sourcegraph", "github.com/repo/notfound"}
+	repoNames := []api.RepoName{"github.com/khulnasoft/khulnasoft", "github.com/repo/notfound"}
 	err = ScheduleRepositories(ctx, repoNames, false, db, store, gitserverClient)
 	require.Error(t, err, database.RepoNotFoundErr{})
 
-	pattern := "github.com/sourcegraph/sourcegraph"
+	pattern := "github.com/khulnasoft/khulnasoft"
 	first := 10
 	jobs, err := store.ListRepoEmbeddingJobs(ctx, repo.ListOpts{PaginationArgs: &database.PaginationArgs{First: &first, OrderBy: database.OrderBy{{Field: "id"}}, Ascending: true}, Query: &pattern})
 	require.NoError(t, err)
@@ -120,7 +120,7 @@ func TestScheduleRepositoriesForPolicyRepoNotFound(t *testing.T) {
 	db := database.NewDB(logger, dbtest.NewDB(t))
 	repoStore := db.Repos()
 
-	createdRepo0 := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	createdRepo0 := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, createdRepo0)
 	require.NoError(t, err)
 
@@ -137,7 +137,7 @@ func TestScheduleRepositoriesForPolicyRepoNotFound(t *testing.T) {
 	require.NoError(t, err)
 	require.Equal(t, 1, count)
 
-	pattern := "github.com/sourcegraph/sourcegraph"
+	pattern := "github.com/khulnasoft/khulnasoft"
 	first := 10
 	jobs, err := store.ListRepoEmbeddingJobs(ctx, repo.ListOpts{PaginationArgs: &database.PaginationArgs{First: &first, OrderBy: database.OrderBy{{Field: "id"}}, Ascending: true}, Query: &pattern})
 	require.NoError(t, err)
@@ -152,7 +152,7 @@ func TestScheduleRepositoriesInvalidDefaultBranch(t *testing.T) {
 	db := database.NewDB(logger, dbtest.NewDB(t))
 	repoStore := db.Repos()
 
-	createdRepo0 := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	createdRepo0 := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, createdRepo0)
 	require.NoError(t, err)
 
@@ -169,7 +169,7 @@ func TestScheduleRepositoriesInvalidDefaultBranch(t *testing.T) {
 	require.NoError(t, err)
 	require.Equal(t, 1, count)
 
-	pattern := "github.com/sourcegraph/sourcegraph"
+	pattern := "github.com/khulnasoft/khulnasoft"
 	first := 10
 	jobs, err := store.ListRepoEmbeddingJobs(ctx, repo.ListOpts{PaginationArgs: &database.PaginationArgs{First: &first, OrderBy: database.OrderBy{{Field: "id"}}, Ascending: true}, Query: &pattern})
 	require.NoError(t, err)
@@ -184,7 +184,7 @@ func TestScheduleRepositoriesForPolicyFailed(t *testing.T) {
 	db := database.NewDB(logger, dbtest.NewDB(t))
 	repoStore := db.Repos()
 
-	createdRepo0 := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	createdRepo0 := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, createdRepo0)
 	require.NoError(t, err)
 
@@ -206,7 +206,7 @@ func TestScheduleRepositoriesForPolicyFailed(t *testing.T) {
 	require.NoError(t, err)
 	require.Equal(t, 2, count)
 
-	pattern := "github.com/sourcegraph/sourcegraph"
+	pattern := "github.com/khulnasoft/khulnasoft"
 	first := 10
 	jobs, err := store.ListRepoEmbeddingJobs(ctx, repo.ListOpts{PaginationArgs: &database.PaginationArgs{First: &first, OrderBy: database.OrderBy{{Field: "id"}}, Ascending: true}, Query: &pattern})
 	require.NoError(t, err)

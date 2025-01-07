@@ -50,7 +50,7 @@ func TestPublish(t *testing.T) {
 
 	// Check evaluated attributes
 	assert.Equal(t, "licensed_instance", publisher.GetSourceName())
-	assert.True(t, publisher.IsSourcegraphInstance())
+	assert.True(t, publisher.IsKhulnasoftInstance())
 
 	events := make([]*telemetrygatewayv1.Event, concurrency)
 	for i := range events {

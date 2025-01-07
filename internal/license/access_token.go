@@ -9,11 +9,11 @@ import (
 )
 
 // LicenseKeyBasedAccessTokenPrefix is the prefix used for identifying tokens
-// generated for product subscriptions based on a Sourcegraph license key.
+// generated for product subscriptions based on a Khulnasoft license key.
 const LicenseKeyBasedAccessTokenPrefix = "slk_" // "(S)ourcegraph (L)icense (K)ey"
 
 // GenerateLicenseKeyBasedAccessToken creates a prefixed, encoded token based on a
-// Sourcegraph license key.
+// Khulnasoft license key.
 //
 // More specifically, the format goes:
 //

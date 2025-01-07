@@ -29,18 +29,18 @@ func TestGitCLIBackend_CommitLog(t *testing.T) {
 	backend := BackendWithRepoCommands(t,
 		"echo Hello > f",
 		"git add f",
-		"GIT_COMMITTER_NAME=c GIT_COMMITTER_EMAIL=c@c.com GIT_COMMITTER_DATE=2006-01-02T15:04:05Z git commit -m foo --author='Foo Author <foo@sourcegraph.com>' --date 2006-01-02T15:04:05Z",
+		"GIT_COMMITTER_NAME=c GIT_COMMITTER_EMAIL=c@c.com GIT_COMMITTER_DATE=2006-01-02T15:04:05Z git commit -m foo --author='Foo Author <foo@khulnasoft.com>' --date 2006-01-02T15:04:05Z",
 		"git tag testbase",
 		"echo World > f2",
 		"git add f2",
-		"GIT_COMMITTER_NAME=c GIT_COMMITTER_EMAIL=c@c.com GIT_COMMITTER_DATE=2006-01-02T15:04:07Z git commit -m bar --author='Bar Author <bar@sourcegraph.com>' --date 2006-01-02T15:04:06Z",
+		"GIT_COMMITTER_NAME=c GIT_COMMITTER_EMAIL=c@c.com GIT_COMMITTER_DATE=2006-01-02T15:04:07Z git commit -m bar --author='Bar Author <bar@khulnasoft.com>' --date 2006-01-02T15:04:06Z",
 	)
 
 	allGitCommits := []*git.GitCommitWithFiles{
 		{
 			Commit: &gitdomain.Commit{
 				ID:        "2b2289762392764ed127587b0d5fd88a2f16b7c1",
-				Author:    gitdomain.Signature{Name: "Bar Author", Email: "bar@sourcegraph.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z")},
+				Author:    gitdomain.Signature{Name: "Bar Author", Email: "bar@khulnasoft.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z")},
 				Committer: &gitdomain.Signature{Name: "c", Email: "c@c.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:07Z")},
 				Message:   "bar",
 				Parents:   []api.CommitID{"5fab3adc1e398e749749271d14ab843759b192cf"},
@@ -49,7 +49,7 @@ func TestGitCLIBackend_CommitLog(t *testing.T) {
 		{
 			Commit: &gitdomain.Commit{
 				ID:        "5fab3adc1e398e749749271d14ab843759b192cf",
-				Author:    gitdomain.Signature{Name: "Foo Author", Email: "foo@sourcegraph.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
+				Author:    gitdomain.Signature{Name: "Foo Author", Email: "foo@khulnasoft.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
 				Committer: &gitdomain.Signature{Name: "c", Email: "c@c.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
 				Message:   "foo",
 				Parents:   nil,
@@ -337,7 +337,7 @@ func TestGitCLIBackend_CommitLog(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git tag test",
 		)
 

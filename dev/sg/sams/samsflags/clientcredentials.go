@@ -13,7 +13,7 @@ import (
 
 const (
 	SAMSDevURL  = "https://accounts.sgdev.org"
-	SAMSProdURL = "https://accounts.sourcegraph.com"
+	SAMSProdURL = "https://accounts.khulnasoft.com"
 )
 
 func ClientCredentials() []cli.Flag {

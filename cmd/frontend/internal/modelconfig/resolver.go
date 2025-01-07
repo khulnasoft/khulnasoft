@@ -53,7 +53,7 @@ func (llmResolver *codyLLMConfigResolver) CodyLLMConfiguration(ctx context.Conte
 
 	// Create a new instance of the codyLLMConfigurationResolver per-request, so that
 	// we always pick up the latest site config, rather than using a stale version from
-	// when the Sourcegraph instance was initialized.
+	// when the Khulnasoft instance was initialized.
 	resolver := &modelconfigResolver{
 		modelconfig: modelconfig,
 	}
@@ -122,7 +122,7 @@ func (c *completionsConfigResolver) CompletionModelMaxTokens() (*int32, error) {
 // modelconfigResolver implements the CodyLLMConfigurationResolver, used when the
 // site is configured to use the newer-style LLM model configuration format.
 type modelconfigResolver struct {
-	// modelconfig is the LLM model configuration data for this Sourcegraph instance.
+	// modelconfig is the LLM model configuration data for this Khulnasoft instance.
 	// This is the source of truth and accurately reflects the site configuration.
 	modelconfig *modelconfigSDK.ModelConfiguration
 }
@@ -210,7 +210,7 @@ func (r *modelconfigResolver) FastChatModelMaxTokens() (*int32, error) {
 // 'openaicompatible'              - does not need to be returned by this function (uses new Models service instead of CodyLLMConfiguration.provider)
 // Ollama and other options        - are client-side only
 //
-// Finally, it is worth noting that Sourcegraph instance versions prior to Aug 7th 2024
+// Finally, it is worth noting that Khulnasoft instance versions prior to Aug 7th 2024
 // using Cody Gateway would return 'sourcegraph' as the provider name here. This is expected
 // on the client side in some places.
 //
@@ -305,7 +305,7 @@ func (r *modelconfigResolver) convertProviderID(id modelconfigSDK.ProviderID) st
 	if ssConfig.OpenAICompatible != nil {
 		return "openaicompatible"
 	}
-	if ssConfig.SourcegraphProvider != nil {
+	if ssConfig.KhulnasoftProvider != nil {
 		return "khulnasoft"
 	}
 

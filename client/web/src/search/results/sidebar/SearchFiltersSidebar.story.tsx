@@ -60,7 +60,7 @@ const filters: Filter[] = [
         kind: 'repo',
     },
     {
-        label: 'gitlab.com/sourcegraph/sourcegraph',
+        label: 'gitlab.com/khulnasoft/khulnasoft',
         value: 'repo:^gitlab\\.com/sourcegraph/sourcegraph$',
         count: 201,
         exhaustive: false,

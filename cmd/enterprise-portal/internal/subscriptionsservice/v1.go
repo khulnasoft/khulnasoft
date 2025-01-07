@@ -979,7 +979,7 @@ func (s *handlerV1) UpdateEnterpriseSubscriptionMembership(ctx context.Context, 
 }
 
 const slackLicenseKeyCreationMessageFmt = `
-A new license was created for subscription <https://sourcegraph.com/site-admin/dotcom/product/subscriptions/%[1]s?env=%[2]s|%[3]s>:
+A new license was created for subscription <https://khulnasoft.com/site-admin/dotcom/product/subscriptions/%[1]s?env=%[2]s|%[3]s>:
 
 • *Expiration (UTC)*: %[4]s (%[5]s days remaining)
 • *Expiration (PT)*: %[6]s

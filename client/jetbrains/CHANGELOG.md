@@ -37,7 +37,7 @@
 - Bugfix: autocomplete was not working in some cases
 - Bugfix: chat was not working in some cases
 - New: improved onboarding in the Cody sidebar after signing in for the first time
-- New: simpler login to sourcegraph.com through settings UI
+- New: simpler login to khulnasoft.com through settings UI
 - Changed: Cody sidebar now defaults to the right instead of left allowing you to keep the "Project" file tree open
   alongside the Cody sidebar. You can drag the sidebar to the left if you don't like the new default.
 - Changed: Cody icon in the sidebar is now monochromatic (grey)
@@ -55,7 +55,7 @@
   by [@szymonprz](https://github.com/szymonprz) ([#56951](https://github.com/khulnasoft/khulnasoft/pull/56951))
 - JetBrains: Cody: Improve the languages table in Cody settings,
   by [@Gedochao](https://github.com/Gedochao) ([#56939](https://github.com/khulnasoft/khulnasoft/pull/56939))
-- JetBrains: Sign in to sourcegraph.com with a webflow from action on settings page,
+- JetBrains: Sign in to khulnasoft.com with a webflow from action on settings page,
   by [@szymonprz](https://github.com/szymonprz) ([#56941](https://github.com/khulnasoft/khulnasoft/pull/56941))
 - JetBrains: fix bug for access token description,
   by [@olafurpg](https://github.com/olafurpg) ([#56897](https://github.com/khulnasoft/khulnasoft/pull/56897))
@@ -87,7 +87,7 @@ problems.
 ### Highlights
 
 - Overall improved quality and performance for Cody autocomplete and chat
-- New: simpler login flow for both sourcegraph.com and enterprise instances
+- New: simpler login flow for both khulnasoft.com and enterprise instances
 - New: Cody icon in the status bar
 - New: alt-backslash shortcut to trigger autocomplete
 - New: setting to enable/disable autocomplete per language

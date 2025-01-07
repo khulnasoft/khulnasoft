@@ -32,7 +32,7 @@ var (
 	}, []string{tagID})
 )
 
-// NewRepositorySyncWorker runs the worker that syncs repositories from Phabricator to Sourcegraph.
+// NewRepositorySyncWorker runs the worker that syncs repositories from Phabricator to Khulnasoft.
 func NewRepositorySyncWorker(ctx context.Context, db database.DB, logger log.Logger, s repos.Store) goroutine.BackgroundRoutine {
 	cf := httpcli.NewExternalClientFactory(
 		httpcli.NewLoggingMiddleware(logger),
@@ -83,7 +83,7 @@ func NewRepositorySyncWorker(ctx context.Context, db database.DB, logger log.Log
 			return errs
 		}),
 		goroutine.WithName("repo-updater.phabricator-repository-syncer"),
-		goroutine.WithDescription("periodically syncs repositories from Phabricator to Sourcegraph"),
+		goroutine.WithDescription("periodically syncs repositories from Phabricator to Khulnasoft"),
 		goroutine.WithIntervalFunc(func() time.Duration {
 			return conf.RepoListUpdateInterval()
 		}),

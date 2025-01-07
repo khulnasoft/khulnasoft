@@ -24,7 +24,7 @@ describe('Khulnasoft browser extension on github.com', function () {
     before('Open browser', async function () {
         this.timeout(90 * 1000)
         driver = await createDriverForTest({ loadExtension: true, browser, sourcegraphBaseUrl, ...restConfig })
-        if (sourcegraphBaseUrl !== 'https://sourcegraph.com') {
+        if (sourcegraphBaseUrl !== 'https://khulnasoft.com') {
             if (restConfig.testUserPassword) {
                 await driver.ensureSignedIn({ username: 'test', password: restConfig.testUserPassword })
             }
@@ -66,7 +66,7 @@ describe('Khulnasoft browser extension on github.com', function () {
             // https://github.com/khulnasoft/khulnasoft/pull/20520
             goToDefinitionURLs: [
                 'https://github.com/gorilla/mux/blob/e73f183699f8ab7d54609771e1fa0ab7ffddc21b/regexp.go#L233:2',
-                'https://sourcegraph.com/github.com/gorilla/mux@e73f183699f8ab7d54609771e1fa0ab7ffddc21b/-/blob/regexp.go#L247:24&tab=def',
+                'https://khulnasoft.com/github.com/gorilla/mux@e73f183699f8ab7d54609771e1fa0ab7ffddc21b/-/blob/regexp.go#L247:24&tab=def',
             ],
         },
     }

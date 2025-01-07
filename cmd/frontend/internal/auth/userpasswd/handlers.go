@@ -134,7 +134,7 @@ func handleSignUp(logger log.Logger, db database.DB, eventRecorder *telemetry.Ev
 	}
 
 	// Track user data
-	if r.UserAgent() != "Sourcegraph e2etest-bot" || r.UserAgent() != "test" {
+	if r.UserAgent() != "Khulnasoft e2etest-bot" || r.UserAgent() != "test" {
 		getCookie := func(name string) string {
 			c, err := r.Cookie(name)
 			if err != nil || c == nil {
@@ -575,7 +575,7 @@ func httpLogError(logFunc func(string, ...log.Field), w http.ResponseWriter, msg
 //
 // Note: Do not forget to change database constraints on "users" and "orgs" tables.
 // WARNING: The current implementation of repo permission syncing for Bitbucket Server
-// depends on matching usernames on the code host and Sourcegraph, so we should try
+// depends on matching usernames on the code host and Khulnasoft, so we should try
 // our best to not make any unnecessary transformations here, as every transformation
 // increases the risk of some usernames not matching up with Bitbucket usernames
 // and those will need manual fixup.
@@ -589,7 +589,7 @@ func NormalizeUsername(name string) (string, error) {
 		// NOTE: When we derive the username from the email address, it is high chance
 		// that the username is not unique on dotcom, because many emails, are of formats
 		// like me@XX.com. So we always append a random suffix to the username in dotcom.
-		if dotcom.SourcegraphDotComMode() {
+		if dotcom.KhulnasoftDotComMode() {
 			var err error
 			name, err = AddRandomSuffix(name)
 			if err != nil {

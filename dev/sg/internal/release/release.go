@@ -90,7 +90,7 @@ var Command = &cli.Command{
 				&buildNumberFlag,
 				&referenceUriFlag,
 			},
-			UsageText: `sg release cve-check -u https://handbook.sourcegraph.com/departments/security/tooling/trivy/4-2-0/ -b 184191`,
+			UsageText: `sg release cve-check -u https://handbook.khulnasoft.com/departments/security/tooling/trivy/4-2-0/ -b 184191`,
 		},
 		{
 			Name:     "run",
@@ -239,7 +239,7 @@ type releaseInfo struct {
 // Should *only* be called for patch releases for the monorepo!
 // returns the new patch number for the latest minor version, in the form of "major.minor.patch"
 func determineNextReleaseVersion(ctx context.Context) (string, error) {
-	releaseEndpoint := "https://releaseregistry.sourcegraph.com/v1/releases/sourcegraph" // In the future we may wish to change this to name of the product being released
+	releaseEndpoint := "https://releaseregistry.khulnasoft.com/v1/releases/sourcegraph" // In the future we may wish to change this to name of the product being released
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, releaseEndpoint, nil)
 	if err != nil {
 		return "", errors.Wrap(err, "Could not create request")
@@ -264,7 +264,7 @@ func determineNextReleaseVersion(ctx context.Context) (string, error) {
 		return "", errors.New("No releases returned")
 	}
 	newestVersion := semver.MustParse(strings.TrimPrefix(versions[0].Version, "v"))
-	url := fmt.Sprintf("https://releaseregistry.sourcegraph.com/v1/releases/sourcegraph/next/%d.%d", newestVersion.Major(), newestVersion.Minor())
+	url := fmt.Sprintf("https://releaseregistry.khulnasoft.com/v1/releases/sourcegraph/next/%d.%d", newestVersion.Major(), newestVersion.Minor())
 
 	req, err = http.NewRequestWithContext(ctx, http.MethodPost, url, nil)
 	if err != nil {

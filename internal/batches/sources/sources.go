@@ -231,7 +231,7 @@ func getOwnerFromChangeset(ctx context.Context, tx SourcerStore, ch *btypes.Chan
 	// If yes, then we try to figure out the user namespace and get a GitHub app for the user namespace.
 	if cs.IsFork() {
 		// forkNamespace is nil returns a non-nil value if the fork namespace is explicitly defined
-		// e.g. Sourcegraph.
+		// e.g. Khulnasoft.
 		// if it isn't then we assume the changeset will be forked into the current user's namespace
 		forkNamespace := cs.GetForkNamespace()
 		if forkNamespace != nil {
@@ -728,7 +728,7 @@ func DefaultForkName(namespace string, name string) string {
 // *types.SourceInfo.CloneURL on its Sources has been updated from nameAndOwner to
 // forkNameAndOwner and its Metadata is updated to the provided metadata. This is useful
 // because a fork repo that is created by Batch Changes is not necessarily indexed by
-// Sourcegraph, but we still need to create a legitimate-seeming *types.Repo for it with
+// Khulnasoft, but we still need to create a legitimate-seeming *types.Repo for it with
 // the right clone URLs, so that we know where to push commits and publish the changeset.
 func CopyRepoAsFork(repo *types.Repo, metadata any, nameAndOwner, forkNameAndOwner string) (*types.Repo, error) {
 	forkRepo := *repo

@@ -23,15 +23,15 @@ The arguments for `initSG` can be set via environment variables or the cli.
 with env vars
 
 ```shell
-SOURCEGRAPH_BASE_URL=http://<sourcegraph>
+KHULNASOFT_BASE_URL=http://<sourcegraph>
 TEST_USER_EMAIL=test@test.com
-SOURCEGRAPH_SUDO_USER=admin
+KHULNASOFT_SUDO_USER=admin
 TEST_USER_PASSWORD=password
 
 $ go build && init-sg initSG
 Running initializer
 Site admin has been created: admin
-Instance initialized, SOURCEGRAPH_SUDO_TOKEN set in /root/.profile
+Instance initialized, KHULNASOFT_SUDO_TOKEN set in /root/.profile
 ```
 
 with cli flags

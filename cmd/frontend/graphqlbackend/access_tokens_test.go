@@ -353,14 +353,14 @@ func TestMutation_CreateAccessToken(t *testing.T) {
 		}
 	})
 
-	t.Run("disable sudo access token creation on Sourcegraph.com", func(t *testing.T) {
+	t.Run("disable sudo access token creation on Khulnasoft.com", func(t *testing.T) {
 		users := dbmocks.NewMockUserStore()
 		users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{ID: 1, SiteAdmin: true}, nil)
 
 		db := dbmocks.NewMockDB()
 		db.UsersFunc.SetDefaultReturn(users)
 
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		ctx := actor.WithActor(context.Background(), &actor.Actor{UID: 1})
 		_, err := newSchemaResolver(db, gitserver.NewTestClient(t), nil).CreateAccessToken(ctx,
@@ -371,11 +371,11 @@ func TestMutation_CreateAccessToken(t *testing.T) {
 			},
 		)
 		got := fmt.Sprintf("%v", err)
-		want := `creation of access tokens with scope "site-admin:sudo" is disabled on Sourcegraph.com`
+		want := `creation of access tokens with scope "site-admin:sudo" is disabled on Khulnasoft.com`
 		assert.Equal(t, want, got)
 	})
 
-	t.Run("prevent create access token for other user on Sourcegraph.com", func(t *testing.T) {
+	t.Run("prevent create access token for other user on Khulnasoft.com", func(t *testing.T) {
 		users := dbmocks.NewMockUserStore()
 		users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{ID: 1, SiteAdmin: true}, nil)
 
@@ -385,7 +385,7 @@ func TestMutation_CreateAccessToken(t *testing.T) {
 		conf.Get().AuthAccessTokens = &schema.AuthAccessTokens{Allow: string(conf.AccessTokensAdmin)}
 		defer func() { conf.Get().AuthAccessTokens = nil }()
 
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		ctx := actor.WithActor(context.Background(), &actor.Actor{UID: 1})
 		_, err := newSchemaResolver(db, gitserver.NewTestClient(t), nil).CreateAccessToken(ctx,
@@ -396,7 +396,7 @@ func TestMutation_CreateAccessToken(t *testing.T) {
 			},
 		)
 		got := fmt.Sprintf("%v", err)
-		want := `access token creation for other users is disabled on Sourcegraph.com`
+		want := `access token creation for other users is disabled on Khulnasoft.com`
 		assert.Equal(t, want, got)
 	})
 }
@@ -530,7 +530,7 @@ func TestMutation_DeleteAccessToken(t *testing.T) {
 		extAccounts := dbmocks.NewMockUserExternalAccountsStore()
 		extAccounts.ListFunc.SetDefaultReturn([]*extsvc.Account{{
 			AccountSpec: extsvc.AccountSpec{
-				ServiceType: auth.SourcegraphOperatorProviderType,
+				ServiceType: auth.KhulnasoftOperatorProviderType,
 			},
 		}}, nil)
 		db := dbmocks.NewMockDB()
@@ -540,7 +540,7 @@ func TestMutation_DeleteAccessToken(t *testing.T) {
 
 		ctx := actor.WithActor(context.Background(), &actor.Actor{
 			UID:                 differentSiteAdminUID,
-			SourcegraphOperator: false,
+			KhulnasoftOperator: false,
 		})
 		result, err := newSchemaResolver(db, gitserver.NewTestClient(t), nil).
 			DeleteAccessToken(ctx, &deleteAccessTokenInput{ByID: &token1GQLID})

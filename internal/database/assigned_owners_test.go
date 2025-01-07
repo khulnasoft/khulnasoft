@@ -31,7 +31,7 @@ func TestAssignedOwnersStore_ListAssignedOwnersForRepo(t *testing.T) {
 	require.NoError(t, err)
 
 	// Creating 2 repos.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 	err = db.Repos().Create(ctx, &types.Repo{ID: 2, Name: "github.com/sourcegraph/sourcegraph2"})
 	require.NoError(t, err)
@@ -90,7 +90,7 @@ func TestAssignedOwnersStore_Insert(t *testing.T) {
 	require.NoError(t, err)
 
 	// Creating a repo.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 
 	store := AssignedOwnersStoreWith(db, logger)
@@ -127,7 +127,7 @@ func TestAssignedOwnersStore_Delete(t *testing.T) {
 	require.NoError(t, err)
 
 	// Creating a repo.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 
 	store := AssignedOwnersStoreWith(db, logger)
@@ -178,7 +178,7 @@ func TestAssignedOwnersStore_Count(t *testing.T) {
 	require.NoError(t, err)
 
 	// Creating a repo.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 
 	// Inserting assigned owners.

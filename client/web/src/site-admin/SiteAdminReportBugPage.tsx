@@ -134,15 +134,15 @@ export const SiteAdminReportBugPage: React.FunctionComponent<React.PropsWithChil
                 </Link>
                 , and include a description of the bug along with the info below (with secrets redacted). If the report
                 contains sensitive information that should not be public, email the report to{' '}
-                <Link target="_blank" rel="noopener noreferrer" to="mailto:support@sourcegraph.com">
-                    support@sourcegraph.com
+                <Link target="_blank" rel="noopener noreferrer" to="mailto:support@khulnasoft.com">
+                    support@khulnasoft.com
                 </Link>{' '}
                 instead.
             </Text>
             <Alert variant="warning">
                 <div>
                     Please redact any secrets before sharing, whether on the public issue tracker or with
-                    support@sourcegraph.com.
+                    support@khulnasoft.com.
                 </div>
             </Alert>
             {allConfig === undefined ? (

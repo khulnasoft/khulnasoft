@@ -6,11 +6,11 @@ import { FeedbackBadge } from './FeedbackBadge'
 
 describe('FeedbackBadge', () => {
     it('renders a FeedbackBadge', () => {
-        const { container } = render(<FeedbackBadge status="new" feedback={{ mailto: 'support@sourcegraph.com' }} />)
+        const { container } = render(<FeedbackBadge status="new" feedback={{ mailto: 'support@khulnasoft.com' }} />)
         expect(container.firstChild).toMatchSnapshot()
     })
     it.each(FEEDBACK_BADGES_STATUS)("Renders status '%s' correctly", status => {
-        const { container } = render(<FeedbackBadge status={status} feedback={{ mailto: 'support@sourcegraph.com' }} />)
+        const { container } = render(<FeedbackBadge status={status} feedback={{ mailto: 'support@khulnasoft.com' }} />)
         expect(container.firstChild).toMatchSnapshot()
     })
 })

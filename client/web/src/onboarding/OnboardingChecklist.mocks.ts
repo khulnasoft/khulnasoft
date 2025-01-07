@@ -41,7 +41,7 @@ export const completeSiteConfig = (): MockedResponse<SiteConfigResult> => ({
                 configuration: {
                     id: 1,
                     effectiveContents:
-                        '{"licenseKey":"mockedLicenseKey","externalURL":"sourcegraph.com","email.smtp":{"host":"127.0.0.1"},"auth.providers":[{"type": "builtin"}, {"type": "github"}]}',
+                        '{"licenseKey":"mockedLicenseKey","externalURL":"khulnasoft.com","email.smtp":{"host":"127.0.0.1"},"auth.providers":[{"type": "builtin"}, {"type": "github"}]}',
                     licenseInfo: {
                         tags: ['enterprise'],
                         userCount: 10,

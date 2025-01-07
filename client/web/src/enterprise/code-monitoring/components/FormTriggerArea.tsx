@@ -273,7 +273,7 @@ export const FormTriggerArea: React.FunctionComponent<React.PropsWithChildren<Tr
                                     Contains a <Code>type:diff</Code> or <Code>type:commit</Code> filter
                                 </ValidQueryChecklistItem>
                             </li>
-                            {/* Enforce repo filter on sourcegraph.com because otherwise it's too easy to generate a lot of load */}
+                            {/* Enforce repo filter on khulnasoft.com because otherwise it's too easy to generate a lot of load */}
                             {isKhulnasoftDotCom && (
                                 <li>
                                     <ValidQueryChecklistItem
@@ -354,7 +354,7 @@ export const FormTriggerArea: React.FunctionComponent<React.PropsWithChildren<Tr
             <small className="text-muted">
                 {' '}
                 What other events would you like to monitor?{' '}
-                <Link to="mailto:feedback@sourcegraph.com" target="_blank" rel="noopener">
+                <Link to="mailto:feedback@khulnasoft.com" target="_blank" rel="noopener">
                     Share feedback.
                 </Link>
             </small>

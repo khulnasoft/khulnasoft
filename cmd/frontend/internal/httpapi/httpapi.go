@@ -184,7 +184,7 @@ func NewHandler(
 	modelConfigHandlers := modelconfig.NewHandlers(db, logger)
 	m.Path("/modelconfig/supported-models.json").Methods("GET").HandlerFunc(modelConfigHandlers.GetSupportedModelsHandler)
 
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		m.Path("/license/check").Methods("POST").Name("dotcom.license.check").Handler(handlers.NewDotcomLicenseCheckHandler())
 
 		updatecheckHandler, err := updatecheck.ForwardHandler()
@@ -228,10 +228,10 @@ func NewHandler(
 			// API endpoint for proxying an arbitrary API request to the SSC backend.
 			//
 			// SECURITY: We are relying on the caller of this function to register the
-			// necessary authentication middleware. (e.g. injecting the Sourcegraph actor
+			// necessary authentication middleware. (e.g. injecting the Khulnasoft actor
 			// based on the session cookie or Sg user access token in the request's header.)
 			//
-			// This middleware handler then exchanges the authenticated Sourcegraph user's
+			// This middleware handler then exchanges the authenticated Khulnasoft user's
 			// credentials for their SAMS external identy's access token, and proxies the
 			// HTTP call to the SSC backend.
 			//
@@ -458,5 +458,5 @@ var noopHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) 
 
 var lsifDeprecationHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
-	_, _ = w.Write([]byte("Sourcegraph v4.5+ no longer accepts LSIF uploads. The Sourcegraph CLI v4.4.2+ will translate LSIF to SCIP prior to uploading. Please check the version of the CLI utility used to upload this artifact."))
+	_, _ = w.Write([]byte("Khulnasoft v4.5+ no longer accepts LSIF uploads. The Khulnasoft CLI v4.4.2+ will translate LSIF to SCIP prior to uploading. Please check the version of the CLI utility used to upload this artifact."))
 })

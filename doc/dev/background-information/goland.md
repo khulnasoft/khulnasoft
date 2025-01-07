@@ -1,8 +1,8 @@
 # GoLand
 
-[GoLand](https://www.jetbrains.com/go/) is a popular IDE for developing Go projects from JetBrains. If you’re a GoLand user, you can find useful tips and tricks for setting up your GoLand to develop Sourcegraph.
+[GoLand](https://www.jetbrains.com/go/) is a popular IDE for developing Go projects from JetBrains. If you’re a GoLand user, you can find useful tips and tricks for setting up your GoLand to develop Khulnasoft.
 
-This page isn’t an exhaustive list of general-purpose tips for using GoLand; it aims to remain Sourcegraph specific.
+This page isn’t an exhaustive list of general-purpose tips for using GoLand; it aims to remain Khulnasoft specific.
 
 ### Correct GOROOT, GOPATH, and Modules settings after running `sg setup`
 
@@ -14,7 +14,7 @@ This page isn’t an exhaustive list of general-purpose tips for using GoLand; i
 
 ### Use .editorconfig
 
-GoLand automatically picks up the `.editorconfig` file [committed at the root](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/.editorconfig) of our repository. You don't need to do anything, just make sure that you don't disable the bundled plugin.
+GoLand automatically picks up the `.editorconfig` file [committed at the root](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/.editorconfig) of our repository. You don't need to do anything, just make sure that you don't disable the bundled plugin.
 
 <img src="https://storage.googleapis.com/sourcegraph-assets/docs/images/goland-editorconfig-plugin.png" class="lead-screenshot">
 

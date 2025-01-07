@@ -156,8 +156,8 @@ func TestParseAndPartialEval(t *testing.T) {
 			},
 			{
 				// "eq" call with more than 2 arguments:
-				`${{ eq repository.name "github.com/sourcegraph/src-cli" "github.com/sourcegraph/sourcegraph" }}`,
-				`{{eq repository.name "github.com/sourcegraph/src-cli" "github.com/sourcegraph/sourcegraph"}}`,
+				`${{ eq repository.name "github.com/sourcegraph/src-cli" "github.com/khulnasoft/khulnasoft" }}`,
+				`{{eq repository.name "github.com/sourcegraph/src-cli" "github.com/khulnasoft/khulnasoft"}}`,
 			},
 			{
 				// Nested nested function call with builtin function but runtime values:

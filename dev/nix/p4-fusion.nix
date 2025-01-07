@@ -84,7 +84,7 @@ unNixifyDylibs { inherit pkgs; } (pkgsStatic.gccStdenv.mkDerivation rec {
     openssl-static
   ] ++ lib.optional hostPlatform.isMacOS [
     # iconv is bundled with glibc and apparently only needed for osx
-    # https://sourcegraph.com/github.com/salesforce/p4-fusion@3ee482466464c18e6a635ff4f09cd75a2e1bfe0f/-/blob/vendor/libgit2/README.md?L178:3
+    # https://khulnasoft.com/github.com/salesforce/p4-fusion@3ee482466464c18e6a635ff4f09cd75a2e1bfe0f/-/blob/vendor/libgit2/README.md?L178:3
     libiconv-static
     darwin.apple_sdk.frameworks.CFNetwork
     darwin.apple_sdk.frameworks.Cocoa
@@ -104,7 +104,7 @@ unNixifyDylibs { inherit pkgs; } (pkgsStatic.gccStdenv.mkDerivation rec {
     # we want to statically link
     "-DBUILD_SHARED_LIBS=OFF"
     # Copied from upstream, where relevant
-    # https://sourcegraph.com/github.com/salesforce/p4-fusion@3ee482466464c18e6a635ff4f09cd75a2e1bfe0f/-/blob/generate_cache.sh?L7-21
+    # https://khulnasoft.com/github.com/salesforce/p4-fusion@3ee482466464c18e6a635ff4f09cd75a2e1bfe0f/-/blob/generate_cache.sh?L7-21
     "-DUSE_SSH=OFF"
     "-DUSE_HTTPS=OFF"
     "-DBUILD_CLAR=OFF"

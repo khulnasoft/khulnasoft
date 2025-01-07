@@ -107,7 +107,7 @@ const (
 )
 
 // OldCodeIntelUsageStatistics is an old version the code intelligence
-// usage statics we can receive from a pre-3.22 Sourcegraph instance.
+// usage statics we can receive from a pre-3.22 Khulnasoft instance.
 type OldCodeIntelUsageStatistics struct {
 	Weekly []*OldCodeIntelUsagePeriod
 }

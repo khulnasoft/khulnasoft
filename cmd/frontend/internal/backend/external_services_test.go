@@ -65,7 +65,7 @@ func TestAddRepoToExclude(t *testing.T) {
 			kind:           extsvc.KindBitbucketServer,
 			repo:           makeBitbucketServerRepo(),
 			initialConfig:  `{"repositoryQuery":["none"],"token":"abc","url":"https://bitbucket.sg.org","username":""}`,
-			expectedConfig: `{"exclude":[{"name":"SOURCEGRAPH/jsonrpc2"}],"repositoryQuery":["none"],"token":"abc","url":"https://bitbucket.sg.org","username":""}`,
+			expectedConfig: `{"exclude":[{"name":"KHULNASOFT/jsonrpc2"}],"repositoryQuery":["none"],"token":"abc","url":"https://bitbucket.sg.org","username":""}`,
 		},
 		{
 			name:           "second attempt of excluding same repo is ignored for Gerrit schema",
@@ -128,7 +128,7 @@ func TestRepoExcludableRepoName(t *testing.T) {
 	}{
 		"Successful parsing of AWSCodeCommit repo excludable name":   {repo: makeAWSCodeCommitRepo(), expectedName: "test"},
 		"Successful parsing of BitbucketCloud repo excludable name":  {repo: makeBitbucketCloudRepo(), expectedName: "sg/khulnasoft"},
-		"Successful parsing of BitbucketServer repo excludable name": {repo: makeBitbucketServerRepo(), expectedName: "SOURCEGRAPH/jsonrpc2"},
+		"Successful parsing of BitbucketServer repo excludable name": {repo: makeBitbucketServerRepo(), expectedName: "KHULNASOFT/jsonrpc2"},
 		"Successful parsing of GitHub repo excludable name":          {repo: makeGithubRepo(), expectedName: "sourcegraph/conc"},
 		"Successful parsing of GitLab repo excludable name":          {repo: makeGitlabRepo(), expectedName: "gitlab-org/gitaly"},
 		"Successful parsing of Gitolite repo excludable name":        {repo: makeGitoliteRepo(), expectedName: "vegeta"},
@@ -182,15 +182,15 @@ func makeBitbucketCloudRepo() *types.Repo {
 
 // makeBitbucketServerRepo returns a configured Bitbucket Server repository.
 func makeBitbucketServerRepo() *types.Repo {
-	repo := typestest.MakeRepo("bitbucket.sgdev.org/SOURCEGRAPH/jsonrpc2", "https://bitbucket.sgdev.org/", extsvc.TypeBitbucketServer)
-	repo.Metadata = `{"id": 10066, "name": "jsonrpc2", "slug": "jsonrpc2", "links": {"self": [{"href": "https://bitbucket.sgdev.org/projects/SOURCEGRAPH/repos/jsonrpc2/browse"}], "clone": [{"href": "ssh://git@bitbucket.sgdev.org:7999/sourcegraph/jsonrpc2.git", "name": "ssh"}, {"href": "https://bitbucket.sgdev.org/scm/sourcegraph/jsonrpc2.git", "name": "http"}]}, "scmId": "git", "state": "AVAILABLE", "origin": null, "public": false, "project": {"id": 28, "key": "SOURCEGRAPH", "name": "Sourcegraph e2e testing", "type": "NORMAL", "links": {"self": [{"href": "https://bitbucket.sgdev.org/projects/SOURCEGRAPH"}]}, "public": false}, "forkable": true, "statusMessage": "Available"}`
+	repo := typestest.MakeRepo("bitbucket.sgdev.org/KHULNASOFT/jsonrpc2", "https://bitbucket.sgdev.org/", extsvc.TypeBitbucketServer)
+	repo.Metadata = `{"id": 10066, "name": "jsonrpc2", "slug": "jsonrpc2", "links": {"self": [{"href": "https://bitbucket.sgdev.org/projects/KHULNASOFT/repos/jsonrpc2/browse"}], "clone": [{"href": "ssh://git@bitbucket.sgdev.org:7999/sourcegraph/jsonrpc2.git", "name": "ssh"}, {"href": "https://bitbucket.sgdev.org/scm/sourcegraph/jsonrpc2.git", "name": "http"}]}, "scmId": "git", "state": "AVAILABLE", "origin": null, "public": false, "project": {"id": 28, "key": "KHULNASOFT", "name": "Khulnasoft e2e testing", "type": "NORMAL", "links": {"self": [{"href": "https://bitbucket.sgdev.org/projects/KHULNASOFT"}]}, "public": false}, "forkable": true, "statusMessage": "Available"}`
 	repo.Metadata = &bitbucketserver.Repo{
 		ID:   1,
 		Name: "jsonrpc2",
 		Slug: "jsonrpc2",
 		Project: &bitbucketserver.Project{
-			Key:  "SOURCEGRAPH",
-			Name: "Sourcegraph e2e testing",
+			Key:  "KHULNASOFT",
+			Name: "Khulnasoft e2e testing",
 		},
 	}
 

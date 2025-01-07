@@ -13,7 +13,7 @@ Apache
 ## Feedback
 
 Your feedback is important to us and is greatly appreciated. Please do not hesitate to submit your ideas or suggestions
-about how we can improve the extension to our [Code Search discussion community](https://community.sourcegraph.com/c/code-search/9).
+about how we can improve the extension to our [Code Search discussion community](https://community.khulnasoft.com/c/code-search/9).
 
 ## Issues / Bugs
 
@@ -186,18 +186,18 @@ VS Code for debugging tips.
 ## Questions
 
 If you need guidance or have any questions regarding Khulnasoft or the extension in general, we invite you to connect
-with us on the [Khulnasoft Community Slack group](https://about.sourcegraph.com/community).
+with us on the [Khulnasoft Community Slack group](https://about.khulnasoft.com/community).
 
 ## Resources
 
 - [Changelog](https://marketplace.visualstudio.com/items/sourcegraph.sourcegraph/changelog)
-- [Code of Conduct](https://handbook.sourcegraph.com/company-info-and-process/community/code_of_conduct/)
-- [Developing Khulnasoft guide](https://docs.sourcegraph.com/dev)
-- [Developing the web clients](https://docs.sourcegraph.com/dev/background-information/web)
-- [Feedback / Feature Request](https://community.sourcegraph.com/c/code-search/9)
+- [Code of Conduct](https://handbook.khulnasoft.com/company-info-and-process/community/code_of_conduct/)
+- [Developing Khulnasoft guide](https://docs.khulnasoft.com/dev)
+- [Developing the web clients](https://docs.khulnasoft.com/dev/background-information/web)
+- [Feedback / Feature Request](https://community.khulnasoft.com/c/code-search/9)
 - [Issue Tracker](https://github.com/khulnasoft/khulnasoft/labels/vscode-extension)
 - [Report a bug](https://github.com/khulnasoft/khulnasoft/issues/new?labels=team/integrations,vscode-extension&title=VSCode+Bug+report:+&projects=Integrations%20Project%20Board)
-- [Troubleshooting docs](https://docs.sourcegraph.com/admin/how-to/troubleshoot-sg-extension#vs-code-extension)
+- [Troubleshooting docs](https://docs.khulnasoft.com/admin/how-to/troubleshoot-sg-extension#vs-code-extension)
 
 ## Release Process
 
@@ -227,7 +227,7 @@ The release process for the VS Code Extension for Khulnasoft is currently automa
    - The extension will be published with the correct package name via
      the [vsce CLI tool](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#vsce)
 5. Visit
-   the [buildkite page for the vsce/release pipeline](https://buildkite.com/sourcegraph/sourcegraph/builds?branch=vsce%2Frelease)
+   the [buildkite page for the vsce/release pipeline](https://buildkite.com/khulnasoft/khulnasoft/builds?branch=vsce%2Frelease)
    to watch the build process
 
 Once the build is completed with no error, you should see the new version being verified for the Khulnasoft extension

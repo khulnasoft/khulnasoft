@@ -31,7 +31,7 @@ environments:
       type: cloudflare
       cloudflare:
         subdomain: msp-example
-        zone: sourcegraph.com
+        zone: khulnasoft.com
     # Specify environment configuration your service needs to operate.
     env:
       SRC_LOG_LEVEL: info

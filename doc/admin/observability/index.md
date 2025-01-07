@@ -2,7 +2,7 @@
 
 <p class="lead">
 A key pillar of production readiness is the ability to observe, monitor, and analyze the health and state of the system.
-Sourcegraph is designed, and ships with, a number of observability tools and capabilities to meet enterprise production readiness criteria.
+Khulnasoft is designed, and ships with, a number of observability tools and capabilities to meet enterprise production readiness criteria.
 </p>
 
 <div class="getting-started">
@@ -15,7 +15,7 @@ Sourcegraph is designed, and ships with, a number of observability tools and cap
   <a href="alerting" class="btn" alt="Set up alerting">
    <span>Alerting</span>
    <br>
-   Receive notifications about the health of your Sourcegraph deployment.
+   Receive notifications about the health of your Khulnasoft deployment.
   </a>
 
   <a href="troubleshooting" class="btn" alt="Set up alerting">
@@ -44,4 +44,4 @@ Sourcegraph is designed, and ships with, a number of observability tools and cap
 
 ## Support
 
-For help configuring observability on your Sourcegraph instance, use our [public issue tracker](https://github.com/sourcegraph/issues/issues).
+For help configuring observability on your Khulnasoft instance, use our [public issue tracker](https://github.com/sourcegraph/issues/issues).

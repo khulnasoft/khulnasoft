@@ -90,13 +90,13 @@ func TestEnforcement_PreCreateUser(t *testing.T) {
 					t,
 					&cloud.SchemaSiteConfig{
 						AuthProviders: &cloud.SchemaAuthProviders{
-							SourcegraphOperator: &cloud.SchemaAuthProviderSourcegraphOperator{},
+							KhulnasoftOperator: &cloud.SchemaAuthProviderKhulnasoftOperator{},
 						},
 					},
 				)
 			},
 			spec: &extsvc.AccountSpec{
-				ServiceType: auth.SourcegraphOperatorProviderType,
+				ServiceType: auth.KhulnasoftOperatorProviderType,
 			},
 		},
 	}
@@ -142,7 +142,7 @@ func TestEnforcement_AfterCreateUser(t *testing.T) {
 		{
 			name: "dotcom mode should always do nothing",
 			setup: func(t *testing.T) {
-				dotcom.MockSourcegraphDotComMode(t, true)
+				dotcom.MockKhulnasoftDotComMode(t, true)
 			},
 			setSiteAdmin: false,
 		},
@@ -185,7 +185,7 @@ func TestEnforcement_PreSetUserIsSiteAdmin(t *testing.T) {
 	// Enable SOAP
 	cloud.MockSiteConfig(t, &cloud.SchemaSiteConfig{
 		AuthProviders: &cloud.SchemaAuthProviders{
-			SourcegraphOperator: &cloud.SchemaAuthProviderSourcegraphOperator{
+			KhulnasoftOperator: &cloud.SchemaAuthProviderKhulnasoftOperator{
 				ClientID: "foobar",
 			},
 		},
@@ -228,9 +228,9 @@ func TestEnforcement_PreSetUserIsSiteAdmin(t *testing.T) {
 		},
 
 		{
-			name:        "promote to site admin with expired license is OK with Sourcegraph operators",
+			name:        "promote to site admin with expired license is OK with Khulnasoft operators",
 			license:     &license.Info{UserCount: 10, ExpiresAt: time.Now().Add(-1 * time.Hour)},
-			ctx:         actor.WithActor(context.Background(), &actor.Actor{SourcegraphOperator: true}),
+			ctx:         actor.WithActor(context.Background(), &actor.Actor{KhulnasoftOperator: true}),
 			isSiteAdmin: true,
 			wantErr:     false,
 		},

@@ -20,7 +20,7 @@ import (
 )
 
 // A AzureDevOpsSource yields repositories from a single Azure DevOps connection configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 type AzureDevOpsSource struct {
 	svc       *types.ExternalService
 	cli       azuredevops.Client

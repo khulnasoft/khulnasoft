@@ -195,7 +195,7 @@ func (d *extendedDriver) Open(str string) (driver.Conn, error) {
 
 // UnwrappableConn is a wrapped conn can surface the underlying connection. It
 // is also implemented by the otelsql driver.
-// See https://sourcegraph.com/github.com/XSAM/otelsql@0256631c154becc112155e330591de4e2802af5e/-/blob/conn.go?L279
+// See https://khulnasoft.com/github.com/XSAM/otelsql@0256631c154becc112155e330591de4e2802af5e/-/blob/conn.go?L279
 type UnwrappableConn interface{ Raw() driver.Conn }
 
 var _ UnwrappableConn = (*extendedConn)(nil)

@@ -1,7 +1,7 @@
 //go:build ignore
 // +build ignore
 
-// Command read-license describes a signed Sourcegraph license key. It does not verify the
+// Command read-license describes a signed Khulnasoft license key. It does not verify the
 // signature.
 //
 // EXAMPLE

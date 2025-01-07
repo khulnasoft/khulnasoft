@@ -285,7 +285,7 @@ type Changeset struct {
 	// it on code host. If this is 0, it is imported/tracked by a batch change.
 	OwnedByBatchChangeID int64
 
-	// This is 0 if the Changeset isn't owned by Sourcegraph.
+	// This is 0 if the Changeset isn't owned by Khulnasoft.
 	CurrentSpecID  int64
 	PreviousSpecID int64
 
@@ -549,7 +549,7 @@ func (c *Changeset) AuthorEmail() (string, error) {
 		// For GitHub we can't get the email of the actor without
 		// expanding the token scope by `user:email`. Since the email
 		// is only a nice-to-have for mapping the GitHub user against
-		// a Sourcegraph user, we wait until there is a bigger reason
+		// a Khulnasoft user, we wait until there is a bigger reason
 		// to have users reconfigure token scopes. Once we ask users for
 		// that scope as well, we should return it here.
 		return "", nil

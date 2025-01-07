@@ -230,7 +230,7 @@ type testDB struct {
 }
 
 // setupTestEnv initializeses a test environment and object. Creates a docker network for testing as well as instances of our three databases. Returning a cleanup function.
-// An instance of Sourcegraph-Frontend is also started to initialize the versions table of the database.
+// An instance of Khulnasoft-Frontend is also started to initialize the versions table of the database.
 // TODO: setupTestEnv should seed some initial data at the target initVersion. This will be usefull for testing OOB migrations
 func setupTestEnv(ctx context.Context, testType string, initVersion *semver.Version) (test Test, networkName string, dbs []*testDB, cleanup func(), err error) {
 	test = Test{
@@ -282,7 +282,7 @@ func setupTestEnv(ctx context.Context, testType string, initVersion *semver.Vers
 	}
 	test.AddLog(out)
 
-	// Note that we changed postgres versions in very early versions of Sourcegraph,
+	// Note that we changed postgres versions in very early versions of Khulnasoft,
 	// In v3.38+ we use image postgres-12-alpine,
 	// in v3.37-v3.30 we use postgres-12.6-alpine,
 	// in v3.29-v3.27 we use postgres-12.6

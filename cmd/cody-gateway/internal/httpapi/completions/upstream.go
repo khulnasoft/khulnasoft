@@ -189,14 +189,14 @@ func makeUpstreamHandler[ReqT UpstreamRequest](
 		// TODO: Investigate using actor propagation handler for extracting
 		// this. We had some issues before getting that to work, so for now
 		// just stick with what we've seen working so far.
-		sgActorID := downstreamRequest.Header.Get("X-Sourcegraph-Actor-UID")
-		sgActorAnonymousUID := downstreamRequest.Header.Get("X-Sourcegraph-Actor-Anonymous-UID")
+		sgActorID := downstreamRequest.Header.Get("X-Khulnasoft-Actor-UID")
+		sgActorAnonymousUID := downstreamRequest.Header.Get("X-Khulnasoft-Actor-Anonymous-UID")
 
 		// Build logger for lifecycle of this request with lots of details.
 		logger := act.Logger(sgtrace.Logger(ctx, baseLogger)).With(
 			append(
 				requestclient.FromContext(ctx).LogFields(),
-				// Sourcegraph actor details
+				// Khulnasoft actor details
 				log.String("sg.actorID", sgActorID),
 				log.String("sg.anonymousID", sgActorAnonymousUID),
 			)...,

@@ -1,7 +1,7 @@
 dist:
   module: github.com/khulnasoft/khulnasoft/docker-images/opentelemetry-collector
   name: otelcol-sourcegraph
-  description: "Sourcegraph OpenTelemetry Collector distribution"
+  description: "Khulnasoft OpenTelemetry Collector distribution"
   otelcol_version: "$OTEL_COLLECTOR_VERSION"
 
 exporters:

@@ -32,9 +32,9 @@ func snapshot(logger *log.Logger, src, dst string) error {
 
 	env := []string{
 		"GIT_COMMITTER_NAME=src-expose",
-		"GIT_COMMITTER_EMAIL=support@sourcegraph.com",
+		"GIT_COMMITTER_EMAIL=support@khulnasoft.com",
 		"GIT_AUTHOR_NAME=src-expose",
-		"GIT_AUTHOR_EMAIL=support@sourcegraph.com",
+		"GIT_AUTHOR_EMAIL=support@khulnasoft.com",
 		"GIT_DIR=" + dst,
 		"GIT_WORK_TREE=" + src,
 	}

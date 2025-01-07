@@ -30,7 +30,7 @@ services:
     environment:
       DEBUG: t
       SRC_LOG_LEVEL: dbug
-      SOURCEGRAPH_LICENSE_GENERATION_KEY: '${SOURCEGRAPH_LICENSE_GENERATION_KEY}'
+      KHULNASOFT_LICENSE_GENERATION_KEY: '${KHULNASOFT_LICENSE_GENERATION_KEY}'
       SITE_CONFIG_FILE: /e2e/site-config.json
       PGDATASOURCE: postgres://sg@postgres:5432/sg
     volumes:

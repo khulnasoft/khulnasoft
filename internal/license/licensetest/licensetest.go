@@ -11,7 +11,7 @@ var (
 
 func init() {
 	// This private key is used for testing only. It is not the private key used to generate valid
-	// Sourcegraph license keys.
+	// Khulnasoft license keys.
 	const (
 		testPrivateKeyData = `-----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAr+TgUgYjW5aK4+St92YVYEKlxkH8uuJdqcGdDL4hxPaW8y7T

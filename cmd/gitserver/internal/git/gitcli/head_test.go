@@ -26,7 +26,7 @@ func TestGitCLIBackend_SymbolicRefHead(t *testing.T) {
 				backend := BackendWithRepoCommands(t,
 					"echo 'hello world' > foo.txt",
 					"git add foo.txt",
-					"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+					"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 				)
 
 				head, err := backend.SymbolicRefHead(ctx, short)
@@ -57,7 +57,7 @@ func TestGitCLIBackend_RevParseHead(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo 'hello world' > foo.txt",
 			"git add foo.txt",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		head, err := backend.RevParseHead(ctx)

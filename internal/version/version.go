@@ -63,7 +63,7 @@ func mockTimestamp(mockTimestamp string) {
 	timestamp = mockTimestamp
 }
 
-// HowLongOutOfDate returns a time in months since this build of Sourcegraph was created. It is
+// HowLongOutOfDate returns a time in months since this build of Khulnasoft was created. It is
 // based on a constant baked into the Go binary at build time.
 func HowLongOutOfDate(now time.Time) (int, error) {
 	buildUnixTimestamp, err := strconv.ParseInt(timestamp, 10, 64)

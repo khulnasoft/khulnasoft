@@ -9,7 +9,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/internal/types"
 )
 
-var externalURLMock, _ = url.Parse("https://www.sourcegraph.com")
+var externalURLMock, _ = url.Parse("https://www.khulnasoft.com")
 
 var diffResultMock = result.CommitMatch{
 	Commit: gitdomain.Commit{

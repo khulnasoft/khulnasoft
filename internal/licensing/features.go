@@ -50,7 +50,7 @@ func (f BasicFeature) Check(info *Info) error {
 	return nil
 }
 
-// FeatureBatchChanges is whether Batch Changes on this Sourcegraph instance has been purchased.
+// FeatureBatchChanges is whether Batch Changes on this Khulnasoft instance has been purchased.
 type FeatureBatchChanges struct {
 	// If true, there is no limit to the number of changesets that can be created.
 	Unrestricted bool
@@ -133,7 +133,7 @@ func Check(feature Feature) error {
 	}
 
 	if !IsLicenseValid() {
-		return errors.New("Sourcegraph license is no longer valid")
+		return errors.New("Khulnasoft license is no longer valid")
 	}
 
 	return feature.Check(info)
@@ -172,12 +172,12 @@ func NewFeatureNotActivatedError(message string) featureNotActivatedError {
 }
 
 func newFeatureRequiresSubscriptionError(feature string) featureNotActivatedError {
-	msg := fmt.Sprintf("The feature %q is not activated because it requires a valid Sourcegraph license. Purchase a Sourcegraph subscription to activate this feature.", feature)
+	msg := fmt.Sprintf("The feature %q is not activated because it requires a valid Khulnasoft license. Purchase a Khulnasoft subscription to activate this feature.", feature)
 	return NewFeatureNotActivatedError(msg)
 }
 
 func newFeatureRequiresUpgradeError(feature string) featureNotActivatedError {
-	msg := fmt.Sprintf("The feature %q is not activated in your Sourcegraph license. Upgrade your Sourcegraph subscription to use this feature.", feature)
+	msg := fmt.Sprintf("The feature %q is not activated in your Khulnasoft license. Upgrade your Khulnasoft subscription to use this feature.", feature)
 	return NewFeatureNotActivatedError(msg)
 }
 

@@ -34,7 +34,7 @@ var (
 	triton404Retries = 3
 )
 
-func NewSourcegraphClient(httpClient httpcli.Doer, apiURL string, apiToken string) EmbeddingsClient {
+func NewKhulnasoftClient(httpClient httpcli.Doer, apiURL string, apiToken string) EmbeddingsClient {
 	return &sourcegraphClient{
 		httpClient: httpClient,
 		json:       jsoniter.ConfigCompatibleWithStandardLibrary,
@@ -51,7 +51,7 @@ type sourcegraphClient struct {
 }
 
 func (s sourcegraphClient) ProviderName() string {
-	return "Sourcegraph"
+	return "Khulnasoft"
 }
 
 // GenerateEmbeddings uses a KServe-compatible API to generate embedding vectors for items from request.Input

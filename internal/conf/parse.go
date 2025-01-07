@@ -36,7 +36,7 @@ func ParseConfig(data conftypes.RawUnified) (*Unified, error) {
 }
 
 // requireRestart describes the list of config properties that require
-// restarting the Sourcegraph Server in order for the change to take effect.
+// restarting the Khulnasoft Server in order for the change to take effect.
 //
 // Experimental features are special in that they are denoted individually
 // via e.g. "experimentalFeatures::myFeatureFlag".

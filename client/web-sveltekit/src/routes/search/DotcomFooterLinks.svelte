@@ -2,23 +2,23 @@
     const links = [
         {
             name: 'Docs',
-            href: 'https://sourcegraph.com/docs',
+            href: 'https://khulnasoft.com/docs',
             telemetryType: 1,
         },
-        { name: 'About', href: 'https://sourcegraph.com', telemetryType: 2 },
+        { name: 'About', href: 'https://khulnasoft.com', telemetryType: 2 },
         {
             name: 'Cody',
-            href: 'https://sourcegraph.com/cody',
+            href: 'https://khulnasoft.com/cody',
             telemetryType: 3,
         },
         {
             name: 'Enterprise',
-            href: 'https://sourcegraph.com/get-started?t=enterprise',
+            href: 'https://khulnasoft.com/get-started?t=enterprise',
             telemetryType: 4,
         },
         {
             name: 'Security',
-            href: 'https://sourcegraph.com/security',
+            href: 'https://khulnasoft.com/security',
             telemetryType: 5,
         },
         {

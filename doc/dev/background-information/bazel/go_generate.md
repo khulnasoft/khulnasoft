@@ -9,7 +9,7 @@
 
 Common `go:generate` directives that have their own macro available:
 
-- [`stringer`](https://pkg.go.dev/golang.org/x/tools/cmd/stringer), [examples](https://sourcegraph.com/search?q=context%3Aglobal+repo%3A%5Egithub%5C.com%2Fsourcegraph%2Fsourcegraph%24+lang%3AStarlark+go_stringer&patternType=standard&sm=1&groupBy=path).
+- [`stringer`](https://pkg.go.dev/golang.org/x/tools/cmd/stringer), [examples](https://khulnasoft.com/search?q=context%3Aglobal+repo%3A%5Egithub%5C.com%2Fsourcegraph%2Fsourcegraph%24+lang%3AStarlark+go_stringer&patternType=standard&sm=1&groupBy=path).
 
 ### Overview
 

@@ -156,7 +156,7 @@
       "URL": "https://github.com/khulnasoft/khulnasoft/commit/21d1cd99699e36ab5e2b9be1cc663691d47193ef",
       "Committer": {
        "AvatarURL": "https://avatars.githubusercontent.com/u/1741180?v=4",
-       "Email": "loic@sourcegraph.com",
+       "Email": "loic@khulnasoft.com",
        "Name": "Loïc Guychard",
        "User": {
         "AvatarURL": "https://avatars.githubusercontent.com/u/1741180?u=d126637129a1c2fae6f79de2c7cf8390059feb85\u0026v=4",
@@ -179,7 +179,7 @@
       "URL": "https://github.com/khulnasoft/khulnasoft/commit/30cc0384757b7d2fe9d42cf09ab7744731c8a9ea",
       "Committer": {
        "AvatarURL": "https://avatars.githubusercontent.com/u/1741180?v=4",
-       "Email": "loic@sourcegraph.com",
+       "Email": "loic@khulnasoft.com",
        "Name": "Loïc Guychard",
        "User": {
         "AvatarURL": "https://avatars.githubusercontent.com/u/1741180?u=d126637129a1c2fae6f79de2c7cf8390059feb85\u0026v=4",
@@ -203,7 +203,7 @@
      },
      "Editor": null,
      "AuthorAssociation": "NONE",
-     "Body": "# [Codecov](https://codecov.io/gh/sourcegraph/sourcegraph/pull/5550?src=pr\u0026el=h1) Report\n\u003e Merging [#5550](https://codecov.io/gh/sourcegraph/sourcegraph/pull/5550?src=pr\u0026el=desc) into [master](https://codecov.io/gh/sourcegraph/sourcegraph/commit/f7097fe19816d0a9d637dc759722f6f43fd057ea?src=pr\u0026el=desc) will **decrease** coverage by `\u003c.01%`.\n\u003e The diff coverage is `0%`.\n\n```diff\n@@            Coverage Diff             @@\n##           master    #5550      +/-   ##\n==========================================\n- Coverage   46.57%   46.56%   -0.01%     \n==========================================\n  Files         741      741              \n  Lines       44953    44954       +1     \n  Branches     2628     2630       +2     \n==========================================\n  Hits        20935    20935              \n- Misses      21963    21964       +1     \n  Partials     2055     2055\n```\n\n| [Impacted Files](https://codecov.io/gh/sourcegraph/sourcegraph/pull/5550?src=pr\u0026el=tree) | Coverage Δ | |\n|---|---|---|\n| [...r/src/libs/code\\_intelligence/code\\_intelligence.tsx](https://codecov.io/gh/sourcegraph/sourcegraph/pull/5550/diff?src=pr\u0026el=tree#diff-YnJvd3Nlci9zcmMvbGlicy9jb2RlX2ludGVsbGlnZW5jZS9jb2RlX2ludGVsbGlnZW5jZS50c3g=) | `67.46% \u003c0%\u003e (-0.33%)` | :arrow_down: |\n",
+     "Body": "# [Codecov](https://codecov.io/gh/khulnasoft/khulnasoft/pull/5550?src=pr\u0026el=h1) Report\n\u003e Merging [#5550](https://codecov.io/gh/khulnasoft/khulnasoft/pull/5550?src=pr\u0026el=desc) into [master](https://codecov.io/gh/khulnasoft/khulnasoft/commit/f7097fe19816d0a9d637dc759722f6f43fd057ea?src=pr\u0026el=desc) will **decrease** coverage by `\u003c.01%`.\n\u003e The diff coverage is `0%`.\n\n```diff\n@@            Coverage Diff             @@\n##           master    #5550      +/-   ##\n==========================================\n- Coverage   46.57%   46.56%   -0.01%     \n==========================================\n  Files         741      741              \n  Lines       44953    44954       +1     \n  Branches     2628     2630       +2     \n==========================================\n  Hits        20935    20935              \n- Misses      21963    21964       +1     \n  Partials     2055     2055\n```\n\n| [Impacted Files](https://codecov.io/gh/khulnasoft/khulnasoft/pull/5550?src=pr\u0026el=tree) | Coverage Δ | |\n|---|---|---|\n| [...r/src/libs/code\\_intelligence/code\\_intelligence.tsx](https://codecov.io/gh/khulnasoft/khulnasoft/pull/5550/diff?src=pr\u0026el=tree#diff-YnJvd3Nlci9zcmMvbGlicy9jb2RlX2ludGVsbGlnZW5jZS9jb2RlX2ludGVsbGlnZW5jZS50c3g=) | `67.46% \u003c0%\u003e (-0.33%)` | :arrow_down: |\n",
      "URL": "https://github.com/khulnasoft/khulnasoft/pull/5550#issuecomment-531172813",
      "CreatedAt": "2019-09-13T09:41:29Z",
      "UpdatedAt": "2019-09-13T09:41:29Z",

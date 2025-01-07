@@ -19,7 +19,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/pointers"
 )
 
-func (r *Reconciler) reconcileSyntect(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSyntect(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileSyntectDeployment(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling Deployment")
 	}
@@ -32,7 +32,7 @@ func (r *Reconciler) reconcileSyntect(ctx context.Context, sg *config.Sourcegrap
 	return nil
 }
 
-func (r *Reconciler) reconcileSyntectDeployment(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSyntectDeployment(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "syntect-server"
 	cfg := sg.Spec.SyntectServer
 
@@ -86,7 +86,7 @@ func (r *Reconciler) reconcileSyntectDeployment(ctx context.Context, sg *config.
 	return reconcileObject(ctx, r, cfg, &dep, &appsv1.Deployment{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileSyntectService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSyntectService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "syntect-server"
 	cfg := sg.Spec.SyntectServer
 
@@ -101,7 +101,7 @@ func (r *Reconciler) reconcileSyntectService(ctx context.Context, sg *config.Sou
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileSyntectServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSyntectServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.SyntectServer
 	sa := serviceaccount.NewServiceAccount("syntect-server", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)

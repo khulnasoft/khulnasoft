@@ -13,8 +13,8 @@
 | `-json` | Whether or not to output results as JSON. | `false` |
 | `-less` | Pipe output to 'less -R' (only if stdout is terminal, and not json flag). | `true` |
 | `-stream` | Consume results as stream. Streaming search only supports a subset of flags and parameters: trace, insecure-skip-verify, display, json. | `false` |
-| `-trace` | Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing | `false` |
-| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph | `true` |
+| `-trace` | Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing | `false` |
+| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft | `true` |
 
 
 ## Usage
@@ -38,9 +38,9 @@ Usage of 'src search':
   -stream
     	Consume results as stream. Streaming search only supports a subset of flags and parameters: trace, insecure-skip-verify, display, json.
   -trace
-    	Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing
+    	Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing
   -user-agent-telemetry
-    	Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph (default true)
+    	Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft (default true)
 
 Examples:
 
@@ -63,7 +63,7 @@ Other tips:
 
   Force color output on (not on by default when piped to other programs) by setting COLOR=t
 
-  Query syntax: https://docs.sourcegraph.com/code_search/reference/queries
+  Query syntax: https://docs.khulnasoft.com/code_search/reference/queries
 
   Be careful with search strings including negation: a search with an initial
   negated term may be parsed as a flag rather than as a search string. You can

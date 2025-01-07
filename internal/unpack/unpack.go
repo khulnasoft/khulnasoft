@@ -77,7 +77,7 @@ func Zip(r io.ReaderAt, size int64, dir string, opt Opts) error {
 	return nil
 }
 
-// copied https://sourcegraph.com/github.com/golang/go@52d9e41ac303cfed4c4cfe86ec6d663a18c3448d/-/blob/src/compress/gzip/gunzip.go?L20-21
+// copied https://khulnasoft.com/github.com/golang/go@52d9e41ac303cfed4c4cfe86ec6d663a18c3448d/-/blob/src/compress/gzip/gunzip.go?L20-21
 const (
 	gzipID1 = 0x1f
 	gzipID2 = 0x8b

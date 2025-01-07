@@ -249,7 +249,7 @@ To use this filter, the search query must contain \`type:diff\` or \`type:commit
         field: FilterType.rev,
         commonRank: 20,
         description:
-            'Search a revision instead of the default branch. `rev:` can only be used in conjunction with `repo:` and may not be used more than once. See our [revision syntax documentation](https://sourcegraph.com/docs/code_search/reference/queries#repository-revisions) to learn more.',
+            'Search a revision instead of the default branch. `rev:` can only be used in conjunction with `repo:` and may not be used more than once. See our [revision syntax documentation](https://khulnasoft.com/docs/code_search/reference/queries#repository-revisions) to learn more.',
     },
     {
         ...createQueryExampleFromString('{result-types}'),
@@ -266,7 +266,7 @@ To use this filter, the search query must contain \`type:diff\` or \`type:commit
 - \`select:content\`
 - \`select:symbol.symboltype\`
 
-See [language definition](https://sourcegraph.com/docs/code_search/reference/language#select) for more information on possible values.`,
+See [language definition](https://khulnasoft.com/docs/code_search/reference/language#select) for more information on possible values.`,
         examples: ['fmt.Errorf select:repo', 'select:commit.diff.added //TODO', 'select:file.directory'],
     },
     {
@@ -281,7 +281,7 @@ See [language definition](https://sourcegraph.com/docs/code_search/reference/lan
         ...createQueryExampleFromString('{golang-duration-value}'),
         field: FilterType.timeout,
         description:
-            'Customizes the timeout for searches. The value of the parameter is a string that can be parsed by the [Go time package’s `ParseDuration`](https://golang.org/pkg/time/#ParseDuration) (e.g. 10s, 100ms). By default, the timeout is set to 1 minute, and the search will optimize for returning results as soon as possible. The value of [`search.limits.maxTimeoutSeconds`](https://sourcegraph.com/docs/code-search/types/exhaustive#timeouts) can be configured by site admins. When provided, the search is given the full timeout to complete.',
+            'Customizes the timeout for searches. The value of the parameter is a string that can be parsed by the [Go time package’s `ParseDuration`](https://golang.org/pkg/time/#ParseDuration) (e.g. 10s, 100ms). By default, the timeout is set to 1 minute, and the search will optimize for returning results as soon as possible. The value of [`search.limits.maxTimeoutSeconds`](https://khulnasoft.com/docs/code-search/types/exhaustive#timeouts) can be configured by site admins. When provided, the search is given the full timeout to complete.',
         examples: ['repo:^github.com/sourcegraph timeout:15s func count:10000'],
     },
     {

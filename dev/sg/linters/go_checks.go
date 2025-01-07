@@ -78,7 +78,7 @@ func lintLoggingLibraries() *linter {
 			return errors.Newf(`banned usage of '%s': use "github.com/sourcegraph/log" instead`,
 				bannedImport)
 		},
-		HelpText: "Learn more about logging and why some libraries are banned: https://docs-legacy.sourcegraph.com/dev/how-to/add_logging",
+		HelpText: "Learn more about logging and why some libraries are banned: https://docs-legacy.khulnasoft.com/dev/how-to/add_logging",
 	})
 }
 

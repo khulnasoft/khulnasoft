@@ -14,10 +14,10 @@ import (
 
 type clientConfigurationResolver struct {
 	contentScriptUrls []string
-	parentSourcegraph *parentSourcegraphResolver
+	parentKhulnasoft *parentKhulnasoftResolver
 }
 
-type parentSourcegraphResolver struct {
+type parentKhulnasoftResolver struct {
 	url string
 }
 
@@ -25,11 +25,11 @@ func (r *clientConfigurationResolver) ContentScriptURLs() []string {
 	return r.contentScriptUrls
 }
 
-func (r *clientConfigurationResolver) ParentSourcegraph() *parentSourcegraphResolver {
-	return r.parentSourcegraph
+func (r *clientConfigurationResolver) ParentKhulnasoft() *parentKhulnasoftResolver {
+	return r.parentKhulnasoft
 }
 
-func (r *parentSourcegraphResolver) URL() string {
+func (r *parentKhulnasoftResolver) URL() string {
 	return r.url
 }
 
@@ -83,14 +83,14 @@ func (r *schemaResolver) ClientConfiguration(ctx context.Context) (*clientConfig
 	}
 
 	cfg := conf.Get()
-	var parentSourcegraph parentSourcegraphResolver
-	if cfg.ParentSourcegraph != nil {
-		parentSourcegraph.url = cfg.ParentSourcegraph.Url
+	var parentKhulnasoft parentKhulnasoftResolver
+	if cfg.ParentKhulnasoft != nil {
+		parentKhulnasoft.url = cfg.ParentKhulnasoft.Url
 	}
 
 	return &clientConfigurationResolver{
 		contentScriptUrls: contentScriptUrls,
-		parentSourcegraph: &parentSourcegraph,
+		parentKhulnasoft: &parentKhulnasoft,
 	}, nil
 }
 

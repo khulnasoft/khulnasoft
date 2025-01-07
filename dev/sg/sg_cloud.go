@@ -26,15 +26,15 @@ var cloudCommand = &cli.Command{
 	Usage: "Install and work with Khulnasoft Cloud tools",
 	Description: `Learn more about Khulnasoft Cloud:
 
-- Product: https://sourcegraph.com/docs/cloud
-- Handbook: https://handbook.sourcegraph.com/departments/cloud/
+- Product: https://khulnasoft.com/docs/cloud
+- Handbook: https://handbook.khulnasoft.com/departments/cloud/
 `,
 	Category: category.Company,
 	Subcommands: []*cli.Command{
 		{
 			Name:        "install",
 			Usage:       "Install or upgrade local `mi2` CLI (for Cloud V2)",
-			Description: "To learn more about Cloud V2, see https://handbook.sourcegraph.com/departments/cloud/technical-docs/v2.0/",
+			Description: "To learn more about Cloud V2, see https://handbook.khulnasoft.com/departments/cloud/technical-docs/v2.0/",
 			Action: func(c *cli.Context) error {
 				if err := installCloudCLI(c.Context); err != nil {
 					return err

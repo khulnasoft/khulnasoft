@@ -133,7 +133,7 @@ An owner is any entity that can own other resources.
 union Owner = Person | Team
 
 """
-Ownership is the collection of data points that make Sourcegraph suggest the contained
+Ownership is the collection of data points that make Khulnasoft suggest the contained
 owner as owner of the Ownable this is attached to.
 """
 type Ownership {
@@ -142,7 +142,7 @@ type Ownership {
     """
     owner: Owner!
     """
-    The reasons why Sourcegraph determined this entity as an owner.
+    The reasons why Khulnasoft determined this entity as an owner.
     """
     reasons: [OwnershipReason!]!
 }
@@ -345,7 +345,7 @@ extend type Query {
     ownSignalConfigurations: [OwnSignalConfiguration!]!
 
     """
-    Returns ownership stats for the whole Sourcegraph instance
+    Returns ownership stats for the whole Khulnasoft instance
     """
     instanceOwnershipStats: OwnershipStats!
 }

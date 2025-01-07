@@ -164,7 +164,7 @@ func (b *serviceBuilder) Build(stack cdktf.TerraformStack, vars builder.Variable
 			// timeout:
 			//
 			//   export CF_API_TOKEN=$(gcloud secrets versions access latest --secret CLOUDFLARE_API_TOKEN --project sourcegraph-secrets)
-			//   curl -H "Authorization: Bearer $CF_API_TOKEN" https://api.cloudflare.com/client/v4/zones | jq '.result[]  | select(.name == "sourcegraph.com") | .id'
+			//   curl -H "Authorization: Bearer $CF_API_TOKEN" https://api.cloudflare.com/client/v4/zones | jq '.result[]  | select(.name == "khulnasoft.com") | .id'
 			//   curl -H "Authorization: Bearer $CF_API_TOKEN" https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/settings | jq '.result[] | select(.id == "proxy_read_timeout")'
 			//
 			// Result should be something like:
@@ -268,7 +268,7 @@ func (b *serviceBuilder) Build(stack cdktf.TerraformStack, vars builder.Variable
 			Location: svc.Location(),
 			Project:  &vars.GCPProjectID,
 			// https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_v2_service_iam#member/members
-			Member: pointers.Ptr("domain:sourcegraph.com"),
+			Member: pointers.Ptr("domain:khulnasoft.com"),
 			Role:   pointers.Ptr("roles/run.invoker"),
 		})
 	}

@@ -260,7 +260,7 @@ export const SearchContextMenu: FC<SearchContextMenuProps> = props => {
                                 <Text className="mb-0">
                                     To search across your team's private repositories,{' '}
                                     <Link
-                                        to="https://sourcegraph.com"
+                                        to="https://khulnasoft.com"
                                         onClick={() => {
                                             telemetryService.log('ClickedOnEnterpriseCTA', {
                                                 location: 'ContextDropDown',

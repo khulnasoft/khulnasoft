@@ -32,7 +32,7 @@ import (
 )
 
 // A GitHubSource yields repositories from a single GitHub connection configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 type GitHubSource struct {
 	svc          *types.ExternalService
 	config       *schema.GitHubConnection
@@ -262,7 +262,7 @@ func (s *GitHubSource) CheckConnection(ctx context.Context) (err error) {
 }
 
 // ListRepos returns all Github repositories accessible to all connections configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 func (s *GitHubSource) ListRepos(ctx context.Context, results chan SourceResult) {
 	unfiltered := make(chan *githubResult)
 	go func() {

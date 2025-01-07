@@ -2,7 +2,7 @@ package graphqlbackend
 
 import "context"
 
-// Definition of the GraphQL resolver for fetching the Sourcegraph instance's LLM configuration.
+// Definition of the GraphQL resolver for fetching the Khulnasoft instance's LLM configuration.
 // The actual implementation is in internal/modelconfig.
 
 type ModelconfigResolver interface {

@@ -49,7 +49,7 @@ export const KeywordSearchCtaSection: React.FC<KeywordSearchCtaSection> = ({ cla
                         </Text>
                         <Text>
                             <Link
-                                to="https://sourcegraph.com/docs/code-search/queries#keyword-search-default"
+                                to="https://khulnasoft.com/docs/code-search/queries#keyword-search-default"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

@@ -8,11 +8,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/monitoring/monitoring"
 )
 
-var SourcegraphOwn sourcegraphOwn
+var KhulnasoftOwn sourcegraphOwn
 
 var ownNamespace = "own"
 
-// sourcegraphOwn provides `SourcegraphOwn` implementations.
+// sourcegraphOwn provides `KhulnasoftOwn` implementations.
 type sourcegraphOwn struct{}
 
 func (sourcegraphOwn) NewOwnRepoIndexerStoreGroup(containerName string) monitoring.Group {

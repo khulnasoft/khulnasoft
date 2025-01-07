@@ -126,7 +126,7 @@ type QueryBlock {
     """
     id: String!
     """
-    A Sourcegraph search query string.
+    A Khulnasoft search query string.
     """
     queryInput: String!
 }

@@ -25,7 +25,7 @@ type MakeRequestStub func(ctx context.Context, req *graphql.Request, resp *graph
 //			Site: srcgql.GetSiteConfigurationSite{
 //				Configuration: srcgql.GetSiteConfigurationSiteConfiguration{
 //					EffectiveContents: `{
-//						"email.address": "robert@sourcegraph.com",
+//						"email.address": "robert@khulnasoft.com",
 //						"email.smtp": {
 //							"host": "bobheadxi.dev"
 //						}

@@ -28,7 +28,7 @@ type Publisher struct {
 
 	metadataJSON json.RawMessage
 
-	isSourcegraphInstance bool
+	isKhulnasoftInstance bool
 }
 
 type PublishStreamOptions struct {
@@ -55,14 +55,14 @@ func NewPublisherForStream(
 	}
 
 	var source string
-	var isSourcegraphInstance bool
+	var isKhulnasoftInstance bool
 	switch identifier := metadata.GetIdentifier(); identifier.GetIdentifier().(type) {
 	case *telemetrygatewayv1.Identifier_LicensedInstance:
 		source = "licensed_instance"
-		isSourcegraphInstance = true
+		isKhulnasoftInstance = true
 	case *telemetrygatewayv1.Identifier_UnlicensedInstance:
 		source = "unlicensed_instance"
-		isSourcegraphInstance = true
+		isKhulnasoftInstance = true
 	case *telemetrygatewayv1.Identifier_ManagedService:
 		// Is a trusted client, so use the service ID directly as the source
 		source = identifier.GetManagedService().ServiceId
@@ -77,7 +77,7 @@ func NewPublisherForStream(
 		opts:         opts,
 		metadataJSON: metadataJSON,
 
-		isSourcegraphInstance: isSourcegraphInstance,
+		isKhulnasoftInstance: isKhulnasoftInstance,
 	}, nil
 }
 
@@ -91,9 +91,9 @@ func (p *Publisher) GetSourceName() string {
 	return p.source
 }
 
-// IsSourcegraphInstance indicates that the client is a Sourcegraph instance.
-func (p *Publisher) IsSourcegraphInstance() bool {
-	return p.isSourcegraphInstance
+// IsKhulnasoftInstance indicates that the client is a Khulnasoft instance.
+func (p *Publisher) IsKhulnasoftInstance() bool {
+	return p.isKhulnasoftInstance
 }
 
 type PublishEventResult struct {

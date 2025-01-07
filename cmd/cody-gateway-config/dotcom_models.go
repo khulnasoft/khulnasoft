@@ -36,10 +36,10 @@ var (
 
 func getAnthropicModels() []types.Model {
 	const (
-		// Sourcegraph [v5.1 - v5.3) use the legacy "Text Completions" API.
+		// Khulnasoft [v5.1 - v5.3) use the legacy "Text Completions" API.
 		// https://docs.anthropic.com/en/api/complete
 		anthropic_01_2023 = "anthropic::2023-01-01"
-		// Sourcegraph v5.3+ uses the newer "Messages API".
+		// Khulnasoft v5.3+ uses the newer "Messages API".
 		// https://docs.anthropic.com/en/api/messages
 		//
 		// This doesn't directly map to the Anthropic API release, but

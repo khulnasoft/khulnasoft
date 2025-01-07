@@ -282,7 +282,7 @@ func validateJobRequest(
 	// When the requester sets a User with a username, r.URL.User.Username() will return a blank value (always).
 	// To get the username is by using BasicAuth(). Even if the requester does not use a reverse proxy, this is the
 	// way to get the username.
-	executorName = r.Header.Get("X-Sourcegraph-Executor-Name")
+	executorName = r.Header.Get("X-Khulnasoft-Executor-Name")
 
 	// Since the payload partially deserialize, ensure the worker hostname is valid.
 	if len(executorName) == 0 {
@@ -330,9 +330,9 @@ func validateJobRequest(
 }
 
 func parseJobIdHeader(r *http.Request) (int64, error) {
-	jobIdHeader := r.Header.Get("X-Sourcegraph-Job-ID")
+	jobIdHeader := r.Header.Get("X-Khulnasoft-Job-ID")
 	if len(jobIdHeader) == 0 {
-		return 0, errors.New("job ID not provided in header 'X-Sourcegraph-Job-ID'")
+		return 0, errors.New("job ID not provided in header 'X-Khulnasoft-Job-ID'")
 	}
 	id, err := strconv.Atoi(jobIdHeader)
 	if err != nil {

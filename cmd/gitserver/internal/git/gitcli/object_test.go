@@ -18,7 +18,7 @@ func TestGitCLIBackend_GetObject(t *testing.T) {
 	backend := BackendWithRepoCommands(t,
 		"echo line1 > f",
 		"git add f",
-		"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		`git tag -m "Test base tag" testbase`,
 	)
 

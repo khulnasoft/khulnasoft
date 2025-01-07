@@ -32,9 +32,9 @@ jobs:
             >
             > We aim to have ~70% of Bazel test targets to help us (dev-infra) and you get insight into the impact of tests on CI times. This is a non-blocking requirement, but keeping on top of test attribution to maintain this threshold is appreciated.
             >
-            > See the list of tag variable names to use [here](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/tools/build_rules/prelude_bazel), and reach out to [#discuss-dev-infra](https://sourcegraph.slack.com/archives/C04MYFW01NV) if you need to add/change this list.
+            > See the list of tag variable names to use [here](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/tools/build_rules/prelude_bazel), and reach out to [#discuss-dev-infra](https://sourcegraph.slack.com/archives/C04MYFW01NV) if you need to add/change this list.
             >
-            > See an example of how to use the variables [here](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24%4070d2439+f:dev/build-tracker/BUILD.bazel+TAG_INFRA_DEVINFRA&patternType=keyword&sm=0).
+            > See an example of how to use the variables [here](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24%4070d2439+f:dev/build-tracker/BUILD.bazel+TAG_INFRA_DEVINFRA&patternType=keyword&sm=0).
 
             <!-- bazel-check-marker -->`
 

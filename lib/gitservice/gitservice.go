@@ -55,7 +55,7 @@ type Handler struct {
 	// start the command.
 	//
 	// This allows the command to be modified before running. In practice
-	// sourcegraph.com will add a flowrated writer for Stdout to treat our
+	// khulnasoft.com will add a flowrated writer for Stdout to treat our
 	// internal networks more kindly.
 	CommandHook func(*exec.Cmd)
 

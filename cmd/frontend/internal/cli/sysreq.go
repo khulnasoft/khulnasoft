@@ -52,7 +52,7 @@ func checkSysReqs(ctx context.Context, w io.Writer) error {
 				fmt.Fprint(w, "\tPossible fix: ")
 				fmt.Fprintln(w, wrap(st.Fix))
 			}
-			fmt.Fprintln(w, "\t"+wrap(fmt.Sprintf("Skip this check by setting the env var %s=%q (separate multiple entries with spaces). Note: Sourcegraph may not function properly without %s.", skipSysReqsEnvVar, st.Name, st.Name)))
+			fmt.Fprintln(w, "\t"+wrap(fmt.Sprintf("Skip this check by setting the env var %s=%q (separate multiple entries with spaces). Note: Khulnasoft may not function properly without %s.", skipSysReqsEnvVar, st.Name, st.Name)))
 		}
 	}
 

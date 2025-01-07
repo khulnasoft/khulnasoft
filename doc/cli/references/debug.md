@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-'src debug' gathers and bundles debug data from a Sourcegraph deployment for troubleshooting.
+'src debug' gathers and bundles debug data from a Khulnasoft deployment for troubleshooting.
 
 Usage:
 

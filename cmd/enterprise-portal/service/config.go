@@ -62,22 +62,22 @@ type SAMSConfig struct {
 func (c *Config) Load(env *runtime.Env) {
 	c.DotComDB.ConnConfig = cloudsql.ConnConfig{
 		ConnectionName: env.GetOptional("DOTCOM_CLOUDSQL_CONNECTION_NAME",
-			"Sourcegraph.com Cloud SQL connection name"),
-		User:     env.GetOptional("DOTCOM_CLOUDSQL_USER", "Sourcegraph.com Cloud SQL user"),
-		Database: env.Get("DOTCOM_CLOUDSQL_DATABASE", "khulnasoft", "Sourcegraph.com database"),
+			"Khulnasoft.com Cloud SQL connection name"),
+		User:     env.GetOptional("DOTCOM_CLOUDSQL_USER", "Khulnasoft.com Cloud SQL user"),
+		Database: env.Get("DOTCOM_CLOUDSQL_DATABASE", "khulnasoft", "Khulnasoft.com database"),
 	}
 	c.DotComDB.PGDSNOverride = env.GetOptional("DOTCOM_PGDSN_OVERRIDE",
 		"For local dev: custom PostgreSQL DSN, overrides DOTCOM_CLOUDSQL_* options")
 	c.DotComDB.IncludeProductionLicenses = env.GetBool("DOTCOM_INCLUDE_PRODUCTION_LICENSES", "false",
 		"Include production licenses in API results")
 	c.DotComDB.ImportInterval = env.GetInterval("DOTCOM_IMPORT_INTERVAL", "0s", // disable by default
-		"Interval at which to import data from Sourcegraph.com")
+		"Interval at which to import data from Khulnasoft.com")
 
 	c.SAMS.ConnConfig = sams.NewConnConfigFromEnv(env)
 	c.SAMS.ClientID = env.Get("ENTERPRISE_PORTAL_SAMS_CLIENT_ID", "",
-		"Sourcegraph Accounts Management System client ID")
+		"Khulnasoft Accounts Management System client ID")
 	c.SAMS.ClientSecret = env.Get("ENTERPRISE_PORTAL_SAMS_CLIENT_SECRET", "",
-		"Sourcegraph Accounts Management System client secret")
+		"Khulnasoft Accounts Management System client secret")
 
 	codyGatewayEventsProjectID := env.GetOptional("CODY_GATEWAY_EVENTS_PROJECT_ID",
 		"Project ID for Cody Gateway events ('telligentsourcegraph' or 'cody-gateway-dev')")
@@ -96,7 +96,7 @@ func (c *Config) Load(env *runtime.Env) {
 	c.LicenseKeys.Signer = func() ssh.Signer {
 		// We use a unconventional env name here to align with existing usages
 		// of this key, for convenience.
-		privateKey := env.GetOptional("SOURCEGRAPH_LICENSE_GENERATION_KEY",
+		privateKey := env.GetOptional("KHULNASOFT_LICENSE_GENERATION_KEY",
 			fmt.Sprintf("The PEM-encoded form of the private key used to sign product license keys (%s)",
 				license.GenerationPrivateKeyURL))
 		if privateKey == nil {
@@ -107,7 +107,7 @@ func (c *Config) Load(env *runtime.Env) {
 		signer, err := ssh.ParsePrivateKey([]byte(*privateKey))
 		if err != nil {
 			env.AddError(errors.Wrap(err,
-				"Failed to parse private key in SOURCEGRAPH_LICENSE_GENERATION_KEY env var"))
+				"Failed to parse private key in KHULNASOFT_LICENSE_GENERATION_KEY env var"))
 		}
 		return signer
 	}()

@@ -10,7 +10,7 @@ import (
 func registerMetadataGauge() {
 	promauto.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "src_service_metadata",
-		Help: "A metric with constant '1' value labelled with Sourcegraph service metadata.",
+		Help: "A metric with constant '1' value labelled with Khulnasoft service metadata.",
 	}, []string{
 		"version",
 	}).With(prometheus.Labels{

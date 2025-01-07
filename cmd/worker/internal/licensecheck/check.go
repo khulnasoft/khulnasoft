@@ -23,7 +23,7 @@ import (
 )
 
 var (
-	baseUrl = env.Get("SOURCEGRAPH_API_URL", "https://sourcegraph.com", "Base URL for license check API")
+	baseUrl = env.Get("KHULNASOFT_API_URL", "https://khulnasoft.com", "Base URL for license check API")
 )
 
 // newLicenseChecker returns a goroutine that periodically checks license validity
@@ -39,7 +39,7 @@ func newLicenseChecker(ctx context.Context, logger log.Logger, db database.DB, k
 			kv:     kv,
 		},
 		goroutine.WithName("licensing.check-license-validity"),
-		goroutine.WithDescription("check if license is valid from sourcegraph.com"),
+		goroutine.WithDescription("check if license is valid from khulnasoft.com"),
 		goroutine.WithInterval(15*time.Minute),
 		goroutine.WithInitialDelay(1*time.Minute),
 	)

@@ -23,5 +23,5 @@ This markdown is used to generate an annotation at the top of every build, displ
     <li><strong>Wolfi Base Images</strong> are minimal container images that contain all the dependencies needed for our final images.</li>
   </ul>
 
-  <p>Want to update the glossary? See the <a href="https://docs.sourcegraph.com/dev/how-to/update_ci_glossary">how-to in the docs.</a></p>
+  <p>Want to update the glossary? See the <a href="https://docs.khulnasoft.com/dev/how-to/update_ci_glossary">how-to in the docs.</a></p>
 </details>

@@ -21,10 +21,10 @@ import (
 //
 // This is used in cases where customers use SAML/SSO on their GitLab configurations. The default
 // way GitLab handles redirects for groups that require SSO sign-on does not work, and users
-// need to sign into GitLab outside of Sourcegraph, and can only then come back and use OAuth.
+// need to sign into GitLab outside of Khulnasoft, and can only then come back and use OAuth.
 //
 // This implementaion allows users to be directed to their GitLab SSO sign-in page, and then
-// the redirect query parameter will redirect them to the OAuth sign-in flow that Sourcegraph
+// the redirect query parameter will redirect them to the OAuth sign-in flow that Khulnasoft
 // requires.
 func SSOLoginHandler(config *oauth2.Config, failure http.Handler, ssoAuthURL string) http.Handler {
 	if failure == nil {

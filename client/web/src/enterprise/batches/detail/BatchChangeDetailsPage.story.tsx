@@ -62,7 +62,7 @@ export default config
 
 const now = new Date()
 
-const authenticatedUser = { url: 'https://sourcegraph.com/users/this-is-a-fake-user' }
+const authenticatedUser = { url: 'https://khulnasoft.com/users/this-is-a-fake-user' }
 
 const queryAllChangesetIDs: typeof _queryAllChangesetIDs = () => of(['somev1', 'somev2'])
 

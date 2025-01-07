@@ -58,7 +58,7 @@ export const LangStatsInsightCreationForm: FC<LangStatsInsightCreationFormProps>
                 autoFocus={true}
                 label="Repository"
                 message="This insight is limited to one repository. You can set up multiple language usage charts for analyzing other repositories."
-                placeholder="Example: github.com/sourcegraph/sourcegraph"
+                placeholder="Example: github.com/khulnasoft/khulnasoft"
                 {...getDefaultInputProps(repository)}
                 className="mb-0"
                 inputClassName="a11y-ignore"

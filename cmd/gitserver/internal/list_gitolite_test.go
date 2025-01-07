@@ -21,35 +21,35 @@ func Test_Gitolite_listRepos(t *testing.T) {
 		wantedErr       string
 	}{
 		{
-			name: "Simple case (git@sourcegraph.com)",
+			name: "Simple case (git@khulnasoft.com)",
 			listRepos: map[string][]*gitolite.Repo{
-				"git@sourcegraph.com": {
-					{Name: "myrepo", URL: "git@sourcegraph.com:myrepo"},
+				"git@khulnasoft.com": {
+					{Name: "myrepo", URL: "git@khulnasoft.com:myrepo"},
 				},
 			},
 			configs: []*schema.GitoliteConnection{
 				{
-					Host:   "git@sourcegraph.com",
-					Prefix: "sourcegraph.com/",
+					Host:   "git@khulnasoft.com",
+					Prefix: "khulnasoft.com/",
 				},
 			},
-			gitoliteHost:    "git@sourcegraph.com",
+			gitoliteHost:    "git@khulnasoft.com",
 			expResponseCode: 200,
 			expResponseBody: []*gitolite.Repo{
-				{Name: "myrepo", URL: "git@sourcegraph.com:myrepo"},
+				{Name: "myrepo", URL: "git@khulnasoft.com:myrepo"},
 			},
 		},
 		{
 			name: "Invalid gitoliteHost (--invalidhostnexample.com)",
 			listRepos: map[string][]*gitolite.Repo{
-				"git@sourcegraph.com": {
-					{Name: "myrepo", URL: "git@sourcegraph.com:myrepo"},
+				"git@khulnasoft.com": {
+					{Name: "myrepo", URL: "git@khulnasoft.com:myrepo"},
 				},
 			},
 			configs: []*schema.GitoliteConnection{
 				{
-					Host:   "git@sourcegraph.com",
-					Prefix: "sourcegraph.com/",
+					Host:   "git@khulnasoft.com",
+					Prefix: "khulnasoft.com/",
 				},
 			},
 			gitoliteHost:    "--invalidhostnexample.com",

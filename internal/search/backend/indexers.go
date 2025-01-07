@@ -21,7 +21,7 @@ type EndpointMap interface {
 }
 
 // Indexers provides methods over the set of indexed-search servers in a
-// Sourcegraph cluster.
+// Khulnasoft cluster.
 type Indexers struct {
 	// Map is the desired mapping from repository names to endpoints.
 	Map EndpointMap

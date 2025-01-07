@@ -9,7 +9,7 @@ import (
 )
 
 func TestSetLocalDevMode_CreatesContainerConfigWhereNoneExistedBefore(t *testing.T) {
-	sg := &Sourcegraph{}
+	sg := &Khulnasoft{}
 
 	sg.SetLocalDevMode()
 	assert.Equal(t, sg.Spec.Blobstore.ContainerConfig, map[string]ContainerConfig{
@@ -18,8 +18,8 @@ func TestSetLocalDevMode_CreatesContainerConfigWhereNoneExistedBefore(t *testing
 }
 
 func TestSetLocalDevMode_PreservesContainerConfigOtherThanBestEffortQOS(t *testing.T) {
-	sg := &Sourcegraph{
-		Spec: SourcegraphSpec{
+	sg := &Khulnasoft{
+		Spec: KhulnasoftSpec{
 			Blobstore: BlobstoreSpec{
 				StandardConfig: StandardConfig{
 					ContainerConfig: map[string]ContainerConfig{

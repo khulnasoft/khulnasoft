@@ -36,7 +36,7 @@ function navigationKeybindings(navigate: NavigateFunction): KeyBinding[] {
 
 /**
  * Keybindings to support text selection.
- * Modified version of a [standard CodeMirror keymap](https://sourcegraph.com/github.com/codemirror/commands@ca4171b381dc487ec0313cb0ea4dd29151c7a792/-/blob/src/commands.ts?L791-858).
+ * Modified version of a [standard CodeMirror keymap](https://khulnasoft.com/github.com/codemirror/commands@ca4171b381dc487ec0313cb0ea4dd29151c7a792/-/blob/src/commands.ts?L791-858).
  */
 const textSelectionKeybindings: KeyBinding[] = [
     {
@@ -108,7 +108,7 @@ const textSelectionKeybindings: KeyBinding[] = [
  *
  * This layer has explicitly set high precedence to be always shown above other layers (e.g. selected lines layer).
  * @see https://codemirror.net/docs/ref/#view.drawSelection
- * @see https://sourcegraph.com/github.com/codemirror/view@84f483ae4097a71d04374cdb24c5edc09d211105/-/blob/src/draw-selection.ts?L92-102
+ * @see https://khulnasoft.com/github.com/codemirror/view@84f483ae4097a71d04374cdb24c5edc09d211105/-/blob/src/draw-selection.ts?L92-102
  */
 const selectionLayer = Prec.high(
     layer({

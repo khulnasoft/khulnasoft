@@ -35,7 +35,7 @@ pnpm dev:dotcom
 
 ```bash
 cd client/web-sveltekit
-SOURCEGRAPH_API_URL=https://<instance> pnpm dev
+KHULNASOFT_API_URL=https://<instance> pnpm dev
 ```
 
 Then go to (usually) http://localhost:5173.

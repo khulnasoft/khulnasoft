@@ -123,22 +123,22 @@ func TestAuthzStore_GrantPendingPermissions(t *testing.T) {
 			updates: []update{
 				{
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"alice@example.com"},
 					},
 					repoID: 1,
 				}, {
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"alice2@example.com"},
 					},
 					repoID: 2,
 				}, {
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"alice3@example.com"},
 					},
 					repoID: 3,
@@ -159,15 +159,15 @@ func TestAuthzStore_GrantPendingPermissions(t *testing.T) {
 			updates: []update{
 				{
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"alice"},
 					},
 					repoID: 1,
 				}, {
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"bob"},
 					},
 					repoID: 2,
@@ -377,7 +377,7 @@ func TestAuthzStore_RevokeUserPermissions(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	repo := &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"}
+	repo := &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"}
 	if err := db.Repos().Create(ctx, repo); err != nil {
 		t.Fatal(err)
 	}
@@ -388,8 +388,8 @@ func TestAuthzStore_RevokeUserPermissions(t *testing.T) {
 	}
 
 	accounts := &extsvc.Accounts{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountIDs:  []string{"alice", "alice@example.com"},
 	}
 	if err := s.store.SetRepoPendingPermissions(ctx, accounts, &authz.RepoPermissions{

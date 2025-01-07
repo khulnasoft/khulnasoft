@@ -97,23 +97,23 @@ func TestPropagator(t *testing.T) {
 			name: "client with user-agent sets forwarded-for-user-agent",
 
 			requestClient: &Client{
-				UserAgent: "Sourcegraph-Bot",
+				UserAgent: "Khulnasoft-Bot",
 			},
 
 			wantClient: &Client{
-				ForwardedForUserAgent: "Sourcegraph-Bot",
+				ForwardedForUserAgent: "Khulnasoft-Bot",
 			},
 		},
 		{
 			name: "client with forwarded-for-user-agent drops the current user-agent",
 
 			requestClient: &Client{
-				UserAgent:             "Not-Sourcegraph-Bot",
-				ForwardedForUserAgent: "Sourcegraph-Bot",
+				UserAgent:             "Not-Khulnasoft-Bot",
+				ForwardedForUserAgent: "Khulnasoft-Bot",
 			},
 
 			wantClient: &Client{
-				ForwardedForUserAgent: "Sourcegraph-Bot",
+				ForwardedForUserAgent: "Khulnasoft-Bot",
 			},
 		},
 	}

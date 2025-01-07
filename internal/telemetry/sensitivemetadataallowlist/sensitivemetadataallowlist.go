@@ -164,9 +164,9 @@ func eventTypes(types ...EventType) EventTypes {
 // Redact strips the event of sensitive data based on the allowlist.
 //
 // 🚨 SECURITY: Be very careful with the redaction modes used here, as it impacts
-// what data we export from customer Sourcegraph instances.
+// what data we export from customer Khulnasoft instances.
 func (e EventTypes) Redact(event *telemetrygatewayv1.Event) redactMode {
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		return redactEvent(event, redactNothing, nil)
 	} else if keys, allowed := e.IsAllowed(event); allowed {
 		return redactEvent(event, redactMarketingAndUnallowedPrivateMetadataKeys, keys)

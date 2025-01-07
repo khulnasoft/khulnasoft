@@ -1,5 +1,5 @@
-export const DOTCOM_URL = new URL('https://sourcegraph.com')
-export const INTERNAL_S2_URL = new URL('https://sourcegraph.sourcegraph.com/')
+export const DOTCOM_URL = new URL('https://khulnasoft.com')
+export const INTERNAL_S2_URL = new URL('https://sourcegraph.khulnasoft.com/')
 export const LOCAL_APP_URL = new URL('http://localhost:3080')
 
 export function isLocalApp(url: string): boolean {

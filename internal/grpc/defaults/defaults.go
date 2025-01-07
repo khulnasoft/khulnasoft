@@ -1,5 +1,5 @@
 // Package defaults exports a set of default options for gRPC servers
-// and clients in Sourcegraph. It is a separate subpackage so that all
+// and clients in Khulnasoft. It is a separate subpackage so that all
 // packages that depend on the internal/grpc package do not need to
 // depend on the large dependency tree of this package.
 package defaults
@@ -48,7 +48,7 @@ func DialContext(ctx context.Context, addr string, logger log.Logger, additional
 const defaultGRPCMessageReceiveSizeBytes = 90 * 1024 * 1024 // 90 MB
 
 // DialOptions is a set of default dial options that should be used for all
-// gRPC clients in Sourcegraph, along with any additional client-specific options.
+// gRPC clients in Khulnasoft, along with any additional client-specific options.
 //
 // **Note**: Do not append to this slice directly, instead provide extra options
 // via "additionalOptions".
@@ -57,11 +57,11 @@ func DialOptions(logger log.Logger, additionalOptions ...grpc.DialOption) []grpc
 }
 
 // ExternalDialOptions is a set of default dial options that should be used for
-// gRPC clients external to a Sourcegraph deployment, e.g. Telemetry Gateway,
+// gRPC clients external to a Khulnasoft deployment, e.g. Telemetry Gateway,
 // along with any additional client-specific options. In particular, these
 // options enforce TLS.
 //
-// Traffic within a Sourcegraph deployment should use DialOptions instead.
+// Traffic within a Khulnasoft deployment should use DialOptions instead.
 //
 // **Note**: Do not append to this slice directly, instead provide extra options
 // via "additionalOptions".
@@ -129,7 +129,7 @@ func NewServer(logger log.Logger, additionalOpts ...grpc.ServerOption) *grpc.Ser
 }
 
 // NewPublicServer creates a new *grpc.Server with the options tailored for
-// public-facing gRPC services. Most in-Sourcegraph services should use
+// public-facing gRPC services. Most in-Khulnasoft services should use
 // NewServer instead.
 func NewPublicServer(logger log.Logger, additionalOpts ...grpc.ServerOption) *grpc.Server {
 	s := grpc.NewServer(buildServerOptions(logger, serverOptions{
@@ -143,7 +143,7 @@ func NewPublicServer(logger log.Logger, additionalOpts ...grpc.ServerOption) *gr
 }
 
 // ServerOptions is a set of default server options that should be used for all
-// gRPC servers in Sourcegraph. along with any additional service-specific options.
+// gRPC servers in Khulnasoft. along with any additional service-specific options.
 //
 // **Note**: Do not append to this slice directly, instead provide extra options
 // via "additionalOptions".

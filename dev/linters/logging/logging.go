@@ -10,7 +10,7 @@ import (
 )
 
 // This analyzer is modeled after the one in
-// https://sourcegraph.sourcegraph.com/github.com/khulnasoft/khulnasoft@f6ae87add606c65876b87d378929fcb80c3bb493/-/blob/dev/linters/depguard/depguard.go
+// https://sourcegraph.khulnasoft.com/github.com/khulnasoft/khulnasoft@f6ae87add606c65876b87d378929fcb80c3bb493/-/blob/dev/linters/depguard/depguard.go
 // These could potentially be combined into one analyzer.
 var Analyzer *analysis.Analyzer = createAnalyzer()
 

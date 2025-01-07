@@ -11,10 +11,10 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-// tracerName is the name of the default tracer for the Sourcegraph backend.
+// tracerName is the name of the default tracer for the Khulnasoft backend.
 const tracerName = "sourcegraph/internal/trace"
 
-// GetTracer returns the default tracer for the Sourcegraph backend.
+// GetTracer returns the default tracer for the Khulnasoft backend.
 func GetTracer() oteltrace.Tracer {
 	return otel.GetTracerProvider().Tracer(tracerName)
 }

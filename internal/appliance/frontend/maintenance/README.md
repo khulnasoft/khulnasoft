@@ -1,4 +1,4 @@
-# Sourcegraph Appliance Maintenance UI
+# Khulnasoft Appliance Maintenance UI
 
 ## Build
 

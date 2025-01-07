@@ -10,7 +10,7 @@ app.use(express.static('./build', { fallthrough: true }))
 // Proxy API, stream and other specific endpoints to Khulnasoft instance
 app.use(
   /^\/(sign-in|.assets|-|.api|search\/stream)/,
-  createProxyMiddleware({ target: process.env['SOURCEGRAPH_API_HOST'], changeOrigin: true, secure: false })
+  createProxyMiddleware({ target: process.env['KHULNASOFT_API_HOST'], changeOrigin: true, secure: false })
 )
 // Fallback route to make SPA work for any URL on cold load
 app.all('*', (_req, res) => res.sendFile('index.html', { root: './build' }))

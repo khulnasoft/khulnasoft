@@ -41,8 +41,8 @@ const (
 	SecretNobl9ClientSecret = "MSP_NOBL9_CLIENT_SECRET"
 	// SecretKhulnasoftWildcardKey and SecretKhulnasoftWildcardCert are used
 	// for configuring Cloudflare TLS.
-	SecretKhulnasoftWildcardKey  = "SOURCEGRAPH_WILDCARD_KEY"
-	SecretKhulnasoftWildcardCert = "SOURCEGRAPH_WILDCARD_CERT"
+	SecretKhulnasoftWildcardKey  = "KHULNASOFT_WILDCARD_KEY"
+	SecretKhulnasoftWildcardCert = "KHULNASOFT_WILDCARD_CERT"
 	// SecretMSPDeployNotificationEndpoint is the endpoint that MSP uses for cloud deploy push notifications.
 	SecretMSPDeployNotificationEndpoint = "MSP_DEPLOY_NOTIFICATION_ENDPOINT"
 )

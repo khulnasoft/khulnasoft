@@ -103,7 +103,7 @@ func (l *bigQueryLogger) LogEvent(spanCtx context.Context, event Event) (err err
 		event.Metadata = map[string]any{}
 	}
 
-	// HACK: Inject Sourcegraph actor that is held in the span context
+	// HACK: Inject Khulnasoft actor that is held in the span context
 	event.Metadata["sg.actor"] = sgactor.FromContext(spanCtx)
 
 	// Inject trace metadata

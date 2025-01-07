@@ -118,7 +118,7 @@ export const NoResultsPage: React.FunctionComponent<React.PropsWithChildren<NoRe
                                     telemetryRecorder.recordEvent('search.noResults.getMoreLink', 'click')
                                 }}
                                 target="blank"
-                                to="https://sourcegraph.com/docs/"
+                                to="https://khulnasoft.com/docs/"
                             >
                                 Khulnasoft Docs <Icon svgPath={mdiOpenInNew} aria-label="Open in a new tab" />
                             </Link>

@@ -65,7 +65,7 @@ namespace Longer.Namespace
             Pants
         }
 
-        public Swag SourcegraphSwag;
+        public Swag KhulnasoftSwag;
 
         [Flags]
         public enum ZigFeatureSet

@@ -78,7 +78,7 @@ func writeViolationError(w http.ResponseWriter, info []violationInfo) error {
 
 	baseUrl, err := url.Parse(conf.ExternalURL())
 	if err != nil {
-		baseUrl, _ = url.Parse("https://sourcegraph.com")
+		baseUrl, _ = url.Parse("https://khulnasoft.com")
 	}
 
 	docsUrl := baseUrl.ResolveReference(

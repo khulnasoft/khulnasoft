@@ -116,13 +116,13 @@ func (e migrationStatusError) Error() string {
 
 // Validate checks the migration records present in the database (including their progress) and returns
 // an error if there are unfinished migrations relative to the given version. Specifically, it is illegal
-// for a Sourcegraph instance to start up with a migration that has one of the following properties:
+// for a Khulnasoft instance to start up with a migration that has one of the following properties:
 //
 // - A migration with progress != 0 is introduced _after_ the given version
 // - A migration with progress != 1 is deprecated _on or before_ the given version
 //
 // This error is used to block startup of the application with an informative message indicating that
-// the site admin must either (1) run the previous version of Sourcegraph longer to allow the unfinished
+// the site admin must either (1) run the previous version of Khulnasoft longer to allow the unfinished
 // migrations to complete in the case of a premature upgrade, or (2) run a standalone migration utility
 // to rewind changes on an unmoving database in the case of a premature downgrade.
 func (r *Runner) Validate(ctx context.Context, currentVersion, firstVersion Version) error {
@@ -171,7 +171,7 @@ func wrapMigrationErrors(errs ...error) error {
 	sort.Strings(descriptions)
 
 	return errors.Errorf(
-		"Unfinished migrations. Please revert Sourcegraph to the previous version and wait for the following migrations to complete.\n\n%s\n",
+		"Unfinished migrations. Please revert Khulnasoft to the previous version and wait for the following migrations to complete.\n\n%s\n",
 		strings.Join(descriptions, "\n"),
 	)
 }

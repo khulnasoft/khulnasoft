@@ -210,7 +210,7 @@ func serveRaw(logger log.Logger, db database.DB, gitserverClient gitserver.Clien
 			// over e.g. a 406 status code, according to the MDN:
 			// https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/406
 
-			// 🚨 SECURITY: Files are served under the same Sourcegraph domain, and
+			// 🚨 SECURITY: Files are served under the same Khulnasoft domain, and
 			// may contain arbitrary contents (JS/HTML files, SVGs with JS in them,
 			// malware in the form of .exe, etc). Serving with any other content
 			// type is extremely dangerous unless we can guarantee the contents of

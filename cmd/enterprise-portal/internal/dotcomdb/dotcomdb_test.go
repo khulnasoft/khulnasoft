@@ -27,10 +27,10 @@ import (
 func newTestDotcomReader(t *testing.T, opts dotcomdb.ReaderOptions) (sgdatabase.DB, *dotcomdb.Reader) {
 	ctx := context.Background()
 
-	// Set up a Sourcegraph test database.
+	// Set up a Khulnasoft test database.
 	sgtestdb := dbtest.NewDB(t)
 
-	// HACK: Extract the underlying pgx connection from the Sourcegraph test
+	// HACK: Extract the underlying pgx connection from the Khulnasoft test
 	// database, so that we can tease out the connection string that was used
 	// to connect to it, since we want to use pgx/v5 directly as offered by MSP
 	// utilities. This is sneaky but easier than changing the extensive
@@ -49,7 +49,7 @@ func newTestDotcomReader(t *testing.T, opts dotcomdb.ReaderOptions) (sgdatabase.
 				break
 			}
 		}
-		// Sourcegraph database uses pgxv4 under the hood, so we cast into the
+		// Khulnasoft database uses pgxv4 under the hood, so we cast into the
 		// v4 version of pgx internals
 		connString = driverConn.(*pgxstdlibv4.Conn).Conn().Config().ConnString()
 		return nil

@@ -84,7 +84,7 @@ func (s *userEmailsStore) Transact(ctx context.Context) (UserEmailsStore, error)
 }
 
 // GetInitialSiteAdminInfo returns a best guess of the email and terms of service acceptance of the initial
-// Sourcegraph installer/site admin. Because the initial site admin's email isn't marked, this returns the
+// Khulnasoft installer/site admin. Because the initial site admin's email isn't marked, this returns the
 // info of the active site admin with the lowest user ID.
 //
 // If the site has not yet been initialized, returns an empty string.

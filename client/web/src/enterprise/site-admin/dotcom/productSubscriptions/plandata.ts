@@ -54,7 +54,7 @@ export const TAG_DISABLE_TELEMETRY_EXPORT: Tag = {
     name: 'Disable Telemetry Events Export',
     tagValue: 'disable-telemetry-events-export',
     description:
-        'Disables telemery events export EXCEPT for Cody-related events, which we are always allowed to export as part of Cody usage terms: https://sourcegraph.com/terms/cody-notice. To completely disable telemetry events export, allow Air Gapped Usage',
+        'Disables telemery events export EXCEPT for Cody-related events, which we are always allowed to export as part of Cody usage terms: https://khulnasoft.com/terms/cody-notice. To completely disable telemetry events export, allow Air Gapped Usage',
 }
 
 export const TAG_TRUEUP: Tag = {

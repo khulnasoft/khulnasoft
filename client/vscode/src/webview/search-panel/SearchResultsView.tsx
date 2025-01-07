@@ -49,7 +49,7 @@ export const SearchResultsView: React.FunctionComponent<React.PropsWithChildren<
 
     const isKhulnasoftDotCom = useMemo(() => {
         const hostname = new URL(instanceURL).hostname
-        return hostname === 'sourcegraph.com' || hostname === 'www.sourcegraph.com'
+        return hostname === 'khulnasoft.com' || hostname === 'www.khulnasoft.com'
     }, [instanceURL])
 
     // Editor focus.

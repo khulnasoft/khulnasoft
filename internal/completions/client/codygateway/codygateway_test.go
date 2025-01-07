@@ -21,7 +21,7 @@ func TestOverwriteErrorSource(t *testing.T) {
 	require.Error(t, err)
 	statusErr, ok := types.IsErrStatusNotOK(err)
 	require.True(t, ok)
-	autogold.Expect("Sourcegraph Cody Gateway").Equal(t, statusErr.Source)
+	autogold.Expect("Khulnasoft Cody Gateway").Equal(t, statusErr.Source)
 
 	assert.NoError(t, overwriteErrSource(nil))
 	assert.Equal(t, "asdf", overwriteErrSource(errors.New("asdf")).Error())

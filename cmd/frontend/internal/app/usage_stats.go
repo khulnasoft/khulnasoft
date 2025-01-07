@@ -19,7 +19,7 @@ func usageStatsArchiveHandler(db database.DB) http.HandlerFunc {
 		}
 
 		w.Header().Set("Content-Type", "application/zip")
-		w.Header().Set("Content-Disposition", "attachment; filename=\"SourcegraphUsersUsageArchive.zip\"")
+		w.Header().Set("Content-Disposition", "attachment; filename=\"KhulnasoftUsersUsageArchive.zip\"")
 
 		archive, err := usagestats.GetArchive(r.Context(), db)
 		if err != nil {

@@ -141,7 +141,7 @@ func TestEventTypesRedact(t *testing.T) {
 	})
 
 	t.Run("dotcom mode", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 		mode := allowedTypes.Redact(&v1.Event{
 			Feature: "example",
 			Action:  "exampleAction",

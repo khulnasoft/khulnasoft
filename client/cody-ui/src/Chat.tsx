@@ -465,7 +465,7 @@ interface WelcomeTextOptions {
 }
 
 function welcomeText({
-    helpMarkdown = 'See [Cody documentation](https://docs.sourcegraph.com/cody) for help and tips.',
+    helpMarkdown = 'See [Cody documentation](https://docs.khulnasoft.com/cody) for help and tips.',
     afterMarkdown,
 }: WelcomeTextOptions): string {
     return ["Hello! I'm Cody. I can write code and answer questions for you. " + helpMarkdown, afterMarkdown]

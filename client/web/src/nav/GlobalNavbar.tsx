@@ -379,7 +379,7 @@ export const InlineNavigationPanel: FC<InlineNavigationPanelProps> = props => {
             {toolsItem}
             {isKhulnasoftDotCom && (
                 <NavItem>
-                    <NavLink variant={navLinkVariant} to="https://sourcegraph.com" external={true}>
+                    <NavLink variant={navLinkVariant} to="https://khulnasoft.com" external={true}>
                         About Khulnasoft
                     </NavLink>
                 </NavItem>

@@ -11,5 +11,5 @@ plugins:
     version: v0.0.10-alpha
     from: github.com/sourcegraph/aspect-cli-plugin-buildkite
     properties:
-      buildkite_analytics_env_name: BUILDKITE_ANALYTICS_TOKEN_SOURCEGRAPH_BAZEL
+      buildkite_analytics_env_name: BUILDKITE_ANALYTICS_TOKEN_KHULNASOFT_BAZEL
       enable_annotations: false

@@ -15,7 +15,7 @@ bazel test --runs_per_test=2 --test_output=all //cmd/cody-gateway/qa:qa_test --t
 To run against prod using a dotcom user ($TOKEN is a user's `sgd_` token):
 
 ```sh
-bazel test --runs_per_test=2 --test_output=all //cmd/cody-gateway/qa:qa_test --test_env=E2E_GATEWAY_ENDPOINT=https://cody-gateway.sourcegraph.com --test_env=E2E_GATEWAY_TOKEN=$TOKEN
+bazel test --runs_per_test=2 --test_output=all //cmd/cody-gateway/qa:qa_test --test_env=E2E_GATEWAY_ENDPOINT=https://cody-gateway.khulnasoft.com --test_env=E2E_GATEWAY_TOKEN=$TOKEN
 ```
 
 The `--runs_per_test=2` flag in snippet above ensures we don't hit a Bazel cache, and runs the test twice for good meausre.

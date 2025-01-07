@@ -1,5 +1,5 @@
 // Package usagestats provides an interface to update and access information about
-// individual and aggregate Sourcegraph users' activity levels.
+// individual and aggregate Khulnasoft users' activity levels.
 package usagestats
 
 import (
@@ -158,8 +158,8 @@ func GetUsersActiveTodayCount(ctx context.Context, db database.DB) (int, error) 
 		today.AddDate(0, 0, 1),
 		&database.CountUniqueUsersOptions{CommonUsageOptions: database.CommonUsageOptions{
 			ExcludeSystemUsers:          true,
-			ExcludeSourcegraphAdmins:    true,
-			ExcludeSourcegraphOperators: true,
+			ExcludeKhulnasoftAdmins:    true,
+			ExcludeKhulnasoftOperators: true,
 		}},
 	)
 }
@@ -235,8 +235,8 @@ func activeUsers(ctx context.Context, db database.DB, dayPeriods, weekPeriods, m
 		CommonUsageOptions: database.CommonUsageOptions{
 			ExcludeSystemUsers:          true,
 			ExcludeNonActiveUsers:       true,
-			ExcludeSourcegraphAdmins:    true,
-			ExcludeSourcegraphOperators: true,
+			ExcludeKhulnasoftAdmins:    true,
+			ExcludeKhulnasoftOperators: true,
 		},
 	})
 }

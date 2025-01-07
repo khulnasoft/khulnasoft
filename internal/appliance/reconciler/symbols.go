@@ -21,7 +21,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-func (r *Reconciler) reconcileSymbols(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSymbols(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileSymbolsStatefulSet(ctx, sg, owner); err != nil {
 		return err
 	}
@@ -34,7 +34,7 @@ func (r *Reconciler) reconcileSymbols(ctx context.Context, sg *config.Sourcegrap
 	return nil
 }
 
-func (r *Reconciler) reconcileSymbolsStatefulSet(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSymbolsStatefulSet(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "symbols"
 	cfg := sg.Spec.Symbols
 
@@ -142,7 +142,7 @@ func (r *Reconciler) reconcileSymbolsStatefulSet(ctx context.Context, sg *config
 	return reconcileObject(ctx, r, ifChanged, &sset, &appsv1.StatefulSet{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileSymbolsService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSymbolsService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	svc := service.NewService("symbols", sg.Namespace, sg.Spec.Symbols)
 	svc.Spec.Ports = []corev1.ServicePort{
 		{Name: "http", TargetPort: intstr.FromString("http"), Port: 3184},
@@ -154,7 +154,7 @@ func (r *Reconciler) reconcileSymbolsService(ctx context.Context, sg *config.Sou
 	return reconcileObject(ctx, r, sg.Spec.Symbols, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileSymbolsServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSymbolsServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Symbols
 	sa := serviceaccount.NewServiceAccount("symbols", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, sg.Spec.Symbols, &sa, &corev1.ServiceAccount{}, sg, owner)

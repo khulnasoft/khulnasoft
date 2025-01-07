@@ -1,4 +1,4 @@
-// Package sysreq implements checking for Sourcegraph system requirements.
+// Package sysreq implements checking for Khulnasoft system requirements.
 package sysreq
 
 import (

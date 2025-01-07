@@ -123,8 +123,8 @@ func TestResolver_SetRepositoryPermissionsForUsers(t *testing.T) {
 		},
 		expUserIDs: map[int32]struct{}{1: {}},
 		expAccounts: &extsvc.Accounts{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			AccountIDs:  []string{"bob"},
 		},
 	}, {
@@ -164,8 +164,8 @@ func TestResolver_SetRepositoryPermissionsForUsers(t *testing.T) {
 		},
 		expUserIDs: map[int32]struct{}{1: {}},
 		expAccounts: &extsvc.Accounts{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			AccountIDs:  []string{"bob"},
 		},
 	}}
@@ -486,7 +486,7 @@ func TestResolver_SetRepositoryPermissionsForBitbucketProject(t *testing.T) {
 	t.Cleanup(licensing.TestingSkipFeatureChecks())
 
 	t.Run("disabled on dotcom", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		users := dbmocks.NewStrictMockUserStore()
 		users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{}, nil)
@@ -499,8 +499,8 @@ func TestResolver_SetRepositoryPermissionsForBitbucketProject(t *testing.T) {
 		ctx := actor.WithActor(context.Background(), &actor.Actor{UID: 1})
 		result, err := r.SetRepositoryPermissionsForBitbucketProject(ctx, nil)
 
-		if !errors.Is(err, errDisabledSourcegraphDotCom) {
-			t.Errorf("err: want %q, but got %q", errDisabledSourcegraphDotCom, err)
+		if !errors.Is(err, errDisabledKhulnasoftDotCom) {
+			t.Errorf("err: want %q, but got %q", errDisabledKhulnasoftDotCom, err)
 		}
 
 		if result != nil {
@@ -1782,7 +1782,7 @@ func TestResolver_SetSubRepositoryPermissionsForUsers(t *testing.T) {
 
 func TestResolver_BitbucketProjectPermissionJobs(t *testing.T) {
 	t.Run("disabled on dotcom", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		users := dbmocks.NewStrictMockUserStore()
 		users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{}, nil)
@@ -1795,7 +1795,7 @@ func TestResolver_BitbucketProjectPermissionJobs(t *testing.T) {
 		ctx := actor.WithActor(context.Background(), &actor.Actor{UID: 1})
 		result, err := r.BitbucketProjectPermissionJobs(ctx, nil)
 
-		require.ErrorIs(t, err, errDisabledSourcegraphDotCom)
+		require.ErrorIs(t, err, errDisabledKhulnasoftDotCom)
 		require.Nil(t, result)
 	})
 
@@ -2214,7 +2214,7 @@ query {
 				"state": "FAILED",
 				"failureMessage": null,
 				"reason": {
-					"group": "SOURCEGRAPH",
+					"group": "KHULNASOFT",
 					"reason": "REASON_USER_EMAIL_REMOVED"
 				},
 				"cancellationReason": null,
@@ -2358,7 +2358,7 @@ func TestResolverPermissionsSyncJobsFiltering(t *testing.T) {
 			Schema:  parsedSchema,
 			Query: `
 query {
-  permissionsSyncJobs(first: 10, reasonGroup: SOURCEGRAPH) {
+  permissionsSyncJobs(first: 10, reasonGroup: KHULNASOFT) {
 	totalCount
 	nodes {
 		id

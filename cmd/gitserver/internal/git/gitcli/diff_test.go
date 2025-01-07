@@ -44,11 +44,11 @@ index 0000000000000000000000000000000000000000..8a6a2d098ecaf90105f1cf2fa90fc460
 	backend := BackendWithRepoCommands(t,
 		"echo line1 > f",
 		"git add f",
-		"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		"git tag testbase",
 		"echo line2 >> f",
 		"git add f",
-		"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 	)
 
 	t.Run("streams diff", func(t *testing.T) {
@@ -72,11 +72,11 @@ index 0000000000000000000000000000000000000000..8a6a2d098ecaf90105f1cf2fa90fc460
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git tag testbase",
 			"echo line2 >> f2",
 			"git add f2",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		r, err := backend.RawDiff(ctx, "testbase", "HEAD", git.GitDiffComparisonTypeOnlyInHead, defaultOpts, "f2")
@@ -92,11 +92,11 @@ index 0000000000000000000000000000000000000000..8a6a2d098ecaf90105f1cf2fa90fc460
 		backend := BackendWithRepoCommands(t,
 			"echo 'line1\nline2\nline3\nlin4\nline5\nline6\nline7\nline8\n' > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git tag testbase",
 			"echo 'line1.1\nline2\nline3\nlin4\nline5.5\nline6\nline7\nline8\n' > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		var expectedDiff = []byte(`diff --git f f
@@ -127,7 +127,7 @@ index 0ef51c52043997fdd257a0b77d761e9ca58bcc1f..58692a00a73d1f78df00014edf4ef39e
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git tag test",
 		)
 
@@ -184,7 +184,7 @@ func TestGitCLIBackend_ChangedFiles(t *testing.T) {
 			"echo line1 > 'file with space'",
 			"echo line1 > 'file_with_😊_emoji'",
 			"git add f1 f2 f3 oldname",
-			"git commit -m base --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m base --author='Foo Author <foo@khulnasoft.com>'",
 
 			"git tag testbase",
 
@@ -201,7 +201,7 @@ func TestGitCLIBackend_ChangedFiles(t *testing.T) {
 			"echo line1 > d1/f1",
 			"git add d1/f1",
 			"git mv oldname newname",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		expectedChanges := []gitdomain.PathStatus{
@@ -271,7 +271,7 @@ func TestGitCLIBackend_ChangedFiles(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git tag testbase",
 		)
 
@@ -288,7 +288,7 @@ func TestGitCLIBackend_ChangedFiles(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		_, err := backend.ChangedFiles(ctx, "invalid", "HEAD")
@@ -301,7 +301,7 @@ func TestGitCLIBackend_ChangedFiles(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git tag testbase",
 		)
 
@@ -315,7 +315,7 @@ func TestGitCLIBackend_ChangedFiles(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		iterator, err := backend.ChangedFiles(ctx, "", "HEAD")
@@ -348,12 +348,12 @@ func TestGitCLIBackend_ChangedFiles(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f1",
 			"git add -A",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 
 			"mv f1 f2",
 			"ln -s f2 f1",
 			"git add -A",
-			"git commit -m bar --author='Bar Author <foo@sourcegraph.com>'",
+			"git commit -m bar --author='Bar Author <foo@khulnasoft.com>'",
 		)
 
 		iterator, err := backend.ChangedFiles(ctx, "", "HEAD")

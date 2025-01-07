@@ -75,7 +75,7 @@ func (h *handlerV1) CheckLicenseKey(ctx context.Context, req *connect.Request[su
 	}
 
 	// HACK: For back-compat with old license check, try to look for a format
-	// that looks like a license key hash token. Remove in Sourcegraph 5.8
+	// that looks like a license key hash token. Remove in Khulnasoft 5.8
 	var checkType string
 	var lc *subscriptions.SubscriptionLicense
 	if strings.HasPrefix(licenseKey, license.LicenseKeyBasedAccessTokenPrefix) {
@@ -219,11 +219,11 @@ func newMultipleInstancesUsageNotification(opts multipleInstancesUsageNotificati
 		instanceIDsList = append(instanceIDsList, fmt.Sprintf("- `%s`", id))
 	}
 	return &slack.Payload{
-		Text: fmt.Sprintf(`Subscription "%[1]s"'s license <https://sourcegraph.com/site-admin/dotcom/product/subscriptions/%[2]s#%[3]s|%[3]s> failed a license check, as it seems to be used by multiple Sourcegraph instance IDs:
+		Text: fmt.Sprintf(`Subscription "%[1]s"'s license <https://khulnasoft.com/site-admin/dotcom/product/subscriptions/%[2]s#%[3]s|%[3]s> failed a license check, as it seems to be used by multiple Khulnasoft instance IDs:
 
 %[4]s
 
-This could mean that the license key is attempting to be used on multiple Sourcegraph instances.
+This could mean that the license key is attempting to be used on multiple Khulnasoft instances.
 
 To fix it, <https://docs.google.com/document/d/1xzlkJd3HXGLzB67N7o-9T1s1YXhc1LeGDdJyKDyqfbI/edit#heading=h.mr6npkexi05j|follow the guide to update the siteID and license key for all customer instances>.`,
 			opts.subscriptionDisplayName,

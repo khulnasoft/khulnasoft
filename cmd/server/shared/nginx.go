@@ -45,7 +45,7 @@ func nginxWriteFiles(configDir string) (string, error) {
 	}
 
 	// We always write the files in the nginx directory, since those are
-	// controlled by Sourcegraph and can change between versions.
+	// controlled by Khulnasoft and can change between versions.
 	nginxDir := filepath.Join(configDir, "nginx")
 	if err := os.MkdirAll(nginxDir, 0755); err != nil {
 		return "", err

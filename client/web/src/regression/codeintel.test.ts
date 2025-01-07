@@ -48,7 +48,7 @@ describe('Code graph regression test suite', () => {
     let gqlClient: GraphQLClient
     let outerResourceManager: TestResourceManager
     before(async function () {
-        // sourcegraph/sourcegraph takes a while to clone
+        // khulnasoft/khulnasoft takes a while to clone
         this.timeout(6 * 6 * 60 * 1000)
         ;({ driver, gqlClient, resourceManager: outerResourceManager } = await getTestTools(config))
         outerResourceManager.add(

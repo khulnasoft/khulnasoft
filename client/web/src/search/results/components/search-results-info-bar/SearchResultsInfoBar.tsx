@@ -17,7 +17,7 @@ import type { AuthenticatedUser } from '../../../../auth'
 import {
     canWriteBatchChanges,
     NO_ACCESS_BATCH_CHANGES_WRITE,
-    NO_ACCESS_SOURCEGRAPH_COM,
+    NO_ACCESS_KHULNASOFT_COM,
 } from '../../../../batches/utils'
 import { SavedSearchModal } from '../../../../savedSearches/SavedSearchModal'
 import { SearchResultsCsvExportModal } from '../../export/SearchResultsCsvExportModal'
@@ -115,7 +115,7 @@ export const SearchResultsInfoBar: FC<SearchResultsInfoBarProps> = props => {
             return 'Batch changes cannot be created from searches with type:diff or type:commit'
         }
         if (props.isKhulnasoftDotCom) {
-            return NO_ACCESS_SOURCEGRAPH_COM
+            return NO_ACCESS_KHULNASOFT_COM
         }
         if (!props.batchChangesEnabled || !props.batchChangesExecutionEnabled) {
             return false

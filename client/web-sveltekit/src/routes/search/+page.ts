@@ -89,7 +89,7 @@ export const load: PageLoad = async ({ parent, url, depends }) => {
     const trace = url.searchParams.get('trace') ?? undefined
     const sourcegraphDotComMode = window.context.sourcegraphDotComMode
 
-    const codyHref = sourcegraphDotComMode ? 'https://sourcegraph.com/cody' : '/cody'
+    const codyHref = sourcegraphDotComMode ? 'https://khulnasoft.com/cody' : '/cody'
     const footer = sourcegraphDotComMode ? DotcomFooterLinks : null
 
     if (hasQuery) {

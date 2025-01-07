@@ -38,10 +38,10 @@ func (c *Config) Load(env *runtime.Env) {
 
 	// Construct by hand instead of sams.NewClientV1ConnectionConfigFromEnv for
 	// backwards compatibility.
-	c.SAMS.ExternalURL = env.Get("SAMS_URL", "https://accounts.sourcegraph.com", "External URL of the connected SAMS instance")
-	c.SAMS.APIURL = env.GetOptional("TELEMETRY_GATEWAY_SAMS_SERVER_URL", "Sourcegraph Accounts Management System URL")
+	c.SAMS.ExternalURL = env.Get("SAMS_URL", "https://accounts.khulnasoft.com", "External URL of the connected SAMS instance")
+	c.SAMS.APIURL = env.GetOptional("TELEMETRY_GATEWAY_SAMS_SERVER_URL", "Khulnasoft Accounts Management System URL")
 	c.SAMS.ClientID = env.Get("TELEMETRY_GATEWAY_SAMS_CLIENT_ID", "",
-		"Sourcegraph Accounts Management System client ID")
+		"Khulnasoft Accounts Management System client ID")
 	c.SAMS.ClientSecret = env.Get("TELEMETRY_GATEWAY_SAMS_CLIENT_SECRET", "",
-		"Sourcegraph Accounts Management System client secret")
+		"Khulnasoft Accounts Management System client secret")
 }

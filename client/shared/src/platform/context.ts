@@ -97,7 +97,7 @@ export interface PlatformContext {
      * Returns promise that resolves into Apollo Client instance after cache restoration.
      * Only `watchQuery` is available till https://github.com/khulnasoft/khulnasoft/issues/24953 is implemented.
      *
-     * @deprecated Use [Apollo](https://docs-legacy.sourcegraph.com/dev/background-information/web/graphql#graphql-client) instead
+     * @deprecated Use [Apollo](https://docs-legacy.khulnasoft.com/dev/background-information/web/graphql#graphql-client) instead
      */
     getGraphQLClient: () => Promise<Pick<GraphQLClient, 'watchQuery'>>
 
@@ -108,7 +108,7 @@ export interface PlatformContext {
      * could leak private information such as repository names.
      * @returns Observable that emits the result or an error if the HTTP request failed
      *
-     * @deprecated Use [Apollo](https://docs-legacy.sourcegraph.com/dev/background-information/web/graphql#graphql-client) instead
+     * @deprecated Use [Apollo](https://docs-legacy.khulnasoft.com/dev/background-information/web/graphql#graphql-client) instead
      */
     requestGraphQL: <R, V extends { [key: string]: any } = object>(options: {
         /**
@@ -155,7 +155,7 @@ export interface PlatformContext {
 
     /**
      * The URL to the Khulnasoft site that the user's session is associated with. This refers to
-     * Khulnasoft.com (`https://sourcegraph.com`) by default, or a self-hosted instance of
+     * Khulnasoft.com (`https://khulnasoft.com`) by default, or a self-hosted instance of
      * Khulnasoft.
      *
      * This is available to extensions in `sourcegraph.internal.sourcegraphURL`.
@@ -163,7 +163,7 @@ export interface PlatformContext {
      * @todo Consider removing this when https://github.com/khulnasoft/khulnasoft/issues/566 is
      * fixed.
      *
-     * @example `https://sourcegraph.com`
+     * @example `https://khulnasoft.com`
      */
     sourcegraphURL: string
 
@@ -189,7 +189,7 @@ export interface PlatformContext {
     /**
      * Telemetry recorder for the new telemetry framework, superseding
      * 'telemetryService' and 'logEvent' variants. Learn more here:
-     * https://docs-legacy.sourcegraph.com/dev/background-information/telemetry
+     * https://docs-legacy.khulnasoft.com/dev/background-information/telemetry
      *
      * It is backed by a '@sourcegraph/telemetry' implementation.
      */

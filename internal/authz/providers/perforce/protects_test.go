@@ -33,16 +33,16 @@ func TestConvertToPostgresMatch(t *testing.T) {
 		want  string
 	}{{
 		name:  "*",
-		match: "//Sourcegraph/Engineering/*/Frontend/",
-		want:  "//Sourcegraph/Engineering/[^/]+/Frontend/",
+		match: "//Khulnasoft/Engineering/*/Frontend/",
+		want:  "//Khulnasoft/Engineering/[^/]+/Frontend/",
 	}, {
 		name:  "...",
-		match: "//Sourcegraph/Engineering/.../Frontend/",
-		want:  "//Sourcegraph/Engineering/%/Frontend/",
+		match: "//Khulnasoft/Engineering/.../Frontend/",
+		want:  "//Khulnasoft/Engineering/%/Frontend/",
 	}, {
 		name:  "* and ...",
-		match: "//Sourcegraph/*/Src/.../Frontend/",
-		want:  "//Sourcegraph/[^/]+/Src/%/Frontend/",
+		match: "//Khulnasoft/*/Src/.../Frontend/",
+		want:  "//Khulnasoft/[^/]+/Src/%/Frontend/",
 	}}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -70,18 +70,18 @@ func TestConvertToGlobMatch(t *testing.T) {
 		shouldNotMatch []string
 	}{{
 		name:  "*",
-		match: "//Sourcegraph/Engineering/*/Frontend/",
-		want:  "//Sourcegraph/Engineering/*/Frontend/",
+		match: "//Khulnasoft/Engineering/*/Frontend/",
+		want:  "//Khulnasoft/Engineering/*/Frontend/",
 	}, {
 		name:  "...",
-		match: "//Sourcegraph/Engineering/.../Frontend/",
-		want:  "//Sourcegraph/Engineering/**/Frontend/",
+		match: "//Khulnasoft/Engineering/.../Frontend/",
+		want:  "//Khulnasoft/Engineering/**/Frontend/",
 	}, {
 		name:           "* and ...",
-		match:          "//Sourcegraph/*/Src/.../Frontend/",
-		want:           "//Sourcegraph/*/Src/**/Frontend/",
-		shouldMatch:    []string{"//Sourcegraph/Path/Src/One/Two/Frontend/"},
-		shouldNotMatch: []string{"//Sourcegraph/One/Two/Src/Path/Frontend/"},
+		match:          "//Khulnasoft/*/Src/.../Frontend/",
+		want:           "//Khulnasoft/*/Src/**/Frontend/",
+		shouldMatch:    []string{"//Khulnasoft/Path/Src/One/Two/Frontend/"},
+		shouldNotMatch: []string{"//Khulnasoft/One/Two/Src/Path/Frontend/"},
 	}, {
 		name:  "./....c",
 		match: "./....c",

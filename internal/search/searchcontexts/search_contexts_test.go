@@ -108,7 +108,7 @@ func TestResolvingInvalidSearchContextSpecs(t *testing.T) {
 }
 
 func TestResolvingInvalidSearchContextSpecs_Cloud(t *testing.T) {
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	tests := []struct {
 		name              string

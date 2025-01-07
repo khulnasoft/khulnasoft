@@ -18,7 +18,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-func (r *Reconciler) reconcileJaeger(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileJaeger(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileJaegerDeployment(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling Deployment")
 	}
@@ -35,7 +35,7 @@ func (r *Reconciler) reconcileJaeger(ctx context.Context, sg *config.Sourcegraph
 	return nil
 }
 
-func (r *Reconciler) reconcileJaegerDeployment(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileJaegerDeployment(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "jaeger"
 	cfg := sg.Spec.Jaeger
 
@@ -89,7 +89,7 @@ func (r *Reconciler) reconcileJaegerDeployment(ctx context.Context, sg *config.S
 	return reconcileObject(ctx, r, cfg, &dep, &appsv1.Deployment{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileJaegerQueryService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileJaegerQueryService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "jaeger-query"
 	cfg := sg.Spec.Jaeger
 	svc := service.NewService(name, sg.Namespace, cfg)
@@ -103,7 +103,7 @@ func (r *Reconciler) reconcileJaegerQueryService(ctx context.Context, sg *config
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileJaegerCollectorService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileJaegerCollectorService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "jaeger-collector"
 	cfg := sg.Spec.Jaeger
 	svc := service.NewService(name, sg.Namespace, cfg)
@@ -119,7 +119,7 @@ func (r *Reconciler) reconcileJaegerCollectorService(ctx context.Context, sg *co
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileJaegerServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileJaegerServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Jaeger
 	sa := serviceaccount.NewServiceAccount("jaeger", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)

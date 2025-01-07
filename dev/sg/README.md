@@ -26,4 +26,4 @@
 ```
 
 `sg` is the CLI tool that Khulnasoft developers can use to develop Khulnasoft.
-Learn more about it [here](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/doc/dev/background-information/sg/index.md).
+Learn more about it [here](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/doc/dev/background-information/sg/index.md).

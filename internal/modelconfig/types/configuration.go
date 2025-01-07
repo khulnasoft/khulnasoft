@@ -14,7 +14,7 @@ type ClientSideProviderConfig struct {
 // Server-side Provider Configuration Data
 // ========================================================
 
-// https://sourcegraph.com/docs/cody/clients/enable-cody-enterprise#use-amazon-bedrock-aws
+// https://khulnasoft.com/docs/cody/clients/enable-cody-enterprise#use-amazon-bedrock-aws
 type AWSBedrockProviderConfig struct {
 	// Access token encodes your AWS credentials one one of several ways:
 	// - Leave it empty and rely on instance role bindings or other AWS configurations in the frontend service
@@ -29,7 +29,7 @@ type AWSBedrockProviderConfig struct {
 	Region string `json:"region"`
 }
 
-// https://sourcegraph.com/docs/cody/clients/enable-cody-enterprise#use-azure-openai-service
+// https://khulnasoft.com/docs/cody/clients/enable-cody-enterprise#use-azure-openai-service
 type AzureOpenAIProviderConfig struct {
 	// - As of 5.2.4 the access token can be left empty and it will rely on Environmental, Workload Identity or Managed Identity credentials configured for the frontend and worker services
 	// - Set it to <API_KEY> if directly configuring the credentials using the API key specified in the Azure portal
@@ -76,10 +76,10 @@ type GenericProviderConfig struct {
 // supplied by various third-party software.
 //
 // Because many of these third-party providers provide slightly different semantics for the OpenAI API
-// protocol, the Sourcegraph instance exposes this provider configuration which allows for much more
+// protocol, the Khulnasoft instance exposes this provider configuration which allows for much more
 // extensive configuration than would be needed for the official OpenAI API.
 type OpenAICompatibleProviderConfig struct {
-	// Endpoints where this API can be reached. If multiple are present, Sourcegraph will distribute
+	// Endpoints where this API can be reached. If multiple are present, Khulnasoft will distribute
 	// load between them as it sees fit.
 	Endpoints []OpenAICompatibleEndpoint `json:"endpoints,omitempty"`
 
@@ -94,9 +94,9 @@ type OpenAICompatibleEndpoint struct {
 	AccessToken string `json:"accessToken"`
 }
 
-// SourcegraphProviderConfig is the configuration blog for configuring a provider
+// KhulnasoftProviderConfig is the configuration blog for configuring a provider
 // to be use Khulnasoft's Cody Gateway for requests.
-type SourcegraphProviderConfig struct {
+type KhulnasoftProviderConfig struct {
 	AccessToken string `json:"accessToken"`
 	Endpoint    string `json:"endpoint"`
 }
@@ -108,7 +108,7 @@ type ServerSideProviderConfig struct {
 	AzureOpenAI         *AzureOpenAIProviderConfig      `json:"azureOpenAi,omitempty"`
 	OpenAICompatible    *OpenAICompatibleProviderConfig `json:"openAICompatible,omitempty"`
 	GenericProvider     *GenericProviderConfig          `json:"genericProvider,omitempty"`
-	SourcegraphProvider *SourcegraphProviderConfig      `json:"sourcegraphProvider,omitempty"`
+	KhulnasoftProvider *KhulnasoftProviderConfig      `json:"sourcegraphProvider,omitempty"`
 }
 
 // ========================================================
@@ -203,7 +203,7 @@ type ClientSideModelConfigOpenAICompatible struct {
 // Server-side Model Configuration Data
 // ========================================================
 
-// https://sourcegraph.com/docs/cody/clients/enable-cody-enterprise#use-amazon-bedrock-aws
+// https://khulnasoft.com/docs/cody/clients/enable-cody-enterprise#use-amazon-bedrock-aws
 // https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#prov-throughput-models
 // https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html
 type AWSBedrockProvisionedThroughput struct {

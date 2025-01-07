@@ -53,7 +53,7 @@ type packagesSource interface {
 	// ParseVersionedPackageFromConfiguration parses a package and version from the "dependencies"
 	// field from the site-admin interface.
 	ParseVersionedPackageFromConfiguration(dep string) (reposource.VersionedPackage, error)
-	// ParsePackageFromRepoName parses a Sourcegraph repository name of the package.
+	// ParsePackageFromRepoName parses a Khulnasoft repository name of the package.
 	ParsePackageFromRepoName(repoName api.RepoName) (reposource.Package, error)
 }
 
@@ -196,7 +196,7 @@ func (s *vcsPackagesSyncer) fetchVersions(ctx context.Context, name reposource.P
 		// to download versions over and over again clogs out large clone queue.
 		// TODO(eseliger): Remove this branch! Also make sure to remove all the
 		// existing packages from gitserver disks.
-		if dotcom.SourcegraphDotComMode() {
+		if dotcom.KhulnasoftDotComMode() {
 			s.logger.Error("failed to fetch some dependency versions", log.Error(errs))
 			return nil
 		}
@@ -333,7 +333,7 @@ func (s *vcsPackagesSyncer) versions(ctx context.Context, packageName reposource
 
 func runCommandInDirectory(ctx context.Context, cmd *exec.Cmd, workingDirectory string, dependency reposource.VersionedPackage) (string, error) {
 	gitName := dependency.VersionedPackageSyntax() + " authors"
-	gitEmail := "code-intel@sourcegraph.com"
+	gitEmail := "code-intel@khulnasoft.com"
 	cmd.Dir = workingDirectory
 	cmd.Env = append(cmd.Env, "EMAIL="+gitEmail)
 	cmd.Env = append(cmd.Env, "GIT_AUTHOR_NAME="+gitName)

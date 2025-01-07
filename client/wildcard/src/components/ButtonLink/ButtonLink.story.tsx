@@ -40,7 +40,7 @@ export const Overview: StoryFn = () => (
         <Grid className="mb-3" columnCount={3}>
             {BUTTON_VARIANTS.map(variant => (
                 <div key={variant}>
-                    <ButtonLink variant={variant} to="https://sourcegraph.com" target="_blank" onClick={console.log}>
+                    <ButtonLink variant={variant} to="https://khulnasoft.com" target="_blank" onClick={console.log}>
                         {startCase(variant)}
                     </ButtonLink>
                 </div>
@@ -50,7 +50,7 @@ export const Overview: StoryFn = () => (
         <ButtonLink
             variant="danger"
             outline={true}
-            to="https://sourcegraph.com"
+            to="https://khulnasoft.com"
             target="_blank"
             onClick={console.log}
             className="mb-2"
@@ -61,7 +61,7 @@ export const Overview: StoryFn = () => (
         <Text>We can use icons with our buttons.</Text>{' '}
         <ButtonLink
             variant="secondary"
-            to="https://sourcegraph.com"
+            to="https://khulnasoft.com"
             target="_blank"
             onClick={console.log}
             className="mb-2"
@@ -73,7 +73,7 @@ export const Overview: StoryFn = () => (
         <Text>We can make our buttons smaller.</Text>
         <ButtonLink
             variant="secondary"
-            to="https://sourcegraph.com"
+            to="https://khulnasoft.com"
             target="_blank"
             onClick={console.log}
             className="mb-2"

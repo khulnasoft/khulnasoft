@@ -27,7 +27,7 @@ type Provider struct {
 	pageSize int // Page size to use in paginated requests.
 
 	// pluginPerm enables fetching permissions from the alternative roaring
-	// bitmap endpoint provided by the Bitbucket Server Sourcegraph plugin:
+	// bitmap endpoint provided by the Bitbucket Server Khulnasoft plugin:
 	// https://github.com/sourcegraph/bitbucket-server-plugin
 	pluginPerm bool
 }
@@ -36,7 +36,7 @@ var _ authz.Provider = (*Provider)(nil)
 
 // NewProvider returns a new Bitbucket Server authorization provider that uses
 // the given bitbucketserver.Client to talk to a Bitbucket Server API that is
-// the source of truth for permissions. It assumes usernames of Sourcegraph accounts
+// the source of truth for permissions. It assumes usernames of Khulnasoft accounts
 // match 1-1 with usernames of Bitbucket Server API users.
 func NewProvider(cli *bitbucketserver.Client, urn string, pluginPerm bool) *Provider {
 	return &Provider{

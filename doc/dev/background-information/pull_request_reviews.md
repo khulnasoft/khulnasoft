@@ -1,8 +1,8 @@
 # Pull request reviews <span class="badge badge-note">SOC2/GN-98</span> <span class="badge badge-note">SOC2/GN-104</span>
 
-Sourcegraph has a formal software development life cycle methodology and supporting procedures to help manage application and infrastructure changes.
+Khulnasoft has a formal software development life cycle methodology and supporting procedures to help manage application and infrastructure changes.
 
-All contributions to Sourcegraph must be reviewed and approved before being merged into the `main` branch. This includes code changes, documentation changes, and more.
+All contributions to Khulnasoft must be reviewed and approved before being merged into the `main` branch. This includes code changes, documentation changes, and more.
 
 GitHub repositories are configured to prevent merging without a review (including administrators), but in the eventuality of a pull request being merged without review, 
 [`pr-auditor`](https://github.com/khulnasoft/khulnasoft/tree/main/dev/pr-auditor) will open an exception in the [audit trail](https://github.com/sourcegraph/sec-pr-audit-trail/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) where the teammate who merged the pull request can document the exception.
@@ -49,7 +49,7 @@ Use your best judgement when deciding if another review cycle is needed. If your
 
 ### GitHub notifications
 
-Ensure that you have you [GitHub notification settings](https://handbook.sourcegraph.com/engineering/github-notifications) configured correctly so that you are responsive to comments on PRs that you have authored and to review requests from teammates throughout review cycles.
+Ensure that you have you [GitHub notification settings](https://handbook.khulnasoft.com/engineering/github-notifications) configured correctly so that you are responsive to comments on PRs that you have authored and to review requests from teammates throughout review cycles.
 
 ## Authoring pull requests
 
@@ -72,7 +72,7 @@ Do:
 
 Don't:
 
-- Submit a PR that would cause the main branch to [non-releaseable](https://handbook.sourcegraph.com/engineering/continuous_releasability).
+- Submit a PR that would cause the main branch to [non-releaseable](https://handbook.khulnasoft.com/engineering/continuous_releasability).
 - Submit PRs with multiple overlapping concerns. Every PR should have an obvious goals. PRs tackling multiple issues at once should be split into more highly-focused PRs when possible. For example, a necessary refactor for a feature addition should be split into a (prerequisite) refactor PR, followed by a (subsequent) feature addition PR. Highly cohesive PRs enable reviewers to effectively hold the state of the change in their head.
 
 ### Who should I get a review from?
@@ -81,7 +81,7 @@ You should get a review from the person who's approval will give you the most co
 
 If your change touches multiple parts of our codebase (e.g. Go, TypeScript), then you will need to get approval from multiple peers (e.g. a Go reviewer and a TypeScript reviewer).
 
-GitHub will automatically assign reviewers if there is a matching entry in the [CODEOWNERS](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/.github/CODEOWNERS) file, but that doesn't necessarily mean that you need to wait for an approval from everyone. For example, if you are making a change to the search backend then you only need approval from one person on that team, not all of them.
+GitHub will automatically assign reviewers if there is a matching entry in the [CODEOWNERS](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/.github/CODEOWNERS) file, but that doesn't necessarily mean that you need to wait for an approval from everyone. For example, if you are making a change to the search backend then you only need approval from one person on that team, not all of them.
 
 For small changes across few files assign to the team and request a review.
 
@@ -152,7 +152,7 @@ Here are some examples of reasons to skip review that are NOT acceptable:
   - The customer expects the feature to work and be maintained. review helps ensure both of these things by increasing the quality and distributing ownership.
 - "This code is experimental"
   - Our goal is to have a review culture such that engineers who are working on "experimental" code still find reviews valuable and worth doing (for all the benefits mentioned in the rest of this document).
-  - All code that is in `main` has the potential to impact customers (e.g. by causing a bug) and other developers at Sourcegraph (e.g. by making it harder to refactor code). As such, it is in our interest to ensure a certain quality level on all code whether or not it is considered "experimental".
+  - All code that is in `main` has the potential to impact customers (e.g. by causing a bug) and other developers at Khulnasoft (e.g. by making it harder to refactor code). As such, it is in our interest to ensure a certain quality level on all code whether or not it is considered "experimental".
   - Assume that we allowed "experimental" code to bypass review. How would we know when it is no longer experimental and how would it get reviewed? Either it wouldn't get reviewed, or an engineer would have to review all the code after the fact without a nice PR diff to look at or effective way to make comments. Neither of these outcomes would meet our need of reviewing all non-experimental code.
 - "I don't have someone to review this code"
   - Ask for help to identify someone else on the team with whom you can share your knowledge, context, and ownership.

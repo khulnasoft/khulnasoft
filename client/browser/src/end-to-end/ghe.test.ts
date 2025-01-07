@@ -42,7 +42,7 @@ describe.skip('Khulnasoft browser extension on GitHub Enterprise', () => {
         this.timeout(4 * 60 * 1000)
         driver = await createDriverForTest({ loadExtension: true, sourcegraphBaseUrl })
 
-        if (sourcegraphBaseUrl !== 'https://sourcegraph.com') {
+        if (sourcegraphBaseUrl !== 'https://khulnasoft.com') {
             if (restConfig.testUserPassword) {
                 await driver.ensureSignedIn({ username: 'test', password: restConfig.testUserPassword })
             }

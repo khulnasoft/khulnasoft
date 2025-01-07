@@ -215,7 +215,7 @@ func TestPermissionSyncJobs_CreateAndList(t *testing.T) {
 		},
 		{
 			name:     "ReasonGroup filtering",
-			opts:     ListPermissionSyncJobOpts{ReasonGroup: PermissionsSyncJobReasonGroupSourcegraph},
+			opts:     ListPermissionSyncJobOpts{ReasonGroup: PermissionsSyncJobReasonGroupKhulnasoft},
 			wantJobs: jobs[2:3],
 		},
 		{

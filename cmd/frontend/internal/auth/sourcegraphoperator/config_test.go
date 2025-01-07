@@ -13,7 +13,7 @@ func TestValidateConfig(t *testing.T) {
 		t,
 		&cloud.SchemaSiteConfig{
 			AuthProviders: &cloud.SchemaAuthProviders{
-				SourcegraphOperator: &cloud.SchemaAuthProviderSourcegraphOperator{
+				KhulnasoftOperator: &cloud.SchemaAuthProviderKhulnasoftOperator{
 					Issuer: "https://example.com/alice",
 				},
 			},
@@ -26,6 +26,6 @@ func TestValidateConfig(t *testing.T) {
 			SiteConfiguration: schema.SiteConfiguration{},
 		},
 		validateConfig,
-		conf.NewSiteProblems("Sourcegraph Operator authentication provider requires `externalURL` to be set to the external URL of your site (example: https://sourcegraph.example.com)"),
+		conf.NewSiteProblems("Khulnasoft Operator authentication provider requires `externalURL` to be set to the external URL of your site (example: https://sourcegraph.example.com)"),
 	)
 }

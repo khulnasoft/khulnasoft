@@ -49,7 +49,7 @@ type QueueJobIDs struct {
 
 // HeartbeatRequest is the payload sent by executors to the executor service to indicate that they are still alive.
 type HeartbeatRequest struct {
-	// TODO: This field is set to become unnecessary in Sourcegraph 5.2.
+	// TODO: This field is set to become unnecessary in Khulnasoft 5.2.
 	Version ExecutorAPIVersion `json:"version"`
 
 	ExecutorName string `json:"executorName"`
@@ -73,9 +73,9 @@ type HeartbeatRequest struct {
 
 // HeartbeatRequestV1 is the payload sent by executors to the executor service to indicate that they are still alive.
 // Job IDs are ints instead of strings to support backwards compatibility.
-// TODO: Remove this in Sourcegraph 5.2
+// TODO: Remove this in Khulnasoft 5.2
 type HeartbeatRequestV1 struct {
-	// TODO: This field is set to become unnecessary in Sourcegraph 5.2.
+	// TODO: This field is set to become unnecessary in Khulnasoft 5.2.
 	Version ExecutorAPIVersion `json:"version"`
 
 	ExecutorName string `json:"executorName"`
@@ -94,7 +94,7 @@ type HeartbeatRequestV1 struct {
 }
 
 type heartbeatRequestUnmarshaller struct {
-	// TODO: This field is set to become unnecessary in Sourcegraph 5.2.
+	// TODO: This field is set to become unnecessary in Khulnasoft 5.2.
 	Version ExecutorAPIVersion `json:"version"`
 
 	ExecutorName  string        `json:"executorName"`
@@ -114,7 +114,7 @@ type heartbeatRequestUnmarshaller struct {
 	PrometheusMetrics string `json:"prometheusMetrics"`
 }
 
-// TODO: This field is set to become unnecessary in Sourcegraph 5.2.
+// TODO: This field is set to become unnecessary in Khulnasoft 5.2.
 type ExecutorAPIVersion string
 
 const (
@@ -123,7 +123,7 @@ const (
 
 // UnmarshalJSON is a custom unmarshaler for HeartbeatRequest that allows for backwards compatibility when job IDs are
 // ints instead of strings.
-// TODO: Remove this in Sourcegraph 5.2
+// TODO: Remove this in Khulnasoft 5.2
 func (h *HeartbeatRequest) UnmarshalJSON(b []byte) error {
 	var req heartbeatRequestUnmarshaller
 	if err := json.Unmarshal(b, &req); err != nil {
@@ -171,7 +171,7 @@ type heartbeatResponseUnmarshaller struct {
 
 // UnmarshalJSON is a custom unmarshaler for HeartbeatResponse that allows for backwards compatibility when IDs are
 // ints instead of strings.
-// TODO: Remove this in Sourcegraph 5.2
+// TODO: Remove this in Khulnasoft 5.2
 func (h *HeartbeatResponse) UnmarshalJSON(b []byte) error {
 	var res heartbeatResponseUnmarshaller
 	if err := json.Unmarshal(b, &res); err != nil {

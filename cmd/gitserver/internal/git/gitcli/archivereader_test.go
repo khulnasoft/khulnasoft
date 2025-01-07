@@ -76,7 +76,7 @@ func TestGitCLIBackend_ArchiveReader(t *testing.T) {
 		"git add file1",
 		`git add " file3"`,
 		"git add dir1",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 	)
 
 	commitID, err := backend.RevParseHead(ctx)

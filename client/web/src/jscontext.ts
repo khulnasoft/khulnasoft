@@ -106,7 +106,7 @@ export interface KhulnasoftContext extends Pick<Required<SiteConfiguration>, 'ex
 
     telemetryRecorder: TelemetryRecorder
 
-    /** Externally accessible URL for Khulnasoft (e.g., https://sourcegraph.com or http://localhost:3080). */
+    /** Externally accessible URL for Khulnasoft (e.g., https://khulnasoft.com or http://localhost:3080). */
     externalURL: string
 
     /** Whether instance allows to change its settings manually in UI */

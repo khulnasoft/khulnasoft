@@ -112,7 +112,7 @@ func ssoSignOutHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	if p := sourcegraphoperator.GetOIDCProvider(internalauth.SourcegraphOperatorProviderType); p != nil {
+	if p := sourcegraphoperator.GetOIDCProvider(internalauth.KhulnasoftOperatorProviderType); p != nil {
 		_, err := openidconnect.SignOut(
 			w,
 			r,

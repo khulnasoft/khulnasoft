@@ -22,7 +22,7 @@ expression: "String::from_utf8_lossy(&output)"
 {"_type":"tag","name":"Errors","path":"globals.cs","language":"c_sharp","line":74,"kind":"enumMember","scope":"Longer.Namespace.Class.ZigFeatureSet"}
 {"_type":"tag","name":"None","path":"globals.cs","language":"c_sharp","line":73,"kind":"enumMember","scope":"Longer.Namespace.Class.ZigFeatureSet"}
 {"_type":"tag","name":"Syntax","path":"globals.cs","language":"c_sharp","line":82,"kind":"method","scope":"Longer.Namespace.Class"}
-{"_type":"tag","name":"SourcegraphSwag","path":"globals.cs","language":"c_sharp","line":68,"kind":"field","scope":"Longer.Namespace.Class"}
+{"_type":"tag","name":"KhulnasoftSwag","path":"globals.cs","language":"c_sharp","line":68,"kind":"field","scope":"Longer.Namespace.Class"}
 {"_type":"tag","name":"LambdaFunction","path":"globals.cs","language":"c_sharp","line":58,"kind":"property","scope":"Longer.Namespace.Class"}
 {"_type":"tag","name":"PublicImplicitGetterSetter","path":"globals.cs","language":"c_sharp","line":56,"kind":"property","scope":"Longer.Namespace.Class"}
 {"_type":"tag","name":"_speed","path":"globals.cs","language":"c_sharp","line":55,"kind":"field","scope":"Longer.Namespace.Class"}

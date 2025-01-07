@@ -8,22 +8,22 @@ go 1.22.4
 // or intentional forks.
 replace (
 	// We publish 'dev/ci/images' as a package for import in other tooling.
-	// When developing Sourcegraph itself, this replace uses the local package instead of a pushed version.
+	// When developing Khulnasoft itself, this replace uses the local package instead of a pushed version.
 	github.com/khulnasoft/khulnasoft/dev/ci/images => ./dev/ci/images
 	// We use a fork of Alertmanager to allow prom-wrapper to better manipulate Alertmanager configuration.
-	// See https://docs-legacy.sourcegraph.com/dev/background-information/observability/prometheus
+	// See https://docs-legacy.khulnasoft.com/dev/background-information/observability/prometheus
 	github.com/prometheus/alertmanager => github.com/sourcegraph/alertmanager v0.24.1-0.20240619011019-3695ef8bcc9a
-	github.com/sourcegraph/sourcegraph => ./
+	github.com/khulnasoft/khulnasoft => ./
 	// We publish 'lib' as a package for import in other tooling.
-	// When developing Sourcegraph itself, this replace uses the local package instead of a pushed version.
+	// When developing Khulnasoft itself, this replace uses the local package instead of a pushed version.
 	github.com/khulnasoft/khulnasoft/lib => ./lib
 	// We publish 'lib/managedservicesplatform' as a sub-package for import
 	// private services developed in other repositories, and to avoid bloating
 	// the more lightweight 'lib' package.
-	// When developing Sourcegraph itself, this replace uses the local package instead of a pushed version.
+	// When developing Khulnasoft itself, this replace uses the local package instead of a pushed version.
 	github.com/khulnasoft/khulnasoft/lib/managedservicesplatform => ./lib/managedservicesplatform
 	// We publish 'monitoring' as a package for import in other tooling.
-	// When developing Sourcegraph itself, this replace uses the local package instead of a pushed version.
+	// When developing Khulnasoft itself, this replace uses the local package instead of a pushed version.
 	github.com/khulnasoft/khulnasoft/monitoring => ./monitoring
 
 	// https://github.com/khulnasoft/khulnasoft/security/dependabot/397 archived but has a vulnerability
@@ -321,7 +321,7 @@ require (
 	github.com/sourcegraph/managed-services-platform-cdktf/gen/tfe v0.0.0-20240513203650-e2b1273f1c1a
 	github.com/sourcegraph/notionreposync v0.0.0-20240517090426-98b2d4b017d7
 	github.com/sourcegraph/scip v0.4.1-0.20240802084008-0504a347d36d
-	github.com/sourcegraph/sourcegraph v0.0.0-00010101000000-000000000000
+	github.com/khulnasoft/khulnasoft v0.0.0-00010101000000-000000000000
 	github.com/sourcegraph/sourcegraph-accounts-sdk-go v0.0.0-20240702160611-15589d6d8eac
 	github.com/khulnasoft/khulnasoft/lib v0.0.0-20240524140455-2589fef13ea8
 	github.com/khulnasoft/khulnasoft/lib/managedservicesplatform v0.0.0-00010101000000-000000000000

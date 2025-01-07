@@ -49,7 +49,7 @@ func NewClientFromSiteConfig(cli httpcli.Doer) (_ Client, ok bool) {
 	cc := conf.GetCompletionsConfig(config)
 
 	// If completions isn't using Cody Gateway, return empty.
-	ccUsingGateway := cc != nil && cc.Provider == conftypes.CompletionsProviderNameSourcegraph
+	ccUsingGateway := cc != nil && cc.Provider == conftypes.CompletionsProviderNameKhulnasoft
 	if !ccUsingGateway {
 		return nil, false
 	}

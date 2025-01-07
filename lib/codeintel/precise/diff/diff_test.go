@@ -113,7 +113,7 @@ func createTmpRepo(t *testing.T, path string) (string, func()) {
 	}
 
 	// We need at least a base identity, otherwise git will fail in CI when sandboxed.
-	gitcmd = exec.Command("git", "config", "user.email", "test@sourcegraph.com")
+	gitcmd = exec.Command("git", "config", "user.email", "test@khulnasoft.com")
 	gitcmd.Dir = tmpdir
 	if err := gitcmd.Run(); err != nil {
 		t.Fatalf("Unexpected error git: %v", err)

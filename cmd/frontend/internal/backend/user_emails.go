@@ -390,18 +390,18 @@ func (e *userEmails) SendUserEmailOnFieldUpdate(ctx context.Context, id int32, c
 }
 
 var updateAccountEmailTemplate = txemail.MustValidate(txtypes.Templates{
-	Subject: `Update to your Sourcegraph account ({{.Host}})`,
+	Subject: `Update to your Khulnasoft account ({{.Host}})`,
 	Text: `
-Hi there! Somebody (likely you) {{.Change}} for the user {{.Username}} on Sourcegraph ({{.Host}}).
+Hi there! Somebody (likely you) {{.Change}} for the user {{.Username}} on Khulnasoft ({{.Host}}).
 
-If this was you, carry on, and thanks for using Sourcegraph! Otherwise, please change your password immediately.
+If this was you, carry on, and thanks for using Khulnasoft! Otherwise, please change your password immediately.
 `,
 	HTML: `
 <p>
-Hi there! Somebody (likely you) {{.Change}} for the user {{.Username}} on Sourcegraph ({{.Host}}).
+Hi there! Somebody (likely you) {{.Change}} for the user {{.Username}} on Khulnasoft ({{.Host}}).
 </p>
 
-<p>If this was you, carry on, and thanks for using Sourcegraph! Otherwise, please change your password immediately.</p>
+<p>If this was you, carry on, and thanks for using Khulnasoft! Otherwise, please change your password immediately.</p>
 `,
 })
 
@@ -437,34 +437,34 @@ func (e *userEmails) SendUserEmailOnAccessTokenChange(ctx context.Context, id in
 }
 
 var accessTokenCreatedEmailTemplate = txemail.MustValidate(txtypes.Templates{
-	Subject: `New Sourcegraph access token created ({{.Host}})`,
+	Subject: `New Khulnasoft access token created ({{.Host}})`,
 	Text: `
-Hi there! Somebody (likely you) created a new access token "{{.TokenName}}" for the user {{.Username}} on Sourcegraph ({{.Host}}).
+Hi there! Somebody (likely you) created a new access token "{{.TokenName}}" for the user {{.Username}} on Khulnasoft ({{.Host}}).
 
-If this was you, carry on, and thanks for using Sourcegraph! Otherwise, please change your password immediately.
+If this was you, carry on, and thanks for using Khulnasoft! Otherwise, please change your password immediately.
 `,
 	HTML: `
 <p>
-Hi there! Somebody (likely you) created a new access token "{{.TokenName}}" for the user {{.Username}} on Sourcegraph ({{.Host}}).
+Hi there! Somebody (likely you) created a new access token "{{.TokenName}}" for the user {{.Username}} on Khulnasoft ({{.Host}}).
 </p>
 
-<p>If this was you, carry on, and thanks for using Sourcegraph! Otherwise, please change your password immediately.</p>
+<p>If this was you, carry on, and thanks for using Khulnasoft! Otherwise, please change your password immediately.</p>
 `,
 })
 
 var accessTokenDeletedEmailTemplate = txemail.MustValidate(txtypes.Templates{
-	Subject: `Sourcegraph access token deleted ({{.Host}})`,
+	Subject: `Khulnasoft access token deleted ({{.Host}})`,
 	Text: `
-Hi there! Somebody (likely you) deleted the access token "{{.TokenName}}" for the user {{.Username}} on Sourcegraph ({{.Host}}).
+Hi there! Somebody (likely you) deleted the access token "{{.TokenName}}" for the user {{.Username}} on Khulnasoft ({{.Host}}).
 
-If this was you, carry on, and thanks for using Sourcegraph! Otherwise, please change your password immediately.
+If this was you, carry on, and thanks for using Khulnasoft! Otherwise, please change your password immediately.
 `,
 	HTML: `
 <p>
-Hi there! Somebody (likely you) deleted the access token "{{.TokenName}}" for the user {{.Username}} on Sourcegraph ({{.Host}}).
+Hi there! Somebody (likely you) deleted the access token "{{.TokenName}}" for the user {{.Username}} on Khulnasoft ({{.Host}}).
 </p>
 
-<p>If this was you, carry on, and thanks for using Sourcegraph! Otherwise, please change your password immediately.</p>
+<p>If this was you, carry on, and thanks for using Khulnasoft! Otherwise, please change your password immediately.</p>
 `,
 })
 
@@ -527,8 +527,8 @@ func checkEmailAbuse(ctx context.Context, db database.DB, userID int32) (abused 
 			return true, "too many existing unverified email addresses", nil
 		}
 	}
-	if dotcom.SourcegraphDotComMode() {
-		// Abuse prevention check 3: Set a quota on Sourcegraph.com users to prevent abuse.
+	if dotcom.KhulnasoftDotComMode() {
+		// Abuse prevention check 3: Set a quota on Khulnasoft.com users to prevent abuse.
 		//
 		// There is no quota for on-prem instances because we assume they can trust their users
 		// to not abuse adding emails.
@@ -581,16 +581,16 @@ func SendUserEmailVerificationEmail(ctx context.Context, username, email, code s
 }
 
 var verifyEmailTemplates = txemail.MustValidate(txtypes.Templates{
-	Subject: `Verify your email on Sourcegraph ({{.Host}})`,
+	Subject: `Verify your email on Khulnasoft ({{.Host}})`,
 	Text: `Hi {{.Username}},
 
-Please verify your email address on Sourcegraph ({{.Host}}) by clicking this link:
+Please verify your email address on Khulnasoft ({{.Host}}) by clicking this link:
 
 {{.URL}}
 `,
 	HTML: `<p>Hi <a>{{.Username}},</a></p>
 
-<p>Please verify your email address on Sourcegraph ({{.Host}}) by clicking this link:</p>
+<p>Please verify your email address on Khulnasoft ({{.Host}}) by clicking this link:</p>
 
 <p><strong><a href="{{.URL}}">Verify email address</a></p>
 `,

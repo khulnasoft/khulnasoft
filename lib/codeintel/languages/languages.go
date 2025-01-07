@@ -122,7 +122,7 @@ func GetLanguages(path string, getContent func() ([]byte, error)) ([]string, err
 func getLanguagesByShebang(path string, content []byte, candidates []string) []string {
 	languages := enry.GetLanguagesByShebang(path, content, candidates)
 	if len(languages) == 2 {
-		// See https://sourcegraph.com/github.com/go-enry/go-enry@40f2a1e5b90eec55c20441c2a5911dcfc298a447/-/blob/data/interpreter.go?L95-96
+		// See https://khulnasoft.com/github.com/go-enry/go-enry@40f2a1e5b90eec55c20441c2a5911dcfc298a447/-/blob/data/interpreter.go?L95-96
 		if slices.Equal(languages, []string{"Perl", "Pod"}) {
 			return []string{"Perl"}
 		}

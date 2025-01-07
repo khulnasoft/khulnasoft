@@ -10,8 +10,8 @@
 | `-insecure-skip-verify` | Skip validation of TLS certificates against trusted chains | `false` |
 | `-kind` | kind of the external service to create |  |
 | `-name` | exact name of the external service to create |  |
-| `-trace` | Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing | `false` |
-| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph | `true` |
+| `-trace` | Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing | `false` |
+| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft | `true` |
 
 
 ## Usage
@@ -29,13 +29,13 @@ Usage of 'src extsvc create':
   -name string
     	exact name of the external service to create
   -trace
-    	Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing
+    	Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing
   -user-agent-telemetry
-    	Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph (default true)
+    	Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft (default true)
 
   Examples:
 
-  create an external service configuration on the Sourcegraph instance:
+  create an external service configuration on the Khulnasoft instance:
 
   $ cat new-config.json | src extsvc create
   $ src extsvc create -name 'My GitHub connection' new-config.json

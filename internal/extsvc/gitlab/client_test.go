@@ -31,7 +31,7 @@ import (
 
 func TestGetAuthenticatedUserOAuthScopes(t *testing.T) {
 	// To update this test's fixtures, use the GitLab token stored in
-	// 1Password under gitlab@sourcegraph.com.
+	// 1Password under gitlab@khulnasoft.com.
 	client := createTestClient(t)
 	ctx := context.Background()
 	have, err := client.GetAuthenticatedUserOAuthScopes(ctx)

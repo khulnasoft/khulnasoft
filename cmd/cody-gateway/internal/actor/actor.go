@@ -26,7 +26,7 @@ type Actor struct {
 	// and must not have any feature access.
 	//
 	// For example, for product subscriptions this is the subscription UUID. For
-	// Sourcegraph.com users, this is the string representation of the user ID.
+	// Khulnasoft.com users, this is the string representation of the user ID.
 	ID string `json:"id"`
 	// Name is the human-readable name for this actor, e.g. username, account name.
 	// Optional for implementations - if unset, ID will be returned from GetName().
@@ -75,7 +75,7 @@ func (a *Actor) IsEmpty() bool {
 }
 
 func (a *Actor) IsDotComActor() bool {
-	// Corresponds to sourcegraph.com subscription ID, or using a dotcom access token
+	// Corresponds to khulnasoft.com subscription ID, or using a dotcom access token
 	return a != nil && (a.GetSource() == codygatewayactor.ActorSourceEnterpriseSubscription && a.ID == "d3d2b638-d0a2-4539-a099-b36860b09819") || a.GetSource() == codygatewayactor.ActorSourceDotcomUser
 }
 

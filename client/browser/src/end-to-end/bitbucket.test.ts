@@ -10,7 +10,7 @@ import { retry } from '@sourcegraph/shared/src/testing/utils'
 import { testSingleFilePage } from './shared'
 
 // By default, these tests run against a local Bitbucket instance and a local Khulnasoft instance.
-// You can run them against other instances by setting the below env vars in addition to SOURCEGRAPH_BASE_URL.
+// You can run them against other instances by setting the below env vars in addition to KHULNASOFT_BASE_URL.
 
 const BITBUCKET_BASE_URL = process.env.BITBUCKET_BASE_URL || 'http://localhost:7990'
 const BITBUCKET_USERNAME = process.env.BITBUCKET_USERNAME || 'test'
@@ -41,14 +41,14 @@ async function createProject(driver: Driver): Promise<void> {
     await driver.page.goto(BITBUCKET_BASE_URL + '/projects')
     await driver.page.waitForSelector('.entity-table')
     const existingProject = await driver.page.evaluate(() =>
-        [...document.querySelectorAll('span.project-name')].some(project => project.textContent === 'SOURCEGRAPH')
+        [...document.querySelectorAll('span.project-name')].some(project => project.textContent === 'KHULNASOFT')
     )
     if (existingProject) {
         return
     }
     await driver.page.goto(BITBUCKET_BASE_URL + '/projects?create')
-    await driver.page.type('form.project-settings input[name="key"]', 'SOURCEGRAPH')
-    await driver.page.type('form.project-settings input[name="name"]', 'SOURCEGRAPH')
+    await driver.page.type('form.project-settings input[name="key"]', 'KHULNASOFT')
+    await driver.page.type('form.project-settings input[name="name"]', 'KHULNASOFT')
     await Promise.all([
         driver.page.waitForNavigation(),
         driver.page.click('form.project-settings input.aui-button-primary[type="submit"]'),
@@ -64,7 +64,7 @@ async function createProject(driver: Driver): Promise<void> {
 async function importBitbucketRepo(driver: Driver): Promise<void> {
     await createProject(driver)
     // Import repo (idempotent)
-    await driver.page.goto(BITBUCKET_BASE_URL + '/plugins/servlet/import-repository/SOURCEGRAPH')
+    await driver.page.goto(BITBUCKET_BASE_URL + '/plugins/servlet/import-repository/KHULNASOFT')
     await driver.page.waitForSelector('button[data-source="GIT"]')
     await driver.page.click('button[data-source="GIT"]')
     await driver.page.waitForSelector('input[name="url"]')
@@ -73,7 +73,7 @@ async function importBitbucketRepo(driver: Driver): Promise<void> {
     await driver.page.focus('.source-form.git-specific input[name="username"]')
     await driver.page.click('.next-step [name="connect"]')
     await retry(async () => {
-        const browsePage = '/projects/SOURCEGRAPH/repos/jsonrpc2/browse'
+        const browsePage = '/projects/KHULNASOFT/repos/jsonrpc2/browse'
         await driver.page.goto(BITBUCKET_BASE_URL + browsePage)
         // Retry until not redirected to the "import in progress" page anymore
         expect(new URL(driver.page.url()).pathname).toBe(new URL(browsePage, BITBUCKET_BASE_URL).pathname)
@@ -137,7 +137,7 @@ describe('Khulnasoft browser extension on Bitbucket Server', () => {
     before(async function () {
         this.timeout(4 * 60 * 1000)
         driver = await createDriverForTest({ loadExtension: !TEST_NATIVE_INTEGRATION, sourcegraphBaseUrl })
-        if (sourcegraphBaseUrl !== 'https://sourcegraph.com' && restConfig.testUserPassword) {
+        if (sourcegraphBaseUrl !== 'https://khulnasoft.com' && restConfig.testUserPassword) {
             await driver.ensureSignedIn({ username: 'test', password: restConfig.testUserPassword })
         }
 
@@ -151,7 +151,7 @@ describe('Khulnasoft browser extension on Bitbucket Server', () => {
 
         await importBitbucketRepo(driver)
 
-        if (sourcegraphBaseUrl !== 'https://sourcegraph.com') {
+        if (sourcegraphBaseUrl !== 'https://khulnasoft.com') {
             if (restConfig.testUserPassword) {
                 await driver.ensureSignedIn({ username: 'test', password: restConfig.testUserPassword })
             }
@@ -162,9 +162,9 @@ describe('Khulnasoft browser extension on Bitbucket Server', () => {
                     url: BITBUCKET_BASE_URL,
                     username: BITBUCKET_USERNAME,
                     password: BITBUCKET_PASSWORD,
-                    repos: ['SOURCEGRAPH/jsonrpc2'],
+                    repos: ['KHULNASOFT/jsonrpc2'],
                 }),
-                ensureRepos: [REPO_PATH_PREFIX + '/SOURCEGRAPH/jsonrpc2'],
+                ensureRepos: [REPO_PATH_PREFIX + '/KHULNASOFT/jsonrpc2'],
             })
 
             const bbsUrl = new URL(BITBUCKET_BASE_URL)
@@ -183,8 +183,8 @@ describe('Khulnasoft browser extension on Bitbucket Server', () => {
 
     testSingleFilePage({
         getDriver: () => driver,
-        url: `${BITBUCKET_BASE_URL}/projects/SOURCEGRAPH/repos/jsonrpc2/browse/call_opt.go?until=4fb7cd90793ee6ab445f466b900e6bffb9b63d78&untilPath=call_opt.go`,
-        repoName: `${REPO_PATH_PREFIX}/SOURCEGRAPH/jsonrpc2`,
+        url: `${BITBUCKET_BASE_URL}/projects/KHULNASOFT/repos/jsonrpc2/browse/call_opt.go?until=4fb7cd90793ee6ab445f466b900e6bffb9b63d78&untilPath=call_opt.go`,
+        repoName: `${REPO_PATH_PREFIX}/KHULNASOFT/jsonrpc2`,
         commitID: '4fb7cd90793ee6ab445f466b900e6bffb9b63d78',
         sourcegraphBaseUrl,
         getLineSelector: lineNumber => `.line:nth-child(${lineNumber})`,

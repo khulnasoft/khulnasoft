@@ -14,7 +14,7 @@ import (
 
 const (
 	// headerKeyTenantID is the header key for the tenant ID.
-	headerKeyTenantID = "X-Sourcegraph-Tenant-ID"
+	headerKeyTenantID = "X-Khulnasoft-Tenant-ID"
 )
 
 const (
@@ -54,7 +54,7 @@ func (t *InternalHTTPTransport) RoundTrip(req *http.Request) (*http.Response, er
 
 // InternalHTTPMiddleware wraps the given handle func and attaches the tenant indicated
 // in incoming requests to the request header. This should only be used to wrap internal
-// handlers for communication between Sourcegraph services.
+// handlers for communication between Khulnasoft services.
 // The client side has to use the InternalHTTPTransport to set the tenant header.
 //
 // 🚨 SECURITY: This should *never* be called to wrap externally accessible handlers (i.e.

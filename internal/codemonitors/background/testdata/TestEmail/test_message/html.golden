@@ -6,7 +6,7 @@
     </p>
 
     <h1 style="font-size: 18px; line-height: 24px">
-      Your Sourcegraph code monitor, <b>My test monitor</b>, detected <b>1</b> new result.
+      Your Khulnasoft code monitor, <b>My test monitor</b>, detected <b>1</b> new result.
     </h1>
 
     <ul style="list-style-type: none; padding-left: 0;">
@@ -19,7 +19,7 @@ for a code monitoring result.</pre>
 
     <p style="font-size: 16px; line-height: 24px">
       <a href="" style="color: #9C9FA6; font-weight: 400; text-decoration: underline; cursor: default">
-        View search on Sourcegraph
+        View search on Khulnasoft
       </a>
     </p>
     __
@@ -33,9 +33,9 @@ for a code monitoring result.</pre>
     </p>
     <p style="font-size: 12px; line-height: 24px; margin-bottom: 24px">
       Search results may contain confidential data. To protect your privacy and
-      security, Sourcegraph limits what information is contained in this
+      security, Khulnasoft limits what information is contained in this
       notification.
     </p>
-    <img src="https://sourcegraph.com/sourcegraph-logo-small.png" width="106" height="20" alt="Sourcegraph logo" />
+    <img src="https://khulnasoft.com/sourcegraph-logo-small.png" width="106" height="20" alt="Khulnasoft logo" />
   </body>
 </html>

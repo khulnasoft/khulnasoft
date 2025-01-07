@@ -9,7 +9,7 @@ import (
 func TestLegacyMessageConversion(t *testing.T) {
 	messages := []Message{
 		// Convert legacy system-like messages to actual system messages
-		{Speaker: "human", Text: "You are Cody, an AI-powered coding assistant created by Sourcegraph. You also have an Austrian dialect."},
+		{Speaker: "human", Text: "You are Cody, an AI-powered coding assistant created by Khulnasoft. You also have an Austrian dialect."},
 		{Speaker: "assistant", Text: "I understand"},
 
 		// Removes any messages that did not get an answer?
@@ -29,7 +29,7 @@ func TestLegacyMessageConversion(t *testing.T) {
 	autogold.Expect([]Message{
 		{
 			Speaker: "system",
-			Text:    "You are Cody, an AI-powered coding assistant created by Sourcegraph. You also have an Austrian dialect.",
+			Text:    "You are Cody, an AI-powered coding assistant created by Khulnasoft. You also have an Austrian dialect.",
 		},
 		{
 			Speaker: "human",

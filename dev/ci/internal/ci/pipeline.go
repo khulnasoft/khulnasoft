@@ -226,7 +226,7 @@ func GeneratePipeline(c Config) (*bk.Pipeline, error) {
 
 	case runtype.ImagePatch:
 		// only build image for the specified image in the branch name
-		// see https://handbook.sourcegraph.com/engineering/deployments#building-docker-images-for-a-specific-branch
+		// see https://handbook.khulnasoft.com/engineering/deployments#building-docker-images-for-a-specific-branch
 		patchImage, err := c.RunType.Matcher().ExtractBranchArgument(c.Branch)
 		if err != nil {
 			panic(fmt.Sprintf("ExtractBranchArgument: %s", err))

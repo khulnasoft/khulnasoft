@@ -31,7 +31,7 @@ const gitCommitNode: GitCommitFields = {
         person: {
             avatarURL: 'http://test.test/useravatar',
             displayName: 'alice',
-            email: 'alice@sourcegraph.com',
+            email: 'alice@khulnasoft.com',
             name: 'Alice',
             user: {
                 id: 'alice123',
@@ -46,7 +46,7 @@ const gitCommitNode: GitCommitFields = {
         person: {
             avatarURL: 'http://test.test/useravatar',
             displayName: 'alice',
-            email: 'alice@sourcegraph.com',
+            email: 'alice@khulnasoft.com',
             name: 'Alice',
             user: {
                 id: 'alice123',
@@ -206,7 +206,7 @@ const perforceChangelistNode: GitCommitFields = {
         person: {
             avatarURL: 'http://test.test/useravatar',
             displayName: 'alice',
-            email: 'alice@sourcegraph.com',
+            email: 'alice@khulnasoft.com',
             name: 'Alice',
             user: {
                 id: 'alice123',
@@ -221,7 +221,7 @@ const perforceChangelistNode: GitCommitFields = {
         person: {
             avatarURL: 'http://test.test/useravatar',
             displayName: 'alice',
-            email: 'alice@sourcegraph.com',
+            email: 'alice@khulnasoft.com',
             name: 'Alice',
             user: {
                 id: 'alice123',

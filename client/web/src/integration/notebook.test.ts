@@ -142,14 +142,14 @@ const mockSymbolStreamEvents: SearchEvent[] = [
         data: [
             {
                 type: 'symbol',
-                repository: 'github.com/sourcegraph/sourcegraph',
+                repository: 'github.com/khulnasoft/khulnasoft',
                 path: 'client/web/index.ts',
                 commit: 'branch',
                 symbols: [
                     {
                         name: 'func',
                         containerName: 'class',
-                        url: 'https://sourcegraph.com/github.com/sourcegraph/sourcegraph@branch/-/blob/client/web/index.ts?L1:1-1:3',
+                        url: 'https://khulnasoft.com/github.com/sourcegraph/sourcegraph@branch/-/blob/client/web/index.ts?L1:1-1:3',
                         kind: SymbolKind.FUNCTION,
                         line: 1,
                     },
@@ -166,7 +166,7 @@ const mockFilePathStreamEvents: SearchEvent[] = [
         data: [
             {
                 type: 'path',
-                repository: 'github.com/sourcegraph/sourcegraph',
+                repository: 'github.com/khulnasoft/khulnasoft',
                 path: 'client/web/index.ts',
                 commit: 'branch',
             },
@@ -179,7 +179,7 @@ const commonSearchGraphQLResults: Partial<WebGraphQlOperations & SharedGraphQlOp
     ...commonWebGraphQlResults,
     ...highlightFileResult,
     ...viewerSettings,
-    ResolveRepoRev: () => createResolveRepoRevisionResult('/github.com/sourcegraph/sourcegraph'),
+    ResolveRepoRev: () => createResolveRepoRevisionResult('/github.com/khulnasoft/khulnasoft'),
     FetchNotebook: ({ id }) => ({
         node: notebookFixture(id, 'Notebook Title', [
             { __typename: 'MarkdownBlock', id: '1', markdownInput: '# Title' },
@@ -424,7 +424,7 @@ describe('Search Notebook', () => {
                 element?.dispatchEvent(event)
             },
             fileBlockSelector,
-            'https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/blob/client/search/src/index.ts?L30-32'
+            'https://khulnasoft.com/github.com/sourcegraph/sourcegraph@main/-/blob/client/search/src/index.ts?L30-32'
         )
 
         // Wait for highlighted code to load
@@ -492,7 +492,7 @@ describe('Search Notebook', () => {
                         id: '3',
                         fileInput: {
                             __typename: 'FileBlockInput',
-                            repositoryName: 'github.com/sourcegraph/sourcegraph',
+                            repositoryName: 'github.com/khulnasoft/khulnasoft',
                             filePath: 'client/web/index.ts',
                             revision: 'main',
                             lineRange: { __typename: 'FileBlockLineRange', startLine: 1, endLine: 10 },
@@ -503,7 +503,7 @@ describe('Search Notebook', () => {
                         id: '4',
                         symbolInput: {
                             __typename: 'SymbolBlockInput',
-                            repositoryName: 'github.com/sourcegraph/sourcegraph',
+                            repositoryName: 'github.com/khulnasoft/khulnasoft',
                             filePath: 'client/web/index.ts',
                             revision: 'branch',
                             symbolName: 'func',
@@ -530,9 +530,9 @@ describe('Search Notebook', () => {
 query
 \`\`\`
 
-${process.env.SOURCEGRAPH_BASE_URL}/github.com/sourcegraph/sourcegraph@main/-/blob/client/web/index.ts?L2-10
+${process.env.KHULNASOFT_BASE_URL}/github.com/sourcegraph/sourcegraph@main/-/blob/client/web/index.ts?L2-10
 
-${process.env.SOURCEGRAPH_BASE_URL}/github.com/sourcegraph/sourcegraph@branch/-/blob/client/web/index.ts?L1:1-1:3#symbolName=func&symbolContainerName=class&symbolKind=FUNCTION&lineContext=3
+${process.env.KHULNASOFT_BASE_URL}/github.com/sourcegraph/sourcegraph@branch/-/blob/client/web/index.ts?L1:1-1:3#symbolName=func&symbolContainerName=class&symbolKind=FUNCTION&lineContext=3
 `
 
         await driver.page.client().send('Page.setDownloadBehavior', { behavior: 'allow', downloadPath })
@@ -699,7 +699,7 @@ ${process.env.SOURCEGRAPH_BASE_URL}/github.com/sourcegraph/sourcegraph@branch/-/
         await driver.replaceText({
             selector: '[data-testid="command-palette-input"]',
             newText:
-                'https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/blob/client/search/src/index.ts?L30-32',
+                'https://khulnasoft.com/github.com/sourcegraph/sourcegraph@main/-/blob/client/search/src/index.ts?L30-32',
             selectMethod: 'keyboard',
             enterTextMethod: 'paste',
         })

@@ -9,7 +9,7 @@ const recordSnapshot = grepValue =>
   new Promise((resolve, reject) => {
     shelljs.exec(
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      `POLLYJS_MODE=record SOURCEGRAPH_BASE_URL=https://sourcegraph.com pnpm run-integration --grep='${grepValue}'`,
+      `POLLYJS_MODE=record KHULNASOFT_BASE_URL=https://khulnasoft.com pnpm run-integration --grep='${grepValue}'`,
       (code, stdout, stderr) => {
         console.log(`stdout: ${stdout}`)
         console.log(`stderr: ${stderr}`)

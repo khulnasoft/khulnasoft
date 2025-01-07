@@ -43,12 +43,12 @@ type Dashboard struct {
 	// Groups of observable information about the container.
 	Groups []Group
 
-	// NoSourcegraphDebugServer indicates if this container does not export the standard
-	// Sourcegraph debug server (package `internal/debugserver`).
+	// NoKhulnasoftDebugServer indicates if this container does not export the standard
+	// Khulnasoft debug server (package `internal/debugserver`).
 	//
 	// This is used to configure monitoring features that depend on information exported
-	// by the standard Sourcegraph debug server.
-	NoSourcegraphDebugServer bool
+	// by the standard Khulnasoft debug server.
+	NoKhulnasoftDebugServer bool
 }
 
 func (c *Dashboard) validate() error {
@@ -92,7 +92,7 @@ func (c *Dashboard) noAlertsDefined() bool {
 }
 
 // renderDashboard generates the Grafana renderDashboard for this container.
-// UIDs are globally unique identifiers for a given dashboard on Grafana. For normal Sourcegraph usage,
+// UIDs are globally unique identifiers for a given dashboard on Grafana. For normal Khulnasoft usage,
 // there is only ever a single dashboard with a given name but Cloud usage requires multiple copies
 // of the same dashboards to exist for different folders so we allow the ability to inject custom
 // label matchers and folder names to uniquely id the dashboards. UIDs need to be deterministic however
@@ -151,8 +151,8 @@ func (c *Dashboard) renderDashboard(injectLabelMatchers []*labels.Matcher, folde
 		}}
 	}
 	// Annotation layers that require a service to export information required by the
-	// Sourcegraph debug server - see the `NoSourcegraphDebugServer` docstring.
-	if !c.NoSourcegraphDebugServer {
+	// Khulnasoft debug server - see the `NoKhulnasoftDebugServer` docstring.
+	if !c.NoKhulnasoftDebugServer {
 		// Per version, instance generate an annotation whenever labels change
 		// inspired by https://github.com/grafana/grafana/issues/11948#issuecomment-403841249
 		// We use `job=~.*SERVICE` because of frontend being called sourcegraph-frontend
@@ -185,7 +185,7 @@ func (c *Dashboard) renderDashboard(injectLabelMatchers []*labels.Matcher, folde
 	description.TextPanel.Content = fmt.Sprintf(`
 	<div style="text-align: left;">
 	  <img src="https://sourcegraphstatic.com/sourcegraph-logo-light.png" style="height:30px; margin:0.5rem"></img>
-	  <div style="margin-left: 1rem; margin-top: 0.5rem; font-size: 20px;"><b>%s:</b> %s <a style="font-size: 15px" target="_blank" href="https://docs-legacy.sourcegraph.com/dev/background-information/architecture">(⧉ architecture diagram)</a></span>
+	  <div style="margin-left: 1rem; margin-top: 0.5rem; font-size: 20px;"><b>%s:</b> %s <a style="font-size: 15px" target="_blank" href="https://docs-legacy.khulnasoft.com/dev/background-information/architecture">(⧉ architecture diagram)</a></span>
 	</div>
 	`, c.Name, c.Description)
 	board.Panels = append(board.Panels, description)
@@ -337,7 +337,7 @@ func (c *Dashboard) alertDescription(o Observable, alert *ObservableAlertDefinit
 // high-level alerting metrics for the container. For more information about
 // how these work, see:
 //
-// https://sourcegraph.com/docs/admin/observability/metrics#high-level-alerting-metrics
+// https://khulnasoft.com/docs/admin/observability/metrics#high-level-alerting-metrics
 func (c *Dashboard) RenderPrometheusRules(injectLabelMatchers []*labels.Matcher) (*PrometheusRules, error) {
 	group := newPrometheusRuleGroup(c.Name)
 	for groupIndex, g := range c.Groups {
@@ -499,18 +499,18 @@ type Observable struct {
 	// would not want an alert to fire if no data was present, so this will not need to be set.
 	DataMustExist bool
 
-	// Warning alerts indicate that something *could* be wrong with Sourcegraph. We
+	// Warning alerts indicate that something *could* be wrong with Khulnasoft. We
 	// suggest checking in on these periodically, or using a notification channel that
 	// will not bother anyone if it is spammed.
 	//
-	// Learn more about how alerting is used: https://sourcegraph.com/docs/admin/observability/alerting
+	// Learn more about how alerting is used: https://khulnasoft.com/docs/admin/observability/alerting
 	Warning *ObservableAlertDefinition
 
-	// Critical alerts indicate that something is definitively wrong with Sourcegraph,
+	// Critical alerts indicate that something is definitively wrong with Khulnasoft,
 	// in a way that is very likely to be noticeable to users. We suggest using a
 	// high-visibility notification channel, such as paging, for these alerts.
 	//
-	// Learn more about how alerting is used: https://sourcegraph.com/docs/admin/observability/alerting
+	// Learn more about how alerting is used: https://khulnasoft.com/docs/admin/observability/alerting
 	Critical *ObservableAlertDefinition
 
 	// NoAlerts must be set by Observables that do not have any alerts. This ensures the
@@ -523,7 +523,7 @@ type Observable struct {
 
 	// NextSteps is Markdown describing possible next steps in the event that the alert is
 	// firing. It does not have to indicate a definite solution, just the next steps that
-	// Sourcegraph administrators (both within Sourcegraph and at customers) can understand
+	// Khulnasoft administrators (both within Khulnasoft and at customers) can understand
 	// and leverage when get a notification for this alert.
 	//
 	// NextSteps should include debugging instructions, links to background information,
@@ -557,7 +557,7 @@ type Observable struct {
 	// 4. The last line (which is all indention) is removed.
 	// 5. Non-list items are converted to a list.
 	//
-	// The processed contents are rendered in https://docs.sourcegraph.com/admin/observability/alerts
+	// The processed contents are rendered in https://docs.khulnasoft.com/admin/observability/alerts
 	NextSteps string
 
 	// Interpretation is Markdown that can serve as a reference for interpreting this
@@ -572,7 +572,7 @@ type Observable struct {
 	// To make writing the Markdown more friendly in Go, string literal processing as
 	// NextSteps is provided, though the output is not converted to a list.
 	//
-	// The processed contents are rendered in https://docs.sourcegraph.com/admin/observability/dashboards
+	// The processed contents are rendered in https://docs.khulnasoft.com/admin/observability/dashboards
 	Interpretation string
 
 	// Panel provides options for how to render the metric in the Grafana panel.
@@ -585,7 +585,7 @@ type Observable struct {
 	Panel ObservablePanel
 
 	// MultiInstance allows a panel to opt-in to a generated multi-instance overview
-	// dashboard, which is created for Sourcegraph Cloud's centralized observability.
+	// dashboard, which is created for Khulnasoft Cloud's centralized observability.
 	MultiInstance bool
 }
 

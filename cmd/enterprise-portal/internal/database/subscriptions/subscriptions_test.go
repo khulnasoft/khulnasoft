@@ -60,7 +60,7 @@ func SubscriptionsStoreList(t *testing.T, ctx context.Context, s *subscriptions.
 		uuid.New().String(),
 		subscriptions.UpsertSubscriptionOptions{
 			DisplayName:              database.NewNullString("Subscription 1"),
-			InstanceDomain:           database.NewNullString("s1.sourcegraph.com"),
+			InstanceDomain:           database.NewNullString("s1.khulnasoft.com"),
 			SalesforceSubscriptionID: database.NewNullString("sf_sub_id"),
 		},
 	)
@@ -70,7 +70,7 @@ func SubscriptionsStoreList(t *testing.T, ctx context.Context, s *subscriptions.
 		uuid.New().String(),
 		subscriptions.UpsertSubscriptionOptions{
 			DisplayName:    database.NewNullString("Subscription 2"),
-			InstanceDomain: database.NewNullString("s2.sourcegraph.com"),
+			InstanceDomain: database.NewNullString("s2.khulnasoft.com"),
 		},
 	)
 	require.NoError(t, err)
@@ -79,7 +79,7 @@ func SubscriptionsStoreList(t *testing.T, ctx context.Context, s *subscriptions.
 		uuid.New().String(),
 		subscriptions.UpsertSubscriptionOptions{
 			DisplayName:    database.NewNullString("Subscription 3"),
-			InstanceDomain: database.NewNullString("s3.sourcegraph.com"),
+			InstanceDomain: database.NewNullString("s3.khulnasoft.com"),
 		},
 	)
 	require.NoError(t, err)
@@ -239,7 +239,7 @@ func SubscriptionsStoreUpsert(t *testing.T, ctx context.Context, s *subscription
 		ctx,
 		uuid.New().String(),
 		subscriptions.UpsertSubscriptionOptions{
-			InstanceDomain: database.NewNullString("s1.sourcegraph.com"),
+			InstanceDomain: database.NewNullString("s1.khulnasoft.com"),
 			CreatedAt:      created,
 		},
 		// Represent the creation of this subscription
@@ -280,10 +280,10 @@ func SubscriptionsStoreUpsert(t *testing.T, ctx context.Context, s *subscription
 		t.Cleanup(func() { currentSubscription = got })
 
 		got, err = s.Upsert(ctx, currentSubscription.ID, subscriptions.UpsertSubscriptionOptions{
-			InstanceDomain: database.NewNullString("s1-new.sourcegraph.com"),
+			InstanceDomain: database.NewNullString("s1-new.khulnasoft.com"),
 		})
 		require.NoError(t, err)
-		assert.Equal(t, "s1-new.sourcegraph.com", pointers.DerefZero(got.InstanceDomain))
+		assert.Equal(t, "s1-new.khulnasoft.com", pointers.DerefZero(got.InstanceDomain))
 		assert.Equal(t, currentSubscription.DisplayName, got.DisplayName)
 	})
 
@@ -303,7 +303,7 @@ func SubscriptionsStoreUpsert(t *testing.T, ctx context.Context, s *subscription
 			ctx,
 			uuid.New().String(),
 			subscriptions.UpsertSubscriptionOptions{
-				InstanceDomain: database.NewNullString("s2.sourcegraph.com"),
+				InstanceDomain: database.NewNullString("s2.khulnasoft.com"),
 				CreatedAt:      created,
 			},
 			// Represent the creation of this subscription
@@ -384,7 +384,7 @@ func SubscriptionsStoreGet(t *testing.T, ctx context.Context, s *subscriptions.S
 		ctx,
 		uuid.New().String(),
 		subscriptions.UpsertSubscriptionOptions{
-			InstanceDomain: database.NewNullString("s1.sourcegraph.com"),
+			InstanceDomain: database.NewNullString("s1.khulnasoft.com"),
 			InstanceType: database.NewNullString(
 				subscriptionsv1.EnterpriseSubscriptionInstanceType_ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_PRIMARY.String(),
 			),

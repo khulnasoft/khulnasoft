@@ -20,12 +20,12 @@ type Info struct {
 	license.Info
 }
 
-// publicKeyData is the public key used to verify Sourcegraph license keys
+// publicKeyData is the public key used to verify Khulnasoft license keys
 const publicKeyData = `ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUUd9r83fGmYVLzcqQp5InyAoJB5lLxlM7s41SUUtxfnG6JpmvjNd+WuEptJGk0C/Zpyp/cCjCV4DljDs8Z7xjRbvJYW+vklFFxXrMTBs/+HjpIBKlYTmG8SqTyXyu1s4485Kh1fEC5SK6z2IbFaHuSHUXgDi/IepSOg1QudW4n8J91gPtT2E30/bPCBRq8oz/RVwJSDMvYYjYVb//LhV0Mx3O6hg4xzUNuwiCtNjCJ9t4YU2sV87+eJwWtQNbSQ8TelQa8WjG++XSnXUHw12bPDe7wGL/7/EJb7knggKSAMnpYpCyV35dyi4DsVc46c+b6P0gbVSosh3Uc3BJHSWF`
 
 // publicKey is the public key used to verify product license keys.
 var publicKey = func() ssh.PublicKey {
-	// If a key is set from SOURCEGRAPH_LICENSE_GENERATION_KEY, use that key to verify licenses instead.
+	// If a key is set from KHULNASOFT_LICENSE_GENERATION_KEY, use that key to verify licenses instead.
 	if licenseGenerationPrivateKey != nil {
 		return licenseGenerationPrivateKey.PublicKey()
 	}
@@ -188,21 +188,21 @@ func GetConfiguredProductLicenseInfoWithSignature() (*Info, string, error) {
 	return GetFreeLicenseInfo(), "", nil
 }
 
-// envLicenseGenerationPrivateKey (the env var SOURCEGRAPH_LICENSE_GENERATION_KEY) is the
+// envLicenseGenerationPrivateKey (the env var KHULNASOFT_LICENSE_GENERATION_KEY) is the
 // PEM-encoded form of the private key used to sign product license keys. It is stored at
 // https://team-sourcegraph.1password.com/vaults/dnrhbauihkhjs5ag6vszsme45a/allitems/zkdx6gpw4uqejs3flzj7ef5j4i.
-var envLicenseGenerationPrivateKey = env.Get("SOURCEGRAPH_LICENSE_GENERATION_KEY", "", "the PEM-encoded form of the private key used to sign product license keys ("+license.GenerationPrivateKeyURL+")")
+var envLicenseGenerationPrivateKey = env.Get("KHULNASOFT_LICENSE_GENERATION_KEY", "", "the PEM-encoded form of the private key used to sign product license keys ("+license.GenerationPrivateKeyURL+")")
 
 // licenseGenerationPrivateKey is the private key used to generate license keys.
 var licenseGenerationPrivateKey = func() ssh.Signer {
 	if envLicenseGenerationPrivateKey == "" {
-		// Most Sourcegraph instances don't use/need this key. Generally only Sourcegraph.com and
+		// Most Khulnasoft instances don't use/need this key. Generally only Khulnasoft.com and
 		// local dev will have this key set.
 		return nil
 	}
 	privateKey, err := ssh.ParsePrivateKey([]byte(envLicenseGenerationPrivateKey))
 	if err != nil {
-		log.Fatalf("Failed to parse private key in SOURCEGRAPH_LICENSE_GENERATION_KEY env var: %s.", err)
+		log.Fatalf("Failed to parse private key in KHULNASOFT_LICENSE_GENERATION_KEY env var: %s.", err)
 	}
 	return privateKey
 }()
@@ -214,7 +214,7 @@ func GenerateProductLicenseKey(info license.Info) (licenseKey string, version in
 		const msg = "no product license generation private key was configured"
 		if env.InsecureDev {
 			// Show more helpful error message in local dev.
-			return "", 0, errors.Errorf("%s (for testing by Sourcegraph staff: set the SOURCEGRAPH_LICENSE_GENERATION_KEY env var to the key obtained at %s)", msg, license.GenerationPrivateKeyURL)
+			return "", 0, errors.Errorf("%s (for testing by Khulnasoft staff: set the KHULNASOFT_LICENSE_GENERATION_KEY env var to the key obtained at %s)", msg, license.GenerationPrivateKeyURL)
 		}
 		return "", 0, errors.New(msg)
 	}

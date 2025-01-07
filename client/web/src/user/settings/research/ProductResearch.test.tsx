@@ -15,7 +15,7 @@ describe('ProductResearchPage', () => {
                 telemetryService={NOOP_TELEMETRY_SERVICE}
                 telemetryRecorder={noOpTelemetryRecorder}
                 authenticatedUser={{
-                    emails: [{ email: 'test@sourcegraph.com', isPrimary: true, verified: true }],
+                    emails: [{ email: 'test@khulnasoft.com', isPrimary: true, verified: true }],
                 }}
             />
         )
@@ -27,7 +27,7 @@ describe('ProductResearchPage', () => {
 
     test('renders sign up now link correctly', () => {
         expect(queries.getByText('Sign up now').closest('a')?.href).toMatchInlineSnapshot(
-            '"https://info.sourcegraph.com/product-research?email=test%40sourcegraph.com"'
+            '"https://info.khulnasoft.com/product-research?email=test%40khulnasoft.com"'
         )
     })
 })

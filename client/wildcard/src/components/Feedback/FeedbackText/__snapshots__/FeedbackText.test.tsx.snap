@@ -17,11 +17,11 @@ exports[`FeedbackText > render a FeedbackText 1`] = `
      or 
     <a
       class=""
-      href="mailto:support@sourcegraph.com"
+      href="mailto:support@khulnasoft.com"
       rel="noopener noreferrer"
       target="_blank"
     >
-      support@sourcegraph.com
+      support@khulnasoft.com
     </a>
     , or file issues on our 
     <a
@@ -54,11 +54,11 @@ exports[`FeedbackText > render feedbackText with footer 1`] = `
      or 
     <a
       class=""
-      href="mailto:support@sourcegraph.com"
+      href="mailto:support@khulnasoft.com"
       rel="noopener noreferrer"
       target="_blank"
     >
-      support@sourcegraph.com
+      support@khulnasoft.com
     </a>
     , or file issues on our 
     <a
@@ -91,11 +91,11 @@ exports[`FeedbackText > render feedbackText with header 1`] = `
      or 
     <a
       class=""
-      href="mailto:support@sourcegraph.com"
+      href="mailto:support@khulnasoft.com"
       rel="noopener noreferrer"
       target="_blank"
     >
-      support@sourcegraph.com
+      support@khulnasoft.com
     </a>
     , or file issues on our 
     <a

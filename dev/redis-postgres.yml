@@ -1,7 +1,7 @@
 # This files provides an easy way to start Redis and PostgreSQL servers for
 # development, via docker-compose.
 #
-# See https://docs-legacy.sourcegraph.com/dev/setup/quickstart#run-databases
+# See https://docs-legacy.khulnasoft.com/dev/setup/quickstart#run-databases
 #
 # You can also use `sg run redis-postgres`.
 services:
@@ -23,7 +23,7 @@ services:
       - "POSTGRES_INITDB_ARGS= --encoding=UTF8 "
     volumes:
       # Match PGDATA in Dockerfile
-      # https://sourcegraph.com/search?q=context:%40sourcegraph/all+repo:%5Egithub%5C.com/khulnasoft/khulnasoft%24+file:%5Edocker-images/postgres.*/Dockerfile+PGDATA
+      # https://khulnasoft.com/search?q=context:%40sourcegraph/all+repo:%5Egithub%5C.com/khulnasoft/khulnasoft%24+file:%5Edocker-images/postgres.*/Dockerfile+PGDATA
       - ${PGDATA_DIR:-postgres_12_data}:/data/pgdata-12
 volumes:
   redis_data:

@@ -243,7 +243,7 @@ func (e *executor) publishChangeset(ctx context.Context, asDraft bool) (afterDon
 	afterDonePublish := func(store *store.Store) { e.enqueueWebhook(ctx, store, webhooks.ChangesetUpdateError) }
 
 	// Depending on the changeset, we may want to add to the body (for example,
-	// to add a backlink to Sourcegraph).
+	// to add a backlink to Khulnasoft).
 	body, err := e.decorateChangesetBody(ctx)
 	if err != nil {
 		// At this point in time, we haven't yet established if the changeset has already
@@ -380,7 +380,7 @@ func (e *executor) loadChangeset(ctx context.Context) error {
 func (e *executor) updateChangeset(ctx context.Context) (afterDone func(store *store.Store), err error) {
 	afterDone = func(store *store.Store) { e.enqueueWebhook(ctx, store, webhooks.ChangesetUpdateError) }
 	// Depending on the changeset, we may want to add to the body (for example,
-	// to add a backlink to Sourcegraph).
+	// to add a backlink to Khulnasoft).
 	body, err := e.decorateChangesetBody(ctx)
 	if err != nil {
 		return afterDone, errors.Wrapf(err, "decorating body for changeset %d", e.ch.ID)
@@ -793,7 +793,7 @@ func decorateChangesetBody(ctx context.Context, tx getBatchChanger, nsStore getN
 		return "", errors.Wrap(err, "building URL")
 	}
 
-	bcl := fmt.Sprintf("[_Created by Sourcegraph batch change `%s/%s`._](%s)", ns.Name, batchChange.Name, u)
+	bcl := fmt.Sprintf("[_Created by Khulnasoft batch change `%s/%s`._](%s)", ns.Name, batchChange.Name, u)
 
 	// Check if the batch change link template variable is present in the changeset
 	// template body.

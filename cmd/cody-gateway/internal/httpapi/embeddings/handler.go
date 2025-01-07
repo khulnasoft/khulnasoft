@@ -130,7 +130,7 @@ func NewHandler(
 			}()
 
 			// Hacky experiment: Replace embedding model input with generated metadata text when indexing.
-			if body.Model == string(ModelNameSourcegraphMetadataGen) {
+			if body.Model == string(ModelNameKhulnasoftMetadataGen) {
 				newInput := body.Input
 				// Generate metadata if we are indexing, not querying.
 				if !body.IsQuery {
@@ -142,7 +142,7 @@ func NewHandler(
 					}
 				}
 				body = codygateway.EmbeddingsRequest{
-					Model:   string(ModelNameSourcegraphSTMultiQA),
+					Model:   string(ModelNameKhulnasoftSTMultiQA),
 					Input:   newInput,
 					IsQuery: body.IsQuery,
 				}
@@ -153,7 +153,7 @@ func NewHandler(
 			upstreamFinished = time.Since(upstreamStarted)
 			if err != nil {
 				// This is an error path, so always set a default retry-after
-				// on errors that discourages Sourcegraph clients from retrying
+				// on errors that discourages Khulnasoft clients from retrying
 				// at all - embeddings will likely be run by embeddings workers
 				// that will eventually retry on a more reasonable schedule.
 				w.Header().Set("retry-after", "60")

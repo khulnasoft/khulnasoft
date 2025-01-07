@@ -17,7 +17,7 @@ import (
 // NewAuthzProviders returns the set of GitLab authz providers derived from the connections.
 //
 // It also returns any simple validation problems with the config, separating these into "serious problems"
-// and "warnings". "Serious problems" are those that should make Sourcegraph set authz.allowAccessByDefault
+// and "warnings". "Serious problems" are those that should make Khulnasoft set authz.allowAccessByDefault
 // to false. "Warnings" are all other validation problems.
 //
 // This constructor does not and should not directly check connectivity to external services - if
@@ -83,7 +83,7 @@ func newAuthzProvider(db database.DB, c *types.GitLabConnection, ps []schema.Aut
 			}
 		}
 		if !foundAuthProvider {
-			return nil, errors.Errorf("Did not find authentication provider matching %q. Check the [**site configuration**](/site-admin/configuration) to verify an entry in [`auth.providers`](https://sourcegraph.com/docs/admin/auth) exists for %s.", c.Url, c.Url)
+			return nil, errors.Errorf("Did not find authentication provider matching %q. Check the [**site configuration**](/site-admin/configuration) to verify an entry in [`auth.providers`](https://khulnasoft.com/docs/admin/auth) exists for %s.", c.Url, c.Url)
 		}
 
 		return NewOAuthProvider(OAuthProviderOp{

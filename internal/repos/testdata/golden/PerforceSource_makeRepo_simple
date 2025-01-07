@@ -1,8 +1,8 @@
 [
   {
    "ID": 0,
-   "Name": "Sourcegraph",
-   "URI": "Sourcegraph",
+   "Name": "Khulnasoft",
+   "URI": "Khulnasoft",
    "Description": "",
    "Fork": false,
    "Archived": false,
@@ -11,18 +11,18 @@
    "UpdatedAt": "0001-01-01T00:00:00Z",
    "DeletedAt": "0001-01-01T00:00:00Z",
    "ExternalRepo": {
-    "ID": "//Sourcegraph/",
+    "ID": "//Khulnasoft/",
     "ServiceType": "perforce",
     "ServiceID": "ssl:111.222.333.444:1666"
    },
    "Sources": {
     "extsvc:perforce:1": {
      "ID": "extsvc:perforce:1",
-     "CloneURL": "perforce://ssl:111.222.333.444:1666//Sourcegraph/"
+     "CloneURL": "perforce://ssl:111.222.333.444:1666//Khulnasoft/"
     }
    },
    "Metadata": {
-    "depot": "//Sourcegraph/"
+    "depot": "//Khulnasoft/"
    }
   },
   {

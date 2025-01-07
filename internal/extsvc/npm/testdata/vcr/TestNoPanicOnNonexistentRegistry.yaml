@@ -5,7 +5,7 @@ interactions:
     body: ""
     form: {}
     headers: {}
-    url: http://not-an-npm-registry.sourcegraph.com/left-pad/1.3.0
+    url: http://not-an-npm-registry.khulnasoft.com/left-pad/1.3.0
     method: GET
   response:
     body: "<!doctype html>\n<html>\n  <head>\n    <meta charset=\"utf-8\">\n    <meta
@@ -31,7 +31,7 @@ interactions:
       }\n    </style>\n  </head>\n  <body>\n    <div class=\"header\">\n      <div
       class=\"logo surge\"></div>\n      <h2>Error</h2>\n    </div>\n    <div class=\"header-bottom\"></div>\n
       \   <div class=\"wrapper\">\n      <h1>Connection Closed</h1>\n      <div class=\"error-detail\"><p>The
-      requested URL could not be retrieved: <br /><b>http://not-an-npm-registry.sourcegraph.com/left-pad/1.3.0</b></p><p><br
+      requested URL could not be retrieved: <br /><b>http://not-an-npm-registry.khulnasoft.com/left-pad/1.3.0</b></p><p><br
       /></p><p>Policy: \U0001F1ED\U0001F1F0 Hong Kong 21 [Premium]</p><p><br /></p><p>Error
       descriptions:</p><li>Half-closed connection timeout</li></div>     \n    </div>\n
       \   <div class=\"footer\">\n      <div class=\"logo surge\"></div>\n      SGErrorDomain

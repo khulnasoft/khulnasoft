@@ -161,7 +161,7 @@ func (s *repos) ResolveRev(ctx context.Context, repo api.RepoName, rev string) (
 	return s.gitserverClient.ResolveRevision(ctx, repo, rev, gitserver.ResolveRevisionOptions{EnsureRevision: true})
 }
 
-// ErrRepoSeeOther indicates that the repo does not exist on this server but might exist on an external Sourcegraph
+// ErrRepoSeeOther indicates that the repo does not exist on this server but might exist on an external Khulnasoft
 // server.
 type ErrRepoSeeOther struct {
 	// RedirectURL is the base URL for the repository at an external location.

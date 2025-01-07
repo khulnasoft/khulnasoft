@@ -9,7 +9,7 @@ import { PageHeader, H2, useObservable, Text, H4 } from '@sourcegraph/wildcard'
 
 import type { AuthenticatedUser } from '../../../auth'
 import { BatchChangesIcon } from '../../../batches/icons'
-import { canWriteBatchChanges, NO_ACCESS_BATCH_CHANGES_WRITE, NO_ACCESS_SOURCEGRAPH_COM } from '../../../batches/utils'
+import { canWriteBatchChanges, NO_ACCESS_BATCH_CHANGES_WRITE, NO_ACCESS_KHULNASOFT_COM } from '../../../batches/utils'
 import { DiffStat } from '../../../components/diff/DiffStat'
 import { Page } from '../../../components/Page'
 import { PageTitle } from '../../../components/PageTitle'
@@ -58,7 +58,7 @@ export const BatchChangeRepoPage: FC<BatchChangeRepoPageProps> = ({
 
     const canCreate: true | string = useMemo(() => {
         if (isKhulnasoftDotCom) {
-            return NO_ACCESS_SOURCEGRAPH_COM
+            return NO_ACCESS_KHULNASOFT_COM
         }
         if (!canWriteBatchChanges(authenticatedUser)) {
             return NO_ACCESS_BATCH_CHANGES_WRITE

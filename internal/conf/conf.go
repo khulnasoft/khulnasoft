@@ -21,7 +21,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/schema"
 )
 
-// Unified represents the overall global Sourcegraph configuration from various
+// Unified represents the overall global Khulnasoft configuration from various
 // sources:
 //
 // - The site configuration, from the database (from the site-admin panel).

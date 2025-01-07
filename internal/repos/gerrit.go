@@ -21,7 +21,7 @@ import (
 )
 
 // A GerritSource yields repositories from a single Gerrit connection configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 type GerritSource struct {
 	svc             *types.ExternalService
 	cli             gerrit.Client

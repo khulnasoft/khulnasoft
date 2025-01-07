@@ -17,8 +17,8 @@ export const AnalyticsCodyPage: React.FC<Props> = ({ telemetryRecorder }) => {
             <Card className="p-3">
                 <Text>
                     Cody analytics, including active users, completions, chat, and commands can be found at{' '}
-                    <Link to="https://cody-analytics.sourcegraph.com" target="_blank" rel="noopener">
-                        cody-analytics.sourcegraph.com
+                    <Link to="https://cody-analytics.khulnasoft.com" target="_blank" rel="noopener">
+                        cody-analytics.khulnasoft.com
                     </Link>
                     .
                 </Text>

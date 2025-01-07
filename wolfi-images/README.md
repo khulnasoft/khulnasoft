@@ -1,8 +1,8 @@
-## Wolfi base images for Sourcegraph containers
+## Wolfi base images for Khulnasoft containers
 
-Rather than building our containers on top of an upstream image like `alpine:latest`, at Sourcegraph we build our own containers entirely from scratch using Bazel and [apko](https://github.com/chainguard-dev/apko/tree/main).
+Rather than building our containers on top of an upstream image like `alpine:latest`, at Khulnasoft we build our own containers entirely from scratch using Bazel and [apko](https://github.com/chainguard-dev/apko/tree/main).
 
-This directory contains the configuration for each of our **base images**. Base images contain all the dependencies that the various components of Sourcegraph require in order to run, such as packages, users, groups, directores, and environment variables. For example, the [gitserver](./gitserver.yaml) configuration file ensures that Git is installed.
+This directory contains the configuration for each of our **base images**. Base images contain all the dependencies that the various components of Khulnasoft require in order to run, such as packages, users, groups, directores, and environment variables. For example, the [gitserver](./gitserver.yaml) configuration file ensures that Git is installed.
 
 To create the final images that are shipped and deployed, we take the **base image** and use Bazel to build and add our own binaries on top.
 
@@ -13,7 +13,7 @@ The structure of this directory is:
 
 ## Getting started
 
-See the [Add and Update Wolfi Base Images](https://docs-legacy.sourcegraph.com/dev/how-to/wolfi/add_update_images) docs for guides to add new images and updating existing images. For more background, see the [Wolfi](https://docs-legacy.sourcegraph.com/dev/background-information/wolfi#wolfi) docs.
+See the [Add and Update Wolfi Base Images](https://docs-legacy.khulnasoft.com/dev/how-to/wolfi/add_update_images) docs for guides to add new images and updating existing images. For more background, see the [Wolfi](https://docs-legacy.khulnasoft.com/dev/background-information/wolfi#wolfi) docs.
 
 ### Quickstart
 

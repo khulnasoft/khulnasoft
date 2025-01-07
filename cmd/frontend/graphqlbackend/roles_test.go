@@ -163,8 +163,8 @@ func TestUserRoleListing(t *testing.T) {
 	})
 	require.NoError(t, err)
 
-	t.Run("on sourcegraph.com", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+	t.Run("on khulnasoft.com", func(t *testing.T) {
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		t.Run("non-admin", func(t *testing.T) {
 			userAPIID := string(MarshalUserID(userID))

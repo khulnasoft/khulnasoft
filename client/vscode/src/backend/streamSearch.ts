@@ -63,7 +63,7 @@ export async function createStreamSearch({
                         /**
                          * SearchPatternType.standard support was added in Khulnasoft v3.43.0.
                          * Use SearchPatternType.literal for earlier versions instead (it was the default before v3.43.0).
-                         * See: https://docs.sourcegraph.com/CHANGELOG#3-43-0, https://github.com/khulnasoft/khulnasoft/pull/38141.
+                         * See: https://docs.khulnasoft.com/CHANGELOG#3-43-0, https://github.com/khulnasoft/khulnasoft/pull/38141.
                          */
                         patternType = SearchPatternType.literal
                     }

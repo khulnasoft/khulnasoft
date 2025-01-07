@@ -624,7 +624,7 @@ input UsagesFilter {
     # Design Rationale:
     #
     # 1. The ref panel did separate queries for 'this repo' vs 'all other repos'
-    #    https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/codeintel/searchBased.ts?L105:13-105:23#tab=references
+    #    https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/codeintel/searchBased.ts?L105:13-105:23#tab=references
     #    That requires `NOT` (at least for a `repo`).
     # 2. The ref panel has a way to specify paths for filtering. This requires AND.
     #    AND will not be part of the first implementation pass. However,
@@ -641,7 +641,7 @@ input UsagesFilter {
     """
     Filter for limiting which repositories to find the usages in.
     For cross-repository symbols as well as search-based results,
-    an empty value will find results across the Sourcegraph instance.
+    an empty value will find results across the Khulnasoft instance.
     """
     repository: RepositoryFilter
     # TODO(id: usagesForSymbol-v2)

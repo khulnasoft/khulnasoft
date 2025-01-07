@@ -76,12 +76,12 @@ const configFields: ConfigFields = {
         },
     },
     sudoToken: {
-        envVar: 'SOURCEGRAPH_SUDO_TOKEN',
+        envVar: 'KHULNASOFT_SUDO_TOKEN',
         description:
             'An access token with "site-admin:sudo" permissions. This will be used to impersonate users in requests.',
     },
     sudoUsername: {
-        envVar: 'SOURCEGRAPH_SUDO_USER',
+        envVar: 'KHULNASOFT_SUDO_USER',
         description: 'The site-admin-level username that will be impersonated with the sudo access token.',
     },
     gitHubClientID: {
@@ -142,10 +142,10 @@ const configFields: ConfigFields = {
     },
     oktaUserAmyPassword: {
         envVar: 'OKTA_USER_AMY_PASSWORD',
-        description: 'Password of the Okta user, beyang+sg-e2e-regression-test-amy@sourcegraph.com',
+        description: 'Password of the Okta user, beyang+sg-e2e-regression-test-amy@khulnasoft.com',
     },
     sourcegraphBaseUrl: {
-        envVar: 'SOURCEGRAPH_BASE_URL',
+        envVar: 'KHULNASOFT_BASE_URL',
         defaultValue: 'https://sourcegraph.test:3443',
         description:
             'The base URL of the Khulnasoft instance, e.g., https://sourcegraph.sgdev.org or https://sourcegraph.test:3443.',

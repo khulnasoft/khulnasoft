@@ -22,7 +22,7 @@ import (
 )
 
 // A BitbucketServerSource yields repositories from a single BitbucketServer connection configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 type BitbucketServerSource struct {
 	svc      *types.ExternalService
 	config   *schema.BitbucketServerConnection
@@ -103,7 +103,7 @@ func (s BitbucketServerSource) CheckConnection(ctx context.Context) error {
 }
 
 // ListRepos returns all BitbucketServer repositories accessible to all connections configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 func (s BitbucketServerSource) ListRepos(ctx context.Context, results chan SourceResult) {
 	s.listAllRepos(ctx, results)
 }

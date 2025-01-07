@@ -282,7 +282,7 @@ func NewStack(stacks *stack.Set, vars Variables) (*CrossStackOutput, error) {
 			},
 		)
 
-		// For use in e.g. https://sourcegraph.sourcegraph.com/github.com/sourcegraph/infrastructure/-/blob/managed-services/continuous-deployment-pipeline/main.tf?L5-20
+		// For use in e.g. https://sourcegraph.khulnasoft.com/github.com/sourcegraph/infrastructure/-/blob/managed-services/continuous-deployment-pipeline/main.tf?L5-20
 		// For now, just provide the ID and ask users to configure the GH action
 		// workload identity pool elsewhere. This can be referenced directly from
 		// GSM of the environment secrets.

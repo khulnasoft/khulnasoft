@@ -247,7 +247,7 @@ func (s *Source) get(ctx context.Context, token string, bypassCache bool) (*acto
 	return act, nil
 }
 
-// newActor creates an actor from Sourcegraph.com user.
+// newActor creates an actor from Khulnasoft.com user.
 func newActor(source *Source, cacheKey string, user dotcom.DotcomUserState, concurrencyConfig codygatewayactor.ActorConcurrencyLimitConfig) *actor.Actor {
 	now := time.Now()
 

@@ -1,6 +1,6 @@
 # Building p4-fusion
 
-In order to import Perforce depots into Sourcegraph we first convert them into git repositories. We use an open source tool called [p4-fusion](https://github.com/salesforce/p4-fusion):
+In order to import Perforce depots into Khulnasoft we first convert them into git repositories. We use an open source tool called [p4-fusion](https://github.com/salesforce/p4-fusion):
 
 > A fast Perforce depot to Git repository converter using the Helix Core C/C++ API as an attempt to mitigate the performance bottlenecks in git-p4.py.
 
@@ -10,10 +10,10 @@ In order to import Perforce depots into Sourcegraph we first convert them into g
 
 ## How to build
 
-Below are the instructions for building p4-fusion locally, assuming you have the [Sourcegraph repository](https://github.com/sourcegraph/sourcegraph) checked out.
+Below are the instructions for building p4-fusion locally, assuming you have the [Khulnasoft repository](https://github.com/sourcegraph/sourcegraph) checked out.
 
 1. Follow [these instruction](https://nixos.org/download.html) to install Nix. (Tested with version 2.15.0)
-1. Navigate to the root of your Sourcegraph directory
+1. Navigate to the root of your Khulnasoft directory
 1. Run `nix build ".#p4-fusion" --verbose --extra-experimental-features nix-command --extra-experimental-features flakes`
 
 If the build completes successfully you should have a `p4-fusion` binary in `./result/bin/p4-fusion` which you can copy somewhere in your `$PATH`
@@ -22,7 +22,7 @@ If the build completes successfully you should have a `p4-fusion` binary in `./r
 
 ### `nix build` fails with "hash mismatch" error referencing `helix-core-api.drv`
 
-The `p4-fusion` dependencies specified in [the `srcs` array of `dev/nix/p4-fusion.nix`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@8d513301f8a12f7c7e0b5a66ed20ba14b6679cca/-/blob/dev/nix/p4-fusion.nix?L45-77) are sometimes updated without being versioned, so their hashes change, which causes "hash mismatch" errors.
+The `p4-fusion` dependencies specified in [the `srcs` array of `dev/nix/p4-fusion.nix`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@8d513301f8a12f7c7e0b5a66ed20ba14b6679cca/-/blob/dev/nix/p4-fusion.nix?L45-77) are sometimes updated without being versioned, so their hashes change, which causes "hash mismatch" errors.
 
 **Example**
 
@@ -50,7 +50,7 @@ $ nix --extra-experimental-features nix-command hash to-sri "${hash_type}:${hash
 
 Copy the output from that sequence of commands and paste it into the value of the `hash` field in the `fetchzip` attribute set.
 
-Since when one changes, they all probably change, here is an example of getting the updated hashes for all of the archives ([current archive URLs; double-check that they are still correct](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/dev/nix/p4-fusion.nix))
+Since when one changes, they all probably change, here is an example of getting the updated hashes for all of the archives ([current archive URLs; double-check that they are still correct](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/dev/nix/p4-fusion.nix))
 
 ```bash
 hash_type=sha256

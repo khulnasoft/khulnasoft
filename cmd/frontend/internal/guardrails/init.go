@@ -34,7 +34,7 @@ func Init(
 	enterpriseServices *enterprise.Services,
 ) error {
 	var resolver *resolvers.GuardrailsResolver
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		// On DotCom guardrails endpoint runs search, and is initialized at startup.
 		searchClient := client.New(log.NoOp(), db, gitserver.NewClient("http.guardrails.search"))
 		service := attribution.NewLocalSearch(observationCtx, searchClient)
@@ -100,7 +100,7 @@ func alwaysAllowed(context.Context, string) (bool, error) {
 
 func NewAttributionTest(observationCtx *observation.Context, conf conftypes.SiteConfigQuerier) func(context.Context, string) (bool, error) {
 	// Attribution is only-enterprise, dotcom lets everything through.
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		return alwaysAllowed
 	}
 	initLogic := &enterpriseInitialization{

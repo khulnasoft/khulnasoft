@@ -70,7 +70,7 @@ var ErrRequiresVerifiedEmailAddress = errors.New("cody requires a verified email
 
 func CheckVerifiedEmailRequirement(ctx context.Context, db database.DB, logger log.Logger) error {
 	// Only check on dotcom
-	if !dotcom.SourcegraphDotComMode() {
+	if !dotcom.KhulnasoftDotComMode() {
 		return nil
 	}
 

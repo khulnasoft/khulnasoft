@@ -8,14 +8,14 @@ Our Known Issues page is designed to keep you informed about any current issues 
 
 ---
 
-- ### Sourcegraph does not recognize GitHub Enterprise Repository Visibility as described [here](https://docs.github.com/en/enterprise-server@3.10/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility).
+- ### Khulnasoft does not recognize GitHub Enterprise Repository Visibility as described [here](https://docs.github.com/en/enterprise-server@3.10/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility).
     **Status:** [Open](https://github.com/khulnasoft/khulnasoft/pull/54419)
 
 ## v5.1.0 - June 28, 2023
 
 ---
 
-- ### There is an issue with Sourcegraph instances configured to use explicit permissions using permissions.userMapping in Site configuration, where repository permissions are not enforced. Customers using the explicit permissions API are advised to upgrade to v5.1.1 directly.
+- ### There is an issue with Khulnasoft instances configured to use explicit permissions using permissions.userMapping in Site configuration, where repository permissions are not enforced. Customers using the explicit permissions API are advised to upgrade to v5.1.1 directly.
     **Status:** [Fixed in v5.1.2](https://github.com/khulnasoft/khulnasoft/pull/54419)
 
 - ### There is an issue with creating and updating existing Bitbucket.org (Cloud) code host connections due to problem with JSON schema validation which prevents the JSON editor from loading and surfaces as an error in the UI.

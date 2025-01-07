@@ -92,7 +92,7 @@ func TestSlackRateLimitNotifier(t *testing.T) {
 			alerter := NewSlackRateLimitNotifier(
 				logger,
 				test.mockRedis(t),
-				"https://sourcegraph.com/",
+				"https://khulnasoft.com/",
 				Thresholds{codygatewayactor.ActorSourceEnterpriseSubscription: []int{50, 80, 90}},
 				"https://hooks.slack.com",
 				func(ctx context.Context, url string, msg *slack.WebhookMessage) error {

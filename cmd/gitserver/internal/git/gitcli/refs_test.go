@@ -24,7 +24,7 @@ func TestGitCLIBackend_ListRefs(t *testing.T) {
 	backend := BackendWithRepoCommands(t,
 		"echo 'hello\nworld\nfrom\nblame\n' > foo.txt",
 		"git add foo.txt",
-		"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		// Add an annotated tag.
 		"git tag -a foo-tag -m foo-tag",
 		// Add a lightweight tag.
@@ -33,7 +33,7 @@ func TestGitCLIBackend_ListRefs(t *testing.T) {
 		"git checkout -b foo",
 		"echo 'hello\nworld\nfrom\nthe best blame\n' > foo.txt",
 		"git add foo.txt",
-		"git commit -m bar --author='Bar Author <bar@sourcegraph.com>'",
+		"git commit -m bar --author='Bar Author <bar@khulnasoft.com>'",
 		"git checkout master",
 		"mkdir -p .git/refs/pull/100",
 		"echo $(git rev-parse HEAD) > .git/refs/pull/100/head",
@@ -458,7 +458,7 @@ func TestGitCLIBackend_ListRefs_GoroutineLeak(t *testing.T) {
 	backend := BackendWithRepoCommands(t,
 		"echo abcd > file1",
 		"git add file1",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 		"git tag -a tag1 -m tag1",
 	)
 
@@ -543,11 +543,11 @@ func TestGitCLIBackend_RefHash(t *testing.T) {
 	dir := RepoWithCommands(t,
 		"echo line1 > f",
 		"git add f",
-		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@khulnasoft.com>'`,
 		"git checkout -b branch",
 		"echo line1 > f2",
 		"git add f2",
-		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@khulnasoft.com>'`,
 	)
 	backend := NewBackend(logtest.Scoped(t), rcf, dir, api.RepoName(t.Name()))
 
@@ -564,11 +564,11 @@ func TestGitCLIBackend_RefHash(t *testing.T) {
 	dir = RepoWithCommands(t,
 		"echo line1 > f",
 		"git add f",
-		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@khulnasoft.com>'`,
 		"git checkout -b branch",
 		"echo line1 > f2",
 		"git add f2",
-		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@khulnasoft.com>'`,
 	)
 	backend = NewBackend(logtest.Scoped(t), rcf, dir, api.RepoName(t.Name()))
 

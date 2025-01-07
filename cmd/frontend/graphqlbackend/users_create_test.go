@@ -105,7 +105,7 @@ func TestCreateUserResetPasswordURL(t *testing.T) {
 				Schema: mustParseGraphQLSchema(t, mocks.dB),
 				Query: `
 					mutation {
-						createUser(username: "alice",email:"alice@sourcegraph.com",verifiedEmail:false) {
+						createUser(username: "alice",email:"alice@khulnasoft.com",verifiedEmail:false) {
 							user {
 								id
 							}
@@ -153,7 +153,7 @@ func TestCreateUserResetPasswordURL(t *testing.T) {
 				Schema: mustParseGraphQLSchema(t, mocks.dB),
 				Query: `
 					mutation {
-						createUser(username: "alice",email:"alice@sourcegraph.com",verifiedEmail:false) {
+						createUser(username: "alice",email:"alice@khulnasoft.com",verifiedEmail:false) {
 							user {
 								id
 							}
@@ -207,7 +207,7 @@ func TestCreateUserResetPasswordURL(t *testing.T) {
 				Schema: mustParseGraphQLSchema(t, mocks.dB),
 				Query: `
 					mutation {
-						createUser(username: "alice",email:"alice@sourcegraph.com") {
+						createUser(username: "alice",email:"alice@khulnasoft.com") {
 							user {
 								id
 							}

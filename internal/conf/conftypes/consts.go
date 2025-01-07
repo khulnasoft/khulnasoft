@@ -50,7 +50,7 @@ const (
 	CompletionsProviderNameGoogle           CompletionsProviderName = "google"
 	CompletionsProviderNameAzureOpenAI      CompletionsProviderName = "azure-openai"
 	CompletionsProviderNameOpenAICompatible CompletionsProviderName = "openai-compatible"
-	CompletionsProviderNameSourcegraph      CompletionsProviderName = "sourcegraph"
+	CompletionsProviderNameKhulnasoft      CompletionsProviderName = "sourcegraph"
 	CompletionsProviderNameFireworks        CompletionsProviderName = "fireworks"
 	CompletionsProviderNameAWSBedrock       CompletionsProviderName = "aws-bedrock"
 )
@@ -77,7 +77,7 @@ type EmbeddingsProviderName string
 const (
 	EmbeddingsProviderNameOpenAI      EmbeddingsProviderName = "openai"
 	EmbeddingsProviderNameAzureOpenAI EmbeddingsProviderName = "azure-openai"
-	EmbeddingsProviderNameSourcegraph EmbeddingsProviderName = "sourcegraph"
+	EmbeddingsProviderNameKhulnasoft EmbeddingsProviderName = "sourcegraph"
 )
 
 type EmbeddingsFileFilters struct {

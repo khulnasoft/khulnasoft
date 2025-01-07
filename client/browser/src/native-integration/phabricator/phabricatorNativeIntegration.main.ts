@@ -13,7 +13,7 @@ import { getAssetsURL } from '../../shared/util/context'
 import { metaClickOverride } from './util'
 
 // Just for informational purposes (see getPlatformContext())
-window.SOURCEGRAPH_PHABRICATOR_EXTENSION = true
+window.KHULNASOFT_PHABRICATOR_EXTENSION = true
 
 const IS_EXTENSION = false
 
@@ -37,10 +37,10 @@ async function init(): Promise<void> {
     /**
      * This is the main entry point for the phabricator in-page JavaScript plugin.
      */
-    if (window.localStorage && window.localStorage.getItem('SOURCEGRAPH_DISABLED') === 'true') {
-        const value = window.localStorage.getItem('SOURCEGRAPH_DISABLED')
+    if (window.localStorage && window.localStorage.getItem('KHULNASOFT_DISABLED') === 'true') {
+        const value = window.localStorage.getItem('KHULNASOFT_DISABLED')
         console.log(
-            `Khulnasoft on Phabricator is disabled because window.localStorage.getItem('SOURCEGRAPH_DISABLED') is set to ${String(
+            `Khulnasoft on Phabricator is disabled because window.localStorage.getItem('KHULNASOFT_DISABLED') is set to ${String(
                 value
             )}.`
         )
@@ -48,22 +48,20 @@ async function init(): Promise<void> {
     }
 
     const sourcegraphURL =
-        window.localStorage.getItem('SOURCEGRAPH_URL') ||
-        window.SOURCEGRAPH_URL ||
-        (await getKhulnasoftURLFromConduit())
+        window.localStorage.getItem('KHULNASOFT_URL') || window.KHULNASOFT_URL || (await getKhulnasoftURLFromConduit())
     const assetsURL = getAssetsURL(sourcegraphURL)
 
     // Backwards compat: Support Legacy Phabricator extension. Check that the Phabricator integration
     // passed the bundle url. Legacy Phabricator extensions inject CSS via the loader.js script
     // so we do not need to do this here.
-    if (!window.SOURCEGRAPH_BUNDLE_URL && !window.localStorage.getItem('SOURCEGRAPH_BUNDLE_URL')) {
+    if (!window.KHULNASOFT_BUNDLE_URL && !window.localStorage.getItem('KHULNASOFT_BUNDLE_URL')) {
         injectExtensionMarker()
         await injectCodeIntelligence({ sourcegraphURL, assetsURL }, IS_EXTENSION)
         metaClickOverride()
         return
     }
 
-    window.SOURCEGRAPH_URL = sourcegraphURL
+    window.KHULNASOFT_URL = sourcegraphURL
 
     const styleSheets = [
         {
@@ -77,7 +75,7 @@ async function init(): Promise<void> {
     ]
     await Promise.all(styleSheets.map(appendHeadStyles))
 
-    window.localStorage.setItem('SOURCEGRAPH_URL', sourcegraphURL)
+    window.localStorage.setItem('KHULNASOFT_URL', sourcegraphURL)
     metaClickOverride()
     injectExtensionMarker()
     await injectCodeIntelligence({ sourcegraphURL, assetsURL }, IS_EXTENSION)

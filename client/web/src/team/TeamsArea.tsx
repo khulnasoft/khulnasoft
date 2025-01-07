@@ -31,7 +31,7 @@ export interface Props extends TelemetryV2Props {
  * Renders a layout of a sidebar and a content area to display team-related pages.
  */
 const AuthenticatedTeamsArea: React.FunctionComponent<React.PropsWithChildren<Props>> = props => {
-    // No teams on sourcegraph.com
+    // No teams on khulnasoft.com
     if (props.isKhulnasoftDotCom) {
         return <NotFoundPage pageType="team" />
     }

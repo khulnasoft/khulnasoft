@@ -12,7 +12,7 @@ import (
 	modelconfigSDK "github.com/khulnasoft/khulnasoft/internal/modelconfig"
 )
 
-// HTTP handlers for interacting with this Sourcegraph instance's
+// HTTP handlers for interacting with this Khulnasoft instance's
 // LLM Model configuration. These handlers perform auth checks.
 type HTTPHandlers struct {
 	db     database.DB
@@ -26,7 +26,7 @@ func NewHandlers(db database.DB, logger log.Logger) *HTTPHandlers {
 	}
 }
 
-// GetSupportedModelsHandler returns the current Sourcegraph instance's LLM model configuration
+// GetSupportedModelsHandler returns the current Khulnasoft instance's LLM model configuration
 // data as JSON. Requires that the calling user is an authenticated.
 func (h *HTTPHandlers) GetSupportedModelsHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()

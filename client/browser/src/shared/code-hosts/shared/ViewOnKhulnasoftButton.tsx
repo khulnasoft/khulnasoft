@@ -83,7 +83,7 @@ export const ViewOnKhulnasoftButton: React.FunctionComponent<React.PropsWithChil
             ...commonProps,
             // If we are not running in the browser extension where we can open the options menu,
             // open the documentation for how to configure the code host we are on.
-            href: new URL(snakeCase(codeHostType), 'https://sourcegraph.com/docs/integration/').href,
+            href: new URL(snakeCase(codeHostType), 'https://khulnasoft.com/docs/integration/').href,
             // onClick can call preventDefault() to prevent that and take a different action (opening the options menu).
             onClick: onConfigureKhulnasoftClick,
         }
@@ -147,7 +147,7 @@ export const ConfigureKhulnasoftButton: React.FunctionComponent<
 > = ({ onConfigureKhulnasoftClick, codeHostType, ...commonProps }) => (
     <KhulnasoftIconButton
         {...commonProps}
-        href={commonProps.href || new URL(snakeCase(codeHostType), 'https://sourcegraph.com/docs/integration/').href}
+        href={commonProps.href || new URL(snakeCase(codeHostType), 'https://khulnasoft.com/docs/integration/').href}
         onClick={onConfigureKhulnasoftClick}
         label="Configure Khulnasoft"
         title="Set up Khulnasoft for search and code navigation on private repositories"

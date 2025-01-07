@@ -4,7 +4,7 @@ Integration tests are very useful as they allow you to explore much wider codepa
 
 ## Tests running against the server image (`server:candidate`) 
 
-Every CI build produces a `server:candidate` container image, containing the Sourcegraph server built with the latest code of the currently built commit. It's never published unless you're on the `main` branch.
+Every CI build produces a `server:candidate` container image, containing the Khulnasoft server built with the latest code of the currently built commit. It's never published unless you're on the `main` branch.
 
 It's very common to run tests against the server, as it's the most practical way to test in an environment similar to what the customers will run. 
 
@@ -105,7 +105,7 @@ NodeJs code. You can check the other wrapping scripts for examples for each of t
 
 There are two crucial elements to respect for a working test runner script: 
 
-- Your test runner, the binary that the wrapper we're writing here is calling, _must_ allow for the Sourcegraph URL to be configured. Otherwise we cannot run these server tests concurrently. 
+- Your test runner, the binary that the wrapper we're writing here is calling, _must_ allow for the Khulnasoft URL to be configured. Otherwise we cannot run these server tests concurrently. 
 - The `args` attributes you passed in the `server_integration_test` are not the first arguments for this script. The first two arguments are the image tarball and the container name. This means that any argument you passed will be availble, starting at `$3` and so on. 
 
 Here is an example: 

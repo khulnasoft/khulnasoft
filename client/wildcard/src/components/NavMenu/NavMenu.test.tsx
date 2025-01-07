@@ -67,13 +67,13 @@ describe('<NavMenu />', () => {
                     {
                         content: 'About Khulnasoft',
                         itemAs: AnchorLink,
-                        to: 'https://sourcegraph.com',
+                        to: 'https://khulnasoft.com',
                         key: 6,
                     },
                     {
                         content: 'Browser Extension',
                         itemAs: AnchorLink,
-                        to: 'https://sourcegraph.com/docs/integration/browser_extension',
+                        to: 'https://khulnasoft.com/docs/integration/browser_extension',
                         key: 7,
                     },
                 ],

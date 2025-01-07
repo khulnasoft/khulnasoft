@@ -81,7 +81,7 @@ func TestCheckAddress(t *testing.T) {
 
 	t.Run("Valid Addresses", func(t *testing.T) {
 		goodURLS := []string{
-			"https://sourcegraph.com",
+			"https://khulnasoft.com",
 			"https://1.2.3.4",
 			"https://1.2.3.4:2000",
 			"https://[2001:0db8:0000:0000:0000:8a2e:0370:7334]",

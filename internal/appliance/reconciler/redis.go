@@ -20,7 +20,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/pointers"
 )
 
-func (r *Reconciler) reconcileRedis(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileRedis(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileRedisInstance(ctx, sg, owner, "cache", sg.Spec.RedisCache); err != nil {
 		return errors.Wrap(err, "reconciling redis-cache")
 	}
@@ -30,7 +30,7 @@ func (r *Reconciler) reconcileRedis(ctx context.Context, sg *config.Sourcegraph,
 	return nil
 }
 
-func (r *Reconciler) reconcileRedisInstance(ctx context.Context, sg *config.Sourcegraph, owner client.Object, kind string, cfg config.RedisSpec) error {
+func (r *Reconciler) reconcileRedisInstance(ctx context.Context, sg *config.Khulnasoft, owner client.Object, kind string, cfg config.RedisSpec) error {
 	if err := r.reconcileRedisDeployment(ctx, sg, owner, kind, cfg); err != nil {
 		return errors.Wrap(err, "reconciling Deployment")
 	}
@@ -46,7 +46,7 @@ func (r *Reconciler) reconcileRedisInstance(ctx context.Context, sg *config.Sour
 	return nil
 }
 
-func (r *Reconciler) reconcileRedisDeployment(ctx context.Context, sg *config.Sourcegraph, owner client.Object, kind string, cfg config.RedisSpec) error {
+func (r *Reconciler) reconcileRedisDeployment(ctx context.Context, sg *config.Khulnasoft, owner client.Object, kind string, cfg config.RedisSpec) error {
 	name := "redis-" + kind
 
 	defaultImage := config.GetDefaultImage(sg, name)
@@ -140,7 +140,7 @@ fi
 	return reconcileObject(ctx, r, cfg, &dep, &appsv1.Deployment{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileRedisService(ctx context.Context, sg *config.Sourcegraph, owner client.Object, kind string, cfg config.RedisSpec) error {
+func (r *Reconciler) reconcileRedisService(ctx context.Context, sg *config.Khulnasoft, owner client.Object, kind string, cfg config.RedisSpec) error {
 	name := "redis-" + kind
 	svc := service.NewService(name, sg.Namespace, cfg)
 	svc.Spec.Ports = []corev1.ServicePort{
@@ -152,7 +152,7 @@ func (r *Reconciler) reconcileRedisService(ctx context.Context, sg *config.Sourc
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileRedisPVC(ctx context.Context, sg *config.Sourcegraph, owner client.Object, kind string, cfg config.RedisSpec) error {
+func (r *Reconciler) reconcileRedisPVC(ctx context.Context, sg *config.Khulnasoft, owner client.Object, kind string, cfg config.RedisSpec) error {
 	name := "redis-" + kind
 	pvc, err := pvc.NewPersistentVolumeClaim(name, sg.Namespace, cfg)
 	if err != nil {
@@ -161,7 +161,7 @@ func (r *Reconciler) reconcileRedisPVC(ctx context.Context, sg *config.Sourcegra
 	return reconcileObject(ctx, r, cfg, &pvc, &corev1.PersistentVolumeClaim{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileRedisSecret(ctx context.Context, sg *config.Sourcegraph, owner client.Object, kind string, cfg config.RedisSpec) error {
+func (r *Reconciler) reconcileRedisSecret(ctx context.Context, sg *config.Khulnasoft, owner client.Object, kind string, cfg config.RedisSpec) error {
 	name := "redis-" + kind
 	secret := secret.NewSecret(name, sg.Namespace, sg.Spec.RequestedVersion)
 	secret.StringData = map[string]string{

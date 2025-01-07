@@ -49,7 +49,7 @@ describe('StreamingSearchResults', () => {
         platformContext: {
             settings: NEVER,
             requestGraphQL: () => EMPTY,
-            sourcegraphURL: 'https://sourcegraph.com',
+            sourcegraphURL: 'https://khulnasoft.com',
             telemetryRecorder: noOpTelemetryRecorder,
         } as any,
 

@@ -187,7 +187,7 @@ func (b BackfillPlan) String() string {
 	return fmt.Sprintf("[%v]", strings.Join(strs, ","))
 }
 
-// QueryExecution represents a node of an execution plan that should be queried against Sourcegraph.
+// QueryExecution represents a node of an execution plan that should be queried against Khulnasoft.
 // It can have dependent time points that will inherit the same value as the exemplar point
 // once the query is executed and resolved.
 type QueryExecution struct {

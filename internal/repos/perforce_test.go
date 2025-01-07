@@ -42,7 +42,7 @@ func TestPerforceSource_ListRepos(t *testing.T) {
 		{
 			name: "list",
 			assert: assertAllReposListed([]string{
-				"Sourcegraph",
+				"Khulnasoft",
 				"Engineering/Cloud",
 			}),
 			conf: &schema.PerforceConnection{
@@ -50,7 +50,7 @@ func TestPerforceSource_ListRepos(t *testing.T) {
 				P4User:   "admin",
 				P4Passwd: "pa$$word",
 				Depots: []string{
-					"//Sourcegraph",
+					"//Khulnasoft",
 					"//Engineering/Cloud",
 				},
 			},
@@ -59,14 +59,14 @@ func TestPerforceSource_ListRepos(t *testing.T) {
 		{
 			name: "unknown depot among existing",
 			assert: assertAllReposListed([]string{
-				"Sourcegraph",
+				"Khulnasoft",
 			}),
 			conf: &schema.PerforceConnection{
 				P4Port:   "ssl:111.222.333.444:1666",
 				P4User:   "admin",
 				P4Passwd: "pa$$word",
 				Depots: []string{
-					"//Sourcegraph",
+					"//Khulnasoft",
 					"//NotFound",
 				},
 			},
@@ -82,7 +82,7 @@ func TestPerforceSource_ListRepos(t *testing.T) {
 
 			gc := gitserver.NewMockClient()
 			gc.IsPerforcePathCloneableFunc.SetDefaultHook(func(ctx context.Context, _ protocol.PerforceConnectionDetails, depotPath string) error {
-				if depotPath == "//Sourcegraph" || depotPath == "//Engineering/Cloud" {
+				if depotPath == "//Khulnasoft" || depotPath == "//Engineering/Cloud" {
 					return nil
 				}
 				return errors.New("unknown depot")
@@ -108,7 +108,7 @@ func TestPerforceSource_ListRepos(t *testing.T) {
 
 func TestPerforceSource_makeRepo(t *testing.T) {
 	depots := []string{
-		"//Sourcegraph",
+		"//Khulnasoft",
 		"//Engineering/Cloud",
 	}
 

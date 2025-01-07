@@ -14,7 +14,7 @@ const CodySwitchAccountPage = lazyComponent(
 )
 const CodyDashboardPage = lazyComponent(() => import('./dashboard/CodyDashboardPage'), 'CodyDashboardPage')
 
-export const CODY_MARKETING_PAGE_URL = 'https://sourcegraph.com/cody'
+export const CODY_MARKETING_PAGE_URL = 'https://khulnasoft.com/cody'
 
 /**
  * Use {@link codyProRoutes} for Cody PLG routes.

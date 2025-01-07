@@ -37,8 +37,8 @@ func (j *syncingJob) Config() []env.Config {
 }
 
 func (j *syncingJob) Routines(_ context.Context, observationCtx *observation.Context) ([]goroutine.BackgroundRoutine, error) {
-	if dotcom.SourcegraphDotComMode() {
-		// If we're on sourcegraph.com we don't want to run this
+	if dotcom.KhulnasoftDotComMode() {
+		// If we're on khulnasoft.com we don't want to run this
 		return nil, nil
 	}
 

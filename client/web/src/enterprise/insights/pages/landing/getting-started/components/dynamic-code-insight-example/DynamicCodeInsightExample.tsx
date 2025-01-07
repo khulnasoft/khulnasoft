@@ -217,7 +217,7 @@ function useExampleRepositoryUrl(): UseExampleRepositoryUrlReturn {
     }
 
     if (error) {
-        return { repositoryUrl: 'github.com/sourcegraph/sourcegraph', loading: false }
+        return { repositoryUrl: 'github.com/khulnasoft/khulnasoft', loading: false }
     }
 
     const firstRepository = data.firstRepo?.results?.repositories[0]?.name
@@ -225,6 +225,6 @@ function useExampleRepositoryUrl(): UseExampleRepositoryUrlReturn {
 
     return {
         loading: false,
-        repositoryUrl: todoRepository ?? firstRepository ?? 'github.com/sourcegraph/sourcegraph',
+        repositoryUrl: todoRepository ?? firstRepository ?? 'github.com/khulnasoft/khulnasoft',
     }
 }

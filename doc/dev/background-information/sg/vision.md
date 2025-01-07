@@ -4,7 +4,7 @@
 
 - `sg` should be fun to use.
 - If you think "it would be cool if `sg` could do X": add it! Let's go :)
-- `sg` should make Sourcegraph developers productive and happy.
+- `sg` should make Khulnasoft developers productive and happy.
 - `sg` is not and should not be a build system.
 - `sg` is not and should not be a container orchestrator.
 - Try to fix [a lot of the problems in this RFC](https://docs.google.com/document/d/18hrRIN0pUBRwUFF7vkcVmstJccqWeHiecNF2t1GAZfU/edit) by encoding conventions in executable code.
@@ -23,6 +23,6 @@ You can also watch [this video](https://drive.google.com/file/d/1DXjjf1YXr8Od8vG
 
 The [`sg` label](https://github.com/khulnasoft/khulnasoft/issues?q=is%3Aopen+label%3Asg+sort%3Aupdated-desc) tracks features and improvements for `sg` that we want to make.
 
-Have feedback or ideas? Feel free to [join our community](https://community.sourcegraph.com)! Sourcegraph teammates can also leave a message in [#discuss-dev-infra](https://sourcegraph.slack.com/archives/C04MYFW01NV).
+Have feedback or ideas? Feel free to [join our community](https://community.khulnasoft.com)! Khulnasoft teammates can also leave a message in [#discuss-dev-infra](https://sourcegraph.slack.com/archives/C04MYFW01NV).
 
 Inspired and want to contribute? Head on over to [contributing to `sg`](index.md#contributing-to-sg)!

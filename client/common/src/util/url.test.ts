@@ -6,20 +6,20 @@ describe('KhulnasoftURL', () => {
     describe('from', () => {
         describe('string input', () => {
             it.each`
-                input                                                     | expected
-                ${'https://sourcegraph.com/some/path?some=param#L1'}      | ${'https://sourcegraph.com/some/path?some=param#L1'}
-                ${'https://sourcegraph.com:3443/some/path?some=param#L1'} | ${'https://sourcegraph.com:3443/some/path?some=param#L1'}
-                ${'/some/path?some=param#L1'}                             | ${'/some/path?some=param#L1'}
-                ${'?some=param#L1'}                                       | ${'?some=param#L1'}
-                ${'#L1'}                                                  | ${'#L1'}
+                input                                                    | expected
+                ${'https://khulnasoft.com/some/path?some=param#L1'}      | ${'https://khulnasoft.com/some/path?some=param#L1'}
+                ${'https://khulnasoft.com:3443/some/path?some=param#L1'} | ${'https://khulnasoft.com:3443/some/path?some=param#L1'}
+                ${'/some/path?some=param#L1'}                            | ${'/some/path?some=param#L1'}
+                ${'?some=param#L1'}                                      | ${'?some=param#L1'}
+                ${'#L1'}                                                 | ${'#L1'}
             `('$input => $expected', ({ input, expected }) => {
                 expect(KhulnasoftURL.from(input).toString()).toBe(expected)
             })
         })
 
         it('accepts a URL object', () => {
-            expect(KhulnasoftURL.from(new URL('https://sourcegraph.com/some/path?some=param#L1')).toString()).toBe(
-                'https://sourcegraph.com/some/path?some=param#L1'
+            expect(KhulnasoftURL.from(new URL('https://khulnasoft.com/some/path?some=param#L1')).toString()).toBe(
+                'https://khulnasoft.com/some/path?some=param#L1'
             )
         })
 

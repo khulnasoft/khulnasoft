@@ -2,7 +2,7 @@ import { commands, type SecretStorage } from 'vscode'
 
 import { setEndpoint } from '../../settings/endpointSetting'
 
-export const secretTokenKey = 'SOURCEGRAPH_AUTH'
+export const secretTokenKey = 'KHULNASOFT_AUTH'
 
 export class KhulnasoftAuthActions {
     constructor(private readonly secretStorage: SecretStorage) {}

@@ -10,7 +10,7 @@ interactions:
     url: https://dev.azure.com/sgtestazure/sgtestazure/_apis/git/repositories/sgtestazure3/pullrequests/5/threads?api-version=7.0
     method: POST
   response:
-    body: '{"pullRequestThreadContext":null,"id":45,"publishedDate":"2023-02-21T17:20:10.117Z","lastUpdatedDate":"2023-02-21T17:20:10.117Z","comments":[{"id":1,"parentCommentId":0,"author":{"displayName":"idan.varsano@sourcegraph.com","url":"https://spsprodcca1.vssps.visualstudio.com/Ab768986f-7304-43dd-be74-f37e30f66c38/_apis/Identities/473dec3e-03d7-6147-b106-0b0a7f766a92","_links":{"avatar":{"href":"https://dev.azure.com/sgtestazure/_apis/GraphProfile/MemberAvatars/aad.NDczZGVjM2UtMDNkNy03MTQ3LWIxMDYtMGIwYTdmNzY2YTky"}},"id":"473dec3e-03d7-6147-b106-0b0a7f766a92","uniqueName":"idan.varsano@sourcegraph.com","imageUrl":"https://dev.azure.com/sgtestazure/_apis/GraphProfile/MemberAvatars/aad.NDczZGVjM2UtMDNkNy03MTQ3LWIxMDYtMGIwYTdmNzY2YTky","descriptor":"aad.NDczZGVjM2UtMDNkNy03MTQ3LWIxMDYtMGIwYTdmNzY2YTky"},"content":"new
+    body: '{"pullRequestThreadContext":null,"id":45,"publishedDate":"2023-02-21T17:20:10.117Z","lastUpdatedDate":"2023-02-21T17:20:10.117Z","comments":[{"id":1,"parentCommentId":0,"author":{"displayName":"idan.varsano@khulnasoft.com","url":"https://spsprodcca1.vssps.visualstudio.com/Ab768986f-7304-43dd-be74-f37e30f66c38/_apis/Identities/473dec3e-03d7-6147-b106-0b0a7f766a92","_links":{"avatar":{"href":"https://dev.azure.com/sgtestazure/_apis/GraphProfile/MemberAvatars/aad.NDczZGVjM2UtMDNkNy03MTQ3LWIxMDYtMGIwYTdmNzY2YTky"}},"id":"473dec3e-03d7-6147-b106-0b0a7f766a92","uniqueName":"idan.varsano@khulnasoft.com","imageUrl":"https://dev.azure.com/sgtestazure/_apis/GraphProfile/MemberAvatars/aad.NDczZGVjM2UtMDNkNy03MTQ3LWIxMDYtMGIwYTdmNzY2YTky","descriptor":"aad.NDczZGVjM2UtMDNkNy03MTQ3LWIxMDYtMGIwYTdmNzY2YTky"},"content":"new
       comment","publishedDate":"2023-02-21T17:20:10.117Z","lastUpdatedDate":"2023-02-21T17:20:10.117Z","lastContentUpdatedDate":"2023-02-21T17:20:10.117Z","commentType":"text","_links":{"self":{"href":"https://dev.azure.com/sgtestazure/_apis/git/repositories/601cf461-9338-4396-895d-a3e2780bd52f/pullRequests/5/threads/45/comments/1"},"repository":{"href":"https://dev.azure.com/sgtestazure/dc493f7d-0b57-4de2-a59b-3f74ff3ea334/_apis/git/repositories/601cf461-9338-4396-895d-a3e2780bd52f"},"threads":{"href":"https://dev.azure.com/sgtestazure/_apis/git/repositories/601cf461-9338-4396-895d-a3e2780bd52f/pullRequests/5/threads/45"},"pullRequests":{"href":"https://dev.azure.com/sgtestazure/_apis/git/pullRequests/5"}}}],"threadContext":null,"properties":null,"identities":null,"isDeleted":false,"_links":{"self":{"href":"https://dev.azure.com/sgtestazure/_apis/git/repositories/601cf461-9338-4396-895d-a3e2780bd52f/pullRequests/5/threads/45"},"repository":{"href":"https://dev.azure.com/sgtestazure/dc493f7d-0b57-4de2-a59b-3f74ff3ea334/_apis/git/repositories/601cf461-9338-4396-895d-a3e2780bd52f"}}}'
     headers:
       Access-Control-Expose-Headers:
@@ -53,7 +53,7 @@ interactions:
       X-Vss-Senderdeploymentid:
       - 4ff21e82-8865-0b2e-ffe8-9598818f8190
       X-Vss-Userdata:
-      - 473dec3e-03d7-6147-b106-0b0a7f766a92:idan.varsano@sourcegraph.com
+      - 473dec3e-03d7-6147-b106-0b0a7f766a92:idan.varsano@khulnasoft.com
     status: 200 OK
     code: 200
     duration: ""

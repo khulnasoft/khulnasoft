@@ -1,6 +1,6 @@
 Khulnasoft, Inc.
 Software Grant and Corporate Contributor License Agreement ("Agreement")
-https://sourcegraph.com
+https://khulnasoft.com
 
 Thank you for your interest in Khulnasoft, Inc. ("Khulnasoft"). In
 order to clarify the intellectual property license granted with
@@ -17,7 +17,7 @@ its designated employees to Khulnasoft, and to grant copyright and
 patent licenses thereto.
 
 If you have not already done so, please complete and sign, then scan
-and email a PDF file of this Agreement to support@sourcegraph.com. If
+and email a PDF file of this Agreement to support@khulnasoft.com. If
 necessary, send an original signed Agreement to Khulnasoft, Inc. 121
 2nd St Ste 200, San Francisco, CA 94105, U.S.A. Please read this
 document carefully before signing and keep a copy for your records.

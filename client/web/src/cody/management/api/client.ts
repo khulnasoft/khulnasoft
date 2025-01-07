@@ -115,7 +115,7 @@ export interface Caller {
 // CodyProApiCaller is an implementation of the Caller interface which issues API calls to
 // the current Khulnasoft instance's SSC proxy API endpoint.
 export class CodyProApiCaller implements Caller {
-    // e.g. "https://sourcegraph.com"
+    // e.g. "https://khulnasoft.com"
     private readonly origin: string
 
     constructor() {

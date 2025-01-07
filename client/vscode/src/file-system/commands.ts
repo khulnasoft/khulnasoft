@@ -33,7 +33,7 @@ export async function openKhulnasoftUriCommand(fs: KhulnasoftFileSystemProvider,
 }
 
 async function getLocalCopy(remoteUri: KhulnasoftUri): Promise<vscode.TextDocument> {
-    const repoName = remoteUri.repositoryName.split('/').pop() || '' // ex: github.com/sourcegraph/sourcegraph => sourcegraph
+    const repoName = remoteUri.repositoryName.split('/').pop() || '' // ex: github.com/khulnasoft/khulnasoft => sourcegraph
     const filePath = remoteUri.path || '' // ex: "client/vscode/package.json"
     // Get basePath from configuration
     const basePath = vscode.workspace.getConfiguration('sourcegraph').get<string>('basePath') || null

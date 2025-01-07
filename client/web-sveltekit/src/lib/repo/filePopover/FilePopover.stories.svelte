@@ -12,7 +12,7 @@
         abbreviatedOID: '1234567',
         oid: '1234567890123456789012345678901234567890',
         subject: 'Test subject',
-        canonicalURL: 'https://sourcegraph.com/about',
+        canonicalURL: 'https://khulnasoft.com/about',
         author: {
             date: '2021-01-01T00:00:00Z',
             person: {
@@ -52,7 +52,7 @@
 </script>
 
 <Story name="Default">
-    <FilePopover repoName={'github.com/sourcegraph/sourcegraph'} entry={fileEntry} />
+    <FilePopover repoName={'github.com/khulnasoft/khulnasoft'} entry={fileEntry} />
 
-    <FilePopover repoName={'github.com/sourcegraph/sourcegraph'} entry={dirEntry} />
+    <FilePopover repoName={'github.com/khulnasoft/khulnasoft'} entry={dirEntry} />
 </Story>

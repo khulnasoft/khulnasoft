@@ -290,7 +290,7 @@ func TestAccessRequestConnectionStore(t *testing.T) {
 	for i := range 10 {
 		_, err := db.AccessRequests().Create(ctx, &types.AccessRequest{
 			Name:   "test" + strconv.Itoa(i),
-			Email:  fmt.Sprintf("test%d@sourcegraph.com", i),
+			Email:  fmt.Sprintf("test%d@khulnasoft.com", i),
 			Status: types.AccessRequestStatusPending,
 		})
 		require.NoError(t, err)

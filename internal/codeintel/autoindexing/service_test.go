@@ -433,10 +433,10 @@ func TestQueueAutoIndexJobsForPackage(t *testing.T) {
 
 	mockRepoStore := defaultMockRepoStore()
 	mockRepoStore.GetByNameFunc.SetDefaultHook(func(ctx context.Context, repoName api.RepoName) (*internaltypes.Repo, error) {
-		if repoName != "github.com/sourcegraph/sourcegraph" {
+		if repoName != "github.com/khulnasoft/khulnasoft" {
 			t.Errorf("unexpected repo %v supplied to EnqueueRepoUpdate", repoName)
 		}
-		return &internaltypes.Repo{ID: 42, Name: "github.com/sourcegraph/sourcegraph"}, nil
+		return &internaltypes.Repo{ID: 42, Name: "github.com/khulnasoft/khulnasoft"}, nil
 	})
 
 	service := newService(
@@ -449,7 +449,7 @@ func TestQueueAutoIndexJobsForPackage(t *testing.T) {
 
 	_ = service.QueueAutoIndexJobsForPackage(context.Background(), dependencies.MinimialVersionedPackageRepo{
 		Scheme:  "gomod",
-		Name:    "https://github.com/sourcegraph/sourcegraph",
+		Name:    "https://github.com/khulnasoft/khulnasoft",
 		Version: "v3.26.0-4e7eeb0f8a96",
 	})
 

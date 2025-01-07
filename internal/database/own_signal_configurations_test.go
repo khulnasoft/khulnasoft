@@ -30,7 +30,7 @@ func Test_LoadConfigurations(t *testing.T) {
 		{
 			ID:          2,
 			Name:        "recent-views",
-			Description: "Indexes users that recently viewed files in Sourcegraph.",
+			Description: "Indexes users that recently viewed files in Khulnasoft.",
 		},
 		{
 			ID:          3,
@@ -78,7 +78,7 @@ func Test_LoadConfigurations(t *testing.T) {
 			{
 				ID:          2,
 				Name:        "recent-views",
-				Description: "Indexes users that recently viewed files in Sourcegraph.",
+				Description: "Indexes users that recently viewed files in Khulnasoft.",
 			},
 			{
 				ID:          3,

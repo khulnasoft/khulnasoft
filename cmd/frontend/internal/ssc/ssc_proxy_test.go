@@ -28,8 +28,8 @@ func TestSSCAPIProxy(t *testing.T) {
 	var (
 		testURLPrefix     = "/.api/ssc/proxy"
 		testCodyProConfig = schema.CodyProConfig{
-			SamsBackendOrigin: "https://sams.sourcegraph.com:1234",
-			SscBackendOrigin:  "https://ssc.sourcegraph.com:1234",
+			SamsBackendOrigin: "https://sams.khulnasoft.com:1234",
+			SscBackendOrigin:  "https://ssc.khulnasoft.com:1234",
 		}
 	)
 
@@ -42,7 +42,7 @@ func TestSSCAPIProxy(t *testing.T) {
 
 	const testUserID = int32(12345)
 
-	// Confirm that we pull the Sourcegraph user details from the
+	// Confirm that we pull the Khulnasoft user details from the
 	// incomming request context correctly, and return the expected
 	// errors.
 	t.Run("getUserIDFromContext", func(t *testing.T) {
@@ -66,7 +66,7 @@ func TestSSCAPIProxy(t *testing.T) {
 		t.Run("ErrorNonNuman", func(t *testing.T) {
 			_, err := runTest(&actor.Actor{
 				UID:                 testUserID,
-				SourcegraphOperator: true,
+				KhulnasoftOperator: true,
 			})
 			assert.ErrorContains(t, err, "request not made on behalf of a user")
 		})
@@ -87,7 +87,7 @@ func TestSSCAPIProxy(t *testing.T) {
 				testURLPrefix+"teams/current/members?api-version=2",
 				strings.NewReader(reqBody))
 			req.Header.Add("Authorization", "Bearer original-access-token")
-			req.Header.Add("X-Sourcegraph", "Another random header")
+			req.Header.Add("X-Khulnasoft", "Another random header")
 
 			proxyReq, err := testHandler.buildProxyRequest(req, "sams-access-token")
 			require.NoError(t, err)
@@ -134,7 +134,7 @@ func TestSSCAPIProxy(t *testing.T) {
 				{
 					"users/settings",
 					// BUG? A quirk of how this test runs. We prefix the input string with
-					// "https://sourcegraph.com", so "sourcegraph.comuser/settings" comes
+					// "https://khulnasoft.com", so "khulnasoft.comuser/settings" comes
 					// out looking weird...
 					"/cody/api/v1/settings", "",
 				},
@@ -160,7 +160,7 @@ func TestSSCAPIProxy(t *testing.T) {
 				},
 			}
 			for i, test := range tests {
-				inURL := "https://sourcegraph.com" + test.ReqURLPath
+				inURL := "https://khulnasoft.com" + test.ReqURLPath
 				sourceReq := httptest.NewRequest(http.MethodGet, inURL, nil /* body */)
 				proxyReq, err := testHandler.buildProxyRequest(sourceReq, "")
 				assert.NoError(t, err, "URL rewriting scenario %d", i)

@@ -56,7 +56,7 @@ func (r *svelteKitRoute) matches(url *url.URL) bool {
 // RegisterSvelteKit registers a middleware that determines which routes are enabled for SvelteKit.
 // It also extends the request context with information that is sent to the client apps via JSContext.
 func RegisterSvelteKit(r *mux.Router, repoRootRoute *mux.Route) {
-	isDotComMode := dotcom.SourcegraphDotComMode()
+	isDotComMode := dotcom.KhulnasoftDotComMode()
 	var knownRoutes []string
 
 	r.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {

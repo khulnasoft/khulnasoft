@@ -50,7 +50,7 @@ index 671e50a..851b23a 100644
 @@ -1,2 +1,2 @@
  # README
 -This file is hosted at example.com and is a test file.
-+This file is hosted at sourcegraph.com and is a test file.
++This file is hosted at khulnasoft.com and is a test file.
 diff --git urls.txt urls.txt
 index 6f8b5d9..17400bc 100644
 --- urls.txt
@@ -58,7 +58,7 @@ index 6f8b5d9..17400bc 100644
 @@ -1,3 +1,3 @@
  another-url.com
 -example.com
-+sourcegraph.com
++khulnasoft.com
  never-touch-the-mouse.com
 `)
 
@@ -75,7 +75,7 @@ var testDiffGraphQL = apitest.FileDiffs{
 			OldFile: apitest.File{Name: "README.md"},
 			Hunks: []apitest.FileDiffHunk{
 				{
-					Body:     " # README\n-This file is hosted at example.com and is a test file.\n+This file is hosted at sourcegraph.com and is a test file.\n",
+					Body:     " # README\n-This file is hosted at example.com and is a test file.\n+This file is hosted at khulnasoft.com and is a test file.\n",
 					OldRange: apitest.DiffRange{StartLine: 1, Lines: 2},
 					NewRange: apitest.DiffRange{StartLine: 1, Lines: 2},
 				},
@@ -88,7 +88,7 @@ var testDiffGraphQL = apitest.FileDiffs{
 			OldFile: apitest.File{Name: "urls.txt"},
 			Hunks: []apitest.FileDiffHunk{
 				{
-					Body:     " another-url.com\n-example.com\n+sourcegraph.com\n never-touch-the-mouse.com\n",
+					Body:     " another-url.com\n-example.com\n+khulnasoft.com\n never-touch-the-mouse.com\n",
 					OldRange: apitest.DiffRange{StartLine: 1, Lines: 3},
 					NewRange: apitest.DiffRange{StartLine: 1, Lines: 3},
 				},

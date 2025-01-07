@@ -26,7 +26,7 @@
 //	writer.Write(...)
 //
 // For more help, please reach out to #discuss-core-services or refer to
-// go/msp: https://handbook.sourcegraph.com/departments/engineering/teams/core-services/managed-services/platform/
+// go/msp: https://handbook.khulnasoft.com/departments/engineering/teams/core-services/managed-services/platform/
 package contract
 
 import (

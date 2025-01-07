@@ -159,7 +159,7 @@ func (h *dependencyIndexingSchedulerHandler) Handle(ctx context.Context, logger 
 	}
 
 	// if this job is not associated with an external service kind that was just synced, then we need to guarantee
-	// that the repos are visible to the Sourcegraph instance, else skip them
+	// that the repos are visible to the Khulnasoft instance, else skip them
 	if job.ExternalServiceKind == "" {
 		repoNameStrings := cast.ToStrings(repoNames)
 		sort.Strings(repoNameStrings)

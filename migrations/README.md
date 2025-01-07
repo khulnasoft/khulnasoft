@@ -18,7 +18,7 @@ Up migrations will happen automatically in development on service startup. In pr
 
 ## Adding a migration
 
-**IMPORTANT:** All migrations must be backwards-compatible, meaning that _existing_ code must be able to operate successfully against the _new_ (post-migration) database schema. Consult [_Writing database migrations_](https://docs-legacy.sourcegraph.com/dev/background-information/sql/migrations) in our developer documentation for additional context.
+**IMPORTANT:** All migrations must be backwards-compatible, meaning that _existing_ code must be able to operate successfully against the _new_ (post-migration) database schema. Consult [_Writing database migrations_](https://docs-legacy.khulnasoft.com/dev/background-information/sql/migrations) in our developer documentation for additional context.
 
 To create a new migration file, run the following command.
 
@@ -40,4 +40,4 @@ To pass CI, you'll additionally need to:
 
 ### Reverting a migration
 
-If a reverted PR contains a DB migration, it may still have been applied to Sourcegraph.com, k8s.sgdev.org, etc. due to their rollout schedules. In some cases, it may also have been part of a Sourcegraph release. To fix this, you should create a PR to revert the migrations of that commit. The `sg migration revert <commit>` command automates all the necessary changes the migration definitions.
+If a reverted PR contains a DB migration, it may still have been applied to Khulnasoft.com, k8s.sgdev.org, etc. due to their rollout schedules. In some cases, it may also have been part of a Khulnasoft release. To fix this, you should create a PR to revert the migrations of that commit. The `sg migration revert <commit>` command automates all the necessary changes the migration definitions.

@@ -1,15 +1,15 @@
 # Metrics and dashboards
 
-Sourcegraph ships with [Grafana](https://grafana.com) for dashboards, [Prometheus](https://prometheus.io/) for metrics and alerting. We also provide [built-in alerting](./alerting.md) for these metrics.
+Khulnasoft ships with [Grafana](https://grafana.com) for dashboards, [Prometheus](https://prometheus.io/) for metrics and alerting. We also provide [built-in alerting](./alerting.md) for these metrics.
 
 ## Grafana
 
-Site admins can view the Grafana monitoring dashboards on a Sourcegraph instance:
+Site admins can view the Grafana monitoring dashboards on a Khulnasoft instance:
 
 1. Go to **User menu > Site admin**.
 1. Open the **Monitoring** page from the link in the left sidebar. The URL is `https://sourcegraph.example.com/-/debug/grafana/`.
 
-<img src="https://user-images.githubusercontent.com/3173176/82078081-65c62780-9695-11ea-954a-84e8e9686970.png" class="screenshot" alt="Sourcegraph dashboard">
+<img src="https://user-images.githubusercontent.com/3173176/82078081-65c62780-9695-11ea-954a-84e8e9686970.png" class="screenshot" alt="Khulnasoft dashboard">
 
 ### Dashboards
 
@@ -24,7 +24,7 @@ These can be accessed from the top left corner of each panel.
 
 #### View alerts
 
-The Overview dashboard includes a high-level summary of alert events across all Sourcegraph services.
+The Overview dashboard includes a high-level summary of alert events across all Khulnasoft services.
 
 On service dashboards, a summary of alert events for that service is available.
 Alerts can be filtered by level using the "Filter alert level" selector at the top of the dashboard.
@@ -32,8 +32,8 @@ This information can be overlaid on all panels in that dashboard by enabling the
 
 #### View version change events
 
-On service dashboards, annotations can be displayed for occasions when a Sourcegraph version change is detected by enabling the "Version changes" toggle at the top of the dashboard.
-This can be useful for correlating metrics and alerts with Sourcegraph deployment and upgrade events.
+On service dashboards, annotations can be displayed for occasions when a Khulnasoft version change is detected by enabling the "Version changes" toggle at the top of the dashboard.
+This can be useful for correlating metrics and alerts with Khulnasoft deployment and upgrade events.
 
 <video  width="1760" height="1060" autoplay loop muted playsinline style="width: 100%; height: auto; max-width: 50rem">
   <source src="https://sourcegraphstatic.com/VersionAndAlertAnnotations.webm" type="video/webm">
@@ -42,12 +42,12 @@ This can be useful for correlating metrics and alerts with Sourcegraph deploymen
 
 #### Querying metrics
 
-Specific metrics can be queried using Grafana's Explore panel, available at `/-/debug/grafana/explore` on your Sourcegraph instance.
+Specific metrics can be queried using Grafana's Explore panel, available at `/-/debug/grafana/explore` on your Khulnasoft instance.
 The query for each individual panel can be viewed and explored by clicking on the panel and using the "Explore" option.
 
 ### Grafana configuration
 
-Sourcegraph deploys a customized image of Grafana, which ships with Sourcegraph-specific dashboard definitions.
+Khulnasoft deploys a customized image of Grafana, which ships with Khulnasoft-specific dashboard definitions.
 
 To provide custom dashboards, a directory containing dashboard JSON specifications can be mounted in the Docker container at `/sg_grafana_additional_dashboards`.
 Changes to files in that directory will be detected automatically while Grafana is running.
@@ -59,10 +59,10 @@ More behavior can be controlled with [environmental variables](https://grafana.c
 
 ### Accessing Grafana directly
 
-For most use cases, you can access Grafana [through your Sourcegraph instance](#grafana).
+For most use cases, you can access Grafana [through your Khulnasoft instance](#grafana).
 Follow the instructions below to access Grafana directly to, for example, edit configuration directly.
 
-> NOTE: Most of the dashboards that Sourcegraph ships with are not configurable through the Grafana UI.
+> NOTE: Most of the dashboards that Khulnasoft ships with are not configurable through the Grafana UI.
 > In general, we recommend [these configuration methods instead](#grafana-configuration).
 
 If you are using the [Kubernetes deployment option](../deploy/kubernetes/index.md), you can access Grafana directly using Kubernetes port forwarding to your local machine:
@@ -74,7 +74,7 @@ kubectl port-forward svc/grafana 3370:30070
 Grafana will be available http://localhost:3370/-/debug/grafana.
 
 If you are using [Docker Single Container](../deploy/docker-single-container/index.md) or the [Docker Compose deployment option](../deploy/index.md), Grafana is available locally at http://localhost:3370/-/debug/grafana without any additional setup.
-If Sourcegraph is deployed to a remote server, then access via an SSH tunnel using a tool such as [sshuttle](https://github.com/sshuttle/sshuttle) is required to establish a secure connection to Grafana.
+If Khulnasoft is deployed to a remote server, then access via an SSH tunnel using a tool such as [sshuttle](https://github.com/sshuttle/sshuttle) is required to establish a secure connection to Grafana.
 To access the remote server using `sshuttle` from your local machine:
 
 ```bash
@@ -90,16 +90,16 @@ Grafana will be available at http://host:3370/-/debug/grafana.
 
 Prometheus is a monitoring tool that collects application- and system-level metrics over time and makes these accessible through a robust query language.
 
-For most use cases, you can query Prometheus through [Grafana](#grafana) using Grafana's Explore panel, available at `/-/debug/grafana/explore` on your Sourcegraph instance, or simply rely on the dashboards we ship.
+For most use cases, you can query Prometheus through [Grafana](#grafana) using Grafana's Explore panel, available at `/-/debug/grafana/explore` on your Khulnasoft instance, or simply rely on the dashboards we ship.
 
 ### Available metrics
 
 #### High-level alerting metrics
 
-Khulnasoft's metrics include a single high-level metric `alert_count` which indicates the number of `level=critical` and `level=warning` alerts each service has fired over time for each Sourcegraph service.
+Khulnasoft's metrics include a single high-level metric `alert_count` which indicates the number of `level=critical` and `level=warning` alerts each service has fired over time for each Khulnasoft service.
 This is the same metric presented on the **Overview** Grafana dashboard.
 
-> NOTE: We provide [built-in alerting](./alerting.md) for these alerting metrics to help monitor the health of your Sourcegraph instance.
+> NOTE: We provide [built-in alerting](./alerting.md) for these alerting metrics to help monitor the health of your Khulnasoft instance.
 > Refer to our [alert solutions reference](./alerts.md) for details on specific alerts.
 
 **Description:** The number of alerts each service has fired for a given alert name and severity level.
@@ -118,11 +118,11 @@ For example, `0.5` and `0.7` indicate no alerts are firing, while `1.2` indicate
 
 #### Complete reference
 
-A complete reference of Khulnasoft's vast set of Prometheus metrics is not yet available. If you are interested in this, please reach out by filing an issue or contacting us at [support@sourcegraph.com](mailto:support@sourcegraph.com).
+A complete reference of Khulnasoft's vast set of Prometheus metrics is not yet available. If you are interested in this, please reach out by filing an issue or contacting us at [support@khulnasoft.com](mailto:support@khulnasoft.com).
 
 ### Prometheus configuration
 
-Sourcegraph runs a customized image of Prometheus, which packages a standard Prometheus installation together with rules files and target files tailored to Sourcegraph and quality-of-life integrations such as [the ability to configure alerting from the Sourcegraph web application](./alerting/index.md).
+Khulnasoft runs a customized image of Prometheus, which packages a standard Prometheus installation together with rules files and target files tailored to Khulnasoft and quality-of-life integrations such as [the ability to configure alerting from the Khulnasoft web application](./alerting/index.md).
 
 A directory can be mounted at `/sg_prometheus_add_ons`. It can contain additional config files of two types:
 
@@ -136,7 +136,7 @@ The environment variable `PROMETHEUS_ADDITIONAL_FLAGS` can be used to pass on ad
 
 ### Accessing Prometheus directly
 
-Most of the time, Sourcegraph site admins will monitor and query key metrics through [Grafana](#grafana), rather than through Prometheus directly.
+Most of the time, Khulnasoft site admins will monitor and query key metrics through [Grafana](#grafana), rather than through Prometheus directly.
 Grafana also provides the dashboards that monitor the standard metrics that indicate the health of the instance.
 Follow the instructions below to access Prometheus directly instead.
 
@@ -146,7 +146,7 @@ If you are using the [Kubernetes deployment option](../deploy/kubernetes/index.m
 kubectl port-forward svc/prometheus 9090:30090
 ```
 
-If you are using [Docker Single Container](../deploy/docker-single-container/index.md) or the [Docker Compose deployment option](../deploy/index.md), you will need to restart the Sourcegraph container
+If you are using [Docker Single Container](../deploy/docker-single-container/index.md) or the [Docker Compose deployment option](../deploy/index.md), you will need to restart the Khulnasoft container
 with a flag `--publish 9090:9090` in the `docker run` command.
 
 Prometheus will be available http://localhost:9090.

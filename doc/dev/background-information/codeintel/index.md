@@ -1,6 +1,6 @@
 # Developing code navigation
 
-This guide documents our approach to developing code navigation-related features in our codebase. This includes the code navigation logic included in the Sourcegraph instance as well as the [extensions](https://github.com/sourcegraph/code-intel-extensions) that provide code navigation to the web UI, browser extension, and code host integrations.
+This guide documents our approach to developing code navigation-related features in our codebase. This includes the code navigation logic included in the Khulnasoft instance as well as the [extensions](https://github.com/sourcegraph/code-intel-extensions) that provide code navigation to the web UI, browser extension, and code host integrations.
 
 Services:
 
@@ -21,4 +21,4 @@ Docs:
 - [How indexes are processed](uploads.md)
 - [How precise code navigation queries are resolved](queries.md)
 - [How code navigation extensions resolve hovers](extensions.md)
-- [How Sourcegraph auto-indexes source code](auto-indexing.md)
+- [How Khulnasoft auto-indexes source code](auto-indexing.md)

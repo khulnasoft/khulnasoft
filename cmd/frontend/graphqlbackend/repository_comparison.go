@@ -569,7 +569,7 @@ func (r *DiffHunk) Highlight(ctx context.Context, args *HighlightArgs) (*highlig
 
 	// TODO: There's been historically a lot of bugs in this code. They should be resolved now,
 	// but let's keep this in for one more release and check log aggregators before we
-	// finally remove this in Sourcegraph 4.4.
+	// finally remove this in Khulnasoft 4.4.
 	safeIndex := func(lines []template.HTML, target int32) string {
 		if len(lines) > int(target) {
 			return string(lines[target])

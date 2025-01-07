@@ -1,6 +1,6 @@
 import type { DOMFunctions } from '../tokenPosition'
 
-import { GITHUB_CODE_TABLE, SOURCEGRAPH_CODE_TABLE } from './generate'
+import { GITHUB_CODE_TABLE, KHULNASOFT_CODE_TABLE } from './generate'
 import { TEST_DATA_REVSPEC } from './revision'
 
 const createElementFromString = (html: string): HTMLDivElement => {
@@ -121,7 +121,7 @@ const createGitHubCodeView = (): CodeViewProps => {
 const createKhulnasoftCodeView = (): CodeViewProps => {
     const codeView = document.createElement('div')
 
-    codeView.innerHTML = SOURCEGRAPH_CODE_TABLE
+    codeView.innerHTML = KHULNASOFT_CODE_TABLE
     codeView.style.clear = 'both'
 
     const getCodeElementFromTarget = (target: HTMLElement): HTMLElement | null => {

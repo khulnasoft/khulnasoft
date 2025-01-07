@@ -4,7 +4,7 @@ This document covers information about contributing to [Khulnasoft's continuous 
 
 ## Pipeline generator
 
-The source code of [Khulnasoft's Buildkite pipelines](./index.md#buildkite-pipelines) generator is in [`/dev/ci`](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/tree/dev/ci).
+The source code of [Khulnasoft's Buildkite pipelines](./index.md#buildkite-pipelines) generator is in [`/dev/ci`](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@main/-/tree/dev/ci).
 Internally, the pipeline generator determines what gets run over contributions based on:
 
 1. [Run types](#run-types), determined by branch naming conventions, tags, and environment variables
@@ -19,14 +19,14 @@ If you are looking to modify the pipeline, some good rules of thumbs for which c
 - Adding an entirely new pipeline type for the `sourcegraph/sourcegraph` repository? Take a look at how [run types](#run-types) are implemented.
 - Does your check or test need a secret? Take a look at [how to manage secrets](#managing-secrets).
 
-> WARNING: Khulnasoft's pipeline generator and its generated output are under the [Sourcegraph Enterprise license](https://github.com/khulnasoft/khulnasoft/blob/main/LICENSE.enterprise).
+> WARNING: Khulnasoft's pipeline generator and its generated output are under the [Khulnasoft Enterprise license](https://github.com/khulnasoft/khulnasoft/blob/main/LICENSE.enterprise).
 
 ### Run types
 
 > NOTE: A full reference of what our existing run types do is available from `sg ci docs`.
 
 <div class="embed">
-  <iframe src="https://sourcegraph.com/embed/notebooks/Tm90ZWJvb2s6MTU5"
+  <iframe src="https://khulnasoft.com/embed/notebooks/Tm90ZWJvb2s6MTU5"
     style="width:100%;height:720px" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups">
   </iframe>
 </div>
@@ -34,7 +34,7 @@ If you are looking to modify the pipeline, some good rules of thumbs for which c
 ### Diff types
 
 <div class="embed">
-  <iframe src="https://sourcegraph.com/embed/notebooks/Tm90ZWJvb2s6MTYw"
+  <iframe src="https://khulnasoft.com/embed/notebooks/Tm90ZWJvb2s6MTYw"
     style="width:100%;height:720px" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups">
   </iframe>
 </div>
@@ -42,7 +42,7 @@ If you are looking to modify the pipeline, some good rules of thumbs for which c
 ### Operations
 
 <div class="embed">
-  <iframe src="https://sourcegraph.com/embed/notebooks/Tm90ZWJvb2s6MTYx"
+  <iframe src="https://khulnasoft.com/embed/notebooks/Tm90ZWJvb2s6MTYx"
     style="width:100%;height:720px" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups">
   </iframe>
 </div>
@@ -51,14 +51,14 @@ If you are looking to modify the pipeline, some good rules of thumbs for which c
 
 To create a new check that can run on pull requests on relevant files, refer to how [diff types](#diff-types) work to get started.
 
-Then, you can add a new check to [`CoreTestOperations`](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:%5Edev/ci/internal/ci+CoreTestOperations+type:symbol+&patternType=literal).
+Then, you can add a new check to [`CoreTestOperations`](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:%5Edev/ci/internal/ci+CoreTestOperations+type:symbol+&patternType=literal).
 Make sure to follow the best practices outlined in docstring.
 
 For more advanced pipelines, see [Run types](#run-types).
 
 ### Step options
 
-Each [operation](#operations) is composed of steps that are built via step options, defined as [implementations of the `StepOpt` interface](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/dev/ci/internal/buildkite/buildkite.go?L229:6#tab=implementations_go). The core step option is `Cmd`, which defines a command to run when added to a pipeline via `AddStep`:
+Each [operation](#operations) is composed of steps that are built via step options, defined as [implementations of the `StepOpt` interface](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/dev/ci/internal/buildkite/buildkite.go?L229:6#tab=implementations_go). The core step option is `Cmd`, which defines a command to run when added to a pipeline via `AddStep`:
 
 ```go
 func addGoBuild(pipeline *bk.Pipeline) {
@@ -105,7 +105,7 @@ An annotation can be rendered as Markdown instead by using the `.md` extension, 
 echo -e "$OUT" >./annotations/docsite.md
 ```
 
-For more details about best practices and additional features and capabilities, please refer to [the `bk.AnnotatedCmd` docstring](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:%5Edev/ci/internal/buildkite+AnnotatedCmd+type:symbol&patternType=literal).
+For more details about best practices and additional features and capabilities, please refer to [the `bk.AnnotatedCmd` docstring](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:%5Edev/ci/internal/buildkite+AnnotatedCmd+type:symbol&patternType=literal).
 
 #### Caching build artefacts
 
@@ -115,16 +115,16 @@ Cached artefacts are *automatically expired after 30 days* (by an object lifecyc
 
 ### Observability
 
-> NOTE: Sourcegraph teammates should refer to the [CI incidents playbook](https://handbook.sourcegraph.com/departments/product-engineering/engineering/process/incidents/playbooks/ci#scenarios) for help managing issues with [pipeline health](./index.md#pipeline-health).
+> NOTE: Khulnasoft teammates should refer to the [CI incidents playbook](https://handbook.khulnasoft.com/departments/product-engineering/engineering/process/incidents/playbooks/ci#scenarios) for help managing issues with [pipeline health](./index.md#pipeline-health).
 
 #### Failure logs
 
-Every failure in the `sourcegraph/sourcegraph` CI pipeline for `main` also [uploads logs using `sg` to Loki](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/dev/upload-build-logs.sh).
-We do not publish data for successful builds or branch builds (for those, you can refer to our [build traces](https://docs.sourcegraph.com/dev/background-information/ci/development#pipeline-command-tracing)).
+Every failure in the `sourcegraph/sourcegraph` CI pipeline for `main` also [uploads logs using `sg` to Loki](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/dev/upload-build-logs.sh).
+We do not publish data for successful builds or branch builds (for those, you can refer to our [build traces](https://docs.khulnasoft.com/dev/background-information/ci/development#pipeline-command-tracing)).
 
 For a brief overview, check out the [CI dashboard](https://sourcegraph.grafana.net/d/iBBWbxFnk/ci?orgId=1), which is a set of graphs based on the contents of uploaded logs.
 
-Some annotations also have a link "View Grafana logs" which will take one to Grafana cloud with a pre-populated query to view the log output of a failure (if any). For more about querying logs, refer to the handbook page: [Grafana Cloud - CI logs](https://handbook.sourcegraph.com/departments/engineering/dev/tools/observability/cloud/#ci-logs).
+Some annotations also have a link "View Grafana logs" which will take one to Grafana cloud with a pre-populated query to view the log output of a failure (if any). For more about querying logs, refer to the handbook page: [Grafana Cloud - CI logs](https://handbook.khulnasoft.com/departments/engineering/dev/tools/observability/cloud/#ci-logs).
 
 #### Pipeline command tracing
 
@@ -150,18 +150,18 @@ Therefore, it's beneficial for tracing purposes to split the step in multiple co
 
 ### Buildkite infrastructure
 
-Our continuous integration system is composed of two parts, a central server controled by Buildkite and agents that are operated by Sourcegraph within our own infrastructure.
+Our continuous integration system is composed of two parts, a central server controled by Buildkite and agents that are operated by Khulnasoft within our own infrastructure.
 In order to provide strong isolation across builds, to prevent a previous build to create any effect on the next one, our agents are stateless jobs.
 
 When a build is dispatched by Buildkite, each individual job will be assigned to an agent in a pristine state. Each agent will execute its assigned job, automatically report back to Buildkite and finally shuts itself down. A fresh agent will then be created and will stand in line for the next job.
 
 This means that our agents are totally **stateless**, exactly like the runners used in GitHub actions.
 
-Also see [Flaky infrastructure](#flaky-infrastructure), [Continous integration infrastructure](https://handbook.sourcegraph.com/departments/product-engineering/engineering/tools/infrastructure/ci), and the [Continuous integration changelog](https://handbook.sourcegraph.com/departments/product-engineering/engineering/tools/infrastructure/ci/changelog).
+Also see [Flaky infrastructure](#flaky-infrastructure), [Continous integration infrastructure](https://handbook.khulnasoft.com/departments/product-engineering/engineering/tools/infrastructure/ci), and the [Continuous integration changelog](https://handbook.khulnasoft.com/departments/product-engineering/engineering/tools/infrastructure/ci/changelog).
 
 #### Pipeline setup
 
-To set up Buildkite to use the rendered pipeline, add the following step in the [pipeline settings](https://buildkite.com/sourcegraph/sourcegraph/settings):
+To set up Buildkite to use the rendered pipeline, add the following step in the [pipeline settings](https://buildkite.com/khulnasoft/khulnasoft/settings):
 
 ```shell
 go run ./dev/ci/gen-pipeline.go | buildkite-agent pipeline upload

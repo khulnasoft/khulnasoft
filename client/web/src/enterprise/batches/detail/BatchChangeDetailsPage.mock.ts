@@ -198,7 +198,7 @@ export const MOCK_BULK_OPERATIONS: BatchChangeBulkOperationsResult = {
                                 repository: {
                                     id: 'a',
                                     name: 'sourcegraph/sourcegraph',
-                                    url: '/github.com/sourcegraph/sourcegraph',
+                                    url: '/github.com/khulnasoft/khulnasoft',
                                 },
                                 title: 'Changeset title on code host',
                             },

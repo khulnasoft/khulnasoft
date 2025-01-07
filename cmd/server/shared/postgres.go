@@ -100,7 +100,7 @@ func postgresProcfile() (string, error) {
 		if verbose {
 			pgPrintf("Setting up PostgreSQL at %s", path)
 		}
-		pgPrintf("Sourcegraph is initializing the internal database... (may take 15-20 seconds)")
+		pgPrintf("Khulnasoft is initializing the internal database... (may take 15-20 seconds)")
 
 		var output bytes.Buffer
 		e := execer{Out: &output}
@@ -121,14 +121,14 @@ func postgresProcfile() (string, error) {
 			return "", err
 		}
 
-		// Create the 5.1-reindex file; DB was initialized by Sourcegraph >=5.1 so reindexing is not required
+		// Create the 5.1-reindex file; DB was initialized by Khulnasoft >=5.1 so reindexing is not required
 		f, err := os.Create(postgresReindexMarkerFile())
 		if err != nil {
 			return "", err
 		}
 		defer f.Close()
 
-		_, err = f.WriteString("Database initialised by Sourcegraph 5.1 or later\n")
+		_, err = f.WriteString("Database initialised by Khulnasoft 5.1 or later\n")
 		if err != nil {
 			return "", err
 		}
@@ -154,7 +154,7 @@ func postgresProcfile() (string, error) {
 			}
 		}
 		if len(missingDatabases) > 0 {
-			pgPrintf("Sourcegraph is creating missing databases %s... (may take 15-20 seconds)", strings.Join(missingDatabases, ", "))
+			pgPrintf("Khulnasoft is creating missing databases %s... (may take 15-20 seconds)", strings.Join(missingDatabases, ", "))
 
 			e.Command("su-exec", "postgres", "pg_ctl", "-D", path, "-o -c listen_addresses=127.0.0.1", "-l", "/tmp/pgsql.log", "-w", "start")
 			for _, database := range missingDatabases {

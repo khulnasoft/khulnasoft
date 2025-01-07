@@ -22,9 +22,9 @@ var (
 	addRepos     = flag.NewFlagSet("addrepos", flag.ExitOnError)
 	oobmigration = flag.NewFlagSet("oobmigration", flag.ExitOnError)
 
-	baseURL  = initSG.String("baseurl", os.Getenv("SOURCEGRAPH_BASE_URL"), "The base URL of the Sourcegraph instance. (Required)")
+	baseURL  = initSG.String("baseurl", os.Getenv("KHULNASOFT_BASE_URL"), "The base URL of the Khulnasoft instance. (Required)")
 	email    = initSG.String("email", os.Getenv("TEST_USER_EMAIL"), "The email of the admin user. (Required)")
-	username = initSG.String("username", os.Getenv("SOURCEGRAPH_SUDO_USER"), "The username of the admin user. (Required)")
+	username = initSG.String("username", os.Getenv("KHULNASOFT_SUDO_USER"), "The username of the admin user. (Required)")
 	password = initSG.String("password", os.Getenv("TEST_USER_PASSWORD"), "The password of the admin user. (Required)")
 	sgenvrc  = initSG.String("sg_envrc", os.Getenv("SG_ENVRC"), "Location of the sg_envrc file to write down the sudo token to")
 
@@ -50,7 +50,7 @@ func main() {
 	switch os.Args[1] {
 	case "initSG":
 		initSG.Parse(os.Args[2:])
-		initSourcegraph()
+		initKhulnasoft()
 	case "addRepos":
 		addRepos.Parse(os.Args[2:])
 		addReposCommand()
@@ -64,7 +64,7 @@ func main() {
 
 }
 
-func initSourcegraph() {
+func initKhulnasoft() {
 	log.Println("Running initializer")
 
 	needsSiteInit, resp, err := gqltestutil.NeedsSiteInit(*baseURL)
@@ -113,7 +113,7 @@ func initSourcegraph() {
 		}
 	}
 
-	envvar := "export SOURCEGRAPH_SUDO_TOKEN=" + token
+	envvar := "export KHULNASOFT_SUDO_TOKEN=" + token
 	if *sgenvrc != "" {
 		profile = *sgenvrc
 	}
@@ -126,7 +126,7 @@ func initSourcegraph() {
 		log.Fatal(err)
 	}
 
-	log.Println("Instance initialized, SOURCEGRAPH_SUDO_TOKEN set in", profile)
+	log.Println("Instance initialized, KHULNASOFT_SUDO_TOKEN set in", profile)
 }
 func mustMarshalJSONString(v any) string {
 	str, err := jsoniter.MarshalToString(v)

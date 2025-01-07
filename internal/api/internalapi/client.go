@@ -18,7 +18,7 @@ import (
 
 var frontendInternal = func() *url.URL {
 	rawURL := env.Get("SRC_FRONTEND_INTERNAL", "sourcegraph-frontend-internal", "HTTP address for internal frontend HTTP API.")
-	return mustParseSourcegraphInternalURL(rawURL)
+	return mustParseKhulnasoftInternalURL(rawURL)
 }()
 
 type internalClient struct {
@@ -63,10 +63,10 @@ func (c *internalClient) Configuration(ctx context.Context) (conftypes.RawUnifie
 	return raw, nil
 }
 
-// mustParseSourcegraphInternalURL parses a frontend internal URL string and panics if it is invalid.
+// mustParseKhulnasoftInternalURL parses a frontend internal URL string and panics if it is invalid.
 //
 // The URL will be parsed with a default scheme of "http" and a default port of "80" if no scheme or port is specified.
-func mustParseSourcegraphInternalURL(rawURL string) *url.URL {
+func mustParseKhulnasoftInternalURL(rawURL string) *url.URL {
 	u, err := parseAddress(rawURL)
 	if err != nil {
 		panic(fmt.Sprintf("failed to parse frontend internal URL %q: %s", rawURL, err))

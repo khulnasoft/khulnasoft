@@ -78,7 +78,7 @@ type SubscriptionLicense struct {
 	// 'EnterpriseSubscriptionLicenseType'.
 	LicenseData json.RawMessage `gorm:"type:jsonb"`
 
-	// DetectedInstanceID is the identifier of the Sourcegraph instance that has
+	// DetectedInstanceID is the identifier of the Khulnasoft instance that has
 	// been automatically detected via onlince license checks (subscriptionlicensechecks).
 	// It should only be used internally for reference.
 	DetectedInstanceID *string

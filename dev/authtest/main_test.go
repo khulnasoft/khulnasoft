@@ -20,7 +20,7 @@ var (
 	long = flag.Bool("long", false, "Enable the auth tests to run. Required flag, otherwise tests are skipped.")
 
 	baseURL  = flag.String("base-url", "http://127.0.0.1:7080", "The base URL of the Khulnasoft instance")
-	email    = flag.String("email", "authtest@sourcegraph.com", "The email of the admin user")
+	email    = flag.String("email", "authtest@khulnasoft.com", "The email of the admin user")
 	username = flag.String("username", "authtest-admin", "The username of the admin user")
 	password = flag.String("password", "supersecurepassword", "The password of the admin user")
 

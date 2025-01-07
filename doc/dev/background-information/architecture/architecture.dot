@@ -1,5 +1,5 @@
 digraph architecture {
-    label="Sourcegraph Architecture Overview\n\nBox => horizontally scalable service, Rectangle => singleton service"
+    label="Khulnasoft Architecture Overview\n\nBox => horizontally scalable service, Rectangle => singleton service"
     rankdir=LR
     ratio=fill
     ranksep=0.8

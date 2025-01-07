@@ -1,3 +1,3 @@
-name: Speed up ListSourcegraphDotComIndexableRepos (part 2)
+name: Speed up ListKhulnasoftDotComIndexableRepos (part 2)
 parents: [1667950421]
 createIndexConcurrently: true

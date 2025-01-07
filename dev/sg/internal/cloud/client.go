@@ -81,7 +81,7 @@ func validateEmail(email string) error {
 		return errors.New("gcloud account email is empty")
 	}
 
-	if !strings.Contains(email, "@sourcegraph.com") {
+	if !strings.Contains(email, "@khulnasoft.com") {
 		return errors.Newf("gcloud account email %q is not a valid Khulnasoft email", email)
 	}
 

@@ -63,11 +63,11 @@ func makeUploadRequest(opts uploadRequestOptions) (*http.Request, error) {
 	if opts.UncompressedSize != 0 {
 		req.Header.Set("X-Uncompressed-Size", strconv.Itoa(int(opts.UncompressedSize)))
 	}
-	if opts.SourcegraphInstanceOptions.AccessToken != "" {
-		req.Header.Set("Authorization", fmt.Sprintf("token %s", opts.SourcegraphInstanceOptions.AccessToken))
+	if opts.KhulnasoftInstanceOptions.AccessToken != "" {
+		req.Header.Set("Authorization", fmt.Sprintf("token %s", opts.KhulnasoftInstanceOptions.AccessToken))
 	}
 
-	for k, v := range opts.SourcegraphInstanceOptions.AdditionalHeaders {
+	for k, v := range opts.KhulnasoftInstanceOptions.AdditionalHeaders {
 		req.Header.Set(k, v)
 	}
 
@@ -139,16 +139,16 @@ func decodeUploadPayload(resp *http.Response, body []byte, target *int) (bool, e
 	return false, nil
 }
 
-// makeUploadURL creates a URL pointing to the configured Sourcegraph upload
+// makeUploadURL creates a URL pointing to the configured Khulnasoft upload
 // endpoint with the query string described by the given request options.
 func makeUploadURL(opts uploadRequestOptions) (*url.URL, error) {
 	qs := url.Values{}
 
-	if opts.SourcegraphInstanceOptions.GitHubToken != "" {
-		qs.Add("github_token", opts.SourcegraphInstanceOptions.GitHubToken)
+	if opts.KhulnasoftInstanceOptions.GitHubToken != "" {
+		qs.Add("github_token", opts.KhulnasoftInstanceOptions.GitHubToken)
 	}
-	if opts.SourcegraphInstanceOptions.GitLabToken != "" {
-		qs.Add("gitlab_token", opts.SourcegraphInstanceOptions.GitLabToken)
+	if opts.KhulnasoftInstanceOptions.GitLabToken != "" {
+		qs.Add("gitlab_token", opts.KhulnasoftInstanceOptions.GitLabToken)
 	}
 	if opts.UploadRecordOptions.Repo != "" {
 		qs.Add("repository", opts.UploadRecordOptions.Repo)
@@ -185,12 +185,12 @@ func makeUploadURL(opts uploadRequestOptions) (*url.URL, error) {
 		qs.Add("done", "true")
 	}
 
-	path := opts.SourcegraphInstanceOptions.Path
+	path := opts.KhulnasoftInstanceOptions.Path
 	if path == "" {
 		path = "/.api/lsif/upload"
 	}
 
-	parsedUrl, err := url.Parse(opts.SourcegraphInstanceOptions.SourcegraphURL + path)
+	parsedUrl, err := url.Parse(opts.KhulnasoftInstanceOptions.KhulnasoftURL + path)
 	if err != nil {
 		return nil, err
 	}

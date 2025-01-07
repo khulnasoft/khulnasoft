@@ -20,7 +20,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/internal/k8s/resource/statefulset"
 )
 
-func (r *Reconciler) reconcileGitServer(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileGitServer(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileGitServerStatefulSet(ctx, sg, owner); err != nil {
 		return err
 	}
@@ -33,7 +33,7 @@ func (r *Reconciler) reconcileGitServer(ctx context.Context, sg *config.Sourcegr
 	return nil
 }
 
-func (r *Reconciler) reconcileGitServerStatefulSet(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileGitServerStatefulSet(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.GitServer
 	name := "gitserver"
 
@@ -125,7 +125,7 @@ func (r *Reconciler) reconcileGitServerStatefulSet(ctx context.Context, sg *conf
 	return reconcileObject(ctx, r, ifChanged, &sset, &appsv1.StatefulSet{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileGitServerService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileGitServerService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	svc := service.NewService("gitserver", sg.Namespace, sg.Spec.GitServer)
 	svc.Spec.Ports = []corev1.ServicePort{
 		{Name: "unused", TargetPort: intstr.FromInt32(10811), Port: 10811},
@@ -138,7 +138,7 @@ func (r *Reconciler) reconcileGitServerService(ctx context.Context, sg *config.S
 	return reconcileObject(ctx, r, sg.Spec.GitServer, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileGitServerServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileGitServerServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.GitServer
 	sa := serviceaccount.NewServiceAccount("gitserver", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, sg.Spec.GitServer, &sa, &corev1.ServiceAccount{}, sg, owner)

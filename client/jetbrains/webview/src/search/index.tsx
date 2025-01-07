@@ -25,7 +25,7 @@ import type { PluginConfig, Search, Theme } from './types'
 setLinkComponent(AnchorLink)
 
 let isDarkTheme = false
-let instanceURL = 'https://sourcegraph.com/'
+let instanceURL = 'https://khulnasoft.com/'
 let accessToken: string | null = null
 let customRequestHeaders: Record<string, string> | null = {}
 let anonymousUserId: string

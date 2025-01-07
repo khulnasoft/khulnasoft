@@ -69,7 +69,7 @@ func TestGetCloneURL(t *testing.T) {
 	}{
 		{
 			name: "https",
-			want: "https://github.com/sourcegraph/sourcegraph",
+			want: "https://github.com/khulnasoft/khulnasoft",
 			cloneURLs: []string{
 				`https://github.com/sourcegraph/sourcegraph`,
 			},
@@ -83,7 +83,7 @@ func TestGetCloneURL(t *testing.T) {
 		},
 		{
 			name: "https and ssh, favoring https",
-			want: "https://github.com/sourcegraph/sourcegraph",
+			want: "https://github.com/khulnasoft/khulnasoft",
 			cloneURLs: []string{
 				`https://github.com/sourcegraph/sourcegraph`,
 				`git@github.com:sourcegraph/sourcegraph.git`,
@@ -91,7 +91,7 @@ func TestGetCloneURL(t *testing.T) {
 		},
 		{
 			name: "https and ssh, favoring https different order",
-			want: "https://github.com/sourcegraph/sourcegraph",
+			want: "https://github.com/khulnasoft/khulnasoft",
 			cloneURLs: []string{
 				`git@github.com:sourcegraph/sourcegraph.git`,
 				`https://github.com/sourcegraph/sourcegraph`,
@@ -108,12 +108,12 @@ func TestGetCloneURL(t *testing.T) {
 				}
 			}
 			repo := &types.Repo{
-				Name:    api.RepoName("github.com/sourcegraph/sourcegraph"),
-				URI:     "github.com/sourcegraph/sourcegraph",
+				Name:    api.RepoName("github.com/khulnasoft/khulnasoft"),
+				URI:     "github.com/khulnasoft/khulnasoft",
 				Sources: sources,
 				Metadata: &github.Repository{
 					NameWithOwner: "sourcegraph/sourcegraph",
-					URL:           "https://github.com/sourcegraph/sourcegraph",
+					URL:           "https://github.com/khulnasoft/khulnasoft",
 				},
 			}
 
@@ -158,11 +158,11 @@ func TestLoadExternalService(t *testing.T) {
 		Sources: map[string]*types.SourceInfo{
 			externalService.URN(): {
 				ID:       externalService.URN(),
-				CloneURL: "https://github.com/sourcegraph/sourcegraph",
+				CloneURL: "https://github.com/khulnasoft/khulnasoft",
 			},
 			newerExternalService.URN(): {
 				ID:       newerExternalService.URN(),
-				CloneURL: "https://123456@github.com/sourcegraph/sourcegraph",
+				CloneURL: "https://123456@github.com/khulnasoft/khulnasoft",
 			},
 		},
 	}
@@ -216,26 +216,26 @@ func TestGitserverPushConfig(t *testing.T) {
 		// Without authenticator:
 		{
 			name:                "GitHub HTTPS no token",
-			repoName:            "github.com/sourcegraph/sourcegraph",
+			repoName:            "github.com/khulnasoft/khulnasoft",
 			externalServiceType: extsvc.TypeGitHub,
-			cloneURLs:           []string{"https://github.com/sourcegraph/sourcegraph"},
+			cloneURLs:           []string{"https://github.com/khulnasoft/khulnasoft"},
 			authenticator:       nil,
 			wantErr:             ErrNoPushCredentials{},
 		},
 		// With authenticator:
 		{
 			name:                "GitHub HTTPS with authenticator",
-			repoName:            "github.com/sourcegraph/sourcegraph",
+			repoName:            "github.com/khulnasoft/khulnasoft",
 			externalServiceType: extsvc.TypeGitHub,
-			cloneURLs:           []string{"https://github.com/sourcegraph/sourcegraph"},
+			cloneURLs:           []string{"https://github.com/khulnasoft/khulnasoft"},
 			authenticator:       &oauthHTTPSAuthenticator,
 			wantPushConfig: &protocol.PushConfig{
-				RemoteURL: "https://bearer-test@github.com/sourcegraph/sourcegraph",
+				RemoteURL: "https://bearer-test@github.com/khulnasoft/khulnasoft",
 			},
 		},
 		{
 			name:                "GitHub SSH with authenticator",
-			repoName:            "github.com/sourcegraph/sourcegraph",
+			repoName:            "github.com/khulnasoft/khulnasoft",
 			externalServiceType: extsvc.TypeGitHub,
 			cloneURLs:           []string{"git@github.com:sourcegraph/sourcegraph.git"},
 			authenticator:       &oauthSSHAuthenticator,
@@ -249,10 +249,10 @@ func TestGitserverPushConfig(t *testing.T) {
 			name:                "GitLab HTTPS with authenticator",
 			repoName:            "sourcegraph/sourcegraph",
 			externalServiceType: extsvc.TypeGitLab,
-			cloneURLs:           []string{"https://gitlab.com/sourcegraph/sourcegraph"},
+			cloneURLs:           []string{"https://gitlab.com/khulnasoft/khulnasoft"},
 			authenticator:       &oauthHTTPSAuthenticator,
 			wantPushConfig: &protocol.PushConfig{
-				RemoteURL: "https://git:bearer-test@gitlab.com/sourcegraph/sourcegraph",
+				RemoteURL: "https://git:bearer-test@gitlab.com/khulnasoft/khulnasoft",
 			},
 		},
 		{
@@ -269,17 +269,17 @@ func TestGitserverPushConfig(t *testing.T) {
 		},
 		{
 			name:                "Bitbucket server HTTPS with authenticator",
-			repoName:            "bitbucket.sgdev.org/sourcegraph/sourcegraph",
+			repoName:            "bitbucket.sgdev.org/khulnasoft/khulnasoft",
 			externalServiceType: extsvc.TypeBitbucketServer,
-			cloneURLs:           []string{"https://bitbucket.sgdev.org/sourcegraph/sourcegraph"},
+			cloneURLs:           []string{"https://bitbucket.sgdev.org/khulnasoft/khulnasoft"},
 			authenticator:       &basicHTTPSAuthenticator,
 			wantPushConfig: &protocol.PushConfig{
-				RemoteURL: "https://basic:pw@bitbucket.sgdev.org/sourcegraph/sourcegraph",
+				RemoteURL: "https://basic:pw@bitbucket.sgdev.org/khulnasoft/khulnasoft",
 			},
 		},
 		{
 			name:                "Bitbucket server SSH with authenticator",
-			repoName:            "bitbucket.sgdev.org/sourcegraph/sourcegraph",
+			repoName:            "bitbucket.sgdev.org/khulnasoft/khulnasoft",
 			externalServiceType: extsvc.TypeBitbucketServer,
 			authenticator:       &basicSSHAuthenticator,
 			cloneURLs:           []string{"git@bitbucket.sgdev.org:7999/sourcegraph/sourcegraph.git"},
@@ -300,7 +300,7 @@ func TestGitserverPushConfig(t *testing.T) {
 		{
 			name:                "Invalid credential type",
 			externalServiceType: extsvc.TypeBitbucketServer,
-			cloneURLs:           []string{"https://bitbucket.sgdev.org/sourcegraph/sourcegraph"},
+			cloneURLs:           []string{"https://bitbucket.sgdev.org/khulnasoft/khulnasoft"},
 			authenticator:       &auth.OAuthClient{},
 			wantErr:             ErrNoPushCredentials{CredentialsType: "*auth.OAuthClient"},
 		},
@@ -369,7 +369,7 @@ func TestSourcer_ForChangeset(t *testing.T) {
 		Sources: map[string]*types.SourceInfo{
 			es.URN(): {
 				ID:       es.URN(),
-				CloneURL: "https://123@github.com/sourcegraph/sourcegraph",
+				CloneURL: "https://123@github.com/khulnasoft/khulnasoft",
 			},
 		},
 	}

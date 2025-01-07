@@ -37,7 +37,7 @@ type GitBackend interface {
 	// If the commit does not exist, a RevisionNotFoundError is returned.
 	Blame(ctx context.Context, startCommit api.CommitID, path string, opt BlameOptions) (BlameHunkReader, error)
 	// SymbolicRefHead resolves what the HEAD symbolic ref points to. This is also
-	// commonly referred to as the default branch within Sourcegraph.
+	// commonly referred to as the default branch within Khulnasoft.
 	// If short is true, the returned ref name will be shortened when possible
 	// without ambiguity.
 	SymbolicRefHead(ctx context.Context, short bool) (string, error)

@@ -1,6 +1,6 @@
 # How to accept an external contribution
 
-This page outlines how to accept a contribution to the [Sourcegraph repository](https://github.com/sourcegraph/sourcegraph).
+This page outlines how to accept a contribution to the [Khulnasoft repository](https://github.com/sourcegraph/sourcegraph).
 
 ## CLA-bot
 

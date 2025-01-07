@@ -13,7 +13,7 @@ import (
 // editing.
 
 // DevAndTesting is the default configuration applied to dev instances of
-// Sourcegraph, as well as what is used by default during Go testing.
+// Khulnasoft, as well as what is used by default during Go testing.
 //
 // Tests that wish to use a specific configuration should use conf.Mock.
 //
@@ -31,11 +31,11 @@ var DevAndTesting = conftypes.RawUnified{
 }
 
 // DockerContainer is the default configuration applied to Docker
-// single-container instances of Sourcegraph.
+// single-container instances of Khulnasoft.
 var DockerContainer = conftypes.RawUnified{
 	Site: `{
-	// The externally accessible URL for Sourcegraph (i.e., what you type into your browser)
-	// This is required to be configured for Sourcegraph to work correctly.
+	// The externally accessible URL for Khulnasoft (i.e., what you type into your browser)
+	// This is required to be configured for Khulnasoft to work correctly.
 	// "externalURL": "https://sourcegraph.example.com",
 
 	"auth.providers": [
@@ -48,11 +48,11 @@ var DockerContainer = conftypes.RawUnified{
 }
 
 // KubernetesOrDockerComposeOrPureDocker is the default configuration
-// applied to Kubernetes, Docker Compose, and pure Docker instances of Sourcegraph.
+// applied to Kubernetes, Docker Compose, and pure Docker instances of Khulnasoft.
 var KubernetesOrDockerComposeOrPureDocker = conftypes.RawUnified{
 	Site: `{
-	// The externally accessible URL for Sourcegraph (i.e., what you type into your browser)
-	// This is required to be configured for Sourcegraph to work correctly.
+	// The externally accessible URL for Khulnasoft (i.e., what you type into your browser)
+	// This is required to be configured for Khulnasoft to work correctly.
 	// "externalURL": "https://sourcegraph.example.com",
 
 	// The authentication provider to use for identifying and signing in users.
@@ -61,7 +61,7 @@ var KubernetesOrDockerComposeOrPureDocker = conftypes.RawUnified{
 	// The builtin auth provider with signup disallowed (shown below) means that
 	// after the initial site admin signs in, all other users must be invited.
 	//
-	// Other providers are documented at https://sourcegraph.com/docs/admin/auth.
+	// Other providers are documented at https://khulnasoft.com/docs/admin/auth.
 	"auth.providers": [
 		{
 			"type": "builtin",

@@ -11,7 +11,7 @@ import (
 func ForbidAllRequestsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if len(conf.Get().AuthProviders) == 0 {
-			const msg = "Access to Sourcegraph is forbidden because no authentication provider is set in site configuration."
+			const msg = "Access to Khulnasoft is forbidden because no authentication provider is set in site configuration."
 			http.Error(w, msg, http.StatusForbidden)
 			return
 		}

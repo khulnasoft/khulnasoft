@@ -67,7 +67,7 @@ func (s *sessionIssuerHelper) GetOrCreateUser(ctx context.Context, token *oauth2
 
 	login, err := auth.NormalizeUsername(deref(ghUser.Login))
 	if err != nil {
-		return false, nil, fmt.Sprintf("Error normalizing the username %q. See https://sourcegraph.com/docs/admin/auth/#username-normalization.", login), err
+		return false, nil, fmt.Sprintf("Error normalizing the username %q. See https://khulnasoft.com/docs/admin/auth/#username-normalization.", login), err
 	}
 
 	ghClient := s.newClient(token.AccessToken)
@@ -75,7 +75,7 @@ func (s *sessionIssuerHelper) GetOrCreateUser(ctx context.Context, token *oauth2
 	// 🚨 SECURITY: Ensure that the user email is verified
 	verifiedEmails := getVerifiedEmails(ctx, ghClient)
 	if len(verifiedEmails) == 0 {
-		return false, nil, "Could not get verified email for GitHub user. Check that your GitHub account has a verified email that matches one of your Sourcegraph verified emails.", errors.New("no verified email")
+		return false, nil, "Could not get verified email for GitHub user. Check that your GitHub account has a verified email that matches one of your Khulnasoft verified emails.", errors.New("no verified email")
 	}
 
 	dc := conf.Get().Dotcom
@@ -111,7 +111,7 @@ func (s *sessionIssuerHelper) GetOrCreateUser(ctx context.Context, token *oauth2
 	)
 
 	// We will first attempt to connect one of the verified emails with an existing
-	// account in Sourcegraph
+	// account in Khulnasoft
 	type attemptConfig struct {
 		email            string
 		createIfNotExist bool

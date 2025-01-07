@@ -11,7 +11,7 @@ import (
 const DotcomUserGatewayAccessTokenPrefix = "sgd_" // "(S)ource(g)raph (d)otcom user key"
 
 // GenerateLicenseKeyBasedAccessToken creates a prefixed, encoded token based on a
-// Sourcegraph license key.
+// Khulnasoft license key.
 func GenerateDotcomUserGatewayAccessToken(apiToken string) (string, error) {
 	token, err := ParsePersonalAccessToken(apiToken)
 	if err != nil {

@@ -1,12 +1,12 @@
 # gRPC
 
-As of Sourcegraph `5.3.X`, [gRPC](https://grpc.io/about/) has supplanted REST as our default mode of communication between our microservices for our internal APIs.
+As of Khulnasoft `5.3.X`, [gRPC](https://grpc.io/about/) has supplanted REST as our default mode of communication between our microservices for our internal APIs.
 
 <Callout type="note">An "internal" API is one that's solely used for intra-service communication/RPCs (think `searcher` fetching an archive from `gitserver`). Internal APIs don't include things like the GraphQL API that external people can use (including our web interface).</Callout>
 
 ## gRPC Tutorial
 
-The [`internal/grpc/example`](https://github.com/khulnasoft/khulnasoft/tree/main/internal/grpc/example) package in the [sourcegraph/sourcegraph monorepo](https://github.com/sourcegraph/sourcegraph) contains a simple, runnable example of a gRPC service and client. It is a good starting point for understanding how to write a gRPC service that covers the following topics:
+The [`internal/grpc/example`](https://github.com/khulnasoft/khulnasoft/tree/main/internal/grpc/example) package in the [khulnasoft/khulnasoft monorepo](https://github.com/sourcegraph/sourcegraph) contains a simple, runnable example of a gRPC service and client. It is a good starting point for understanding how to write a gRPC service that covers the following topics:
 
 - All the basic Protobuf types (e.g. primitives, enums, messages, one-ofs, etc.)
 - All the basic RPC types (e.g. unary, server streaming, client streaming, bidirectional streaming)
@@ -14,7 +14,7 @@ The [`internal/grpc/example`](https://github.com/khulnasoft/khulnasoft/tree/main
 - Implementing a gRPC server (with proper separation of concerns)
 - Implementing a gRPC client
 - Some known footguns (non-utf8 strings, huge messages, etc.)
-- Some Sourcegraph-specific helper packages and patterns ([grpc/defaults](https://github.com/khulnasoft/khulnasoft/tree/main/internal/grpc/defaults), [grpc/streamio](https://github.com/khulnasoft/khulnasoft/tree/main/internal/grpc/streamio), etc.)
+- Some Khulnasoft-specific helper packages and patterns ([grpc/defaults](https://github.com/khulnasoft/khulnasoft/tree/main/internal/grpc/defaults), [grpc/streamio](https://github.com/khulnasoft/khulnasoft/tree/main/internal/grpc/streamio), etc.)
 
 When going through this example for the first time, it is recommended to:
 

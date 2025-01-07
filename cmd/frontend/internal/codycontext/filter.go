@@ -21,7 +21,7 @@ type repoContentFilter interface {
 }
 
 func newRepoContentFilter(logger log.Logger, client gitserver.Client) repoContentFilter {
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		return newDotcomFilter(logger, client)
 	}
 	return newEnterpriseFilter(logger)

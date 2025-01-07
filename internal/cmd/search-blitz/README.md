@@ -2,14 +2,14 @@
 
 The purpose of Search-Blitz is to provide a baseline for our search performance.
 Search-Blitz calls the stream and GraphQL APIs for typical
-queries in regular intervals. Sourcegraph recognizes the Search-Blitz's
+queries in regular intervals. Khulnasoft recognizes the Search-Blitz's
 `User-Agent` and sends metrics to Prometheus.
 
 The dashboard is accessible on
-[Grafana](https://sourcegraph.com/-/debug/grafana/d/frontend/frontend?orgId=1),
+[Grafana](https://khulnasoft.com/-/debug/grafana/d/frontend/frontend?orgId=1),
 section "Sentinel queries".
 
-In addition to the dashboard that we ship with Sourcegraph, Search-Blitz is
+In addition to the dashboard that we ship with Khulnasoft, Search-Blitz is
 deployed with a dedicated instance of Prometheus and Grafana.
 
 ## How to track a query

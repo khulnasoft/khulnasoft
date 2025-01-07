@@ -47,8 +47,8 @@ func (z *zoektGRPCClient) StreamSearch(ctx context.Context, q query.Q, opts *zoe
 			return convertError(err)
 		}
 
-		var repoURLS map[string]string      // We don't use repoURLs in Sourcegraph
-		var lineFragments map[string]string // We don't use lineFragments in Sourcegraph
+		var repoURLS map[string]string      // We don't use repoURLs in Khulnasoft
+		var lineFragments map[string]string // We don't use lineFragments in Khulnasoft
 
 		sender.Send(zoekt.SearchResultFromProto(msg.GetResponseChunk(), repoURLS, lineFragments))
 	}
@@ -69,8 +69,8 @@ func (z *zoektGRPCClient) Search(ctx context.Context, q query.Q, opts *zoekt.Sea
 		return nil, convertError(err)
 	}
 
-	var repoURLS map[string]string      // We don't use repoURLs in Sourcegraph
-	var lineFragments map[string]string // We don't use lineFragments in Sourcegraph
+	var repoURLS map[string]string      // We don't use repoURLs in Khulnasoft
+	var lineFragments map[string]string // We don't use lineFragments in Khulnasoft
 
 	return zoekt.SearchResultFromProto(resp, repoURLS, lineFragments), nil
 }

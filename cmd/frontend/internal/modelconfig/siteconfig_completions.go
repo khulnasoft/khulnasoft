@@ -53,7 +53,7 @@ type legacyModelRef struct {
 // defined in the "completions" site config.
 //
 // When sending LLM models to the client, it expects to see the exact value specified in the site
-// configuration. So the client sees the model **name**. However, internally, this Sourcegraph
+// configuration. So the client sees the model **name**. However, internally, this Khulnasoft
 // instance converts the site configuration into a modelconfigSDK.ModelConfigruation, which may
 // have a slightly different model **ID** from model name.
 //
@@ -169,8 +169,8 @@ func getProviderConfiguration(siteConfig *conftypes.CompletionsConfig) *types.Se
 			User:                        siteConfig.User,
 			UseDeprecatedCompletionsAPI: siteConfig.AzureUseDeprecatedCompletionsAPIForOldModels,
 		}
-	case conftypes.CompletionsProviderNameSourcegraph:
-		serverSideConfig.SourcegraphProvider = &types.SourcegraphProviderConfig{
+	case conftypes.CompletionsProviderNameKhulnasoft:
+		serverSideConfig.KhulnasoftProvider = &types.KhulnasoftProviderConfig{
 			AccessToken: siteConfig.AccessToken,
 			Endpoint:    siteConfig.Endpoint,
 		}
@@ -270,7 +270,7 @@ func convertCompletionsConfig(completionsCfg *conftypes.CompletionsConfig) (*typ
 			// will likely have breaking changes when rolled out. Carefully read this thread
 			// and internalize what needs to happe to faithfully reproduce the intent of
 			// those settings:
-			// https://sourcegraph.com/docs/cody/clients/enable-cody-enterprise#smart-context-window
+			// https://khulnasoft.com/docs/cody/clients/enable-cody-enterprise#smart-context-window
 			// https://sourcegraph.slack.com/archives/C04MSD3DP5L/p1718294914637509
 			ContextWindow: types.ContextWindow{
 				MaxInputTokens: maxInputTokens,
@@ -311,7 +311,7 @@ func convertCompletionsConfig(completionsCfg *conftypes.CompletionsConfig) (*typ
 	// Dedupe the provider information. We only allow you to specify a single "provider" in the
 	// config, but may output multiple ProviderOverrides. (e.g. if you are using the "khulnasoft"
 	// provider, and referencing models from Fireworks, OpenAI, and Anthropic, then we will create
-	// 3x types.ProviderOverride objects. But with each one using Sourcegraph as the API provider.)
+	// 3x types.ProviderOverride objects. But with each one using Khulnasoft as the API provider.)
 	maps.DeleteFunc(configuredProviders, func(currentKind defModelKind, currentProvider *types.ProviderOverride) bool {
 		// Delete the current provider if there is another one with the same values
 		// to be returned.
@@ -401,9 +401,9 @@ func convertCompletionsConfig(completionsCfg *conftypes.CompletionsConfig) (*typ
 	})
 
 	baseConfig := types.SiteModelConfiguration{
-		// Don't use any Sourcegraph-supplied model information, as that would be a breaking change.
+		// Don't use any Khulnasoft-supplied model information, as that would be a breaking change.
 		// As Cody Enterprise, via the Completions config, ONLY allows you to specify one model per use-case.
-		SourcegraphModelConfig: nil,
+		KhulnasoftModelConfig: nil,
 
 		ProviderOverrides: providerOverrides,
 		ModelOverrides:    modelOverrides,

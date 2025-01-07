@@ -80,7 +80,7 @@ func extractCSRFToken(body string) string {
 	return body[i+len(anchor) : i+len(anchor)+j]
 }
 
-// Client is an authenticated client for a Sourcegraph user for doing e2e testing.
+// Client is an authenticated client for a Khulnasoft user for doing e2e testing.
 // The user may or may not be a site admin depends on how the client is instantiated.
 // It works by simulating how the browser would send HTTP requests to the server.
 type Client struct {
@@ -104,7 +104,7 @@ type ClientOption struct {
 }
 
 // NewClient instantiates a new client by performing a GET request then obtains the
-// CSRF token and cookie from its response, if there is one (old versions of Sourcegraph only).
+// CSRF token and cookie from its response, if there is one (old versions of Khulnasoft only).
 // If loggers are provided via options, the request and response bodies, respectively,
 // will be written to them for any GraphQL requests only.
 func NewClient(baseURL string, options ...ClientOption) (*Client, error) {
@@ -285,11 +285,11 @@ func (c *Client) GraphQL(token, query string, variables map[string]any, target a
 		req.Header.Set("Authorization", fmt.Sprintf("token %s", token))
 	} else {
 		// NOTE: This header is required to authenticate our session with a session cookie, see:
-		// https://docs-legacy.sourcegraph.com/dev/security/csrf_security_model#authentication-in-api-endpoints
-		req.Header.Set("X-Requested-With", "Sourcegraph")
+		// https://docs-legacy.khulnasoft.com/dev/security/csrf_security_model#authentication-in-api-endpoints
+		req.Header.Set("X-Requested-With", "Khulnasoft")
 		req.AddCookie(c.sessionCookie)
 
-		// Older versions of Sourcegraph require a CSRF cookie.
+		// Older versions of Khulnasoft require a CSRF cookie.
 		if c.csrfCookie != nil {
 			req.AddCookie(c.csrfCookie)
 		}
@@ -390,7 +390,7 @@ func (c *Client) PostWithHeader(url string, body io.Reader, header http.Header) 
 func (c *Client) addCookies(req *http.Request) {
 	req.AddCookie(c.sessionCookie)
 
-	// Older versions of Sourcegraph require a CSRF cookie.
+	// Older versions of Khulnasoft require a CSRF cookie.
 	if c.csrfCookie != nil {
 		req.AddCookie(c.csrfCookie)
 	}

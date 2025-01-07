@@ -460,7 +460,7 @@ func (e *EnvironmentInstancesScalingSpec) GetMaxCount() *int {
 }
 
 type EnvironmentServiceAuthenticationSpec struct {
-	// Khulnasoft enables access to everyone in the sourcegraph.com GSuite
+	// Khulnasoft enables access to everyone in the khulnasoft.com GSuite
 	// domain.
 	Khulnasoft *bool `yaml:"sourcegraph,omitempty"`
 }

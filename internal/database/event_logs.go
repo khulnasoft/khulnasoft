@@ -51,13 +51,13 @@ type EventLogStore interface {
 	// we never drop events once we attempt to store it.
 	//
 	// Deprecated: Use EventRecorder from internal/telemetryrecorder instead.
-	// Learn more: https://docs-legacy.sourcegraph.com/dev/background-information/telemetry
+	// Learn more: https://docs-legacy.khulnasoft.com/dev/background-information/telemetry
 	BulkInsert(ctx context.Context, events []*Event) error
 
 	// Insert is a legacy mechanism for inserting a single event.
 	//
 	// Deprecated: Use EventRecorder from internal/telemetryrecorder instead.
-	// Learn more: https://docs-legacy.sourcegraph.com/dev/background-information/telemetry
+	// Learn more: https://docs-legacy.khulnasoft.com/dev/background-information/telemetry
 	Insert(ctx context.Context, e *Event) error
 
 	// CodeIntelligenceCrossRepositoryWAUs returns the WAU (current week) with any (precise or search-based) cross-repository code intelligence event.
@@ -195,7 +195,7 @@ func SanitizeEventURL(raw string) string {
 
 	// Check if the URL belongs to the current site
 	normalized := u.String()
-	if strings.HasPrefix(normalized, conf.ExternalURL()) || strings.HasSuffix(u.Host, "sourcegraph.com") {
+	if strings.HasPrefix(normalized, conf.ExternalURL()) || strings.HasSuffix(u.Host, "khulnasoft.com") {
 		return normalized
 	}
 	return ""
@@ -231,7 +231,7 @@ func (l *eventLogStore) Insert(ctx context.Context, e *Event) error {
 	return l.BulkInsert(ctx, []*Event{e})
 }
 
-const EventLogsSourcegraphOperatorKey = "sourcegraph_operator"
+const EventLogsKhulnasoftOperatorKey = "sourcegraph_operator"
 
 func (l *eventLogStore) BulkInsert(ctx context.Context, events []*Event) error {
 	var tr trace.Trace
@@ -263,16 +263,16 @@ func (l *eventLogStore) BulkInsert(ctx context.Context, events []*Event) error {
 			return err
 		}
 
-		// Add an attribution for Sourcegraph operator to be distinguished in our analytics pipelines
+		// Add an attribution for Khulnasoft operator to be distinguished in our analytics pipelines
 		publicArgument := coalesce(event.PublicArgument)
-		if actor.SourcegraphOperator {
+		if actor.KhulnasoftOperator {
 			result, err := jsonc.Edit(
 				string(publicArgument),
 				true,
-				EventLogsSourcegraphOperatorKey,
+				EventLogsKhulnasoftOperatorKey,
 			)
 			if err != nil {
-				return errors.Wrap(err, `edit "public_argument" for Sourcegraph operator`)
+				return errors.Wrap(err, `edit "public_argument" for Khulnasoft operator`)
 			}
 			publicArgument = json.RawMessage(result)
 		}
@@ -539,17 +539,17 @@ func calcEndDate(startDate time.Time, periodType PeriodType, periods int) (time.
 type CommonUsageOptions struct {
 	// Exclude backend system users.
 	ExcludeSystemUsers bool
-	// Exclude events that don't meet the criteria of "active" usage of Sourcegraph. These
+	// Exclude events that don't meet the criteria of "active" usage of Khulnasoft. These
 	// are mostly actions taken by signed-out users.
 	ExcludeNonActiveUsers bool
-	// Exclude Sourcegraph (employee) admins.
+	// Exclude Khulnasoft (employee) admins.
 	//
-	// Deprecated: Use ExcludeSourcegraphOperators instead. If you have to use this,
+	// Deprecated: Use ExcludeKhulnasoftOperators instead. If you have to use this,
 	// then set both fields with the same value at the same time.
-	ExcludeSourcegraphAdmins bool
-	// ExcludeSourcegraphOperators indicates whether to exclude Sourcegraph Operator
+	ExcludeKhulnasoftAdmins bool
+	// ExcludeKhulnasoftOperators indicates whether to exclude Khulnasoft Operator
 	// user accounts.
-	ExcludeSourcegraphOperators bool
+	ExcludeKhulnasoftOperators bool
 }
 
 // CountUniqueUsersOptions provides options for counting unique users.
@@ -637,9 +637,9 @@ func BuildCommonUsageConds(opt *CommonUsageOptions, conds []*sqlf.Query) []*sqlf
 
 		// NOTE: This is a hack which should be replaced when we have proper user types.
 		// However, for billing purposes and more accurate ping data, we need a way to
-		// exclude Sourcegraph (employee) admins when counting users. The following
+		// exclude Khulnasoft (employee) admins when counting users. The following
 		// username patterns, in conjunction with the presence of a corresponding
-		// "@sourcegraph.com" email address, are used to filter out Sourcegraph admins:
+		// "@khulnasoft.com" email address, are used to filter out Khulnasoft admins:
 		//
 		// - managed-*
 		// - sourcegraph-management-*
@@ -650,13 +650,13 @@ func BuildCommonUsageConds(opt *CommonUsageOptions, conds []*sqlf.Query) []*sqlf
 		// acknowledge this risk as we would prefer to undercount rather than overcount.
 		//
 		// TODO(jchen): This hack will be removed as part of https://github.com/sourcegraph/customer/issues/1531
-		if opt.ExcludeSourcegraphAdmins {
+		if opt.ExcludeKhulnasoftAdmins {
 			conds = append(conds, sqlf.Sprintf(`
 -- No matching user exists
 users.username IS NULL
 -- Or, the user does not...
 OR NOT(
-	-- ...have a known Sourcegraph admin username pattern
+	-- ...have a known Khulnasoft admin username pattern
 	(users.username ILIKE 'managed-%%'
 		OR users.username ILIKE 'sourcegraph-management-%%'
 		OR users.username = 'sourcegraph-admin')
@@ -666,13 +666,13 @@ OR NOT(
 			1 FROM user_emails
 		WHERE
 			user_emails.user_id = users.id
-			AND user_emails.email ILIKE '%%@sourcegraph.com')
+			AND user_emails.email ILIKE '%%@khulnasoft.com')
 )
 `))
 		}
 
-		if opt.ExcludeSourcegraphOperators {
-			conds = append(conds, sqlf.Sprintf(fmt.Sprintf(`NOT event_logs.public_argument @> '{"%s": true}'`, EventLogsSourcegraphOperatorKey)))
+		if opt.ExcludeKhulnasoftOperators {
+			conds = append(conds, sqlf.Sprintf(fmt.Sprintf(`NOT event_logs.public_argument @> '{"%s": true}'`, EventLogsKhulnasoftOperatorKey)))
 		}
 	}
 	return conds
@@ -949,8 +949,8 @@ func (l *eventLogStore) SiteUsageCurrentPeriods(ctx context.Context) (types.Site
 		CommonUsageOptions{
 			ExcludeSystemUsers:          true,
 			ExcludeNonActiveUsers:       true,
-			ExcludeSourcegraphAdmins:    true,
-			ExcludeSourcegraphOperators: true,
+			ExcludeKhulnasoftAdmins:    true,
+			ExcludeKhulnasoftOperators: true,
 		},
 	})
 }
@@ -1609,7 +1609,7 @@ var codyEventPatterns = []string{
 	"CodyInstalled",
 }
 
-// Definition: https://handbook.sourcegraph.com/departments/data-analytics/cody_analytics/#cody-product-dau
+// Definition: https://handbook.khulnasoft.com/departments/data-analytics/cody_analytics/#cody-product-dau
 // Sources:
 //   - https://console.cloud.google.com/bigquery?project=telligentsourcegraph&ws=!1m5!1m4!4m3!1stelligentsourcegraph!2sdotcom_events!3scody_dau_lookup
 //   - https://docs.google.com/spreadsheets/d/1rNdsk4mRojLwEIcGIDezKzKSnltZOLFFiFN4QcbrPnQ/edit#gid=1567985033

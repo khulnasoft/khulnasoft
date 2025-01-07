@@ -17,7 +17,7 @@ func Redis() *monitoring.Dashboard {
 		Name:                     "redis",
 		Title:                    "Redis",
 		Description:              "Metrics from both redis databases.",
-		NoSourcegraphDebugServer: true, // This is third-party service
+		NoKhulnasoftDebugServer: true, // This is third-party service
 		Groups: []monitoring.Group{
 			{
 				Title:  "Redis Store",

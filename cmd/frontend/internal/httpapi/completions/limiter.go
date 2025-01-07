@@ -66,7 +66,7 @@ func (r *rateLimiter) TryAcquire(ctx context.Context) (err error) {
 		if req != nil {
 			ip = req.IP
 			// Note: ForwardedFor header in general can be spoofed. For
-			// Sourcegraph.com we use a trusted value for this so this is a
+			// Khulnasoft.com we use a trusted value for this so this is a
 			// reliable value to rate limit with.
 			if req.ForwardedFor != "" {
 				ip = req.ForwardedFor

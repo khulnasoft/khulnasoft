@@ -82,7 +82,7 @@ describe('GlobalNavbar', () => {
         )
         expect(describeNavBar(baseElement)).toEqual<NavBarTestDescription>({
             codyItemType: 'link',
-            codyItemLink: 'Cody https://sourcegraph.com/cody',
+            codyItemLink: 'Cody https://khulnasoft.com/cody',
         })
     })
 

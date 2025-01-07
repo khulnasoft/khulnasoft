@@ -14,8 +14,8 @@ You should have environment variables that authenticate you to the `sourcegraph-
 Set:
 
 ```sh
-SOURCEGRAPH_BASE_URL=http://localhost:3080
-SOURCEGRAPH_SUDO_TOKEN=<YOUR SOURCEGRAPH API ACCESS TOKEN>
+KHULNASOFT_BASE_URL=http://localhost:3080
+KHULNASOFT_SUDO_TOKEN=<YOUR KHULNASOFT API ACCESS TOKEN>
 ```
 
 ## Testing

@@ -32,7 +32,7 @@ func TestGitCLIBackend_ReadFile(t *testing.T) {
 		// simple file
 		"echo abcd > file1",
 		"git add file1",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 
 		// test we handle file names with .. (git show by default interprets
 		// this). Ensure past the .. exists as a branch. Then if we use git
@@ -41,10 +41,10 @@ func TestGitCLIBackend_ReadFile(t *testing.T) {
 		"echo old > subdir/name",
 		"echo old > subdir/name..dev",
 		"git add subdir",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 		"echo dotdot > subdir/name..dev",
 		"git add subdir",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 		"git branch dev",
 	)
 
@@ -112,7 +112,7 @@ func TestGitCLIBackend_ReadFile(t *testing.T) {
 			// simple file
 			"echo abcd > file1",
 			"git add file1",
-			"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		// Prepare repo state:
@@ -120,11 +120,11 @@ func TestGitCLIBackend_ReadFile(t *testing.T) {
 			// simple file
 			"echo abcd > file1",
 			"git add file1",
-			"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 
 			// Add submodule
 			"git -c protocol.file.allow=always submodule add "+filepath.ToSlash(string(submodDir))+" submod",
-			"git commit -m 'add submodule' --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m 'add submodule' --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		commitID, err := backend.RevParseHead(ctx)
@@ -148,7 +148,7 @@ func TestGitCLIBackend_ReadFile_GoroutineLeak(t *testing.T) {
 		// simple file
 		"echo abcd > file1",
 		"git add file1",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 	)
 
 	commitID, err := backend.RevParseHead(ctx)
@@ -183,10 +183,10 @@ func TestGitCLIBackend_GetCommit(t *testing.T) {
 		// simple file
 		"echo abcd > file1",
 		"git add file1",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 		"echo efgh > file2",
 		"git add file2",
-		"git commit -m commit2 --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit2 --author='Foo Author <foo@khulnasoft.com>'",
 	)
 
 	commitID, err := backend.RevParseHead(ctx)
@@ -226,7 +226,7 @@ func TestGitCLIBackend_GetCommit(t *testing.T) {
 				Message: "commit2",
 				Author: gitdomain.Signature{
 					Name:  "Foo Author",
-					Email: "foo@sourcegraph.com",
+					Email: "foo@khulnasoft.com",
 					Date:  c.Author.Date, // Hard to test
 				},
 				Committer: &gitdomain.Signature{
@@ -248,7 +248,7 @@ func TestGitCLIBackend_GetCommit(t *testing.T) {
 				Message: "commit2",
 				Author: gitdomain.Signature{
 					Name:  "Foo Author",
-					Email: "foo@sourcegraph.com",
+					Email: "foo@khulnasoft.com",
 					Date:  c.Author.Date, // Hard to test
 				},
 				Committer: &gitdomain.Signature{
@@ -268,7 +268,7 @@ func TestGitCLIBackend_GetCommit(t *testing.T) {
 				Message: "commit",
 				Author: gitdomain.Signature{
 					Name:  "Foo Author",
-					Email: "foo@sourcegraph.com",
+					Email: "foo@khulnasoft.com",
 					Date:  c2.Author.Date, // Hard to test
 				},
 				Committer: &gitdomain.Signature{
@@ -290,7 +290,7 @@ func TestGitCLIBackend_GetCommit(t *testing.T) {
 				Message: "commit2",
 				Author: gitdomain.Signature{
 					Name:  "Foo Author",
-					Email: "foo@sourcegraph.com",
+					Email: "foo@khulnasoft.com",
 					Date:  c.Author.Date, // Hard to test
 				},
 				Committer: &gitdomain.Signature{
@@ -388,37 +388,37 @@ func TestGitCLIBackend_GetBehindAhead(t *testing.T) {
 		//
 		"echo abcd > file0",
 		"git add file0",
-		"git commit -m commit0 --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit0 --author='Foo Author <foo@khulnasoft.com>'",
 
 		"echo abcd > file1",
 		"git add file1",
-		"git commit -m commit1 --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit1 --author='Foo Author <foo@khulnasoft.com>'",
 
 		"git branch branch1",
 
 		"echo efgh > file2",
 		"git add file2",
-		"git commit -m commit2 --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit2 --author='Foo Author <foo@khulnasoft.com>'",
 
 		"git checkout branch1",
 
 		"echo ijkl > file3",
 		"git add file3",
-		"git commit -m commit3 --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit3 --author='Foo Author <foo@khulnasoft.com>'",
 
 		"echo ijkl > file4",
 		"git add file4",
-		"git commit -m commit4 --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit4 --author='Foo Author <foo@khulnasoft.com>'",
 
 		"git checkout master",
 
 		"echo ijkl > file5",
 		"git add file5",
-		"git commit -m commit5 --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit5 --author='Foo Author <foo@khulnasoft.com>'",
 
 		"echo ijkl > file6",
 		"git add file6",
-		"git commit -m commit6 --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit6 --author='Foo Author <foo@khulnasoft.com>'",
 	)
 
 	left := "branch1"
@@ -475,7 +475,7 @@ func TestGitCLIBackend_Stat(t *testing.T) {
 		// simple file
 		"echo abcd > file1",
 		"git add file1",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 	)
 
 	backend := BackendWithRepoCommands(t,
@@ -487,10 +487,10 @@ func TestGitCLIBackend_Stat(t *testing.T) {
 		"ln -s nested/file link",
 		"git add link",
 		"git -c protocol.file.allow=always submodule add "+filepath.ToSlash(string(submodDir))+" submodule",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 		"echo defg > file2",
 		"git add file2",
-		"git commit -m commit2 --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit2 --author='Foo Author <foo@khulnasoft.com>'",
 	)
 
 	commitID, err := backend.RevParseHead(ctx)
@@ -664,7 +664,7 @@ func TestGitCLIBackend_Stat_specialchars(t *testing.T) {
 	backend := BackendWithRepoCommands(t,
 		`touch ⊗.txt '".txt' \\.txt`,
 		`git add ⊗.txt '".txt' \\.txt`,
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 	)
 
 	commitID, err := backend.RevParseHead(ctx)
@@ -707,7 +707,7 @@ func TestGitCLIBackend_ReadDir(t *testing.T) {
 		// simple file
 		"echo abcd > file1",
 		"git add file1",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 	)
 
 	backend := BackendWithRepoCommands(t,
@@ -719,7 +719,7 @@ func TestGitCLIBackend_ReadDir(t *testing.T) {
 		"ln -s nested/file link",
 		"git add link",
 		"git -c protocol.file.allow=always submodule add "+filepath.ToSlash(string(submodDir))+" submodule",
-		"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 	)
 
 	commitID, err := backend.RevParseHead(ctx)

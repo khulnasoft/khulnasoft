@@ -43,7 +43,7 @@ type ExecutorStore interface {
 	UpsertHeartbeat(ctx context.Context, executor types.Executor) error
 
 	// DeleteInactiveHeartbeats deletes heartbeat records belonging to executor instances that have not pinged
-	// the Sourcegraph instance in at least the given duration.
+	// the Khulnasoft instance in at least the given duration.
 	DeleteInactiveHeartbeats(ctx context.Context, minAge time.Duration) error
 
 	// GetByHostname returns an executor resolver for the given hostname, or

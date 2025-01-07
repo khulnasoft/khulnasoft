@@ -23,7 +23,7 @@ import (
 
 type (
 	// A OtherSource yields repositories from a single Other connection configured
-	// in Sourcegraph via the external services configuration.
+	// in Khulnasoft via the external services configuration.
 	OtherSource struct {
 		svc      *types.ExternalService
 		conn     *schema.OtherExternalServiceConnection
@@ -71,7 +71,7 @@ func NewOtherSource(ctx context.Context, svc *types.ExternalService, cf *httpcli
 		return nil, err
 	}
 
-	if dotcom.SourcegraphDotComMode() && c.MakeReposPublicOnDotCom {
+	if dotcom.KhulnasoftDotComMode() && c.MakeReposPublicOnDotCom {
 		svc.Unrestricted = true
 	}
 
@@ -92,7 +92,7 @@ func (s OtherSource) CheckConnection(ctx context.Context) error {
 }
 
 // ListRepos returns all Other repositories accessible to all connections configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 func (s OtherSource) ListRepos(ctx context.Context, results chan SourceResult) {
 	repos, validSrcExposeConfiguration, err := s.srcExpose(ctx)
 	if err != nil {

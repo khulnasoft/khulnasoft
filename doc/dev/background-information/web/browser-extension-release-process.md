@@ -27,7 +27,7 @@ Before releasing the browser extensions, you need to create developer accounts f
 ### <span id="create-for-firefox">Firefox</span>
 
 1. Create an account on the [Add-on developer hub](https://addons.mozilla.org/en-US/developers/).
-1. Once the account is created, ask for a teammate to invite you to the Sourcegraph Org.
+1. Once the account is created, ask for a teammate to invite you to the Khulnasoft Org.
 1. An email confirmation will be sent.
 1. Once the the account has been confirmed, navigate to the ownership website and remove yourself from [listed authors](https://addons.mozilla.org/en-US/developers/addon/sourcegraph-for-firefox/ownership).
 
@@ -53,7 +53,7 @@ The release process for Chrome is fully automated. The review process usually ta
 Release Steps:
 
 1. Make sure the main branch is up-to-date. Run `git push origin main:bext/release`.
-1. Pushing to the `bext/release` branch will trigger our build pipeline, which can be observed from respecting [buildkite](https://buildkite.com/sourcegraph/sourcegraph/builds?branch=bext%2Frelease) page.
+1. Pushing to the `bext/release` branch will trigger our build pipeline, which can be observed from respecting [buildkite](https://buildkite.com/khulnasoft/khulnasoft/builds?branch=bext%2Frelease) page.
 1. Once the <code>🚀<img src="https://buildkiteassets.com/emojis/img-buildkite-64/chrome.png" style="width: 1.23em; height: 1.23em; margin-left: 0.05em; margin-right: 0.05em; vertical-align: -0.2em; background-color: transparent;"/> Extension release</code> task is done, the build should appear on the [developer dashboard](https://chrome.google.com/webstore/devconsole/7db1c88c-79ec-48c8-b14f-e17af93aee2c/dgjhfomjieaadpoljlnidmbgkdffpack/edit/package) with pending review status.
 
 ### Firefox
@@ -78,26 +78,26 @@ The release process for Safari is currently not automated. The review process us
 Steps:
 
 1. On your terminal and run the command `pnpm --filter @sourcegraph/browser build`.
-1. Build will generate an Xcode project under `./sourcegraph/client/browser/build/Sourcegraph for Safari`.
+1. Build will generate an Xcode project under `./sourcegraph/client/browser/build/Khulnasoft for Safari`.
    1. If you run into Xcode related errors, make sure that you've downloaded Xcode from the app store, opened it and accepted the license/terms agreements.
 1. Open the project using Xcode.
 1. Navigate to the General settings tab.
-1. Select the target `Sourcegraph for Safari`.
+1. Select the target `Khulnasoft for Safari`.
    1. Change `App Category` to `Developer Tools`.
    1. Increment the `Version` & `Build` numbers. You can find the current numbers on the [App Store Connect page](https://appstoreconnect.apple.com/apps/1543262193/appstore/macos/version/deliverable).
-1. Select the target `Sourcegraph for Safari Extension`.
+1. Select the target `Khulnasoft for Safari Extension`.
    1. Increment the `Version` & `Build` numbers. You can find the current numbers on the [App Store Connect page](https://appstoreconnect.apple.com/apps/1543262193/appstore/macos/version/deliverable).
 1. Open `Assets.xcassets` from the file viewer and select `AppIcon`. We need to upload the 512x512px & 1024x1024px version icons for the Mac Store. Drag & drop the files from [Drive](https://drive.google.com/drive/folders/1JCUuzIrpNrZP_uNqpel2wq0lwdRBkVgZ) to the corresponding slots.
 1. On the menu bar, navigate to `Product > Achive`. Once successful, the Archives modal will appear. If you ever want to re-open this modal, you can do so by navigating to the `Window > Organizier` on the menu bar.
 1. With the latest build selected, click on the `validate` button.
-1. Choose `SOURCEGRAPH INC` from the dropdown and click `next`.
+1. Choose `KHULNASOFT INC` from the dropdown and click `next`.
 1. Make sure uploading the symbols is checked and click `next`.
 1. Make sure automatically managing the signing is checked and click `next`.
    1. If this is your first time signing the package, you need to create your own local distribution key.
 1. Once the validation is complete, click on the `Distribute App`.
 1. Make sure `App Store Connect` is selected and click `next`.
 1. Make sure `Upload` is selected and click `next`.
-1. Choose `SOURCEGRAPH INC` from the dropdown and click `next`.
+1. Choose `KHULNASOFT INC` from the dropdown and click `next`.
 1. Make sure uploading the symbols is checked and click `next`.
 1. Make sure automatically managing the signing is checked and click `next`.
 1. Validate everything on the summary page and click `upload`

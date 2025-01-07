@@ -19,25 +19,25 @@ type accountDetailsBody struct {
 	sourcegraphoperator.ExternalAccountData
 }
 
-// AddSourcegraphOperatorExternalAccount links the given user with a Sourcegraph Operator
+// AddKhulnasoftOperatorExternalAccount links the given user with a Khulnasoft Operator
 // provider, if and only if it already exists. The provider can only be added through
-// Enterprise Sourcegraph Cloud config, so this essentially no-ops outside of Cloud.
+// Enterprise Khulnasoft Cloud config, so this essentially no-ops outside of Cloud.
 //
-// It implements internal/auth/sourcegraphoperator.AddSourcegraphOperatorExternalAccount
+// It implements internal/auth/sourcegraphoperator.AddKhulnasoftOperatorExternalAccount
 //
 // 🚨 SECURITY: Some important things to note:
 //   - Being a SOAP user does not grant any extra privilege over being a site admin.
 //   - The operation will fail if the user is already a SOAP user, which prevents escalating
 //     time-bound accounts to permanent service accounts.
 //   - Both the client ID and the service ID must match the SOAP configuration exactly.
-func AddSourcegraphOperatorExternalAccount(ctx context.Context, db database.DB, userID int32, serviceID string, accountDetails string) error {
+func AddKhulnasoftOperatorExternalAccount(ctx context.Context, db database.DB, userID int32, serviceID string, accountDetails string) error {
 	// 🚨 SECURITY: Caller must be a site admin.
 	if err := auth.CheckCurrentUserIsSiteAdmin(ctx, db); err != nil {
 		return err
 	}
 
 	p := providers.GetProviderByConfigID(providers.ConfigID{
-		Type: auth.SourcegraphOperatorProviderType,
+		Type: auth.KhulnasoftOperatorProviderType,
 		ID:   serviceID,
 	})
 	if p == nil {
@@ -66,13 +66,13 @@ func AddSourcegraphOperatorExternalAccount(ctx context.Context, db database.DB, 
 			UserID: userID,
 			// For provider matching, we explicitly do not provider the service ID - there
 			// should only be one SOAP registered.
-			ServiceType: auth.SourcegraphOperatorProviderType,
+			ServiceType: auth.KhulnasoftOperatorProviderType,
 		})
 		if err != nil {
-			return errors.Wrap(err, "failed to check for an existing Sourcegraph Operator accounts")
+			return errors.Wrap(err, "failed to check for an existing Khulnasoft Operator accounts")
 		}
 		if numSOAPAccounts > 0 {
-			return errors.New("user already has an associated Sourcegraph Operator account")
+			return errors.New("user already has an associated Khulnasoft Operator account")
 		}
 
 		// Create an association
@@ -84,7 +84,7 @@ func AddSourcegraphOperatorExternalAccount(ctx context.Context, db database.DB, 
 			&extsvc.Account{
 				UserID: userID,
 				AccountSpec: extsvc.AccountSpec{
-					ServiceType: auth.SourcegraphOperatorProviderType,
+					ServiceType: auth.KhulnasoftOperatorProviderType,
 					ServiceID:   serviceID,
 					ClientID:    details.ClientID,
 
@@ -92,7 +92,7 @@ func AddSourcegraphOperatorExternalAccount(ctx context.Context, db database.DB, 
 				},
 				AccountData: accountData,
 			}); err != nil {
-			return errors.Wrap(err, "failed to associate user with Sourcegraph Operator provider")
+			return errors.Wrap(err, "failed to associate user with Khulnasoft Operator provider")
 		}
 		return nil
 	})

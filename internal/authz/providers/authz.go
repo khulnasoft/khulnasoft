@@ -28,7 +28,7 @@ import (
 // based on `NewAuthzProviders` constructors provided by each provider type's package.
 //
 // It also returns any simple validation problems with the config, separating these into "serious problems"
-// and "warnings". "Serious problems" are those that should make Sourcegraph set authz.allowAccessByDefault
+// and "warnings". "Serious problems" are those that should make Khulnasoft set authz.allowAccessByDefault
 // to false. "Warnings" are all other validation problems.
 //
 // This constructor does not and should not directly check connectivity to external services - if

@@ -1,8 +1,8 @@
 [
   {
    "ID": 0,
-   "Name": "bb/SOURCEGRAPH/empty-repo-1",
-   "URI": "bitbucket.sgdev.org/SOURCEGRAPH/empty-repo-1",
+   "Name": "bb/KHULNASOFT/empty-repo-1",
+   "URI": "bitbucket.sgdev.org/KHULNASOFT/empty-repo-1",
    "Description": "This repo is fast to clone and is intended to be used for e2e tests",
    "Fork": false,
    "Archived": false,
@@ -32,15 +32,15 @@
     "forkable": true,
     "origin": null,
     "project": {
-     "key": "SOURCEGRAPH",
+     "key": "KHULNASOFT",
      "id": 28,
-     "name": "Sourcegraph e2e testing",
+     "name": "Khulnasoft e2e testing",
      "public": false,
      "type": "NORMAL",
      "links": {
       "self": [
        {
-        "href": "https://bitbucket.sgdev.org/projects/SOURCEGRAPH"
+        "href": "https://bitbucket.sgdev.org/projects/KHULNASOFT"
        }
       ]
      }
@@ -59,7 +59,7 @@
      ],
      "self": [
       {
-       "href": "https://bitbucket.sgdev.org/projects/SOURCEGRAPH/repos/empty-repo-1/browse"
+       "href": "https://bitbucket.sgdev.org/projects/KHULNASOFT/repos/empty-repo-1/browse"
       }
      ]
     }
@@ -67,8 +67,8 @@
   },
   {
    "ID": 0,
-   "Name": "bb/SOURCEGRAPH/jsonrpc2",
-   "URI": "bitbucket.sgdev.org/SOURCEGRAPH/jsonrpc2",
+   "Name": "bb/KHULNASOFT/jsonrpc2",
+   "URI": "bitbucket.sgdev.org/KHULNASOFT/jsonrpc2",
    "Description": "",
    "Fork": false,
    "Archived": false,
@@ -98,15 +98,15 @@
     "forkable": true,
     "origin": null,
     "project": {
-     "key": "SOURCEGRAPH",
+     "key": "KHULNASOFT",
      "id": 28,
-     "name": "Sourcegraph e2e testing",
+     "name": "Khulnasoft e2e testing",
      "public": false,
      "type": "NORMAL",
      "links": {
       "self": [
        {
-        "href": "https://bitbucket.sgdev.org/projects/SOURCEGRAPH"
+        "href": "https://bitbucket.sgdev.org/projects/KHULNASOFT"
        }
       ]
      }
@@ -125,7 +125,7 @@
      ],
      "self": [
       {
-       "href": "https://bitbucket.sgdev.org/projects/SOURCEGRAPH/repos/jsonrpc2/browse"
+       "href": "https://bitbucket.sgdev.org/projects/KHULNASOFT/repos/jsonrpc2/browse"
       }
      ]
     }

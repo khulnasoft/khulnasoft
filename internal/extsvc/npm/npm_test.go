@@ -169,7 +169,7 @@ func TestNoPanicOnNonexistentRegistry(t *testing.T) {
 	ctx := context.Background()
 	client, stop := newTestHTTPClient(t)
 	defer stop()
-	client.registryURL = "http://not-an-npm-registry.sourcegraph.com"
+	client.registryURL = "http://not-an-npm-registry.khulnasoft.com"
 	dep, err := reposource.ParseNpmVersionedPackage("left-pad@1.3.0")
 	require.Nil(t, err)
 	info, err := client.GetDependencyInfo(ctx, dep)

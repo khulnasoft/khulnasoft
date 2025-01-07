@@ -39,9 +39,9 @@ const (
 	VertexReferenceResult      VertexLabel = "referenceResult"
 	VertexImplementationResult VertexLabel = "implementationResult"
 
-	// Sourcegraph extensions
-	VertexSourcegraphDocumentationResult VertexLabel = "sourcegraph:documentationResult"
-	VertexSourcegraphDocumentationString VertexLabel = "sourcegraph:documentationString"
+	// Khulnasoft extensions
+	VertexKhulnasoftDocumentationResult VertexLabel = "sourcegraph:documentationResult"
+	VertexKhulnasoftDocumentationString VertexLabel = "sourcegraph:documentationString"
 )
 
 type Edge struct {
@@ -69,8 +69,8 @@ const (
 	EdgeTextDocumentReferences     EdgeLabel = "textDocument/references"
 	EdgeTextDocumentImplementation EdgeLabel = "textDocument/implementation"
 
-	// Sourcegraph extensions
-	EdgeSourcegraphDocumentationResult   EdgeLabel = "sourcegraph:documentationResult"
-	EdgeSourcegraphDocumentationChildren EdgeLabel = "sourcegraph:documentationChildren"
-	EdgeSourcegraphDocumentationString   EdgeLabel = "sourcegraph:documentationString"
+	// Khulnasoft extensions
+	EdgeKhulnasoftDocumentationResult   EdgeLabel = "sourcegraph:documentationResult"
+	EdgeKhulnasoftDocumentationChildren EdgeLabel = "sourcegraph:documentationChildren"
+	EdgeKhulnasoftDocumentationString   EdgeLabel = "sourcegraph:documentationString"
 )

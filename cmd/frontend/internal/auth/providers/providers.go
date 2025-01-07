@@ -171,7 +171,7 @@ func SignInProviders(skipSoap bool) []Provider {
 	if MockProviders != nil {
 		providers := make([]Provider, 0, len(MockProviders))
 		for _, p := range MockProviders {
-			if skipSoap && p.ConfigID().Type == auth.SourcegraphOperatorProviderType {
+			if skipSoap && p.ConfigID().Type == auth.KhulnasoftOperatorProviderType {
 				continue
 			}
 			common := GetAuthProviderCommon(p)
@@ -196,7 +196,7 @@ func SignInProviders(skipSoap bool) []Provider {
 	providers := make([]Provider, 0, ct)
 	for _, pkgProviders := range curProviders {
 		for _, p := range pkgProviders {
-			if skipSoap && p.ConfigID().Type == auth.SourcegraphOperatorProviderType {
+			if skipSoap && p.ConfigID().Type == auth.KhulnasoftOperatorProviderType {
 				continue
 			}
 			common := GetAuthProviderCommon(p)

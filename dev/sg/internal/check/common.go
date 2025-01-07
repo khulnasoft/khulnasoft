@@ -192,7 +192,7 @@ func KhulnasoftDatabase(getConfig func() (*sgconf.Config, error)) CheckFunc {
 		dsn := postgresdsn.New("", "", getEnv)
 
 		if err := pingPG(ctx, dsn); err != nil {
-			return errors.Wrapf(err, "failed to connect to Khulnasoft Postgres database at %s. Please check the settings in sg.config.yml (see https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/doc/dev/background-information/sg/index.md#changing-database-configuration)", dsn)
+			return errors.Wrapf(err, "failed to connect to Khulnasoft Postgres database at %s. Please check the settings in sg.config.yml (see https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/doc/dev/background-information/sg/index.md#changing-database-configuration)", dsn)
 		}
 		return nil
 	}
@@ -378,7 +378,7 @@ func DevPrivate(ctx context.Context) error {
 	if !exists {
 		std.Out.WriteLine(output.Styled(output.StyleWarning, "ERROR: dev-private repository not found!"))
 		std.Out.WriteLine(output.Styledf(output.StyleWarning, "It's expected to exist at: %s", devPrivatePath))
-		std.Out.WriteLine(output.Styled(output.StyleWarning, "See the documentation for how to get set up: https://docs-legacy.sourcegraph.com/dev/setup/quickstart#run-sg-setup"))
+		std.Out.WriteLine(output.Styled(output.StyleWarning, "See the documentation for how to get set up: https://docs-legacy.khulnasoft.com/dev/setup/quickstart#run-sg-setup"))
 
 		std.Out.Write("")
 		return exit.NewEmptyExitErr(1)
@@ -431,7 +431,7 @@ func pathExists(path string) (bool, error) {
 // caddyAppDataDir returns the location of the sourcegraph.test certificate
 // that Caddy created or would create.
 //
-// It's copy&pasted&modified from here: https://sourcegraph.com/github.com/caddyserver/caddy@9ee68c1bd57d72e8a969f1da492bd51bfa5ed9a0/-/blob/storage.go?L114
+// It's copy&pasted&modified from here: https://khulnasoft.com/github.com/caddyserver/caddy@9ee68c1bd57d72e8a969f1da492bd51bfa5ed9a0/-/blob/storage.go?L114
 func caddyKhulnasoftCertificatePath() (string, error) {
 	if basedir := os.Getenv("XDG_DATA_HOME"); basedir != "" {
 		return filepath.Join(basedir, "caddy"), nil

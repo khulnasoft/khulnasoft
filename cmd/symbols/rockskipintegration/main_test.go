@@ -38,7 +38,7 @@ func TestRockskipIntegration(t *testing.T) {
 			"git add magik.magik",
 			"echo 'int c_function() {}' > c.c",
 			"git add c.c",
-			"git commit -m commit --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m commit --author='Foo Author <foo@khulnasoft.com>'",
 		),
 	})
 

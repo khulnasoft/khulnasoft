@@ -547,7 +547,7 @@
 - - :permit
   - BlueOak-1.0.0
   - :who:
-    :why: Approved permissive license (https://handbook.sourcegraph.com/departments/engineering/dev/process/licenses/#allowed-licenses-permissive-licenses)
+    :why: Approved permissive license (https://handbook.khulnasoft.com/departments/engineering/dev/process/licenses/#allowed-licenses-permissive-licenses)
     :versions: []
     :when: 2023-07-27 21:22:46.362043095 Z
 - - :license

@@ -4,7 +4,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/internal/types"
 )
 
-// Executor describes an executor instance that has recently connected to Sourcegraph.
+// Executor describes an executor instance that has recently connected to Khulnasoft.
 type Executor = types.Executor
 
 type ExecutorCompatibility string

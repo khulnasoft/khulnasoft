@@ -68,11 +68,11 @@ type Repo struct {
 	Stars int `json:",omitempty"`
 	// Private is whether the repository is private.
 	Private bool
-	// CreatedAt is when this repository was created on Sourcegraph.
+	// CreatedAt is when this repository was created on Khulnasoft.
 	CreatedAt time.Time
-	// UpdatedAt is when this repository's metadata was last updated on Sourcegraph.
+	// UpdatedAt is when this repository's metadata was last updated on Khulnasoft.
 	UpdatedAt time.Time
-	// DeletedAt is when this repository was soft-deleted from Sourcegraph.
+	// DeletedAt is when this repository was soft-deleted from Khulnasoft.
 	DeletedAt time.Time
 	// ExternalRepo identifies this repository by its ID on the external service where it resides (and the external
 	// service itself).
@@ -881,7 +881,7 @@ type UserForSCIM struct {
 type SystemRole string
 
 const (
-	// UserSystemRole represents the role associated with all users on a Sourcegraph instance.
+	// UserSystemRole represents the role associated with all users on a Khulnasoft instance.
 	UserSystemRole SystemRole = "USER"
 
 	// SiteAdministratorSystemRole represents the role associated with Site Administrators
@@ -1504,7 +1504,7 @@ type GrowthStatistics struct {
 
 // IDEExtensionsUsage represents the daily, weekly and monthly numbers
 // of search performed and user state events from all IDE extensions,
-// and all inbound traffic from the extension to Sourcegraph instance
+// and all inbound traffic from the extension to Khulnasoft instance
 type IDEExtensionsUsage struct {
 	IDEs []*IDEExtensionsUsageStatistics
 }
@@ -1572,7 +1572,7 @@ type MigratedExtensionsOpenInEditorUsageStatistics struct {
 
 // CodeHostIntegrationUsage represents the daily, weekly and monthly
 // number of unique users and events for code host integration usage
-// and inbound traffic from code host integration to Sourcegraph instance
+// and inbound traffic from code host integration to Khulnasoft instance
 type CodeHostIntegrationUsage struct {
 	Month CodeHostIntegrationUsagePeriod
 	Week  CodeHostIntegrationUsagePeriod
@@ -1959,11 +1959,11 @@ type SearchContext struct {
 	// NamespaceOrgName is the name of the org if NamespaceOrgID is present.
 	NamespaceOrgName string
 
-	// Query is the Sourcegraph query that defines this search context
+	// Query is the Khulnasoft query that defines this search context
 	// e.g. repo:^github\.com/org rev:bar archive:no f:sub/dir
 	Query string
 
-	// Whether the search context is auto-defined by Sourcegraph. Auto-defined search contexts are not editable by users.
+	// Whether the search context is auto-defined by Khulnasoft. Auto-defined search contexts are not editable by users.
 	AutoDefined bool
 
 	// Whether the search context is the default for the user. If the user hasn't explicitly set a default or is not authenticated, the global search context is used.
@@ -2024,7 +2024,7 @@ type Webhook struct {
 	UpdatedByUserID int32
 }
 
-// OutboundRequestLogItem represents a single outbound request made by Sourcegraph.
+// OutboundRequestLogItem represents a single outbound request made by Khulnasoft.
 type OutboundRequestLogItem struct {
 	ID                 string              `json:"id"`
 	StartedAt          time.Time           `json:"startedAt"`

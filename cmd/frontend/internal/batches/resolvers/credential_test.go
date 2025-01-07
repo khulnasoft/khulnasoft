@@ -67,7 +67,7 @@ func TestUnmarshalBatchChangesCredentialID(t *testing.T) {
 func TestCommentSSHKey(t *testing.T) {
 	publicKey := "public\n"
 	sshKey := commentSSHKey(&auth.BasicAuthWithSSH{BasicAuth: auth.BasicAuth{Username: "foo", Password: "bar"}, PrivateKey: "private", PublicKey: publicKey, Passphrase: "pass"})
-	expectedKey := "public Sourcegraph " + conf.ExternalURLParsed().Host
+	expectedKey := "public Khulnasoft " + conf.ExternalURLParsed().Host
 
 	if sshKey != expectedKey {
 		t.Errorf("found wrong ssh key: want=%q, have=%q", expectedKey, sshKey)

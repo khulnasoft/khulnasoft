@@ -27,8 +27,8 @@ func checkUnversionedDocsLinks() *linter {
 				return nil
 			}
 			for _, l := range hunk.AddedLines {
-				if strings.Contains(l, `to="https://docs.sourcegraph.com`) {
-					return errors.Newf(`found link to 'https://docs.sourcegraph.com', use a '/help' relative path for the link instead: %s`,
+				if strings.Contains(l, `to="https://docs.khulnasoft.com`) {
+					return errors.Newf(`found link to 'https://docs.khulnasoft.com', use a '/help' relative path for the link instead: %s`,
 						strings.TrimSpace(l))
 				}
 			}

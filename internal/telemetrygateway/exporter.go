@@ -39,7 +39,7 @@ func NewExporter(
 	}
 
 	// TODO(@bobheadxi): Maybe don't use defaults.DialOptions etc, which are
-	// geared towards in-Sourcegraph services.
+	// geared towards in-Khulnasoft services.
 	var opts []grpc.DialOption
 	if insecureTarget {
 		opts = defaults.DialOptions(logger)

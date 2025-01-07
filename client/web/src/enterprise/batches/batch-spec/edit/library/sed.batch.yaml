@@ -7,7 +7,7 @@ on:
 
 steps:
   # In each repo, iterate over search results files using templating
-  # https://sourcegraph.com/docs/batch_changes/references/batch_spec_templating
+  # https://khulnasoft.com/docs/batch_changes/references/batch_spec_templating
   - run: |
       while read -r file
       do

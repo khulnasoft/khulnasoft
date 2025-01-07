@@ -1238,7 +1238,7 @@ SELECT recording_time,
 	t.Run("respects include repo filter", func(t *testing.T) {
 		// insert more series point data
 		_, err = insightsDB.ExecContext(context.Background(), `
-INSERT INTO repo_names(name) VALUES ('github.com/sourcegraph/sourcegraph');
+INSERT INTO repo_names(name) VALUES ('github.com/khulnasoft/khulnasoft');
 SELECT setseed(0.5);
 INSERT INTO series_points(
 	time,
@@ -1252,8 +1252,8 @@ SELECT recording_time,
     'series1',
     22,
     2222,
-    (SELECT id FROM repo_names WHERE name = 'github.com/sourcegraph/sourcegraph'),
-    (SELECT id FROM repo_names WHERE name = 'github.com/sourcegraph/sourcegraph')
+    (SELECT id FROM repo_names WHERE name = 'github.com/khulnasoft/khulnasoft'),
+    (SELECT id FROM repo_names WHERE name = 'github.com/khulnasoft/khulnasoft')
 	FROM insight_series_recording_times WHERE insight_series_id = 1;
 `)
 		if err != nil {
@@ -1270,7 +1270,7 @@ SELECT recording_time,
 			t.Errorf("expected 2 got %d series points for export", len(got))
 		}
 		for _, sp := range got {
-			repo := "github.com/sourcegraph/sourcegraph"
+			repo := "github.com/khulnasoft/khulnasoft"
 			var capture *string
 			autogold.Expect(view.Title).Equal(t, sp.InsightViewTitle)
 			autogold.Expect(series.Query).Equal(t, sp.SeriesQuery)

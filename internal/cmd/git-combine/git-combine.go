@@ -169,7 +169,7 @@ func Combine(path string, opt Options) error {
 			Author: sanitizeSignature(commit.Author),
 			Committer: object.Signature{
 				Name:  "sourcegraph-bot",
-				Email: "no-reply@sourcegraph.com",
+				Email: "no-reply@khulnasoft.com",
 				When:  commit.Committer.When,
 			},
 			Message:  sanitizeMessage(remote, commit),

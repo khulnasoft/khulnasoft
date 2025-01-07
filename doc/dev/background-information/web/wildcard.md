@@ -1,6 +1,6 @@
 # Wildcard Component Library
 
-Wildcard is a collection of design-approved, accessible and well-tested React components that are suitable for use within the Sourcegraph codebase.
+Wildcard is a collection of design-approved, accessible and well-tested React components that are suitable for use within the Khulnasoft codebase.
 
 ## Usage
 

@@ -171,7 +171,7 @@ func Generate(logger log.Logger, opts GenerateOptions, dashboards ...*Dashboard)
 }
 
 // generateAll is the standard behaviour of the monitoring generator, and should create
-// all monitoring-related assets pertaining to a single Sourcegraph instance.
+// all monitoring-related assets pertaining to a single Khulnasoft instance.
 func generateAll(
 	ctx context.Context,
 	logger log.Logger,

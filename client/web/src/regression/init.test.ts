@@ -32,7 +32,7 @@ describe('Initialize new instance', () => {
         await driver.page.waitForSelector('input[placeholder="Email"]', { timeout: 5 * 1000 })
         await driver.replaceText({
             selector: 'input[name="email"]',
-            newText: 'insecure-dev-bots+admin@sourcegraph.com',
+            newText: 'insecure-dev-bots+admin@khulnasoft.com',
         })
         await driver.replaceText({
             selector: 'input[name="username"]',

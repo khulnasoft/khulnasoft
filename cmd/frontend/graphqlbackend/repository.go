@@ -323,11 +323,11 @@ func (r *RepositoryResolver) Changelist(ctx context.Context, args *RepositoryCha
 	cid, err := strconv.ParseInt(args.CID, 10, 64)
 	if err != nil {
 		// NOTE: From the UI, the user may visit a URL like:
-		// https://sourcegraph.com/github.com/sourcegraph/sourcegraph@e28429f899870db6f6cbf0fc2bf98de6e947b213/-/blob/README.md
+		// https://khulnasoft.com/github.com/sourcegraph/sourcegraph@e28429f899870db6f6cbf0fc2bf98de6e947b213/-/blob/README.md
 		//
 		// Or they may visit a URL like:
 		//
-		// https://sourcegraph.com/perforce.sgdev.test/test-depot@998765/-/blob/README.md
+		// https://khulnasoft.com/perforce.sgdev.test/test-depot@998765/-/blob/README.md
 		//
 		// To make things easier, we request both the `commit($revision)` and the `changelist($cid)`
 		// nodes on the `repository`.

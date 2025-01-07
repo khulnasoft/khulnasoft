@@ -346,7 +346,7 @@ func TestGetCompletionsConfig(t *testing.T) {
 		CompletionModelMaxTokens: 9000,
 		AccessToken:              licenseAccessToken,
 		Provider:                 "sourcegraph",
-		Endpoint:                 "https://cody-gateway.sourcegraph.com",
+		Endpoint:                 "https://cody-gateway.khulnasoft.com",
 	}
 
 	testCases := []struct {
@@ -646,7 +646,7 @@ func TestGetCompletionsConfig(t *testing.T) {
 				CompletionModelMaxTokens: 9000,
 				AccessToken:              licenseAccessToken,
 				Provider:                 "sourcegraph",
-				Endpoint:                 "https://cody-gateway.sourcegraph.com",
+				Endpoint:                 "https://cody-gateway.khulnasoft.com",
 			},
 		},
 		{
@@ -834,7 +834,7 @@ func TestGetEmbeddingsConfig(t *testing.T) {
 		Provider:                   "sourcegraph",
 		AccessToken:                licenseAccessToken,
 		Model:                      "openai/text-embedding-ada-002",
-		Endpoint:                   "https://cody-gateway.sourcegraph.com/v1/embeddings",
+		Endpoint:                   "https://cody-gateway.khulnasoft.com/v1/embeddings",
 		Dimensions:                 1536,
 		Incremental:                true,
 		MinimumInterval:            24 * time.Hour,
@@ -917,7 +917,7 @@ func TestGetEmbeddingsConfig(t *testing.T) {
 			wantConfig:      zeroConfigDefaultWithLicense,
 		},
 		{
-			name: "Enabled, Sourcegraph provider",
+			name: "Enabled, Khulnasoft provider",
 			siteConfig: schema.SiteConfiguration{
 				CodyEnabled: pointers.Ptr(true),
 				LicenseKey:  licenseKey,
@@ -947,7 +947,7 @@ func TestGetEmbeddingsConfig(t *testing.T) {
 				Provider:                   "sourcegraph",
 				AccessToken:                licenseAccessToken,
 				Model:                      "openai/text-embedding-ada-002",
-				Endpoint:                   "https://cody-gateway.sourcegraph.com/v1/embeddings",
+				Endpoint:                   "https://cody-gateway.khulnasoft.com/v1/embeddings",
 				Dimensions:                 1536,
 				Incremental:                true,
 				MinimumInterval:            24 * time.Hour,
@@ -980,7 +980,7 @@ func TestGetEmbeddingsConfig(t *testing.T) {
 				Provider:                   "sourcegraph",
 				AccessToken:                licenseAccessToken,
 				Model:                      "openai/text-embedding-ada-002",
-				Endpoint:                   "https://cody-gateway.sourcegraph.com/v1/embeddings",
+				Endpoint:                   "https://cody-gateway.khulnasoft.com/v1/embeddings",
 				Dimensions:                 1536,
 				Incremental:                true,
 				MinimumInterval:            24 * time.Hour,
@@ -1015,7 +1015,7 @@ func TestGetEmbeddingsConfig(t *testing.T) {
 				Provider:                   "sourcegraph",
 				AccessToken:                licenseAccessToken,
 				Model:                      "openai/text-embedding-ada-002",
-				Endpoint:                   "https://cody-gateway.sourcegraph.com/v1/embeddings",
+				Endpoint:                   "https://cody-gateway.khulnasoft.com/v1/embeddings",
 				Dimensions:                 1536,
 				Incremental:                true,
 				MinimumInterval:            24 * time.Hour,
@@ -1031,7 +1031,7 @@ func TestGetEmbeddingsConfig(t *testing.T) {
 			},
 		},
 		{
-			name: "Enabled, No provider and no token, assume Sourcegraph",
+			name: "Enabled, No provider and no token, assume Khulnasoft",
 			siteConfig: schema.SiteConfiguration{
 				CodyEnabled: pointers.Ptr(true),
 				LicenseKey:  licenseKey,
@@ -1044,7 +1044,7 @@ func TestGetEmbeddingsConfig(t *testing.T) {
 				Provider:                   "sourcegraph",
 				AccessToken:                licenseAccessToken,
 				Model:                      "openai/text-embedding-bobert-9000",
-				Endpoint:                   "https://cody-gateway.sourcegraph.com/v1/embeddings",
+				Endpoint:                   "https://cody-gateway.khulnasoft.com/v1/embeddings",
 				Dimensions:                 0, // unknown model used for test case
 				Incremental:                true,
 				MinimumInterval:            24 * time.Hour,
@@ -1058,7 +1058,7 @@ func TestGetEmbeddingsConfig(t *testing.T) {
 			},
 		},
 		{
-			name: "Enabled, Sourcegraph provider without license",
+			name: "Enabled, Khulnasoft provider without license",
 			siteConfig: schema.SiteConfiguration{
 				CodyEnabled: pointers.Ptr(true),
 				LicenseKey:  "",
@@ -1150,7 +1150,7 @@ func TestGetEmbeddingsConfig(t *testing.T) {
 			wantDisabled:    true,
 		},
 		{
-			name: "Disabled, Sourcegraph provider",
+			name: "Disabled, Khulnasoft provider",
 			siteConfig: schema.SiteConfiguration{
 				CodyEnabled: pointers.Ptr(true),
 				LicenseKey:  licenseKey,
@@ -1211,7 +1211,7 @@ func TestEmailSenderName(t *testing.T) {
 		{
 			name:       "nothing set",
 			siteConfig: schema.SiteConfiguration{},
-			want:       "Sourcegraph",
+			want:       "Khulnasoft",
 		},
 		{
 			name: "value set",
@@ -1361,23 +1361,23 @@ func TestAccessTokensExpirationOptions(t *testing.T) {
 func TestExternalURLParsed(t *testing.T) {
 	t.Run("Result is mutable", func(t *testing.T) {
 		Mock(&Unified{SiteConfiguration: schema.SiteConfiguration{
-			ExternalURL: "https://sourcegraph.com",
+			ExternalURL: "https://khulnasoft.com",
 		}})
 		t.Cleanup(func() { Mock(nil) })
 		u := ExternalURLParsed()
 		u.Scheme = "http"
-		assert.Equal(t, "http://sourcegraph.com", u.String())
+		assert.Equal(t, "http://khulnasoft.com", u.String())
 		u2 := ExternalURLParsed()
-		assert.Equal(t, "https://sourcegraph.com", u2.String())
+		assert.Equal(t, "https://khulnasoft.com", u2.String())
 		Mock(&Unified{SiteConfiguration: schema.SiteConfiguration{
-			ExternalURL: "https://sourcegraph.sourcegraph.com",
+			ExternalURL: "https://sourcegraph.khulnasoft.com",
 		}})
-		assert.Equal(t, "http://sourcegraph.com", u.String())
-		assert.Equal(t, "https://sourcegraph.com", u2.String())
+		assert.Equal(t, "http://khulnasoft.com", u.String())
+		assert.Equal(t, "https://khulnasoft.com", u2.String())
 	})
 	t.Run("Concurrent access and updates are memory safe", func(t *testing.T) {
 		Mock(&Unified{SiteConfiguration: schema.SiteConfiguration{
-			ExternalURL: "https://host-0.sourcegraph.com",
+			ExternalURL: "https://host-0.khulnasoft.com",
 		}})
 		t.Cleanup(func() { Mock(nil) })
 
@@ -1388,7 +1388,7 @@ func TestExternalURLParsed(t *testing.T) {
 			defer wg.Done()
 			for i := range 1000 {
 				Mock(&Unified{SiteConfiguration: schema.SiteConfiguration{
-					ExternalURL: fmt.Sprintf("https://host-%d.sourcegraph.com", i),
+					ExternalURL: fmt.Sprintf("https://host-%d.khulnasoft.com", i),
 				}})
 				// Allow some time for synchronization.
 				time.Sleep(time.Millisecond)
@@ -1399,7 +1399,7 @@ func TestExternalURLParsed(t *testing.T) {
 			defer wg.Done()
 			for range 1000 {
 				u := ExternalURLParsed()
-				assert.Contains(t, u.Host, ".sourcegraph.com")
+				assert.Contains(t, u.Host, ".khulnasoft.com")
 				// Allow some time for synchronization.
 				time.Sleep(time.Millisecond)
 			}

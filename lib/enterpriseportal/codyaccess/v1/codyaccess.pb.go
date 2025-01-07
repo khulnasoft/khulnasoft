@@ -278,7 +278,7 @@ type CodyGatewayAccessToken struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Access token for authenticating as the subscription holder with managed
-	// Sourcegraph services.
+	// Khulnasoft services.
 	Token string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 }
 

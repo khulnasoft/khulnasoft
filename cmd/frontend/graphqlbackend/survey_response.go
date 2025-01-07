@@ -69,11 +69,11 @@ type SurveySubmissionInput struct {
 	// Emails is an optional, user-provided email address, if there is no
 	// currently authenticated user. If there is, this value will not be used.
 	Email *string
-	// Score is the user's likelihood of recommending Sourcegraph to a friend, from 0-10.
+	// Score is the user's likelihood of recommending Khulnasoft to a friend, from 0-10.
 	Score int32
-	// OtherUseCase is the answer to "What do you use Sourcegraph for?".
+	// OtherUseCase is the answer to "What do you use Khulnasoft for?".
 	OtherUseCase *string
-	// Better is the answer to "What can Sourcegraph do to provide a better product"
+	// Better is the answer to "What can Khulnasoft do to provide a better product"
 	Better *string
 }
 
@@ -126,7 +126,7 @@ func (r *schemaResolver) SubmitSurvey(ctx context.Context, args *struct {
 		SiteID:          siteid.Get(r.db),
 	}); err != nil {
 		// Log an error, but don't return one if the only failure was in submitting survey results to HubSpot.
-		log15.Error("Unable to submit survey results to Sourcegraph remote", "error", err)
+		log15.Error("Unable to submit survey results to Khulnasoft remote", "error", err)
 	}
 
 	return &EmptyResponse{}, nil
@@ -163,7 +163,7 @@ func (r *schemaResolver) SubmitHappinessFeedback(ctx context.Context, args *stru
 	}
 
 	// We include the username and email address of the user (if signed in). For signed-in users,
-	// the UI indicates that the username and email address will be sent to Sourcegraph.
+	// the UI indicates that the username and email address will be sent to Khulnasoft.
 	if actor := sgactor.FromContext(ctx); actor.IsAuthenticated() {
 		currentUser, err := r.db.Users().GetByID(ctx, actor.UID)
 		if err != nil {
@@ -183,7 +183,7 @@ func (r *schemaResolver) SubmitHappinessFeedback(ctx context.Context, args *stru
 	// Submit form to HubSpot
 	if err := hubspotutil.Client().SubmitForm(hubspotutil.HappinessFeedbackFormID, &data); err != nil {
 		// Log an error, but don't return one if the only failure was in submitting feedback results to HubSpot.
-		log15.Error("Unable to submit happiness feedback results to Sourcegraph remote", "error", err)
+		log15.Error("Unable to submit happiness feedback results to Khulnasoft remote", "error", err)
 	}
 
 	return &EmptyResponse{}, nil

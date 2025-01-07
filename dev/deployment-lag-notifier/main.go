@@ -38,7 +38,7 @@ func (f *Flags) Parse() {
 
 // environments represent the currently available environment targets we may care about
 var environments = map[string]string{
-	"cloud": "https://sourcegraph.com",
+	"cloud": "https://khulnasoft.com",
 	"k8s":   "https://k8s.sgdev.org",
 }
 

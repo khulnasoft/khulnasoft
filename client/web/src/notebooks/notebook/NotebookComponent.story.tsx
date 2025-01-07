@@ -30,7 +30,7 @@ const blocks: BlockInit[] = [
         id: '4',
         type: 'file',
         input: {
-            repositoryName: 'github.com/sourcegraph/sourcegraph',
+            repositoryName: 'github.com/khulnasoft/khulnasoft',
             filePath: 'client/web/file.tsx',
             revision: 'main',
             lineRange: null,

@@ -1,4 +1,4 @@
-# Sourcegraph Lua Indexers
+# Khulnasoft Lua Indexers
 
 To get the same lua formatting, make sure to install
 [Stylua](https://github.com/JohnnyMorganz/StyLua) or corresponding editor

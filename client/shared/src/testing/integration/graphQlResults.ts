@@ -18,7 +18,7 @@ export const currentUserMock = {
     organizations: { nodes: [] },
     session: { canSignOut: true },
     viewerCanAdminister: true,
-    emails: [{ email: 'felix@sourcegraph.com', isPrimary: true, verified: true }],
+    emails: [{ email: 'felix@khulnasoft.com', isPrimary: true, verified: true }],
     latestSettings: null,
     hasVerifiedEmail: true,
     permissions: {

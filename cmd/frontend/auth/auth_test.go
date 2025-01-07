@@ -74,7 +74,7 @@ func TestNormalizeUsernameDotcom(t *testing.T) {
 	t.Cleanup(func() {
 		userpasswd.MockAddRandomSuffix = nil
 	})
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	testCases := []struct {
 		in     string

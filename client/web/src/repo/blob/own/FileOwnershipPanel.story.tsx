@@ -161,7 +161,7 @@ const mockResponse: MockedResponse<FetchOwnershipResult> = {
     request: {
         query: getDocumentNode(FETCH_OWNERS),
         variables: {
-            repo: 'github.com/sourcegraph/sourcegraph',
+            repo: 'github.com/khulnasoft/khulnasoft',
             currentPath: 'README.md',
             revision: '',
         },
@@ -182,7 +182,7 @@ export const Default: StoryFn = () => (
     <WebStory mocks={[mockResponse]}>
         {() => (
             <FileOwnershipPanel
-                repoID="github.com/sourcegraph/sourcegraph"
+                repoID="github.com/khulnasoft/khulnasoft"
                 filePath="README.md"
                 telemetryService={NOOP_TELEMETRY_SERVICE}
                 // TODO (dadlerj): update to use a real telemetry recorder

@@ -284,7 +284,7 @@ type Mutation {
     """
     Creates an access token that grants the privileges of the specified user (referred to as the access token's
     "subject" user after token creation). The result is the access token value, which the caller is responsible
-    for storing (it is not accessible by Sourcegraph after creation).
+    for storing (it is not accessible by Khulnasoft after creation).
 
     The supported scopes are:
 
@@ -311,7 +311,7 @@ type Mutation {
     # reasonable defaults instead.
     deleteAccessToken(byID: ID, byToken: String): EmptyResponse!
     """
-    Deletes the association between an external account and its Sourcegraph user. It does NOT delete the external
+    Deletes the association between an external account and its Khulnasoft user. It does NOT delete the external
     account on the external service where it resides.
 
     Only site admins or the user who is associated with the external account may perform this mutation.
@@ -362,7 +362,7 @@ type Mutation {
     """
     removeUserFromOrganization(user: ID!, organization: ID!): EmptyResponse
     """
-    Adds a Phabricator repository to Sourcegraph.
+    Adds a Phabricator repository to Khulnasoft.
     """
     addPhabricatorRepo(
         """
@@ -400,7 +400,7 @@ type Mutation {
         baseRev: String!
         """
         The raw contents of the diff from Phabricator.
-        Required if Sourcegraph doesn't have a Conduit API token.
+        Required if Khulnasoft doesn't have a Conduit API token.
         """
         patch: String
         """
@@ -460,7 +460,7 @@ type Mutation {
         cohortID: String
         """
         An optional referrer parameter for the user's current session.
-        Only captured and stored on Sourcegraph Cloud.
+        Only captured and stored on Khulnasoft Cloud.
         """
         referrer: String
         """
@@ -490,18 +490,18 @@ type Mutation {
         """
         publicArgument: String
         """
-        Device ID used for Amplitude analytics. Used on Sourcegraph Cloud only.
+        Device ID used for Amplitude analytics. Used on Khulnasoft Cloud only.
         """
         deviceID: String
         """
         Event ID used to deduplicate events that occur simultaneously in Amplitude analytics.
-        See https://developers.amplitude.com/docs/http-api-v2#optional-keys. Used on Sourcegraph Cloud only.
+        See https://developers.amplitude.com/docs/http-api-v2#optional-keys. Used on Khulnasoft Cloud only.
         """
         eventID: Int
         """
         Insert ID used to deduplicate events that re-occur in the event of retries or
         backfills in Amplitude analytics. See https://developers.amplitude.com/docs/http-api-v2#optional-keys.
-        Used on Sourcegraph Cloud only.
+        Used on Khulnasoft Cloud only.
         """
         insertID: String
         """
@@ -622,11 +622,11 @@ type Mutation {
     Updates an out-of-band migration to run in a particular direction.
 
     Applied in the forward direction, an out-of-band migration migrates data into a format that
-    is readable by newer Sourcegraph instances. This may be destructive or non-destructive process,
+    is readable by newer Khulnasoft instances. This may be destructive or non-destructive process,
     depending on the nature and implementation of the migration.
 
     Applied in the reverse direction, an out-of-band migration ensures that data is moved back into
-    a format that is readable by the previous Sourcegraph instance. Recently introduced migrations
+    a format that is readable by the previous Khulnasoft instance. Recently introduced migrations
     should be applied in reverse prior to downgrading the instance.
     """
     setMigrationDirection(id: ID!, applyReverse: Boolean!): EmptyResponse!
@@ -932,7 +932,7 @@ input Event {
     cohortID: String
     """
     An optional referrer parameter for the user's current session.
-    Only captured and stored on Sourcegraph Cloud.
+    Only captured and stored on Khulnasoft Cloud.
     """
     referrer: String
     """
@@ -962,18 +962,18 @@ input Event {
     """
     publicArgument: String
     """
-    Device ID used for Amplitude analytics. Used on Sourcegraph Cloud only.
+    Device ID used for Amplitude analytics. Used on Khulnasoft Cloud only.
     """
     deviceID: String
     """
     Event ID used to deduplicate events that occur simultaneously in Amplitude analytics.
-    See https://developers.amplitude.com/docs/http-api-v2#optional-keys. Used on Sourcegraph Cloud only.
+    See https://developers.amplitude.com/docs/http-api-v2#optional-keys. Used on Khulnasoft Cloud only.
     """
     eventID: Int
     """
     Insert ID used to deduplicate events that re-occur in the event of retries or
     backfills in Amplitude analytics. See https://developers.amplitude.com/docs/http-api-v2#optional-keys.
-    Used on Sourcegraph Cloud only.
+    Used on Khulnasoft Cloud only.
     """
     insertID: String
     """
@@ -1070,10 +1070,10 @@ The product client where events come from.
 Future additions include:
 - BITBUCKET_NATIVE_INTEGRATION
 - GITLAB_NATIVE_INTEGRATION
-- CHROME_SOURCEGRAPH_EXTENSION
-- FIREFOX_SOURCEGRAPH_EXTENSION
-- EDGE_SOURCEGRAPH_EXTENSION
-- VSCODE_SOURCEGRAPH_EXTENSION (for https://marketplace.visualstudio.com/items?itemName=sourcegraph.sourcegraph)
+- CHROME_KHULNASOFT_EXTENSION
+- FIREFOX_KHULNASOFT_EXTENSION
+- EDGE_KHULNASOFT_EXTENSION
+- VSCODE_KHULNASOFT_EXTENSION (for https://marketplace.visualstudio.com/items?itemName=sourcegraph.sourcegraph)
 - EMACS_CODY_EXTENSION
 """
 enum EventClient {
@@ -1324,7 +1324,7 @@ type RandomizeUserPasswordResult {
 }
 
 """
-Possible answers to "You use Sourcegraph to..." in the NPS Survey.
+Possible answers to "You use Khulnasoft to..." in the NPS Survey.
 """
 enum SurveyUseCase {
     UNDERSTAND_NEW_CODE
@@ -1344,15 +1344,15 @@ input SurveySubmissionInput {
     """
     email: String
     """
-    User's likelihood of recommending Sourcegraph to a friend, from 0-10.
+    User's likelihood of recommending Khulnasoft to a friend, from 0-10.
     """
     score: Int!
     """
-    The answer to "What do you use Sourcegraph for?".
+    The answer to "What do you use Khulnasoft for?".
     """
     otherUseCase: String
     """
-    The answer to "What would make Sourcegraph better?"
+    The answer to "What would make Khulnasoft better?"
     """
     better: String
 }
@@ -1406,7 +1406,7 @@ type Query {
     """
     Looks up a repository by either name or cloneURL or hashedName. When the
     repository does not exist on the server, it returns a Redirect to an
-    external Sourcegraph URL that may have this repository instead. Otherwise,
+    external Khulnasoft URL that may have this repository instead. Otherwise,
     this query returns null.
     """
     repositoryRedirect(
@@ -2053,14 +2053,14 @@ type Query {
     ): PermissionConnection!
 
     """
-    Returns information pertaining to all gitserver instances associated with this Sourcegraph instance.
+    Returns information pertaining to all gitserver instances associated with this Khulnasoft instance.
 
     Site-admin only.
     """
     gitservers: GitserverInstanceConnection!
 
     """
-    Returns information pertaining to all indexed search instances associated with this Sourcegraph instance.
+    Returns information pertaining to all indexed search instances associated with this Khulnasoft instance.
 
     Site-admin only.
     """
@@ -2538,7 +2538,7 @@ type OutOfBandMigration implements Node {
     description: String!
 
     """
-    The Sourcegraph version in which this migration was introduced. The format of this version
+    The Khulnasoft version in which this migration was introduced. The format of this version
     includes only major and minor parts separated by a dot. The patch version can always be assumed
     to be zero as we'll never introduce or deprecate an out-of-band migration within a patch release.
 
@@ -2549,7 +2549,7 @@ type OutOfBandMigration implements Node {
     introduced: String!
 
     """
-    The Sourcegraph version by which this migration is assumed to have completed. The format of
+    The Khulnasoft version by which this migration is assumed to have completed. The format of
     this version mirrors introduced and includes only major and minor parts separated by a dot.
 
     It is necessary to have completed this migration before upgrading to or past this version.
@@ -2573,7 +2573,7 @@ type OutOfBandMigration implements Node {
     lastUpdated: DateTime
 
     """
-    If false, the migration moves data destructively, and a previous version of Sourcegraph
+    If false, the migration moves data destructively, and a previous version of Khulnasoft
     will encounter errors when interfacing with the target data unless the migration is first
     run in reverse prior to a downgrade.
     """
@@ -2695,17 +2695,17 @@ type ClientConfigurationDetails {
     """
     contentScriptUrls: [String!]!
     """
-    Returns details about the parent Sourcegraph instance.
+    Returns details about the parent Khulnasoft instance.
     """
-    parentSourcegraph: ParentSourcegraphDetails!
+    parentKhulnasoft: ParentKhulnasoftDetails!
 }
 
 """
-Parent Sourcegraph instance
+Parent Khulnasoft instance
 """
-type ParentSourcegraphDetails {
+type ParentKhulnasoftDetails {
     """
-    Sourcegraph instance URL.
+    Khulnasoft instance URL.
     """
     url: String!
 }
@@ -2849,7 +2849,7 @@ type SearchResults {
     cloning: [Repository!]!
     """
     Repositories or commits that do not exist.
-    In paginated search requests, some repositories may be missing (e.g. if Sourcegraph is
+    In paginated search requests, some repositories may be missing (e.g. if Khulnasoft is
     aware of them but is temporarily unable to serve them). These are reported here and you
     may choose to retry the paginated request with the same cursor and they may no longer be
     missing OR you may simply continue making further paginated requests and choose to skip
@@ -3595,12 +3595,12 @@ type Repository implements Node & GenericSearchResultInterface {
     language: String!
     """
     DEPRECATED: This field is unused in known clients.
-    The date when this repository was created on Sourcegraph.
+    The date when this repository was created on Khulnasoft.
     """
     createdAt: DateTime!
     """
     DEPRECATED: This field is unused in known clients.
-    The date when this repository's metadata was last updated on Sourcegraph.
+    The date when this repository's metadata was last updated on Khulnasoft.
     """
     updatedAt: DateTime
     """
@@ -3631,8 +3631,8 @@ type Repository implements Node & GenericSearchResultInterface {
     firstEverCommit: GitCommit
     """
     Information and status related to mirroring, if this repository is a mirror of another repository (e.g., on
-    some code host). In this case, the remote source repository is external to Sourcegraph and the mirror is
-    maintained by the Sourcegraph site (not the other way around).
+    some code host). In this case, the remote source repository is external to Khulnasoft and the mirror is
+    maintained by the Khulnasoft site (not the other way around).
     """
     mirrorInfo: MirrorRepositoryInfo!
     """
@@ -4166,17 +4166,17 @@ type CodeIntelligenceCommitGraph {
 }
 
 """
-A reference to another Sourcegraph instance.
+A reference to another Khulnasoft instance.
 """
 type Redirect {
     """
-    The URL of the other Sourcegraph instance.
+    The URL of the other Khulnasoft instance.
     """
     url: String!
 }
 
 """
-A repository or a link to another Sourcegraph instance location where this repository may be located.
+A repository or a link to another Khulnasoft instance location where this repository may be located.
 """
 union RepositoryRedirect = Repository | Redirect
 
@@ -4203,7 +4203,7 @@ type ExternalLink {
 
 """
 Information and status about the mirroring of a repository. In this case, the remote source repository
-is external to Sourcegraph and the mirror is maintained by the Sourcegraph site (not the other way
+is external to Khulnasoft and the mirror is maintained by the Khulnasoft site (not the other way
 around).
 """
 type MirrorRepositoryInfo {
@@ -5557,7 +5557,7 @@ enum HighlightResponseFormat {
 
 """
 A file.
-In a future version of Sourcegraph, a repository's files may be distinct from a repository's blobs
+In a future version of Khulnasoft, a repository's files may be distinct from a repository's blobs
 (for example, to support searching/browsing generated files that aren't committed and don't exist
 as Git blobs). Clients should generally use the GitBlob concrete type and GitCommit.blobs (not
 GitCommit.files), unless they explicitly want to opt-in to different behavior in the future.
@@ -5804,7 +5804,7 @@ type File {
     """
     isDirectory: Boolean!
     """
-    The URL to this file on Sourcegraph.
+    The URL to this file on Khulnasoft.
     """
     url: String!
     """
@@ -6287,7 +6287,7 @@ type User implements Node & SettingsSubject & Namespace {
     """
     avatarURL: String
     """
-    The URL to the user's profile on Sourcegraph.
+    The URL to the user's profile on Khulnasoft.
     """
     url: String!
     """
@@ -6295,11 +6295,11 @@ type User implements Node & SettingsSubject & Namespace {
     """
     settingsURL: String
     """
-    The date when the user account was created on Sourcegraph.
+    The date when the user account was created on Khulnasoft.
     """
     createdAt: DateTime!
     """
-    The date when the user account was last updated on Sourcegraph.
+    The date when the user account was last updated on Khulnasoft.
     """
     updatedAt: DateTime
     """
@@ -6342,7 +6342,7 @@ type User implements Node & SettingsSubject & Namespace {
     """
     tosAccepted: Boolean!
     """
-    The user's recent usage statistics on Sourcegraph.
+    The user's recent usage statistics on Khulnasoft.
 
     These statistics are aggregated from the user activity records in the event_logs table. That table only
     records 93 days worth of history, however, so long-term aggregated statistics may not be accurate (e.g.
@@ -6352,7 +6352,7 @@ type User implements Node & SettingsSubject & Namespace {
     """
     usageStatistics: UserUsageStatistics!
     """
-    The user's events on Sourcegraph.
+    The user's events on Khulnasoft.
     """
     eventLogs(
         """
@@ -6640,7 +6640,7 @@ type ExternalAccount implements Node {
     """
     id: ID!
     """
-    The user on Sourcegraph.
+    The user on Khulnasoft.
     """
     user: User!
     """
@@ -6661,11 +6661,11 @@ type ExternalAccount implements Node {
     """
     accountID: String!
     """
-    The creation date of this external account on Sourcegraph.
+    The creation date of this external account on Khulnasoft.
     """
     createdAt: DateTime!
     """
-    The last-updated date of this external account on Sourcegraph.
+    The last-updated date of this external account on Khulnasoft.
     """
     updatedAt: DateTime!
     """
@@ -6713,7 +6713,7 @@ An active user session.
 """
 type Session {
     """
-    Whether the user can sign out of this session on Sourcegraph.
+    Whether the user can sign out of this session on Khulnasoft.
     """
     canSignOut: Boolean!
 }
@@ -6811,7 +6811,7 @@ type Org implements Node & SettingsSubject & Namespace {
     """
     id: ID!
     """
-    The organization's name. This is unique among all organizations on this Sourcegraph site.
+    The organization's name. This is unique among all organizations on this Khulnasoft site.
     """
     name: String!
     """
@@ -6998,8 +6998,8 @@ enum RepositoryOrderBy {
 }
 
 """
-The default settings for the Sourcegraph instance. This is hardcoded in
-Sourcegraph, but may change from release to release.
+The default settings for the Khulnasoft instance. This is hardcoded in
+Khulnasoft, but may change from release to release.
 """
 type DefaultSettings implements SettingsSubject {
     """
@@ -7056,7 +7056,7 @@ type CodyContextFilters {
 }
 
 """
-A site is an installation of Sourcegraph that consists of one or more
+A site is an installation of Khulnasoft that consists of one or more
 servers that share the same configuration and database.
 The site is a singleton; the API only ever returns the single global site.
 """
@@ -7147,16 +7147,16 @@ type Site implements SettingsSubject {
         clientID: String
     ): ExternalAccountConnection!
     """
-    The build version of the Sourcegraph software that is running on this site (of the form
+    The build version of the Khulnasoft software that is running on this site (of the form
     NNNNN_YYYY-MM-DD_XXXXX, like 12345_2018-01-01_abcdef).
     """
     buildVersion: String!
     """
-    The product version of the Sourcegraph software that is running on this site.
+    The product version of the Khulnasoft software that is running on this site.
     """
     productVersion: String!
     """
-    Information about software updates for the version of Sourcegraph that this site is running.
+    Information about software updates for the version of Khulnasoft that this site is running.
     """
     updateCheck: UpdateCheck!
     """
@@ -7171,7 +7171,7 @@ type Site implements SettingsSubject {
     """
     Whether the external services can be updated even if `externalServicesFromFile` is
     true. All changes made while `externalServicesFromFile` is true will be discarded once
-    Sourcegraph restarts.
+    Khulnasoft restarts.
     """
     allowEditExternalServicesWithFile: Boolean!
     """
@@ -7261,16 +7261,16 @@ type Site implements SettingsSubject {
     """
     Monitoring overview for this site.
     Note: This is primarily used for displaying recently-fired alerts in the web app. If your intent
-    is to monitor Sourcegraph, it is better to configure alerting or query Prometheus directly in
+    is to monitor Khulnasoft, it is better to configure alerting or query Prometheus directly in
     order to ensure that if the frontend goes down you still receive alerts:
-    Configure alerting: https://sourcegraph.com/docs/admin/observability/alerting
-    Query Prometheus directly: https://sourcegraph.com/docs/admin/observability/alerting_custom_consumption
+    Configure alerting: https://khulnasoft.com/docs/admin/observability/alerting
+    Query Prometheus directly: https://khulnasoft.com/docs/admin/observability/alerting_custom_consumption
     """
     monitoringStatistics(
         """
         Days of history (based on current UTC time).
         """
-        days: Int @deprecated(reason: "No longer supported - will be removed after Sourcegraph 4.5")
+        days: Int @deprecated(reason: "No longer supported - will be removed after Khulnasoft 4.5")
     ): MonitoringStatistics!
     """
     Whether changes can be made to site settings through the API. When global settings are configured through
@@ -7283,7 +7283,7 @@ type Site implements SettingsSubject {
     """
     upgradeReadiness: UpgradeReadiness!
     """
-    FOR INTERNAL USE ONLY: The state of readiness to auto upgrade the Sourcegraph instance via migrator commands.
+    FOR INTERNAL USE ONLY: The state of readiness to auto upgrade the Khulnasoft instance via migrator commands.
     """
     autoUpgradeEnabled: Boolean!
 
@@ -7477,7 +7477,7 @@ type SchemaDriftSummary {
     """
     statements: [String!]
     """
-    The Sourcegraph URL that contains the potential fix
+    The Khulnasoft URL that contains the potential fix
     """
     urlHint: String
 }
@@ -7605,7 +7605,7 @@ type SiteConfigurationChange implements Node {
 }
 
 """
-Information about software updates for Sourcegraph.
+Information about software updates for Khulnasoft.
 """
 type UpdateCheck {
     """
@@ -8282,7 +8282,7 @@ type SiteUser {
     The datetime when user was last active.
 
     This is an aggregated metric that goes back to the beginning of the user's time
-    using this Sourcegraph instance.
+    using this Khulnasoft instance.
 
     This value is only updated every ~12 hours. For real-time data, see
     UserUsageStatistics.lastActiveTime.
@@ -8445,12 +8445,12 @@ type MonitoringStatistics {
     """
     alerts: [MonitoringAlert!]!
         @deprecated(
-            reason: "No longer supported, and will no longer return data - query will be removed after Sourcegraph 4.5"
+            reason: "No longer supported, and will no longer return data - query will be removed after Khulnasoft 4.5"
         )
 }
 
 """
-A high-level monitoring alert, for details see https://sourcegraph.com/docs/admin/observability/metrics#high-level-alerting-metrics
+A high-level monitoring alert, for details see https://khulnasoft.com/docs/admin/observability/metrics#high-level-alerting-metrics
 """
 type MonitoringAlert {
     """
@@ -8523,7 +8523,7 @@ type SurveyResponse {
     """
     email: String
     """
-    User's likelihood of recommending Sourcegraph to a friend, from 0-10.
+    User's likelihood of recommending Khulnasoft to a friend, from 0-10.
     """
     score: Int!
     """
@@ -8531,11 +8531,11 @@ type SurveyResponse {
     """
     reason: String
     """
-    The answer to "What can Sourcegraph do to provide a better product"
+    The answer to "What can Khulnasoft do to provide a better product"
     """
     better: String
     """
-    The answer to "What do you use Sourcegraph for?".
+    The answer to "What do you use Khulnasoft for?".
     """
     otherUseCase: String
     """
@@ -8549,16 +8549,16 @@ Information about this site's product subscription (which enables access to and 
 """
 type ProductSubscriptionStatus {
     """
-    The full name of the product in use, such as "Sourcegraph Enterprise".
+    The full name of the product in use, such as "Khulnasoft Enterprise".
     """
     productNameWithBrand: String!
     """
-    The max number of user accounts that have been active on this Sourcegraph site for the current license.
+    The max number of user accounts that have been active on this Khulnasoft site for the current license.
     If no license is in use, returns zero.
     """
     actualUserCount: Int!
     """
-    The date and time when the max number of user accounts that have been active on this Sourcegraph site for
+    The date and time when the max number of user accounts that have been active on this Khulnasoft site for
     the current license was reached. If no license is in use, returns an empty string.
     """
     actualUserCountDate: String!
@@ -8580,12 +8580,12 @@ type ProductSubscriptionStatus {
 }
 
 """
-Information about this site's product license (which activates certain Sourcegraph features).
+Information about this site's product license (which activates certain Khulnasoft features).
 """
 type ProductLicenseInfo {
     """
     The full name of the product that this license is for. To get the product name for the current
-    Sourcegraph site, use ProductSubscriptionStatus.productNameWithBrand instead (to handle cases where there is
+    Khulnasoft site, use ProductSubscriptionStatus.productNameWithBrand instead (to handle cases where there is
     no license).
     """
     productNameWithBrand: String!
@@ -8815,7 +8815,7 @@ type EventLog {
     """
     argument: String
     """
-    The Sourcegraph version when the event was logged.
+    The Khulnasoft version when the event was logged.
     """
     version: String!
     """
@@ -9426,7 +9426,7 @@ extend type Query {
     ): ExecutorConnection!
 
     """
-    Returns true if executors have been configured on the Sourcegraph instance.
+    Returns true if executors have been configured on the Khulnasoft instance.
     This is based on heuristics and doesn't necessarily mean that they would be
     working.
     """
@@ -9518,20 +9518,20 @@ type Executor implements Node {
     srcCliVersion: String!
 
     """
-    The first time the executor sent a heartbeat to the Sourcegraph instance.
+    The first time the executor sent a heartbeat to the Khulnasoft instance.
     """
     firstSeenAt: DateTime!
 
     """
-    The last time the executor sent a heartbeat to the Sourcegraph instance.
+    The last time the executor sent a heartbeat to the Khulnasoft instance.
     """
     lastSeenAt: DateTime!
     """
-    The compatibility of the executor with respect to the Sourcegraph instance.
-    If outdated, please make sure that the executor and the Sourcegraph backend are of compatible versions. This means they should match in major and minor version, but they may be 1 minor version apart.
-    If too new, please update the Sourcegraph instance to match the version of the executor or downgrade the executor.
+    The compatibility of the executor with respect to the Khulnasoft instance.
+    If outdated, please make sure that the executor and the Khulnasoft backend are of compatible versions. This means they should match in major and minor version, but they may be 1 minor version apart.
+    If too new, please update the Khulnasoft instance to match the version of the executor or downgrade the executor.
 
-    Compatibility can be null if the executor or Sourcegraph instance runs in dev mode or there's a version mismatch.
+    Compatibility can be null if the executor or Khulnasoft instance runs in dev mode or there's a version mismatch.
     """
     compatibility: ExecutorCompatibility
 }
@@ -9541,17 +9541,17 @@ The compatibility of the executor with the sourcegraph instance.
 """
 enum ExecutorCompatibility {
     """
-    Executor version is more than one version behind the Sourcegraph instance.
+    Executor version is more than one version behind the Khulnasoft instance.
     """
     OUTDATED
 
     """
-    Executor is up-to-date with the Sourcegraph instance.
+    Executor is up-to-date with the Khulnasoft instance.
     """
     UP_TO_DATE
 
     """
-    Executor version is more than one version ahead of the Sourcegraph instance.
+    Executor version is more than one version ahead of the Khulnasoft instance.
     """
     VERSION_AHEAD
 }
@@ -9759,7 +9759,7 @@ type Team implements Node {
 
     """
     True, if the team is external, i.e. not found in our database.
-    Example: CODEOWNERS files can contain references to GitHub teams which are not the part of Sourcegraph teams.
+    Example: CODEOWNERS files can contain references to GitHub teams which are not the part of Khulnasoft teams.
     """
     external: Boolean!
 }
@@ -9893,11 +9893,11 @@ extend type Query {
 extend type Mutation {
     """
     Creates a team. The name must be unique, display name can be used to set a custom
-    display value for the team inside Sourcegraph.
+    display value for the team inside Khulnasoft.
 
-    If readonly is true, the Sourcegraph UI will show a warning banner that this team
+    If readonly is true, the Khulnasoft UI will show a warning banner that this team
     is managed externally, and it can only be modified by site-admins.
-    This is to prevent state drift from external systems that ingest team information into Sourcegraph.
+    This is to prevent state drift from external systems that ingest team information into Khulnasoft.
     Readonly can only be set by site-admins.
 
     Either parentTeam XOR parentTeamName can be specified to make the team a child
@@ -9944,7 +9944,7 @@ extend type Mutation {
     Either team XOR teamName can be specified to specify the team.
     Must be team member to add new team members, or site-admin.
 
-    For now, members can only be the IDs of User entities in Sourcegraph.
+    For now, members can only be the IDs of User entities in Khulnasoft.
     Later, we will expand this to allow Persons as well.
 
     If skipUnmatchedMembers is true, members that are not matched to a user are skipped.
@@ -9964,7 +9964,7 @@ extend type Mutation {
     Either team XOR teamName can be specified to specify the team.
     Must be team member to modify team members, or site-admin.
 
-    For now, members can only be the IDs of User entities in Sourcegraph.
+    For now, members can only be the IDs of User entities in Khulnasoft.
     Later, we will expand this to allow Persons as well.
 
     If skipUnmatchedMembers is true, members that are not matched to a user are skipped.
@@ -9983,7 +9983,7 @@ extend type Mutation {
     Either team XOR teamName can be specified to specify the team.
     Must be team member to remove team members, or site-admin.
 
-    For now, members can only be the IDs of User entities in Sourcegraph.
+    For now, members can only be the IDs of User entities in Khulnasoft.
     Later, we will expand this to allow Persons as well.
 
     If skipUnmatchedMembers is true, members that are not matched to a user are skipped.
@@ -10014,7 +10014,7 @@ input TeamMemberInput {
     """
     userID: ID
     """
-    Explicitly define a user by username in Sourcegraph.
+    Explicitly define a user by username in Khulnasoft.
     """
     username: String
     """
@@ -10310,7 +10310,7 @@ enum PermissionNamespace {
     BATCH_CHANGES
     """
     Code ownership namespace used for permitting to assign ownership
-    within Sourcegraph.
+    within Khulnasoft.
     """
     OWNERSHIP
 
@@ -10326,7 +10326,7 @@ enum PermissionNamespace {
     CODY
 
     """
-    ❗ Product subscriptions are only available in Sourcegraph.com
+    ❗ Product subscriptions are only available in Khulnasoft.com
     """
     PRODUCT_SUBSCRIPTIONS
 }
@@ -10694,7 +10694,7 @@ A list of code hosts.
 type CodeHostConnection {
     """
     Only when this flag is true, the connection can be trusted to be complete.
-    This will stop existing in Sourcegraph 5.3 when the migration is ensured
+    This will stop existing in Khulnasoft 5.3 when the migration is ensured
     to be complete.
     """
     isMigrationDone: Boolean!
@@ -10735,7 +10735,7 @@ type CodeHost implements Node {
     url: String!
 
     """
-    A amount of API requests Sourcegraph can send to the code host.
+    A amount of API requests Khulnasoft can send to the code host.
     """
     apiRateLimitQuota: Int
 
@@ -10745,7 +10745,7 @@ type CodeHost implements Node {
     apiRateLimitIntervalSeconds: Int
 
     """
-    A amount of git requests Sourcegraph can send to the code host.
+    A amount of git requests Khulnasoft can send to the code host.
     """
     gitRateLimitQuota: Int
 

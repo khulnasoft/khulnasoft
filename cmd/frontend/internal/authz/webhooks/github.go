@@ -55,7 +55,7 @@ func TestSetGitHubHandlerSleepTime(t *testing.T, val time.Duration) {
 
 func (h *GitHubWebhook) handleGitHubWebhook(ctx context.Context, db database.DB, codeHostURN extsvc.CodeHostBaseURL, payload any) error {
 	// TODO: Should we return errors here? We could receive a webhook for a repo
-	// that's not on Sourcegraph, so probably not?
+	// that's not on Khulnasoft, so probably not?
 	switch e := payload.(type) {
 	case *gh.RepositoryEvent:
 		_ = h.handleRepositoryEvent(ctx, db, e)

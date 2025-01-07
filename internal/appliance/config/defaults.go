@@ -12,9 +12,9 @@ import (
 // do this, reconciling a config that overrides a default value for that
 // pointer, will affect the subsequent _default_ for all future resources
 // reconciled.
-func NewDefaultConfig() Sourcegraph {
-	return Sourcegraph{
-		Spec: SourcegraphSpec{
+func NewDefaultConfig() Khulnasoft {
+	return Khulnasoft{
+		Spec: KhulnasoftSpec{
 			// Global config
 			ImageRepository: "index.docker.io/sourcegraph",
 
@@ -188,6 +188,6 @@ func NewDefaultConfig() Sourcegraph {
 	}
 }
 
-func GetDefaultImage(sg *Sourcegraph, component string) string {
+func GetDefaultImage(sg *Khulnasoft, component string) string {
 	return fmt.Sprintf("%s/%s:%s", sg.Spec.ImageRepository, component, sg.Spec.RequestedVersion)
 }

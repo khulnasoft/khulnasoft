@@ -8,8 +8,8 @@
 | `-associated-index-id` | ID of the associated index record for this upload. For internal use only. | `-1` |
 | `-commit` | The 40-character hash of the commit. Defaults to the currently checked-out commit. |  |
 | `-file` | The path to the LSIF dump file. |  |
-| `-github-token` | A GitHub access token with 'public_repo' scope that Sourcegraph uses to verify you have access to the repository. |  |
-| `-gitlab-token` | A GitLab access token with 'read_api' scope that Sourcegraph uses to verify you have access to the repository. |  |
+| `-github-token` | A GitHub access token with 'public_repo' scope that Khulnasoft uses to verify you have access to the repository. |  |
+| `-gitlab-token` | A GitLab access token with 'read_api' scope that Khulnasoft uses to verify you have access to the repository. |  |
 | `-ignore-upload-failure` | Exit with status code zero on upload failure. | `false` |
 | `-indexer` | The name of the indexer that generated the dump. This will override the 'toolInfo.name' field in the metadata vertex of the LSIF dump file. This must be supplied if the indexer does not set this field (in which case the upload will fail with an explicit message). |  |
 | `-indexerVersion` | The version of the indexer that generated the dump. This will override the 'toolInfo.version' field in the metadata vertex of the LSIF dump file. This must be supplied if the indexer does not set this field (in which case the upload will fail with an explicit message). |  |
@@ -37,9 +37,9 @@ Usage of 'src code-intel upload':
   -file string
     	The path to the LSIF dump file.
   -github-token string
-    	A GitHub access token with 'public_repo' scope that Sourcegraph uses to verify you have access to the repository.
+    	A GitHub access token with 'public_repo' scope that Khulnasoft uses to verify you have access to the repository.
   -gitlab-token string
-    	A GitLab access token with 'read_api' scope that Sourcegraph uses to verify you have access to the repository.
+    	A GitLab access token with 'read_api' scope that Khulnasoft uses to verify you have access to the repository.
   -ignore-upload-failure
     	Exit with status code zero on upload failure.
   -indexer string

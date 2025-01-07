@@ -206,7 +206,7 @@ func (r *gitCommitDescriptionResolver) Author() *graphqlbackend.PersonResolver {
 		r.store.DatabaseDB(),
 		r.authorName,
 		r.authorEmail,
-		// Try to find the corresponding Sourcegraph user.
+		// Try to find the corresponding Khulnasoft user.
 		true,
 	)
 }

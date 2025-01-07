@@ -96,8 +96,8 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeQueue,
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Job-ID":        "42",
-				"X-Sourcegraph-Executor-Name": "test-executor",
+				"X-Khulnasoft-Job-ID":        "42",
+				"X-Khulnasoft-Executor-Name": "test-executor",
 			},
 			mockFunc: func(executorStore *dbmocks.MockExecutorStore, jobTokenStore *executorstore.MockJobTokenStore) {
 				jobTokenStore.GetByTokenFunc.PushReturn(executorstore.JobToken{JobID: 42, Queue: "test"}, nil)
@@ -128,8 +128,8 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeGit,
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Job-ID":        "42",
-				"X-Sourcegraph-Executor-Name": "test-executor",
+				"X-Khulnasoft-Job-ID":        "42",
+				"X-Khulnasoft-Executor-Name": "test-executor",
 			},
 			mockFunc: func(executorStore *dbmocks.MockExecutorStore, jobTokenStore *executorstore.MockJobTokenStore) {
 				jobTokenStore.GetByTokenFunc.PushReturn(executorstore.JobToken{JobID: 42, Repo: "test"}, nil)
@@ -160,8 +160,8 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeFiles,
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Job-ID":        "42",
-				"X-Sourcegraph-Executor-Name": "test-executor",
+				"X-Khulnasoft-Job-ID":        "42",
+				"X-Khulnasoft-Executor-Name": "test-executor",
 			},
 			mockFunc: func(executorStore *dbmocks.MockExecutorStore, jobTokenStore *executorstore.MockJobTokenStore) {
 				jobTokenStore.GetByTokenFunc.PushReturn(executorstore.JobToken{JobID: 42, Queue: "batches"}, nil)
@@ -192,7 +192,7 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeQueue,
 			header: map[string]string{
 				"Authorization":        "Bearer somejobtoken",
-				"X-Sourcegraph-Job-ID": "42",
+				"X-Khulnasoft-Job-ID": "42",
 			},
 			expectedStatusCode:   http.StatusBadRequest,
 			expectedResponseBody: "worker hostname cannot be empty\n",
@@ -206,10 +206,10 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeQueue,
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Executor-Name": "test-executor",
+				"X-Khulnasoft-Executor-Name": "test-executor",
 			},
 			expectedStatusCode:   http.StatusBadRequest,
-			expectedResponseBody: "job ID not provided in header 'X-Sourcegraph-Job-ID'\n",
+			expectedResponseBody: "job ID not provided in header 'X-Khulnasoft-Job-ID'\n",
 			assertionFunc: func(t *testing.T, executorStore *dbmocks.MockExecutorStore, jobTokenStore *executorstore.MockJobTokenStore) {
 				require.Len(t, jobTokenStore.GetByTokenFunc.History(), 0)
 				require.Len(t, executorStore.GetByHostnameFunc.History(), 0)
@@ -220,8 +220,8 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeQueue,
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Executor-Name": "test-executor",
-				"X-Sourcegraph-Job-ID":        "abc",
+				"X-Khulnasoft-Executor-Name": "test-executor",
+				"X-Khulnasoft-Job-ID":        "abc",
 			},
 			expectedStatusCode:   http.StatusBadRequest,
 			expectedResponseBody: "failed to parse Job ID: strconv.Atoi: parsing \"abc\": invalid syntax\n",
@@ -279,8 +279,8 @@ func TestJobAuthMiddleware(t *testing.T) {
 			name: "Unsupported route",
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Job-ID":        "42",
-				"X-Sourcegraph-Executor-Name": "test-executor",
+				"X-Khulnasoft-Job-ID":        "42",
+				"X-Khulnasoft-Executor-Name": "test-executor",
 			},
 			expectedStatusCode:   http.StatusBadRequest,
 			expectedResponseBody: "unsupported route\n",
@@ -294,8 +294,8 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeQueue,
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Job-ID":        "42",
-				"X-Sourcegraph-Executor-Name": "test-executor",
+				"X-Khulnasoft-Job-ID":        "42",
+				"X-Khulnasoft-Executor-Name": "test-executor",
 			},
 			mockFunc: func(executorStore *dbmocks.MockExecutorStore, jobTokenStore *executorstore.MockJobTokenStore) {
 				jobTokenStore.GetByTokenFunc.PushReturn(executorstore.JobToken{}, errors.New("failed to find job token"))
@@ -313,8 +313,8 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeQueue,
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Job-ID":        "42",
-				"X-Sourcegraph-Executor-Name": "test-executor",
+				"X-Khulnasoft-Job-ID":        "42",
+				"X-Khulnasoft-Executor-Name": "test-executor",
 			},
 			mockFunc: func(executorStore *dbmocks.MockExecutorStore, jobTokenStore *executorstore.MockJobTokenStore) {
 				jobTokenStore.GetByTokenFunc.PushReturn(executorstore.JobToken{JobID: 7, Queue: "test"}, nil)
@@ -332,8 +332,8 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeQueue,
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Job-ID":        "42",
-				"X-Sourcegraph-Executor-Name": "test-executor",
+				"X-Khulnasoft-Job-ID":        "42",
+				"X-Khulnasoft-Executor-Name": "test-executor",
 			},
 			mockFunc: func(executorStore *dbmocks.MockExecutorStore, jobTokenStore *executorstore.MockJobTokenStore) {
 				jobTokenStore.GetByTokenFunc.PushReturn(executorstore.JobToken{JobID: 42, Queue: "test1"}, nil)
@@ -351,8 +351,8 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeQueue,
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Job-ID":        "42",
-				"X-Sourcegraph-Executor-Name": "test-executor",
+				"X-Khulnasoft-Job-ID":        "42",
+				"X-Khulnasoft-Executor-Name": "test-executor",
 			},
 			mockFunc: func(executorStore *dbmocks.MockExecutorStore, jobTokenStore *executorstore.MockJobTokenStore) {
 				jobTokenStore.GetByTokenFunc.PushReturn(executorstore.JobToken{JobID: 42, Queue: "test"}, nil)
@@ -372,8 +372,8 @@ func TestJobAuthMiddleware(t *testing.T) {
 			routeName: routeGit,
 			header: map[string]string{
 				"Authorization":               "Bearer somejobtoken",
-				"X-Sourcegraph-Job-ID":        "42",
-				"X-Sourcegraph-Executor-Name": "test-executor",
+				"X-Khulnasoft-Job-ID":        "42",
+				"X-Khulnasoft-Executor-Name": "test-executor",
 			},
 			mockFunc: func(executorStore *dbmocks.MockExecutorStore, jobTokenStore *executorstore.MockJobTokenStore) {
 				jobTokenStore.GetByTokenFunc.PushReturn(executorstore.JobToken{JobID: 42, Repo: "test1"}, nil)

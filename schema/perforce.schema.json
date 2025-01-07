@@ -33,7 +33,7 @@
         "type": "string",
         "pattern": "^\\/[\\/\\S]+\\/$"
       },
-      "examples": [["//Sourcegraph/", "//Engineering/Cloud/"]]
+      "examples": [["//Khulnasoft/", "//Engineering/Cloud/"]]
     },
     "maxChanges": {
       "description": "Only import at most n changes when possible (git p4 clone --max-changes).",
@@ -59,7 +59,7 @@
       }
     },
     "repositoryPathPattern": {
-      "description": "The pattern used to generate the corresponding Sourcegraph repository name for a Perforce depot. In the pattern, the variable \"{depot}\" is replaced with the Perforce depot's path.\n\nFor example, if your Perforce depot path is \"//Sourcegraph/\" and your Sourcegraph URL is https://src.example.com, then a repositoryPathPattern of \"perforce/{depot}\" would mean that the Perforce depot is available on Sourcegraph at https://src.example.com/perforce/Sourcegraph.\n\nIt is important that the Sourcegraph repository name generated with this pattern be unique to this Perforce Server. If different Perforce Servers generate repository names that collide, Khulnasoft's behavior is undefined.",
+      "description": "The pattern used to generate the corresponding Khulnasoft repository name for a Perforce depot. In the pattern, the variable \"{depot}\" is replaced with the Perforce depot's path.\n\nFor example, if your Perforce depot path is \"//Khulnasoft/\" and your Khulnasoft URL is https://src.example.com, then a repositoryPathPattern of \"perforce/{depot}\" would mean that the Perforce depot is available on Khulnasoft at https://src.example.com/perforce/Khulnasoft.\n\nIt is important that the Khulnasoft repository name generated with this pattern be unique to this Perforce Server. If different Perforce Servers generate repository names that collide, Khulnasoft's behavior is undefined.",
       "type": "string",
       "default": "{depot}"
     },

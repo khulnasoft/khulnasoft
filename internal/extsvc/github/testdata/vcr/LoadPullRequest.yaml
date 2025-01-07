@@ -282,20 +282,20 @@ interactions:
       for the fix! The chaining logic looks brilliant to me (as a non-FE dev).","state":"APPROVED","url":"https://github.com/khulnasoft/khulnasoft/pull/5550#pullrequestreview-287537086","createdAt":"2019-09-12T15:57:28Z","updatedAt":"2019-09-12T15:57:28Z","commit":null,"includesCreatedEdit":false},{"__typename":"PullRequestReview","databaseId":287549355,"author":{"avatarUrl":"https://avatars.githubusercontent.com/u/10532611?u=b02bd4f2245dd008c4b549bf84b5a8cb6667b649&v=4","login":"felixfbecker","url":"https://github.com/felixfbecker"},"authorAssociation":"CONTRIBUTOR","body":"","state":"COMMENTED","url":"https://github.com/khulnasoft/khulnasoft/pull/5550#pullrequestreview-287549355","createdAt":"2019-09-12T16:18:08Z","updatedAt":"2019-09-12T16:18:58Z","commit":null,"includesCreatedEdit":false},{"__typename":"PullRequestCommit","commit":{"oid":"21d1cd99699e36ab5e2b9be1cc663691d47193ef","message":"Fix
       disableExtension flag for native integrations\n\nThis flag should only be observed
       in the browser extension. Calling `observeStorageKey()` breaks native integrations.","messageHeadline":"Fix
-      disableExtension flag for native integrations","committedDate":"2019-09-13T09:13:12Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/21d1cd99699e36ab5e2b9be1cc663691d47193ef","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1741180?v=4","email":"loic@sourcegraph.com","name":"Loïc
+      disableExtension flag for native integrations","committedDate":"2019-09-13T09:13:12Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/21d1cd99699e36ab5e2b9be1cc663691d47193ef","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1741180?v=4","email":"loic@khulnasoft.com","name":"Loïc
       Guychard","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1741180?u=d126637129a1c2fae6f79de2c7cf8390059feb85&v=4","login":"lguychard","url":"https://github.com/lguychard"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"30cc0384757b7d2fe9d42cf09ab7744731c8a9ea","message":"No
       need to explicitly remove the subscription","messageHeadline":"No need to explicitly
-      remove the subscription","committedDate":"2019-09-13T09:13:12Z","pushedDate":"2019-09-13T09:13:20Z","url":"https://github.com/khulnasoft/khulnasoft/commit/30cc0384757b7d2fe9d42cf09ab7744731c8a9ea","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1741180?v=4","email":"loic@sourcegraph.com","name":"Loïc
+      remove the subscription","committedDate":"2019-09-13T09:13:12Z","pushedDate":"2019-09-13T09:13:20Z","url":"https://github.com/khulnasoft/khulnasoft/commit/30cc0384757b7d2fe9d42cf09ab7744731c8a9ea","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1741180?v=4","email":"loic@khulnasoft.com","name":"Loïc
       Guychard","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1741180?u=d126637129a1c2fae6f79de2c7cf8390059feb85&v=4","login":"lguychard","url":"https://github.com/lguychard"}}}},{"__typename":"IssueComment","databaseId":531172813,"author":{"avatarUrl":"https://avatars.githubusercontent.com/in/254?v=4","login":"codecov","url":"https://github.com/apps/codecov"},"authorAssociation":"NONE","body":"#
-      [Codecov](https://codecov.io/gh/sourcegraph/sourcegraph/pull/5550?src=pr&el=h1)
-      Report\n> Merging [#5550](https://codecov.io/gh/sourcegraph/sourcegraph/pull/5550?src=pr&el=desc)
-      into [master](https://codecov.io/gh/sourcegraph/sourcegraph/commit/f7097fe19816d0a9d637dc759722f6f43fd057ea?src=pr&el=desc)
+      [Codecov](https://codecov.io/gh/khulnasoft/khulnasoft/pull/5550?src=pr&el=h1)
+      Report\n> Merging [#5550](https://codecov.io/gh/khulnasoft/khulnasoft/pull/5550?src=pr&el=desc)
+      into [master](https://codecov.io/gh/khulnasoft/khulnasoft/commit/f7097fe19816d0a9d637dc759722f6f43fd057ea?src=pr&el=desc)
       will **decrease** coverage by `<.01%`.\n> The diff coverage is `0%`.\n\n```diff\n@@            Coverage
       Diff             @@\n##           master    #5550      +/-   ##\n==========================================\n-
       Coverage   46.57%   46.56%   -0.01%     \n==========================================\n  Files         741      741              \n  Lines       44953    44954       +1     \n  Branches     2628     2630       +2     \n==========================================\n  Hits        20935    20935              \n-
       Misses      21963    21964       +1     \n  Partials     2055     2055\n```\n\n|
-      [Impacted Files](https://codecov.io/gh/sourcegraph/sourcegraph/pull/5550?src=pr&el=tree)
-      | Coverage Δ | |\n|---|---|---|\n| [...r/src/libs/code\\_intelligence/code\\_intelligence.tsx](https://codecov.io/gh/sourcegraph/sourcegraph/pull/5550/diff?src=pr&el=tree#diff-YnJvd3Nlci9zcmMvbGlicy9jb2RlX2ludGVsbGlnZW5jZS9jb2RlX2ludGVsbGlnZW5jZS50c3g=)
+      [Impacted Files](https://codecov.io/gh/khulnasoft/khulnasoft/pull/5550?src=pr&el=tree)
+      | Coverage Δ | |\n|---|---|---|\n| [...r/src/libs/code\\_intelligence/code\\_intelligence.tsx](https://codecov.io/gh/khulnasoft/khulnasoft/pull/5550/diff?src=pr&el=tree#diff-YnJvd3Nlci9zcmMvbGlicy9jb2RlX2ludGVsbGlnZW5jZS9jb2RlX2ludGVsbGlnZW5jZS50c3g=)
       | `67.46% <0%> (-0.33%)` | :arrow_down: |\n","createdAt":"2019-09-13T09:41:29Z","editor":null,"url":"https://github.com/khulnasoft/khulnasoft/pull/5550#issuecomment-531172813","updatedAt":"2019-09-13T09:41:29Z","includesCreatedEdit":false,"publishedAt":"2019-09-13T09:41:29Z"},{"__typename":"MergedEvent","actor":{"avatarUrl":"https://avatars.githubusercontent.com/u/1741180?u=d126637129a1c2fae6f79de2c7cf8390059feb85&v=4","login":"lguychard","url":"https://github.com/lguychard"},"mergeRefName":"master","url":"https://github.com/khulnasoft/khulnasoft/pull/5550#event-2631781468","commit":{"oid":"f66b0addcbeb51d29350f3abc2af7ffb238af48a","message":"Fix
       disableExtension flag for native integrations (#5550)\n\nThis flag should only
       be observed in the browser extension. Calling `observeStorageKey()` breaks native
@@ -409,7 +409,7 @@ interactions:
     body: '{"data":{"repository":{"pullRequest":{"id":"MDExOlB1bGxSZXF1ZXN0MjI2Nzk4MDA5","title":"Move
       the browser-extensions repo (and others) into this repo","body":"The main reason
       to move this into one repo is to enable atomic changes across the browser extension,
-      web app, and Sourcegraph extension API.\r\n\r\nHere''s the new directory structure:\r\n\r\n```\r\nsourcegraph/sourcegraph/\r\n|--
+      web app, and Khulnasoft extension API.\r\n\r\nHere''s the new directory structure:\r\n\r\n```\r\nsourcegraph/sourcegraph/\r\n|--
       package.json\r\n|-- yarn.lock <--- only 1 yarn.lock\r\n|-- node_modules/\r\n|   |--
       sourcegraph -> ../packages/sourcegraph-extension-api (symlink)\r\n|   `-- @sourcegraph/\r\n|       `--
       extensions-client-common -> ../../packages/extensions-client-common (symlink)\r\n`--
@@ -494,7 +494,7 @@ interactions:
       palette position (#148)","committedDate":"2018-09-09T01:03:44Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/db0187c327cc5e5d9370416b9c636889446bf638","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"322d416743152de07fd2e025712441e0f2d19395","message":"feat:
       add method to get locations with extension ID (#45)","messageHeadline":"feat:
       add method to get locations with extension ID (#45)","committedDate":"2018-09-09T03:02:42Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/322d416743152de07fd2e025712441e0f2d19395","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"5315e29960e02bb2305d338b828161fd206eee1f","message":"build:
-      bump sourcegraph dep","messageHeadline":"build: bump sourcegraph dep","committedDate":"2018-09-09T03:46:19Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/5315e29960e02bb2305d338b828161fd206eee1f","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1646931?u=df4a0fe79667e85ece8054c617fc9f073450d205&v=4","email":"beyang@sourcegraph.com","name":"Beyang
+      bump sourcegraph dep","messageHeadline":"build: bump sourcegraph dep","committedDate":"2018-09-09T03:46:19Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/5315e29960e02bb2305d338b828161fd206eee1f","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1646931?u=df4a0fe79667e85ece8054c617fc9f073450d205&v=4","email":"beyang@khulnasoft.com","name":"Beyang
       Liu","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1646931?u=df4a0fe79667e85ece8054c617fc9f073450d205&v=4","login":"beyang","url":"https://github.com/beyang"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"a2efe53264a90f506bca1dfb03830c0d65ca7469","message":"fix:
       force release after mis-labeled commit","messageHeadline":"fix: force release
       after mis-labeled commit","committedDate":"2018-09-09T22:04:29Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/a2efe53264a90f506bca1dfb03830c0d65ca7469","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
@@ -507,7 +507,7 @@ interactions:
       API package with backcompat","committedDate":"2018-09-10T00:07:40Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/22f52384e9a4e564347902c1b2ee3b8383edda5f","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"b92c7a395353962e99c0394d82c19922e490c418","message":"feat(deps):
       update sourcegraph and @sourcegraph/extensions-client-common (#152)\n\nThis
-      PR makes the browser extension use the updated Sourcegraph extension API support
+      PR makes the browser extension use the updated Khulnasoft extension API support
       code. The main difference is that there is no concept of a \"root\" anymore.","messageHeadline":"feat(deps):
       update sourcegraph and @sourcegraph/extensions-client-com…","committedDate":"2018-09-10T07:37:09Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/b92c7a395353962e99c0394d82c19922e490c418","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"91cf69ce6ee8b43877e9139ec4ac19cc7fa28261","message":"chore(deps):
       update dependency ts-loader to v5","messageHeadline":"chore(deps): update dependency
@@ -551,8 +551,8 @@ interactions:
       move old self-executable extension API into ''old'' dir\n\nThis makes room for
       the new extension API, where extensions merely export an `activate` function
       instead of being self-executing and being bundled with the extension side of
-      the Sourcegraph extension API JSON-RPC protocol.\n\nBREAKING CHANGE: The import
-      paths for `activateExtension`, `SourcegraphExtensionAPI`, and other extension
+      the Khulnasoft extension API JSON-RPC protocol.\n\nBREAKING CHANGE: The import
+      paths for `activateExtension`, `KhulnasoftExtensionAPI`, and other extension
       API types are now in `sourcegraph/module/extension/old/**`.","messageHeadline":"refactor:
       move old self-executable extension API into ''old'' dir","committedDate":"2018-09-11T05:47:27Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/c3e771a2b6eddb7dce4071476986c82664cd9a52","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"9d6904ec1064885234f1f6a310dcffd8b938526b","message":"feat:
@@ -591,8 +591,8 @@ interactions:
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"7e65f8900f48287c87b46501c91319aba7a893e8","message":"feat:
       add a messaging API between page and client (#32)","messageHeadline":"feat:
       add a messaging API between page and client (#32)","committedDate":"2018-09-12T08:57:42Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/7e65f8900f48287c87b46501c91319aba7a893e8","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"0c49ab1c4677356d6a680d65cd68bb81200eeecf","message":"feat:
-      accept settings updates from Sourcegraph pages (#146)","messageHeadline":"feat:
-      accept settings updates from Sourcegraph pages (#146)","committedDate":"2018-09-12T09:39:51Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/0c49ab1c4677356d6a680d65cd68bb81200eeecf","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"d7c19a40d8eb0c25f979be73f1454138ae4e0e49","message":"fix(deps):
+      accept settings updates from Khulnasoft pages (#146)","messageHeadline":"feat:
+      accept settings updates from Khulnasoft pages (#146)","committedDate":"2018-09-12T09:39:51Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/0c49ab1c4677356d6a680d65cd68bb81200eeecf","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"d7c19a40d8eb0c25f979be73f1454138ae4e0e49","message":"fix(deps):
       update dependency @sourcegraph/codeintellify to ^3.8.4","messageHeadline":"fix(deps):
       update dependency @sourcegraph/codeintellify to ^3.8.4","committedDate":"2018-09-12T18:37:03Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/d7c19a40d8eb0c25f979be73f1454138ae4e0e49","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/10532611?v=4","email":"felix.b@outlook.com","name":"Felix
       Becker","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/10532611?u=b02bd4f2245dd008c4b549bf84b5a8cb6667b649&v=4","login":"felixfbecker","url":"https://github.com/felixfbecker"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"cdb047b550c600d01fbec81f5e2f196e1ddfaa59","message":"refactor:
@@ -729,9 +729,9 @@ interactions:
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"3a39b02f261ecad3286d232d177e62d6e1560aa7","message":"chore(deps):
       bump sourcegraph","messageHeadline":"chore(deps): bump sourcegraph","committedDate":"2018-09-14T06:21:25Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/3a39b02f261ecad3286d232d177e62d6e1560aa7","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"76a629cb49338b2fa1c31bd33adba5594f32407f","message":"feat:
-      use new Sourcegraph extension API\n\nAlso:\n\n- run extension host in web worker,
+      use new Khulnasoft extension API\n\nAlso:\n\n- run extension host in web worker,
       also pass init data\n- expose queryLSP (and queryGraphQL) to extensions","messageHeadline":"feat:
-      use new Sourcegraph extension API","committedDate":"2018-09-14T06:37:23Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/76a629cb49338b2fa1c31bd33adba5594f32407f","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
+      use new Khulnasoft extension API","committedDate":"2018-09-14T06:37:23Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/76a629cb49338b2fa1c31bd33adba5594f32407f","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"e335fc6c7cd3f862db5f9de53ae7da675b740ae7","message":"chore(deps):
       pin dependency @types/uglifyjs-webpack-plugin to 1.1.0","messageHeadline":"chore(deps):
       pin dependency @types/uglifyjs-webpack-plugin to 1.1.0","committedDate":"2018-09-14T08:19:49Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/e335fc6c7cd3f862db5f9de53ae7da675b740ae7","committer":{"avatarUrl":"https://avatars.githubusercontent.com/in/2740?v=4","email":"renovate[bot]@users.noreply.github.com","name":"renovate[bot]","user":{"avatarUrl":"https://avatars.githubusercontent.com/in/2740?v=4","login":"renovate[bot]","url":"https://github.com/renovate%5Bbot%5D"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"3bc8eacaf76b4be34ee953c6c1f5eb671cd43be8","message":"feat:
@@ -746,8 +746,8 @@ interactions:
       now you need to specify the visible text documents directly.","messageHeadline":"refactor:
       remove unneeded Component, use visibleTextDocuments directly","committedDate":"2018-09-14T13:33:02Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/4260a76a617d0be7534fbef3b5942c39efcac362","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"4f57c04158e35b332b17537c6cf533263fb2df5e","message":"fix:
-      retry LSP requests on sourcegraph.com (#177)","messageHeadline":"fix: retry
-      LSP requests on sourcegraph.com (#177)","committedDate":"2018-09-14T19:30:24Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/4f57c04158e35b332b17537c6cf533263fb2df5e","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"7aa19f0a36134287165d54cd1c59ad1ef21a25d2","message":"fix:
+      retry LSP requests on khulnasoft.com (#177)","messageHeadline":"fix: retry
+      LSP requests on khulnasoft.com (#177)","committedDate":"2018-09-14T19:30:24Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/4f57c04158e35b332b17537c6cf533263fb2df5e","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"7aa19f0a36134287165d54cd1c59ad1ef21a25d2","message":"fix:
       prevent multiple command palettes from being added (#178)","messageHeadline":"fix:
       prevent multiple command palettes from being added (#178)","committedDate":"2018-09-14T21:20:43Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/7aa19f0a36134287165d54cd1c59ad1ef21a25d2","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"30c387e7fce15868cdb2718431fa431c3c08ae64","message":"feat:
       support multiple documents being visible at once","messageHeadline":"feat: support
@@ -818,9 +818,9 @@ interactions:
       stable yarn (#200)","committedDate":"2018-09-27T20:47:35Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/f959f4935549cfc88f4686256a55624f5e48f5ff","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"8f9e7a38c93d9945b8ac243167e2e513d1fb9d72","message":"feat:
       edit settings for the highest precedence subject (#54)","messageHeadline":"feat:
       edit settings for the highest precedence subject (#54)","committedDate":"2018-09-28T01:19:04Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/8f9e7a38c93d9945b8ac243167e2e513d1fb9d72","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"d2ce8e4b4391bcccea25ca338f07b19be8d21de5","message":"feat:
-      support Sourcegraph extensions in the new inject code (#199)\n\nThis PR brings
-      support for diff views in Sourcegraph extensions.","messageHeadline":"feat:
-      support Sourcegraph extensions in the new inject code (#199)","committedDate":"2018-09-28T22:37:49Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/d2ce8e4b4391bcccea25ca338f07b19be8d21de5","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/11557758?v=4","email":"isaacjsnow@gmail.com","name":"Isaac
+      support Khulnasoft extensions in the new inject code (#199)\n\nThis PR brings
+      support for diff views in Khulnasoft extensions.","messageHeadline":"feat:
+      support Khulnasoft extensions in the new inject code (#199)","committedDate":"2018-09-28T22:37:49Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/d2ce8e4b4391bcccea25ca338f07b19be8d21de5","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/11557758?v=4","email":"isaacjsnow@gmail.com","name":"Isaac
       Snow","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/11557758?u=3e4924570a6d5224b12a4f68955568912cc7d6c9&v=4","login":"ijsnow","url":"https://github.com/ijsnow"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"d9abff53f632d577e9099dd924cd67432bfd8fdb","message":"feat:
       stay in github for j2d in new inject method (#202)\n\n* feat: stay on github\r\n\r\n*
       chore: prettier","messageHeadline":"feat: stay in github for j2d in new inject
@@ -865,8 +865,8 @@ interactions:
       parameterize extension links (#55)\n\nBREAKING CHANGE: consumers now need to
       pass in a `link` prop when using the ExtensionStatusPopover.","messageHeadline":"feat:
       parameterize extension links (#55)","committedDate":"2018-10-04T19:29:22Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/fc258c57d04cb3783abdec977f549c27e469499d","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"42a5dc7978eabd66fc4c1029535e39560ea822cf","message":"Show
-      a debug menu for Sourcegraph extensions in the bottom right (#228)","messageHeadline":"Show
-      a debug menu for Sourcegraph extensions in the bottom right (#228)","committedDate":"2018-10-04T20:27:03Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/42a5dc7978eabd66fc4c1029535e39560ea822cf","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"2e70392c2e6f923fb8cc91a8f6459667fe981c86","message":"Replace
+      a debug menu for Khulnasoft extensions in the bottom right (#228)","messageHeadline":"Show
+      a debug menu for Khulnasoft extensions in the bottom right (#228)","committedDate":"2018-10-04T20:27:03Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/42a5dc7978eabd66fc4c1029535e39560ea822cf","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"2e70392c2e6f923fb8cc91a8f6459667fe981c86","message":"Replace
       extension drop-downs with toggles (#56)\n\nBREAKING CHANGE: ExtensionPrimaryActionButton
       is now called\r\nExtensionToggle","messageHeadline":"Replace extension drop-downs
       with toggles (#56)","committedDate":"2018-10-05T03:57:12Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/2e70392c2e6f923fb8cc91a8f6459667fe981c86","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"8a907b64086ff1cc2cbf67b451c6c15194367c11","message":"fix:
@@ -907,7 +907,7 @@ interactions:
       requests (#57)","committedDate":"2018-10-18T02:20:07Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/01b5a49b0ce0d175180d3ca4571eee76ff7e2bea","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"f944aa71e845bc42255f1af0f6d61159b2a774f2","message":"fix:
       only show one code intel status indicator (#251)","messageHeadline":"fix: only
       show one code intel status indicator (#251)","committedDate":"2018-10-18T03:26:41Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/f944aa71e845bc42255f1af0f6d61159b2a774f2","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"022124a9997f5da89467cdf56375cbee6001a4a2","message":"feat:
-      support running extensions on private code without a private Sourcegraph instance
+      support running extensions on private code without a private Khulnasoft instance
       (#249)","messageHeadline":"feat: support running extensions on private code
       without a private So…","committedDate":"2018-10-18T18:51:24Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/022124a9997f5da89467cdf56375cbee6001a4a2","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"c7bf4a7bac5afb268192f5551d5a1273d0070714","message":"Gitlab
       styles (#256)","messageHeadline":"Gitlab styles (#256)","committedDate":"2018-10-19T20:38:07Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/c7bf4a7bac5afb268192f5551d5a1273d0070714","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"daea49940b3f3d1224dcb27625bd249b92cea0d7","message":"build:
@@ -942,10 +942,10 @@ interactions:
       shortcuts in e-c-c. The package registers keyboard shortcuts via a `<Shortcut>`
       component which requires that a `<ShortcutProvider>` component be somewhere
       above it in the React rendering tree, in order to pass down some React context.\r\n\r\nIn
-      the Sourcegraph web application, we provide such an implementation: https://sourcegraph.sgdev.org/github.com/khulnasoft/khulnasoft/-/blob/src/SourcegraphWebApp.tsx#L259:14
+      the Khulnasoft web application, we provide such an implementation: https://sourcegraph.sgdev.org/github.com/khulnasoft/khulnasoft/-/blob/src/KhulnasoftWebApp.tsx#L259:14
       Here in the browser extension, however, we do not -- and this causes any `<Shortcut>`
       component to break due to missing React context data. If we were to publish
-      the browser extension today, the Sourcegraph Extension command palette would
+      the browser extension today, the Khulnasoft Extension command palette would
       be broken outright (clicking on it causes it to disappear).\r\n\r\nFixing the
       issue is tricky: `@shopify/react-shortcuts`''s `ShortcutProvider` component
       is designed with the assumption that there will only ever be a single React
@@ -962,7 +962,7 @@ interactions:
       and if all looks good I will create a PR upstream for this: https://github.com/slimsag/quilt/tree/publish-provider
       In the meantime, we will have to use my fork everywhere (if we don''t, React
       context will not grab the right data and it''ll e.g. break the command palette
-      on Sourcegraph.com).\r\n\r\nThis does not actually cause us to register shortcuts
+      on Khulnasoft.com).\r\n\r\nThis does not actually cause us to register shortcuts
       in the browser extension for the command palette -- but we certainly can now
       after this change.\r\n\r\nSee also:\r\n\r\n- https://github.com/sourcegraph/extensions-client-common/pull/60\r\n-
       https://github.com/khulnasoft/khulnasoft/pull/500\r\n\r\nFixes #262","messageHeadline":"fix:
@@ -999,13 +999,13 @@ interactions:
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"c9ab92d4d28d816c59b09d4f61f6c84c50945889","message":"refactor:
       simplify error messages from jsonrpc2 handlers (#103)","messageHeadline":"refactor:
       simplify error messages from jsonrpc2 handlers (#103)","committedDate":"2018-10-26T00:24:11Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/c9ab92d4d28d816c59b09d4f61f6c84c50945889","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"PullRequestCommit","commit":{"oid":"893768ee1c6e3bc87bad7cdae0ea4aed4e3a607b","message":"fix:
-      do not display code intelligence hovers on Sourcegraph Extension…\n\n…line decorations\n\nPrior
-      to this change, hovering over text/links provided by a Sourcegraph Extension
+      do not display code intelligence hovers on Khulnasoft Extension…\n\n…line decorations\n\nPrior
+      to this change, hovering over text/links provided by a Khulnasoft Extension
       would trigger the display of the hover ''loading'' indicator. On most files,
       it goes away quickly (just a flicker), but on some it displays an error:\n\n![image](https://user-images.githubusercontent.com/3173176/45585161-caaff580-b894-11e8-8b3f-10347f2aa438.png)\n\nAfter
       this change, we no longer attempt to display hovers etc. on the DOM elements
-      which Sourcegraph Extensions provide.\n\nFixes sourcegraph/sourcegraph-extension-api#67","messageHeadline":"fix:
-      do not display code intelligence hovers on Sourcegraph Extension…","committedDate":"2018-10-26T01:21:35Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/893768ee1c6e3bc87bad7cdae0ea4aed4e3a607b","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/3173176?u=38ff1955ff35f0882e77048d78221ea82fb9c5db&v=4","email":"stephen.gutekanst@gmail.com","name":"Stephen
+      which Khulnasoft Extensions provide.\n\nFixes sourcegraph/sourcegraph-extension-api#67","messageHeadline":"fix:
+      do not display code intelligence hovers on Khulnasoft Extension…","committedDate":"2018-10-26T01:21:35Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/893768ee1c6e3bc87bad7cdae0ea4aed4e3a607b","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/3173176?u=38ff1955ff35f0882e77048d78221ea82fb9c5db&v=4","email":"stephen.gutekanst@gmail.com","name":"Stephen
       Gutekanst","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/3173176?u=38ff1955ff35f0882e77048d78221ea82fb9c5db&v=4","login":"slimsag","url":"https://github.com/slimsag"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"597b3199c15b69d47445e8736d848a5c7319f0c0","message":"chore:
       add integrity","messageHeadline":"chore: add integrity","committedDate":"2018-10-26T17:09:43Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/597b3199c15b69d47445e8736d848a5c7319f0c0","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/10532611?v=4","email":"felix.b@outlook.com","name":"Felix
       Becker","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/10532611?u=b02bd4f2245dd008c4b549bf84b5a8cb6667b649&v=4","login":"felixfbecker","url":"https://github.com/felixfbecker"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"a0733828ac7fe1cda8bba144183bc5b10c9ee66b","message":"chore:
@@ -1013,21 +1013,21 @@ interactions:
       Becker","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/10532611?u=b02bd4f2245dd008c4b549bf84b5a8cb6667b649&v=4","login":"felixfbecker","url":"https://github.com/felixfbecker"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"1f34d2128190d78178d40646a46ed24c67c4e84f","message":"fix:
       propagate stack traces","messageHeadline":"fix: propagate stack traces","committedDate":"2018-10-26T17:09:43Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/1f34d2128190d78178d40646a46ed24c67c4e84f","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/10532611?v=4","email":"felix.b@outlook.com","name":"Felix
       Becker","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/10532611?u=b02bd4f2245dd008c4b549bf84b5a8cb6667b649&v=4","login":"felixfbecker","url":"https://github.com/felixfbecker"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"3e13ce277c58bc34f6d29a63dfe52f9e7933e678","message":"fix:
-      make line decoration link opening match Sourcegraph behavior\n\nPrior to this
-      change, clicking links that are provided by a Sourcegraph extension\nwould cause
+      make line decoration link opening match Khulnasoft behavior\n\nPrior to this
+      change, clicking links that are provided by a Khulnasoft extension\nwould cause
       them to open in the same page. This is in contrast to what clicking\nthe same
-      link on Sourcegraph does: opens in a new tab if not relative.\n\nFixes sourcegraph/sourcegraph-extension-api#70","messageHeadline":"fix:
-      make line decoration link opening match Sourcegraph behavior","committedDate":"2018-10-26T20:20:48Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/3e13ce277c58bc34f6d29a63dfe52f9e7933e678","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/3173176?u=38ff1955ff35f0882e77048d78221ea82fb9c5db&v=4","email":"stephen.gutekanst@gmail.com","name":"Stephen
+      link on Khulnasoft does: opens in a new tab if not relative.\n\nFixes sourcegraph/sourcegraph-extension-api#70","messageHeadline":"fix:
+      make line decoration link opening match Khulnasoft behavior","committedDate":"2018-10-26T20:20:48Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/3e13ce277c58bc34f6d29a63dfe52f9e7933e678","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/3173176?u=38ff1955ff35f0882e77048d78221ea82fb9c5db&v=4","email":"stephen.gutekanst@gmail.com","name":"Stephen
       Gutekanst","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/3173176?u=38ff1955ff35f0882e77048d78221ea82fb9c5db&v=4","login":"slimsag","url":"https://github.com/slimsag"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"2836554b2d8cc0740e86c5f692b88e58c5786606","message":"fix:
-      do not leak referrer when clicking Sourcegraph extension links\n\nPrior to this
-      change clicking a link provided by a Sourcegraph extension\nwould leak referrer
-      information. We apply the same `rel` attribute in\nSourcegraph to prevent this:\n\nhttps://sourcegraph.com/github.com/sourcegraph/sourcegraph@4ac84723437a325405bf073a99f45fae1be9ec43/-/blob/src/repo/blob/LineDecorationAttachment.tsx#L52:17\n\nNow
+      do not leak referrer when clicking Khulnasoft extension links\n\nPrior to this
+      change clicking a link provided by a Khulnasoft extension\nwould leak referrer
+      information. We apply the same `rel` attribute in\nKhulnasoft to prevent this:\n\nhttps://khulnasoft.com/github.com/sourcegraph/sourcegraph@4ac84723437a325405bf073a99f45fae1be9ec43/-/blob/src/repo/blob/LineDecorationAttachment.tsx#L52:17\n\nNow
       we also prevent it here in the browser extension.\n\nFixes sourcegraph/sourcegraph-extension-api#106","messageHeadline":"fix:
-      do not leak referrer when clicking Sourcegraph extension links","committedDate":"2018-10-26T20:20:48Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/2836554b2d8cc0740e86c5f692b88e58c5786606","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/3173176?u=38ff1955ff35f0882e77048d78221ea82fb9c5db&v=4","email":"stephen.gutekanst@gmail.com","name":"Stephen
+      do not leak referrer when clicking Khulnasoft extension links","committedDate":"2018-10-26T20:20:48Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/2836554b2d8cc0740e86c5f692b88e58c5786606","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/3173176?u=38ff1955ff35f0882e77048d78221ea82fb9c5db&v=4","email":"stephen.gutekanst@gmail.com","name":"Stephen
       Gutekanst","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/3173176?u=38ff1955ff35f0882e77048d78221ea82fb9c5db&v=4","login":"slimsag","url":"https://github.com/slimsag"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"c7409d3a76aaec2a748b8446b021d8e3bf69c192","message":"fix:
       hoverMessage now properly renders as a tooltip\n\nPrior to this change, extensions
       such as code discussions would specify a\n`DecorationAttachmentRenderingOptions.hoverMessage`
-      but it would only work on\nSourcegraph, it was unused in the browser extension.
+      but it would only work on\nKhulnasoft, it was unused in the browser extension.
       Now it renders as a native\nbrowser tooltip, which is okay for most cases.\n\nFixes
       sourcegraph/sourcegraph-extension-api#107","messageHeadline":"fix: hoverMessage
       now properly renders as a tooltip","committedDate":"2018-10-26T20:20:48Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/c7409d3a76aaec2a748b8446b021d8e3bf69c192","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/3173176?u=38ff1955ff35f0882e77048d78221ea82fb9c5db&v=4","email":"stephen.gutekanst@gmail.com","name":"Stephen
@@ -1057,7 +1057,7 @@ interactions:
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"fd90209c5b7bf5cebe6df55c851e4f3e4c66cf62","message":"feat:
       supply sourcegraphURL and clientApplication to extensions\n\nIn some cases,
       such as to work around https://github.com/khulnasoft/khulnasoft/issues/566,
-      it is useful for extensions to know the Sourcegraph URL and what kind of client
+      it is useful for extensions to know the Khulnasoft URL and what kind of client
       application is running it.","messageHeadline":"feat: supply sourcegraphURL and
       clientApplication to extensions","committedDate":"2018-10-29T02:41:54Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/fd90209c5b7bf5cebe6df55c851e4f3e4c66cf62","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"36da4ea06ff9dd0d08e543d8dd59fd7e06e58849","message":"feat:
@@ -1112,7 +1112,7 @@ interactions:
       pull in changes from https://github.com/sourcegraph/browser-extensions/pull/288","messageHeadline":"chore:
       pull in changes from https://github.com/sourcegraph/browser-ex…","committedDate":"2018-10-30T05:51:14Z","pushedDate":"2018-10-30T05:51:42Z","url":"https://github.com/khulnasoft/khulnasoft/commit/86b8821157dfdf04051f5f85d66b699ce32cd0cb","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/11557758?v=4","email":"isaacjsnow@gmail.com","name":"Isaac
       Snow","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/11557758?u=3e4924570a6d5224b12a4f68955568912cc7d6c9&v=4","login":"ijsnow","url":"https://github.com/ijsnow"}}},"includesCreatedEdit":false},{"__typename":"IssueComment","databaseId":434403445,"author":{"avatarUrl":"https://avatars.githubusercontent.com/u/11557758?u=3e4924570a6d5224b12a4f68955568912cc7d6c9&v=4","login":"ijsnow","url":"https://github.com/ijsnow"},"authorAssociation":"CONTRIBUTOR","body":"I''d
-      like to re-org like https://sourcegraph.com/github.com/Quramy/lerna-yarn-workspaces-example.","createdAt":"2018-10-30T17:49:20Z","editor":null,"url":"https://github.com/khulnasoft/khulnasoft/pull/596#issuecomment-434403445","updatedAt":"2018-10-30T17:49:20Z","includesCreatedEdit":false,"publishedAt":"2018-10-30T17:49:20Z"},{"__typename":"IssueComment","databaseId":434419090,"author":{"avatarUrl":"https://avatars.githubusercontent.com/u/1387653?u=d279ea6a6267aa73f4202d50f584e110735bfb30&v=4","login":"chrismwendt","url":"https://github.com/chrismwendt"},"authorAssociation":"CONTRIBUTOR","body":"@felixfbecker
+      like to re-org like https://khulnasoft.com/github.com/Quramy/lerna-yarn-workspaces-example.","createdAt":"2018-10-30T17:49:20Z","editor":null,"url":"https://github.com/khulnasoft/khulnasoft/pull/596#issuecomment-434403445","updatedAt":"2018-10-30T17:49:20Z","includesCreatedEdit":false,"publishedAt":"2018-10-30T17:49:20Z"},{"__typename":"IssueComment","databaseId":434419090,"author":{"avatarUrl":"https://avatars.githubusercontent.com/u/1387653?u=d279ea6a6267aa73f4202d50f584e110735bfb30&v=4","login":"chrismwendt","url":"https://github.com/chrismwendt"},"authorAssociation":"CONTRIBUTOR","body":"@felixfbecker
       Yup, this is still a WIP, but I''ll need help identifying broken parts (more
       of what you have done already).\r\n\r\n@ijsnow I''ll create a `packages/` directory
       and put the new repos in there. As a follow up, I''ll try moving the web app
@@ -1151,7 +1151,7 @@ interactions:
       can use client settings (again, partially reverted from 288706ed5336734fbb39629ffcff7afb2da39df3).
       This means that unauthed users can use extensions that modify settings.\n\nClient
       settings are IGNORED for authed users; all settings reads and writes go directly
-      to the associated Sourcegraph user account on their instance. This is to reduce
+      to the associated Khulnasoft user account on their instance. This is to reduce
       UX complexity.","messageHeadline":"feat: add back client settings (for unauthed
       users only)","committedDate":"2018-11-01T00:18:12Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/5793ce0932fc4269dc04b5abd27d0a6ff36a9a53","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"2eec632c9703daf0bcf19d106c8ca9deba494f40","message":"feat:
@@ -1168,8 +1168,8 @@ interactions:
       remove usage of experimentalClientCapabilities (removed)","messageHeadline":"refactor:
       remove usage of experimentalClientCapabilities (removed)","committedDate":"2018-11-01T02:13:23Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/a590ac2b678e1e210bf98412b9a9caf2167a0519","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"ae4fbd2baedef2e05f7bee3a2f27d436bcaa8a5d","message":"docs:
-      rename Sourcegraph Server -> Sourcegraph","messageHeadline":"docs: rename Sourcegraph
-      Server -> Sourcegraph","committedDate":"2018-11-01T02:13:29Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/ae4fbd2baedef2e05f7bee3a2f27d436bcaa8a5d","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
+      rename Khulnasoft Server -> Khulnasoft","messageHeadline":"docs: rename Khulnasoft
+      Server -> Khulnasoft","committedDate":"2018-11-01T02:13:29Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/ae4fbd2baedef2e05f7bee3a2f27d436bcaa8a5d","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"ReviewRequestedEvent","actor":{"avatarUrl":"https://avatars.githubusercontent.com/u/1387653?u=d279ea6a6267aa73f4202d50f584e110735bfb30&v=4","login":"chrismwendt","url":"https://github.com/chrismwendt"},"requestedReviewer":{"avatarUrl":"https://avatars.githubusercontent.com/u/5589410?u=75914d6345014f5ad610a115471505a0ba9ad27e&v=4","login":"dadlerj","url":"https://github.com/dadlerj"},"requestedTeam":{},"createdAt":"2018-11-01T02:34:32Z"},{"__typename":"PullRequestCommit","commit":{"oid":"6015fa87e6e88978803b44d6ca3de1810b92df3d","message":"build:
       still generate xpi","messageHeadline":"build: still generate xpi","committedDate":"2018-11-01T02:41:44Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/6015fa87e6e88978803b44d6ca3de1810b92df3d","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"50d6c5d31adaca79828aa03f3df0ab2ead37cd87","message":"fix:
@@ -1199,8 +1199,8 @@ interactions:
       feature remains.)\n\nReason: The experience was not great (it opened results
       in a new window) and it was disabled by default. It is not worth maintaining
       a feature that is disabled by default and that has no current plan for improvement.\n\nBREAKING
-      CHANGE: The \"Open a new window with Sourcegraph search results when you perform
-      a search on your code host.\" feature was removed. See https://docs.sourcegraph.com/integration/browser_search_engine
+      CHANGE: The \"Open a new window with Khulnasoft search results when you perform
+      a search on your code host.\" feature was removed. See https://docs.khulnasoft.com/integration/browser_search_engine
       for a better solution that is provided by the browser extension.","messageHeadline":"feat:
       remove code host search box integration","committedDate":"2018-11-01T04:28:01Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/f19c77bcc3486369fd161d219896d913f2a5c6dd","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"8ef68396cb132e287ad5a9ac5fa669c4c1ee01f6","message":"feat:
@@ -1241,12 +1241,12 @@ interactions:
       bitbucket server implements the CodeHost interface (#310)","committedDate":"2018-11-02T16:46:35Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/9bd17ee3d8ba8afb73c3808387ecc28e62caadf0","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/19864447?v=4","email":"noreply@github.com","name":"GitHub","user":null}}},{"__typename":"IssueComment","databaseId":435487633,"author":{"avatarUrl":"https://avatars.githubusercontent.com/u/1387653?u=d279ea6a6267aa73f4202d50f584e110735bfb30&v=4","login":"chrismwendt","url":"https://github.com/chrismwendt"},"authorAssociation":"CONTRIBUTOR","body":"@felixfbecker
       Thanks for the review - I''ll squash the fixup commits and make one more commit
       to address your feedback here.","createdAt":"2018-11-02T19:41:58Z","editor":null,"url":"https://github.com/khulnasoft/khulnasoft/pull/596#issuecomment-435487633","updatedAt":"2018-11-02T19:41:58Z","includesCreatedEdit":false,"publishedAt":"2018-11-02T19:41:58Z"},{"__typename":"IssueComment","databaseId":435562830,"author":{"avatarUrl":"https://avatars.githubusercontent.com/u/1387653?u=d279ea6a6267aa73f4202d50f584e110735bfb30&v=4","login":"chrismwendt","url":"https://github.com/chrismwendt"},"authorAssociation":"CONTRIBUTOR","body":"I''ve
-      seen Cypress e2e tests hang twice now (out of ~6 builds), for example https://buildkite.com/sourcegraph/sourcegraph/builds/22660#083cf18f-2045-4994-b75e-021f8b0e44bf\r\n\r\n```\r\nRunning:
+      seen Cypress e2e tests hang twice now (out of ~6 builds), for example https://buildkite.com/khulnasoft/khulnasoft/builds/22660#083cf18f-2045-4994-b75e-021f8b0e44bf\r\n\r\n```\r\nRunning:
       github_repository_spec.ts...                                                    (1
       of 1)\r\n--\r\n  |  \r\n  | Warning: Cypress can only record videos when using
       the built in ''electron'' browser.\r\n  |  \r\n  | You have set the browser
       to: ''chrome''\r\n  |  \r\n  | A video will not be recorded when using this
-      browser.\r\n  |  \r\n  |  \r\n  | GitHub\r\n  | ✓ .should() - assert that Sourcegraph
+      browser.\r\n  |  \r\n  |  \r\n  | GitHub\r\n  | ✓ .should() - assert that Khulnasoft
       View Repository is injected (950ms)\r\n  | The automation client disconnected.
       Cannot continue running tests.\r\n```\r\n\r\nIt usually passes on retry, so
       it''s is something to keep an eye on.","createdAt":"2018-11-03T05:44:04Z","editor":null,"url":"https://github.com/khulnasoft/khulnasoft/pull/596#issuecomment-435562830","updatedAt":"2018-11-03T05:44:04Z","includesCreatedEdit":false,"publishedAt":"2018-11-03T05:44:04Z"},{"__typename":"IssueComment","databaseId":435565882,"author":{"avatarUrl":"https://avatars.githubusercontent.com/u/1387653?u=d279ea6a6267aa73f4202d50f584e110735bfb30&v=4","login":"chrismwendt","url":"https://github.com/chrismwendt"},"authorAssociation":"CONTRIBUTOR","body":"It
@@ -1405,14 +1405,14 @@ interactions:
       upgrade typescript","messageHeadline":"chore(deps): upgrade typescript","committedDate":"2018-11-04T05:22:12Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/673527b84fd27d80f9c321a073228f1b594996a4","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"9c1117e03891d033783997c1990ee67b500220ca","message":"refactor:
       remove code that has only 1 consumer\n\nBREAKING CHANGE: Anything that was only
-      used by sourcegraph/sourcegraph was removed from this repository and moved there.","messageHeadline":"refactor:
+      used by khulnasoft/khulnasoft was removed from this repository and moved there.","messageHeadline":"refactor:
       remove code that has only 1 consumer","committedDate":"2018-11-04T05:22:12Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/9c1117e03891d033783997c1990ee67b500220ca","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"bc7e33f46fb51c8e3acb0f436e8c6079d1f29777","message":"feat:
       remove CodeIntelStatusIndicator\n\nThis is the plug icon that showed the status
       of code intelligence. It is being removed because extensions will provide this
       indicator in the future in a custom, per-language/per-extension way. This indicator
       provides limited value because it will point users to the deprecated/old way
-      of adding language support. It also does not work for Sourcegraph.com because
+      of adding language support. It also does not work for Khulnasoft.com because
       the langserver-related GraphQL API fields have been removed.","messageHeadline":"feat:
       remove CodeIntelStatusIndicator","committedDate":"2018-11-04T05:58:04Z","pushedDate":null,"url":"https://github.com/khulnasoft/khulnasoft/commit/bc7e33f46fb51c8e3acb0f436e8c6079d1f29777","committer":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?v=4","email":"qslack@qslack.com","name":"Quinn
       Slack","user":{"avatarUrl":"https://avatars.githubusercontent.com/u/1976?u=b2974ab9b7a9be05cd1f36e198a3a8b4701f7910&v=4","login":"sqs","url":"https://github.com/sqs"}}}},{"__typename":"PullRequestCommit","commit":{"oid":"06375fdf5ac6f7d61c241dfc1d6158e433769e8a","message":"refactor:

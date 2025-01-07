@@ -1,11 +1,11 @@
-# Sourcegraph Prometheus
+# Khulnasoft Prometheus
 
 The `sourcegraph/prometheus` image provides an all-in-one image through `prom-wrapper` with:
 
-- Vanilla Prometheus with embedded Sourcegraph configuration
+- Vanilla Prometheus with embedded Khulnasoft configuration
 - Bundled Alertmanager with a `siteConfigSubscriber` sidecar service to automatically apply relevant configuration changes to Alertmanager
 
-To learn more, refer to the [Sourcegraph observability developer guide](https://docs-legacy.khulnasoft.com/dev/background-information/observability) and [monitoring architecture](https://handbook.khulnasoft.com/engineering/observability/monitoring_architecture#sourcegraph-prometheus).
+To learn more, refer to the [Khulnasoft observability developer guide](https://docs-legacy.khulnasoft.com/dev/background-information/observability) and [monitoring architecture](https://handbook.khulnasoft.com/engineering/observability/monitoring_architecture#sourcegraph-prometheus).
 
 ## Image API
 

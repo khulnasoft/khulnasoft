@@ -21,7 +21,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/pointers"
 )
 
-func (r *Reconciler) reconcilePGSQL(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePGSQL(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcilePGSQLStatefulSet(ctx, sg, owner); err != nil {
 		return err
 	}
@@ -43,7 +43,7 @@ func (r *Reconciler) reconcilePGSQL(ctx context.Context, sg *config.Sourcegraph,
 	return nil
 }
 
-func (r *Reconciler) reconcilePGSQLStatefulSet(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePGSQLStatefulSet(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.PGSQL
 	name := "pgsql"
 
@@ -192,7 +192,7 @@ func (r *Reconciler) reconcilePGSQLStatefulSet(ctx context.Context, sg *config.S
 	return reconcileObject(ctx, r, sg.Spec.PGSQL, &sset, &appsv1.StatefulSet{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePGSQLPersistentVolumeClaim(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePGSQLPersistentVolumeClaim(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.PGSQL
 	p, err := pvc.NewPersistentVolumeClaim("pgsql", sg.Namespace, cfg)
 	if err != nil {
@@ -201,14 +201,14 @@ func (r *Reconciler) reconcilePGSQLPersistentVolumeClaim(ctx context.Context, sg
 	return reconcileObject(ctx, r, sg.Spec.PGSQL, &p, &corev1.PersistentVolumeClaim{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePGSQLConfigMap(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePGSQLConfigMap(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cm := configmap.NewConfigMap("pgsql-conf", sg.Namespace)
 	cm.Data = map[string]string{"postgresql.conf": string(config.PgsqlConfig)}
 
 	return reconcileObject(ctx, r, sg.Spec.PGSQL, &cm, &corev1.ConfigMap{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePGSQLSecret(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePGSQLSecret(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	scrt := secret.NewSecret("pgsql-auth", sg.Namespace, sg.Spec.RequestedVersion)
 
 	cn := sg.Spec.PGSQL.DatabaseConnection
@@ -223,7 +223,7 @@ func (r *Reconciler) reconcilePGSQLSecret(ctx context.Context, sg *config.Source
 	return reconcileObject(ctx, r, sg.Spec.PGSQL, &scrt, &corev1.Secret{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePGSQLService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePGSQLService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	svc := service.NewService("pgsql", sg.Namespace, sg.Spec.PGSQL)
 	svc.Spec.Ports = []corev1.ServicePort{
 		{Name: "pgsql", TargetPort: intstr.FromString("pgsql"), Port: 5432},
@@ -233,7 +233,7 @@ func (r *Reconciler) reconcilePGSQLService(ctx context.Context, sg *config.Sourc
 	return reconcileObject(ctx, r, sg.Spec.PGSQL, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePGSQLServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePGSQLServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.PGSQL
 	sa := serviceaccount.NewServiceAccount("pgsql", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, sg.Spec.PGSQL, &sa, &corev1.ServiceAccount{}, sg, owner)

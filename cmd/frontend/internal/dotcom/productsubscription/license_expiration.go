@@ -112,7 +112,7 @@ func checkLastSubscriptionLicense(ctx context.Context, logger log.Logger, db dat
 
 	if info.ExpiresAt.After(weekAway) && info.ExpiresAt.Before(weekAway.Add(24*time.Hour)) {
 		err = client.Post(context.Background(), &slack.Payload{
-			Text: fmt.Sprintf("The license for user `%s` <https://sourcegraph.com/site-admin/dotcom/product/subscriptions/%s|will expire *in 7 days*>", user.Username, s.ID),
+			Text: fmt.Sprintf("The license for user `%s` <https://khulnasoft.com/site-admin/dotcom/product/subscriptions/%s|will expire *in 7 days*>", user.Username, s.ID),
 		})
 		if err != nil {
 			logger.Error("error sending Slack message", log.Error(err))
@@ -120,7 +120,7 @@ func checkLastSubscriptionLicense(ctx context.Context, logger log.Logger, db dat
 		}
 	} else if info.ExpiresAt.After(dayAway) && info.ExpiresAt.Before(dayAway.Add(24*time.Hour)) {
 		err = client.Post(context.Background(), &slack.Payload{
-			Text: fmt.Sprintf("The license for user `%s` <https://sourcegraph.com/site-admin/dotcom/product/subscriptions/%s|will expire *in the next 24 hours*> :rotating_light:", user.Username, s.ID),
+			Text: fmt.Sprintf("The license for user `%s` <https://khulnasoft.com/site-admin/dotcom/product/subscriptions/%s|will expire *in the next 24 hours*> :rotating_light:", user.Username, s.ID),
 		})
 		if err != nil {
 			logger.Error("error sending Slack message", log.Error(err))

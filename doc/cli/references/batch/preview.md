@@ -24,8 +24,8 @@
 | `-text-only` | INTERNAL USE ONLY. EXPERIMENTAL. Switches off the TUI to only print JSON lines. | `false` |
 | `-timeout` | The maximum duration a single batch spec step can take. | `1h0m0s` |
 | `-tmp` | Directory for storing temporary data, such as log files. Default is /tmp. Can also be set with environment variable SRC_BATCH_TMP_DIR; if both are set, this flag will be used and not the environment variable. | `/tmp` |
-| `-trace` | Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing | `false` |
-| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph | `true` |
+| `-trace` | Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing | `false` |
+| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft | `true` |
 | `-v` | print verbose output | `false` |
 | `-workspace` | Workspace mode to use ("auto", "bind", or "volume") | `auto` |
 
@@ -73,15 +73,15 @@ Usage of 'src batch preview':
   -tmp string
     	Directory for storing temporary data, such as log files. Default is /tmp. Can also be set with environment variable SRC_BATCH_TMP_DIR; if both are set, this flag will be used and not the environment variable. (default "/tmp")
   -trace
-    	Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing
+    	Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing
   -user-agent-telemetry
-    	Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph (default true)
+    	Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft (default true)
   -v	print verbose output
   -workspace string
     	Workspace mode to use ("auto", "bind", or "volume") (default "auto")
 
 'src batch preview' executes the steps in a batch spec and uploads it to a
-Sourcegraph instance, ready to be previewed and applied.
+Khulnasoft instance, ready to be previewed and applied.
 
 Usage:
 

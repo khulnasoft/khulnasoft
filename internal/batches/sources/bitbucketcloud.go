@@ -226,7 +226,7 @@ func (s BitbucketCloudSource) MergeChangeset(ctx context.Context, cs *Changeset,
 // GetFork returns a repo pointing to a fork of the target repo, ensuring that the fork
 // exists and creating it if it doesn't. If namespace is not provided, the fork will be in
 // the currently authenticated user's namespace. If name is not provided, the fork will be
-// named with the default Sourcegraph convention: "${original-namespace}-${original-name}"
+// named with the default Khulnasoft convention: "${original-namespace}-${original-name}"
 func (s BitbucketCloudSource) GetFork(ctx context.Context, targetRepo *types.Repo, ns, n *string) (*types.Repo, error) {
 	var namespace string
 	if ns != nil {

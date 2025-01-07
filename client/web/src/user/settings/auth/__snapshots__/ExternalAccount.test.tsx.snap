@@ -2,7 +2,7 @@
 
 exports[`ExternalAccountConnectionDetails > renders correctly when display name is set 1`] = `
 <DocumentFragment>
-  test@sourcegraph.com (
+  test@khulnasoft.com (
   <a
     class=""
     href="https://example.com"
@@ -17,7 +17,7 @@ exports[`ExternalAccountConnectionDetails > renders correctly when display name 
 
 exports[`ExternalAccountConnectionDetails > renders correctly when display name is set 2`] = `
 <DocumentFragment>
-  test@sourcegraph.com (
+  test@khulnasoft.com (
   <a
     class=""
     href="https://example.com"
@@ -32,7 +32,7 @@ exports[`ExternalAccountConnectionDetails > renders correctly when display name 
 
 exports[`ExternalAccountConnectionDetails > renders correctly when display name is set 3`] = `
 <DocumentFragment>
-  test@sourcegraph.com (
+  test@khulnasoft.com (
   <a
     class=""
     href="https://example.com"
@@ -47,7 +47,7 @@ exports[`ExternalAccountConnectionDetails > renders correctly when display name 
 
 exports[`ExternalAccountConnectionDetails > renders correctly when display name is set 4`] = `
 <DocumentFragment>
-  test@sourcegraph.com (
+  test@khulnasoft.com (
   <a
     class=""
     href="https://example.com"
@@ -63,14 +63,14 @@ exports[`ExternalAccountConnectionDetails > renders correctly when display name 
 exports[`ExternalAccountConnectionDetails > renders correctly when display name is set 5`] = `
 <DocumentFragment>
   <span>
-    test@sourcegraph.com
+    test@khulnasoft.com
   </span>
 </DocumentFragment>
 `;
 
 exports[`ExternalAccountConnectionDetails > renders correctly when display name is set 6`] = `
 <DocumentFragment>
-  test@sourcegraph.com (
+  test@khulnasoft.com (
   <a
     class=""
     href="https://example.com"
@@ -86,14 +86,14 @@ exports[`ExternalAccountConnectionDetails > renders correctly when display name 
 exports[`ExternalAccountConnectionDetails > renders correctly when display name is set 7`] = `
 <DocumentFragment>
   <span>
-    test@sourcegraph.com
+    test@khulnasoft.com
   </span>
 </DocumentFragment>
 `;
 
 exports[`ExternalAccountConnectionDetails > renders correctly when display name is set 8`] = `
 <DocumentFragment>
-  test@sourcegraph.com (
+  test@khulnasoft.com (
   <a
     class=""
     href="https://example.com"
@@ -109,14 +109,14 @@ exports[`ExternalAccountConnectionDetails > renders correctly when display name 
 exports[`ExternalAccountConnectionDetails > renders correctly when display name is set 9`] = `
 <DocumentFragment>
   <span>
-    test@sourcegraph.com
+    test@khulnasoft.com
   </span>
 </DocumentFragment>
 `;
 
 exports[`ExternalAccountConnectionDetails > renders correctly when display name is set 10`] = `
 <DocumentFragment>
-  test@sourcegraph.com (@test)
+  test@khulnasoft.com (@test)
 </DocumentFragment>
 `;
 

@@ -339,8 +339,8 @@ func (r *Resolver) chatIntentApiEnabled(ctx context.Context) error {
 }
 
 func (r *Resolver) contextApiEnabled(ctx context.Context) error {
-	if !dotcom.SourcegraphDotComMode() {
-		return errors.New("this feature is only available on sourcegraph.com")
+	if !dotcom.KhulnasoftDotComMode() {
+		return errors.New("this feature is only available on khulnasoft.com")
 	}
 	if isEnabled, reason := cody.IsCodyEnabled(ctx, r.db); !isEnabled {
 		return errors.Newf("cody is not enabled: %s", reason)

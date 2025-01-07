@@ -128,7 +128,7 @@ func (a *Appliance) getInstallProgressJSONHandler() http.Handler {
 			Tasks:    currentTasks,
 		}
 
-		ok, err := a.isSourcegraphFrontendReady(r.Context())
+		ok, err := a.isKhulnasoftFrontendReady(r.Context())
 		if err != nil {
 			a.logger.Error("failed to get sourcegraph frontend status")
 			return
@@ -154,7 +154,7 @@ func (a *Appliance) getMaintenanceStatusHandler() http.Handler {
 		}
 
 		services := []service{}
-		for _, name := range config.SourcegraphServicesToReconcile {
+		for _, name := range config.KhulnasoftServicesToReconcile {
 			services = append(services, service{
 				Name:    name,
 				Healthy: true,
@@ -173,7 +173,7 @@ func (a *Appliance) getReleasesHandler() http.Handler {
 		var relregResp io.ReadCloser
 		if a.pinnedReleasesFile == "" {
 			// simple proxy to release releaseRegistry
-			resp, err := http.Get("https://releaseregistry.sourcegraph.com/v1/releases/sourcegraph")
+			resp, err := http.Get("https://releaseregistry.khulnasoft.com/v1/releases/sourcegraph")
 			if err != nil {
 				a.serverErrorResponse(w, r, err)
 				return

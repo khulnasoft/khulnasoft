@@ -222,7 +222,7 @@ func newTestUser(username string) *types.User {
 	return &types.User{
 		ID:          int32(h.Sum32()),
 		Username:    username,
-		AvatarURL:   "https://sourcegraph.com/avatar/" + username,
+		AvatarURL:   "https://khulnasoft.com/avatar/" + username,
 		DisplayName: "User " + username,
 	}
 }

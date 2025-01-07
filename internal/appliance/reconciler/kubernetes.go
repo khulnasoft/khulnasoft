@@ -26,7 +26,7 @@ func reconcileObject[T client.Object](
 	ctx context.Context, r *Reconciler,
 	cfg config.Disableable,
 	obj, objKind T,
-	sg *config.Sourcegraph, owner client.Object,
+	sg *config.Khulnasoft, owner client.Object,
 ) error {
 	if cfg.IsDisabled() {
 		return ensureObjectDeleted(ctx, r, owner, obj)

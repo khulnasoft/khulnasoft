@@ -332,7 +332,7 @@ INSERT INTO public.codeintel_scip_symbol_names VALUES (147, 2408562, '`logging.t
 INSERT INTO public.codeintel_scip_symbol_names VALUES (148, 2408562, 'Logger#', 147);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (149, 2408562, 'RedactingLogger#', 147);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (150, 2408562, '`providers.ts`/', 134);
-INSERT INTO public.codeintel_scip_symbol_names VALUES (151, 2408562, 'SourcegraphProviders#', 150);
+INSERT INTO public.codeintel_scip_symbol_names VALUES (151, 2408562, 'KhulnasoftProviders#', 150);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (152, 2408562, 'definition.', 151);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (153, 2408562, 'documentHighlights.', 151);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (154, 2408562, 'hover.', 151);
@@ -425,7 +425,7 @@ INSERT INTO public.codeintel_scip_symbol_names VALUES (240, 2408562, '5.d.ts`/Ar
 INSERT INTO public.codeintel_scip_symbol_names VALUES (241, 2408562, '5.d.ts`/Array#map().', 238);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (242, 2408562, 'scip-typescript npm ', NULL);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (243, 2408562, '@sourcegraph/extension-api-stubs 1.6.1 dist/`', 242);
-INSERT INTO public.codeintel_scip_symbol_names VALUES (244, 2408562, 'api.d.ts`/createStubSourcegraphAPI.', 243);
+INSERT INTO public.codeintel_scip_symbol_names VALUES (244, 2408562, 'api.d.ts`/createStubKhulnasoftAPI.', 243);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (245, 2408562, 'index.d.ts`/', 243);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (246, 2408562, '@types/mock-require 2.0.1 `index.d.ts`/', 242);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (247, 2408562, 'mock.', 246);
@@ -2531,7 +2531,7 @@ INSERT INTO public.codeintel_scip_symbol_names VALUES (2346, 2408562, 'documentH
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2347, 2408562, 'hover.', 2344);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2348, 2408562, 'references.', 2344);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2349, 2408562, 'ReferencesProvider#', 2329);
-INSERT INTO public.codeintel_scip_symbol_names VALUES (2350, 2408562, 'SourcegraphProviders#', 2329);
+INSERT INTO public.codeintel_scip_symbol_names VALUES (2350, 2408562, 'KhulnasoftProviders#', 2329);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2351, 2408562, 'definition.', 2350);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2352, 2408562, 'documentHighlights.', 2350);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2353, 2408562, 'hover.', 2350);
@@ -3054,7 +3054,7 @@ INSERT INTO public.codeintel_scip_symbol_names VALUES (2848, 2408562, 'Providers
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2849, 2408562, 'definition.', 2848);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2850, 2408562, 'hover.', 2848);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2851, 2408562, 'references.', 2848);
-INSERT INTO public.codeintel_scip_symbol_names VALUES (2852, 2408562, 'SourcegraphProviders#', 2847);
+INSERT INTO public.codeintel_scip_symbol_names VALUES (2852, 2408562, 'KhulnasoftProviders#', 2847);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2853, 2408562, 'definition.', 2852);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2854, 2408562, 'language-specs/`', 2846);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (2855, 2408562, 'comments.ts`/', 2854);
@@ -3255,7 +3255,7 @@ INSERT INTO public.codeintel_scip_symbol_names VALUES (3049, 2408562, 'hover0:',
 INSERT INTO public.codeintel_scip_symbol_names VALUES (3050, 2408562, 'isExternalPrivateSymbol().', 3027);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (3051, 2408562, '(path)', 3050);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (3052, 2408562, '(textDocument)', 3050);
-INSERT INTO public.codeintel_scip_symbol_names VALUES (3053, 2408562, 'isSourcegraphDotCom().', 3027);
+INSERT INTO public.codeintel_scip_symbol_names VALUES (3053, 2408562, 'isKhulnasoftDotCom().', 3027);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (3054, 2408562, 'jaccardIndex().', 3027);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (3055, 2408562, '(a)', 3054);
 INSERT INTO public.codeintel_scip_symbol_names VALUES (3056, 2408562, '(b)', 3054);
@@ -7562,4 +7562,3 @@ SELECT pg_catalog.setval('public.codeintel_scip_metadata_id_seq', 6237, true);
 --
 -- PostgreSQL database dump complete
 --
-

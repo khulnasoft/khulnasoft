@@ -179,7 +179,7 @@ type JSContext struct {
 	NeedServerRestart bool                     `json:"needServerRestart"`
 	DeployType        string                   `json:"deployType"`
 
-	SourcegraphDotComMode bool `json:"sourcegraphDotComMode"`
+	KhulnasoftDotComMode bool `json:"sourcegraphDotComMode"`
 
 	AccessTokensAllow                 conf.AccessTokenAllow `json:"accessTokensAllow"`
 	AccessTokensAllowNoExpiration     bool                  `json:"accessTokensAllowNoExpiration"`
@@ -278,7 +278,7 @@ func NewJSContextFromRequest(req *http.Request, db database.DB, configurationSer
 
 	headers := make(map[string]string)
 	headers["x-sourcegraph-client"] = conf.ExternalURLParsed().String()
-	headers["X-Requested-With"] = "Sourcegraph" // required for httpapi to use cookie auth
+	headers["X-Requested-With"] = "Khulnasoft" // required for httpapi to use cookie auth
 
 	// Propagate Cache-Control no-cache and max-age=0 directives
 	// to the requests made by our client-side JavaScript. This is
@@ -372,7 +372,7 @@ func NewJSContextFromRequest(req *http.Request, db database.DB, configurationSer
 
 	codyEnabled, _ := cody.IsCodyEnabled(ctx, db)
 
-	isDotComMode := dotcom.SourcegraphDotComMode()
+	isDotComMode := dotcom.KhulnasoftDotComMode()
 
 	licenseInfo, codeSearchLicensed, codyLicensed := licenseInfo()
 
@@ -405,7 +405,7 @@ func NewJSContextFromRequest(req *http.Request, db database.DB, configurationSer
 		NeedServerRestart: configurationServer.NeedServerRestart(),
 		DeployType:        deploy.Type(),
 
-		SourcegraphDotComMode: isDotComMode,
+		KhulnasoftDotComMode: isDotComMode,
 
 		// Experiments. We pass these through explicitly, so we can
 		// do the default behavior only in Go land.
@@ -448,7 +448,7 @@ func NewJSContextFromRequest(req *http.Request, db database.DB, configurationSer
 		CodeInsightsEnabled: insights.IsEnabled(),
 
 		// This used to be hardcoded configuration on the frontend.
-		// https://sourcegraph.sourcegraph.com/github.com/sourcegraph/sourcegraph@ec5cc97a11c3f78743388b85b9ae0f1bc5d43932/-/blob/client/web/src/enterprise/EnterpriseWebApp.tsx?L63-71
+		// https://sourcegraph.khulnasoft.com/github.com/sourcegraph/sourcegraph@ec5cc97a11c3f78743388b85b9ae0f1bc5d43932/-/blob/client/web/src/enterprise/EnterpriseWebApp.tsx?L63-71
 		CodeIntelligenceEnabled:  true,
 		SearchContextsEnabled:    searchcontexts.IsEnabled(),
 		NotebooksEnabled:         notebooks.IsEnabled(),
@@ -485,7 +485,7 @@ func NewJSContextFromRequest(req *http.Request, db database.DB, configurationSer
 		}
 	}
 
-	// If the license a Sourcegraph instance is running under does not support Code Search features
+	// If the license a Khulnasoft instance is running under does not support Code Search features
 	// we force disable related features (executors, batch-changes, executors, code-insights).
 	if !codeSearchLicensed {
 		context.CodeSearchEnabledOnInstance = false
@@ -501,7 +501,7 @@ func NewJSContextFromRequest(req *http.Request, db database.DB, configurationSer
 		context.SearchJobsEnabled = false
 	}
 
-	// If the license a Sourcegraph instance is running under does not support Cody features,
+	// If the license a Khulnasoft instance is running under does not support Cody features,
 	// we force disable related features.
 	if !codyLicensed {
 		context.CodyEnabledOnInstance = false
@@ -671,7 +671,7 @@ func isBot(userAgent string) bool {
 }
 
 func licenseInfo() (info LicenseInfo, codeSearchLicensed, codyLicensed bool) {
-	if !dotcom.SourcegraphDotComMode() {
+	if !dotcom.KhulnasoftDotComMode() {
 		bcFeature := &licensing.FeatureBatchChanges{}
 		if err := licensing.Check(bcFeature); err == nil {
 			if bcFeature.Unrestricted {

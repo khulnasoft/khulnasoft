@@ -94,8 +94,8 @@ func getAPIProvider(modelConfigInfo types.ModelConfigInfo) (types.CompletionsCli
 		}
 	}
 
-	// The "Sourcegraph" provider, AKA Cody Gateway.
-	if sgProviderCfg := ssConfig.SourcegraphProvider; sgProviderCfg != nil {
+	// The "Khulnasoft" provider, AKA Cody Gateway.
+	if sgProviderCfg := ssConfig.KhulnasoftProvider; sgProviderCfg != nil {
 		client, err := codygateway.NewClient(
 			httpcli.CodyGatewayDoer, sgProviderCfg.Endpoint, sgProviderCfg.AccessToken, *tokenManager)
 		return client, err

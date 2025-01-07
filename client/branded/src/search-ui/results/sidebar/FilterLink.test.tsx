@@ -11,7 +11,7 @@ import { getDynamicFilterLinks, getRepoFilterLinks, getSearchSnippetLinks } from
 
 describe('FilterLink', () => {
     const repoFilter1: Filter = {
-        label: 'gitlab.com/sourcegraph/sourcegraph',
+        label: 'gitlab.com/khulnasoft/khulnasoft',
         value: 'repo:^gitlab\\.com/sourcegraph/sourcgreaph$',
         count: 5,
         exhaustive: true,

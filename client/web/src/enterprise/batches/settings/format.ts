@@ -24,7 +24,7 @@ export const formatDays = (days: string[] | undefined): string => {
  * If the rate starts with '0/' then we revert to displaying None, since this is the same as 0.
  * Otherwise, we display the rate in a readable format, e.g. '2 changesets per minute'.
  *
- * https://sourcegraph.sourcegraph.com/github.com/sourcegraph/sourcegraph@3ee30bb/-/blob/schema/site.schema.json?L567-571
+ * https://sourcegraph.khulnasoft.com/github.com/sourcegraph/sourcegraph@3ee30bb/-/blob/schema/site.schema.json?L567-571
  *
  * @param rate The rollout window rate, either a number or a string like '1/minute'
  * @returns The formatted rate for display

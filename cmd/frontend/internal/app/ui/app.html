@@ -45,13 +45,13 @@
     {{- end}}
 
 	<link id='sourcegraph-chrome-webstore-item' rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/dgjhfomjieaadpoljlnidmbgkdffpack">
-	<link rel="search" href="/opensearch.xml" type="application/opensearchdescription+xml" title="Sourcegraph Search">
+	<link rel="search" href="/opensearch.xml" type="application/opensearchdescription+xml" title="Khulnasoft Search">
 	{{if .PreloadedAssets}}
 	{{range .PreloadedAssets}}
 	<link rel="preload" href="{{.Href}}" as="{{.As}}" />
 	{{end}}
 	{{end}}
-	{{ if .Context.SourcegraphDotComMode }}
+	{{ if .Context.KhulnasoftDotComMode }}
 	<!-- Google Tag Manager -->
 	<script ignore-csp>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -75,13 +75,13 @@
 		{
 			"@context": "https://schema.org",
 			"@type": "WebSite",
-			"name": "Sourcegraph",
-			"url": "https://sourcegraph.com",
+			"name": "Khulnasoft",
+			"url": "https://khulnasoft.com",
 			"potentialAction": {
 				"@type": "SearchAction",
 				"target": {
 					"@type": "EntryPoint",
-					"urlTemplate": "https://sourcegraph.com/search?q={search_term_string}&utm_source=google-search-result&utm_campaign=google-search-result-searchbox"
+					"urlTemplate": "https://khulnasoft.com/search?q={search_term_string}&utm_source=google-search-result&utm_campaign=google-search-result-searchbox"
 				},
 				"query-input": "required name=search_term_string"
 			}
@@ -97,7 +97,7 @@
          <script ignore-csp>
             function canRunSourceGraph(){"use strict";if("undefined"==typeof Symbol)return!1;try{eval("class Foo {}"),eval("var bar = (x) => x+1")}catch(r){return!1}return!0}
             if (!canRunSourceGraph()) {
-                document.write("<h1 ignore-csp style=\"padding: 10px;\">It looks like Sourcegraph does not support your browser. Upgrade or install a JavaScript ES6 supported browser (<a href=\"https://www.microsoft.com/en-us/edge\">Edge</a>, <a href=\"https://www.apple.com/safari/\">Safari</a>, <a href=\"https://www.google.com/chrome/downloads\">Chrome</a>, <a href=\"https://www.mozilla.org/en-US/firefox/new/\">Firefox</a>)</h1>")
+                document.write("<h1 ignore-csp style=\"padding: 10px;\">It looks like Khulnasoft does not support your browser. Upgrade or install a JavaScript ES6 supported browser (<a href=\"https://www.microsoft.com/en-us/edge\">Edge</a>, <a href=\"https://www.apple.com/safari/\">Safari</a>, <a href=\"https://www.google.com/chrome/downloads\">Chrome</a>, <a href=\"https://www.mozilla.org/en-US/firefox/new/\">Firefox</a>)</h1>")
 
                 // makes everything below disabled so no crashes
                 document.write('<!--');
@@ -113,13 +113,13 @@
     {{- end }}
 
 	<noscript>
-        {{ if .Context.SourcegraphDotComMode }}
+        {{ if .Context.KhulnasoftDotComMode }}
         <!-- Google Tag Manager (noscript) -->
         <iframe ignore-csp src="https://www.googletagmanager.com/ns.html?id=GTM-TB4NLS7" height="0" width="0" style="display:none;visibility:hidden"></iframe>
         <!-- End Google Tag Manager (noscript) -->
         {{ end }}
 
-		<p>Sourcegraph is a web-based code search and navigation tool for dev teams. Search, navigate, and review code. Find answers.</p>
+		<p>Khulnasoft is a web-based code search and navigation tool for dev teams. Search, navigate, and review code. Find answers.</p>
 		<br><br><br>
         You need to enable JavaScript to run this app.
 	</noscript>

@@ -42,7 +42,7 @@ func NewHandler(db database.DB, logger log.Logger) http.Handler {
 	})))
 
 	r.Get(router.GopherconLiveBlog).Handler(trace.Route(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		http.Redirect(w, r, "https://sourcegraph.com/go", http.StatusFound)
+		http.Redirect(w, r, "https://khulnasoft.com/go", http.StatusFound)
 	})))
 
 	r.Get(router.UI).Handler(ui.Router())

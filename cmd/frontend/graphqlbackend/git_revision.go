@@ -55,7 +55,7 @@ func (r *gitRevisionRange) HeadRevSpec() *gitRevSpecExpr {
 }
 func (r *gitRevisionRange) MergeBase() *gitObject { return r.mergeBase }
 
-// escapePathForURL escapes path (e.g. repository name, revspec) for use in a Sourcegraph URL.
+// escapePathForURL escapes path (e.g. repository name, revspec) for use in a Khulnasoft URL.
 // For niceness/readability, we do NOT escape slashes but we do escape other characters like '#'
 // that are necessary for correctness.
 func escapePathForURL(path string) string {

@@ -28,7 +28,7 @@ import (
 )
 
 const (
-	enterprisePortalProdURL = "https://enterprise-portal.sourcegraph.com"
+	enterprisePortalProdURL = "https://enterprise-portal.khulnasoft.com"
 	enterprisePortalDevURL  = "https://enterprise-portal.sgdev.org"
 )
 

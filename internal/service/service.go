@@ -1,4 +1,4 @@
-// Package service defines a service that runs as part of the Sourcegraph application. Examples
+// Package service defines a service that runs as part of the Khulnasoft application. Examples
 // include frontend, gitserver, and repo-updater.
 package service
 
@@ -10,7 +10,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/internal/observation"
 )
 
-// A Service provides independent functionality in the Sourcegraph application. Examples include
+// A Service provides independent functionality in the Khulnasoft application. Examples include
 // frontend, gitserver, and repo-updater. A service may run in the same process as any other
 // service, in a separate process, in a separate container, or on a separate host.
 type Service interface {

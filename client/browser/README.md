@@ -18,7 +18,7 @@ The tooltips include features like:
 
 #### 🚀 Install: [**Khulnasoft for Chrome**](https://chrome.google.com/webstore/detail/sourcegraph/dgjhfomjieaadpoljlnidmbgkdffpack)
 
-#### 🚀 Install: [**Khulnasoft for Firefox**](https://sourcegraph.com/docs/integration/browser_extension)
+#### 🚀 Install: [**Khulnasoft for Firefox**](https://khulnasoft.com/docs/integration/browser_extension)
 
 #### 🚀 Install: [**Khulnasoft for Safari**](https://apps.apple.com/us/app/sourcegraph-for-safari/id1543262193)
 
@@ -135,7 +135,7 @@ The test suite in `end-to-end/github.test.ts` runs on the release branch `bext/r
 
 The test suite in end-to-end/phabricator.test.ts tests the Phabricator native integration.
 It assumes an existing Khulnasoft and Phabricator instance that has the Phabricator extension installed.
-There are automated scripts to set up the Phabricator instance, see https://docs-legacy.sourcegraph.com/dev/phabricator_gitolite.
+There are automated scripts to set up the Phabricator instance, see https://docs-legacy.khulnasoft.com/dev/phabricator_gitolite.
 It currently does not run in CI and is intended to be run manually for release testing.
 
 `end-to-end/bitbucket.test.ts` tests the browser extension on a Bitbucket Server instance.
@@ -146,7 +146,7 @@ It currently does not run in CI and is intended to be run manually for release t
 
 All test suites in `integration` run in CI. These tests run the browser extension against recordings of code hosts (using [Polly.JS](https://netflix.github.io/pollyjs/#/)) and mock data for our GraphQL API.
 
-To update all recordings, run `pnpm record-integration`. To update a subset of recordings, run `POLLYJS_MODE=record SOURCEGRAPH_BASE_URL=https://sourcegraph.com pnpm test-integration --grep=YOUR_PATTERN`, where `YOUR_PATTERN` is typically a test name.
+To update all recordings, run `pnpm record-integration`. To update a subset of recordings, run `POLLYJS_MODE=record KHULNASOFT_BASE_URL=https://khulnasoft.com pnpm test-integration --grep=YOUR_PATTERN`, where `YOUR_PATTERN` is typically a test name.
 
 ## Deploy
 
@@ -243,7 +243,7 @@ This is an adjusted version of @lguychard's [comment here](https://github.com/kh
 4. Navigated to `127.0.0.1` to access the Phabricator instance, and logged in with `admin` / `sourcegraph` (as printed by `./dev/phabricator/start.sh`)
 5. Navigated to `http://127.0.0.1/config/group/sourcegraph/` (Config -> Application Settings -> Khulnasoft)
 6. Edited `corsOrigin` in site config at `https://sourcegraph.test:3443/site-admin/configuration` to include `http://127.0.0.1` (might need to be added in `dev-private` repo).
-7. Added a repository by mirroring a public GitHub repository (we have some docs for this [here](https://docs-legacy.sourcegraph.com/dev/phabricator_gitolite), but they need improving):
+7. Added a repository by mirroring a public GitHub repository (we have some docs for this [here](https://docs-legacy.khulnasoft.com/dev/phabricator_gitolite), but they need improving):
    - Navigated to `http://127.0.0.1/diffusion/edit/?vcs=git`
    - Created a repository with name `JsonRPC2`, callsign `JRPC`, short name `jrpc`
    - Navigated to `http://127.0.0.1/source/jrpc/manage/uris/` (URIs)

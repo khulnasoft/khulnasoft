@@ -27,7 +27,7 @@ describe('decodeSearchInsightUrl', () => {
         expect(decodeSearchInsightUrl(queryString)).toStrictEqual({
             repoMode: 'urls-list',
             repoQuery: { query: '' },
-            repositories: ['github.com/sourcegraph/sourcegraph', 'github.com/example/example'],
+            repositories: ['github.com/khulnasoft/khulnasoft', 'github.com/example/example'],
             title: 'Insight title',
             series: [
                 { id: 1, edit: false, valid: true, autofocus: false, name: 'series 1', query: 'test1', stroke: 'red' },
@@ -40,7 +40,7 @@ describe('decodeSearchInsightUrl', () => {
 describe('encodeSearchInsightUrl', () => {
     test('should encode search insight values in a way that they could be decoded with decodeUrlSearchInsight', () => {
         const encodedSearchInsightParameters = encodeSearchInsightUrl({
-            repositories: ['github.com/sourcegraph/sourcegraph', 'github.com/example/example'],
+            repositories: ['github.com/khulnasoft/khulnasoft', 'github.com/example/example'],
             title: 'Insight title',
             series: [
                 { id: '1', name: 'series 1', query: 'test1', stroke: 'red' },
@@ -51,7 +51,7 @@ describe('encodeSearchInsightUrl', () => {
         expect(decodeSearchInsightUrl(encodedSearchInsightParameters)).toStrictEqual({
             repoMode: 'urls-list',
             repoQuery: { query: '' },
-            repositories: ['github.com/sourcegraph/sourcegraph', 'github.com/example/example'],
+            repositories: ['github.com/khulnasoft/khulnasoft', 'github.com/example/example'],
             title: 'Insight title',
             series: [
                 {

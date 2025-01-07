@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 
 import { extensionContext } from '../extension'
 
-const defaultEndpointURL = 'https://sourcegraph.com'
+const defaultEndpointURL = 'https://khulnasoft.com'
 
 const endpointKey = 'sourcegraph.url'
 
@@ -76,5 +76,5 @@ function removeEndingSlash(uri: string): string {
 
 export function isKhulnasoftDotCom(): boolean {
     const hostname = new URL(endpointSetting()).hostname
-    return hostname === 'sourcegraph.com' || hostname === 'www.sourcegraph.com'
+    return hostname === 'khulnasoft.com' || hostname === 'www.khulnasoft.com'
 }

@@ -3,7 +3,7 @@
 exports[`util > parseURL() > blob page 1`] = `
 Object {
   "pageType": "blob",
-  "rawRepoName": "github.com/sourcegraph/sourcegraph",
+  "rawRepoName": "github.com/khulnasoft/khulnasoft",
   "repoName": "sourcegraph/sourcegraph",
   "revisionAndFilePath": "3.3/shared/src/hover/HoverOverlay.tsx",
 }
@@ -21,7 +21,7 @@ Object {
 exports[`util > parseURL() > commit page 1`] = `
 Object {
   "pageType": "commit",
-  "rawRepoName": "github.com/sourcegraph/sourcegraph",
+  "rawRepoName": "github.com/khulnasoft/khulnasoft",
   "repoName": "sourcegraph/sourcegraph",
 }
 `;
@@ -37,7 +37,7 @@ Object {
 exports[`util > parseURL() > pull request list 1`] = `
 Object {
   "pageType": "other",
-  "rawRepoName": "github.com/sourcegraph/sourcegraph",
+  "rawRepoName": "github.com/khulnasoft/khulnasoft",
   "repoName": "sourcegraph/sourcegraph",
 }
 `;
@@ -45,7 +45,7 @@ Object {
 exports[`util > parseURL() > pull request page 1`] = `
 Object {
   "pageType": "pull",
-  "rawRepoName": "github.com/sourcegraph/sourcegraph",
+  "rawRepoName": "github.com/khulnasoft/khulnasoft",
   "repoName": "sourcegraph/sourcegraph",
 }
 `;
@@ -53,7 +53,7 @@ Object {
 exports[`util > parseURL() > selections - range 1`] = `
 Object {
   "pageType": "blob",
-  "rawRepoName": "github.com/sourcegraph/sourcegraph",
+  "rawRepoName": "github.com/khulnasoft/khulnasoft",
   "repoName": "sourcegraph/sourcegraph",
   "revisionAndFilePath": "main/jest.config.base.js",
 }
@@ -62,7 +62,7 @@ Object {
 exports[`util > parseURL() > selections - single line 1`] = `
 Object {
   "pageType": "blob",
-  "rawRepoName": "github.com/sourcegraph/sourcegraph",
+  "rawRepoName": "github.com/khulnasoft/khulnasoft",
   "repoName": "sourcegraph/sourcegraph",
   "revisionAndFilePath": "main/jest.config.base.js",
 }
@@ -71,7 +71,7 @@ Object {
 exports[`util > parseURL() > snippet permalink 1`] = `
 Object {
   "pageType": "blob",
-  "rawRepoName": "github.com/sourcegraph/sourcegraph",
+  "rawRepoName": "github.com/khulnasoft/khulnasoft",
   "repoName": "sourcegraph/sourcegraph",
   "revisionAndFilePath": "6a91ccec97a46bfb511b7ff58d790554a7d075c8/client/browser/src/shared/repo/backend.tsx",
 }
@@ -80,7 +80,7 @@ Object {
 exports[`util > parseURL() > tree page 1`] = `
 Object {
   "pageType": "tree",
-  "rawRepoName": "github.com/sourcegraph/sourcegraph",
+  "rawRepoName": "github.com/khulnasoft/khulnasoft",
   "repoName": "sourcegraph/sourcegraph",
   "revisionAndFilePath": "main/client",
 }
@@ -89,7 +89,7 @@ Object {
 exports[`util > parseURL() > wiki page 1`] = `
 Object {
   "pageType": "other",
-  "rawRepoName": "github.com/sourcegraph/sourcegraph",
+  "rawRepoName": "github.com/khulnasoft/khulnasoft",
   "repoName": "sourcegraph/sourcegraph",
 }
 `;

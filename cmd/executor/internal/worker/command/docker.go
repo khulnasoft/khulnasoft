@@ -90,7 +90,7 @@ func formatDockerCommand(hostDir string, image string, scriptPath string, spec S
 }
 
 // dockerHostGatewayFlag makes the Docker host accessible to the container (on the hostname
-// `host.docker.internal`), which simplifies the use of executors when the Sourcegraph instance is
+// `host.docker.internal`), which simplifies the use of executors when the Khulnasoft instance is
 // running un-containerized in the Docker host. This *only* takes effect if the site config
 // `executors.frontendURL` is a URL with hostname `host.docker.internal`, to reduce the risk of
 // unexpected compatibility or security issues with using --add-host=...  when it is not needed.

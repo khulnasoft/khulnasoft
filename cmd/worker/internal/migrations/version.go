@@ -50,7 +50,7 @@ func currentVersion(logger log.Logger) (oobmigration.Version, error) {
 	return version, nil
 }
 
-// parseVersion reads the Sourcegraph instance version set at build time. If the given string cannot
+// parseVersion reads the Khulnasoft instance version set at build time. If the given string cannot
 // be parsed as one of the following formats, a false-valued flag is returned.
 //
 // Tagged release format: `v1.2.3`

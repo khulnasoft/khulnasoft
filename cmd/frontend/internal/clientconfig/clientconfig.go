@@ -21,7 +21,7 @@ func GetForActor(ctx context.Context, logger log.Logger, db database.DB, actor *
 	}
 
 	// 🚨 SECURITY: This code lets site admins restrict who has access to Cody at all via RBAC.
-	// https://sourcegraph.com/docs/cody/clients/enable-cody-enterprise#enable-cody-only-for-some-users
+	// https://khulnasoft.com/docs/cody/clients/enable-cody-enterprise#enable-cody-only-for-some-users
 	c.CodyEnabled, _ = cody.IsCodyEnabled(ctx, db)
 
 	// 🚨 SECURITY: This code enforces that users do not have access to Cody features which

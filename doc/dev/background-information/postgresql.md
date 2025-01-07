@@ -1,6 +1,6 @@
 # PostgreSQL
 
-Sourcegraph stores most data in a
+Khulnasoft stores most data in a
 [PostgreSQL database](http://www.postgresql.org). Git repositories,
 uploaded user content (e.g., image attachments in issues) are stored
 on the filesystem.
@@ -14,7 +14,7 @@ For Ubuntu 18.04, you will need to add a repository source. Use the
 
 ## Local setup
 
-Sourcegraph assumes it has a dedicated PostgreSQL server, or at least that you
+Khulnasoft assumes it has a dedicated PostgreSQL server, or at least that you
 can make global configuration changes, such as changing the timezone. If you
 need to use other settings for other databases, use a separate PostgreSQL
 instance.

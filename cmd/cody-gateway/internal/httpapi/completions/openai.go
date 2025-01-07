@@ -24,7 +24,7 @@ import (
 
 func NewOpenAIHandler(baseLogger log.Logger, eventLogger events.Logger, rs limiter.RedisStore, rateLimitNotifier notify.RateLimitNotifier, httpClient httpcli.Doer, config config.OpenAIConfig, promptRecorder PromptRecorder, upstreamConfig UpstreamHandlerConfig) http.Handler {
 	// OpenAI primarily uses tokens-per-minute ("TPM") to rate-limit spikes
-	// in requests, so set a very high retry-after to discourage Sourcegraph
+	// in requests, so set a very high retry-after to discourage Khulnasoft
 	// clients from retrying at all since retries are probably not going to
 	// help in a minute-long rate limit window.
 	upstreamConfig.DefaultRetryAfterSeconds = 30

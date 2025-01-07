@@ -22,13 +22,13 @@ Paragraph`
     })
 
     it('should handle a single file link', () => {
-        const markdown = 'https://sourcegraph.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts'
+        const markdown = 'https://khulnasoft.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts'
 
         expect(convertMarkdownToBlocks(markdown)).toStrictEqual([
             {
                 type: 'file',
                 input: {
-                    repositoryName: 'github.com/sourcegraph/sourcegraph',
+                    repositoryName: 'github.com/khulnasoft/khulnasoft',
                     revision: 'feature',
                     filePath: 'client/web/index.ts',
                     lineRange: null,
@@ -56,15 +56,15 @@ Paragraph with list:
 my second query
 \`\`\`
 
-https://sourcegraph.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts
+https://khulnasoft.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts
 
 ## Second title v2
 
-Link to a file is inside text https://sourcegraph.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts
+Link to a file is inside text https://khulnasoft.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts
 
-https://sourcegraph.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts?L101-123
+https://khulnasoft.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts?L101-123
 
-https://sourcegraph.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts?L101
+https://khulnasoft.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts?L101
 
 ### Third title
 
@@ -72,7 +72,7 @@ https://example.com/a/b
 
 ### Symbol block
 
-https://sourcegraph.com/github.com/sourcegraph/sourcegraph@branch/-/blob/client/web/index.ts?L1:1-1:3#symbolName=func+a&symbolContainerName=class&symbolKind=FUNCTION&lineContext=3
+https://khulnasoft.com/github.com/sourcegraph/sourcegraph@branch/-/blob/client/web/index.ts?L1:1-1:3#symbolName=func+a&symbolContainerName=class&symbolKind=FUNCTION&lineContext=3
 `
 
         expect(convertMarkdownToBlocks(markdown)).toStrictEqual([
@@ -83,7 +83,7 @@ https://sourcegraph.com/github.com/sourcegraph/sourcegraph@branch/-/blob/client/
             {
                 type: 'file',
                 input: {
-                    repositoryName: 'github.com/sourcegraph/sourcegraph',
+                    repositoryName: 'github.com/khulnasoft/khulnasoft',
                     revision: 'feature',
                     filePath: 'client/web/index.ts',
                     lineRange: null,
@@ -92,13 +92,13 @@ https://sourcegraph.com/github.com/sourcegraph/sourcegraph@branch/-/blob/client/
             {
                 type: 'md',
                 input: {
-                    text: '## Second title v2\n\nLink to a file is inside text https://sourcegraph.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts\n\n',
+                    text: '## Second title v2\n\nLink to a file is inside text https://khulnasoft.com/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts\n\n',
                 },
             },
             {
                 type: 'file',
                 input: {
-                    repositoryName: 'github.com/sourcegraph/sourcegraph',
+                    repositoryName: 'github.com/khulnasoft/khulnasoft',
                     revision: 'feature',
                     filePath: 'client/web/index.ts',
                     lineRange: {
@@ -110,7 +110,7 @@ https://sourcegraph.com/github.com/sourcegraph/sourcegraph@branch/-/blob/client/
             {
                 type: 'file',
                 input: {
-                    repositoryName: 'github.com/sourcegraph/sourcegraph',
+                    repositoryName: 'github.com/khulnasoft/khulnasoft',
                     revision: 'feature',
                     filePath: 'client/web/index.ts',
                     lineRange: {
@@ -123,7 +123,7 @@ https://sourcegraph.com/github.com/sourcegraph/sourcegraph@branch/-/blob/client/
             {
                 type: 'symbol',
                 input: {
-                    repositoryName: 'github.com/sourcegraph/sourcegraph',
+                    repositoryName: 'github.com/khulnasoft/khulnasoft',
                     revision: 'branch',
                     filePath: 'client/web/index.ts',
                     symbolName: 'func a',

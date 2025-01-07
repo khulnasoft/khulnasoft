@@ -25,7 +25,7 @@ import (
 type chatCompletionsHandler struct {
 	logger sglog.Logger
 
-	// apiHandler is the underlying implementation of the Sourcegraph /.api/completions/stream endpoint.
+	// apiHandler is the underlying implementation of the Khulnasoft /.api/completions/stream endpoint.
 	// We access this endpoint via HTTP to keep a single source-of-truth about LLM completions.
 	// The goal with this OpenAI endpoint is compatibility, not optimal performance. Ideally, we
 	// would have an in-house service we can use instead of going via HTTP but using HTTP
@@ -156,7 +156,7 @@ func transformToSGRequest(openAIReq goapi.CreateChatCompletionRequest) completio
 }
 
 func transformMessages(messages []goapi.ChatCompletionRequestMessage) []completions.Message {
-	// Transform OpenAI messages to Sourcegraph format
+	// Transform OpenAI messages to Khulnasoft format
 	transformed := make([]completions.Message, len(messages))
 	for i, msg := range messages {
 		text := ""

@@ -211,9 +211,9 @@ func TestParseURL(t *testing.T) {
 			"", "",
 		),
 		newParseURLTest(
-			"perforce://admin:pa$$word@ssl:192.168.1.100:1666//Sourcegraph/",
-			formatStdlib, "perforce", "admin:pa$$word", "ssl:192.168.1.100:1666", "//Sourcegraph/",
-			"perforce://admin:pa$$word@ssl:192.168.1.100:1666//Sourcegraph/", "",
+			"perforce://admin:pa$$word@ssl:192.168.1.100:1666//Khulnasoft/",
+			formatStdlib, "perforce", "admin:pa$$word", "ssl:192.168.1.100:1666", "//Khulnasoft/",
+			"perforce://admin:pa$$word@ssl:192.168.1.100:1666//Khulnasoft/", "",
 		),
 		// iap://
 		newParseURLTest(

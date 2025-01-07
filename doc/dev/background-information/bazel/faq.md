@@ -167,8 +167,8 @@ We get the following error.
 WARNING: Could not fetch the manifest. Either there was an authentication issue or trying to pull an image with OCI image media types.
 Falling back to using `curl`. See https://github.com/bazelbuild/bazel/issues/17829 for the context.
 INFO: Repository wolfi_redis_base_single instantiated at:
-  /home/noah/Sourcegraph/sourcegraph/WORKSPACE:376:9: in <toplevel>
-  /home/noah/Sourcegraph/sourcegraph/dev/oci_deps.bzl:73:13: in oci_deps
+  /home/noah/Khulnasoft/sourcegraph/WORKSPACE:376:9: in <toplevel>
+  /home/noah/Khulnasoft/sourcegraph/dev/oci_deps.bzl:73:13: in oci_deps
   /home/noah/.cache/bazel/_bazel_noah/8fd1d20666a46767e7f29541678514a0/external/rules_oci/oci/pull.bzl:133:18: in oci_pull
 Repository rule oci_pull defined at:
   /home/noah/.cache/bazel/_bazel_noah/8fd1d20666a46767e7f29541678514a0/external/rules_oci/oci/private/pull.bzl:434:27: in <toplevel>

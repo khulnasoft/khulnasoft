@@ -46,7 +46,7 @@ const (
 // predefined action constant in the internal/telemetry package instead.
 //
 // 🚨 SECURITY: Use with care, as variable strings can accidentally contain data
-// sensitive to standalone Sourcegraph instances.
+// sensitive to standalone Khulnasoft instances.
 func SafeAction(parts ...string) eventAction {
 	return eventAction(strings.Join(parts, "."))
 }

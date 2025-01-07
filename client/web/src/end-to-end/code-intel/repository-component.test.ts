@@ -335,7 +335,7 @@ describe('Repository component', () => {
                 filePath:
                     '/github.com/sourcegraph/java-langserver@03efbe9558acc532e88f5288b4e6cfa155c6f2dc/-/blob/src/main/java/com/sourcegraph/common/Config.java',
                 symbolNames: [
-                    'com.sourcegraph.common',
+                    'com.khulnasoft.common',
                     'Config',
                     'LIGHTSTEP_INCLUDE_SENSITIVE',
                     'LIGHTSTEP_PROJECT',

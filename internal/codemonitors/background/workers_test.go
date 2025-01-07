@@ -20,7 +20,7 @@ import (
 func TestActionRunner(t *testing.T) {
 	conf.Mock(&conf.Unified{
 		SiteConfiguration: schema.SiteConfiguration{
-			ExternalURL: "https://www.sourcegraph.com",
+			ExternalURL: "https://www.khulnasoft.com",
 		},
 	})
 	defer conf.Mock(nil)
@@ -50,7 +50,7 @@ func TestActionRunner(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			db := database.NewDB(logger, dbtest.NewDB(t))
 			testQuery := "test patternType:literal"
-			externalURL := "https://www.sourcegraph.com"
+			externalURL := "https://www.khulnasoft.com"
 
 			// Mocks.
 			got := TemplateDataNewSearchResults{}

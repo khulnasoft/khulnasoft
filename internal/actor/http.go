@@ -16,11 +16,11 @@ import (
 
 const (
 	// headerKeyActorUID is the header key for the actor's user ID.
-	headerKeyActorUID = "X-Sourcegraph-Actor-UID"
+	headerKeyActorUID = "X-Khulnasoft-Actor-UID"
 
 	// headerKeyAnonymousActorUID is an optional header to propagate the
 	// anonymous UID of an unauthenticated actor.
-	headerKeyActorAnonymousUID = "X-Sourcegraph-Actor-Anonymous-UID"
+	headerKeyActorAnonymousUID = "X-Khulnasoft-Actor-Anonymous-UID"
 )
 
 const (
@@ -108,7 +108,7 @@ func (t *HTTPTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 
 // HTTPMiddleware wraps the given handle func and attaches the actor indicated in incoming
 // requests to the request header. This should only be used to wrap internal handlers for
-// communication between Sourcegraph services.
+// communication between Khulnasoft services.
 //
 // 🚨 SECURITY: This should *never* be called to wrap externally accessible handlers (i.e.
 // only use for internal endpoints), because internal requests can bypass repository

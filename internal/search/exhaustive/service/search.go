@@ -31,7 +31,7 @@ type NewSearcher interface {
 	//
 	// Note: I expect things like feature flags for the user behind ctx could
 	// affect what is returned. Alternatively as we release new versions of
-	// Sourcegraph what is returned could change. This means we are not exactly
+	// Khulnasoft what is returned could change. This means we are not exactly
 	// safe across repeated calls.
 	NewSearch(ctx context.Context, userID int32, q string) (SearchQuery, error)
 }

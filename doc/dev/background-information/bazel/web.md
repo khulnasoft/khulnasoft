@@ -1,6 +1,6 @@
 # Bazel for client
 
-See [Bazel at Sourcegraph](./index.md) for general bazel info/setup.
+See [Bazel at Khulnasoft](./index.md) for general bazel info/setup.
 See [Overview of the Bazel configuration for client](./web_overview.md) for in-depth configuration overview.
 
 ## Tools
@@ -67,7 +67,7 @@ With the above statement `rules_js` generated the following targets for `rawr`:
 * `rawr_binary` for use with `bazel run` ([js_binary](https://docs.aspect.build/rules/aspect_rules_js/docs/js_binary) internally)
 * `rawr_test` for use with `bazel test` ([js_test](https://docs.aspect.build/rules/aspect_rules_js/docs/js_binary#js_test) internally)
 
-See the generated macro implementation [here](https://sourcegraph.com/github.com/aspect-build/rules_js@f60bbf809ec013df3979659b4dfa84bc248da3fa/-/blob/npm/private/npm_import.bzl?L281-331) for more details.
+See the generated macro implementation [here](https://khulnasoft.com/github.com/aspect-build/rules_js@f60bbf809ec013df3979659b4dfa84bc248da3fa/-/blob/npm/private/npm_import.bzl?L281-331) for more details.
 
 Cool? I mean we technically have `rawr` now available but HTF do we use this? To create a build target using `rawr` we can now do:
 
@@ -98,7 +98,7 @@ bazel build //:rawr_event
 bazel test //:rawr_event_test
 ```
 
-An example of a js binary being executed as a bazel test target is `graphql-schema-linter`, whose definition can be found in [`cmd/frontend/graphqlbackend/BUILD.bazel`](https://sourcegraph.sourcegraph.com/github.com/sourcegraph/sourcegraph@71616027c3f461d6022f3fa2fa24c0e085ee545f/-/blob/cmd/frontend/graphqlbackend/BUILD.bazel).
+An example of a js binary being executed as a bazel test target is `graphql-schema-linter`, whose definition can be found in [`cmd/frontend/graphqlbackend/BUILD.bazel`](https://sourcegraph.khulnasoft.com/github.com/sourcegraph/sourcegraph@71616027c3f461d6022f3fa2fa24c0e085ee545f/-/blob/cmd/frontend/graphqlbackend/BUILD.bazel).
 
 ### How do I build/test Bazel targets of a specific type for all client packages?
 

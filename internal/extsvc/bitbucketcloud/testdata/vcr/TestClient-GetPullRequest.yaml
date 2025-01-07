@@ -89,11 +89,11 @@ interactions:
       "approve": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/1/approve"},
       "statuses": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests/1/statuses"}},
       "title": "Always open PR", "close_source_branch": false, "reviewers": [{"display_name":
-      "Sourcegraph Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}", "links":
+      "Khulnasoft Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}", "links":
       {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"}},
-      "type": "user", "nickname": "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b"}],
+      "type": "user", "nickname": "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b"}],
       "id": 1, "destination": {"commit": {"hash": "12fba599d6b6", "type": "commit",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/commit/12fba599d6b6"},
       "html": {"href": "https://bitbucket.org/sourcegraph-testing/src-cli/commits/12fba599d6b6"}}},
@@ -113,12 +113,12 @@ interactions:
       "type": "repository", "name": "src-cli", "full_name": "sourcegraph-testing/src-cli",
       "uuid": "{b090a669-ac7b-44cd-9610-02d027cb39f3}"}, "branch": {"name": "always-open"}},
       "comment_count": 0, "state": "OPEN", "task_count": 0, "participants": [{"participated_on":
-      null, "state": null, "role": "REVIEWER", "user": {"display_name": "Sourcegraph
+      null, "state": null, "role": "REVIEWER", "user": {"display_name": "Khulnasoft
       Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}", "links": {"self":
       {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"}},
-      "type": "user", "nickname": "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b"},
+      "type": "user", "nickname": "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b"},
       "type": "participant", "approved": false}], "reason": "", "updated_on": "2022-03-21T05:52:54.228673+00:00",
       "author": {"display_name": "Adam Harvey", "uuid": "{39a35a46-ae0c-4017-91ec-1562988daa73}",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B39a35a46-ae0c-4017-91ec-1562988daa73%7D"},

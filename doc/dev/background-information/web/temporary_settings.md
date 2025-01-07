@@ -11,7 +11,7 @@ For unauthenticated users, temporary settings are stored in `localStorage`.
 
 ## Difference between temporary settings, site settings, and localStorage
 
-Site settings are the primary way to handle settings in Sourcegraph. They are accessible as
+Site settings are the primary way to handle settings in Khulnasoft. They are accessible as
 global site settings, org settings, and user settings. Meanwhile, localStorage is a way of 
 storing settings directly in the browser. These are the primary differences between temporary 
 settings, site settings, and localStorage:
@@ -22,7 +22,7 @@ settings, site settings, and localStorage:
 | Cascades from global to org to users | ✅  | ❌ | ❌ |
 | Persisted across browsers when user logs in | ✅  | ❌ | ✅ |
 | Stored for unauthenticated users | ❌ <br /> (will use global site settings) | ✅ | ✅ |
-| Typed schema | ✅  <br /> (in [`settings.schema.json`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/schema/settings.schema.json))| ❌ | ✅  <br /> (in [`TemporarySettings.ts`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/shared/src/settings/temporary/TemporarySettings.ts))|
+| Typed schema | ✅  <br /> (in [`settings.schema.json`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/schema/settings.schema.json))| ❌ | ✅  <br /> (in [`TemporarySettings.ts`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/shared/src/settings/temporary/TemporarySettings.ts))|
 | Available in Go code | ✅  | ❌ | ❌ |
 
 
@@ -54,14 +54,14 @@ Examples of data that should not be stored as temporary settings include:
 
 ### Update schema
 
-Update the interface [`TemporarySettingsSchema` in `TemporarySettings.ts`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/shared/src/settings/temporary/TemporarySettings.ts?L8)
+Update the interface [`TemporarySettingsSchema` in `TemporarySettings.ts`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/shared/src/settings/temporary/TemporarySettings.ts?L8)
 by adding a key for the setting you want to store. The key should be namespaced based on
 the area of the site that will be using the settings. Example names include `'search.collapsedSidebarSections'`
 or `'codeInsights.hiddenCharts'`. The value of the setting can be any JSON-serializable type.
 
 ### Getting and setting settings
 
-Use the React hook [`useTemporarySetting`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/shared/src/settings/temporary/useTemporarySetting.ts)
+Use the React hook [`useTemporarySetting`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/shared/src/settings/temporary/useTemporarySetting.ts)
 to get an up-to-date value of the setting and a function that can update the value,
 similar to other hooks like `useState`. The value will be updated automatically if
 the user's authentication state changes or the setting is modified elsewhere in the
@@ -122,7 +122,7 @@ localStorage.removeItem('temporarySettings') // Clear settings
 ### Authenticated users
 
 You can view and modify temporary settings via the GraphQL API using the
-[GraphQL console](https://sourcegraph.com/api/console).
+[GraphQL console](https://khulnasoft.com/api/console).
 
 You can view your temporary settings with the `temporarySettings` GraphQL query:
 

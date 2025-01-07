@@ -50,7 +50,7 @@ func TestValidateSiteConfigTemplates(t *testing.T) {
 			conf: mockSiteConf{
 				EmailTemplates: &schema.EmailTemplates{
 					SetPassword: &schema.EmailTemplate{
-						Subject: "Set up your Sourcegraph Cloud account for {{.Host}}!",
+						Subject: "Set up your Khulnasoft Cloud account for {{.Host}}!",
 						Text:    "",
 						Html:    "<body>hello world from {{.Host}}</body>",
 					},
@@ -63,7 +63,7 @@ func TestValidateSiteConfigTemplates(t *testing.T) {
 			conf: mockSiteConf{
 				EmailTemplates: &schema.EmailTemplates{
 					SetPassword: &schema.EmailTemplate{
-						Subject: "Set up your Sourcegraph Cloud account for {{.Host}}!",
+						Subject: "Set up your Khulnasoft Cloud account for {{.Host}}!",
 						Text:    "hello world from {{.Hos",
 						Html:    "<body>hello world from {{.Host}}</body>",
 					},
@@ -76,7 +76,7 @@ func TestValidateSiteConfigTemplates(t *testing.T) {
 			conf: mockSiteConf{
 				EmailTemplates: &schema.EmailTemplates{
 					SetPassword: &schema.EmailTemplate{
-						Subject: "Set up your Sourcegraph Cloud account for {{.Host}}!",
+						Subject: "Set up your Khulnasoft Cloud account for {{.Host}}!",
 						Text:    "hello world from {{.Host}}",
 						Html:    "<body>hello world from {{.Host}}</body>",
 					},

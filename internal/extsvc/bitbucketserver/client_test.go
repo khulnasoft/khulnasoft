@@ -170,7 +170,7 @@ func TestClient_Users(t *testing.T) {
 	users := map[string]*User{
 		"admin": {
 			Name:         "admin",
-			EmailAddress: "tomas@sourcegraph.com",
+			EmailAddress: "tomas@khulnasoft.com",
 			ID:           1,
 			DisplayName:  "admin",
 			Active:       true,
@@ -1068,7 +1068,7 @@ func TestClient_MergePullRequest(t *testing.T) {
 // NOTE: This test validates that correct repository IDs are returned from the
 // roaring bitmap permissions endpoint. Therefore, the expected results are
 // dependent on the user token supplied. The current golden files are generated
-// from using the account zoom@sourcegraph.com on bitbucket.sgdev.org.
+// from using the account zoom@khulnasoft.com on bitbucket.sgdev.org.
 func TestClient_RepoIDs(t *testing.T) {
 	cli := NewTestClient(t, "RepoIDs", *update)
 

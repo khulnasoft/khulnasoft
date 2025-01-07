@@ -22,7 +22,7 @@ type Migrator interface {
 
 	// Down runs a batch of the migration in reverse. This does not need to be implemented
 	// for migrations which are non-destructive. A non-destructive migration only adds data,
-	// and does not transform fields that were read by previous versions of Sourcegraph and
+	// and does not transform fields that were read by previous versions of Khulnasoft and
 	// therefore do not need to be undone prior to a downgrade.
 	Down(ctx context.Context) error
 }

@@ -14,7 +14,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-// withDefaults builds a Sourcegraph query from a base input query setting default fields if they are not specified
+// withDefaults builds a Khulnasoft query from a base input query setting default fields if they are not specified
 // in the base query. For example an input query of `repo:myrepo test` might be provided a default `archived:no`,
 // and the result would be generated as `repo:myrepo test archive:no`. This preserves the semantics of the original query
 // by fully parsing and reconstructing the tree, and does **not** overwrite user supplied values for the default fields.
@@ -86,7 +86,7 @@ func AggregationQuery(inputQuery BasicQuery, timeoutSeconds int, count string) (
 	return BasicQuery(searchquery.StringHuman(modified.ToQ())), nil
 }
 
-// CodeInsightsQueryDefaults returns the default query parameters for a Code Insights generated Sourcegraph query.
+// CodeInsightsQueryDefaults returns the default query parameters for a Code Insights generated Khulnasoft query.
 func CodeInsightsQueryDefaults(allReposInsight bool) searchquery.Parameters {
 	forkArchiveValue := searchquery.No
 	if !allReposInsight {
@@ -286,7 +286,7 @@ func PointInTimeQuery(diffInfo PointDiffQueryOpts) (BasicQuery, error) {
 	return BasicQuery(query), nil
 }
 
-// SingleRepoQuery generates a Sourcegraph query with the provided default values given a user specified query and a repository / revision target. The repository string
+// SingleRepoQuery generates a Khulnasoft query with the provided default values given a user specified query and a repository / revision target. The repository string
 // should be provided in plain text, and will be escaped for regexp before being added to the query.
 func SingleRepoQuery(query BasicQuery, repo, revision string, defaultParams searchquery.Parameters) (BasicQuery, error) {
 	modified := withCountAll(query)
@@ -306,7 +306,7 @@ func SingleRepoQueryIndexed(query BasicQuery, repo string) BasicQuery {
 	return modified
 }
 
-// GlobalQuery generates a Sourcegraph query with the provided default values given a user specified query. This query will be global (against all visible repositories).
+// GlobalQuery generates a Khulnasoft query with the provided default values given a user specified query. This query will be global (against all visible repositories).
 func GlobalQuery(query BasicQuery, defaultParams searchquery.Parameters) (BasicQuery, error) {
 	modified := withCountAll(query)
 	modified, err := withDefaults(modified, defaultParams)
@@ -316,7 +316,7 @@ func GlobalQuery(query BasicQuery, defaultParams searchquery.Parameters) (BasicQ
 	return modified, nil
 }
 
-// MultiRepoQuery generates a Sourcegraph query with the provided default values given a user specified query and slice of repositories.
+// MultiRepoQuery generates a Khulnasoft query with the provided default values given a user specified query and slice of repositories.
 // Repositories should be provided in plain text, and will be escaped for regexp and OR'ed together before being added to the query.
 func MultiRepoQuery(query BasicQuery, repos []string, defaultParams searchquery.Parameters) (BasicQuery, error) {
 	modified := withCountAll(query)
@@ -342,7 +342,7 @@ const (
 // This is the compute command that corresponds to the execution for Code Insights.
 const insightsComputeCommand = "output.extra"
 
-// ComputeInsightCommandQuery will convert a standard Sourcegraph search query into a compute "map type" insight query. This command type will group by
+// ComputeInsightCommandQuery will convert a standard Khulnasoft search query into a compute "map type" insight query. This command type will group by
 // certain fields. The original search query semantic should be preserved, although any new limitations or restrictions in Compute will apply.
 func ComputeInsightCommandQuery(query BasicQuery, mapType MapType, gitserverClient gitserver.Client) (ComputeInsightQuery, error) {
 	q, err := ParseComputeQuery(string(query), gitserverClient)

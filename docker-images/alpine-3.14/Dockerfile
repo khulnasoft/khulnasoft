@@ -1,5 +1,5 @@
 # This Dockerfile defines the sourcegraph/alpine Docker image, which is the
-# base image used by all Sourcegraph Docker images.
+# base image used by all Khulnasoft Docker images.
 
 # alpine_base CHECK:ALPINE_OK
 FROM alpine:3.14@sha256:92d13cc58a46e012300ef49924edc56de5642ada25c9a457dce4a6db59892650 AS alpine_base
@@ -22,7 +22,7 @@ RUN addgroup -g 101 -S sourcegraph && adduser -u 100 -S -G sourcegraph -h /home/
 # installing this package, nslookup, Go binaries, etc. will fail to contact
 # other Docker containers.
 # See https://github.com/sourcegraph/deploy-sourcegraph-docker/issues/1
-# Install other packages that are desirable in ALL Sourcegraph Docker images.
+# Install other packages that are desirable in ALL Khulnasoft Docker images.
 RUN apk update && apk add --no-cache \
     'bind-tools>=9.16.33-r0' \
     busybox \

@@ -43,7 +43,7 @@ type config struct {
 
 var ConfigInst = &config{}
 
-const defaultTelemetryGatewayExporterAddress = "https://telemetry-gateway.sourcegraph.com:443"
+const defaultTelemetryGatewayExporterAddress = "https://telemetry-gateway.khulnasoft.com:443"
 
 func (c *config) Load() {
 	// ExportAddress currently remains disable-able for 5.2.1 purely as a
@@ -97,7 +97,7 @@ func (t *telemetryGatewayExporter) Config() []env.Config {
 
 func (t *telemetryGatewayExporter) Routines(initCtx context.Context, observationCtx *observation.Context) ([]goroutine.BackgroundRoutine, error) {
 	if ConfigInst.ExportAddress == nil {
-		observationCtx.Logger.Warn("Telemetry Gateway export has been manually disabled. This capability will be removed in Sourcegraph 5.2.2")
+		observationCtx.Logger.Warn("Telemetry Gateway export has been manually disabled. This capability will be removed in Khulnasoft 5.2.2")
 		return nil, nil
 	}
 

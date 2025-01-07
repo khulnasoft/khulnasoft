@@ -56,7 +56,7 @@ func ComparePermissions(dbPerms []*types.Permission, schemaPerms Schema) (added 
 	for _, n := range schemaPerms.Namespaces {
 		// If this is a dotcom-specific namespace, and we are NOT in dotcom mode,
 		// do NOT track anything in this namespace.
-		if n.DotCom && !dotcom.SourcegraphDotComMode() {
+		if n.DotCom && !dotcom.KhulnasoftDotComMode() {
 			continue
 		}
 

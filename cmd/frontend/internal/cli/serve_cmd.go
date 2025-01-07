@@ -53,7 +53,7 @@ import (
 )
 
 var (
-	printLogo = env.MustGetBool("LOGO", false, "print Sourcegraph logo upon startup")
+	printLogo = env.MustGetBool("LOGO", false, "print Khulnasoft logo upon startup")
 
 	httpAddr = env.Get("SRC_HTTP_ADDR", func() string {
 		if env.InsecureDev {
@@ -309,7 +309,7 @@ func Main(ctx context.Context, observationCtx *observation.Context, ready servic
 		// This is not a log entry and is usually disabled
 		println(fmt.Sprintf("\n\n%s\n\n", logoColor))
 	}
-	logger.Info(fmt.Sprintf("✱ Sourcegraph is ready at: %s", conf.ExternalURLParsed()))
+	logger.Info(fmt.Sprintf("✱ Khulnasoft is ready at: %s", conf.ExternalURLParsed()))
 	ready()
 
 	return goroutine.MonitorBackgroundRoutines(context.Background(), routines...)

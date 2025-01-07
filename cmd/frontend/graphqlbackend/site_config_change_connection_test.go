@@ -168,8 +168,8 @@ func setupSiteConfigStubs(t *testing.T) *siteConfigStubs {
 +++ ID: 2
 @@ -1,14 +1,4 @@
  {
--  // The externally accessible URL for Sourcegraph (i.e., what you type into your browser)
--  // This is required to be configured for Sourcegraph to work correctly.
+-  // The externally accessible URL for Khulnasoft (i.e., what you type into your browser)
+-  // This is required to be configured for Khulnasoft to work correctly.
 -  // "externalURL": "https://sourcegraph.example.com",
 -  // The authentication provider to use for identifying and signing in users.
 -  // Only one entry is supported.
@@ -177,7 +177,7 @@ func setupSiteConfigStubs(t *testing.T) *siteConfigStubs {
 -  // The builtin auth provider with signup disallowed (shown below) means that
 -  // after the initial site admin signs in, all other users must be invited.
 -  //
--  // Other providers are documented at https://sourcegraph.com/docs/admin/auth.
+-  // Other providers are documented at https://khulnasoft.com/docs/admin/auth.
    "auth.providers": [
      {
        "type": "builtin"
@@ -187,8 +187,8 @@ func setupSiteConfigStubs(t *testing.T) *siteConfigStubs {
 +++ ID: 1
 @@ -1 +1,17 @@
 +{
-+  // The externally accessible URL for Sourcegraph (i.e., what you type into your browser)
-+  // This is required to be configured for Sourcegraph to work correctly.
++  // The externally accessible URL for Khulnasoft (i.e., what you type into your browser)
++  // This is required to be configured for Khulnasoft to work correctly.
 +  // "externalURL": "https://sourcegraph.example.com",
 +  // The authentication provider to use for identifying and signing in users.
 +  // Only one entry is supported.
@@ -196,7 +196,7 @@ func setupSiteConfigStubs(t *testing.T) *siteConfigStubs {
 +  // The builtin auth provider with signup disallowed (shown below) means that
 +  // after the initial site admin signs in, all other users must be invited.
 +  //
-+  // Other providers are documented at https://sourcegraph.com/docs/admin/auth.
++  // Other providers are documented at https://khulnasoft.com/docs/admin/auth.
 +  "auth.providers": [
 +    {
 +      "type": "builtin"

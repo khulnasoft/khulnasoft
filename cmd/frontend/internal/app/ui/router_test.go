@@ -21,8 +21,8 @@ import (
 )
 
 func init() {
-	// Enable SourcegraphDotComMode for all tests in this package.
-	dotcom.MockSourcegraphDotComMode(fakeTB{}, true)
+	// Enable KhulnasoftDotComMode for all tests in this package.
+	dotcom.MockKhulnasoftDotComMode(fakeTB{}, true)
 }
 
 type fakeTB struct{}
@@ -126,7 +126,7 @@ func TestRouter(t *testing.T) {
 			wantVars:  map[string]string{"Repo": "r", "Rev": "@v", "Path": "/d/f"},
 		},
 
-		// sourcegraph.com redirects
+		// khulnasoft.com redirects
 		{
 			path:      "/about",
 			wantRoute: routeAboutSubdomain,
@@ -267,7 +267,7 @@ func TestRouter_RootPath(t *testing.T) {
 				if rec.Code != http.StatusTemporaryRedirect {
 					t.Fatalf("got code %v want %v", rec.Code, http.StatusTemporaryRedirect)
 				}
-				wantLoc := "https://sourcegraph.com/" + string(tst.repo)
+				wantLoc := "https://khulnasoft.com/" + string(tst.repo)
 				if got := rec.Header().Get("Location"); got != wantLoc {
 					t.Fatalf("got location %q want location %q", got, wantLoc)
 				}

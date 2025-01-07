@@ -359,8 +359,8 @@ Possible states for PreciseIndexes.
 This type would more accurately be called "CodeGraphIndexJobState"
 as it covers both precise and syntactic indexing.
 
-See https://sourcegraph.com/docs/code-search/code-navigation/auto_indexing#lifecycle-of-an-indexing-job
-and https://sourcegraph.com/docs/code-search/code-navigation/explanations/uploads#lifecycle-of-an-upload
+See https://khulnasoft.com/docs/code-search/code-navigation/auto_indexing#lifecycle-of-an-indexing-job
+and https://khulnasoft.com/docs/code-search/code-navigation/explanations/uploads#lifecycle-of-an-upload
 for details about state transitions.
 """
 enum PreciseIndexState {

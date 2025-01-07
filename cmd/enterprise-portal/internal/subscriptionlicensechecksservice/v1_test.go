@@ -163,7 +163,7 @@ func TestCheckLicenseKey(t *testing.T) {
 			"reason": "license has already been used by another instance",
 			"valid":  false,
 		}),
-		wantPostToSlack: autogold.Expect(&slack.Payload{Text: "Subscription \"subscription-display-name\"'s license <https://sourcegraph.com/site-admin/dotcom/product/subscriptions/subscription-id#license-id-with-detected-instance|license-id-with-detected-instance> failed a license check, as it seems to be used by multiple Sourcegraph instance IDs:\n\n- `known-instance-id`\n- `unknown-instance-id`\n\nThis could mean that the license key is attempting to be used on multiple Sourcegraph instances.\n\nTo fix it, <https://docs.google.com/document/d/1xzlkJd3HXGLzB67N7o-9T1s1YXhc1LeGDdJyKDyqfbI/edit#heading=h.mr6npkexi05j|follow the guide to update the siteID and license key for all customer instances>."}),
+		wantPostToSlack: autogold.Expect(&slack.Payload{Text: "Subscription \"subscription-display-name\"'s license <https://khulnasoft.com/site-admin/dotcom/product/subscriptions/subscription-id#license-id-with-detected-instance|license-id-with-detected-instance> failed a license check, as it seems to be used by multiple Khulnasoft instance IDs:\n\n- `known-instance-id`\n- `unknown-instance-id`\n\nThis could mean that the license key is attempting to be used on multiple Khulnasoft instances.\n\nTo fix it, <https://docs.google.com/document/d/1xzlkJd3HXGLzB67N7o-9T1s1YXhc1LeGDdJyKDyqfbI/edit#heading=h.mr6npkexi05j|follow the guide to update the siteID and license key for all customer instances>."}),
 	}, {
 		name: "instance usage assigned",
 		req: &subscriptionlicensechecksv1.CheckLicenseKeyRequest{

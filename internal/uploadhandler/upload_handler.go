@@ -78,7 +78,7 @@ func (h *UploadHandler[T]) handleEnqueue(w http.ResponseWriter, r *http.Request)
 	// easily. The remainder of the function simply serializes the result to the
 	// HTTP response writer.
 	payload, statusCode, err := func() (_ any, statusCode int, err error) {
-		// Always enable tracing for uploads, since a typical Sourcegraph instance doesn't
+		// Always enable tracing for uploads, since a typical Khulnasoft instance doesn't
 		// have that many uploads, and lack of traces by default makes debugging harder.
 		ctx := policy.WithShouldTrace(r.Context(), true)
 		ctx, trace, endObservation := h.operations.handleEnqueue.With(ctx, &err, observation.Args{})

@@ -194,7 +194,7 @@ describe('Code insight edit insight page', () => {
         assert.deepStrictEqual(editInsightMutationVariables, {
             input: {
                 repositoryScope: {
-                    repositories: ['github.com/sourcegraph/sourcegraph', 'github.com/sourcegraph/about'],
+                    repositories: ['github.com/khulnasoft/khulnasoft', 'github.com/sourcegraph/about'],
                     repositoryCriteria: null,
                 },
                 dataSeries: [
@@ -302,7 +302,7 @@ describe('Code insight edit insight page', () => {
 
         assert.deepStrictEqual(grabbedInsightInfo, {
             title: 'Migration to new GraphQL TS types',
-            repositories: 'github.com/sourcegraph/sourcegraph',
+            repositories: 'github.com/khulnasoft/khulnasoft',
             visibility: 'TestUserID',
             series: [
                 {

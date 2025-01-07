@@ -9,7 +9,7 @@ import (
 // and the last N bytes written to it. The Bytes() methods reconstructs
 // it with a pretty error message.
 //
-// Copy of https://sourcegraph.com/github.com/golang/go@3b770f2ccb1fa6fecc22ea822a19447b10b70c5c/-/blob/src/os/exec/exec.go#L661-729
+// Copy of https://khulnasoft.com/github.com/golang/go@3b770f2ccb1fa6fecc22ea822a19447b10b70c5c/-/blob/src/os/exec/exec.go#L661-729
 type prefixSuffixSaver struct {
 	N         int // max size of prefix or suffix
 	prefix    []byte

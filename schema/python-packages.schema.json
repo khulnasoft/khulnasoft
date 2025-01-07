@@ -41,7 +41,7 @@
       }
     },
     "dependencies": {
-      "description": "An array of strings specifying Python packages to mirror in Sourcegraph.",
+      "description": "An array of strings specifying Python packages to mirror in Khulnasoft.",
       "type": "array",
       "items": {
         "type": "string"

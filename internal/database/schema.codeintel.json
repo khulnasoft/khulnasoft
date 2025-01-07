@@ -398,7 +398,7 @@
     },
     {
       "Name": "codeintel_scip_documents",
-      "Comment": "A lookup of SCIP [Document](https://sourcegraph.com/search?q=context:%40sourcegraph/all+repo:%5Egithub%5C.com/sourcegraph/scip%24+file:%5Escip%5C.proto+message+Document\u0026patternType=standard) payloads by their hash.",
+      "Comment": "A lookup of SCIP [Document](https://khulnasoft.com/search?q=context:%40sourcegraph/all+repo:%5Egithub%5C.com/sourcegraph/scip%24+file:%5Escip%5C.proto+message+Document\u0026patternType=standard) payloads by their hash.",
       "Columns": [
         {
           "Name": "id",
@@ -437,7 +437,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "The raw, canonicalized SCIP [Document](https://sourcegraph.com/search?q=context:%40sourcegraph/all+repo:%5Egithub%5C.com/sourcegraph/scip%24+file:%5Escip%5C.proto+message+Document\u0026patternType=standard) payload."
+          "Comment": "The raw, canonicalized SCIP [Document](https://khulnasoft.com/search?q=context:%40sourcegraph/all+repo:%5Egithub%5C.com/sourcegraph/scip%24+file:%5Escip%5C.proto+message+Document\u0026patternType=standard) payload."
         },
         {
           "Name": "schema_version",
@@ -846,7 +846,7 @@
     },
     {
       "Name": "codeintel_scip_symbols",
-      "Comment": "A mapping from SCIP [Symbol names](https://sourcegraph.com/search?q=context:%40sourcegraph/all+repo:%5Egithub%5C.com/sourcegraph/scip%24+file:%5Escip%5C.proto+message+Symbol\u0026patternType=standard) to path and ranges where that symbol occurs within a particular SCIP index.",
+      "Comment": "A mapping from SCIP [Symbol names](https://khulnasoft.com/search?q=context:%40sourcegraph/all+repo:%5Egithub%5C.com/sourcegraph/scip%24+file:%5Escip%5C.proto+message+Symbol\u0026patternType=standard) to path and ranges where that symbol occurs within a particular SCIP index.",
       "Columns": [
         {
           "Name": "definition_ranges",

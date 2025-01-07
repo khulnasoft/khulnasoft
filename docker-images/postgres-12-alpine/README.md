@@ -1,6 +1,6 @@
 # Postgres-12 Alpine
 
-This image provides a Postresql server for the _main_ database for Sourcegraph.
+This image provides a Postresql server for the _main_ database for Khulnasoft.
 
 ## Building and testing
 

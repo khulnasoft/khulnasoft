@@ -124,7 +124,7 @@ func isAuthorized(cfg config, req *http.Request) error {
 }
 
 func renderUnAuthorizedErrorMessage(ip net.IP, tmpl *template.Template) error {
-	msg := fmt.Sprintf("You are not allowed to access this Sourcegraph instance: %q", ip.String())
+	msg := fmt.Sprintf("You are not allowed to access this Khulnasoft instance: %q", ip.String())
 	if tmpl == nil {
 		return errors.New(msg)
 	}

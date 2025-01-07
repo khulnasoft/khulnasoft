@@ -9,7 +9,7 @@ import (
 const UnimplementedDiscoverySource = "External Service type does not support discovery of repositories and namespaces."
 
 // A DiscoverableSource yields metadata for remote entities (e.g. repositories, namespaces) on a readable external service
-// that Sourcegraph may or may not have setup for mirror/sync operations
+// that Khulnasoft may or may not have setup for mirror/sync operations
 type DiscoverableSource interface {
 	// ListNamespaces returns the namespaces available on the source.
 	// Namespaces are used to organize which members and users can access repositories

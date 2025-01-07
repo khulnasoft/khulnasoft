@@ -14,8 +14,8 @@ import (
 )
 
 const (
-	envToken    = "SOURCEGRAPH_TOKEN"
-	envEndpoint = "SOURCEGRAPH_ENDPOINT"
+	envToken    = "KHULNASOFT_TOKEN"
+	envEndpoint = "KHULNASOFT_ENDPOINT"
 )
 
 type client struct {
@@ -105,7 +105,7 @@ func (s *client) doGraphQL(ctx context.Context, greq graphQLRequest) (*metrics, 
 	}
 
 	req.Header.Set("Authorization", "token "+s.token)
-	req.Header.Set("X-Sourcegraph-Should-Trace", "true")
+	req.Header.Set("X-Khulnasoft-Should-Trace", "true")
 	req.Header.Set("User-Agent", fmt.Sprintf("SearchBlitz (%s)", greq.QueryName))
 
 	start := time.Now()

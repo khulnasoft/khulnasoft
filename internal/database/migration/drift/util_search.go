@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-// makeSearchURL returns a URL to a sourcegraph.com search query within the squashed
+// makeSearchURL returns a URL to a khulnasoft.com search query within the squashed
 // definition of the given schema.
 func makeSearchURL(schemaName, version string, searchTerms ...string) string {
 	terms := make([]string, 0, len(searchTerms))
@@ -25,7 +25,7 @@ func makeSearchURL(schemaName, version string, searchTerms ...string) string {
 	qs.Add("patternType", "regexp")
 	qs.Add("q", strings.Join(queryParts, " "))
 
-	searchUrl, _ := url.Parse("https://sourcegraph.com/search")
+	searchUrl, _ := url.Parse("https://khulnasoft.com/search")
 	searchUrl.RawQuery = qs.Encode()
 	return searchUrl.String()
 }

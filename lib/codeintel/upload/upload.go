@@ -13,7 +13,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/output"
 )
 
-// UploadIndex uploads the index file described by the given options to a Sourcegraph
+// UploadIndex uploads the index file described by the given options to a Khulnasoft
 // instance. If the upload file is large, it may be split into multiple segments and
 // uploaded over multiple requests. The identifier of the upload is returned after a
 // successful upload.
@@ -71,7 +71,7 @@ func UploadIndex(ctx context.Context, filename string, httpClient Client, opts U
 	return uploadMultipartIndex(ctx, httpClient, opts, compressedReader, compressedSize, originalSize)
 }
 
-// uploadIndex uploads the index file described by the given options to a Sourcegraph
+// uploadIndex uploads the index file described by the given options to a Khulnasoft
 // instance via a single HTTP POST request. The identifier of the upload is returned
 // after a successful upload.
 func uploadIndex(ctx context.Context, httpClient Client, opts UploadOptions, r io.ReaderAt, readerLen, uncompressedSize int64) (id int, err error) {
@@ -103,7 +103,7 @@ func uploadIndex(ctx context.Context, httpClient Client, opts UploadOptions, r i
 }
 
 // uploadIndexFile uploads the contents available via the given reader to a
-// Sourcegraph instance with the given request options.i
+// Khulnasoft instance with the given request options.i
 func uploadIndexFile(ctx context.Context, httpClient Client, uploadOptions UploadOptions, reader io.ReadSeeker, readerLen int64, requestOptions uploadRequestOptions, progress output.Progress, retry onRetryLogFn, barIndex int, numParts int) error {
 	retrier := makeRetry(uploadOptions.MaxRetries, uploadOptions.RetryInterval)
 
@@ -138,7 +138,7 @@ func uploadIndexFile(ctx context.Context, httpClient Client, uploadOptions Uploa
 }
 
 // uploadMultipartIndex uploads the index file described by the given options to a
-// Sourcegraph instance over multiple HTTP POST requests. The identifier of the upload
+// Khulnasoft instance over multiple HTTP POST requests. The identifier of the upload
 // is returned after a successful upload.
 func uploadMultipartIndex(ctx context.Context, httpClient Client, opts UploadOptions, r io.ReaderAt, readerLen, uncompressedSize int64) (_ int, err error) {
 	// Create a slice of section readers for upload part retries.
@@ -196,7 +196,7 @@ func uploadMultipartIndexInit(ctx context.Context, httpClient Client, opts Uploa
 }
 
 // uploadMultipartIndexParts uploads the contents available via each of the given reader(s)
-// to a Sourcegraph instance as part of the same multipart upload as indiciated
+// to a Khulnasoft instance as part of the same multipart upload as indiciated
 // by the given identifier.
 func uploadMultipartIndexParts(ctx context.Context, httpClient Client, opts UploadOptions, readers []io.ReadSeeker, id int, readerLen int64) (err error) {
 	var bars []output.ProgressBar

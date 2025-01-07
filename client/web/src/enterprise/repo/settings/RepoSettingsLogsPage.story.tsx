@@ -31,7 +31,7 @@ const REPOSITORY_RECORDED_COMMANDS_MOCK: MockedResponse<
     request: {
         query: getDocumentNode(REPOSITORY_RECORDED_COMMANDS_QUERY),
         variables: {
-            id: 'github.com/sourcegraph/sourcegraph',
+            id: 'github.com/khulnasoft/khulnasoft',
             limit: 40,
             offset: 0,
         },
@@ -50,21 +50,21 @@ const REPOSITORY_RECORDED_COMMANDS_MOCK: MockedResponse<
                         {
                             __typename: 'RecordedCommand',
                             command: 'git rev-parse HEAD',
-                            dir: '/data/repos/sourcegraph/sourcegraph',
+                            dir: '/data/repos/khulnasoft/khulnasoft',
                             duration: 1200,
                             isSuccess: true,
                             output: '0123456789abcdef',
-                            path: '/data/repos/sourcegraph/sourcegraph/.git/HEAD',
+                            path: '/data/repos/khulnasoft/khulnasoft/.git/HEAD',
                             start: '2021-05-03T18:30:00Z',
                         },
                         {
                             __typename: 'RecordedCommand',
                             command: 'git symbolic-ref HEAD',
-                            dir: '/data/repos/sourcegraph/sourcegraph',
+                            dir: '/data/repos/khulnasoft/khulnasoft',
                             duration: 1200,
                             isSuccess: false,
                             output: 'refs/heads/main',
-                            path: '/data/repos/sourcegraph/sourcegraph/.git/HEAD',
+                            path: '/data/repos/khulnasoft/khulnasoft/.git/HEAD',
                             start: '2021-05-03T18:30:00Z',
                         },
                     ],
@@ -81,7 +81,7 @@ const REPOSITORY_RECORDED_COMMANDS_DISABLED_MOCK: MockedResponse<
     request: {
         query: getDocumentNode(REPOSITORY_RECORDED_COMMANDS_QUERY),
         variables: {
-            id: 'github.com/sourcegraph/sourcegraph',
+            id: 'github.com/khulnasoft/khulnasoft',
             limit: 40,
             offset: 0,
         },
@@ -105,11 +105,11 @@ const REPOSITORY_RECORDED_COMMANDS_DISABLED_MOCK: MockedResponse<
 
 const repo: SettingsAreaRepositoryFields = {
     externalServices: { __typename: 'ExternalServiceConnection', nodes: [] },
-    id: 'github.com/sourcegraph/sourcegraph',
+    id: 'github.com/khulnasoft/khulnasoft',
     name: 'sourcegraph/sourcegraph',
     isPrivate: false,
     metadata: [],
-    url: 'github.com/sourcegraph/sourcegraph',
+    url: 'github.com/khulnasoft/khulnasoft',
     mirrorInfo: {
         __typename: 'MirrorRepositoryInfo',
         cloneInProgress: true,
@@ -119,7 +119,7 @@ const repo: SettingsAreaRepositoryFields = {
         isCorrupted: false,
         lastError: null,
         lastSyncOutput: null,
-        remoteURL: 'https://github.com/sourcegraph/sourcegraph',
+        remoteURL: 'https://github.com/khulnasoft/khulnasoft',
         shard: 'gitserver-1',
         updatedAt: '2021-01-19T13:45:59Z',
         updateSchedule: {

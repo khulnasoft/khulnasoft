@@ -6,7 +6,7 @@
             // Create extension host worker
             let assetsUrl = new URL('/.assets/extension/', window.location.origin).href
             try {
-                assetsUrl = window.parent.SOURCEGRAPH_ASSETS_URL
+                assetsUrl = window.parent.KHULNASOFT_ASSETS_URL
             } catch (e) {
                 // Catch SecurityErrors caused by accessing cross-origin iframes
                 // when the assets are not self-hosted by a code host.

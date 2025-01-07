@@ -64,7 +64,7 @@ describe('Code insight create insight page', () => {
                 CheckRepositoryExists: () => ({
                     repository: {
                         __typename: 'Repository',
-                        name: 'github.com/sourcegraph/sourcegraph',
+                        name: 'github.com/khulnasoft/khulnasoft',
                     },
                 }),
 
@@ -91,7 +91,7 @@ describe('Code insight create insight page', () => {
         await driver.page.waitForSelector('[data-testid="code-stats-insight-creation-page-content"]')
 
         // Add new repo to repositories field
-        await driver.page.type('[name="repository"]', 'github.com/sourcegraph/sourcegraph')
+        await driver.page.type('[name="repository"]', 'github.com/khulnasoft/khulnasoft')
         // Wait until async validation on repository field will be finished
         await delay(1000)
 
@@ -113,7 +113,7 @@ describe('Code insight create insight page', () => {
         assert.deepStrictEqual(addToUserConfigRequest.input, {
             query: '',
             repositoryScope: {
-                repositories: ['github.com/sourcegraph/sourcegraph'],
+                repositories: ['github.com/khulnasoft/khulnasoft'],
             },
             presentationOptions: {
                 title: 'Test insight title',
@@ -137,7 +137,7 @@ describe('Code insight create insight page', () => {
                 CheckRepositoryExists: () => ({
                     repository: {
                         __typename: 'Repository',
-                        name: 'github.com/sourcegraph/sourcegraph',
+                        name: 'github.com/khulnasoft/khulnasoft',
                     },
                 }),
 
@@ -165,7 +165,7 @@ describe('Code insight create insight page', () => {
                             dashboards: { nodes: [] },
 
                             repositoryDefinition: {
-                                repositories: ['github.com/sourcegraph/sourcegraph'],
+                                repositories: ['github.com/khulnasoft/khulnasoft'],
                                 __typename: 'InsightRepositoryScope',
                             },
 
@@ -237,7 +237,7 @@ describe('Code insight create insight page', () => {
         await driver.page.waitForSelector('[data-testid="search-insight-create-page-content"]')
 
         // Add new repo to repositories field
-        await driver.page.type('[name="repositories"]', 'github.com/sourcegraph/sourcegraph')
+        await driver.page.type('[name="repositories"]', 'github.com/khulnasoft/khulnasoft')
 
         // Change insight title
         await driver.page.type('input[name="title"]', 'Test insight title')
@@ -291,7 +291,7 @@ describe('Code insight create insight page', () => {
                         lineColor: 'var(--oc-cyan-7)',
                     },
                     repositoryScope: {
-                        repositories: ['github.com/sourcegraph/sourcegraph'],
+                        repositories: ['github.com/khulnasoft/khulnasoft'],
                     },
                     timeScope: {
                         stepInterval: {
@@ -307,7 +307,7 @@ describe('Code insight create insight page', () => {
                         lineColor: 'var(--oc-grape-7)',
                     },
                     repositoryScope: {
-                        repositories: ['github.com/sourcegraph/sourcegraph'],
+                        repositories: ['github.com/khulnasoft/khulnasoft'],
                     },
                     timeScope: {
                         stepInterval: {

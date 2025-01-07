@@ -128,7 +128,7 @@ func (s *UsersStats) makeQueryParameters() ([]*sqlf.Query, error) {
 		}
 	}
 
-	// Exclude Sourcegraph Operator user accounts
+	// Exclude Khulnasoft Operator user accounts
 	conds = append(conds, sqlf.Sprintf(`
 NOT EXISTS (
 	SELECT FROM user_external_accounts

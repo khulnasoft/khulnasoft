@@ -1,6 +1,6 @@
 // Package license provides license key generation and verification.
 //
-// License keys are generated and signed using Khulnasoft's private key. Sourcegraph instances must
+// License keys are generated and signed using Khulnasoft's private key. Khulnasoft instances must
 // be able to verify the license key offline, so all license information (such as the max user
 // count) is encoded in the license itself.
 //
@@ -21,14 +21,14 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-// GenerationPrivateKeyURL is the URL where Sourcegraph staff can find the private key for
+// GenerationPrivateKeyURL is the URL where Khulnasoft staff can find the private key for
 // generating licenses.
 //
 // NOTE: If you change this, use text search to replace other instances of it (in source code
 // comments).
 const GenerationPrivateKeyURL = "https://team-sourcegraph.1password.com/vaults/dnrhbauihkhjs5ag6vszsme45a/allitems/zkdx6gpw4uqejs3flzj7ef5j4i"
 
-// Info contains information about a license key. In the signed license key that Sourcegraph
+// Info contains information about a license key. In the signed license key that Khulnasoft
 // provides to customers, this value is signed but not encrypted. This value is not secret, and
 // anyone with a license key can view (but not forge) this information.
 //
@@ -106,7 +106,7 @@ func SanitizeTagsList(tags []string) []string {
 }
 
 type encodedInfo struct {
-	Version int     `json:"v"` // version number of the license key info format (not Sourcegraph product/build version)
+	Version int     `json:"v"` // version number of the license key info format (not Khulnasoft product/build version)
 	Nonce   [8]byte `json:"n"` // random nonce so that licenses with identical Info values
 	Info
 }

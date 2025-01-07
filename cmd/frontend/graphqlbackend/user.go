@@ -46,8 +46,8 @@ func (r *schemaResolver) User(
 
 	case args.Email != nil:
 		// 🚨 SECURITY: Only site admins are allowed to look up by email address on
-		// Sourcegraph.com, for user privacy reasons.
-		if dotcom.SourcegraphDotComMode() {
+		// Khulnasoft.com, for user privacy reasons.
+		if dotcom.KhulnasoftDotComMode() {
 			if err := auth.CheckCurrentUserIsSiteAdmin(ctx, r.db); err != nil {
 				return nil, err
 			}
@@ -220,8 +220,8 @@ func (r *UserResolver) fetchCodySubscription(ctx context.Context) (*cody.UserSub
 }
 
 func (r *UserResolver) CodySubscription(ctx context.Context) (*CodySubscriptionResolver, error) {
-	if !dotcom.SourcegraphDotComMode() {
-		return nil, errors.New("this feature is only available on sourcegraph.com")
+	if !dotcom.KhulnasoftDotComMode() {
+		return nil, errors.New("this feature is only available on khulnasoft.com")
 	}
 
 	subscription, err := r.fetchCodySubscription(ctx)
@@ -237,8 +237,8 @@ func (r *UserResolver) CreatedAt() gqlutil.DateTime {
 }
 
 func (r *UserResolver) CodyProEnabled(ctx context.Context) (bool, error) {
-	if !dotcom.SourcegraphDotComMode() {
-		return false, errors.New("this feature is only available on sourcegraph.com")
+	if !dotcom.KhulnasoftDotComMode() {
+		return false, errors.New("this feature is only available on khulnasoft.com")
 	}
 
 	subscription, err := r.fetchCodySubscription(ctx)
@@ -250,8 +250,8 @@ func (r *UserResolver) CodyProEnabled(ctx context.Context) (bool, error) {
 }
 
 func (r *UserResolver) CodyCurrentPeriodChatLimit(ctx context.Context) (int32, error) {
-	if !dotcom.SourcegraphDotComMode() {
-		return 0, errors.New("this feature is only available on sourcegraph.com")
+	if !dotcom.KhulnasoftDotComMode() {
+		return 0, errors.New("this feature is only available on khulnasoft.com")
 	}
 
 	subscription, err := r.fetchCodySubscription(ctx)
@@ -271,8 +271,8 @@ func (r *UserResolver) CodyCurrentPeriodChatLimit(ctx context.Context) (int32, e
 }
 
 func (r *UserResolver) CodyCurrentPeriodCodeLimit(ctx context.Context) (int32, error) {
-	if !dotcom.SourcegraphDotComMode() {
-		return 0, errors.New("this feature is only available on sourcegraph.com")
+	if !dotcom.KhulnasoftDotComMode() {
+		return 0, errors.New("this feature is only available on khulnasoft.com")
 	}
 
 	// TODO(sqs): This is not enforced anymore as the intent is to give free unlimited autocomplete.
@@ -294,8 +294,8 @@ func (r *UserResolver) CodyCurrentPeriodCodeLimit(ctx context.Context) (int32, e
 }
 
 func (r *UserResolver) CodyCurrentPeriodChatUsage(ctx context.Context) (int32, error) {
-	if !dotcom.SourcegraphDotComMode() {
-		return 0, errors.New("this feature is only available on sourcegraph.com")
+	if !dotcom.KhulnasoftDotComMode() {
+		return 0, errors.New("this feature is only available on khulnasoft.com")
 	}
 
 	subscription, err := r.fetchCodySubscription(ctx)
@@ -344,8 +344,8 @@ func (r *UserResolver) CodyCurrentPeriodChatUsage(ctx context.Context) (int32, e
 }
 
 func (r *UserResolver) CodyCurrentPeriodCodeUsage(ctx context.Context) (int32, error) {
-	if !dotcom.SourcegraphDotComMode() {
-		return 0, errors.New("this feature is only available on sourcegraph.com")
+	if !dotcom.KhulnasoftDotComMode() {
+		return 0, errors.New("this feature is only available on khulnasoft.com")
 	}
 
 	subscription, err := r.fetchCodySubscription(ctx)
@@ -503,8 +503,8 @@ type changeCodyPlanArgs struct {
 }
 
 func (r *schemaResolver) ChangeCodyPlan(ctx context.Context, args *changeCodyPlanArgs) (*UserResolver, error) {
-	if !dotcom.SourcegraphDotComMode() {
-		return nil, errors.New("this feature is only available on sourcegraph.com")
+	if !dotcom.KhulnasoftDotComMode() {
+		return nil, errors.New("this feature is only available on khulnasoft.com")
 	}
 
 	userID, err := UnmarshalUserID(args.User)
@@ -765,7 +765,7 @@ func (r *UserResolver) BatchChangesCodeHosts(ctx context.Context, args *ListBatc
 
 func (r *UserResolver) Roles(ctx context.Context, args *ListRoleArgs) (*gqlutil.ConnectionResolver[RoleResolver], error) {
 	// 🚨 SECURITY: In dotcom mode, only allow site admins to check roles.
-	if dotcom.SourcegraphDotComMode() && auth.CheckCurrentUserIsSiteAdmin(ctx, r.db) != nil {
+	if dotcom.KhulnasoftDotComMode() && auth.CheckCurrentUserIsSiteAdmin(ctx, r.db) != nil {
 		return nil, errors.New("unauthorized")
 	}
 	userID := r.user.ID

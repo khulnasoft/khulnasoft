@@ -34,7 +34,7 @@ type RedisConnSpecs struct {
 	Store string `json:"store,omitempty"`
 }
 
-func (r *Reconciler) getDBSecrets(ctx context.Context, sg *config.Sourcegraph) (DBConnSpecs, error) {
+func (r *Reconciler) getDBSecrets(ctx context.Context, sg *config.Khulnasoft) (DBConnSpecs, error) {
 	dbConnSpec, err := r.getDBSecret(ctx, sg, pgsqlSecretName)
 	if err != nil {
 		return DBConnSpecs{}, err
@@ -54,7 +54,7 @@ func (r *Reconciler) getDBSecrets(ctx context.Context, sg *config.Sourcegraph) (
 	}, nil
 }
 
-func (r *Reconciler) getRedisSecrets(ctx context.Context, sg *config.Sourcegraph) (RedisConnSpecs, error) {
+func (r *Reconciler) getRedisSecrets(ctx context.Context, sg *config.Khulnasoft) (RedisConnSpecs, error) {
 	redisCacheEndpoint, err := r.getRedisSecret(ctx, sg, redisCacheSecretName)
 	if err != nil {
 		return RedisConnSpecs{}, err
@@ -69,7 +69,7 @@ func (r *Reconciler) getRedisSecrets(ctx context.Context, sg *config.Sourcegraph
 	}, nil
 }
 
-func (r *Reconciler) getDBSecret(ctx context.Context, sg *config.Sourcegraph, secretName string) (*config.DatabaseConnectionSpec, error) {
+func (r *Reconciler) getDBSecret(ctx context.Context, sg *config.Khulnasoft, secretName string) (*config.DatabaseConnectionSpec, error) {
 	dbSecret, err := r.getSecret(ctx, sg, secretName)
 	if err != nil {
 		return nil, err
@@ -84,7 +84,7 @@ func (r *Reconciler) getDBSecret(ctx context.Context, sg *config.Sourcegraph, se
 	}, nil
 }
 
-func (r *Reconciler) getRedisSecret(ctx context.Context, sg *config.Sourcegraph, secretName string) (string, error) {
+func (r *Reconciler) getRedisSecret(ctx context.Context, sg *config.Khulnasoft, secretName string) (string, error) {
 	redisSecret, err := r.getSecret(ctx, sg, secretName)
 	if err != nil {
 		return "", err
@@ -93,7 +93,7 @@ func (r *Reconciler) getRedisSecret(ctx context.Context, sg *config.Sourcegraph,
 	return string(redisSecret.Data["endpoint"]), nil
 }
 
-func (r *Reconciler) getSecret(ctx context.Context, sg *config.Sourcegraph, secretName string) (*corev1.Secret, error) {
+func (r *Reconciler) getSecret(ctx context.Context, sg *config.Khulnasoft, secretName string) (*corev1.Secret, error) {
 	var secret corev1.Secret
 	secretNsName := types.NamespacedName{Name: secretName, Namespace: sg.Namespace}
 	if err := r.Client.Get(ctx, secretNsName, &secret); err != nil {

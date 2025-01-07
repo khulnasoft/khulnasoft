@@ -1,5 +1,5 @@
-// Package srcprometheus defines an API to interact with Sourcegraph Prometheus, including
-// prom-wrapper. See https://docs-legacy.sourcegraph.com/dev/background-information/observability/prometheus
+// Package srcprometheus defines an API to interact with Khulnasoft Prometheus, including
+// prom-wrapper. See https://docs-legacy.khulnasoft.com/dev/background-information/observability/prometheus
 package srcprometheus
 
 import (
@@ -23,8 +23,8 @@ var ErrPrometheusUnavailable = errors.New("prometheus API is unavailable")
 // PrometheusURL is the configured Prometheus instance.
 var PrometheusURL = env.Get("PROMETHEUS_URL", "", "prometheus server URL")
 
-// Client provides the interface for interacting with Sourcegraph Prometheus, including
-// prom-wrapper. See https://docs-legacy.sourcegraph.com/dev/background-information/observability/prometheus
+// Client provides the interface for interacting with Khulnasoft Prometheus, including
+// prom-wrapper. See https://docs-legacy.khulnasoft.com/dev/background-information/observability/prometheus
 type Client interface {
 	GetAlertsStatus(ctx context.Context) (*AlertsStatus, error)
 	GetConfigStatus(ctx context.Context) (*ConfigStatus, error)
@@ -35,12 +35,12 @@ type client struct {
 	promURL url.URL
 }
 
-// NewClient provides a client for interacting with Sourcegraph Prometheus. It errors if
+// NewClient provides a client for interacting with Khulnasoft Prometheus. It errors if
 // the target Prometheus URL is invalid, or if no Prometheus URL is configured at all.
 // Users should check for the latter case by asserting against `ErrPrometheusUnavailable`
 // to avoid rendering an error.
 //
-// See https://docs-legacy.sourcegraph.com/dev/background-information/observability/prometheus
+// See https://docs-legacy.khulnasoft.com/dev/background-information/observability/prometheus
 func NewClient(prometheusURL string) (Client, error) {
 	if prometheusURL == "" {
 		return nil, ErrPrometheusUnavailable

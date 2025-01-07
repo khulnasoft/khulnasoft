@@ -327,8 +327,8 @@ func dependencyGcloud() *dependency {
 			check.Combine(
 				check.InPath("gcloud"),
 				check.FileExists("~/.config/gcloud/application_default_credentials.json"),
-				// User should have logged in with a sourcegraph.com account
-				check.CommandOutputContains("gcloud auth list", "@sourcegraph.com"),
+				// User should have logged in with a khulnasoft.com account
+				check.CommandOutputContains("gcloud auth list", "@khulnasoft.com"),
 			),
 		),
 		Fix: func(ctx context.Context, cio check.IO, args CheckArgs) error {

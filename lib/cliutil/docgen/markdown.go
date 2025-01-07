@@ -13,7 +13,7 @@ import (
 
 // Markdown renders a Markdown reference for the app.
 //
-// It is adapted from https://sourcegraph.com/github.com/urfave/cli@v2.4.0/-/blob/docs.go?L16
+// It is adapted from https://khulnasoft.com/github.com/urfave/cli@v2.4.0/-/blob/docs.go?L16
 func Markdown(app *cli.App) (string, error) {
 	var w bytes.Buffer
 	if err := writeDocTemplate(app, &w); err != nil {

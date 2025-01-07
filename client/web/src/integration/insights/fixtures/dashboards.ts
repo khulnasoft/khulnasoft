@@ -166,7 +166,7 @@ export const SEARCH_BASED_INSIGHT: InsightViewNode = {
     repositoryDefinition: {
         __typename: 'InsightRepositoryScope',
         repositories: [
-            'github.com/sourcegraph/sourcegraph',
+            'github.com/khulnasoft/khulnasoft',
             'github.com/sourcegraph/deploy-sourcegraph-managed',
             'github.com/sourcegraph/infrastructure',
             'github.com/sourcegraph/deploy-sourcegraph-cloud',

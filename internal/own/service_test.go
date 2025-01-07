@@ -186,7 +186,7 @@ func TestAssignedOwners(t *testing.T) {
 	var repoID api.RepoID = 1
 	require.NoError(t, db.Repos().Create(ctx, &itypes.Repo{
 		ID:   repoID,
-		Name: "github.com/sourcegraph/sourcegraph",
+		Name: "github.com/khulnasoft/khulnasoft",
 	}))
 
 	store := db.AssignedOwners()
@@ -362,7 +362,7 @@ func TestAssignedTeams(t *testing.T) {
 	var repoID api.RepoID = 1
 	require.NoError(t, db.Repos().Create(ctx, &itypes.Repo{
 		ID:   repoID,
-		Name: "github.com/sourcegraph/sourcegraph",
+		Name: "github.com/khulnasoft/khulnasoft",
 	}))
 
 	store := db.AssignedTeams()

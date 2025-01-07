@@ -1020,7 +1020,7 @@ index 671e50a..851b23a 100644
 @@ -1,2 +1,2 @@
  # README
 -This file is hosted at example.com and is a test file.
-+This file is hosted at sourcegraph.com and is a test file.
++This file is hosted at khulnasoft.com and is a test file.
 diff --git urls.txt urls.txt
 index 6f8b5d9..17400bc 100644
 --- urls.txt
@@ -1028,7 +1028,7 @@ index 6f8b5d9..17400bc 100644
 @@ -1,3 +1,3 @@
  another-url.com
 -example.com
-+sourcegraph.com
++khulnasoft.com
  never-touch-the-mouse.com
 `)
 

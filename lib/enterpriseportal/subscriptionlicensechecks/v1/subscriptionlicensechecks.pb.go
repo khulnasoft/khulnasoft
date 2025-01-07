@@ -27,11 +27,11 @@ type CheckLicenseKeyRequest struct {
 
 	// The signed license key to validate. For backwards compatibility, this
 	// currently also accepts a token of the format 'slk_$hex($sha256(licenseKey))',
-	// but this is deprecated and will be removed in Sourcegraph 5.8 onwards.
+	// but this is deprecated and will be removed in Khulnasoft 5.8 onwards.
 	//
 	// Required.
 	LicenseKey string `protobuf:"bytes,1,opt,name=license_key,json=licenseKey,proto3" json:"license_key,omitempty"`
-	// Self-reported Sourcegraph instance identifier (also known as 'site ID').
+	// Self-reported Khulnasoft instance identifier (also known as 'site ID').
 	//
 	// Required.
 	InstanceId string `protobuf:"bytes,2,opt,name=instance_id,json=instanceId,proto3" json:"instance_id,omitempty"`

@@ -53,7 +53,7 @@ func NewContainer(name string, cfg config.StandardComponent, defaults config.Con
 }
 
 // NewDefaultLivenessProbe creates a default LivenessProbe that is commonly used
-// for Sourcegraph services.
+// for Khulnasoft services.
 func NewDefaultLivenessProbe(portName string) *corev1.Probe {
 	return &corev1.Probe{
 		ProbeHandler: corev1.ProbeHandler{
@@ -69,7 +69,7 @@ func NewDefaultLivenessProbe(portName string) *corev1.Probe {
 }
 
 // NewDefaultReadinessProbe creates a default LivenessProbe that is commonly used
-// for Sourcegraph services.
+// for Khulnasoft services.
 func NewDefaultReadinessProbe(portName string) *corev1.Probe {
 	return &corev1.Probe{
 		ProbeHandler: corev1.ProbeHandler{

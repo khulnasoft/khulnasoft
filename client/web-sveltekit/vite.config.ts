@@ -50,7 +50,7 @@ export default defineConfig(({ mode }) => {
             // It also extracts the JS context object from the origin server and injects it into the local HTML page.
             !DISABLE_PROXY &&
                 sgProxy({
-                    target: process.env.SOURCEGRAPH_API_URL || 'https://sourcegraph.sourcegraph.com',
+                    target: process.env.KHULNASOFT_API_URL || 'https://sourcegraph.khulnasoft.com',
                 }),
         ],
         build: {
@@ -63,7 +63,7 @@ export default defineConfig(({ mode }) => {
                       'process.platform': '"browser"',
                       'process.env.VITEST': 'null',
                       'process.env.NODE_ENV': `"${mode}"`,
-                      'process.env.SOURCEGRAPH_API_URL': JSON.stringify(process.env.SOURCEGRAPH_API_URL),
+                      'process.env.KHULNASOFT_API_URL': JSON.stringify(process.env.KHULNASOFT_API_URL),
                       'process.env': '{}',
                   },
         css: {

@@ -108,7 +108,7 @@ func assertGitHubRepoPermissions(t *testing.T, ctx context.Context, repoID api.R
 // for GITHUB_TOKEN, which can be found in 1Password.
 //
 // We also recommend setting up a new token for "sourcegraph-vcr" using the auth scope
-// guidelines https://sourcegraph.com/docs/admin/code_hosts/github#github-api-access
+// guidelines https://khulnasoft.com/docs/admin/code_hosts/github#github-api-access
 // to ensure everything works, in case of new scopes being required.
 func TestIntegration_GitHubPermissions(t *testing.T) {
 	if testing.Short() {
@@ -151,7 +151,7 @@ func TestIntegration_GitHubPermissions(t *testing.T) {
 	}
 
 	newUser := database.NewUser{
-		Email:           "sourcegraph-vcr-bob@sourcegraph.com",
+		Email:           "sourcegraph-vcr-bob@khulnasoft.com",
 		Username:        "sourcegraph-vcr-bob",
 		EmailIsVerified: true,
 	}
@@ -404,7 +404,7 @@ func TestIntegration_GitHubInternalRepositories(t *testing.T) {
 	}
 
 	newUser := database.NewUser{
-		Email:           "sourcegraph-vcr@sourcegraph.com",
+		Email:           "sourcegraph-vcr@khulnasoft.com",
 		Username:        "sourcegraph-vcr",
 		EmailIsVerified: true,
 	}
@@ -453,7 +453,7 @@ func TestIntegration_GitLabPermissions(t *testing.T) {
 	}
 
 	newUser := database.NewUser{
-		Email:           "sourcegraph-vcr@sourcegraph.com",
+		Email:           "sourcegraph-vcr@khulnasoft.com",
 		Username:        "sourcegraph-vcr",
 		EmailIsVerified: true,
 	}
@@ -604,7 +604,7 @@ func TestIntegration_BitbucketServerPermissions(t *testing.T) {
 	}
 
 	newUser := database.NewUser{
-		Email:           "sourcegraph-vcr@sourcegraph.com",
+		Email:           "sourcegraph-vcr@khulnasoft.com",
 		Username:        "sourcegraph-vcr",
 		EmailIsVerified: true,
 	}
@@ -629,7 +629,7 @@ func TestIntegration_BitbucketServerPermissions(t *testing.T) {
 	}
 
 	authData := json.RawMessage(fmt.Sprintf(`{"access_token": "%s"}`, token))
-	accountData := json.RawMessage(`{"name":"pjlast","emailAddress":"petri.last@sourcegraph.com","id":603,"displayName":"Petri-Johan Last","active":true,"slug":"pjlast","type":"NORMAL"}`)
+	accountData := json.RawMessage(`{"name":"pjlast","emailAddress":"petri.last@khulnasoft.com","id":603,"displayName":"Petri-Johan Last","active":true,"slug":"pjlast","type":"NORMAL"}`)
 
 	t.Run("test bitbucket server oauth permissions", func(t *testing.T) {
 		name := t.Name()

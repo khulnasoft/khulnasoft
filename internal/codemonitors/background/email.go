@@ -41,7 +41,7 @@ var (
 )
 
 var newSearchResultsEmailTemplates = txemail.MustValidate(txtypes.Templates{
-	Subject: `{{ if .IsTest }}Test: {{ end }}{{.Priority}}Sourcegraph code monitor {{.Description}} detected {{.TotalCount}} new {{.ResultPluralized}}`,
+	Subject: `{{ if .IsTest }}Test: {{ end }}{{.Priority}}Khulnasoft code monitor {{.Description}} detected {{.TotalCount}} new {{.ResultPluralized}}`,
 	Text:    textTemplate,
 	HTML:    htmlTemplate,
 })

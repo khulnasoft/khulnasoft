@@ -2,7 +2,7 @@ package types
 
 import "time"
 
-// Executor describes an executor instance that has recently connected to Sourcegraph.
+// Executor describes an executor instance that has recently connected to Khulnasoft.
 type Executor struct {
 	ID              int
 	Hostname        string

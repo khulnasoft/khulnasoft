@@ -111,7 +111,7 @@ func (h *handler) Handle(ctx context.Context) (err error) {
 			if expireAt.After(weekAway) && expireAt.Before(weekAway.Add(24*time.Hour)) {
 				notifyCount.Add(1)
 				err = h.store.PostToSlack(ctx, &slack.Payload{
-					Text: fmt.Sprintf("The active license for subscription *%s* (Salesforce subscription: `%s`) <https://sourcegraph.com/site-admin/dotcom/product/subscriptions/%s?env=%s|will expire *in 7 days*>",
+					Text: fmt.Sprintf("The active license for subscription *%s* (Salesforce subscription: `%s`) <https://khulnasoft.com/site-admin/dotcom/product/subscriptions/%s?env=%s|will expire *in 7 days*>",
 						displayName, salesforceSusbcription, externalSubID, h.store.Env()),
 				})
 				if err != nil {
@@ -120,7 +120,7 @@ func (h *handler) Handle(ctx context.Context) (err error) {
 			} else if expireAt.After(dayAway) && expireAt.Before(dayAway.Add(24*time.Hour)) {
 				notifyCount.Add(1)
 				err = h.store.PostToSlack(ctx, &slack.Payload{
-					Text: fmt.Sprintf("The active license for subscription *%s* (Salesforce subscription: `%s`) <https://sourcegraph.com/site-admin/dotcom/product/subscriptions/%s?env=%s|will expire *in the next 24 hours*> :rotating_light:",
+					Text: fmt.Sprintf("The active license for subscription *%s* (Salesforce subscription: `%s`) <https://khulnasoft.com/site-admin/dotcom/product/subscriptions/%s?env=%s|will expire *in the next 24 hours*> :rotating_light:",
 						displayName, salesforceSusbcription, externalSubID, h.store.Env()),
 				})
 				if err != nil {

@@ -245,7 +245,7 @@ export const UserNavItem: FC<UserNavItemProps> = props => {
 
                             {isKhulnasoftDotCom && <MenuDivider className={styles.dropdownDivider} />}
                             {isKhulnasoftDotCom && (
-                                <MenuLink as={AnchorLink} to="https://sourcegraph.com" target="_blank" rel="noopener">
+                                <MenuLink as={AnchorLink} to="https://khulnasoft.com" target="_blank" rel="noopener">
                                     About Khulnasoft <Icon aria-hidden={true} svgPath={mdiOpenInNew} />
                                 </MenuLink>
                             )}

@@ -118,7 +118,7 @@ describe('Repository', () => {
                                                         person: {
                                                             avatarURL: '',
                                                             name: 'Khulnasoft Bot',
-                                                            email: 'batch-changes@sourcegraph.com',
+                                                            email: 'batch-changes@khulnasoft.com',
                                                             displayName: 'Khulnasoft Bot',
                                                             user: null,
                                                         },
@@ -129,7 +129,7 @@ describe('Repository', () => {
                                                         person: {
                                                             avatarURL: '',
                                                             name: 'Khulnasoft Bot',
-                                                            email: 'batch-changes@sourcegraph.com',
+                                                            email: 'batch-changes@khulnasoft.com',
                                                             displayName: 'Khulnasoft Bot',
                                                             user: null,
                                                         },
@@ -1141,7 +1141,7 @@ describe('Repository', () => {
                                                 person: {
                                                     avatarURL: null,
                                                     name: 'alice',
-                                                    email: 'alice@sourcegraph.com',
+                                                    email: 'alice@khulnasoft.com',
                                                     displayName: 'alice',
                                                     user: {
                                                         id: '1'.repeat(70),
@@ -1156,7 +1156,7 @@ describe('Repository', () => {
                                                 person: {
                                                     avatarURL: null,
                                                     name: 'alice',
-                                                    email: 'alice@sourcegraph.com',
+                                                    email: 'alice@khulnasoft.com',
                                                     displayName: 'alice',
                                                     user: {
                                                         id: '1'.repeat(70),

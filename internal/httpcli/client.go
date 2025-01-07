@@ -136,7 +136,7 @@ func NewExternalClientFactory(middleware ...Middleware) *Factory {
 func newExternalClientFactory(cache bool, testOpt bool, middleware ...Middleware) *Factory {
 	mw := []Middleware{
 		ContextErrorMiddleware,
-		HeadersMiddleware("User-Agent", "Sourcegraph-Bot"),
+		HeadersMiddleware("User-Agent", "Khulnasoft-Bot"),
 		redisLoggerMiddleware(),
 		externalRequestCountMetricsMiddleware,
 	}
@@ -434,7 +434,7 @@ func TestExternalTransportOpt(cli *http.Client) error {
 }
 
 // ExternalTransportOpt returns an Opt that ensures the http.Client.Transport
-// can contact non-Sourcegraph services. For example Admins can configure
+// can contact non-Khulnasoft services. For example Admins can configure
 // TLS/SSL settings. This adds filtering for external requests based on
 // predefined deny lists. Can be extended using the EXTERNAL_DENY_LIST
 // environment variable.
@@ -572,7 +572,7 @@ var metricRetry = promauto.NewCounter(prometheus.CounterOpts{
 
 var metricExternalRequestCount = promauto.NewCounterVec(prometheus.CounterOpts{
 	Name: "src_http_client_external_request_count",
-	Help: "Count of external HTTP requests made by the Sourcegraph HTTP client.",
+	Help: "Count of external HTTP requests made by the Khulnasoft HTTP client.",
 }, []string{"host", "method", "status_code"})
 
 func externalRequestCountMetricsMiddleware(next Doer) Doer {
@@ -627,7 +627,7 @@ func MaxRetries(n int) int {
 	return n
 }
 
-// NewRetryPolicy returns a retry policy based on some Sourcegraph defaults.
+// NewRetryPolicy returns a retry policy based on some Khulnasoft defaults.
 func NewRetryPolicy(max int, maxRetryAfterDuration time.Duration) rehttp.RetryFn {
 	// Indicates in trace whether or not this request was retried at some point
 	const retriedTraceAttributeKey = "httpcli.retried"

@@ -307,7 +307,7 @@ export const AccessRequestsPage: React.FunctionComponent<Props> = ({ telemetryRe
             {!hasRemainingSeats && (
                 <Alert variant="danger">
                     No licenses remaining. To approve requests,{' '}
-                    <Link to="https://sourcegraph.com/pricing" target="_blank" rel="noopener">
+                    <Link to="https://khulnasoft.com/pricing" target="_blank" rel="noopener">
                         purchase additional licenses
                     </Link>{' '}
                     or <Link to="/site-admin/users">remove inactive users</Link>.

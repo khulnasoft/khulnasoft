@@ -32,7 +32,7 @@ type UserCredential struct {
 	CreatedAt           time.Time
 	UpdatedAt           time.Time
 
-	// TODO(batch-change-credential-encryption): On or after Sourcegraph 3.30,
+	// TODO(batch-change-credential-encryption): On or after Khulnasoft 3.30,
 	// we should remove the credential and SSHMigrationApplied fields.
 	SSHMigrationApplied bool
 

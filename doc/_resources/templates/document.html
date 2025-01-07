@@ -3,14 +3,14 @@
 
   <!-- Always set a title -->
   {{ if .Content }}
-  <meta content="{{ .Content.Doc.Title  }} - Sourcegraph docs" property="og:title">
+  <meta content="{{ .Content.Doc.Title  }} - Khulnasoft docs" property="og:title">
   {{ else }}
     {{ if .ContentVersionNotFoundError }}
-    <meta content="Version not found - Sourcegraph docs" property="og:title">
+    <meta content="Version not found - Khulnasoft docs" property="og:title">
     {{ else if .ContentPageNotFoundError }}
-    <meta content="Page not found - Sourcegraph docs" property="og:title">
+    <meta content="Page not found - Khulnasoft docs" property="og:title">
     {{ else }}
-    <meta content="Unexpected error - Sourcegraph docs" property="og:title">
+    <meta content="Unexpected error - Khulnasoft docs" property="og:title">
     {{ end }}
   {{ end }}
 

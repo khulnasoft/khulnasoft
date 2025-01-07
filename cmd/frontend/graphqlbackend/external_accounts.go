@@ -130,7 +130,7 @@ func (r *schemaResolver) DeleteExternalAccount(ctx context.Context, args *struct
 	if disallow {
 		// NOTE: The error message will be directly shown to the user, so we need to make
 		// it read like a sentence.
-		return nil, errors.New("Self-serve unlinking external account is not allowed, please contact Sourcegraph support.")
+		return nil, errors.New("Self-serve unlinking external account is not allowed, please contact Khulnasoft support.")
 	}
 
 	id, err := unmarshalExternalAccountID(args.ExternalAccount)
@@ -178,10 +178,10 @@ func (r *schemaResolver) AddExternalAccount(ctx context.Context, args *struct {
 			return nil, err
 		}
 
-	case auth.SourcegraphOperatorProviderType:
-		err := sourcegraphoperator.AddSourcegraphOperatorExternalAccount(ctx, r.db, a.UID, args.ServiceID, args.AccountDetails)
+	case auth.KhulnasoftOperatorProviderType:
+		err := sourcegraphoperator.AddKhulnasoftOperatorExternalAccount(ctx, r.db, a.UID, args.ServiceID, args.AccountDetails)
 		if err != nil {
-			return nil, errors.Wrap(err, "failed to add Sourcegraph Operator external account")
+			return nil, errors.Wrap(err, "failed to add Khulnasoft Operator external account")
 		}
 
 	default:

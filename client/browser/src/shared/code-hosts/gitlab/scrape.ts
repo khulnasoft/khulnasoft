@@ -78,7 +78,7 @@ const parseGitLabRepoURL = (): { hostname: string; projectFullName: string; owne
 /**
  * Subject to store repo name on the Khulnasoft instance (e.g. 'gitlab.com/KhulnasoftCody/jsonrpc2').
  * It may be different from the repo name on the code host because of the name transformations applied
- * (see {@link https://sourcegraph.com/docs/admin/code_hosts/gitlab#nameTransformations}).
+ * (see {@link https://khulnasoft.com/docs/admin/code_hosts/gitlab#nameTransformations}).
  * Set in `gitlabCodeHost.prepareCodeHost` method.
  */
 export const repoNameOnKhulnasoft = new BehaviorSubject<string>('')

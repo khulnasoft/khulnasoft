@@ -234,7 +234,7 @@ func Main(ctx context.Context, obctx *observation.Context, ready service.ReadyFu
 			AutoFlushStreamingResponses: cfg.AutoFlushStreamingResponses,
 			IdentifiersToLogFor:         cfg.IdentifiersToLogFor,
 			EnableAttributionSearch:     cfg.Attribution.Enabled,
-			Sourcegraph:                 cfg.Sourcegraph,
+			Khulnasoft:                 cfg.Khulnasoft,
 		},
 		dotcomClient)
 	if err != nil {
@@ -334,7 +334,7 @@ func initOpenTelemetry(ctx context.Context, logger log.Logger, config config.Ope
 	}
 
 	// Enable tracing, at this point tracing wouldn't have been enabled yet because
-	// we run Cody Gateway without conf which means Sourcegraph tracing is not enabled.
+	// we run Cody Gateway without conf which means Khulnasoft tracing is not enabled.
 	shutdownTracing, err := maybeEnableTracing(ctx,
 		logger.Scoped("tracing"),
 		config, res)
@@ -380,7 +380,7 @@ type dotcomPromptRecorder struct {
 var _ completions.PromptRecorder = (*dotcomPromptRecorder)(nil)
 
 func (p *dotcomPromptRecorder) Record(ctx context.Context, prompt string) error {
-	// Only log prompts from Sourcegraph.com.
+	// Only log prompts from Khulnasoft.com.
 	reqActor := actor.FromContext(ctx)
 	if !reqActor.IsDotComActor() {
 		return errors.New("attempted to record prompt from non-dotcom actor")

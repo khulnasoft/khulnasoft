@@ -41,7 +41,7 @@
       }
     },
     "dependencies": {
-      "description": "An array of strings specifying Go modules to mirror in Sourcegraph.",
+      "description": "An array of strings specifying Go modules to mirror in Khulnasoft.",
       "type": "array",
       "items": {
         "type": "string"

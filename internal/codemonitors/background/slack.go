@@ -29,7 +29,7 @@ func slackPayload(args actionArgs) *slack.WebhookMessage {
 
 	blocks := []slack.Block{
 		newMarkdownSection(fmt.Sprintf(
-			"%s's Sourcegraph Code monitor, *%s*, detected *%d* new matches.",
+			"%s's Khulnasoft Code monitor, *%s*, detected *%d* new matches.",
 			args.MonitorOwnerName,
 			args.MonitorDescription,
 			totalCount,

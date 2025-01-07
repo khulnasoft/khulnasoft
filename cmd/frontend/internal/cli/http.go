@@ -73,7 +73,7 @@ func newExternalHTTPHandler(
 	apiHandler = requestclient.ExternalHTTPMiddleware(apiHandler)
 	apiHandler = requestinteraction.HTTPMiddleware(apiHandler)
 	apiHandler = gziphandler.GzipHandler(apiHandler)
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		apiHandler = deviceid.Middleware(apiHandler)
 	}
 
@@ -92,7 +92,7 @@ func newExternalHTTPHandler(
 	appHandler = httpapi.AccessTokenAuthMiddleware(db, logger, appHandler) // app accepts access tokens
 	appHandler = requestclient.ExternalHTTPMiddleware(appHandler)
 	appHandler = requestinteraction.HTTPMiddleware(appHandler)
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		appHandler = deviceid.Middleware(appHandler)
 	}
 	// Mount handlers and assets.
@@ -116,7 +116,7 @@ func newExternalHTTPHandler(
 	h = gcontext.ClearHandler(h)
 	h = healthCheckMiddleware(h)
 	h = middleware.BlackHole(h)
-	h = middleware.SourcegraphComGoGetHandler(h)
+	h = middleware.KhulnasoftComGoGetHandler(h)
 	h = internalauth.ForbidAllRequestsMiddleware(h)
 	h = tracepkg.HTTPMiddleware(logger, h)
 	h = instrumentation.HTTPMiddleware("external", h)
@@ -222,7 +222,7 @@ const (
 	// crossOriginPolicyNever describes that the middleware should handle cross-origin requests by
 	// never allowing them. This makes sense for e.g. routes such as e.g. sign out pages, where
 	// cookie based authentication is needed and requests should never come from a domain other than
-	// the Sourcegraph instance itself.
+	// the Khulnasoft instance itself.
 	//
 	// Important: This only applies to cross-origin requests issued by clients that respect CORS,
 	// such as browsers. So for example Code Intelligence /.executors, despite being "an API",
@@ -298,15 +298,15 @@ func handleCORSRequest(w http.ResponseWriter, r *http.Request, policy crossOrigi
 	// request came from a trusted origin, in session.go:CookieMiddlewareWIthCSRFSafety, we know it
 	// is safe to do this.
 	//
-	// This is the ONLY way in which we can enable public access of our Sourcegraph.com API, i.e. to
+	// This is the ONLY way in which we can enable public access of our Khulnasoft.com API, i.e. to
 	// allow random.com to send requests to our GraphQL and search APIs either unauthenticated or
 	// using an access token.
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 	// Note: This must mirror the request's `Origin` header exactly as API users rely on this
 	// codepath handling for example wildcards `*` and `null` origins properly. For example, if
-	// Sourcegraph is behind a corporate VPN an admin may choose to set the CORS origin to "*" (via
-	// a proxy, a browser would never send a literal "*") and would expect Sourcegraph to respond
+	// Khulnasoft is behind a corporate VPN an admin may choose to set the CORS origin to "*" (via
+	// a proxy, a browser would never send a literal "*") and would expect Khulnasoft to respond
 	// appropriately with the request's Origin header. Similarly, some environments issue requests
 	// with a `null` Origin header, such as VS Code extensions from within WebViews and Figma
 	// extensions. Thus:
@@ -322,7 +322,7 @@ func handleCORSRequest(w http.ResponseWriter, r *http.Request, policy crossOrigi
 
 	if r.Method == "OPTIONS" {
 		// CRITICAL: Only trusted origins are allowed to send the secure X-Requested-With and
-		// X-Sourcegraph-Client headers, which indicate to us later (in session.go:CookieMiddlewareWIthCSRFSafety)
+		// X-Khulnasoft-Client headers, which indicate to us later (in session.go:CookieMiddlewareWIthCSRFSafety)
 		// that the request came from a trusted origin. To understand these secure headers, see
 		// "What does X-Requested-With do anyway?" in https://github.com/khulnasoft/khulnasoft/pull/27931
 		//
@@ -331,15 +331,15 @@ func handleCORSRequest(w http.ResponseWriter, r *http.Request, policy crossOrigi
 		// X-Requested-With header.
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
 		if isTrustedOrigin(r) {
-			// X-Sourcegraph-Client is the deprecated form of X-Requested-With, so we treat it the same
+			// X-Khulnasoft-Client is the deprecated form of X-Requested-With, so we treat it the same
 			// way. It is NOT respected anymore, but is left as an allowed header so as to not block
-			// requests that still do include it as e.g. part of a proxy put in front of Sourcegraph.
-			w.Header().Set("Access-Control-Allow-Headers", corsAllowHeader+", X-Sourcegraph-Client, Content-Type, Authorization, X-Sourcegraph-Should-Trace")
+			// requests that still do include it as e.g. part of a proxy put in front of Khulnasoft.
+			w.Header().Set("Access-Control-Allow-Headers", corsAllowHeader+", X-Khulnasoft-Client, Content-Type, Authorization, X-Khulnasoft-Should-Trace")
 		} else {
-			// X-Sourcegraph-Should-Trace just indicates if we should record an HTTP request to our
+			// X-Khulnasoft-Should-Trace just indicates if we should record an HTTP request to our
 			// tracing system and never has an impact on security, it's fine to always allow that
 			// header to be set by browsers.
-			w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Sourcegraph-Should-Trace")
+			w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Khulnasoft-Should-Trace")
 		}
 		w.WriteHeader(http.StatusOK)
 		return true // we handled the request

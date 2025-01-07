@@ -127,7 +127,7 @@ describe('mergeSettings', () => {
                 { quicklinks: [{ name: 'About Khulnasoft', url: 'https://docs.internal/about-sourcegraph' }] },
                 {
                     quicklinks: [
-                        { name: 'mycorp extensions', url: 'https://sourcegraph.com/extensions?query=mycorp%2F' },
+                        { name: 'mycorp extensions', url: 'https://khulnasoft.com/extensions?query=mycorp%2F' },
                     ],
                 },
             ])
@@ -135,7 +135,7 @@ describe('mergeSettings', () => {
             quicklinks: [
                 { name: 'main repo', url: '/github.com/org/main-repo' },
                 { name: 'About Khulnasoft', url: 'https://docs.internal/about-sourcegraph' },
-                { name: 'mycorp extensions', url: 'https://sourcegraph.com/extensions?query=mycorp%2F' },
+                { name: 'mycorp extensions', url: 'https://khulnasoft.com/extensions?query=mycorp%2F' },
             ],
         }))
     test('merges notices property', () =>

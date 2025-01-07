@@ -252,7 +252,7 @@ func TestRedisLoggerMiddleware_formatStackFrame(t *testing.T) {
 		want     string
 	}{
 		{
-			name:     "Sourcegraph internal package",
+			name:     "Khulnasoft internal package",
 			function: "github.com/khulnasoft/khulnasoft/cmd/frontend/graphqlbackend.(*requestTracer).TraceQuery",
 			file:     "/Users/x/github.com/khulnasoft/khulnasoft/cmd/frontend/graphqlbackend/graphqlbackend.go",
 			line:     51,

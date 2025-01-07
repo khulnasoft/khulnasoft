@@ -32,7 +32,7 @@ fragment SearchResultsAlertFields on SearchResults {
 
 q="$1"
 body="$(jq -n --arg query "$query" --arg q "$q" '{"query": $query, "variables": {"q": $q}}')"
-endpoint=${SRC_ENDPOINT:-https://sourcegraph.com}
+endpoint=${SRC_ENDPOINT:-https://khulnasoft.com}
 
 # Create and capture request/response headers
 headers="$(mktemp -d)" || exit 1

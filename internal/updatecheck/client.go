@@ -39,10 +39,10 @@ import (
 // metricsRecorder records operational metrics for methods.
 var metricsRecorder = metrics.NewREDMetrics(prometheus.DefaultRegisterer, "updatecheck_client", metrics.WithLabels("method"))
 
-// Status of the check for software updates for Sourcegraph.
+// Status of the check for software updates for Khulnasoft.
 type Status struct {
 	Date          time.Time // the time that the last check completed
-	Err           error     // the error that occurred, if any. When present, indicates the instance is offline / unable to contact Sourcegraph.com
+	Err           error     // the error that occurred, if any. When present, indicates the instance is offline / unable to contact Khulnasoft.com
 	UpdateVersion string    // the version string of the updated version, if any. i.e. the latest sourcegraph release
 }
 
@@ -75,7 +75,7 @@ func IsPending() bool {
 
 func logFuncFrom(logger log.Logger) func(string, ...log.Field) {
 	logFunc := logger.Debug
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		logFunc = logger.Warn
 	}
 
@@ -115,8 +115,8 @@ func getTotalUsersCount(ctx context.Context, db database.DB) (_ int, err error) 
 	defer recordOperation("getTotalUsersCount")(&err)
 	return db.Users().Count(ctx,
 		&database.UsersListOptions{
-			ExcludeSourcegraphAdmins:    true,
-			ExcludeSourcegraphOperators: true,
+			ExcludeKhulnasoftAdmins:    true,
+			ExcludeKhulnasoftOperators: true,
 		},
 	)
 }
@@ -516,7 +516,7 @@ func getAndMarshalOwnUsageJSON(ctx context.Context, db database.DB) (json.RawMes
 func updateBody(ctx context.Context, logger log.Logger, db database.DB) (io.Reader, error) {
 	scopedLog := logger.Scoped("telemetry")
 	logFunc := scopedLog.Debug
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		logFunc = scopedLog.Warn
 	}
 	// Used for cases where large pings objects might otherwise fail silently.
@@ -717,8 +717,8 @@ func updateBody(ctx context.Context, logger log.Logger, db database.DB) (io.Read
 	r.AccessRequestEnabled = conf.IsAccessRequestEnabled()
 	r.AuthProviders = authProviderTypes()
 
-	// We don't bother doing this on Sourcegraph.com as it is expensive and not needed.
-	if !dotcom.SourcegraphDotComMode() {
+	// We don't bother doing this on Khulnasoft.com as it is expensive and not needed.
+	if !dotcom.KhulnasoftDotComMode() {
 		r.GrowthStatistics, err = getAndMarshalGrowthStatisticsJSON(ctx, db)
 		if err != nil {
 			logFunc("getAndMarshalGrowthStatisticsJSON failed", log.Error(err))
@@ -746,8 +746,8 @@ func updateBody(ctx context.Context, logger log.Logger, db database.DB) (io.Read
 		}
 	}()
 
-	// We don't bother doing these on Sourcegraph.com as they are expensive and not needed.
-	if !dotcom.SourcegraphDotComMode() {
+	// We don't bother doing these on Khulnasoft.com as they are expensive and not needed.
+	if !dotcom.KhulnasoftDotComMode() {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
@@ -803,9 +803,9 @@ func externalServiceKinds(ctx context.Context, db database.DB) (kinds []string, 
 	return kinds, err
 }
 
-const defaultUpdateCheckURL = "https://pings.sourcegraph.com/updates"
+const defaultUpdateCheckURL = "https://pings.khulnasoft.com/updates"
 
-// updateCheckURL returns an URL to the update checks route on Sourcegraph.com or
+// updateCheckURL returns an URL to the update checks route on Khulnasoft.com or
 // if provided through "UPDATE_CHECK_BASE_URL", that specific endpoint instead, to
 // accomodate network limitations on the customer side.
 func updateCheckURL(logger log.Logger) string {

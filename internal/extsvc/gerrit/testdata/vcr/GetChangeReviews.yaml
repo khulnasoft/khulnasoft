@@ -19,7 +19,7 @@ interactions:
           },
           "_account_id": 1000018,
           "name": "Idan Varsano",
-          "email": "idan.varsano@sourcegraph.com",
+          "email": "idan.varsano@khulnasoft.com",
           "username": "ivarsano"
         },
         {
@@ -28,7 +28,7 @@ interactions:
           },
           "_account_id": 1000034,
           "name": "Kelli Rockwell",
-          "email": "kelli@sourcegraph.com"
+          "email": "kelli@khulnasoft.com"
         }
       ]
     headers:

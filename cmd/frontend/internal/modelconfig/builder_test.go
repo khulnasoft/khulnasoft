@@ -130,13 +130,13 @@ func TestModelConfigBuilder(t *testing.T) {
 		verifyProviderByID(t, cfg, "anthropic", func(t *testing.T, prov types.Provider) {
 			require.NotNil(t, prov.ServerSideConfig)
 			// Use the "khulnasoft" LLM API provider under the hood.
-			require.NotNil(t, prov.ServerSideConfig.SourcegraphProvider)
+			require.NotNil(t, prov.ServerSideConfig.KhulnasoftProvider)
 			require.Nil(t, prov.ServerSideConfig.GenericProvider)
 		})
 		verifyProviderByID(t, cfg, "fireworks", func(t *testing.T, prov types.Provider) {
 			require.NotNil(t, prov.ServerSideConfig)
 			// Use the "khulnasoft" LLM API provider under the hood.
-			require.NotNil(t, prov.ServerSideConfig.SourcegraphProvider)
+			require.NotNil(t, prov.ServerSideConfig.KhulnasoftProvider)
 			require.Nil(t, prov.ServerSideConfig.GenericProvider)
 		})
 
@@ -257,7 +257,7 @@ func TestApplySiteConfig(t *testing.T) {
 		}
 	}
 
-	t.Run("SourcegraphSuppliedModels", func(t *testing.T) {
+	t.Run("KhulnasoftSuppliedModels", func(t *testing.T) {
 		t.Run("StatusFilter", func(t *testing.T) {
 			// The source config contains four models, one with each status.
 			sourcegraphSuppliedConfig := types.ModelConfiguration{
@@ -284,7 +284,7 @@ func TestApplySiteConfig(t *testing.T) {
 
 			// The site configuration filters out all but "beta" and "stable".
 			siteConfig := types.SiteModelConfiguration{
-				SourcegraphModelConfig: &types.SourcegraphModelConfig{
+				KhulnasoftModelConfig: &types.KhulnasoftModelConfig{
 					ModelFilters: &types.ModelFilters{
 						StatusFilter: []string{"beta", "stable"},
 					},
@@ -332,7 +332,7 @@ func TestApplySiteConfig(t *testing.T) {
 
 		// The default Cody configuration: use default settings with no customization.
 		siteConfig := types.SiteModelConfiguration{
-			SourcegraphModelConfig: &types.SourcegraphModelConfig{},
+			KhulnasoftModelConfig: &types.KhulnasoftModelConfig{},
 		}
 
 		gotConfig, err := applySiteConfig(&sourcegraphSuppliedConfig, &siteConfig)
@@ -382,7 +382,7 @@ func TestApplySiteConfig(t *testing.T) {
 		t.Run("Base", func(t *testing.T) {
 			baseConfig := getValidBaseConfig()
 			_, err := applySiteConfig(&baseConfig, &types.SiteModelConfiguration{
-				SourcegraphModelConfig: &types.SourcegraphModelConfig{}, // i.e. use the baseconfig.
+				KhulnasoftModelConfig: &types.KhulnasoftModelConfig{}, // i.e. use the baseconfig.
 			})
 			require.NoError(t, err)
 		})
@@ -392,7 +392,7 @@ func TestApplySiteConfig(t *testing.T) {
 			// This will now fail because there is nothing suitable.
 			baseConfig := getValidBaseConfig()
 			_, err := applySiteConfig(&baseConfig, &types.SiteModelConfiguration{
-				SourcegraphModelConfig: &types.SourcegraphModelConfig{
+				KhulnasoftModelConfig: &types.KhulnasoftModelConfig{
 					ModelFilters: &types.ModelFilters{
 						Deny: []string{"*chat"},
 					},
@@ -410,7 +410,7 @@ func TestApplySiteConfig(t *testing.T) {
 
 				baseConfig := getValidBaseConfig()
 				_, err := applySiteConfig(&baseConfig, &types.SiteModelConfiguration{
-					SourcegraphModelConfig: &types.SourcegraphModelConfig{
+					KhulnasoftModelConfig: &types.KhulnasoftModelConfig{
 						ModelFilters: &types.ModelFilters{
 							Deny: []string{"*chat"},
 						},
@@ -435,7 +435,7 @@ func TestApplySiteConfig(t *testing.T) {
 
 				baseConfig := getValidBaseConfig()
 				_, err := applySiteConfig(&baseConfig, &types.SiteModelConfiguration{
-					SourcegraphModelConfig: &types.SourcegraphModelConfig{
+					KhulnasoftModelConfig: &types.KhulnasoftModelConfig{
 						ModelFilters: &types.ModelFilters{
 							Deny: []string{"*chat"},
 						},
@@ -455,7 +455,7 @@ func TestApplySiteConfig(t *testing.T) {
 
 				baseConfig := getValidBaseConfig()
 				gotConfig, err := applySiteConfig(&baseConfig, &types.SiteModelConfiguration{
-					SourcegraphModelConfig: &types.SourcegraphModelConfig{
+					KhulnasoftModelConfig: &types.KhulnasoftModelConfig{
 						ModelFilters: &types.ModelFilters{
 							Deny: []string{"*chat"},
 						},

@@ -53,8 +53,8 @@ func Init(
 	_ conftypes.UnifiedWatchable,
 	enterpriseServices *enterprise.Services,
 ) error {
-	// Only enabled on Sourcegraph.com.
-	if dotcom.SourcegraphDotComMode() {
+	// Only enabled on Khulnasoft.com.
+	if dotcom.KhulnasoftDotComMode() {
 		enterpriseServices.DotcomRootResolver = dotcomRootResolver{
 			ProductSubscriptionLicensingResolver: productsubscription.ProductSubscriptionLicensingResolver{
 				Logger: observationCtx.Logger.Scoped("productsubscriptions"),

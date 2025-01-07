@@ -14,7 +14,7 @@ func TestParseSiteConfig(t *testing.T) {
 
 	want := &SchemaSiteConfig{
 		AuthProviders: &SchemaAuthProviders{
-			SourcegraphOperator: &SchemaAuthProviderSourcegraphOperator{
+			KhulnasoftOperator: &SchemaAuthProviderKhulnasoftOperator{
 				Issuer:            "https://dev-test.oktapreview.com",
 				ClientID:          "testClientID",
 				ClientSecret:      "testClientSecret",

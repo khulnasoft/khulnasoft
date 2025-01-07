@@ -170,16 +170,16 @@ func (s *securityEventLogsStore) InsertList(ctx context.Context, events []*Secur
 	actor := sgactor.FromContext(ctx)
 	vals := make([]*sqlf.Query, len(events))
 	for index, event := range events {
-		// Add an attribution for Sourcegraph operator to be distinguished in our analytics pipelines
-		if actor.SourcegraphOperator {
+		// Add an attribution for Khulnasoft operator to be distinguished in our analytics pipelines
+		if actor.KhulnasoftOperator {
 			result, err := jsonc.Edit(
 				event.argumentToJSONString(),
 				true,
-				EventLogsSourcegraphOperatorKey,
+				EventLogsKhulnasoftOperatorKey,
 			)
 			event.Argument = json.RawMessage(result)
 			if err != nil {
-				return errors.Wrap(err, `edit "argument" for Sourcegraph operator`)
+				return errors.Wrap(err, `edit "argument" for Khulnasoft operator`)
 			}
 		}
 

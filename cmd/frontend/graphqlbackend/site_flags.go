@@ -43,7 +43,7 @@ func needsRepositoryConfiguration(ctx context.Context, db database.DB) (bool, er
 func (*siteResolver) SendsEmailVerificationEmails() bool { return conf.EmailVerificationRequired() }
 
 func (r *siteResolver) FreeUsersExceeded(ctx context.Context) (bool, error) {
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		return false, nil
 	}
 
@@ -59,7 +59,7 @@ func (r *siteResolver) FreeUsersExceeded(ctx context.Context) (bool, error) {
 	userCount, err := r.db.Users().Count(
 		ctx,
 		&database.UsersListOptions{
-			ExcludeSourcegraphOperators: true,
+			ExcludeKhulnasoftOperators: true,
 		},
 	)
 	if err != nil {

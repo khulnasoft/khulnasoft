@@ -51,7 +51,7 @@ class SpecFileReporter extends mocha.reporters.Spec {
       })
       // We now want the Spec reporter (aka epilogue) to be written to a file, but Spec uses the console defined on Base!
       // So we swap out the consoleLog defined on Base with our customLog one
-      // https://sourcegraph.com/github.com/mochajs/mocha/-/blob/lib/reporters/base.js?L43:5
+      // https://khulnasoft.com/github.com/mochajs/mocha/-/blob/lib/reporters/base.js?L43:5
 
       mocha.reporters.Base.consoleLog = customConsole.log
       // Generate report using custom logger

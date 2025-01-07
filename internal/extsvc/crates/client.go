@@ -39,7 +39,7 @@ func (c *Client) Get(ctx context.Context, url string) (io.ReadCloser, error) {
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Add("User-Agent", "sourcegraph-crates-syncer (sourcegraph.com)")
+	req.Header.Add("User-Agent", "sourcegraph-crates-syncer (khulnasoft.com)")
 
 	b, err := c.do(c.uncachedClient, req)
 	if err != nil {

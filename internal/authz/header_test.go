@@ -48,7 +48,7 @@ func TestParseAuthorizationHeader(t *testing.T) {
 	}
 
 	t.Run("disable sudo token for dotcom", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		_, _, err := ParseAuthorizationHeader(`token-sudo token="tok==", user="alice"`)
 		got := fmt.Sprintf("%v", err)
@@ -59,7 +59,7 @@ func TestParseAuthorizationHeader(t *testing.T) {
 	})
 
 	t.Run("empty token does not raise sudo error on dotcom", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		_, _, err := ParseAuthorizationHeader(`token`)
 		got := fmt.Sprintf("%v", err)

@@ -17,7 +17,7 @@ type Request struct {
 	// Repo is the name of the repository to search. eg "github.com/gorilla/mux"
 	Repo api.RepoName
 
-	// RepoID is the Sourcegraph repository id of the repo to search.
+	// RepoID is the Khulnasoft repository id of the repo to search.
 	RepoID api.RepoID
 
 	// Commit is which commit to search. It is required to be resolved,

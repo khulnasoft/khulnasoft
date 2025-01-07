@@ -26,11 +26,11 @@ interactions:
       "downloads": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/downloads"},
       "pullrequests": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests"}},
       "created_on": "2022-03-17T11:17:48.581867+00:00", "full_name": "sourcegraph-testing/src-cli",
-      "owner": {"display_name": "Sourcegraph Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
+      "owner": {"display_name": "Khulnasoft Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"}},
-      "type": "user", "nickname": "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b"},
+      "type": "user", "nickname": "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b"},
       "size": 3500951, "uuid": "{b090a669-ac7b-44cd-9610-02d027cb39f3}", "type": "repository",
       "website": null, "override_settings": {"branching_model": true, "default_merge_strategy":
       true, "branch_restrictions": true}, "description": "", "has_issues": false,
@@ -40,7 +40,7 @@ interactions:
       "avatar": {"href": "https://bitbucket.org/account/user/sourcegraph-testing/projects/SOUR/avatar/32?ts=1647515868"}},
       "type": "project", "name": "sourcegraph-testing", "key": "SOUR", "uuid": "{a862a17c-1726-47a2-bcd1-d9b37313b350}"},
       "mainbranch": {"type": "branch", "name": "master"}, "workspace": {"slug": "sourcegraph-testing",
-      "type": "workspace", "name": "Sourcegraph Testing", "links": {"self": {"href":
+      "type": "workspace", "name": "Khulnasoft Testing", "links": {"self": {"href":
       "https://api.bitbucket.org/2.0/workspaces/sourcegraph-testing"}, "html": {"href":
       "https://bitbucket.org/sourcegraph-testing/"}, "avatar": {"href": "https://bitbucket.org/workspaces/sourcegraph-testing/avatar/?ts=1647515473"}},
       "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}"}, "updated_on": "2022-03-17T11:17:49.067413+00:00"}],
@@ -124,11 +124,11 @@ interactions:
       "downloads": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/sourcegraph/downloads"},
       "pullrequests": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/sourcegraph/pullrequests"}},
       "created_on": "2022-03-17T11:18:32.035547+00:00", "full_name": "sourcegraph-testing/sourcegraph",
-      "owner": {"display_name": "Sourcegraph Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
+      "owner": {"display_name": "Khulnasoft Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"}},
-      "type": "user", "nickname": "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b"},
+      "type": "user", "nickname": "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b"},
       "size": 657151990, "uuid": "{f46afc56-15a7-4579-9429-1b9329ad4c09}", "type":
       "repository", "website": null, "override_settings": {"branching_model": true,
       "default_merge_strategy": true, "branch_restrictions": true}, "description":
@@ -139,7 +139,7 @@ interactions:
       "avatar": {"href": "https://bitbucket.org/account/user/sourcegraph-testing/projects/SOUR/avatar/32?ts=1647515868"}},
       "type": "project", "name": "sourcegraph-testing", "key": "SOUR", "uuid": "{a862a17c-1726-47a2-bcd1-d9b37313b350}"},
       "mainbranch": {"type": "branch", "name": "master"}, "workspace": {"slug": "sourcegraph-testing",
-      "type": "workspace", "name": "Sourcegraph Testing", "links": {"self": {"href":
+      "type": "workspace", "name": "Khulnasoft Testing", "links": {"self": {"href":
       "https://api.bitbucket.org/2.0/workspaces/sourcegraph-testing"}, "html": {"href":
       "https://bitbucket.org/sourcegraph-testing/"}, "avatar": {"href": "https://bitbucket.org/workspaces/sourcegraph-testing/avatar/?ts=1647515473"}},
       "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}"}, "updated_on": "2022-03-17T11:18:32.485296+00:00"}],

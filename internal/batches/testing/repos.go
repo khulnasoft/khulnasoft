@@ -54,7 +54,7 @@ func TestRepo(t *testing.T, store database.ExternalServiceStore, serviceKind str
 
 	repo := TestRepoWithService(t, store, fmt.Sprintf("repo-%d", svc.ID), &svc)
 
-	repo.Sources[svc.URN()].CloneURL = "https://github.com/sourcegraph/sourcegraph"
+	repo.Sources[svc.URN()].CloneURL = "https://github.com/khulnasoft/khulnasoft"
 	return repo
 }
 
@@ -178,13 +178,13 @@ func CreateBbsTestRepos(t *testing.T, ctx context.Context, db database.DB, count
 		Kind:        extsvc.KindBitbucketServer,
 		DisplayName: "Bitbucket Server",
 		Config: extsvc.NewUnencryptedConfig(MarshalJSON(t, &schema.BitbucketServerConnection{
-			Url:   "https://bitbucket.sourcegraph.com",
+			Url:   "https://bitbucket.khulnasoft.com",
 			Token: "SECRETTOKEN",
 			Repos: []string{"owner/name"},
 		})),
 	}
 
-	return createBbsRepos(t, ctx, db, ext, count, "https://bbs-user:bbs-token@bitbucket.sourcegraph.com/scm")
+	return createBbsRepos(t, ctx, db, ext, count, "https://bbs-user:bbs-token@bitbucket.khulnasoft.com/scm")
 }
 
 func CreateGitHubSSHTestRepos(t *testing.T, ctx context.Context, db database.DB, count int) ([]*types.Repo, *types.ExternalService) {

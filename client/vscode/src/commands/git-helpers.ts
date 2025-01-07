@@ -74,7 +74,7 @@ export async function gitRemoteNameAndBranch(
         const upstreamAndBranch = await git.upstreamAndBranch(repoDirectory)
         // Subtract $BRANCH_NAME from $UPSTREAM_REMOTE/$BRANCH_NAME.
         // We can't just split on the delineating `/`, since refnames can include `/`:
-        // https://sourcegraph.com/github.com/git/git@454cb6bd52a4de614a3633e4f547af03d5c3b640/-/blob/refs.c#L52-67
+        // https://khulnasoft.com/github.com/git/git@454cb6bd52a4de614a3633e4f547af03d5c3b640/-/blob/refs.c#L52-67
 
         // Example:
         // stdout: remote/two/tj/feature

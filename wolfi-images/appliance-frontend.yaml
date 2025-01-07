@@ -33,8 +33,8 @@ paths:
     permissions: 0o755
 
 annotations:
-  org.opencontainers.image.url: https://sourcegraph.com/
+  org.opencontainers.image.url: https://khulnasoft.com/
   org.opencontainers.image.source: https://github.com/khulnasoft/khulnasoft/
-  org.opencontainers.image.documentation: https://sourcegraph.com/docs/
-  org.opencontainers.image.title: Sourcegraph Appliance Frontend
-  org.opencontainers.image.description: "all user interface for the Sourcegraph Appliance"
+  org.opencontainers.image.documentation: https://khulnasoft.com/docs/
+  org.opencontainers.image.title: Khulnasoft Appliance Frontend
+  org.opencontainers.image.description: "all user interface for the Khulnasoft Appliance"

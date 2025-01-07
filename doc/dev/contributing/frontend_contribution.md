@@ -10,7 +10,7 @@ To work on most frontend issues, it is necessary to run three applications local
 
 1. Clone the repo: `git clone https://github.com/khulnasoft/khulnasoft/`.
 2. Make sure your node environment is running version `16.x.x`.
-3. Go through the local development section [here](https://docs.sourcegraph.com/dev/background-information/web/web_app#local-development).
+3. Go through the local development section [here](https://docs.khulnasoft.com/dev/background-information/web/web_app#local-development).
 
 ## CI checks to run locally
 
@@ -53,13 +53,13 @@ To work on most frontend issues, it is necessary to run three applications local
 
 ### Getting applications up and running
 
-- [Developing the Sourcegraph web app](https://docs.sourcegraph.com/dev/background-information/web/web_app#commands)
-- [Table of contents related to the web app](https://docs.sourcegraph.com/dev/background-information/web)
-- Configuring backend services locally is not required for most frontend issues. However, a guide on how to do this can be found [here](https://docs.sourcegraph.com/dev/getting-started).
+- [Developing the Khulnasoft web app](https://docs.khulnasoft.com/dev/background-information/web/web_app#commands)
+- [Table of contents related to the web app](https://docs.khulnasoft.com/dev/background-information/web)
+- Configuring backend services locally is not required for most frontend issues. However, a guide on how to do this can be found [here](https://docs.khulnasoft.com/dev/getting-started).
 
 ### How to style UI
 
-- [Guidelines](https://docs.sourcegraph.com/dev/background-information/web/styling)
-- [Wildcard Component Library](https://docs.sourcegraph.com/dev/background-information/web/wildcard)
+- [Guidelines](https://docs.khulnasoft.com/dev/background-information/web/styling)
+- [Wildcard Component Library](https://docs.khulnasoft.com/dev/background-information/web/wildcard)
 
 ### Client packages [overview](https://github.com/khulnasoft/khulnasoft/blob/main/client/README.md)

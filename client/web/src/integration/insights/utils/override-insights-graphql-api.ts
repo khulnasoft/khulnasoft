@@ -74,7 +74,7 @@ export function overrideInsightsGraphQLApi(props: OverrideGraphQLExtensionsProps
                 databaseID: 1,
                 username: 'test',
                 avatarURL: null,
-                email: 'vova@sourcegraph.com',
+                email: 'vova@khulnasoft.com',
                 displayName: null,
                 siteAdmin: true,
                 tosAccepted: true,

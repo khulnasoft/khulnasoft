@@ -80,11 +80,11 @@ type Config struct {
 		Enabled bool
 	}
 
-	Sourcegraph SourcegraphConfig
+	Khulnasoft KhulnasoftConfig
 
 	// SAMSClientConfig for verifying and generating SAMS access tokens.
 	SAMSClientConfig SAMSClientConfig
-	// one of "production", "staging" or "dev" (all 3 can connect to sourcegraph.com)
+	// one of "production", "staging" or "dev" (all 3 can connect to khulnasoft.com)
 	Environment string
 
 	Google GoogleConfig
@@ -119,7 +119,7 @@ type OpenAIConfig struct {
 	FlaggingConfig FlaggingConfig
 }
 
-type SourcegraphConfig struct {
+type KhulnasoftConfig struct {
 	EmbeddingsAPIURL   string
 	EmbeddingsAPIToken string
 }
@@ -191,10 +191,10 @@ func (c *Config) Load() {
 		"should be used as 'Authorization: Bearer $secret' header when accessing diagnostics endpoints.")
 
 	c.Dotcom.AccessToken = c.GetOptional("CODY_GATEWAY_DOTCOM_ACCESS_TOKEN",
-		"The Sourcegraph.com access token to be used. If not provided, the dotcom-user actor source will be disabled.")
+		"The Khulnasoft.com access token to be used. If not provided, the dotcom-user actor source will be disabled.")
 	c.Dotcom.ClientID = c.GetOptional("CODY_GATEWAY_DOTCOM_CLIENT_ID",
-		"Value of X-Sourcegraph-Client-Id header to be passed to sourcegraph.com.")
-	c.Dotcom.URL = c.Get("CODY_GATEWAY_DOTCOM_API_URL", "https://sourcegraph.com/.api/graphql", "Custom override for the dotcom API endpoint")
+		"Value of X-Khulnasoft-Client-Id header to be passed to khulnasoft.com.")
+	c.Dotcom.URL = c.Get("CODY_GATEWAY_DOTCOM_API_URL", "https://khulnasoft.com/.api/graphql", "Custom override for the dotcom API endpoint")
 	if _, err := url.Parse(c.Dotcom.URL); err != nil {
 		c.AddError(errors.Wrap(err, "invalid CODY_GATEWAY_DOTCOM_API_URL"))
 	}
@@ -333,8 +333,8 @@ func (c *Config) Load() {
 
 	defaultEmbeddingModels := strings.Join([]string{
 		string(embeddings.ModelNameOpenAIAda),
-		string(embeddings.ModelNameSourcegraphSTMultiQA),
-		string(embeddings.ModelNameSourcegraphMetadataGen),
+		string(embeddings.ModelNameKhulnasoftSTMultiQA),
+		string(embeddings.ModelNameKhulnasoftMetadataGen),
 	}, ",")
 	c.AllowedEmbeddingsModels = splitMaybe(c.Get(
 		"CODY_GATEWAY_ALLOWED_EMBEDDINGS_MODELS",
@@ -374,11 +374,11 @@ func (c *Config) Load() {
 
 	c.Attribution.Enabled = c.GetBool("CODY_GATEWAY_ENABLE_ATTRIBUTION_SEARCH", "false", "Whether attribution search endpoint is available.")
 
-	c.Sourcegraph.EmbeddingsAPIURL = c.Get("CODY_GATEWAY_SOURCEGRAPH_EMBEDDINGS_API_URL", "https://embeddings.sourcegraph.com/v2/models/st-multi-qa-mpnet-base-dot-v1/infer", "URL of the SMEGA API.")
-	c.Sourcegraph.EmbeddingsAPIToken = c.Get("CODY_GATEWAY_SOURCEGRAPH_EMBEDDINGS_API_TOKEN", "", "Token to use for the SMEGA API.")
+	c.Khulnasoft.EmbeddingsAPIURL = c.Get("CODY_GATEWAY_KHULNASOFT_EMBEDDINGS_API_URL", "https://embeddings.khulnasoft.com/v2/models/st-multi-qa-mpnet-base-dot-v1/infer", "URL of the SMEGA API.")
+	c.Khulnasoft.EmbeddingsAPIToken = c.Get("CODY_GATEWAY_KHULNASOFT_EMBEDDINGS_API_TOKEN", "", "Token to use for the SMEGA API.")
 
 	// SAMS_URL, SAMS_API_URL are same keys used for sams.NewConnConfigFromEnv
-	c.SAMSClientConfig.ConnConfig.ExternalURL = c.Get("SAMS_URL", "https://accounts.sourcegraph.com",
+	c.SAMSClientConfig.ConnConfig.ExternalURL = c.Get("SAMS_URL", "https://accounts.khulnasoft.com",
 		"SAMS external service endpoint")
 	if apiurl := c.GetOptional("SAMS_API_URL", "SAMS API endpoint"); apiurl != "" {
 		c.SAMSClientConfig.ConnConfig.APIURL = &apiurl

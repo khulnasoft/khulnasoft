@@ -168,15 +168,15 @@ func (s *Server) CreateCommitFromPatch(ctx context.Context, req protocol.CreateC
 
 	messages := req.CommitInfo.Messages
 	if len(messages) == 0 {
-		messages = []string{"<Sourcegraph> Creating commit from patch"}
+		messages = []string{"<Khulnasoft> Creating commit from patch"}
 	}
 	authorName := req.CommitInfo.AuthorName
 	if authorName == "" {
-		authorName = "Sourcegraph"
+		authorName = "Khulnasoft"
 	}
 	authorEmail := req.CommitInfo.AuthorEmail
 	if authorEmail == "" {
-		authorEmail = "support@sourcegraph.com"
+		authorEmail = "support@khulnasoft.com"
 	}
 	committerName := req.CommitInfo.CommitterName
 	if committerName == "" {

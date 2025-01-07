@@ -94,7 +94,7 @@ func TestOrganizationMembers(t *testing.T) {
 		users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{Username: "alice", ID: 1}, nil)
 		for _, isDotcom := range []bool{true, false} {
 			t.Run(fmt.Sprintf("dotcom=%v", isDotcom), func(t *testing.T) {
-				dotcom.MockSourcegraphDotComMode(t, isDotcom)
+				dotcom.MockKhulnasoftDotComMode(t, isDotcom)
 				RunTests(t, []*Test{
 					{
 						Schema: mustParseGraphQLSchema(t, db),
@@ -125,7 +125,7 @@ func TestOrganizationMembers(t *testing.T) {
 	t.Run("non-members", func(t *testing.T) {
 		t.Run("can list members on non-dotcom", func(t *testing.T) {
 			users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{Username: "xavier", ID: 10}, nil)
-			dotcom.MockSourcegraphDotComMode(t, false)
+			dotcom.MockKhulnasoftDotComMode(t, false)
 			RunTests(t, []*Test{
 				{
 					Schema: mustParseGraphQLSchema(t, db),
@@ -153,7 +153,7 @@ func TestOrganizationMembers(t *testing.T) {
 
 		t.Run("who are site admin can list members on non-dotcom", func(t *testing.T) {
 			users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{Username: "xavier", ID: 10, SiteAdmin: true}, nil)
-			dotcom.MockSourcegraphDotComMode(t, true)
+			dotcom.MockKhulnasoftDotComMode(t, true)
 			RunTests(t, []*Test{
 				{
 					Schema: mustParseGraphQLSchema(t, db),
@@ -181,7 +181,7 @@ func TestOrganizationMembers(t *testing.T) {
 
 		t.Run("who are not site admin cannot list members on dotcom", func(t *testing.T) {
 			users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{Username: "xavier", ID: 10}, nil)
-			dotcom.MockSourcegraphDotComMode(t, true)
+			dotcom.MockKhulnasoftDotComMode(t, true)
 			RunTests(t, []*Test{
 				{
 					Schema: mustParseGraphQLSchema(t, db),
@@ -256,7 +256,7 @@ func TestCreateOrganization(t *testing.T) {
 	})
 
 	t.Run("Fails for unauthenticated user", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		RunTest(t, &Test{
 			Schema:  mustParseGraphQLSchema(t, db),
@@ -281,7 +281,7 @@ func TestCreateOrganization(t *testing.T) {
 	})
 
 	t.Run("Fails for suspicious organization name", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		RunTest(t, &Test{
 			Schema:  mustParseGraphQLSchema(t, db),
@@ -477,7 +477,7 @@ func TestMembersConnectionStore(t *testing.T) {
 	for i := range 10 {
 		user, err := db.Users().Create(ctx, database.NewUser{
 			Username:        "test" + strconv.Itoa(i),
-			Email:           fmt.Sprintf("test%d@sourcegraph.com", i),
+			Email:           fmt.Sprintf("test%d@khulnasoft.com", i),
 			EmailIsVerified: true,
 		})
 		require.NoError(t, err)

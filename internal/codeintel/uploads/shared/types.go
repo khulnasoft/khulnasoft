@@ -18,7 +18,7 @@ import (
 
 // UploadState is the database equivalent of 'PreciseIndexState'
 // in the GraphQL API. The lifecycle of an upload is described
-// in https://docs.sourcegraph.com/code_navigation/explanations/uploads
+// in https://docs.khulnasoft.com/code_navigation/explanations/uploads
 // using 'PreciseIndexState'.
 //
 // The State values in the database don't map 1:1 with the GraphQL API.

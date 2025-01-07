@@ -38,7 +38,7 @@ func TestRobotsTxt(t *testing.T) {
 			true,
 		},
 		{
-			"/sourcegraph/sourcegraph/-/info/GoPackage/github.com/mediocregopher/radix.v2/util/-/Cmder",
+			"/khulnasoft/khulnasoft/-/info/GoPackage/github.com/mediocregopher/radix.v2/util/-/Cmder",
 			true,
 		},
 	}

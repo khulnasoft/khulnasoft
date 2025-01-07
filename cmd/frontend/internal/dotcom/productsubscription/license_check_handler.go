@@ -64,7 +64,7 @@ func logEvent(ctx context.Context, db database.DB, name string, siteID string, l
 const multipleInstancesSameKeySlackFmt = `
 The site ID for ` + "`%s`" + `'s license key ID <%s/site-admin/dotcom/product/subscriptions/%s#%s|%s> is registered as ` + "`%s`, but is attempting to be used by the site ID `%s`." + `
 
-This could mean that the license key is attempting to be used on multiple Sourcegraph instances.
+This could mean that the license key is attempting to be used on multiple Khulnasoft instances.
 
 To fix it, <https://app.golinks.io/internal-licensing-faq-slack-multiple|follow the guide to update the siteID and license key for all customer instances>.
 `

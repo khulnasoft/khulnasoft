@@ -407,7 +407,7 @@ const SidebarNavigation: FC<SidebarNavigationProps> = props => {
                     )}
 
                     {isKhulnasoftDotCom && (
-                        <NavItemLink url="https://sourcegraph.com" external={true} onClick={handleNavigationClick}>
+                        <NavItemLink url="https://khulnasoft.com" external={true} onClick={handleNavigationClick}>
                             About Khulnasoft
                         </NavItemLink>
                     )}

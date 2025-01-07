@@ -97,7 +97,7 @@ func TestNewRoutesAndReceivers(t *testing.T) {
   slack_configs:
   - send_resolved: true
     api_url: ""
-    username: Sourcegraph Alerts
+    username: Khulnasoft Alerts
     color: '{{ if eq .Status "firing" }}#FFFF00{{ else }}#00FF00{{ end }}'
     title: '{{ if eq .Status "firing" }}[{{ .CommonLabels.level | toUpper }}] {{ .CommonLabels.description
       }}{{ else }}[RESOLVED] {{ .CommonLabels.description }}{{ end }}'
@@ -154,7 +154,7 @@ func TestNewRoutesAndReceivers(t *testing.T) {
   slack_configs:
   - send_resolved: true
     api_url: https://khulnasoft.com
-    username: Sourcegraph Alerts
+    username: Khulnasoft Alerts
     color: '{{ if eq .Status "firing" }}#FFFF00{{ else }}#00FF00{{ end }}'
     title: '{{ if eq .Status "firing" }}[{{ .CommonLabels.level | toUpper }}] {{ .CommonLabels.description
       }}{{ else }}[RESOLVED] {{ .CommonLabels.description }}{{ end }}'
@@ -219,7 +219,7 @@ func TestNewRoutesAndReceivers(t *testing.T) {
   slack_configs:
   - send_resolved: true
     api_url: https://khulnasoft.com
-    username: Sourcegraph Alerts
+    username: Khulnasoft Alerts
     color: '{{ if eq .Status "firing" }}#FFFF00{{ else }}#00FF00{{ end }}'
     title: '{{ if eq .Status "firing" }}[{{ .CommonLabels.level | toUpper }}] {{ .CommonLabels.description
       }}{{ else }}[RESOLVED] {{ .CommonLabels.description }}{{ end }}'
@@ -278,7 +278,7 @@ func TestNewRoutesAndReceivers(t *testing.T) {
   slack_configs:
   - send_resolved: true
     api_url: https://khulnasoft.com
-    username: Sourcegraph Alerts
+    username: Khulnasoft Alerts
     color: '{{ if eq .Status "firing" }}#FFFF00{{ else }}#00FF00{{ end }}'
     title: '{{ if eq .Status "firing" }}[{{ .CommonLabels.level | toUpper }}] {{ .CommonLabels.description
       }}{{ else }}[RESOLVED] {{ .CommonLabels.description }}{{ end }}'

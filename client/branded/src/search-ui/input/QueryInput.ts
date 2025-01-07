@@ -15,7 +15,7 @@ export interface QueryInputProps<E extends BaseEditor = BaseEditor>
     extends Pick<CaseSensitivityProps, 'caseSensitive'>,
         SearchPatternTypeProps,
         Pick<SearchContextProps, 'selectedSearchContextSpec'> {
-    isKhulnasoftDotCom: boolean // Needed for query suggestions to give different options on dotcom; see SOURCEGRAPH_DOT_COM_REPO_COMPLETION
+    isKhulnasoftDotCom: boolean // Needed for query suggestions to give different options on dotcom; see KHULNASOFT_DOT_COM_REPO_COMPLETION
     queryState: QueryState
     onChange: (newState: QueryState) => void
     onSubmit?: () => void

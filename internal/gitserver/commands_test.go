@@ -1042,7 +1042,7 @@ func TestClient_ContributorCounts(t *testing.T) {
 						{
 							Author: &proto.GitSignature{
 								Name:  []byte("Foo"),
-								Email: []byte("foo@sourcegraph.com"),
+								Email: []byte("foo@khulnasoft.com"),
 							},
 							Count: 1,
 						},
@@ -1056,7 +1056,7 @@ func TestClient_ContributorCounts(t *testing.T) {
 
 		res, err := c.ContributorCount(context.Background(), "repo", ContributorOptions{Range: "asd", After: time.Now(), Path: "path"})
 		require.NoError(t, err)
-		require.Equal(t, []*gitdomain.ContributorCount{{Name: "Foo", Email: "foo@sourcegraph.com", Count: 1}}, res)
+		require.Equal(t, []*gitdomain.ContributorCount{{Name: "Foo", Email: "foo@khulnasoft.com", Count: 1}}, res)
 	})
 
 	t.Run("returns common errors correctly", func(t *testing.T) {
@@ -1811,7 +1811,7 @@ func TestClient_Commits(t *testing.T) {
 						{
 							Commit: &v1.GitCommit{
 								Oid:       "2b2289762392764ed127587b0d5fd88a2f16b7c1",
-								Author:    &v1.GitSignature{Name: []byte("Bar Author"), Email: []byte("bar@sourcegraph.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z"))},
+								Author:    &v1.GitSignature{Name: []byte("Bar Author"), Email: []byte("bar@khulnasoft.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z"))},
 								Committer: &v1.GitSignature{Name: []byte("c"), Email: []byte("c@c.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:07Z"))},
 								Message:   []byte("bar"),
 								Parents:   []string{"5fab3adc1e398e749749271d14ab843759b192cf"},
@@ -1825,7 +1825,7 @@ func TestClient_Commits(t *testing.T) {
 						{
 							Commit: &v1.GitCommit{
 								Oid:       "5fab3adc1e398e749749271d14ab843759b192cf",
-								Author:    &v1.GitSignature{Name: []byte("Foo Author"), Email: []byte("foo@sourcegraph.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z"))},
+								Author:    &v1.GitSignature{Name: []byte("Foo Author"), Email: []byte("foo@khulnasoft.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z"))},
 								Committer: &v1.GitSignature{Name: []byte("c"), Email: []byte("c@c.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z"))},
 								Message:   []byte("foo"),
 								Parents:   nil,
@@ -1848,14 +1848,14 @@ func TestClient_Commits(t *testing.T) {
 		require.Equal(t, []*gitdomain.Commit{
 			{
 				ID:        "2b2289762392764ed127587b0d5fd88a2f16b7c1",
-				Author:    gitdomain.Signature{Name: "Bar Author", Email: "bar@sourcegraph.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z")},
+				Author:    gitdomain.Signature{Name: "Bar Author", Email: "bar@khulnasoft.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z")},
 				Committer: &gitdomain.Signature{Name: "c", Email: "c@c.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:07Z")},
 				Message:   "bar",
 				Parents:   []api.CommitID{"5fab3adc1e398e749749271d14ab843759b192cf"},
 			},
 			{
 				ID:        "5fab3adc1e398e749749271d14ab843759b192cf",
-				Author:    gitdomain.Signature{Name: "Foo Author", Email: "foo@sourcegraph.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
+				Author:    gitdomain.Signature{Name: "Foo Author", Email: "foo@khulnasoft.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
 				Committer: &gitdomain.Signature{Name: "c", Email: "c@c.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
 				Message:   "foo",
 				Parents:   []api.CommitID{},
@@ -1893,21 +1893,21 @@ func TestClient_Commits(t *testing.T) {
 		allGitCommits := []*gitdomain.Commit{
 			{
 				ID:        "5f2834f77bc9df150aad4067819960034faedb61",
-				Author:    gitdomain.Signature{Name: "Foobar Author", Email: "foobar@sourcegraph.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z")},
+				Author:    gitdomain.Signature{Name: "Foobar Author", Email: "foobar@khulnasoft.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z")},
 				Committer: &gitdomain.Signature{Name: "c", Email: "c@c.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:07Z")},
 				Message:   "foobar",
 				Parents:   []api.CommitID{"2b2289762392764ed127587b0d5fd88a2f16b7c1"},
 			},
 			{
 				ID:        "2b2289762392764ed127587b0d5fd88a2f16b7c1",
-				Author:    gitdomain.Signature{Name: "Bar Author", Email: "bar@sourcegraph.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z")},
+				Author:    gitdomain.Signature{Name: "Bar Author", Email: "bar@khulnasoft.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z")},
 				Committer: &gitdomain.Signature{Name: "c", Email: "c@c.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:07Z")},
 				Message:   "bar",
 				Parents:   []api.CommitID{"5fab3adc1e398e749749271d14ab843759b192cf"},
 			},
 			{
 				ID:        "5fab3adc1e398e749749271d14ab843759b192cf",
-				Author:    gitdomain.Signature{Name: "Foo Author", Email: "foo@sourcegraph.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
+				Author:    gitdomain.Signature{Name: "Foo Author", Email: "foo@khulnasoft.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
 				Committer: &gitdomain.Signature{Name: "c", Email: "c@c.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
 				Message:   "foo",
 				Parents:   []api.CommitID{},
@@ -1923,7 +1923,7 @@ func TestClient_Commits(t *testing.T) {
 						{
 							Commit: &v1.GitCommit{
 								Oid:       "5f2834f77bc9df150aad4067819960034faedb61",
-								Author:    &v1.GitSignature{Name: []byte("Foobar Author"), Email: []byte("foobar@sourcegraph.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z"))},
+								Author:    &v1.GitSignature{Name: []byte("Foobar Author"), Email: []byte("foobar@khulnasoft.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z"))},
 								Committer: &v1.GitSignature{Name: []byte("c"), Email: []byte("c@c.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:07Z"))},
 								Message:   []byte("foobar"),
 								Parents:   []string{"2b2289762392764ed127587b0d5fd88a2f16b7c1"},
@@ -1937,7 +1937,7 @@ func TestClient_Commits(t *testing.T) {
 						{
 							Commit: &v1.GitCommit{
 								Oid:       "2b2289762392764ed127587b0d5fd88a2f16b7c1",
-								Author:    &v1.GitSignature{Name: []byte("Bar Author"), Email: []byte("bar@sourcegraph.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z"))},
+								Author:    &v1.GitSignature{Name: []byte("Bar Author"), Email: []byte("bar@khulnasoft.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z"))},
 								Committer: &v1.GitSignature{Name: []byte("c"), Email: []byte("c@c.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:07Z"))},
 								Message:   []byte("bar"),
 								Parents:   []string{"5fab3adc1e398e749749271d14ab843759b192cf"},
@@ -1951,7 +1951,7 @@ func TestClient_Commits(t *testing.T) {
 						{
 							Commit: &v1.GitCommit{
 								Oid:       "5fab3adc1e398e749749271d14ab843759b192cf",
-								Author:    &v1.GitSignature{Name: []byte("Foo Author"), Email: []byte("foo@sourcegraph.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z"))},
+								Author:    &v1.GitSignature{Name: []byte("Foo Author"), Email: []byte("foo@khulnasoft.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z"))},
 								Committer: &v1.GitSignature{Name: []byte("c"), Email: []byte("c@c.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z"))},
 								Message:   []byte("foo"),
 								Parents:   nil,

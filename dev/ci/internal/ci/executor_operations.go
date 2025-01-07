@@ -163,9 +163,9 @@ func executorsE2E(c Config) operations.Operation {
 			bk.Agent("queue", AspectWorkflows.QueueDefault),
 			bk.Env("REGISTRY", registry),
 			bk.Env("CANDIDATE_VERSION", c.candidateImageTag()),
-			bk.Env("SOURCEGRAPH_BASE_URL", "http://127.0.0.1:7080"),
-			bk.Env("SOURCEGRAPH_SUDO_USER", "admin"),
-			bk.Env("TEST_USER_EMAIL", "test@sourcegraph.com"),
+			bk.Env("KHULNASOFT_BASE_URL", "http://127.0.0.1:7080"),
+			bk.Env("KHULNASOFT_SUDO_USER", "admin"),
+			bk.Env("TEST_USER_EMAIL", "test@khulnasoft.com"),
 			bk.Env("TEST_USER_PASSWORD", "supersecurepassword"),
 			bk.Cmd("dev/ci/integration/executors/run.sh"),
 			bk.ArtifactPaths("./*.log")) // Run tests against the candidate server image

@@ -255,10 +255,10 @@ type excludeRepoFromExternalServiceArgs struct {
 }
 
 var codeHostInaccessibleWarning = strings.TrimSpace(`
-This error might indicate that the code host is not reachable over the network from your Sourcegraph instance.
+This error might indicate that the code host is not reachable over the network from your Khulnasoft instance.
 
 This could be due to a network issue or a misconfiguration of the code host.
-Please see [our troubleshooting documentation page](https://sourcegraph.com/docs/admin/repo/add#troubleshooting) for more information.
+Please see [our troubleshooting documentation page](https://khulnasoft.com/docs/admin/repo/add#troubleshooting) for more information.
 `)
 
 func checkErrCodeHostMaybeInaccessible(err error) bool {

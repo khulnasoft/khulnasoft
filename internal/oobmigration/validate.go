@@ -45,7 +45,7 @@ func ValidateOutOfBandMigrationRunner(ctx context.Context, db database.DB, runne
 
 	// Ensure that there are no unfinished migrations that would cause inconsistent results.
 	// If there are unfinished migrations, the site-admin needs to run the previous version
-	// of Sourcegraph for longer while the migrations finish.
+	// of Khulnasoft for longer while the migrations finish.
 	//
 	// This condition should only be hit when the site-admin prematurely updates to a version
 	// that requires the migration process to be already finished. There are warnings on the

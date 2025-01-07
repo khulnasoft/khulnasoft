@@ -286,7 +286,7 @@ export const CodyProCheckoutForm: React.FunctionComponent<CodyProCheckoutFormPro
                     <H3>Explore an enterprise plan</H3>
                     <Text className="mb-0">
                         Team plans are limited to 50 users.{' '}
-                        <Link to="https://sourcegraph.com/contact/sales/">Contact sales</Link> to learn more.
+                        <Link to="https://khulnasoft.com/contact/sales/">Contact sales</Link> to learn more.
                     </Text>
                 </CodyAlert>
             )}

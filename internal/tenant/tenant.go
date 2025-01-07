@@ -1,6 +1,6 @@
 package tenant
 
-// Tenant represents a tenant in the Sourcegraph platform. It is used to isolate
+// Tenant represents a tenant in the Khulnasoft platform. It is used to isolate
 // data between tenants. If you are not implementing a low-level data store, you
 // most likely don't need to interface much with this type.
 // Tenants are automatically set in the context for all incoming requests through

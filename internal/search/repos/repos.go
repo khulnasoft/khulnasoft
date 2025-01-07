@@ -1201,7 +1201,7 @@ func findPatternRevs(includePatterns []query.ParsedRepoFilter) (outputPatterns [
 }
 
 func optimizeRepoPatternWithHeuristics(repoPattern string) string {
-	if dotcom.SourcegraphDotComMode() && (strings.HasPrefix(repoPattern, "github.com") || strings.HasPrefix(repoPattern, `github\.com`)) {
+	if dotcom.KhulnasoftDotComMode() && (strings.HasPrefix(repoPattern, "github.com") || strings.HasPrefix(repoPattern, `github\.com`)) {
 		repoPattern = "^" + repoPattern
 	}
 	// Optimization: make the "." in "github.com" a literal dot

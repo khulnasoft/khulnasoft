@@ -1,4 +1,4 @@
-# `sg` - the Sourcegraph developer tool
+# `sg` - the Khulnasoft developer tool
 
 ```none
           _____                    _____
@@ -25,10 +25,10 @@
 
 ```
 
-[`sg`](https://github.com/khulnasoft/khulnasoft/tree/main/dev/sg) is the CLI tool that Sourcegraph developers can use to develop Sourcegraph.
+[`sg`](https://github.com/khulnasoft/khulnasoft/tree/main/dev/sg) is the CLI tool that Khulnasoft developers can use to develop Khulnasoft.
 Learn more about the tool's overall vision in [`sg` Vision](./vision.md), and how to use it in the [usage section](#usage).
 
-> NOTE: Have feedback or ideas? Feel free to [join our community](https://community.sourcegraph.com)! Sourcegraph teammates can also leave a message in [#discuss-dev-infra](https://sourcegraph.slack.com/archives/C04MYFW01NV).
+> NOTE: Have feedback or ideas? Feel free to [join our community](https://community.khulnasoft.com)! Khulnasoft teammates can also leave a message in [#discuss-dev-infra](https://sourcegraph.slack.com/archives/C04MYFW01NV).
 
 ## Quickstart
 
@@ -38,7 +38,7 @@ Learn more about the tool's overall vision in [`sg` Vision](./vision.md), and ho
    curl --proto '=https' --tlsv1.2 -sSLf https://install.sg.dev | sh
    ```
 
-2. In your clone of [`sourcegraph/sourcegraph`](https://github.com/sourcegraph/sourcegraph), start the default Sourcegraph environment:
+2. In your clone of [`sourcegraph/sourcegraph`](https://github.com/sourcegraph/sourcegraph), start the default Khulnasoft environment:
 
    ```sh
    sg start
@@ -227,15 +227,15 @@ commands:
 
 ### Attach a debugger
 
-To attach the [Delve](https://github.com/go-delve/delve) debugger, pass the environment variable `DELVE=true` into `sg`. [Read more here](https://docs.sourcegraph.com/dev/how-to/debug_live_code#debug-go-code)
+To attach the [Delve](https://github.com/go-delve/delve) debugger, pass the environment variable `DELVE=true` into `sg`. [Read more here](https://docs.khulnasoft.com/dev/how-to/debug_live_code#debug-go-code)
 
 ### Offline development
 
-Sometimes you will want to develop Sourcegraph but it just so happens you will be on a plane or a
+Sometimes you will want to develop Khulnasoft but it just so happens you will be on a plane or a
 train or perhaps a beach, and you will have no WiFi. And you may raise your fist toward heaven and
 say something like, "Why, we can put a man on the moon, so why can't we develop high-quality code
 search without an Internet connection?" But lower your hand back to your keyboard and fret no
-further, you *can* develop Sourcegraph with no connectivity by setting the
+further, you *can* develop Khulnasoft with no connectivity by setting the
 `OFFLINE` environment variable:
 
 ```bash
@@ -250,15 +250,15 @@ docker pull -q sourcegraph/syntax-highlighter:insiders
 
 ## `sg` and pre-commit hooks
 
-When `sg setup` is run, it will automatically install pre-commit hooks (using [pre-commit.com](https://pre-commit.com)), with a [provided configuration](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/.pre-commit-config.yaml) that will perform a series of fast checks before each commit you create locally.
+When `sg setup` is run, it will automatically install pre-commit hooks (using [pre-commit.com](https://pre-commit.com)), with a [provided configuration](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/.pre-commit-config.yaml) that will perform a series of fast checks before each commit you create locally.
 
-Amongst that list of checks, is a [script](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/dev/check-tokens.sh) that tries to detect the presence of tokens that would have been accidentally committed. While it's implementation is rather simple and won't catch all tokens (this is covered by automated scans in CI), it's enough to catch common mistakes and save you from having to rotate secrets, as they never left your computer. Due to the importance of such a measure, it's an opt-out process instead of opt-in.
+Amongst that list of checks, is a [script](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/dev/check-tokens.sh) that tries to detect the presence of tokens that would have been accidentally committed. While it's implementation is rather simple and won't catch all tokens (this is covered by automated scans in CI), it's enough to catch common mistakes and save you from having to rotate secrets, as they never left your computer. Due to the importance of such a measure, it's an opt-out process instead of opt-in.
 
 Therefore, it's strongly recommended to keep the pre-commit git hook. In the eventuality of the pre-commit detecting a false positive, you can disable it through `sg setup disable-pre-commit` and prevent `sg setup` from installing it by passing a flag `sg setup --skip-pre-commit`.
 
 ### Exceptions
 
-There are legitimate cases where code contains what appears to be a Sourcegraph token but isn't usable on any existing deployments.
+There are legitimate cases where code contains what appears to be a Khulnasoft token but isn't usable on any existing deployments.
 Testing code for generating tokens is good example.
 
 You can tell pre-commit to simply skip these files by adding a `// pre-commit:ignore_sourcegraph_token` top-level comment, as
@@ -297,7 +297,7 @@ func TestGenerateDotcomUserGatewayAccessToken(t *testing.T) {
 Want to hack on `sg`? Great! Here's how:
 
 1. Read through the [`sg` Vision](./vision.md) to get an idea of what `sg` should be in the long term.
-2. Explore the [`sg` source code](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/dev/sg).
+2. Explore the [`sg` source code](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/tree/dev/sg).
 3. Look at the open [`sg` issues](https://github.com/khulnasoft/khulnasoft/issues?q=is%3Aopen+is%3Aissue+label%3Asg).
 
 When you want to hack on `sg` it's best to be in the `dev/sg` directory and run it from there:
@@ -309,9 +309,9 @@ go run . -config ../../sg.config.yaml start
 
 The `-config` can be anything you want, of course.
 
-Have questions or need help? Feel free to [join our community](https://community.sourcegraph.com)! Sourcegraph teammates can also leave a message in [#discuss-dev-infra](https://sourcegraph.slack.com/archives/C04MYFW01NV).
+Have questions or need help? Feel free to [join our community](https://community.khulnasoft.com)! Khulnasoft teammates can also leave a message in [#discuss-dev-infra](https://sourcegraph.slack.com/archives/C04MYFW01NV).
 
-> NOTE: For Sourcegraph teammates, we have a weekly [`sg` hack hour](https://handbook.sourcegraph.com/departments/product-engineering/engineering/enablement/dev-experience#sg-hack-hour) you can hop in to if you're interested in contributing!
+> NOTE: For Khulnasoft teammates, we have a weekly [`sg` hack hour](https://handbook.khulnasoft.com/departments/product-engineering/engineering/enablement/dev-experience#sg-hack-hour) you can hop in to if you're interested in contributing!
 
 ## Advanced installation
 
@@ -339,7 +339,7 @@ go build -o ~/my/path/sg ./dev/sg
 
 Then make sure that `~/my/path` is in your `$PATH`.
 
-> NOTE: **For Linux users:** A command called [sg](https://www.man7.org/linux/man-pages/man1/sg.1.html) is already available at `/usr/bin/sg`. To use the Sourcegraph `sg` CLI, you need to make sure that its location comes first in `PATH`. For example, by prepending `$GOPATH/bin`:
+> NOTE: **For Linux users:** A command called [sg](https://www.man7.org/linux/man-pages/man1/sg.1.html) is already available at `/usr/bin/sg`. To use the Khulnasoft `sg` CLI, you need to make sure that its location comes first in `PATH`. For example, by prepending `$GOPATH/bin`:
 >
 > `export PATH=$GOPATH/bin:$PATH`
 >

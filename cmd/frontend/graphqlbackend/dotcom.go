@@ -47,8 +47,8 @@ type ProductSubscription interface {
 	IsArchived() bool
 	URL(context.Context) (string, error)
 	URLForSiteAdmin(context.Context) *string
-	CurrentSourcegraphAccessToken(context.Context) (*string, error)
-	SourcegraphAccessTokens(context.Context) ([]string, error)
+	CurrentKhulnasoftAccessToken(context.Context) (*string, error)
+	KhulnasoftAccessTokens(context.Context) ([]string, error)
 }
 
 type CreateProductSubscriptionArgs struct {

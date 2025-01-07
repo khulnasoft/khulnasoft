@@ -1,7 +1,7 @@
 // Package siteid provides access to the site ID, a stable identifier for the current
-// Sourcegraph site.
+// Khulnasoft site.
 //
-// All servers that are part of the same logical Sourcegraph site have the same site ID
+// All servers that are part of the same logical Khulnasoft site have the same site ID
 // (although it is possible for an admin to misconfigure the servers so that this is not
 // true).
 //

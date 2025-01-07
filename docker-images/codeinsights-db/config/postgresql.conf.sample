@@ -57,7 +57,7 @@
 
 # - Connection Settings -
 
-# Sourcegraph: Listen on all interfaces
+# Khulnasoft: Listen on all interfaces
 listen_addresses = '*'		# what IP address(es) to listen on;
 					# comma-separated list of addresses;
 					# defaults to 'localhost'; use '*' for all
@@ -663,7 +663,7 @@ timezone = 'UTC'
 #client_encoding = sql_ascii		# actually, defaults to database
 					# encoding
 
-# Sourcegraph: Use 'en_US.utf8' locale
+# Khulnasoft: Use 'en_US.utf8' locale
 # These settings are initialized by initdb, but they can be changed.
 lc_messages = 'en_US.utf8'			# locale for system error message
 					# strings

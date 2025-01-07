@@ -284,7 +284,7 @@ func TestMustParseInternalURL(t *testing.T) {
 				}
 			}()
 
-			got := mustParseSourcegraphInternalURL(tt.input)
+			got := mustParseKhulnasoftInternalURL(tt.input)
 
 			if diff := cmp.Diff(tt.want.String(), got.String()); diff != "" {
 				t.Fatalf("unexpected diff (-want +got):\n%s", diff)

@@ -178,7 +178,7 @@
       "type": "PERSONAL",
       "owner": {
         "name": "keegan",
-        "emailAddress": "keegan@sourcegraph.com",
+        "emailAddress": "keegan@khulnasoft.com",
         "id": 1,
         "displayName": "Keegan",
         "active": true,
@@ -234,7 +234,7 @@
       "type": "PERSONAL",
       "owner": {
         "name": "keegan",
-        "emailAddress": "keegan@sourcegraph.com",
+        "emailAddress": "keegan@khulnasoft.com",
         "id": 1,
         "displayName": "Keegan",
         "active": true,

@@ -95,7 +95,7 @@ export const HomeFooter: React.FunctionComponent<React.PropsWithChildren<HomeFoo
                                 alt: 'Watch and learn video thumbnail',
                             }}
                             onToggle={() => props.telemetryService.log('VSCEHomeWatch&Lean')}
-                            // assetsRoot="https://sourcegraph.com/.assets/"
+                            // assetsRoot="https://khulnasoft.com/.assets/"
                             assetsRoot="https://i.ibb.co/"
                         />
                     </div>

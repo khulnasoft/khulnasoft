@@ -74,7 +74,7 @@ func (r *workHandler) fetchSeries(ctx context.Context, seriesID string) (*types.
 
 func (r *workHandler) Handle(ctx context.Context, logger log.Logger, record *Job) (err error) {
 	// 🚨 SECURITY: The request is performed without authentication, we get back results from every
-	// repository on Sourcegraph - results will be filtered when users query for insight data based on the
+	// repository on Khulnasoft - results will be filtered when users query for insight data based on the
 	// repositories they can see.
 	isGlobal := false
 	if record.RecordTime == nil {

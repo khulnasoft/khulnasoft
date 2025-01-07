@@ -278,7 +278,7 @@ async function main(): Promise<void> {
 
     await browser.runtime.setUninstallURL(
         createURLWithUTM(
-            new URL('https://sourcegraph.com/uninstall'),
+            new URL('https://khulnasoft.com/uninstall'),
             IsProductionVersion
                 ? {
                       utm_source: getPlatformName(),

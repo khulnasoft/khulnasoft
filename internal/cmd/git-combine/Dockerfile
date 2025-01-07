@@ -20,7 +20,7 @@ RUN go mod download \
 RUN go build .
 
 # Does not need to use sourcegraph-alpine since this is only deployed for
-# Sourcegraph.com.
+# Khulnasoft.com.
 # alpine_base CHECK:ALPINE_OK
 FROM alpine:3.15 as alpine_base
 
@@ -38,7 +38,7 @@ ARG VERSION="unknown"
 
 LABEL org.opencontainers.image.revision=${COMMIT_SHA}
 LABEL org.opencontainers.image.version=${VERSION}
-LABEL org.opencontainers.image.url=https://sourcegraph.com/
+LABEL org.opencontainers.image.url=https://khulnasoft.com/
 LABEL org.opencontainers.image.source=https://github.com/khulnasoft/khulnasoft/tree/main/internal/cmd/git-combine
 LABEL org.opencontainers.image.documentation=https://github.com/khulnasoft/khulnasoft/blob/main/internal/cmd/git-combine/README.md
 

@@ -130,7 +130,7 @@ export const InviteUsers: React.FunctionComponent<InviteUsersProps> = ({ telemet
                         {emailAddresses.length} {pluralize('invite', emailAddresses.length)} sent!
                     </H3>
                     <Text size="small" className="mb-0">
-                        Invitees will receive an email from cody@sourcegraph.com.
+                        Invitees will receive an email from cody@khulnasoft.com.
                     </Text>
                 </CodyAlert>
             )}
@@ -142,7 +142,7 @@ export const InviteUsers: React.FunctionComponent<InviteUsersProps> = ({ telemet
                     </Text>
                     <Text size="small" className="mb-0">
                         If you encounter this issue repeatedly, please contact support at{' '}
-                        <Link to="mailto:support@sourcegraph.com">support@sourcegraph.com</Link>.
+                        <Link to="mailto:support@khulnasoft.com">support@khulnasoft.com</Link>.
                     </Text>
                 </CodyAlert>
             )}
@@ -157,7 +157,7 @@ export const InviteUsers: React.FunctionComponent<InviteUsersProps> = ({ telemet
                         </H2>
                         <TextArea
                             className="mb-2"
-                            placeholder="Example: someone@sourcegraph.com, another.user@sourcegraph.com"
+                            placeholder="Example: someone@khulnasoft.com, another.user@khulnasoft.com"
                             rows={4}
                             onChange={event => {
                                 setEmailAddressErrorMessage(null)

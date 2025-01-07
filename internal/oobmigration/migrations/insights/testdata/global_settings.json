@@ -7,7 +7,7 @@
   "searchInsights.insight.globalFunc": {
     "title": "GLOBAL func",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -95,7 +95,7 @@
         }
       ]
     },
-    "searchInsights.insight.joelkwResultsButFilteredJustToSourcegraphSourcegraph": {
+    "searchInsights.insight.joelkwResultsButFilteredJustToKhulnasoftKhulnasoft": {
       "title": "joelkw results but filtered just to sourcegraph/sourcegraph$",
       "series": [
         {
@@ -572,7 +572,7 @@
         }
       ],
       "filters": {
-        "includeRepoRegexp": "github.com/sourcegraph/sourcegraph",
+        "includeRepoRegexp": "github.com/khulnasoft/khulnasoft",
         "excludeRepoRegexp": ""
       }
     },
@@ -605,7 +605,7 @@
   "searchInsights.insight.test92CampaignsFrontendInsight": {
     "title": "[Test 9.2] Campaigns frontend insight ",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -637,7 +637,7 @@
   "searchInsights.insight.globalTest": {
     "title": "global test",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -674,7 +674,7 @@
   "searchInsights.insight.test234Changed": {
     "title": "test234 changed",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -690,7 +690,7 @@
   "searchInsights.insight.removingRawCommands": {
     "title": "Removing raw commands",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -706,7 +706,7 @@
   "searchInsights.insight.readmesAndReadmesThatAreComplete": {
     "title": "Readmes and readmes that are \"complete\"",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {

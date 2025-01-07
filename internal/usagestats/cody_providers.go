@@ -15,7 +15,7 @@ func GetCodyProviders() (*types.CodyProviders, error) {
 		providers.Completions = &types.CodyCompletionProvider{
 			Provider: completionsConfig.Provider,
 		}
-		if completionsConfig.Provider == conftypes.CompletionsProviderNameSourcegraph {
+		if completionsConfig.Provider == conftypes.CompletionsProviderNameKhulnasoft {
 			providers.Completions.ChatModel = completionsConfig.ChatModel
 			providers.Completions.CompletionModel = completionsConfig.CompletionModel
 			providers.Completions.FastChatModel = completionsConfig.FastChatModel
@@ -25,7 +25,7 @@ func GetCodyProviders() (*types.CodyProviders, error) {
 		providers.Embeddings = &types.CodyEmbeddingsProvider{
 			Provider: embeddingsConfig.Provider,
 		}
-		if embeddingsConfig.Provider == conftypes.EmbeddingsProviderNameSourcegraph {
+		if embeddingsConfig.Provider == conftypes.EmbeddingsProviderNameKhulnasoft {
 			providers.Embeddings.Model = embeddingsConfig.Model
 		}
 	}

@@ -72,7 +72,7 @@ func RepoUpdater() *monitoring.Dashboard {
 							NextSteps: fmt.Sprintf(`
 								An alert here indicates that no code host connections have synced in at least %v. This indicates that there could be a configuration issue
 								with your code hosts connections or networking issues affecting communication with your code hosts.
-								- Check the code host status indicator (cloud icon in top right of Sourcegraph homepage) for errors.
+								- Check the code host status indicator (cloud icon in top right of Khulnasoft homepage) for errors.
 								- Make sure external services do not have invalid tokens by navigating to them in the web UI and clicking save. If there are no errors, they are valid.
 								- Check the repo-updater logs for errors about syncing.
 								- Confirm that outbound network connections are allowed where repo-updater is deployed.
@@ -90,7 +90,7 @@ func RepoUpdater() *monitoring.Dashboard {
 							NextSteps: `
 								An alert here indicates errors syncing site level repo metadata with code hosts. This indicates that there could be a configuration issue
 								with your code hosts connections or networking issues affecting communication with your code hosts.
-								- Check the code host status indicator (cloud icon in top right of Sourcegraph homepage) for errors.
+								- Check the code host status indicator (cloud icon in top right of Khulnasoft homepage) for errors.
 								- Make sure external services do not have invalid tokens by navigating to them in the web UI and clicking save. If there are no errors, they are valid.
 								- Check the repo-updater logs for errors about syncing.
 								- Confirm that outbound network connections are allowed where repo-updater is deployed.
@@ -115,7 +115,7 @@ func RepoUpdater() *monitoring.Dashboard {
 							Warning:     monitoring.Alert().GreaterOrEqual(30).For(5 * time.Minute),
 							Panel:       monitoring.Panel().LegendFormat("{{family}}-{{success}}").Unit(monitoring.Seconds),
 							Owner:       monitoring.ObservableOwnerSource,
-							NextSteps:   "Check the network latency is reasonable (<50ms) between the Sourcegraph and the code host",
+							NextSteps:   "Check the network latency is reasonable (<50ms) between the Khulnasoft and the code host",
 						},
 						{
 							Name:        "source_duration",
@@ -124,7 +124,7 @@ func RepoUpdater() *monitoring.Dashboard {
 							Warning:     monitoring.Alert().GreaterOrEqual(30).For(5 * time.Minute),
 							Panel:       monitoring.Panel().Unit(monitoring.Seconds),
 							Owner:       monitoring.ObservableOwnerSource,
-							NextSteps:   "Check the network latency is reasonable (<50ms) between the Sourcegraph and the code host",
+							NextSteps:   "Check the network latency is reasonable (<50ms) between the Khulnasoft and the code host",
 						},
 					},
 					{

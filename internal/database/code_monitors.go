@@ -252,7 +252,7 @@ func NewTestUser(ctx context.Context, t *testing.T, db dbutil.DB) (name string, 
 
 const (
 	//nolint:unused // used in tests
-	testQuery = "repo:github\\.com/sourcegraph/sourcegraph func type:diff patternType:literal"
+	testQuery = "repo:github\\.com/khulnasoft/khulnasoft func type:diff patternType:literal"
 	//nolint:unused // used in tests
 	testDescription = "test description"
 )

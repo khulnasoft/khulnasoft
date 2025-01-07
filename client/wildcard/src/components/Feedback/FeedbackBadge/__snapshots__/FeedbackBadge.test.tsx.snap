@@ -18,7 +18,7 @@ exports[`FeedbackBadge > Renders status 'beta' correctly 1`] = `
   </span>
   <a
     class="anchor"
-    href="mailto:support@sourcegraph.com"
+    href="mailto:support@khulnasoft.com"
     rel="noopener noreferrer"
     target="_blank"
   >
@@ -45,7 +45,7 @@ exports[`FeedbackBadge > Renders status 'experimental' correctly 1`] = `
   </span>
   <a
     class="anchor"
-    href="mailto:support@sourcegraph.com"
+    href="mailto:support@khulnasoft.com"
     rel="noopener noreferrer"
     target="_blank"
   >
@@ -72,7 +72,7 @@ exports[`FeedbackBadge > Renders status 'new' correctly 1`] = `
   </span>
   <a
     class="anchor"
-    href="mailto:support@sourcegraph.com"
+    href="mailto:support@khulnasoft.com"
     rel="noopener noreferrer"
     target="_blank"
   >
@@ -99,7 +99,7 @@ exports[`FeedbackBadge > Renders status 'wip' correctly 1`] = `
   </span>
   <a
     class="anchor"
-    href="mailto:support@sourcegraph.com"
+    href="mailto:support@khulnasoft.com"
     rel="noopener noreferrer"
     target="_blank"
   >
@@ -126,7 +126,7 @@ exports[`FeedbackBadge > renders a FeedbackBadge 1`] = `
   </span>
   <a
     class="anchor"
-    href="mailto:support@sourcegraph.com"
+    href="mailto:support@khulnasoft.com"
     rel="noopener noreferrer"
     target="_blank"
   >

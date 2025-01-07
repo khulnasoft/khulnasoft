@@ -48,13 +48,13 @@ func TestConvertCompletionsConfig(t *testing.T) {
 		siteModelConfig, err := convertCompletionsConfig(compConfig)
 		require.NoError(t, err)
 
-		assert.Nil(t, siteModelConfig.SourcegraphModelConfig)
+		assert.Nil(t, siteModelConfig.KhulnasoftModelConfig)
 		require.NotNil(t, siteModelConfig.ProviderOverrides)
 		require.NotNil(t, siteModelConfig.ModelOverrides)
 
 		// ProviderOverrides. Because the default models are from different providers, we stub out
 		// three different ProviderOverrides. However, all of these are configured to use the
-		// "Sourcegraph API Provider".
+		// "Khulnasoft API Provider".
 		require.Equal(t, 2, len(siteModelConfig.ProviderOverrides))
 		assert.EqualValues(t, "anthropic", siteModelConfig.ProviderOverrides[0].ID)
 		assert.EqualValues(t, "fireworks", siteModelConfig.ProviderOverrides[1].ID)
@@ -69,11 +69,11 @@ func TestConvertCompletionsConfig(t *testing.T) {
 
 			ssConfig := providerOverride.ServerSideConfig
 			require.NotNil(t, ssConfig)
-			require.NotNil(t, ssConfig.SourcegraphProvider)
+			require.NotNil(t, ssConfig.KhulnasoftProvider)
 
-			sgAPIProviderConfig := ssConfig.SourcegraphProvider
+			sgAPIProviderConfig := ssConfig.KhulnasoftProvider
 			require.NotNil(t, sgAPIProviderConfig)
-			assert.Equal(t, "https://cody-gateway.sourcegraph.com", sgAPIProviderConfig.Endpoint)
+			assert.Equal(t, "https://cody-gateway.khulnasoft.com", sgAPIProviderConfig.Endpoint)
 			assert.NotEmpty(t, sgAPIProviderConfig.AccessToken) // Based on the license key.
 		}
 
@@ -103,7 +103,7 @@ func TestConvertCompletionsConfig(t *testing.T) {
 		siteModelConfig, err := convertCompletionsConfig(compConfig)
 		require.NoError(t, err)
 
-		assert.Nil(t, siteModelConfig.SourcegraphModelConfig)
+		assert.Nil(t, siteModelConfig.KhulnasoftModelConfig)
 		require.NotNil(t, siteModelConfig.ProviderOverrides)
 		require.NotNil(t, siteModelConfig.ModelOverrides)
 
@@ -143,7 +143,7 @@ func TestConvertCompletionsConfig(t *testing.T) {
 			siteModelConfig, err := convertCompletionsConfig(compConfig)
 			require.NoError(t, err)
 
-			assert.Nil(t, siteModelConfig.SourcegraphModelConfig)
+			assert.Nil(t, siteModelConfig.KhulnasoftModelConfig)
 			require.NotNil(t, siteModelConfig.ProviderOverrides)
 			require.NotNil(t, siteModelConfig.ModelOverrides)
 
@@ -199,7 +199,7 @@ func TestConvertCompletionsConfig(t *testing.T) {
 			siteModelConfig, err := convertCompletionsConfig(compConfig)
 			require.NoError(t, err)
 
-			assert.Nil(t, siteModelConfig.SourcegraphModelConfig)
+			assert.Nil(t, siteModelConfig.KhulnasoftModelConfig)
 			require.NotNil(t, siteModelConfig.ProviderOverrides)
 			require.NotNil(t, siteModelConfig.ModelOverrides)
 
@@ -260,7 +260,7 @@ func TestConvertCompletionsConfig(t *testing.T) {
 			siteModelConfig, err := convertCompletionsConfig(compConfig)
 			require.NoError(t, err)
 
-			assert.Nil(t, siteModelConfig.SourcegraphModelConfig)
+			assert.Nil(t, siteModelConfig.KhulnasoftModelConfig)
 			require.NotNil(t, siteModelConfig.ProviderOverrides)
 			require.NotNil(t, siteModelConfig.ModelOverrides)
 

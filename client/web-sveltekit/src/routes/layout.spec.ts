@@ -27,13 +27,13 @@ test.describe('cody top level navigation', () => {
 
     const tests = [
         {
-            name: 'sourcegraph.com, signed out',
+            name: 'khulnasoft.com, signed out',
             context: { sourcegraphDotComMode: true },
             signedIn: false,
             expectedTopNav: '/cody',
         },
         {
-            name: 'sourcegraph.com, signed in',
+            name: 'khulnasoft.com, signed in',
             context: { sourcegraphDotComMode: true },
             signedIn: true,
             expectedTopNav: '/cody/chat',
@@ -125,7 +125,7 @@ test('automatic file path encoding', async ({ sg, page }) => {
             }
         },
     })
-    await page.goto('/sourcegraph/sourcegraph/-/blob/app/src/routes/-/blob/page.ts')
+    await page.goto('/khulnasoft/khulnasoft/-/blob/app/src/routes/-/blob/page.ts')
     // If this didn't work we would render a 'Error: Not found' page
     await expect(page.getByRole('heading', { name: 'sourcegraph/sourcegraph' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Error' })).not.toBeVisible()

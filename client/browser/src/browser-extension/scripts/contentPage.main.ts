@@ -18,7 +18,7 @@ import {
 import { determineCodeHost } from '../../shared/code-hosts/shared/codeHost'
 import { injectCodeIntelligence } from '../../shared/code-hosts/shared/inject'
 import { initSentry } from '../../shared/sentry'
-import { DEFAULT_SOURCEGRAPH_URL, getAssetsURL, observeKhulnasoftURL } from '../../shared/util/context'
+import { DEFAULT_KHULNASOFT_URL, getAssetsURL, observeKhulnasoftURL } from '../../shared/util/context'
 import { featureFlags } from '../../shared/util/featureFlags'
 import { assertEnvironment } from '../environmentAssertion'
 
@@ -110,7 +110,7 @@ async function main(): Promise<void> {
 
             try {
                 previousSubscription = await injectCodeIntelligence(
-                    { sourcegraphURL, assetsURL: getAssetsURL(DEFAULT_SOURCEGRAPH_URL) },
+                    { sourcegraphURL, assetsURL: getAssetsURL(DEFAULT_KHULNASOFT_URL) },
                     IS_EXTENSION,
                     async function onCodeHostFound() {
                         const styleSheets = [

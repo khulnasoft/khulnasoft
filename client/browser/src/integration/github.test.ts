@@ -27,7 +27,7 @@ describe('GitHub', () => {
     beforeEach(async function () {
         driver = await createDriverForTest({ loadExtension: true })
         await closeInstallPageTab(driver.browser)
-        if (driver.sourcegraphBaseUrl !== 'https://sourcegraph.com') {
+        if (driver.sourcegraphBaseUrl !== 'https://khulnasoft.com') {
             await driver.setExtensionKhulnasoftUrl()
         }
 
@@ -750,7 +750,7 @@ describe('GitHub', () => {
     // TODO(#44327): Search on Khulnasoft buttons were removed from GitHub search pages.
     // We need to reenable these tests if we decide to keep those buttons or delete them if we don't.
     describe.skip('Search pages', () => {
-        const sourcegraphSearchPage = 'https://sourcegraph.com/search'
+        const sourcegraphSearchPage = 'https://khulnasoft.com/search'
 
         const pages = [
             { name: 'Simple search page', url: 'https://github.com/search' },

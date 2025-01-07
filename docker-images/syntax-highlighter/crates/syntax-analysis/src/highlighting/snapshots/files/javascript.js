@@ -63,7 +63,7 @@ function one({two: three}, [four]) {
 }
 
 //1. Variables
-let name = "Sourcegraph";
+let name = "Khulnasoft";
 const age = 2;
 var skills = ["language model", "natural language processing"];
 

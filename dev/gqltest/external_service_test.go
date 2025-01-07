@@ -133,7 +133,7 @@ func TestExternalService_BitbucketServer(t *testing.T) {
 			URL:                   *bbsURL,
 			Token:                 *bbsToken,
 			Username:              *bbsUsername,
-			Repos:                 []string{"SOURCEGRAPH/jsonrpc2"},
+			Repos:                 []string{"KHULNASOFT/jsonrpc2"},
 			RepositoryPathPattern: "bbs/{projectKey}/{repositorySlug}",
 		}),
 	})
@@ -144,7 +144,7 @@ func TestExternalService_BitbucketServer(t *testing.T) {
 	}
 	removeExternalServiceAfterTest(t, esID)
 
-	const repoName = "bbs/SOURCEGRAPH/jsonrpc2"
+	const repoName = "bbs/KHULNASOFT/jsonrpc2"
 	err = client.WaitForReposToBeCloned(repoName)
 	if err != nil {
 		t.Fatal(err)
@@ -285,7 +285,7 @@ func TestExternalService_AsyncDeletion(t *testing.T) {
 			URL:                   *bbsURL,
 			Token:                 *bbsToken,
 			Username:              *bbsUsername,
-			Repos:                 []string{"SOURCEGRAPH/jsonrpc2"},
+			Repos:                 []string{"KHULNASOFT/jsonrpc2"},
 			RepositoryPathPattern: "bbs/{projectKey}/{repositorySlug}",
 		}),
 	})

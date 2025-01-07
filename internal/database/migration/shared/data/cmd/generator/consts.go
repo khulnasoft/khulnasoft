@@ -26,7 +26,7 @@ var MaxVersion = func() oobmigration.Version {
 }()
 
 // MinVersion is the minimum version a migrator can support upgrading to a newer version of
-// Sourcegraph.
+// Khulnasoft.
 var MinVersion = oobmigration.NewVersion(3, 20)
 
 // FrozenRevisions are schemas at a point-in-time for which out-of-band migration unit tests

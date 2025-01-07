@@ -12,8 +12,8 @@
 | `-insecure-skip-verify` | Skip validation of TLS certificates against trusted chains | `false` |
 | `-name` | exact name of the external service to edit |  |
 | `-rename` | when specified, renames the external service |  |
-| `-trace` | Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing | `false` |
-| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph | `true` |
+| `-trace` | Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing | `false` |
+| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft | `true` |
 
 
 ## Usage
@@ -35,18 +35,18 @@ Usage of 'src extsvc edit':
   -rename string
     	when specified, renames the external service
   -trace
-    	Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing
+    	Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing
   -user-agent-telemetry
-    	Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph (default true)
+    	Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft (default true)
 
 Examples:
 
-  Edit an external service configuration on the Sourcegraph instance:
+  Edit an external service configuration on the Khulnasoft instance:
 
     	$ cat new-config.json | src extsvc edit -id 'RXh0ZXJuYWxTZXJ2aWNlOjQ='
     	$ src extsvc edit -name 'My GitHub connection' new-config.json
 
-  Edit an external service name on the Sourcegraph instance:
+  Edit an external service name on the Khulnasoft instance:
 
     	$ src extsvc edit -name 'My GitHub connection' -rename 'New name'
 

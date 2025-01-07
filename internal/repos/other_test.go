@@ -202,7 +202,7 @@ func TestOther_DotComConfig(t *testing.T) {
 	require.True(t, repo.Private)
 
 	// Enable Dotcom mode. Then repo should be public.
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	source = makeSource(t)
 

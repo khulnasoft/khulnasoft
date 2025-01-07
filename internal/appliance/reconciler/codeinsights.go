@@ -21,7 +21,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/pointers"
 )
 
-func (r *Reconciler) reconcileCodeInsights(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeInsights(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileCodeInsightsStatefulSet(ctx, sg, owner); err != nil {
 		return err
 	}
@@ -43,7 +43,7 @@ func (r *Reconciler) reconcileCodeInsights(ctx context.Context, sg *config.Sourc
 	return nil
 }
 
-func (r *Reconciler) reconcileCodeInsightsStatefulSet(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeInsightsStatefulSet(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.CodeInsights
 	name := "codeinsights-db"
 
@@ -150,7 +150,7 @@ func (r *Reconciler) reconcileCodeInsightsStatefulSet(ctx context.Context, sg *c
 	return reconcileObject(ctx, r, sg.Spec.CodeInsights, &sset, &appsv1.StatefulSet{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCodeInsightsPersistentVolumeClaim(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeInsightsPersistentVolumeClaim(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.CodeInsights
 	p, err := pvc.NewPersistentVolumeClaim("codeinsights-db", sg.Namespace, cfg)
 	if err != nil {
@@ -159,14 +159,14 @@ func (r *Reconciler) reconcileCodeInsightsPersistentVolumeClaim(ctx context.Cont
 	return reconcileObject(ctx, r, sg.Spec.CodeInsights, &p, &corev1.PersistentVolumeClaim{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCodeInsightsConfigMap(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeInsightsConfigMap(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cm := configmap.NewConfigMap("codeinsights-db-conf", sg.Namespace)
 	cm.Data = map[string]string{"postgresql.conf": string(config.CodeInsightsConfig)}
 
 	return reconcileObject(ctx, r, sg.Spec.CodeInsights, &cm, &corev1.ConfigMap{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCodeInsightsSecret(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeInsightsSecret(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	scrt := secret.NewSecret("codeinsights-db-auth", sg.Namespace, sg.Spec.RequestedVersion)
 
 	cn := sg.Spec.CodeInsights.DatabaseConnection
@@ -181,7 +181,7 @@ func (r *Reconciler) reconcileCodeInsightsSecret(ctx context.Context, sg *config
 	return reconcileObject(ctx, r, sg.Spec.CodeInsights, &scrt, &corev1.Secret{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCodeInsightsService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeInsightsService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "codeinsights-db"
 	svc := service.NewService(name, sg.Namespace, sg.Spec.CodeInsights)
 	svc.Spec.Ports = []corev1.ServicePort{{Name: name, TargetPort: intstr.FromString(name), Port: 5432}}
@@ -190,7 +190,7 @@ func (r *Reconciler) reconcileCodeInsightsService(ctx context.Context, sg *confi
 	return reconcileObject(ctx, r, sg.Spec.CodeInsights, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCodeInsightsServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeInsightsServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.CodeInsights
 	sa := serviceaccount.NewServiceAccount("codeinsights-db", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, sg.Spec.CodeInsights, &sa, &corev1.ServiceAccount{}, sg, owner)

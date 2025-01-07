@@ -28,7 +28,7 @@ import (
 )
 
 // A Syncer periodically synchronizes available repositories from all its given Sources
-// with the stored Repositories in Sourcegraph.
+// with the stored Repositories in Khulnasoft.
 type Syncer struct {
 	Sourcer Sourcer
 	Store   Store
@@ -336,7 +336,7 @@ func (s *Syncer) SyncExternalService(
 
 		sourced := res.Repo
 
-		if dotcom.SourcegraphDotComMode() && sourced.Private {
+		if dotcom.KhulnasoftDotComMode() && sourced.Private {
 			err := errors.Newf("%s is private, but dotcom does not support private repositories.", sourced.Name)
 			syncProgress.Errors++
 			logger.Error("failed to sync private repo", log.String("repo", string(sourced.Name)), log.Error(err))

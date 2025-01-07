@@ -6,7 +6,7 @@ package productsubscription
 // support it for now for back-compat with some existing tokens.
 //
 // In the future, this prefix can be used if we ever have access tokens for
-// product subscriptions that are not based on a Sourcegraph license key.
+// product subscriptions that are not based on a Khulnasoft license key.
 const AccessTokenPrefix = "sgs_" // "(S)ource(g)raph (S)ubscription"
 
 // GQLErrCodeProductSubscriptionNotFound is the GraphQL error code returned when

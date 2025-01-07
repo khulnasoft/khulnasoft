@@ -8,7 +8,7 @@ interactions:
     url: https://app.vssps.visualstudio.com/_apis/profile/profiles/me?api-version=7.0
     method: GET
   response:
-    body: '{"displayName":"idan.varsano","publicAlias":"473dec3e-03d7-6147-b106-0b0a7f766a92","emailAddress":"idan.varsano@sourcegraph.com","coreRevision":411938451,"timeStamp":"2023-01-20T19:20:51.6433333+00:00","id":"473dec3e-03d7-6147-b106-0b0a7f766a92","revision":411938451}'
+    body: '{"displayName":"idan.varsano","publicAlias":"473dec3e-03d7-6147-b106-0b0a7f766a92","emailAddress":"idan.varsano@khulnasoft.com","coreRevision":411938451,"timeStamp":"2023-01-20T19:20:51.6433333+00:00","id":"473dec3e-03d7-6147-b106-0b0a7f766a92","revision":411938451}'
     headers:
       Access-Control-Expose-Headers:
       - Request-Context
@@ -54,7 +54,7 @@ interactions:
       X-Vss-Senderdeploymentid:
       - a5ca35eb-148e-4ccd-bbb3-d31576d75958
       X-Vss-Userdata:
-      - 473dec3e-03d7-6147-b106-0b0a7f766a92:idan.varsano@sourcegraph.com
+      - 473dec3e-03d7-6147-b106-0b0a7f766a92:idan.varsano@khulnasoft.com
     status: 200 OK
     code: 200
     duration: ""
@@ -107,7 +107,7 @@ interactions:
       X-Vss-Senderdeploymentid:
       - a5ca35eb-148e-4ccd-bbb3-d31576d75958
       X-Vss-Userdata:
-      - 473dec3e-03d7-6147-b106-0b0a7f766a92:idan.varsano@sourcegraph.com
+      - 473dec3e-03d7-6147-b106-0b0a7f766a92:idan.varsano@khulnasoft.com
     status: 200 OK
     code: 200
     duration: ""

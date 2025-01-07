@@ -17,7 +17,7 @@ import (
 )
 
 func TestWebhook(t *testing.T) {
-	eu, err := url.Parse("https://sourcegraph.com")
+	eu, err := url.Parse("https://khulnasoft.com")
 	require.NoError(t, err)
 
 	action := actionArgs{

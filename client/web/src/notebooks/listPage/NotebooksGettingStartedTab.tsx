@@ -129,7 +129,7 @@ export const NotebooksGettingStartedTab: React.FunctionComponent<
                         <Link
                             target="_blank"
                             rel="noopener noreferrer"
-                            to="https://sourcegraph.com/notebooks/Tm90ZWJvb2s6MQ=="
+                            to="https://khulnasoft.com/notebooks/Tm90ZWJvb2s6MQ=="
                         >
                             Find Log4J dependencies <Icon aria-hidden={true} svgPath={mdiOpenInNew} />
                         </Link>
@@ -141,7 +141,7 @@ export const NotebooksGettingStartedTab: React.FunctionComponent<
                         <Link
                             target="_blank"
                             rel="noopener noreferrer"
-                            to="https://sourcegraph.com/notebooks/Tm90ZWJvb2s6MTM="
+                            to="https://khulnasoft.com/notebooks/Tm90ZWJvb2s6MTM="
                         >
                             Learn Khulnasoft / Find code across all of your repositories{' '}
                             <Icon aria-hidden={true} svgPath={mdiOpenInNew} />

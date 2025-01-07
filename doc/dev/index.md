@@ -1,4 +1,4 @@
-# Developing Sourcegraph
+# Developing Khulnasoft
 
 <style>
 .markdown-body h2 {
@@ -27,17 +27,17 @@ body.theme-dark .markdown-body ul li:before {
 }
 </style>
 
-<p class="subtitle">Documentation for <b>developers contributing to the Sourcegraph code base</b></p>
+<p class="subtitle">Documentation for <b>developers contributing to the Khulnasoft code base</b></p>
 
 <div class="cta-group">
-<a class="btn btn-primary" href="setup/quickstart">★ Quickstart: develop Sourcegraph on your machine</a>
-<a class="btn" href="https://github.com/sourcegraph/sourcegraph">GitHub repository</a>
+<a class="btn btn-primary" href="setup/quickstart">★ Quickstart: develop Khulnasoft on your machine</a>
+<a class="btn" href="https://github.com/khulnasoft/khulnasoft">GitHub repository</a>
 <a class="btn" href="https://github.com/khulnasoft/khulnasoft/issues">Issue Tracker</a>
 </div>
 
 ## Setup
 
-<p class="subtitle">Learn how to develop Sourcegraph on your machine.</p>
+<p class="subtitle">Learn how to develop Khulnasoft on your machine.</p>
 
 <div class="getting-started">
   <a href="setup/quickstart" class="btn" alt="Run through the Quickstart guide">
@@ -70,7 +70,7 @@ Clarification and discussion about key concepts, architecture, and development s
 
 ### Development
 
-- [`sg` - the Sourcegraph developer tool](background-information/sg/index.md)
+- [`sg` - the Khulnasoft developer tool](background-information/sg/index.md)
 - [Using Bazel](background-information/bazel/index.md)
   - [Bazel and Go code](background-information/bazel/go.md)
   - [Bazel and client code](background-information/bazel/web.md)
@@ -113,7 +113,7 @@ Clarification and discussion about key concepts, architecture, and development s
 
 ### Git
 
-- [`git gc` and its modes of operations in Sourcegraph](background-information/git_gc.md)
+- [`git gc` and its modes of operations in Khulnasoft](background-information/git_gc.md)
 
 ### Languages
 
@@ -136,10 +136,10 @@ Clarification and discussion about key concepts, architecture, and development s
 ### Security
 
 - [Security patterns](background-information/security_patterns.md)
-- [Security policy](https://sourcegraph.com/security/)
-- [How to disclose vulnerabilities](https://sourcegraph.com/handbook/engineering/security/reporting-vulnerabilities).
+- [Security policy](https://khulnasoft.com/security/)
+- [How to disclose vulnerabilities](https://khulnasoft.com/handbook/engineering/security/reporting-vulnerabilities).
 - [CSRF security model](security/csrf_security_model.md)
-- [Sourcegraph secret formats](security/secret_formats.md)
+- [Khulnasoft secret formats](security/secret_formats.md)
 
 ### Testing
 
@@ -161,7 +161,7 @@ Clarification and discussion about key concepts, architecture, and development s
 
 - [Telemetry](background-information/telemetry/index.md)
 - [Adding, changing and debugging pings](background-information/adding_ping_data.md)
-- [Deploy Sourcegraph with Helm chart (BETA)](../../../admin/deploy/kubernetes/helm.md)
+- [Deploy Khulnasoft with Helm chart (BETA)](../../../admin/deploy/kubernetes/helm.md)
 - [GitHub API oddities](background-information/github-api-oddities.md)
 
 ## How-to guides
@@ -198,7 +198,7 @@ Guides to help with troubleshooting, configuring test instances, debugging, and 
 ### Testing
 
 - [How to write and run tests](how-to/testing.md)
-- [Run a local Sourcegraph instance behind ngrok](how-to/sourcegraph_ngrok.md)
+- [Run a local Khulnasoft instance behind ngrok](how-to/sourcegraph_ngrok.md)
 - Testing against code hosts
   - [Configure a test instance of Phabricator and Gitolite](how-to/configure_phabricator_gitolite.md)
   - [Test a Phabricator and Gitolite instance](how-to/test_phabricator.md)
@@ -206,7 +206,7 @@ Guides to help with troubleshooting, configuring test instances, debugging, and 
 
 ## Contributing
 
-- [Open source FAQ](https://handbook.sourcegraph.com/company-info-and-process/community/faq/)
-- [Code of conduct](https://handbook.sourcegraph.com/company-info-and-process/community/code_of_conduct/)
+- [Open source FAQ](https://handbook.khulnasoft.com/company-info-and-process/community/faq/)
+- [Code of conduct](https://handbook.khulnasoft.com/company-info-and-process/community/code_of_conduct/)
 - [Project setup and CI checks for frontend issues](./contributing/frontend_contribution.md)
 - [Accepting an external contribution guide](./contributing/accepting_contribution.md)

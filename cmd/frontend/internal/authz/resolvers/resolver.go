@@ -29,7 +29,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-var errDisabledSourcegraphDotCom = errors.New("not enabled on sourcegraph.com")
+var errDisabledKhulnasoftDotCom = errors.New("not enabled on khulnasoft.com")
 
 type Resolver struct {
 	logger log.Logger
@@ -59,8 +59,8 @@ func NewResolver(observationCtx *observation.Context, db database.DB) graphqlbac
 }
 
 func (r *Resolver) SetRepositoryPermissionsForUsers(ctx context.Context, args *graphqlbackend.RepoPermsArgs) (*graphqlbackend.EmptyResponse, error) {
-	if dotcom.SourcegraphDotComMode() {
-		return nil, errDisabledSourcegraphDotCom
+	if dotcom.KhulnasoftDotComMode() {
+		return nil, errDisabledKhulnasoftDotCom
 	}
 
 	if err := r.checkLicense(licensing.FeatureExplicitPermissionsAPI); err != nil {
@@ -120,8 +120,8 @@ func (r *Resolver) SetRepositoryPermissionsForUsers(ctx context.Context, args *g
 	defer func() { err = txs.Done(err) }()
 
 	accounts := &extsvc.Accounts{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountIDs:  pendingBindIDs,
 	}
 
@@ -135,8 +135,8 @@ func (r *Resolver) SetRepositoryPermissionsForUsers(ctx context.Context, args *g
 }
 
 func (r *Resolver) SetRepositoryPermissionsUnrestricted(ctx context.Context, args *graphqlbackend.RepoUnrestrictedArgs) (*graphqlbackend.EmptyResponse, error) {
-	if dotcom.SourcegraphDotComMode() {
-		return nil, errDisabledSourcegraphDotCom
+	if dotcom.KhulnasoftDotComMode() {
+		return nil, errDisabledKhulnasoftDotCom
 	}
 
 	if err := r.checkLicense(licensing.FeatureExplicitPermissionsAPI); err != nil {
@@ -214,8 +214,8 @@ func (r *Resolver) SetSubRepositoryPermissionsForUsers(ctx context.Context, args
 	if err := r.checkLicense(licensing.FeatureExplicitPermissionsAPI); err != nil {
 		return nil, err
 	}
-	if dotcom.SourcegraphDotComMode() {
-		return nil, errDisabledSourcegraphDotCom
+	if dotcom.KhulnasoftDotComMode() {
+		return nil, errDisabledKhulnasoftDotCom
 	}
 
 	// 🚨 SECURITY: Only site admins can mutate repository permissions.
@@ -302,8 +302,8 @@ func (r *Resolver) SetSubRepositoryPermissionsForUsers(ctx context.Context, args
 func (r *Resolver) SetRepositoryPermissionsForBitbucketProject(
 	ctx context.Context, args *graphqlbackend.RepoPermsBitbucketProjectArgs,
 ) (*graphqlbackend.EmptyResponse, error) {
-	if dotcom.SourcegraphDotComMode() {
-		return nil, errDisabledSourcegraphDotCom
+	if dotcom.KhulnasoftDotComMode() {
+		return nil, errDisabledKhulnasoftDotCom
 	}
 
 	if err := r.checkLicense(licensing.FeatureExplicitPermissionsAPI); err != nil {
@@ -377,8 +377,8 @@ func (r *Resolver) CancelPermissionsSyncJob(ctx context.Context, args *graphqlba
 }
 
 func (r *Resolver) AuthorizedUserRepositories(ctx context.Context, args *graphqlbackend.AuthorizedRepoArgs) (graphqlbackend.RepositoryConnectionResolver, error) {
-	if dotcom.SourcegraphDotComMode() {
-		return nil, errDisabledSourcegraphDotCom
+	if dotcom.KhulnasoftDotComMode() {
+		return nil, errDisabledKhulnasoftDotCom
 	}
 
 	// 🚨 SECURITY: Only site admins can query repository permissions.
@@ -419,8 +419,8 @@ func (r *Resolver) AuthorizedUserRepositories(ctx context.Context, args *graphql
 		slices.Sort(ids)
 	} else {
 		p := &authz.UserPendingPermissions{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			BindID:      bindID,
 			Perm:        authz.Read, // Note: We currently only support read for repository permissions.
 			Type:        authz.PermRepos,
@@ -451,7 +451,7 @@ func (r *Resolver) UsersWithPendingPermissions(ctx context.Context) ([]string, e
 		return nil, err
 	}
 
-	return r.db.Perms().ListPendingUsers(ctx, authz.SourcegraphServiceType, authz.SourcegraphServiceID)
+	return r.db.Perms().ListPendingUsers(ctx, authz.KhulnasoftServiceType, authz.KhulnasoftServiceID)
 }
 
 func (r *Resolver) AuthorizedUsers(ctx context.Context, args *graphqlbackend.RepoAuthorizedUserArgs) (graphqlbackend.UserConnectionResolver, error) {
@@ -497,8 +497,8 @@ var jobStatuses = map[string]bool{
 }
 
 func (r *Resolver) BitbucketProjectPermissionJobs(ctx context.Context, args *graphqlbackend.BitbucketProjectPermissionJobsArgs) (graphqlbackend.BitbucketProjectsPermissionJobsResolver, error) {
-	if dotcom.SourcegraphDotComMode() {
-		return nil, errDisabledSourcegraphDotCom
+	if dotcom.KhulnasoftDotComMode() {
+		return nil, errDisabledKhulnasoftDotCom
 	}
 	// 🚨 SECURITY: Only site admins can query repository permissions.
 	if err := auth.CheckCurrentUserIsSiteAdmin(ctx, r.db); err != nil {

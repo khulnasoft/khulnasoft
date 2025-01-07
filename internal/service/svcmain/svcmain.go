@@ -46,7 +46,7 @@ type OutOfBandConfiguration struct {
 
 // SingleServiceMainWithConf is called from the `main` function of a command to start a single
 // service WITHOUT site configuration enabled by default. This is only useful for services
-// that are not part of the core Sourcegraph deployment, such as executors and managed
+// that are not part of the core Khulnasoft deployment, such as executors and managed
 // services. Use with care!
 func SingleServiceMainWithoutConf(svc sgservice.Service, otherServices []sgservice.Service, oobConfig OutOfBandConfiguration) {
 	liblog, logger := newLogger()

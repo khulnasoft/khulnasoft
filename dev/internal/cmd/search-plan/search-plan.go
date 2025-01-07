@@ -26,7 +26,7 @@ func run(w io.Writer, args []string) error {
 
 	version := fs.String("version", "V3", "the version of the search API to use")
 	patternType := fs.String("pattern_type", "", "optionally specify query.PatternType (regex, literal, ...)")
-	dotCom := fs.Bool("dotcom", false, "enable sourcegraph.com parsing rules")
+	dotCom := fs.Bool("dotcom", false, "enable khulnasoft.com parsing rules")
 
 	fs.Parse(args[1:])
 	if narg := fs.NArg(); narg != 1 {

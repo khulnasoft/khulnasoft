@@ -9,6 +9,6 @@ RUN npm install express@~4.18 http-proxy-middleware@~2.0
 COPY  ${PROJECT_ROOT}/server.js ./
 COPY ${PROJECT_ROOT}/build ./build
 
-ENV SOURCEGRAPH_API_HOST=https://sourcegraph.com
+ENV KHULNASOFT_API_HOST=https://khulnasoft.com
 EXPOSE 4173
 CMD ["node", "server.js"]

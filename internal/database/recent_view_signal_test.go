@@ -34,7 +34,7 @@ func TestRecentViewSignalStore_BuildAggregateFromEvents(t *testing.T) {
 	require.NoError(t, err)
 
 	// Creating 2 repos.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"}, &types.Repo{ID: 2, Name: "github.com/sourcegraph/sourcegraph2"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"}, &types.Repo{ID: 2, Name: "github.com/sourcegraph/sourcegraph2"})
 	require.NoError(t, err)
 
 	// Creating ViewBlob events.
@@ -42,32 +42,32 @@ func TestRecentViewSignalStore_BuildAggregateFromEvents(t *testing.T) {
 		{
 			UserID:         1,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/patch.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/patch.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         1,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         1,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         1,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "enterprise/cmd/frontend/main.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "enterprise/cmd/frontend/main.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         2,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "enterprise/cmd/frontend/main.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "enterprise/cmd/frontend/main.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         2,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         2,
@@ -146,7 +146,7 @@ func TestRecentViewSignalStore_BuildAggregateFromEvents_WithExcludedRepos(t *tes
 	require.NoError(t, err)
 
 	// Creating 3 repos.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"}, &types.Repo{ID: 2, Name: "github.com/sourcegraph/pattern-repo-1337"}, &types.Repo{ID: 3, Name: "github.com/sourcegraph/pattern-repo-421337"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"}, &types.Repo{ID: 2, Name: "github.com/sourcegraph/pattern-repo-1337"}, &types.Repo{ID: 3, Name: "github.com/sourcegraph/pattern-repo-421337"})
 	require.NoError(t, err)
 
 	// Creating ViewBlob events.
@@ -154,32 +154,32 @@ func TestRecentViewSignalStore_BuildAggregateFromEvents_WithExcludedRepos(t *tes
 		{
 			UserID:         1,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/patch.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/patch.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         1,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         1,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         1,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "enterprise/cmd/frontend/main.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "enterprise/cmd/frontend/main.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         2,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "enterprise/cmd/frontend/main.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "enterprise/cmd/frontend/main.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         2,
 			Name:           "ViewBlob",
-			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/lock.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID:         2,
@@ -207,7 +207,7 @@ func TestRecentViewSignalStore_BuildAggregateFromEvents_WithExcludedRepos(t *tes
 	configStore := SignalConfigurationStoreWith(db)
 	err = configStore.UpdateConfiguration(ctx, UpdateSignalConfigurationArgs{Name: "recent-views", Enabled: true, ExcludedRepoPatterns: []string{"github.com/sourcegraph/pattern-repo%"}})
 	require.NoError(t, err)
-	err = configStore.UpdateConfiguration(ctx, UpdateSignalConfigurationArgs{Name: "recent-contributors", Enabled: true, ExcludedRepoPatterns: []string{"github.com/sourcegraph/sourcegraph"}})
+	err = configStore.UpdateConfiguration(ctx, UpdateSignalConfigurationArgs{Name: "recent-contributors", Enabled: true, ExcludedRepoPatterns: []string{"github.com/khulnasoft/khulnasoft"}})
 	require.NoError(t, err)
 
 	// Building signal aggregates.
@@ -266,7 +266,7 @@ func TestRecentViewSignalStore_Insert(t *testing.T) {
 	require.NoError(t, err)
 
 	// Creating a repo.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 
 	// Creating a couple of paths.
@@ -350,7 +350,7 @@ func TestRecentViewSignalStore_InsertPaths(t *testing.T) {
 	require.NoError(t, err)
 
 	// Creating a repo.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 
 	// Creating 4 paths.
@@ -414,7 +414,7 @@ func TestRecentViewSignalStore_InsertPaths_OverBatchSize(t *testing.T) {
 	require.NoError(t, err)
 
 	// Creating a repo.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 
 	// Creating 15 paths.
@@ -457,7 +457,7 @@ func TestRecentViewSignalStore_List(t *testing.T) {
 
 	// Creating a repo.
 	var repoID api.RepoID = 1
-	err = d.Repos().Create(ctx, &types.Repo{ID: repoID, Name: "github.com/sourcegraph/sourcegraph"})
+	err = d.Repos().Create(ctx, &types.Repo{ID: repoID, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 
 	// Creating some paths.

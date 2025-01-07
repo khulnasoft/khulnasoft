@@ -31,7 +31,7 @@ const noopBlockCallbacks = {
 }
 
 const fileBlockInput: FileBlockInput = {
-    repositoryName: 'github.com/sourcegraph/sourcegraph',
+    repositoryName: 'github.com/khulnasoft/khulnasoft',
     filePath: 'client/web/file.tsx',
     revision: 'main',
     lineRange: null,

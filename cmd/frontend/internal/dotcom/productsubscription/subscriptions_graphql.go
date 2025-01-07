@@ -183,7 +183,7 @@ func (e ErrActiveLicenseRequired) Extensions() map[string]any {
 	return map[string]any{"code": "ErrActiveLicenseRequired"}
 }
 
-func (r *productSubscription) CurrentSourcegraphAccessToken(ctx context.Context) (*string, error) {
+func (r *productSubscription) CurrentKhulnasoftAccessToken(ctx context.Context) (*string, error) {
 	activeLicense, err := r.computeActiveLicense(ctx)
 	if err != nil {
 		return nil, err
@@ -201,7 +201,7 @@ func (r *productSubscription) CurrentSourcegraphAccessToken(ctx context.Context)
 	return &token, nil
 }
 
-func (r *productSubscription) SourcegraphAccessTokens(ctx context.Context) (tokens []string, err error) {
+func (r *productSubscription) KhulnasoftAccessTokens(ctx context.Context) (tokens []string, err error) {
 	activeLicense, err := r.computeActiveLicense(ctx)
 	if err != nil {
 		return nil, err

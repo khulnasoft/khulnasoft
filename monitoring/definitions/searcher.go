@@ -182,12 +182,12 @@ a new search. Finally the next most common should be "diff-too-large", which
 happens if the commit is too far from the indexed commit. Otherwise other
 state should be rare and likely are a sign for further investigation.
 
-Note: On sourcegraph.com "zoekt-list-missing" is also common due to it
+Note: On khulnasoft.com "zoekt-list-missing" is also common due to it
 indexing a subset of repositories. Otherwise every other state should occur
 rarely.
 
 For a full list of possible state see
-[recordHybridFinalState](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+f:cmd/searcher+recordHybridFinalState).`,
+[recordHybridFinalState](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+f:cmd/searcher+recordHybridFinalState).`,
 							Query:   "sum by (state)(increase(searcher_hybrid_final_state_total{instance=~`${instance:regex}`}[10m]))",
 							Panel:   monitoring.Panel().LegendFormat("{{state}}"),
 							Owner:   monitoring.ObservableOwnerSearchCore,

@@ -11,7 +11,7 @@ import (
 
 func TestSudoableOAuthClient(t *testing.T) {
 	t.Run("Authenticate without Username", func(t *testing.T) {
-		token := newSudoableOAuthClient("abcdef", "Sourcegraph ❤️ you", "")
+		token := newSudoableOAuthClient("abcdef", "Khulnasoft ❤️ you", "")
 
 		req, err := http.NewRequest("GET", "/", nil)
 		if err != nil {
@@ -31,7 +31,7 @@ func TestSudoableOAuthClient(t *testing.T) {
 	})
 
 	t.Run("Authenticate with Sudo", func(t *testing.T) {
-		token := newSudoableOAuthClient("abcdef", "Sourcegraph ❤️ you", "neo")
+		token := newSudoableOAuthClient("abcdef", "Khulnasoft ❤️ you", "neo")
 
 		req, err := http.NewRequest("GET", "/", nil)
 		if err != nil {

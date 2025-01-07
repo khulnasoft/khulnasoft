@@ -525,7 +525,7 @@ type testSecrets struct {
 }
 
 func getTestSiteWithSecrets(testSecrets testSecrets, optionalEdit ...string) string {
-	email := "noreply+dev@sourcegraph.com"
+	email := "noreply+dev@khulnasoft.com"
 	if len(optionalEdit) > 0 {
 		email = optionalEdit[0]
 	}

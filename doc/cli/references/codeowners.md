@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-'src codeowners' is a tool that manages ingested code ownership data in a Sourcegraph instance.
+'src codeowners' is a tool that manages ingested code ownership data in a Khulnasoft instance.
 
 Usage:
 

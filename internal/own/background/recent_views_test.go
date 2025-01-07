@@ -31,7 +31,7 @@ func TestRecentViewsIndexer(t *testing.T) {
 	require.NoError(t, err)
 
 	// Creating a repo.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 
 	// Assertion function.
@@ -147,33 +147,33 @@ func insertEvents(ctx context.Context, t *testing.T, db database.DB) {
 		{
 			UserID: 1,
 			Name:   "SearchResultsQueried",
-			URL:    "http://sourcegraph.com",
+			URL:    "http://khulnasoft.com",
 			Source: "test",
 		}, {
 			UserID: 1,
 			Name:   "codeintel",
-			URL:    "http://sourcegraph.com",
+			URL:    "http://khulnasoft.com",
 			Source: "test",
 		},
 		{
 			UserID:         1,
 			Name:           "ViewBlob",
-			URL:            "http://sourcegraph.com",
+			URL:            "http://khulnasoft.com",
 			Source:         "test",
-			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/patch.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/patch.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 		{
 			UserID: 1,
 			Name:   "SearchResultsQueried",
-			URL:    "http://sourcegraph.com",
+			URL:    "http://khulnasoft.com",
 			Source: "test",
 		},
 		{
 			UserID:         1,
 			Name:           "ViewBlob",
-			URL:            "http://sourcegraph.com",
+			URL:            "http://khulnasoft.com",
 			Source:         "test",
-			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/main.go", "repoName": "github.com/sourcegraph/sourcegraph"}`),
+			PublicArgument: json.RawMessage(`{"filePath": "cmd/gitserver/server/main.go", "repoName": "github.com/khulnasoft/khulnasoft"}`),
 		},
 	}
 

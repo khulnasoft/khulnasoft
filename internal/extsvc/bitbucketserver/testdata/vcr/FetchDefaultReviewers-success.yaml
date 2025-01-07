@@ -10,8 +10,8 @@ interactions:
     url: https://bitbucket.sgdev.org/rest/default-reviewers/1.0/projects/SOUR/repos/automation-testing/reviewers?sourceRefId=refs%2Fheads%2Ftest-pr-bbs-3&sourceRepoId=10070&targetRefId=refs%2Fheads%2Fmaster&targetRepoId=10070
     method: GET
   response:
-    body: '[{"name":"erik","emailAddress":"erik@sourcegraph.com","id":152,"displayName":"Erik
-      Seliger","active":true,"slug":"erik","type":"NORMAL","links":{"self":[{"href":"https://bitbucket.sgdev.org/users/erik"}]}},{"name":"thorsten","emailAddress":"thorsten@sourcegraph.com","id":104,"displayName":"thorsten","active":true,"slug":"thorsten","type":"NORMAL","links":{"self":[{"href":"https://bitbucket.sgdev.org/users/thorsten"}]}}]'
+    body: '[{"name":"erik","emailAddress":"erik@khulnasoft.com","id":152,"displayName":"Erik
+      Seliger","active":true,"slug":"erik","type":"NORMAL","links":{"self":[{"href":"https://bitbucket.sgdev.org/users/erik"}]}},{"name":"thorsten","emailAddress":"thorsten@khulnasoft.com","id":104,"displayName":"thorsten","active":true,"slug":"thorsten","type":"NORMAL","links":{"self":[{"href":"https://bitbucket.sgdev.org/users/thorsten"}]}}]'
     headers:
       Cache-Control:
       - private, no-cache

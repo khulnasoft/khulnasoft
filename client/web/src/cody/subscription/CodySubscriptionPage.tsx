@@ -374,7 +374,7 @@ export const CodySubscriptionPage: React.FunctionComponent<CodySubscriptionPageP
                                 className="flex-1 mt-3"
                                 variant="secondary"
                                 outline={true}
-                                to="https://sourcegraph.com/contact/request-info?utm_source=cody_subscription_page"
+                                to="https://khulnasoft.com/contact/request-info?utm_source=cody_subscription_page"
                                 target="_blank"
                                 onClick={() => {
                                     telemetryRecorder.recordEvent('cody.planSelection', 'click', {

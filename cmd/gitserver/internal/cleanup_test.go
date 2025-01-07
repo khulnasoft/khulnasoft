@@ -722,7 +722,7 @@ func prepareEmptyGitRepo(t *testing.T, dir string) common.GitDir {
 	if out, err := cmd.CombinedOutput(); err != nil {
 		t.Fatalf("execution error: %v, output %s", err, out)
 	}
-	cmd = exec.Command("git", "config", "user.email", "test@sourcegraph.com")
+	cmd = exec.Command("git", "config", "user.email", "test@khulnasoft.com")
 	cmd.Dir = dir
 	if out, err := cmd.CombinedOutput(); err != nil {
 		t.Fatalf("execution error: %v, output %s", err, out)

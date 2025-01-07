@@ -34,7 +34,7 @@ export const createJITMigrationToGQLInsightMetadataFixture = (options: InsightOp
     dashboards: { nodes: [] },
     repositoryDefinition: {
         __typename: 'InsightRepositoryScope',
-        repositories: ['github.com/sourcegraph/sourcegraph'],
+        repositories: ['github.com/khulnasoft/khulnasoft'],
     },
     presentation: {
         __typename: 'LineChartInsightViewPresentation',

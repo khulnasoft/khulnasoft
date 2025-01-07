@@ -21,7 +21,7 @@ type Package interface {
 	// Notably, the version is not included.
 	PackageSyntax() PackageName
 
-	// RepoName provides a name that is "globally unique" for a Sourcegraph instance.
+	// RepoName provides a name that is "globally unique" for a Khulnasoft instance.
 	// The returned value is used for repo:... in queries.
 	RepoName() api.RepoName
 

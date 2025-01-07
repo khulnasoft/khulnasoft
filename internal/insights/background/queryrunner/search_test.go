@@ -35,9 +35,9 @@ func TestGenerateComputeRecordingsStream(t *testing.T) {
 		mocked := func(context.Context, string) (*streaming.ComputeTabulationResult, error) {
 			return &streaming.ComputeTabulationResult{
 				RepoCounts: map[string]*streaming.ComputeMatch{
-					"github.com/sourcegraph/sourcegraph": {
+					"github.com/khulnasoft/khulnasoft": {
 						RepositoryID:   11,
-						RepositoryName: "github.com/sourcegraph/sourcegraph",
+						RepositoryName: "github.com/khulnasoft/khulnasoft",
 						ValueCounts: map[string]int{
 							"1.15": 3,
 							"1.14": 1,
@@ -53,8 +53,8 @@ func TestGenerateComputeRecordingsStream(t *testing.T) {
 		}
 		stringified := stringify(recordings)
 		autogold.Expect([]string{
-			"github.com/sourcegraph/sourcegraph 11 2021-12-01 00:00:00 +0000 UTC 1.14 1.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-12-01 00:00:00 +0000 UTC 1.15 3.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-12-01 00:00:00 +0000 UTC 1.14 1.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-12-01 00:00:00 +0000 UTC 1.15 3.000000",
 		}).Equal(t, stringified)
 	})
 
@@ -71,9 +71,9 @@ func TestGenerateComputeRecordingsStream(t *testing.T) {
 		mocked := func(context.Context, string) (*streaming.ComputeTabulationResult, error) {
 			return &streaming.ComputeTabulationResult{
 				RepoCounts: map[string]*streaming.ComputeMatch{
-					"github.com/sourcegraph/sourcegraph": {
+					"github.com/khulnasoft/khulnasoft": {
 						RepositoryID:   11,
-						RepositoryName: "github.com/sourcegraph/sourcegraph",
+						RepositoryName: "github.com/khulnasoft/khulnasoft",
 						ValueCounts: map[string]int{
 							"1.15": 3,
 							"1.14": 1,
@@ -123,9 +123,9 @@ func TestGenerateComputeRecordingsStream(t *testing.T) {
 		mocked := func(context.Context, string) (*streaming.ComputeTabulationResult, error) {
 			return &streaming.ComputeTabulationResult{
 				RepoCounts: map[string]*streaming.ComputeMatch{
-					"github.com/sourcegraph/sourcegraph": {
+					"github.com/khulnasoft/khulnasoft": {
 						RepositoryID:   11,
-						RepositoryName: "github.com/sourcegraph/sourcegraph",
+						RepositoryName: "github.com/khulnasoft/khulnasoft",
 						ValueCounts: map[string]int{
 							"1.15": 3,
 							"1.14": 1,
@@ -171,9 +171,9 @@ func TestGenerateComputeRecordingsStream(t *testing.T) {
 		mocked := func(context.Context, string) (*streaming.ComputeTabulationResult, error) {
 			return &streaming.ComputeTabulationResult{
 				RepoCounts: map[string]*streaming.ComputeMatch{
-					"github.com/sourcegraph/sourcegraph": {
+					"github.com/khulnasoft/khulnasoft": {
 						RepositoryID:   11,
-						RepositoryName: "github.com/sourcegraph/sourcegraph",
+						RepositoryName: "github.com/khulnasoft/khulnasoft",
 						ValueCounts: map[string]int{
 							"1.11": 3,
 							"1.18": 1,
@@ -199,8 +199,8 @@ func TestGenerateComputeRecordingsStream(t *testing.T) {
 		autogold.Expect([]string{
 			"github.com/sourcegraph/handbook 5 2021-12-01 00:00:00 +0000 UTC 1.18 2.000000",
 			"github.com/sourcegraph/handbook 5 2021-12-01 00:00:00 +0000 UTC 1.20 1.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-12-01 00:00:00 +0000 UTC 1.11 3.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-12-01 00:00:00 +0000 UTC 1.18 1.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-12-01 00:00:00 +0000 UTC 1.11 3.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-12-01 00:00:00 +0000 UTC 1.18 1.000000",
 		}).Equal(t, stringified)
 	})
 
@@ -217,9 +217,9 @@ func TestGenerateComputeRecordingsStream(t *testing.T) {
 		mocked := func(context.Context, string) (*streaming.ComputeTabulationResult, error) {
 			return &streaming.ComputeTabulationResult{
 				RepoCounts: map[string]*streaming.ComputeMatch{
-					"github.com/sourcegraph/sourcegraph": {
+					"github.com/khulnasoft/khulnasoft": {
 						RepositoryID:   11,
-						RepositoryName: "github.com/sourcegraph/sourcegraph",
+						RepositoryName: "github.com/khulnasoft/khulnasoft",
 						ValueCounts: map[string]int{
 							"1.11": 3,
 							"1.18": 1,
@@ -236,15 +236,15 @@ func TestGenerateComputeRecordingsStream(t *testing.T) {
 		}
 		stringified := stringify(recordings)
 		autogold.Expect([]string{
-			"github.com/sourcegraph/sourcegraph 11 2021-08-01 00:00:00 +0000 UTC 1.11 3.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-08-01 00:00:00 +0000 UTC 1.18 1.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-08-01 00:00:00 +0000 UTC 1.33 6.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-09-01 00:00:00 +0000 UTC 1.11 3.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-09-01 00:00:00 +0000 UTC 1.18 1.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-09-01 00:00:00 +0000 UTC 1.33 6.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-10-01 00:00:00 +0000 UTC 1.11 3.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-10-01 00:00:00 +0000 UTC 1.18 1.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-10-01 00:00:00 +0000 UTC 1.33 6.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-08-01 00:00:00 +0000 UTC 1.11 3.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-08-01 00:00:00 +0000 UTC 1.18 1.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-08-01 00:00:00 +0000 UTC 1.33 6.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-09-01 00:00:00 +0000 UTC 1.11 3.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-09-01 00:00:00 +0000 UTC 1.18 1.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-09-01 00:00:00 +0000 UTC 1.33 6.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-10-01 00:00:00 +0000 UTC 1.11 3.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-10-01 00:00:00 +0000 UTC 1.18 1.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-10-01 00:00:00 +0000 UTC 1.33 6.000000",
 		}).Equal(t, stringified)
 	})
 
@@ -377,9 +377,9 @@ func TestGenerateSearchRecordingsStream(t *testing.T) {
 		mocked := func(context.Context, string) (*streaming.TabulationResult, error) {
 			return &streaming.TabulationResult{
 				RepoCounts: map[string]*streaming.SearchMatch{
-					"github.com/sourcegraph/sourcegraph": {
+					"github.com/khulnasoft/khulnasoft": {
 						RepositoryID:   11,
-						RepositoryName: "github.com/sourcegraph/sourcegraph",
+						RepositoryName: "github.com/khulnasoft/khulnasoft",
 						MatchCount:     5,
 					},
 				},
@@ -395,7 +395,7 @@ func TestGenerateSearchRecordingsStream(t *testing.T) {
 		// value is the query. This translates into an empty space.
 		stringified := stringify(recordings)
 		autogold.Expect([]string{
-			"github.com/sourcegraph/sourcegraph 11 2021-12-01 00:00:00 +0000 UTC  5.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-12-01 00:00:00 +0000 UTC  5.000000",
 		}).Equal(t, stringified)
 	})
 
@@ -412,9 +412,9 @@ func TestGenerateSearchRecordingsStream(t *testing.T) {
 		mocked := func(context.Context, string) (*streaming.TabulationResult, error) {
 			return &streaming.TabulationResult{
 				RepoCounts: map[string]*streaming.SearchMatch{
-					"github.com/sourcegraph/sourcegraph": {
+					"github.com/khulnasoft/khulnasoft": {
 						RepositoryID:   11,
-						RepositoryName: "github.com/sourcegraph/sourcegraph",
+						RepositoryName: "github.com/khulnasoft/khulnasoft",
 						MatchCount:     5,
 					},
 				},
@@ -462,9 +462,9 @@ func TestGenerateSearchRecordingsStream(t *testing.T) {
 		mocked := func(context.Context, string) (*streaming.TabulationResult, error) {
 			return &streaming.TabulationResult{
 				RepoCounts: map[string]*streaming.SearchMatch{
-					"github.com/sourcegraph/sourcegraph": {
+					"github.com/khulnasoft/khulnasoft": {
 						RepositoryID:   11,
-						RepositoryName: "github.com/sourcegraph/sourcegraph",
+						RepositoryName: "github.com/khulnasoft/khulnasoft",
 						MatchCount:     5,
 					},
 				},
@@ -508,9 +508,9 @@ func TestGenerateSearchRecordingsStream(t *testing.T) {
 		mocked := func(context.Context, string) (*streaming.TabulationResult, error) {
 			return &streaming.TabulationResult{
 				RepoCounts: map[string]*streaming.SearchMatch{
-					"github.com/sourcegraph/sourcegraph": {
+					"github.com/khulnasoft/khulnasoft": {
 						RepositoryID:   11,
-						RepositoryName: "github.com/sourcegraph/sourcegraph",
+						RepositoryName: "github.com/khulnasoft/khulnasoft",
 						MatchCount:     5,
 					},
 					"github.com/sourcegraph/handbook": {
@@ -530,7 +530,7 @@ func TestGenerateSearchRecordingsStream(t *testing.T) {
 		stringified := stringify(recordings)
 		autogold.Expect([]string{
 			"github.com/sourcegraph/handbook 5 2021-12-01 00:00:00 +0000 UTC  20.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-12-01 00:00:00 +0000 UTC  5.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-12-01 00:00:00 +0000 UTC  5.000000",
 		}).Equal(t, stringified)
 	})
 
@@ -547,9 +547,9 @@ func TestGenerateSearchRecordingsStream(t *testing.T) {
 		mocked := func(context.Context, string) (*streaming.TabulationResult, error) {
 			return &streaming.TabulationResult{
 				RepoCounts: map[string]*streaming.SearchMatch{
-					"github.com/sourcegraph/sourcegraph": {
+					"github.com/khulnasoft/khulnasoft": {
 						RepositoryID:   11,
-						RepositoryName: "github.com/sourcegraph/sourcegraph",
+						RepositoryName: "github.com/khulnasoft/khulnasoft",
 						MatchCount:     5,
 					},
 				},
@@ -563,9 +563,9 @@ func TestGenerateSearchRecordingsStream(t *testing.T) {
 		}
 		stringified := stringify(recordings)
 		autogold.Expect([]string{
-			"github.com/sourcegraph/sourcegraph 11 2021-08-01 00:00:00 +0000 UTC  5.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-09-01 00:00:00 +0000 UTC  5.000000",
-			"github.com/sourcegraph/sourcegraph 11 2021-10-01 00:00:00 +0000 UTC  5.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-08-01 00:00:00 +0000 UTC  5.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-09-01 00:00:00 +0000 UTC  5.000000",
+			"github.com/khulnasoft/khulnasoft 11 2021-10-01 00:00:00 +0000 UTC  5.000000",
 		}).Equal(t, stringified)
 	})
 

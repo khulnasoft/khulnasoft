@@ -28,7 +28,7 @@ type ExternalConnection struct {
 // NewAuthzProviders returns the set of GitHub authz providers derived from the connections.
 //
 // It also returns any simple validation problems with the config, separating these into "serious problems"
-// and "warnings". "Serious problems" are those that should make Sourcegraph set authz.allowAccessByDefault
+// and "warnings". "Serious problems" are those that should make Khulnasoft set authz.allowAccessByDefault
 // to false. "Warnings" are all other validation problems.
 //
 // This constructor does not and should not directly check connectivity to external services - if
@@ -83,7 +83,7 @@ func NewAuthzProviders(
 				fmt.Sprintf("GitHub config for %[1]s has `authorization.groupsCacheTTL` enabled, but "+
 					"the authentication provider matching %[1]q does not have `allowGroupsPermissionsSync` enabled. "+
 					"Update the [**site configuration**](/site-admin/configuration) in the appropriate entry "+
-					"in [`auth.providers`](https://sourcegraph.com/docs/admin/auth) to enable this.",
+					"in [`auth.providers`](https://khulnasoft.com/docs/admin/auth) to enable this.",
 					p.ServiceID()))
 			// Forcibly disable groups cache.
 			p.groupsCache = nil

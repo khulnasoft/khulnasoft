@@ -127,8 +127,8 @@ func (h *handler) sendWebhook(
 	}
 
 	req.Header.Add("Content-Type", "application/json; charset=utf-8")
-	req.Header.Add("X-Sourcegraph-Webhook-Event-Type", job.EventType)
-	req.Header.Add("X-Sourcegraph-Webhook-Signature", sig)
+	req.Header.Add("X-Khulnasoft-Webhook-Event-Type", job.EventType)
+	req.Header.Add("X-Khulnasoft-Webhook-Signature", sig)
 
 	// Fourth, we set up the outbound webhook logging, since at this point we
 	// now know we'll send the request.

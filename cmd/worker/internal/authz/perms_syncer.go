@@ -410,12 +410,12 @@ var (
 // the given user.
 //
 // It returns a list of internal database repository IDs and is a noop when
-// ` dotcom.SourcegraphDotComMode()` is true.
+// ` dotcom.KhulnasoftDotComMode()` is true.
 func (s *permsSyncerImpl) fetchUserPermsViaExternalAccounts(ctx context.Context, user *types.User, noPerms bool, fetchOpts authz.FetchPermsOptions) (results fetchUserPermsViaExternalAccountsResults, err error) {
-	// NOTE: OAuth scope on sourcegraph.com does not grant access to read private
+	// NOTE: OAuth scope on khulnasoft.com does not grant access to read private
 	//  repositories, therefore it is no point wasting effort and code host API rate
 	//  limit quota on trying.
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		return results, nil
 	}
 

@@ -20,7 +20,7 @@ TODO @jhchabran.
 
 2. During a multiversion upgrade migrator must schedule out of band migrations to be started at some version and completed before upgrading past some later version. Migrator needs access to the unsquashed migration definitions to know which migrations must have run at the time the oob migration is triggered.
 
-In standard/up upgrades `stitched-migration-graph.json` isn’t necessary. This is because up determines migrations to run by comparing migrations listed as already run in the relevant db’s migration_logs table directly to those migration definitions embedded in the migrator disk at build time for the current version, and running any which haven’t been run. We never squash away the previous minor version of Sourcegraph, in this way we can guarantee the `migration_logs` table migrations always has migrations in common with the migration definitions on disk.
+In standard/up upgrades `stitched-migration-graph.json` isn’t necessary. This is because up determines migrations to run by comparing migrations listed as already run in the relevant db’s migration_logs table directly to those migration definitions embedded in the migrator disk at build time for the current version, and running any which haven’t been run. We never squash away the previous minor version of Khulnasoft, in this way we can guarantee the `migration_logs` table migrations always has migrations in common with the migration definitions on disk.
 
 ## How it works
 

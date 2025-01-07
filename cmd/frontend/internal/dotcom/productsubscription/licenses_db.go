@@ -45,7 +45,7 @@ type dbLicense struct {
 	SalesforceOpportunityID  *string
 }
 
-// errLicenseNotFound occurs when a database operation expects a specific Sourcegraph
+// errLicenseNotFound occurs when a database operation expects a specific Khulnasoft
 // license to exist but it does not exist.
 var errLicenseNotFound = errors.New("product license not found")
 
@@ -145,7 +145,7 @@ func postLicenseCreationToSlack(ctx context.Context, logger log.Logger, subscrip
 }
 
 const slackLicenseCreationMessageFmt = `
-A new license was created by *%s* for subscription <https://sourcegraph.com/site-admin/dotcom/product/subscriptions/%s|%s>:
+A new license was created by *%s* for subscription <https://khulnasoft.com/site-admin/dotcom/product/subscriptions/%s|%s>:
 
 • *License version*: %s
 • *Expiration (UTC)*: %s (%s days remaining)

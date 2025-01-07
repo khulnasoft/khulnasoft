@@ -2,7 +2,7 @@ recordings:
 - hash: d6d9aaaf5bd9242c2f8d25ead69a79495b00a944635231ad00ff78ceaaa4988f
   request:
     recording_date: "2024-08-07T17:00:31+02:00"
-    url: https://sourcegraph.com/.api/modelconfig/supported-models.json
+    url: https://khulnasoft.com/.api/modelconfig/supported-models.json
     method: GET
     headers:
     - key: Authorization
@@ -86,7 +86,7 @@ recordings:
 - hash: 6693e52d3141d1d4c26103ebfd12dc7e8ce0aaa9bd5956482dadc9f2cb3eb935
   request:
     recording_date: "2024-08-08T15:15:23+02:00"
-    url: https://sourcegraph.com/.api/completions/stream?api-version=1&client-name=openai-rest-api&client-version=6.0.0
+    url: https://khulnasoft.com/.api/completions/stream?api-version=1&client-name=openai-rest-api&client-version=6.0.0
     method: POST
     headers:
     - key: Content-Type
@@ -111,7 +111,7 @@ recordings:
 - hash: 44372445ae2f4fc5714c8311c370ecf68d5b16b23cc45b5f8a1c9f5e376f4f70
   request:
     recording_date: "2024-08-08T15:15:24+02:00"
-    url: https://sourcegraph.com/.api/completions/stream?api-version=1&client-name=openai-rest-api&client-version=6.0.0
+    url: https://khulnasoft.com/.api/completions/stream?api-version=1&client-name=openai-rest-api&client-version=6.0.0
     method: POST
     headers:
     - key: Content-Type
@@ -136,7 +136,7 @@ recordings:
 - hash: 645da16509353b6d2a6b0e616b755b144c6fcf1eb4d1e9096d67f49f503fbc0e
   request:
     recording_date: "2024-08-08T14:41:01Z"
-    url: https://sourcegraph.com/.api/completions/stream?api-version=1&client-name=openai-rest-api&client-version=6.0.0
+    url: https://khulnasoft.com/.api/completions/stream?api-version=1&client-name=openai-rest-api&client-version=6.0.0
     method: POST
     headers:
     - key: Content-Type
@@ -163,7 +163,7 @@ recordings:
 - hash: 94b132c1d5c4a93c9d8f71a01b7b01b2118f16e67747fb028b71a46887f78c4a
   request:
     recording_date: "2024-08-14T23:16:24+02:00"
-    url: https://sourcegraph.com/.api/completions/stream?api-version=1&client-name=openai-rest-api&client-version=6.0.0
+    url: https://khulnasoft.com/.api/completions/stream?api-version=1&client-name=openai-rest-api&client-version=6.0.0
     method: POST
     headers:
     - key: Content-Type

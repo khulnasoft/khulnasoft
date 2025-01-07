@@ -50,7 +50,7 @@ extend type Query {
     """
     Experimental: Determines whether the given query requires further context before it can be answered.
     For example:
-      - "What are Sourcegraph Notebooks" requires additional information from the Sourcegraph repository (Notebooks Markdown docs, etc.).
+      - "What are Khulnasoft Notebooks" requires additional information from the Khulnasoft repository (Notebooks Markdown docs, etc.).
       - "Translate the previous code to Typescript" does not need additional context since it is referring to the existing context (or conversation).
     """
     isContextRequiredForChatQuery(query: String!): Boolean!

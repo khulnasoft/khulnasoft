@@ -68,7 +68,7 @@ func unmarshalBatchChangesCredentialID(id graphql.ID) (credentialID int64, isSit
 func commentSSHKey(ssh auth.AuthenticatorWithSSH) string {
 	url := conf.ExternalURLParsed()
 	if url != nil && url.Host != "" {
-		return strings.TrimRight(ssh.SSHPublicKey(), "\n") + " Sourcegraph " + url.Host
+		return strings.TrimRight(ssh.SSHPublicKey(), "\n") + " Khulnasoft " + url.Host
 	}
 	return ssh.SSHPublicKey()
 }

@@ -68,8 +68,8 @@ func TestUploadIndex(t *testing.T) {
 			Root:    "proj/",
 			Indexer: "lsif-go",
 		},
-		SourcegraphInstanceOptions: SourcegraphInstanceOptions{
-			SourcegraphURL:      ts.URL,
+		KhulnasoftInstanceOptions: KhulnasoftInstanceOptions{
+			KhulnasoftURL:      ts.URL,
 			AccessToken:         "hunter2",
 			GitHubToken:         "ght",
 			MaxPayloadSizeBytes: 1000,
@@ -132,8 +132,8 @@ func TestUploadIndexMultipart(t *testing.T) {
 			Root:    "proj/",
 			Indexer: "lsif-go",
 		},
-		SourcegraphInstanceOptions: SourcegraphInstanceOptions{
-			SourcegraphURL:      ts.URL,
+		KhulnasoftInstanceOptions: KhulnasoftInstanceOptions{
+			KhulnasoftURL:      ts.URL,
 			AccessToken:         "hunter2",
 			GitHubToken:         "ght",
 			MaxPayloadSizeBytes: 100,

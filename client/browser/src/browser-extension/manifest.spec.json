@@ -35,7 +35,7 @@
   },
   "applications": {
     "gecko": {
-      "id": "sourcegraph-for-firefox@sourcegraph.com"
+      "id": "sourcegraph-for-firefox@khulnasoft.com"
     }
   },
   "dev": {
@@ -46,12 +46,12 @@
       "https://github.com/*",
       "https://gitlab.com/*",
       "https://localhost:3443/*",
-      "https://sourcegraph.com/*",
+      "https://khulnasoft.com/*",
       "http://localhost:32773/*"
     ],
     "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCl2X/axNHMbP0K/NCpMzGo/pgBSsHB2xKx6tfohORKtEv2wUMBPmkK3++kirrwYO2f8Ficyq6pjlXV8LjwPSjSw9KZj6bkDn8QNoSdCp6x9i8ZOWPw6UTQ6s54b3rGQNyvrvfD7S6LphxGEx8rNlkjpWKcrvY3+DyoFKHP/hax7wIDAQAB"
   },
   "prod": {
-    "permissions": ["activeTab", "storage", "contextMenus", "https://github.com/*", "https://sourcegraph.com/*"]
+    "permissions": ["activeTab", "storage", "contextMenus", "https://github.com/*", "https://khulnasoft.com/*"]
   }
 }

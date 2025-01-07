@@ -1,6 +1,6 @@
 # CodeIntellify
 
-This library manages all of the inputs (mouse/keyboard events, location changes, hover information, and hover actions) necessary to display hover tooltips on with a code view. All together, this makes it easier to add code intelligence to code views on the web. Used in [Khulnasoft](https://sourcegraph.com).
+This library manages all of the inputs (mouse/keyboard events, location changes, hover information, and hover actions) necessary to display hover tooltips on with a code view. All together, this makes it easier to add code intelligence to code views on the web. Used in [Khulnasoft](https://khulnasoft.com).
 
 ## What it does
 

@@ -36,7 +36,7 @@
   "editor.formatOnSave": true,
   "go.useLanguageServer": true,
   "gopls": {
-    "local": "github.com/sourcegraph/sourcegraph"
+    "local": "github.com/khulnasoft/khulnasoft"
   },
   "npm.packageManager": "pnpm",
   "npm.runSilent": true,
@@ -71,6 +71,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cody.codebase": "github.com/sourcegraph/sourcegraph",
+  "cody.codebase": "github.com/khulnasoft/khulnasoft",
   "rust-analyzer.linkedProjects": ["docker-images/syntax-highlighter/Cargo.toml"]
 }

@@ -1,6 +1,6 @@
 extend type Query {
     """
-    Checks whether the given feature is enabled on Sourcegraph.
+    Checks whether the given feature is enabled on Khulnasoft.
     """
     enterpriseLicenseHasFeature(feature: String!): Boolean!
 }

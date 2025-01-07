@@ -204,7 +204,7 @@ func Render(s spec.Spec, alertPolicies map[string]terraform.AlertPolicy, opts Op
 			}
 			if env.Authentication != nil {
 				if pointers.DerefZero(env.Authentication.Khulnasoft) {
-					overview = append(overview, "Authentication: sourcegraph.com GSuite users")
+					overview = append(overview, "Authentication: khulnasoft.com GSuite users")
 				} else {
 					overview = append(overview, "Authentication: Restricted")
 				}

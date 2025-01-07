@@ -129,7 +129,7 @@ SELECT EXTRACT(EPOCH FROM p50)::int AS p50_seconds FROM percentiles
 const slackMessageFmt = `
 We are receiving irregular pings from ` + "`%s`" + ` for the site ID: "%s".
 
-This might mean that there is more than one active instance of Sourcegraph with the same site ID and license key.
+This might mean that there is more than one active instance of Khulnasoft with the same site ID and license key.
 
 At the moment, this site ID is associated with the following license key ID: <%s/site-admin/dotcom/product/subscriptions/%s#%s|%s>
 

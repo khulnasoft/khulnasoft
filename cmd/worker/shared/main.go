@@ -126,7 +126,7 @@ func LoadConfig(registerEnterpriseMigrators oobmigration.RegisterMigratorsFunc) 
 
 		"codeintel-syntactic-indexing-scheduler": syntactic_indexing.NewSyntacticindexingSchedulerJob(),
 
-		"auth-sourcegraph-operator-cleaner": auth.NewSourcegraphOperatorCleaner(),
+		"auth-sourcegraph-operator-cleaner": auth.NewKhulnasoftOperatorCleaner(),
 
 		"repo-embedding-janitor":   repoembeddings.NewRepoEmbeddingJanitorJob(),
 		"repo-embedding-job":       repoembeddings.NewRepoEmbeddingJob(),

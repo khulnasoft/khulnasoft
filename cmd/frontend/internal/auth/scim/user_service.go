@@ -395,10 +395,10 @@ func getRevokeUserPermissionArgs(ctx context.Context, user types.UserForSCIM, db
 		})
 	}
 
-	// Add Sourcegraph account
+	// Add Khulnasoft account
 	accounts = append(accounts, &extsvc.Accounts{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountIDs:  append(user.Emails, user.Username),
 	})
 
@@ -419,7 +419,7 @@ func sendPasswordResetEmail(logger log.Logger, db database.DB, user *types.User,
 	}
 	if debugEmailInvitesMock {
 		if logger != nil {
-			logger.Info("password reset: mock pw reset email to Sourcegraph", log.String("sent", primaryEmail))
+			logger.Info("password reset: mock pw reset email to Khulnasoft", log.String("sent", primaryEmail))
 		}
 		return true
 	}
@@ -438,7 +438,7 @@ func sendWelcomeEmail(email, siteURL string, logger log.Logger) error {
 		}
 		if debugEmailInvitesMock {
 			if logger != nil {
-				logger.Info("email welcome: mock welcome to Sourcegraph", log.String("welcomed", email))
+				logger.Info("email welcome: mock welcome to Khulnasoft", log.String("welcomed", email))
 			}
 			return nil
 		}
@@ -456,11 +456,11 @@ func sendWelcomeEmail(email, siteURL string, logger log.Logger) error {
 }
 
 var emailTemplateEmailWelcomeSCIM = txemail.MustValidate(txtypes.Templates{
-	Subject: `Welcome to Sourcegraph`,
+	Subject: `Welcome to Khulnasoft`,
 	Text: `
-Sourcegraph enables you to quickly understand, fix, and automate changes to your code.
+Khulnasoft enables you to quickly understand, fix, and automate changes to your code.
 
-You can use Sourcegraph to:
+You can use Khulnasoft to:
   - Search and navigate multiple repositories with cross-repository dependency navigation
   - Share links directly to lines of code to work more collaboratively together
   - Automate large-scale code changes with Batch Changes
@@ -471,15 +471,15 @@ Come experience the power of great code search.
 
 {{.URL}}
 
-Learn more about Sourcegraph:
+Learn more about Khulnasoft:
 
-https://sourcegraph.com
+https://khulnasoft.com
 `,
 	HTML: `
-<p>Sourcegraph enables you to quickly understand, fix, and automate changes to your code.</p>
+<p>Khulnasoft enables you to quickly understand, fix, and automate changes to your code.</p>
 
 <p>
-	You can use Sourcegraph to:<br/>
+	You can use Khulnasoft to:<br/>
 	<ul>
 		<li>Search and navigate multiple repositories with cross-repository dependency navigation</li>
 		<li>Share links directly to lines of code to work more collaboratively together</li>
@@ -490,6 +490,6 @@ https://sourcegraph.com
 
 <p><strong><a href="{{.URL}}">Come experience the power of great code search</a></strong></p>
 
-<p><a href="https://sourcegraph.com">Learn more about Sourcegraph</a></p>
+<p><a href="https://khulnasoft.com">Learn more about Khulnasoft</a></p>
 `,
 })

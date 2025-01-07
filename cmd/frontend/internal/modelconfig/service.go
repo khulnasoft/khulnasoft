@@ -11,7 +11,7 @@ import (
 )
 
 // Service is the system-wide component for obtaining the set of
-// LLM models the current Sourcegraph instance is configured to use.
+// LLM models the current Khulnasoft instance is configured to use.
 //
 // You can obtain the global, package-level instance of this interface by
 // calling the Get() method. It is safe for concurrent reads.
@@ -21,7 +21,7 @@ import (
 // for configuration changes and update the ModelConfiguration object in-
 // memory as appropriate.
 type Service interface {
-	// Get returns the current model configuration for this Sourcegraph instance.
+	// Get returns the current model configuration for this Khulnasoft instance.
 	// Callers should not modify the returned data, and treat it as if it were
 	// immutable.
 	Get() (*types.ModelConfiguration, error)

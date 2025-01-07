@@ -48,7 +48,7 @@ func FetchStatusMessages(ctx context.Context, db database.DB, gitserverClient gi
 		if stats.Total == 0 {
 			messages = append(messages, StatusMessage{
 				NoRepositoriesDetected: &NoRepositoriesDetected{
-					Message: "No repositories have been added to Sourcegraph.",
+					Message: "No repositories have been added to Khulnasoft.",
 				},
 			})
 		}
@@ -89,11 +89,11 @@ func FetchStatusMessages(ctx context.Context, db database.DB, gitserverClient gi
 		})
 	}
 
-	// On Sourcegraph.com we don't index all repositories, which makes
+	// On Khulnasoft.com we don't index all repositories, which makes
 	// determining the index status a bit more complicated than for other
 	// instances.
-	// So for now we don't return the indexing message on sourcegraph.com.
-	if !dotcom.SourcegraphDotComMode() {
+	// So for now we don't return the indexing message on khulnasoft.com.
+	if !dotcom.KhulnasoftDotComMode() {
 		zoektRepoStats, err := db.ZoektRepos().GetStatistics(ctx)
 		if err != nil {
 			return nil, errors.Wrap(err, "loading repo statistics")

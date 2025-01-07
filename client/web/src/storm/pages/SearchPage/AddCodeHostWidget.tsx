@@ -72,7 +72,7 @@ export const AddCodeHostWidget: FC<AddCodeHostWidgetProps> = props => {
                     <Text className="text-muted m-0">
                         Khulnasoft has successfully completed a{' '}
                         <Link
-                            to="https://security.sourcegraph.com/?itemUid=7bfa66da-33ab-49de-8391-e329738a1ae9&source=title"
+                            to="https://security.khulnasoft.com/?itemUid=7bfa66da-33ab-49de-8391-e329738a1ae9&source=title"
                             target="_blank"
                             rel="noopener noreferrer"
                             className={styles.textUnderline}
@@ -85,7 +85,7 @@ export const AddCodeHostWidget: FC<AddCodeHostWidgetProps> = props => {
                         </Link>{' '}
                         audit. Read about this and more on our{' '}
                         <Link
-                            to="https://security.sourcegraph.com/"
+                            to="https://security.khulnasoft.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className={styles.textUnderline}

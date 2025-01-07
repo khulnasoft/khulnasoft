@@ -34,7 +34,7 @@ func (grafanaProvider) Annotations(ctx context.Context, params schema.Annotation
 		item := &schema.OpenCodeGraphItem{
 			Id:    id,
 			Title: "📟 Prometheus: " + metric,
-			Url:   "https://sourcegraph.sourcegraph.com/-/debug/grafana/explore?orgId=1&left=%5B%22now-6h%22,%22now%22,%22Prometheus%22,%7B%22expr%22:%22" + metric + "%22,%22datasource%22:%22Prometheus%22,%22exemplar%22:true%7D%5D",
+			Url:   "https://sourcegraph.khulnasoft.com/-/debug/grafana/explore?orgId=1&left=%5B%22now-6h%22,%22now%22,%22Prometheus%22,%7B%22expr%22:%22" + metric + "%22,%22datasource%22:%22Prometheus%22,%22exemplar%22:true%7D%5D",
 		}
 
 		result.Items = append(result.Items, item)

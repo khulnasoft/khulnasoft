@@ -10,9 +10,9 @@ import (
 	libaccesstoken "github.com/khulnasoft/khulnasoft/lib/accesstoken"
 )
 
-// PersonalAccessTokenPrefix is the token prefix for Sourcegraph personal access tokens. Its purpose
+// PersonalAccessTokenPrefix is the token prefix for Khulnasoft personal access tokens. Its purpose
 // is to make it easier to identify that a given string (in a file, document, etc.) is a secret
-// Sourcegraph personal access token (vs. some arbitrary high-entropy hex-encoded value).
+// Khulnasoft personal access token (vs. some arbitrary high-entropy hex-encoded value).
 const PersonalAccessTokenPrefix = "sgp_"
 const LocalInstanceIdentifier = "local"
 const InstanceIdentifierLength = 16

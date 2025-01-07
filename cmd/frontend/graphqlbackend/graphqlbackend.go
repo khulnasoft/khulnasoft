@@ -77,14 +77,14 @@ func (t *requestTracer) TraceQuery(ctx context.Context, queryString string, oper
 		currentUserID = a.UID
 	}
 
-	// 🚨 SECURITY: We want to log every single operation the Sourcegraph operator
+	// 🚨 SECURITY: We want to log every single operation the Khulnasoft operator
 	// has done on the instance, so we need to do additional logging here. Sometimes
 	// we would end up having logging twice for the same operation (here and the web
 	// app), but we would not want to risk missing logging operations. Also in the
-	// future, we expect audit logging of Sourcegraph operators to live outside the
+	// future, we expect audit logging of Khulnasoft operators to live outside the
 	// instance, which makes this pattern less of a concern in terms of redundancy.
-	if a.SourcegraphOperator {
-		const eventName = "SourcegraphOperatorGraphQLRequest"
+	if a.KhulnasoftOperator {
+		const eventName = "KhulnasoftOperatorGraphQLRequest"
 		args, err := json.Marshal(map[string]any{
 			"queryString": queryString,
 			"variables":   variables,
@@ -98,7 +98,7 @@ func (t *requestTracer) TraceQuery(ctx context.Context, queryString string, oper
 		}
 
 		// NOTE: It is important to propagate the correct context that carries the
-		// information of the actor, especially whether the actor is a Sourcegraph
+		// information of the actor, especially whether the actor is a Khulnasoft
 		// operator or not.
 		//
 		// TODO: Use EventRecorder from internal/telemetryrecorder instead.
@@ -666,7 +666,7 @@ func NewSchema(
 		opts...)
 }
 
-// schemaResolver handles all GraphQL queries for Sourcegraph. To do this, it
+// schemaResolver handles all GraphQL queries for Khulnasoft. To do this, it
 // uses subresolvers which are globals. Enterprise-only resolvers are assigned
 // to a field of EnterpriseResolvers.
 //

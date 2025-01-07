@@ -490,7 +490,7 @@ func TestBuildBigQueryObject(t *testing.T) {
 	event := &database.Event{
 		ID:               1,
 		Name:             "GREAT_EVENT",
-		URL:              "https://sourcegraph.com/search",
+		URL:              "https://khulnasoft.com/search",
 		UserID:           5,
 		AnonymousUserID:  "anonymous",
 		PublicArgument:   json.RawMessage("public_argument"),

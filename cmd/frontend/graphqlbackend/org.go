@@ -103,7 +103,7 @@ func (o *OrgResolver) Members(ctx context.Context, args struct {
 },
 ) (*gqlutil.ConnectionResolver[*UserResolver], error) {
 	// 🚨 SECURITY: On dotcom, only an org's members can list its members.
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		if err := auth.CheckOrgAccessOrSiteAdmin(ctx, o.db, o.org.ID); err != nil {
 			return nil, err
 		}

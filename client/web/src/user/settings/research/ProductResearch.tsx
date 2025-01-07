@@ -14,7 +14,7 @@ interface Props extends TelemetryV2Props {
     authenticatedUser: Pick<AuthenticatedUser, 'emails'>
 }
 
-const SIGN_UP_FORM_URL = 'https://info.sourcegraph.com/product-research'
+const SIGN_UP_FORM_URL = 'https://info.khulnasoft.com/product-research'
 
 export const ProductResearchPage: React.FunctionComponent<React.PropsWithChildren<Props>> = ({
     telemetryService,

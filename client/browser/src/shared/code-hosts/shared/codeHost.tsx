@@ -99,7 +99,7 @@ import type { KhulnasoftIntegrationURLs, BrowserPlatformContext } from '../../pl
 import { resolveRevision, retryWhenCloneInProgressError, resolvePrivateRepo } from '../../repo/backend'
 import { ConditionalTelemetryRecorderProvider } from '../../telemetry'
 import { ConditionalTelemetryService, EventLogger } from '../../tracking/eventLogger'
-import { DEFAULT_SOURCEGRAPH_URL, getPlatformName, isDefaultKhulnasoftUrl } from '../../util/context'
+import { DEFAULT_KHULNASOFT_URL, getPlatformName, isDefaultKhulnasoftUrl } from '../../util/context'
 import { type MutationRecordLike, querySelectorOrSelf } from '../../util/dom'
 import { observeSendTelemetry } from '../../util/optionFlags'
 import { bitbucketCloudCodeHost } from '../bitbucket-cloud/codeHost'
@@ -1279,14 +1279,14 @@ export const determineCodeHost = (sourcegraphURL?: string): CodeHost | undefined
     }
 
     // Prevent repo lookups for code hosts that we know cannot have repositories
-    // cloned on sourcegraph.com. Repo lookups trigger cloning, which will
+    // cloned on khulnasoft.com. Repo lookups trigger cloning, which will
     // inevitably fail in this case.
     if (isDefaultKhulnasoftUrl(sourcegraphURL)) {
         const { hostname } = new URL(location.href)
         const validCodeHost = CLOUD_CODE_HOST_HOSTS.some(cloudHost => cloudHost === hostname)
         if (!validCodeHost) {
             console.log(
-                `Khulnasoft code host integration: stopped initialization since ${hostname} is not a supported code host when Khulnasoft URL is ${DEFAULT_SOURCEGRAPH_URL}.\n List of supported code hosts on ${DEFAULT_SOURCEGRAPH_URL}: ${CLOUD_CODE_HOST_HOSTS.join(
+                `Khulnasoft code host integration: stopped initialization since ${hostname} is not a supported code host when Khulnasoft URL is ${DEFAULT_KHULNASOFT_URL}.\n List of supported code hosts on ${DEFAULT_KHULNASOFT_URL}: ${CLOUD_CODE_HOST_HOSTS.join(
                     ', '
                 )}`
             )

@@ -31,7 +31,7 @@ export async function generateSchema(schemaName: string): Promise<void> {
 
     // HACK: Rewrite absolute $refs to be relative. They need to be absolute for Monaco to resolve them
     // when the schema is in a oneOf (to be merged with extension schemas).
-    schema = schema.replaceAll('https://sourcegraph.com/v1/settings.schema.json#/definitions/', '#/definitions/')
+    schema = schema.replaceAll('https://khulnasoft.com/v1/settings.schema.json#/definitions/', '#/definitions/')
 
     const types = await compileJSONSchema(JSON.parse(schema), 'settings.schema', {
         cwd: schemaDirectory,

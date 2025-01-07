@@ -423,7 +423,7 @@ func Code(ctx context.Context, p Params) (response *HighlightedCode, aborted boo
 
 	if ctx.Err() == context.Canceled {
 		traceLogger.Warn(
-			"syntax highlighting canceled, this *could* indicate a bug in Sourcegraph",
+			"syntax highlighting canceled, this *could* indicate a bug in Khulnasoft",
 			log.Duration("elapsed", time.Since(start)),
 		)
 		traceLogger.AddEvent("syntaxHighlighting", attribute.Bool("canceled", true))
@@ -438,7 +438,7 @@ func Code(ctx context.Context, p Params) (response *HighlightedCode, aborted boo
 		return plainResponse, true, nil
 	} else if ctx.Err() == context.DeadlineExceeded {
 		traceLogger.Warn(
-			"syntax highlighting took longer than 3s, this *could* indicate a bug in Sourcegraph",
+			"syntax highlighting took longer than 3s, this *could* indicate a bug in Khulnasoft",
 			log.Duration("elapsed", time.Since(start)),
 			snippet(code),
 		)

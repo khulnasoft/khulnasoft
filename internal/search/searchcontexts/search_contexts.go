@@ -79,8 +79,8 @@ func ResolveSearchContextSpec(ctx context.Context, db database.DB, searchContext
 		}
 
 		// Only member of the organization can use search contexts under the
-		// organization namespace on Sourcegraph Cloud.
-		if dotcom.SourcegraphDotComMode() && namespace.Organization > 0 {
+		// organization namespace on Khulnasoft Cloud.
+		if dotcom.KhulnasoftDotComMode() && namespace.Organization > 0 {
 			_, err = db.OrgMembers().GetByOrgIDAndUserID(ctx, namespace.Organization, actor.FromContext(ctx).UID)
 			if err != nil {
 				if errcode.IsNotFound(err) {
@@ -537,7 +537,7 @@ func IsGlobalSearchContext(searchContext *types.SearchContext) bool {
 }
 
 func GetGlobalSearchContext() *types.SearchContext {
-	return &types.SearchContext{Name: GlobalSearchContextName, Public: true, Description: "All repositories on Sourcegraph", AutoDefined: true}
+	return &types.SearchContext{Name: GlobalSearchContextName, Public: true, Description: "All repositories on Khulnasoft", AutoDefined: true}
 }
 
 func GetSearchContextSpec(searchContext *types.SearchContext) string {

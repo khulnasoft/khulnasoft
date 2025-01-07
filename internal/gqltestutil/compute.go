@@ -22,8 +22,8 @@ func (s *ComputeStreamClient) Compute(query string) ([]MatchContext, error) {
 		return nil, err
 	}
 	// Note: Sending this header enables us to use session cookie auth without sending a trusted Origin header.
-	// https://docs-legacy.sourcegraph.com/dev/security/csrf_security_model#authentication-in-api-endpoints
-	req.Header.Set("X-Requested-With", "Sourcegraph")
+	// https://docs-legacy.khulnasoft.com/dev/security/csrf_security_model#authentication-in-api-endpoints
+	req.Header.Set("X-Requested-With", "Khulnasoft")
 	s.Client.addCookies(req)
 
 	resp, err := http.DefaultClient.Do(req)

@@ -313,8 +313,8 @@ func (r *codeownersIngestedFileConnectionResolver) PageInfo(ctx context.Context)
 }
 
 func isIngestionAvailable() error {
-	if dotcom.SourcegraphDotComMode() {
-		return errors.New("codeownership ingestion is not available on sourcegraph.com")
+	if dotcom.KhulnasoftDotComMode() {
+		return errors.New("codeownership ingestion is not available on khulnasoft.com")
 	}
 	return nil
 }

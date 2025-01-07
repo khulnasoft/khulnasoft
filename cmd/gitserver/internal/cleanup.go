@@ -95,7 +95,7 @@ const (
 )
 
 // gitGCMode describes which mode we should be running git gc.
-// See for a detailed description of the modes: https://docs-legacy.sourcegraph.com/dev/background-information/git_gc
+// See for a detailed description of the modes: https://docs-legacy.khulnasoft.com/dev/background-information/git_gc
 var gitGCMode = func() int {
 	// EnableGCAuto is a temporary flag that allows us to control whether or not
 	// `git gc --auto` is invoked during janitorial activities. This flag will
@@ -413,7 +413,7 @@ func cleanupRepos(
 
 		// We trigger a reclone by removing the repo from disk and marking it as
 		// uncloned in the DB. The reclone will then be performed as if this repo
-		// was newly added to Sourcegraph.
+		// was newly added to Khulnasoft.
 		// This will make the repo inaccessible for a bit, but we consider the
 		// repo completely broken at this stage anways.
 		if err := fs.RemoveRepo(repoName); err != nil {

@@ -29,11 +29,11 @@ export default config
 
 const repo: SettingsAreaRepositoryFields = {
     externalServices: { __typename: 'ExternalServiceConnection', nodes: [] },
-    id: 'github.com/sourcegraph/sourcegraph',
+    id: 'github.com/khulnasoft/khulnasoft',
     name: 'sourcegraph/sourcegraph',
     isPrivate: false,
     metadata: [],
-    url: 'github.com/sourcegraph/sourcegraph',
+    url: 'github.com/khulnasoft/khulnasoft',
     mirrorInfo: {
         __typename: 'MirrorRepositoryInfo',
         cloneInProgress: true,
@@ -44,7 +44,7 @@ const repo: SettingsAreaRepositoryFields = {
         isCorrupted: false,
         lastError: null,
         lastSyncOutput: null,
-        remoteURL: 'https://github.com/sourcegraph/sourcegraph',
+        remoteURL: 'https://github.com/khulnasoft/khulnasoft',
         shard: 'gitserver-1',
         updatedAt: '2021-01-19T13:45:59Z',
         updateSchedule: {
@@ -89,7 +89,7 @@ const CHECK_MIRROR_REPOSITORY_CONNECTION_MOCK: MockedResponse<
     request: {
         query: getDocumentNode(CHECK_MIRROR_REPOSITORY_CONNECTION),
         variables: {
-            repository: 'github.com/sourcegraph/sourcegraph',
+            repository: 'github.com/khulnasoft/khulnasoft',
         },
     },
     result: {

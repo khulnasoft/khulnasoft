@@ -20,7 +20,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/pointers"
 )
 
-func (r *Reconciler) reconcilePreciseCodeIntel(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePreciseCodeIntel(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcilePreciseCodeIntelDeployment(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling Deployment")
 	}
@@ -33,7 +33,7 @@ func (r *Reconciler) reconcilePreciseCodeIntel(ctx context.Context, sg *config.S
 	return nil
 }
 
-func (r *Reconciler) reconcilePreciseCodeIntelDeployment(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePreciseCodeIntelDeployment(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "precise-code-intel-worker"
 	cfg := sg.Spec.PreciseCodeIntel
 
@@ -112,7 +112,7 @@ func (r *Reconciler) reconcilePreciseCodeIntelDeployment(ctx context.Context, sg
 	return reconcileObject(ctx, r, cfg, &dep, &appsv1.Deployment{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePreciseCodeIntelService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePreciseCodeIntelService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "precise-code-intel-worker"
 	cfg := sg.Spec.PreciseCodeIntel
 
@@ -128,13 +128,13 @@ func (r *Reconciler) reconcilePreciseCodeIntelService(ctx context.Context, sg *c
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePreciseCodeIntelServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePreciseCodeIntelServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.PreciseCodeIntel
 	sa := serviceaccount.NewServiceAccount("precise-code-intel-worker", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)
 }
 
-func addPreciseCodeIntelBlobstoreVars(env []corev1.EnvVar, sg *config.Sourcegraph) []corev1.EnvVar {
+func addPreciseCodeIntelBlobstoreVars(env []corev1.EnvVar, sg *config.Khulnasoft) []corev1.EnvVar {
 	// Only set these when the internal blobstore is enabled. Otherwise, callers
 	// can supply env vars for external blobstores via ContainerConfig.
 	if !sg.Spec.Blobstore.IsDisabled() {

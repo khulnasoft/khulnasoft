@@ -18,7 +18,7 @@ import (
 )
 
 // A PerforceSource yields depots from a single Perforce connection configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 type PerforceSource struct {
 	gitserverClient gitserver.Client
 	svc             *types.ExternalService
@@ -66,7 +66,7 @@ func (s PerforceSource) CheckConnection(ctx context.Context) error {
 }
 
 // ListRepos returns all Perforce depots accessible to all connections
-// configured in Sourcegraph via the external services configuration.
+// configured in Khulnasoft via the external services configuration.
 func (s PerforceSource) ListRepos(ctx context.Context, results chan SourceResult) {
 	for _, depot := range s.config.Depots {
 		// Tiny optimization: exit early if context has been canceled.
@@ -92,7 +92,7 @@ func (s PerforceSource) ListRepos(ctx context.Context, results chan SourceResult
 
 // composePerforceCloneURL composes a clone URL for a Perforce depot based on
 // given information. e.g.
-// perforce://ssl:111.222.333.444:1666//Sourcegraph/
+// perforce://ssl:111.222.333.444:1666//Khulnasoft/
 func composePerforceCloneURL(host, depot string) string {
 	cloneURL := url.URL{
 		Scheme: "perforce",

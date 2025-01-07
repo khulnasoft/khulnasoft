@@ -116,11 +116,11 @@ func TestSettingsMutation_OverwriteSettings(t *testing.T) {
 
 func TestSettingsMutation(t *testing.T) {
 	db := dbmocks.NewMockDB()
-	t.Run("only allowed by authenticated user on Sourcegraph.com", func(t *testing.T) {
+	t.Run("only allowed by authenticated user on Khulnasoft.com", func(t *testing.T) {
 		users := dbmocks.NewMockUserStore()
 		db.UsersFunc.SetDefaultReturn(users)
 
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		tests := []struct {
 			name  string

@@ -136,7 +136,7 @@ func TestModelConfigResolver(t *testing.T) {
 	codyGatewayProvider := modelconfigSDK.Provider{
 		ID: "test-provider_cody-gateway",
 		ServerSideConfig: &modelconfigSDK.ServerSideProviderConfig{
-			SourcegraphProvider: &modelconfigSDK.SourcegraphProviderConfig{
+			KhulnasoftProvider: &modelconfigSDK.KhulnasoftProviderConfig{
 				AccessToken: "xxx",
 			},
 		},

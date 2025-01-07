@@ -52,7 +52,7 @@ export const FuzzyWrapper: React.FunctionComponent<FuzzyWrapperProps> = props =>
 export const FUZZY_FILES_MOCK: MockedResponse<FileNamesResult> = {
     request: {
         query: getDocumentNode(FUZZY_GIT_LSFILES_QUERY),
-        variables: { repository: 'github.com/sourcegraph/sourcegraph', commit: 'main' },
+        variables: { repository: 'github.com/khulnasoft/khulnasoft', commit: 'main' },
     },
     result: {
         data: {
@@ -91,7 +91,7 @@ export const FUZZY_REPOS_MOCK: MockedResponse<FuzzyFinderRepoResult> = {
         data: {
             search: {
                 results: {
-                    repositories: [{ name: 'github.com/sourcegraph/sourcegraph', stars: 1234 }],
+                    repositories: [{ name: 'github.com/khulnasoft/khulnasoft', stars: 1234 }],
                 },
             },
         },
@@ -110,7 +110,7 @@ export const FUZZY_SYMBOLS_MOCK: MockedResponse<FuzzyFinderSymbolsResult> = {
                     results: [
                         {
                             __typename: 'FileMatch',
-                            repository: { name: 'github.com/sourcegraph/sourcegraph' },
+                            repository: { name: 'github.com/khulnasoft/khulnasoft' },
                             file: { path: 'path.go' },
                             symbols: [
                                 {

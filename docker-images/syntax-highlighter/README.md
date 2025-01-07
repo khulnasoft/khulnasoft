@@ -22,7 +22,7 @@ cargo run --bin syntect_server
 ```
 
 You can set the `SRC_SYNTECT_SERVER` environment var to whatever port this
-connects to and test against local Sourcegraph instance.
+connects to and test against local Khulnasoft instance.
 
 ### Docker Usage (can be used with `sg start`)
 
@@ -85,9 +85,9 @@ wrk --threads 4 --duration 5s --connections 100 --script load_test.lua http://12
 
 **AGAIN NOTE**: The docker image will be published automatically via CI.
 
-## Updating Sourcegraph
+## Updating Khulnasoft
 
-Once published, the image version will need to be updated in the following locations to make Sourcegraph use it:
+Once published, the image version will need to be updated in the following locations to make Khulnasoft use it:
 
 - [`khulnasoft/khulnasoft > cmd/server/Dockerfile`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/server/Dockerfile?subtree=true#L54:13)
 - [`khulnasoft/khulnasoft > sg.config.yaml`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/sg.config.yaml?subtree=true#L206:7)
@@ -102,7 +102,7 @@ See [tree-sitter-all-languages](./crates/tree-sitter-all-languages/README.md)
 
 #### 1) Find an open-source `.tmLanguage` or `.sublime-syntax` file and send a PR to our package registry
 
-https://github.com/sourcegraph/Packages is the package registry we use which holds all of the syntax definitions we use in syntect_server and Sourcegraph. Send a PR there by following [these steps](https://github.com/sourcegraph/Packages/blob/master/README.md#adding-a-new-language)
+https://github.com/sourcegraph/Packages is the package registry we use which holds all of the syntax definitions we use in syntect_server and Khulnasoft. Send a PR there by following [these steps](https://github.com/sourcegraph/Packages/blob/master/README.md#adding-a-new-language)
 
 #### 2) Update our temporary fork of `syntect`
 
