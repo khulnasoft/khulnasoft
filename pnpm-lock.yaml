@@ -275,8 +275,8 @@ importers:
         specifier: ^0.5.2
         version: 0.5.2
       got:
-        specifier: ^11.5.2
-        version: 11.8.6
+        specifier: ^12.1.0
+        version: 12.1.0
       graphiql:
         specifier: ^1.11.5
         version: 1.11.5(@codemirror/language@6.10.8)(@types/node@20.8.0)(graphql-ws@5.16.0)(graphql@15.9.0)(react-dom@18.1.0)(react@18.1.0)
@@ -945,8 +945,8 @@ importers:
         specifier: ^2.0.1
         version: 2.0.2
       happy-dom:
-        specifier: ^12.10.1
-        version: 12.10.3
+        specifier: ^15.10.2
+        version: 15.10.2
       http-proxy-middleware:
         specifier: ^2.0.6
         version: 2.0.7(@types/express@4.17.11)
@@ -1093,7 +1093,7 @@ importers:
         version: 4.5.5(@types/node@20.8.0)(sass@1.83.1)
       vitest:
         specifier: 2.0.3
-        version: 2.0.3(@types/node@20.8.0)(happy-dom@12.10.3)(jsdom@24.1.3)(sass@1.83.1)
+        version: 2.0.3(@types/node@20.8.0)(happy-dom@15.10.2)(jsdom@24.1.3)(sass@1.83.1)
       vitest-fetch-mock:
         specifier: ^0.2.2
         version: 0.2.2(vitest@2.0.3)
@@ -1481,6 +1481,9 @@ importers:
 
   client/web:
     dependencies:
+      '@khulnasoft/schema':
+        specifier: workspace:*
+        version: link:../../schema
       '@sourcegraph/branded':
         specifier: workspace:*
         version: link:../branded
@@ -1505,9 +1508,6 @@ importers:
       '@sourcegraph/observability-client':
         specifier: workspace:*
         version: link:../observability-client
-      '@khulnasoft/schema':
-        specifier: workspace:*
-        version: link:../../schema
       '@sourcegraph/shared':
         specifier: workspace:*
         version: link:../shared
@@ -1761,7 +1761,7 @@ importers:
         version: 0.8.9(vite@5.1.8)
       vitest:
         specifier: ^1.3.1
-        version: 1.6.0(@types/node@20.8.0)(happy-dom@12.10.3)(jsdom@24.1.3)(sass@1.83.1)
+        version: 1.6.0(@types/node@20.8.0)(happy-dom@15.10.2)(jsdom@24.1.3)(sass@1.83.1)
 
   client/wildcard:
     dependencies:
@@ -1844,7 +1844,7 @@ importers:
         version: 4.5.5(@types/node@20.8.0)(sass@1.83.1)
       vitest:
         specifier: 1.0.0-beta.4
-        version: 1.0.0-beta.4(@types/node@20.8.0)(happy-dom@12.10.3)(jsdom@24.1.3)(sass@1.83.1)
+        version: 1.0.0-beta.4(@types/node@20.8.0)(happy-dom@15.10.2)(jsdom@24.1.3)(sass@1.83.1)
 
   internal/openapi:
     devDependencies:
@@ -2001,7 +2001,7 @@ packages:
       object-assign: 4.0.1
       skatejs: 0.13.17
       skatejs-template-html: 0.0.0
-      tether: github.com/atlassian/tether/bf85430889b5231fbe5b383416cce6281225bf06
+      tether: git/github.com+atlassian/tether/bf85430889b5231fbe5b383416cce6281225bf06
       trim-extra-html-whitespace: 1.3.0
       underscore: 1.13.1
       webcomponents.js: 0.7.20
@@ -11548,6 +11548,14 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       defer-to-connect: 2.0.1
+    dev: true
+
+  /@szmarczak/http-timer@5.0.1:
+    resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      defer-to-connect: 2.0.1
+    dev: false
 
   /@tanstack/query-core@5.62.16:
     resolution: {integrity: sha512-9Sgft7Qavcd+sN0V25xVyo0nfmcZXBuODy3FVG7BMWTg1HMLm8wwG5tNlLlmSic1u7l1v786oavn+STiFaPH2g==}
@@ -14630,6 +14638,12 @@ packages:
   /cacheable-lookup@5.0.4:
     resolution: {integrity: sha512-2/kNscPhpcxrOigMZzbiWF7dz8ilhb/nIHU3EyZiXWXpeq/au8qJ8VhdftMkty3n7Gj6HIGalQG8oiBNB3AJgA==}
     engines: {node: '>=10.6.0'}
+    dev: true
+
+  /cacheable-lookup@6.1.0:
+    resolution: {integrity: sha512-KJ/Dmo1lDDhmW2XDPMo+9oiy/CeqosPguPCrgcVzKyZrL6pM1gU2GmPY/xo6OQPTUaA/c0kwHuywB4E6nmT9ww==}
+    engines: {node: '>=10.6.0'}
+    dev: false
 
   /cacheable-request@6.1.0:
     resolution: {integrity: sha512-Oj3cAGPCqOZX7Rz64Uny2GYAZNliQSqfbePrgAQ1wKAihYmCUnraBtJtKcGR4xz7wF+LoJC+ssFZvv5BgF9Igg==}
@@ -18287,6 +18301,10 @@ packages:
       signal-exit: 4.1.0
     dev: true
 
+  /form-data-encoder@1.7.1:
+    resolution: {integrity: sha512-EFRDrsMm/kyqbTQocNvRXMLjc7Es2Vk+IQFx/YW7hkUH1eBl4J1fqiP34l74Yt0pFLCNpc06fkbVk00008mzjg==}
+    dev: false
+
   /form-data@2.5.2:
     resolution: {integrity: sha512-GgwY0PS7DbXqajuGf4OYlsrIu3zgxD6Vvql43IBhm6MahqA5SK/7mwhtNj2AdH2z35YR34ujJ7BN+3fFC3jP5Q==}
     engines: {node: '>= 0.12'}
@@ -18853,20 +18871,22 @@ packages:
       responselike: 2.0.1
     dev: true
 
-  /got@11.8.6:
-    resolution: {integrity: sha512-6tfZ91bOr7bOXnK7PRDCGBLa1H4U080YHNaAQ2KsMGlLEzRbk44nsZF2E1IeRc3vtJHPVbKCYgdFbaGO2ljd8g==}
-    engines: {node: '>=10.19.0'}
+  /got@12.1.0:
+    resolution: {integrity: sha512-hBv2ty9QN2RdbJJMK3hesmSkFTjVIHyIDDbssCKnSmq62edGgImJWD10Eb1k77TiV1bxloxqcFAVK8+9pkhOig==}
+    engines: {node: '>=14.16'}
     dependencies:
       '@sindresorhus/is': 4.6.0
-      '@szmarczak/http-timer': 4.0.6
+      '@szmarczak/http-timer': 5.0.1
       '@types/cacheable-request': 6.0.3
       '@types/responselike': 1.0.3
-      cacheable-lookup: 5.0.4
+      cacheable-lookup: 6.1.0
       cacheable-request: 7.0.4
       decompress-response: 6.0.0
-      http2-wrapper: 1.0.3
-      lowercase-keys: 2.0.0
-      p-cancelable: 2.1.1
+      form-data-encoder: 1.7.1
+      get-stream: 6.0.1
+      http2-wrapper: 2.2.1
+      lowercase-keys: 3.0.0
+      p-cancelable: 3.0.0
       responselike: 2.0.1
     dev: false
 
@@ -19118,14 +19138,12 @@ packages:
     optionalDependencies:
       uglify-js: 3.19.3
 
-  /happy-dom@12.10.3:
-    resolution: {integrity: sha512-JzUXOh0wdNGY54oKng5hliuBkq/+aT1V3YpTM+lrN/GoLQTANZsMaIvmHiHe612rauHvPJnDZkZ+5GZR++1Abg==}
+  /happy-dom@15.10.2:
+    resolution: {integrity: sha512-NbA5XrSovenJIIcfixCREX3ZnV7yHP4phhbfuxxf4CPn+LZpz/jIM9EqJ2DrPwgVDSMoAKH3pZwQvkbsSiCrUw==}
+    engines: {node: '>=18.0.0'}
     dependencies:
-      css.escape: 1.5.1
       entities: 4.5.0
-      iconv-lite: 0.6.3
       webidl-conversions: 7.0.0
-      whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
     dev: true
 
@@ -19395,6 +19413,15 @@ packages:
     dependencies:
       quick-lru: 5.1.1
       resolve-alpn: 1.2.1
+    dev: true
+
+  /http2-wrapper@2.2.1:
+    resolution: {integrity: sha512-V5nVw1PAOgfI3Lmeaj2Exmeg7fenjhRUgz1lPSezy1CuhPYbgQtbQj4jZfEAEMlaL+vupsvhjqCyjzob0yxsmQ==}
+    engines: {node: '>=10.19.0'}
+    dependencies:
+      quick-lru: 5.1.1
+      resolve-alpn: 1.2.1
+    dev: false
 
   /https-browserify@1.0.0:
     resolution: {integrity: sha512-J+FkSdyD+0mA0N+81tMotaRMfSL9SGi+xpD3T6YApKsc3bGSXJlfXri3VyFOeYkfLRQisDk1W+jIFFKBeUBbBg==}
@@ -21277,6 +21304,11 @@ packages:
     resolution: {integrity: sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA==}
     engines: {node: '>=8'}
 
+  /lowercase-keys@3.0.0:
+    resolution: {integrity: sha512-ozCC6gdQ+glXOQsveKD0YsDy8DSQFjDTz4zyzEHNV5+JP5D62LmfDZ6o1cycFx9ouG940M5dE8C8CTewdj2YWQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dev: false
+
   /lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
@@ -22955,6 +22987,12 @@ packages:
   /p-cancelable@2.1.1:
     resolution: {integrity: sha512-BZOr3nRQHOntUjTrH8+Lh54smKHoHyur8We1V8DSMVrl5A2malOOwuJRnKRDjSnkoeBh4at6BwEnb5I7Jl31wg==}
     engines: {node: '>=8'}
+    dev: true
+
+  /p-cancelable@3.0.0:
+    resolution: {integrity: sha512-mlVgR3PGuzlo0MmTdk4cXqXWlwQDLnONTAg6sm62XkMJEiRxN3GL3SffkYvqwonbkJBcrI7Uvv5Zh9yjvn2iUw==}
+    engines: {node: '>=12.20'}
+    dev: false
 
   /p-defer@1.0.0:
     resolution: {integrity: sha512-wB3wfAxZpk2AzOfUMJNL+d36xothRSyj8EXOa4f6GMqYDN9BJaaSISbsk+wS9abmnebVw95C2Kb5t85UmpCxuw==}
@@ -27979,12 +28017,12 @@ packages:
       vitest: '>=0.16.0'
     dependencies:
       cross-fetch: 3.2.0
-      vitest: 2.0.3(@types/node@20.8.0)(happy-dom@12.10.3)(jsdom@24.1.3)(sass@1.83.1)
+      vitest: 2.0.3(@types/node@20.8.0)(happy-dom@15.10.2)(jsdom@24.1.3)(sass@1.83.1)
     transitivePeerDependencies:
       - encoding
     dev: true
 
-  /vitest@1.0.0-beta.4(@types/node@20.8.0)(happy-dom@12.10.3)(jsdom@24.1.3)(sass@1.83.1):
+  /vitest@1.0.0-beta.4(@types/node@20.8.0)(happy-dom@15.10.2)(jsdom@24.1.3)(sass@1.83.1):
     resolution: {integrity: sha512-WOJTqxY3hWqn4yy26SK+cx+BlPBeK/KtY9ALWkD6FLWLhSGY0QFEmarc8sdb/UGZQ8xs5pOvcQQS9JJSV8HH8g==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -28020,7 +28058,7 @@ packages:
       cac: 6.7.14
       chai: 4.5.0
       debug: 4.4.0
-      happy-dom: 12.10.3
+      happy-dom: 15.10.2
       jsdom: 24.1.3
       local-pkg: 0.4.3
       magic-string: 0.30.17
@@ -28042,7 +28080,7 @@ packages:
       - terser
     dev: true
 
-  /vitest@1.6.0(@types/node@20.8.0)(happy-dom@12.10.3)(jsdom@24.1.3)(sass@1.83.1):
+  /vitest@1.6.0(@types/node@20.8.0)(happy-dom@15.10.2)(jsdom@24.1.3)(sass@1.83.1):
     resolution: {integrity: sha512-H5r/dN06swuFnzNFhq/dnz37bPXnq8xB2xB5JOVk8K09rUtoeNN+LHWkoQ0A/i3hvbUKKcCei9KpbxqHMLhLLA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -28077,7 +28115,7 @@ packages:
       chai: 4.5.0
       debug: 4.4.0
       execa: 8.0.1
-      happy-dom: 12.10.3
+      happy-dom: 15.10.2
       jsdom: 24.1.3
       local-pkg: 0.5.1
       magic-string: 0.30.17
@@ -28099,7 +28137,7 @@ packages:
       - terser
     dev: true
 
-  /vitest@2.0.3(@types/node@20.8.0)(happy-dom@12.10.3)(jsdom@24.1.3)(sass@1.83.1):
+  /vitest@2.0.3(@types/node@20.8.0)(happy-dom@15.10.2)(jsdom@24.1.3)(sass@1.83.1):
     resolution: {integrity: sha512-o3HRvU93q6qZK4rI2JrhKyZMMuxg/JRt30E6qeQs6ueaiz5hr1cPj+Sk2kATgQzMMqsa2DiNI0TIK++1ULx8Jw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -28135,7 +28173,7 @@ packages:
       chai: 5.1.2
       debug: 4.4.0
       execa: 8.0.1
-      happy-dom: 12.10.3
+      happy-dom: 15.10.2
       jsdom: 24.1.3
       magic-string: 0.30.17
       pathe: 1.1.2
@@ -28373,13 +28411,6 @@ packages:
       - esbuild
       - uglify-js
     dev: false
-
-  /whatwg-encoding@2.0.0:
-    resolution: {integrity: sha512-p41ogyeMUrw3jWclHWTQg1k05DSVXPLcVxRTYsXUk+ZooOCZLcoYgPZ/HL/D/N+uQPOtcp1me1WhBEaX02mhWg==}
-    engines: {node: '>=12'}
-    dependencies:
-      iconv-lite: 0.6.3
-    dev: true
 
   /whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
@@ -28976,8 +29007,8 @@ packages:
       react: 18.1.0
     dev: false
 
-  github.com/atlassian/tether/bf85430889b5231fbe5b383416cce6281225bf06:
-    resolution: {tarball: https://codeload.github.com/atlassian/tether/tar.gz/bf85430889b5231fbe5b383416cce6281225bf06}
+  git/github.com+atlassian/tether/bf85430889b5231fbe5b383416cce6281225bf06:
+    resolution: {commit: bf85430889b5231fbe5b383416cce6281225bf06, repo: git@github.com:atlassian/tether.git, type: git}
     name: tether
     version: 0.6.5
     dev: true
