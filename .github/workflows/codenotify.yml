@@ -17,11 +17,11 @@ jobs:
           filename: 'CODENOTIFY'
           subscriber-threshold: '10'
         env:
-          GITHUB_TOKEN: ${{ secrets.CODENOTIFY_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: sourcegraph/codenotify@v0.6.2
         continue-on-error: true
         with:
           filename: 'OWNERS'
           subscriber-threshold: '10'
         env:
-          GITHUB_TOKEN: ${{ secrets.CODENOTIFY_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

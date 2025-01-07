@@ -10,7 +10,7 @@ interactions:
       - application/vnd.github.machine-man-preview+json
       Content-Type:
       - application/json; charset=utf-8
-    url: https://api.github.com/orgs/sourcegraph-vcr-repos/members?page=1&per_page=100&role=admin
+    url: https://api.github.com/orgs/khulnasoft-vcr-repos/members?page=1&per_page=100&role=admin
     method: GET
   response:
     body: '[{"login":"sourcegraph-vcr","id":63290851,"node_id":"MDQ6VXNlcjYzMjkwODUx","avatar_url":"https://avatars.githubusercontent.com/u/63290851?v=4","gravatar_id":"","url":"https://api.github.com/users/sourcegraph-vcr","html_url":"https://github.com/sourcegraph-vcr","followers_url":"https://api.github.com/users/sourcegraph-vcr/followers","following_url":"https://api.github.com/users/sourcegraph-vcr/following{/other_user}","gists_url":"https://api.github.com/users/sourcegraph-vcr/gists{/gist_id}","starred_url":"https://api.github.com/users/sourcegraph-vcr/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sourcegraph-vcr/subscriptions","organizations_url":"https://api.github.com/users/sourcegraph-vcr/orgs","repos_url":"https://api.github.com/users/sourcegraph-vcr/repos","events_url":"https://api.github.com/users/sourcegraph-vcr/events{/privacy}","received_events_url":"https://api.github.com/users/sourcegraph-vcr/received_events","type":"User","site_admin":false}]'

@@ -329,8 +329,8 @@ interactions:
     url: https://api.github.com/user/orgs?per_page=100&page=1
     method: GET
   response:
-    body: '[{"login":"khulnasoft","id":3979584,"node_id":"MDEyOk9yZ2FuaXphdGlvbjM5Nzk1ODQ=","url":"https://api.github.com/orgs/khulnasoft","repos_url":"https://api.github.com/orgs/sourcegraph/repos","events_url":"https://api.github.com/orgs/sourcegraph/events","hooks_url":"https://api.github.com/orgs/sourcegraph/hooks","issues_url":"https://api.github.com/orgs/sourcegraph/issues","members_url":"https://api.github.com/orgs/sourcegraph/members{/member}","public_members_url":"https://api.github.com/orgs/sourcegraph/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/3979584?v=4","description":"Code
-      AI platform: Cody and Code Search"},{"login":"sgtest","id":5858054,"node_id":"MDEyOk9yZ2FuaXphdGlvbjU4NTgwNTQ=","url":"https://api.github.com/orgs/sgtest","repos_url":"https://api.github.com/orgs/sgtest/repos","events_url":"https://api.github.com/orgs/sgtest/events","hooks_url":"https://api.github.com/orgs/sgtest/hooks","issues_url":"https://api.github.com/orgs/sgtest/issues","members_url":"https://api.github.com/orgs/sgtest/members{/member}","public_members_url":"https://api.github.com/orgs/sgtest/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/5858054?v=4","description":null},{"login":"sourcegraph-testing","id":57702698,"node_id":"MDEyOk9yZ2FuaXphdGlvbjU3NzAyNjk4","url":"https://api.github.com/orgs/sourcegraph-testing","repos_url":"https://api.github.com/orgs/sourcegraph-testing/repos","events_url":"https://api.github.com/orgs/sourcegraph-testing/events","hooks_url":"https://api.github.com/orgs/sourcegraph-testing/hooks","issues_url":"https://api.github.com/orgs/sourcegraph-testing/issues","members_url":"https://api.github.com/orgs/sourcegraph-testing/members{/member}","public_members_url":"https://api.github.com/orgs/sourcegraph-testing/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/57702698?v=4","description":null},{"login":"sourcegraph-vcr-repos","id":65169595,"node_id":"MDEyOk9yZ2FuaXphdGlvbjY1MTY5NTk1","url":"https://api.github.com/orgs/sourcegraph-vcr-repos","repos_url":"https://api.github.com/orgs/sourcegraph-vcr-repos/repos","events_url":"https://api.github.com/orgs/sourcegraph-vcr-repos/events","hooks_url":"https://api.github.com/orgs/sourcegraph-vcr-repos/hooks","issues_url":"https://api.github.com/orgs/sourcegraph-vcr-repos/issues","members_url":"https://api.github.com/orgs/sourcegraph-vcr-repos/members{/member}","public_members_url":"https://api.github.com/orgs/sourcegraph-vcr-repos/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/65169595?v=4","description":null}]'
+    body: '[{"login":"khulnasoft","id":3979584,"node_id":"MDEyOk9yZ2FuaXphdGlvbjM5Nzk1ODQ=","url":"https://api.github.com/orgs/khulnasoft","repos_url":"https://api.github.com/orgs/khulnasoft/repos","events_url":"https://api.github.com/orgs/khulnasoft/events","hooks_url":"https://api.github.com/orgs/khulnasoft/hooks","issues_url":"https://api.github.com/orgs/khulnasoft/issues","members_url":"https://api.github.com/orgs/khulnasoft/members{/member}","public_members_url":"https://api.github.com/orgs/khulnasoft/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/3979584?v=4","description":"Code
+      AI platform: Cody and Code Search"},{"login":"sgtest","id":5858054,"node_id":"MDEyOk9yZ2FuaXphdGlvbjU4NTgwNTQ=","url":"https://api.github.com/orgs/sgtest","repos_url":"https://api.github.com/orgs/sgtest/repos","events_url":"https://api.github.com/orgs/sgtest/events","hooks_url":"https://api.github.com/orgs/sgtest/hooks","issues_url":"https://api.github.com/orgs/sgtest/issues","members_url":"https://api.github.com/orgs/sgtest/members{/member}","public_members_url":"https://api.github.com/orgs/sgtest/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/5858054?v=4","description":null},{"login":"sourcegraph-testing","id":57702698,"node_id":"MDEyOk9yZ2FuaXphdGlvbjU3NzAyNjk4","url":"https://api.github.com/orgs/khulnasoft-testing","repos_url":"https://api.github.com/orgs/khulnasoft-testing/repos","events_url":"https://api.github.com/orgs/khulnasoft-testing/events","hooks_url":"https://api.github.com/orgs/khulnasoft-testing/hooks","issues_url":"https://api.github.com/orgs/khulnasoft-testing/issues","members_url":"https://api.github.com/orgs/khulnasoft-testing/members{/member}","public_members_url":"https://api.github.com/orgs/khulnasoft-testing/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/57702698?v=4","description":null},{"login":"sourcegraph-vcr-repos","id":65169595,"node_id":"MDEyOk9yZ2FuaXphdGlvbjY1MTY5NTk1","url":"https://api.github.com/orgs/khulnasoft-vcr-repos","repos_url":"https://api.github.com/orgs/khulnasoft-vcr-repos/repos","events_url":"https://api.github.com/orgs/khulnasoft-vcr-repos/events","hooks_url":"https://api.github.com/orgs/khulnasoft-vcr-repos/hooks","issues_url":"https://api.github.com/orgs/khulnasoft-vcr-repos/issues","members_url":"https://api.github.com/orgs/khulnasoft-vcr-repos/members{/member}","public_members_url":"https://api.github.com/orgs/khulnasoft-vcr-repos/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/65169595?v=4","description":null}]'
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -397,7 +397,7 @@ interactions:
       - max-age=0
       Content-Type:
       - application/json; charset=utf-8
-    url: https://api.github.com/orgs/sourcegraph/repos?sort=created&page=1&per_page=100&type=internal
+    url: https://api.github.com/orgs/khulnasoft/repos?sort=created&page=1&per_page=100&type=internal
     method: GET
   response:
     body: '[]'
@@ -541,7 +541,7 @@ interactions:
       - max-age=0
       Content-Type:
       - application/json; charset=utf-8
-    url: https://api.github.com/orgs/sourcegraph-testing/repos?sort=created&page=1&per_page=100&type=internal
+    url: https://api.github.com/orgs/khulnasoft-testing/repos?sort=created&page=1&per_page=100&type=internal
     method: GET
   response:
     body: '[]'
@@ -613,7 +613,7 @@ interactions:
       - max-age=0
       Content-Type:
       - application/json; charset=utf-8
-    url: https://api.github.com/orgs/sourcegraph-vcr-repos/repos?sort=created&page=1&per_page=100&type=internal
+    url: https://api.github.com/orgs/khulnasoft-vcr-repos/repos?sort=created&page=1&per_page=100&type=internal
     method: GET
   response:
     body: '[]'

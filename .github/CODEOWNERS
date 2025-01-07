@@ -3,4 +3,4 @@
 # This file is meant to protect critical code from accidental changes, and should be used sparsingly to prevent slowdowns
 # from code reviews.
 
-/internal/tenant/ @sourcegraph/multi-tenant
+/internal/tenant/ @khulnasoft/multi-tenant

@@ -67,7 +67,7 @@ export const ExistingBatchChange: StoryFn = () => (
                             namespaceName: 'Khulnasoft',
                             displayName: null,
                             name: 'sourcegraph',
-                            url: '/orgs/sourcegraph',
+                            url: '/orgs/khulnasoft',
                             id: 'test1234',
                         },
                     }}
@@ -93,7 +93,7 @@ export const LicenseAlert: StoryFn = () => (
                             namespaceName: 'Khulnasoft',
                             displayName: null,
                             name: 'sourcegraph',
-                            url: '/orgs/sourcegraph',
+                            url: '/orgs/khulnasoft',
                             id: 'test1234',
                         },
                     }}

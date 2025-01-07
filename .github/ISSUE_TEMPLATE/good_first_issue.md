@@ -38,4 +38,4 @@ T-shirt size estimate: **S**.
 
 1. Check out [contributing guidelines](https://github.com/khulnasoft/khulnasoft/blob/main/CONTRIBUTING.md).
 2. Join the Khulnasoft [Community Space](https://srcgr.ph/join-community-space) on Discord where the Khulnasoft team can help you!
-3. Check out [the good first issues board](https://github.com/orgs/sourcegraph/projects/210) to find more curated issues.
+3. Check out [the good first issues board](https://github.com/orgs/khulnasoft/projects/210) to find more curated issues.

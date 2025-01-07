@@ -39,7 +39,7 @@ If the bug is very small, and you are confident you can quickly fix it—then go
 1. Open [this GitHub Issue template](https://github.com/khulnasoft/khulnasoft/issues/new?assignees=&labels=accessibility%2Cwcag%2F2.1%2Cwcag%2F2.1%2Ffixing%2Cestimate%2F3d&template=accessibility_issue.yaml&title=%5BAccessibility%5D%3A+)
     - Provide as much detail as possible about the bug you found, and the behavior you expected to happen.
     - Make sure that anyone reading the issue would be able to reproduce the behavior. Screenshots, URLs or videos are helpful!
-2. The issue will be automatically added to the [WCAG 2.1 Tracking Issue](https://github.com/khulnasoft/khulnasoft/issues/31476) and the [Accessibility project](https://github.com/orgs/sourcegraph/projects/238) on GitHub.
+2. The issue will be automatically added to the [WCAG 2.1 Tracking Issue](https://github.com/khulnasoft/khulnasoft/issues/31476) and the [Accessibility project](https://github.com/orgs/khulnasoft/projects/238) on GitHub.
 3. If your team has capacity to address the issue, then please assign yourself to it.
     - The Frontend Platform team will triage any unassigned issues and either fix them or assign them to one of our external contractors.
 

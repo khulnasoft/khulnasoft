@@ -34,7 +34,7 @@ jobs:
             >
             > See the list of tag variable names to use [here](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/tools/build_rules/prelude_bazel), and reach out to [#discuss-dev-infra](https://sourcegraph.slack.com/archives/C04MYFW01NV) if you need to add/change this list.
             >
-            > See an example of how to use the variables [here](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24%4070d2439+f:dev/build-tracker/BUILD.bazel+TAG_INFRA_DEVINFRA&patternType=keyword&sm=0).
+            > See an example of how to use the variables [here](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/khulnasoft/khulnasoft%24%4070d2439+f:dev/build-tracker/BUILD.bazel+TAG_INFRA_DEVINFRA&patternType=keyword&sm=0).
 
             <!-- bazel-check-marker -->`
 
@@ -82,5 +82,5 @@ jobs:
   report_failure:
     needs: [checks]
     if: ${{ failure() && needs.checks.outputs.below-threshold != 'true' }}
-    uses: sourcegraph/sourcegraph/.github/workflows/report-job-failure.yml@main
+    uses: khulnasoft/khulnasoft/.github/workflows/report-job-failure.yml@main
     secrets: inherit

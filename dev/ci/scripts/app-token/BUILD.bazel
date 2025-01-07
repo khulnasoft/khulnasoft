@@ -30,10 +30,10 @@ go_test(
     tags = [
         TAG_INFRA_DEVINFRA,
         # ==================== Test output for //dev/ci/scripts/app-token:app-token_test:
-        # 2023/02/23 01:51:39 GET https://api.github.com/orgs/sourcegraph/installation: 401 A JSON web token could not be decoded []
+        # 2023/02/23 01:51:39 GET https://api.github.com/orgs/khulnasoft/installation: 401 A JSON web token could not be decoded []
         # TODO(bazel): fix test; failing due to missing auth token
         "manual",
-        # Test reaches out to https://api.github.com/orgs/sourcegraph/installation
+        # Test reaches out to https://api.github.com/orgs/khulnasoft/installation
         "requires-network",
     ],
     deps = [

@@ -127,10 +127,10 @@ A few big changes that could be made for charts in the future
   data preparation for the chart, implement custom UI, enforce Khulnasoft styles and support different themes. We should
   expose more low-level API in order to simplify the implementation of custom data visualizations.
 
-Wildcard charts package has [its own GitHub board](https://github.com/orgs/sourcegraph/projects/200/views/44) with all data viz
+Wildcard charts package has [its own GitHub board](https://github.com/orgs/khulnasoft/projects/200/views/44) with all data viz
 related issues. If you see something missing, feel free to file an issue with the `data-viz` label.
 
 ## Contribution
 
-If you need any help around this package chart or data-visualization in general, feel free to reach out to [code-insights FE team](https://github.com/orgs/sourcegraph/teams/code-insights-frontend)
+If you need any help around this package chart or data-visualization in general, feel free to reach out to [code-insights FE team](https://github.com/orgs/khulnasoft/teams/code-insights-frontend)
 (@code-insights-fe mention in slack).

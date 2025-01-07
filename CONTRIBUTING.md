@@ -17,7 +17,7 @@ All interactions with the Khulnasoft open source project are governed by the
 
 ## How to contribute
 
-1. Select one of the issues labeled as [good first issue](https://github.com/orgs/sourcegraph/projects/210).
+1. Select one of the issues labeled as [good first issue](https://github.com/orgs/khulnasoft/projects/210).
 2. Clone the repo: `git clone https://github.com/sourcegraph/sourcegraph`.
 3. [Set up your development environment](https://docs-legacy.khulnasoft.com/dev/setup/quickstart) to run the project locally.
 4. Before creating a pull request, ensure that [recommended checks](https://docs-legacy.khulnasoft.com/dev/contributing) pass locally. We're actively working on making our CI pipeline public to automate this step.

@@ -10,10 +10,10 @@ interactions:
       - application/vnd.github.machine-man-preview+json
       Content-Type:
       - application/json; charset=utf-8
-    url: https://api.github.com/orgs/sourcegraph
+    url: https://api.github.com/orgs/khulnasoft
     method: GET
   response:
-    body: '{"login":"sourcegraph","id":3979584,"node_id":"MDEyOk9yZ2FuaXphdGlvbjM5Nzk1ODQ=","url":"https://api.github.com/orgs/sourcegraph","repos_url":"https://api.github.com/orgs/sourcegraph/repos","events_url":"https://api.github.com/orgs/sourcegraph/events","hooks_url":"https://api.github.com/orgs/sourcegraph/hooks","issues_url":"https://api.github.com/orgs/sourcegraph/issues","members_url":"https://api.github.com/orgs/sourcegraph/members{/member}","public_members_url":"https://api.github.com/orgs/sourcegraph/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/3979584?v=4","description":"Code
+    body: '{"login":"sourcegraph","id":3979584,"node_id":"MDEyOk9yZ2FuaXphdGlvbjM5Nzk1ODQ=","url":"https://api.github.com/orgs/khulnasoft","repos_url":"https://api.github.com/orgs/khulnasoft/repos","events_url":"https://api.github.com/orgs/khulnasoft/events","hooks_url":"https://api.github.com/orgs/khulnasoft/hooks","issues_url":"https://api.github.com/orgs/khulnasoft/issues","members_url":"https://api.github.com/orgs/khulnasoft/members{/member}","public_members_url":"https://api.github.com/orgs/khulnasoft/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/3979584?v=4","description":"Code
       search and navigation for teams (self-hosted, OSS)","name":"Khulnasoft","company":null,"blog":"https://khulnasoft.com","location":null,"email":"hi@khulnasoft.com","twitter_username":null,"is_verified":true,"has_organization_projects":true,"has_repository_projects":true,"public_repos":372,"public_gists":0,"followers":0,"following":0,"html_url":"https://github.com/sourcegraph","created_at":"2013-03-26T22:29:42Z","updated_at":"2021-08-04T20:09:10Z","type":"Organization"}'
     headers:
       Access-Control-Allow-Origin:
@@ -83,7 +83,7 @@ interactions:
       - application/vnd.github.machine-man-preview+json
       Content-Type:
       - application/json; charset=utf-8
-    url: https://api.github.com/orgs/sourcegraph-vcr
+    url: https://api.github.com/orgs/khulnasoft-vcr
     method: GET
   response:
     body: '{"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/orgs#get-an-organization"}'
