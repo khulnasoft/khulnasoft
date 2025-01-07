@@ -63,8 +63,8 @@ func BuildChangesetSpecs(input *ChangesetSpecInput, binaryDiffs bool, fallbackAu
 		} else {
 			// user did not provide author info, so use defaults
 			author = ChangesetSpecAuthor{
-				Name:  "Sourcegraph",
-				Email: "batch-changes@sourcegraph.com",
+				Name:  "Khulnasoft",
+				Email: "batch-changes@khulnasoft.com",
 			}
 		}
 	} else {

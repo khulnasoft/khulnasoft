@@ -104,7 +104,7 @@ func (l *LogJob) logEvent(ctx context.Context, clients job.RuntimeClients, durat
 		action = l.inputs.PatternType.String()
 	}
 
-	// New events that get exported: https://docs-legacy.sourcegraph.com/dev/background-information/telemetry
+	// New events that get exported: https://docs-legacy.khulnasoft.com/dev/background-information/telemetry
 	events := telemetryrecorder.NewBestEffort(clients.Logger, clients.DB)
 	// For now, do not tee into event_logs in telemetryrecorder - retain the
 	// custom instrumentation of V1 events instead (usagestats.LogBackendEvent)

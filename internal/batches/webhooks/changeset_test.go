@@ -84,7 +84,7 @@ func TestMarshalChangeset(t *testing.T) {
 	icReviewState := string(btypes.ChangesetReviewStateChangesRequested)
 
 	authorName := "TestUser"
-	authorEmail := "test@sourcegraph.com"
+	authorEmail := "test@khulnasoft.com"
 
 	testcases := []struct {
 		changeset    *btypes.Changeset

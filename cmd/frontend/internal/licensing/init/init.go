@@ -45,7 +45,7 @@ func Init(
 
 	enterpriseServices.LicenseResolver = resolvers.LicenseResolver{}
 
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		logger := log.Scoped("licensing")
 		if enableUpcomingLicenseExpirationChecker {
 			goroutine.Go(func() {

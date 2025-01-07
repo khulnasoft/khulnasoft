@@ -9,7 +9,7 @@ This is heavily tied to our content, and is built empirically. TL;DR Don't use t
 
 ---
 
-Right now, the docsite served at https://sourcegraph.com/docs uses a different stack than the previous docsite.
+Right now, the docsite served at https://khulnasoft.com/docs uses a different stack than the previous docsite.
 Most notably, it uses the `mdx` format, which is full of quirks and to be frank, quite unpredictable (which is a
 big departure from the original spirit of markdown if I were to disgress).
 

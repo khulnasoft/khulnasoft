@@ -74,11 +74,11 @@ func getDisplayName(c *userClaims, defaultName string) string {
 // auth path prefix ("/.auth") to enable the login flow and requiring login for all other endpoints.
 //
 // The OIDC spec (http://openid.net/specs/openid-connect-core-1_0.html) describes an authentication protocol
-// that involves 3 parties: the Relying Party (e.g., Sourcegraph), the OpenID Provider (e.g., Okta, OneLogin,
+// that involves 3 parties: the Relying Party (e.g., Khulnasoft), the OpenID Provider (e.g., Okta, OneLogin,
 // or another SSO provider), and the End User (e.g., a user's web browser).
 //
 // This middleware implements two things: (1) the OIDC Authorization Code Flow
-// (http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth) and (2) Sourcegraph-specific session management
+// (http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth) and (2) Khulnasoft-specific session management
 // (outside the scope of the OIDC spec). Upon successful completion of the OIDC login flow, the handler will create
 // a new session and session cookie. The expiration of the session is the expiration of the OIDC ID Token.
 //
@@ -126,7 +126,7 @@ func handleOpenIDConnectAuth(logger log.Logger, db database.DB, w http.ResponseW
 	// If there is only one auth provider configured, the single auth provider is OpenID Connect,
 	// it's an app request, and the sign-out cookie is not present, redirect to sign-in immediately.
 	//
-	// For sign-out requests (sign-out cookie is  present), the user is redirected to the Sourcegraph login page.
+	// For sign-out requests (sign-out cookie is  present), the user is redirected to the Khulnasoft login page.
 	// Note: For instances that are conf.AuthPublic(), we don't redirect to sign-in automatically, as that would
 	// lock out unauthenticated access.
 	ps := providers.SignInProviders(!r.URL.Query().Has("sourcegraph-operator"))
@@ -157,7 +157,7 @@ func authHandler(logger log.Logger, db database.DB) func(w http.ResponseWriter, 
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch strings.TrimPrefix(r.URL.Path, authPrefix) {
 		case "/login": // Endpoint that starts the Authentication Request Code Flow.
-			// NOTE: Within the Sourcegraph application, we have been using both the
+			// NOTE: Within the Khulnasoft application, we have been using both the
 			// "redirect" and "returnTo" query parameters inconsistently, and some of the
 			// usages are also on the client side (Cody clients). If we ever settle on one
 			// and updated all usages on both server and client side, we need to make sure
@@ -221,7 +221,7 @@ func authHandler(logger log.Logger, db database.DB) func(w http.ResponseWriter, 
 			if err = session.SetData(w, r, SessionKey, result.SessionData); err != nil {
 				// It's not fatal if this fails. It just means we won't be able to sign the user
 				// out of the OP.
-				log15.Warn("Failed to set OpenID Connect session data. The session is still secure, but Sourcegraph will be unable to revoke the user's token or redirect the user to the end-session endpoint after the user signs out of Sourcegraph.", "error", err)
+				log15.Warn("Failed to set OpenID Connect session data. The session is still secure, but Khulnasoft will be unable to revoke the user's token or redirect the user to the end-session endpoint after the user signs out of Khulnasoft.", "error", err)
 			}
 
 			// 🚨 SECURITY: Call auth.SafeRedirectURL to avoid the open-redirect vulnerability.
@@ -377,12 +377,12 @@ func AuthCallback(logger log.Logger, db database.DB, r *http.Request, usernamePr
 	// PLG: If the user has been created just now, we want to log an additional property on the event
 	// that indicates that the user has initiated the signup from the IDE extension.
 	userCreateEventProperties := telemetry.EventMetadata{}
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		u, err := url.Parse(state.Redirect)
 		if err != nil {
 			logger.Error("unable to parse redirect URL, not recording Cody PLG signup source", log.Error(err))
 		} else {
-			// requestFrom is a parameter set by the Cody IDE extensions to tell Sourcegraph
+			// requestFrom is a parameter set by the Cody IDE extensions to tell Khulnasoft
 			// that the access token request form should show the Cody auth flow.
 			// We can use it here to determine if the signup has been initiated
 			// by the IDE extension.
@@ -486,7 +486,7 @@ func (s *AuthnState) Decode(encoded string) error {
 // external authentication provider.
 func RedirectToAuthRequest(w http.ResponseWriter, r *http.Request, p *Provider, oidcClient *oidcProvider, returnToURL string) {
 	// NOTE: We do not have a valid screen at the root path (always gets redirected
-	// to "/search"), and it is a marketing page on Sourcegraph.com, so redirecting to
+	// to "/search"), and it is a marketing page on Khulnasoft.com, so redirecting to
 	// "/search" is a safe default.
 	if returnToURL == "" || returnToURL == "/" {
 		returnToURL = "/search"

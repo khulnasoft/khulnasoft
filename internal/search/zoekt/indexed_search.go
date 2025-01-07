@@ -31,10 +31,10 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-// IndexedRepoRevs creates both the Sourcegraph and Zoekt representation of a
+// IndexedRepoRevs creates both the Khulnasoft and Zoekt representation of a
 // list of repository and refs to search.
 type IndexedRepoRevs struct {
-	// RepoRevs is the Sourcegraph representation of a the list of repoRevs
+	// RepoRevs is the Khulnasoft representation of a the list of repoRevs
 	// repository and revisions to search.
 	RepoRevs map[api.RepoID]*search.RepositoryRevisions
 
@@ -169,11 +169,11 @@ func (rb *IndexedRepoRevs) getRepoInputRev(file *zoekt.FileMatch) (repo types.Mi
 	// Note: RevSpec is guaranteed to be explicit via zoektIndexedRepos
 	inputRevs = make([]string, 0, len(file.Branches))
 	for _, rev := range repoRev.Revs {
-		// We rely on the Sourcegraph implementation that the HEAD branch is
+		// We rely on the Khulnasoft implementation that the HEAD branch is
 		// indexed as "HEAD" rather than resolving the symref.
 		revBranchName := rev
 		if revBranchName == "" {
-			revBranchName = "HEAD" // empty string in Sourcegraph means HEAD
+			revBranchName = "HEAD" // empty string in Khulnasoft means HEAD
 		}
 
 		found := false
@@ -699,7 +699,7 @@ func privateReposForActor(ctx context.Context, logger log.Logger, db database.DB
 	defer tr.End()
 
 	// TODO: We should use repos.Resolve here. However, this logic was added
-	// when we used UserID on sourcegraph.com and it was handled differently
+	// when we used UserID on khulnasoft.com and it was handled differently
 	// in repos.Resolve. We need to confirm and test the change to
 	// repos.Resolve.
 	userPrivateRepos, err := db.Repos().ListMinimalRepos(ctx, database.ReposListOptions{

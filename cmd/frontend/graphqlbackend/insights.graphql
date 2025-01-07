@@ -427,7 +427,7 @@ type InsightSeriesMetadata {
     seriesId: String!
 
     """
-    Sourcegraph query string used to generate the series.
+    Khulnasoft query string used to generate the series.
     """
     query: String!
 
@@ -501,7 +501,7 @@ type InsightSeriesQueryStatus {
     seriesId: String!
 
     """
-    Sourcegraph query string used to generate the series. This is the base query string that was input by the user,
+    Khulnasoft query string used to generate the series. This is the base query string that was input by the user,
     and does not include each repository specific query that would be generated to backfill an entire series.
     """
     query: String!
@@ -1063,7 +1063,7 @@ type InsightIntervalTimeScope {
 }
 
 """
-Defines an insight data series that is constructed from a Sourcegraph search query.
+Defines an insight data series that is constructed from a Khulnasoft search query.
 """
 type SearchInsightDataSeriesDefinition {
     """

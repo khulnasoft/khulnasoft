@@ -35,13 +35,13 @@ const BatchSpecJSON = `{
           {
             "title": "OnQuery",
             "type": "object",
-            "description": "A Sourcegraph search query that matches a set of repositories (and branches). Each matched repository branch is added to the list of repositories that the batch change will be run on.",
+            "description": "A Khulnasoft search query that matches a set of repositories (and branches). Each matched repository branch is added to the list of repositories that the batch change will be run on.",
             "additionalProperties": false,
             "required": ["repositoriesMatchingQuery"],
             "properties": {
               "repositoriesMatchingQuery": {
                 "type": "string",
-                "description": "A Sourcegraph search query that matches a set of repositories (and branches). If the query matches files, symbols, or some other object inside a repository, the object's repository is included.",
+                "description": "A Khulnasoft search query that matches a set of repositories (and branches). If the query matches files, symbols, or some other object inside a repository, the object's repository is included.",
                 "examples": ["file:README.md"]
               }
             }
@@ -55,7 +55,7 @@ const BatchSpecJSON = `{
             "properties": {
               "repository": {
                 "type": "string",
-                "description": "The name of the repository (as it is known to Sourcegraph).",
+                "description": "The name of the repository (as it is known to Khulnasoft).",
                 "examples": ["github.com/foo/bar"]
               },
               "branch": {
@@ -272,7 +272,7 @@ const BatchSpecJSON = `{
               },
               "repository": {
                 "type": "string",
-                "description": "Only apply this transformation in the repository with this name (as it is known to Sourcegraph).",
+                "description": "Only apply this transformation in the repository with this name (as it is known to Khulnasoft).",
                 "examples": ["github.com/foo/bar"]
               }
             }
@@ -290,7 +290,7 @@ const BatchSpecJSON = `{
         "properties": {
           "repository": {
             "type": "string",
-            "description": "The repository name as configured on your Sourcegraph instance."
+            "description": "The repository name as configured on your Khulnasoft instance."
           },
           "externalIDs": {
             "type": ["array", "null"],
@@ -365,7 +365,7 @@ const BatchSpecJSON = `{
           }
         },
         "published": {
-          "description": "Whether to publish the changeset. An unpublished changeset can be previewed on Sourcegraph by any person who can view the batch change, but its commit, branch, and pull request aren't created on the code host. A published changeset results in a commit, branch, and pull request being created on the code host. If omitted, the publication state is controlled from the Batch Changes UI.",
+          "description": "Whether to publish the changeset. An unpublished changeset can be previewed on Khulnasoft by any person who can view the batch change, but its commit, branch, and pull request aren't created on the code host. A published changeset results in a commit, branch, and pull request being created on the code host. If omitted, the publication state is controlled from the Batch Changes UI.",
           "oneOf": [
             {
               "type": "null"

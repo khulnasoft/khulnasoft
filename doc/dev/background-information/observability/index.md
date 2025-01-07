@@ -1,13 +1,13 @@
 # Developing observability
 
 This documentation is for generalized, usecase-agnostic development of Khulnasoft's observability.
-Sourcegraph employees should also refer to the [handbook's observability section](https://handbook.sourcegraph.com/engineering/observability) for Sourcegraph-specific documentation.
+Khulnasoft employees should also refer to the [handbook's observability section](https://handbook.khulnasoft.com/engineering/observability) for Khulnasoft-specific documentation.
 
 > NOTE: For how to *use* Khulnasoft's observability and an overview of our observability features, refer to the [observability for site administrators documentation](../../../admin/observability/index.md).
 
 ## Overview
 
-Observability at Sourcegraph includes:
+Observability at Khulnasoft includes:
 
 | | Description | Examples |
 |:--|------------|--------|
@@ -16,8 +16,8 @@ Observability at Sourcegraph includes:
 
 ## Concepts
 
-- [Khulnasoft monitoring pillars](https://handbook.sourcegraph.com/engineering/observability/monitoring_pillars)
-- [Khulnasoft monitoring architecture](https://handbook.sourcegraph.com/engineering/observability/monitoring_architecture)
+- [Khulnasoft monitoring pillars](https://handbook.khulnasoft.com/engineering/observability/monitoring_pillars)
+- [Khulnasoft monitoring architecture](https://handbook.khulnasoft.com/engineering/observability/monitoring_architecture)
 
 ## Guides
 
@@ -31,7 +31,7 @@ Observability at Sourcegraph includes:
 ## Components
 
 - [Monitoring generator](./monitoring-generator.md)
-- [Sourcegraph Grafana](./grafana.md)
-- [Sourcegraph Prometheus](./prometheus.md)
-- [Sourcegraph cAdvisor](./cadvisor.md)
+- [Khulnasoft Grafana](./grafana.md)
+- [Khulnasoft Prometheus](./prometheus.md)
+- [Khulnasoft cAdvisor](./cadvisor.md)
 - [Observability for site administrators](../../../admin/observability/index.md)

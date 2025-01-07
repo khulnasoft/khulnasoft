@@ -1574,7 +1574,7 @@ func TestDecorateMergeRequestData(t *testing.T) {
 	forked, err := src.client.GetMergeRequest(ctx, newGitLabProject(16606399), 6)
 	assert.Nil(t, err)
 
-	// https://gitlab.com/sourcegraph/sourcegraph/-/merge_requests/1
+	// https://gitlab.com/khulnasoft/khulnasoft/-/merge_requests/1
 	unforked, err := src.client.GetMergeRequest(ctx, newGitLabProject(16606088), 1)
 	assert.Nil(t, err)
 

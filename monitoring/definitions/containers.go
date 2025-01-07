@@ -31,7 +31,7 @@ func Containers() *monitoring.Dashboard {
 		Name:                     "containers",
 		Title:                    "Global Containers Resource Usage",
 		Description:              "Container usage and provisioning indicators of all services.",
-		NoSourcegraphDebugServer: true,
+		NoKhulnasoftDebugServer: true,
 		Groups: []monitoring.Group{
 			{
 				Title: "Containers (not available on server)",

@@ -14,8 +14,8 @@ import (
 // that this graphql.Client is for dotcom.
 type Client graphql.Client
 
-// NewClient returns a new GraphQL client for the Sourcegraph.com API authenticated
-// with the given Sourcegraph access token.
+// NewClient returns a new GraphQL client for the Khulnasoft.com API authenticated
+// with the given Khulnasoft access token.
 //
 // To use, add a query or mutation to operations.graphql and use the generated
 // functions and types with the client, for example:

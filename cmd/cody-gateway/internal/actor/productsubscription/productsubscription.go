@@ -295,7 +295,7 @@ func getSubscriptionAccountName(activeLicenseTags []string) string {
 	return ""
 }
 
-// newActor creates an actor from Sourcegraph.com product subscription state.
+// newActor creates an actor from Khulnasoft.com product subscription state.
 func newActor(
 	source *Source,
 	token string,

@@ -1,6 +1,6 @@
 package protocol
 
-// Sourcegraph extension to LSIF: documentation.
+// Khulnasoft extension to LSIF: documentation.
 // See https://github.com/slimsag/language-server-protocol/pull/2
 
 // A "documentationResult" edge connects a "project" or "resultSet" vertex to a
@@ -26,7 +26,7 @@ func NewDocumentationResultEdge(id, inV, outV uint64) DocumentationResultEdge {
 				ID:   id,
 				Type: ElementEdge,
 			},
-			Label: EdgeSourcegraphDocumentationResult,
+			Label: EdgeKhulnasoftDocumentationResult,
 		},
 		OutV: outV,
 		InV:  inV,
@@ -64,7 +64,7 @@ func NewDocumentationChildrenEdge(id uint64, inVs []uint64, outV uint64) Documen
 				ID:   id,
 				Type: ElementEdge,
 			},
-			Label: EdgeSourcegraphDocumentationChildren,
+			Label: EdgeKhulnasoftDocumentationChildren,
 		},
 		OutV: outV,
 		InVs: inVs,
@@ -85,7 +85,7 @@ func NewDocumentationResult(id uint64, result Documentation) DocumentationResult
 				ID:   id,
 				Type: ElementVertex,
 			},
-			Label: VertexSourcegraphDocumentationResult,
+			Label: VertexKhulnasoftDocumentationResult,
 		},
 		Result: result,
 	}
@@ -316,7 +316,7 @@ func NewDocumentationStringEdge(id, inV, outV uint64, kind DocumentationStringKi
 				ID:   id,
 				Type: ElementEdge,
 			},
-			Label: EdgeSourcegraphDocumentationString,
+			Label: EdgeKhulnasoftDocumentationString,
 		},
 		OutV: outV,
 		InV:  inV,
@@ -351,7 +351,7 @@ func NewDocumentationString(id uint64, result MarkupContent) DocumentationString
 				ID:   id,
 				Type: ElementVertex,
 			},
-			Label: VertexSourcegraphDocumentationString,
+			Label: VertexKhulnasoftDocumentationString,
 		},
 		Result: result,
 	}

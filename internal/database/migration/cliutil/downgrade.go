@@ -164,7 +164,7 @@ func Downgrade(
 
 	return &cli.Command{
 		Name:        "downgrade",
-		Usage:       "Downgrade Sourcegraph instance databases to a target version",
+		Usage:       "Downgrade Khulnasoft instance databases to a target version",
 		Description: "",
 		Action:      action,
 		Flags: []cli.Flag{

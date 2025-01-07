@@ -39,7 +39,7 @@ import (
 //	                comma-separated (without spaces) patterns
 //
 // This Glob syntax is currently from github.com/gobwas/glob:
-// https://sourcegraph.com/github.com/gobwas/glob@e7a84e9525fe90abcda167b604e483cc959ad4aa/-/blob/glob.go?L39:6
+// https://khulnasoft.com/github.com/gobwas/glob@e7a84e9525fe90abcda167b604e483cc959ad4aa/-/blob/glob.go?L39:6
 //
 // We use a third party library for double-wildcard support, which the standard
 // library does not provide.
@@ -84,7 +84,7 @@ type SubRepoPermissionsWithIPs struct {
 //	                comma-separated (without spaces) patterns
 //
 // This Glob syntax is currently from github.com/gobwas/glob:
-// https://sourcegraph.com/github.com/gobwas/glob@e7a84e9525fe90abcda167b604e483cc959ad4aa/-/blob/glob.go?L39:6
+// https://khulnasoft.com/github.com/gobwas/glob@e7a84e9525fe90abcda167b604e483cc959ad4aa/-/blob/glob.go?L39:6
 //
 // We use a third party library for double-wildcard support, which the standard
 // library does not provide.

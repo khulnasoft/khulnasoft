@@ -100,15 +100,15 @@ exports[`<ViewOnKhulnasoftButton /> > existence could not be determined  > becau
 </DocumentFragment>
 `;
 
-exports[`<ViewOnKhulnasoftButton /> > repository does not exist on the instance > renders "Configure Khulnasoft" button when pointing at sourcegraph.com 1`] = `
+exports[`<ViewOnKhulnasoftButton /> > repository does not exist on the instance > renders "Configure Khulnasoft" button when pointing at khulnasoft.com 1`] = `
 <DocumentFragment>
   <a
-    aria-label="The repository does not exist on the configured Khulnasoft instance https://sourcegraph.com"
+    aria-label="The repository does not exist on the configured Khulnasoft instance https://khulnasoft.com"
     class="open-on-sourcegraph test"
-    href="https://sourcegraph.com/test@test?utm_source=chrome-extension&utm_campaign=view-on-sourcegraph"
+    href="https://khulnasoft.com/test@test?utm_source=chrome-extension&utm_campaign=view-on-sourcegraph"
     rel="noopener noreferrer"
     target="_blank"
-    title="The repository does not exist on the configured Khulnasoft instance https://sourcegraph.com"
+    title="The repository does not exist on the configured Khulnasoft instance https://khulnasoft.com"
   >
     <svg
       class="iconMuted"
@@ -134,7 +134,7 @@ exports[`<ViewOnKhulnasoftButton /> > repository does not exist on the instance 
 </DocumentFragment>
 `;
 
-exports[`<ViewOnKhulnasoftButton /> > repository does not exist on the instance > renders a "Repository not found" button when not pointing at sourcegraph.com 1`] = `
+exports[`<ViewOnKhulnasoftButton /> > repository does not exist on the instance > renders a "Repository not found" button when not pointing at khulnasoft.com 1`] = `
 <DocumentFragment>
   <a
     aria-label="The repository does not exist on the configured Khulnasoft instance https://sourcegraph.test"

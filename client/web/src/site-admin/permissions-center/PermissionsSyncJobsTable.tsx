@@ -556,7 +556,7 @@ const PermissionsSyncJobReasonGroupPicker: FC<PermissionsSyncJobReasonGroupPicke
             <option value="">Any</option>
             <option value={PermissionsSyncJobReasonGroup.MANUAL}>Manual</option>
             <option value={PermissionsSyncJobReasonGroup.SCHEDULE}>Schedule</option>
-            <option value={PermissionsSyncJobReasonGroup.SOURCEGRAPH}>Khulnasoft</option>
+            <option value={PermissionsSyncJobReasonGroup.KHULNASOFT}>Khulnasoft</option>
             <option value={PermissionsSyncJobReasonGroup.WEBHOOK}>Webhook</option>
         </Select>
     )

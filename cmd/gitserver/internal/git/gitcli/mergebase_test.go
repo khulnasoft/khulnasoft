@@ -19,16 +19,16 @@ func TestGitCLIBackend_MergeBase(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git tag testbase",
 			"git checkout -b b2",
 			"echo line2 >> f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git checkout master",
 			"echo line3 > h",
 			"git add h",
-			"git commit -m qux --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m qux --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		base, err := backend.MergeBase(ctx, "master", "b2")
@@ -40,11 +40,11 @@ func TestGitCLIBackend_MergeBase(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git checkout --orphan b2",
 			"echo line2 >> f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git checkout master",
 		)
 
@@ -57,11 +57,11 @@ func TestGitCLIBackend_MergeBase(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git checkout -b b2",
 			"echo line2 >> f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git checkout master",
 		)
 
@@ -88,27 +88,27 @@ func TestGitCLIBackend_MergeBaseOctopus(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git tag testbase",
 
 			"git checkout -b b2",
 			"echo line2 >> f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git checkout master",
 
 			"git checkout -b b3",
 			"echo line3 >> f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"echo line4 >> f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 
 			"git checkout master",
 			"echo line2 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		wantSHA, err := backend.ResolveRevision(ctx, "testbase")
@@ -124,16 +124,16 @@ func TestGitCLIBackend_MergeBaseOctopus(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git checkout --orphan b2",
 			"echo line2 >> f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git checkout master",
 			"git checkout --orphan b3",
 			"echo line3 >> f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 			"git checkout master",
 		)
 
@@ -146,7 +146,7 @@ func TestGitCLIBackend_MergeBaseOctopus(t *testing.T) {
 		backend := BackendWithRepoCommands(t,
 			"echo line1 > f",
 			"git add f",
-			"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+			"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		)
 
 		// Last revspec not found

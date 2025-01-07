@@ -24,7 +24,7 @@ func TestToBuildNotification(t *testing.T) {
 				WebURL:  &url,
 				Creator: &buildkite.Creator{
 					Name:      "William Bezuidenhout",
-					Email:     "william.bezuidenhout@sourcegraph.com",
+					Email:     "william.bezuidenhout@khulnasoft.com",
 					AvatarURL: "https://www.gravatar.com/avatar/7d4f6781b10e48a94d1052c443d13149",
 				},
 				Pipeline: &buildkite.Pipeline{
@@ -33,7 +33,7 @@ func TestToBuildNotification(t *testing.T) {
 				},
 				Author: &buildkite.Author{
 					Name:  "William Bezuidenhout",
-					Email: "william.bezuidenhout@sourcegraph.com",
+					Email: "william.bezuidenhout@khulnasoft.com",
 				},
 				Number: &num,
 				URL:    &url,
@@ -70,7 +70,7 @@ func TestToBuildNotification(t *testing.T) {
 				},
 				Author: &buildkite.Author{
 					Name:  "William Bezuidenhout",
-					Email: "william.bezuidenhout@sourcegraph.com",
+					Email: "william.bezuidenhout@khulnasoft.com",
 				},
 				Number: &num,
 				URL:    &url,
@@ -145,7 +145,7 @@ func TestToBuildNotification(t *testing.T) {
 				},
 				Author: &buildkite.Author{
 					Name:  "William Bezuidenhout",
-					Email: "william.bezuidenhout@sourcegraph.com",
+					Email: "william.bezuidenhout@khulnasoft.com",
 				},
 				Number: &num,
 				URL:    &url,
@@ -195,7 +195,7 @@ func TestToBuildNotification(t *testing.T) {
 				},
 				Author: &buildkite.Author{
 					Name:  "William Bezuidenhout",
-					Email: "william.bezuidenhout@sourcegraph.com",
+					Email: "william.bezuidenhout@khulnasoft.com",
 				},
 				Number: &num,
 				URL:    &url,
@@ -262,7 +262,7 @@ func TestToBuildNotification(t *testing.T) {
 				WebURL:  &url,
 				Creator: &buildkite.Creator{
 					Name:      "Release William Bezuidenhout",
-					Email:     "realse.william.bezuidenhout@sourcegraph.com",
+					Email:     "realse.william.bezuidenhout@khulnasoft.com",
 					AvatarURL: "https://www.gravatar.com/avatar/7d4f6781b10e48a94d1052c443d13149",
 				},
 				Pipeline: &buildkite.Pipeline{
@@ -271,7 +271,7 @@ func TestToBuildNotification(t *testing.T) {
 				},
 				Author: &buildkite.Author{
 					Name:  "William Bezuidenhout",
-					Email: "william.bezuidenhout@sourcegraph.com",
+					Email: "william.bezuidenhout@khulnasoft.com",
 				},
 				Number: &num,
 				URL:    &url,

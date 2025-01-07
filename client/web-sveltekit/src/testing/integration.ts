@@ -286,13 +286,13 @@ export class Khulnasoft {
     }
 
     /**
-     * Mock the current window context to be in "dotcom mode" (sourcegraph.com).
+     * Mock the current window context to be in "dotcom mode" (khulnasoft.com).
      */
     public async dotcomMode(): Promise<void> {
         this.dotcomModeEnabled = true
         return this.setWindowContext({
             sourcegraphDotComMode: true,
-            // These are enabled by default on sourcegraph.com
+            // These are enabled by default on khulnasoft.com
             codyEnabledOnInstance: true,
             codyEnabledForCurrentUser: this.signedIn,
         })

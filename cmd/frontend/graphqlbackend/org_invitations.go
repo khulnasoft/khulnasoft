@@ -354,8 +354,8 @@ func createInvitationJWT(orgID int32, invitationID int64, senderID int32, expiry
 // respond to the invitation. Callers should check conf.CanSendEmail() if they want to return a nice
 // error if sending email is not enabled.
 func sendOrgInvitationNotification(ctx context.Context, db database.DB, org *types.Org, sender *types.User, recipientEmail string, invitationURL string, expiryTime time.Time) error {
-	if dotcom.SourcegraphDotComMode() {
-		// Basic abuse prevention for Sourcegraph.com.
+	if dotcom.KhulnasoftDotComMode() {
+		// Basic abuse prevention for Khulnasoft.com.
 
 		// Only allow email-verified users to send invites.
 		if _, senderEmailVerified, err := db.UserEmails().GetPrimaryEmail(ctx, sender.ID); err != nil {
@@ -411,21 +411,21 @@ func sendOrgInvitationNotification(ctx context.Context, db database.DB, org *typ
 }
 
 var emailTemplates = txemail.MustValidate(txtypes.Templates{
-	Subject: `{{.FromName}} invited you to join {{.OrgName}} on Sourcegraph`,
+	Subject: `{{.FromName}} invited you to join {{.OrgName}} on Khulnasoft`,
 	Text: `
-{{.FromName}} invited you to join the {{.OrgName}} organization on Sourcegraph.
+{{.FromName}} invited you to join the {{.OrgName}} organization on Khulnasoft.
 
-New to Sourcegraph? Sourcegraph helps your team to learn and understand your codebase quickly, and share code via links, speeding up team collaboration even while apart.
+New to Khulnasoft? Khulnasoft helps your team to learn and understand your codebase quickly, and share code via links, speeding up team collaboration even while apart.
 
 Visit this link in your browser to accept the invite: {{.InvitationUrl}}
 
-This link will expire in {{.ExpiryDays}} days. You are receiving this email because @{{.FromUserName}} invited you to an organization on Sourcegraph Cloud.
+This link will expire in {{.ExpiryDays}} days. You are receiving this email because @{{.FromUserName}} invited you to an organization on Khulnasoft Cloud.
 
 
-To see our Terms of Service, please visit this link: https://sourcegraph.com/terms
-To see our Privacy Policy, please visit this link: https://sourcegraph.com/privacy
+To see our Terms of Service, please visit this link: https://khulnasoft.com/terms
+To see our Privacy Policy, please visit this link: https://khulnasoft.com/privacy
 
-Sourcegraph, 981 Mission St, San Francisco, CA 94103, USA
+Khulnasoft, 981 Mission St, San Francisco, CA 94103, USA
 `,
 	HTML: `
 <html>
@@ -447,12 +447,12 @@ Sourcegraph, 981 Mission St, San Francisco, CA 94103, USA
   </style>
 </head>
 <body style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;">
-  <img class="logo" src="https://storage.googleapis.com/sourcegraph-assets/sourcegraph-logo-light-small.png" alt="Sourcegraph logo">
+  <img class="logo" src="https://storage.googleapis.com/sourcegraph-assets/sourcegraph-logo-light-small.png" alt="Khulnasoft logo">
   <p>
-    <strong>{{.FromDisplayName}}</strong> (@{{.FromUserName}}) invited you to join the <strong>{{.OrgName}}</strong> organization on Sourcegraph.
+    <strong>{{.FromDisplayName}}</strong> (@{{.FromUserName}}) invited you to join the <strong>{{.OrgName}}</strong> organization on Khulnasoft.
   </p>
   <p class="mtxl">
-    <strong>New to Sourcegraph?</strong> Sourcegraph helps your team to learn and understand your codebase quickly, and share code via links, speeding up team collaboration even while apart.
+    <strong>New to Khulnasoft?</strong> Khulnasoft helps your team to learn and understand your codebase quickly, and share code via links, speeding up team collaboration even while apart.
   </p>
   <p>
     <a class="btn mtm" href="{{.InvitationUrl}}">Accept invite</a>
@@ -460,13 +460,13 @@ Sourcegraph, 981 Mission St, San Francisco, CA 94103, USA
   <p class="smaller">Or visit this link in your browser: <a href="{{.InvitationUrl}}">{{.InvitationUrl}}</a></p>
   <small>
   <p class="mtl">
-    This link will expire in {{.ExpiryDays}} days. You are receiving this email because @{{.FromUserName}} invited you to an organization on Sourcegraph Cloud.
+    This link will expire in {{.ExpiryDays}} days. You are receiving this email because @{{.FromUserName}} invited you to an organization on Khulnasoft Cloud.
   </p>
   <p class="mtl">
-    <a href="https://sourcegraph.com/terms">Terms</a>&nbsp;&#8226;&nbsp;
-    <a href="https://sourcegraph.com/privacy">Privacy</a>
+    <a href="https://khulnasoft.com/terms">Terms</a>&nbsp;&#8226;&nbsp;
+    <a href="https://khulnasoft.com/privacy">Privacy</a>
   </p>
-  <p>Sourcegraph, 981 Mission St, San Francisco, CA 94103, USA</p>
+  <p>Khulnasoft, 981 Mission St, San Francisco, CA 94103, USA</p>
   </small>
 </body>
 </html>

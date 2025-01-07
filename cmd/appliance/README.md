@@ -1,6 +1,6 @@
 # Appliance
 
-Appliance provides a platform for configuration and automation of Sourcegraph deployments and administration in a Kubernetes environment. This allows users to easily setup and configure Sourcegraph in their environment as well as more easily manage administration tasks such as upgrades.
+Appliance provides a platform for configuration and automation of Khulnasoft deployments and administration in a Kubernetes environment. This allows users to easily setup and configure Khulnasoft in their environment as well as more easily manage administration tasks such as upgrades.
 
 ---
 
@@ -10,7 +10,7 @@ Appliance runs as a standard Kubernetes Deployment and utilizes Kubernetes [cont
 
 ## Own
 
-For more information or for help, see the [Release Team](https://handbook.sourcegraph.com/departments/engineering/teams/release/).
+For more information or for help, see the [Release Team](https://handbook.khulnasoft.com/departments/engineering/teams/release/).
 
 ## Development
 
@@ -26,7 +26,7 @@ configuration. Most of the variables there are optional, except for:
 - `APPLIANCE_VERSION`: while this does have a default that does not need to be
   overridden in production, development builds that lack the link-time injected
   version information will need to set this. Set it to the latest version of
-  Sourcegraph that you want to be offered.
+  Khulnasoft that you want to be offered.
 
 You might want to override the listen addresses to localhost-only, in order to
 avoid macos firewall popups.
@@ -44,7 +44,7 @@ You must set an admin password, e.g:
 
 ```
 SG_APPLIANCE_PW=$(pwgen -s 40 1)
-echo -e "Your Sourcegraph appliance password is:\n\n${SG_APPLIANCE_PW}\n"
+echo -e "Your Khulnasoft appliance password is:\n\n${SG_APPLIANCE_PW}\n"
 kubectl -n test create secret generic appliance-password --from-literal password="${SG_APPLIANCE_PW}"
 ```
 

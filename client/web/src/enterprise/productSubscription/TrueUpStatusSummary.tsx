@@ -56,13 +56,13 @@ export const TrueUpStatusSummary: React.FunctionComponent<React.PropsWithChildre
                     actualUserCountDate && ` (on ${actualUserCountDate})`
                 }`}
                 title="Users over license"
-                subText="The true-up model has a retroactive charge for these users at the next renewal. If you want to update your license sooner to prevent this, please contact sales@sourcegraph.com."
+                subText="The true-up model has a retroactive charge for these users at the next renewal. If you want to update your license sooner to prevent this, please contact sales@khulnasoft.com."
                 valueClassName={license.userCount - actualUserCount < 0 ? 'text-danger' : ''}
             />
         </div>
         <small>
             Learn more about{' '}
-            <Link to="https://sourcegraph.com/pricing" target="_blank" rel="noopener noreferrer">
+            <Link to="https://khulnasoft.com/pricing" target="_blank" rel="noopener noreferrer">
                 Khulnasoft's true-up pricing model
             </Link>
             .

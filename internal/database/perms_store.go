@@ -76,7 +76,7 @@ type PermsStore interface {
 	// Example input:
 	//  &extsvc.Accounts{
 	//      ServiceType: "sourcegraph",
-	//      ServiceID:   "https://sourcegraph.com/",
+	//      ServiceID:   "https://khulnasoft.com/",
 	//      AccountIDs:  []string{"alice", "bob"},
 	//  }
 	//  &authz.RepoPermissions{
@@ -88,8 +88,8 @@ type PermsStore interface {
 	// 	"user_pending_permissions":
 	//   id | service_type |        service_id        | bind_id | permission | object_type | object_ids_ints | updated_at
 	//  ----+--------------+--------------------------+---------+------------+-------------+-----------------+-----------
-	//    1 | sourcegraph  | https://sourcegraph.com/ |   alice |       read |       repos |             {1} | <DateTime>
-	//    2 | sourcegraph  | https://sourcegraph.com/ |     bob |       read |       repos |             {1} | <DateTime>
+	//    1 | sourcegraph  | https://khulnasoft.com/ |   alice |       read |       repos |             {1} | <DateTime>
+	//    2 | sourcegraph  | https://khulnasoft.com/ |     bob |       read |       repos |             {1} | <DateTime>
 	//
 	//  "repo_pending_permissions":
 	//   repo_id | permission | user_ids_ints | updated_at

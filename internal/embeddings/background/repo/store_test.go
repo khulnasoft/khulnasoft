@@ -22,7 +22,7 @@ import (
 )
 
 func TestRepoEmbeddingJobsStore(t *testing.T) {
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	logger := logtest.Scoped(t)
 	db := database.NewDB(logger, dbtest.NewDB(t))
@@ -30,7 +30,7 @@ func TestRepoEmbeddingJobsStore(t *testing.T) {
 
 	ctx := context.Background()
 
-	createdRepo := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	createdRepo := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, createdRepo)
 	require.NoError(t, err)
 
@@ -149,7 +149,7 @@ func TestCancelRepoEmbeddingJob(t *testing.T) {
 
 	ctx := context.Background()
 
-	createdRepo := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	createdRepo := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, createdRepo)
 	require.NoError(t, err)
 
@@ -197,7 +197,7 @@ func TestCancelRepoEmbeddingJob(t *testing.T) {
 }
 
 func TestGetEmbeddableRepos(t *testing.T) {
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	logger := logtest.Scoped(t)
 	db := database.NewDB(logger, dbtest.NewDB(t))
@@ -205,7 +205,7 @@ func TestGetEmbeddableRepos(t *testing.T) {
 	ctx := context.Background()
 
 	// Create two repositories
-	firstRepo := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	firstRepo := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, firstRepo)
 	require.NoError(t, err)
 
@@ -248,7 +248,7 @@ func TestEmbeddingsPolicyWithFailures(t *testing.T) {
 	ctx := context.Background()
 
 	// Create two repositories
-	firstRepo := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	firstRepo := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, firstRepo)
 	require.NoError(t, err)
 
@@ -291,7 +291,7 @@ func TestGetEmbeddableReposLimit(t *testing.T) {
 	ctx := context.Background()
 
 	// Create two repositories
-	firstRepo := &types.Repo{Name: "github.com/sourcegraph/sourcegraph", URI: "github.com/sourcegraph/sourcegraph", ExternalRepo: api.ExternalRepoSpec{}}
+	firstRepo := &types.Repo{Name: "github.com/khulnasoft/khulnasoft", URI: "github.com/khulnasoft/khulnasoft", ExternalRepo: api.ExternalRepoSpec{}}
 	err := repoStore.Create(ctx, firstRepo)
 	require.NoError(t, err)
 

@@ -1069,7 +1069,7 @@ func TestOrphanedRepo(t *testing.T) {
 }
 
 func TestDotComPrivateReposDontSync(t *testing.T) {
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()

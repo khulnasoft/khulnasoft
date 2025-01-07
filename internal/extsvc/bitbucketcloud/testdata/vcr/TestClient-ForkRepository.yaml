@@ -9,14 +9,14 @@ interactions:
     method: GET
   response:
     body: '{"username": "sourcegraph-testing", "has_2fa_enabled": null, "display_name":
-      "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b", "links": {"hooks":
+      "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b", "links": {"hooks":
       {"href": "https://api.bitbucket.org/2.0/workspaces/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/hooks"},
       "self": {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "repositories": {"href": "https://api.bitbucket.org/2.0/repositories/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"},
       "snippets": {"href": "https://api.bitbucket.org/2.0/snippets/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"}},
-      "nickname": "Sourcegraph Testing", "created_on": "2022-03-17T11:11:13.234825+00:00",
+      "nickname": "Khulnasoft Testing", "created_on": "2022-03-17T11:11:13.234825+00:00",
       "is_staff": false, "location": null, "account_status": "active", "type": "user",
       "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}"}'
     headers:
@@ -92,11 +92,11 @@ interactions:
       "downloads": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/downloads"},
       "pullrequests": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/pullrequests"}},
       "created_on": "2022-03-17T11:17:48.581867+00:00", "full_name": "sourcegraph-testing/src-cli",
-      "owner": {"display_name": "Sourcegraph Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
+      "owner": {"display_name": "Khulnasoft Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"}},
-      "type": "user", "nickname": "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b"},
+      "type": "user", "nickname": "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b"},
       "size": 3543642, "uuid": "{b090a669-ac7b-44cd-9610-02d027cb39f3}", "type": "repository",
       "website": null, "override_settings": {"branching_model": true, "default_merge_strategy":
       true}, "description": "", "has_issues": false, "slug": "src-cli", "is_private":
@@ -106,7 +106,7 @@ interactions:
       "avatar": {"href": "https://bitbucket.org/account/user/sourcegraph-testing/projects/SOUR/avatar/32?ts=1647515868"}},
       "type": "project", "name": "sourcegraph-testing", "key": "SOUR", "uuid": "{a862a17c-1726-47a2-bcd1-d9b37313b350}"},
       "mainbranch": {"type": "branch", "name": "master"}, "workspace": {"slug": "sourcegraph-testing",
-      "type": "workspace", "name": "Sourcegraph Testing", "links": {"self": {"href":
+      "type": "workspace", "name": "Khulnasoft Testing", "links": {"self": {"href":
       "https://api.bitbucket.org/2.0/workspaces/sourcegraph-testing"}, "html": {"href":
       "https://bitbucket.org/sourcegraph-testing/"}, "avatar": {"href": "https://bitbucket.org/workspaces/sourcegraph-testing/avatar/?ts=1647515473"}},
       "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}"}, "updated_on": "2022-04-06T17:10:35.157791+00:00"}'
@@ -185,11 +185,11 @@ interactions:
       "downloads": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli-fork-00/downloads"},
       "pullrequests": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli-fork-00/pullrequests"}},
       "created_on": "2022-04-13T21:31:43.571329+00:00", "full_name": "sourcegraph-testing/src-cli-fork-00",
-      "owner": {"display_name": "Sourcegraph Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
+      "owner": {"display_name": "Khulnasoft Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"}},
-      "type": "user", "nickname": "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b"},
+      "type": "user", "nickname": "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b"},
       "size": 0, "uuid": "{c9514714-1168-4b80-8de1-d3d8359cc293}", "type": "repository",
       "website": null, "override_settings": {"branching_model": false, "default_merge_strategy":
       false}, "description": "", "parent": {"links": {"self": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli"},
@@ -204,7 +204,7 @@ interactions:
       "avatar": {"href": "https://bitbucket.org/account/user/sourcegraph-testing/projects/SOUR/avatar/32?ts=1647515868"}},
       "type": "project", "name": "sourcegraph-testing", "key": "SOUR", "uuid": "{a862a17c-1726-47a2-bcd1-d9b37313b350}"},
       "mainbranch": {"type": "branch", "name": "master"}, "workspace": {"slug": "sourcegraph-testing",
-      "type": "workspace", "name": "Sourcegraph Testing", "links": {"self": {"href":
+      "type": "workspace", "name": "Khulnasoft Testing", "links": {"self": {"href":
       "https://api.bitbucket.org/2.0/workspaces/sourcegraph-testing"}, "html": {"href":
       "https://bitbucket.org/sourcegraph-testing/"}, "avatar": {"href": "https://bitbucket.org/workspaces/sourcegraph-testing/avatar/?ts=1647515473"}},
       "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}"}, "updated_on": "2022-04-13T21:31:43.665718+00:00"}'

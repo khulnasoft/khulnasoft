@@ -11,7 +11,7 @@ export P4USER="${P4USER:-"admin"}"                         # the name of the Per
 export P4PORT="${P4PORT:-"perforce-tests.sgdev.org:1666"}" # the address of the Perforce server to connect to
 
 export P4_TEST_USERNAME="${P4_TEST_USERNAME:-"test-perforce"}"           # the username of the fake user that the script will create for integration testing purposes
-export P4_TEST_EMAIL="${P4_TEST_EMAIL:-"test-perforce@sourcegraph.com"}" # the email address of the fake user that the script will create for integration testing purposes
+export P4_TEST_EMAIL="${P4_TEST_EMAIL:-"test-perforce@khulnasoft.com"}" # the email address of the fake user that the script will create for integration testing purposes
 
 export DEPOT_NAME="${DEPOT_NAME:-"integration-test-depot"}" # the name of the depot that the script will create on the server
 
@@ -71,7 +71,7 @@ export -f my_chronic
 
 # ensure that user is logged into the Perforce server
 if ! p4 login -s &>/dev/null; then
-  handbook_link="https://handbook.sourcegraph.com/departments/ce-support/support/process/p4-enablement/#generate-a-session-ticket"
+  handbook_link="https://handbook.khulnasoft.com/departments/ce-support/support/process/p4-enablement/#generate-a-session-ticket"
   address="${P4USER}:${P4PORT}"
 
   cat <<END

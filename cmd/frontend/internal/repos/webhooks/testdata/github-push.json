@@ -10,7 +10,7 @@
     "private": false,
     "owner": {
       "name": "milton",
-      "email": "dev@sourcegraph.com",
+      "email": "dev@khulnasoft.com",
       "login": "milton",
       "id": 3,
       "node_id": "MDQ6VXNlcjM=",
@@ -105,12 +105,12 @@
   },
   "pusher": {
     "name": "milton",
-    "email": "dev@sourcegraph.com"
+    "email": "dev@khulnasoft.com"
   },
   "enterprise": {
     "id": 1,
     "slug": "khulnasoft",
-    "name": "Sourcegraph",
+    "name": "Khulnasoft",
     "node_id": "MDEwOkVudGVycHJpc2Ux",
     "avatar_url": "https://ghe.sgdev.org/avatars/b/1?",
     "description": "",
@@ -154,7 +154,7 @@
       "url": "https://ghe.sgdev.org/milton/test/commit/9cae21b79a239d5b02a33f8323c6770c418d16a0",
       "author": {
         "name": "milton",
-        "email": "dev@sourcegraph.com",
+        "email": "dev@khulnasoft.com",
         "username": "milton"
       },
       "committer": {
@@ -177,7 +177,7 @@
     "url": "https://ghe.sgdev.org/milton/test/commit/9cae21b79a239d5b02a33f8323c6770c418d16a0",
     "author": {
       "name": "milton",
-      "email": "dev@sourcegraph.com",
+      "email": "dev@khulnasoft.com",
       "username": "milton"
     },
     "committer": {

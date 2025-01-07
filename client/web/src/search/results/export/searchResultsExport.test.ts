@@ -1149,7 +1149,7 @@ describe('searchResultsToFileContent', () => {
                 {
                     type: 'symbol',
                     path: 'enterprise/internal/batches/types/code_host.go',
-                    repository: 'github.com/sourcegraph/sourcegraph',
+                    repository: 'github.com/khulnasoft/khulnasoft',
                     repoStars: 7163,
                     repoLastFetched: '2022-12-15T14:22:13.114583Z',
                     branches: [''],
@@ -1167,7 +1167,7 @@ describe('searchResultsToFileContent', () => {
                 {
                     type: 'symbol',
                     path: 'internal/database/external_services.go',
-                    repository: 'github.com/sourcegraph/sourcegraph',
+                    repository: 'github.com/khulnasoft/khulnasoft',
                     repoStars: 7163,
                     repoLastFetched: '2022-12-15T14:22:13.114583Z',
                     branches: [''],
@@ -1204,7 +1204,7 @@ describe('searchResultsToFileContent', () => {
                 {
                     type: 'symbol',
                     path: 'internal/extsvc/codehost.go',
-                    repository: 'github.com/sourcegraph/sourcegraph',
+                    repository: 'github.com/khulnasoft/khulnasoft',
                     repoStars: 7163,
                     repoLastFetched: '2022-12-15T14:22:13.114583Z',
                     branches: [''],

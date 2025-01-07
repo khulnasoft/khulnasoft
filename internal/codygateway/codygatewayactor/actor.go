@@ -9,7 +9,7 @@ const (
 	// name. Today, these are Enterprise Subscriptions sourced from the Enterprise
 	// Portal service.
 	ActorSourceEnterpriseSubscription ActorSource = "dotcom-product-subscriptions"
-	// Sourcegraph.com user actors.
+	// Khulnasoft.com user actors.
 	ActorSourceDotcomUser ActorSource = "dotcom-user"
 )
 

@@ -35,7 +35,7 @@ type Inputs struct {
 	SearchMode             Mode
 	PatternType            query.SearchType
 	UserSettings           *schema.Settings
-	OnSourcegraphDotCom    bool
+	OnKhulnasoftDotCom    bool
 	Features               *Features
 	Protocol               Protocol
 	ContextLines           int32

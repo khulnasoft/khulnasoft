@@ -92,7 +92,7 @@ func (o *Observer) alertForNoResolvedRepos(ctx context.Context, q query.Q) *sear
 	}
 
 	isSiteAdmin := auth.CheckCurrentUserIsSiteAdmin(ctx, o.Db) == nil
-	if !dotcom.SourcegraphDotComMode() {
+	if !dotcom.KhulnasoftDotComMode() {
 		if needsRepoConfig, err := needsRepositoryConfiguration(ctx, o.Db); err == nil && needsRepoConfig {
 			if isSiteAdmin {
 				return &search.Alert{
@@ -276,7 +276,7 @@ func (o *Observer) errorToAlert(ctx context.Context, err error) (*search.Alert, 
 		return &search.Alert{
 			PrometheusType: "structural_search_needs_more_memory__give_searcher_more_memory",
 			Title:          "Structural search needs more memory",
-			Description:    `Running your structural search requires more memory. You could try reducing the number of repositories with the "repo:" filter. If you are an administrator, try double the memory allocated for the "searcher" service. If you're unsure, reach out to us at support@sourcegraph.com.`,
+			Description:    `Running your structural search requires more memory. You could try reducing the number of repositories with the "repo:" filter. If you are an administrator, try double the memory allocated for the "searcher" service. If you're unsure, reach out to us at support@khulnasoft.com.`,
 			Priority:       4,
 		}, nil
 	}

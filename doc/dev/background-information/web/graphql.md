@@ -262,7 +262,7 @@ In contrast to **offset-based pagination**, this approach brings us these benefi
 - Adding a new item to the collection while someone else is paginating through the collection will avoid inconsistencies (no items are showed more than once or skipped entirely).
 - We can leverage postgres indexes to find the cursor quickly and avoid having to do a sequential scan through all rows ([learn more](https://use-the-index-luke.com/no-offset)).
 
-### Pagination UI patterns at Sourcegraph
+### Pagination UI patterns at Khulnasoft
 
 We currently have two accepted pagination patterns:
 
@@ -270,8 +270,8 @@ We currently have two accepted pagination patterns:
 
   To implement this, you can use the following abstractions:
 
-  - React hook for data loading: [`usePageSwitcherPagination()`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/components/FilteredConnection/hooks/usePageSwitcherPagination.ts)
-  - Go abstraction to build a bi-directional paginated resource: [`ConnectionResolver`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/frontend/graphqlbackend/graphqlutil/connection_resolver.go)
+  - React hook for data loading: [`usePageSwitcherPagination()`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/components/FilteredConnection/hooks/usePageSwitcherPagination.ts)
+  - Go abstraction to build a bi-directional paginated resource: [`ConnectionResolver`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/frontend/graphqlbackend/graphqlutil/connection_resolver.go)
   - Wildcard component for pagination UI: [`<PageSwitcher />`](https://storybook.sgdev.org/?path=/story/wildcard-pageswitcher--simple)
   - Here are two example implementations: [#45705](https://github.com/khulnasoft/khulnasoft/pull/45705) for data served via Postgres, [#45070](https://github.com/khulnasoft/khulnasoft/pull/45070) for data served from git)
 
@@ -279,8 +279,8 @@ We currently have two accepted pagination patterns:
 
   We offer the following helpers for implementing a view with this pattern:
 
-  - React hook for data loading: [`useShowMorePagination()`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/components/FilteredConnection/hooks/useShowMorePagination.ts)
-  - React component "Show More" UI: [`<ShowMoreButton />`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/search/panels/ShowMoreButton.tsx)
+  - React hook for data loading: [`useShowMorePagination()`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/components/FilteredConnection/hooks/useShowMorePagination.ts)
+  - React component "Show More" UI: [`<ShowMoreButton />`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/search/panels/ShowMoreButton.tsx)
 
 ### Example query
 
@@ -334,5 +334,5 @@ The interesting bits are the `startCursor` and `endCursor`. These encode the fir
 
 If we want to go to the next page, we can take this opaque token and set it as the `after` value of the query. The new pagination parameters would be `first: 10, after: 'eeffgghh'".
 
-This is not something you need to manually implement in the frontend though. [`usePageSwitcherPagination()`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/components/FilteredConnection/hooks/usePageSwitcherPagination.ts) and [`useShowMorePagination()`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/components/FilteredConnection/hooks/useShowMorePagination.ts) already do that for you.
+This is not something you need to manually implement in the frontend though. [`usePageSwitcherPagination()`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/components/FilteredConnection/hooks/usePageSwitcherPagination.ts) and [`useShowMorePagination()`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/components/FilteredConnection/hooks/useShowMorePagination.ts) already do that for you.
 

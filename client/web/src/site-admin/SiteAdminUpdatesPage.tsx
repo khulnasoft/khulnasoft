@@ -60,7 +60,7 @@ const SiteUpdateCheck: React.FC = () => {
                         Version {data.site.productVersion}{' '}
                         <small className="text-muted">
                             (
-                            <Link to="https://sourcegraph.com/changelog" target="_blank" rel="noopener">
+                            <Link to="https://khulnasoft.com/changelog" target="_blank" rel="noopener">
                                 changelog
                             </Link>
                             )
@@ -208,7 +208,7 @@ const SiteUpgradeReadiness: FunctionComponent = () => {
                                 Some oob migrations must complete before a multi version upgrade can finish. Learn more
                                 at the <Link to="/site-admin/migrations?filters=pending">migrations</Link> page, and
                                 reach out to{' '}
-                                <Link to="mailto:support@sourcegraph.com" target="_blank" rel="noopener noreferrer">
+                                <Link to="mailto:support@khulnasoft.com" target="_blank" rel="noopener noreferrer">
                                     Khulnasoft support
                                 </Link>{' '}
                                 for clarifications.
@@ -258,7 +258,7 @@ const SiteUpgradeReadiness: FunctionComponent = () => {
                             <Alert className={classNames('mb-0', styles.alert)} variant="danger">
                                 <span>
                                     There are schema drifts detected, please contact{' '}
-                                    <Link to="mailto:support@sourcegraph.com" target="_blank" rel="noopener noreferrer">
+                                    <Link to="mailto:support@khulnasoft.com" target="_blank" rel="noopener noreferrer">
                                         Khulnasoft support
                                     </Link>{' '}
                                     for assistance.

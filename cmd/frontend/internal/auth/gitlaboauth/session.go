@@ -70,7 +70,7 @@ func (s *sessionIssuerHelper) GetOrCreateUser(ctx context.Context, token *oauth2
 
 	login, err := auth.NormalizeUsername(gUser.Username)
 	if err != nil {
-		return false, nil, fmt.Sprintf("Error normalizing the username %q. See https://sourcegraph.com/docs/admin/auth/#username-normalization.", login), err
+		return false, nil, fmt.Sprintf("Error normalizing the username %q. See https://khulnasoft.com/docs/admin/auth/#username-normalization.", login), err
 	}
 
 	provider := gitlab.NewClientProvider(extsvc.URNGitLabOAuth, s.BaseURL, nil)

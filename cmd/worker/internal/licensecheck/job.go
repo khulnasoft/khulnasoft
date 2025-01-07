@@ -16,7 +16,7 @@ import (
 type licenseCheckJob struct{}
 
 // NewJob is the set of background jobs used for licensing enforcement and gating.
-// Note: This job should only run once for a given Sourcegraph instance.
+// Note: This job should only run once for a given Khulnasoft instance.
 func NewJob() job.Job {
 	return &licenseCheckJob{}
 }
@@ -41,7 +41,7 @@ func (s *licenseCheckJob) Routines(_ context.Context, observationCtx *observatio
 		}),
 	}
 
-	if !dotcom.SourcegraphDotComMode() {
+	if !dotcom.KhulnasoftDotComMode() {
 		routines = append(
 			routines,
 			newLicenseChecker(context.Background(), observationCtx.Logger, db, redispool.Store),
@@ -59,7 +59,7 @@ func (u *usersStore) Count(ctx context.Context) (int, error) {
 	return u.db.Users().Count(
 		ctx,
 		&database.UsersListOptions{
-			ExcludeSourcegraphOperators: true,
+			ExcludeKhulnasoftOperators: true,
 		},
 	)
 }

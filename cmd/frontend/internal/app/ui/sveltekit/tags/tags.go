@@ -10,7 +10,7 @@ const (
 	EnableRollout
 	// EnableOptin renders the SvelteKit app for this route when the "web-next" feature flag is enabled.
 	EnableOptIn
-	// Dotcom marks a route as being only available on Sourcegraph.com
+	// Dotcom marks a route as being only available on Khulnasoft.com
 	Dotcom
 )
 

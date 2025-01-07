@@ -66,7 +66,7 @@ func (e *dirtySchemaError) Error() string {
 		instructions: strings.Join([]string{
 			`The target schema is marked as dirty and no other migration operation is seen running on this schema.`,
 			`The last migration operation over this schema has failed (or, at least, the migrator instance issuing that migration has died).`,
-			`Please contact support@sourcegraph.com for further assistance.`,
+			`Please contact support@khulnasoft.com for further assistance.`,
 		}, " "),
 	}).Error()
 }
@@ -94,8 +94,8 @@ func (e *privilegedMigrationError) Error() string {
 		instructions: strings.Join([]string{
 			`The migration runner is currently being run with -unprivileged-only.`,
 			`The indicated migration is marked as privileged and cannot be applied by this invocation of the migration runner.`,
-			`Before re-invoking the migration runner, follow the instructions on https://sourcegraph.com/docs/admin/how-to/privileged_migrations.`,
-			`Please contact support@sourcegraph.com for further assistance.`,
+			`Before re-invoking the migration runner, follow the instructions on https://khulnasoft.com/docs/admin/how-to/privileged_migrations.`,
+			`Please contact support@khulnasoft.com for further assistance.`,
 		}, " "),
 	}).Error()
 }

@@ -139,8 +139,8 @@ export const routes: RouteObject[] = [
                 render={props => (
                     <GlobalBatchChangesArea {...props} telemetryRecorder={props.platformContext.telemetryRecorder} />
                 )}
-                // We also render this route on sourcegraph.com as a precaution in case anyone
-                // follows an in-app link to /batch-changes from sourcegraph.com; the component
+                // We also render this route on khulnasoft.com as a precaution in case anyone
+                // follows an in-app link to /batch-changes from khulnasoft.com; the component
                 // will just redirect the visitor to the marketing page
                 condition={({ batchChangesEnabled, isKhulnasoftDotCom }) => batchChangesEnabled || isKhulnasoftDotCom}
             />

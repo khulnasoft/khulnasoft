@@ -80,7 +80,7 @@ func newCompletionsHandler(
 		ctx, cancel := context.WithTimeout(r.Context(), ctxTimeout)
 		defer cancel()
 
-		// First check that Cody is enabled for this Sourcegraph instance.
+		// First check that Cody is enabled for this Khulnasoft instance.
 		if isEnabled, reason := cody.IsCodyEnabled(ctx, db); !isEnabled {
 			errResponse := fmt.Sprintf("cody is not enabled: %s", reason)
 			http.Error(w, errResponse, http.StatusUnauthorized)
@@ -103,7 +103,7 @@ func newCompletionsHandler(
 
 		// Enterprise customers may define instance-wide Cody context filters (aka Cody Ignore) in the site config.
 		// To ensure Cody clients respect these restrictions, we enforce the minimum supported client version.
-		isDotcom := dotcom.SourcegraphDotComMode()
+		isDotcom := dotcom.KhulnasoftDotComMode()
 		if !isDotcom {
 			if err := checkClientCodyIgnoreCompatibility(ctx, db, r); err != nil {
 				logger.Info("rejecting request due to CodyIngore compat", log.Error(err))
@@ -121,7 +121,7 @@ func newCompletionsHandler(
 			return
 		}
 
-		// Load the current LLM model configuration for the Sourcegraph instance.
+		// Load the current LLM model configuration for the Khulnasoft instance.
 		modelConfigSvc := modelconfig.Get()
 		currentModelConfig, err := modelConfigSvc.Get()
 		if err != nil {
@@ -150,7 +150,7 @@ func newCompletionsHandler(
 		// Will the current LLM request be sent to Cody Gateway?
 		var willBeSentToCodyGateway bool
 		if ssConfig := providerConfig.ServerSideConfig; ssConfig != nil {
-			willBeSentToCodyGateway = ssConfig.SourcegraphProvider != nil
+			willBeSentToCodyGateway = ssConfig.KhulnasoftProvider != nil
 		}
 
 		modelConfigInfo := types.ModelConfigInfo{
@@ -411,7 +411,7 @@ func serveStreamingResponse(
 					return
 				}
 
-				isDotcom := dotcom.SourcegraphDotComMode()
+				isDotcom := dotcom.KhulnasoftDotComMode()
 				if isDotcom {
 					if subscription.ApplyProRateLimits {
 						w.Header().Set("x-is-cody-pro-user", "true")
@@ -486,7 +486,7 @@ func serveSyncResponse(
 					return
 				}
 
-				isDotcom := dotcom.SourcegraphDotComMode()
+				isDotcom := dotcom.KhulnasoftDotComMode()
 				if isDotcom {
 					if subscription.ApplyProRateLimits {
 						w.Header().Set("x-is-cody-pro-user", "true")
@@ -585,7 +585,7 @@ func checkClientCodyIgnoreCompatibility(ctx context.Context, db database.DB, r *
 			cvc.constraint = ">= 5.5.8-0"
 		}
 	case types.CodyClientWeb:
-		// Don't require client version for Web because it's versioned with the Sourcegraph instance.
+		// Don't require client version for Web because it's versioned with the Khulnasoft instance.
 		return nil
 	default:
 		// By default, allow requests from any client on any version. We only

@@ -3,7 +3,7 @@ resources:
     kind: ClusterRole
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 67efb602e9f61b6b18e0c5eea7be1713e7f99cb08862aa0bc779a8eef66be301
+        appliance.khulnasoft.com/configHash: 67efb602e9f61b6b18e0c5eea7be1713e7f99cb08862aa0bc779a8eef66be301
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -41,7 +41,7 @@ resources:
     kind: ClusterRoleBinding
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 67efb602e9f61b6b18e0c5eea7be1713e7f99cb08862aa0bc779a8eef66be301
+        appliance.khulnasoft.com/configHash: 67efb602e9f61b6b18e0c5eea7be1713e7f99cb08862aa0bc779a8eef66be301
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -129,8 +129,8 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/currentVersion: 5.3.9104
-        appliance.sourcegraph.com/managed: "true"
+        appliance.khulnasoft.com/currentVersion: 5.3.9104
+        appliance.khulnasoft.com/managed: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
       name: sg
       namespace: NORMALIZED_FOR_TESTING
@@ -140,7 +140,7 @@ resources:
     kind: PersistentVolumeClaim
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 67efb602e9f61b6b18e0c5eea7be1713e7f99cb08862aa0bc779a8eef66be301
+        appliance.khulnasoft.com/configHash: 67efb602e9f61b6b18e0c5eea7be1713e7f99cb08862aa0bc779a8eef66be301
       creationTimestamp: "2024-04-19T00:00:00Z"
       deletionGracePeriodSeconds: 0
       deletionTimestamp: "2024-04-19T00:00:00Z"

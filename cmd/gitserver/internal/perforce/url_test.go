@@ -25,22 +25,22 @@ func TestDecomposePerforceRemoteURL(t *testing.T) {
 		wantDepot    string
 	}{
 		{
-			cloneURL:     "perforce://admin:password@ssl:111.222.333.444:1666//Sourcegraph/",
+			cloneURL:     "perforce://admin:password@ssl:111.222.333.444:1666//Khulnasoft/",
 			wantHost:     "ssl:111.222.333.444:1666",
 			wantUsername: "admin",
 			wantPassword: "password",
-			wantDepot:    "//Sourcegraph/",
+			wantDepot:    "//Khulnasoft/",
 		},
 		{
-			cloneURL:     "perforce://admin@ssl:111.222.333.444:1666//Sourcegraph/",
+			cloneURL:     "perforce://admin@ssl:111.222.333.444:1666//Khulnasoft/",
 			wantHost:     "ssl:111.222.333.444:1666",
 			wantUsername: "admin",
-			wantDepot:    "//Sourcegraph/",
+			wantDepot:    "//Khulnasoft/",
 		},
 		{
-			cloneURL:  "perforce://ssl:111.222.333.444:1666//Sourcegraph/",
+			cloneURL:  "perforce://ssl:111.222.333.444:1666//Khulnasoft/",
 			wantHost:  "ssl:111.222.333.444:1666",
-			wantDepot: "//Sourcegraph/",
+			wantDepot: "//Khulnasoft/",
 		},
 		{
 			cloneURL: "perforce://ssl:111.222.333.444:1666",
@@ -48,18 +48,18 @@ func TestDecomposePerforceRemoteURL(t *testing.T) {
 		},
 
 		{
-			cloneURL:     "perforce://admin:password@ssl6:[::]:1818ssl64:[::]:1818//Sourcegraph/",
+			cloneURL:     "perforce://admin:password@ssl6:[::]:1818ssl64:[::]:1818//Khulnasoft/",
 			wantHost:     "ssl6:[::]:1818ssl64:[::]:1818",
 			wantUsername: "admin",
 			wantPassword: "password",
-			wantDepot:    "//Sourcegraph/",
+			wantDepot:    "//Khulnasoft/",
 		},
 		{
-			cloneURL:     "perforce://admin:password@tcp6:[2001:db8::123]:1818//Sourcegraph/Cloud/",
+			cloneURL:     "perforce://admin:password@tcp6:[2001:db8::123]:1818//Khulnasoft/Cloud/",
 			wantHost:     "tcp6:[2001:db8::123]:1818",
 			wantUsername: "admin",
 			wantPassword: "password",
-			wantDepot:    "//Sourcegraph/Cloud/",
+			wantDepot:    "//Khulnasoft/Cloud/",
 		},
 	}
 	for _, test := range tests {

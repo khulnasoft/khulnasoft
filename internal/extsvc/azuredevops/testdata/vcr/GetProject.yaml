@@ -51,7 +51,7 @@ interactions:
       X-Vss-Senderdeploymentid:
       - 4ff21e82-8865-0b2e-ffe8-9598818f8190
       X-Vss-Userdata:
-      - 473dec3e-03d7-6147-b106-0b0a7f766a92:idan.varsano@sourcegraph.com
+      - 473dec3e-03d7-6147-b106-0b0a7f766a92:idan.varsano@khulnasoft.com
     status: 200 OK
     code: 200
     duration: ""

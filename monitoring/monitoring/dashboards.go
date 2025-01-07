@@ -34,7 +34,7 @@ func (u UnitType) short() string {
 	}
 }
 
-// From https://sourcegraph.com/github.com/grafana/grafana@b63b82976b3708b082326c0b7d42f38d4bc261fa/-/blob/packages/grafana-data/src/valueFormats/categories.ts#L23
+// From https://khulnasoft.com/github.com/grafana/grafana@b63b82976b3708b082326c0b7d42f38d4bc261fa/-/blob/packages/grafana-data/src/valueFormats/categories.ts#L23
 const (
 	// Number is the default unit type.
 	Number UnitType = "short"

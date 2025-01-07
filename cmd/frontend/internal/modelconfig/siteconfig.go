@@ -32,18 +32,18 @@ func maybeGetSiteModelConfiguration(logger log.Logger, siteConfig schema.SiteCon
 // Performs no validation, assumes the config is valid.
 func convertModelConfiguration(v *schema.SiteModelConfiguration) *types.SiteModelConfiguration {
 	return &types.SiteModelConfiguration{
-		SourcegraphModelConfig: convertSourcegraphModelConfig(v.Sourcegraph),
+		KhulnasoftModelConfig: convertKhulnasoftModelConfig(v.Khulnasoft),
 		ProviderOverrides:      convertProviderOverrides(v.ProviderOverrides),
 		ModelOverrides:         convertModelOverrides(v),
 		DefaultModels:          convertDefaultModels(v.DefaultModels),
 	}
 }
 
-func convertSourcegraphModelConfig(v *schema.SourcegraphModelConfig) *types.SourcegraphModelConfig {
+func convertKhulnasoftModelConfig(v *schema.KhulnasoftModelConfig) *types.KhulnasoftModelConfig {
 	if v == nil {
 		return nil
 	}
-	return &types.SourcegraphModelConfig{
+	return &types.KhulnasoftModelConfig{
 		Endpoint:     v.Endpoint,
 		AccessToken:  v.AccessToken,
 		ModelFilters: convertModelFilters(v.ModelFilters),
@@ -253,9 +253,9 @@ func convertServerSideProviderConfig(cfg *schema.ServerSideProviderConfig) *type
 				EnableVerboseLogs: v.EnableVerboseLogs,
 			},
 		}
-	} else if v := cfg.Sourcegraph; v != nil {
+	} else if v := cfg.Khulnasoft; v != nil {
 		return &types.ServerSideProviderConfig{
-			SourcegraphProvider: &types.SourcegraphProviderConfig{
+			KhulnasoftProvider: &types.KhulnasoftProviderConfig{
 				AccessToken: v.AccessToken,
 				Endpoint:    v.Endpoint,
 			},
@@ -385,7 +385,7 @@ var selfHostedModelDefaults = map[string]types.ModelOverride{
 	"mixtral-8x22b-instruct@v1": recommendedSettingsMistral("mistral::v1::mixtral-8x22b", "Mixtral 8x22B", "mixtral-8x22b-instruct"),
 }
 
-// TODO(slimsag): self-hosted-models: Remove support for this in Sep 2024 Sourcegraph release
+// TODO(slimsag): self-hosted-models: Remove support for this in Sep 2024 Khulnasoft release
 // (was deprecated in Aug 7th release, only shared with select customers in EAP)
 var recommendedSettings = map[types.ModelRef]types.ModelOverride{
 	"bigcode::v1::starcoder2-7b":          recommendedSettingsStarcoder2("bigcode::v1::starcoder2-7b", "Starcoder2 7B", "starcoder2-7b"),

@@ -68,7 +68,7 @@ describe('NewGlobalNavigationBar', () => {
         )
         const sidebarElement = baseElement.querySelector<HTMLElement>('[data-reach-dialog-overlay]')!
         expect(describeNavBarSideMenu(sidebarElement)).toEqual<NavBarTestDescription>({
-            codyItems: ['Cody https://sourcegraph.com/cody'],
+            codyItems: ['Cody https://khulnasoft.com/cody'],
         })
     })
 

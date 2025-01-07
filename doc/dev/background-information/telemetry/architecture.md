@@ -2,7 +2,7 @@
 
 > WARNING: This is a guide intended for development reference.
 >
-> To learn more about telemetry export, refer to the [Sourcegraph adminstrator documentation on telemetry](../../../admin/telemetry/index.md).
+> To learn more about telemetry export, refer to the [Khulnasoft adminstrator documentation on telemetry](../../../admin/telemetry/index.md).
 
 This page outlines the architecture and components involved in Khulnasoft's new telemetry export system.
 
@@ -10,7 +10,7 @@ In the [lifecycle of an event](./index.md#event-lifecycle), events are first [st
 
 See [testing events](./index.md#testing-events) for a summary of how to observe your events during development.
 
-> WARNING: This page primarily pertains to the new telemetry system introduced in Sourcegraph 5.2.1 - refer to [DEPRECATED: Telemetry](deprecated.md) for the legacy system which may still be in use if a callsite has not been migrated yet.
+> WARNING: This page primarily pertains to the new telemetry system introduced in Khulnasoft 5.2.1 - refer to [DEPRECATED: Telemetry](deprecated.md) for the legacy system which may still be in use if a callsite has not been migrated yet.
 
 ## Storing events
 
@@ -36,11 +36,11 @@ When exporting events, we explicitly only mark an event as successfully exported
 
 ## Telemetry Gateway
 
-The Telemetry Gateway is a managed Sourcegraph service that ingests event exports from all Sourcegraph instances, and handles manipulating the events and publishing raw payloads to a Pub/Sub topic.
+The Telemetry Gateway is a managed Khulnasoft service that ingests event exports from all Khulnasoft instances, and handles manipulating the events and publishing raw payloads to a Pub/Sub topic.
 It exposes a gRPC API defined in [`telemetrygateway/v1`](https://github.com/khulnasoft/khulnasoft/tree/main/internal/telemetrygateway/v1) - see [exported events schema](./index.md#exported-event-schema).
 
 From the gRPC API, the Telemetry Gateway constructs raw JSON events to publish to a designated Pub/Sub topic that eventually makes its way into BigQuery.
 
 Also see [How to set up Telemetry Gateway locally](../../how-to/telemetry_gateway.md).
 
-For details about live Telemetry Gateway deployments, refer to [the handbook Telemetry Gateway page](https://handbook.sourcegraph.com/departments/engineering/teams/core-services/managed-services/telemetry-gateway/).
+For details about live Telemetry Gateway deployments, refer to [the handbook Telemetry Gateway page](https://handbook.khulnasoft.com/departments/engineering/teams/core-services/managed-services/telemetry-gateway/).

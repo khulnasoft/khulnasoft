@@ -53,7 +53,7 @@
           }
         },
         "dependencies": {
-          "description": "An array of artifact \"groupID:artifactID:version\" strings specifying which Maven artifacts to mirror on Sourcegraph.",
+          "description": "An array of artifact \"groupID:artifactID:version\" strings specifying which Maven artifacts to mirror on Khulnasoft.",
           "type": "array",
           "items": {
             "type": "string",

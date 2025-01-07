@@ -42,7 +42,7 @@ type notifierConfig struct {
 }
 
 // TestOwnersOpsgenieTeam checks Opsgenie team details of each owner. It also
-// outputs usable site-config for 'observability.alerts' in Sourcegraph.com.
+// outputs usable site-config for 'observability.alerts' in Khulnasoft.com.
 func TestOwnersOpsgenieTeam(t *testing.T) {
 	if !*onlineCheck {
 		t.Skip("MONITORING_OWNERS_ONLINE_CHECK not set to true, skipping online checks")
@@ -61,7 +61,7 @@ func TestOwnersOpsgenieTeam(t *testing.T) {
 	ctx := context.Background()
 
 	// As part of this test, we also build notifier config of all valid owners
-	// so that they can be included in Sourcegraph.com's 'observability.alerts'
+	// so that they can be included in Khulnasoft.com's 'observability.alerts'
 	// configuration. Configuration with invalid targets means that alerts might
 	// end up not going to _any_ team, so we want to make sure to skip those
 	// owners. If a team is kind enough to set up a real owner and opsgenie team
@@ -106,7 +106,7 @@ func TestOwnersOpsgenieTeam(t *testing.T) {
 	enc.SetIndent("    ", "  ")
 	assert.NoError(t, enc.Encode(observabilityAlertsConfig))
 	// The below can be copy-pasted into site-config 'observability.alerts':
-	// https://sourcegraph.sourcegraph.com/search?q=context:global+repo:github.com/sourcegraph/deploy-sourcegraph-cloud+file:overlays/prod/frontend/files/site.json+%22observability.alerts%22:+%5B...%5D&patternType=structural&sm=0&groupBy=repo
+	// https://sourcegraph.khulnasoft.com/search?q=context:global+repo:github.com/sourcegraph/deploy-sourcegraph-cloud+file:overlays/prod/frontend/files/site.json+%22observability.alerts%22:+%5B...%5D&patternType=structural&sm=0&groupBy=repo
 	autogold.Expect(`[
       {
         "level": "critical",

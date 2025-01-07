@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	overrideHeader        = "X-Sourcegraph-Override-Feature"
+	overrideHeader        = "X-Khulnasoft-Override-Feature"
 	overrideQuery         = "feat"
 	overrideQueryContains = overrideQuery + "="
 )

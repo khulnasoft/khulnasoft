@@ -5,10 +5,10 @@ declare var SG_ENV: 'EXTENSION' | 'PAGE' | undefined
 declare var EXTENSION_ENV: 'CONTENT' | 'BACKGROUND' | 'OPTIONS' | null | undefined
 
 /** Set by native integrations. */
-declare var SOURCEGRAPH_URL: string | undefined
+declare var KHULNASOFT_URL: string | undefined
 
 /** Set by native integrations. */
-declare var SOURCEGRAPH_INTEGRATION:
+declare var KHULNASOFT_INTEGRATION:
     | 'phabricator-integration'
     | 'bitbucket-integration'
     | 'gitlab-integration'
@@ -18,7 +18,7 @@ declare var SOURCEGRAPH_INTEGRATION:
  * Set by Gitlab native integration to load the assets from the Gitlab instance
  * instead of the Khulnasoft instance.
  */
-declare var SOURCEGRAPH_ASSETS_URL: string | undefined
+declare var KHULNASOFT_ASSETS_URL: string | undefined
 
 /** Global object with metadata available on Gitlab pages. */
 declare var gon: {
@@ -34,10 +34,10 @@ declare var PHABRICATOR_CALLSIGN_MAPPINGS:
     | undefined
 
 /** Set from the Phabricator native integration. **/
-declare var SOURCEGRAPH_PHABRICATOR_EXTENSION: boolean | undefined
+declare var KHULNASOFT_PHABRICATOR_EXTENSION: boolean | undefined
 
 /** Set from the Phabricator native integration. **/
-declare var SOURCEGRAPH_BUNDLE_URL: string | undefined
+declare var KHULNASOFT_BUNDLE_URL: string | undefined
 
 declare module '*.scss' {
     const cssModule: string

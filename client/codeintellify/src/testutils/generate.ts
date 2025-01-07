@@ -7,4 +7,4 @@ import { generateKhulnasoftCodeTable } from './sourcegraph/generate'
 const code = fs.readFileSync(path.join(__dirname, 'mux.go.txt'), 'utf-8').split('\n')
 
 export const GITHUB_CODE_TABLE = generateGithubCodeTable(code)
-export const SOURCEGRAPH_CODE_TABLE = generateKhulnasoftCodeTable(code)
+export const KHULNASOFT_CODE_TABLE = generateKhulnasoftCodeTable(code)

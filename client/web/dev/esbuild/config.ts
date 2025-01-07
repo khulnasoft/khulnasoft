@@ -90,7 +90,7 @@ export function esbuildBuildOptions(ENVIRONMENT_CONFIG: EnvironmentConfig): esbu
         ].filter((plugin): plugin is esbuild.Plugin => plugin !== null),
         define: {
             ...Object.fromEntries(
-                Object.entries({ ...ENVIRONMENT_CONFIG, SOURCEGRAPH_API_URL: undefined }).map(([key, value]) => [
+                Object.entries({ ...ENVIRONMENT_CONFIG, KHULNASOFT_API_URL: undefined }).map(([key, value]) => [
                     `process.env.${key}`,
                     JSON.stringify(value === undefined ? null : value),
                 ])

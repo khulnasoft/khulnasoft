@@ -1,6 +1,6 @@
 # gitserver
 
-Mirrors repositories from their code host. All other Sourcegraph services talk to gitserver when they need data from git. Requests for fetch operations, however, go through repo-updater.
+Mirrors repositories from their code host. All other Khulnasoft services talk to gitserver when they need data from git. Requests for fetch operations, however, go through repo-updater.
 
 gitserver exposes an "exec" API over HTTP for running git commands against
 clones of repositories. gitserver also exposes APIs for the management of
@@ -16,7 +16,7 @@ The management of clones comprises most of the complexity in gitserver since:
   interrupted clones)
 
 Additionally we have invested heavily in the observability of
-gitserver. Nearly every operation Sourcegraph does runs one or more git
+gitserver. Nearly every operation Khulnasoft does runs one or more git
 commands. So we have detailed observability in prometheus, net/event,
 jaeger, honeycomb and stderr logs.
 
@@ -33,7 +33,7 @@ examples.
 
 gitserver's memory usage consists of short lived git subprocesses.
 
-This is an IO and compute heavy service since most Sourcegraph requests will trigger 1 or more git commands. As such we shard requests for a repo to a specific replica. This allows us to horizontally scale out the service.
+This is an IO and compute heavy service since most Khulnasoft requests will trigger 1 or more git commands. As such we shard requests for a repo to a specific replica. This allows us to horizontally scale out the service.
 
 The service is stateful (maintaining git clones). However, it only contains data mirrored from upstream code hosts.
 
@@ -43,11 +43,11 @@ Syncing of Perforce depots is accomplished by either `p4-fusion` or `git p4` (de
 
 ### p4-fusion in development
 
-To use `p4-fusion` while developing Sourcegraph, there are a couple of options.
+To use `p4-fusion` while developing Khulnasoft, there are a couple of options.
 
 #### Docker
 
-[Run `gitserver` in a Docker container](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/doc/dev/background-information/sg/index.md#run-gitserver-in-a-docker-container). This is the option that gives an experience closest to a deployed Sourcegraph instance, and will work for any platform/OS on which you're developing (running `sg start`).
+[Run `gitserver` in a Docker container](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/doc/dev/background-information/sg/index.md#run-gitserver-in-a-docker-container). This is the option that gives an experience closest to a deployed Khulnasoft instance, and will work for any platform/OS on which you're developing (running `sg start`).
 
 #### Bazel
 

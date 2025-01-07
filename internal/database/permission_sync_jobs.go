@@ -75,7 +75,7 @@ const (
 	PermissionsSyncJobReasonGroupManual      PermissionsSyncJobReasonGroup = "MANUAL"
 	PermissionsSyncJobReasonGroupWebhook     PermissionsSyncJobReasonGroup = "WEBHOOK"
 	PermissionsSyncJobReasonGroupSchedule    PermissionsSyncJobReasonGroup = "SCHEDULE"
-	PermissionsSyncJobReasonGroupSourcegraph PermissionsSyncJobReasonGroup = "SOURCEGRAPH"
+	PermissionsSyncJobReasonGroupKhulnasoft PermissionsSyncJobReasonGroup = "KHULNASOFT"
 	PermissionsSyncJobReasonGroupUnknown     PermissionsSyncJobReasonGroup = "UNKNOWN"
 )
 
@@ -104,7 +104,7 @@ var ReasonGroupToReasons = map[PermissionsSyncJobReasonGroup][]PermissionsSyncJo
 		ReasonRepoNoPermissions,
 		ReasonRepoUpdatedFromCodeHost,
 	},
-	PermissionsSyncJobReasonGroupSourcegraph: {
+	PermissionsSyncJobReasonGroupKhulnasoft: {
 		ReasonUserEmailRemoved,
 		ReasonUserEmailVerified,
 		ReasonUserAddedToOrg,
@@ -166,7 +166,7 @@ func (r PermissionsSyncJobReason) ResolveGroup() PermissionsSyncJobReasonGroup {
 		ReasonUserAcceptedOrgInvite,
 		ReasonExternalAccountAdded,
 		ReasonExternalAccountDeleted:
-		return PermissionsSyncJobReasonGroupSourcegraph
+		return PermissionsSyncJobReasonGroupKhulnasoft
 	default:
 		return PermissionsSyncJobReasonGroupUnknown
 	}
@@ -182,7 +182,7 @@ const (
 	ReasonRepoUpdatedFromCodeHost PermissionsSyncJobReason = "REASON_REPO_UPDATED_FROM_CODE_HOST"
 
 	// ReasonUserEmailRemoved and below are reasons of permission syncs scheduled due
-	// to Sourcegraph internal events.
+	// to Khulnasoft internal events.
 	ReasonUserEmailRemoved       PermissionsSyncJobReason = "REASON_USER_EMAIL_REMOVED"
 	ReasonUserEmailVerified      PermissionsSyncJobReason = "REASON_USER_EMAIL_VERIFIED"
 	ReasonUserAdded              PermissionsSyncJobReason = "REASON_USER_ADDED"

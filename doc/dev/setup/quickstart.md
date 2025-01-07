@@ -1,21 +1,21 @@
 # Quickstart for setting up the local environment
 
-This is the quickstart guide for [developing Sourcegraph](../index.md).
+This is the quickstart guide for [developing Khulnasoft](../index.md).
 
 > NOTE: If you run into any troubles, reach out on Slack:
 >
 > - [As an open source contributor](https://discord.com/servers/sourcegraph-969688426372825169)
-> - [As a Sourcegraph employee](https://sourcegraph.slack.com/archives/C04MYFW01NV)
+> - [As a Khulnasoft employee](https://sourcegraph.slack.com/archives/C04MYFW01NV)
 
 <span class="virtual-br"></span>
 
-> NOTE: Looking for how to deploy or use Sourcegraph? See our [getting started](https://sourcegraph.com/docs#quickstart) options.
+> NOTE: Looking for how to deploy or use Khulnasoft? See our [getting started](https://khulnasoft.com/docs#quickstart) options.
 
 <span class="virtual-br"></span>
 
 ## Install `sg`
 
-At Sourcegraph we use [`sg`, the Sourcegraph developer tool](../background-information/sg/index.md), to manage our local development environment.
+At Khulnasoft we use [`sg`, the Khulnasoft developer tool](../background-information/sg/index.md), to manage our local development environment.
 
 To install `sg`, run the following in your terminal:
 
@@ -51,23 +51,23 @@ sg run redis-postgres
 
 Keep this process running and follow the rest of the instructions in another terminal.
 
-## Start Sourcegraph
+## Start Khulnasoft
 
-**If you are a Sourcegraph employee**, start the local development server for Sourcegraph Enterprise with the following command:
+**If you are a Khulnasoft employee**, start the local development server for Khulnasoft Enterprise with the following command:
 
 ```sh
 sg start
 ```
 
-This will continuously compile your code and live reload your locally running instance of Sourcegraph.
+This will continuously compile your code and live reload your locally running instance of Khulnasoft.
 
 Navigate your browser to https://sourcegraph.test:3443 to see if everything worked.
 
 Congratulations on making it to the end of the quickstart guide!
 
-### Running Sourcegraph in different configurations
+### Running Khulnasoft in different configurations
 
-If you want to run Sourcegraph in different configurations (with the monitoring stack, with code insights enabled...), run the following:
+If you want to run Khulnasoft in different configurations (with the monitoring stack, with code insights enabled...), run the following:
 
 ```sh
 sg start -help
@@ -75,7 +75,7 @@ sg start -help
 
 That prints a list of possible configurations which you can start with `sg start`.
 
-For example, you can start Sourcegraph in the mode it uses on Sourcegraph.com by running the following in one terminal window
+For example, you can start Khulnasoft in the mode it uses on Khulnasoft.com by running the following in one terminal window
 
 ```sh
 sg start dotcom

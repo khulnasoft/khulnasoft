@@ -14,7 +14,7 @@ type CodeIntelIndexer struct {
 
 const SyntacticIndexer = "scip-syntax"
 
-// allIndexers is a list of all detectable/suggested indexers known to Sourcegraph.
+// allIndexers is a list of all detectable/suggested indexers known to Khulnasoft.
 // Two indexers with the same language key will be preferred according to the given order.
 var allIndexers = []CodeIntelIndexer{
 	// C++

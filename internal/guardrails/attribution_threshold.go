@@ -17,7 +17,7 @@ func NewThreshold() SnippetLowerBound {
 	//   whether attribution search should run.
 	// - For autocomplete, attribution is turned off on dotcom,
 	//   so this is a no-op.
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		return SnippetLowerBound{
 			linesLowerBound: 0,
 		}

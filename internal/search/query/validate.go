@@ -341,7 +341,7 @@ func validateRepoRevPair(nodes []Node) error {
 }
 
 // Queries containing commit parameters without type:diff or type:commit are not
-// valid. cf. https://sourcegraph.com/docs/code_search/reference/language#commit-parameter
+// valid. cf. https://khulnasoft.com/docs/code_search/reference/language#commit-parameter
 func validateCommitParameters(nodes []Node) error {
 	var seenCommitParam string
 	var typeCommitExists bool

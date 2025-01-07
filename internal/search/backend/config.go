@@ -34,7 +34,7 @@ func NewConfigFingerprint(sc *schema.SiteConfiguration) (*ConfigFingerprint, err
 	}, nil
 }
 
-const configFingerprintHeader = "X-Sourcegraph-Config-Fingerprint"
+const configFingerprintHeader = "X-Khulnasoft-Config-Fingerprint"
 
 func (c *ConfigFingerprint) FromHeaders(header http.Header) error {
 	fingerprint, err := parseConfigFingerprint(header.Get(configFingerprintHeader))

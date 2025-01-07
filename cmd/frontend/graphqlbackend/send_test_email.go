@@ -48,22 +48,22 @@ func (r *schemaResolver) SendTestEmail(ctx context.Context, args struct{ To stri
 }
 
 var emailTemplateTest = txemail.MustValidate(txtypes.Templates{
-	Subject: `TEST: email sent from Sourcegraph (test ID: {{ .ID }})`,
+	Subject: `TEST: email sent from Khulnasoft (test ID: {{ .ID }})`,
 	Text: `
-If you're seeing this, Sourcegraph is able to send email correctly for all of its product features!
+If you're seeing this, Khulnasoft is able to send email correctly for all of its product features!
 
 Congratulations!
 
-* Sourcegraph
+* Khulnasoft
 
 Test ID: {{ .ID }}
 `,
 	HTML: `
-<p>Sourcegraph is able to send email correctly for all of its product features!</p>
+<p>Khulnasoft is able to send email correctly for all of its product features!</p>
 <br>
 <p>Congratulations!</p>
 <br>
-<p>* Sourcegraph</p>
+<p>* Khulnasoft</p>
 <br>
 <p>Test ID: {{ .ID }}</p>
 `,

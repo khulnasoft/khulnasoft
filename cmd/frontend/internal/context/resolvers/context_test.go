@@ -190,7 +190,7 @@ func TestCodyIgnore(t *testing.T) {
 				db.FeatureFlags().CreateBool(ctx, "cody-context-filters-enabled", true)
 			}
 
-			dotcom.MockSourcegraphDotComMode(t, tt.dotComMode)
+			dotcom.MockKhulnasoftDotComMode(t, tt.dotComMode)
 			observationCtx := observation.TestContextTB(t)
 			contextClient := codycontext.NewCodyContextClient(
 				observationCtx,

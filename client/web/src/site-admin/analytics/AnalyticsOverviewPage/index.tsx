@@ -119,7 +119,7 @@ export const AnalyticsOverviewPage: React.FunctionComponent<Props> = ({ telemetr
                                 </>
                             ) : (
                                 <AnchorLink
-                                    to="http://sourcegraph.com/contact/sales"
+                                    to="http://khulnasoft.com/contact/sales"
                                     target="_blank"
                                     rel="noopener"
                                     className="ml-1"
@@ -202,6 +202,6 @@ function getChangelogUrl(version: string): string | null {
     // Only show changelog link for versions that match the X.Y.Z format.
     // Other versions don't have a changelog entry.
     return version.match(/^\d+-\d+-\d+$/)
-        ? `https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/CHANGELOG.md#${versionAnchor}`
+        ? `https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/CHANGELOG.md#${versionAnchor}`
         : null
 }

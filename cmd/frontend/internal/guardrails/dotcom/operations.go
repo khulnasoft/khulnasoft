@@ -63,7 +63,7 @@ type SnippetAttributionSnippetAttributionSnippetAttributionConnectionNodesSnippe
 	//
 	// Note: we do not return a type Repository since repositoryName may
 	// represent a repository not on this instance. eg a match from the
-	// sourcegraph.com open source corpus.
+	// khulnasoft.com open source corpus.
 	RepositoryName string `json:"repositoryName"`
 }
 

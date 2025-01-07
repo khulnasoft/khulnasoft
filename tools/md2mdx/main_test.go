@@ -67,8 +67,8 @@ func TestConversion(t *testing.T) {
 		},
 		{
 			name:  "extid tag from src-cli usage",
-			input: "| `-extension-id` | The <extID> in https://sourcegraph.com/extensions/<extID> (e.g. sourcegraph/java) |  |",
-			want:  "| `-extension-id` | The &lt;extID&gt; in https://sourcegraph.com/extensions/&lt;extID&gt; (e.g. sourcegraph/java) |  |",
+			input: "| `-extension-id` | The <extID> in https://khulnasoft.com/extensions/<extID> (e.g. sourcegraph/java) |  |",
+			want:  "| `-extension-id` | The &lt;extID&gt; in https://khulnasoft.com/extensions/&lt;extID&gt; (e.g. sourcegraph/java) |  |",
 		},
 		{
 			name:  "latency is >50ms",

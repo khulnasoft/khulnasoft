@@ -21,7 +21,7 @@ var (
 	findRefsOccurred int32
 )
 
-// logSiteSearchOccurred records that a search has occurred on the Sourcegraph instance.
+// logSiteSearchOccurred records that a search has occurred on the Khulnasoft instance.
 func logSiteSearchOccurred() error {
 	if !atomic.CompareAndSwapInt32(&searchOccurred, 0, 1) {
 		return nil
@@ -30,7 +30,7 @@ func logSiteSearchOccurred() error {
 	return store.Set(key, "true")
 }
 
-// logSiteFindRefsOccurred records that a search has occurred on the Sourcegraph instance.
+// logSiteFindRefsOccurred records that a search has occurred on the Khulnasoft instance.
 func logSiteFindRefsOccurred() error {
 	if !atomic.CompareAndSwapInt32(&findRefsOccurred, 0, 1) {
 		return nil

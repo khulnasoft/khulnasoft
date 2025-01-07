@@ -27,7 +27,7 @@ func Zoekt() *monitoring.Dashboard {
 		Name:                     "zoekt",
 		Title:                    "Zoekt",
 		Description:              "Indexes repositories, populates the search index, and responds to indexed search queries.",
-		NoSourcegraphDebugServer: true,
+		NoKhulnasoftDebugServer: true,
 		Variables: []monitoring.ContainerVariable{
 			{
 				Label: "Instance",
@@ -145,7 +145,7 @@ func Zoekt() *monitoring.Dashboard {
 							Query:       `sum(increase(get_index_options_error_total[5m]))`,
 							// This value can spike, so only if we have a
 							// sustained error rate do we alert. On
-							// Sourcegraph.com gitserver rollouts take a while
+							// Khulnasoft.com gitserver rollouts take a while
 							// and this alert will fire during that time. So
 							// we tuned Critical to atleast be as long as a
 							// gitserver rollout. 2022-02-09 ~25m rollout.
@@ -156,7 +156,7 @@ func Zoekt() *monitoring.Dashboard {
 							NextSteps: `
 								- View error rates on gitserver and frontend to identify root cause.
 								- Rollback frontend/gitserver deployment if due to a bad code change.
-								- View error logs for 'getIndexOptions' via net/trace debug interface. For example click on a 'indexed-search-indexer-' on https://sourcegraph.com/-/debug/. Then click on Traces. Replace sourcegraph.com with your instance address.
+								- View error logs for 'getIndexOptions' via net/trace debug interface. For example click on a 'indexed-search-indexer-' on https://khulnasoft.com/-/debug/. Then click on Traces. Replace khulnasoft.com with your instance address.
 							`,
 							Interpretation: `
 								When considering indexing a repository we ask for the index configuration
@@ -849,7 +849,7 @@ func Zoekt() *monitoring.Dashboard {
 
 								    - Enabling shard merging for Zoekt: Set SRC_ENABLE_SHARD_MERGING="1" for zoekt-indexserver. Use this option
 								if your corpus of repositories has a high percentage of small, rarely updated repositories. See
-								[documentation](https://sourcegraph.com/docs/code-search/features#shard-merging).
+								[documentation](https://khulnasoft.com/docs/code-search/features#shard-merging).
 								    - Creating additional Zoekt replicas: This spreads all the shards out amongst more replicas, which
 								means that each _individual_ replica will have fewer shards. This, in turn, decreases the
 								amount of memory map areas that a _single_ replica can create (in order to load the shards into memory).

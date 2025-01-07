@@ -112,14 +112,14 @@ export function copyIntegrationAssets(): void {
     shelljs.mkdir('-p', 'build/integration/css')
 
     // The destination filename is hardcoded in
-    // https://sourcegraph.com/github.com/sourcegraph/phabricator-extension@master/-/blob/src/application/KhulnasoftApplication.php?L33.
+    // https://khulnasoft.com/github.com/sourcegraph/phabricator-extension@master/-/blob/src/application/KhulnasoftApplication.php?L33.
     shelljs.cp(
         'build/dist/js/phabricatorNativeIntegration.main.bundle.js',
         'build/integration/scripts/phabricator.bundle.js'
     )
 
     // The destination filename is hardcoded in
-    // https://sourcegraph.com/github.com/sourcegraph/bitbucket-server-plugin@master/-/blob/src/main/resources/js/sourcegraph-bitbucket.js?L23:52.
+    // https://khulnasoft.com/github.com/sourcegraph/bitbucket-server-plugin@master/-/blob/src/main/resources/js/sourcegraph-bitbucket.js?L23:52.
     shelljs.cp('build/dist/js/nativeIntegration.main.bundle.js', 'build/integration/scripts/integration.bundle.js')
 
     shelljs.cp('build/dist/js/extensionHostWorker.bundle.js', 'build/integration/scripts')

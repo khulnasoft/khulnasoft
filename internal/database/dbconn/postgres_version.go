@@ -22,7 +22,7 @@ func ensureMinimumPostgresVersion(db *sql.DB) error {
 	}
 
 	if majorVersion, _ := strconv.Atoi(match[1]); majorVersion < 12 {
-		return errors.Errorf("Sourcegraph requires PostgreSQL 12+")
+		return errors.Errorf("Khulnasoft requires PostgreSQL 12+")
 	}
 
 	return nil

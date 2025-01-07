@@ -53,7 +53,7 @@ const (
 
 	routeAboutSubdomain = "about-subdomain"
 	aboutRedirectScheme = "https"
-	aboutRedirectHost   = "sourcegraph.com"
+	aboutRedirectHost   = "khulnasoft.com"
 
 	// Legacy redirects
 	routeLegacyLogin      = "login"
@@ -62,7 +62,7 @@ const (
 )
 
 // aboutRedirects contains map entries, each of which indicates that
-// sourcegraph.com/$KEY should redirect to sourcegraph.com/$VALUE.
+// khulnasoft.com/$KEY should redirect to khulnasoft.com/$VALUE.
 var aboutRedirects = map[string]string{
 	"about":      "about",
 	"blog":       "blog",
@@ -156,7 +156,7 @@ func InitRouter(db database.DB, configurationServer *conf.Server) {
 	}
 
 	config := conf.Get()
-	// Register Sourcegraph.com-specific pages as applicable.
+	// Register Khulnasoft.com-specific pages as applicable.
 	if config.Dotcom != nil && config.Dotcom.CodyProConfig != nil {
 		staticPages = append(staticPages, staticPageInfo{
 			path: "/cody/manage/subscription/new", name: "cody",
@@ -200,7 +200,7 @@ func InitRouter(db database.DB, configurationServer *conf.Server) {
 			if shortQuery == "" {
 				return conf.Branding().BrandName
 			}
-			// e.g. "myquery - Sourcegraph"
+			// e.g. "myquery - Khulnasoft"
 			return brandNameSubtitle(shortQuery)
 		}, nil, index)))
 	// streaming search
@@ -208,8 +208,8 @@ func InitRouter(db database.DB, configurationServer *conf.Server) {
 	// search badge
 	r.Path("/search/badge").Methods("GET").Name(routeSearchBadge).Handler(searchBadgeHandler())
 
-	if dotcom.SourcegraphDotComMode() {
-		// sourcegraph.com subdomain
+	if dotcom.KhulnasoftDotComMode() {
+		// khulnasoft.com subdomain
 		r.Path("/{Path:(?:" + strings.Join(mapKeys(aboutRedirects), "|") + ")}").Methods("GET").
 			Name(routeAboutSubdomain).
 			Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -226,11 +226,11 @@ func InitRouter(db database.DB, configurationServer *conf.Server) {
 
 		cncfDescription := "Search all repositories in the Cloud Native Computing Foundation (CNCF)."
 		r.Path("/cncf").Methods("GET").Name("community-search-contexts.cncf").Handler(handler(db, configurationServer, serveBrandedPageString(db, configurationServer, "CNCF code search", &cncfDescription, index)))
-		r.PathPrefix("/devtooltime").Methods("GET").Name("devtooltime").Handler(staticRedirectHandler("https://info.sourcegraph.com/dev-tool-time", http.StatusMovedPermanently))
+		r.PathPrefix("/devtooltime").Methods("GET").Name("devtooltime").Handler(staticRedirectHandler("https://info.khulnasoft.com/dev-tool-time", http.StatusMovedPermanently))
 
 		// legacy routes
 		r.Path("/login").Methods("GET").Name(routeLegacyLogin).Handler(staticRedirectHandler("/sign-in", http.StatusMovedPermanently))
-		r.Path("/careers").Methods("GET").Name(routeLegacyCareers).Handler(staticRedirectHandler("https://sourcegraph.com/jobs", http.StatusMovedPermanently))
+		r.Path("/careers").Methods("GET").Name(routeLegacyCareers).Handler(staticRedirectHandler("https://khulnasoft.com/jobs", http.StatusMovedPermanently))
 
 		r.PathPrefix("/extensions").Methods("GET").Name("extensions").
 			HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -243,7 +243,7 @@ func InitRouter(db database.DB, configurationServer *conf.Server) {
 
 	// repo, has to come last
 	serveRepoHandler := handler(db, configurationServer, serveRepoOrBlob(db, configurationServer, routeRepo, func(c *Common, r *http.Request) string {
-		// e.g. "gorilla/mux - Sourcegraph"
+		// e.g. "gorilla/mux - Khulnasoft"
 		return brandNameSubtitle(repoShortName(c.Repo.Name))
 	}))
 	repoRevPath := "/" + routevar.Repo + routevar.RepoRevSuffix
@@ -269,7 +269,7 @@ func InitRouter(db database.DB, configurationServer *conf.Server) {
 	repoRev.Path("/tree{Path:.*}").Methods("GET").
 		Name(routeTree).
 		Handler(handler(db, configurationServer, serveTree(db, configurationServer, func(c *Common, r *http.Request) string {
-			// e.g. "src - gorilla/mux - Sourcegraph"
+			// e.g. "src - gorilla/mux - Khulnasoft"
 			dirName := path.Base(mux.Vars(r)["Path"])
 			return brandNameSubtitle(dirName, repoShortName(c.Repo.Name))
 		})))
@@ -278,7 +278,7 @@ func InitRouter(db database.DB, configurationServer *conf.Server) {
 	repoRev.Path("/blob{Path:.*}").Methods("GET").
 		Name(routeBlob).
 		Handler(handler(db, configurationServer, serveRepoOrBlob(db, configurationServer, routeBlob, func(c *Common, r *http.Request) string {
-			// e.g. "mux.go - gorilla/mux - Sourcegraph"
+			// e.g. "mux.go - gorilla/mux - Khulnasoft"
 			fileName := path.Base(mux.Vars(r)["Path"])
 			return brandNameSubtitle(fileName, repoShortName(c.Repo.Name))
 		})))
@@ -306,7 +306,7 @@ func InitRouter(db database.DB, configurationServer *conf.Server) {
 	}
 
 	// legacy redirects
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		repoRev.Path("/info").Methods("GET").Name("page.repo.landing").Handler(handler(db, configurationServer, serveRepoLanding(db)))
 		repoRev.Path("/{dummy:def|refs}/" + routevar.Def).Methods("GET").Name("page.def.redirect").Handler(http.HandlerFunc(serveDefRedirectToDefLanding))
 		repoRev.Path("/info/" + routevar.Def).Methods("GET").Name(routeLegacyDefLanding).Handler(handler(db, configurationServer, serveDefLanding))
@@ -336,8 +336,8 @@ func brandNameSubtitle(titles ...string) string {
 // The scheme, host, and path in the specified url override ones in the incoming
 // request. For example:
 //
-//	staticRedirectHandler("http://google.com") serving "https://sourcegraph.com/foobar?q=foo" -> "http://google.com/foobar?q=foo"
-//	staticRedirectHandler("/foo") serving "https://sourcegraph.com/bar?q=foo" -> "https://sourcegraph.com/foo?q=foo"
+//	staticRedirectHandler("http://google.com") serving "https://khulnasoft.com/foobar?q=foo" -> "http://google.com/foobar?q=foo"
+//	staticRedirectHandler("/foo") serving "https://khulnasoft.com/bar?q=foo" -> "https://khulnasoft.com/foo?q=foo"
 func staticRedirectHandler(u string, code int) http.Handler {
 	target, err := url.Parse(u)
 	if err != nil {

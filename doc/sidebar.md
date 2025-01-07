@@ -19,14 +19,14 @@ ignoreDisconnectedPageCheck: true
 
 <!--
 
-This page is the sidebar on https://docs.sourcegraph.com.
+This page is the sidebar on https://docs.khulnasoft.com.
 
 Keep it as a single list with at most 2 levels. (Anything else may not render correctly.)
 
 -->
 
 <p>⚠️ <b>You are browsing a trimmed down version of the docsite</b> which is available for the convenience of browsing automatically generated documentation.</p>
-<p>On <a href="https://docs.sourcegraph.com">docs.sourcegraph.com</a> the content is being served from the <a href="">v5.3.9104</a> branch which
+<p>On <a href="https://docs.khulnasoft.com">docs.khulnasoft.com</a> the content is being served from the <a href="">v5.3.9104</a> branch which
 is the last point in time at which we had this content available, in order to maintain continuity until the legacy docsite is fully removed.</p>
 
 <h3 class="heading">CLI</h3>

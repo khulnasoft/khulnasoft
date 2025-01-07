@@ -1,5 +1,5 @@
 // Package v1 publishes telemetrygateway V1 bindings for both internal
-// (single-tenant Sourcegraph) and external (standalone Sourcegraph-managed
+// (single-tenant Khulnasoft) and external (standalone Khulnasoft-managed
 // services) consumption. This package also includes standard defaults and
 // helpers for Telemetry Gateway integrations.
 package v1

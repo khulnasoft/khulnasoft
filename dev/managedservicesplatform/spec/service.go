@@ -48,7 +48,7 @@ type ServiceSpec struct {
 	// To use gRPC and Cloudflare proxy (implicitly enabled unless
 	// 'domain.cloudflare.proxied: false' is configured), the Cloudflare zone
 	// must have gRPC enabled: https://developers.cloudflare.com/network/grpc-connections/
-	// This is already enabled for the Cloudflare zones 'sourcegraph.com' and
+	// This is already enabled for the Cloudflare zones 'khulnasoft.com' and
 	// 'sgdev.org'.
 	Protocol *ServiceProtocol `yaml:"protocol,omitempty"`
 

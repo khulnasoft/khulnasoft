@@ -25,7 +25,7 @@ func NewBestEffortEventRecorder(logger log.Logger, recorder *EventRecorder) *Bes
 	}
 }
 
-// Record records a single telemetry event with the context's Sourcegraph
+// Record records a single telemetry event with the context's Khulnasoft
 // actor, logging any recording errors it encounters. Parameters are optional.
 func (r *BestEffortEventRecorder) Record(ctx context.Context, feature eventFeature, action eventAction, parameters *EventParameters) {
 	if err := r.recorder.Record(ctx, feature, action, parameters); err != nil {

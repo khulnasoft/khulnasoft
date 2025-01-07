@@ -7,7 +7,7 @@ import type { logEventResult } from '../../graphql-operations'
 
 /**
  * GraphQLTelemetryExporter exports events via the new Khulnasoft telemetry
- * framework: https://sourcegraph.com/docs/dev/background-information/telemetry
+ * framework: https://khulnasoft.com/docs/dev/background-information/telemetry
  */
 export class GraphQLTelemetryExporter implements TelemetryExporter {
     constructor(private requestGraphQL: PlatformContext['requestGraphQL']) {}

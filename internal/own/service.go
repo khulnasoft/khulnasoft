@@ -21,7 +21,7 @@ type Service interface {
 	RulesetForRepo(context.Context, api.RepoName, api.RepoID, api.CommitID) (*codeowners.Ruleset, error)
 
 	// AssignedOwnership returns the owners that were assigned for given repo within
-	// Sourcegraph. This is an owners set that is independent of CODEOWNERS files.
+	// Khulnasoft. This is an owners set that is independent of CODEOWNERS files.
 	// Owners are assigned for repositories and directory hierarchies,
 	// so an owner for the whole repo transitively owns all files in that repo,
 	// and owner of 'src/test' in a given repo transitively owns all files within
@@ -29,7 +29,7 @@ type Service interface {
 	AssignedOwnership(context.Context, api.RepoID, api.CommitID) (AssignedOwners, error)
 
 	// AssignedTeams returns the teams that were assigned for given repo within
-	// Sourcegraph. This is an owners set that is independent of CODEOWNERS files.
+	// Khulnasoft. This is an owners set that is independent of CODEOWNERS files.
 	// Teams are assigned for repositories and directory hierarchies, so an owner
 	// team for the whole repo transitively owns all files in that repo, and owner
 	// team of 'src/test' in a given repo transitively owns all files within the

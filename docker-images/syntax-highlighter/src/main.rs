@@ -4,14 +4,14 @@
 extern crate rocket;
 
 use rocket::serde::json::{json, Json, Value as JsonValue};
-use syntect_server::{ScipHighlightQuery, SourcegraphQuery};
+use syntect_server::{ScipHighlightQuery, KhulnasoftQuery};
 
 fn merge_ok_err<A>(r: Result<A, A>) -> A {
     r.unwrap_or_else(|e| e)
 }
 
 #[post("/", format = "application/json", data = "<q>")]
-fn syntect(q: Json<SourcegraphQuery>) -> JsonValue {
+fn syntect(q: Json<KhulnasoftQuery>) -> JsonValue {
     // TODO(slimsag): In an ideal world we wouldn't be relying on catch_unwind
     // and instead Syntect would return Result types when failures occur. This
     // will require some non-trivial work upstream:
@@ -27,7 +27,7 @@ fn syntect(q: Json<SourcegraphQuery>) -> JsonValue {
 // and just have the `scip` endpoint. But I figured I would make it available at least
 // for now, since I'm working on doing that.
 #[post("/lsif", format = "application/json", data = "<q>")]
-fn lsif(q: Json<SourcegraphQuery>) -> JsonValue {
+fn lsif(q: Json<KhulnasoftQuery>) -> JsonValue {
     merge_ok_err(syntect_server::lsif_highlight(q.into_inner()))
 }
 

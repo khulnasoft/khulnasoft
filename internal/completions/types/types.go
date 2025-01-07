@@ -60,23 +60,23 @@ type ModelConfigInfo struct {
 
 	// CodyProUserAccessToken is an awkward hack for the asymmetry between Cody Enterprise
 	// and Cody Pro. For Cody Enterprise, requests are sent to Cody Gateway using the
-	// Sourcegraph instance's access token derived from their license key. For Cody Pro,
+	// Khulnasoft instance's access token derived from their license key. For Cody Pro,
 	// requests are sent using the end user's access token.
 	//
 	// Leave as nil for Cody Enterprise requests, which will then use the access token
-	// from the `Provider.ServerSideConfig.SourcegraphProviderConfig`.
+	// from the `Provider.ServerSideConfig.KhulnasoftProviderConfig`.
 	//
 	// Otherwise, for Cody Pro users, supply their dotcom access token here. It doesn't make
 	// sense to store it in the Provider's server-side config, as it is bound to this particular
 	// HTTP request.
 	//
 	// In the future, we'll be able to rectify this by having Cody Free/Cody Pro users authenticate
-	// via a shared access token bound to the "Cody Pro Team" or "Sourcegraph Tenant".
+	// via a shared access token bound to the "Cody Pro Team" or "Khulnasoft Tenant".
 	CodyProUserAccessToken *string
 }
 
 // LookupModelConfigInfo returns the ModelConfigInfo for the supplied ModelRef. Returns an error if the
-// model is not found (and therefore unsupported by this Sourcegraph instance).
+// model is not found (and therefore unsupported by this Khulnasoft instance).
 func LookupModelConfigInfo(config *modelconfigSDK.ModelConfiguration, mref modelconfigSDK.ModelRef) (ModelConfigInfo, error) {
 	// Lookup the provider.
 	wantProviderID := mref.ProviderID()

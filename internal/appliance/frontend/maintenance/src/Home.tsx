@@ -20,7 +20,7 @@ export const Home: React.FC = () => {
                 </>
             ) : (
                 <>
-                    <Typography>Please wait, while the Sourcegraph Appliance connects...</Typography>
+                    <Typography>Please wait, while the Khulnasoft Appliance connects...</Typography>
                 </>
             )}
         </div>

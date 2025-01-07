@@ -241,14 +241,14 @@ func TestToEventLogs(t *testing.T) {
 					AnonymousUserId: pointers.Ptr("anonymous"),
 				},
 				MarketingTracking: &telemetrygatewayv1.EventMarketingTracking{
-					Url: pointers.Ptr("sourcegraph.com/foobar"),
+					Url: pointers.Ptr("khulnasoft.com/foobar"),
 				},
 			}},
 			expectEventLogs: autogold.Expect(`[
   {
     "ID": 0,
     "Name": "CodeSearch.Search",
-    "URL": "sourcegraph.com/foobar",
+    "URL": "khulnasoft.com/foobar",
     "UserID": 1234,
     "AnonymousUserID": "anonymous",
     "Argument": {

@@ -41,7 +41,7 @@ const (
 
 // new OIDCIDServer returns a new running mock OIDC ID provider service. It is
 // the caller's responsibility to call Close().
-func newOIDCIDServer(t *testing.T, code string, providerConfig *cloud.SchemaAuthProviderSourcegraphOperator) (server *httptest.Server, emailPtr *string) {
+func newOIDCIDServer(t *testing.T, code string, providerConfig *cloud.SchemaAuthProviderKhulnasoftOperator) (server *httptest.Server, emailPtr *string) {
 	s := http.NewServeMux()
 
 	s.HandleFunc("/.well-known/openid-configuration", func(w http.ResponseWriter, r *http.Request) {
@@ -82,7 +82,7 @@ func newOIDCIDServer(t *testing.T, code string, providerConfig *cloud.SchemaAuth
 		)
 		require.NoError(t, err)
 	})
-	email := "alice@sourcegraph.com"
+	email := "alice@khulnasoft.com"
 	s.HandleFunc("/oauth2/v1/userinfo", func(w http.ResponseWriter, r *http.Request) {
 		authzHeader := r.Header.Get("Authorization")
 		authzParts := strings.Split(authzHeader, " ")
@@ -103,7 +103,7 @@ func newOIDCIDServer(t *testing.T, code string, providerConfig *cloud.SchemaAuth
 	})
 
 	auth.MockGetAndSaveUser = func(ctx context.Context, op auth.GetAndSaveUserOp) (newUserCreated bool, userID int32, safeErrMsg string, err error) {
-		if op.ExternalAccount.ServiceType == internalauth.SourcegraphOperatorProviderType &&
+		if op.ExternalAccount.ServiceType == internalauth.KhulnasoftOperatorProviderType &&
 			op.ExternalAccount.ServiceID == providerConfig.Issuer &&
 			op.ExternalAccount.ClientID == testClientID &&
 			op.ExternalAccount.AccountID == testOIDCUser {
@@ -132,7 +132,7 @@ func newMockDBAndRequester() mockDetails {
 		[]*extsvc.Account{
 			{
 				AccountSpec: extsvc.AccountSpec{
-					ServiceType: internalauth.SourcegraphOperatorProviderType,
+					ServiceType: internalauth.KhulnasoftOperatorProviderType,
 				},
 			},
 		},
@@ -174,7 +174,7 @@ func TestMiddleware(t *testing.T) {
 	session.ResetMockSessionStore(t)
 
 	const testCode = "testCode"
-	providerConfig := cloud.SchemaAuthProviderSourcegraphOperator{
+	providerConfig := cloud.SchemaAuthProviderKhulnasoftOperator{
 		ClientID:          testClientID,
 		ClientSecret:      "testClientSecret",
 		LifecycleDuration: 60,
@@ -335,7 +335,7 @@ func TestMiddleware(t *testing.T) {
 			}, nil
 		})
 		mocks.usersStore.HardDeleteFunc.SetDefaultHook(func(ctx context.Context, _ int32) error {
-			require.True(t, actor.FromContext(ctx).SourcegraphOperator, "the actor should be a Sourcegraph operator")
+			require.True(t, actor.FromContext(ctx).KhulnasoftOperator, "the actor should be a Khulnasoft operator")
 			return nil
 		})
 

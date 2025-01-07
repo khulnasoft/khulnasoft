@@ -55,49 +55,49 @@ func TestSearchFilteringExample(t *testing.T) {
 		"email entry in CODEOWNERS": {
 			Email: verifiedEmail,
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"email entry in CODEOWNERS for second verified email": {
 			Email: "john-the-BIG-dough@example.com",
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"email entry in CODEOWNERS for third verified email": {
 			Email: "john-aka-im-rich@didyouget.it",
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"jdoe entry in CODEOWNERS": {
 			Handle: username,
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"@jdoe entry in CODEOWNERS": {
 			Handle: "@jdoe",
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"@jdoegh (github handle) entry in CODEOWNERS": {
 			Handle: gitHubLogin,
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"@jdoegl (gitlab handle) entry in CODEOWNERS": {
 			Handle: gitLabLogin,
 			RepoContext: &RepoContext{
-				Name:         "gitlab.com/sourcegraph/sourcegraph",
+				Name:         "gitlab.com/khulnasoft/khulnasoft",
 				CodeHostKind: "gitlab",
 			},
 		},
@@ -138,14 +138,14 @@ func TestBagNoUser(t *testing.T) {
 		"same handle matches even when there is no user": {
 			Handle: "userdoesnotexist",
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"same handle with @ matches even when there is no user": {
 			Handle: "@userdoesnotexist",
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
@@ -158,14 +158,14 @@ func TestBagNoUser(t *testing.T) {
 		"email entry in CODEOWNERS": {
 			Email: verifiedEmail,
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"different handle entry in CODEOWNERS": {
 			Handle: "anotherhandle",
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
@@ -200,28 +200,28 @@ func TestBagUserFoundNoMatches(t *testing.T) {
 		"email entry in CODEOWNERS": {
 			Email: "jdoe@example.com",
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"email entry in CODEOWNERS, but the email is unverified": {
 			Email: unverifiedEmail,
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"different handle entry in CODEOWNERS": {
 			Handle: "anotherhandle",
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"different code host handle entry in CODEOWNERS": {
 			Handle: gerritLogin,
 			RepoContext: &RepoContext{
-				Name:         "gerrithub.io/sourcegraph/sourcegraph",
+				Name:         "gerrithub.io/khulnasoft/khulnasoft",
 				CodeHostKind: "gerrit",
 			},
 		},
@@ -271,14 +271,14 @@ func TestBagUnverifiedEmailOnlyMatchesWithItself(t *testing.T) {
 		"email entry in CODEOWNERS, the email is unverified but matches with search term": {
 			Email: unverifiedEmail,
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},
 		"email entry in CODEOWNERS, although the email is verified, but the search term is an unverified email": {
 			Email: verifiedEmail,
 			RepoContext: &RepoContext{
-				Name:         "github.com/sourcegraph/sourcegraph",
+				Name:         "github.com/khulnasoft/khulnasoft",
 				CodeHostKind: "github",
 			},
 		},

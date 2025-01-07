@@ -1,12 +1,12 @@
-# Developing the Sourcegraph web app
+# Developing the Khulnasoft web app
 
-Guide to contribute to the Sourcegraph web app. Please also see our general [TypeScript documentation](../languages/typescript.md).
+Guide to contribute to the Khulnasoft web app. Please also see our general [TypeScript documentation](../languages/typescript.md).
 
 ## Local development
 
 See [common commands for local development](../../setup/quickstart.md).
-Commands specifically useful for the web team can be found in the root [package.json](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/package.json).
-Also, check out the web app [README](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/README.md).
+Commands specifically useful for the web team can be found in the root [package.json](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/package.json).
+Also, check out the web app [README](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/README.md).
 
 ### Prerequisites
 
@@ -16,7 +16,7 @@ To install it, [see the instructions](../../setup/quickstart.md).
 
 ### Commands
 
-1. Start the web server and point it to any deployed API instance. See more info in the web app [README](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/README.md).
+1. Start the web server and point it to any deployed API instance. See more info in the web app [README](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/README.md).
 
     ```sh
     sg start web-standalone
@@ -24,7 +24,7 @@ To install it, [see the instructions](../../setup/quickstart.md).
     To use a public API that doesn't require authentication for most of the functionality:
 
     ```sh
-    SOURCEGRAPH_API_URL=https://sourcegraph.com sg start web-standalone
+    KHULNASOFT_API_URL=https://khulnasoft.com sg start web-standalone
     ```
 
 2. Start all backend services with the frontend server.
@@ -105,7 +105,7 @@ If you don't do this (and just use a normal `import`), it will still work, but i
 
 ## Formatting
 
-We use [Prettier](https://sourcegraph.com/github.com/prettier/prettier) so you never have to worry about how to format your code.
+We use [Prettier](https://khulnasoft.com/github.com/prettier/prettier) so you never have to worry about how to format your code.
 `pnpm run format` will check & autoformat all code.
 
 ## Tests
@@ -133,4 +133,4 @@ See [testing.md](../../how-to/testing.md).
     - Forward errors to the error monitoring services.
     - Dynamically change logging level depending on the environment.
 
-Use [the `logger` service](https://https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+export+const+logger:+Logger+%3D&patternType=standard&sm=1&groupBy=path) that wraps console methods where we want to preserve console output in non-development environments. E.g., logging helpful information during an integration test execution. Feel free to disable the `no-console` ESLint rule for node.js environments via [the `overrides` configuration key](https://eslint.org/docs/latest/user-guide/configuring/configuration-files#configuration-based-on-glob-patterns). Check out [the Unified logger service RFC](https://docs.google.com/document/d/1PolGRDS9XfKj-IJEBi7BTbVZeUsQfM-3qpjLsLlB-yw/edit) for more context.
+Use [the `logger` service](https://https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+export+const+logger:+Logger+%3D&patternType=standard&sm=1&groupBy=path) that wraps console methods where we want to preserve console output in non-development environments. E.g., logging helpful information during an integration test execution. Feel free to disable the `no-console` ESLint rule for node.js environments via [the `overrides` configuration key](https://eslint.org/docs/latest/user-guide/configuring/configuration-files#configuration-based-on-glob-patterns). Check out [the Unified logger service RFC](https://docs.google.com/document/d/1PolGRDS9XfKj-IJEBi7BTbVZeUsQfM-3qpjLsLlB-yw/edit) for more context.

@@ -120,7 +120,7 @@ func newSessionStore() sessions.Store {
 // and session.Options.SameSite fields depending on the value of the
 // secure field.
 func setSessionSecureOptions(opts *sessions.Options, secure bool) {
-	// if Sourcegraph is running via:
+	// if Khulnasoft is running via:
 	//  * HTTP:  set "SameSite=Lax" in session cookie - users can sign in, but won't be able to use the
 	// 			 browser extension. Note that users will be able to use the browser extension once they
 	// 			 configure their instance to use HTTPS.
@@ -188,7 +188,7 @@ func SetActorFromUser(ctx context.Context, w http.ResponseWriter, r *http.Reques
 	}
 
 	if info.IsExpired() && !user.SiteAdmin {
-		return ctx, errors.New("Sourcegraph license is expired. Only admins are allowed to sign in.")
+		return ctx, errors.New("Khulnasoft license is expired. Only admins are allowed to sign in.")
 	}
 
 	// Authentication passed at this point, this is our actor

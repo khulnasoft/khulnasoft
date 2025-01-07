@@ -110,7 +110,7 @@ func TestStatusMessages(t *testing.T) {
 				},
 				{
 					NoRepositoriesDetected: &repos.NoRepositoriesDetected{
-						Message: "No repositories have been added to Sourcegraph.",
+						Message: "No repositories have been added to Khulnasoft.",
 					},
 				},
 				{
@@ -156,7 +156,7 @@ func TestStatusMessages(t *testing.T) {
 							},
 							{
 								"__typename": "NoRepositoriesDetected",
-        						"message": "No repositories have been added to Sourcegraph."
+        						"message": "No repositories have been added to Khulnasoft."
 							},
 							{
 								"__typename": "CloningProgress",

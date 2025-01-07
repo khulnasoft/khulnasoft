@@ -55,12 +55,12 @@ func TestUser(t *testing.T) {
 		})
 		db.UsersFunc.SetDefaultReturn(users)
 
-		t.Run("allowed on Sourcegraph.com", func(t *testing.T) {
-			dotcom.MockSourcegraphDotComMode(t, true)
+		t.Run("allowed on Khulnasoft.com", func(t *testing.T) {
+			dotcom.MockKhulnasoftDotComMode(t, true)
 			checkUserByUsername(t)
 		})
 
-		t.Run("allowed on non-Sourcegraph.com", func(t *testing.T) {
+		t.Run("allowed on non-Khulnasoft.com", func(t *testing.T) {
 			checkUserByUsername(t)
 		})
 	})
@@ -96,12 +96,12 @@ func TestUser(t *testing.T) {
 		})
 		db.UsersFunc.SetDefaultReturn(users)
 
-		t.Run("allowed on Sourcegraph.com", func(t *testing.T) {
-			dotcom.MockSourcegraphDotComMode(t, true)
+		t.Run("allowed on Khulnasoft.com", func(t *testing.T) {
+			dotcom.MockKhulnasoftDotComMode(t, true)
 			checkUserByUsername(t)
 		})
 
-		t.Run("allowed on non-Sourcegraph.com", func(t *testing.T) {
+		t.Run("allowed on non-Khulnasoft.com", func(t *testing.T) {
 			checkUserByUsername(t)
 		})
 	})
@@ -114,7 +114,7 @@ func TestUser(t *testing.T) {
 		})
 		db.UsersFunc.SetDefaultReturn(users)
 
-		t.Run("disallowed on Sourcegraph.com", func(t *testing.T) {
+		t.Run("disallowed on Khulnasoft.com", func(t *testing.T) {
 			checkUserByEmailError := func(t *testing.T, wantErr string) {
 				t.Helper()
 				RunTests(t, []*Test{
@@ -139,7 +139,7 @@ func TestUser(t *testing.T) {
 				})
 			}
 
-			dotcom.MockSourcegraphDotComMode(t, true)
+			dotcom.MockKhulnasoftDotComMode(t, true)
 
 			t.Run("for anonymous viewer", func(t *testing.T) {
 				users.GetByCurrentAuthUserFunc.SetDefaultReturn(nil, database.ErrNoCurrentUser)
@@ -151,7 +151,7 @@ func TestUser(t *testing.T) {
 			})
 		})
 
-		t.Run("allowed on non-Sourcegraph.com", func(t *testing.T) {
+		t.Run("allowed on non-Khulnasoft.com", func(t *testing.T) {
 			RunTests(t, []*Test{
 				{
 					Schema: mustParseGraphQLSchema(t, db),
@@ -255,7 +255,7 @@ func TestUser_LatestSettings(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			test.setup()
-			dotcom.MockSourcegraphDotComMode(t, test.isDotcom)
+			dotcom.MockKhulnasoftDotComMode(t, test.isDotcom)
 
 			_, err := NewUserResolver(test.ctx, db, &types.User{ID: 1}).LatestSettings(test.ctx)
 
@@ -274,11 +274,11 @@ func TestUser_LatestSettings(t *testing.T) {
 
 func TestUser_ViewerCanAdminister(t *testing.T) {
 	db := dbmocks.NewMockDB()
-	t.Run("settings edit only allowed by authenticated user on Sourcegraph.com", func(t *testing.T) {
+	t.Run("settings edit only allowed by authenticated user on Khulnasoft.com", func(t *testing.T) {
 		users := dbmocks.NewMockUserStore()
 		db.UsersFunc.SetDefaultReturn(users)
 
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		tests := []struct {
 			name string
@@ -394,7 +394,7 @@ func TestUpdateUser(t *testing.T) {
 
 	t.Run("disallow suspicious names", func(t *testing.T) {
 
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		users := dbmocks.NewMockUserStore()
 		users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{ID: 1}, nil)
@@ -555,11 +555,11 @@ func TestUpdateUser(t *testing.T) {
 		})
 	})
 
-	t.Run("only allowed by authenticated user on Sourcegraph.com", func(t *testing.T) {
+	t.Run("only allowed by authenticated user on Khulnasoft.com", func(t *testing.T) {
 		users := dbmocks.NewMockUserStore()
 		db.UsersFunc.SetDefaultReturn(users)
 
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		tests := []struct {
 			name       string
@@ -837,9 +837,9 @@ func TestUser_Organizations(t *testing.T) {
 		})
 	}
 
-	t.Run("on Sourcegraph.com", func(t *testing.T) {
+	t.Run("on Khulnasoft.com", func(t *testing.T) {
 
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		t.Run("same user", func(t *testing.T) {
 			expectOrgSuccess(t, 1)
@@ -854,7 +854,7 @@ func TestUser_Organizations(t *testing.T) {
 		})
 	})
 
-	t.Run("on non-Sourcegraph.com", func(t *testing.T) {
+	t.Run("on non-Khulnasoft.com", func(t *testing.T) {
 		t.Run("same user", func(t *testing.T) {
 			expectOrgSuccess(t, 1)
 		})

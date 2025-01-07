@@ -223,7 +223,7 @@ func (h *FileHandler) upload(r *http.Request) (resp uploadResponse, statusCode i
 	// When we move to using a blob store (Blobstore/S3/GCS), we can stream the parts instead. This means we won't need to
 	// parse the entire request body up front. We will be able to iterate over and write the parts/chunks one at a time
 	// - thus avoiding putting everything into memory.
-	// See example: https://sourcegraph.com/github.com/rfielding/uploader@master/-/blob/uploader.go?L167
+	// See example: https://khulnasoft.com/github.com/rfielding/uploader@master/-/blob/uploader.go?L167
 	if err := r.ParseMultipartForm(maxMemory); err != nil {
 		// TODO: starting in Go 1.19, if the request payload is too large the custom error MaxBytesError is returned here
 		if strings.Contains(err.Error(), "request body too large") {

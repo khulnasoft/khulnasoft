@@ -225,12 +225,12 @@ func newJSONRequest(method string, url *url.URL, payload any) (*http.Request, er
 }
 
 func (c *BaseClient) addHeaders(jobId int, token string, r *http.Request) {
-	// If there is no token set, we may be talking with a version of Sourcegraph that is behind.
+	// If there is no token set, we may be talking with a version of Khulnasoft that is behind.
 	if len(token) > 0 {
 		r.Header.Add("Authorization", fmt.Sprintf("%s %s", schemeJobToken, token))
 	} else {
 		r.Header.Add("Authorization", fmt.Sprintf("%s %s", schemeExecutorToken, c.options.EndpointOptions.Token))
 	}
-	r.Header.Add("X-Sourcegraph-Job-ID", strconv.Itoa(jobId))
-	r.Header.Add("X-Sourcegraph-Executor-Name", c.options.ExecutorName)
+	r.Header.Add("X-Khulnasoft-Job-ID", strconv.Itoa(jobId))
+	r.Header.Add("X-Khulnasoft-Executor-Name", c.options.ExecutorName)
 }

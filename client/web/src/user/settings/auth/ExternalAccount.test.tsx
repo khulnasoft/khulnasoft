@@ -51,7 +51,7 @@ describe('ExternalAccountConnectionDetails', () => {
                         ...mockAccount,
                         external: {
                             id: '123',
-                            displayName: 'test@sourcegraph.com',
+                            displayName: 'test@khulnasoft.com',
                             login: 'test',
                             url: 'https://example.com',
                         },

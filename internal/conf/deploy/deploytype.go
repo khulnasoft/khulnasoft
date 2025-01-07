@@ -5,7 +5,7 @@ import (
 )
 
 // Deploy type constants. Any changes here should be reflected in the DeployType type declared in client/web/src/jscontext.ts:
-// https://sourcegraph.com/search?q=r:github.com/sourcegraph/sourcegraph%24+%22type+DeployType%22
+// https://khulnasoft.com/search?q=r:github.com/sourcegraph/sourcegraph%24+%22type+DeployType%22
 const (
 	Kubernetes    = "kubernetes"
 	SingleDocker  = "docker-container"

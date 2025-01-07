@@ -62,7 +62,7 @@ function getTelemetrySourceClient(): string {
 
 /**
  * ApolloTelemetryExporter exports events via the new Khulnasoft telemetry
- * framework: https://docs-legacy.sourcegraph.com/dev/background-information/telemetry
+ * framework: https://docs-legacy.khulnasoft.com/dev/background-information/telemetry
  */
 export class GraphQlTelemetryExporter implements TelemetryExporter {
     constructor(private client: GraphQLClient) {}

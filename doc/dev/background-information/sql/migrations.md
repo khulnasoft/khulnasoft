@@ -1,10 +1,10 @@
 # Migrations
 
-For each of our Postgres instances, we define a sequence of SQL schema commands that must be applied before the database is in the state the application expects. We define migrations to be backwards compatible with the previous minor version release. This aids in minimizing downtime when using rolling restarts, as new and old services can operate with the same schema without failure. Such deployments are used on Sourcegraph.com, Cloud managed instances, and enterprise instances deployed via Kubernetes.
+For each of our Postgres instances, we define a sequence of SQL schema commands that must be applied before the database is in the state the application expects. We define migrations to be backwards compatible with the previous minor version release. This aids in minimizing downtime when using rolling restarts, as new and old services can operate with the same schema without failure. Such deployments are used on Khulnasoft.com, Cloud managed instances, and enterprise instances deployed via Kubernetes.
 
 In development environments, these migrations are applied automatically on application startup. This is a specific choice to keep the response latency small during development. In production environments, a typical upgrade requires that the site-administrator first run a `migrator` service to prepare the database schema for the new version of the application. This is a type of _database-first_ deployment (opposed to _code-first_ deployments), where database migrations are applied prior to the corresponding code change.
 
-Database migrations may be applied arbitrarily long before the new version is deployed. This implies that an old version of Sourcegraph (up to one minor version) can run against a new schema. This requires that all of our database schema changes be *backwards-compatible* with respect to the previous release; any changes to the database schema that would alter the behavior of an old instance is disallowed (and enforced in CI).
+Database migrations may be applied arbitrarily long before the new version is deployed. This implies that an old version of Khulnasoft (up to one minor version) can run against a new schema. This requires that all of our database schema changes be *backwards-compatible* with respect to the previous release; any changes to the database schema that would alter the behavior of an old instance is disallowed (and enforced in CI).
 
 ## Common migrations
 
@@ -12,7 +12,7 @@ Some migrations are difficult to do in a single step or idempotently. For instan
 
 The remainder of this document is formatted as a recipe book of common types of migrations. We encourage any developer to add a recipe here when a specific type of migration is under-documented.
 
-To learn the process of file changes necessary to implement a migration please refer to [the README file](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/blob/migrations/README.md).
+To learn the process of file changes necessary to implement a migration please refer to [the README file](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@main/-/blob/migrations/README.md).
 
 ### Adding a non-nullable column (without a default)
 

@@ -6,7 +6,7 @@
           "createdDate": "2020-04-29T2:34:04+0000",
           "user": {
             "name": "milton",
-            "emailAddress": "dev@sourcegraph.com",
+            "emailAddress": "dev@khulnasoft.com",
             "id": 1,
             "displayName": "milton woof",
             "active": true,
@@ -121,7 +121,7 @@
             "author": {
               "user": {
                 "name": "thorsten",
-                "emailAddress": "thorsten@sourcegraph.com",
+                "emailAddress": "thorsten@khulnasoft.com",
                 "id": 104,
                 "displayName": "thorsten",
                 "active": true,
@@ -144,7 +144,7 @@
               {
                 "user": {
                   "name": "milton",
-                  "emailAddress": "dev@sourcegraph.com",
+                  "emailAddress": "dev@khulnasoft.com",
                   "id": 1,
                   "displayName": "milton woof",
                   "active": true,
@@ -178,7 +178,7 @@
             "createdDate": 1588170844885,
             "user": {
               "name": "milton",
-              "emailAddress": "dev@sourcegraph.com",
+              "emailAddress": "dev@khulnasoft.com",
               "id": 1,
               "displayName": "milton woof",
               "active": true,
@@ -197,7 +197,7 @@
             "addedReviewers": [
               {
                 "name": "milton",
-                "emailAddress": "dev@sourcegraph.com",
+                "emailAddress": "dev@khulnasoft.com",
                 "id": 1,
                 "displayName": "milton woof",
                 "active": true,
@@ -223,7 +223,7 @@
           "createdDate": "2020-04-29T2:35:05+0000",
           "user": {
             "name": "milton",
-            "emailAddress": "dev@sourcegraph.com",
+            "emailAddress": "dev@khulnasoft.com",
             "id": 1,
             "displayName": "milton woof",
             "active": true,
@@ -338,7 +338,7 @@
             "author": {
               "user": {
                 "name": "thorsten",
-                "emailAddress": "thorsten@sourcegraph.com",
+                "emailAddress": "thorsten@khulnasoft.com",
                 "id": 104,
                 "displayName": "thorsten",
                 "active": true,
@@ -361,7 +361,7 @@
               {
                 "user": {
                   "name": "milton",
-                  "emailAddress": "dev@sourcegraph.com",
+                  "emailAddress": "dev@khulnasoft.com",
                   "id": 1,
                   "displayName": "milton woof",
                   "active": true,
@@ -396,7 +396,7 @@
             "createdDate": 1588170905768,
             "user": {
               "name": "milton",
-              "emailAddress": "dev@sourcegraph.com",
+              "emailAddress": "dev@khulnasoft.com",
               "id": 1,
               "displayName": "milton woof",
               "active": true,
@@ -429,7 +429,7 @@
           "createdDate": 1588170844885,
           "user": {
             "name": "milton",
-            "emailAddress": "dev@sourcegraph.com",
+            "emailAddress": "dev@khulnasoft.com",
             "id": 1,
             "displayName": "milton woof",
             "active": true,
@@ -440,7 +440,7 @@
           "addedReviewers": [
             {
               "name": "milton",
-              "emailAddress": "dev@sourcegraph.com",
+              "emailAddress": "dev@khulnasoft.com",
               "id": 1,
               "displayName": "milton woof",
               "active": true,
@@ -462,7 +462,7 @@
           "createdDate": 1588170905768,
           "user": {
             "name": "milton",
-            "emailAddress": "dev@sourcegraph.com",
+            "emailAddress": "dev@khulnasoft.com",
             "id": 1,
             "displayName": "milton woof",
             "active": true,

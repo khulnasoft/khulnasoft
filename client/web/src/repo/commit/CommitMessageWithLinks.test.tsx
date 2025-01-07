@@ -33,7 +33,7 @@ describe('CommitMessageWithLinks', () => {
                 externalURLs={[
                     {
                         serviceKind: ExternalServiceKind.GITHUB,
-                        url: 'https://github.com/sourcegraph/sourcegraph',
+                        url: 'https://github.com/khulnasoft/khulnasoft',
                     },
                 ]}
             />

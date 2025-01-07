@@ -15,7 +15,7 @@ import (
 )
 
 // Reconciler processes changesets and reconciles their current state — in
-// Sourcegraph or on the code host — with that described in the current
+// Khulnasoft or on the code host — with that described in the current
 // ChangesetSpec associated with the changeset.
 type Reconciler struct {
 	client  gitserver.Client

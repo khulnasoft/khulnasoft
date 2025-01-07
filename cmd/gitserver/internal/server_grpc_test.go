@@ -493,24 +493,24 @@ func TestGRPCServer_GetCommit(t *testing.T) {
 		b.GetCommitFunc.PushReturn(&git.GitCommitWithFiles{Commit: &gitdomain.Commit{
 			Committer: &gitdomain.Signature{
 				Name:  "committer",
-				Email: "committer@sourcegraph.com",
+				Email: "committer@khulnasoft.com",
 				Date:  now,
 			},
 			Author: gitdomain.Signature{
 				Name:  "author",
-				Email: "author@sourcegraph.com",
+				Email: "author@khulnasoft.com",
 				Date:  now,
 			},
 		}}, nil)
 		b.GetCommitFunc.PushReturn(&git.GitCommitWithFiles{Commit: &gitdomain.Commit{
 			Committer: &gitdomain.Signature{
 				Name:  "committer",
-				Email: "committer@sourcegraph.com",
+				Email: "committer@khulnasoft.com",
 				Date:  now,
 			},
 			Author: gitdomain.Signature{
 				Name:  "author",
-				Email: "author@sourcegraph.com",
+				Email: "author@khulnasoft.com",
 				Date:  now,
 			},
 		}, ModifiedFiles: []string{"modfile"}}, nil)
@@ -541,12 +541,12 @@ func TestGRPCServer_GetCommit(t *testing.T) {
 			Commit: &v1.GitCommit{
 				Committer: &v1.GitSignature{
 					Name:  []byte("committer"),
-					Email: []byte("committer@sourcegraph.com"),
+					Email: []byte("committer@khulnasoft.com"),
 					Date:  timestamppb.New(now),
 				},
 				Author: &v1.GitSignature{
 					Name:  []byte("author"),
-					Email: []byte("author@sourcegraph.com"),
+					Email: []byte("author@khulnasoft.com"),
 					Date:  timestamppb.New(now),
 				},
 			},
@@ -958,7 +958,7 @@ func TestGRPCServer_ContributorCounts(t *testing.T) {
 		// Repo is cloned, proceed!
 		fs.RepoClonedFunc.SetDefaultReturn(true, nil)
 		b := git.NewMockGitBackend()
-		b.ContributorCountsFunc.SetDefaultReturn([]*gitdomain.ContributorCount{{Count: 1, Name: "Foo", Email: "foo@sourcegraph.com"}}, nil)
+		b.ContributorCountsFunc.SetDefaultReturn([]*gitdomain.ContributorCount{{Count: 1, Name: "Foo", Email: "foo@khulnasoft.com"}}, nil)
 		svc := NewMockService()
 		gs := &grpcServer{
 			svc: svc,
@@ -978,7 +978,7 @@ func TestGRPCServer_ContributorCounts(t *testing.T) {
 				{
 					Author: &v1.GitSignature{
 						Name:  []byte("Foo"),
-						Email: []byte("foo@sourcegraph.com"),
+						Email: []byte("foo@khulnasoft.com"),
 					},
 					Count: int32(1),
 				},
@@ -1493,14 +1493,14 @@ func TestGRPCServer_CommitLog(t *testing.T) {
 		it := git.NewMockCommitLogIterator()
 		it.NextFunc.PushReturn(&git.GitCommitWithFiles{Commit: &gitdomain.Commit{
 			ID:        "2b2289762392764ed127587b0d5fd88a2f16b7c1",
-			Author:    gitdomain.Signature{Name: "Bar Author", Email: "bar@sourcegraph.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z")},
+			Author:    gitdomain.Signature{Name: "Bar Author", Email: "bar@khulnasoft.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z")},
 			Committer: &gitdomain.Signature{Name: "c", Email: "c@c.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:07Z")},
 			Message:   "bar",
 			Parents:   []api.CommitID{"5fab3adc1e398e749749271d14ab843759b192cf"},
 		}, ModifiedFiles: []string{"file"}}, nil)
 		it.NextFunc.PushReturn(&git.GitCommitWithFiles{Commit: &gitdomain.Commit{
 			ID:        "5fab3adc1e398e749749271d14ab843759b192cf",
-			Author:    gitdomain.Signature{Name: "Foo Author", Email: "foo@sourcegraph.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
+			Author:    gitdomain.Signature{Name: "Foo Author", Email: "foo@khulnasoft.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
 			Committer: &gitdomain.Signature{Name: "c", Email: "c@c.com", Date: mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
 			Message:   "foo",
 			Parents:   nil,
@@ -1534,7 +1534,7 @@ func TestGRPCServer_CommitLog(t *testing.T) {
 			{
 				Commit: &v1.GitCommit{
 					Oid:       "2b2289762392764ed127587b0d5fd88a2f16b7c1",
-					Author:    &v1.GitSignature{Name: []byte("Bar Author"), Email: []byte("bar@sourcegraph.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z"))},
+					Author:    &v1.GitSignature{Name: []byte("Bar Author"), Email: []byte("bar@khulnasoft.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:06Z"))},
 					Committer: &v1.GitSignature{Name: []byte("c"), Email: []byte("c@c.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:07Z"))},
 					Message:   []byte("bar"),
 					Parents:   []string{"5fab3adc1e398e749749271d14ab843759b192cf"},
@@ -1544,7 +1544,7 @@ func TestGRPCServer_CommitLog(t *testing.T) {
 			{
 				Commit: &v1.GitCommit{
 					Oid:       "5fab3adc1e398e749749271d14ab843759b192cf",
-					Author:    &v1.GitSignature{Name: []byte("Foo Author"), Email: []byte("foo@sourcegraph.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z"))},
+					Author:    &v1.GitSignature{Name: []byte("Foo Author"), Email: []byte("foo@khulnasoft.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z"))},
 					Committer: &v1.GitSignature{Name: []byte("c"), Email: []byte("c@c.com"), Date: timestamppb.New(mustParseTime(time.RFC3339, "2006-01-02T15:04:05Z"))},
 					Message:   []byte("foo"),
 					Parents:   nil,

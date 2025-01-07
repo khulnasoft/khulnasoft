@@ -184,7 +184,7 @@ func Upgrade(
 
 	return &cli.Command{
 		Name:        "upgrade",
-		Usage:       "Upgrade Sourcegraph instance databases to a target version",
+		Usage:       "Upgrade Khulnasoft instance databases to a target version",
 		Description: "",
 		Action:      action,
 		Flags: []cli.Flag{

@@ -8,7 +8,7 @@ import (
 )
 
 // KeyValue is a key value store modeled after the most common usage we have
-// of redis in the Sourcegraph codebase.
+// of redis in the Khulnasoft codebase.
 //
 // The purpose of KeyValue is to provide a more ergonomic way to interact with
 // a key value store. Additionally it makes it possible to replace the store

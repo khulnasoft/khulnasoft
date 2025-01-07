@@ -76,7 +76,7 @@ describe('Backend insight drill down filters', () => {
                             {
                                 __typename: 'SearchContext',
                                 spec: '@sourcegraph/sourcegraph',
-                                query: 'repo:github.com/sourcegraph/sourcegraph',
+                                query: 'repo:github.com/khulnasoft/khulnasoft',
                             },
                         ],
                     },
@@ -99,7 +99,7 @@ describe('Backend insight drill down filters', () => {
 
         // fill in the excludeRepoRegexp filter
         await driver.page.waitForSelector('[role="dialog"][aria-label="Drill-down filters panel"]')
-        await driver.page.type('[name="excludeRepoRegexp"]', 'github.com/sourcegraph/sourcegraph')
+        await driver.page.type('[name="excludeRepoRegexp"]', 'github.com/khulnasoft/khulnasoft')
 
         // fill in the search context filter regexp
         await driver.page.click('button[aria-label="search context filter section"]')
@@ -128,7 +128,7 @@ describe('Backend insight drill down filters', () => {
             filters: {
                 searchContexts: ['@sourcegraph/sourcegraph'],
                 includeRepoRegex: '',
-                excludeRepoRegex: 'github.com/sourcegraph/sourcegraph',
+                excludeRepoRegex: 'github.com/khulnasoft/khulnasoft',
             },
             seriesDisplayOptions: {
                 limit: null,
@@ -148,7 +148,7 @@ describe('Backend insight drill down filters', () => {
                 __typename: 'InsightViewFilters',
                 searchContexts: [],
                 includeRepoRegex: '',
-                excludeRepoRegex: 'github.com/sourcegraph/sourcegraph',
+                excludeRepoRegex: 'github.com/khulnasoft/khulnasoft',
             },
         }
 
@@ -202,7 +202,7 @@ describe('Backend insight drill down filters', () => {
         await driver.page.click('button[aria-label="Active filters"]')
         await driver.page.waitForSelector('[role="dialog"][aria-label="Drill-down filters panel"]')
 
-        await driver.page.type('[name="includeRepoRegexp"]', 'github.com/sourcegraph/sourcegraph')
+        await driver.page.type('[name="includeRepoRegexp"]', 'github.com/khulnasoft/khulnasoft')
 
         // Wait until async validation of the search context field is passed
         await delay(500)
@@ -228,8 +228,8 @@ describe('Backend insight drill down filters', () => {
             },
             viewControls: {
                 filters: {
-                    includeRepoRegex: 'github.com/sourcegraph/sourcegraph',
-                    excludeRepoRegex: 'github.com/sourcegraph/sourcegraph',
+                    includeRepoRegex: 'github.com/khulnasoft/khulnasoft',
+                    excludeRepoRegex: 'github.com/khulnasoft/khulnasoft',
                     searchContexts: [''],
                 },
                 seriesDisplayOptions: {

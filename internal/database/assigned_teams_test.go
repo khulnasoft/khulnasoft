@@ -35,7 +35,7 @@ func TestAssignedTeamsStore_ListAssignedTeamsForRepo(t *testing.T) {
 	team2 := createTeam(t, ctx, db, teamName2)
 
 	// Creating 2 repos.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 	err = db.Repos().Create(ctx, &types.Repo{ID: 2, Name: "github.com/sourcegraph/sourcegraph2"})
 	require.NoError(t, err)
@@ -95,7 +95,7 @@ func TestAssignedTeamsStore_Insert(t *testing.T) {
 	team := createTeam(t, ctx, db, teamName)
 
 	// Creating a repo.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 
 	store := AssignedTeamsStoreWith(db, logger)
@@ -132,7 +132,7 @@ func TestAssignedTeamsStore_Delete(t *testing.T) {
 	team2 := createTeam(t, ctx, db, teamName2)
 
 	// Creating a repo.
-	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/sourcegraph/sourcegraph"})
+	err = db.Repos().Create(ctx, &types.Repo{ID: 1, Name: "github.com/khulnasoft/khulnasoft"})
 	require.NoError(t, err)
 
 	store := AssignedTeamsStoreWith(db, logger)

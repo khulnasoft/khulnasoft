@@ -109,7 +109,7 @@ func (c *subscribedSiteConfig) Diff(other *subscribedSiteConfig) []siteConfigDif
 	return changes
 }
 
-// SiteConfigSubscriber is a sidecar service that subscribes to Sourcegraph site configuration and
+// SiteConfigSubscriber is a sidecar service that subscribes to Khulnasoft site configuration and
 // applies relevant (subscribedSiteConfig) changes to Grafana.
 type SiteConfigSubscriber struct {
 	log          log.Logger

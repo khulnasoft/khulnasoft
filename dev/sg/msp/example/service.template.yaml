@@ -33,7 +33,7 @@ environments:
       type: cloudflare
       cloudflare:
         subdomain: {{ .ID }}
-        zone: {{ if .Dev }}sgdev.org{{ else }}sourcegraph.com{{ end }}
+        zone: {{ if .Dev }}sgdev.org{{ else }}khulnasoft.com{{ end }}
     # Specify environment configuration your service needs to operate.
     env:
       SRC_LOG_LEVEL: info

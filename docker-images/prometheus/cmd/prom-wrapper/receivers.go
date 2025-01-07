@@ -47,7 +47,7 @@ func alertsReferenceURL() string {
 // These labels are available in Alertmanager templates as fields of `.CommonLabels`.
 //
 // Note that `alertname` is provided as a fallback grouping only - combinations of the other labels should be unique
-// for alerts provided by the Sourcegraph generator.
+// for alerts provided by the Khulnasoft generator.
 //
 // When changing this, make sure to update the webhook body documentation in /doc/admin/observability/alerting.md
 var commonLabels = []string{"alertname", "level", "service_name", "name", "owner", "description"}
@@ -68,7 +68,7 @@ var (
 	tagsTemplateDefault = "{{ range $key, $value := .CommonLabels }}{{$key}}={{$value}},{{end}}"
 )
 
-// newRoutesAndReceivers converts the given alerts from Sourcegraph site configuration into Alertmanager receivers
+// newRoutesAndReceivers converts the given alerts from Khulnasoft site configuration into Alertmanager receivers
 // and routes with the following strategy:
 //
 // * Each alert level has a receiver, which has configuration for all channels for that level.
@@ -308,7 +308,7 @@ For more details, please refer to the service dashboard: %s`, firingBodyTemplate
 
 			// set a default username if none is provided
 			if notifier.Slack.Username == "" {
-				notifier.Slack.Username = "Sourcegraph Alerts"
+				notifier.Slack.Username = "Khulnasoft Alerts"
 			}
 
 			receiver.SlackConfigs = append(receiver.SlackConfigs, &amconfig.SlackConfig{

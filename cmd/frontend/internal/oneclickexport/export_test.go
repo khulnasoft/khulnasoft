@@ -89,8 +89,8 @@ const (
       "token": "someToken",
       "username": "user",
       "repos": [
-        "SOURCEGRAPH/repo-0",
-        "SOURCEGRAPH/repo-1"
+        "KHULNASOFT/repo-0",
+        "KHULNASOFT/repo-1"
       ],
       "repositoryPathPattern": "bbs/{projectKey}/{repositorySlug}"
     }
@@ -162,8 +162,8 @@ const (
       "token": "someToken",
       "username": "user",
       "repos": [
-        "SOURCEGRAPH/repo-0",
-        "SOURCEGRAPH/repo-1"
+        "KHULNASOFT/repo-0",
+        "KHULNASOFT/repo-1"
       ],
       "repositoryPathPattern": "bbs/{projectKey}/{repositorySlug}"
     },
@@ -484,8 +484,8 @@ func mockExternalServicesDB() *dbmocks.MockDB {
       "token": "someToken",
       "username": "user",
       "repos": [
-        "SOURCEGRAPH/repo-0",
-        "SOURCEGRAPH/repo-1"
+        "KHULNASOFT/repo-0",
+        "KHULNASOFT/repo-1"
       ],
       "repositoryPathPattern": "bbs/{projectKey}/{repositorySlug}"
     }`),

@@ -38,7 +38,7 @@ func TestCodyGatewayStore(t *testing.T) {
 		subscriptionID := uuid.NewString()
 		_, err := subscriptions.NewStore(db).Upsert(ctx, subscriptionID, subscriptions.UpsertSubscriptionOptions{
 			DisplayName:    database.NewNullString(mockSubscriptionDisplayName(idx)),
-			InstanceDomain: database.NewNullString(fmt.Sprintf("s%d.sourcegraph.com", idx)),
+			InstanceDomain: database.NewNullString(fmt.Sprintf("s%d.khulnasoft.com", idx)),
 		})
 		require.NoError(t, err)
 		subscriptionIDs[idx] = subscriptionID
@@ -121,7 +121,7 @@ func TestCodyGatewayStore(t *testing.T) {
 			subscriptionID := uuid.NewString()
 			_, err := subscriptions.NewStore(db).Upsert(ctx, subscriptionID, subscriptions.UpsertSubscriptionOptions{
 				DisplayName:    database.NewNullString("Archived subscription"),
-				InstanceDomain: database.NewNullString("archived.sourcegraph.com"),
+				InstanceDomain: database.NewNullString("archived.khulnasoft.com"),
 				ArchivedAt:     pointers.Ptr(utctime.Now()),
 			})
 			require.NoError(t, err)
@@ -136,7 +136,7 @@ func TestCodyGatewayStore(t *testing.T) {
 			subscriptionID := uuid.NewString()
 			_, err := subscriptions.NewStore(db).Upsert(ctx, subscriptionID, subscriptions.UpsertSubscriptionOptions{
 				DisplayName:    database.NewNullString("Soon-to-be-archived subscription"),
-				InstanceDomain: database.NewNullString("not-yet-archived.sourcegraph.com"),
+				InstanceDomain: database.NewNullString("not-yet-archived.khulnasoft.com"),
 			})
 			require.NoError(t, err)
 

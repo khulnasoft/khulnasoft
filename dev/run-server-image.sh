@@ -7,7 +7,7 @@ IMAGE=${IMAGE:-sourcegraph/server:${TAG:-insiders}}
 PORT=${PORT:-"7080"}
 URL="http://localhost:$PORT"
 DATA=${DATA:-"/tmp/sourcegraph-data"}
-SOURCEGRAPH_LICENSE_GENERATION_KEY=${SOURCEGRAPH_LICENSE_GENERATION_KEY:-""}
+KHULNASOFT_LICENSE_GENERATION_KEY=${KHULNASOFT_LICENSE_GENERATION_KEY:-""}
 DB_STARTUP_TIMEOUT="10s"
 
 echo "--- Checking for existing Khulnasoft instance at $URL"
@@ -46,9 +46,9 @@ echo "--- Starting server ${IMAGE} on port ${PORT}"
 docker run "$@" \
   --publish "$PORT":7080 \
   -e ALLOW_SINGLE_DOCKER_CODE_INSIGHTS=t \
-  -e SOURCEGRAPH_LICENSE_GENERATION_KEY="$SOURCEGRAPH_LICENSE_GENERATION_KEY" \
+  -e KHULNASOFT_LICENSE_GENERATION_KEY="$KHULNASOFT_LICENSE_GENERATION_KEY" \
   -e DB_STARTUP_TIMEOUT="$DB_STARTUP_TIMEOUT" \
-  -e SOURCEGRAPH_5_1_DB_MIGRATION=true \
+  -e KHULNASOFT_5_1_DB_MIGRATION=true \
   --volume "$DATA/config:/etc/sourcegraph" \
   --volume "$DATA/data:/var/opt/sourcegraph" \
   "$IMAGE"

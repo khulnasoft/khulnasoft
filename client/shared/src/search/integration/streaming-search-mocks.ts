@@ -231,14 +231,14 @@ export const mixedSearchStreamEvents: SearchEvent[] = [
             },
             {
                 value: 'repo:^gitlab\\.sgdev\\.org/sourcegraph/sourcegraph$',
-                label: 'gitlab.sgdev.org/sourcegraph/sourcegraph',
+                label: 'gitlab.sgdev.org/khulnasoft/khulnasoft',
                 count: 115,
                 exhaustive: true,
                 kind: 'repo',
             },
             {
                 value: 'repo:^github\\.com/sourcegraph/sourcegraph$',
-                label: 'github.com/sourcegraph/sourcegraph',
+                label: 'github.com/khulnasoft/khulnasoft',
                 count: 112,
                 exhaustive: true,
                 kind: 'repo',

@@ -17,7 +17,7 @@ func TestSiteConfig(t *testing.T) {
 		const testUsername1 = "gqltest-auth-user-1"
 		testClient1, err := gqltestutil.NewClient(*baseURL)
 		require.NoError(t, err)
-		require.NoError(t, testClient1.SignUp(testUsername1+"@sourcegraph.com", testUsername1, "mysecurepassword"))
+		require.NoError(t, testClient1.SignUp(testUsername1+"@khulnasoft.com", testUsername1, "mysecurepassword"))
 		removeTestUserAfterTest(t, testClient1.AuthenticatedUserID())
 
 		// Update site configuration to not allow sign up for builtin auth provider.
@@ -44,7 +44,7 @@ func TestSiteConfig(t *testing.T) {
 			const testUsername2 = "gqltest-auth-user-2"
 			testClient2, err := gqltestutil.NewClient(*baseURL)
 			require.NoError(t, err)
-			if err := testClient2.SignUp(testUsername2+"@sourcegraph.com", testUsername2, "mysecurepassword"); err != nil {
+			if err := testClient2.SignUp(testUsername2+"@khulnasoft.com", testUsername2, "mysecurepassword"); err != nil {
 				if strings.Contains(err.Error(), "Signup is not enabled") {
 					return nil
 				}

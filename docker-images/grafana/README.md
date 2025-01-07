@@ -1,8 +1,8 @@
-# Sourcegraph Grafana
+# Khulnasoft Grafana
 
-Vanilla Grafana image with provisioned Sourcegraph dashboards and config.
+Vanilla Grafana image with provisioned Khulnasoft dashboards and config.
 
-To learn more, refer to the [Sourcegraph observability developer guide](https://docs-legacy.khulnasoft.com/dev/background-information/observability) and [monitoring architecture](https://handbook.khulnasoft.com/engineering/observability/monitoring_architecture#sourcegraph-grafana).
+To learn more, refer to the [Khulnasoft observability developer guide](https://docs-legacy.khulnasoft.com/dev/background-information/observability) and [monitoring architecture](https://handbook.khulnasoft.com/engineering/observability/monitoring_architecture#sourcegraph-grafana).
 
 ## Image API
 

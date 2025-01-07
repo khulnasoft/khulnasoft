@@ -16,7 +16,7 @@ const (
 	// TraceNone turns off tracing.
 	TraceNone TracePolicy = "none"
 
-	// TraceSelective turns on tracing only for requests with the X-Sourcegraph-Should-Trace header
+	// TraceSelective turns on tracing only for requests with the X-Khulnasoft-Should-Trace header
 	// set to a truthy value.
 	TraceSelective TracePolicy = "selective"
 
@@ -67,11 +67,11 @@ func WithShouldTrace(ctx context.Context, shouldTrace bool) context.Context {
 }
 
 const (
-	traceHeader = "X-Sourcegraph-Should-Trace"
+	traceHeader = "X-Khulnasoft-Should-Trace"
 	traceQuery  = "trace"
 )
 
-// Transport wraps an underlying HTTP RoundTripper, injecting the X-Sourcegraph-Should-Trace header
+// Transport wraps an underlying HTTP RoundTripper, injecting the X-Khulnasoft-Should-Trace header
 // into outgoing requests whenever the shouldTraceKey context value is true.
 type Transport struct {
 	RoundTripper http.RoundTripper

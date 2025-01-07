@@ -5,7 +5,7 @@
 #
 # terraform is now licensed under BSL, which is no longer an open source license.
 # Per FAQ 17, 19, 25 from https://www.hashicorp.com/license-faq#implications-of-change-for-users,
-# as long as Sourcegraph is not competing with Hashicorp, it is acceptable to use,
+# as long as Khulnasoft is not competing with Hashicorp, it is acceptable to use,
 # build, and redistribute Terraform for our own use.
 #
 # update instruction:

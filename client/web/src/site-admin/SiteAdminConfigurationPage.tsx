@@ -98,7 +98,7 @@ const quickConfigureActions: {
                         clientSecret: '<client secret>',
                     },
                     {
-                        COMMENT: '// See https://sourcegraph.com/docs/admin/auth#gitlab for instructions',
+                        COMMENT: '// See https://khulnasoft.com/docs/admin/auth#gitlab for instructions',
                     }
                 ),
             ]
@@ -122,7 +122,7 @@ const quickConfigureActions: {
                         clientID: '<client ID>',
                         clientSecret: '<client secret>',
                     },
-                    { COMMENT: '// See https://sourcegraph.com/docs/admin/auth#github for instructions' }
+                    { COMMENT: '// See https://khulnasoft.com/docs/admin/auth#github for instructions' }
                 ),
             ]
             return { edits, selectText: '<client ID>' }
@@ -144,7 +144,7 @@ const quickConfigureActions: {
                         identityProviderMetadataURL: '<identity provider metadata URL>',
                     },
                     {
-                        COMMENT: '// See https://sourcegraph.com/docs/admin/auth/saml/one_login for instructions',
+                        COMMENT: '// See https://khulnasoft.com/docs/admin/auth/saml/one_login for instructions',
                     }
                 ),
             ]
@@ -163,7 +163,7 @@ const quickConfigureActions: {
             }
             const edits = [
                 editWithComments(config, ['auth.providers', -1], value, {
-                    COMMENT: '// See https://sourcegraph.com/docs/admin/auth/saml/okta for instructions',
+                    COMMENT: '// See https://khulnasoft.com/docs/admin/auth/saml/okta for instructions',
                 }),
             ]
             return { edits, selectText: '<identity provider metadata URL>' }
@@ -183,7 +183,7 @@ const quickConfigureActions: {
                         displayName: 'SAML',
                         identityProviderMetadataURL: '<SAML IdP metadata URL>',
                     },
-                    { COMMENT: '// See https://sourcegraph.com/docs/admin/auth/saml for instructions' }
+                    { COMMENT: '// See https://khulnasoft.com/docs/admin/auth/saml for instructions' }
                 ),
             ]
             return { edits, selectText: '<SAML IdP metadata URL>' }
@@ -205,7 +205,7 @@ const quickConfigureActions: {
                         clientID: '<client ID>',
                         clientSecret: '<client secret>',
                     },
-                    { COMMENT: '// See https://sourcegraph.com/docs/admin/auth#openid-connect for instructions' }
+                    { COMMENT: '// See https://khulnasoft.com/docs/admin/auth#openid-connect for instructions' }
                 ),
             ]
             return { edits, selectText: '<identity provider URL>' }
@@ -396,7 +396,7 @@ class SiteAdminConfigurationContent extends React.Component<Props, State> {
                 <Alert key="cody-beta-notice" className={styles.alert} variant="info">
                     By turning on completions for "Cody beta," you have read the{' '}
                     <Link to="/help/cody">Cody Documentation</Link> and agree to the{' '}
-                    <Link to="https://sourcegraph.com/terms/cody-notice">Cody Notice and Usage Policy</Link>. In
+                    <Link to="https://khulnasoft.com/terms/cody-notice">Cody Notice and Usage Policy</Link>. In
                     particular, some code snippets will be sent to a third-party language model provider when you use
                     Cody questions.
                 </Alert>

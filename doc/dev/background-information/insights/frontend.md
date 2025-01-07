@@ -40,21 +40,21 @@ At the moment, we have two different types of insights.
 
 1. **Built-in (former Extension based) insights.** <br/>
 These types of insights fetch data via frontend insight fetcher function. That means that we make a few network request to our search
-API to collect and process insight data on the frontend [(source)](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/components/insights-view-grid/components/built-in-insight/BuiltInInsight.tsx).
+API to collect and process insight data on the frontend [(source)](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/components/insights-view-grid/components/built-in-insight/BuiltInInsight.tsx).
 At some point, we used Extension API to get information about these insights.
 You still can find these extensions by links below but they currently are not used for insight data fetching.
 <br /> &nbsp;
    - [Search-based insight (line chart)](https://github.com/sourcegraph/sourcegraph-search-insights)
    - [Code stats insight (pie chart)](https://github.com/sourcegraph/sourcegraph-code-stats-insights). <br />
 
-At the moment we use the main-tread built-in insight fetchers [source](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/backend/api/get-built-in-insight.ts)
+At the moment we use the main-tread built-in insight fetchers [source](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/backend/api/get-built-in-insight.ts)
 
 2. **Backend based insights.** <br/>
 These insights are working via our graphql API only. At the moment, only search based insights (line chart)
 can be backend-based. Code stats insights (pie chart) only work via extension API.
 
 You can find typescript types that describe these insight entities
-in [core/types/insights/index.ts](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/types/insight/index.ts)
+in [core/types/insights/index.ts](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/types/insight/index.ts)
 
 ## Insight configuration storing
 
@@ -72,7 +72,7 @@ something like this
 
   "searchInsight.insight.someInsight": {
     "title": "Some insight",
-    "repositories": ["github.com/test/test", "github.com/sourcegraph/sourcegraph"],
+    "repositories": ["github.com/test/test", "github.com/khulnasoft/khulnasoft"],
     "series": [
       { "title": "#1 data series", "query": "test", "stroke": "#000" },
       { "title": "#2 data series", "query": "test2", "stroke": "red" }
@@ -108,7 +108,7 @@ in the same settings cascade but by special property key `insights.allrepos`
 ```
 
 You can find typescript types that describe these insight entities
-in [core/types/insights/index.ts](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/types/insight/index.ts)
+in [core/types/insights/index.ts](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/types/insight/index.ts)
 
 > This way to store insights isn't the best, but this is the easiest way to get insight configs from extensions.
 > Eventually, we want to migrate all insights to our BE and store them in real DB. At the moment we already have moved
@@ -145,7 +145,7 @@ are just `jsonc` files. But each subject (`jsonc`) file has its cascade level (m
 <object data="assets/settings-cascade-levels.svg"></object>
 
 So eventually, the FE merges all these files in one big `jsonc` object and deserializes this object to a common js object.
-You can find this merge logic here [client/shared/src/settings/settings.ts](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/shared/src/settings/settings.ts)
+You can find this merge logic here [client/shared/src/settings/settings.ts](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/shared/src/settings/settings.ts)
 `mergeSettings` function.
 
 We use settings cascade a lot in different places, In fact, our dashboard system and insight visibility were built on top
@@ -226,33 +226,33 @@ We use setting cascade subject to store dashboard configurations.
 }
 ```
 
-You can find dashboard typescript types for these dashboard properties in [core/types/dashboard/index.ts](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/types/dashboard/index.ts)
+You can find dashboard typescript types for these dashboard properties in [core/types/dashboard/index.ts](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/types/dashboard/index.ts)
 
 Let's take a look at the dashboard system in action. For example, let's describe what will happen when we go to the `/insights/dashboard/<personal subject id>`
 
 1. We extract the dashboard id from the URL in the `DashboardPage` component via react-router URL options.
-2. With the [`useDashboard` hook](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/hooks/use-dashboards/use-dashboards.ts)) we select/extract all
+2. With the [`useDashboard` hook](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/hooks/use-dashboards/use-dashboards.ts)) we select/extract all
 reachable dashboards from all settings cascade levels.
 3. Then we map the dashboard id from the URL and all dashboard configs, extract information about dashboard
 like insights ids (`insightIds` property)
 4. Pass `insightsId` information to component for rendering insights (in case of the dashboard page this component
-is `SmartInsightsViewGrid.tsx`[(source)](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/components/insights-view-grid/SmartInsightsViewGrid.tsx))
+is `SmartInsightsViewGrid.tsx`[(source)](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/components/insights-view-grid/SmartInsightsViewGrid.tsx))
 5. `SmartInsightsViewGrid.tsx` component will iterate over all `insightIds` get insight configuration from setting
-cascade by `useInsight()` [(source)](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/hooks/use-insight/use-insight.ts) hook and pick the right component
-(either `BackendInsight.tsx` [(source)](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/components/insights-view-grid/components/backend-insight/BackendInsight.tsx)
-or `BuiltInInsight.tsx` [(source)](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/components/insights-view-grid/components/built-in-insight/BuiltInInsight.tsx)
+cascade by `useInsight()` [(source)](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/hooks/use-insight/use-insight.ts) hook and pick the right component
+(either `BackendInsight.tsx` [(source)](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/components/insights-view-grid/components/backend-insight/BackendInsight.tsx)
+or `BuiltInInsight.tsx` [(source)](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/components/insights-view-grid/components/built-in-insight/BuiltInInsight.tsx)
 6. Then this backend or built-in insight component will load insight data either by GQL API in the case of Backend Insight or
 by few FE network search API requests in case of Built-In insight.
 
 <object data="./assets/insight-dashboard-loading.svg"></object>
 
 > NOTE: We load our insights one by one with a maximum of two insight data requests in parallel to avoid HTTP request bombarding and HTTP 1 limit
-> with only six requests in parallel. To do that, we use [`useParallelRequests` react hook](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/hooks/use-parallel-requests/use-parallel-request.ts)
+> with only six requests in parallel. To do that, we use [`useParallelRequests` react hook](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/hooks/use-parallel-requests/use-parallel-request.ts)
 
 ## Code Insights loading logic (InsightsApiContext)
 
 All async operation which is related to fetching data or calling something from the extension API is produced and provided via
-React Context system. Code Insights API is accessible via `InsightAPIContext`[source](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/backend/create)
+React Context system. Code Insights API is accessible via `InsightAPIContext`[source](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/backend/create)
 
 This was done in this way to mock and change the implementation of async (backend API or extension API) calls in unit tests.
 
@@ -272,9 +272,9 @@ function BuiltInInsight(props) {
 }
 ```
 
-So in this component we use `getBuiltInInsight` function from our `InsightsApiContext` context. If we go to [`InsightsApiContext`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/backend/create-insights-api.ts)
+So in this component we use `getBuiltInInsight` function from our `InsightsApiContext` context. If we go to [`InsightsApiContext`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/backend/create-insights-api.ts)
 definition we will see that this is just an object with some async function collection.
-All these functions and their interfaces are described in this one interface [`ApiService`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/backend/types.ts)
+All these functions and their interfaces are described in this one interface [`ApiService`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/client/web/src/enterprise/insights/core/backend/types.ts)
 
 Then if we want to write some unit test for the `BuiltInInsight` component we will write something like this
 

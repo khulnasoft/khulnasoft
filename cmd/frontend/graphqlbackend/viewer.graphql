@@ -1,6 +1,6 @@
 extend type Query {
     """
-    The current user (if authenticated), or an unauthenticated visitor. On some Sourcegraph sites,
+    The current user (if authenticated), or an unauthenticated visitor. On some Khulnasoft sites,
     unauthenticated visitors can access the GraphQL API and perform a limited set of actions.
     """
     viewer: Viewer!
@@ -15,7 +15,7 @@ extend type Query {
 """
 A viewer is either an (authenticated) user or an (unauthenticated) visitor. It contains the subset
 of fields that visitors may query, which are shared with those for users to make it easier to access
-authentication-agnostic Sourcegraph features.
+authentication-agnostic Khulnasoft features.
 """
 interface Viewer {
     """
@@ -27,7 +27,7 @@ interface Viewer {
 }
 
 """
-An (unauthenticated) visitor. On some Sourcegraph sites, unauthenticated visitors can access the
+An (unauthenticated) visitor. On some Khulnasoft sites, unauthenticated visitors can access the
 GraphQL API and perform a limited set of actions.
 """
 type Visitor implements Viewer {

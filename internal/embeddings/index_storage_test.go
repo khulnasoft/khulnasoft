@@ -230,7 +230,7 @@ func getMockEmbeddingIndex(nRows int, columnDimension int) EmbeddingIndex {
 }
 
 func BenchmarkRepoEmbeddingIndexUpload(b *testing.B) {
-	// Roughly the size of the sourcegraph/sourcegraph index.
+	// Roughly the size of the khulnasoft/khulnasoft index.
 	index := &RepoEmbeddingIndex{
 		RepoName:  api.RepoName("repo"),
 		Revision:  api.CommitID("commit"),
@@ -252,7 +252,7 @@ func BenchmarkRepoEmbeddingIndexUpload(b *testing.B) {
 }
 
 func BenchmarkCustomRepoEmbeddingIndexUpload(b *testing.B) {
-	// Roughly the size of the sourcegraph/sourcegraph index.
+	// Roughly the size of the khulnasoft/khulnasoft index.
 	index := &RepoEmbeddingIndex{
 		RepoName:  api.RepoName("repo"),
 		Revision:  api.CommitID("commit"),
@@ -274,7 +274,7 @@ func BenchmarkCustomRepoEmbeddingIndexUpload(b *testing.B) {
 }
 
 func BenchmarkCustomRepoEmbeddingIndexDownload(b *testing.B) {
-	// Roughly the size of the sourcegraph/sourcegraph index.
+	// Roughly the size of the khulnasoft/khulnasoft index.
 	index := &RepoEmbeddingIndex{
 		RepoName:  api.RepoName("repo"),
 		Revision:  api.CommitID("commit"),

@@ -18,7 +18,7 @@ describe('RepoLink', () => {
 describe('displayRepoName', () => {
     const testCases = [
         { originalRepoName: 'gerrit.sgdev.org/a/gabe/test', repoDisplayName: 'a/gabe/test' },
-        { originalRepoName: 'github.com/sourcegraph/sourcegraph', repoDisplayName: 'sourcegraph/sourcegraph' },
+        { originalRepoName: 'github.com/khulnasoft/khulnasoft', repoDisplayName: 'sourcegraph/sourcegraph' },
         { originalRepoName: 'gerrit.sgdev.org/sourcegraph', repoDisplayName: 'sourcegraph' },
         { originalRepoName: 'sourcegraph', repoDisplayName: 'sourcegraph' },
         { originalRepoName: 'sourcegraph/sourcegraph', repoDisplayName: 'sourcegraph/sourcegraph' },

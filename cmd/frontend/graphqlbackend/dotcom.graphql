@@ -1,11 +1,11 @@
 """
-Mutations that are only used on Sourcegraph.com.
+Mutations that are only used on Khulnasoft.com.
 FOR INTERNAL USE ONLY.
 """
 type DotcomMutation {
     """
     Creates new product subscription for an account.
-    Only Sourcegraph.com site admins may perform this mutation.
+    Only Khulnasoft.com site admins may perform this mutation.
     FOR INTERNAL USE ONLY.
     """
     createProductSubscription(
@@ -16,9 +16,9 @@ type DotcomMutation {
     ): ProductSubscription!
     """
     Generates and signs a new product license and associates it with an existing product subscription. The
-    product license key is signed with Sourcegraph.com's private key and is verifiable with the corresponding
+    product license key is signed with Khulnasoft.com's private key and is verifiable with the corresponding
     public key.
-    Only Sourcegraph.com site admins may perform this mutation.
+    Only Khulnasoft.com site admins may perform this mutation.
     FOR INTERNAL USE ONLY.
     """
     generateProductLicenseForSubscription(
@@ -47,7 +47,7 @@ type DotcomMutation {
     """
     Applies a partial update to a product subscription.
 
-    Only Sourcegraph.com site admins may perform this mutation.
+    Only Khulnasoft.com site admins may perform this mutation.
     FOR INTERNAL USE ONLY.
     """
     updateProductSubscription(
@@ -62,7 +62,7 @@ type DotcomMutation {
     ): EmptyResponse!
     """
     Archives an existing product subscription.
-    Only Sourcegraph.com site admins may perform this mutation.
+    Only Khulnasoft.com site admins may perform this mutation.
     FOR INTERNAL USE ONLY.
     """
     archiveProductSubscription(
@@ -74,14 +74,14 @@ type DotcomMutation {
 }
 
 """
-Mutations that are only used on Sourcegraph.com.
+Mutations that are only used on Khulnasoft.com.
 FOR INTERNAL USE ONLY.
 """
 type DotcomQuery {
     """
     The product subscription with the given UUID. An error is returned if no such product
     subscription exists.
-    Only Sourcegraph.com site admins and the account owners of the product subscription may
+    Only Khulnasoft.com site admins and the account owners of the product subscription may
     perform this query.
     FOR INTERNAL USE ONLY.
     """
@@ -90,7 +90,7 @@ type DotcomQuery {
     The access available to the product subscription with the given access token.
     The returned ProductSubscription may be archived or not associated with an active license.
 
-    Only Sourcegraph.com site admins, the account owners of the product subscription, and
+    Only Khulnasoft.com site admins, the account owners of the product subscription, and
     specific service accounts may perform this query.
     FOR INTERNAL USE ONLY.
     """
@@ -106,7 +106,7 @@ type DotcomQuery {
         first: Int
         """
         Returns only product subscriptions for the given account.
-        Only Sourcegraph.com site admins may perform this query with account == null.
+        Only Khulnasoft.com site admins may perform this query with account == null.
         """
         account: ID
         """
@@ -117,7 +117,7 @@ type DotcomQuery {
 
     """
     A list of product licenses.
-    Only Sourcegraph.com site admins may perform this query.
+    Only Khulnasoft.com site admins may perform this query.
     FOR INTERNAL USE ONLY.
     """
     productLicenses(
@@ -137,8 +137,8 @@ type DotcomQuery {
 
     """
     A dotcom user for purposes of connecting to the Cody Gateway.
-    Only Sourcegraph.com site admins or service accounts may perform this query.
-    Token is a Cody Gateway token, not a Sourcegraph instance access token.
+    Only Khulnasoft.com site admins or service accounts may perform this query.
+    Token is a Cody Gateway token, not a Khulnasoft instance access token.
     FOR INTERNAL USE ONLY.
     """
     codyGatewayDotcomUserByToken(token: String!): CodyGatewayDotcomUser
@@ -156,7 +156,7 @@ type DotcomQuery {
 
 extend type Mutation {
     """
-    Mutations that are only used on Sourcegraph.com.
+    Mutations that are only used on Khulnasoft.com.
 
     FOR INTERNAL USE ONLY.
     """
@@ -165,7 +165,7 @@ extend type Mutation {
 
 extend type Query {
     """
-    Queries that are only used on Sourcegraph.com.
+    Queries that are only used on Khulnasoft.com.
 
     FOR INTERNAL USE ONLY.
     """
@@ -220,7 +220,7 @@ input ProductLicenseInput {
 }
 
 """
-A product license that was created on Sourcegraph.com.
+A product license that was created on Khulnasoft.com.
 FOR INTERNAL USE ONLY.
 """
 type ProductLicense implements Node {
@@ -283,7 +283,7 @@ type ProductLicenseConnection {
 }
 
 """
-A product subscription that was created on Sourcegraph.com.
+A product subscription that was created on Khulnasoft.com.
 FOR INTERNAL USE ONLY.
 """
 type ProductSubscription implements Node {
@@ -310,7 +310,7 @@ type ProductSubscription implements Node {
     activeLicense: ProductLicense
     """
     A list of product licenses associated with this product subscription.
-    Only Sourcegraph.com site admins may list inactive product licenses (other viewers should use
+    Only Khulnasoft.com site admins may list inactive product licenses (other viewers should use
     ProductSubscription.activeLicense).
     """
     productLicenses(
@@ -320,14 +320,14 @@ type ProductSubscription implements Node {
         first: Int
     ): ProductLicenseConnection!
     """
-    The most preferable Sourcegraph access token to use for authenticating as the
-    subscription holder with managed Sourcegraph services.
+    The most preferable Khulnasoft access token to use for authenticating as the
+    subscription holder with managed Khulnasoft services.
     Null only if creating a token failed, for example when no active license exists.
     """
-    currentSourcegraphAccessToken: String
+    currentKhulnasoftAccessToken: String
     """
     Available access tokens for authenticating as the subscription holder with managed
-    Sourcegraph services.
+    Khulnasoft services.
     """
     sourcegraphAccessTokens: [String!]!
     """
@@ -348,7 +348,7 @@ type ProductSubscription implements Node {
     url: String!
     """
     The URL to view this product subscription in the site admin area.
-    Only Sourcegraph.com site admins may query this field.
+    Only Khulnasoft.com site admins may query this field.
     """
     urlForSiteAdmin: String
 }

@@ -21,23 +21,23 @@ func TestGitCLIBackend_ContributorCounts(t *testing.T) {
 	backend := BackendWithRepoCommands(t,
 		"echo line > f",
 		"git add f",
-		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2015-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@khulnasoft.com>'`,
 		"echo line >> f",
 		"git add f",
-		`GIT_COMMITTER_DATE="2016-01-01 00:00 Z" git commit -m foo --author='Foobar Author <foobar@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2016-01-01 00:00 Z" git commit -m foo --author='Foobar Author <foobar@khulnasoft.com>'`,
 		"mkdir subdir",
 		"echo line > subdir/f",
 		"git add subdir/f",
-		`GIT_COMMITTER_DATE="2017-01-01 00:00 Z" git commit -m foo --author='Bar Author <bar@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2017-01-01 00:00 Z" git commit -m foo --author='Bar Author <bar@khulnasoft.com>'`,
 		"echo line >> f",
 		"git add f",
-		`GIT_COMMITTER_DATE="2018-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2018-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@khulnasoft.com>'`,
 		"echo line >> f",
 		"git add f",
-		`GIT_COMMITTER_DATE="2018-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2018-01-01 00:00 Z" git commit -m foo --author='Foo Author <foo@khulnasoft.com>'`,
 		"echo line >> subdir/f",
 		"git add subdir/f",
-		`GIT_COMMITTER_DATE="2018-01-01 00:00 Z" git commit -m foo --author='Foobar Author <foobar@sourcegraph.com>'`,
+		`GIT_COMMITTER_DATE="2018-01-01 00:00 Z" git commit -m foo --author='Foobar Author <foobar@khulnasoft.com>'`,
 	)
 
 	t.Run("basic", func(t *testing.T) {
@@ -46,17 +46,17 @@ func TestGitCLIBackend_ContributorCounts(t *testing.T) {
 		require.Equal(t, []*gitdomain.ContributorCount{
 			{
 				Name:  "Foo Author",
-				Email: "foo@sourcegraph.com",
+				Email: "foo@khulnasoft.com",
 				Count: 3,
 			},
 			{
 				Name:  "Foobar Author",
-				Email: "foobar@sourcegraph.com",
+				Email: "foobar@khulnasoft.com",
 				Count: 2,
 			},
 			{
 				Name:  "Bar Author",
-				Email: "bar@sourcegraph.com",
+				Email: "bar@khulnasoft.com",
 				Count: 1,
 			},
 		}, counts)
@@ -70,12 +70,12 @@ func TestGitCLIBackend_ContributorCounts(t *testing.T) {
 		require.Equal(t, []*gitdomain.ContributorCount{
 			{
 				Name:  "Foo Author",
-				Email: "foo@sourcegraph.com",
+				Email: "foo@khulnasoft.com",
 				Count: 2,
 			},
 			{
 				Name:  "Foobar Author",
-				Email: "foobar@sourcegraph.com",
+				Email: "foobar@khulnasoft.com",
 				Count: 1,
 			},
 		}, counts)
@@ -88,7 +88,7 @@ func TestGitCLIBackend_ContributorCounts(t *testing.T) {
 		require.Equal(t, []*gitdomain.ContributorCount{
 			{
 				Name:  "Foobar Author",
-				Email: "foobar@sourcegraph.com",
+				Email: "foobar@khulnasoft.com",
 				Count: 1,
 			},
 		}, counts)
@@ -99,17 +99,17 @@ func TestGitCLIBackend_ContributorCounts(t *testing.T) {
 		require.Equal(t, []*gitdomain.ContributorCount{
 			{
 				Name:  "Foo Author",
-				Email: "foo@sourcegraph.com",
+				Email: "foo@khulnasoft.com",
 				Count: 3,
 			},
 			{
 				Name:  "Bar Author",
-				Email: "bar@sourcegraph.com",
+				Email: "bar@khulnasoft.com",
 				Count: 1,
 			},
 			{
 				Name:  "Foobar Author",
-				Email: "foobar@sourcegraph.com",
+				Email: "foobar@khulnasoft.com",
 				Count: 1,
 			},
 		}, counts)
@@ -122,12 +122,12 @@ func TestGitCLIBackend_ContributorCounts(t *testing.T) {
 		require.Equal(t, []*gitdomain.ContributorCount{
 			{
 				Name:  "Bar Author",
-				Email: "bar@sourcegraph.com",
+				Email: "bar@khulnasoft.com",
 				Count: 1,
 			},
 			{
 				Name:  "Foobar Author",
-				Email: "foobar@sourcegraph.com",
+				Email: "foobar@khulnasoft.com",
 				Count: 1,
 			},
 		}, counts)
@@ -174,13 +174,13 @@ func TestParseShortLog(t *testing.T) {
 		{
 			name: "basic",
 			input: `
-  1125	Jane Doe <jane@sourcegraph.com>
+  1125	Jane Doe <jane@khulnasoft.com>
    390	Bot Of Doom <bot@doombot.com>
 `,
 			want: []*gitdomain.ContributorCount{
 				{
 					Name:  "Jane Doe",
-					Email: "jane@sourcegraph.com",
+					Email: "jane@khulnasoft.com",
 					Count: 1125,
 				},
 				{
@@ -192,13 +192,13 @@ func TestParseShortLog(t *testing.T) {
 		},
 		{
 			name: "commonly malformed (email address as name)",
-			input: `  1125	jane@sourcegraph.com <jane@sourcegraph.com>
+			input: `  1125	jane@khulnasoft.com <jane@khulnasoft.com>
    390	Bot Of Doom <bot@doombot.com>
 `,
 			want: []*gitdomain.ContributorCount{
 				{
-					Name:  "jane@sourcegraph.com",
-					Email: "jane@sourcegraph.com",
+					Name:  "jane@khulnasoft.com",
+					Email: "jane@khulnasoft.com",
 					Count: 1125,
 				},
 				{

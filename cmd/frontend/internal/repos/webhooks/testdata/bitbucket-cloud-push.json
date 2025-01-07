@@ -271,7 +271,7 @@
     "scm": "git",
     "website": null,
     "owner": {
-      "display_name": "Sourcegraph Testing",
+      "display_name": "Khulnasoft Testing",
       "links": {
         "self": {
           "href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"
@@ -286,12 +286,12 @@
       "type": "user",
       "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
       "account_id": "623316f53fbb880068413f6b",
-      "nickname": "Sourcegraph Testing"
+      "nickname": "Khulnasoft Testing"
     },
     "workspace": {
       "type": "workspace",
       "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
-      "name": "Sourcegraph Testing",
+      "name": "Khulnasoft Testing",
       "slug": "sourcegraph-testing",
       "links": {
         "avatar": {
@@ -326,7 +326,7 @@
     "uuid": "{f46afc56-15a7-4579-9429-1b9329ad4c09}"
   },
   "actor": {
-    "display_name": "Sourcegraph Testing",
+    "display_name": "Khulnasoft Testing",
     "links": {
       "self": {
         "href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"
@@ -341,6 +341,6 @@
     "type": "user",
     "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
     "account_id": "623316f53fbb880068413f6b",
-    "nickname": "Sourcegraph Testing"
+    "nickname": "Khulnasoft Testing"
   }
 }

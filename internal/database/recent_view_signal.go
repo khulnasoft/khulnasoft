@@ -21,7 +21,7 @@ import (
 var eventUnmarshalErrorCounter = promauto.NewCounter(prometheus.CounterOpts{
 	Namespace: "src",
 	Name:      "own_event_logs_processing_errors_total",
-	Help:      "Number of errors during event logs processing for Sourcegraph Own",
+	Help:      "Number of errors during event logs processing for Khulnasoft Own",
 })
 
 type RecentViewSignalStore interface {

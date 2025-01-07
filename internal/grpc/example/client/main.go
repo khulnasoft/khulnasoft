@@ -238,7 +238,7 @@ subscriptionDone:
 		//       - When the message is received, the entire message is deserialized into memory.
 		//
 		//  This means that you must take care to ensure that your individual gRPC messages are not too large, otherwise you could take down an unsuspecting client or server.
-		//  The chunking strategy here (employed by streamio's internals) is one way to do that. See https://handbook.sourcegraph.com/departments/engineering/dev/tools/grpc/#grpc-message-size-limit for more details.
+		//  The chunking strategy here (employed by streamio's internals) is one way to do that. See https://handbook.khulnasoft.com/departments/engineering/dev/tools/grpc/#grpc-message-size-limit for more details.
 		writer := streamio.NewWriter(func(p []byte) error {
 			return stream.Send(&pb.UploadWeatherPhotoRequest{
 				Content: &pb.UploadWeatherPhotoRequest_Payload_{

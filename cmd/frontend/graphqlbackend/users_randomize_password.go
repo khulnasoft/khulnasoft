@@ -66,7 +66,7 @@ func (r *schemaResolver) RandomizeUserPassword(ctx context.Context, args *struct
 	}
 
 	// 🚨 SECURITY: On dotcom, we MUST send password reset links via email.
-	if dotcom.SourcegraphDotComMode() && !conf.CanSendEmail() {
+	if dotcom.KhulnasoftDotComMode() && !conf.CanSendEmail() {
 		return nil, errors.New("unable to reset password because email sending is not configured")
 	}
 
@@ -111,7 +111,7 @@ func (r *schemaResolver) RandomizeUserPassword(ctx context.Context, args *struct
 		}
 	}
 
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		// 🚨 SECURITY: Do not return reset URL on dotcom - we must have send it via an email.
 		// We already validate that email is enabled earlier in this endpoint for dotcom.
 		resetURL = nil

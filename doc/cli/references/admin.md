@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-'src admin' is a tool that manages an initial admin user on a new Sourcegraph instance.
+'src admin' is a tool that manages an initial admin user on a new Khulnasoft instance.
 
 Usage:
 	

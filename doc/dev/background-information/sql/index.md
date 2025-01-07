@@ -1,6 +1,6 @@
 # SQL
 
-Guidance and documentation about writing database interactions within the Sourcegraph application.
+Guidance and documentation about writing database interactions within the Khulnasoft application.
 
 - [Migrations overview](migrations_overview.md)
 - [Migrations](migrations.md)

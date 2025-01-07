@@ -63,8 +63,8 @@ func maybePrintHelpMsg(out *std.Output, multErr errors.MultiError) {
 	msg := fmt.Sprintf("\n```%s```\n", errMsg)
 	msg += "If these errors persist you can disable analytics with `export SG_DISABLE_ANALYTICS=1` or by passing the flag `--disable-analytics` as part of your command\n"
 	msg += "Alternatively, try one of the following:"
-	msg += "- You should be in the `gcp-engineering@sourcegraph.com` group. Ask #ask-it-tech-ops or #discuss-dev-infra to check that\n"
-	msg += "- Ensure you're currently authenticated with your sourcegraph.com account by running `gcloud auth list`\n"
+	msg += "- You should be in the `gcp-engineering@khulnasoft.com` group. Ask #ask-it-tech-ops or #discuss-dev-infra to check that\n"
+	msg += "- Ensure you're currently authenticated with your khulnasoft.com account by running `gcloud auth list`\n"
 	msg += "- Ensure you're authenticated with gcloud by running `gcloud auth application-default login`\n"
 	out.WriteMarkdown(msg)
 }

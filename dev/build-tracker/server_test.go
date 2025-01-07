@@ -75,7 +75,7 @@ func TestGetBuild(t *testing.T) {
 				},
 				Author: &buildkite.Author{
 					Name:  "William Bezuidenhout",
-					Email: "william.bezuidenhout@sourcegraph.com",
+					Email: "william.bezuidenhout@khulnasoft.com",
 				},
 				Number: &num,
 				URL:    &url,

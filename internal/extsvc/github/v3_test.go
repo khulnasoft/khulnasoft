@@ -866,8 +866,8 @@ func TestV3Client_CreateCommit(t *testing.T) {
 		treeSha := "851e666a00cd0cf74f1558ac5664fe431d3b1935"
 		parentSha := "9d04a0d8733dafbb5d75e594a9ec525c49dfc975"
 		author := &restAuthorCommiter{
-			Name:  "Sourcegraph VCR Test",
-			Email: "dev@sourcegraph.com",
+			Name:  "Khulnasoft VCR Test",
+			Email: "dev@khulnasoft.com",
 			Date:  "2023-06-01T12:00:00Z",
 		}
 		commit, err := cli.CreateCommit(ctx, "sourcegraph", "automation-testing", "I'm a new commit from a VCR test!", treeSha, []string{parentSha}, author, author)
@@ -925,8 +925,8 @@ func TestV3Client_UpdateRef(t *testing.T) {
 			},
 		}
 		author := &restAuthorCommiter{
-			Name:  "Sourcegraph VCR Test",
-			Email: "dev@sourcegraph.com",
+			Name:  "Khulnasoft VCR Test",
+			Email: "dev@khulnasoft.com",
 			Date:  "2023-06-01T12:00:00Z",
 		}
 

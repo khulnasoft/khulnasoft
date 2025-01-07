@@ -19,7 +19,7 @@ import (
 )
 
 // A PhabricatorSource yields repositories from a single Phabricator connection configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 type PhabricatorSource struct {
 	svc  *types.ExternalService
 	conn *schema.PhabricatorConnection
@@ -51,7 +51,7 @@ func (s *PhabricatorSource) CheckConnection(ctx context.Context) error {
 }
 
 // ListRepos returns all Phabricator repositories accessible to all connections configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 func (s *PhabricatorSource) ListRepos(ctx context.Context, results chan SourceResult) {
 	cli, err := s.client(ctx)
 	if err != nil {

@@ -10,7 +10,7 @@ describe('getInitialSearchTerm', () => {
     }[] = [
         {
             name: 'works with a github repo url',
-            repo: 'github.com/sourcegraph/sourcegraph',
+            repo: 'github.com/khulnasoft/khulnasoft',
             expected: 'sourcegraph',
         },
         {

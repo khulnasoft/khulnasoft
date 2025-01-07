@@ -192,11 +192,11 @@ export const CloudSignUpPage: React.FunctionComponent<React.PropsWithChildren<Pr
 
                     <small className="text-muted">
                         By registering, you agree to our{' '}
-                        <Link to="https://sourcegraph.com/terms" target="_blank" rel="noopener">
+                        <Link to="https://khulnasoft.com/terms" target="_blank" rel="noopener">
                             Terms of Service
                         </Link>{' '}
                         and{' '}
-                        <Link to="https://sourcegraph.com/privacy" target="_blank" rel="noopener">
+                        <Link to="https://khulnasoft.com/privacy" target="_blank" rel="noopener">
                             Privacy Policy
                         </Link>
                         .

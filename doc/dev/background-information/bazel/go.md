@@ -15,7 +15,7 @@ See also: [How-to use `go:generate` with Bazel](./go_generate.md)
     - `timeout = "short"` 
     - `tags = ["go"]` 
 - Avoid:
-  - Having test code that explictly depends on being aware of the Sourcegraph git repository.
+  - Having test code that explictly depends on being aware of the Khulnasoft git repository.
   - Committing files with spaces in their names. 
 
 ## Overview 
@@ -41,7 +41,7 @@ Finally, you'll see `visibility` attribute a lot in those rules. In 99% of the c
 
 ### Conventions and defaults 
 
-By default, all `go_test` are tagged with `"go"`. They also have by default the `timeout = "short"` attribute set. Those default values are Sourcegraph specific and are defined in [`go_defs.bzl`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/dev/go_defs.bzl). This enables to filter and run only those tests with the `--test_tag_filters=go --test_timeout_filters=short`, which is alias for convenience as `--config go-short`. 
+By default, all `go_test` are tagged with `"go"`. They also have by default the `timeout = "short"` attribute set. Those default values are Khulnasoft specific and are defined in [`go_defs.bzl`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/dev/go_defs.bzl). This enables to filter and run only those tests with the `--test_tag_filters=go --test_timeout_filters=short`, which is alias for convenience as `--config go-short`. 
 
 The `timeout` attribute tells Bazel that running those tests (for the entire package) should not exceed 60s (in case of a `"short"` timeout). If you get too close to that threshold, you'll see a warning displayed and if it goes over the threshold it will instead fail with a `TIMEOUT` error. 
 

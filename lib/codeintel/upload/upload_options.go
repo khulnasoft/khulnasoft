@@ -8,21 +8,21 @@ import (
 )
 
 type Client interface {
-	// Do runs an http.Request against the Sourcegraph API.
+	// Do runs an http.Request against the Khulnasoft API.
 	Do(req *http.Request) (*http.Response, error)
 }
 
 type UploadOptions struct {
-	SourcegraphInstanceOptions
+	KhulnasoftInstanceOptions
 	OutputOptions
 	UploadRecordOptions
 }
 
-type SourcegraphInstanceOptions struct {
-	SourcegraphURL      string            // The URL (including scheme) of the target Sourcegraph instance
+type KhulnasoftInstanceOptions struct {
+	KhulnasoftURL      string            // The URL (including scheme) of the target Khulnasoft instance
 	AccessToken         string            // The user access token
 	AdditionalHeaders   map[string]string // Additional request headers on each request
-	Path                string            // Custom path on the Sourcegraph instance (used internally)
+	Path                string            // Custom path on the Khulnasoft instance (used internally)
 	MaxRetries          int               // The maximum number of retries per request
 	RetryInterval       time.Duration     // Sleep duration between retries
 	MaxPayloadSizeBytes int64             // The maximum number of bytes sent in a single request

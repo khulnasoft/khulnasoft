@@ -15,7 +15,7 @@ import (
 )
 
 // A GitoliteSource yields repositories from a single Gitolite connection configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 type GitoliteSource struct {
 	svc      *types.ExternalService
 	conn     *schema.GitoliteConnection
@@ -60,7 +60,7 @@ func (s *GitoliteSource) CheckConnection(ctx context.Context) error {
 }
 
 // ListRepos returns all Gitolite repositories accessible to all connections configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 func (s *GitoliteSource) ListRepos(ctx context.Context, results chan SourceResult) {
 	all, err := s.gc.ListGitoliteRepos(ctx, s.conn.Host)
 	if err != nil {

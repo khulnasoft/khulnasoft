@@ -9,8 +9,8 @@ import type { KeyboardShortcut } from '../keyboardShortcuts'
 import { Shortcut } from '../react-shortcuts'
 import { isInputElement } from '../util/dom'
 
-const SOURCEGRAPH_LIGHT = 'sourcegraph-light'
-const SOURCEGRAPH_DARK = 'sourcegraph-dark'
+const KHULNASOFT_LIGHT = 'sourcegraph-light'
+const KHULNASOFT_DARK = 'sourcegraph-dark'
 
 const MAX_AUTO_HEIGHT = 1024
 
@@ -143,14 +143,14 @@ const lightRules: monaco.editor.ITokenThemeRule[] = [
     { token: 'metaPathSeparator', foreground: '#868e96' }, // --oc-gray-6
 ]
 
-monaco.editor.defineTheme(SOURCEGRAPH_DARK, {
+monaco.editor.defineTheme(KHULNASOFT_DARK, {
     base: 'vs-dark',
     inherit: true,
     colors: darkColors,
     rules: darkRules,
 })
 
-monaco.editor.defineTheme(SOURCEGRAPH_LIGHT, {
+monaco.editor.defineTheme(KHULNASOFT_LIGHT, {
     base: 'vs',
     inherit: true,
     colors: lightColors,
@@ -310,5 +310,5 @@ export class MonacoEditor extends React.PureComponent<Props, State> {
         }
     }
 
-    private getTheme = (isLightTheme: boolean): string => (isLightTheme ? SOURCEGRAPH_LIGHT : SOURCEGRAPH_DARK)
+    private getTheme = (isLightTheme: boolean): string => (isLightTheme ? KHULNASOFT_LIGHT : KHULNASOFT_DARK)
 }

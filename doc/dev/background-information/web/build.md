@@ -6,11 +6,11 @@ This document describes the TypeScript projects in this repository and how they 
 
 We use TypeScript for two products:
 
-- [`web`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/web): The main Sourcegraph web application
-  - Entrypoint: [`main.tsx`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/web/src/enterprise/main.tsx)
-- [`browser`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/client/brower): The Sourcegraph browser extension
+- [`web`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/tree/web): The main Khulnasoft web application
+  - Entrypoint: [`main.tsx`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/tree/web/src/enterprise/main.tsx)
+- [`browser`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/tree/client/brower): The Khulnasoft browser extension
 
-These both use shared TypeScript code in [`../shared`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/shared). Each product has its own separate esbuild configuration.
+These both use shared TypeScript code in [`../shared`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/tree/shared). Each product has its own separate esbuild configuration.
 
 ## Build process and configuration
 
@@ -21,7 +21,7 @@ These both use shared TypeScript code in [`../shared`](https://sourcegraph.com/g
   - Go-to-definition, find-references, auto-import-completion, and other editor features should work across all shared code (with no jumps to generated `.d.ts` files).
   - An edit to a shared TypeScript file should be directly reflected in both products' build processes in all of those tools.
 - It should feel like a single, consistent user experience to use the web app and browser extension.
-  - Corollary: These should be developed together most of the time. They should feel like the same codebases, and new features that are relevant to both should be made by the same person and in the same commit/PR. (The browser extension needs more backcompat than the web app, because the browser extension must support communicating with older Sourcegraph instances.)
+  - Corollary: These should be developed together most of the time. They should feel like the same codebases, and new features that are relevant to both should be made by the same person and in the same commit/PR. (The browser extension needs more backcompat than the web app, because the browser extension must support communicating with older Khulnasoft instances.)
 - Make the edit-reload-debug cycle for errors as quick as possible.
 
 ### Background

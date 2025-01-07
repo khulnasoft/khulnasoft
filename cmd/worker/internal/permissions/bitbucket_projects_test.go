@@ -175,8 +175,8 @@ func TestSetPermissionsForUsers(t *testing.T) {
 
 		for _, bindID := range bindIDs {
 			userPerms := &authz.UserPendingPermissions{
-				ServiceType: authz.SourcegraphServiceType,
-				ServiceID:   authz.SourcegraphServiceID,
+				ServiceType: authz.KhulnasoftServiceType,
+				ServiceID:   authz.KhulnasoftServiceID,
 				BindID:      bindID,
 				Perm:        authz.Read,
 				Type:        authz.PermRepos,

@@ -159,7 +159,7 @@ func (e *multiError) FormatError(p errors.Printer) error {
 // registerSafeTypes registers types that should not be considered PII by
 // cockroachdb/errors.
 //
-// Sourced from https://sourcegraph.com/github.com/cockroachdb/cockroach/-/blob/pkg/util/log/redact.go?L141
+// Sourced from https://khulnasoft.com/github.com/cockroachdb/cockroach/-/blob/pkg/util/log/redact.go?L141
 func registerCockroachSafeTypes() {
 	// We consider booleans and numeric values to be always safe for
 	// reporting. A log call can opt out by using redact.Unsafe() around

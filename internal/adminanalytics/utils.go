@@ -78,8 +78,8 @@ func getDefaultConds() []*sqlf.Query {
 	commonConds := database.BuildCommonUsageConds(&database.CommonUsageOptions{
 		ExcludeSystemUsers:          true,
 		ExcludeNonActiveUsers:       true,
-		ExcludeSourcegraphAdmins:    true,
-		ExcludeSourcegraphOperators: true,
+		ExcludeKhulnasoftAdmins:    true,
+		ExcludeKhulnasoftOperators: true,
 	}, []*sqlf.Query{})
 
 	return append(commonConds, sqlf.Sprintf("anonymous_user_id != 'backend'"))

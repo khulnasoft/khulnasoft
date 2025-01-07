@@ -24,7 +24,7 @@ func TestPromptsConnectionStore(t *testing.T) {
 	db := database.NewDB(logtest.Scoped(t), dbtest.NewDB(t))
 
 	user, err := db.Users().Create(ctx, database.NewUser{
-		Email:           "test@sourcegraph.com",
+		Email:           "test@khulnasoft.com",
 		Username:        "test",
 		EmailIsVerified: true,
 	})

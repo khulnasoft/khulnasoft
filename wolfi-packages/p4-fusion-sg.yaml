@@ -1,10 +1,10 @@
-# Melange-based replacement for https://sourcegraph.sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/gitserver/p4-fusion-install-alpine.sh
+# Melange-based replacement for https://sourcegraph.khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/gitserver/p4-fusion-install-alpine.sh
 
 package:
   name: p4-fusion-sg
   version: 1.14.1
   epoch: 0
-  description: "A fast Perforce to Git conversion tool, Sourcegraph fork"
+  description: "A fast Perforce to Git conversion tool, Khulnasoft fork"
   target-architecture:
     - x86_64
   copyright:

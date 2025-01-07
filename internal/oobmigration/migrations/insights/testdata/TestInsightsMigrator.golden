@@ -100,7 +100,7 @@
 				"org 1"
 			],
 			"Views": [
-				"Language usage in Sourcegraph",
+				"Language usage in Khulnasoft",
 				"Migration to CSS Modules",
 				"Number of end-to-end vs integration tests"
 			]
@@ -315,7 +315,7 @@
 				"Java version usage",
 				"LOC in TS vs GO ",
 				"LOC test 2: .\\n ",
-				"Language usage in Sourcegraph",
+				"Language usage in Khulnasoft",
 				"Migrate away from global database connections",
 				"Migration from FilteredConnection to useConnection",
 				"Migration from dbtesting to dbtest",
@@ -424,10 +424,10 @@
 		{
 			"Query": "",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
-				"Language usage in Sourcegraph"
+				"Language usage in Khulnasoft"
 			]
 		},
 		{
@@ -441,7 +441,7 @@
 		{
 			"Query": "\u003cFilteredConnection",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration from FilteredConnection to useConnection"
@@ -450,7 +450,7 @@
 		{
 			"Query": "= useConnection",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration from FilteredConnection to useConnection"
@@ -473,7 +473,7 @@
 		{
 			"Query": "FunctionComponent",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"JDB Regression Test 2!"
@@ -482,7 +482,7 @@
 		{
 			"Query": "React.Component",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"JDB Regression Test 2!"
@@ -582,7 +582,7 @@
 		{
 			"Query": "campaigns",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"[Test 9.2] Campaigns frontend insight "
@@ -628,7 +628,7 @@
 		{
 			"Query": "campaigns file:. context:@joel/src/src",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"campaigns extension"
@@ -645,7 +645,7 @@
 		{
 			"Query": "context:global file:readme.md \\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n*\\n.*\\n.* select:file patterntype:regexp",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Readmes and readmes that are \"complete\""
@@ -654,7 +654,7 @@
 		{
 			"Query": "context:global file:readme.md select:file patterntype:regexp",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Readmes and readmes that are \"complete\""
@@ -663,7 +663,7 @@
 		{
 			"Query": "context:global repo:^github\\.com/sourcegraph/sourcegraph$ lang:Go ^[^\\S\\r\\n]*\\/\\/[^\\S\\r\\n]*func\\ Test or ^[^\\S\\r\\n]*\\/\\/[^\\S\\r\\n]*t\\.Run or ^[^\\S\\r\\n]*t\\.Skip patternType:regexp",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Total count of skipped tests"
@@ -672,7 +672,7 @@
 		{
 			"Query": "context:global type:commit",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Commits over time"
@@ -681,7 +681,7 @@
 		{
 			"Query": "context:global type:commit fix",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Commits over time"
@@ -690,7 +690,7 @@
 		{
 			"Query": "context:global type:commit revert",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Commits over time"
@@ -699,7 +699,7 @@
 		{
 			"Query": "context:global type:file lang:scss -file:module.scss -file:global-styles patterntype:regexp",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration to CSS Modules"
@@ -708,7 +708,7 @@
 		{
 			"Query": "context:global type:file lang:scss file:module.scss patterntype:regexp",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration to CSS Modules"
@@ -850,7 +850,7 @@
 		{
 			"Query": "database.DB",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration to database.DB"
@@ -859,7 +859,7 @@
 		{
 			"Query": "database.Mocks",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration from global db mocks"
@@ -868,7 +868,7 @@
 		{
 			"Query": "database.NewDB -file:test.go$",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"database.NewDB outside test files"
@@ -877,7 +877,7 @@
 		{
 			"Query": "dbconn.Global",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migrate away from global database connections"
@@ -886,7 +886,7 @@
 		{
 			"Query": "dbconn.Global",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Removing uses of dbconn.Global"
@@ -895,7 +895,7 @@
 		{
 			"Query": "dbtest.New",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration from dbtesting to dbtest"
@@ -904,7 +904,7 @@
 		{
 			"Query": "dbtesting.GetDB",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration from dbtesting to dbtest"
@@ -913,7 +913,7 @@
 		{
 			"Query": "dbutil.DB",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration to database.DB"
@@ -964,7 +964,7 @@
 		{
 			"Query": "file:^client/wildcard/src/components/index\\.ts export",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Wildcard growth"
@@ -973,7 +973,7 @@
 		{
 			"Query": "file:^client/wildcard/src/hooks/index\\.ts export",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Wildcard growth"
@@ -982,7 +982,7 @@
 		{
 			"Query": "from '@testing-library/react'",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Usage of React testing libraries"
@@ -991,7 +991,7 @@
 		{
 			"Query": "from 'enzyme'",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Usage of React testing libraries"
@@ -1000,7 +1000,7 @@
 		{
 			"Query": "from 'react-test-renderer'",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Usage of React testing libraries"
@@ -1009,7 +1009,7 @@
 		{
 			"Query": "func",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"GLOBAL func"
@@ -1018,7 +1018,7 @@
 		{
 			"Query": "gitserver.DefaultClient.Command file:vcs/git",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Removing raw commands"
@@ -1027,7 +1027,7 @@
 		{
 			"Query": "global test",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"global test"
@@ -1210,7 +1210,7 @@
 		{
 			"Query": "joelk",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Trigger second frontend insight sep 16"
@@ -1228,7 +1228,7 @@
 		{
 			"Query": "joelkw",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Trigger frontend insight sep 16"
@@ -1280,7 +1280,7 @@
 		{
 			"Query": "org",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"\"Org\" test counts"
@@ -1307,7 +1307,7 @@
 		{
 			"Query": "patternType:regex case:yes \\*\\sas\\sGQL",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration to new GraphQL TS types"
@@ -1316,7 +1316,7 @@
 		{
 			"Query": "patternType:regex case:yes \\*\\sas\\sGQL type:diff",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration to new GraphQL TS types Diff Search"
@@ -1325,7 +1325,7 @@
 		{
 			"Query": "patternType:regexp (query|mutate)GraphQL(\\(|\u003c[^\u003e]*\u003e\\()",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Data fetching from GraphQL"
@@ -1362,7 +1362,7 @@
 		{
 			"Query": "patternType:regexp case:yes /graphql-operations'",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration to new GraphQL TS types"
@@ -1371,7 +1371,7 @@
 		{
 			"Query": "patternType:regexp case:yes /graphql-operations' type:diff",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration to new GraphQL TS types Diff Search"
@@ -1380,7 +1380,7 @@
 		{
 			"Query": "patternType:regexp case:yes \\b(it|test)\\( f:/end-to-end/.*\\.test\\.ts$",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Number of end-to-end vs integration tests"
@@ -1389,7 +1389,7 @@
 		{
 			"Query": "patternType:regexp case:yes \\b(it|test)\\( f:/integration/.*\\.test\\.ts$ ",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Number of end-to-end vs integration tests"
@@ -1398,7 +1398,7 @@
 		{
 			"Query": "patternType:regexp case:yes \\b(it|test)\\( f:/regression/.*\\.test\\.ts$",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Number of end-to-end vs integration tests"
@@ -1407,7 +1407,7 @@
 		{
 			"Query": "patternType:regexp case:yes \\bt\\.Run\\( file:^dev/gqltest/",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Number of end-to-end vs integration tests"
@@ -1416,7 +1416,7 @@
 		{
 			"Query": "patternType:regexp const\\s\\w+:\\s(React\\.)?FunctionComponent",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"React function component migration"
@@ -1425,7 +1425,7 @@
 		{
 			"Query": "patternType:regexp extends\\s(React\\.)?(Pure)?Component",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"React function component migration"
@@ -1434,7 +1434,7 @@
 		{
 			"Query": "patternType:regexp f:\\.story\\.tsx$ \\badd\\(",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Storybook growth"
@@ -1443,7 +1443,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go -file:shared Interpretation:(\\s+)\"(.?$|[^n].+|n[^o].*)\" OR Interpretation:(\\s+)`",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1452,7 +1452,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go -file:shared Interpretation:(\\s+)\"(.?$|[^n].+|n[^o].*)\" OR Interpretation:(\\s+)`",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1461,7 +1461,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go -file:shared NoAlert:(\\s+)true",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1470,7 +1470,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go -file:shared NoAlert:(\\s+)true",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1479,7 +1479,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go -file:shared PossibleSolutions:(\\s+)\"(.?$|[^n].+|n[^o].*)\" OR PossibleSolutions:(\\s+)`",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1488,7 +1488,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go -file:shared PossibleSolutions:(\\s+)\"(.?$|[^n].+|n[^o].*)\" OR PossibleSolutions:(\\s+)`",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1497,7 +1497,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go -file:shared Query:",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1506,7 +1506,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go -file:shared Query:",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1515,7 +1515,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go PanelOptions\\.(.*)",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1524,7 +1524,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go With\\((.*)",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1533,7 +1533,7 @@
 		{
 			"Query": "patternType:regexp file:^monitoring/definitions/(.*).go With\\((.*)",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Monitoring API"
@@ -1542,7 +1542,7 @@
 		{
 			"Query": "patternType:regexp m[a-z]?-\\d",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Bootstrap spacing utility classes"
@@ -1551,7 +1551,7 @@
 		{
 			"Query": "patternType:regexp p[a-z]?-\\d",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Bootstrap spacing utility classes"
@@ -1560,7 +1560,7 @@
 		{
 			"Query": "patternType:regexp repo:^github\\.com/sourcegraph/sourcegraph$ import.+ from '@sourcegraph\\/branded/src/components.+",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Component imports"
@@ -1569,7 +1569,7 @@
 		{
 			"Query": "patternType:regexp repo:^github\\.com/sourcegraph/sourcegraph$ import.+ from '@sourcegraph\\/shared/src/components.+",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Component imports"
@@ -1578,7 +1578,7 @@
 		{
 			"Query": "patternType:regexp repo:^github\\.com/sourcegraph/sourcegraph$ import.+ from '@sourcegraph\\/wildcard.+",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Component imports"
@@ -1587,7 +1587,7 @@
 		{
 			"Query": "patternType:regexp requestGraphQL(\\(|\u003c[^\u003e]*\u003e\\()",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Data fetching from GraphQL"
@@ -1644,7 +1644,7 @@
 		{
 			"Query": "patternType:regexp use(Query|Mutation|Connection|LazyQuery)(\\(|\u003c[^\u003e]*\u003e\\()",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Data fetching from GraphQL"
@@ -1653,7 +1653,7 @@
 		{
 			"Query": "patternType:structural lang:go errors.Wrap(:[_])",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Go error wrapping adoption"
@@ -1662,7 +1662,7 @@
 		{
 			"Query": "patternType:structural lang:go fmt.Errorf(\":[_]%w:[_]\", :[_])",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Go error wrapping adoption"
@@ -1671,7 +1671,7 @@
 		{
 			"Query": "patterntype:regex database\\.(AccessTokens|Authz|EventLogs|ExternalServices|FeatureFlags|Namespaces|OrgInvitations|OrgMembers|Orgs|Phabricator|Repos|SavedSearches|SearchContexts|Settings|SubRepoPerms|TemporarySettings|UserCredentials|UserEmails|UserExternalAccounts|UserPublicRepos|Users|WebhookLogs)\\([^\\)]+\\)",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration to method store construction"
@@ -1680,7 +1680,7 @@
 		{
 			"Query": "patterntype:regex dbmock.NewMock\\w+Store type:file",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration from global db mocks"
@@ -1689,7 +1689,7 @@
 		{
 			"Query": "patterntype:regex repo:sourcegraph/sourcegraph$ db\\.(AccessTokens|Authz|EventLogs|ExternalServices|FeatureFlags|Namespaces|OrgInvitations|OrgMembers|Orgs|Phabricator|Repos|SavedSearches|SearchContexts|Settings|SubRepoPerms|TemporarySettings|UserCredentials|UserEmails|UserExternalAccounts|UserPublicRepos|Users|WebhookLogs)\\(\\)",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Migration to method store construction"
@@ -1698,7 +1698,7 @@
 		{
 			"Query": "patterntype:regexp file:tsx select:file content:(\u003cbutton | \u003cinput | \u003ctextarea | \u003cselect ) file:tsx",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Raw HTML elements vs Wildcard atoms"
@@ -1707,7 +1707,7 @@
 		{
 			"Query": "patterntype:regexp file:tsx select:file import (Button|Input|Checkbox|RadioButton|Select|TextArea) from '@sourcegraph/wildcard'",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Raw HTML elements vs Wildcard atoms"
@@ -1723,7 +1723,7 @@
 		{
 			"Query": "postgres",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Database usage"
@@ -1732,7 +1732,7 @@
 		{
 			"Query": "redis",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Database usage"
@@ -1741,7 +1741,7 @@
 		{
 			"Query": "repo:^github\\.com/sourcegraph/sourcegraph$  test.skip (lang:TypeScript or lang:javascript)",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Total count of skipped tests"
@@ -1750,25 +1750,25 @@
 		{
 			"Query": "repo:^github\\.com/sourcegraph/sourcegraph$ lang:Go file:enterprise/dev/ci/.* (func Test or t.Run)",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"CI Pipeline Generator Tests"
 			]
 		},
 		{
-			"Query": "repo:sourcegraph/sourcegraph lang:JavaScript",
+			"Query": "repo:khulnasoft/khulnasoft lang:JavaScript",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Usage of JavaScript and TypeScript"
 			]
 		},
 		{
-			"Query": "repo:sourcegraph/sourcegraph lang:TypeScript",
+			"Query": "repo:khulnasoft/khulnasoft lang:TypeScript",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Usage of JavaScript and TypeScript"
@@ -1805,7 +1805,7 @@
 		{
 			"Query": "sqlite",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"Database usage"
@@ -1823,7 +1823,7 @@
 		{
 			"Query": "test123",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"test123"
@@ -1832,7 +1832,7 @@
 		{
 			"Query": "test234 changed",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"test234 changed"
@@ -1841,7 +1841,7 @@
 		{
 			"Query": "test435",
 			"Repositories": [
-				"github.com/sourcegraph/sourcegraph"
+				"github.com/khulnasoft/khulnasoft"
 			],
 			"Views": [
 				"test435"
@@ -2113,7 +2113,7 @@
 			]
 		},
 		{
-			"Title": "Language usage in Sourcegraph",
+			"Title": "Language usage in Khulnasoft",
 			"Grants": [
 				"org 1"
 			],

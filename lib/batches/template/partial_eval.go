@@ -154,7 +154,7 @@ func evalNode(ctx *StepContext, n parse.Node) (reflect.Value, bool) {
 
 	case *parse.NumberNode:
 		// This case branch is lifted from Go's text/template execution engine:
-		// https://sourcegraph.com/github.com/golang/go@2c9f5a1da823773c436f8b2c119635797d6db2d3/-/blob/src/text/template/exec.go#L493-530
+		// https://khulnasoft.com/github.com/golang/go@2c9f5a1da823773c436f8b2c119635797d6db2d3/-/blob/src/text/template/exec.go#L493-530
 		// The difference is that we don't do any error handling but simply abort.
 		switch {
 		case n.IsComplex:

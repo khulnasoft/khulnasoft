@@ -29,7 +29,7 @@ var (
 // MaxPendingPriority it receives are monotonically decreasing.
 //
 // Note: it ignores the top-level fields RepoURLs and LineFragments since we
-// do not read those values in Sourcegraph.
+// do not read those values in Khulnasoft.
 type collectSender struct {
 	aggregate *zoekt.SearchResult
 	overflow  []*zoekt.SearchResult
@@ -126,7 +126,7 @@ type flushCollectSender struct {
 // flush as a 'fallback plan' to avoid delaying the search too much.
 func newFlushCollectSender(opts *zoekt.SearchOptions, endpoints []string, maxSizeBytes int, sender zoekt.Sender) FlushSender {
 	// Nil options are permitted by Zoekt's "Streamer" interface. There are a few
-	// callers within Sourcegraph that call search with nil options (tests,
+	// callers within Khulnasoft that call search with nil options (tests,
 	// insights), so we have to handle this case.
 	if opts == nil {
 		return &nopFlushCollector{sender}

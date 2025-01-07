@@ -175,7 +175,7 @@ func cloneRepo(
 	return nil
 }
 
-// newGitProxyServer creates a new HTTP proxy to the Sourcegraph instance on a random port.
+// newGitProxyServer creates a new HTTP proxy to the Khulnasoft instance on a random port.
 // It handles authentication and additional headers required. The cleanup function
 // should be called after the clone operations are done and _before_ the job is started.
 // This is used so that we never have to tell git about the credentials used here.
@@ -242,18 +242,18 @@ func newReverseProxy(upstream *url.URL, accessToken string, jobToken string, exe
 		// Add authentication. We don't add this in the git clone URL directly
 		// to never tell git about the clone secret.
 
-		// If there is no token set, we may be talking with a version of Sourcegraph that is behind.
+		// If there is no token set, we may be talking with a version of Khulnasoft that is behind.
 		if len(jobToken) > 0 {
 			req.Header.Set("Authorization", fmt.Sprintf("%s %s", "Bearer", jobToken))
 		} else {
 			req.Header.Set("Authorization", fmt.Sprintf("%s %s", SchemeExecutorToken, accessToken))
 		}
-		req.Header.Set("X-Sourcegraph-Actor-UID", "internal")
-		req.Header.Set("X-Sourcegraph-Job-ID", strconv.Itoa(jobId))
+		req.Header.Set("X-Khulnasoft-Actor-UID", "internal")
+		req.Header.Set("X-Khulnasoft-Job-ID", strconv.Itoa(jobId))
 		// When using the reverse proxy, setting the username on req.User is not respected. If a username must be set,
 		// you have to use .SetBasicAuth(). However, this will set the Authorization using the username + password.
 		// So to avoid confusion, set the executor name in a specific HTTP header.
-		req.Header.Set("X-Sourcegraph-Executor-Name", executorName)
+		req.Header.Set("X-Khulnasoft-Executor-Name", executorName)
 	}
 	return proxy
 }

@@ -168,7 +168,7 @@ func GenerateDeploymentTrace(r *DeploymentReport) (*DeploymentTrace, error) {
 	}, nil
 }
 
-// https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/honeycombio/buildevents%24%40main+func+buildURL&patternType=literal
+// https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/honeycombio/buildevents%24%40main+func+buildURL&patternType=literal
 func buildTraceURL(cfg *libhoney.Config, traceID string, ts int64) (string, error) {
 	teamName, err := libhoney.VerifyAPIKey(*cfg)
 	if err != nil {

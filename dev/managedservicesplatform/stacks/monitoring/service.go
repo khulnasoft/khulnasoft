@@ -205,7 +205,7 @@ func createCloudRunPreconditionFailedAlert(
 	channels alertpolicy.NotificationChannels,
 ) (monitoringalertpolicy.MonitoringAlertPolicy, error) {
 	metric, err := logcountmetric.New(stack, id.Group("cloud_run_precondition_failed"), &logcountmetric.Config{
-		Name: "msp.sourcegraph.com/cloud_run_precondition_failed",
+		Name: "msp.khulnasoft.com/cloud_run_precondition_failed",
 		// Status 9 indicates 'precondition failed'
 		// https://github.com/googleapis/googleapis/blob/e3802a1c97ee876e01247f9d22c15219ef4d9c19/google/rpc/code.proto#L110-L128
 		LogFilters: fmt.Sprintf(`

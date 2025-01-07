@@ -130,7 +130,7 @@ const config = {
               '!@sourcegraph/branded/src/testing/*',
               '!@sourcegraph/shared/src/*',
               '!@sourcegraph/shared/src/testing/*',
-              '!@sourcegraph/web/src/SourcegraphWebApp.scss',
+              '!@sourcegraph/web/src/KhulnasoftWebApp.scss',
               '!@sourcegraph/branded/src/search-ui/experimental',
               '!@sourcegraph/*/src/testing',
               '!@sourcegraph/*/src/stories',
@@ -240,7 +240,7 @@ const config = {
       {
         selector: 'CallExpression[callee.name="useLocalStorage"]',
         message:
-          'Consider using useTemporarySetting instead of useLocalStorage so settings are synced when users log in elsewhere. More info at https://docs.sourcegraph.com/dev/background-information/web/temporary_settings',
+          'Consider using useTemporarySetting instead of useLocalStorage so settings are synced when users log in elsewhere. More info at https://docs.khulnasoft.com/dev/background-information/web/temporary_settings',
       },
       {
         selector: 'JSXAttribute JSXIdentifier[name="data-tooltip"]',

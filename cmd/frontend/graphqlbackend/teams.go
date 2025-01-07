@@ -995,8 +995,8 @@ func extractMembers(members []TeamMemberInput, pred func(member TeamMemberInput)
 var ErrNoAccessToTeam = errors.New("user cannot modify team")
 
 func areTeamEndpointsAvailable() error {
-	if dotcom.SourcegraphDotComMode() {
-		return errors.New("teams are not available on sourcegraph.com")
+	if dotcom.KhulnasoftDotComMode() {
+		return errors.New("teams are not available on khulnasoft.com")
 	}
 	if !own.IsEnabled() {
 		return errors.New("teams are disabled")

@@ -56,22 +56,22 @@ func editorRev(ctx context.Context, logger log.Logger, db database.DB, repoName 
 	return "@" + rev
 }
 
-// editorRequest represents the parameters to a Sourcegraph "open file", "search", etc. editor request.
+// editorRequest represents the parameters to a Khulnasoft "open file", "search", etc. editor request.
 type editorRequest struct {
 	logger log.Logger
 	db     database.DB
 
-	// openFileRequest is non-nil if this is an "open file on Sourcegraph" request.
+	// openFileRequest is non-nil if this is an "open file on Khulnasoft" request.
 	openFileRequest *editorOpenFileRequest
 
-	// searchRequest is non-nil if this is a "search on Sourcegraph" request.
+	// searchRequest is non-nil if this is a "search on Khulnasoft" request.
 	searchRequest *editorSearchRequest
 }
 
-// editorSearchRequest represents parameters for "open file on Sourcegraph" editor requests.
+// editorSearchRequest represents parameters for "open file on Khulnasoft" editor requests.
 type editorOpenFileRequest struct {
 	remoteURL         string            // Git repository remote URL.
-	hostnameToPattern map[string]string // Map of Git remote URL hostnames to patterns describing how they map to Sourcegraph repositories
+	hostnameToPattern map[string]string // Map of Git remote URL hostnames to patterns describing how they map to Khulnasoft repositories
 	branch            string            // Git branch name.
 	revision          string            // Git revision.
 	file              string            // Unix filepath relative to repository root.
@@ -81,14 +81,14 @@ type editorOpenFileRequest struct {
 	startCol, endCol int
 }
 
-// editorSearchRequest represents parameters for "search on Sourcegraph" editor requests.
+// editorSearchRequest represents parameters for "search on Khulnasoft" editor requests.
 type editorSearchRequest struct {
 	query string // The literal search query
 
 	// Optional git repository remote URL. When present, the search will be performed just
 	// in the repository (not globally).
 	remoteURL         string
-	hostnameToPattern map[string]string // Map of Git remote URL hostnames to patterns describing how they map to Sourcegraph repositories
+	hostnameToPattern map[string]string // Map of Git remote URL hostnames to patterns describing how they map to Khulnasoft repositories
 
 	// Optional git repository branch name and revision. When one is present and remoteURL
 	// is present, the search will be performed just at this branch/revision.

@@ -36,7 +36,7 @@ func handlePublishEvents(
 
 	// Aggregate failure details
 	summary := summarizePublishEventsResults(results, summarizePublishEventsResultsOpts{
-		onlyReportRetriableAsFailed: publisher.IsSourcegraphInstance(),
+		onlyReportRetriableAsFailed: publisher.IsKhulnasoftInstance(),
 	})
 
 	// Record the result on the trace and metrics
@@ -115,7 +115,7 @@ func summarizePublishEventsResults(results []events.PublishEventResult, opts sum
 				// can retry it.
 				failed = append(failed, result)
 			} else if opts.onlyReportRetriableAsFailed {
-				// Sourcegraph instances will continue to retry unretriable
+				// Khulnasoft instances will continue to retry unretriable
 				// failures - for clients where we should only provide retriable
 				// failures, we want to PRETEND that non-retriable issues were
 				// successful, so that clients don't retry endlessly.

@@ -671,8 +671,8 @@ func (r *Resolver) withTransact(ctx context.Context, f func(*Resolver) error) er
 
 // isAllowedToEdit checks whether an actor is allowed to edit a given monitor.
 func (r *Resolver) isAllowedToEdit(ctx context.Context, id graphql.ID) error {
-	if dotcom.SourcegraphDotComMode() {
-		return errors.New("Code Monitors are disabled on sourcegraph.com")
+	if dotcom.KhulnasoftDotComMode() {
+		return errors.New("Code Monitors are disabled on khulnasoft.com")
 	}
 	monitorID, err := unmarshalMonitorID(id)
 	if err != nil {

@@ -1610,7 +1610,7 @@ Foreign-key constraints:
 
 ```
 
-Tracks the most recent activity of executors attached to this Sourcegraph instance.
+Tracks the most recent activity of executors attached to this Khulnasoft instance.
 
 **architecture**: The machine architure running the executor.
 
@@ -2251,7 +2251,7 @@ Referenced by:
 
 ```
 
-See [internal/insights/background/queryrunner/worker.go:Job](https://sourcegraph.com/search?q=repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:internal/insights/background/queryrunner/worker.go+type+Job&amp;patternType=literal)
+See [internal/insights/background/queryrunner/worker.go:Job](https://khulnasoft.com/search?q=repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:internal/insights/background/queryrunner/worker.go+type+Job&amp;patternType=literal)
 
 **cost**: Integer representing a cost approximation of executing this search query.
 
@@ -2499,7 +2499,7 @@ Stores the configuration used for code intel index jobs for a repository.
 
 **autoindex_enabled**: Whether or not auto-indexing should be attempted on this repo. Index jobs may be inferred from the repository contents if data is empty.
 
-**data**: The raw user-supplied [configuration](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/autoindex/config/types.go#L3:6) (encoded in JSONC).
+**data**: The raw user-supplied [configuration](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/autoindex/config/types.go#L3:6) (encoded in JSONC).
 
 # Table "public.lsif_indexes"
 ```
@@ -2548,9 +2548,9 @@ Stores metadata about a code intel index job.
 
 **commit**: A 40-char revhash. Note that this commit may not be resolvable in the future.
 
-**docker_steps**: An array of pre-index [steps](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/stores/dbstore/docker_step.go#L9:6) to run.
+**docker_steps**: An array of pre-index [steps](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/stores/dbstore/docker_step.go#L9:6) to run.
 
-**execution_logs**: An array of [log entries](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/internal/workerutil/store.go#L48:6) (encoded as JSON) from the most recent execution.
+**execution_logs**: An array of [log entries](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/internal/workerutil/store.go#L48:6) (encoded as JSON) from the most recent execution.
 
 **indexer**: The docker image used to run the index command (e.g. sourcegraph/lsif-go).
 
@@ -3199,23 +3199,23 @@ Stores metadata and progress about an out-of-band migration routine.
 
 **created**: The date and time the migration was inserted into the database (via an upgrade).
 
-**deprecated_version_major**: The lowest Sourcegraph version (major component) that assumes the migration has completed.
+**deprecated_version_major**: The lowest Khulnasoft version (major component) that assumes the migration has completed.
 
-**deprecated_version_minor**: The lowest Sourcegraph version (minor component) that assumes the migration has completed.
+**deprecated_version_minor**: The lowest Khulnasoft version (minor component) that assumes the migration has completed.
 
 **description**: A brief description about the migration.
 
-**id**: A globally unique primary key for this migration. The same key is used consistently across all Sourcegraph instances for the same migration.
+**id**: A globally unique primary key for this migration. The same key is used consistently across all Khulnasoft instances for the same migration.
 
-**introduced_version_major**: The Sourcegraph version (major component) in which this migration was first introduced.
+**introduced_version_major**: The Khulnasoft version (major component) in which this migration was first introduced.
 
-**introduced_version_minor**: The Sourcegraph version (minor component) in which this migration was first introduced.
+**introduced_version_minor**: The Khulnasoft version (minor component) in which this migration was first introduced.
 
 **is_enterprise**: When true, these migrations are invisible to OSS mode.
 
 **last_updated**: The date and time the migration was last updated.
 
-**non_destructive**: Whether or not this migration alters data so it can no longer be read by the previous Sourcegraph instance.
+**non_destructive**: Whether or not this migration alters data so it can no longer be read by the previous Khulnasoft instance.
 
 **progress**: The percentage progress in the up direction (0=0%, 1=100%).
 
@@ -4262,7 +4262,7 @@ Referenced by:
 
 ```
 
-**deleted_at**: This column is unused as of Sourcegraph 3.34. Do not refer to it anymore. It will be dropped in a future version.
+**deleted_at**: This column is unused as of Khulnasoft 3.34. Do not refer to it anymore. It will be dropped in a future version.
 
 # Table "public.security_event_logs"
 ```
@@ -4301,11 +4301,11 @@ Contains security-relevant events with a long time horizon for storage.
 
 **source**: The site section (WEB, BACKEND, etc.) that generated the event.
 
-**url**: The URL within the Sourcegraph app which generated the event.
+**url**: The URL within the Khulnasoft app which generated the event.
 
 **user_id**: The ID of the actor associated with the event.
 
-**version**: The version of Sourcegraph which generated the event.
+**version**: The version of Khulnasoft which generated the event.
 
 # Table "public.settings"
 ```
@@ -4426,7 +4426,7 @@ Stores metadata about a code intel syntactic index job.
 
 **enqueuer_user_id**: ID of the user who scheduled this index. Records with a non-NULL user ID are prioritised over the rest
 
-**execution_logs**: An array of [log entries](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/internal/workerutil/store.go#L48:6) (encoded as JSON) from the most recent execution.
+**execution_logs**: An array of [log entries](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/internal/workerutil/store.go#L48:6) (encoded as JSON) from the most recent execution.
 
 # Table "public.syntactic_scip_last_index_scan"
 ```
@@ -5207,7 +5207,7 @@ Referenced by:
 
 ```
 
-Webhooks registered in Sourcegraph instance.
+Webhooks registered in Khulnasoft instance.
 
 **code_host_kind**: Kind of an external service for which webhooks are registered.
 

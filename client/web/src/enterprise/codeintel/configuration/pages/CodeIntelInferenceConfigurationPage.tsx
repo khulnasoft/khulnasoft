@@ -47,7 +47,7 @@ export const CodeIntelInferenceConfigurationPage: FunctionComponent<CodeIntelInf
                             {['Clang', 'Go', 'Java', 'Python', 'Ruby', 'Rust', 'TypeScript'].map(lang => (
                                 <li key={lang.toLowerCase()}>
                                     <Link
-                                        to={`https://sourcegraph.com/github.com/sourcegraph/sourcegraph@5.0/-/blob/enterprise/internal/codeintel/autoindexing/internal/inference/lua/${lang.toLowerCase()}.lua`}
+                                        to={`https://khulnasoft.com/github.com/sourcegraph/sourcegraph@5.0/-/blob/enterprise/internal/codeintel/autoindexing/internal/inference/lua/${lang.toLowerCase()}.lua`}
                                     >
                                         {lang}
                                     </Link>

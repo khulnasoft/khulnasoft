@@ -10,7 +10,7 @@ import { lazyComponent } from '@sourcegraph/shared/src/util/lazyComponent'
 
 import type { AuthenticatedUser } from '../../../auth'
 import { withAuthenticatedUser } from '../../../auth/withAuthenticatedUser'
-import { canWriteBatchChanges, NO_ACCESS_BATCH_CHANGES_WRITE, NO_ACCESS_SOURCEGRAPH_COM } from '../../../batches/utils'
+import { canWriteBatchChanges, NO_ACCESS_BATCH_CHANGES_WRITE, NO_ACCESS_KHULNASOFT_COM } from '../../../batches/utils'
 import { NotFoundPage } from '../../../components/HeroPage'
 import type { BatchChangeClosePageProps } from '../close/BatchChangeClosePage'
 import type { CreateBatchChangePageProps } from '../create/CreateBatchChangePage'
@@ -58,7 +58,7 @@ export const GlobalBatchChangesArea: React.FunctionComponent<React.PropsWithChil
     const isKhulnasoftDotCom = Boolean(window.context?.sourcegraphDotComMode)
     const canCreate: true | string = useMemo(() => {
         if (isKhulnasoftDotCom) {
-            return NO_ACCESS_SOURCEGRAPH_COM
+            return NO_ACCESS_KHULNASOFT_COM
         }
         if (!canWriteBatchChanges(authenticatedUser)) {
             return NO_ACCESS_BATCH_CHANGES_WRITE

@@ -34,20 +34,20 @@ export const SearchPageFooter: FC = () => {
                 ? [
                       {
                           name: 'Docs',
-                          href: 'https://sourcegraph.com/docs',
+                          href: 'https://khulnasoft.com/docs',
                       },
-                      { name: 'About', href: 'https://sourcegraph.com' },
+                      { name: 'About', href: 'https://khulnasoft.com' },
                       {
                           name: 'Cody',
-                          href: 'https://sourcegraph.com/cody',
+                          href: 'https://khulnasoft.com/cody',
                       },
                       {
                           name: 'Enterprise',
-                          href: 'https://sourcegraph.com/get-started?t=enterprise',
+                          href: 'https://khulnasoft.com/get-started?t=enterprise',
                       },
                       {
                           name: 'Security',
-                          href: 'https://sourcegraph.com/security',
+                          href: 'https://khulnasoft.com/security',
                       },
                       { name: 'Discord', href: 'https://srcgr.ph/discord-server' },
                   ]

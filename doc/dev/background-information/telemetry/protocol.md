@@ -6,9 +6,9 @@
     and the template is in 'internal/telemetrygateway/v1/protoc-gen-doc.tmpl'.
 -->
 
-This page contains generated documentation for telemetry event data that gets exported to Sourcegraph from individual Sourcegraph instances.
+This page contains generated documentation for telemetry event data that gets exported to Khulnasoft from individual Khulnasoft instances.
 
-> WARNING: This page primarily pertains to the new telemetry system introduced in Sourcegraph 5.2.1 - refer to [DEPRECATED: Telemetry](deprecated.md) for the legacy system which may still be in use if a callsite has not been migrated yet.
+> WARNING: This page primarily pertains to the new telemetry system introduced in Khulnasoft 5.2.1 - refer to [DEPRECATED: Telemetry](deprecated.md) for the legacy system which may still be in use if a callsite has not been migrated yet.
 
 ## Table of Contents
 
@@ -65,9 +65,9 @@ This page contains generated documentation for telemetry event data that gets ex
 | action | [string](#string) |  | <p>Action associated with the event in camelCase, e.g. 'pageView'.</p> |
 | source | [EventSource](#telemetrygateway-v1-EventSource) |  | <p>Source of the event.</p> |
 | parameters | [EventParameters](#telemetrygateway-v1-EventParameters) |  | <p>Parameters of the event.</p> |
-| user | [EventUser](#telemetrygateway-v1-EventUser) | optional | <p>Optional user associated with the event.</p><p>This field should be hydrated by the Sourcegraph server, and not provided</p><p>by clients.</p> |
+| user | [EventUser](#telemetrygateway-v1-EventUser) | optional | <p>Optional user associated with the event.</p><p>This field should be hydrated by the Khulnasoft server, and not provided</p><p>by clients.</p> |
 | feature_flags | [EventFeatureFlags](#telemetrygateway-v1-EventFeatureFlags) | optional | <p>Optional feature flags configured in the context of the event.</p> |
-| marketing_tracking | [EventMarketingTracking](#telemetrygateway-v1-EventMarketingTracking) | optional | <p>Optional marketing campaign tracking parameters.</p><p>🚨 SECURITY: This metadata is NEVER exported from single-tenant Sourcegraph</p><p>instances, and is only exported for events tracked in the public</p><p>Sourcegraph.com instance and managed services.</p> |
+| marketing_tracking | [EventMarketingTracking](#telemetrygateway-v1-EventMarketingTracking) | optional | <p>Optional marketing campaign tracking parameters.</p><p>🚨 SECURITY: This metadata is NEVER exported from single-tenant Khulnasoft</p><p>instances, and is only exported for events tracked in the public</p><p>Khulnasoft.com instance and managed services.</p> |
 | interaction | [EventInteraction](#telemetrygateway-v1-EventInteraction) | optional | <p>Optional metadata identifying the interaction that generated the event.</p> |
 
 
@@ -99,7 +99,7 @@ This page contains generated documentation for telemetry event data that gets ex
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| flags | [EventFeatureFlags.FlagsEntry](#telemetrygateway-v1-EventFeatureFlags-FlagsEntry) | repeated | <p>Evaluated feature flags. In Soucegraph we currently only support boolean</p><p>feature flags, but in the API we allow arbitrary string values for future</p><p>extensibility.</p><p>This field should be hydrated by the Sourcegraph server, and not provided</p><p>by clients.</p> |
+| flags | [EventFeatureFlags.FlagsEntry](#telemetrygateway-v1-EventFeatureFlags-FlagsEntry) | repeated | <p>Evaluated feature flags. In Soucegraph we currently only support boolean</p><p>feature flags, but in the API we allow arbitrary string values for future</p><p>extensibility.</p><p>This field should be hydrated by the Khulnasoft server, and not provided</p><p>by clients.</p> |
 
 
 
@@ -159,9 +159,9 @@ This page contains generated documentation for telemetry event data that gets ex
 ### EventMarketingTracking
 Marketing campaign tracking metadata.
 
-🚨 SECURITY: This metadata is NEVER exported from single-tenant Sourcegraph
+🚨 SECURITY: This metadata is NEVER exported from single-tenant Khulnasoft
 instances, and is only exported for events tracked in the public
-Sourcegraph.com instance and managed services.
+Khulnasoft.com instance and managed services.
 
 
 | Field | Type | Label | Description |
@@ -169,7 +169,7 @@ Sourcegraph.com instance and managed services.
 | url | [string](#string) | optional | <p>URL the event occurred on.</p> |
 | first_source_url | [string](#string) | optional | <p>Initial URL the user landed on.</p> |
 | cohort_id | [string](#string) | optional | <p>Cohort ID to identify the user as part of a specific A/B test.</p> |
-| referrer | [string](#string) | optional | <p>Referrer URL that refers the user to Sourcegraph.</p> |
+| referrer | [string](#string) | optional | <p>Referrer URL that refers the user to Khulnasoft.</p> |
 | last_source_url | [string](#string) | optional | <p>Last source URL visited by the user.</p> |
 | device_session_id | [string](#string) | optional | <p>Device session ID to identify the user's session.</p> |
 | session_referrer | [string](#string) | optional | <p>Session referrer URL for the user.</p> |
@@ -271,7 +271,7 @@ Sourcegraph.com instance and managed services.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| version | [string](#string) |  | <p>Version of the server emitting the event, corresponding to</p><p>RecordEventsRequestMetadata.Identifier. For example, if the Identifier</p><p>indicates the publisher is a Sourcegraph instance, the version represents</p><p>the version of the Sourcegraph server.</p> |
+| version | [string](#string) |  | <p>Version of the server emitting the event, corresponding to</p><p>RecordEventsRequestMetadata.Identifier. For example, if the Identifier</p><p>indicates the publisher is a Khulnasoft instance, the version represents</p><p>the version of the Khulnasoft server.</p> |
 
 
 
@@ -286,9 +286,9 @@ Sourcegraph.com instance and managed services.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| user_id | [int64](#int64) | optional | <p>Sourcegraph instance database user ID of the user. User IDs are specific to</p><p>a Sourcegraph instance, and are not universal across Sourcegraph instances.</p><p>We use an int64 as an ID because in Sourcegraph, database user IDs are</p><p>always integers.</p> |
+| user_id | [int64](#int64) | optional | <p>Khulnasoft instance database user ID of the user. User IDs are specific to</p><p>a Khulnasoft instance, and are not universal across Khulnasoft instances.</p><p>We use an int64 as an ID because in Khulnasoft, database user IDs are</p><p>always integers.</p> |
 | anonymous_user_id | [string](#string) | optional | <p>Randomized unique identifier representing the user (typically stored in</p><p>localstorage in web clients, or similar mechanisms elsewhere). This is</p><p>often used for unauthenticated users, but can persist to authenticated</p><p>users as well.</p> |
-| sams_external_id | [string](#string) | optional | <p>Sourcegraph Accounts Management System (SAMS) account associated with the</p><p>user, represented by a SAMS external user ID in a UUID format. This is only</p><p>valid for services leveraging SAMS as an identity provider - in other words,</p><p>traditional Sourcegraph instances will not provide this.</p><p>Learn more about SAMS: https://handbook.sourcegraph.com/departments/engineering/teams/core-services/sams</p> |
+| sams_external_id | [string](#string) | optional | <p>Khulnasoft Accounts Management System (SAMS) account associated with the</p><p>user, represented by a SAMS external user ID in a UUID format. This is only</p><p>valid for services leveraging SAMS as an identity provider - in other words,</p><p>traditional Khulnasoft instances will not provide this.</p><p>Learn more about SAMS: https://handbook.khulnasoft.com/departments/engineering/teams/core-services/sams</p> |
 
 
 
@@ -303,9 +303,9 @@ Sourcegraph.com instance and managed services.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| licensed_instance | [Identifier.LicensedInstanceIdentifier](#telemetrygateway-v1-Identifier-LicensedInstanceIdentifier) |  | <p>A licensed Sourcegraph instance.</p> |
-| unlicensed_instance | [Identifier.UnlicensedInstanceIdentifier](#telemetrygateway-v1-Identifier-UnlicensedInstanceIdentifier) |  | <p>An unlicensed Sourcegraph instance.</p> |
-| managed_service | [Identifier.ManagedServiceIdentifier](#telemetrygateway-v1-Identifier-ManagedServiceIdentifier) |  | <p>A service operated and managed by the Sourcegraph team, for example</p><p>a service deployed by MSP: https://handbook.sourcegraph.com/departments/engineering/teams/core-services/managed-services/platform/</p><p>Valid SAMS client credentials are required to publish events under a</p><p>managed service identifier. The required scope is</p><p>'telemetry_gateway::events::publish'. See go/sams-client-credentials and</p><p>go/sams-token-scopes for more information.</p> |
+| licensed_instance | [Identifier.LicensedInstanceIdentifier](#telemetrygateway-v1-Identifier-LicensedInstanceIdentifier) |  | <p>A licensed Khulnasoft instance.</p> |
+| unlicensed_instance | [Identifier.UnlicensedInstanceIdentifier](#telemetrygateway-v1-Identifier-UnlicensedInstanceIdentifier) |  | <p>An unlicensed Khulnasoft instance.</p> |
+| managed_service | [Identifier.ManagedServiceIdentifier](#telemetrygateway-v1-Identifier-ManagedServiceIdentifier) |  | <p>A service operated and managed by the Khulnasoft team, for example</p><p>a service deployed by MSP: https://handbook.khulnasoft.com/departments/engineering/teams/core-services/managed-services/platform/</p><p>Valid SAMS client credentials are required to publish events under a</p><p>managed service identifier. The required scope is</p><p>'telemetry_gateway::events::publish'. See go/sams-client-credentials and</p><p>go/sams-token-scopes for more information.</p> |
 
 
 
@@ -320,8 +320,8 @@ Sourcegraph.com instance and managed services.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| license_key | [string](#string) |  | <p>License key configured in the Sourcegraph instance emitting the event.</p> |
-| instance_id | [string](#string) |  | <p>Self-reported Sourcegraph instance identifier.</p> |
+| license_key | [string](#string) |  | <p>License key configured in the Khulnasoft instance emitting the event.</p> |
+| instance_id | [string](#string) |  | <p>Self-reported Khulnasoft instance identifier.</p> |
 | external_url | [string](#string) |  | <p>Instance external URL defined in the instance site configuration.</p> |
 
 
@@ -353,7 +353,7 @@ Sourcegraph.com instance and managed services.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| instance_id | [string](#string) |  | <p>Self-reported Sourcegraph instance identifier.</p> |
+| instance_id | [string](#string) |  | <p>Self-reported Khulnasoft instance identifier.</p> |
 | external_url | [string](#string) |  | <p>Instance external URL defined in the instance site configuration.</p> |
 
 
@@ -427,7 +427,7 @@ Sourcegraph.com instance and managed services.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | request_id | [string](#string) |  | <p>Client-provided request identifier for diagnostics purposes.</p> |
-| identifier | [Identifier](#telemetrygateway-v1-Identifier) |  | <p>Telemetry publisher self-identification - for example, a Sourcegraph</p><p>instance of some other kind of service.</p> |
+| identifier | [Identifier](#telemetrygateway-v1-Identifier) |  | <p>Telemetry publisher self-identification - for example, a Khulnasoft</p><p>instance of some other kind of service.</p> |
 
 
 
@@ -462,8 +462,8 @@ Sourcegraph.com instance and managed services.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| RecordEvents | [RecordEventsRequest](#telemetrygateway-v1-RecordEventsRequest) stream | [RecordEventsResponse](#telemetrygateway-v1-RecordEventsResponse) stream | <p>RecordEvents streams telemetry events in batches to the Telemetry Gateway</p><p>service. Events should only be considered delivered if recording is</p><p>acknowledged in RecordEventsResponse.</p><p>This is the preferred mechanism for exporting large volumes of events in</p><p>bulk.</p><p>🚨 SECURITY: Callers exporting for single-tenant Sourcegraph should check</p><p>the attributes of the Event type to ensure that only the appropriate fields</p><p>are exported, as some fields should only be exported on an allowlist basis.</p> |
-| RecordEvent | [RecordEventRequest](#telemetrygateway-v1-RecordEventRequest) | [RecordEventResponse](#telemetrygateway-v1-RecordEventResponse) | <p>RecordEvent records a single telemetry event to the Telemetry Gateway service.</p><p>If the RPC succeeds, then the event was successfully published.</p><p>This RPC currently ONLY accepts events published by ManagedServiceIdentifier,</p><p>as this mechanism is intended for low-volume managed services. Higher-volume</p><p>use cases should implement a batching mechanism and use the RecordEvents</p><p>RPC instead.</p><p>🚨 SECURITY: Callers exporting for single-tenant Sourcegraph should check</p><p>the attributes of the Event type to ensure that only the appropriate fields</p><p>are exported, as some fields should only be exported on an allowlist basis.</p> |
+| RecordEvents | [RecordEventsRequest](#telemetrygateway-v1-RecordEventsRequest) stream | [RecordEventsResponse](#telemetrygateway-v1-RecordEventsResponse) stream | <p>RecordEvents streams telemetry events in batches to the Telemetry Gateway</p><p>service. Events should only be considered delivered if recording is</p><p>acknowledged in RecordEventsResponse.</p><p>This is the preferred mechanism for exporting large volumes of events in</p><p>bulk.</p><p>🚨 SECURITY: Callers exporting for single-tenant Khulnasoft should check</p><p>the attributes of the Event type to ensure that only the appropriate fields</p><p>are exported, as some fields should only be exported on an allowlist basis.</p> |
+| RecordEvent | [RecordEventRequest](#telemetrygateway-v1-RecordEventRequest) | [RecordEventResponse](#telemetrygateway-v1-RecordEventResponse) | <p>RecordEvent records a single telemetry event to the Telemetry Gateway service.</p><p>If the RPC succeeds, then the event was successfully published.</p><p>This RPC currently ONLY accepts events published by ManagedServiceIdentifier,</p><p>as this mechanism is intended for low-volume managed services. Higher-volume</p><p>use cases should implement a batching mechanism and use the RecordEvents</p><p>RPC instead.</p><p>🚨 SECURITY: Callers exporting for single-tenant Khulnasoft should check</p><p>the attributes of the Event type to ensure that only the appropriate fields</p><p>are exported, as some fields should only be exported on an allowlist basis.</p> |
 
  <!-- end services -->
 

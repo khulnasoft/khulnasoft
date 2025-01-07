@@ -51,7 +51,7 @@ func (s *fakeEventLogStore) loggedEventNames() []string {
 func TestOwnSearchEventNames(t *testing.T) {
 	type wantEvents struct {
 		legacy autogold.Value // we retain manual instrumentation of existing events
-		new    autogold.Value // https://docs-legacy.sourcegraph.com/dev/background-information/telemetry
+		new    autogold.Value // https://docs-legacy.khulnasoft.com/dev/background-information/telemetry
 	}
 
 	cases := []struct {
@@ -159,7 +159,7 @@ func TestOwnSearchEventNames(t *testing.T) {
 				UserSettings:        &schema.Settings{},
 				PatternType:         c.searchType,
 				Protocol:            search.Streaming,
-				OnSourcegraphDotCom: true,
+				OnKhulnasoftDotCom: true,
 				Query:               q,
 			}
 

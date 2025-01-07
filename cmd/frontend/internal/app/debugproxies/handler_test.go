@@ -189,7 +189,7 @@ func TestAdminOnly(t *testing.T) {
 			wantStatus: http.StatusOK,
 		},
 		{
-			name: "feature flag enabled but not Sourcegraph operator",
+			name: "feature flag enabled but not Khulnasoft operator",
 			mockUsers: func(users *dbmocks.MockUserStore) {
 				users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{ID: 1, SiteAdmin: true}, nil)
 			},
@@ -200,14 +200,14 @@ func TestAdminOnly(t *testing.T) {
 			wantStatus: http.StatusForbidden,
 		},
 		{
-			name: "feature flag enabled and Sourcegraph operator",
+			name: "feature flag enabled and Khulnasoft operator",
 			mockUsers: func(users *dbmocks.MockUserStore) {
 				users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{ID: 1, SiteAdmin: true}, nil)
 			},
 			mockFeatureFlags: func(featureFlags *dbmocks.MockFeatureFlagStore) {
 				featureFlags.GetFeatureFlagFunc.SetDefaultReturn(&featureflag.FeatureFlag{Bool: &featureflag.FeatureFlagBool{Value: true}}, nil)
 			},
-			mockActor:  &actor.Actor{SourcegraphOperator: true},
+			mockActor:  &actor.Actor{KhulnasoftOperator: true},
 			wantStatus: http.StatusOK,
 		},
 	}

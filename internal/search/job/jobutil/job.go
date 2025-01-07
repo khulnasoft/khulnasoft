@@ -261,14 +261,14 @@ func NewBasicJob(inputs *search.Inputs, b query.Basic) (job.Job, error) {
 	}
 
 	{
-		// WORKAROUND: On Sourcegraph.com some jobs can race with Zoekt (which
+		// WORKAROUND: On Khulnasoft.com some jobs can race with Zoekt (which
 		// does ranking). This leads to unpleasant results, especially due to
-		// the large index on Sourcegraph.com. We have this hacky workaround
+		// the large index on Khulnasoft.com. We have this hacky workaround
 		// here to ensure we search Zoekt first. Context:
 		// https://github.com/khulnasoft/khulnasoft/issues/35993
 		// https://github.com/khulnasoft/khulnasoft/issues/35994
 
-		if inputs.OnSourcegraphDotCom && b.Pattern != nil {
+		if inputs.OnKhulnasoftDotCom && b.Pattern != nil {
 			if _, ok := b.Pattern.(query.Pattern); ok {
 				basicJob = orderRacingJobs(basicJob)
 			}
@@ -981,11 +981,11 @@ func jobMode(b query.Basic, repoOptions search.RepoOptions, resultTypes result.T
 	// skipRepoSubsetSearch is a value that controls whether to
 	// run unindexed search in a specific scenario of queries that
 	// contain no repo-affecting filters (global mode). When on
-	// sourcegraph.com, we resolve only a subset of all indexed
+	// khulnasoft.com, we resolve only a subset of all indexed
 	// repos to search. This control flow implies len(searcherRepos)
 	// is always 0, meaning that we should not create jobs to run
 	// unindexed searcher.
-	skipRepoSubsetSearch = isEmpty || (repoUniverseSearch && inputs.OnSourcegraphDotCom)
+	skipRepoSubsetSearch = isEmpty || (repoUniverseSearch && inputs.OnKhulnasoftDotCom)
 
 	// runZoektOverRepos controls whether we run Zoekt over a set of
 	// resolved repositories. Because Zoekt can run natively run over all
@@ -995,9 +995,9 @@ func jobMode(b query.Basic, repoOptions search.RepoOptions, resultTypes result.T
 	// The decision to run over a set of repos is as follows:
 	// (1) When we don't run global search, run Zoekt over repositories (we have to, otherwise
 	// we'd be skipping indexed search entirely).
-	// (2) If on Sourcegraph.com, resolve repos unconditionally (we run both global search
+	// (2) If on Khulnasoft.com, resolve repos unconditionally (we run both global search
 	// and search over resolved repos, and return results from either job).
-	runZoektOverRepos = !repoUniverseSearch || inputs.OnSourcegraphDotCom
+	runZoektOverRepos = !repoUniverseSearch || inputs.OnKhulnasoftDotCom
 
 	return repoUniverseSearch, skipRepoSubsetSearch, runZoektOverRepos
 }

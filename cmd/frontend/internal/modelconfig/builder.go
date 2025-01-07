@@ -11,7 +11,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-// builder implements the logic for constructing the Sourcegraph instance's
+// builder implements the logic for constructing the Khulnasoft instance's
 // LLM model configuration data, based on various configuration settings and available
 // data.
 type builder struct {
@@ -31,7 +31,7 @@ type builder struct {
 }
 
 // build merges all of the model configuration data together, presenting it in
-// its final form to be consumed by the Sourcegraph instance and passed onto its
+// its final form to be consumed by the Khulnasoft instance and passed onto its
 // clients.
 func (b *builder) build() (*types.ModelConfiguration, error) {
 	baseConfig := &types.ModelConfiguration{}
@@ -50,7 +50,7 @@ func (b *builder) build() (*types.ModelConfiguration, error) {
 
 	// Interpret site configuration.
 
-	// If no site configuration data is supplied, then just use Sourcegraph
+	// If no site configuration data is supplied, then just use Khulnasoft
 	// supplied data.
 	if b.siteConfigData == nil {
 		routeUnconfiguredProvidersToCodyGateway(baseConfig)
@@ -69,7 +69,7 @@ func (b *builder) build() (*types.ModelConfiguration, error) {
 	return outConfig, nil
 }
 
-// applySiteConfig returns the LLM Model configuration after applying the Sourcegraph admin supplied site config overrides.
+// applySiteConfig returns the LLM Model configuration after applying the Khulnasoft admin supplied site config overrides.
 func applySiteConfig(baseConfig *types.ModelConfiguration, siteConfig *types.SiteModelConfiguration) (*types.ModelConfiguration, error) {
 	if baseConfig == nil || siteConfig == nil {
 		return nil, errors.New("baseConfig or siteConfig nil")
@@ -81,8 +81,8 @@ func applySiteConfig(baseConfig *types.ModelConfiguration, siteConfig *types.Sit
 		err          error
 	)
 
-	// If the admin has explicitly disabled the Sourcegraph-supplied data, zero out the base config.
-	if sgModelConfig := siteConfig.SourcegraphModelConfig; sgModelConfig == nil {
+	// If the admin has explicitly disabled the Khulnasoft-supplied data, zero out the base config.
+	if sgModelConfig := siteConfig.KhulnasoftModelConfig; sgModelConfig == nil {
 		mergedConfig = &types.ModelConfiguration{
 			Revision:      "-",
 			SchemaVersion: types.CurrentModelSchemaVersion,
@@ -377,8 +377,8 @@ func routeUnconfiguredProvidersToCodyGateway(config *types.ModelConfiguration) {
 	accessToken := license.GenerateLicenseKeyBasedAccessToken(siteConfig.LicenseKey)
 
 	// Apply any overrides if present in the site config.
-	if siteConfig.ModelConfiguration != nil && siteConfig.ModelConfiguration.Sourcegraph != nil {
-		sgConfig := siteConfig.ModelConfiguration.Sourcegraph
+	if siteConfig.ModelConfiguration != nil && siteConfig.ModelConfiguration.Khulnasoft != nil {
+		sgConfig := siteConfig.ModelConfiguration.Khulnasoft
 		if sgConfig.AccessToken != nil {
 			accessToken = *sgConfig.AccessToken
 		}
@@ -392,7 +392,7 @@ func routeUnconfiguredProvidersToCodyGateway(config *types.ModelConfiguration) {
 
 		if provider.ServerSideConfig == nil {
 			provider.ServerSideConfig = &types.ServerSideProviderConfig{
-				SourcegraphProvider: &types.SourcegraphProviderConfig{
+				KhulnasoftProvider: &types.KhulnasoftProviderConfig{
 					AccessToken: accessToken,
 					Endpoint:    endpoint,
 				},

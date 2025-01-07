@@ -27,7 +27,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/schema"
 )
 
-const CodyGatewayProdEndpoint = "https://cody-gateway.sourcegraph.com"
+const CodyGatewayProdEndpoint = "https://cody-gateway.khulnasoft.com"
 
 func init() {
 	deployType := deploy.Type()
@@ -152,13 +152,13 @@ func CanSendEmail() bool {
 }
 
 // EmailSenderName returns `email.senderName`. If that's not set, it returns
-// the default value "Sourcegraph".
+// the default value "Khulnasoft".
 func EmailSenderName() string {
 	sender := Get().EmailSenderName
 	if sender != "" {
 		return sender
 	}
-	return "Sourcegraph"
+	return "Khulnasoft"
 }
 
 // UpdateChannel tells the update channel. Default is "release".
@@ -171,7 +171,7 @@ func UpdateChannel() string {
 }
 
 func BatchChangesEnabled() bool {
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		// Batch Changes is always disabled on dotcom.
 		return false
 	}
@@ -794,23 +794,23 @@ func GetCompletionsConfig(siteConfig schema.SiteConfiguration) (c *conftypes.Com
 	// a default configuration.
 	if completionsConfig == nil {
 		completionsConfig = &schema.Completions{
-			Provider:        string(conftypes.CompletionsProviderNameSourcegraph),
+			Provider:        string(conftypes.CompletionsProviderNameKhulnasoft),
 			ChatModel:       "anthropic/" + anthropic.Claude3Sonnet,
 			FastChatModel:   "anthropic/" + anthropic.Claude3Haiku,
 			CompletionModel: "fireworks/starcoder",
 		}
 	}
 
-	// If no provider is configured, we assume the Sourcegraph provider. Prior
+	// If no provider is configured, we assume the Khulnasoft provider. Prior
 	// to provider becoming an optional field, provider was required, so unset
-	// provider is definitely with the understanding that the Sourcegraph
+	// provider is definitely with the understanding that the Khulnasoft
 	// provider is the default. Since this is new, we also enforce that the new
 	// CodyEnabled config is set (instead of relying on backcompat)
 	if completionsConfig.Provider == "" {
 		if !newCodyEnabled(siteConfig) {
 			return nil
 		}
-		completionsConfig.Provider = string(conftypes.CompletionsProviderNameSourcegraph)
+		completionsConfig.Provider = string(conftypes.CompletionsProviderNameKhulnasoft)
 	}
 
 	// If ChatModel is not set, fall back to the deprecated Model field.
@@ -824,14 +824,14 @@ func GetCompletionsConfig(siteConfig schema.SiteConfiguration) (c *conftypes.Com
 	// if no other canonicalization has already been applied. In particular this
 	// is because BedrockModelRefs need different canonicalization
 	canonicalized := false
-	if completionsConfig.Provider == string(conftypes.CompletionsProviderNameSourcegraph) {
+	if completionsConfig.Provider == string(conftypes.CompletionsProviderNameKhulnasoft) {
 		// If no endpoint is configured, use a default value.
 		if completionsConfig.Endpoint == "" {
 			completionsConfig.Endpoint = CodyGatewayProdEndpoint
 		}
 
 		// Set the access token, either use the configured one, or generate one for the platform.
-		completionsConfig.AccessToken = getSourcegraphProviderAccessToken(completionsConfig.AccessToken, siteConfig)
+		completionsConfig.AccessToken = getKhulnasoftProviderAccessToken(completionsConfig.AccessToken, siteConfig)
 		// If we weren't able to generate an access token of some sort, authing with
 		// Cody Gateway is not possible and we cannot use completions.
 		if completionsConfig.AccessToken == "" {
@@ -1107,13 +1107,13 @@ func GetAttributionGateway(siteConfig schema.SiteConfiguration) (string, string)
 	}
 	// Explicit attribution gateway config overrides autocomplete config (if used).
 	if g := siteConfig.AttributionGateway; g != nil {
-		return g.Endpoint, getSourcegraphProviderAccessToken(g.AccessToken, siteConfig)
+		return g.Endpoint, getKhulnasoftProviderAccessToken(g.AccessToken, siteConfig)
 	}
 	// Fall back to autocomplete config if no explicit gateway config.
 	cc := GetCompletionsConfig(siteConfig)
-	ccUsingGateway := cc != nil && cc.Provider == conftypes.CompletionsProviderNameSourcegraph
+	ccUsingGateway := cc != nil && cc.Provider == conftypes.CompletionsProviderNameKhulnasoft
 	if ccUsingGateway {
-		return cc.Endpoint, getSourcegraphProviderAccessToken(cc.AccessToken, siteConfig)
+		return cc.Endpoint, getKhulnasoftProviderAccessToken(cc.AccessToken, siteConfig)
 	}
 	return "", ""
 }
@@ -1144,7 +1144,7 @@ func GetEmbeddingsConfig(siteConfig schema.SiteConfiguration) *conftypes.Embeddi
 	// a default configuration.
 	if embeddingsConfig == nil {
 		embeddingsConfig = &schema.Embeddings{
-			Provider: string(conftypes.EmbeddingsProviderNameSourcegraph),
+			Provider: string(conftypes.EmbeddingsProviderNameKhulnasoft),
 		}
 	}
 
@@ -1154,14 +1154,14 @@ func GetEmbeddingsConfig(siteConfig schema.SiteConfiguration) *conftypes.Embeddi
 	// auth tokens to OpenAI by that, so if an access token is explicitly set we
 	// are careful and require the provider to be explicit. This lets us have good
 	// support for optional Provider in most cases (token is generated for
-	// default provider Sourcegraph)
+	// default provider Khulnasoft)
 	if embeddingsConfig.Provider == "" {
 		if embeddingsConfig.AccessToken != "" {
 			return nil
 		}
 
 		// Otherwise, assume Provider, since it is optional
-		embeddingsConfig.Provider = string(conftypes.EmbeddingsProviderNameSourcegraph)
+		embeddingsConfig.Provider = string(conftypes.EmbeddingsProviderNameKhulnasoft)
 	}
 
 	// The default value for incremental is true.
@@ -1190,14 +1190,14 @@ func GetEmbeddingsConfig(siteConfig schema.SiteConfiguration) *conftypes.Embeddi
 		embeddingsConfig.Endpoint = embeddingsConfig.Url
 	}
 
-	if embeddingsConfig.Provider == string(conftypes.EmbeddingsProviderNameSourcegraph) {
+	if embeddingsConfig.Provider == string(conftypes.EmbeddingsProviderNameKhulnasoft) {
 		// If no endpoint is configured, use a default value.
 		if embeddingsConfig.Endpoint == "" {
-			embeddingsConfig.Endpoint = "https://cody-gateway.sourcegraph.com/v1/embeddings"
+			embeddingsConfig.Endpoint = "https://cody-gateway.khulnasoft.com/v1/embeddings"
 		}
 
 		// Set the access token, either use the configured one, or generate one for the platform.
-		embeddingsConfig.AccessToken = getSourcegraphProviderAccessToken(embeddingsConfig.AccessToken, siteConfig)
+		embeddingsConfig.AccessToken = getKhulnasoftProviderAccessToken(embeddingsConfig.AccessToken, siteConfig)
 		// If we weren't able to generate an access token of some sort, authing with
 		// Cody Gateway is not possible and we cannot use embeddings.
 		if embeddingsConfig.AccessToken == "" {
@@ -1306,7 +1306,7 @@ func toUint64(input *int) *uint64 {
 	return &u
 }
 
-func getSourcegraphProviderAccessToken(accessToken string, config schema.SiteConfiguration) string {
+func getKhulnasoftProviderAccessToken(accessToken string, config schema.SiteConfiguration) string {
 	// If an access token is configured, use it.
 	if accessToken != "" {
 		return accessToken
@@ -1336,7 +1336,7 @@ func defaultTo(val, def int) int {
 
 func defaultMaxPromptTokens(provider conftypes.CompletionsProviderName, model string) int {
 	switch provider {
-	case conftypes.CompletionsProviderNameSourcegraph:
+	case conftypes.CompletionsProviderNameKhulnasoft:
 		if strings.HasPrefix(model, "openai/") {
 			return openaiDefaultMaxPromptTokens(strings.TrimPrefix(model, "openai/"))
 		}
@@ -1460,11 +1460,11 @@ func Branding() *schema.Branding {
 	br := Get().Branding
 	if br == nil {
 		br = &schema.Branding{
-			BrandName: "Sourcegraph",
+			BrandName: "Khulnasoft",
 		}
 	} else if br.BrandName == "" {
 		bcopy := *br
-		bcopy.BrandName = "Sourcegraph"
+		bcopy.BrandName = "Khulnasoft"
 		br = &bcopy
 	}
 	return br

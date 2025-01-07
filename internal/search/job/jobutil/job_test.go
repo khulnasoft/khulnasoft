@@ -56,7 +56,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . literal)
@@ -105,7 +105,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . literal)
@@ -142,7 +142,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . literal)
@@ -176,7 +176,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . literal)
@@ -208,7 +208,7 @@ func TestNewPlanJob(t *testing.T) {
                   (pathRegexps . ["(?i)foo"])
                   (indexed . false))))
             (REPOSEARCH
-              (repoOpts.repoFilters . [sourcegraph/sourcegraph foo])
+              (repoOpts.repoFilters . [khulnasoft/khulnasoft foo])
               (repoNamePatterns . ["(?i)sourcegraph/sourcegraph","(?i)foo"])))
           NOOP
           (REPOSCOMPUTEEXCLUDED
@@ -224,7 +224,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -258,7 +258,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . literal)
@@ -292,7 +292,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -321,7 +321,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -350,7 +350,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -378,7 +378,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -408,7 +408,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -438,7 +438,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -476,7 +476,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -551,7 +551,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -589,7 +589,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -665,7 +665,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -716,7 +716,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -755,7 +755,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -786,7 +786,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -812,7 +812,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . keyword)
@@ -844,7 +844,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . keyword)
@@ -892,7 +892,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -918,7 +918,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -944,7 +944,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -968,7 +968,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -992,7 +992,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . regex)
@@ -1041,7 +1041,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . structural)
@@ -1071,7 +1071,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . codycontext)
@@ -1087,7 +1087,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . codycontext)
@@ -1111,7 +1111,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . keyword)
@@ -1184,7 +1184,7 @@ func TestNewPlanJob(t *testing.T) {
   (ALERT
     (features . error decoding features)
     (protocol . Streaming)
-    (onSourcegraphDotCom . true)
+    (onKhulnasoftDotCom . true)
     (query . )
     (originalQuery . )
     (patternType . keyword)
@@ -1233,7 +1233,7 @@ func TestNewPlanJob(t *testing.T) {
 				PatternType:         tc.searchType,
 				Protocol:            tc.protocol,
 				Features:            &search.Features{},
-				OnSourcegraphDotCom: true,
+				OnKhulnasoftDotCom: true,
 			}
 
 			j, err := NewPlanJob(inputs, plan)
@@ -1251,7 +1251,7 @@ func TestToEvaluateJob(t *testing.T) {
 			UserSettings:        &schema.Settings{},
 			PatternType:         query.SearchTypeLiteral,
 			Protocol:            protocol,
-			OnSourcegraphDotCom: true,
+			OnKhulnasoftDotCom: true,
 		}
 
 		b, _ := query.ToBasicQuery(q)

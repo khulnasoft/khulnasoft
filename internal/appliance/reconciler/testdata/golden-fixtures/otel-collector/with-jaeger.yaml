@@ -3,7 +3,7 @@ resources:
     kind: Deployment
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: dea9f009a80b7d3f307e194f460f8d5b78deb6f565e683e7d6253a702b3e1912
+        appliance.khulnasoft.com/configHash: dea9f009a80b7d3f307e194f460f8d5b78deb6f565e683e7d6253a702b3e1912
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
       labels:
@@ -102,7 +102,7 @@ resources:
     kind: Deployment
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
+        appliance.khulnasoft.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
       labels:
@@ -291,8 +291,8 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/currentVersion: 5.3.9104
-        appliance.sourcegraph.com/managed: "true"
+        appliance.khulnasoft.com/currentVersion: 5.3.9104
+        appliance.khulnasoft.com/managed: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
       name: sg
       namespace: NORMALIZED_FOR_TESTING
@@ -302,7 +302,7 @@ resources:
     kind: ServiceAccount
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: dea9f009a80b7d3f307e194f460f8d5b78deb6f565e683e7d6253a702b3e1912
+        appliance.khulnasoft.com/configHash: dea9f009a80b7d3f307e194f460f8d5b78deb6f565e683e7d6253a702b3e1912
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -321,7 +321,7 @@ resources:
     kind: ServiceAccount
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
+        appliance.khulnasoft.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -340,7 +340,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: dea9f009a80b7d3f307e194f460f8d5b78deb6f565e683e7d6253a702b3e1912
+        appliance.khulnasoft.com/configHash: dea9f009a80b7d3f307e194f460f8d5b78deb6f565e683e7d6253a702b3e1912
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app: jaeger-collector
@@ -389,7 +389,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: dea9f009a80b7d3f307e194f460f8d5b78deb6f565e683e7d6253a702b3e1912
+        appliance.khulnasoft.com/configHash: dea9f009a80b7d3f307e194f460f8d5b78deb6f565e683e7d6253a702b3e1912
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app: jaeger-query
@@ -430,7 +430,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
+        appliance.khulnasoft.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app: otel-collector

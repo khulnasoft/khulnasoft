@@ -28,11 +28,11 @@ type ClientConfig struct {
 	// Whether the site admin allows this user to make use of the Cody attribution feature.
 	AttributionEnabled bool `json:"attributionEnabled"`
 
-	// Whether the 'smart context window' feature should be enabled, and whether the Sourcegraph
+	// Whether the 'smart context window' feature should be enabled, and whether the Khulnasoft
 	// instance supports various new GraphQL APIs needed to make it work.
 	SmartContextWindowEnabled bool `json:"smartContextWindowEnabled"`
 
-	// Whether the new Sourcegraph backend LLM models API endpoint should be used to query which
+	// Whether the new Khulnasoft backend LLM models API endpoint should be used to query which
 	// models are available.
 	ModelsAPIEnabled bool `json:"modelsAPIEnabled"`
 }

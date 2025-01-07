@@ -22,7 +22,7 @@ type ErrStatusNotOK struct {
 	// Source indicates the completions client this error came from.
 	Source string
 	// SourceTraceContext is a trace span associated with the request that failed.
-	// This is useful because the source may sample all traces, whereas Sourcegraph
+	// This is useful because the source may sample all traces, whereas Khulnasoft
 	// might not.
 	SourceTraceContext *log.TraceContext
 
@@ -106,7 +106,7 @@ func (e *ErrStatusNotOK) WriteHeader(w http.ResponseWriter) {
 	// WriteHeader must come last, since it flushes the headers.
 	switch e.StatusCode {
 	// Only write back certain allow-listed status codes as-is - all other status
-	// codes are written back as 503 to avoid potential confusions with Sourcegraph
+	// codes are written back as 503 to avoid potential confusions with Khulnasoft
 	// status codes while indicating that the upstream service is unavailable.
 	//
 	// Currently, we only write back status code 429 as-is to help support

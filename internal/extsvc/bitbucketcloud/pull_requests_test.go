@@ -36,8 +36,8 @@ func TestClient_CreatePullRequest_Fork(t *testing.T) {
 		FullName: "sourcegraph-testing/src-cli",
 	}
 	commonOpts := PullRequestInput{
-		Title:        "Sourcegraph test " + branch,
-		Description:  "This is a PR created by the Sourcegraph test suite.",
+		Title:        "Khulnasoft test " + branch,
+		Description:  "This is a PR created by the Khulnasoft test suite.",
 		SourceBranch: branch,
 		SourceRepo: &Repo{
 			FullName: fork,
@@ -108,8 +108,8 @@ func TestClient_CreatePullRequest_SameOrigin(t *testing.T) {
 		FullName: "sourcegraph-testing/src-cli",
 	}
 	commonOpts := PullRequestInput{
-		Title:        "Sourcegraph test " + branch,
-		Description:  "This is a PR created by the Sourcegraph test suite.",
+		Title:        "Khulnasoft test " + branch,
+		Description:  "This is a PR created by the Khulnasoft test suite.",
 		SourceBranch: branch,
 	}
 
@@ -379,7 +379,7 @@ func TestClient_UpdatePullRequest(t *testing.T) {
 
 		updated, err := c.UpdatePullRequest(ctx, repo, 1, PullRequestInput{
 			Title:             pr.Title,
-			Description:       "This PR is _always_ open.\n\nUpdated by the Sourcegraph test suite at " + time.Now().Format(time.RFC3339),
+			Description:       "This PR is _always_ open.\n\nUpdated by the Khulnasoft test suite at " + time.Now().Format(time.RFC3339),
 			SourceBranch:      pr.Source.Branch.Name,
 			SourceRepo:        &pr.Source.Repo,
 			DestinationBranch: &pr.Destination.Branch.Name,

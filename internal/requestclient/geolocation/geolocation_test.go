@@ -38,8 +38,8 @@ func TestInferCountryCode(t *testing.T) {
 		},
 		{
 			name:      "not an IP address",
-			ipAddress: "sourcegraph.com",
-			wantError: autogold.Expect(`invalid IP address "sourcegraph.com" provided`),
+			ipAddress: "khulnasoft.com",
+			wantError: autogold.Expect(`invalid IP address "khulnasoft.com" provided`),
 		},
 		{
 			name:            "example 1 valid IPv4",

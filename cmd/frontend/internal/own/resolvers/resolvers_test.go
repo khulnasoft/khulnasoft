@@ -1292,7 +1292,7 @@ func Test_SignalConfigurations(t *testing.T) {
 			},
 			{
 			  "name": "recent-views",
-			  "description": "Indexes users that recently viewed files in Sourcegraph.",
+			  "description": "Indexes users that recently viewed files in Khulnasoft.",
 			  "isEnabled": false,
 			  "excludedRepoPatterns": []
 			},
@@ -1356,7 +1356,7 @@ func Test_SignalConfigurations(t *testing.T) {
 			{
 				ID:          2,
 				Name:        owntypes.SignalRecentViews,
-				Description: "Indexes users that recently viewed files in Sourcegraph.",
+				Description: "Indexes users that recently viewed files in Khulnasoft.",
 			},
 			{
 				ID:          3,
@@ -1386,7 +1386,7 @@ func Test_SignalConfigurations(t *testing.T) {
 			},
 			{
 			  "name": "recent-views",
-			  "description": "Indexes users that recently viewed files in Sourcegraph.",
+			  "description": "Indexes users that recently viewed files in Khulnasoft.",
 			  "isEnabled": false,
 			  "excludedRepoPatterns": []
 			},

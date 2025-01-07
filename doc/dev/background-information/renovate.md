@@ -20,7 +20,7 @@ As a reviewer of a Renovate pull request, you need to make an assessment of:
     - The amount of **automatic testing** we have in this area (either automatically running on the branch in CI, or manually)
     - Whether the breaking changes would be detected by the TypeScript **type checker**
       Note: This only applies to packages that are written in TypeScript like `rxjs`, since otherwise the types may not have been updated yet and may be "lying".
-    - Where/how the dependency **is used**: Are we actually using the feature that has a breaking change? Tip: The PR description includes a badge for Sourcegraph search results that can help finding usages of the package.
+    - Where/how the dependency **is used**: Are we actually using the feature that has a breaking change? Tip: The PR description includes a badge for Khulnasoft search results that can help finding usages of the package.
 - The amount of **migration work** (changes to our codebase) needed
 - Select packages: Whether the update is updating to a **nightly/prerelease** build.
   These are not intended to be merged, but if the build fails for them because of a bug, it is beneficial for us to file an issue on the package maintainers.

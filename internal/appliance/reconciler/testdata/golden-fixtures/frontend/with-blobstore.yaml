@@ -3,7 +3,7 @@ resources:
     kind: Deployment
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 2b72058f008a684f7fa052f8ad33d0226af4cfb7973242c9103d6d1900da355e
+        appliance.khulnasoft.com/configHash: 2b72058f008a684f7fa052f8ad33d0226af4cfb7973242c9103d6d1900da355e
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
       labels:
@@ -92,7 +92,7 @@ resources:
     kind: Deployment
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 8f6b44deb3ec355b4074331d35e5b9d4e87c47388f3a8325a3fc50619bddc76d
+        appliance.khulnasoft.com/configHash: 8f6b44deb3ec355b4074331d35e5b9d4e87c47388f3a8325a3fc50619bddc76d
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
       labels:
@@ -467,8 +467,8 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/currentVersion: 5.3.9104
-        appliance.sourcegraph.com/managed: "true"
+        appliance.khulnasoft.com/currentVersion: 5.3.9104
+        appliance.khulnasoft.com/managed: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
       name: sg
       namespace: NORMALIZED_FOR_TESTING
@@ -478,7 +478,7 @@ resources:
     kind: PersistentVolumeClaim
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 2b72058f008a684f7fa052f8ad33d0226af4cfb7973242c9103d6d1900da355e
+        appliance.khulnasoft.com/configHash: 2b72058f008a684f7fa052f8ad33d0226af4cfb7973242c9103d6d1900da355e
       creationTimestamp: "2024-04-19T00:00:00Z"
       finalizers:
         - kubernetes.io/pvc-protection
@@ -508,7 +508,7 @@ resources:
     kind: Role
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b5dce290e22d1afb4c9102ac4c245490ab01dd3be13653de391536cfe0e323b0
+        appliance.khulnasoft.com/configHash: b5dce290e22d1afb4c9102ac4c245490ab01dd3be13653de391536cfe0e323b0
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -545,7 +545,7 @@ resources:
     kind: RoleBinding
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b5dce290e22d1afb4c9102ac4c245490ab01dd3be13653de391536cfe0e323b0
+        appliance.khulnasoft.com/configHash: b5dce290e22d1afb4c9102ac4c245490ab01dd3be13653de391536cfe0e323b0
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -572,7 +572,7 @@ resources:
     kind: ServiceAccount
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b5dce290e22d1afb4c9102ac4c245490ab01dd3be13653de391536cfe0e323b0
+        appliance.khulnasoft.com/configHash: b5dce290e22d1afb4c9102ac4c245490ab01dd3be13653de391536cfe0e323b0
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -591,7 +591,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 2b72058f008a684f7fa052f8ad33d0226af4cfb7973242c9103d6d1900da355e
+        appliance.khulnasoft.com/configHash: 2b72058f008a684f7fa052f8ad33d0226af4cfb7973242c9103d6d1900da355e
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app: blobstore
@@ -631,8 +631,8 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/adopted: "true"
-        appliance.sourcegraph.com/configHash: b5dce290e22d1afb4c9102ac4c245490ab01dd3be13653de391536cfe0e323b0
+        appliance.khulnasoft.com/adopted: "true"
+        appliance.khulnasoft.com/configHash: b5dce290e22d1afb4c9102ac4c245490ab01dd3be13653de391536cfe0e323b0
         prometheus.io/port: "6060"
         sourcegraph.prometheus/scrape: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
@@ -674,7 +674,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b5dce290e22d1afb4c9102ac4c245490ab01dd3be13653de391536cfe0e323b0
+        appliance.khulnasoft.com/configHash: b5dce290e22d1afb4c9102ac4c245490ab01dd3be13653de391536cfe0e323b0
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app: sourcegraph-frontend-internal

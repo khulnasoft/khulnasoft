@@ -53,7 +53,7 @@ func HasAPIKey() bool {
 }
 
 func init() {
-	// The HubSpot access token will only be available in the production sourcegraph.com environment.
+	// The HubSpot access token will only be available in the production khulnasoft.com environment.
 	// Not having this access token only restricts certain requests (e.g. GET requests to the Contacts API),
 	// while others (e.g. POST requests to the Forms API) will still go through.
 	client = hubspot.New("2762526", HubSpotAccessToken)
@@ -73,7 +73,7 @@ func SyncUser(email, eventID string, contactParams *hubspot.ContactProperties) {
 		}
 	}()
 	// If the user no API token present or on-prem environment, don't do any tracking
-	if !HasAPIKey() || !dotcom.SourcegraphDotComMode() {
+	if !HasAPIKey() || !dotcom.KhulnasoftDotComMode() {
 		return
 	}
 
@@ -95,7 +95,7 @@ func SyncUserWithV3Event(email, eventName string, contactParams *hubspot.Contact
 	}()
 
 	// If the user no API token present or on-prem environment, don't do any tracking
-	if !HasAPIKey() || !dotcom.SourcegraphDotComMode() {
+	if !HasAPIKey() || !dotcom.KhulnasoftDotComMode() {
 		return
 	}
 

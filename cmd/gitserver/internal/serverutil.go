@@ -48,7 +48,7 @@ var repoLastFetched = func(dir common.GitDir) (time.Time, error) {
 // cached timestamp of the most recent commit we could find in the tree. As a
 // special case when sg_refhash_v2 is missing we return repoLastFetched(dir).
 //
-// This breaks on file systems that do not record mtime. This is a Sourcegraph
+// This breaks on file systems that do not record mtime. This is a Khulnasoft
 // extension to track last time a repo changed. The file is updated by
 // setLastChanged via doBackgroundRepoUpdate.
 //

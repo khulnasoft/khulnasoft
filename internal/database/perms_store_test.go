@@ -1401,8 +1401,8 @@ func TestPermsStore_LoadUserPendingPermissions(t *testing.T) {
 		})
 
 		accounts := &extsvc.Accounts{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			AccountIDs:  []string{"bob"},
 		}
 		rp := &authz.RepoPermissions{
@@ -1414,8 +1414,8 @@ func TestPermsStore_LoadUserPendingPermissions(t *testing.T) {
 		}
 
 		alice := &authz.UserPendingPermissions{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			BindID:      "alice",
 			Perm:        authz.Read,
 			Type:        authz.PermRepos,
@@ -1434,8 +1434,8 @@ func TestPermsStore_LoadUserPendingPermissions(t *testing.T) {
 		})
 
 		accounts := &extsvc.Accounts{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			AccountIDs:  []string{"alice"},
 		}
 		rp := &authz.RepoPermissions{
@@ -1467,8 +1467,8 @@ func TestPermsStore_LoadUserPendingPermissions(t *testing.T) {
 		})
 
 		accounts := &extsvc.Accounts{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			AccountIDs:  []string{"alice"},
 		}
 		rp := &authz.RepoPermissions{
@@ -1480,8 +1480,8 @@ func TestPermsStore_LoadUserPendingPermissions(t *testing.T) {
 		}
 
 		alice := &authz.UserPendingPermissions{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			BindID:      "alice",
 			Perm:        authz.Read,
 			Type:        authz.PermRepos,
@@ -1500,8 +1500,8 @@ func TestPermsStore_LoadUserPendingPermissions(t *testing.T) {
 		})
 
 		accounts := &extsvc.Accounts{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			AccountIDs:  []string{"alice", "bob"},
 		}
 		rp := &authz.RepoPermissions{
@@ -1522,8 +1522,8 @@ func TestPermsStore_LoadUserPendingPermissions(t *testing.T) {
 		}
 
 		alice := &authz.UserPendingPermissions{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			BindID:      "alice",
 			Perm:        authz.Read,
 			Type:        authz.PermRepos,
@@ -1534,8 +1534,8 @@ func TestPermsStore_LoadUserPendingPermissions(t *testing.T) {
 		equal(t, "IDs", 0, len(mapsetToArray(alice.IDs)))
 
 		bob := &authz.UserPendingPermissions{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			BindID:      "bob",
 			Perm:        authz.Read,
 			Type:        authz.PermRepos,
@@ -1547,8 +1547,8 @@ func TestPermsStore_LoadUserPendingPermissions(t *testing.T) {
 		equal(t, "UpdatedAt", now, bob.UpdatedAt.UnixNano())
 
 		cindy := &authz.UserPendingPermissions{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			BindID:      "cindy",
 			Perm:        authz.Read,
 			Type:        authz.PermRepos,
@@ -1692,18 +1692,18 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 	db := NewDB(logger, testDb)
 
 	alice := extsvc.AccountSpec{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountID:   "alice",
 	}
 	bob := extsvc.AccountSpec{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountID:   "bob",
 	}
 	cindy := extsvc.AccountSpec{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountID:   "cindy",
 	}
 	cindyGitHub := extsvc.AccountSpec{
@@ -1729,8 +1729,8 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 			updates: []update{
 				{
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  nil,
 					},
 					perm: &authz.RepoPermissions{
@@ -1745,8 +1745,8 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 			updates: []update{
 				{
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"alice"},
 					},
 					perm: &authz.RepoPermissions{
@@ -1755,8 +1755,8 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 					},
 				}, {
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"alice", "bob"},
 					},
 					perm: &authz.RepoPermissions{
@@ -1791,8 +1791,8 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 			updates: []update{
 				{
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"alice", "bob"},
 					},
 					perm: &authz.RepoPermissions{
@@ -1801,8 +1801,8 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 					},
 				}, {
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"bob", "cindy"},
 					},
 					perm: &authz.RepoPermissions{
@@ -1837,8 +1837,8 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 			updates: []update{
 				{
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"alice", "bob", "cindy"},
 					},
 					perm: &authz.RepoPermissions{
@@ -1847,8 +1847,8 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 					},
 				}, {
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{},
 					},
 					perm: &authz.RepoPermissions{
@@ -1872,8 +1872,8 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 			updates: func() []update {
 				u := update{
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  make([]string, countToExceedParameterLimit),
 					},
 					perm: &authz.RepoPermissions{
@@ -1890,8 +1890,8 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 				perms := make(map[extsvc.AccountSpec][]uint32, countToExceedParameterLimit)
 				for i := 1; i <= countToExceedParameterLimit; i++ {
 					perms[extsvc.AccountSpec{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountID:   fmt.Sprintf("%d", i),
 					}] = []uint32{1}
 				}
@@ -1902,8 +1902,8 @@ func TestPermsStore_SetRepoPendingPermissions(t *testing.T) {
 					accounts := make([]extsvc.AccountSpec, countToExceedParameterLimit)
 					for i := 1; i <= countToExceedParameterLimit; i++ {
 						accounts[i-1] = extsvc.AccountSpec{
-							ServiceType: authz.SourcegraphServiceType,
-							ServiceID:   authz.SourcegraphServiceID,
+							ServiceType: authz.KhulnasoftServiceType,
+							ServiceID:   authz.KhulnasoftServiceID,
 							AccountID:   fmt.Sprintf("%d", i),
 						}
 					}
@@ -1992,8 +1992,8 @@ func TestPermsStore_ListPendingUsers(t *testing.T) {
 			updates: []update{
 				{
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"alice"},
 					},
 					perm: &authz.RepoPermissions{
@@ -2009,8 +2009,8 @@ func TestPermsStore_ListPendingUsers(t *testing.T) {
 			updates: []update{
 				{
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  []string{"bob@example.com"},
 					},
 					perm: &authz.RepoPermissions{
@@ -2019,8 +2019,8 @@ func TestPermsStore_ListPendingUsers(t *testing.T) {
 					},
 				}, {
 					accounts: &extsvc.Accounts{
-						ServiceType: authz.SourcegraphServiceType,
-						ServiceID:   authz.SourcegraphServiceID,
+						ServiceType: authz.KhulnasoftServiceType,
+						ServiceID:   authz.KhulnasoftServiceID,
 						AccountIDs:  nil,
 					},
 					perm: &authz.RepoPermissions{
@@ -2073,7 +2073,7 @@ func TestPermsStore_ListPendingUsers(t *testing.T) {
 				}
 			}
 
-			bindIDs, err := s.ListPendingUsers(ctx, authz.SourcegraphServiceType, authz.SourcegraphServiceID)
+			bindIDs, err := s.ListPendingUsers(ctx, authz.KhulnasoftServiceType, authz.KhulnasoftServiceID)
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -2095,13 +2095,13 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 	ctx := context.Background()
 
 	alice := extsvc.AccountSpec{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountID:   "alice",
 	}
 	bob := extsvc.AccountSpec{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountID:   "bob",
 	}
 
@@ -2159,8 +2159,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 				{
 					UserID:                1,
 					UserExternalAccountID: 1,
-					ServiceType:           authz.SourcegraphServiceType,
-					ServiceID:             authz.SourcegraphServiceID,
+					ServiceType:           authz.KhulnasoftServiceType,
+					ServiceID:             authz.KhulnasoftServiceID,
 					AccountID:             "alice",
 				},
 			},
@@ -2184,8 +2184,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 					pendings: []pending{
 						{
 							accounts: &extsvc.Accounts{
-								ServiceType: authz.SourcegraphServiceType,
-								ServiceID:   authz.SourcegraphServiceID,
+								ServiceType: authz.KhulnasoftServiceType,
+								ServiceID:   authz.KhulnasoftServiceID,
 								AccountIDs:  []string{"alice"},
 							},
 							perm: &authz.RepoPermissions{
@@ -2194,8 +2194,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 							},
 						}, {
 							accounts: &extsvc.Accounts{
-								ServiceType: authz.SourcegraphServiceType,
-								ServiceID:   authz.SourcegraphServiceID,
+								ServiceType: authz.KhulnasoftServiceType,
+								ServiceID:   authz.KhulnasoftServiceID,
 								AccountIDs:  []string{"bob"},
 							},
 							perm: &authz.RepoPermissions{
@@ -2210,8 +2210,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 				{
 					UserID:                1,
 					UserExternalAccountID: 3,
-					ServiceType:           authz.SourcegraphServiceType,
-					ServiceID:             authz.SourcegraphServiceID,
+					ServiceType:           authz.KhulnasoftServiceType,
+					ServiceID:             authz.KhulnasoftServiceID,
 					AccountID:             "cindy",
 				},
 			},
@@ -2244,8 +2244,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 					regulars: []*authz.RepoPermissions{},
 					pendings: []pending{{
 						accounts: &extsvc.Accounts{
-							ServiceType: authz.SourcegraphServiceType,
-							ServiceID:   authz.SourcegraphServiceID,
+							ServiceType: authz.KhulnasoftServiceType,
+							ServiceID:   authz.KhulnasoftServiceID,
 							AccountIDs:  []string{"alice"},
 						},
 						perm: &authz.RepoPermissions{
@@ -2258,8 +2258,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 			grants: []*authz.UserGrantPermissions{{
 				UserID:                1,
 				UserExternalAccountID: 1,
-				ServiceType:           authz.SourcegraphServiceType,
-				ServiceID:             authz.SourcegraphServiceID,
+				ServiceType:           authz.KhulnasoftServiceType,
+				ServiceID:             authz.KhulnasoftServiceID,
 				AccountID:             "alice",
 			}},
 			expectUserRepoPerms: []authz.Permission{
@@ -2289,8 +2289,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 					},
 					pendings: []pending{{
 						accounts: &extsvc.Accounts{
-							ServiceType: authz.SourcegraphServiceType,
-							ServiceID:   authz.SourcegraphServiceID,
+							ServiceType: authz.KhulnasoftServiceType,
+							ServiceID:   authz.KhulnasoftServiceID,
 							AccountIDs:  []string{"alice"},
 						},
 						perm: &authz.RepoPermissions{
@@ -2303,8 +2303,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 			grants: []*authz.UserGrantPermissions{{
 				UserID:                1,
 				UserExternalAccountID: 1,
-				ServiceType:           authz.SourcegraphServiceType,
-				ServiceID:             authz.SourcegraphServiceID,
+				ServiceType:           authz.KhulnasoftServiceType,
+				ServiceID:             authz.KhulnasoftServiceID,
 				AccountID:             "alice",
 			}},
 			expectUserRepoPerms: []authz.Permission{
@@ -2341,8 +2341,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 					pendings: []pending{
 						{
 							accounts: &extsvc.Accounts{
-								ServiceType: authz.SourcegraphServiceType,
-								ServiceID:   authz.SourcegraphServiceID,
+								ServiceType: authz.KhulnasoftServiceType,
+								ServiceID:   authz.KhulnasoftServiceID,
 								AccountIDs:  []string{"alice"},
 							},
 							perm: &authz.RepoPermissions{
@@ -2363,8 +2363,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 						},
 						{
 							accounts: &extsvc.Accounts{
-								ServiceType: authz.SourcegraphServiceType,
-								ServiceID:   authz.SourcegraphServiceID,
+								ServiceType: authz.KhulnasoftServiceType,
+								ServiceID:   authz.KhulnasoftServiceID,
 								AccountIDs:  []string{"bob"},
 							},
 							perm: &authz.RepoPermissions{
@@ -2379,8 +2379,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 				{
 					UserID:                3,
 					UserExternalAccountID: 3,
-					ServiceType:           authz.SourcegraphServiceType,
-					ServiceID:             authz.SourcegraphServiceID,
+					ServiceType:           authz.KhulnasoftServiceType,
+					ServiceID:             authz.KhulnasoftServiceID,
 					AccountID:             "alice",
 				}, {
 					UserID:                3,
@@ -2433,8 +2433,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 					pendings: []pending{
 						{
 							accounts: &extsvc.Accounts{
-								ServiceType: authz.SourcegraphServiceType,
-								ServiceID:   authz.SourcegraphServiceID,
+								ServiceType: authz.KhulnasoftServiceType,
+								ServiceID:   authz.KhulnasoftServiceID,
 								AccountIDs:  []string{"alice@example.com"},
 							},
 							perm: &authz.RepoPermissions{
@@ -2443,8 +2443,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 							},
 						}, {
 							accounts: &extsvc.Accounts{
-								ServiceType: authz.SourcegraphServiceType,
-								ServiceID:   authz.SourcegraphServiceID,
+								ServiceType: authz.KhulnasoftServiceType,
+								ServiceID:   authz.KhulnasoftServiceID,
 								AccountIDs:  []string{"alice2@example.com"},
 							},
 							perm: &authz.RepoPermissions{
@@ -2459,14 +2459,14 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 				{
 					UserID:                3,
 					UserExternalAccountID: 3,
-					ServiceType:           authz.SourcegraphServiceType,
-					ServiceID:             authz.SourcegraphServiceID,
+					ServiceType:           authz.KhulnasoftServiceType,
+					ServiceID:             authz.KhulnasoftServiceID,
 					AccountID:             "alice@example.com",
 				}, {
 					UserID:                3,
 					UserExternalAccountID: 4,
-					ServiceType:           authz.SourcegraphServiceType,
-					ServiceID:             authz.SourcegraphServiceID,
+					ServiceType:           authz.KhulnasoftServiceType,
+					ServiceID:             authz.KhulnasoftServiceID,
 					AccountID:             "alice2@example.com",
 				},
 			},
@@ -2500,8 +2500,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 					regulars: []*authz.RepoPermissions{},
 					pendings: []pending{{
 						accounts: &extsvc.Accounts{
-							ServiceType: authz.SourcegraphServiceType,
-							ServiceID:   authz.SourcegraphServiceID,
+							ServiceType: authz.KhulnasoftServiceType,
+							ServiceID:   authz.KhulnasoftServiceID,
 							AccountIDs:  []string{"alice"},
 						},
 						perm: &authz.RepoPermissions{
@@ -2510,8 +2510,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 						},
 					}, {
 						accounts: &extsvc.Accounts{
-							ServiceType: authz.SourcegraphServiceType,
-							ServiceID:   authz.SourcegraphServiceID,
+							ServiceType: authz.KhulnasoftServiceType,
+							ServiceID:   authz.KhulnasoftServiceID,
 							AccountIDs:  []string{"alice"},
 						},
 						perm: &authz.RepoPermissions{
@@ -2520,8 +2520,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 						},
 					}, {
 						accounts: &extsvc.Accounts{
-							ServiceType: authz.SourcegraphServiceType,
-							ServiceID:   authz.SourcegraphServiceID,
+							ServiceType: authz.KhulnasoftServiceType,
+							ServiceID:   authz.KhulnasoftServiceID,
 							AccountIDs:  []string{"alice"},
 						},
 						perm: &authz.RepoPermissions{
@@ -2534,8 +2534,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 			grants: []*authz.UserGrantPermissions{{
 				UserID:                1,
 				UserExternalAccountID: 1,
-				ServiceType:           authz.SourcegraphServiceType,
-				ServiceID:             authz.SourcegraphServiceID,
+				ServiceType:           authz.KhulnasoftServiceType,
+				ServiceID:             authz.KhulnasoftServiceID,
 				AccountID:             "alice",
 			}},
 			expectUserRepoPerms: []authz.Permission{
@@ -2566,8 +2566,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 					regulars: []*authz.RepoPermissions{},
 					pendings: func() []pending {
 						accounts := &extsvc.Accounts{
-							ServiceType: authz.SourcegraphServiceType,
-							ServiceID:   authz.SourcegraphServiceID,
+							ServiceType: authz.KhulnasoftServiceType,
+							ServiceID:   authz.KhulnasoftServiceID,
 							AccountIDs:  []string{"alice"},
 						}
 						pendings := make([]pending, countToExceedParameterLimit)
@@ -2588,8 +2588,8 @@ func TestPermsStore_GrantPendingPermissions(t *testing.T) {
 				{
 					UserID:                1,
 					UserExternalAccountID: 1,
-					ServiceType:           authz.SourcegraphServiceType,
-					ServiceID:             authz.SourcegraphServiceID,
+					ServiceType:           authz.KhulnasoftServiceType,
+					ServiceID:             authz.KhulnasoftServiceID,
 					AccountID:             "alice",
 				},
 			},
@@ -2753,8 +2753,8 @@ func TestPermsStore_SetPendingPermissionsAfterGrant(t *testing.T) {
 
 	// Set up pending permissions for at least two users
 	if err := s.SetRepoPendingPermissions(ctx, &extsvc.Accounts{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountIDs:  []string{"alice", "bob"},
 	}, &authz.RepoPermissions{
 		RepoID: 1,
@@ -2767,8 +2767,8 @@ func TestPermsStore_SetPendingPermissionsAfterGrant(t *testing.T) {
 	// from the `user_pending_permissions` table.
 	if err := s.GrantPendingPermissions(ctx, &authz.UserGrantPermissions{
 		UserID:      1,
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountID:   "alice",
 	}); err != nil {
 		t.Fatal(err)
@@ -2776,8 +2776,8 @@ func TestPermsStore_SetPendingPermissionsAfterGrant(t *testing.T) {
 
 	if err := s.GrantPendingPermissions(ctx, &authz.UserGrantPermissions{
 		UserID:      2,
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountID:   "bob",
 	}); err != nil {
 		t.Fatal(err)
@@ -2786,8 +2786,8 @@ func TestPermsStore_SetPendingPermissionsAfterGrant(t *testing.T) {
 	// Now the `repo_pending_permissions` table has references to these two deleted rows,
 	// it should just ignore them.
 	if err := s.SetRepoPendingPermissions(ctx, &extsvc.Accounts{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountIDs:  []string{}, // Intentionally empty to cover "no-update" case
 	}, &authz.RepoPermissions{
 		RepoID: 1,
@@ -2898,8 +2898,8 @@ func TestPermsStore_DeleteAllUserPendingPermissions(t *testing.T) {
 	ctx := context.Background()
 
 	accounts := &extsvc.Accounts{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountIDs:  []string{"alice", "bob"},
 	}
 
@@ -2919,8 +2919,8 @@ func TestPermsStore_DeleteAllUserPendingPermissions(t *testing.T) {
 
 	// Check alice should not have any pending permissions now
 	err := s.LoadUserPendingPermissions(ctx, &authz.UserPendingPermissions{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		BindID:      "alice",
 		Perm:        authz.Read,
 		Type:        authz.PermRepos,
@@ -2931,8 +2931,8 @@ func TestPermsStore_DeleteAllUserPendingPermissions(t *testing.T) {
 
 	// Check bob shoud not be affected
 	p := &authz.UserPendingPermissions{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		BindID:      "bob",
 		Perm:        authz.Read,
 		Type:        authz.PermRepos,
@@ -2983,8 +2983,8 @@ func TestPermsStore_DatabaseDeadlocks(t *testing.T) {
 	}
 	setRepoPendingPermissions := func(ctx context.Context, t *testing.T) {
 		accounts := &extsvc.Accounts{
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			AccountIDs:  []string{"alice"},
 		}
 		if err := s.SetRepoPendingPermissions(ctx, accounts, &authz.RepoPermissions{
@@ -2997,8 +2997,8 @@ func TestPermsStore_DatabaseDeadlocks(t *testing.T) {
 	grantPendingPermissions := func(ctx context.Context, t *testing.T) {
 		if err := s.GrantPendingPermissions(ctx, &authz.UserGrantPermissions{
 			UserID:      1,
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			AccountID:   "alice",
 		}); err != nil {
 			t.Fatal(err)

@@ -9,10 +9,10 @@ describe('checkIsKhulnasoft()', () => {
             checkIsKhulnasoft('https://sourcegraph.test:3443', new URL('https://sourcegraph.test:3443/search?q=test'))
         ).toBe(true)
     })
-    it('returns true for sourcegraph.com', () => {
-        expect(checkIsKhulnasoft('https://sourcegraph.test:3443', new URL('https://sourcegraph.com'))).toBe(true)
+    it('returns true for khulnasoft.com', () => {
+        expect(checkIsKhulnasoft('https://sourcegraph.test:3443', new URL('https://khulnasoft.com'))).toBe(true)
     })
-    it('returns false when the location attempts to impersonate sourcegraph.com', () => {
-        expect(checkIsKhulnasoft('https://sourcegraph.test:3443', new URL('https://wwwwsourcegraph.com'))).toBe(false)
+    it('returns false when the location attempts to impersonate khulnasoft.com', () => {
+        expect(checkIsKhulnasoft('https://sourcegraph.test:3443', new URL('https://wwwwkhulnasoft.com'))).toBe(false)
     })
 })

@@ -149,7 +149,7 @@ func TestScanFirstBitbucketProjectPermissionsJob(t *testing.T) {
 			'worker-hostname',
 			'project-key',
 			1,
-			E'{"{\\"permission\\": \\"read\\", \\"bindID\\": \\"omar@sourcegraph.com\\"}"}'::json[],
+			E'{"{\\"permission\\": \\"read\\", \\"bindID\\": \\"omar@khulnasoft.com\\"}"}'::json[],
 			false
 		);
 	`)
@@ -179,7 +179,7 @@ func TestScanFirstBitbucketProjectPermissionsJob(t *testing.T) {
 		WorkerHostname:    "worker-hostname",
 		ProjectKey:        "project-key",
 		ExternalServiceID: 1,
-		Permissions:       []types.UserPermission{{Permission: "read", BindID: "omar@sourcegraph.com"}},
+		Permissions:       []types.UserPermission{{Permission: "read", BindID: "omar@khulnasoft.com"}},
 		Unrestricted:      false,
 	}, job)
 }

@@ -39,8 +39,8 @@ export const BATCH_CHANGE_CHANGESETS: (ExternalChangesetFields | HiddenExternalC
             labels: [],
             repository: {
                 id: 'repoid',
-                name: 'github.com/sourcegraph/sourcegraph',
-                url: 'http://test.test/sourcegraph/sourcegraph',
+                name: 'github.com/khulnasoft/khulnasoft',
+                url: 'http://test.test/khulnasoft/khulnasoft',
             },
             reviewState: ChangesetReviewState.COMMENTED,
             error: null,

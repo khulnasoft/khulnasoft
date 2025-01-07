@@ -1,7 +1,7 @@
 //go:build ignore
 // +build ignore
 
-// Command generate-license generates a signed Sourcegraph license key.
+// Command generate-license generates a signed Khulnasoft license key.
 //
 // # REQUIREMENTS
 //

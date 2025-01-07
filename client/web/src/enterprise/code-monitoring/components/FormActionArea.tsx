@@ -113,7 +113,7 @@ export const FormActionArea: React.FunctionComponent<React.PropsWithChildren<Act
 
             <small className="text-muted">
                 What other actions would you like to take?{' '}
-                <Link to="mailto:feedback@sourcegraph.com" target="_blank" rel="noopener">
+                <Link to="mailto:feedback@khulnasoft.com" target="_blank" rel="noopener">
                     Share feedback.
                 </Link>
             </small>

@@ -26,7 +26,7 @@ sg live k8s
 sg live scaletesting
 
 # See which version is deployed on a custom environment
-sg live https://demo.sourcegraph.com
+sg live https://demo.khulnasoft.com
 
 # List environments
 sg live -help
@@ -63,7 +63,7 @@ func constructLiveCmdLongHelp() string {
 
 	fmt.Fprintf(&out, "\n\n")
 	fmt.Fprintf(&out, "See more information about the deployments schedule here:\n")
-	fmt.Fprintf(&out, "https://handbook.sourcegraph.com/departments/engineering/teams/dev-experience/#sourcegraph-instances-operated-by-us")
+	fmt.Fprintf(&out, "https://handbook.khulnasoft.com/departments/engineering/teams/dev-experience/#sourcegraph-instances-operated-by-us")
 
 	return out.String()
 }

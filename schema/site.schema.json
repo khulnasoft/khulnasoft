@@ -2,19 +2,19 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "site.schema.json#",
   "title": "Site configuration",
-  "description": "Configuration for a Sourcegraph site.",
+  "description": "Configuration for a Khulnasoft site.",
   "allowComments": true,
   "type": "object",
   "additionalProperties": true,
   "properties": {
     "ssc.apiBaseUrl": {
       "type": "string",
-      "default": "https://accounts.sourcegraph.com/cody/api",
+      "default": "https://accounts.khulnasoft.com/cody/api",
       "description": "The base URL of the Self-Serve Cody API."
     },
     "ssc.samsHostName": {
       "type": "string",
-      "default": "accounts.sourcegraph.com",
+      "default": "accounts.khulnasoft.com",
       "description": "The hostname of SAMS instance to connect."
     },
     "search.index.symbols.enabled": {
@@ -101,7 +101,7 @@
       "additionalProperties": false,
       "properties": {
         "enabled": {
-          "description": "Toggles whether or not to export Sourcegraph telemetry. If enabled events will be scraped and sent to an analytics store. This is an opt-in setting, and only should only be enabled for customers that have agreed to event level data collection.",
+          "description": "Toggles whether or not to export Khulnasoft telemetry. If enabled events will be scraped and sent to an analytics store. This is an opt-in setting, and only should only be enabled for customers that have agreed to event level data collection.",
           "type": "boolean",
           "default": false,
           "deprecationMessage": "Deprecated in favor of an environment variable EXPORT_USAGE_DATA_ENABLED."
@@ -221,7 +221,7 @@
           "default": 500
         },
         "eventLogging": {
-          "description": "Enables user event logging inside of the Sourcegraph instance. This will allow admins to have greater visibility of user activity, such as frequently viewed pages, frequent searches, and more. These event logs (and any specific user actions) are only stored locally, and never leave this Sourcegraph instance.",
+          "description": "Enables user event logging inside of the Khulnasoft instance. This will allow admins to have greater visibility of user activity, such as frequently viewed pages, frequent searches, and more. These event logs (and any specific user actions) are only stored locally, and never leave this Khulnasoft instance.",
           "type": "string",
           "enum": ["enabled", "disabled"],
           "default": "enabled"
@@ -356,7 +356,7 @@
           }
         },
         "tls.external": {
-          "description": "Global TLS/SSL settings for Sourcegraph to use when communicating with code hosts.",
+          "description": "Global TLS/SSL settings for Khulnasoft to use when communicating with code hosts.",
           "type": "object",
           "additionalProperties": false,
           "properties": {
@@ -411,7 +411,7 @@
           ]
         },
         "search.index.revisions": {
-          "description": "An array of objects describing rules for extra revisions (branch, ref, tag, commit sha, etc) to be indexed for all repositories that match them. We always index the default branch (\"HEAD\") and revisions in version contexts. This allows specifying additional revisions. Sourcegraph can index up to 64 branches per repository.",
+          "description": "An array of objects describing rules for extra revisions (branch, ref, tag, commit sha, etc) to be indexed for all repositories that match them. We always index the default branch (\"HEAD\") and revisions in version contexts. This allows specifying additional revisions. Khulnasoft can index up to 64 branches per repository.",
           "type": "array",
           "items": {
             "type": "object",
@@ -449,7 +449,7 @@
           ]
         },
         "search.index.branches": {
-          "description": "A map from repository name to a list of extra revs (branch, ref, tag, commit sha, etc) to index for a repository. We always index the default branch (\"HEAD\") and revisions in version contexts. This allows specifying additional revisions. Sourcegraph can index up to 64 branches per repository.",
+          "description": "A map from repository name to a list of extra revs (branch, ref, tag, commit sha, etc) to index for a repository. We always index the default branch (\"HEAD\") and revisions in version contexts. This allows specifying additional revisions. Khulnasoft can index up to 64 branches per repository.",
           "type": "object",
           "additionalProperties": {
             "type": "array",
@@ -460,7 +460,7 @@
           },
           "examples": [
             {
-              "github.com/sourcegraph/sourcegraph": ["3.17", "f6ca985c27486c2df5231ea3526caa4a4108ffb6", "v3.17.1"],
+              "github.com/khulnasoft/khulnasoft": ["3.17", "f6ca985c27486c2df5231ea3526caa4a4108ffb6", "v3.17.1"],
               "name/of/repo": ["develop"]
             }
           ]
@@ -550,7 +550,7 @@
           }
         },
         "search.sanitization": {
-          "description": "Allows site admins to specify a list of regular expressions representing matched content that should be omitted from search results. Also allows admins to specify the name of an organization within their Sourcegraph instance whose members are trusted and will not have their search results sanitized. Enable this feature by adding at least one valid regular expression to the value of the `sanitizePatterns` field on this object. Site admins will not have their searches sanitized.",
+          "description": "Allows site admins to specify a list of regular expressions representing matched content that should be omitted from search results. Also allows admins to specify the name of an organization within their Khulnasoft instance whose members are trusted and will not have their search results sanitized. Enable this feature by adding at least one valid regular expression to the value of the `sanitizePatterns` field on this object. Site admins will not have their searches sanitized.",
           "type": "object",
           "properties": {
             "sanitizePatterns": {
@@ -562,7 +562,7 @@
               }
             },
             "orgName": {
-              "description": "Optionally specify the name of an organization within this Sourcegraph instance containing users whose searches should not be sanitized. Admins: ensure that ALL members of this org are trusted users. If no org exists with the given name then there will be no effect. If no org name is specified then all non-admin users will have their searches sanitized if this feature is enabled.",
+              "description": "Optionally specify the name of an organization within this Khulnasoft instance containing users whose searches should not be sanitized. Admins: ensure that ALL members of this org are trusted users. If no org exists with the given name then there will be no effect. If no org name is specified then all non-admin users will have their searches sanitized if this feature is enabled.",
               "type": "string"
             }
           }
@@ -846,7 +846,7 @@
       "default": -1
     },
     "codeIntelAutoIndexing.allowGlobalPolicies": {
-      "description": "Whether auto-indexing policies may apply to all repositories on the Sourcegraph instance. Default is false. The policyRepositoryMatchLimit setting still applies to such auto-indexing policies.",
+      "description": "Whether auto-indexing policies may apply to all repositories on the Khulnasoft instance. Default is false. The policyRepositoryMatchLimit setting still applies to such auto-indexing policies.",
       "type": "boolean",
       "!go": {
         "pointer": true
@@ -963,14 +963,14 @@
       ]
     },
     "disablePublicRepoRedirects": {
-      "description": "DEPRECATED! Disable redirects to sourcegraph.com when visiting public repositories that can't exist on this server.",
+      "description": "DEPRECATED! Disable redirects to khulnasoft.com when visiting public repositories that can't exist on this server.",
       "type": "boolean",
       "group": "External services",
       "examples": [true],
       "deprecationMessage": "Deprecated because it's no longer supported and hasn't been working for a while."
     },
     "git.cloneURLToRepositoryName": {
-      "description": "JSON array of configuration that maps from Git clone URL to repository name. Sourcegraph automatically resolves remote clone URLs to their proper code host. However, there may be non-remote clone URLs (e.g., in submodule declarations) that Sourcegraph cannot automatically map to a code host. In this case, use this field to specify the mapping. The mappings are tried in the order they are specified and take precedence over automatic mappings.",
+      "description": "JSON array of configuration that maps from Git clone URL to repository name. Khulnasoft automatically resolves remote clone URLs to their proper code host. However, there may be non-remote clone URLs (e.g., in submodule declarations) that Khulnasoft cannot automatically map to a code host. In this case, use this field to specify the mapping. The mappings are tried in the order they are specified and take precedence over automatic mappings.",
       "type": "array",
       "items": {
         "title": "CloneURLToRepositoryName",
@@ -1195,7 +1195,7 @@
       "additionalProperties": false,
       "properties": {
         "maxTimeoutSeconds": {
-          "description": "The maximum value for \"timeout:\" that search will respect. \"timeout:\" values larger than maxTimeoutSeconds are capped at maxTimeoutSeconds. Note: You need to ensure your load balancer / reverse proxy in front of Sourcegraph won't timeout the request for larger values. Note: Too many large rearch requests may harm Soucregraph for other users. Note: Experimental search jobs do not respect this limit. Defaults to 1 minute.",
+          "description": "The maximum value for \"timeout:\" that search will respect. \"timeout:\" values larger than maxTimeoutSeconds are capped at maxTimeoutSeconds. Note: You need to ensure your load balancer / reverse proxy in front of Khulnasoft won't timeout the request for larger values. Note: Too many large rearch requests may harm Soucregraph for other users. Note: Experimental search jobs do not respect this limit. Defaults to 1 minute.",
           "type": "integer",
           "default": "60",
           "minimum": 1
@@ -1227,14 +1227,14 @@
         }
       ]
     },
-    "parentSourcegraph": {
-      "description": "URL to fetch unreachable repository details from. Defaults to \"https://sourcegraph.com\"",
+    "parentKhulnasoft": {
+      "description": "URL to fetch unreachable repository details from. Defaults to \"https://khulnasoft.com\"",
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "url": {
           "type": "string",
-          "default": "https://sourcegraph.com"
+          "default": "https://khulnasoft.com"
         }
       },
       "group": "External services",
@@ -1245,7 +1245,7 @@
       ]
     },
     "auth.accessTokens": {
-      "description": "Settings for access tokens, which enable external tools to access the Sourcegraph API with the privileges of the user.",
+      "description": "Settings for access tokens, which enable external tools to access the Khulnasoft API with the privileges of the user.",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -1318,7 +1318,7 @@
       "group": "Security"
     },
     "auth.allowedIpAddress": {
-      "description": "IP allowlist for access to the Sourcegraph instance. If set, only requests from these IP addresses will be allowed. By default client IP is infered connected client IP address, and you may configure to use a request header to determine the user IP.",
+      "description": "IP allowlist for access to the Khulnasoft instance. If set, only requests from these IP addresses will be allowed. By default client IP is infered connected client IP address, and you may configure to use a request header to determine the user IP.",
       "type": "object",
       "properties": {
         "enabled": {
@@ -1335,7 +1335,7 @@
           "examples": ["100.100.100.0/25", "23.34.56.21"]
         },
         "trustedClientIpAddress": {
-          "description": "List of trusted client IP addresses that will bypass user IP address check. If empty, nothing can be bypass. This is useful to support access from trusted internal services. It will always permit connection from `127.0.0.1`. You must include the IP range allocated for the Sourcegraph deployment services to allow inter-service communication, e.g., kubernetes pod ip range.",
+          "description": "List of trusted client IP addresses that will bypass user IP address check. If empty, nothing can be bypass. This is useful to support access from trusted internal services. It will always permit connection from `127.0.0.1`. You must include the IP range allocated for the Khulnasoft deployment services to allow inter-service communication, e.g., kubernetes pod ip range.",
           "type": "array",
           "items": {
             "type": "string"
@@ -1363,8 +1363,8 @@
           "type": "string",
           "default": "Access from your IP address is not allowed.",
           "examples": [
-            "Please reach out to your Sourcegraph instance admin at admin@acme.com to unblock your IP address: {{.UserIP}}.",
-            "{{.Error}}. Please reach out to your Sourcegraph instance admin at admin@acme.com to request access."
+            "Please reach out to your Khulnasoft instance admin at admin@acme.com to unblock your IP address: {{.UserIP}}.",
+            "{{.Error}}. Please reach out to your Khulnasoft instance admin at admin@acme.com to request access."
           ]
         }
       },
@@ -1376,7 +1376,7 @@
       "default": false
     },
     "permissions.userMapping": {
-      "description": "Settings for Sourcegraph explicit permissions, which allow the site admin to explicitly manage repository permissions via the GraphQL API. This will mark repositories as restricted by default.",
+      "description": "Settings for Khulnasoft explicit permissions, which allow the site admin to explicitly manage repository permissions via the GraphQL API. This will mark repositories as restricted by default.",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -1458,7 +1458,7 @@
       "minimum": 1
     },
     "branding": {
-      "description": "Customize Sourcegraph homepage logo and search icon.",
+      "description": "Customize Khulnasoft homepage logo and search icon.",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -1479,9 +1479,9 @@
           "default": false
         },
         "brandName": {
-          "description": "String to display everywhere the brand name should be displayed. Defaults to \"Sourcegraph\"",
+          "description": "String to display everywhere the brand name should be displayed. Defaults to \"Khulnasoft\"",
           "type": "string",
-          "default": "Sourcegraph"
+          "default": "Khulnasoft"
         }
       },
       "examples": [
@@ -1501,7 +1501,7 @@
     },
     "email.smtp": {
       "title": "SMTPServerConfig",
-      "description": "The SMTP server used to send transactional emails.\nPlease see https://sourcegraph.com/docs/admin/config/email",
+      "description": "The SMTP server used to send transactional emails.\nPlease see https://khulnasoft.com/docs/admin/config/email",
       "type": "object",
       "additionalProperties": false,
       "required": ["host", "port", "authentication"],
@@ -1576,7 +1576,7 @@
       "group": "Email"
     },
     "email.address": {
-      "description": "The \"from\" address for emails sent by this server.\nPlease see https://sourcegraph.com/docs/admin/config/email",
+      "description": "The \"from\" address for emails sent by this server.\nPlease see https://khulnasoft.com/docs/admin/config/email",
       "type": "string",
       "format": "email",
       "group": "Email",
@@ -1586,11 +1586,11 @@
       "description": "The name to use in the \"from\" address for emails sent by this server.",
       "type": "string",
       "group": "Email",
-      "default": "Sourcegraph",
-      "examples": ["Our Company Sourcegraph", "Example Inc Sourcegraph"]
+      "default": "Khulnasoft",
+      "examples": ["Our Company Khulnasoft", "Example Inc Khulnasoft"]
     },
     "email.templates": {
-      "description": "Configurable templates for some email types sent by Sourcegraph.",
+      "description": "Configurable templates for some email types sent by Khulnasoft.",
       "type": "object",
       "properties": {
         "resetPassword": {
@@ -1617,7 +1617,7 @@
       ]
     },
     "executors.frontendURL": {
-      "description": "The URL where Sourcegraph executors can reach the Sourcegraph instance. If not set, defaults to externalURL. URLs with a path (other than `/`) are not allowed. For Docker executors, the special hostname `host.docker.internal` can be used to refer to the Docker container's host.",
+      "description": "The URL where Khulnasoft executors can reach the Khulnasoft instance. If not set, defaults to externalURL. URLs with a path (other than `/`) are not allowed. For Docker executors, the special hostname `host.docker.internal` can be used to refer to the Docker container's host.",
       "type": "string",
       "examples": ["https://sourcegraph.example.com"]
     },
@@ -1627,12 +1627,12 @@
       "default": "sourcegraph/src-cli"
     },
     "executors.srcCLIImageTag": {
-      "description": "The tag to use for the src-cli image in executors. Use this value to use a custom tag. Sourcegraph by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.",
+      "description": "The tag to use for the src-cli image in executors. Use this value to use a custom tag. Khulnasoft by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.",
       "type": "string",
       "examples": ["4.1.0"]
     },
     "executors.lsifGoImage": {
-      "description": "The tag to use for the lsif-go image in executors. Use this value to use a custom tag. Sourcegraph by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.",
+      "description": "The tag to use for the lsif-go image in executors. Use this value to use a custom tag. Khulnasoft by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.",
       "type": "string",
       "examples": ["sourcegraph/lsif-go"]
     },
@@ -1642,12 +1642,12 @@
       "default": "sourcegraph/batcheshelper"
     },
     "executors.batcheshelperImageTag": {
-      "description": "The tag to use for the batcheshelper image in executors. Use this value to use a custom tag. Sourcegraph by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.",
+      "description": "The tag to use for the batcheshelper image in executors. Use this value to use a custom tag. Khulnasoft by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.",
       "type": "string",
       "examples": ["4.1.0"]
     },
     "executors.accessToken": {
-      "description": "The shared secret between Sourcegraph and executors. The value must contain at least 20 characters.",
+      "description": "The shared secret between Khulnasoft and executors. The value must contain at least 20 characters.",
       "type": "string",
       "pattern": "^(.{20,}|REDACTED)$",
       "examples": ["my-super-secret-access-token"]
@@ -1807,7 +1807,7 @@
       }
     },
     "externalURL": {
-      "description": "The externally accessible URL for Sourcegraph (i.e., what you type into your browser). Previously called `appURL`. Only root URLs are allowed.",
+      "description": "The externally accessible URL for Khulnasoft (i.e., what you type into your browser). Previously called `appURL`. Only root URLs are allowed.",
       "type": "string",
       "examples": ["https://sourcegraph.example.com"]
     },
@@ -1843,17 +1843,17 @@
       ]
     },
     "observability.tracing": {
-      "description": "Configures distributed tracing within Sourcegraph. To learn more, refer to https://sourcegraph.com/docs/admin/observability/tracing",
+      "description": "Configures distributed tracing within Khulnasoft. To learn more, refer to https://khulnasoft.com/docs/admin/observability/tracing",
       "type": "object",
       "properties": {
         "sampling": {
-          "description": "Determines the conditions under which distributed traces are recorded. \"none\" turns off tracing entirely. \"selective\" (default) sends traces whenever `?trace=1` is present in the URL (though background jobs may still emit traces). \"all\" sends traces on every request. Note that this only affects the behavior of the distributed tracing client. To learn more about additional sampling and traace export configuration with the default tracing type \"opentelemetry\", refer to https://sourcegraph.com/docs/admin/observability/opentelemetry#tracing ",
+          "description": "Determines the conditions under which distributed traces are recorded. \"none\" turns off tracing entirely. \"selective\" (default) sends traces whenever `?trace=1` is present in the URL (though background jobs may still emit traces). \"all\" sends traces on every request. Note that this only affects the behavior of the distributed tracing client. To learn more about additional sampling and traace export configuration with the default tracing type \"opentelemetry\", refer to https://khulnasoft.com/docs/admin/observability/opentelemetry#tracing ",
           "type": "string",
           "enum": ["selective", "all", "none"],
           "default": "selective"
         },
         "type": {
-          "description": "Determines what tracing provider to enable. For \"opentelemetry\", the required backend is an OpenTelemetry collector instance (deployed by default with Sourcegraph). For \"jaeger\", a Jaeger instance is required to be configured via Jaeger client environment variables: https://github.com/jaegertracing/jaeger-client-go#environment-variables",
+          "description": "Determines what tracing provider to enable. For \"opentelemetry\", the required backend is an OpenTelemetry collector instance (deployed by default with Khulnasoft). For \"jaeger\", a Jaeger instance is required to be configured via Jaeger client environment variables: https://github.com/jaegertracing/jaeger-client-go#environment-variables",
           "type": "string",
           "enum": ["opentelemetry", "jaeger"],
           "default": "opentelemetry"
@@ -1897,7 +1897,7 @@
         "required": ["level", "notifier"],
         "properties": {
           "level": {
-            "description": "Sourcegraph alert level to subscribe to notifications for.",
+            "description": "Khulnasoft alert level to subscribe to notifications for.",
             "type": "string",
             "enum": ["warning", "critical"]
           },
@@ -1936,7 +1936,7 @@
             "default": false
           },
           "owners": {
-            "description": "Do not use. When set, only receive alerts owned by the specified teams. Used by Sourcegraph internally.",
+            "description": "Do not use. When set, only receive alerts owned by the specified teams. Used by Khulnasoft internally.",
             "type": "array",
             "items": {
               "type": "string"
@@ -1969,7 +1969,7 @@
       ]
     },
     "observability.silenceAlerts": {
-      "description": "Silence individual Sourcegraph alerts by identifier.",
+      "description": "Silence individual Khulnasoft alerts by identifier.",
       "type": "array",
       "items": {
         "type": "string"
@@ -2123,33 +2123,33 @@
       "group": "Misc."
     },
     "licenseKey": {
-      "description": "The license key associated with a Sourcegraph product subscription, which is necessary to activate Sourcegraph Enterprise functionality. To obtain this value, contact Sourcegraph to purchase a subscription. To escape the value into a JSON string, you may want to use a tool like https://json-escape-text.now.sh.",
+      "description": "The license key associated with a Khulnasoft product subscription, which is necessary to activate Khulnasoft Enterprise functionality. To obtain this value, contact Khulnasoft to purchase a subscription. To escape the value into a JSON string, you may want to use a tool like https://json-escape-text.now.sh.",
       "type": "string",
-      "group": "Sourcegraph Enterprise license"
+      "group": "Khulnasoft Enterprise license"
     },
     "gitHubApp": {
-      "description": "DEPRECATED: The config options for Sourcegraph GitHub App.",
+      "description": "DEPRECATED: The config options for Khulnasoft GitHub App.",
       "type": "object",
       "properties": {
         "slug": {
-          "description": "The slug of the GitHub App for Sourcegraph.",
+          "description": "The slug of the GitHub App for Khulnasoft.",
           "type": "string"
         },
         "appID": {
-          "description": "The app ID of the GitHub App for Sourcegraph.",
+          "description": "The app ID of the GitHub App for Khulnasoft.",
           "type": "string"
         },
         "privateKey": {
-          "description": "The base64-encoded private key of the GitHub App for Sourcegraph.",
+          "description": "The base64-encoded private key of the GitHub App for Khulnasoft.",
           "type": "string"
         },
         "clientID": {
           "type": "string",
-          "description": "The Client ID of the GitHub App for Sourcegraph, accessible from https://github.com/settings/apps ."
+          "description": "The Client ID of the GitHub App for Khulnasoft, accessible from https://github.com/settings/apps ."
         },
         "clientSecret": {
           "type": "string",
-          "description": "The Client Secret of the GitHub App for Sourcegraph, accessible from https://github.com/settings/apps ."
+          "description": "The Client Secret of the GitHub App for Khulnasoft, accessible from https://github.com/settings/apps ."
         }
       },
       "examples": [
@@ -2192,7 +2192,7 @@
       "examples": [
         {
           "size": 1000,
-          "repos": ["github.com/sourcegraph/sourcegraph", "github.com/gorilla/mux"],
+          "repos": ["github.com/khulnasoft/khulnasoft", "github.com/gorilla/mux"],
           "ignoredGitCommands": ["show", "rev-parse", "log", "diff", "ls-tree"]
         }
       ]
@@ -2214,7 +2214,7 @@
       }
     },
     "dotcom": {
-      "description": "Configuration options for Sourcegraph.com only.",
+      "description": "Configuration options for Khulnasoft.com only.",
       "type": "object",
       "properties": {
         "sams.server": {
@@ -2251,7 +2251,7 @@
           "description": "Whether to enable Enterprise Portal auth proxies for site admins."
         },
         "minimumExternalAccountAge": {
-          "description": "The minimum amount of days a Github or GitLab account must exist, before being allowed on Sourcegraph.com.",
+          "description": "The minimum amount of days a Github or GitLab account must exist, before being allowed on Khulnasoft.com.",
           "type": "integer",
           "default": 0
         },
@@ -2265,23 +2265,23 @@
         "slackLicenseExpirationWebhook": {
           "description": "Slack webhook for upcoming license expiration notifications.",
           "type": "string",
-          "group": "Sourcegraph.com"
+          "group": "Khulnasoft.com"
         },
         "slackLicenseAnomallyWebhook": {
           "description": "Slack webhook for when there is an anomaly detected with license key usage.",
           "type": "string",
-          "group": "Sourcegraph.com"
+          "group": "Khulnasoft.com"
         },
         "slackLicenseCreationWebhook": {
           "description": "Slack webhook for when a license key is created.",
           "type": "string",
-          "group": "Sourcegraph.com"
+          "group": "Khulnasoft.com"
         },
         "srcCliVersionCache": {
-          "description": "Configuration related to the src-cli version cache. This should only be used on sourcegraph.com.",
+          "description": "Configuration related to the src-cli version cache. This should only be used on khulnasoft.com.",
           "type": "object",
           "required": ["enabled", "github"],
-          "group": "Sourcegraph.com",
+          "group": "Khulnasoft.com",
           "properties": {
             "enabled": {
               "description": "Enables the src-cli version cache API endpoint.",
@@ -2332,9 +2332,9 @@
           }
         },
         "codyGateway": {
-          "description": "Configuration related to the Cody Gateway service management. This should only be used on sourcegraph.com.",
+          "description": "Configuration related to the Cody Gateway service management. This should only be used on khulnasoft.com.",
           "type": "object",
-          "group": "Sourcegraph.com",
+          "group": "Khulnasoft.com",
           "properties": {
             "bigQueryGoogleProjectID": {
               "description": "The project ID to pull BigQuery Cody Gatewayrelated events from.",
@@ -2364,31 +2364,31 @@
               "type": "string",
               "default": "",
               "description": "Origin of the SAMS backend. (Must match the SAMS OIDC registration in auth.providers.)",
-              "examples": ["https://accounts.sourcegraph.com"]
+              "examples": ["https://accounts.khulnasoft.com"]
             },
             "sscBackendOrigin": {
               "type": "string",
               "default": "",
               "description": "Origin of the Self-serve Cody backend.",
-              "examples": ["https://accounts.sourcegraph.com"]
+              "examples": ["https://accounts.khulnasoft.com"]
             },
             "sscBaseUrl": {
               "type": "string",
-              "default": "https://accounts.sourcegraph.com/cody",
+              "default": "https://accounts.khulnasoft.com/cody",
               "description": "The base URL of the Self-Serve Cody site."
             },
             "useEmbeddedUI": {
               "type": "boolean",
               "default": false,
-              "description": "Whether Cody Pro UI is served from sourcegraph.com. If false, users are directed to https://accounts.sourcegraph.com/cody to manage their Cody Pro subscription."
+              "description": "Whether Cody Pro UI is served from khulnasoft.com. If false, users are directed to https://accounts.khulnasoft.com/cody to manage their Cody Pro subscription."
             }
           }
         }
       },
-      "group": "Sourcegraph.com"
+      "group": "Khulnasoft.com"
     },
     "notifications": {
-      "description": "Notifications recieved from Sourcegraph.com to display in Sourcegraph.",
+      "description": "Notifications recieved from Khulnasoft.com to display in Khulnasoft.",
       "type": "array",
       "items": {
         "type": "object",
@@ -2493,7 +2493,7 @@
       "group": "Authentication"
     },
     "auth.enableUsernameChanges": {
-      "description": "Enables users to change their username after account creation. Warning: setting this to be true has security implications if you have enabled (or will at any point in the future enable) repository permissions with an option that relies on username equivalency between Sourcegraph and an external service or authentication provider. Do NOT set this to true if you are using non-built-in authentication OR rely on username equivalency for repository permissions.",
+      "description": "Enables users to change their username after account creation. Warning: setting this to be true has security implications if you have enabled (or will at any point in the future enable) repository permissions with an option that relies on username equivalency between Khulnasoft and an external service or authentication provider. Do NOT set this to true if you are using non-built-in authentication OR rely on username equivalency for repository permissions.",
       "type": "boolean",
       "default": false,
       "group": "Authentication"
@@ -2583,7 +2583,7 @@
       "default": 3
     },
     "update.channel": {
-      "description": "The channel on which to automatically check for Sourcegraph updates.",
+      "description": "The channel on which to automatically check for Khulnasoft updates.",
       "type": ["string"],
       "enum": ["release", "none"],
       "default": "release",
@@ -2749,7 +2749,7 @@
       "group": "Cody"
     },
     "cody.permissions": {
-      "description": "Whether to enable Cody role-based access controls. Only respected if cody.restrictUsersFeatureFlag is not set. See https://sourcegraph.com/docs/admin/access_control",
+      "description": "Whether to enable Cody role-based access controls. Only respected if cody.restrictUsersFeatureFlag is not set. See https://khulnasoft.com/docs/admin/access_control",
       "type": "boolean",
       "default": true,
       "!go": {
@@ -2758,7 +2758,7 @@
       "group": "Cody"
     },
     "cody.restrictUsersFeatureFlag": {
-      "description": "DEPRECATED; see cody.permissions instead. PRIOR DESCRIPTION: Cody to only be enabled for users that have a feature flag labeled \"cody\" set to true. You must create a feature flag with this ID after enabling this setting: https://docs-legacy.sourcegraph.com/dev/how-to/use_feature_flags#create-a-feature-flag. This setting only has an effect if cody.enabled is true.",
+      "description": "DEPRECATED; see cody.permissions instead. PRIOR DESCRIPTION: Cody to only be enabled for users that have a feature flag labeled \"cody\" set to true. You must create a feature flag with this ID after enabling this setting: https://docs-legacy.khulnasoft.com/dev/how-to/use_feature_flags#create-a-feature-flag. This setting only has an effect if cody.enabled is true.",
       "type": "boolean",
       "default": false,
       "!go": {
@@ -3049,7 +3049,7 @@
         },
         "endpoint": {
           "type": "string",
-          "description": "The endpoint under which to reach the provider. Currently only used for provider types \"sourcegraph\", \"openai\" and \"anthropic\". The default values are \"https://cody-gateway.sourcegraph.com\", \"https://api.openai.com/v1/chat/completions\", and \"https://api.anthropic.com/v1/messages\" for Sourcegraph, OpenAI, and Anthropic, respectively."
+          "description": "The endpoint under which to reach the provider. Currently only used for provider types \"sourcegraph\", \"openai\" and \"anthropic\". The default values are \"https://cody-gateway.khulnasoft.com\", \"https://api.openai.com/v1/chat/completions\", and \"https://api.anthropic.com/v1/messages\" for Khulnasoft, OpenAI, and Anthropic, respectively."
         },
         "perUserDailyLimit": {
           "description": "If > 0, limits the number of completions requests allowed for a user in a day. On instances that allow anonymous requests, we enforce the rate limit by IP.",
@@ -3173,7 +3173,7 @@
       "description": "BETA FEATURE, only enable if you know what you are doing. If set, Cody will use the new model configuration system and ignore the old 'completions' site configuration entirely.",
       "properties": {
         "sourcegraph": {
-          "$ref": "#/definitions/SourcegraphModelConfig"
+          "$ref": "#/definitions/KhulnasoftModelConfig"
         },
         "providerOverrides": {
           "description": "Configures model providers. Here you can override how Cody connects to model providers and e.g. bring your own API keys or self-hosted models.",
@@ -3193,7 +3193,7 @@
         },
         "modelOverridesRecommendedSettings": {
           "deprecationMessage": "Deprecated; use 'selfHostedModels' instead.",
-          "description": "Override, or add to, the list of models Cody is aware of - but let Sourcegraph configure how the model should work. Only available for select models.\n\nSpecifying the same model both here and in 'modelOverrides' is not allowed.",
+          "description": "Override, or add to, the list of models Cody is aware of - but let Khulnasoft configure how the model should work. Only available for select models.\n\nSpecifying the same model both here and in 'modelOverrides' is not allowed.",
           "type": "array",
           "default": [],
           "items": {
@@ -3208,7 +3208,7 @@
           }
         },
         "selfHostedModels": {
-          "description": "Add models to the list of models Cody is aware of, but let Sourcegraph provide default configuration for the model. Only available for select models, generic models can be configured in 'modelOverrides'.\n\nSpecifying the same model both here and in 'modelOverrides' is not allowed.",
+          "description": "Add models to the list of models Cody is aware of, but let Khulnasoft provide default configuration for the model. Only available for select models, generic models can be configured in 'modelOverrides'.\n\nSpecifying the same model both here and in 'modelOverrides' is not allowed.",
           "type": "array",
           "default": [],
           "items": {
@@ -3247,7 +3247,7 @@
           "default": "v1"
         },
         "model": {
-          "description": "Which default model configuration to use. Sourcegraph provides default model configuration for select models. Arbitrary models can be configured in 'modelOverrides'",
+          "description": "Which default model configuration to use. Khulnasoft provides default model configuration for select models. Arbitrary models can be configured in 'modelOverrides'",
           "type": "string",
           "enum": [
             "starcoder2-7b@v1",
@@ -3282,7 +3282,7 @@
         }
       }
     },
-    "SourcegraphModelConfig": {
+    "KhulnasoftModelConfig": {
       "description": "If null, Cody will not use Khulnasoft's servers for model discovery.",
       "type": ["object", "null"],
       "!go": {
@@ -3561,7 +3561,7 @@
           "$ref": "#/definitions/ServerSideProviderConfigOpenAICompatibleProvider"
         },
         {
-          "$ref": "#/definitions/ServerSideProviderConfigSourcegraphProvider"
+          "$ref": "#/definitions/ServerSideProviderConfigKhulnasoftProvider"
         },
         {
           "$ref": "#/definitions/DoNotUsePhonyDiscriminantType"
@@ -3717,7 +3717,7 @@
       }
     },
     "OpenAICompatibleEndpoint": {
-      "description": "Endpoints to connect to. If multiple are specified, Sourcegraph will randomly distribute requests between them.",
+      "description": "Endpoints to connect to. If multiple are specified, Khulnasoft will randomly distribute requests between them.",
       "type": "array",
       "items": {
         "minLength": 1,
@@ -3733,7 +3733,7 @@
         }
       }
     },
-    "ServerSideProviderConfigSourcegraphProvider": {
+    "ServerSideProviderConfigKhulnasoftProvider": {
       "type": "object",
       "required": ["type", "accessToken", "endpoint"],
       "properties": {
@@ -3914,7 +3914,7 @@
           "const": "openaicompatible"
         },
         "apiModel": {
-          "description": "The literal string value of the 'model' field that will be sent to the /chat/completions API, for example. If set, Sourcegraph treats this as an opaque string and sends it directly to the API, inferring no information from it. By default, the configured model name is sent.",
+          "description": "The literal string value of the 'model' field that will be sent to the /chat/completions API, for example. If set, Khulnasoft treats this as an opaque string and sends it directly to the API, inferring no information from it. By default, the configured model name is sent.",
           "type": "string"
         }
       }
@@ -3928,7 +3928,7 @@
           "const": "unused"
         },
         "doNotUseThisProperty": {
-          "description": "Do not use/set this property, it is useless. go-jsonschema has an issue where it does not support writing a tagged union unless it can find a field each of the union types do NOT have in common; this type merely exists to provide a field that is not in common with all other oneOf types. https://sourcegraph.com/github.com/sourcegraph/go-jsonschema/-/blob/compiler/generator_tagged_union_type.go?L47-49",
+          "description": "Do not use/set this property, it is useless. go-jsonschema has an issue where it does not support writing a tagged union unless it can find a field each of the union types do NOT have in common; this type merely exists to provide a field that is not in common with all other oneOf types. https://khulnasoft.com/github.com/sourcegraph/go-jsonschema/-/blob/compiler/generator_tagged_union_type.go?L47-49",
           "type": "string"
         }
       }
@@ -3937,7 +3937,7 @@
       "type": "object",
       "properties": {
         "logo": {
-          "description": "The URL to the image used on the homepage. This will replace the Sourcegraph logo on the homepage. Maximum width: 320px. We recommend using the following file formats: SVG, PNG",
+          "description": "The URL to the image used on the homepage. This will replace the Khulnasoft logo on the homepage. Maximum width: 320px. We recommend using the following file formats: SVG, PNG",
           "type": "string",
           "format": "uri"
         },
@@ -4014,12 +4014,12 @@
           "pattern": "^[^<]"
         },
         "requireEmailDomain": {
-          "description": "Only allow users to authenticate if their email domain is equal to this value (example: mycompany.com). Do not include a leading \"@\". If not set, all users on this OpenID Connect provider can authenticate to Sourcegraph.",
+          "description": "Only allow users to authenticate if their email domain is equal to this value (example: mycompany.com). Do not include a leading \"@\". If not set, all users on this OpenID Connect provider can authenticate to Khulnasoft.",
           "type": "string",
           "pattern": "^[^<@]"
         },
         "allowSignup": {
-          "description": "Allows new visitors to sign up for accounts via OpenID Connect authentication. If false, users signing in via OpenID Connect must have an existing Sourcegraph account, which will be linked to their OpenID Connect identity after sign-in.",
+          "description": "Allows new visitors to sign up for accounts via OpenID Connect authentication. If false, users signing in via OpenID Connect must have an existing Khulnasoft account, which will be linked to their OpenID Connect identity after sign-in.",
           "type": "boolean",
           "!go": {
             "pointer": true
@@ -4129,7 +4129,7 @@
           "default": false
         },
         "allowSignup": {
-          "description": "Allows new visitors to sign up for accounts via SAML authentication. If false, users signing in via SAML must have an existing Sourcegraph account, which will be linked to their SAML identity after sign-in.",
+          "description": "Allows new visitors to sign up for accounts via SAML authentication. If false, users signing in via SAML must have an existing Khulnasoft account, which will be linked to their SAML identity after sign-in.",
           "type": "boolean",
           "!go": {
             "pointer": true
@@ -4186,7 +4186,7 @@
       }
     },
     "GitHubAuthProvider": {
-      "description": "Configures the GitHub (or GitHub Enterprise) OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your GitHub instance: https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/. When a user signs into Sourcegraph or links their GitHub account to their existing Sourcegraph account, GitHub will prompt the user for the repo scope.",
+      "description": "Configures the GitHub (or GitHub Enterprise) OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your GitHub instance: https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/. When a user signs into Khulnasoft or links their GitHub account to their existing Khulnasoft account, GitHub will prompt the user for the repo scope.",
       "type": "object",
       "additionalProperties": false,
       "required": ["type", "clientID", "clientSecret"],
@@ -4227,7 +4227,7 @@
           "$ref": "#/definitions/AuthProviderCommon/properties/order"
         },
         "allowSignup": {
-          "description": "Allows new visitors to sign up for accounts via GitHub authentication. If false, users signing in via GitHub must have an existing Sourcegraph account, which will be linked to their GitHub identity after sign-in.",
+          "description": "Allows new visitors to sign up for accounts via GitHub authentication. If false, users signing in via GitHub must have an existing Khulnasoft account, which will be linked to their GitHub identity after sign-in.",
           "default": false,
           "type": "boolean"
         },
@@ -4258,14 +4258,14 @@
           ]
         },
         "allowGroupsPermissionsSync": {
-          "description": "Experimental: Allows sync of GitHub teams and organizations permissions across all external services associated with this provider to allow enabling of [repository permissions caching](https://sourcegraph.com/docs/admin/code_hosts/github#teams-and-organizations-permissions-caching).",
+          "description": "Experimental: Allows sync of GitHub teams and organizations permissions across all external services associated with this provider to allow enabling of [repository permissions caching](https://khulnasoft.com/docs/admin/code_hosts/github#teams-and-organizations-permissions-caching).",
           "default": false,
           "type": "boolean"
         }
       }
     },
     "GitLabAuthProvider": {
-      "description": "Configures the GitLab OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your GitLab instance: https://docs.gitlab.com/ee/integration/oauth_provider.html. The application should have `api` and `read_user` scopes and the callback URL set to the concatenation of your Sourcegraph instance URL and \"/.auth/gitlab/callback\".",
+      "description": "Configures the GitLab OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your GitLab instance: https://docs.gitlab.com/ee/integration/oauth_provider.html. The application should have `api` and `read_user` scopes and the callback URL set to the concatenation of your Khulnasoft instance URL and \"/.auth/gitlab/callback\".",
       "type": "object",
       "additionalProperties": false,
       "required": ["type", "clientID", "clientSecret"],
@@ -4317,7 +4317,7 @@
           "enum": ["api", "read_api"]
         },
         "allowSignup": {
-          "description": "Allows new visitors to sign up for accounts via GitLab authentication. If false, users signing in via GitLab must have an existing Sourcegraph account, which will be linked to their GitLab identity after sign-in.",
+          "description": "Allows new visitors to sign up for accounts via GitLab authentication. If false, users signing in via GitLab must have an existing Khulnasoft account, which will be linked to their GitLab identity after sign-in.",
           "default": true,
           "type": "boolean",
           "!go": {
@@ -4340,7 +4340,7 @@
           "type": "integer"
         },
         "syncInternalRepoPermissions": {
-          "description": "Whether to sync permissions for internal repositories on GitLab. Setting this to false can be useful when internal repositories are configured to be public on Sourcegraph.",
+          "description": "Whether to sync permissions for internal repositories on GitLab. Setting this to false can be useful when internal repositories are configured to be public on Khulnasoft.",
           "default": true,
           "type": "boolean",
           "!go": {
@@ -4350,7 +4350,7 @@
       }
     },
     "BitbucketCloudAuthProvider": {
-      "description": "Configures the Bitbucket Cloud OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your Bitbucket Cloud workspace: https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/. The application should have account, email, and repository scopes and the callback URL set to the concatenation of your Sourcegraph instance URL and \"/.auth/bitbucketcloud/callback\".",
+      "description": "Configures the Bitbucket Cloud OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your Bitbucket Cloud workspace: https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/. The application should have account, email, and repository scopes and the callback URL set to the concatenation of your Khulnasoft instance URL and \"/.auth/bitbucketcloud/callback\".",
       "type": "object",
       "additionalProperties": false,
       "required": ["type", "clientKey", "clientSecret"],
@@ -4397,14 +4397,14 @@
           "enum": ["account", "email", "repository"]
         },
         "allowSignup": {
-          "description": "Allows new visitors to sign up for accounts via Bitbucket Cloud authentication. If false, users signing in via Bitbucket Cloud must have an existing Sourcegraph account, which will be linked to their Bitbucket Cloud identity after sign-in.",
+          "description": "Allows new visitors to sign up for accounts via Bitbucket Cloud authentication. If false, users signing in via Bitbucket Cloud must have an existing Khulnasoft account, which will be linked to their Bitbucket Cloud identity after sign-in.",
           "default": true,
           "type": "boolean"
         }
       }
     },
     "BitbucketServerAuthProvider": {
-      "description": "Configures the Bitbucket Server OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your Bitbucket Server instance: https://confluence.atlassian.com/bitbucketserver0720/configure-an-incoming-link-1116282013.html. The application should have the repository read permission and the callback URL set to the concatenation of your Sourcegraph instance URL and \"/.auth/bitbucketserver/callback\".",
+      "description": "Configures the Bitbucket Server OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your Bitbucket Server instance: https://confluence.atlassian.com/bitbucketserver0720/configure-an-incoming-link-1116282013.html. The application should have the repository read permission and the callback URL set to the concatenation of your Khulnasoft instance URL and \"/.auth/bitbucketserver/callback\".",
       "type": "object",
       "additionalProperties": false,
       "required": ["type", "clientID", "clientSecret"],
@@ -4445,7 +4445,7 @@
           "$ref": "#/definitions/AuthProviderCommon/properties/order"
         },
         "allowSignup": {
-          "description": "Allows new visitors to sign up for accounts via Bitbucket Server OAuth. If false, users signing in via Bitbucket Server must have an existing Sourcegraph account, which will be linked to their Bitbucket Server identity after sign-in.",
+          "description": "Allows new visitors to sign up for accounts via Bitbucket Server OAuth. If false, users signing in via Bitbucket Server must have an existing Khulnasoft account, which will be linked to their Bitbucket Server identity after sign-in.",
           "default": true,
           "type": "boolean"
         }
@@ -4534,7 +4534,7 @@
           }
         },
         "allowSignup": {
-          "description": "Allows new visitors to sign up for accounts Azure DevOps authentication. If false, users signing in via Azure DevOps must have an existing Sourcegraph account, which will be linked to their Azure DevOps identity after sign-in.",
+          "description": "Allows new visitors to sign up for accounts Azure DevOps authentication. If false, users signing in via Azure DevOps must have an existing Khulnasoft account, which will be linked to their Azure DevOps identity after sign-in.",
           "default": true,
           "type": "boolean",
           "!go": {
@@ -4684,11 +4684,11 @@
           "type": "string"
         },
         "tags": {
-          "description": "Comma separated list of tags attached to the notifications - or a Go template that produces such a list. Sourcegraph provides some default ones if this value isn't specified.",
+          "description": "Comma separated list of tags attached to the notifications - or a Go template that produces such a list. Khulnasoft provides some default ones if this value isn't specified.",
           "type": "string"
         },
         "priority": {
-          "description": "Defines the importance of an alert. Allowed values are P1, P2, P3, P4, P5 - or a Go template that resolves to one of those values. By default, Sourcegraph will fill this in for you if a value isn't specified here.",
+          "description": "Defines the importance of an alert. Allowed values are P1, P2, P3, P4, P5 - or a Go template that resolves to one of those values. By default, Khulnasoft will fill this in for you if a value isn't specified here.",
           "type": "string"
         },
         "responders": {

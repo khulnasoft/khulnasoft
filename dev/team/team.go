@@ -168,7 +168,7 @@ func (r *teammateResolver) getTeamData(ctx context.Context) (map[string]*Teammat
 			// Generate handbook link
 			anchor := strings.ToLower(strings.ReplaceAll(tm.Name, " ", "-"))
 			anchor = strings.ReplaceAll(anchor, "\"", "")
-			tm.HandbookLink = fmt.Sprintf("https://handbook.sourcegraph.com/team#%s", anchor)
+			tm.HandbookLink = fmt.Sprintf("https://handbook.khulnasoft.com/team#%s", anchor)
 		}
 
 		// Populate Slack details

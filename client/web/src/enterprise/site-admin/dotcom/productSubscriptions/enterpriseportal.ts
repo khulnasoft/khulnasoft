@@ -77,7 +77,7 @@ const enterprisePortalLocal = createConnectTransport({
 })
 
 /**
- * Use proxy that routes to the production Enterprise Portal at enterprise-portal.sourcegraph.com
+ * Use proxy that routes to the production Enterprise Portal at enterprise-portal.khulnasoft.com
  *
  * See cmd/frontend/internal/enterpriseportal/enterpriseportal_proxy.go
  */

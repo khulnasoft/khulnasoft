@@ -24,11 +24,11 @@ import (
 	"github.com/khulnasoft/khulnasoft/internal/types"
 )
 
-func TestAddSourcegraphOperatorExternalAccountBinding(t *testing.T) {
+func TestAddKhulnasoftOperatorExternalAccountBinding(t *testing.T) {
 	// Enable SOAP
 	cloud.MockSiteConfig(t, &cloud.SchemaSiteConfig{
 		AuthProviders: &cloud.SchemaAuthProviders{
-			SourcegraphOperator: &cloud.SchemaAuthProviderSourcegraphOperator{
+			KhulnasoftOperator: &cloud.SchemaAuthProviderKhulnasoftOperator{
 				ClientID: "foobar",
 			},
 		},
@@ -36,20 +36,20 @@ func TestAddSourcegraphOperatorExternalAccountBinding(t *testing.T) {
 	defer cloud.MockSiteConfig(t, nil)
 	// Initialize package
 	Init()
-	t.Cleanup(func() { providers.Update(auth.SourcegraphOperatorProviderType, nil) })
+	t.Cleanup(func() { providers.Update(auth.KhulnasoftOperatorProviderType, nil) })
 	// Assert handler is registered - we check this by making sure we get a site admin
 	// error instead of an "unimplemented" error.
 	users := dbmocks.NewMockUserStore()
 	users.GetByCurrentAuthUserFunc.SetDefaultReturn(&types.User{SiteAdmin: false}, nil)
 	db := dbmocks.NewMockDB()
 	db.UsersFunc.SetDefaultReturn(users)
-	err := AddSourcegraphOperatorExternalAccount(context.Background(), db, 1, "foo", "")
+	err := AddKhulnasoftOperatorExternalAccount(context.Background(), db, 1, "foo", "")
 	assert.ErrorIs(t, err, auth.ErrMustBeSiteAdmin)
 }
 
-func TestAddSourcegraphOperatorExternalAccount(t *testing.T) {
+func TestAddKhulnasoftOperatorExternalAccount(t *testing.T) {
 	ctx := context.Background()
-	soap := NewProvider(cloud.SchemaAuthProviderSourcegraphOperator{
+	soap := NewProvider(cloud.SchemaAuthProviderKhulnasoftOperator{
 		ClientID: "soap_client",
 	}, httpcli.TestExternalClient)
 	serviceID := soap.ConfigID().ID
@@ -70,7 +70,7 @@ func TestAddSourcegraphOperatorExternalAccount(t *testing.T) {
 		setup func(t *testing.T) (userID int32, db database.DB)
 		// accountDetails parameter
 		accountDetails *accountDetailsBody
-		// validate result of AddSourcegraphOperatorExternalAccount
+		// validate result of AddKhulnasoftOperatorExternalAccount
 		expectErr autogold.Value
 		// assert state of the DB (optional)
 		assert func(t *testing.T, uid int32, db database.DB)
@@ -162,7 +162,7 @@ func TestAddSourcegraphOperatorExternalAccount(t *testing.T) {
 				})
 				require.NoError(t, err)
 				require.Len(t, accts, 1)
-				assert.Equal(t, auth.SourcegraphOperatorProviderType, accts[0].ServiceType)
+				assert.Equal(t, auth.KhulnasoftOperatorProviderType, accts[0].ServiceType)
 				assert.Equal(t, "bob", accts[0].AccountID)
 				assert.Equal(t, "soap_client", accts[0].ClientID)
 				assert.Equal(t, serviceID, accts[0].ServiceID)
@@ -203,7 +203,7 @@ func TestAddSourcegraphOperatorExternalAccount(t *testing.T) {
 					&extsvc.Account{
 						UserID: u.ID,
 						AccountSpec: extsvc.AccountSpec{
-							ServiceType: auth.SourcegraphOperatorProviderType,
+							ServiceType: auth.KhulnasoftOperatorProviderType,
 							ServiceID:   serviceID,
 							ClientID:    "soap_client",
 							AccountID:   "bib",
@@ -219,14 +219,14 @@ func TestAddSourcegraphOperatorExternalAccount(t *testing.T) {
 					ServiceAccount: true, // trying to promote themselves to service account
 				},
 			},
-			expectErr: autogold.Expect("user already has an associated Sourcegraph Operator account"),
+			expectErr: autogold.Expect("user already has an associated Khulnasoft Operator account"),
 			assert: func(t *testing.T, uid int32, db database.DB) {
 				accts, err := db.UserExternalAccounts().List(ctx, database.ExternalAccountsListOptions{
 					UserID: uid,
 				})
 				require.NoError(t, err)
 				require.Len(t, accts, 1)
-				assert.Equal(t, auth.SourcegraphOperatorProviderType, accts[0].ServiceType)
+				assert.Equal(t, auth.KhulnasoftOperatorProviderType, accts[0].ServiceType)
 				assert.Equal(t, "bib", accts[0].AccountID) // the original account
 				assert.Equal(t, "soap_client", accts[0].ClientID)
 				assert.Equal(t, serviceID, accts[0].ServiceID)
@@ -243,7 +243,7 @@ func TestAddSourcegraphOperatorExternalAccount(t *testing.T) {
 			require.NoError(t, err)
 
 			ctx := actor.WithActor(context.Background(), actor.FromMockUser(uid))
-			err = AddSourcegraphOperatorExternalAccount(ctx, db, uid, serviceID, string(details))
+			err = AddKhulnasoftOperatorExternalAccount(ctx, db, uid, serviceID, string(details))
 			if err != nil {
 				tc.expectErr.Equal(t, err.Error())
 			} else {

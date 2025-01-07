@@ -20,7 +20,7 @@ index dbace57d5f..53357b4971 100644
 @@ -59,3 +59,4 @@ Unknown <u@gogs.io> 无闻 <u@gogs.io>
  Renovate Bot <bot@renovateapp.com> renovate[bot] <renovate[bot]@users.noreply.github.com>
  Matt King <kingy895@gmail.com> Matthew King <kingy895@gmail.com>
-+Camden Cheek <camden@sourcegraph.com> Camden Cheek <camden@ccheek.com>
++Camden Cheek <camden@khulnasoft.com> Camden Cheek <camden@ccheek.com>
 `
 		parsedDiff, err := diff.NewMultiFileDiffReader(strings.NewReader(rawDiff)).ReadAllFiles()
 		require.NoError(t, err)
@@ -40,7 +40,7 @@ index dbace57d5f..53357b4971 100644
 		expectedFormatted := `file\ with\ spaces new\ file\ with\ spaces
 @@ -60,1 +60,2 @@ Unknown <u@gogs.io> 无闻 <u@gogs.io>
  Matt King <kingy895@gmail.com> Matthew King <kingy895@gmail.com>
-+Camden Cheek <camden@sourcegraph.com> Camden Cheek <camden@ccheek.com>
++Camden Cheek <camden@khulnasoft.com> Camden Cheek <camden@ccheek.com>
 `
 		require.Equal(t, expectedFormatted, formatted)
 

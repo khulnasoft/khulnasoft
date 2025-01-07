@@ -65,7 +65,7 @@ func newOtelSpanProcessor(logger log.Logger, opts options, debug bool) (oteltrac
 
 	// Always use batch span processor - to get more immediate exports in e.g.
 	// local dev, toggle the OTEL_BSP_* configurations instead:
-	// https://sourcegraph.com/github.com/open-telemetry/opentelemetry-go@1d1ecbc5f936208a91521ede9d0b2f557170425e/-/blob/sdk/internal/env/env.go?L26-37
+	// https://khulnasoft.com/github.com/open-telemetry/opentelemetry-go@1d1ecbc5f936208a91521ede9d0b2f557170425e/-/blob/sdk/internal/env/env.go?L26-37
 	return oteltracesdk.NewBatchSpanProcessor(exporter), nil
 }
 

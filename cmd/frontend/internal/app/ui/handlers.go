@@ -55,11 +55,11 @@ type InjectedHTML struct {
 
 type Metadata struct {
 	// Title is the title of the page for Twitter cards, OpenGraph, etc.
-	// e.g. "Open in Sourcegraph"
+	// e.g. "Open in Khulnasoft"
 	Title string
 
 	// Description is the description of the page for Twitter cards, OpenGraph,
-	// etc. e.g. "View this link in Sourcegraph Editor."
+	// etc. e.g. "View this link in Khulnasoft Editor."
 	Description string
 
 	// ShowPreview controls whether or not OpenGraph/Twitter card/etc metadata is rendered.
@@ -196,7 +196,7 @@ func newCommon(w http.ResponseWriter, r *http.Request, db database.DB, configura
 		PreloadedAssets: preloadedAssets,
 		Metadata: &Metadata{
 			Title:       br.BrandName,
-			Description: "Sourcegraph is a web-based code search and navigation tool for dev teams. Search, navigate, and review code. Find answers.",
+			Description: "Khulnasoft is a web-based code search and navigation tool for dev teams. Search, navigate, and review code. Find answers.",
 			ShowPreview: r.URL.Path == "/sign-in" && r.URL.RawQuery == "returnTo=%2F",
 		},
 		Svelte:              svelteInjections,
@@ -287,7 +287,7 @@ func newCommon(w http.ResponseWriter, r *http.Request, db database.DB, configura
 	}
 
 	// common.Repo and common.CommitID are populated in the above if statement
-	if blobPath, ok := mux.Vars(r)["Path"]; ok && envvar.OpenGraphPreviewServiceURL() != "" && dotcom.SourcegraphDotComMode() && common.Repo != nil {
+	if blobPath, ok := mux.Vars(r)["Path"]; ok && envvar.OpenGraphPreviewServiceURL() != "" && dotcom.KhulnasoftDotComMode() && common.Repo != nil {
 		lineRange := FindLineRangeInQueryParameters(r.URL.Query())
 
 		var symbolResult *result.Symbol
@@ -358,16 +358,16 @@ func serveHome(db database.DB, configurationServer *conf.Server) handlerFunc {
 			return nil // request was handled
 		}
 
-		// we only allow HEAD requests on sourcegraph.com.
+		// we only allow HEAD requests on khulnasoft.com.
 		if r.Method == "HEAD" {
 			w.WriteHeader(http.StatusOK)
 			return nil
 		}
 
-		// On non-Sourcegraph.com instances, there is no separate homepage, so redirect to /search.
+		// On non-Khulnasoft.com instances, there is no separate homepage, so redirect to /search.
 		// except if the instance is on a Cody-Only license.
 		redirectURL := "/search"
-		if !common.Context.CodeSearchEnabledOnInstance && common.Context.CodyEnabledOnInstance && !dotcom.SourcegraphDotComMode() {
+		if !common.Context.CodeSearchEnabledOnInstance && common.Context.CodyEnabledOnInstance && !dotcom.KhulnasoftDotComMode() {
 			redirectURL = "/cody"
 		}
 
@@ -404,7 +404,7 @@ func serveEmbed(db database.DB, configurationServer *conf.Server) handlerFunc {
 
 		// 🚨 SECURITY: Removing the `X-Frame-Options` header allows embedding the `/embed` route in an iframe.
 		// The embedding is safe because the `/embed` route serves the `embed` JS bundle instead of the
-		// regular Sourcegraph (web) app bundle.
+		// regular Khulnasoft (web) app bundle.
 		// It contains only the components needed to render the embedded content, and it should not include sensitive pages, like the sign-in page.
 		// The embed bundle also has its own React router that only recognizes specific routes (e.g., for embedding a notebook).
 		//

@@ -15,7 +15,7 @@ type MatchOnly struct {
 	SearchPattern MatchPattern
 
 	// ComputePattern is the valid, semantically-equivalent representation
-	// of MatchPattern that mirrors implicit Sourcegraph search behavior
+	// of MatchPattern that mirrors implicit Khulnasoft search behavior
 	// (e.g., default case insensitivity), but which may differ
 	// syntactically (e.g., by wrapping a pattern in (?i:<MatchPattern>).
 	ComputePattern MatchPattern

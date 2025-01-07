@@ -1,6 +1,6 @@
 package eventlogger
 
-// List of events that don't meet the criteria of "active" usage of Sourcegraph.
+// List of events that don't meet the criteria of "active" usage of Khulnasoft.
 // These are mostly actions taken by signed-out users.
 var NonActiveUserEvents = []string{
 	"ViewSignIn",

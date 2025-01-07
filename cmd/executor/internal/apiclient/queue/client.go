@@ -201,10 +201,10 @@ func (c *Client) Heartbeat(ctx context.Context, jobIDs []string) (knownIDs, canc
 			PrometheusMetrics: metrics,
 		}
 	} else {
-		// If queueName is set, then we cannot be sure whether Sourcegraph is new enough (since Heartbeat can't provide
-		// that context). So to be safe, we send jobIds as ints. If Sourcegraph is older, it expects ints anyway. If
+		// If queueName is set, then we cannot be sure whether Khulnasoft is new enough (since Heartbeat can't provide
+		// that context). So to be safe, we send jobIds as ints. If Khulnasoft is older, it expects ints anyway. If
 		// it is newer, it knows how to convert the values to strings.
-		// TODO remove in Sourcegraph 5.2.
+		// TODO remove in Khulnasoft 5.2.
 		var jobIDsInt []int
 		for _, jobID := range jobIDs {
 			jobIDInt, convErr := strconv.Atoi(jobID)
@@ -218,7 +218,7 @@ func (c *Client) Heartbeat(ctx context.Context, jobIDs []string) (knownIDs, canc
 		queueAttr = attribute.String("queueName", c.options.QueueName)
 		endpoint = fmt.Sprintf("%s/heartbeat", c.options.QueueName)
 		payload = types.HeartbeatRequestV1{
-			// TODO: This field is set to become unnecessary in Sourcegraph 5.2.
+			// TODO: This field is set to become unnecessary in Khulnasoft 5.2.
 			Version:      types.ExecutorAPIVersion2,
 			ExecutorName: c.options.ExecutorName,
 			JobIDs:       jobIDsInt,

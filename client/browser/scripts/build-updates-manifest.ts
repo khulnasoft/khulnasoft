@@ -29,7 +29,7 @@ function addVersionsToManifest(links: string[]): void {
         })
     }
 
-    ;(updatesManifest.addons['sourcegraph-for-firefox@sourcegraph.com'].updates as Update[]) = updates
+    ;(updatesManifest.addons['sourcegraph-for-firefox@khulnasoft.com'].updates as Update[]) = updates
 
     fs.writeFileSync(updatesManifestPath, JSON.stringify(updatesManifest, null, 2), 'utf8')
 }

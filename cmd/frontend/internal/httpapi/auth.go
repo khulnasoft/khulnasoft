@@ -45,7 +45,7 @@ func AccessTokenAuthMiddleware(db database.DB, baseLogger log.Logger, next http.
 
 		// The license check handler uses a Bearer token and request body which
 		// is checked in `productsubscription/license_check_handler.go`
-		if dotcom.SourcegraphDotComMode() && strings.HasPrefix(r.URL.Path, "/.api/license/check") {
+		if dotcom.KhulnasoftDotComMode() && strings.HasPrefix(r.URL.Path, "/.api/license/check") {
 			next.ServeHTTP(w, r)
 			return
 		}
@@ -58,7 +58,7 @@ func AccessTokenAuthMiddleware(db database.DB, baseLogger log.Logger, next http.
 		token := r.URL.Query().Get("token")
 
 		if token == "" {
-			// Handle token passed via basic auth (https://<token>@sourcegraph.com/foobar).
+			// Handle token passed via basic auth (https://<token>@khulnasoft.com/foobar).
 			basicAuthUsername, _, _ := r.BasicAuth()
 			if basicAuthUsername != "" {
 				token = basicAuthUsername
@@ -70,7 +70,7 @@ func AccessTokenAuthMiddleware(db database.DB, baseLogger log.Logger, next http.
 			var err error
 			token, sudoUser, err = authz.ParseAuthorizationHeader(headerValue)
 			if err != nil {
-				if !dotcom.SourcegraphDotComMode() && authz.IsUnrecognizedScheme(err) {
+				if !dotcom.KhulnasoftDotComMode() && authz.IsUnrecognizedScheme(err) {
 					// Ignore Authorization headers that we don't handle.
 					// 🚨 SECURITY: sha256 the authorization header value so we redact it
 					// while still retaining the ability to link it back to a token, assuming
@@ -172,7 +172,7 @@ func AccessTokenAuthMiddleware(db database.DB, baseLogger log.Logger, next http.
 				r.Context(),
 				database.ExternalAccountsListOptions{
 					UserID:      subjectUserID,
-					ServiceType: auth.SourcegraphOperatorProviderType,
+					ServiceType: auth.KhulnasoftOperatorProviderType,
 				},
 			)
 			if err != nil {
@@ -255,7 +255,7 @@ func AccessTokenAuthMiddleware(db database.DB, baseLogger log.Logger, next http.
 					r.Context(),
 					&actor.Actor{
 						UID:                 subjectUserID,
-						SourcegraphOperator: sourcegraphOperator,
+						KhulnasoftOperator: sourcegraphOperator,
 					},
 				)
 				if err := db.SecurityEventLogs().LogSecurityEvent(newContext, database.SecurityEventAccessTokenImpersonated, r.URL.RequestURI(), uint32(subjectUserID), "", "BACKEND", args); err != nil {
@@ -268,7 +268,7 @@ func AccessTokenAuthMiddleware(db database.DB, baseLogger log.Logger, next http.
 					r.Context(),
 					&actor.Actor{
 						UID:                 actorUserID,
-						SourcegraphOperator: sourcegraphOperator,
+						KhulnasoftOperator: sourcegraphOperator,
 					},
 				),
 			)

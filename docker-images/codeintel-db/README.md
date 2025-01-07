@@ -1,6 +1,6 @@
 # codeintel-db
 
-This image provides a Postresql server for the _codeintel_ database for Sourcegraph.
+This image provides a Postresql server for the _codeintel_ database for Khulnasoft.
 
 ## Building and testing
 

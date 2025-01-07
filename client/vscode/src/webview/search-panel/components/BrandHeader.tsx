@@ -12,7 +12,7 @@ export const BrandHeader: React.FunctionComponent<BrandHeaderProps> = ({ isLight
     <>
         <img
             className={classNames(styles.logo)}
-            src={`https://sourcegraph.com/.assets/img/sourcegraph-logo-${isLightTheme ? 'light' : 'dark'}.svg`}
+            src={`https://khulnasoft.com/.assets/img/sourcegraph-logo-${isLightTheme ? 'light' : 'dark'}.svg`}
             alt="Khulnasoft logo"
         />
         <div data-testid="brand-header" className={classNames(styles.logoText)}>

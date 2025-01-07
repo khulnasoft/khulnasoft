@@ -62,7 +62,7 @@ export function createPlatformContext(props: {
                     `Unable to ${editDescription} because you are not signed in.` +
                         '\n\n' +
                         `[**Sign into Khulnasoft${
-                            url.hostname === 'sourcegraph.com' ? '' : ` on ${url.host}`
+                            url.hostname === 'khulnasoft.com' ? '' : ` on ${url.host}`
                         }**](${`${url.href.replace(/\/$/, '')}/sign-in`})`
                 )
             }

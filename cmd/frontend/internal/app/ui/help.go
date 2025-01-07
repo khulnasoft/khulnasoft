@@ -15,9 +15,9 @@ import (
 	"github.com/khulnasoft/khulnasoft/internal/version"
 )
 
-// serveHelp redirects to documentation pages on https://sourcegraph.com/docs for the current
-// product version, i.e., /help/PATH -> https://sourcegraph.com/docs/v/VERSION/PATH. In unreleased
-// development builds (whose docs aren't necessarily available on https://sourcegraph.com/docs), it
+// serveHelp redirects to documentation pages on https://khulnasoft.com/docs for the current
+// product version, i.e., /help/PATH -> https://khulnasoft.com/docs/v/VERSION/PATH. In unreleased
+// development builds (whose docs aren't necessarily available on https://khulnasoft.com/docs), it
 // shows a message with instructions on how to see the docs.
 func serveHelp(w http.ResponseWriter, r *http.Request) {
 	page := strings.TrimPrefix(r.URL.Path, "/help")
@@ -30,10 +30,10 @@ func serveHelp(w http.ResponseWriter, r *http.Request) {
 	// version string because:
 	//
 	// - For unreleased dev builds, we serve the contents from the working tree.
-	// - Sourcegraph.com users probably want the latest docs on the default
+	// - Khulnasoft.com users probably want the latest docs on the default
 	//   branch.
 	var docRevPrefix string
-	if !version.IsDev(versionStr) && !dotcom.SourcegraphDotComMode() {
+	if !version.IsDev(versionStr) && !dotcom.KhulnasoftDotComMode() {
 		v, err := semver.NewVersion(versionStr)
 		if err == nil {
 			docRevPrefix = fmt.Sprintf("v/%d.%d", v.Major, v.Minor)
@@ -45,7 +45,7 @@ func serveHelp(w http.ResponseWriter, r *http.Request) {
 	// agents even though the Location HTTP response header omits it. See
 	// https://stackoverflow.com/a/2305927.
 	var dest *url.URL
-	if version.IsDev(versionStr) && !dotcom.SourcegraphDotComMode() {
+	if version.IsDev(versionStr) && !dotcom.KhulnasoftDotComMode() {
 		dest = &url.URL{
 			Scheme: "http",
 			Host:   "localhost:3000", // local documentation server (defined in Procfile) -- CI:LOCALHOST_OK
@@ -54,7 +54,7 @@ func serveHelp(w http.ResponseWriter, r *http.Request) {
 	} else {
 		dest = &url.URL{
 			Scheme: "https",
-			Host:   "sourcegraph.com",
+			Host:   "khulnasoft.com",
 			Path:   path.Join("/", "docs", docRevPrefix, page),
 		}
 	}

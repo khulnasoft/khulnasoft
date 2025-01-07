@@ -52,11 +52,11 @@ func (r *schemaResolver) CreateAccessToken(ctx context.Context, args *createAcce
 		}
 
 		// 🚨 SECURITY: Creating access tokens for other users by site admins is not allowed on
-		// Sourcegraph.com. This check is mostly the defense for a misconfiguration of the site
+		// Khulnasoft.com. This check is mostly the defense for a misconfiguration of the site
 		// configuration.
-		if dotcom.SourcegraphDotComMode() {
+		if dotcom.KhulnasoftDotComMode() {
 			if err := auth.CheckSameUser(ctx, userID); err != nil {
-				return nil, errors.New("access token creation for other users is disabled on Sourcegraph.com")
+				return nil, errors.New("access token creation for other users is disabled on Khulnasoft.com")
 			}
 		}
 
@@ -99,8 +99,8 @@ func (r *schemaResolver) CreateAccessToken(ctx context.Context, args *createAcce
 			// 🚨 SECURITY: Only site admins may create a token with the "site-admin:sudo" scope.
 			if err := auth.CheckCurrentUserIsSiteAdmin(ctx, r.db); err != nil {
 				return nil, err
-			} else if dotcom.SourcegraphDotComMode() {
-				return nil, errors.Errorf("creation of access tokens with scope %q is disabled on Sourcegraph.com", authz.ScopeSiteAdminSudo)
+			} else if dotcom.KhulnasoftDotComMode() {
+				return nil, errors.Errorf("creation of access tokens with scope %q is disabled on Khulnasoft.com", authz.ScopeSiteAdminSudo)
 			}
 		default:
 			return nil, errors.Errorf("unknown access token scope %q (valid scopes: %q)", scope, authz.AllScopes)
@@ -192,11 +192,11 @@ func (r *schemaResolver) DeleteAccessToken(ctx context.Context, args *deleteAcce
 		if err := auth.CheckSiteAdminOrSameUser(ctx, r.db, token.SubjectUserID); err != nil {
 			return nil, err
 		}
-		// 🚨 SECURITY: Only Sourcegraph Operator (SOAP) users can delete a
-		// Sourcegraph Operator's access token. If actor is not token owner,
+		// 🚨 SECURITY: Only Khulnasoft Operator (SOAP) users can delete a
+		// Khulnasoft Operator's access token. If actor is not token owner,
 		// and they aren't a SOAP user, make sure the token owner is not a
 		// SOAP user.
-		if a := actor.FromContext(ctx); a.UID != token.SubjectUserID && !a.SourcegraphOperator {
+		if a := actor.FromContext(ctx); a.UID != token.SubjectUserID && !a.KhulnasoftOperator {
 			tokenOwnerExtAccounts, err := r.db.UserExternalAccounts().List(ctx,
 				database.ExternalAccountsListOptions{UserID: token.SubjectUserID})
 			if err != nil {
@@ -205,9 +205,9 @@ func (r *schemaResolver) DeleteAccessToken(ctx context.Context, args *deleteAcce
 			for _, acct := range tokenOwnerExtAccounts {
 				// If the delete target is a SOAP user, then this non-SOAP user
 				// cannot delete its tokens.
-				if acct.ServiceType == auth.SourcegraphOperatorProviderType {
+				if acct.ServiceType == auth.KhulnasoftOperatorProviderType {
 					return nil, errors.Newf("%[1]q user %[2]d's token cannot be deleted by a non-%[1]q user",
-						auth.SourcegraphOperatorProviderType, token.SubjectUserID)
+						auth.KhulnasoftOperatorProviderType, token.SubjectUserID)
 				}
 			}
 		}

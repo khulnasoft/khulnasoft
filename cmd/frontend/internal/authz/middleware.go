@@ -46,15 +46,15 @@ func PostAuthMiddleware(logger log.Logger, db database.DB, next http.Handler) ht
 		// to save that DB lookup in most cases.
 		info, err := licensing.GetConfiguredProductLicenseInfo()
 		if err != nil {
-			logger.Error("Error reading license key for Sourcegraph subscription.", log.Error(err))
+			logger.Error("Error reading license key for Khulnasoft subscription.", log.Error(err))
 			siteadminOrHandler(func() {
-				enforcement.WriteSubscriptionErrorResponse(w, http.StatusInternalServerError, "Error reading Sourcegraph license key", "Site admins may check the logs for more information. Update the license key in the [**site configuration**](/site-admin/configuration).")
+				enforcement.WriteSubscriptionErrorResponse(w, http.StatusInternalServerError, "Error reading Khulnasoft license key", "Site admins may check the logs for more information. Update the license key in the [**site configuration**](/site-admin/configuration).")
 			})
 			return
 		}
 		if info != nil && info.IsExpired() {
 			siteadminOrHandler(func() {
-				enforcement.WriteSubscriptionErrorResponse(w, http.StatusForbidden, "Sourcegraph license expired", "To continue using Sourcegraph, a site admin must renew the Sourcegraph license (or downgrade to only using Sourcegraph Free features). Update the license key in the [**site configuration**](/site-admin/configuration).")
+				enforcement.WriteSubscriptionErrorResponse(w, http.StatusForbidden, "Khulnasoft license expired", "To continue using Khulnasoft, a site admin must renew the Khulnasoft license (or downgrade to only using Khulnasoft Free features). Update the license key in the [**site configuration**](/site-admin/configuration).")
 			})
 			return
 		}

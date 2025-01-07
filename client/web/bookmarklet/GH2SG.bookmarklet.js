@@ -1,5 +1,5 @@
 javascript:(function() {
-  if (window.location.hostname !== 'github.com' && window.location.hostname !== 'sourcegraph.com') {
+  if (window.location.hostname !== 'github.com' && window.location.hostname !== 'khulnasoft.com') {
     alert('This bookmarklet may only be used on GitHub.com or Khulnasoft.com, not ' + window.location.hostname + '.');
     return;
   }
@@ -21,9 +21,9 @@ javascript:(function() {
     ['^/([^/]+)$', '/$1', '^/([^/]+)$', '/$1'],
   ];
   var pathname = window.location.pathname;
-  if (window.location.hostname === 'sourcegraph.com') {
-    if (pathname.indexOf('/sourcegraph.com/') === 0) {
-      pathname = pathname.replace('/sourcegraph.com/', '/github.com/')
+  if (window.location.hostname === 'khulnasoft.com') {
+    if (pathname.indexOf('/khulnasoft.com/') === 0) {
+      pathname = pathname.replace('/khulnasoft.com/', '/github.com/')
     } else if (pathname.indexOf('/sourcegraph/') === 0) {
       pathname = '/github.com' + pathname
     }
@@ -39,7 +39,7 @@ javascript:(function() {
       var r = new RegExp(pat[0]);
       if (pathname.match(r)) {
         var pathname2 = pathname.replace(r, pat[1]);
-        window.location = 'https://sourcegraph.com' + pathname2;
+        window.location = 'https://khulnasoft.com' + pathname2;
         return;
       }
     } else {

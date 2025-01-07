@@ -20,7 +20,7 @@ func Postgres() *monitoring.Dashboard {
 		Name:                     "postgres",
 		Title:                    "Postgres",
 		Description:              "Postgres metrics, exported from postgres_exporter (not available on server).",
-		NoSourcegraphDebugServer: true, // This is third-party service
+		NoKhulnasoftDebugServer: true, // This is third-party service
 		Groups: []monitoring.Group{
 			{
 				Title: "General",
@@ -46,7 +46,7 @@ func Postgres() *monitoring.Dashboard {
 							Warning:       monitoring.Alert().GreaterOrEqual(80).For(5 * time.Minute),
 							Critical:      monitoring.Alert().GreaterOrEqual(100).For(5 * time.Minute),
 							NextSteps: `
-							- Consider increasing [max_connections](https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-MAX-CONNECTIONS) of the database instance, [learn more](https://sourcegraph.com/docs/admin/config/postgres-conf)
+							- Consider increasing [max_connections](https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-MAX-CONNECTIONS) of the database instance, [learn more](https://khulnasoft.com/docs/admin/config/postgres-conf)
 						`,
 						},
 						monitoring.Observable{
@@ -101,7 +101,7 @@ func Postgres() *monitoring.Dashboard {
 							Panel:         monitoring.Panel().LegendFormat("{{relname}}"),
 							Critical:      monitoring.Alert().GreaterOrEqual(1).AggregateBy(monitoring.AggregatorSum),
 							NextSteps: `
-								- Drop and re-create the invalid trigger - please contact Sourcegraph to supply the trigger definition.
+								- Drop and re-create the invalid trigger - please contact Khulnasoft to supply the trigger definition.
 							`,
 							Interpretation: "A non-zero value indicates the that Postgres failed to build an index. Expect degraded performance until the index is manually rebuilt.",
 						},
@@ -131,7 +131,7 @@ func Postgres() *monitoring.Dashboard {
 							Critical:       monitoring.Alert().GreaterOrEqual(1).For(5 * time.Minute),
 							Interpretation: "A 0 value indicates that no migration is in progress.",
 							NextSteps: `
-								The database migration has been in progress for 5 or more minutes - please contact Sourcegraph if this persists.
+								The database migration has been in progress for 5 or more minutes - please contact Khulnasoft if this persists.
 							`,
 						},
 						// TODO(@daxmc99): Blocked by https://github.com/khulnasoft/khulnasoft/issues/13300

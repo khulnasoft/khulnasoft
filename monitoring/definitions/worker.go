@@ -263,11 +263,11 @@ func Worker() *monitoring.Dashboard {
 			shared.NewGolangMonitoringGroup(containerName, monitoring.ObservableOwnerCodeIntel, nil),
 			shared.NewKubernetesMonitoringGroup(containerName, monitoring.ObservableOwnerCodeIntel, nil),
 
-			// Sourcegraph Own background jobs
-			shared.SourcegraphOwn.NewOwnRepoIndexerStoreGroup(containerName),
-			shared.SourcegraphOwn.NewOwnRepoIndexerWorkerGroup(containerName),
-			shared.SourcegraphOwn.NewOwnRepoIndexerResetterGroup(containerName),
-			shared.SourcegraphOwn.NewOwnRepoIndexerSchedulerGroup(containerName),
+			// Khulnasoft Own background jobs
+			shared.KhulnasoftOwn.NewOwnRepoIndexerStoreGroup(containerName),
+			shared.KhulnasoftOwn.NewOwnRepoIndexerWorkerGroup(containerName),
+			shared.KhulnasoftOwn.NewOwnRepoIndexerResetterGroup(containerName),
+			shared.KhulnasoftOwn.NewOwnRepoIndexerSchedulerGroup(containerName),
 
 			shared.NewSiteConfigurationClientMetricsGroup(shared.SiteConfigurationMetricsOptions{
 				HumanServiceName:    "worker",
@@ -412,7 +412,7 @@ func repoPermsSyncerGroup(owner monitoring.ObservableOwner) monitoring.Group {
 					Owner:       owner,
 					NextSteps: `
 						- **Enabled permissions for the first time:** Wait for few minutes and see if the number goes down.
-						- **Otherwise:** Increase the API rate limit to [GitHub](https://sourcegraph.com/docs/admin/code_hosts/github#github-com-rate-limits), [GitLab](https://sourcegraph.com/docs/admin/code_hosts/gitlab#internal-rate-limits) or [Bitbucket Server](https://sourcegraph.com/docs/admin/code_hosts/bitbucket_server#internal-rate-limits).
+						- **Otherwise:** Increase the API rate limit to [GitHub](https://khulnasoft.com/docs/admin/code_hosts/github#github-com-rate-limits), [GitLab](https://khulnasoft.com/docs/admin/code_hosts/gitlab#internal-rate-limits) or [Bitbucket Server](https://khulnasoft.com/docs/admin/code_hosts/bitbucket_server#internal-rate-limits).
 					`,
 				},
 			},
@@ -424,7 +424,7 @@ func repoPermsSyncerGroup(owner monitoring.ObservableOwner) monitoring.Group {
 					Warning:     monitoring.Alert().GreaterOrEqual(30).For(5 * time.Minute),
 					Panel:       monitoring.Panel().LegendFormat("{{type}}").Unit(monitoring.Seconds),
 					Owner:       owner,
-					NextSteps:   "Check the network latency is reasonable (<50ms) between the Sourcegraph and the code host.",
+					NextSteps:   "Check the network latency is reasonable (<50ms) between the Khulnasoft and the code host.",
 				},
 			},
 			{
@@ -436,7 +436,7 @@ func repoPermsSyncerGroup(owner monitoring.ObservableOwner) monitoring.Group {
 					Panel:       monitoring.Panel().LegendFormat("{{type}}").Unit(monitoring.Number),
 					Owner:       owner,
 					NextSteps: `
-						- Check the network connectivity the Sourcegraph and the code host.
+						- Check the network connectivity the Khulnasoft and the code host.
 						- Check if API rate limit quota is exhausted on the code host.
 					`,
 				},
@@ -449,7 +449,7 @@ func repoPermsSyncerGroup(owner monitoring.ObservableOwner) monitoring.Group {
 					Owner:       owner,
 					Interpretation: `
 						Indicates how many repositories have been scheduled for a permissions sync.
-						More about repository permissions synchronization [here](https://sourcegraph.com/docs/admin/permissions/syncing#scheduling)
+						More about repository permissions synchronization [here](https://khulnasoft.com/docs/admin/permissions/syncing#scheduling)
 					`,
 				},
 			},

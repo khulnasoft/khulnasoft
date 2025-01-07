@@ -2,7 +2,7 @@
 
 This tool generates the JSON ModelConfiguration data which describes the set of
 LLM models that Cody Gateway currently supports. This information is used by
-Sourcegraph instances so they can pick up on any new LLM models as they get
+Khulnasoft instances so they can pick up on any new LLM models as they get
 released.
 
 The output of this tool is a `.json` file which we check into this repo. It will

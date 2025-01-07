@@ -36,7 +36,7 @@ func main() {
 	numUsers := flag.Int("num-users", 5, "the number of additional users to proxy.")
 	backendRaw := flag.String("backend", "http://127.0.0.1:3080", "the sourcegraph instance to proxy to. Defaults to your devserver.")
 	user := flag.String("user", os.Getenv("USER"), "your username on the instance.")
-	email := flag.String("email", os.Getenv("USER")+"@sourcegraph.com", "your email on the instance.")
+	email := flag.String("email", os.Getenv("USER")+"@khulnasoft.com", "your email on the instance.")
 
 	flag.Parse()
 
@@ -45,7 +45,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf(`https://sourcegraph.com/docs/admin/auth#http-authentication-proxies
+	fmt.Printf(`https://khulnasoft.com/docs/admin/auth#http-authentication-proxies
 
   "auth.providers": [
     {

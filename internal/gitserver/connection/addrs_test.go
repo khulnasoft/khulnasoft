@@ -44,12 +44,12 @@ func TestAddrForRepo(t *testing.T) {
 		},
 		{
 			name: "another repo",
-			repo: api.RepoName("github.com/sourcegraph/sourcegraph"),
+			repo: api.RepoName("github.com/khulnasoft/khulnasoft"),
 			want: "gitserver-2",
 		},
 		{
 			name: "case sensitive repo",
-			repo: api.RepoName("github.com/sourcegraph/Sourcegraph"),
+			repo: api.RepoName("github.com/sourcegraph/Khulnasoft"),
 			want: "gitserver-2",
 		},
 		{

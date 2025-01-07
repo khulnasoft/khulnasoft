@@ -156,7 +156,7 @@ export const authenticatedTasks: TourTaskType[] = [
                 label: 'Install the browser extension and leverage Khulnasoft code intelligence in reviews',
                 action: {
                     type: 'new-tab-link',
-                    value: 'https://sourcegraph.com/docs/integration/browser_extension',
+                    value: 'https://khulnasoft.com/docs/integration/browser_extension',
                 },
             },
         ],

@@ -17,16 +17,16 @@ import (
 )
 
 var (
-	// rawSiteConfig is the base64-encoded string that is signed by the "Sourcegraph
+	// rawSiteConfig is the base64-encoded string that is signed by the "Khulnasoft
 	// Cloud site config singer" private key, which is available at
 	// https://team-sourcegraph.1password.com/vaults/dnrhbauihkhjs5ag6vszsme45a/allitems/m4rqoaoujjwesf6twwqyr3lpde.
-	rawSiteConfig = env.Get("SRC_CLOUD_SITE_CONFIG", "", "The site configuration specifically for Sourcegraph Cloud")
+	rawSiteConfig = env.Get("SRC_CLOUD_SITE_CONFIG", "", "The site configuration specifically for Khulnasoft Cloud")
 
-	defaultNotAllowedErrorMessageTmpl = template.Must(template.New("").Parse("Editing {{.Paths}} in site configuration is not allowed on Sourcegraph Cloud. Please contact support."))
+	defaultNotAllowedErrorMessageTmpl = template.Must(template.New("").Parse("Editing {{.Paths}} in site configuration is not allowed on Khulnasoft Cloud. Please contact support."))
 )
 
 // sourcegraphCloudSiteConfigSignerPublicKey is the counterpart of the
-// "Sourcegraph Cloud site config singer" private key.
+// "Khulnasoft Cloud site config singer" private key.
 const sourcegraphCloudSiteConfigSignerPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFnVjzARMu+jaSrTgvJCpWEDP503Y3k3DMbs5ghHOkML"
 
 // SignedSiteConfig is the data structure for a site config and its signature.
@@ -93,7 +93,7 @@ func MockSiteConfig(t *testing.T, mock *SchemaSiteConfig) {
 	})
 }
 
-// SiteConfig returns the parsed Sourcegraph Cloud site config.
+// SiteConfig returns the parsed Khulnasoft Cloud site config.
 func SiteConfig() *SchemaSiteConfig {
 	parsedSiteConfigOnce.Do(func() {
 		if rawSiteConfig == "" {
@@ -105,13 +105,13 @@ func SiteConfig() *SchemaSiteConfig {
 		var err error
 		parsedSiteConfig, err = parseSiteConfig(rawSiteConfig)
 		if err != nil {
-			panic("failed to parse Sourcegraph Cloud site config: " + err.Error())
+			panic("failed to parse Khulnasoft Cloud site config: " + err.Error())
 		}
 	})
 	return parsedSiteConfig
 }
 
-// SchemaSiteConfig contains the Sourcegraph Cloud site config.
+// SchemaSiteConfig contains the Khulnasoft Cloud site config.
 type SchemaSiteConfig struct {
 	AuthProviders *SchemaAuthProviders `json:"authProviders"`
 	// SiteConfigAllowlist controls what site config attributes
@@ -131,15 +131,15 @@ type SiteConfigAllowlistSpec struct {
 	errorMessageTmpl *template.Template `json:"-"`
 }
 
-// SchemaAuthProviders contains the authentication providers for Sourcegraph
+// SchemaAuthProviders contains the authentication providers for Khulnasoft
 // Cloud.
 type SchemaAuthProviders struct {
-	SourcegraphOperator *SchemaAuthProviderSourcegraphOperator `json:"sourcegraphOperator"`
+	KhulnasoftOperator *SchemaAuthProviderKhulnasoftOperator `json:"sourcegraphOperator"`
 }
 
-// SchemaAuthProviderSourcegraphOperator contains configuration for the
-// Sourcegraph Operator authentication provider.
-type SchemaAuthProviderSourcegraphOperator struct {
+// SchemaAuthProviderKhulnasoftOperator contains configuration for the
+// Khulnasoft Operator authentication provider.
+type SchemaAuthProviderKhulnasoftOperator struct {
 	Issuer       string `json:"issuer"`
 	ClientID     string `json:"clientID"`
 	ClientSecret string `json:"clientSecret"`
@@ -149,14 +149,14 @@ type SchemaAuthProviderSourcegraphOperator struct {
 	LifecycleDuration int `json:"lifecycleDuration"`
 }
 
-// SourcegraphOperatorAuthProviderEnabled returns true if the Sourcegraph
+// KhulnasoftOperatorAuthProviderEnabled returns true if the Khulnasoft
 // Operator authentication provider has been enabled.
-func (s *SchemaSiteConfig) SourcegraphOperatorAuthProviderEnabled() bool {
-	return s.AuthProviders != nil && s.AuthProviders.SourcegraphOperator != nil
+func (s *SchemaSiteConfig) KhulnasoftOperatorAuthProviderEnabled() bool {
+	return s.AuthProviders != nil && s.AuthProviders.KhulnasoftOperator != nil
 }
 
 func (s *SchemaSiteConfig) SiteConfigAllowlistEnabled() bool {
-	return s.SourcegraphOperatorAuthProviderEnabled() && len(s.SiteConfigAllowlist.Paths) > 0
+	return s.KhulnasoftOperatorAuthProviderEnabled() && len(s.SiteConfigAllowlist.Paths) > 0
 }
 
 func (s *SchemaSiteConfig) SiteConfigAllowlistOnError(paths []string) error {

@@ -212,7 +212,7 @@ func (h *GitHubWebhook) convertEvent(ctx context.Context, codeHostURN extsvc.Cod
 
 		// https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads#check_suite
 		// The `repository` field was recently removed from the payload for `check_suite` event, this was causing
-		// webhook events not to update changesets on time in Sourcegraph.
+		// webhook events not to update changesets on time in Khulnasoft.
 		repo := e.GetRepo()
 		if repo == nil {
 			return
@@ -236,7 +236,7 @@ func (h *GitHubWebhook) convertEvent(ctx context.Context, codeHostURN extsvc.Cod
 
 		// https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads#check_run
 		// The `repository` field was recently removed from the payload for `check_run` event, this was causing
-		// webhook events not to update changesets on time in Sourcegraph.
+		// webhook events not to update changesets on time in Khulnasoft.
 		repo := e.GetRepo()
 		if repo == nil {
 			return

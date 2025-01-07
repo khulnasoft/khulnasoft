@@ -18,7 +18,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/internal/sourcegraphoperator"
 )
 
-func TestSourcegraphOperatorCleanHandler(t *testing.T) {
+func TestKhulnasoftOperatorCleanHandler(t *testing.T) {
 	if testing.Short() {
 		t.Skip()
 	}
@@ -29,7 +29,7 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 		t,
 		&cloud.SchemaSiteConfig{
 			AuthProviders: &cloud.SchemaAuthProviders{
-				SourcegraphOperator: &cloud.SchemaAuthProviderSourcegraphOperator{},
+				KhulnasoftOperator: &cloud.SchemaAuthProviderKhulnasoftOperator{},
 			},
 		},
 	)
@@ -52,7 +52,7 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 	//   1. logan, who has no external accounts and is a site admin (will not be changed)
 	//      (like a customer site admin)
 	//   2. morgan, who is an expired SOAP user but has more external accounts (will be demoted)
-	//      (like a Sourcegraph teammate who used SOAP via Entitle, and has an external account)
+	//      (like a Khulnasoft teammate who used SOAP via Entitle, and has an external account)
 	//   3. jordan, who is a SOAP user that has not expired (will not be changed)
 	//   4. riley, who is an expired SOAP user with no external accounts (will be deleted)
 	//   5. cris, who has a non-SOAP external account and is not a site admin (will not be changed)
@@ -81,8 +81,8 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 		},
 		&extsvc.Account{
 			AccountSpec: extsvc.AccountSpec{
-				ServiceType: auth.SourcegraphOperatorProviderType,
-				ServiceID:   "https://sourcegraph.com",
+				ServiceType: auth.KhulnasoftOperatorProviderType,
+				ServiceID:   "https://khulnasoft.com",
 				ClientID:    "soap",
 				AccountID:   "morgan",
 			},
@@ -112,8 +112,8 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 		},
 		&extsvc.Account{
 			AccountSpec: extsvc.AccountSpec{
-				ServiceType: auth.SourcegraphOperatorProviderType,
-				ServiceID:   "https://sourcegraph.com",
+				ServiceType: auth.KhulnasoftOperatorProviderType,
+				ServiceID:   "https://khulnasoft.com",
 				ClientID:    "soap",
 				AccountID:   "jordan",
 			},
@@ -128,8 +128,8 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 		},
 		&extsvc.Account{
 			AccountSpec: extsvc.AccountSpec{
-				ServiceType: auth.SourcegraphOperatorProviderType,
-				ServiceID:   "https://sourcegraph.com",
+				ServiceType: auth.KhulnasoftOperatorProviderType,
+				ServiceID:   "https://khulnasoft.com",
 				ClientID:    "soap",
 				AccountID:   "riley",
 			},
@@ -166,8 +166,8 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 		},
 		&extsvc.Account{
 			AccountSpec: extsvc.AccountSpec{
-				ServiceType: auth.SourcegraphOperatorProviderType,
-				ServiceID:   "https://sourcegraph.com",
+				ServiceType: auth.KhulnasoftOperatorProviderType,
+				ServiceID:   "https://khulnasoft.com",
 				ClientID:    "soap",
 				AccountID:   "cami",
 			},
@@ -193,8 +193,8 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 		},
 		&extsvc.Account{
 			AccountSpec: extsvc.AccountSpec{
-				ServiceType: auth.SourcegraphOperatorProviderType,
-				ServiceID:   "https://sourcegraph.com",
+				ServiceType: auth.KhulnasoftOperatorProviderType,
+				ServiceID:   "https://khulnasoft.com",
 				ClientID:    "soap",
 				AccountID:   "alex",
 			},
@@ -213,8 +213,8 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 		&extsvc.Account{
 			UserID: alex.ID,
 			AccountSpec: extsvc.AccountSpec{
-				ServiceType: auth.SourcegraphOperatorProviderType,
-				ServiceID:   "https://sourcegraph.com",
+				ServiceType: auth.KhulnasoftOperatorProviderType,
+				ServiceID:   "https://khulnasoft.com",
 				ClientID:    "soap",
 				AccountID:   "alex2",
 			},
@@ -240,7 +240,7 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 			}
 			ext, err := db.UserExternalAccounts().List(ctx, database.ExternalAccountsListOptions{
 				UserID:      u.ID,
-				ServiceType: auth.SourcegraphOperatorProviderType,
+				ServiceType: auth.KhulnasoftOperatorProviderType,
 			})
 			require.NoError(t, err)
 			if len(ext) == 0 {
@@ -280,8 +280,8 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 			},
 			&extsvc.Account{
 				AccountSpec: extsvc.AccountSpec{
-					ServiceType: auth.SourcegraphOperatorProviderType,
-					ServiceID:   "https://sourcegraph.com",
+					ServiceType: auth.KhulnasoftOperatorProviderType,
+					ServiceID:   "https://khulnasoft.com",
 					ClientID:    "soap",
 					AccountID:   "jordan",
 				},
@@ -301,8 +301,8 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 			},
 			&extsvc.Account{
 				AccountSpec: extsvc.AccountSpec{
-					ServiceType: auth.SourcegraphOperatorProviderType,
-					ServiceID:   "https://sourcegraph.com",
+					ServiceType: auth.KhulnasoftOperatorProviderType,
+					ServiceID:   "https://khulnasoft.com",
 					ClientID:    "soap",
 					AccountID:   "cami",
 				},
@@ -330,7 +330,7 @@ func TestSourcegraphOperatorCleanHandler(t *testing.T) {
 			}
 			ext, err := db.UserExternalAccounts().List(ctx, database.ExternalAccountsListOptions{
 				UserID:      u.ID,
-				ServiceType: auth.SourcegraphOperatorProviderType,
+				ServiceType: auth.KhulnasoftOperatorProviderType,
 			})
 			require.NoError(t, err)
 			if len(ext) == 0 {

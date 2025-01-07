@@ -86,7 +86,7 @@ type Store[T workerutil.Record] interface {
 	// Postgres MVCC, so avoid calling this method frequently, especially
 	// for potentially large queues.
 	//
-	// For example, when the auto-indexing queue on Sourcegraph.com
+	// For example, when the auto-indexing queue on Khulnasoft.com
 	// goes over 100K+ records, this method can take 1s+ to run.
 	//
 	// If possible, prefer using Exists over this function.

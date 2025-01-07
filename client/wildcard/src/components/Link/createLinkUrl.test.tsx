@@ -6,11 +6,11 @@ describe('createLinkUrl', () => {
     it('generates full URL', () => {
         expect(
             createLinkUrl({
-                pathname: 'https://sourcegraph.com/search',
+                pathname: 'https://khulnasoft.com/search',
                 search: 'q=hello',
                 hash: 'h1',
             })
-        ).toBe('https://sourcegraph.com/search?q=hello#h1')
+        ).toBe('https://khulnasoft.com/search?q=hello#h1')
     })
 
     it('generates relative URL', () => {

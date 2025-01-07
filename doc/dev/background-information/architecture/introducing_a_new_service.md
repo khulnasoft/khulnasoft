@@ -1,6 +1,6 @@
 # Introducing a new service
 
-Before reading this document be sure to first check out our [architecture overview](https://docs.sourcegraph.com/dev/background-information/architecture).
+Before reading this document be sure to first check out our [architecture overview](https://docs.khulnasoft.com/dev/background-information/architecture).
 
 ## Terminology
 
@@ -8,7 +8,7 @@ When we say "service" here we are referring to code that runs _within a Docker c
 
 ## When does introducing a new service make sense?
 
-Sourcegraph is composed of several smaller services (gitserver, searcher, symbols, etc.) and a single monolithic service (the frontend).
+Khulnasoft is composed of several smaller services (gitserver, searcher, symbols, etc.) and a single monolithic service (the frontend).
 
 When thinking of adding a new service, it is important to think through the following questions carefully:
 
@@ -20,7 +20,7 @@ When thinking of adding a new service, it is important to think through the foll
 5. Does it need its own resource constraints and scaling?
    - For example, the service you are creating needs its own CPU / memory resource constraints, or must be able to scale horizontally across machines.
 
-If after asking the above questions to yourself you still believe introducing a new service is the best approach forward, you should [create an RFC](https://handbook.sourcegraph.com/communication/rfcs) proposing it to the rest of the team. In your RFC, be sure to answer the above questions to explain why you believe a separate service is a better choice than integration into an existing service.
+If after asking the above questions to yourself you still believe introducing a new service is the best approach forward, you should [create an RFC](https://handbook.khulnasoft.com/communication/rfcs) proposing it to the rest of the team. In your RFC, be sure to answer the above questions to explain why you believe a separate service is a better choice than integration into an existing service.
 
 ### Services have additional overhead for us and users that is easy to forget
 
@@ -31,13 +31,13 @@ When introducing a new service/container we pay the cost of:
 - Introducing and maintaining [its Kubernetes YAML](https://github.com/sourcegraph/deploy-sourcegraph/tree/master/base).
 - Adding it to our [docker-compose deployments](https://github.com/sourcegraph/deploy-sourcegraph-docker/pull/38).
 - Integrating it as a raw process in [the single-container `sourcegraph/server` deployment mode](https://github.com/khulnasoft/khulnasoft/tree/main/cmd/server).
-- Documenting clearly [how it scales](https://docs.sourcegraph.com/admin/install/kubernetes/scale) alongside other services for cluster deployments.
-- Updating our [architecture diagram](https://docs.sourcegraph.com/dev/background-information/architecture).
+- Documenting clearly [how it scales](https://docs.khulnasoft.com/admin/install/kubernetes/scale) alongside other services for cluster deployments.
+- Updating our [architecture diagram](https://docs.khulnasoft.com/dev/background-information/architecture).
 - Documenting the service itself in general and how site admins should manage and debug it (these needs to be done regardless of it being a new service, but if it is a new service there are additional aspects to consider.)
 - [Updating deploy-sourcegraph-docker](https://github.com/sourcegraph/deploy-sourcegraph-docker) - including testing that it works, documenting which other services it speaks to, and notifying the customers relying on this deployment documentation to deploy this service on their own.
   - Note: We must advise these customers **exactly** which new container has been added, how to deploy it and with what configuration, describe what it does, why we've added it, and assist with that process. Remember, these users are not just running the scripts in our repository -- they are effectively deploying these containers arbitrarily on their own infrastructure with our guidance.
- - Updating the [resource estimator](https://docs.sourcegraph.com/admin/install/resource_estimator) to provide details on resource requirements at different scales.
- - Training new and existing Sourcegraph team members how to interact with and debug the service, as well as customers and our Customer Engineering team (this needs to happen for the feature/change regardless, but as a new service there are some additional aspects.)
+ - Updating the [resource estimator](https://docs.khulnasoft.com/admin/install/resource_estimator) to provide details on resource requirements at different scales.
+ - Training new and existing Khulnasoft team members how to interact with and debug the service, as well as customers and our Customer Engineering team (this needs to happen for the feature/change regardless, but as a new service there are some additional aspects.)
 
 Do not introduce a new service/container just for sake of code seperation. Instead, look for alternatives that allow you to achieve the same logical code seperation within the right existing service/container (goroutines, multiple processes in a container, etc. are all valid options.)
 

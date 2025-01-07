@@ -41,7 +41,7 @@ type ChangesetCounts {
 }
 
 """
-The publication state of a changeset on Sourcegraph
+The publication state of a changeset on Khulnasoft
 """
 enum ChangesetPublicationState {
     """
@@ -55,7 +55,7 @@ enum ChangesetPublicationState {
 }
 
 """
-The reconciler state of a changeset on Sourcegraph
+The reconciler state of a changeset on Khulnasoft
 """
 enum ChangesetReconcilerState {
     """
@@ -70,7 +70,7 @@ enum ChangesetReconcilerState {
     """
     The changeset reconciler is currently computing the delta between the
     If a delta exists, the reconciler tries to update the state of the
-    changeset on the code host and on Sourcegraph to the desired state.
+    changeset on the code host and on Khulnasoft to the desired state.
     """
     PROCESSING
 
@@ -166,7 +166,7 @@ enum ChangesetState {
     """
     The changeset reconciler is currently computing the delta between the
     If a delta exists, the reconciler tries to update the state of the
-    changeset on the code host and on Sourcegraph to the desired state.
+    changeset on the code host and on Khulnasoft to the desired state.
     """
     PROCESSING
     """
@@ -1006,7 +1006,7 @@ type GitBranchChangesetDescription {
     Whether or not the changeset described here should be created right after
     applying the ChangesetSpec this description belongs to.
 
-    If this is false, the changeset will only be created on Sourcegraph and
+    If this is false, the changeset will only be created on Khulnasoft and
     can be previewed.
 
     Another ChangesetSpec with the same description, but "published: true",
@@ -1336,7 +1336,7 @@ extend type Mutation {
     createChangesetSpec(
         """
         The raw changeset spec (as JSON). See
-        https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/schema/changeset_spec.schema.json
+        https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/schema/changeset_spec.schema.json
         for the JSON Schema that describes the structure of this input.
         """
         changesetSpec: String!
@@ -1356,7 +1356,7 @@ extend type Mutation {
     createChangesetSpecs(
         """
         The raw changeset specs (as JSON). See
-        https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/schema/changeset_spec.schema.json
+        https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/schema/changeset_spec.schema.json
         for the JSON Schema that describes the structure of this input.
         """
         changesetSpecs: [String!]!
@@ -1415,7 +1415,7 @@ extend type Mutation {
 
         """
         The batch spec as YAML (or the equivalent JSON). See
-        https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/schema/batch_spec.schema.json
+        https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/schema/batch_spec.schema.json
         for the JSON Schema that describes the structure of this input.
         """
         batchSpec: String!
@@ -1476,7 +1476,7 @@ extend type Mutation {
     createBatchSpecFromRaw(
         """
         The raw batch spec as YAML (or the equivalent JSON). See
-        https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/schema/batch_spec.schema.json
+        https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/schema/batch_spec.schema.json
         for the JSON Schema that describes the structure of this input.
         """
         batchSpec: String!
@@ -1535,7 +1535,7 @@ extend type Mutation {
 
         """
         The raw batch spec as YAML (or the equivalent JSON). See
-        https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/schema/batch_spec.schema.json
+        https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/schema/batch_spec.schema.json
         for the JSON Schema that describes the structure of this input.
         """
         batchSpec: String!
@@ -1575,7 +1575,7 @@ extend type Mutation {
     upsertBatchSpecInput(
         """
         The raw batch spec as YAML (or the equivalent JSON). See
-        https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/schema/batch_spec.schema.json
+        https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/schema/batch_spec.schema.json
         for the JSON Schema that describes the structure of this input.
         """
         batchSpec: String!
@@ -3394,7 +3394,7 @@ extend type User {
 
     """
     Returns a connection of configured external services accessible by this user, for usage with batch changes.
-    These are all code hosts configured on the Sourcegraph instance that are supported by batch changes. They are
+    These are all code hosts configured on the Khulnasoft instance that are supported by batch changes. They are
     connected to BatchChangesCredential resources, if one has been created for the code host connection before.
     """
     batchChangesCodeHosts(

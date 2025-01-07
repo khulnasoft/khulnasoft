@@ -22,10 +22,10 @@ import (
 
 const (
 	// How long to cache the recommended src-cli version before checking with
-	// sourcegraph.com again.
+	// khulnasoft.com again.
 	srcCliCacheLifetime = 10 * time.Minute
 	srcCliDownloadsURL  = "https://github.com/sourcegraph/src-cli/releases/download"
-	srcCliVersionCache  = "https://sourcegraph.com/.api/src-cli/versions"
+	srcCliVersionCache  = "https://khulnasoft.com/.api/src-cli/versions"
 )
 
 var allowedFilenames = []string{
@@ -38,11 +38,11 @@ var allowedFilenames = []string{
 }
 
 // srcCliVersionHandler is a HTTP handler that can return the current src-cli
-// version appropriate for this Sourcegraph instance, along with redirect links
+// version appropriate for this Khulnasoft instance, along with redirect links
 // to download that version from GitHub.
 //
 // Internally, this is lazily cached, with requests being made to
-// sourcegraph.com no more than every srcCliCacheLifetime.
+// khulnasoft.com no more than every srcCliCacheLifetime.
 type srcCliVersionHandler struct {
 	logger   log.Logger
 	maxStale time.Duration
@@ -90,10 +90,10 @@ func (h *srcCliVersionHandler) Version() string {
 	//
 	// Practically, what this means is that there may be more than one request
 	// waiting to update the cached version at a time, which may result in extra
-	// hits on the sourcegraph.com endpoint that provides src-cli version
+	// hits on the khulnasoft.com endpoint that provides src-cli version
 	// metadata if multiple requests come in while the cached version is stale.
 	// This should be fine: that endpoint has its own caching, and the write
-	// lock isn't held while we wait for sourcegraph.com to respond; it's only
+	// lock isn't held while we wait for khulnasoft.com to respond; it's only
 	// held long enough to actually update the handler's fields, which should be
 	// extremely fast.
 	version := h.cachedVersion()
@@ -106,7 +106,7 @@ func (h *srcCliVersionHandler) Version() string {
 		// We can't do much here: we'll log the error (at a low level so
 		// airgapped instances don't fill up their logs with warnings), and then
 		// return the minimum version hardcoded in the src-cli package.
-		h.logger.Debug("cannot access sourcegraph.com version cache", log.Error(err))
+		h.logger.Debug("cannot access khulnasoft.com version cache", log.Error(err))
 		return srccli.MinimumVersion
 	}
 
@@ -137,7 +137,7 @@ func (h *srcCliVersionHandler) updateCachedVersion() (string, error) {
 
 	resp, err := h.doer.Do(req)
 	if err != nil {
-		return "", errors.Wrap(err, "getting version from Sourcegraph")
+		return "", errors.Wrap(err, "getting version from Khulnasoft")
 	}
 	defer resp.Body.Close()
 

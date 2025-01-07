@@ -166,7 +166,7 @@ export const AnalyticsNotebooksPage: React.FunctionComponent<Props> = ({ telemet
                     <div className={classNames(styles.border, 'mb-3')} />
                     <ul className="mb-3 pl-3">
                         <Text as="li">
-                            <AnchorLink to="https://sourcegraph.com/blog/notebooks-ci" target="_blank">
+                            <AnchorLink to="https://khulnasoft.com/blog/notebooks-ci" target="_blank">
                                 Learn more
                             </AnchorLink>{' '}
                             about how notebooks improves onboarding, code reuse and saves developers time.

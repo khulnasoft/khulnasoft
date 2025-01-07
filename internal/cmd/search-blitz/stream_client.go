@@ -43,7 +43,7 @@ func (s *streamClient) search(ctx context.Context, query, queryName string) (*me
 	}
 	req = req.WithContext(ctx)
 	req.Header.Set("Authorization", "token "+s.token)
-	req.Header.Set("X-Sourcegraph-Should-Trace", "true")
+	req.Header.Set("X-Khulnasoft-Should-Trace", "true")
 	req.Header.Set("User-Agent", fmt.Sprintf("SearchBlitz (%s)", queryName))
 
 	var m metrics

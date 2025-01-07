@@ -19,7 +19,7 @@
       "id": "71b950f5-a254-454b-9de9-2633e3f3fe0f",
       "title": "Backend Insights Testing",
       "insightIds": [
-        "searchInsights.insight.joelkwResultsButFilteredJustToSourcegraphSourcegraph",
+        "searchInsights.insight.joelkwResultsButFilteredJustToKhulnasoftKhulnasoft",
         "searchInsights.insight.oneMoreTestGettingGoingForJestd",
         "searchInsights.insight.testingJoelkwWithACountAllToMakeSureItWorks",
         "searchInsights.insight.test13QueryJesteRepoExpectedPresentDay119KResuls",
@@ -103,7 +103,7 @@
       "title": "Docs Screenshot Dashboard",
       "insightIds": [
         "searchInsights.insight.migrationToCssModules",
-        "codeStatsInsights.insight.languageUsageInSourcegraph",
+        "codeStatsInsights.insight.languageUsageInKhulnasoft",
         "searchInsights.insight.e2eToIntegrationTestsMigration"
       ]
     },
@@ -170,7 +170,7 @@
     "title": "Monitoring API",
     "subtitle": "Monitoring API usage in monitoring definitions (excluding shared)",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -266,7 +266,7 @@
   "searchInsights.insight.graphQLTypesMigration": {
     "title": "Migration to new GraphQL TS types",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -287,7 +287,7 @@
   "searchInsights.insight.graphQLTypesMigrationDiff": {
     "title": "Migration to new GraphQL TS types Diff Search",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -308,7 +308,7 @@
   "searchInsights.insight.e2eToIntegrationTestsMigration": {
     "title": "Number of end-to-end vs integration tests",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -349,7 +349,7 @@
   "searchInsights.insight.storybookGrowth": {
     "title": "Storybook growth",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       // {
@@ -389,7 +389,7 @@
   "searchInsights.insight.global.databaseUsage": {
     "title": "Database usage",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -416,7 +416,7 @@
     "title": "Go error wrapping adoption",
     "subtitle": "Adoption of the Go 1.13 standard library's error wrapping (insight would require structural search)",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -437,7 +437,7 @@
   "searchInsights.insight.wildcardGrowth": {
     "title": "Wildcard growth",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -458,7 +458,7 @@
   "searchInsights.insight.migrateAwayFromGlobalDatabaseConnections": {
     "title": "Migrate away from global database connections",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -474,7 +474,7 @@
   "searchInsights.insight.reactFunctionComponentMigration": {
     "title": "React function component migration",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -791,7 +791,7 @@
   "searchInsights.insight.bootstrapSpacingUtilityClasses": {
     "title": "Bootstrap spacing utility classes",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -812,7 +812,7 @@
   "searchInsights.insight.monitoringApi": {
     "title": "Monitoring API",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -858,7 +858,7 @@
   "searchInsights.insight.componentImports": {
     "title": "Component imports",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -889,7 +889,7 @@
   "searchInsights.insight.migrationFromFilteredConnectionToUseConnection": {
     "title": "Migration from FilteredConnection to useConnection",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -910,7 +910,7 @@
   "searchInsights.insight.triggerFrontendInsightSep16": {
     "title": "Trigger frontend insight sep 16",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -926,7 +926,7 @@
   "searchInsights.insight.triggerSecondFrontendInsightSep16": {
     "title": "Trigger second frontend insight sep 16",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -942,7 +942,7 @@
   "searchInsights.insight.dataFetchingFromGraphQl": {
     "title": "Data fetching from GraphQL",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -968,7 +968,7 @@
   "searchInsights.insight.usageOfReactTestingLibraries": {
     "title": "Usage of React testing libraries",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -991,15 +991,15 @@
       "weeks": 6
     }
   },
-  "codeStatsInsights.insight.languageUsageInSourcegraph": {
-    "title": "Language usage in Sourcegraph",
-    "repository": "github.com/sourcegraph/sourcegraph",
+  "codeStatsInsights.insight.languageUsageInKhulnasoft": {
+    "title": "Language usage in Khulnasoft",
+    "repository": "github.com/khulnasoft/khulnasoft",
     "otherThreshold": 0.03
   },
   "searchInsights.insight.migrationToCssModules": {
     "title": "Migration to CSS Modules",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1025,7 +1025,7 @@
   "searchInsights.insight.rawHtmlElementsVsWildcardAtoms": {
     "title": "Raw HTML elements vs Wildcard atoms",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1046,7 +1046,7 @@
   "searchInsights.insight.orgTestCounts": {
     "title": "\"Org\" test counts",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1062,7 +1062,7 @@
   "searchInsights.insight.test123": {
     "title": "test123",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1078,7 +1078,7 @@
   "searchInsights.insight.jdbRegressionTest2": {
     "title": "JDB Regression Test 2!",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1099,7 +1099,7 @@
   "searchInsights.insight.migrationToDatabaseDb": {
     "title": "Migration to database.DB",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1120,7 +1120,7 @@
   "searchInsights.insight.databaseNewDbOutsideTestFiles": {
     "title": "database.NewDB outside test files",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1136,7 +1136,7 @@
   "searchInsights.insight.migrationToMethodStoreConstruction": {
     "title": "Migration to method store construction",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1157,7 +1157,7 @@
   "searchInsights.insight.removingUsesOfDbconnGlobal": {
     "title": "Removing uses of dbconn.Global",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1173,7 +1173,7 @@
   "searchInsights.insight.migrationFromGlobalDbMocks": {
     "title": "Migration from global db mocks",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1194,17 +1194,17 @@
   "searchInsights.insight.usageOfJavaScriptAndTypeScript": {
     "title": "Usage of JavaScript and TypeScript",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
         "name": "JavaScript files",
-        "query": "repo:sourcegraph/sourcegraph lang:JavaScript",
+        "query": "repo:khulnasoft/khulnasoft lang:JavaScript",
         "stroke": "var(--oc-red-7)"
       },
       {
         "name": "TypeScript files",
-        "query": "repo:sourcegraph/sourcegraph lang:TypeScript",
+        "query": "repo:khulnasoft/khulnasoft lang:TypeScript",
         "stroke": "var(--oc-green-7)"
       }
     ],
@@ -1215,7 +1215,7 @@
   "searchInsights.insight.migrationFromDbtestingToDbtest": {
     "title": "Migration from dbtesting to dbtest",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1236,7 +1236,7 @@
   "searchInsights.insight.ciPipelineGeneratorTests": {
     "title": "CI Pipeline Generator Tests",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -1252,7 +1252,7 @@
   "searchInsights.insight.totalCountOfSkippedTests": {
     "title": "Total count of skipped tests",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {

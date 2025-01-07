@@ -5,7 +5,7 @@ set -euf -o pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 hosts=/etc/hosts
-domain="${SOURCEGRAPH_HTTPS_DOMAIN:-"sourcegraph.test"}"
+domain="${KHULNASOFT_HTTPS_DOMAIN:-"sourcegraph.test"}"
 entry="$(printf "\n127.0.0.1\t%s" "${domain}")"
 
 if grep -q -w -F -- "${domain}" "${hosts}"; then

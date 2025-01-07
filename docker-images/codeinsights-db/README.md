@@ -1,6 +1,6 @@
 # codeinsights-db
 
-This image provides a Postresql server for the _codeinsights_ database for Sourcegraph.
+This image provides a Postresql server for the _codeinsights_ database for Khulnasoft.
 
 ## Building and testing
 

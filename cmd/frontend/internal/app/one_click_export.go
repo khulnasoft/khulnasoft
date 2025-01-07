@@ -22,7 +22,7 @@ func oneClickExportHandler(db database.DB, logger log.Logger) http.HandlerFunc {
 		}
 
 		w.Header().Set("Content-Type", "application/zip")
-		w.Header().Set("Content-Disposition", "attachment; filename=\"SourcegraphDataExport.zip\"")
+		w.Header().Set("Content-Disposition", "attachment; filename=\"KhulnasoftDataExport.zip\"")
 
 		var request oce.ExportRequest
 		if err := json.NewDecoder(r.Body).Decode(&request); err != nil {

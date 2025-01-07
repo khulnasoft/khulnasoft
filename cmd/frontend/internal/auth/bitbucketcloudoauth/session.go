@@ -126,7 +126,7 @@ func (s *sessionIssuerHelper) GetOrCreateUser(ctx context.Context, token *oauth2
 	for _, attempt := range attempts {
 		verifiedEmails = append(verifiedEmails, attempt.email)
 	}
-	return false, nil, fmt.Sprintf("No Sourcegraph user exists matching any of the verified emails: %s.\n\nFirst error was: %s", strings.Join(verifiedEmails, ", "), firstSafeErrMsg), firstErr
+	return false, nil, fmt.Sprintf("No Khulnasoft user exists matching any of the verified emails: %s.\n\nFirst error was: %s", strings.Join(verifiedEmails, ", "), firstSafeErrMsg), firstErr
 }
 
 type attempt struct {

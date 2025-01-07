@@ -710,9 +710,9 @@ func TestNewKubernetesSingleJob(t *testing.T) {
 			"git -C repository config --local gc.auto 0; "+
 			"git -C repository "+
 			"-c http.extraHeader=\"Authorization:Bearer $TOKEN\" "+
-			"-c http.extraHeader=X-Sourcegraph-Actor-UID:internal "+
-			"-c http.extraHeader=X-Sourcegraph-Job-ID:42 "+
-			"-c http.extraHeader=X-Sourcegraph-Executor-Name:my-executor "+
+			"-c http.extraHeader=X-Khulnasoft-Actor-UID:internal "+
+			"-c http.extraHeader=X-Khulnasoft-Job-ID:42 "+
+			"-c http.extraHeader=X-Khulnasoft-Executor-Name:my-executor "+
 			"-c protocol.version=2 fetch --progress --no-recurse-submodules --no-tags --depth=1 origin deadbeef; "+
 			"git -C repository checkout --progress --force deadbeef; "+
 			"mkdir -p .sourcegraph-executor; "+

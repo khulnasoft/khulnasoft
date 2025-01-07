@@ -202,7 +202,7 @@ func TestMultilineTypescriptCommentEntire(t *testing.T) {
 		"058:                 <IdentifierAttribute>repositoryId</>: <IdentifierBuiltin>this</>.<Identifier>repoID</>,",
 		"059:             })",
 		"060:         } <Keyword>catch</> {",
-		"061:             <Comment>// Older version of Sourcegraph may have not registered this</>",
+		"061:             <Comment>// Older version of Khulnasoft may have not registered this</>",
 		"062:             <Comment>// command, causing the promise to reject. We can safely ignore</>",
 		"063:             <Comment>// this condition.</>",
 		"064:         }",

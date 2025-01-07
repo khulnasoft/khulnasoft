@@ -1,8 +1,8 @@
 # Code host test plans
 
-> NOTE: While this document is publicly accessible, it is meant as an internal resource. The test plans contain links to internal systems, documents and other information that will not be useful for people outside of Sourcegraph.
+> NOTE: While this document is publicly accessible, it is meant as an internal resource. The test plans contain links to internal systems, documents and other information that will not be useful for people outside of Khulnasoft.
 
-This is a list of test plans for verifying the critical functionality of Sourcegraph across various code hosts. The primary objective is to re-execute these test plans before each major release to detect regressions.
+This is a list of test plans for verifying the critical functionality of Khulnasoft across various code hosts. The primary objective is to re-execute these test plans before each major release to detect regressions.
 
 Automating these test plans would be ideal, but currently they only serve as manual validation checklists. In the future, these manual test plans can provide the foundation for automated test development.
 

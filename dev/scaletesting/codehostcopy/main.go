@@ -47,7 +47,7 @@ type Iterator[T any] interface {
 
 var app = &cli.App{
 	Usage:       "Copy organizations across code hosts",
-	Description: "https://handbook.sourcegraph.com/departments/engineering/dev/tools/scaletesting/",
+	Description: "https://handbook.khulnasoft.com/departments/engineering/dev/tools/scaletesting/",
 	Compiled:    time.Now(),
 	Flags: []cli.Flag{
 		&cli.StringFlag{

@@ -61,7 +61,7 @@ func authHandler(db database.DB, w http.ResponseWriter, r *http.Request, next ht
 	// If there is only one auth provider configured, the single auth provider is SAML, it's an
 	// app request, and the sign-out cookie is not present, redirect to the sso sign-in immediately.
 	//
-	// For sign-out requests (sign-out cookie is  present), the user will be redirected to the Sourcegraph login page.
+	// For sign-out requests (sign-out cookie is  present), the user will be redirected to the Khulnasoft login page.
 	// Note: For instances that are conf.AuthPublic(), we don't redirect to sign-in automatically, as that would
 	// lock out unauthenticated access.
 	ps := providers.SignInProviders(!r.URL.Query().Has("sourcegraph-operator"))
@@ -258,7 +258,7 @@ func buildAuthURLRedirect(p *provider, relayState relayState) (string, error) {
 //
 // SAML overloads the term "RelayState".
 //   - In the SP-initiated login flow, it is an opaque value originated from the SP and reflected
-//     back in the AuthnResponse. The Sourcegraph SP uses the base64-encoded JSON of this struct as
+//     back in the AuthnResponse. The Khulnasoft SP uses the base64-encoded JSON of this struct as
 //     the RelayState.
 //   - In the IdP-initiated login flow, the RelayState can be any arbitrary hint, but in practice
 //     is the desired post-login redirect URL in plain text.

@@ -3,7 +3,7 @@ resources:
     kind: Deployment
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b70d78a1875f7ea6c57f032a569e8956aed76dd6ec0b086034732b0cfa8e82e1
+        appliance.khulnasoft.com/configHash: b70d78a1875f7ea6c57f032a569e8956aed76dd6ec0b086034732b0cfa8e82e1
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
       labels:
@@ -136,7 +136,7 @@ resources:
     kind: Deployment
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 59d9f8b80a9ea6154b52b5756375c12702faf941da62d7229afca379368f0199
+        appliance.khulnasoft.com/configHash: 59d9f8b80a9ea6154b52b5756375c12702faf941da62d7229afca379368f0199
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
       labels:
@@ -338,8 +338,8 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/currentVersion: 5.3.9104
-        appliance.sourcegraph.com/managed: "true"
+        appliance.khulnasoft.com/currentVersion: 5.3.9104
+        appliance.khulnasoft.com/managed: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
       name: sg
       namespace: NORMALIZED_FOR_TESTING
@@ -349,7 +349,7 @@ resources:
     kind: PersistentVolumeClaim
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b70d78a1875f7ea6c57f032a569e8956aed76dd6ec0b086034732b0cfa8e82e1
+        appliance.khulnasoft.com/configHash: b70d78a1875f7ea6c57f032a569e8956aed76dd6ec0b086034732b0cfa8e82e1
       creationTimestamp: "2024-04-19T00:00:00Z"
       finalizers:
         - kubernetes.io/pvc-protection
@@ -379,7 +379,7 @@ resources:
     kind: PersistentVolumeClaim
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 59d9f8b80a9ea6154b52b5756375c12702faf941da62d7229afca379368f0199
+        appliance.khulnasoft.com/configHash: 59d9f8b80a9ea6154b52b5756375c12702faf941da62d7229afca379368f0199
       creationTimestamp: "2024-04-19T00:00:00Z"
       finalizers:
         - kubernetes.io/pvc-protection
@@ -411,7 +411,7 @@ resources:
     kind: Secret
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b70d78a1875f7ea6c57f032a569e8956aed76dd6ec0b086034732b0cfa8e82e1
+        appliance.khulnasoft.com/configHash: b70d78a1875f7ea6c57f032a569e8956aed76dd6ec0b086034732b0cfa8e82e1
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app.kubernetes.io/component: redis-cache
@@ -436,7 +436,7 @@ resources:
     kind: Secret
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 59d9f8b80a9ea6154b52b5756375c12702faf941da62d7229afca379368f0199
+        appliance.khulnasoft.com/configHash: 59d9f8b80a9ea6154b52b5756375c12702faf941da62d7229afca379368f0199
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app.kubernetes.io/component: redis-store
@@ -459,7 +459,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b70d78a1875f7ea6c57f032a569e8956aed76dd6ec0b086034732b0cfa8e82e1
+        appliance.khulnasoft.com/configHash: b70d78a1875f7ea6c57f032a569e8956aed76dd6ec0b086034732b0cfa8e82e1
         prometheus.io/port: "9121"
         sourcegraph.prometheus/scrape: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
@@ -501,7 +501,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 59d9f8b80a9ea6154b52b5756375c12702faf941da62d7229afca379368f0199
+        appliance.khulnasoft.com/configHash: 59d9f8b80a9ea6154b52b5756375c12702faf941da62d7229afca379368f0199
         prometheus.io/port: "9121"
         sourcegraph.prometheus/scrape: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"

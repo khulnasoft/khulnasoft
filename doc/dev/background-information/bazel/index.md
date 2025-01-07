@@ -1,6 +1,6 @@
-# Bazel at Sourcegraph
+# Bazel at Khulnasoft
 
-Sourcegraph uses [Bazel](https://bazel.build) as its build system. Reach out on [#ask-dev-experience](https://sourcegraph.slack.com/archives/C04MYFW01NV) for questions and support.
+Khulnasoft uses [Bazel](https://bazel.build) as its build system. Reach out on [#ask-dev-experience](https://sourcegraph.slack.com/archives/C04MYFW01NV) for questions and support.
 
 ## Overview
 
@@ -79,9 +79,9 @@ Finally, let's say we have defined in our Bazel project some third party depende
 #### Building and testing things
 
 - `bazel build [path-to-target]` builds a target.
-  - ex `bazel build //lib/...` will build everything under the `/lib/...` folder in the Sourcegraph repository.
+  - ex `bazel build //lib/...` will build everything under the `/lib/...` folder in the Khulnasoft repository.
 - `bazel test [path-to-target]` tests a target.
-  - ex `bazel test //lib/...` will run all tests under the `/lib/...` folder in the Sourcegraph repository.
+  - ex `bazel test //lib/...` will run all tests under the `/lib/...` folder in the Khulnasoft repository.
 - `bazel configure` automatically inspect the source tree and update the buildfiles if needed.
 - `bazel run //:gazelle-update-repos` automatically inspect the `go.mod` and update the third parties dependencies if needed.
 

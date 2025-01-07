@@ -12,7 +12,7 @@ import (
 func init() {
 	contributeWarning(func(c conftypes.SiteConfigQuerier) (problems conf.Problems) {
 		if c.SiteConfig().CodyRestrictUsersFeatureFlag != nil {
-			problems = append(problems, conf.NewSiteProblem("cody.restrictUsersFeatureFlag has been deprecated. Please remove it from your site config and use cody.permissions instead: https://sourcegraph.com/docs/cody/overview/enable-cody-enterprise#enable-cody-only-for-some-users"))
+			problems = append(problems, conf.NewSiteProblem("cody.restrictUsersFeatureFlag has been deprecated. Please remove it from your site config and use cody.permissions instead: https://khulnasoft.com/docs/cody/overview/enable-cody-enterprise#enable-cody-only-for-some-users"))
 		}
 		return
 	})

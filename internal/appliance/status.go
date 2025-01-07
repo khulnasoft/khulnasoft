@@ -25,7 +25,7 @@ func installTasks() []Task {
 	return []Task{
 		{
 			Title:       "Setup",
-			Description: "Setting up Sourcegraph Search",
+			Description: "Setting up Khulnasoft Search",
 			Started:     false,
 			Finished:    false,
 			Weight:      25,

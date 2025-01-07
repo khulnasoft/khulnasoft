@@ -89,7 +89,7 @@ func TestOverrideSiteConfig(t *testing.T) {
 	current, err := conf.SiteGetLatest(ctx)
 	require.NoError(t, err, "failed to read site config")
 
-	// Try to write again which would happen if Sourcegraph is restarted for example.
+	// Try to write again which would happen if Khulnasoft is restarted for example.
 	err = overrideSiteConfig(ctx, logger, db)
 	require.NoError(t, err, "failed to override ")
 

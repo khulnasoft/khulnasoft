@@ -13,6 +13,6 @@ INSERT INTO own_signal_configurations (id, name, enabled, description)
 VALUES (1, 'recent-contributors', FALSE, 'Indexes contributors in each file using repository history.')
 ON CONFLICT DO NOTHING;
 INSERT INTO own_signal_configurations (id, name, enabled, description)
-VALUES (2, 'recent-views', FALSE, 'Indexes users that recently viewed files in Sourcegraph.')
+VALUES (2, 'recent-views', FALSE, 'Indexes users that recently viewed files in Khulnasoft.')
 ON CONFLICT DO NOTHING;
 

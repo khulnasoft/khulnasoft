@@ -26,7 +26,7 @@ An out-of-band migration is defined with the following data:
 - a flag indicating whether or not the migration is _non-destructive_
 - a flag indicating whether or not the migration is enterprise-only
 
-Each out-of-band migration is associated with a _migrator_ instance, which periodically runs in the background of Sourcegraph instances between the version the migration was _introduced_ (inclusive) and the version the migration was marked as _deprecated_ (exclusive). Each migrator instance enables three behaviors:
+Each out-of-band migration is associated with a _migrator_ instance, which periodically runs in the background of Khulnasoft instances between the version the migration was _introduced_ (inclusive) and the version the migration was marked as _deprecated_ (exclusive). Each migrator instance enables three behaviors:
 
 - Perform a batch of the migration
 - Perform a batch of the migration _in reverse_
@@ -72,7 +72,7 @@ CREATE TABLE skunk_payloads (
 The first step is to declare metadata for a new migration. Add a new entry to the file `internal/oobmigration/oobmigrations.yaml`.
 
 ```yaml
-- id: 42                                  -- This must be consistent across all Sourcegraph instances
+- id: 42                                  -- This must be consistent across all Khulnasoft instances
   team: skunkworks                        -- Team owning migration
   component: db.skunk_payloads            -- Component being migrated
   description: Re-encode our skunky data  -- Human-readable description
@@ -164,7 +164,7 @@ func (m *migrator) Progress(ctx context.Context, _ bool) (float64, error) {
 }
 ```
 
-In the case of enterprise migrations you will want your `Progress` function to report success [if your enterprise feature is disabled](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/oobmigration/migrations/insights/migrator.go?L36-38). 
+In the case of enterprise migrations you will want your `Progress` function to report success [if your enterprise feature is disabled](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/oobmigration/migrations/insights/migrator.go?L36-38). 
 
 In the forward migration direction, we want to select a record that is in the previous format (we can tell here by the absence of a `payload2` field), and update that record with the result of some external computation. Here, we're going to rely on an oracle function `oldToNew` that converts the old format into the new format.
 
@@ -276,7 +276,7 @@ func (m *migrator) Down(ctx context.Context) (err error) {
 }
 ```
 
-Lastly, in order for this migration to run, we need to [register it to the out of band migrator runner instance](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24%40main+file:.*.go+%28outOfBandMigration%29%3Frunner%5C.Register%5C%28&patternType=regexp) in the enterprise `worker` service.
+Lastly, in order for this migration to run, we need to [register it to the out of band migrator runner instance](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24%40main+file:.*.go+%28outOfBandMigration%29%3Frunner%5C.Register%5C%28&patternType=regexp) in the enterprise `worker` service.
 
 ```go
 // `db` is the database.DB
@@ -290,7 +290,7 @@ Here, we're telling the migration runner to invoke the `Up` or `Down` method per
 
 #### Step 5: Mark deprecated
 
-Once the engineering team has decided on which versions require the new format, old migrations can be marked with a concrete deprecation version. The deprecation version denotes the first Sourcegraph version that no longer runs the migration, and is no longer guaranteed to successfully read un-migrated records.
+Once the engineering team has decided on which versions require the new format, old migrations can be marked with a concrete deprecation version. The deprecation version denotes the first Khulnasoft version that no longer runs the migration, and is no longer guaranteed to successfully read un-migrated records.
 
 New fields can be added to the existing migration metadata entry in the file `internal/oobmigration/oobmigrations.yaml`.
 
@@ -310,13 +310,13 @@ New fields can be added to the existing migration metadata entry in the file `in
 
 This date may be known at the time the migration is created, in which case it is fine to set both the introduced and the deprecated fields at the same time.
 
-Note that it is not advised to set the deprecated version to the minor release of Sourcegraph directly following its introduction. This will not give site-admins enough warning on the previous version that updating with an unfinished migration may cause issues at startup or data loss.
+Note that it is not advised to set the deprecated version to the minor release of Khulnasoft directly following its introduction. This will not give site-admins enough warning on the previous version that updating with an unfinished migration may cause issues at startup or data loss.
 
 #### Step 6: Deprecation
 
-Despite an out of band migration being marked deprecated, it may still need to be executed by multi-version upgrades in a later version. For this reason it is not safe to delete any code from the out of band migrations until _after_ the deprecation version falls out of the [supported multi-version upgrade window](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@39996f3159a0466624bc3a57689560c6bdebb60c/-/blob/internal/database/migration/shared/data/cmd/generator/consts.go?L24).
+Despite an out of band migration being marked deprecated, it may still need to be executed by multi-version upgrades in a later version. For this reason it is not safe to delete any code from the out of band migrations until _after_ the deprecation version falls out of the [supported multi-version upgrade window](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@39996f3159a0466624bc3a57689560c6bdebb60c/-/blob/internal/database/migration/shared/data/cmd/generator/consts.go?L24).
 
-As an alternative to deleting the code, the out of band migration can be isolated from any dependencies outside of the out of band migration. For example copying any types, functions, and other code that is used to execute the migration. Once isolated, the migration can be considered frozen and effectively ignored. To see an example, [see the Code Insights settings migration](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@39996f3159a0466624bc3a57689560c6bdebb60c/-/tree/internal/oobmigration/migrations/insights)
+As an alternative to deleting the code, the out of band migration can be isolated from any dependencies outside of the out of band migration. For example copying any types, functions, and other code that is used to execute the migration. Once isolated, the migration can be considered frozen and effectively ignored. To see an example, [see the Code Insights settings migration](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@39996f3159a0466624bc3a57689560c6bdebb60c/-/tree/internal/oobmigration/migrations/insights)
 
 It is important to note that breaking changes to the database using an in-band migration are safe to execute after the marked deprecation version for the out of band migration, even if they would logically break the code of the out of band migration. This is because [the multi-version upgrade will execute the out of band migration sequentially with in-band migrations](https://storage.googleapis.com/sourcegraph-assets/blog/multi-version-upgrades/mvu-oobmigrations.png). Once executed, the out of band migration will see the database in the state it was at when prior to being marked deprecated.
 

@@ -413,7 +413,7 @@ export const otherSiteAdminRoutes: readonly SiteAdminAreaRoute[] = [
         render: props => (
             <GitHubAppPage
                 headerParentBreadcrumb={{ to: '/site-admin/batch-changes', text: 'Batch Changes settings' }}
-                headerAnnotation={<FeedbackBadge status="beta" feedback={{ mailto: 'support@sourcegraph.com' }} />}
+                headerAnnotation={<FeedbackBadge status="beta" feedback={{ mailto: 'support@khulnasoft.com' }} />}
                 telemetryService={props.telemetryService}
                 telemetryRecorder={props.platformContext.telemetryRecorder}
             />

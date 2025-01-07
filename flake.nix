@@ -1,5 +1,5 @@
 {
-  description = "The Sourcegraph developer environment & packages Nix Flake";
+  description = "The Khulnasoft developer environment & packages Nix Flake";
 
   nixConfig = {
     extra-substituters = [ "https://sourcegraph-noah.cachix.org" ];

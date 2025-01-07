@@ -2,7 +2,7 @@
 
 ## List
 
-- **web**: The web application deployed to http://sourcegraph.com/
+- **web**: The web application deployed to http://khulnasoft.com/
 - **browser**: The Khulnasoft browser extension adds tooltips to code on different code hosts.
 - **vscode**: The Khulnasoft [VS Code extension](https://marketplace.visualstudio.com/items?itemName=sourcegraph.sourcegraph).
 - **extension-api**: The Khulnasoft extension API types for the _Khulnasoft extensions_. Published as `sourcegraph`.

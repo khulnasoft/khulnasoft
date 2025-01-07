@@ -34,7 +34,7 @@ var _ authz.Provider = (*OAuth2Provider)(nil)
 
 // NewProvider returns a new Bitbucket Server authorization provider that uses
 // the given bitbucket.Client to talk to the Bitbucket Server API that is
-// the source of truth for permissions. Sourcegraph users will need a valid
+// the source of truth for permissions. Khulnasoft users will need a valid
 // Bitbucket Server external account for permissions to sync correctly.
 func NewOAuthProvider(db database.DB, conn *types.BitbucketServerConnection, opts ProviderOptions, pluginPerm bool) *OAuth2Provider {
 	baseURL, err := url.Parse(conn.Url)

@@ -52,7 +52,7 @@ export const LicenseExpirationAlert: React.FunctionComponent<React.PropsWithChil
                 <span className="underline">Renew now</span>
             </Link>
             &nbsp;or&nbsp;
-            <Link className="site-alert__link" to="https://sourcegraph.com/contact" onClick={onClickContactCTA}>
+            <Link className="site-alert__link" to="https://khulnasoft.com/contact" onClick={onClickContactCTA}>
                 <span className="underline">contact Khulnasoft</span>
             </Link>
         </DismissibleAlert>

@@ -1,7 +1,7 @@
 {
-    "teamEmail": "team@sourcegraph.com",
-    // these dates should always be in sync with the Sourcegraph Handbook release schedule
-    // https://www.notion.so/sourcegraph/Sourcegraph-Releases-eee2a5384b0a4555adb51b439ddde35f?pvs=4
+    "teamEmail": "team@khulnasoft.com",
+    // these dates should always be in sync with the Khulnasoft Handbook release schedule
+    // https://www.notion.so/sourcegraph/Khulnasoft-Releases-eee2a5384b0a4555adb51b439ddde35f?pvs=4
     "events": [
         {
             "name": "September 2024 Release",

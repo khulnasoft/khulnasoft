@@ -9,7 +9,7 @@ import (
 
 func TestOAuthClient(t *testing.T) {
 	t.Run("Authenticate", func(t *testing.T) {
-		token := newOAuthClient("abcdef", "Sourcegraph ❤️ you")
+		token := newOAuthClient("abcdef", "Khulnasoft ❤️ you")
 
 		req, err := http.NewRequest("GET", "/", nil)
 		if err != nil {

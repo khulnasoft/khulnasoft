@@ -1,7 +1,7 @@
 package nolint
 
 // This file is copied from:
-// https://sourcegraph.com/github.com/pingcap/tidb@a0f2405981960ec705bf44f12b96ca8aec1506c4/-/blob/build/linter/util/util.go
+// https://khulnasoft.com/github.com/pingcap/tidb@a0f2405981960ec705bf44f12b96ca8aec1506c4/-/blob/build/linter/util/util.go
 // We copy it because we do not want to pull in the entire dependency.
 //
 // A few changes have been made:

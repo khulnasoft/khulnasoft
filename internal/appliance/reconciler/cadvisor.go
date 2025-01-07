@@ -18,7 +18,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/pointers"
 )
 
-func (r *Reconciler) reconcileCadvisor(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCadvisor(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileCadvisorDaemonset(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling Daemonset")
 	}
@@ -28,7 +28,7 @@ func (r *Reconciler) reconcileCadvisor(ctx context.Context, sg *config.Sourcegra
 	return nil
 }
 
-func (r *Reconciler) reconcileCadvisorDaemonset(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCadvisorDaemonset(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "cadvisor"
 	cfg := sg.Spec.Cadvisor
 
@@ -100,7 +100,7 @@ func (r *Reconciler) reconcileCadvisorDaemonset(ctx context.Context, sg *config.
 	return reconcileObject(ctx, r, cfg, &ds, &appsv1.DaemonSet{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCadvisorServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCadvisorServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Cadvisor
 	sa := serviceaccount.NewServiceAccount("cadvisor", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)

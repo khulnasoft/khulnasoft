@@ -16,9 +16,9 @@ func TestGoImportPath(t *testing.T) {
 		wantBody   string
 	}{
 		{
-			path:       "/sourcegraph/sourcegraph/usercontent",
+			path:       "/khulnasoft/khulnasoft/usercontent",
 			wantStatus: http.StatusOK,
-			wantBody:   `<meta name="go-import" content="example.com/sourcegraph/sourcegraph git https://github.com/khulnasoft/khulnasoft">`,
+			wantBody:   `<meta name="go-import" content="example.com/khulnasoft/khulnasoft git https://github.com/khulnasoft/khulnasoft">`,
 		},
 		{
 			path:       "/sourcegraph/srclib/ann",
@@ -57,7 +57,7 @@ func TestGoImportPath(t *testing.T) {
 			panic(err)
 		}
 
-		middleware.SourcegraphComGoGetHandler(nil).ServeHTTP(rw, req)
+		middleware.KhulnasoftComGoGetHandler(nil).ServeHTTP(rw, req)
 
 		if got, want := rw.Code, test.wantStatus; got != want {
 			t.Errorf("%s:\ngot  %#v\nwant %#v", test.path, got, want)

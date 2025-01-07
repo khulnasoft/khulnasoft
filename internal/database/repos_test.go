@@ -2412,7 +2412,7 @@ func TestParseIncludePattern(t *testing.T) {
 
 		// https://github.com/khulnasoft/khulnasoft/issues/20389
 		`^github\.com/sourcegraph/(sourcegraph-atom|sourcegraph)$`: {
-			exact: []string{"github.com/sourcegraph/sourcegraph", "github.com/sourcegraph/sourcegraph-atom"},
+			exact: []string{"github.com/khulnasoft/khulnasoft", "github.com/sourcegraph/sourcegraph-atom"},
 		},
 
 		// Ensure we don't lose foo/.*. In the past we returned exact for bar only.

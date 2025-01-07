@@ -42,7 +42,7 @@ Built from Buildkite run [#${BUILDKITE_BUILD_NUMBER}](https://buildkite.com/khul
 - CI build verifies image functionality"
 
 # Ensure git author details are correct
-git config --local user.email \"buildkite@sourcegraph.com\"
+git config --local user.email \"buildkite@khulnasoft.com\"
 git config --local user.name \"Buildkite\"
 
 # Commit changes to dev/oci-deps.bzl

@@ -32,7 +32,7 @@
   "author": {
    "user": {
     "name": "erik",
-    "emailAddress": "erik@sourcegraph.com",
+    "emailAddress": "erik@khulnasoft.com",
     "id": 152,
     "displayName": "Erik Seliger",
     "active": true,
@@ -47,7 +47,7 @@
    {
     "user": {
      "name": "thorsten",
-     "emailAddress": "thorsten@sourcegraph.com",
+     "emailAddress": "thorsten@khulnasoft.com",
      "id": 104,
      "displayName": "thorsten",
      "active": true,

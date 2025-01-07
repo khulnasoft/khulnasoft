@@ -2,7 +2,7 @@ package types
 
 import "github.com/khulnasoft/khulnasoft/internal/extsvc"
 
-// CodeHost represents one configured external code host available on this Sourcegraph instance.
+// CodeHost represents one configured external code host available on this Khulnasoft instance.
 type CodeHost struct {
 	ExternalServiceType   string
 	ExternalServiceID     string

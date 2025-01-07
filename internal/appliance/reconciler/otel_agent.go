@@ -18,7 +18,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-func (r *Reconciler) reconcileOtelAgent(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileOtelAgent(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileOtelAgentConfigmap(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling ConfigMap")
 	}
@@ -31,7 +31,7 @@ func (r *Reconciler) reconcileOtelAgent(ctx context.Context, sg *config.Sourcegr
 	return nil
 }
 
-func (r *Reconciler) reconcileOtelAgentConfigmap(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileOtelAgentConfigmap(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "otel-agent"
 	cfg := sg.Spec.OtelAgent
 	cm := configmap.NewConfigMap(name, sg.Namespace)
@@ -41,13 +41,13 @@ func (r *Reconciler) reconcileOtelAgentConfigmap(ctx context.Context, sg *config
 	return reconcileObject(ctx, r, cfg, &cm, &corev1.ConfigMap{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileOtelAgentServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileOtelAgentServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.OtelAgent
 	sa := serviceaccount.NewServiceAccount("otel-agent", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileOtelAgentDaemonset(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileOtelAgentDaemonset(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "otel-agent"
 	cfg := sg.Spec.OtelAgent
 

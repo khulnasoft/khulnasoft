@@ -22,13 +22,13 @@ import (
 // that determines whether new user is allowed to be created.
 func NewBeforeCreateUserHook() func(context.Context, database.DB, *extsvc.AccountSpec) error {
 	return func(ctx context.Context, db database.DB, spec *extsvc.AccountSpec) error {
-		// Exempt user accounts that are created by the Sourcegraph Operator
+		// Exempt user accounts that are created by the Khulnasoft Operator
 		// authentication provider.
 		//
-		// NOTE: It is important to make sure the Sourcegraph Operator authentication
+		// NOTE: It is important to make sure the Khulnasoft Operator authentication
 		// provider is actually enabled.
-		if spec != nil && spec.ServiceType == auth.SourcegraphOperatorProviderType &&
-			cloud.SiteConfig().SourcegraphOperatorAuthProviderEnabled() {
+		if spec != nil && spec.ServiceType == auth.KhulnasoftOperatorProviderType &&
+			cloud.SiteConfig().KhulnasoftOperatorAuthProviderEnabled() {
 			return nil
 		}
 
@@ -42,7 +42,7 @@ func NewBeforeCreateUserHook() func(context.Context, database.DB, *extsvc.Accoun
 			// all new users to be promoted as site admins automatically until the customer
 			// decides to downgrade to Free tier.
 			if info.IsExpired() {
-				return errcode.NewPresentationError("Unable to create user account: Sourcegraph license expired! No new users can be created. Update the license key in the [**site configuration**](/site-admin/configuration) or downgrade to only using Sourcegraph Free features.")
+				return errcode.NewPresentationError("Unable to create user account: Khulnasoft license expired! No new users can be created. Update the license key in the [**site configuration**](/site-admin/configuration) or downgrade to only using Khulnasoft Free features.")
 			}
 			licensedUserCount = int32(info.UserCount)
 		} else {
@@ -51,23 +51,23 @@ func NewBeforeCreateUserHook() func(context.Context, database.DB, *extsvc.Accoun
 
 		// Block creation of a new user beyond the licensed user count (unless true-up is allowed).
 		userCount, err := db.Users().Count(ctx, &database.UsersListOptions{
-			ExcludeSourcegraphOperators: true,
+			ExcludeKhulnasoftOperators: true,
 		})
 		if err != nil {
 			return err
 		}
 		// Be conservative and treat 0 as unlimited. We don't plan to intentionally generate
 		// licenses with UserCount == 0, but that might result from a bug in license decoding, and
-		// we don't want that to immediately disable Sourcegraph instances.
+		// we don't want that to immediately disable Khulnasoft instances.
 		if licensedUserCount > 0 && int32(userCount) >= licensedUserCount {
 			if info != nil && info.HasTag(licensing.TrueUpUserCountTag) {
-				log15.Info("Licensed user count exceeded, but license supports true-up and will not block creation of new user. The new user will be retroactively charged for in the next billing period. Contact sales@sourcegraph.com for help.", "activeUserCount", userCount, "licensedUserCount", licensedUserCount)
+				log15.Info("Licensed user count exceeded, but license supports true-up and will not block creation of new user. The new user will be retroactively charged for in the next billing period. Contact sales@khulnasoft.com for help.", "activeUserCount", userCount, "licensedUserCount", licensedUserCount)
 			} else {
 				message := "Unable to create user account: "
 				if info == nil {
-					message += fmt.Sprintf("a Sourcegraph subscription is required to exceed %d users (this instance now has %d users). Contact Sourcegraph to learn more at https://sourcegraph.com/contact/sales.", licensing.NoLicenseMaximumAllowedUserCount, userCount)
+					message += fmt.Sprintf("a Khulnasoft subscription is required to exceed %d users (this instance now has %d users). Contact Khulnasoft to learn more at https://khulnasoft.com/contact/sales.", licensing.NoLicenseMaximumAllowedUserCount, userCount)
 				} else {
-					message += "the Sourcegraph subscription's maximum user count has been reached. A site admin must upgrade the Sourcegraph subscription to allow for more users. Contact Sourcegraph at https://sourcegraph.com/contact/sales."
+					message += "the Khulnasoft subscription's maximum user count has been reached. A site admin must upgrade the Khulnasoft subscription to allow for more users. Contact Khulnasoft at https://khulnasoft.com/contact/sales."
 				}
 				return errcode.NewPresentationError(message)
 			}
@@ -81,8 +81,8 @@ func NewBeforeCreateUserHook() func(context.Context, database.DB, *extsvc.Accoun
 // a new user should be promoted to site admin based on the product license.
 func NewAfterCreateUserHook() func(context.Context, database.DB, *types.User) error {
 	return func(ctx context.Context, tx database.DB, user *types.User) error {
-		// 🚨 SECURITY: To be extra safe that we never promote any new user to be site admin on Sourcegraph Cloud.
-		if dotcom.SourcegraphDotComMode() {
+		// 🚨 SECURITY: To be extra safe that we never promote any new user to be site admin on Khulnasoft Cloud.
+		if dotcom.KhulnasoftDotComMode() {
 			return nil
 		}
 		info, err := licensing.GetConfiguredProductLicenseInfo()
@@ -106,12 +106,12 @@ func NewAfterCreateUserHook() func(context.Context, database.DB, *types.User) er
 // the creation or removal of site admins are allowed.
 func NewBeforeSetUserIsSiteAdmin() func(ctx context.Context, isSiteAdmin bool) error {
 	return func(ctx context.Context, isSiteAdmin bool) error {
-		// Exempt user accounts that are created by the Sourcegraph Operator
+		// Exempt user accounts that are created by the Khulnasoft Operator
 		// authentication provider.
 		//
-		// NOTE: It is important to make sure the Sourcegraph Operator authentication
+		// NOTE: It is important to make sure the Khulnasoft Operator authentication
 		// provider is actually enabled.
-		if cloud.SiteConfig().SourcegraphOperatorAuthProviderEnabled() && actor.FromContext(ctx).SourcegraphOperator {
+		if cloud.SiteConfig().KhulnasoftOperatorAuthProviderEnabled() && actor.FromContext(ctx).KhulnasoftOperator {
 			return nil
 		}
 
@@ -122,7 +122,7 @@ func NewBeforeSetUserIsSiteAdmin() func(ctx context.Context, isSiteAdmin bool) e
 
 		if info != nil {
 			if info.IsExpired() {
-				return errors.New("The Sourcegraph license has expired. No site-admins can be created until the license is updated.")
+				return errors.New("The Khulnasoft license has expired. No site-admins can be created until the license is updated.")
 			}
 			if !info.Plan().IsFreePlan() {
 				return nil
@@ -134,6 +134,6 @@ func NewBeforeSetUserIsSiteAdmin() func(ctx context.Context, isSiteAdmin bool) e
 			}
 		}
 
-		return licensing.NewFeatureNotActivatedError(fmt.Sprintf("The feature %q is not activated because it requires a valid Sourcegraph license. Purchase a Sourcegraph subscription to activate this feature.", "non-site admin roles"))
+		return licensing.NewFeatureNotActivatedError(fmt.Sprintf("The feature %q is not activated because it requires a valid Khulnasoft license. Purchase a Khulnasoft subscription to activate this feature.", "non-site admin roles"))
 	}
 }

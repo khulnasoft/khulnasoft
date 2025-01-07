@@ -103,7 +103,7 @@ func TestCheckGitHubPermissions(t *testing.T) {
 			client.ListInstallationRepositoriesFunc.SetDefaultHook(testCase.listInstallationRepositoriesHook)
 			client.GetRepositoryFunc.SetDefaultHook(testCase.getRepositoryHook)
 
-			author, err := checkGitHubPermissions(context.Background(), "github.com/sourcegraph/sourcegraph", client)
+			author, err := checkGitHubPermissions(context.Background(), "github.com/khulnasoft/khulnasoft", client)
 			if author != testCase.expectedAuthor {
 				t.Errorf("unexpected status. want=%v have=%v", testCase.expectedAuthor, author)
 			}

@@ -58,7 +58,7 @@ func (r *schemaResolver) ViewerCanChangeLibraryItemVisibilityToPublic(ctx contex
 // change the visibility of saved searches and prompt library items.
 func ViewerCanChangeLibraryItemVisibilityToPublic(ctx context.Context, db database.DB) error {
 	// 🚨 SECURITY: Only site admins may do this for now until we add in better management and abuse
-	// prevention. We don't want someone creating an inappropriate saved search on Sourcegraph.com
+	// prevention. We don't want someone creating an inappropriate saved search on Khulnasoft.com
 	// that all users can see until we're ready to handle that kind of situation. The same applies
 	// for customer instances for now.
 	return auth.CheckCurrentUserIsSiteAdmin(ctx, db)

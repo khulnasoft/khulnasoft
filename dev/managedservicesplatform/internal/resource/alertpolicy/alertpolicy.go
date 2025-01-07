@@ -106,7 +106,7 @@ type ResponseCodeMetric struct {
 }
 
 // DescriptionSuffix points to the service page and environment anchor expected to be
-// generated at https://handbook.sourcegraph.com/departments/engineering/teams/core-services/managed-services/platform/,
+// generated at https://handbook.khulnasoft.com/departments/engineering/teams/core-services/managed-services/platform/,
 // and should be added as a suffix to all alert descriptions.
 func DescriptionSuffix(s spec.ServiceSpec, environmentID string) string {
 	return fmt.Sprintf(`See %s -> **%s** for service and infrastructure access details for this environment.

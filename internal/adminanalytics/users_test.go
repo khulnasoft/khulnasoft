@@ -39,9 +39,9 @@ func createEventLogs(db database.DB, rows []EventLogRow) error {
 }
 
 var employeeDetails = []database.NewUser{
-	{Username: "managed-naman", Email: "naman@sourcegraph.com"},
-	{Username: "sourcegraph-management-sqs", Email: "sqs@sourcegraph.com"},
-	{Username: "sourcegraph-admin", Email: "john@sourcegraph.com"},
+	{Username: "managed-naman", Email: "naman@khulnasoft.com"},
+	{Username: "sourcegraph-management-sqs", Email: "sqs@khulnasoft.com"},
+	{Username: "sourcegraph-admin", Email: "john@khulnasoft.com"},
 }
 
 func createEmployees(db database.DB) ([]*types.User, error) {

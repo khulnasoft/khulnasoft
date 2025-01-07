@@ -84,7 +84,7 @@ func TestConvertLicenseToProto(t *testing.T) {
     },
     "infoVersion": 1,
     "licenseKey": "asdf",
-    "planDisplayName": "Sourcegraph Enterprise"
+    "planDisplayName": "Khulnasoft Enterprise"
   },
   "subscriptionId": "es_subscription_id"
 }`).Equal(t, mustMarshalStableProtoJSON(t, got))
@@ -101,7 +101,7 @@ func TestConvertSubscriptionToProto(t *testing.T) {
 		sub: &subscriptions.SubscriptionWithConditions{
 			Subscription: subscriptions.Subscription{
 				ID:             "subscription_id",
-				InstanceDomain: pointers.Ptr("sourcegraph.com"),
+				InstanceDomain: pointers.Ptr("khulnasoft.com"),
 				CreatedAt:      utctime.Time(created),
 			},
 			Conditions: []subscriptions.SubscriptionCondition{{
@@ -117,7 +117,7 @@ func TestConvertSubscriptionToProto(t *testing.T) {
     }
   ],
   "id": "es_subscription_id",
-  "instanceDomain": "sourcegraph.com"
+  "instanceDomain": "khulnasoft.com"
 }`),
 	}, {
 		name: "with salesforce details",
@@ -151,7 +151,7 @@ func TestConvertSubscriptionToProto(t *testing.T) {
 		sub: &subscriptions.SubscriptionWithConditions{
 			Subscription: subscriptions.Subscription{
 				ID:             "subscription_id",
-				InstanceDomain: pointers.Ptr("sourcegraph.com"),
+				InstanceDomain: pointers.Ptr("khulnasoft.com"),
 				InstanceType: pointers.Ptr(
 					subscriptionsv1.EnterpriseSubscriptionInstanceType_ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_INTERNAL.String()),
 				CreatedAt: utctime.Time(created),
@@ -169,7 +169,7 @@ func TestConvertSubscriptionToProto(t *testing.T) {
     }
   ],
   "id": "es_subscription_id",
-  "instanceDomain": "sourcegraph.com",
+  "instanceDomain": "khulnasoft.com",
   "instanceType": "ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_INTERNAL"
 }`),
 	}} {

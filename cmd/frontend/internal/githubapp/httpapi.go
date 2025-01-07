@@ -366,7 +366,7 @@ func (srv *gitHubAppServer) setupHandler(w http.ResponseWriter, r *http.Request)
 	if state == "" || instID == "" {
 		// If neither state nor installation ID is set, we redirect to the GitHub Apps page.
 		// This can happen when someone installs the App directly from GitHub, instead of
-		// following the link from within Sourcegraph.
+		// following the link from within Khulnasoft.
 		http.Redirect(w, r, "/site-admin/github-apps", http.StatusFound)
 		return
 	}

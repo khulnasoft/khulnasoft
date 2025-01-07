@@ -64,7 +64,7 @@
         <DismissibleAlert variant="info" partialStorageKey={null}>
             This Khulnasoft instance has reached&nbsp;
             {noLicenseWarningUserCount === null ? 'the limit for' : noLicenseWarningUserCount} free users, and an admin must&nbsp;
-            <a href="https://sourcegraph.com/contact/sales">
+            <a href="https://khulnasoft.com/contact/sales">
                 contact Khulnasoft to start a free trial or purchase a license
             </a>&nbsp; to add more
         </DismissibleAlert>
@@ -100,15 +100,15 @@
                 : 'will expire in ' + formatDistanceStrict(expiresAt, Date.now())}.&nbsp;
             <a href="/site-admin/license">Renew now</a>
             &nbsp;or&nbsp;
-            <a href="https://sourcegraph.com/contact">contact Khulnasoft</a>
+            <a href="https://khulnasoft.com/contact">contact Khulnasoft</a>
         </DismissibleAlert>
     {/if}
 
-    {#if process.env.SOURCEGRAPH_API_URL}
+    {#if process.env.KHULNASOFT_API_URL}
         <DismissibleAlert variant="danger" partialStorageKey="dev-web-server-alert">
             <strong>Warning!</strong>&nbsp;This build uses data from the proxied API:
-            <a class="proxy-link" target="__blank" href={process.env.SOURCEGRAPH_API_URL}>
-                {process.env.SOURCEGRAPH_API_URL}
+            <a class="proxy-link" target="__blank" href={process.env.KHULNASOFT_API_URL}>
+                {process.env.KHULNASOFT_API_URL}
             </a>
         </DismissibleAlert>
     {/if}

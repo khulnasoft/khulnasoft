@@ -23,15 +23,15 @@ import (
 var _ job.Job = (*sourcegraphOperatorCleaner)(nil)
 
 // sourcegraphOperatorCleaner is a worker responsible for cleaning up expired
-// Sourcegraph Operator user accounts.
+// Khulnasoft Operator user accounts.
 type sourcegraphOperatorCleaner struct{}
 
-func NewSourcegraphOperatorCleaner() job.Job {
+func NewKhulnasoftOperatorCleaner() job.Job {
 	return &sourcegraphOperatorCleaner{}
 }
 
 func (j *sourcegraphOperatorCleaner) Description() string {
-	return "Cleans up expired Sourcegraph Operator user accounts."
+	return "Cleans up expired Khulnasoft Operator user accounts."
 }
 
 func (j *sourcegraphOperatorCleaner) Config() []env.Config {
@@ -40,7 +40,7 @@ func (j *sourcegraphOperatorCleaner) Config() []env.Config {
 
 func (j *sourcegraphOperatorCleaner) Routines(_ context.Context, observationCtx *observation.Context) ([]goroutine.BackgroundRoutine, error) {
 	cloudSiteConfig := cloud.SiteConfig()
-	if !cloudSiteConfig.SourcegraphOperatorAuthProviderEnabled() {
+	if !cloudSiteConfig.KhulnasoftOperatorAuthProviderEnabled() {
 		return nil, nil
 	}
 
@@ -54,7 +54,7 @@ func (j *sourcegraphOperatorCleaner) Routines(_ context.Context, observationCtx 
 			context.Background(),
 			&sourcegraphOperatorCleanHandler{
 				db:                db,
-				lifecycleDuration: sourcegraphoperator.LifecycleDuration(cloudSiteConfig.AuthProviders.SourcegraphOperator.LifecycleDuration),
+				lifecycleDuration: sourcegraphoperator.LifecycleDuration(cloudSiteConfig.AuthProviders.KhulnasoftOperator.LifecycleDuration),
 			},
 			goroutine.WithName("auth.expired-soap-cleaner"),
 			goroutine.WithDescription("deletes expired SOAP operator user accounts"),
@@ -70,7 +70,7 @@ type sourcegraphOperatorCleanHandler struct {
 	lifecycleDuration time.Duration
 }
 
-// Handle updates user accounts with Sourcegraph Operator ("sourcegraph-operator")
+// Handle updates user accounts with Khulnasoft Operator ("sourcegraph-operator")
 // external accounts based on the configured lifecycle duration every minute such
 // that when the external account has exceeded the lifecycle duration:
 //
@@ -90,7 +90,7 @@ WHERE
 	AND user_external_accounts.deleted_at IS NULL
 GROUP BY user_id
 `,
-		auth.SourcegraphOperatorProviderType,
+		auth.KhulnasoftOperatorProviderType,
 		time.Now().Add(-1*h.lifecycleDuration),
 	)
 	rows, err := h.db.QueryContext(ctx, q.Query(sqlf.PostgresBindVar), q.Args()...)
@@ -119,7 +119,7 @@ GROUP BY user_id
 		var isServiceAccount bool
 		var soapExternalAccountID int32
 		for _, account := range accounts {
-			if account.ServiceType == auth.SourcegraphOperatorProviderType {
+			if account.ServiceType == auth.KhulnasoftOperatorProviderType {
 				soapExternalAccountID = account.ID
 				data, err := sourcegraphoperator.GetAccountData(ctx, account.AccountData)
 				if err == nil && data.ServiceAccount {
@@ -148,11 +148,11 @@ GROUP BY user_id
 		return err
 	}
 
-	// Help exclude Sourcegraph operator related events from analytics
+	// Help exclude Khulnasoft operator related events from analytics
 	ctx = actor.WithActor(
 		ctx,
 		&actor.Actor{
-			SourcegraphOperator: true,
+			KhulnasoftOperator: true,
 		},
 	)
 
@@ -179,7 +179,7 @@ GROUP BY user_id
 	if len(deleteExternalAccountIDs) > 0 {
 		if err := h.db.UserExternalAccounts().Delete(ctx, database.ExternalAccountsDeleteOptions{
 			IDs:         deleteExternalAccountIDs,
-			ServiceType: auth.SourcegraphOperatorProviderType,
+			ServiceType: auth.KhulnasoftOperatorProviderType,
 			HardDelete:  true,
 		}); err != nil && !errcode.IsNotFound(err) {
 			return errors.Wrap(err, "remove SOAP accounts")

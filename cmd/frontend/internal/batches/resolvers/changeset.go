@@ -280,7 +280,7 @@ func (r *changesetResolver) Author() (*graphqlbackend.PersonResolver, error) {
 		r.store.DatabaseDB(),
 		name,
 		email,
-		// Try to find the corresponding Sourcegraph user.
+		// Try to find the corresponding Khulnasoft user.
 		true,
 	), nil
 }

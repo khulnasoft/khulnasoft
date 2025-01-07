@@ -43,7 +43,7 @@ var QueuePerRepoIndexJobs = []IndexJobType{
 var repoCounter = promauto.NewCounterVec(prometheus.CounterOpts{
 	Namespace: "src",
 	Name:      "own_background_index_scheduler_repos_queued_total",
-	Help:      "Number of repositories queued for indexing in Sourcegraph Own",
+	Help:      "Number of repositories queued for indexing in Khulnasoft Own",
 }, []string{"op"})
 
 func GetOwnIndexSchedulerRoutines(db database.DB, observationCtx *observation.Context) (routines []goroutine.BackgroundRoutine) {

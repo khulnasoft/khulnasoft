@@ -43,7 +43,7 @@ service SubscriptionsService {
 
   // RevokeEnterpriseSubscriptionLicense revokes an existing license for an
   // Enterprise subscription, permanently disabling its use for features
-  // managed by Sourcegraph. Revocation cannot be undone.
+  // managed by Khulnasoft. Revocation cannot be undone.
   rpc RevokeEnterpriseSubscriptionLicense(RevokeEnterpriseSubscriptionLicenseRequest) returns (RevokeEnterpriseSubscriptionLicenseResponse) {
     option idempotency_level = IDEMPOTENT;
   }
@@ -100,7 +100,7 @@ message EnterpriseSubscriptionSalesforceMetadata {
   string subscription_id = 1;
 }
 
-// EnterpriseSubscriptionInstanceType describes what kind of Sourcegraph
+// EnterpriseSubscriptionInstanceType describes what kind of Khulnasoft
 // instance an Enterprise Subscription is designated for.
 enum EnterpriseSubscriptionInstanceType {
   ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_UNSPECIFIED = 0;
@@ -108,11 +108,11 @@ enum EnterpriseSubscriptionInstanceType {
   ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_PRIMARY = 1;
   // Represents a secondary (e.g. dev or testing) instance.
   ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_SECONDARY = 2;
-  // Represents a Sourcegraph-internal instance.
+  // Represents a Khulnasoft-internal instance.
   ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_INTERNAL = 3;
 }
 
-// EnterpriseSubscription represents a Sourcegraph Enterprise subscription.
+// EnterpriseSubscription represents a Khulnasoft Enterprise subscription.
 message EnterpriseSubscription {
   // ID is the external, prefixed UUID-format identifier for this subscription
   // (e.g. "es_...").
@@ -131,7 +131,7 @@ message EnterpriseSubscription {
   EnterpriseSubscriptionInstanceType instance_type = 6;
 }
 
-// EnterpriseSubscriptionLicenseKey is the classic offline Sourcegraph license
+// EnterpriseSubscriptionLicenseKey is the classic offline Khulnasoft license
 // key, and corresponds to ENTERPRISE_SUBSCRIPTION_LICENSE_TYPE_KEY.
 message EnterpriseSubscriptionLicenseKey {
   // Read-only information embedded into ENTERPRISE_SUBSCRIPTION_LICENSE_TYPE_KEY.
@@ -172,7 +172,7 @@ message EnterpriseSubscriptionLicenseCondition {
     STATUS_CREATED = 1;
     // License revocation status, i.e. 'is_revoked'
     STATUS_REVOKED = 2;
-    // License usage from a Sourcegraph instance was detected.
+    // License usage from a Khulnasoft instance was detected.
     STATUS_INSTANCE_USAGE_DETECTED = 3;
   }
 
@@ -184,7 +184,7 @@ message EnterpriseSubscriptionLicenseCondition {
   string message = 3;
 }
 
-// EnterpriseSubscriptionLicense represents a license for a Sourcegraph
+// EnterpriseSubscriptionLicense represents a license for a Khulnasoft
 // Enterprise product. Multiple licenses are associated with a single
 // subscription, typically a series of licenses with the most recent one being
 // a subscription's active license.
@@ -218,12 +218,12 @@ message GetEnterpriseSubscriptionResponse {
 // licenses.
 enum EnterpriseSubscriptionLicenseType {
   ENTERPRISE_SUBSCRIPTION_LICENSE_TYPE_UNSPECIFIED = 0;
-  // The 'license key' type is the classic licensing mechanism that Sourcegraph
+  // The 'license key' type is the classic licensing mechanism that Khulnasoft
   // has always had. They are signed by a private key and offline-validated by
-  // a public key that ships with all Sourcegraph builds.
+  // a public key that ships with all Khulnasoft builds.
   //
-  // Each Subscription is expected to have at most one active Sourcegraph classic
-  // license used by a Sourcegraph instance at a time.
+  // Each Subscription is expected to have at most one active Khulnasoft classic
+  // license used by a Khulnasoft instance at a time.
   ENTERPRISE_SUBSCRIPTION_LICENSE_TYPE_KEY = 1;
 }
 

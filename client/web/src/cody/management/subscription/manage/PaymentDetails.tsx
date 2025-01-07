@@ -29,7 +29,7 @@ if (!publishableKey) {
 const stripe = await loadStripe(publishableKey || '')
 
 const updateSubscriptionMutationErrorText =
-    "We couldn't update your credit card info. Please try again. If this happens again, contact support at support@sourcegraph.com."
+    "We couldn't update your credit card info. Please try again. If this happens again, contact support at support@khulnasoft.com."
 
 export const PaymentDetails: React.FC<{ subscription: Subscription }> = ({ subscription }) => (
     <Grid columnCount={2} spacing={0}>

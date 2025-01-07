@@ -125,13 +125,13 @@ const navItems: NavMenuSectionProps[] = [
             {
                 content: 'About Khulnasoft',
                 suffixIcon: OpenInNewIcon,
-                to: 'https://sourcegraph.com',
+                to: 'https://khulnasoft.com',
                 key: 'Khulnasoft',
             },
             {
                 content: 'Browser Extension',
                 suffixIcon: OpenInNewIcon,
-                to: 'https://sourcegraph.com/docs/integration/browser_extension',
+                to: 'https://khulnasoft.com/docs/integration/browser_extension',
                 key: 'Extension',
             },
         ],

@@ -12,7 +12,7 @@ func SyntectServer() *monitoring.Dashboard {
 		Name:                     "syntect-server",
 		Title:                    "Syntect Server",
 		Description:              "Handles syntax highlighting for code files.",
-		NoSourcegraphDebugServer: true, // This is third-party service
+		NoKhulnasoftDebugServer: true, // This is third-party service
 		Groups: []monitoring.Group{
 			{
 				Title: "General",

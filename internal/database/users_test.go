@@ -329,14 +329,14 @@ func TestUsers_ListCount(t *testing.T) {
 		t.Errorf("got %d, want %d", count, want)
 	}
 
-	// Create three users with common Sourcegraph admin username patterns.
+	// Create three users with common Khulnasoft admin username patterns.
 	for _, admin := range []struct {
 		username string
 		email    string
 	}{
-		{"sourcegraph-admin", "admin@sourcegraph.com"},
-		{"sourcegraph-management-abc", "support@sourcegraph.com"},
-		{"managed-abc", "abc-support@sourcegraph.com"},
+		{"sourcegraph-admin", "admin@khulnasoft.com"},
+		{"sourcegraph-management-abc", "support@khulnasoft.com"},
+		{"managed-abc", "abc-support@khulnasoft.com"},
 	} {
 		user, err := db.Users().Create(ctx, NewUser{Username: admin.username})
 		if err != nil {
@@ -347,24 +347,24 @@ func TestUsers_ListCount(t *testing.T) {
 		}
 	}
 
-	if count, err := db.Users().Count(ctx, &UsersListOptions{ExcludeSourcegraphAdmins: false}); err != nil {
+	if count, err := db.Users().Count(ctx, &UsersListOptions{ExcludeKhulnasoftAdmins: false}); err != nil {
 		t.Fatal(err)
 	} else if want := 3; count != want {
 		t.Errorf("got %d, want %d", count, want)
 	}
 
-	if count, err := db.Users().Count(ctx, &UsersListOptions{ExcludeSourcegraphAdmins: true}); err != nil {
+	if count, err := db.Users().Count(ctx, &UsersListOptions{ExcludeKhulnasoftAdmins: true}); err != nil {
 		t.Fatal(err)
 	} else if want := 0; count != want {
 		t.Errorf("got %d, want %d", count, want)
 	}
-	if users, err := db.Users().List(ctx, &UsersListOptions{ExcludeSourcegraphAdmins: true}); err != nil {
+	if users, err := db.Users().List(ctx, &UsersListOptions{ExcludeKhulnasoftAdmins: true}); err != nil {
 		t.Fatal(err)
 	} else if len(users) > 0 {
 		t.Errorf("got %d, want empty", len(users))
 	}
 
-	// Create a Sourcegraph Operator user and should be excluded when desired
+	// Create a Khulnasoft Operator user and should be excluded when desired
 	_, err = db.Users().CreateWithExternalAccount(
 		ctx,
 		NewUser{
@@ -379,8 +379,8 @@ func TestUsers_ListCount(t *testing.T) {
 	count, err := db.Users().Count(
 		ctx,
 		&UsersListOptions{
-			ExcludeSourcegraphAdmins:    true,
-			ExcludeSourcegraphOperators: true,
+			ExcludeKhulnasoftAdmins:    true,
+			ExcludeKhulnasoftOperators: true,
 		},
 	)
 	require.NoError(t, err)
@@ -388,8 +388,8 @@ func TestUsers_ListCount(t *testing.T) {
 	users, err := db.Users().List(
 		ctx,
 		&UsersListOptions{
-			ExcludeSourcegraphAdmins:    true,
-			ExcludeSourcegraphOperators: true,
+			ExcludeKhulnasoftAdmins:    true,
+			ExcludeKhulnasoftOperators: true,
 		},
 	)
 	require.NoError(t, err)

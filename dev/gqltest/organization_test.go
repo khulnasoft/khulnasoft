@@ -94,12 +94,12 @@ func TestOrganization(t *testing.T) {
 		}
 	})
 
-	// Docs: https://sourcegraph.com/docs/user/organizations
+	// Docs: https://khulnasoft.com/docs/user/organizations
 	t.Run("auth.userOrgMap", func(t *testing.T) {
 		// Create a test user (gqltest-org-user-1) without settings "auth.userOrgMap",
 		// the user should not be added to the organization (gqltest-org) automatically.
 		const testUsername1 = "gqltest-org-user-1"
-		testUserID1, err := client.CreateUser(testUsername1, testUsername1+"@sourcegraph.com")
+		testUserID1, err := client.CreateUser(testUsername1, testUsername1+"@khulnasoft.com")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -132,7 +132,7 @@ func TestOrganization(t *testing.T) {
 			// Create another test user (gqltest-org-user-2) and the user should be added to
 			// the organization (gqltest-org) automatically.
 			const testUsername2 = "gqltest-org-user-2"
-			testUserID2, err := client.CreateUser(testUsername2, testUsername2+"@sourcegraph.com")
+			testUserID2, err := client.CreateUser(testUsername2, testUsername2+"@khulnasoft.com")
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -158,7 +158,7 @@ func TestOrganization(t *testing.T) {
 
 func createOrganizationUser(orgID string) (string, error) {
 	const tmpUserName = "gqltest-org-user-tmp"
-	tmpUserID, err := client.CreateUser(tmpUserName, tmpUserName+"@sourcegraph.com")
+	tmpUserID, err := client.CreateUser(tmpUserName, tmpUserName+"@khulnasoft.com")
 	if err != nil {
 		return tmpUserID, err
 	}

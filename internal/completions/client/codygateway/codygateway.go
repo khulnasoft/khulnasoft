@@ -72,7 +72,7 @@ func overwriteErrSource(err error) error {
 		return nil
 	}
 	if statusErr, ok := types.IsErrStatusNotOK(err); ok {
-		statusErr.Source = "Sourcegraph Cody Gateway"
+		statusErr.Source = "Khulnasoft Cody Gateway"
 	}
 	return err
 }
@@ -90,7 +90,7 @@ func (c *codyGatewayClient) clientForParams(logger log.Logger, feature types.Com
 	// provider name MUST match a well-known value, but this should not be required.
 	//
 	// e.g. If the site admin has configured a provider with the name "anthropic",
-	// that is using the Sourcegraph API provider, then things will work. But if the
+	// that is using the Khulnasoft API provider, then things will work. But if the
 	// site admin named their provider "anthropic-via-cody-gateway", then this code
 	// will fail, not understanding which API client should be used to process the
 	// request.
@@ -112,7 +112,7 @@ func (c *codyGatewayClient) clientForParams(logger log.Logger, feature types.Com
 	// the `httpcli.Doer` returned from `tokenManager` will route this to Cody Gateway, and use the
 	// the codyGatewayClient's access token and endpoint.
 	//
-	// For Cody Pro / Sourcegraph.com this is even tricker, since that uses a different auth mechanism.
+	// For Cody Pro / Khulnasoft.com this is even tricker, since that uses a different auth mechanism.
 	// Hence why we update the access token used below based on the request we are resolving.
 	// (Which assumes that this codyGatewayClient will NOT be reused across different requests.)
 	if request.ModelConfigInfo.CodyProUserAccessToken != nil {

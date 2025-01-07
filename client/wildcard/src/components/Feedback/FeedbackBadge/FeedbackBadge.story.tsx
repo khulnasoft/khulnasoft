@@ -40,7 +40,7 @@ export const FeedbackBadgeExample: StoryFn = () => (
                 className="mb-2"
                 status={status}
                 key={status}
-                feedback={{ mailto: 'support@sourcegraph.com' }}
+                feedback={{ mailto: 'support@khulnasoft.com' }}
             />
         ))}
     </>

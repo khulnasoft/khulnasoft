@@ -86,7 +86,7 @@ describe('Code monitoring', () => {
                                 },
                                 trigger: {
                                     id: 'Q29kZU1vbml0b3JUcmlnZ2VyUXVlcnk6Mg==',
-                                    query: 'type:diff repo:sourcegraph/sourcegraph after:\\"1 week ago\\" filtered  patternType:literal',
+                                    query: 'type:diff repo:khulnasoft/khulnasoft after:\\"1 week ago\\" filtered  patternType:literal',
                                 },
                                 owner: {
                                     id: 'VXNlcjoyNDc=',

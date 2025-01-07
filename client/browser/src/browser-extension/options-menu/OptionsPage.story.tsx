@@ -28,9 +28,9 @@ export default config
 
 const OptionsPageWrapper: React.FunctionComponent<React.PropsWithChildren<Partial<OptionsPageProps>>> = props => {
     const [urls, setUrls] = useState([
-        'https://sourcegraph.com',
+        'https://khulnasoft.com',
         'https://k8s.sgdev.org',
-        'https://sourcegraph.sourcegraph.com',
+        'https://sourcegraph.khulnasoft.com',
     ])
 
     return (
@@ -117,7 +117,7 @@ export const AllOptionsPages: StoryFn = (args = {}) => (
             <div>
                 <H3 className="text-center">Khulnasoft.com</H3>
                 <OptionsPageWrapper
-                    sourcegraphUrl="https://sourcegraph.com"
+                    sourcegraphUrl="https://khulnasoft.com"
                     currentUser={{ settingsURL: '/users/john-doe/settings', siteAdmin: false }}
                     hasRepoSyncError={true}
                     requestPermissionsHandler={requestPermissionsHandler}
@@ -158,7 +158,7 @@ AllOptionsPages.argTypes = {
     },
 }
 AllOptionsPages.args = {
-    sourcegraphUrl: 'https://not-sourcegraph.com',
+    sourcegraphUrl: 'https://not-khulnasoft.com',
     version: '0.0.0',
     showKhulnasoftComAlert: false,
 }

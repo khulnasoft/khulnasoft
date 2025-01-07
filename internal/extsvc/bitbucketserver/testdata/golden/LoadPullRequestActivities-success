@@ -46,7 +46,7 @@
     "createdDate": 1572432617016,
     "user": {
      "name": "tomas",
-     "emailAddress": "tomas@sourcegraph.com",
+     "emailAddress": "tomas@khulnasoft.com",
      "id": 3,
      "displayName": "Tomás Senart",
      "active": true,
@@ -60,7 +60,7 @@
      "authorTimestamp": 1572432617000,
      "committer": {
       "name": "tomas",
-      "emailAddress": "tomas@sourcegraph.com",
+      "emailAddress": "tomas@khulnasoft.com",
       "id": 3,
       "displayName": "Tomás Senart",
       "active": true,
@@ -76,7 +76,7 @@
        "authorTimestamp": 1572431324000,
        "committer": {
         "name": "Tomás Senart",
-        "emailAddress": "tomas@sourcegraph.com"
+        "emailAddress": "tomas@khulnasoft.com"
        },
        "committerTimestamp": 1572431324000,
        "message": "Merge pull request #4 in SOUR/vegeta from encode-comment to master\n\n* commit 'db6f6959b162f5501f43898e1d44c03de5de6202':\n  Encode comment is fun!",
@@ -116,7 +116,7 @@
     "createdDate": 1572432552916,
     "user": {
      "name": "tomas",
-     "emailAddress": "tomas@sourcegraph.com",
+     "emailAddress": "tomas@khulnasoft.com",
      "id": 3,
      "displayName": "Tomás Senart",
      "active": true,
@@ -131,7 +131,7 @@
      "text": "Comment.",
      "author": {
       "name": "tomas",
-      "emailAddress": "tomas@sourcegraph.com",
+      "emailAddress": "tomas@khulnasoft.com",
       "id": 3,
       "displayName": "Tomás Senart",
       "active": true,
@@ -147,7 +147,7 @@
        "text": "Reply.",
        "author": {
         "name": "tomas",
-        "emailAddress": "tomas@sourcegraph.com",
+        "emailAddress": "tomas@khulnasoft.com",
         "id": 3,
         "displayName": "Tomás Senart",
         "active": true,
@@ -162,7 +162,7 @@
          "id": 4,
          "author": {
           "name": "tomas",
-          "emailAddress": "tomas@sourcegraph.com",
+          "emailAddress": "tomas@khulnasoft.com",
           "id": 3,
           "displayName": "Tomás Senart",
           "active": true,
@@ -185,7 +185,7 @@
        "id": 5,
        "author": {
         "name": "tomas",
-        "emailAddress": "tomas@sourcegraph.com",
+        "emailAddress": "tomas@khulnasoft.com",
         "id": 3,
         "displayName": "Tomás Senart",
         "active": true,
@@ -210,7 +210,7 @@
     "createdDate": 1572430034930,
     "user": {
      "name": "tomas",
-     "emailAddress": "tomas@sourcegraph.com",
+     "emailAddress": "tomas@khulnasoft.com",
      "id": 3,
      "displayName": "Tomás Senart",
      "active": true,
@@ -224,7 +224,7 @@
     "createdDate": 1572429831834,
     "user": {
      "name": "tomas",
-     "emailAddress": "tomas@sourcegraph.com",
+     "emailAddress": "tomas@khulnasoft.com",
      "id": 3,
      "displayName": "Tomás Senart",
      "active": true,
@@ -238,7 +238,7 @@
     "createdDate": 1572429777823,
     "user": {
      "name": "tomas",
-     "emailAddress": "tomas@sourcegraph.com",
+     "emailAddress": "tomas@khulnasoft.com",
      "id": 3,
      "displayName": "Tomás Senart",
      "active": true,
@@ -252,7 +252,7 @@
     "createdDate": 1572429738565,
     "user": {
      "name": "tomas",
-     "emailAddress": "tomas@sourcegraph.com",
+     "emailAddress": "tomas@khulnasoft.com",
      "id": 3,
      "displayName": "Tomás Senart",
      "active": true,
@@ -266,7 +266,7 @@
     "createdDate": 1572429681822,
     "user": {
      "name": "tomas",
-     "emailAddress": "tomas@sourcegraph.com",
+     "emailAddress": "tomas@khulnasoft.com",
      "id": 3,
      "displayName": "Tomás Senart",
      "active": true,
@@ -280,7 +280,7 @@
     "createdDate": 1572429656637,
     "user": {
      "name": "tomas",
-     "emailAddress": "tomas@sourcegraph.com",
+     "emailAddress": "tomas@khulnasoft.com",
      "id": 3,
      "displayName": "Tomás Senart",
      "active": true,
@@ -291,7 +291,7 @@
     "addedReviewers": [
      {
       "name": "tomas",
-      "emailAddress": "tomas@sourcegraph.com",
+      "emailAddress": "tomas@khulnasoft.com",
       "id": 3,
       "displayName": "Tomás Senart",
       "active": true,
@@ -305,7 +305,7 @@
     "createdDate": 1563286308065,
     "user": {
      "name": "milton",
-     "emailAddress": "dev@sourcegraph.com",
+     "emailAddress": "dev@khulnasoft.com",
      "id": 1,
      "displayName": "milton woof",
      "active": true,

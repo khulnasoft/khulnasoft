@@ -55,7 +55,7 @@ const CommonSearchDemo = () => (
 
         <ComboboxPopover>
             <ComboboxList>
-                <ComboboxOption value="github.com/sourcegraph/sourcegraph" />
+                <ComboboxOption value="github.com/khulnasoft/khulnasoft" />
                 <ComboboxOption value="github.com/sourcegraph/about" />
                 <ComboboxOption value="github.com/sourcegraph/deploy" />
                 <ComboboxOption value="github.com/sourcegraph/handbook" />
@@ -74,7 +74,7 @@ const ComboboxOpenOnFocusDemo = () => (
 
         <ComboboxPopover>
             <ComboboxList>
-                <ComboboxOption value="github.com/sourcegraph/sourcegraph" />
+                <ComboboxOption value="github.com/khulnasoft/khulnasoft" />
                 <ComboboxOption value="github.com/sourcegraph/about" />
                 <ComboboxOption value="github.com/sourcegraph/deploy" />
                 <ComboboxOption value="github.com/sourcegraph/handbook" />
@@ -94,7 +94,7 @@ const ScrollableListDemo = () => (
 
         <ComboboxPopover>
             <ComboboxList style={{ maxHeight: 155 }}>
-                <ComboboxOption value="github.com/sourcegraph/sourcegraph" />
+                <ComboboxOption value="github.com/khulnasoft/khulnasoft" />
                 <ComboboxOption value="github.com/sourcegraph/about" />
                 <ComboboxOption value="github.com/sourcegraph/deploy" />
                 <ComboboxOption value="github.com/sourcegraph/handbook" />
@@ -117,7 +117,7 @@ const ComboboxWithIcon = () => (
 
         <ComboboxPopover>
             <ComboboxList>
-                <ComboboxOption value="github.com/sourcegraph/sourcegraph">
+                <ComboboxOption value="github.com/khulnasoft/khulnasoft">
                     <Icon aria-hidden={true} svgPath={mdiSourceRepository} /> <ComboboxOptionText />
                 </ComboboxOption>
 
@@ -147,7 +147,7 @@ const ComboboxCustomSuggestionRenderDemo = () => (
         <ComboboxPopover>
             <ComboboxList>
                 <ComboboxOptionGroup heading="Main sourcegraph repositories">
-                    <ComboboxOption value="github.com/sourcegraph/sourcegraph" />
+                    <ComboboxOption value="github.com/khulnasoft/khulnasoft" />
                     <ComboboxOption value="github.com/sourcegraph/about" />
                     <ComboboxOption value="github.com/sourcegraph/handbook" />
                 </ComboboxOptionGroup>
@@ -226,7 +226,7 @@ function useRepoSuggestions(searchTerm: string): { suggestions: string[]; loadin
 
 const SUGGESTIONS_CACHE: Record<string, string[]> = {}
 const SUGGESTIONS_MOCK = [
-    'github.com/sourcegraph/sourcegraph',
+    'github.com/khulnasoft/khulnasoft',
     'github.com/sourcegraph/about',
     'github.com/sourcegraph/deploy',
     'github.com/sourcegraph/handbook',

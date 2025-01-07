@@ -18,7 +18,7 @@ import { createCodyContextFiltersResult } from './graphQlResponseHelpers'
 import { commonWebGraphQlResults } from './graphQlResults'
 
 describe('RepositoryCommitPage', () => {
-    const repositoryName = 'github.com/sourcegraph/sourcegraph'
+    const repositoryName = 'github.com/khulnasoft/khulnasoft'
     const commitID = '1e7bd000e78cf35c6e1be1b9f1510b4aadfaa416'
     const commitDate = subDays(new Date(), 7).toISOString()
     const commonBlobGraphQlResults: Partial<WebGraphQlOperations & SharedGraphQlOperations> = {
@@ -268,12 +268,12 @@ describe('RepositoryCommitPage', () => {
             repositoryRedirect: {
                 __typename: 'Repository',
                 id: 'UmVwb3NpdG9yeTozNjgwOTI1MA==',
-                name: 'github.com/sourcegraph/sourcegraph',
-                url: '/github.com/sourcegraph/sourcegraph',
+                name: 'github.com/khulnasoft/khulnasoft',
+                url: '/github.com/khulnasoft/khulnasoft',
                 sourceType: RepositoryType.GIT_REPOSITORY,
                 externalURLs: [
                     {
-                        url: 'https://github.com/sourcegraph/sourcegraph',
+                        url: 'https://github.com/khulnasoft/khulnasoft',
                         serviceKind: ExternalServiceKind.GITHUB,
                     },
                 ],
@@ -296,7 +296,7 @@ describe('RepositoryCommitPage', () => {
                     __typename: 'GitCommit',
                     oid: '1e7bd000e78cf35c6e1be1b9f1510b4aadfaa416',
                     tree: {
-                        url: '/github.com/sourcegraph/sourcegraph',
+                        url: '/github.com/khulnasoft/khulnasoft',
                     },
                 },
                 changelist: null,

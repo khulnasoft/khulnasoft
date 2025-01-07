@@ -3,7 +3,7 @@ resources:
     kind: StatefulSet
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b3fe796be87f65da527bbd9e3d2fbe7aea6b6fec1c87043e79450e7378513d93
+        appliance.khulnasoft.com/configHash: b3fe796be87f65da527bbd9e3d2fbe7aea6b6fec1c87043e79450e7378513d93
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
       labels:
@@ -131,7 +131,7 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b3fe796be87f65da527bbd9e3d2fbe7aea6b6fec1c87043e79450e7378513d93
+        appliance.khulnasoft.com/configHash: b3fe796be87f65da527bbd9e3d2fbe7aea6b6fec1c87043e79450e7378513d93
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -217,8 +217,8 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/currentVersion: 5.3.9104
-        appliance.sourcegraph.com/managed: "true"
+        appliance.khulnasoft.com/currentVersion: 5.3.9104
+        appliance.khulnasoft.com/managed: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
       name: sg
       namespace: NORMALIZED_FOR_TESTING
@@ -228,7 +228,7 @@ resources:
     kind: ServiceAccount
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b3fe796be87f65da527bbd9e3d2fbe7aea6b6fec1c87043e79450e7378513d93
+        appliance.khulnasoft.com/configHash: b3fe796be87f65da527bbd9e3d2fbe7aea6b6fec1c87043e79450e7378513d93
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -247,7 +247,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: b3fe796be87f65da527bbd9e3d2fbe7aea6b6fec1c87043e79450e7378513d93
+        appliance.khulnasoft.com/configHash: b3fe796be87f65da527bbd9e3d2fbe7aea6b6fec1c87043e79450e7378513d93
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app: grafana

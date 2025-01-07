@@ -249,7 +249,7 @@ func TestCorrelateMetaDataRootX(t *testing.T) {
 
 	expectedState := &State{
 		LSIFVersion: "0.4.3",
-		ProjectRoot: "file:///__w/sourcegraph/sourcegraph/shared/",
+		ProjectRoot: "file:///__w/khulnasoft/khulnasoft/shared/",
 		DocumentData: map[int]string{
 			2: "../node_modules/@types/history/index.d.ts",
 		},

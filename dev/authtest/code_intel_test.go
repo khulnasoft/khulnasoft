@@ -23,7 +23,7 @@ func TestCodeIntelEndpoints(t *testing.T) {
 	const testUsername = "authtest-user-code-intel"
 	userClient, err := gqltestutil.NewClient(*baseURL)
 	require.NoError(t, err)
-	require.NoError(t, userClient.SignUp(testUsername+"@sourcegraph.com", testUsername, "mysecurepassword"))
+	require.NoError(t, userClient.SignUp(testUsername+"@khulnasoft.com", testUsername, "mysecurepassword"))
 	defer func() {
 		err := client.DeleteUser(userClient.AuthenticatedUserID(), true)
 		if err != nil {

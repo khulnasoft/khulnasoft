@@ -32,7 +32,7 @@ func NewPythonPackagesSyncer(
 		logger:             log.Scoped("PythonPackagesSyncer"),
 		typ:                "python_packages",
 		scheme:             dependencies.PythonPackagesScheme,
-		placeholder:        reposource.ParseVersionedPackage("sourcegraph.com/placeholder@v0.0.0"),
+		placeholder:        reposource.ParseVersionedPackage("khulnasoft.com/placeholder@v0.0.0"),
 		svc:                svc,
 		configDeps:         connection.Dependencies,
 		source:             &pythonPackagesSyncer{client: client, fs: fs},

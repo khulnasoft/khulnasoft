@@ -301,7 +301,7 @@ export const checkIsGitHubDotCom = (url = (windowLocation__testingOnly.value ?? 
  */
 export const checkIsGitHub = (): boolean => checkIsGitHubDotCom() || checkIsGitHubEnterprise()
 
-const OPEN_ON_SOURCEGRAPH_ID = 'open-on-sourcegraph'
+const OPEN_ON_KHULNASOFT_ID = 'open-on-sourcegraph'
 
 export const createOpenOnKhulnasoftIfNotExists: MountGetter = (container: HTMLElement): HTMLElement | null => {
     const isGlobalNavigationUpdateFeaturePreviewEnabled = !!querySelectorOrSelf(container, 'header.AppHeader')
@@ -314,13 +314,13 @@ export const createOpenOnKhulnasoftIfNotExists: MountGetter = (container: HTMLEl
         return null
     }
     // Check for existing
-    let mount = pageheadActions.querySelector<HTMLElement>('#' + OPEN_ON_SOURCEGRAPH_ID)
+    let mount = pageheadActions.querySelector<HTMLElement>('#' + OPEN_ON_KHULNASOFT_ID)
     if (mount) {
         return mount
     }
     // Create new
     mount = document.createElement(isGlobalNavigationUpdateFeaturePreviewEnabled ? 'div' : 'li')
-    mount.id = OPEN_ON_SOURCEGRAPH_ID
+    mount.id = OPEN_ON_KHULNASOFT_ID
     pageheadActions.prepend(mount)
     return mount
 }
@@ -337,13 +337,13 @@ const searchEnhancement: GithubCodeHost['searchEnhancement'] = {
         resolveView: element => ({ element }),
     },
     onChange: ({ value, searchURL, resultElement: ghElement }) => {
-        const SEARCH_IN_SOURCEGRAPH_SELECTOR = '#jump-to-sourcegraph-search-global'
+        const SEARCH_IN_KHULNASOFT_SELECTOR = '#jump-to-sourcegraph-search-global'
 
         /** Create "Search in Khulnasoft" element based on GH element */
         const createElement = (): HTMLElement => {
             /** SG Base element on top of GH "All Github" element */
             const sgElement = ghElement.cloneNode(true) as HTMLElement
-            sgElement.id = SEARCH_IN_SOURCEGRAPH_SELECTOR.replace('#', '')
+            sgElement.id = SEARCH_IN_KHULNASOFT_SELECTOR.replace('#', '')
             sgElement.classList.remove('navigation-focus')
             sgElement.setAttribute('aria-selected', 'false')
 
@@ -378,7 +378,7 @@ const searchEnhancement: GithubCodeHost['searchEnhancement'] = {
             sgElement.setAttribute('style', `display: ${value ? 'initial' : 'none !important'}`)
         }
 
-        updateContent(document.querySelector<HTMLElement>(SEARCH_IN_SOURCEGRAPH_SELECTOR) ?? createElement())
+        updateContent(document.querySelector<HTMLElement>(SEARCH_IN_KHULNASOFT_SELECTOR) ?? createElement())
     },
 }
 

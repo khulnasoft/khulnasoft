@@ -165,7 +165,7 @@ export const FindChangesSimpleSearch: FC<SimpleSearchProps> = ({ onSimpleSearchU
                                 <Input
                                     id="repoNamePattern"
                                     name="repoNamePattern"
-                                    placeholder="@sourcegraph.com"
+                                    placeholder="@khulnasoft.com"
                                     type="text"
                                     onChange={event => setAuthorPattern(event.target.value)}
                                 />

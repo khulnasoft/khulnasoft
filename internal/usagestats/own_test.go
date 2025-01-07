@@ -207,7 +207,7 @@ func TestGetOwnershipUsageStatsAssignedOwnersCount(t *testing.T) {
 	var repoID api.RepoID = 1
 	require.NoError(t, db.Repos().Create(ctx, &types.Repo{
 		ID:   repoID,
-		Name: "github.com/sourcegraph/sourcegraph",
+		Name: "github.com/khulnasoft/khulnasoft",
 	}))
 	user, err := db.Users().Create(ctx, database.NewUser{Username: "foo"})
 	require.NoError(t, err)

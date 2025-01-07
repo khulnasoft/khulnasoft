@@ -6,7 +6,7 @@
           "createdDate": 1588667488870,
           "user": {
             "name": "milton",
-            "emailAddress": "dev@sourcegraph.com",
+            "emailAddress": "dev@khulnasoft.com",
             "id": 1,
             "displayName": "milton woof",
             "active": true,
@@ -121,7 +121,7 @@
             "author": {
               "user": {
                 "name": "thorsten",
-                "emailAddress": "thorsten@sourcegraph.com",
+                "emailAddress": "thorsten@khulnasoft.com",
                 "id": 104,
                 "displayName": "thorsten",
                 "active": true,
@@ -144,7 +144,7 @@
               {
                 "user": {
                   "name": "milton",
-                  "emailAddress": "dev@sourcegraph.com",
+                  "emailAddress": "dev@khulnasoft.com",
                   "id": 1,
                   "displayName": "milton woof",
                   "active": true,
@@ -180,7 +180,7 @@
             "createdDate": 1588667488870,
             "user": {
               "name": "milton",
-              "emailAddress": "dev@sourcegraph.com",
+              "emailAddress": "dev@khulnasoft.com",
               "id": 1,
               "displayName": "milton woof",
               "active": true,
@@ -205,7 +205,7 @@
           "createdDate": 1588667491744,
           "user": {
             "name": "milton",
-            "emailAddress": "dev@sourcegraph.com",
+            "emailAddress": "dev@khulnasoft.com",
             "id": 1,
             "displayName": "milton woof",
             "active": true,
@@ -320,7 +320,7 @@
             "author": {
               "user": {
                 "name": "thorsten",
-                "emailAddress": "thorsten@sourcegraph.com",
+                "emailAddress": "thorsten@khulnasoft.com",
                 "id": 104,
                 "displayName": "thorsten",
                 "active": true,
@@ -343,7 +343,7 @@
               {
                 "user": {
                   "name": "milton",
-                  "emailAddress": "dev@sourcegraph.com",
+                  "emailAddress": "dev@khulnasoft.com",
                   "id": 1,
                   "displayName": "milton woof",
                   "active": true,
@@ -390,7 +390,7 @@
           "createdDate": 1588667488870,
           "user": {
             "name": "milton",
-            "emailAddress": "dev@sourcegraph.com",
+            "emailAddress": "dev@khulnasoft.com",
             "id": 1,
             "displayName": "milton woof",
             "active": true,
@@ -411,7 +411,7 @@
           "createdDate": 1588667491744,
           "user": {
             "name": "milton",
-            "emailAddress": "dev@sourcegraph.com",
+            "emailAddress": "dev@khulnasoft.com",
             "id": 1,
             "displayName": "milton woof",
             "active": true,

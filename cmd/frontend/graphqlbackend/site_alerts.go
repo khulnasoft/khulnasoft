@@ -99,7 +99,7 @@ func init() {
 	AlertFuncs = append(AlertFuncs, emailSendingNotConfiguredAlert)
 
 	if !disableSecurity {
-		// Warn about Sourcegraph being out of date.
+		// Warn about Khulnasoft being out of date.
 		AlertFuncs = append(AlertFuncs, outOfDateAlert)
 	} else {
 		log15.Warn("WARNING: SECURITY NOTICES DISABLED: this is not recommended, please unset DISABLE_SECURITY=true")
@@ -208,7 +208,7 @@ func updateAvailableAlert(args AlertFuncArgs) []*Alert {
 	if !args.ViewerFinalSettings.AlertsShowMajorMinorUpdates && isMinorUpdateAvailable(version.Version(), globalUpdateStatus.UpdateVersion) {
 		return nil
 	}
-	message := fmt.Sprintf("An update is available: [Sourcegraph v%s](https://sourcegraph.com/blog) - [changelog](https://sourcegraph.com/changelog)", globalUpdateStatus.UpdateVersion)
+	message := fmt.Sprintf("An update is available: [Khulnasoft v%s](https://khulnasoft.com/blog) - [changelog](https://khulnasoft.com/changelog)", globalUpdateStatus.UpdateVersion)
 
 	// dismission key includes the version so after it is dismissed the alert comes back for the next update.
 	key := "update-available-" + globalUpdateStatus.UpdateVersion
@@ -220,7 +220,7 @@ func updateAvailableAlert(args AlertFuncArgs) []*Alert {
 func isMinorUpdateAvailable(currentVersion, updateVersion string) bool {
 	// If either current or update versions aren't semvers (e.g., a user is on a date-based build version, or "dev"),
 	// always return true and allow any alerts to be shown. This has the effect of simply deferring to the response
-	// from Sourcegraph.com about whether an update alert is needed.
+	// from Khulnasoft.com about whether an update alert is needed.
 	cv, err := semver.NewVersion(currentVersion)
 	if err != nil {
 		return true
@@ -239,14 +239,14 @@ func emailSendingNotConfiguredAlert(args AlertFuncArgs) []*Alert {
 	if conf.Get().EmailSmtp == nil || conf.Get().EmailSmtp.Host == "" {
 		return []*Alert{{
 			TypeValue:                 AlertTypeWarning,
-			MessageValue:              "Warning: Sourcegraph cannot send emails! [Configure `email.smtp`](/help/admin/config/email) so that features such as Code Monitors, password resets, and invitations work. [documentation](/help/admin/config/email)",
+			MessageValue:              "Warning: Khulnasoft cannot send emails! [Configure `email.smtp`](/help/admin/config/email) so that features such as Code Monitors, password resets, and invitations work. [documentation](/help/admin/config/email)",
 			IsDismissibleWithKeyValue: "email-sending",
 		}}
 	}
 	if conf.Get().EmailAddress == "" {
 		return []*Alert{{
 			TypeValue:                 AlertTypeWarning,
-			MessageValue:              "Warning: Sourcegraph cannot send emails! [Configure `email.address`](/help/admin/config/email) so that features such as Code Monitors, password resets, and invitations work. [documentation](/help/admin/config/email)",
+			MessageValue:              "Warning: Khulnasoft cannot send emails! [Configure `email.address`](/help/admin/config/email) so that features such as Code Monitors, password resets, and invitations work. [documentation](/help/admin/config/email)",
 			IsDismissibleWithKeyValue: "email-sending",
 		}}
 	}
@@ -258,11 +258,11 @@ func outOfDateAlert(args AlertFuncArgs) []*Alert {
 	if globalUpdateStatus == nil || updatecheck.IsPending() {
 		return nil
 	}
-	offline := globalUpdateStatus.Err != nil // Whether or not instance can connect to Sourcegraph.com for update checks
+	offline := globalUpdateStatus.Err != nil // Whether or not instance can connect to Khulnasoft.com for update checks
 	now := time.Now()
 	monthsOutOfDate, err := version.HowLongOutOfDate(now)
 	if err != nil {
-		log15.Error("failed to determine how out of date Sourcegraph is", "error", err)
+		log15.Error("failed to determine how out of date Khulnasoft is", "error", err)
 		return nil
 	}
 	alert := determineOutOfDateAlert(args.IsSiteAdmin, monthsOutOfDate, offline)
@@ -285,19 +285,19 @@ func determineOutOfDateAlert(isAdmin bool, months int, offline bool) *Alert {
 		key := fmt.Sprintf("months-out-of-date-%d", months)
 		switch {
 		case months < 3:
-			message := fmt.Sprintf("Sourcegraph is %d+ months out of date, for the latest features and bug fixes please upgrade ([changelog](http://sourcegraph.com/changelog))", months)
+			message := fmt.Sprintf("Khulnasoft is %d+ months out of date, for the latest features and bug fixes please upgrade ([changelog](http://khulnasoft.com/changelog))", months)
 			return &Alert{TypeValue: AlertTypeInfo, MessageValue: message, IsDismissibleWithKeyValue: key}
 		case months == 3:
-			message := "Sourcegraph is 3+ months out of date, you may be missing important security or bug fixes. Users will be notified at 4+ months. ([changelog](http://sourcegraph.com/changelog))"
+			message := "Khulnasoft is 3+ months out of date, you may be missing important security or bug fixes. Users will be notified at 4+ months. ([changelog](http://khulnasoft.com/changelog))"
 			return &Alert{TypeValue: AlertTypeWarning, MessageValue: message}
 		case months == 4:
-			message := "Sourcegraph is 4+ months out of date, you may be missing important security or bug fixes. A notice is shown to users. ([changelog](http://sourcegraph.com/changelog))"
+			message := "Khulnasoft is 4+ months out of date, you may be missing important security or bug fixes. A notice is shown to users. ([changelog](http://khulnasoft.com/changelog))"
 			return &Alert{TypeValue: AlertTypeWarning, MessageValue: message}
 		case months == 5:
-			message := "Sourcegraph is 5+ months out of date, you may be missing important security or bug fixes. A notice is shown to users. ([changelog](http://sourcegraph.com/changelog))"
+			message := "Khulnasoft is 5+ months out of date, you may be missing important security or bug fixes. A notice is shown to users. ([changelog](http://khulnasoft.com/changelog))"
 			return &Alert{TypeValue: AlertTypeError, MessageValue: message}
 		default:
-			message := fmt.Sprintf("Sourcegraph is %d+ months out of date, you may be missing important security or bug fixes. A notice is shown to users. ([changelog](http://sourcegraph.com/changelog))", months)
+			message := fmt.Sprintf("Khulnasoft is %d+ months out of date, you may be missing important security or bug fixes. A notice is shown to users. ([changelog](http://khulnasoft.com/changelog))", months)
 			return &Alert{TypeValue: AlertTypeError, MessageValue: message}
 		}
 	}
@@ -307,14 +307,14 @@ func determineOutOfDateAlert(isAdmin bool, months int, offline bool) *Alert {
 	case 0, 1, 2, 3:
 		return nil
 	case 4, 5:
-		message := fmt.Sprintf("Sourcegraph is %d+ months out of date, ask your site administrator to upgrade for the latest features and bug fixes. ([changelog](http://sourcegraph.com/changelog))", months)
+		message := fmt.Sprintf("Khulnasoft is %d+ months out of date, ask your site administrator to upgrade for the latest features and bug fixes. ([changelog](http://khulnasoft.com/changelog))", months)
 		return &Alert{TypeValue: AlertTypeWarning, MessageValue: message, IsDismissibleWithKeyValue: key}
 	default:
 		alertType := AlertTypeWarning
 		if months > 12 {
 			alertType = AlertTypeError
 		}
-		message := fmt.Sprintf("Sourcegraph is %d+ months out of date, you may be missing important security or bug fixes. Ask your site administrator to upgrade. ([changelog](http://sourcegraph.com/changelog))", months)
+		message := fmt.Sprintf("Khulnasoft is %d+ months out of date, you may be missing important security or bug fixes. Ask your site administrator to upgrade. ([changelog](http://khulnasoft.com/changelog))", months)
 		return &Alert{TypeValue: alertType, MessageValue: message, IsDismissibleWithKeyValue: key}
 	}
 }
@@ -388,7 +388,7 @@ func gitlabVersionAlert(args AlertFuncArgs) []*Alert {
 
 			return []*Alert{{
 				TypeValue:    AlertTypeError,
-				MessageValue: "One or more of your code hosts is running a version of GitLab below 12.0, which is not supported by Sourcegraph. Please upgrade your GitLab instance(s) to prevent disruption.",
+				MessageValue: "One or more of your code hosts is running a version of GitLab below 12.0, which is not supported by Khulnasoft. Please upgrade your GitLab instance(s) to prevent disruption.",
 			}}
 		}
 	}
@@ -417,17 +417,17 @@ func codyGatewayUsageAlert(args AlertFuncArgs) []*Alert {
 		if usage > 99 {
 			alerts = append(alerts, &Alert{
 				TypeValue:    AlertTypeError,
-				MessageValue: fmt.Sprintf("The Cody limit for %s has been reached. If you run into this regularly, please contact Sourcegraph.", feat.DisplayName()),
+				MessageValue: fmt.Sprintf("The Cody limit for %s has been reached. If you run into this regularly, please contact Khulnasoft.", feat.DisplayName()),
 			})
 		} else if usage >= 90 {
 			alerts = append(alerts, &Alert{
 				TypeValue:    AlertTypeWarning,
-				MessageValue: fmt.Sprintf("The Cody limit for %s is 90%% used. If you run into this regularly, please contact Sourcegraph.", feat.DisplayName()),
+				MessageValue: fmt.Sprintf("The Cody limit for %s is 90%% used. If you run into this regularly, please contact Khulnasoft.", feat.DisplayName()),
 			})
 		} else if usage >= 75 {
 			alerts = append(alerts, &Alert{
 				TypeValue:    AlertTypeInfo,
-				MessageValue: fmt.Sprintf("The Cody limit for %s is 75%% used. If you run into this regularly, please contact Sourcegraph.", feat.DisplayName()),
+				MessageValue: fmt.Sprintf("The Cody limit for %s is 75%% used. If you run into this regularly, please contact Khulnasoft.", feat.DisplayName()),
 			})
 		}
 	}

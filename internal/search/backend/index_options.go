@@ -24,7 +24,7 @@ type ZoektIndexOptions struct {
 	// Name is the Repository Name.
 	Name string
 
-	// RepoID is the Sourcegraph Repository ID.
+	// RepoID is the Khulnasoft Repository ID.
 	RepoID api.RepoID
 
 	// Public is true if the repository is public and does not require auth
@@ -131,7 +131,7 @@ type RepoIndexOptions struct {
 	// Name is the Repository Name.
 	Name string
 
-	// RepoID is the Sourcegraph Repository ID.
+	// RepoID is the Khulnasoft Repository ID.
 	RepoID api.RepoID
 
 	// Public is true if the repository is public and does not require auth

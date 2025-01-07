@@ -19,7 +19,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-func (r *Reconciler) reconcileIndexedSearcher(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileIndexedSearcher(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileIndexedSearcherStatefulSet(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling StatefulSet")
 	}
@@ -35,7 +35,7 @@ func (r *Reconciler) reconcileIndexedSearcher(ctx context.Context, sg *config.So
 	return nil
 }
 
-func (r *Reconciler) reconcileIndexedSearcherStatefulSet(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileIndexedSearcherStatefulSet(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "indexed-search"
 	cfg := sg.Spec.IndexedSearch
 
@@ -108,7 +108,7 @@ func (r *Reconciler) reconcileIndexedSearcherStatefulSet(ctx context.Context, sg
 	return reconcileObject(ctx, r, cfg, &sset, &appsv1.StatefulSet{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileIndexedSearcherService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileIndexedSearcherService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "indexed-search"
 	cfg := sg.Spec.IndexedSearch
 	svc := service.NewService(name, sg.Namespace, cfg)
@@ -120,7 +120,7 @@ func (r *Reconciler) reconcileIndexedSearcherService(ctx context.Context, sg *co
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileIndexedSearchIndexerService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileIndexedSearchIndexerService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "indexed-search-indexer"
 	cfg := sg.Spec.IndexedSearch
 	svc := service.NewService(name, sg.Namespace, nil)
@@ -136,7 +136,7 @@ func (r *Reconciler) reconcileIndexedSearchIndexerService(ctx context.Context, s
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileIndexedSearcherServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileIndexedSearcherServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.IndexedSearch
 	sa := serviceaccount.NewServiceAccount("indexed-search", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)

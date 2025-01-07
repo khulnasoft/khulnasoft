@@ -43,7 +43,7 @@ func (Service) Name() string    { return "telemetry-gateway" }
 func (Service) Version() string { return version.Version() }
 
 func (Service) Initialize(ctx context.Context, logger log.Logger, contract runtime.ServiceContract, config Config) (background.Routine, error) {
-	// We use Sourcegraph tracing code, so explicitly configure a trace policy
+	// We use Khulnasoft tracing code, so explicitly configure a trace policy
 	policy.SetTracePolicy(policy.TraceAll)
 
 	// Prepare pubsub client
@@ -83,7 +83,7 @@ func (Service) Initialize(ctx context.Context, logger log.Logger, contract runti
 		},
 	)
 	if err != nil {
-		return nil, errors.Wrap(err, "create Sourcegraph Accounts client")
+		return nil, errors.Wrap(err, "create Khulnasoft Accounts client")
 	}
 
 	// Initialize our gRPC server

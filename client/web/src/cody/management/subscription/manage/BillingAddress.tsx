@@ -100,7 +100,7 @@ interface BillingAddressFormProps {
 }
 
 const updateSubscriptionMutationErrorText =
-    "We couldn't update your credit card info. Please try again. If this happens again, contact support at support@sourcegraph.com."
+    "We couldn't update your credit card info. Please try again. If this happens again, contact support at support@khulnasoft.com."
 
 const BillingAddressForm: React.FC<BillingAddressFormProps> = ({ subscription, onReset, onSubmit }) => {
     const stripe = useStripe()

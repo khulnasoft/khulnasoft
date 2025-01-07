@@ -41,7 +41,7 @@ func TestForbidAllMiddleware(t *testing.T) {
 		if want := http.StatusForbidden; rr.Code != want {
 			t.Errorf("got %d, want %d", rr.Code, want)
 		}
-		if got, want := rr.Body.String(), "Access to Sourcegraph is forbidden"; !strings.Contains(got, want) {
+		if got, want := rr.Body.String(), "Access to Khulnasoft is forbidden"; !strings.Contains(got, want) {
 			t.Errorf("got %q, want %q", got, want)
 		}
 	})

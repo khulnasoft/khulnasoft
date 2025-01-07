@@ -11,7 +11,7 @@ describe('RouterLink', () => {
         expect(asFragment()).toMatchSnapshot()
     })
     it('renders absolute URL correctly ', () => {
-        const { asFragment } = render(<RouterLink to="https://sourcegraph.com">SourceGraph</RouterLink>)
+        const { asFragment } = render(<RouterLink to="https://khulnasoft.com">SourceGraph</RouterLink>)
         expect(asFragment()).toMatchSnapshot()
     })
 })

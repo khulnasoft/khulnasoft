@@ -56,7 +56,7 @@ export const ButtonDropdownCta: React.FunctionComponent<React.PropsWithChildren<
     // Use cloud url instead of instance url
     // This will only display for non private uers
     // Because private users are required use with token = signed up
-    const signUpURL = `https://sourcegraph.com/sign-up?src=${source}&returnTo=${encodeURIComponent(
+    const signUpURL = `https://khulnasoft.com/sign-up?src=${source}&returnTo=${encodeURIComponent(
         returnTo
     )}&utm_medium=VSCODE&utm_source=sidebar&utm_campaign=vsce-sign-up&utm_content=sign-up`
 

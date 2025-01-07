@@ -124,7 +124,7 @@ export const ProductSubscriptionStatus: React.FunctionComponent<React.PropsWithC
                                     {numberFormatter.format(actualUserCount)} maximum ever used)
                                 </div>
                                 <ButtonLink
-                                    to="https://sourcegraph.com/pricing"
+                                    to="https://khulnasoft.com/pricing"
                                     target="_blank"
                                     rel="noopener"
                                     variant="primary"
@@ -149,7 +149,7 @@ export const ProductSubscriptionStatus: React.FunctionComponent<React.PropsWithC
                                 <div className="text-nowrap flex-wrap-reverse">
                                     <Tooltip content="Buy a Khulnasoft Enterprise subscription to get a license key">
                                         <ButtonLink
-                                            to="http://sourcegraph.com/contact/sales"
+                                            to="http://khulnasoft.com/contact/sales"
                                             target="_blank"
                                             rel="noopener"
                                             variant="primary"
@@ -184,7 +184,7 @@ export const ProductSubscriptionStatus: React.FunctionComponent<React.PropsWithC
                 <Alert variant="warning">
                     You have exceeded your licensed users.{' '}
                     <Link
-                        to="https://sourcegraph.com/pricing"
+                        to="https://khulnasoft.com/pricing"
                         target="_blank"
                         rel="noopener"
                         onClick={() =>

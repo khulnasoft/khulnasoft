@@ -20,7 +20,7 @@
    "project": {
     "key": "SGDEMO",
     "id": 26,
-    "name": "Sourcegraph Demo",
+    "name": "Khulnasoft Demo",
     "public": false,
     "type": "NORMAL",
     "links": {
@@ -53,7 +53,7 @@
   "project": {
    "key": "~ENGINEERS",
    "id": 102,
-   "name": "Sourcegraph Engineers",
+   "name": "Khulnasoft Engineers",
    "public": false,
    "type": "PERSONAL",
    "links": {

@@ -43,13 +43,13 @@ func TestSources_ListRepos_YieldExistingRepos(t *testing.T) {
 				Url:   "https://github.com",
 				Token: os.Getenv("GITHUB_ACCESS_TOKEN"),
 				Repos: []string{
-					"sourcegraph/Sourcegraph",
+					"sourcegraph/Khulnasoft",
 					"tsenart/Vegeta",
 					"tsenart/vegeta-missing",
 				},
 			}),
 			wantNames: []string{
-				"github.com/sourcegraph/sourcegraph",
+				"github.com/khulnasoft/khulnasoft",
 				"github.com/tsenart/vegeta",
 			},
 		},
@@ -190,7 +190,7 @@ func TestSources_ListRepos_Excluded(t *testing.T) {
 				},
 			}),
 			wantNames: []string{
-				"github.com/sourcegraph/sourcegraph",
+				"github.com/khulnasoft/khulnasoft",
 			},
 		},
 		{
@@ -236,7 +236,7 @@ func TestSources_ListRepos_Excluded(t *testing.T) {
 				"bitbucket.sgdev.org/K8S/zoekt",
 				"bitbucket.sgdev.org/PUBLIC/archived-repo",
 				"bitbucket.sgdev.org/SOUR/sd",
-				"bitbucket.sgdev.org/SOURCEGRAPH/jsonrpc2",
+				"bitbucket.sgdev.org/KHULNASOFT/jsonrpc2",
 			},
 		},
 		{

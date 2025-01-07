@@ -76,21 +76,21 @@ func TestBitbucketCloudRepoName(t *testing.T) {
 			repositoryPathPattern: "",
 			host:                  "bitbucket.org",
 			nameWithOwner:         "sourcegraph/sourcegraph",
-			expected:              "bitbucket.org/sourcegraph/sourcegraph",
+			expected:              "bitbucket.org/khulnasoft/khulnasoft",
 		},
 		{
 			name:                  "not empty repositoryPathPattern: repositoryPathPattern='{host}/{nameWithOwner}', host='bitbucket.org', nameWithOwner='sourcegraph/sourcegraph'",
 			repositoryPathPattern: "{host}/{nameWithOwner}",
 			host:                  "bitbucket.org",
 			nameWithOwner:         "sourcegraph/sourcegraph",
-			expected:              "bitbucket.org/sourcegraph/sourcegraph",
+			expected:              "bitbucket.org/khulnasoft/khulnasoft",
 		},
 		{
 			name:                  "repositoryPathPattern with https: repositoryPathPattern='https://{host}/{nameWithOwner}', host='bitbucket.org', nameWithOwner='sourcegraph/sourcegraph'",
 			repositoryPathPattern: "https://{host}/{nameWithOwner}",
 			host:                  "bitbucket.org",
 			nameWithOwner:         "sourcegraph/sourcegraph",
-			expected:              "https://bitbucket.org/sourcegraph/sourcegraph",
+			expected:              "https://bitbucket.org/khulnasoft/khulnasoft",
 		},
 	}
 

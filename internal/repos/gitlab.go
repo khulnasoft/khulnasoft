@@ -25,7 +25,7 @@ import (
 )
 
 // A GitLabSource yields repositories from a single GitLab connection configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 type GitLabSource struct {
 	svc                       *types.ExternalService
 	config                    *schema.GitLabConnection
@@ -185,7 +185,7 @@ func (s GitLabSource) CheckConnection(ctx context.Context) error {
 }
 
 // ListRepos returns all GitLab repositories accessible to all connections configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 func (s GitLabSource) ListRepos(ctx context.Context, results chan SourceResult) {
 	s.listAllProjects(ctx, results)
 }

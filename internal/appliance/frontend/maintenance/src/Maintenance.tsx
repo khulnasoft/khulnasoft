@@ -113,7 +113,7 @@ export const Maintenance: React.FC = () => {
                             Page On-Call
                         </Button>
                         <Button variant="contained" onClick={() => alert('failed :-(')}>
-                            Call Sourcegraph Support
+                            Call Khulnasoft Support
                         </Button>
                     </Stack>
                 </>

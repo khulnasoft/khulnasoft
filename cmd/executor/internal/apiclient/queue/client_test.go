@@ -785,8 +785,8 @@ func testServer(t *testing.T, spec routeSpec) *httptest.Server {
 		assert.Len(t, parts, 2)
 		assert.Equal(t, spec.expectedToken, parts[1])
 
-		assert.Equal(t, spec.expectedJobID, r.Header.Get("X-Sourcegraph-Job-ID"))
-		assert.Equal(t, spec.expectedExecutorName, r.Header.Get("X-Sourcegraph-Executor-Name"))
+		assert.Equal(t, spec.expectedJobID, r.Header.Get("X-Khulnasoft-Job-ID"))
+		assert.Equal(t, spec.expectedExecutorName, r.Header.Get("X-Khulnasoft-Executor-Name"))
 
 		content, err := io.ReadAll(r.Body)
 		require.NoError(t, err)

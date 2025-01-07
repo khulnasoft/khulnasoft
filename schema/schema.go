@@ -25,11 +25,11 @@ type AWSCodeCommitConnection struct {
 	InitialRepositoryEnablement bool `json:"initialRepositoryEnablement,omitempty"`
 	// Region description: The AWS region in which to access AWS CodeCommit. See the list of supported regions at https://docs.aws.amazon.com/codecommit/latest/userguide/regions.html#regions-git.
 	Region string `json:"region"`
-	// RepositoryPathPattern description: The pattern used to generate a the corresponding Sourcegraph repository name for an AWS CodeCommit repository. In the pattern, the variable "{name}" is replaced with the repository's name.
+	// RepositoryPathPattern description: The pattern used to generate a the corresponding Khulnasoft repository name for an AWS CodeCommit repository. In the pattern, the variable "{name}" is replaced with the repository's name.
 	//
-	// For example, if your Sourcegraph instance is at https://src.example.com, then a repositoryPathPattern of "awsrepos/{name}" would mean that a AWS CodeCommit repository named "myrepo" is available on Sourcegraph at https://src.example.com/awsrepos/myrepo.
+	// For example, if your Khulnasoft instance is at https://src.example.com, then a repositoryPathPattern of "awsrepos/{name}" would mean that a AWS CodeCommit repository named "myrepo" is available on Khulnasoft at https://src.example.com/awsrepos/myrepo.
 	//
-	// It is important that the Sourcegraph repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
+	// It is important that the Khulnasoft repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
 	RepositoryPathPattern string `json:"repositoryPathPattern,omitempty"`
 	// SecretAccessKey description: The AWS secret access key (that corresponds to the AWS access key ID set in `accessKeyID`).
 	SecretAccessKey string `json:"secretAccessKey"`
@@ -92,7 +92,7 @@ type AuthAccessRequest struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-// AuthAccessTokens description: Settings for access tokens, which enable external tools to access the Sourcegraph API with the privileges of the user.
+// AuthAccessTokens description: Settings for access tokens, which enable external tools to access the Khulnasoft API with the privileges of the user.
 type AuthAccessTokens struct {
 	// Allow description: Allow or restrict the use of access tokens. The default is "all-users-create", which enables all users to create access tokens. Use "none" to disable access tokens entirely. Use "site-admin-create" to restrict creation of new tokens to admin users (existing tokens will still work until revoked).
 	Allow string `json:"allow,omitempty"`
@@ -106,7 +106,7 @@ type AuthAccessTokens struct {
 	MaxTokensPerUser *int `json:"maxTokensPerUser,omitempty"`
 }
 
-// AuthAllowedIpAddress description: IP allowlist for access to the Sourcegraph instance. If set, only requests from these IP addresses will be allowed. By default client IP is infered connected client IP address, and you may configure to use a request header to determine the user IP.
+// AuthAllowedIpAddress description: IP allowlist for access to the Khulnasoft instance. If set, only requests from these IP addresses will be allowed. By default client IP is infered connected client IP address, and you may configure to use a request header to determine the user IP.
 type AuthAllowedIpAddress struct {
 	// ClientIpAddress description: List of client IP addresses to allow. If empty, all IP addresses are allowed. This is useful to restrict who can open connection with the Sorcegraph instance, e.g., the request source range of the upsteam application load balancer.
 	ClientIpAddress []string `json:"clientIpAddress,omitempty"`
@@ -114,7 +114,7 @@ type AuthAllowedIpAddress struct {
 	Enabled bool `json:"enabled,omitempty"`
 	// ErrorMessageTemplate description: A template to customize the error message display to users on unauthorized access.  Available template variables: `{{.Error}}`, `{{.UserIP}}`
 	ErrorMessageTemplate string `json:"errorMessageTemplate,omitempty"`
-	// TrustedClientIpAddress description: List of trusted client IP addresses that will bypass user IP address check. If empty, nothing can be bypass. This is useful to support access from trusted internal services. It will always permit connection from `127.0.0.1`. You must include the IP range allocated for the Sourcegraph deployment services to allow inter-service communication, e.g., kubernetes pod ip range.
+	// TrustedClientIpAddress description: List of trusted client IP addresses that will bypass user IP address check. If empty, nothing can be bypass. This is useful to support access from trusted internal services. It will always permit connection from `127.0.0.1`. You must include the IP range allocated for the Khulnasoft deployment services to allow inter-service communication, e.g., kubernetes pod ip range.
 	TrustedClientIpAddress []string `json:"trustedClientIpAddress,omitempty"`
 	// UserIpAddress description: List of user IP addresses to allow. If empty, all IP addresses are allowed.
 	UserIpAddress []string `json:"userIpAddress,omitempty"`
@@ -239,7 +239,7 @@ func (v *AuthProviders) UnmarshalJSON(data []byte) error {
 type AzureDevOpsAuthProvider struct {
 	// AllowOrgs description: Restricts new logins and signups (if allowSignup is true) to members of these Azure DevOps organizations only. Existing sessions won't be invalidated. Leave empty or unset for no org restrictions.
 	AllowOrgs []string `json:"allowOrgs,omitempty"`
-	// AllowSignup description: Allows new visitors to sign up for accounts Azure DevOps authentication. If false, users signing in via Azure DevOps must have an existing Sourcegraph account, which will be linked to their Azure DevOps identity after sign-in.
+	// AllowSignup description: Allows new visitors to sign up for accounts Azure DevOps authentication. If false, users signing in via Azure DevOps must have an existing Khulnasoft account, which will be linked to their Azure DevOps identity after sign-in.
 	AllowSignup *bool `json:"allowSignup,omitempty"`
 	// ApiScope description: The OAuth API scope that should be used
 	ApiScope string `json:"apiScope,omitempty"`
@@ -263,13 +263,13 @@ type AzureDevOpsConnection struct {
 	Exclude []*ExcludedAzureDevOpsServerRepo `json:"exclude,omitempty"`
 	// GitURLType description: The type of Git URLs to use for cloning and fetching Git repositories.
 	//
-	// If "http", Sourcegraph will access repositories using Git URLs of the form http(s)://dev.azure.com/myrepo.git.
+	// If "http", Khulnasoft will access repositories using Git URLs of the form http(s)://dev.azure.com/myrepo.git.
 	//
-	// If "ssh", Sourcegraph will access repositories using Git URLs of the form git@ssh.dev.azure.com:v3/myrepo. See the documentation for how to provide SSH private keys and known_hosts: https://sourcegraph.com/docs/admin/repo/auth.
+	// If "ssh", Khulnasoft will access repositories using Git URLs of the form git@ssh.dev.azure.com:v3/myrepo. See the documentation for how to provide SSH private keys and known_hosts: https://khulnasoft.com/docs/admin/repo/auth.
 	GitURLType string `json:"gitURLType,omitempty"`
-	// Orgs description: An array of organization names identifying Azure DevOps organizations whose repositories should be mirrored on Sourcegraph.
+	// Orgs description: An array of organization names identifying Azure DevOps organizations whose repositories should be mirrored on Khulnasoft.
 	Orgs []string `json:"orgs,omitempty"`
-	// Projects description: An array of projects "org/project" strings specifying which Azure DevOps projects' repositories should be mirrored on Sourcegraph.
+	// Projects description: An array of projects "org/project" strings specifying which Azure DevOps projects' repositories should be mirrored on Khulnasoft.
 	Projects []string `json:"projects,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests.
 	RateLimit *AzureDevOpsRateLimit `json:"rateLimit,omitempty"`
@@ -335,9 +335,9 @@ type Batches struct {
 	Weight int `json:"weight"`
 }
 
-// BitbucketCloudAuthProvider description: Configures the Bitbucket Cloud OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your Bitbucket Cloud workspace: https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/. The application should have account, email, and repository scopes and the callback URL set to the concatenation of your Sourcegraph instance URL and "/.auth/bitbucketcloud/callback".
+// BitbucketCloudAuthProvider description: Configures the Bitbucket Cloud OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your Bitbucket Cloud workspace: https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/. The application should have account, email, and repository scopes and the callback URL set to the concatenation of your Khulnasoft instance URL and "/.auth/bitbucketcloud/callback".
 type BitbucketCloudAuthProvider struct {
-	// AllowSignup description: Allows new visitors to sign up for accounts via Bitbucket Cloud authentication. If false, users signing in via Bitbucket Cloud must have an existing Sourcegraph account, which will be linked to their Bitbucket Cloud identity after sign-in.
+	// AllowSignup description: Allows new visitors to sign up for accounts via Bitbucket Cloud authentication. If false, users signing in via Bitbucket Cloud must have an existing Khulnasoft account, which will be linked to their Bitbucket Cloud identity after sign-in.
 	AllowSignup bool `json:"allowSignup,omitempty"`
 	// ApiScope description: The OAuth API scope that should be used
 	ApiScope string `json:"apiScope,omitempty"`
@@ -355,7 +355,7 @@ type BitbucketCloudAuthProvider struct {
 	Url string `json:"url,omitempty"`
 }
 
-// BitbucketCloudAuthorization description: If non-null, enforces Bitbucket Cloud repository permissions. This requires that there is an item in the [site configuration json](https://sourcegraph.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "bitbucketcloud" with the same `url` field as specified in this `BitbucketCloudConnection`.
+// BitbucketCloudAuthorization description: If non-null, enforces Bitbucket Cloud repository permissions. This requires that there is an item in the [site configuration json](https://khulnasoft.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "bitbucketcloud" with the same `url` field as specified in this `BitbucketCloudConnection`.
 type BitbucketCloudAuthorization struct {
 	// IdentityProvider description: The identity provider to use for user information. If not set, the `url` field is used.
 	IdentityProvider string `json:"identityProvider,omitempty"`
@@ -369,7 +369,7 @@ type BitbucketCloudConnection struct {
 	ApiURL string `json:"apiURL,omitempty"`
 	// AppPassword description: The app password to use when authenticating to the Bitbucket Cloud. Also set the corresponding "username" field.
 	AppPassword string `json:"appPassword,omitempty"`
-	// Authorization description: If non-null, enforces Bitbucket Cloud repository permissions. This requires that there is an item in the [site configuration json](https://sourcegraph.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "bitbucketcloud" with the same `url` field as specified in this `BitbucketCloudConnection`.
+	// Authorization description: If non-null, enforces Bitbucket Cloud repository permissions. This requires that there is an item in the [site configuration json](https://khulnasoft.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "bitbucketcloud" with the same `url` field as specified in this `BitbucketCloudConnection`.
 	Authorization *BitbucketCloudAuthorization `json:"authorization,omitempty"`
 	// Exclude description: A list of repositories to never mirror from Bitbucket Cloud. Takes precedence over "teams" configuration.
 	//
@@ -377,23 +377,23 @@ type BitbucketCloudConnection struct {
 	Exclude []*ExcludedBitbucketCloudRepo `json:"exclude,omitempty"`
 	// GitURLType description: The type of Git URLs to use for cloning and fetching Git repositories on this Bitbucket Cloud.
 	//
-	// If "http", Sourcegraph will access Bitbucket Cloud repositories using Git URLs of the form https://bitbucket.org/myteam/myproject.git.
+	// If "http", Khulnasoft will access Bitbucket Cloud repositories using Git URLs of the form https://bitbucket.org/myteam/myproject.git.
 	//
-	// If "ssh", Sourcegraph will access Bitbucket Cloud repositories using Git URLs of the form git@bitbucket.org:myteam/myproject.git. See the documentation for how to provide SSH private keys and known_hosts: https://sourcegraph.com/docs/admin/repo/auth#repositories-that-need-http-s-or-ssh-authentication.
+	// If "ssh", Khulnasoft will access Bitbucket Cloud repositories using Git URLs of the form git@bitbucket.org:myteam/myproject.git. See the documentation for how to provide SSH private keys and known_hosts: https://khulnasoft.com/docs/admin/repo/auth#repositories-that-need-http-s-or-ssh-authentication.
 	GitURLType string `json:"gitURLType,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests to Bitbucket Cloud.
 	RateLimit *BitbucketCloudRateLimit `json:"rateLimit,omitempty"`
-	// Repos description: An array of repository "projectKey/repositorySlug" strings specifying repositories to mirror on Sourcegraph.
+	// Repos description: An array of repository "projectKey/repositorySlug" strings specifying repositories to mirror on Khulnasoft.
 	Repos []string `json:"repos,omitempty"`
-	// RepositoryPathPattern description: The pattern used to generate the corresponding Sourcegraph repository name for a Bitbucket Cloud repository.
+	// RepositoryPathPattern description: The pattern used to generate the corresponding Khulnasoft repository name for a Bitbucket Cloud repository.
 	//
 	//  - "{host}" is replaced with the Bitbucket Cloud URL's host (such as bitbucket.org),  and "{nameWithOwner}" is replaced with the Bitbucket Cloud repository's "owner/path" (such as "myorg/myrepo").
 	//
-	// For example, if your Bitbucket Cloud is https://bitbucket.org and your Sourcegraph is https://src.example.com, then a repositoryPathPattern of "{host}/{nameWithOwner}" would mean that a Bitbucket Cloud repository at https://bitbucket.org/alice/my-repo is available on Sourcegraph at https://src.example.com/bitbucket.org/alice/my-repo.
+	// For example, if your Bitbucket Cloud is https://bitbucket.org and your Khulnasoft is https://src.example.com, then a repositoryPathPattern of "{host}/{nameWithOwner}" would mean that a Bitbucket Cloud repository at https://bitbucket.org/alice/my-repo is available on Khulnasoft at https://src.example.com/bitbucket.org/alice/my-repo.
 	//
-	// It is important that the Sourcegraph repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
+	// It is important that the Khulnasoft repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
 	RepositoryPathPattern string `json:"repositoryPathPattern,omitempty"`
-	// Teams description: An array of team names identifying Bitbucket Cloud teams whose repositories should be mirrored on Sourcegraph.
+	// Teams description: An array of team names identifying Bitbucket Cloud teams whose repositories should be mirrored on Khulnasoft.
 	Teams []string `json:"teams,omitempty"`
 	// Url description: URL of Bitbucket Cloud, such as https://bitbucket.org. Generally, admin should not modify the value of this option because Bitbucket Cloud is a public hosting platform.
 	Url string `json:"url"`
@@ -411,9 +411,9 @@ type BitbucketCloudRateLimit struct {
 	RequestsPerHour float64 `json:"requestsPerHour"`
 }
 
-// BitbucketServerAuthProvider description: Configures the Bitbucket Server OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your Bitbucket Server instance: https://confluence.atlassian.com/bitbucketserver0720/configure-an-incoming-link-1116282013.html. The application should have the repository read permission and the callback URL set to the concatenation of your Sourcegraph instance URL and "/.auth/bitbucketserver/callback".
+// BitbucketServerAuthProvider description: Configures the Bitbucket Server OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your Bitbucket Server instance: https://confluence.atlassian.com/bitbucketserver0720/configure-an-incoming-link-1116282013.html. The application should have the repository read permission and the callback URL set to the concatenation of your Khulnasoft instance URL and "/.auth/bitbucketserver/callback".
 type BitbucketServerAuthProvider struct {
-	// AllowSignup description: Allows new visitors to sign up for accounts via Bitbucket Server OAuth. If false, users signing in via Bitbucket Server must have an existing Sourcegraph account, which will be linked to their Bitbucket Server identity after sign-in.
+	// AllowSignup description: Allows new visitors to sign up for accounts via Bitbucket Server OAuth. If false, users signing in via Bitbucket Server must have an existing Khulnasoft account, which will be linked to their Bitbucket Server identity after sign-in.
 	AllowSignup bool `json:"allowSignup,omitempty"`
 	// ClientID description: The ID of the Bitbucket OAuth app.
 	ClientID string `json:"clientID"`
@@ -431,7 +431,7 @@ type BitbucketServerAuthProvider struct {
 
 // BitbucketServerAuthorization description: If non-null, enforces Bitbucket Server / Bitbucket Data Center repository permissions.
 type BitbucketServerAuthorization struct {
-	// IdentityProvider description: The source of identity to use when computing permissions. This defines how to compute the Bitbucket Server / Bitbucket Data Center identity to use for a given Sourcegraph user. When 'username' is used, Sourcegraph assumes usernames are identical in Sourcegraph and Bitbucket Server / Bitbucket Data Center accounts and `auth.enableUsernameChanges` must be set to false for security reasons.
+	// IdentityProvider description: The source of identity to use when computing permissions. This defines how to compute the Bitbucket Server / Bitbucket Data Center identity to use for a given Khulnasoft user. When 'username' is used, Khulnasoft assumes usernames are identical in Khulnasoft and Bitbucket Server / Bitbucket Data Center accounts and `auth.enableUsernameChanges` must be set to false for security reasons.
 	IdentityProvider *BitbucketServerIdentityProvider `json:"identityProvider,omitempty"`
 	// Oauth description: OAuth configuration specified when creating the Bitbucket Server / Bitbucket Data Center Application Link with incoming authentication. Two Legged OAuth with 'ExecuteAs=admin' must be enabled as well as user impersonation.
 	Oauth  *BitbucketServerOAuth `json:"oauth,omitempty"`
@@ -448,13 +448,13 @@ type BitbucketServerConnection struct {
 	//
 	// Supports excluding by name ({"name": "projectKey/repositorySlug"}) or by ID ({"id": 42}).
 	Exclude []*ExcludedBitbucketServerRepo `json:"exclude,omitempty"`
-	// ExcludePersonalRepositories description: Whether or not personal repositories should be excluded or not. When true, Sourcegraph will ignore personal repositories it may have access to. See https://sourcegraph.com/docs/integration/bitbucket_server#excluding-personal-repositories for more information.
+	// ExcludePersonalRepositories description: Whether or not personal repositories should be excluded or not. When true, Khulnasoft will ignore personal repositories it may have access to. See https://khulnasoft.com/docs/integration/bitbucket_server#excluding-personal-repositories for more information.
 	ExcludePersonalRepositories bool `json:"excludePersonalRepositories,omitempty"`
 	// GitURLType description: The type of Git URLs to use for cloning and fetching Git repositories on this Bitbucket Server / Bitbucket Data Center instance.
 	//
-	// If "http", Sourcegraph will access Bitbucket Server / Bitbucket Data Center repositories using Git URLs of the form http(s)://bitbucket.example.com/scm/myproject/myrepo.git (using https: if the Bitbucket Server / Bitbucket Data Center instance uses HTTPS).
+	// If "http", Khulnasoft will access Bitbucket Server / Bitbucket Data Center repositories using Git URLs of the form http(s)://bitbucket.example.com/scm/myproject/myrepo.git (using https: if the Bitbucket Server / Bitbucket Data Center instance uses HTTPS).
 	//
-	// If "ssh", Sourcegraph will access Bitbucket Server / Bitbucket Data Center repositories using Git URLs of the form ssh://git@example.bitbucket.org/myproject/myrepo.git. See the documentation for how to provide SSH private keys and known_hosts: https://sourcegraph.com/docs/admin/repo/auth.
+	// If "ssh", Khulnasoft will access Bitbucket Server / Bitbucket Data Center repositories using Git URLs of the form ssh://git@example.bitbucket.org/myproject/myrepo.git. See the documentation for how to provide SSH private keys and known_hosts: https://khulnasoft.com/docs/admin/repo/auth.
 	GitURLType string `json:"gitURLType,omitempty"`
 	// InitialRepositoryEnablement description: Deprecated and ignored field which will be removed entirely in the next release. BitBucket repositories can no longer be enabled or disabled explicitly.
 	InitialRepositoryEnablement bool `json:"initialRepositoryEnablement,omitempty"`
@@ -462,25 +462,25 @@ type BitbucketServerConnection struct {
 	//
 	// For Bitbucket Server / Bitbucket Data Center instances that support personal access tokens (Bitbucket Server / Bitbucket Data Center version 5.5 and newer), it is recommended to provide a token instead (in the "token" field).
 	Password string `json:"password,omitempty"`
-	// Plugin description: Configuration for Bitbucket Server / Bitbucket Data Center Sourcegraph plugin
+	// Plugin description: Configuration for Bitbucket Server / Bitbucket Data Center Khulnasoft plugin
 	Plugin *BitbucketServerPlugin `json:"plugin,omitempty"`
 	// ProjectKeys description: An array of project key strings that defines a collection of repositories related to their associated project keys
 	ProjectKeys []string `json:"projectKeys,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests to BitbucketServer.
 	RateLimit *BitbucketServerRateLimit `json:"rateLimit,omitempty"`
-	// Repos description: An array of repository "projectKey/repositorySlug" strings specifying repositories to mirror on Sourcegraph.
+	// Repos description: An array of repository "projectKey/repositorySlug" strings specifying repositories to mirror on Khulnasoft.
 	Repos []string `json:"repos,omitempty"`
-	// RepositoryPathPattern description: The pattern used to generate the corresponding Sourcegraph repository name for a Bitbucket Server / Bitbucket Data Center repository.
+	// RepositoryPathPattern description: The pattern used to generate the corresponding Khulnasoft repository name for a Bitbucket Server / Bitbucket Data Center repository.
 	//
 	//  - "{host}" is replaced with the Bitbucket Server / Bitbucket Data Center URL's host (such as bitbucket.example.com)
 	//  - "{projectKey}" is replaced with the Bitbucket repository's parent project key (such as "PRJ")
 	//  - "{repositorySlug}" is replaced with the Bitbucket repository's slug key (such as "my-repo").
 	//
-	// For example, if your Bitbucket Server / Bitbucket Data Center is https://bitbucket.example.com and your Sourcegraph is https://src.example.com, then a repositoryPathPattern of "{host}/{projectKey}/{repositorySlug}" would mean that a Bitbucket Server / Bitbucket Data Center repository at https://bitbucket.example.com/projects/PRJ/repos/my-repo is available on Sourcegraph at https://src.example.com/bitbucket.example.com/PRJ/my-repo.
+	// For example, if your Bitbucket Server / Bitbucket Data Center is https://bitbucket.example.com and your Khulnasoft is https://src.example.com, then a repositoryPathPattern of "{host}/{projectKey}/{repositorySlug}" would mean that a Bitbucket Server / Bitbucket Data Center repository at https://bitbucket.example.com/projects/PRJ/repos/my-repo is available on Khulnasoft at https://src.example.com/bitbucket.example.com/PRJ/my-repo.
 	//
-	// It is important that the Sourcegraph repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
+	// It is important that the Khulnasoft repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
 	RepositoryPathPattern string `json:"repositoryPathPattern,omitempty"`
-	// RepositoryQuery description: An array of strings specifying which repositories to mirror on Sourcegraph. Each string is a URL query string with parameters that filter the list of returned repos. Examples: "?name=my-repo&projectname=PROJECT&visibility=private".
+	// RepositoryQuery description: An array of strings specifying which repositories to mirror on Khulnasoft. Each string is a URL query string with parameters that filter the list of returned repos. Examples: "?name=my-repo&projectname=PROJECT&visibility=private".
 	//
 	// The special string "none" can be used as the only element to disable this feature. Repositories matched by multiple query strings are only imported once. Here's the official Bitbucket Server / Bitbucket Data Center documentation about which query string parameters are valid: https://docs.atlassian.com/bitbucket-server/rest/6.1.2/bitbucket-rest.html#idp355
 	RepositoryQuery []string `json:"repositoryQuery,omitempty"`
@@ -496,7 +496,7 @@ type BitbucketServerConnection struct {
 	Webhooks *Webhooks `json:"webhooks,omitempty"`
 }
 
-// BitbucketServerIdentityProvider description: The source of identity to use when computing permissions. This defines how to compute the Bitbucket Server / Bitbucket Data Center identity to use for a given Sourcegraph user. When 'username' is used, Sourcegraph assumes usernames are identical in Sourcegraph and Bitbucket Server / Bitbucket Data Center accounts and `auth.enableUsernameChanges` must be set to false for security reasons.
+// BitbucketServerIdentityProvider description: The source of identity to use when computing permissions. This defines how to compute the Bitbucket Server / Bitbucket Data Center identity to use for a given Khulnasoft user. When 'username' is used, Khulnasoft assumes usernames are identical in Khulnasoft and Bitbucket Server / Bitbucket Data Center accounts and `auth.enableUsernameChanges` must be set to false for security reasons.
 type BitbucketServerIdentityProvider struct {
 	Username *BitbucketServerUsernameIdentity
 }
@@ -529,14 +529,14 @@ type BitbucketServerOAuth struct {
 	SigningKey string `json:"signingKey"`
 }
 
-// BitbucketServerPlugin description: Configuration for Bitbucket Server / Bitbucket Data Center Sourcegraph plugin
+// BitbucketServerPlugin description: Configuration for Bitbucket Server / Bitbucket Data Center Khulnasoft plugin
 type BitbucketServerPlugin struct {
 	// Permissions description: Enables fetching Bitbucket Server / Bitbucket Data Center permissions through the roaring bitmap endpoint. Warning: there may be performance degradation under significant load.
 	Permissions string                         `json:"permissions,omitempty"`
 	Webhooks    *BitbucketServerPluginWebhooks `json:"webhooks,omitempty"`
 }
 type BitbucketServerPluginWebhooks struct {
-	// DisableSync description: Disallow Sourcegraph from automatically syncing webhook config with the Bitbucket Server / Bitbucket Data Center instance. For details of how the webhook is configured, see our docs: https://sourcegraph.com/docs/admin/code_hosts/bitbucket_server#webhooks
+	// DisableSync description: Disallow Khulnasoft from automatically syncing webhook config with the Bitbucket Server / Bitbucket Data Center instance. For details of how the webhook is configured, see our docs: https://khulnasoft.com/docs/admin/code_hosts/bitbucket_server#webhooks
 	DisableSync bool `json:"disableSync,omitempty"`
 	// Secret description: Secret for authenticating incoming webhook payloads
 	Secret string `json:"secret"`
@@ -569,7 +569,7 @@ type BranchChangesetSpec struct {
 	HeadRef string `json:"headRef"`
 	// HeadRepository description: The GraphQL ID of the repository that contains the branch with this changeset's changes. Fork repositories and cross-repository changesets are not yet supported. Therefore, headRepository must be equal to baseRepository.
 	HeadRepository string `json:"headRepository"`
-	// Published description: Whether to publish the changeset. An unpublished changeset can be previewed on Sourcegraph by any person who can view the batch change, but its commit, branch, and pull request aren't created on the code host. A published changeset results in a commit, branch, and pull request being created on the code host.
+	// Published description: Whether to publish the changeset. An unpublished changeset can be previewed on Khulnasoft by any person who can view the batch change, but its commit, branch, and pull request aren't created on the code host. A published changeset results in a commit, branch, and pull request being created on the code host.
 	Published any `json:"published,omitempty"`
 	// Title description: The title of the changeset on the code host.
 	Title string `json:"title"`
@@ -577,15 +577,15 @@ type BranchChangesetSpec struct {
 	Version int `json:"version,omitempty"`
 }
 type BrandAssets struct {
-	// Logo description: The URL to the image used on the homepage. This will replace the Sourcegraph logo on the homepage. Maximum width: 320px. We recommend using the following file formats: SVG, PNG
+	// Logo description: The URL to the image used on the homepage. This will replace the Khulnasoft logo on the homepage. Maximum width: 320px. We recommend using the following file formats: SVG, PNG
 	Logo string `json:"logo,omitempty"`
 	// Symbol description: The URL to the symbol used as the search icon. Recommended size: 24x24px. We recommend using the following file formats: SVG, PNG, ICO
 	Symbol string `json:"symbol,omitempty"`
 }
 
-// Branding description: Customize Sourcegraph homepage logo and search icon.
+// Branding description: Customize Khulnasoft homepage logo and search icon.
 type Branding struct {
-	// BrandName description: String to display everywhere the brand name should be displayed. Defaults to "Sourcegraph"
+	// BrandName description: String to display everywhere the brand name should be displayed. Defaults to "Khulnasoft"
 	BrandName string       `json:"brandName,omitempty"`
 	Dark      *BrandAssets `json:"dark,omitempty"`
 	// DisableSymbolSpin description: Prevents the icon in the top-left corner of the screen from spinning on hover.
@@ -622,7 +622,7 @@ type ChangesetTemplate struct {
 	Commit ExpandedGitCommitDescription `json:"commit"`
 	// Fork description: Whether to publish the changeset to a fork of the target repository. If omitted, the changeset will be published to a branch directly on the target repository, unless the global `batches.enforceFork` setting is enabled. If set, this property will override any global setting.
 	Fork bool `json:"fork,omitempty"`
-	// Published description: Whether to publish the changeset. An unpublished changeset can be previewed on Sourcegraph by any person who can view the batch change, but its commit, branch, and pull request aren't created on the code host. A published changeset results in a commit, branch, and pull request being created on the code host. If omitted, the publication state is controlled from the Batch Changes UI.
+	// Published description: Whether to publish the changeset. An unpublished changeset can be previewed on Khulnasoft by any person who can view the batch change, but its commit, branch, and pull request aren't created on the code host. A published changeset results in a commit, branch, and pull request being created on the code host. If omitted, the publication state is controlled from the Batch Changes UI.
 	Published any `json:"published,omitempty"`
 	// Title description: The title of the changeset.
 	Title string `json:"title"`
@@ -731,7 +731,7 @@ type CodyContextFilters struct {
 	Include []*CodyContextFilterItem `json:"include,omitempty"`
 }
 
-// CodyGateway description: Configuration related to the Cody Gateway service management. This should only be used on sourcegraph.com.
+// CodyGateway description: Configuration related to the Cody Gateway service management. This should only be used on khulnasoft.com.
 type CodyGateway struct {
 	// BigQueryDataset description: The dataset to pull BigQuery Cody Gateway related events from.
 	BigQueryDataset string `json:"bigQueryDataset,omitempty"`
@@ -749,7 +749,7 @@ type CodyProConfig struct {
 	SscBaseUrl string `json:"sscBaseUrl,omitempty"`
 	// StripePublishableKey description: Stripe Publishable Key for use in Stripe Checkout, Stripe Elements. This is not considered a secret.
 	StripePublishableKey string `json:"stripePublishableKey,omitempty"`
-	// UseEmbeddedUI description: Whether Cody Pro UI is served from sourcegraph.com. If false, users are directed to https://accounts.sourcegraph.com/cody to manage their Cody Pro subscription.
+	// UseEmbeddedUI description: Whether Cody Pro UI is served from khulnasoft.com. If false, users are directed to https://accounts.khulnasoft.com/cody to manage their Cody Pro subscription.
 	UseEmbeddedUI bool `json:"useEmbeddedUI,omitempty"`
 }
 
@@ -803,7 +803,7 @@ type Completions struct {
 	DisableClientConfigAPI *bool `json:"disableClientConfigAPI,omitempty"`
 	// Enabled description: DEPRECATED. Use cody.enabled instead to turn Cody on/off.
 	Enabled *bool `json:"enabled,omitempty"`
-	// Endpoint description: The endpoint under which to reach the provider. Currently only used for provider types "sourcegraph", "openai" and "anthropic". The default values are "https://cody-gateway.sourcegraph.com", "https://api.openai.com/v1/chat/completions", and "https://api.anthropic.com/v1/messages" for Sourcegraph, OpenAI, and Anthropic, respectively.
+	// Endpoint description: The endpoint under which to reach the provider. Currently only used for provider types "sourcegraph", "openai" and "anthropic". The default values are "https://cody-gateway.khulnasoft.com", "https://api.openai.com/v1/chat/completions", and "https://api.anthropic.com/v1/messages" for Khulnasoft, OpenAI, and Anthropic, respectively.
 	Endpoint string `json:"endpoint,omitempty"`
 	// FastChatModel description: The model used for fast chat completions.
 	//  NOTE: The Anthropic messages API does not support model names like claude-2 or claude-instant-1 where only the major version is specified as they are retired. We recommend using a specific model identifier as specified here https://docs.anthropic.com/claude/docs/models-overview#model-comparison
@@ -897,19 +897,19 @@ type DequeueCacheConfig struct {
 	Codeintel *Codeintel `json:"codeintel,omitempty"`
 }
 type DoNotUsePhonyDiscriminantType struct {
-	// DoNotUseThisProperty description: Do not use/set this property, it is useless. go-jsonschema has an issue where it does not support writing a tagged union unless it can find a field each of the union types do NOT have in common; this type merely exists to provide a field that is not in common with all other oneOf types. https://sourcegraph.com/github.com/sourcegraph/go-jsonschema/-/blob/compiler/generator_tagged_union_type.go?L47-49
+	// DoNotUseThisProperty description: Do not use/set this property, it is useless. go-jsonschema has an issue where it does not support writing a tagged union unless it can find a field each of the union types do NOT have in common; this type merely exists to provide a field that is not in common with all other oneOf types. https://khulnasoft.com/github.com/sourcegraph/go-jsonschema/-/blob/compiler/generator_tagged_union_type.go?L47-49
 	DoNotUseThisProperty string `json:"doNotUseThisProperty,omitempty"`
 	Type                 string `json:"type"`
 }
 
-// Dotcom description: Configuration options for Sourcegraph.com only.
+// Dotcom description: Configuration options for Khulnasoft.com only.
 type Dotcom struct {
-	// CodyGateway description: Configuration related to the Cody Gateway service management. This should only be used on sourcegraph.com.
+	// CodyGateway description: Configuration related to the Cody Gateway service management. This should only be used on khulnasoft.com.
 	CodyGateway   *CodyGateway   `json:"codyGateway,omitempty"`
 	CodyProConfig *CodyProConfig `json:"codyProConfig,omitempty"`
 	// EnterprisePortalEnableProxies description: Whether to enable Enterprise Portal auth proxies for site admins.
 	EnterprisePortalEnableProxies *bool `json:"enterprisePortal.enableProxies,omitempty"`
-	// MinimumExternalAccountAge description: The minimum amount of days a Github or GitLab account must exist, before being allowed on Sourcegraph.com.
+	// MinimumExternalAccountAge description: The minimum amount of days a Github or GitLab account must exist, before being allowed on Khulnasoft.com.
 	MinimumExternalAccountAge int `json:"minimumExternalAccountAge,omitempty"`
 	// MinimumExternalAccountAgeExemptList description: A list of email addresses that are allowed to be exempted from the minimumExternalAccountAge requirement.
 	MinimumExternalAccountAgeExemptList []string `json:"minimumExternalAccountAgeExemptList,omitempty"`
@@ -931,7 +931,7 @@ type Dotcom struct {
 	SlackLicenseCreationWebhook string `json:"slackLicenseCreationWebhook,omitempty"`
 	// SlackLicenseExpirationWebhook description: Slack webhook for upcoming license expiration notifications.
 	SlackLicenseExpirationWebhook string `json:"slackLicenseExpirationWebhook,omitempty"`
-	// SrcCliVersionCache description: Configuration related to the src-cli version cache. This should only be used on sourcegraph.com.
+	// SrcCliVersionCache description: Configuration related to the src-cli version cache. This should only be used on khulnasoft.com.
 	SrcCliVersionCache *SrcCliVersionCache `json:"srcCliVersionCache,omitempty"`
 }
 type EmailTemplate struct {
@@ -943,7 +943,7 @@ type EmailTemplate struct {
 	Text string `json:"text,omitempty"`
 }
 
-// EmailTemplates description: Configurable templates for some email types sent by Sourcegraph.
+// EmailTemplates description: Configurable templates for some email types sent by Khulnasoft.
 type EmailTemplates struct {
 	// ResetPassword description: Email sent on password resets. Available template variables: {{.Host}}, {{.Username}}, {{.URL}}
 	ResetPassword *EmailTemplate `json:"resetPassword,omitempty"`
@@ -1162,7 +1162,7 @@ type ExperimentalFeatures struct {
 	EnablePermissionsWebhooks bool `json:"enablePermissionsWebhooks,omitempty"`
 	// EnableStorm description: Enables the Storm frontend architecture changes.
 	EnableStorm bool `json:"enableStorm,omitempty"`
-	// EventLogging description: Enables user event logging inside of the Sourcegraph instance. This will allow admins to have greater visibility of user activity, such as frequently viewed pages, frequent searches, and more. These event logs (and any specific user actions) are only stored locally, and never leave this Sourcegraph instance.
+	// EventLogging description: Enables user event logging inside of the Khulnasoft instance. This will allow admins to have greater visibility of user activity, such as frequently viewed pages, frequent searches, and more. These event logs (and any specific user actions) are only stored locally, and never leave this Khulnasoft instance.
 	EventLogging string `json:"eventLogging,omitempty"`
 	// GitServerPinnedRepos description: List of repositories pinned to specific gitserver instances. The specified repositories will remain at their pinned servers on scaling the cluster. If the specified pinned server differs from the current server that stores the repository, then it must be re-cloned to the specified server.
 	GitServerPinnedRepos map[string]string `json:"gitServerPinnedRepos,omitempty"`
@@ -1200,20 +1200,20 @@ type ExperimentalFeatures struct {
 	RustPackages string `json:"rustPackages,omitempty"`
 	// ScipBasedAPIs description: Enable usage of new CodeGraph and usagesForSymbol APIs
 	ScipBasedAPIs *bool `json:"scipBasedAPIs,omitempty"`
-	// SearchIndexBranches description: A map from repository name to a list of extra revs (branch, ref, tag, commit sha, etc) to index for a repository. We always index the default branch ("HEAD") and revisions in version contexts. This allows specifying additional revisions. Sourcegraph can index up to 64 branches per repository.
+	// SearchIndexBranches description: A map from repository name to a list of extra revs (branch, ref, tag, commit sha, etc) to index for a repository. We always index the default branch ("HEAD") and revisions in version contexts. This allows specifying additional revisions. Khulnasoft can index up to 64 branches per repository.
 	SearchIndexBranches map[string][]string `json:"search.index.branches,omitempty"`
 	// SearchIndexQueryContexts description: Enables indexing of revisions of repos matching any query defined in search contexts.
 	SearchIndexQueryContexts bool `json:"search.index.query.contexts,omitempty"`
-	// SearchIndexRevisions description: An array of objects describing rules for extra revisions (branch, ref, tag, commit sha, etc) to be indexed for all repositories that match them. We always index the default branch ("HEAD") and revisions in version contexts. This allows specifying additional revisions. Sourcegraph can index up to 64 branches per repository.
+	// SearchIndexRevisions description: An array of objects describing rules for extra revisions (branch, ref, tag, commit sha, etc) to be indexed for all repositories that match them. We always index the default branch ("HEAD") and revisions in version contexts. This allows specifying additional revisions. Khulnasoft can index up to 64 branches per repository.
 	SearchIndexRevisions []*SearchIndexRevisionsRule `json:"search.index.revisions,omitempty"`
-	// SearchSanitization description: Allows site admins to specify a list of regular expressions representing matched content that should be omitted from search results. Also allows admins to specify the name of an organization within their Sourcegraph instance whose members are trusted and will not have their search results sanitized. Enable this feature by adding at least one valid regular expression to the value of the `sanitizePatterns` field on this object. Site admins will not have their searches sanitized.
+	// SearchSanitization description: Allows site admins to specify a list of regular expressions representing matched content that should be omitted from search results. Also allows admins to specify the name of an organization within their Khulnasoft instance whose members are trusted and will not have their search results sanitized. Enable this feature by adding at least one valid regular expression to the value of the `sanitizePatterns` field on this object. Site admins will not have their searches sanitized.
 	SearchSanitization *SearchSanitization `json:"search.sanitization,omitempty"`
 	// SearchJobs description: Enables search jobs (long-running exhaustive) search feature and its UI
 	SearchJobs *bool `json:"searchJobs,omitempty"`
 	// StructuralSearch description: Enables structural search.
 	StructuralSearch   string              `json:"structuralSearch,omitempty"`
 	SubRepoPermissions *SubRepoPermissions `json:"subRepoPermissions,omitempty"`
-	// TlsExternal description: Global TLS/SSL settings for Sourcegraph to use when communicating with code hosts.
+	// TlsExternal description: Global TLS/SSL settings for Khulnasoft to use when communicating with code hosts.
 	TlsExternal *TlsExternal   `json:"tls.external,omitempty"`
 	Additional  map[string]any `json:"-"` // additionalProperties not explicitly defined in the schema
 }
@@ -1297,7 +1297,7 @@ func (v *ExperimentalFeatures) UnmarshalJSON(data []byte) error {
 type ExportUsageTelemetry struct {
 	// BatchSize description: Maximum number of events scraped from the events table in a single scrape.
 	BatchSize int `json:"batchSize,omitempty"`
-	// Enabled description: Toggles whether or not to export Sourcegraph telemetry. If enabled events will be scraped and sent to an analytics store. This is an opt-in setting, and only should only be enabled for customers that have agreed to event level data collection.
+	// Enabled description: Toggles whether or not to export Khulnasoft telemetry. If enabled events will be scraped and sent to an analytics store. This is an opt-in setting, and only should only be enabled for customers that have agreed to event level data collection.
 	Enabled bool `json:"enabled,omitempty"`
 	// TopicName description: Destination pubsub topic name to export usage data
 	TopicName string `json:"topicName,omitempty"`
@@ -1352,7 +1352,7 @@ type GerritAuthProvider struct {
 	Url string `json:"url"`
 }
 
-// GerritAuthorization description: If non-null, enforces Gerrit repository permissions. This requires that there is an item in the [site configuration json](https://sourcegraph.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "gerrit" with the same `url` field as specified in this `GerritConnection`.
+// GerritAuthorization description: If non-null, enforces Gerrit repository permissions. This requires that there is an item in the [site configuration json](https://khulnasoft.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "gerrit" with the same `url` field as specified in this `GerritConnection`.
 type GerritAuthorization struct {
 	// IdentityProvider description: The identity provider to use for user information. If not set, the `url` field is used.
 	IdentityProvider string `json:"identityProvider,omitempty"`
@@ -1360,7 +1360,7 @@ type GerritAuthorization struct {
 
 // GerritConnection description: Configuration for a connection to Gerrit.
 type GerritConnection struct {
-	// Authorization description: If non-null, enforces Gerrit repository permissions. This requires that there is an item in the [site configuration json](https://sourcegraph.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "gerrit" with the same `url` field as specified in this `GerritConnection`.
+	// Authorization description: If non-null, enforces Gerrit repository permissions. This requires that there is an item in the [site configuration json](https://khulnasoft.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "gerrit" with the same `url` field as specified in this `GerritConnection`.
 	Authorization *GerritAuthorization `json:"authorization,omitempty"`
 	// Exclude description: A list of repositories to never mirror from this Gerrit instance. Takes precedence over "projects" configuration.
 	//
@@ -1368,19 +1368,19 @@ type GerritConnection struct {
 	Exclude []*ExcludedGerritProject `json:"exclude,omitempty"`
 	// GitURLType description: The type of Git URLs to use for cloning and fetching Git repositories on this Gerrit instance.
 	//
-	// If "http", Sourcegraph will access Gerrit repositories using Git URLs of the form http(s)://gerrit.example.com/a/myteam/myproject.git (using https: if the Gerrit instance uses HTTPS).
+	// If "http", Khulnasoft will access Gerrit repositories using Git URLs of the form http(s)://gerrit.example.com/a/myteam/myproject.git (using https: if the Gerrit instance uses HTTPS).
 	//
-	// If "ssh", Sourcegraph will access Gerrit repositories using Git URLs of the form git@gerrit.example.com:myteam/myproject.git. The exact hostname and port will be fetched from /ssh_info. See the documentation for how to provide SSH private keys and known_hosts: https://sourcegraph.com/docs/admin/repo/auth.
+	// If "ssh", Khulnasoft will access Gerrit repositories using Git URLs of the form git@gerrit.example.com:myteam/myproject.git. The exact hostname and port will be fetched from /ssh_info. See the documentation for how to provide SSH private keys and known_hosts: https://khulnasoft.com/docs/admin/repo/auth.
 	GitURLType string `json:"gitURLType,omitempty"`
 	// Password description: The password associated with the Gerrit username used for authentication.
 	Password string `json:"password"`
-	// Projects description: An array of project strings specifying which Gerrit projects to mirror on Sourcegraph. If empty, all projects will be mirrored.
+	// Projects description: An array of project strings specifying which Gerrit projects to mirror on Khulnasoft. If empty, all projects will be mirrored.
 	Projects []string `json:"projects,omitempty"`
-	// RepositoryPathPattern description: The pattern used to generate the corresponding Sourcegraph repository name for a Gerrit repository. In the pattern, the variable "{host}" is replaced with the Gerrit host (such as gerrit.example.com), and "{name}" is replaced with the Gerrit repository's name (such as "myrepo").
+	// RepositoryPathPattern description: The pattern used to generate the corresponding Khulnasoft repository name for a Gerrit repository. In the pattern, the variable "{host}" is replaced with the Gerrit host (such as gerrit.example.com), and "{name}" is replaced with the Gerrit repository's name (such as "myrepo").
 	//
-	// For example, if your Gerrit URL is https://gerrit.example.com and your Sourcegraph URL is https://src.example.com, then a repositoryPathPattern of "{host}/{name}" would mean that a Gerrit repository at https://gerrit.example.com/myrepo is available on Sourcegraph at https://src.example.com/gerrit.example.com/myrepo.
+	// For example, if your Gerrit URL is https://gerrit.example.com and your Khulnasoft URL is https://src.example.com, then a repositoryPathPattern of "{host}/{name}" would mean that a Gerrit repository at https://gerrit.example.com/myrepo is available on Khulnasoft at https://src.example.com/gerrit.example.com/myrepo.
 	//
-	// It is important that the Sourcegraph repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
+	// It is important that the Khulnasoft repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
 	RepositoryPathPattern string `json:"repositoryPathPattern,omitempty"`
 	// Url description: URL of a Gerrit instance, such as https://gerrit.example.com.
 	Url string `json:"url"`
@@ -1410,17 +1410,17 @@ type GitCommitDescription struct {
 	Version int `json:"version,omitempty"`
 }
 
-// GitHubApp description: DEPRECATED: The config options for Sourcegraph GitHub App.
+// GitHubApp description: DEPRECATED: The config options for Khulnasoft GitHub App.
 type GitHubApp struct {
-	// AppID description: The app ID of the GitHub App for Sourcegraph.
+	// AppID description: The app ID of the GitHub App for Khulnasoft.
 	AppID string `json:"appID,omitempty"`
-	// ClientID description: The Client ID of the GitHub App for Sourcegraph, accessible from https://github.com/settings/apps .
+	// ClientID description: The Client ID of the GitHub App for Khulnasoft, accessible from https://github.com/settings/apps .
 	ClientID string `json:"clientID,omitempty"`
-	// ClientSecret description: The Client Secret of the GitHub App for Sourcegraph, accessible from https://github.com/settings/apps .
+	// ClientSecret description: The Client Secret of the GitHub App for Khulnasoft, accessible from https://github.com/settings/apps .
 	ClientSecret string `json:"clientSecret,omitempty"`
-	// PrivateKey description: The base64-encoded private key of the GitHub App for Sourcegraph.
+	// PrivateKey description: The base64-encoded private key of the GitHub App for Khulnasoft.
 	PrivateKey string `json:"privateKey,omitempty"`
-	// Slug description: The slug of the GitHub App for Sourcegraph.
+	// Slug description: The slug of the GitHub App for Khulnasoft.
 	Slug string `json:"slug,omitempty"`
 }
 
@@ -1436,15 +1436,15 @@ type GitHubAppDetails struct {
 	InstallationID int `json:"installationID,omitempty"`
 }
 
-// GitHubAuthProvider description: Configures the GitHub (or GitHub Enterprise) OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your GitHub instance: https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/. When a user signs into Sourcegraph or links their GitHub account to their existing Sourcegraph account, GitHub will prompt the user for the repo scope.
+// GitHubAuthProvider description: Configures the GitHub (or GitHub Enterprise) OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your GitHub instance: https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/. When a user signs into Khulnasoft or links their GitHub account to their existing Khulnasoft account, GitHub will prompt the user for the repo scope.
 type GitHubAuthProvider struct {
-	// AllowGroupsPermissionsSync description: Experimental: Allows sync of GitHub teams and organizations permissions across all external services associated with this provider to allow enabling of [repository permissions caching](https://sourcegraph.com/docs/admin/code_hosts/github#teams-and-organizations-permissions-caching).
+	// AllowGroupsPermissionsSync description: Experimental: Allows sync of GitHub teams and organizations permissions across all external services associated with this provider to allow enabling of [repository permissions caching](https://khulnasoft.com/docs/admin/code_hosts/github#teams-and-organizations-permissions-caching).
 	AllowGroupsPermissionsSync bool `json:"allowGroupsPermissionsSync,omitempty"`
 	// AllowOrgs description: Restricts new logins and signups (if allowSignup is true) to members of these GitHub organizations. Existing sessions won't be invalidated. Leave empty or unset for no org restrictions.
 	AllowOrgs []string `json:"allowOrgs,omitempty"`
 	// AllowOrgsMap description: Restricts new logins and signups (if allowSignup is true) to members of GitHub teams. Each list of teams should have their Github org name as a key. Subteams inheritance is not supported, therefore only members of the listed teams will be granted access. Existing sessions won't be invalidated. Leave empty or unset for no team restrictions.
 	AllowOrgsMap map[string][]string `json:"allowOrgsMap,omitempty"`
-	// AllowSignup description: Allows new visitors to sign up for accounts via GitHub authentication. If false, users signing in via GitHub must have an existing Sourcegraph account, which will be linked to their GitHub identity after sign-in.
+	// AllowSignup description: Allows new visitors to sign up for accounts via GitHub authentication. If false, users signing in via GitHub must have an existing Khulnasoft account, which will be linked to their GitHub identity after sign-in.
 	AllowSignup bool `json:"allowSignup,omitempty"`
 	// ClientID description: The Client ID of the GitHub OAuth app, accessible from https://github.com/settings/developers (or the same path on GitHub Enterprise).
 	ClientID string `json:"clientID"`
@@ -1460,11 +1460,11 @@ type GitHubAuthProvider struct {
 	Url string `json:"url,omitempty"`
 }
 
-// GitHubAuthorization description: If non-null, enforces GitHub repository permissions. This requires that there is an item in the [site configuration json](https://sourcegraph.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "github" with the same `url` field as specified in this `GitHubConnection`.
+// GitHubAuthorization description: If non-null, enforces GitHub repository permissions. This requires that there is an item in the [site configuration json](https://khulnasoft.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "github" with the same `url` field as specified in this `GitHubConnection`.
 type GitHubAuthorization struct {
-	// GroupsCacheTTL description: Experimental: If set, configures hours cached permissions from teams and organizations should be kept for. Setting a negative value disables syncing from teams and organizations, and falls back to the default behaviour of syncing all permisisons directly from user-repository affiliations instead. [Learn more](https://sourcegraph.com/docs/admin/code_hosts/github#teams-and-organizations-permissions-caching).
+	// GroupsCacheTTL description: Experimental: If set, configures hours cached permissions from teams and organizations should be kept for. Setting a negative value disables syncing from teams and organizations, and falls back to the default behaviour of syncing all permisisons directly from user-repository affiliations instead. [Learn more](https://khulnasoft.com/docs/admin/code_hosts/github#teams-and-organizations-permissions-caching).
 	GroupsCacheTTL float64 `json:"groupsCacheTTL,omitempty"`
-	// MarkInternalReposAsPublic description: If true, internal repositories will be accessible to all users on Sourcegraph as if they were public. This overrides repository permissions but allows easier discovery and access to internal repositories, and may be desirable if all users on the Sourcegraph instance should have access to all internal repositories anyways. Defaults to false.
+	// MarkInternalReposAsPublic description: If true, internal repositories will be accessible to all users on Khulnasoft as if they were public. This overrides repository permissions but allows easier discovery and access to internal repositories, and may be desirable if all users on the Khulnasoft instance should have access to all internal repositories anyways. Defaults to false.
 	MarkInternalReposAsPublic bool `json:"markInternalReposAsPublic,omitempty"`
 	// SyncInternalRepoPermissions description: If true, access to internal repositories will be synced as part of user permission syncs. This can lead to slower user permission syncs for organizations with many internal repositories. Defaults to false.
 	SyncInternalRepoPermissions bool `json:"syncInternalRepoPermissions,omitempty"`
@@ -1472,7 +1472,7 @@ type GitHubAuthorization struct {
 
 // GitHubConnection description: Configuration for a connection to GitHub or GitHub Enterprise.
 type GitHubConnection struct {
-	// Authorization description: If non-null, enforces GitHub repository permissions. This requires that there is an item in the [site configuration json](https://sourcegraph.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "github" with the same `url` field as specified in this `GitHubConnection`.
+	// Authorization description: If non-null, enforces GitHub repository permissions. This requires that there is an item in the [site configuration json](https://khulnasoft.com/docs/admin/config/site_config#auth-providers) `auth.providers` field, of type "github" with the same `url` field as specified in this `GitHubConnection`.
 	Authorization *GitHubAuthorization `json:"authorization,omitempty"`
 	// Certificate description: TLS certificate of the GitHub Enterprise instance. This is only necessary if the certificate is self-signed or signed by an internal CA. To get the certificate run `openssl s_client -connect HOST:443 -showcerts < /dev/null 2> /dev/null | openssl x509 -outform PEM`. To escape the value into a JSON string, you may want to use a tool like https://json-escape-text.now.sh.
 	Certificate string `json:"certificate,omitempty"`
@@ -1486,29 +1486,29 @@ type GitHubConnection struct {
 	GitHubAppDetails *GitHubAppDetails `json:"gitHubAppDetails,omitempty"`
 	// GitURLType description: The type of Git URLs to use for cloning and fetching Git repositories on this GitHub instance.
 	//
-	// If "http", Sourcegraph will access GitHub repositories using Git URLs of the form http(s)://github.com/myteam/myproject.git (using https: if the GitHub instance uses HTTPS).
+	// If "http", Khulnasoft will access GitHub repositories using Git URLs of the form http(s)://github.com/myteam/myproject.git (using https: if the GitHub instance uses HTTPS).
 	//
-	// If "ssh", Sourcegraph will access GitHub repositories using Git URLs of the form git@github.com:myteam/myproject.git. See the documentation for how to provide SSH private keys and known_hosts: https://sourcegraph.com/docs/admin/repo/auth.
+	// If "ssh", Khulnasoft will access GitHub repositories using Git URLs of the form git@github.com:myteam/myproject.git. See the documentation for how to provide SSH private keys and known_hosts: https://khulnasoft.com/docs/admin/repo/auth.
 	GitURLType string `json:"gitURLType,omitempty"`
 	// GithubAppInstallationID description: DEPRECATED: The installation ID of the GitHub App.
 	GithubAppInstallationID string `json:"githubAppInstallationID,omitempty"`
 	// InitialRepositoryEnablement description: Deprecated and ignored field which will be removed entirely in the next release. GitHub repositories can no longer be enabled or disabled explicitly. Configure repositories to be mirrored via "repos", "exclude" and "repositoryQuery" instead.
 	InitialRepositoryEnablement bool `json:"initialRepositoryEnablement,omitempty"`
-	// Orgs description: An array of organization names identifying GitHub organizations whose repositories should be mirrored on Sourcegraph.
+	// Orgs description: An array of organization names identifying GitHub organizations whose repositories should be mirrored on Khulnasoft.
 	Orgs []string `json:"orgs,omitempty"`
 	// Pending description: Whether the code host connection is in a pending state.
 	Pending bool `json:"pending,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests to GitHub.
 	RateLimit *GitHubRateLimit `json:"rateLimit,omitempty"`
-	// Repos description: An array of repository "owner/name" strings specifying which GitHub or GitHub Enterprise repositories to mirror on Sourcegraph.
+	// Repos description: An array of repository "owner/name" strings specifying which GitHub or GitHub Enterprise repositories to mirror on Khulnasoft.
 	Repos []string `json:"repos,omitempty"`
-	// RepositoryPathPattern description: The pattern used to generate the corresponding Sourcegraph repository name for a GitHub or GitHub Enterprise repository. In the pattern, the variable "{host}" is replaced with the GitHub host (such as github.example.com), and "{nameWithOwner}" is replaced with the GitHub repository's "owner/path" (such as "myorg/myrepo").
+	// RepositoryPathPattern description: The pattern used to generate the corresponding Khulnasoft repository name for a GitHub or GitHub Enterprise repository. In the pattern, the variable "{host}" is replaced with the GitHub host (such as github.example.com), and "{nameWithOwner}" is replaced with the GitHub repository's "owner/path" (such as "myorg/myrepo").
 	//
-	// For example, if your GitHub Enterprise URL is https://github.example.com and your Sourcegraph URL is https://src.example.com, then a repositoryPathPattern of "{host}/{nameWithOwner}" would mean that a GitHub repository at https://github.example.com/myorg/myrepo is available on Sourcegraph at https://src.example.com/github.example.com/myorg/myrepo.
+	// For example, if your GitHub Enterprise URL is https://github.example.com and your Khulnasoft URL is https://src.example.com, then a repositoryPathPattern of "{host}/{nameWithOwner}" would mean that a GitHub repository at https://github.example.com/myorg/myrepo is available on Khulnasoft at https://src.example.com/github.example.com/myorg/myrepo.
 	//
-	// It is important that the Sourcegraph repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
+	// It is important that the Khulnasoft repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
 	RepositoryPathPattern string `json:"repositoryPathPattern,omitempty"`
-	// RepositoryQuery description: An array of strings specifying which GitHub or GitHub Enterprise repositories to mirror on Sourcegraph. The valid values are:
+	// RepositoryQuery description: An array of strings specifying which GitHub or GitHub Enterprise repositories to mirror on Khulnasoft. The valid values are:
 	//
 	// - `public` mirrors all public repositories for GitHub Enterprise and is the equivalent of `none` for GitHub
 	//
@@ -1527,11 +1527,11 @@ type GitHubConnection struct {
 	//
 	// If you need to narrow the set of mirrored repositories further (and don't want to enumerate it with a list or query set as above), create a new bot/machine user on GitHub or GitHub Enterprise that is only affiliated with the desired repositories.
 	RepositoryQuery []string `json:"repositoryQuery,omitempty"`
-	// Token description: A GitHub personal access token. Create one for GitHub.com at https://github.com/settings/tokens/new?description=Sourcegraph (for GitHub Enterprise, replace github.com with your instance's hostname). See https://sourcegraph.com/docs/admin/code_hosts/github#github-api-access for which scopes are required for which use cases.
+	// Token description: A GitHub personal access token. Create one for GitHub.com at https://github.com/settings/tokens/new?description=Khulnasoft (for GitHub Enterprise, replace github.com with your instance's hostname). See https://khulnasoft.com/docs/admin/code_hosts/github#github-api-access for which scopes are required for which use cases.
 	Token string `json:"token,omitempty"`
 	// Url description: URL of a GitHub instance, such as https://github.com or https://github-enterprise.example.com.
 	Url string `json:"url"`
-	// Webhooks description: An array of configurations defining existing GitHub webhooks that send updates back to Sourcegraph.
+	// Webhooks description: An array of configurations defining existing GitHub webhooks that send updates back to Khulnasoft.
 	Webhooks []*GitHubWebhook `json:"webhooks,omitempty"`
 }
 
@@ -1549,11 +1549,11 @@ type GitHubWebhook struct {
 	Secret string `json:"secret"`
 }
 
-// GitLabAuthProvider description: Configures the GitLab OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your GitLab instance: https://docs.gitlab.com/ee/integration/oauth_provider.html. The application should have `api` and `read_user` scopes and the callback URL set to the concatenation of your Sourcegraph instance URL and "/.auth/gitlab/callback".
+// GitLabAuthProvider description: Configures the GitLab OAuth authentication provider for SSO. In addition to specifying this configuration object, you must also create a OAuth App on your GitLab instance: https://docs.gitlab.com/ee/integration/oauth_provider.html. The application should have `api` and `read_user` scopes and the callback URL set to the concatenation of your Khulnasoft instance URL and "/.auth/gitlab/callback".
 type GitLabAuthProvider struct {
 	// AllowGroups description: Restricts new logins and signups (if allowSignup is true) to members of these GitLab groups. Existing sessions won't be invalidated. Make sure to inform the full path for groups or subgroups instead of their names. Leave empty or unset for no group restrictions.
 	AllowGroups []string `json:"allowGroups,omitempty"`
-	// AllowSignup description: Allows new visitors to sign up for accounts via GitLab authentication. If false, users signing in via GitLab must have an existing Sourcegraph account, which will be linked to their GitLab identity after sign-in.
+	// AllowSignup description: Allows new visitors to sign up for accounts via GitLab authentication. If false, users signing in via GitLab must have an existing Khulnasoft account, which will be linked to their GitLab identity after sign-in.
 	AllowSignup *bool `json:"allowSignup,omitempty"`
 	// ApiScope description: The OAuth API scope that should be used
 	ApiScope string `json:"apiScope,omitempty"`
@@ -1568,7 +1568,7 @@ type GitLabAuthProvider struct {
 	Order         int     `json:"order,omitempty"`
 	// SsoURL description: An alternate sign-in URL used to ease SSO sign-in flows, such as https://gitlab.com/groups/your-group/saml/sso?token=xxxxxx
 	SsoURL string `json:"ssoURL,omitempty"`
-	// SyncInternalRepoPermissions description: Whether to sync permissions for internal repositories on GitLab. Setting this to false can be useful when internal repositories are configured to be public on Sourcegraph.
+	// SyncInternalRepoPermissions description: Whether to sync permissions for internal repositories on GitLab. Setting this to false can be useful when internal repositories are configured to be public on Khulnasoft.
 	SyncInternalRepoPermissions *bool `json:"syncInternalRepoPermissions,omitempty"`
 	// TokenRefreshWindowMinutes description: Time in minutes before token expiry when we should attempt to refresh it
 	TokenRefreshWindowMinutes int    `json:"tokenRefreshWindowMinutes,omitempty"`
@@ -1579,7 +1579,7 @@ type GitLabAuthProvider struct {
 
 // GitLabAuthorization description: If non-null, enforces GitLab repository permissions. This requires that there be an item in the `auth.providers` field of type "gitlab" with the same `url` field as specified in this `GitLabConnection`.
 type GitLabAuthorization struct {
-	// IdentityProvider description: The source of identity to use when computing permissions. This defines how to compute the GitLab identity to use for a given Sourcegraph user.
+	// IdentityProvider description: The source of identity to use when computing permissions. This defines how to compute the GitLab identity to use for a given Khulnasoft user.
 	IdentityProvider IdentityProvider `json:"identityProvider"`
 }
 
@@ -1593,17 +1593,17 @@ type GitLabConnection struct {
 	Exclude []*ExcludedGitLabProject `json:"exclude,omitempty"`
 	// GitURLType description: The type of Git URLs to use for cloning and fetching Git repositories on this GitLab instance.
 	//
-	// If "http", Sourcegraph will access GitLab repositories using Git URLs of the form http(s)://gitlab.example.com/myteam/myproject.git (using https: if the GitLab instance uses HTTPS).
+	// If "http", Khulnasoft will access GitLab repositories using Git URLs of the form http(s)://gitlab.example.com/myteam/myproject.git (using https: if the GitLab instance uses HTTPS).
 	//
-	// If "ssh", Sourcegraph will access GitLab repositories using Git URLs of the form git@example.gitlab.com:myteam/myproject.git. See the documentation for how to provide SSH private keys and known_hosts: https://sourcegraph.com/docs/admin/repo/auth#repositories-that-need-http-s-or-ssh-authentication.
+	// If "ssh", Khulnasoft will access GitLab repositories using Git URLs of the form git@example.gitlab.com:myteam/myproject.git. See the documentation for how to provide SSH private keys and known_hosts: https://khulnasoft.com/docs/admin/repo/auth#repositories-that-need-http-s-or-ssh-authentication.
 	GitURLType string `json:"gitURLType,omitempty"`
 	// InitialRepositoryEnablement description: Deprecated and ignored field which will be removed entirely in the next release. GitLab repositories can no longer be enabled or disabled explicitly.
 	InitialRepositoryEnablement bool `json:"initialRepositoryEnablement,omitempty"`
-	// MarkInternalReposAsPublic description: If true, internal repositories will be accessible to all users on Sourcegraph as if they were public, and user permission syncs will no longer check for public repositories. This overrides repository permissions but allows easier discovery and access to internal repositories, and may be desirable if all users on the Sourcegraph instance should have access to all internal repositories anyways. Defaults to false.
+	// MarkInternalReposAsPublic description: If true, internal repositories will be accessible to all users on Khulnasoft as if they were public, and user permission syncs will no longer check for public repositories. This overrides repository permissions but allows easier discovery and access to internal repositories, and may be desirable if all users on the Khulnasoft instance should have access to all internal repositories anyways. Defaults to false.
 	MarkInternalReposAsPublic bool `json:"markInternalReposAsPublic,omitempty"`
 	// NameTransformations description: An array of transformations will apply to the repository name. Currently, only regex replacement is supported. All transformations happen after "repositoryPathPattern" is processed.
 	NameTransformations []*GitLabNameTransformation `json:"nameTransformations,omitempty"`
-	// ProjectQuery description: An array of strings specifying which GitLab projects to mirror on Sourcegraph. Each string is a URL path and query that targets a GitLab API endpoint returning a list of projects. If the string only contains a query, then "projects" is used as the path. Examples: "?membership=true&search=foo", "groups/mygroup/projects".
+	// ProjectQuery description: An array of strings specifying which GitLab projects to mirror on Khulnasoft. Each string is a URL path and query that targets a GitLab API endpoint returning a list of projects. If the string only contains a query, then "projects" is used as the path. Examples: "?membership=true&search=foo", "groups/mygroup/projects".
 	//
 	// The special string "none" can be used as the only element to disable this feature. Projects matched by multiple query strings are only imported once. Here are a few endpoints that return a list of projects: https://docs.gitlab.com/ee/api/projects.html#list-all-projects, https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects, https://docs.gitlab.com/ee/api/search.html#scope-projects.
 	ProjectQuery []string `json:"projectQuery"`
@@ -1611,11 +1611,11 @@ type GitLabConnection struct {
 	Projects []*GitLabProject `json:"projects,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests to GitLab.
 	RateLimit *GitLabRateLimit `json:"rateLimit,omitempty"`
-	// RepositoryPathPattern description: The pattern used to generate a the corresponding Sourcegraph repository name for a GitLab project. In the pattern, the variable "{host}" is replaced with the GitLab URL's host (such as gitlab.example.com), and "{pathWithNamespace}" is replaced with the GitLab project's "namespace/path" (such as "myteam/myproject").
+	// RepositoryPathPattern description: The pattern used to generate a the corresponding Khulnasoft repository name for a GitLab project. In the pattern, the variable "{host}" is replaced with the GitLab URL's host (such as gitlab.example.com), and "{pathWithNamespace}" is replaced with the GitLab project's "namespace/path" (such as "myteam/myproject").
 	//
-	// For example, if your GitLab is https://gitlab.example.com and your Sourcegraph is https://src.example.com, then a repositoryPathPattern of "{host}/{pathWithNamespace}" would mean that a GitLab project at https://gitlab.example.com/myteam/myproject is available on Sourcegraph at https://src.example.com/gitlab.example.com/myteam/myproject.
+	// For example, if your GitLab is https://gitlab.example.com and your Khulnasoft is https://src.example.com, then a repositoryPathPattern of "{host}/{pathWithNamespace}" would mean that a GitLab project at https://gitlab.example.com/myteam/myproject is available on Khulnasoft at https://src.example.com/gitlab.example.com/myteam/myproject.
 	//
-	// It is important that the Sourcegraph repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
+	// It is important that the Khulnasoft repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
 	RepositoryPathPattern string `json:"repositoryPathPattern,omitempty"`
 	// Token description: A GitLab access token with "api" scope. Can be a personal access token (PAT) or an OAuth token. If you are enabling permissions with identity provider type "username", this token should also have "sudo" scope.
 	Token string `json:"token"`
@@ -1689,13 +1689,13 @@ type GitoliteConnection struct {
 	PhabricatorMetadataCommand string `json:"phabricatorMetadataCommand,omitempty"`
 	// Prefix description: Repository name prefix that will map to this Gitolite host. This should likely end with a trailing slash. E.g., "gitolite.example.com/".
 	//
-	// It is important that the Sourcegraph repository name generated with this prefix be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
+	// It is important that the Khulnasoft repository name generated with this prefix be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
 	Prefix string `json:"prefix"`
 }
 
 // GoModulesConnection description: Configuration for a connection to Go module proxies
 type GoModulesConnection struct {
-	// Dependencies description: An array of strings specifying Go modules to mirror in Sourcegraph.
+	// Dependencies description: An array of strings specifying Go modules to mirror in Khulnasoft.
 	Dependencies []string `json:"dependencies,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests to the configured Go module proxies.
 	RateLimit *GoRateLimit `json:"rateLimit,omitempty"`
@@ -1727,7 +1727,7 @@ type Header struct {
 	Value     string `json:"value"`
 }
 
-// IdentityProvider description: The source of identity to use when computing permissions. This defines how to compute the GitLab identity to use for a given Sourcegraph user.
+// IdentityProvider description: The source of identity to use when computing permissions. This defines how to compute the GitLab identity to use for a given Khulnasoft user.
 type IdentityProvider struct {
 	Oauth    *OAuthIdentity
 	Username *UsernameIdentity
@@ -1761,7 +1761,7 @@ func (v *IdentityProvider) UnmarshalJSON(data []byte) error {
 type ImportChangesets struct {
 	// ExternalIDs description: The changesets to import from the code host. For GitHub this is the PR number, for GitLab this is the MR number, for Bitbucket Server this is the PR number.
 	ExternalIDs []any `json:"externalIDs"`
-	// Repository description: The repository name as configured on your Sourcegraph instance.
+	// Repository description: The repository name as configured on your Khulnasoft instance.
 	Repository string `json:"repository"`
 }
 
@@ -1810,7 +1810,7 @@ type Log struct {
 type Maven struct {
 	// Credentials description: Contents of a coursier.credentials file needed for accessing the Maven repositories. See the 'Inline' section at https://get-coursier.io/docs/other-credentials#inline for more details.
 	Credentials string `json:"credentials,omitempty"`
-	// Dependencies description: An array of artifact "groupID:artifactID:version" strings specifying which Maven artifacts to mirror on Sourcegraph.
+	// Dependencies description: An array of artifact "groupID:artifactID:version" strings specifying which Maven artifacts to mirror on Khulnasoft.
 	Dependencies []string `json:"dependencies,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests to the Maven repository.
 	RateLimit *MavenRateLimit `json:"rateLimit,omitempty"`
@@ -1946,11 +1946,11 @@ type NotifierEmail struct {
 type NotifierOpsGenie struct {
 	ApiKey string `json:"apiKey,omitempty"`
 	ApiUrl string `json:"apiUrl,omitempty"`
-	// Priority description: Defines the importance of an alert. Allowed values are P1, P2, P3, P4, P5 - or a Go template that resolves to one of those values. By default, Sourcegraph will fill this in for you if a value isn't specified here.
+	// Priority description: Defines the importance of an alert. Allowed values are P1, P2, P3, P4, P5 - or a Go template that resolves to one of those values. By default, Khulnasoft will fill this in for you if a value isn't specified here.
 	Priority string `json:"priority,omitempty"`
 	// Responders description: List of responders responsible for notifications.
 	Responders []*Responders `json:"responders,omitempty"`
-	// Tags description: Comma separated list of tags attached to the notifications - or a Go template that produces such a list. Sourcegraph provides some default ones if this value isn't specified.
+	// Tags description: Comma separated list of tags attached to the notifications - or a Go template that produces such a list. Khulnasoft provides some default ones if this value isn't specified.
 	Tags string `json:"tags,omitempty"`
 	Type string `json:"type"`
 }
@@ -1993,7 +1993,7 @@ type NotifierWebhook struct {
 type NpmPackagesConnection struct {
 	// Credentials description: Access token for logging into the npm registry.
 	Credentials string `json:"credentials,omitempty"`
-	// Dependencies description: An array of "(@scope/)?packageName@version" strings specifying which npm packages to mirror on Sourcegraph.
+	// Dependencies description: An array of "(@scope/)?packageName@version" strings specifying which npm packages to mirror on Khulnasoft.
 	Dependencies []string `json:"dependencies,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests to the npm registry.
 	RateLimit *NpmRateLimit `json:"rateLimit,omitempty"`
@@ -2014,10 +2014,10 @@ type OAuthIdentity struct {
 type ObservabilityAlerts struct {
 	// DisableSendResolved description: Disable notifications when alerts resolve themselves.
 	DisableSendResolved bool `json:"disableSendResolved,omitempty"`
-	// Level description: Sourcegraph alert level to subscribe to notifications for.
+	// Level description: Khulnasoft alert level to subscribe to notifications for.
 	Level    string   `json:"level"`
 	Notifier Notifier `json:"notifier"`
-	// Owners description: Do not use. When set, only receive alerts owned by the specified teams. Used by Sourcegraph internally.
+	// Owners description: Do not use. When set, only receive alerts owned by the specified teams. Used by Khulnasoft internally.
 	Owners []string `json:"owners,omitempty"`
 }
 
@@ -2027,21 +2027,21 @@ type ObservabilityClient struct {
 	OpenTelemetry *OpenTelemetry `json:"openTelemetry,omitempty"`
 }
 
-// ObservabilityTracing description: Configures distributed tracing within Sourcegraph. To learn more, refer to https://sourcegraph.com/docs/admin/observability/tracing
+// ObservabilityTracing description: Configures distributed tracing within Khulnasoft. To learn more, refer to https://khulnasoft.com/docs/admin/observability/tracing
 type ObservabilityTracing struct {
 	// Debug description: Turns on debug logging of tracing client requests. This can be useful for debugging connectivity issues between the tracing client and tracing backend, the performance overhead of tracing, and other issues related to the use of distributed tracing. May have performance implications in production.
 	Debug bool `json:"debug,omitempty"`
-	// Sampling description: Determines the conditions under which distributed traces are recorded. "none" turns off tracing entirely. "selective" (default) sends traces whenever `?trace=1` is present in the URL (though background jobs may still emit traces). "all" sends traces on every request. Note that this only affects the behavior of the distributed tracing client. To learn more about additional sampling and traace export configuration with the default tracing type "opentelemetry", refer to https://sourcegraph.com/docs/admin/observability/opentelemetry#tracing
+	// Sampling description: Determines the conditions under which distributed traces are recorded. "none" turns off tracing entirely. "selective" (default) sends traces whenever `?trace=1` is present in the URL (though background jobs may still emit traces). "all" sends traces on every request. Note that this only affects the behavior of the distributed tracing client. To learn more about additional sampling and traace export configuration with the default tracing type "opentelemetry", refer to https://khulnasoft.com/docs/admin/observability/opentelemetry#tracing
 	Sampling string `json:"sampling,omitempty"`
-	// Type description: Determines what tracing provider to enable. For "opentelemetry", the required backend is an OpenTelemetry collector instance (deployed by default with Sourcegraph). For "jaeger", a Jaeger instance is required to be configured via Jaeger client environment variables: https://github.com/jaegertracing/jaeger-client-go#environment-variables
+	// Type description: Determines what tracing provider to enable. For "opentelemetry", the required backend is an OpenTelemetry collector instance (deployed by default with Khulnasoft). For "jaeger", a Jaeger instance is required to be configured via Jaeger client environment variables: https://github.com/jaegertracing/jaeger-client-go#environment-variables
 	Type string `json:"type,omitempty"`
 	// UrlTemplate description: Template for linking to trace URLs - '{{ .TraceID }}' is replaced with the trace ID, and {{ .ExternalURL }} is replaced with the value of 'externalURL'. If none is set, no links are generated.
 	UrlTemplate string `json:"urlTemplate,omitempty"`
 }
 
-// OnQuery description: A Sourcegraph search query that matches a set of repositories (and branches). Each matched repository branch is added to the list of repositories that the batch change will be run on.
+// OnQuery description: A Khulnasoft search query that matches a set of repositories (and branches). Each matched repository branch is added to the list of repositories that the batch change will be run on.
 type OnQuery struct {
-	// RepositoriesMatchingQuery description: A Sourcegraph search query that matches a set of repositories (and branches). If the query matches files, symbols, or some other object inside a repository, the object's repository is included.
+	// RepositoriesMatchingQuery description: A Khulnasoft search query that matches a set of repositories (and branches). If the query matches files, symbols, or some other object inside a repository, the object's repository is included.
 	RepositoriesMatchingQuery string `json:"repositoriesMatchingQuery"`
 }
 
@@ -2051,7 +2051,7 @@ type OnRepository struct {
 	Branch string `json:"branch,omitempty"`
 	// Branches description: The repository branches to propose changes to. If unset, the repository's default branch is used. If this field is defined, branch cannot be.
 	Branches []string `json:"branches,omitempty"`
-	// Repository description: The name of the repository (as it is known to Sourcegraph).
+	// Repository description: The name of the repository (as it is known to Khulnasoft).
 	Repository string `json:"repository"`
 }
 type OnboardingStep struct {
@@ -2128,7 +2128,7 @@ type OpenCodeGraphRange struct {
 
 // OpenIDConnectAuthProvider description: Configures the OpenID Connect authentication provider for SSO.
 type OpenIDConnectAuthProvider struct {
-	// AllowSignup description: Allows new visitors to sign up for accounts via OpenID Connect authentication. If false, users signing in via OpenID Connect must have an existing Sourcegraph account, which will be linked to their OpenID Connect identity after sign-in.
+	// AllowSignup description: Allows new visitors to sign up for accounts via OpenID Connect authentication. If false, users signing in via OpenID Connect must have an existing Khulnasoft account, which will be linked to their OpenID Connect identity after sign-in.
 	AllowSignup *bool `json:"allowSignup,omitempty"`
 	// ClientID description: The client ID for the OpenID Connect client for this site.
 	//
@@ -2149,7 +2149,7 @@ type OpenIDConnectAuthProvider struct {
 	Issuer   string `json:"issuer"`
 	NoSignIn bool   `json:"noSignIn,omitempty"`
 	Order    int    `json:"order,omitempty"`
-	// RequireEmailDomain description: Only allow users to authenticate if their email domain is equal to this value (example: mycompany.com). Do not include a leading "@". If not set, all users on this OpenID Connect provider can authenticate to Sourcegraph.
+	// RequireEmailDomain description: Only allow users to authenticate if their email domain is equal to this value (example: mycompany.com). Do not include a leading "@". If not set, all users on this OpenID Connect provider can authenticate to Khulnasoft.
 	RequireEmailDomain string `json:"requireEmailDomain,omitempty"`
 	// SingleIdentityPerUser description: When true, any user can connect exactly one identity from the identity provider.
 	SingleIdentityPerUser bool   `json:"singleIdentityPerUser,omitempty"`
@@ -2179,14 +2179,14 @@ type OrganizationInvitations struct {
 type OtherExternalServiceConnection struct {
 	// Exclude description: A list of repositories to never mirror by name after applying repositoryPathPattern. Supports excluding by exact name ({"name": "myrepo"}) or regular expression ({"pattern": ".*secret.*"}).
 	Exclude []*ExcludedOtherRepo `json:"exclude,omitempty"`
-	// MakeReposPublicOnDotCom description: Whether or not these repositories should be marked as public on Sourcegraph.com. Defaults to false.
+	// MakeReposPublicOnDotCom description: Whether or not these repositories should be marked as public on Khulnasoft.com. Defaults to false.
 	MakeReposPublicOnDotCom bool     `json:"makeReposPublicOnDotCom,omitempty"`
 	Repos                   []string `json:"repos"`
-	// RepositoryPathPattern description: The pattern used to generate the corresponding Sourcegraph repository name for the repositories. In the pattern, the variable "{base}" is replaced with the Git clone base URL host and path, and "{repo}" is replaced with the repository path taken from the `repos` field.
+	// RepositoryPathPattern description: The pattern used to generate the corresponding Khulnasoft repository name for the repositories. In the pattern, the variable "{base}" is replaced with the Git clone base URL host and path, and "{repo}" is replaced with the repository path taken from the `repos` field.
 	//
-	// For example, if your Git clone base URL is https://git.example.com/repos and `repos` contains the value "my/repo", then a repositoryPathPattern of "{base}/{repo}" would mean that a repository at https://git.example.com/repos/my/repo is available on Sourcegraph at https://sourcegraph.example.com/git.example.com/repos/my/repo.
+	// For example, if your Git clone base URL is https://git.example.com/repos and `repos` contains the value "my/repo", then a repositoryPathPattern of "{base}/{repo}" would mean that a repository at https://git.example.com/repos/my/repo is available on Khulnasoft at https://sourcegraph.example.com/git.example.com/repos/my/repo.
 	//
-	// It is important that the Sourcegraph repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
+	// It is important that the Khulnasoft repository name generated with this pattern be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.
 	//
 	// Note: These patterns are ignored if using src-expose / src-serve.
 	RepositoryPathPattern string `json:"repositoryPathPattern,omitempty"`
@@ -2225,8 +2225,8 @@ type PagureRateLimit struct {
 	RequestsPerHour float64 `json:"requestsPerHour"`
 }
 
-// ParentSourcegraph description: URL to fetch unreachable repository details from. Defaults to "https://sourcegraph.com"
-type ParentSourcegraph struct {
+// ParentKhulnasoft description: URL to fetch unreachable repository details from. Defaults to "https://khulnasoft.com"
+type ParentKhulnasoft struct {
 	Url string `json:"url,omitempty"`
 }
 
@@ -2270,15 +2270,15 @@ type PerforceConnection struct {
 	P4Port string `json:"p4.port"`
 	// P4User description: The user to be authenticated for p4 CLI (P4USER).
 	P4User string `json:"p4.user"`
-	// RepositoryPathPattern description: The pattern used to generate the corresponding Sourcegraph repository name for a Perforce depot. In the pattern, the variable "{depot}" is replaced with the Perforce depot's path.
+	// RepositoryPathPattern description: The pattern used to generate the corresponding Khulnasoft repository name for a Perforce depot. In the pattern, the variable "{depot}" is replaced with the Perforce depot's path.
 	//
-	// For example, if your Perforce depot path is "//Sourcegraph/" and your Sourcegraph URL is https://src.example.com, then a repositoryPathPattern of "perforce/{depot}" would mean that the Perforce depot is available on Sourcegraph at https://src.example.com/perforce/Sourcegraph.
+	// For example, if your Perforce depot path is "//Khulnasoft/" and your Khulnasoft URL is https://src.example.com, then a repositoryPathPattern of "perforce/{depot}" would mean that the Perforce depot is available on Khulnasoft at https://src.example.com/perforce/Khulnasoft.
 	//
-	// It is important that the Sourcegraph repository name generated with this pattern be unique to this Perforce Server. If different Perforce Servers generate repository names that collide, Khulnasoft's behavior is undefined.
+	// It is important that the Khulnasoft repository name generated with this pattern be unique to this Perforce Server. If different Perforce Servers generate repository names that collide, Khulnasoft's behavior is undefined.
 	RepositoryPathPattern string `json:"repositoryPathPattern,omitempty"`
 }
 
-// PermissionsUserMapping description: Settings for Sourcegraph explicit permissions, which allow the site admin to explicitly manage repository permissions via the GraphQL API. This will mark repositories as restricted by default.
+// PermissionsUserMapping description: Settings for Khulnasoft explicit permissions, which allow the site admin to explicitly manage repository permissions via the GraphQL API. This will mark repositories as restricted by default.
 type PermissionsUserMapping struct {
 	// BindID description: The type of identifier to identify a user. The default is "email", which uses the email address to identify a user. Use "username" to identify a user by their username. Changing this setting will erase any permissions created for users that do not yet exist.
 	BindID string `json:"bindID,omitempty"`
@@ -2315,7 +2315,7 @@ type ProviderOverride struct {
 
 // PythonPackagesConnection description: Configuration for a connection to Python simple repository APIs compatible with PEP 503
 type PythonPackagesConnection struct {
-	// Dependencies description: An array of strings specifying Python packages to mirror in Sourcegraph.
+	// Dependencies description: An array of strings specifying Python packages to mirror in Khulnasoft.
 	Dependencies []string `json:"dependencies,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests to the configured Python simple repository APIs.
 	RateLimit *PythonRateLimit `json:"rateLimit,omitempty"`
@@ -2353,7 +2353,7 @@ type Ranking struct {
 	MaxReorderDurationMS int `json:"maxReorderDurationMS,omitempty"`
 	// MaxReorderQueueSize description: DEPRECATED: This setting has no effect.
 	MaxReorderQueueSize *int `json:"maxReorderQueueSize,omitempty"`
-	// RepoScores description: a map of URI directories to numeric scores for specifying search result importance, like {"github.com": 500, "github.com/sourcegraph": 300, "github.com/sourcegraph/sourcegraph": 100}. Would rank "github.com/sourcegraph/sourcegraph" as 500+300+100=900, and "github.com/other/foo" as 500.
+	// RepoScores description: a map of URI directories to numeric scores for specifying search result importance, like {"github.com": 500, "github.com/sourcegraph": 300, "github.com/khulnasoft/khulnasoft": 100}. Would rank "github.com/khulnasoft/khulnasoft" as 500+300+100=900, and "github.com/other/foo" as 500.
 	RepoScores map[string]float64 `json:"repoScores,omitempty"`
 }
 type RateLimits struct {
@@ -2451,7 +2451,7 @@ type RestartStep struct {
 
 // RubyPackagesConnection description: Configuration for a connection to Ruby packages
 type RubyPackagesConnection struct {
-	// Dependencies description: An array of strings specifying Ruby packages to mirror in Sourcegraph.
+	// Dependencies description: An array of strings specifying Ruby packages to mirror in Khulnasoft.
 	Dependencies []string `json:"dependencies,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests to the configured Ruby repository APIs.
 	RateLimit *RubyRateLimit `json:"rateLimit,omitempty"`
@@ -2469,7 +2469,7 @@ type RubyRateLimit struct {
 
 // RustPackagesConnection description: Configuration for a connection to Rust packages
 type RustPackagesConnection struct {
-	// Dependencies description: An array of strings specifying Rust packages to mirror in Sourcegraph.
+	// Dependencies description: An array of strings specifying Rust packages to mirror in Khulnasoft.
 	Dependencies []string `json:"dependencies,omitempty"`
 	// RateLimit description: Rate limit applied when making background API requests to the configured Rust repository APIs.
 	RateLimit *RustRateLimit `json:"rateLimit,omitempty"`
@@ -2489,7 +2489,7 @@ type RustRateLimit struct {
 type SAMLAuthProvider struct {
 	// AllowGroups description: Restrict login to members of these groups
 	AllowGroups []string `json:"allowGroups,omitempty"`
-	// AllowSignup description: Allows new visitors to sign up for accounts via SAML authentication. If false, users signing in via SAML must have an existing Sourcegraph account, which will be linked to their SAML identity after sign-in.
+	// AllowSignup description: Allows new visitors to sign up for accounts via SAML authentication. If false, users signing in via SAML must have an existing Khulnasoft account, which will be linked to their SAML identity after sign-in.
 	AllowSignup *bool `json:"allowSignup,omitempty"`
 	// ConfigID description: An identifier that can be used to reference this authentication provider in other parts of the config. For example, in configuration for a code host, you may want to designate this authentication provider as the identity provider for the code host.
 	ConfigID      string  `json:"configID,omitempty"`
@@ -2522,7 +2522,7 @@ type SAMLAuthProvider struct {
 }
 
 // SMTPServerConfig description: The SMTP server used to send transactional emails.
-// Please see https://sourcegraph.com/docs/admin/config/email
+// Please see https://khulnasoft.com/docs/admin/config/email
 type SMTPServerConfig struct {
 	// AdditionalHeaders description: Additional headers to include on SMTP messages that cannot be configured with other 'email.smtp' fields.
 	AdditionalHeaders []*Header `json:"additionalHeaders,omitempty"`
@@ -2556,13 +2556,13 @@ type SearchLimits struct {
 	CommitDiffWithTimeFilterMaxRepos int `json:"commitDiffWithTimeFilterMaxRepos,omitempty"`
 	// MaxRepos description: The maximum number of repositories to search across. The user is prompted to narrow their query if exceeded. Any value less than or equal to zero means unlimited.
 	MaxRepos int `json:"maxRepos,omitempty"`
-	// MaxTimeoutSeconds description: The maximum value for "timeout:" that search will respect. "timeout:" values larger than maxTimeoutSeconds are capped at maxTimeoutSeconds. Note: You need to ensure your load balancer / reverse proxy in front of Sourcegraph won't timeout the request for larger values. Note: Too many large rearch requests may harm Soucregraph for other users. Note: Experimental search jobs do not respect this limit. Defaults to 1 minute.
+	// MaxTimeoutSeconds description: The maximum value for "timeout:" that search will respect. "timeout:" values larger than maxTimeoutSeconds are capped at maxTimeoutSeconds. Note: You need to ensure your load balancer / reverse proxy in front of Khulnasoft won't timeout the request for larger values. Note: Too many large rearch requests may harm Soucregraph for other users. Note: Experimental search jobs do not respect this limit. Defaults to 1 minute.
 	MaxTimeoutSeconds int `json:"maxTimeoutSeconds,omitempty"`
 }
 
-// SearchSanitization description: Allows site admins to specify a list of regular expressions representing matched content that should be omitted from search results. Also allows admins to specify the name of an organization within their Sourcegraph instance whose members are trusted and will not have their search results sanitized. Enable this feature by adding at least one valid regular expression to the value of the `sanitizePatterns` field on this object. Site admins will not have their searches sanitized.
+// SearchSanitization description: Allows site admins to specify a list of regular expressions representing matched content that should be omitted from search results. Also allows admins to specify the name of an organization within their Khulnasoft instance whose members are trusted and will not have their search results sanitized. Enable this feature by adding at least one valid regular expression to the value of the `sanitizePatterns` field on this object. Site admins will not have their searches sanitized.
 type SearchSanitization struct {
-	// OrgName description: Optionally specify the name of an organization within this Sourcegraph instance containing users whose searches should not be sanitized. Admins: ensure that ALL members of this org are trusted users. If no org exists with the given name then there will be no effect. If no org name is specified then all non-admin users will have their searches sanitized if this feature is enabled.
+	// OrgName description: Optionally specify the name of an organization within this Khulnasoft instance containing users whose searches should not be sanitized. Admins: ensure that ALL members of this org are trusted users. If no org exists with the given name then there will be no effect. If no org name is specified then all non-admin users will have their searches sanitized if this feature is enabled.
 	OrgName string `json:"orgName,omitempty"`
 	// SanitizePatterns description: An array of regular expressions representing matched content that should be omitted from search result events. This does not prevent users from accessing file contents through other means if they have read access. Values added to this array must be valid Go regular expressions. Site admins will not have their search results sanitized.
 	SanitizePatterns []string `json:"sanitizePatterns,omitempty"`
@@ -2603,7 +2603,7 @@ type Selector struct {
 type SelfHostedModel struct {
 	// ApiVersion description: API version
 	ApiVersion string `json:"apiVersion,omitempty"`
-	// Model description: Which default model configuration to use. Sourcegraph provides default model configuration for select models. Arbitrary models can be configured in 'modelOverrides'
+	// Model description: Which default model configuration to use. Khulnasoft provides default model configuration for select models. Arbitrary models can be configured in 'modelOverrides'
 	Model    string                   `json:"model,omitempty"`
 	Override *SelfHostedModelOverride `json:"override,omitempty"`
 	// Provider description: provider ID
@@ -2672,7 +2672,7 @@ type ServerSideModelConfigAwsBedrockProvisionedThroughput struct {
 
 // ServerSideModelConfigOpenAICompatible description: Configuration that is only respected if the model is provided by an openaicompatible provider.
 type ServerSideModelConfigOpenAICompatible struct {
-	// ApiModel description: The literal string value of the 'model' field that will be sent to the /chat/completions API, for example. If set, Sourcegraph treats this as an opaque string and sends it directly to the API, inferring no information from it. By default, the configured model name is sent.
+	// ApiModel description: The literal string value of the 'model' field that will be sent to the /chat/completions API, for example. If set, Khulnasoft treats this as an opaque string and sends it directly to the API, inferring no information from it. By default, the configured model name is sent.
 	ApiModel string `json:"apiModel,omitempty"`
 	Type     string `json:"type"`
 }
@@ -2685,7 +2685,7 @@ type ServerSideProviderConfig struct {
 	Openai           *ServerSideProviderConfigOpenAIProvider
 	HuggingfaceTgi   *ServerSideProviderConfigHuggingfaceTGIProvider
 	Openaicompatible *ServerSideProviderConfigOpenAICompatibleProvider
-	Sourcegraph      *ServerSideProviderConfigSourcegraphProvider
+	Khulnasoft      *ServerSideProviderConfigKhulnasoftProvider
 	Unused           *DoNotUsePhonyDiscriminantType
 }
 
@@ -2714,8 +2714,8 @@ func (v ServerSideProviderConfig) MarshalJSON() ([]byte, error) {
 	if v.Openaicompatible != nil {
 		return json.Marshal(v.Openaicompatible)
 	}
-	if v.Sourcegraph != nil {
-		return json.Marshal(v.Sourcegraph)
+	if v.Khulnasoft != nil {
+		return json.Marshal(v.Khulnasoft)
 	}
 	if v.Unused != nil {
 		return json.Marshal(v.Unused)
@@ -2747,7 +2747,7 @@ func (v *ServerSideProviderConfig) UnmarshalJSON(data []byte) error {
 	case "openaicompatible":
 		return json.Unmarshal(data, &v.Openaicompatible)
 	case "sourcegraph":
-		return json.Unmarshal(data, &v.Sourcegraph)
+		return json.Unmarshal(data, &v.Khulnasoft)
 	case "unused":
 		return json.Unmarshal(data, &v.Unused)
 	}
@@ -2806,13 +2806,13 @@ type ServerSideProviderConfigOpenAIProvider struct {
 	Endpoint    string `json:"endpoint"`
 	Type        string `json:"type"`
 }
-type ServerSideProviderConfigSourcegraphProvider struct {
+type ServerSideProviderConfigKhulnasoftProvider struct {
 	AccessToken string `json:"accessToken"`
 	Endpoint    string `json:"endpoint"`
 	Type        string `json:"type"`
 }
 
-// Settings description: Configuration settings for users and organizations on Sourcegraph.
+// Settings description: Configuration settings for users and organizations on Khulnasoft.
 type Settings struct {
 	// AlertsHideObservabilitySiteAlerts description: Disables observability-related site alert banners.
 	AlertsHideObservabilitySiteAlerts *bool `json:"alerts.hideObservabilitySiteAlerts,omitempty"`
@@ -2820,7 +2820,7 @@ type Settings struct {
 	AlertsShowMajorMinorUpdates bool `json:"alerts.showMajorMinorUpdates,omitempty"`
 	// AlertsShowPatchUpdates description: Whether to show alerts for patch version updates. Alerts for major and minor version updates will be shown if `alerts.showMajorMinorUpdatess` is true.
 	AlertsShowPatchUpdates bool `json:"alerts.showPatchUpdates,omitempty"`
-	// BasicCodeIntelGlobalSearchesEnabled description: Whether to run global searches over all repositories. On instances with many repositories, this can lead to issues such as: low quality results, slow response times, or significant load on the Sourcegraph instance. Defaults to true.
+	// BasicCodeIntelGlobalSearchesEnabled description: Whether to run global searches over all repositories. On instances with many repositories, this can lead to issues such as: low quality results, slow response times, or significant load on the Khulnasoft instance. Defaults to true.
 	BasicCodeIntelGlobalSearchesEnabled bool `json:"basicCodeIntel.globalSearchesEnabled,omitempty"`
 	// BasicCodeIntelIncludeArchives description: Whether to include archived repositories in search results.
 	BasicCodeIntelIncludeArchives bool `json:"basicCodeIntel.includeArchives,omitempty"`
@@ -2858,7 +2858,7 @@ type Settings struct {
 	//
 	// MOTD stands for "message of the day" (which is the conventional Unix name for this type of message).
 	Motd []string `json:"motd,omitempty"`
-	// Notices description: Custom informational messages to display to users at specific locations in the Sourcegraph user interface.
+	// Notices description: Custom informational messages to display to users at specific locations in the Khulnasoft user interface.
 	//
 	// Usually this setting is used in global and organization settings. If set in user settings, the message will only be displayed to that single user.
 	Notices []*Notice `json:"notices,omitempty"`
@@ -2868,7 +2868,7 @@ type Settings struct {
 	OrgsAllMembersBatchChangesAdmin *bool `json:"orgs.allMembersBatchChangesAdmin,omitempty"`
 	// PerforceCodeHostToSwarmMap description: Key-value pairs of code host URLs to Swarm URLs. Keys should have no prefix and should not end with a slash, like "perforce.company.com:1666". Values should look like "https://swarm.company.com/", with a slash at the end.
 	PerforceCodeHostToSwarmMap map[string]string `json:"perforce.codeHostToSwarmMap,omitempty"`
-	// Quicklinks description: DEPRECATED: This setting will be removed in a future version of Sourcegraph.
+	// Quicklinks description: DEPRECATED: This setting will be removed in a future version of Khulnasoft.
 	Quicklinks []*QuickLink `json:"quicklinks,omitempty"`
 	// SearchContextLines description: The default number of lines to show as context below and above search results. Default is 1.
 	SearchContextLines *int `json:"search.contextLines,omitempty"`
@@ -3115,7 +3115,7 @@ type SettingsOpenInEditor struct {
 	VscodeUseSSH bool `json:"vscode.useSSH,omitempty"`
 }
 
-// SiteConfiguration description: Configuration for a Sourcegraph site.
+// SiteConfiguration description: Configuration for a Khulnasoft site.
 type SiteConfiguration struct {
 	// RedirectUnsupportedBrowser description: Prompts user to install new browser for non es5
 	RedirectUnsupportedBrowser bool `json:"RedirectUnsupportedBrowser,omitempty"`
@@ -3125,11 +3125,11 @@ type SiteConfiguration struct {
 	AttributionGateway *AttributionGateway `json:"attribution.gateway,omitempty"`
 	// AuthAccessRequest description: The config options for access requests
 	AuthAccessRequest *AuthAccessRequest `json:"auth.accessRequest,omitempty"`
-	// AuthAccessTokens description: Settings for access tokens, which enable external tools to access the Sourcegraph API with the privileges of the user.
+	// AuthAccessTokens description: Settings for access tokens, which enable external tools to access the Khulnasoft API with the privileges of the user.
 	AuthAccessTokens *AuthAccessTokens `json:"auth.accessTokens,omitempty"`
-	// AuthAllowedIpAddress description: IP allowlist for access to the Sourcegraph instance. If set, only requests from these IP addresses will be allowed. By default client IP is infered connected client IP address, and you may configure to use a request header to determine the user IP.
+	// AuthAllowedIpAddress description: IP allowlist for access to the Khulnasoft instance. If set, only requests from these IP addresses will be allowed. By default client IP is infered connected client IP address, and you may configure to use a request header to determine the user IP.
 	AuthAllowedIpAddress *AuthAllowedIpAddress `json:"auth.allowedIpAddress,omitempty"`
-	// AuthEnableUsernameChanges description: Enables users to change their username after account creation. Warning: setting this to be true has security implications if you have enabled (or will at any point in the future enable) repository permissions with an option that relies on username equivalency between Sourcegraph and an external service or authentication provider. Do NOT set this to true if you are using non-built-in authentication OR rely on username equivalency for repository permissions.
+	// AuthEnableUsernameChanges description: Enables users to change their username after account creation. Warning: setting this to be true has security implications if you have enabled (or will at any point in the future enable) repository permissions with an option that relies on username equivalency between Khulnasoft and an external service or authentication provider. Do NOT set this to true if you are using non-built-in authentication OR rely on username equivalency for repository permissions.
 	AuthEnableUsernameChanges bool `json:"auth.enableUsernameChanges,omitempty"`
 	// AuthLockout description: The config options for account lockout
 	AuthLockout *AuthLockout `json:"auth.lockout,omitempty"`
@@ -3183,11 +3183,11 @@ type SiteConfiguration struct {
 	BatchChangesRestrictToAdmins *bool `json:"batchChanges.restrictToAdmins,omitempty"`
 	// BatchChangesRolloutWindows description: Specifies specific windows, which can have associated rate limits, to be used when reconciling published changesets (creating or updating). All days and times are handled in UTC.
 	BatchChangesRolloutWindows *[]*BatchChangeRolloutWindow `json:"batchChanges.rolloutWindows,omitempty"`
-	// Branding description: Customize Sourcegraph homepage logo and search icon.
+	// Branding description: Customize Khulnasoft homepage logo and search icon.
 	Branding *Branding `json:"branding,omitempty"`
 	// CloneProgressLog description: Whether clone progress should be logged to a file. If enabled, logs are written to files in the OS default path for temporary files.
 	CloneProgressLog bool `json:"cloneProgress.log,omitempty"`
-	// CodeIntelAutoIndexingAllowGlobalPolicies description: Whether auto-indexing policies may apply to all repositories on the Sourcegraph instance. Default is false. The policyRepositoryMatchLimit setting still applies to such auto-indexing policies.
+	// CodeIntelAutoIndexingAllowGlobalPolicies description: Whether auto-indexing policies may apply to all repositories on the Khulnasoft instance. Default is false. The policyRepositoryMatchLimit setting still applies to such auto-indexing policies.
 	CodeIntelAutoIndexingAllowGlobalPolicies *bool `json:"codeIntelAutoIndexing.allowGlobalPolicies,omitempty"`
 	// CodeIntelAutoIndexingEnabled description: Enables/disables the code intel auto-indexing feature. Currently experimental.
 	CodeIntelAutoIndexingEnabled *bool `json:"codeIntelAutoIndexing.enabled,omitempty"`
@@ -3211,9 +3211,9 @@ type SiteConfiguration struct {
 	CodyContextFilters *CodyContextFilters `json:"cody.contextFilters,omitempty"`
 	// CodyEnabled description: Enable or disable Cody instance-wide. When Cody is disabled, all Cody endpoints and GraphQL queries will return errors, Cody will not show up in the site-admin sidebar, and Cody in the global navbar will only show a call-to-action for site-admins to enable Cody.
 	CodyEnabled *bool `json:"cody.enabled,omitempty"`
-	// CodyPermissions description: Whether to enable Cody role-based access controls. Only respected if cody.restrictUsersFeatureFlag is not set. See https://sourcegraph.com/docs/admin/access_control
+	// CodyPermissions description: Whether to enable Cody role-based access controls. Only respected if cody.restrictUsersFeatureFlag is not set. See https://khulnasoft.com/docs/admin/access_control
 	CodyPermissions *bool `json:"cody.permissions,omitempty"`
-	// CodyRestrictUsersFeatureFlag description: DEPRECATED; see cody.permissions instead. PRIOR DESCRIPTION: Cody to only be enabled for users that have a feature flag labeled "cody" set to true. You must create a feature flag with this ID after enabling this setting: https://docs-legacy.sourcegraph.com/dev/how-to/use_feature_flags#create-a-feature-flag. This setting only has an effect if cody.enabled is true.
+	// CodyRestrictUsersFeatureFlag description: DEPRECATED; see cody.permissions instead. PRIOR DESCRIPTION: Cody to only be enabled for users that have a feature flag labeled "cody" set to true. You must create a feature flag with this ID after enabling this setting: https://docs-legacy.khulnasoft.com/dev/how-to/use_feature_flags#create-a-feature-flag. This setting only has an effect if cody.enabled is true.
 	CodyRestrictUsersFeatureFlag *bool `json:"cody.restrictUsersFeatureFlag,omitempty"`
 	// Completions description: Configuration for the completions service.
 	Completions *Completions `json:"completions,omitempty"`
@@ -3233,48 +3233,48 @@ type SiteConfiguration struct {
 	DisableFeedbackSurvey bool `json:"disableFeedbackSurvey,omitempty"`
 	// DisableNonCriticalTelemetry description: DEPRECATED. Has no effect.
 	DisableNonCriticalTelemetry bool `json:"disableNonCriticalTelemetry,omitempty"`
-	// DisablePublicRepoRedirects description: DEPRECATED! Disable redirects to sourcegraph.com when visiting public repositories that can't exist on this server.
+	// DisablePublicRepoRedirects description: DEPRECATED! Disable redirects to khulnasoft.com when visiting public repositories that can't exist on this server.
 	DisablePublicRepoRedirects bool `json:"disablePublicRepoRedirects,omitempty"`
-	// Dotcom description: Configuration options for Sourcegraph.com only.
+	// Dotcom description: Configuration options for Khulnasoft.com only.
 	Dotcom *Dotcom `json:"dotcom,omitempty"`
 	// EmailAddress description: The "from" address for emails sent by this server.
-	// Please see https://sourcegraph.com/docs/admin/config/email
+	// Please see https://khulnasoft.com/docs/admin/config/email
 	EmailAddress string `json:"email.address,omitempty"`
 	// EmailSenderName description: The name to use in the "from" address for emails sent by this server.
 	EmailSenderName string `json:"email.senderName,omitempty"`
 	// EmailSmtp description: The SMTP server used to send transactional emails.
-	// Please see https://sourcegraph.com/docs/admin/config/email
+	// Please see https://khulnasoft.com/docs/admin/config/email
 	EmailSmtp *SMTPServerConfig `json:"email.smtp,omitempty"`
-	// EmailTemplates description: Configurable templates for some email types sent by Sourcegraph.
+	// EmailTemplates description: Configurable templates for some email types sent by Khulnasoft.
 	EmailTemplates *EmailTemplates `json:"email.templates,omitempty"`
 	// Embeddings description: Configuration for embeddings service.
 	Embeddings *Embeddings `json:"embeddings,omitempty"`
 	// EncryptionKeys description: Configuration for encryption keys used to encrypt data at rest in the database.
 	EncryptionKeys *EncryptionKeys `json:"encryption.keys,omitempty"`
-	// ExecutorsAccessToken description: The shared secret between Sourcegraph and executors. The value must contain at least 20 characters.
+	// ExecutorsAccessToken description: The shared secret between Khulnasoft and executors. The value must contain at least 20 characters.
 	ExecutorsAccessToken string `json:"executors.accessToken,omitempty"`
 	// ExecutorsBatcheshelperImage description: The image to use for batch changes in executors. Use this value to pull from a custom image registry.
 	ExecutorsBatcheshelperImage string `json:"executors.batcheshelperImage,omitempty"`
-	// ExecutorsBatcheshelperImageTag description: The tag to use for the batcheshelper image in executors. Use this value to use a custom tag. Sourcegraph by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.
+	// ExecutorsBatcheshelperImageTag description: The tag to use for the batcheshelper image in executors. Use this value to use a custom tag. Khulnasoft by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.
 	ExecutorsBatcheshelperImageTag string `json:"executors.batcheshelperImageTag,omitempty"`
-	// ExecutorsFrontendURL description: The URL where Sourcegraph executors can reach the Sourcegraph instance. If not set, defaults to externalURL. URLs with a path (other than `/`) are not allowed. For Docker executors, the special hostname `host.docker.internal` can be used to refer to the Docker container's host.
+	// ExecutorsFrontendURL description: The URL where Khulnasoft executors can reach the Khulnasoft instance. If not set, defaults to externalURL. URLs with a path (other than `/`) are not allowed. For Docker executors, the special hostname `host.docker.internal` can be used to refer to the Docker container's host.
 	ExecutorsFrontendURL string `json:"executors.frontendURL,omitempty"`
-	// ExecutorsLsifGoImage description: The tag to use for the lsif-go image in executors. Use this value to use a custom tag. Sourcegraph by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.
+	// ExecutorsLsifGoImage description: The tag to use for the lsif-go image in executors. Use this value to use a custom tag. Khulnasoft by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.
 	ExecutorsLsifGoImage string `json:"executors.lsifGoImage,omitempty"`
 	// ExecutorsMultiqueue description: The configuration for multiqueue executors.
 	ExecutorsMultiqueue *ExecutorsMultiqueue `json:"executors.multiqueue,omitempty"`
 	// ExecutorsSrcCLIImage description: The image to use for src-cli in executors. Use this value to pull from a custom image registry.
 	ExecutorsSrcCLIImage string `json:"executors.srcCLIImage,omitempty"`
-	// ExecutorsSrcCLIImageTag description: The tag to use for the src-cli image in executors. Use this value to use a custom tag. Sourcegraph by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.
+	// ExecutorsSrcCLIImageTag description: The tag to use for the src-cli image in executors. Use this value to use a custom tag. Khulnasoft by default uses the best match, so use this setting only if you really need to overwrite it and make sure to keep it updated.
 	ExecutorsSrcCLIImageTag string `json:"executors.srcCLIImageTag,omitempty"`
 	// ExperimentalFeatures description: Experimental features and settings.
 	ExperimentalFeatures *ExperimentalFeatures `json:"experimentalFeatures,omitempty"`
 	ExportUsageTelemetry *ExportUsageTelemetry `json:"exportUsageTelemetry,omitempty"`
-	// ExternalURL description: The externally accessible URL for Sourcegraph (i.e., what you type into your browser). Previously called `appURL`. Only root URLs are allowed.
+	// ExternalURL description: The externally accessible URL for Khulnasoft (i.e., what you type into your browser). Previously called `appURL`. Only root URLs are allowed.
 	ExternalURL string `json:"externalURL,omitempty"`
-	// GitCloneURLToRepositoryName description: JSON array of configuration that maps from Git clone URL to repository name. Sourcegraph automatically resolves remote clone URLs to their proper code host. However, there may be non-remote clone URLs (e.g., in submodule declarations) that Sourcegraph cannot automatically map to a code host. In this case, use this field to specify the mapping. The mappings are tried in the order they are specified and take precedence over automatic mappings.
+	// GitCloneURLToRepositoryName description: JSON array of configuration that maps from Git clone URL to repository name. Khulnasoft automatically resolves remote clone URLs to their proper code host. However, there may be non-remote clone URLs (e.g., in submodule declarations) that Khulnasoft cannot automatically map to a code host. In this case, use this field to specify the mapping. The mappings are tried in the order they are specified and take precedence over automatic mappings.
 	GitCloneURLToRepositoryName []*CloneURLToRepositoryName `json:"git.cloneURLToRepositoryName,omitempty"`
-	// GitHubApp description: DEPRECATED: The config options for Sourcegraph GitHub App.
+	// GitHubApp description: DEPRECATED: The config options for Khulnasoft GitHub App.
 	GitHubApp *GitHubApp `json:"gitHubApp,omitempty"`
 	// GitLongCommandTimeout description: Maximum number of seconds that a long Git command (e.g. clone or remote update) is allowed to execute. The default is 3600 seconds, or 1 hour.
 	GitLongCommandTimeout int `json:"gitLongCommandTimeout,omitempty"`
@@ -3318,7 +3318,7 @@ type SiteConfiguration struct {
 	InsightsQueryWorkerRateLimit *float64 `json:"insights.query.worker.rateLimit,omitempty"`
 	// InsightsQueryWorkerRateLimitBurst description: The allowed burst rate for the Code Insights queries per second rate limiter.
 	InsightsQueryWorkerRateLimitBurst int `json:"insights.query.worker.rateLimitBurst,omitempty"`
-	// LicenseKey description: The license key associated with a Sourcegraph product subscription, which is necessary to activate Sourcegraph Enterprise functionality. To obtain this value, contact Sourcegraph to purchase a subscription. To escape the value into a JSON string, you may want to use a tool like https://json-escape-text.now.sh.
+	// LicenseKey description: The license key associated with a Khulnasoft product subscription, which is necessary to activate Khulnasoft Enterprise functionality. To obtain this value, contact Khulnasoft to purchase a subscription. To escape the value into a JSON string, you may want to use a tool like https://json-escape-text.now.sh.
 	LicenseKey string `json:"licenseKey,omitempty"`
 	// Log description: Configuration for logging and alerting, including to external services.
 	Log *Log `json:"log,omitempty"`
@@ -3327,7 +3327,7 @@ type SiteConfiguration struct {
 	// MaxReposToSearch description: DEPRECATED: Configure maxRepos in search.limits. The maximum number of repositories to search across. The user is prompted to narrow their query if exceeded. Any value less than or equal to zero means unlimited.
 	MaxReposToSearch   int                     `json:"maxReposToSearch,omitempty"`
 	ModelConfiguration *SiteModelConfiguration `json:"modelConfiguration,omitempty"`
-	// Notifications description: Notifications recieved from Sourcegraph.com to display in Sourcegraph.
+	// Notifications description: Notifications recieved from Khulnasoft.com to display in Khulnasoft.
 	Notifications []*Notifications `json:"notifications,omitempty"`
 	// ObservabilityAlerts description: Configure notifications for Khulnasoft's built-in alerts.
 	ObservabilityAlerts []*ObservabilityAlerts `json:"observability.alerts,omitempty"`
@@ -3339,9 +3339,9 @@ type SiteConfiguration struct {
 	ObservabilityLogSlowGraphQLRequests int `json:"observability.logSlowGraphQLRequests,omitempty"`
 	// ObservabilityLogSlowSearches description: (debug) logs all search queries (issued by users, code intelligence, or API requests) slower than the specified number of milliseconds.
 	ObservabilityLogSlowSearches int `json:"observability.logSlowSearches,omitempty"`
-	// ObservabilitySilenceAlerts description: Silence individual Sourcegraph alerts by identifier.
+	// ObservabilitySilenceAlerts description: Silence individual Khulnasoft alerts by identifier.
 	ObservabilitySilenceAlerts []string `json:"observability.silenceAlerts,omitempty"`
-	// ObservabilityTracing description: Configures distributed tracing within Sourcegraph. To learn more, refer to https://sourcegraph.com/docs/admin/observability/tracing
+	// ObservabilityTracing description: Configures distributed tracing within Khulnasoft. To learn more, refer to https://khulnasoft.com/docs/admin/observability/tracing
 	ObservabilityTracing *ObservabilityTracing `json:"observability.tracing,omitempty"`
 	// OrganizationInvitations description: Configuration for organization invitations.
 	OrganizationInvitations *OrganizationInvitations `json:"organizationInvitations,omitempty"`
@@ -3355,8 +3355,8 @@ type SiteConfiguration struct {
 	OwnBackgroundRepoIndexRateLimit int `json:"own.background.repoIndexRateLimit,omitempty"`
 	// OwnBestEffortTeamMatching description: The Own service will attempt to match a Team by the last part of its handle if it contains a slash and no match is found for its full handle.
 	OwnBestEffortTeamMatching *bool `json:"own.bestEffortTeamMatching,omitempty"`
-	// ParentSourcegraph description: URL to fetch unreachable repository details from. Defaults to "https://sourcegraph.com"
-	ParentSourcegraph *ParentSourcegraph `json:"parentSourcegraph,omitempty"`
+	// ParentKhulnasoft description: URL to fetch unreachable repository details from. Defaults to "https://khulnasoft.com"
+	ParentKhulnasoft *ParentKhulnasoft `json:"parentKhulnasoft,omitempty"`
 	// PermissionsSyncJobCleanupInterval description: Time interval (in seconds) of how often cleanup worker should remove old jobs from permissions sync jobs table.
 	PermissionsSyncJobCleanupInterval int `json:"permissions.syncJobCleanupInterval,omitempty"`
 	// PermissionsSyncJobsHistorySize description: The number of last repo/user permission jobs to keep for history.
@@ -3373,7 +3373,7 @@ type SiteConfiguration struct {
 	PermissionsSyncUsersBackoffSeconds int `json:"permissions.syncUsersBackoffSeconds,omitempty"`
 	// PermissionsSyncUsersMaxConcurrency description: The maximum number of user-centric permissions syncing jobs that can be spawned concurrently. Service restart is required to take effect for changes.
 	PermissionsSyncUsersMaxConcurrency int `json:"permissions.syncUsersMaxConcurrency,omitempty"`
-	// PermissionsUserMapping description: Settings for Sourcegraph explicit permissions, which allow the site admin to explicitly manage repository permissions via the GraphQL API. This will mark repositories as restricted by default.
+	// PermissionsUserMapping description: Settings for Khulnasoft explicit permissions, which allow the site admin to explicitly manage repository permissions via the GraphQL API. This will mark repositories as restricted by default.
 	PermissionsUserMapping *PermissionsUserMapping `json:"permissions.userMapping,omitempty"`
 	// ProductResearchPageEnabled description: Enables users access to the product research page in their settings.
 	ProductResearchPageEnabled *bool       `json:"productResearchPage.enabled,omitempty"`
@@ -3404,7 +3404,7 @@ type SiteConfiguration struct {
 	SscSamsHostName string `json:"ssc.samsHostName,omitempty"`
 	// SyntaxHighlighting description: Syntax highlighting configuration
 	SyntaxHighlighting *SyntaxHighlighting `json:"syntaxHighlighting,omitempty"`
-	// UpdateChannel description: The channel on which to automatically check for Sourcegraph updates.
+	// UpdateChannel description: The channel on which to automatically check for Khulnasoft updates.
 	UpdateChannel string `json:"update.channel,omitempty"`
 	// WebhookLogging description: Configuration for logging incoming webhooks.
 	WebhookLogging *WebhookLogging `json:"webhook.logging,omitempty"`
@@ -3554,7 +3554,7 @@ func (v *SiteConfiguration) UnmarshalJSON(data []byte) error {
 	delete(m, "own.background.repoIndexRateBurstLimit")
 	delete(m, "own.background.repoIndexRateLimit")
 	delete(m, "own.bestEffortTeamMatching")
-	delete(m, "parentSourcegraph")
+	delete(m, "parentKhulnasoft")
 	delete(m, "permissions.syncJobCleanupInterval")
 	delete(m, "permissions.syncJobsHistorySize")
 	delete(m, "permissions.syncOldestRepos")
@@ -3595,21 +3595,21 @@ type SiteModelConfiguration struct {
 	DefaultModels *DefaultModels `json:"defaultModels,omitempty"`
 	// ModelOverrides description: Override, or add to, the list of models Cody is aware of and how they are configured to work
 	ModelOverrides []*ModelOverride `json:"modelOverrides,omitempty"`
-	// ModelOverridesRecommendedSettings description: Override, or add to, the list of models Cody is aware of - but let Sourcegraph configure how the model should work. Only available for select models.
+	// ModelOverridesRecommendedSettings description: Override, or add to, the list of models Cody is aware of - but let Khulnasoft configure how the model should work. Only available for select models.
 	//
 	// Specifying the same model both here and in 'modelOverrides' is not allowed.
 	ModelOverridesRecommendedSettings []string `json:"modelOverridesRecommendedSettings,omitempty"`
 	// ProviderOverrides description: Configures model providers. Here you can override how Cody connects to model providers and e.g. bring your own API keys or self-hosted models.
 	ProviderOverrides []*ProviderOverride `json:"providerOverrides,omitempty"`
-	// SelfHostedModels description: Add models to the list of models Cody is aware of, but let Sourcegraph provide default configuration for the model. Only available for select models, generic models can be configured in 'modelOverrides'.
+	// SelfHostedModels description: Add models to the list of models Cody is aware of, but let Khulnasoft provide default configuration for the model. Only available for select models, generic models can be configured in 'modelOverrides'.
 	//
 	// Specifying the same model both here and in 'modelOverrides' is not allowed.
 	SelfHostedModels []*SelfHostedModel      `json:"selfHostedModels,omitempty"`
-	Sourcegraph      *SourcegraphModelConfig `json:"sourcegraph,omitempty"`
+	Khulnasoft      *KhulnasoftModelConfig `json:"sourcegraph,omitempty"`
 }
 
-// SourcegraphModelConfig description: If null, Cody will not use Khulnasoft's servers for model discovery.
-type SourcegraphModelConfig struct {
+// KhulnasoftModelConfig description: If null, Cody will not use Khulnasoft's servers for model discovery.
+type KhulnasoftModelConfig struct {
 	// AccessToken description: The Cody gateway access token to use. If null, an access token will be automatically generated based on the product license.
 	AccessToken *string `json:"accessToken,omitempty"`
 	// Endpoint description: The Cody gateway URL to use for making LLM requests. If null, the production URL for Cody gateway will be used.
@@ -3617,7 +3617,7 @@ type SourcegraphModelConfig struct {
 	ModelFilters *ModelFilters `json:"modelFilters,omitempty"`
 }
 
-// SrcCliVersionCache description: Configuration related to the src-cli version cache. This should only be used on sourcegraph.com.
+// SrcCliVersionCache description: Configuration related to the src-cli version cache. This should only be used on khulnasoft.com.
 type SrcCliVersionCache struct {
 	// Enabled description: Enables the src-cli version cache API endpoint.
 	Enabled bool `json:"enabled"`
@@ -3695,7 +3695,7 @@ type SyntaxHighlightingLanguagePatterns struct {
 	Pattern string `json:"pattern"`
 }
 
-// TlsExternal description: Global TLS/SSL settings for Sourcegraph to use when communicating with code hosts.
+// TlsExternal description: Global TLS/SSL settings for Khulnasoft to use when communicating with code hosts.
 type TlsExternal struct {
 	// Certificates description: TLS certificates to accept. This is only necessary if you are using self-signed certificates or an internal CA. Can be an internal CA certificate or a self-signed certificate. To get the certificate of a webserver run `openssl s_client -connect HOST:443 -showcerts < /dev/null 2> /dev/null | openssl x509 -outform PEM`. To escape the value into a JSON string, you may want to use a tool like https://json-escape-text.now.sh. NOTE: System Certificate Authorities are automatically included.
 	Certificates []string `json:"certificates,omitempty"`
@@ -3714,7 +3714,7 @@ type TransformChangesGroup struct {
 	Branch string `json:"branch"`
 	// Directory description: The directory path (relative to the repository root) of the changes to include in this group.
 	Directory string `json:"directory"`
-	// Repository description: Only apply this transformation in the repository with this name (as it is known to Sourcegraph).
+	// Repository description: Only apply this transformation in the repository with this name (as it is known to Khulnasoft).
 	Repository string `json:"repository,omitempty"`
 }
 type UpdateIntervalRule struct {

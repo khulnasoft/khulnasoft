@@ -68,7 +68,7 @@ export const UserSettingsProfilePage: React.FunctionComponent<React.PropsWithChi
                     after={
                         window.context.sourcegraphDotComMode && (
                             <Text className="mt-4">
-                                <Link to="mailto:support@sourcegraph.com" target="_blank" rel="noopener noreferrer">
+                                <Link to="mailto:support@khulnasoft.com" target="_blank" rel="noopener noreferrer">
                                     Contact support
                                 </Link>{' '}
                                 to delete your account.

@@ -1,9 +1,9 @@
 # buildchecker [![buildchecker](https://github.com/khulnasoft/khulnasoft/actions/workflows/buildchecker.yml/badge.svg)](https://github.com/khulnasoft/khulnasoft/actions/workflows/buildchecker.yml)
 
 `buildchecker` is designed to respond to periods of consecutive build failures on a Buildkite pipeline.
-Owned by the [DevInfra team](https://handbook.sourcegraph.com/departments/engineering/teams/devinfra/).
+Owned by the [DevInfra team](https://handbook.khulnasoft.com/departments/engineering/teams/devinfra/).
 
-More documentation for Khulnasoft teammates is available in the[CI incidents playbook](https://handbook.sourcegraph.com/departments/product-engineering/engineering/process/incidents/playbooks/ci#scenarios).
+More documentation for Khulnasoft teammates is available in the[CI incidents playbook](https://handbook.khulnasoft.com/departments/product-engineering/engineering/process/incidents/playbooks/ci#scenarios).
 
 Buildchecker is deployed as a [GitHub Action](../../.github/workflows/buildchecker.yml).
 

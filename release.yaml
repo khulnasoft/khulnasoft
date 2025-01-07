@@ -1,6 +1,6 @@
 meta:
   productName: sourcegraph
-  repository: 'github.com/sourcegraph/sourcegraph'
+  repository: 'github.com/khulnasoft/khulnasoft'
   owners:
     - '@sourcegraph/release'
 
@@ -12,7 +12,7 @@ requirements:
     cmd: 'jq --help'
   - name: 'Buidkite access token'
     # `write_builds` permission is all that's needed here
-    # You also need to ensure you add access to the Sourcegraph organization on Buildkite.
+    # You also need to ensure you add access to the Khulnasoft organization on Buildkite.
     env: BUILDKITE_ACCESS_TOKEN
     only: # We only need this to create CI builds.
       - internal.create
@@ -28,7 +28,7 @@ internal:
       patch:
         - name: 'buildkite'
           cmd: |
-            echo "Triggering build on sourcegraph/sourcegraph with VERSION={{version}} on branch {{git.branch}}"
+            echo "Triggering build on khulnasoft/khulnasoft with VERSION={{version}} on branch {{git.branch}}"
             body=$(wget --content-on-error -O- --header="Content-Type: application/json" --header="Authorization: Bearer $BUILDKITE_ACCESS_TOKEN" --post-data '{
               "commit": "HEAD",
               "branch": "{{git.branch}}",
@@ -54,7 +54,7 @@ internal:
       minor:
         - name: 'buildkite'
           cmd: |
-            echo "Triggering build on sourcegraph/sourcegraph with VERSION={{version}} on branch {{git.branch}}"
+            echo "Triggering build on khulnasoft/khulnasoft with VERSION={{version}} on branch {{git.branch}}"
             body=$(wget --content-on-error -O- --header="Content-Type: application/json" --header="Authorization: Bearer $BUILDKITE_ACCESS_TOKEN" --post-data '{
               "commit": "HEAD",
               "branch": "{{git.branch}}",
@@ -81,12 +81,12 @@ internal:
     steps:
       - name: 'Register on release registry'
         cmd: |
-          echo "Registering internal sourcegraph/sourcegraph {{version}} release on release registry"
+          echo "Registering internal khulnasoft/khulnasoft {{version}} release on release registry"
           body=$(wget --content-on-error -O- --header="Content-Type: application/json" --header="Authorization: ${RELEASE_REGISTRY_TOKEN}" --post-data '{
               "name": "sourcegraph",
               "version": "{{version}}",
               "git_sha": "'${COMMIT_SHA}'"
-            }' "https://releaseregistry.sourcegraph.com/v1/releases")
+            }' "https://releaseregistry.khulnasoft.com/v1/releases")
           exit_code=$?
 
           if [ $exit_code != 0 ]; then
@@ -216,7 +216,7 @@ promoteToPublic:
       # - name: 'validate promotion criteria'
       #   cmd: |
       #     echo "validating promotion criteria"
-      #     body=$(wget --content-on-error -O- --header="Content-Type: application/json" "https://releaseregistry.sourcegraph.com/v1/releases/sourcegraph/{{version}}")
+      #     body=$(wget --content-on-error -O- --header="Content-Type: application/json" "https://releaseregistry.khulnasoft.com/v1/releases/sourcegraph/{{version}}")
       #     exit_code=$?
       #
       #     if [ $exit_code != 0 ]; then
@@ -236,7 +236,7 @@ promoteToPublic:
         cmd: |
           # We set DISABLE_ASPECT_WORKFLOWS to true, because the promotion is purely about retagging images
           # and we don't rely on AW at all.
-          echo "Triggering build on sourcegraph/sourcegraph with VERSION={{version}} on branch {{git.branch}}"
+          echo "Triggering build on khulnasoft/khulnasoft with VERSION={{version}} on branch {{git.branch}}"
           body=$(wget --content-on-error -O- --header="Content-Type: application/json" --header="Authorization: Bearer $BUILDKITE_ACCESS_TOKEN" --post-data '{
             "commit": "HEAD",
             "branch": "{{git.branch}}",
@@ -264,8 +264,8 @@ promoteToPublic:
     steps:
       - name: 'Promote on release registry'
         cmd: |
-          echo "Promoting sourcegraph/sourcegraph {{version}} release on release registry"
-          body=$(wget --content-on-error -O- --header="Content-Type: application/json" --header="Authorization: ${RELEASE_REGISTRY_TOKEN}" --post-data '' "https://releaseregistry.sourcegraph.com/v1/releases/sourcegraph/{{version}}/promote")
+          echo "Promoting khulnasoft/khulnasoft {{version}} release on release registry"
+          body=$(wget --content-on-error -O- --header="Content-Type: application/json" --header="Authorization: ${RELEASE_REGISTRY_TOKEN}" --post-data '' "https://releaseregistry.khulnasoft.com/v1/releases/sourcegraph/{{version}}/promote")
           exit_code=$?
 
           if [ $exit_code != 0 ]; then
@@ -292,7 +292,7 @@ promoteToPublic:
           # Annotate build
           cat << EOF | buildkite-agent annotate --style info
           Promoted release is **publicly available** through a git tag at [\`{{version}}\`](https://github.com/khulnasoft/khulnasoft/tree/{{version}}).
-          Please note that some release artifacts will not be available until the tag's pipeline completes. You can follow this at https://buildkite.com/sourcegraph/sourcegraph/builds?branch={{version}}
+          Please note that some release artifacts will not be available until the tag's pipeline completes. You can follow this at https://buildkite.com/khulnasoft/khulnasoft/builds?branch={{version}}
           EOF
 
       - name: 'git:release:create'
@@ -314,16 +314,16 @@ promoteToPublic:
           month_name="$(tr '[:lower:]' '[:upper:]' <<< ${month_name:0:1})${month_name:1}"
 
           read -d '\n' releasepost << EndOfText
-            Sourcegraph $tag is now available!
+            Khulnasoft $tag is now available!
 
-            _Note: we've updated our versioning conventions. Please see our [releases](https://handbook.sourcegraph.com/departments/engineering/dev/process/releases/#sourcegraph-releases) page for more information or reach out at [help.sourcegraph.com](https://help.sourcegraph.com)._
+            _Note: we've updated our versioning conventions. Please see our [releases](https://handbook.khulnasoft.com/departments/engineering/dev/process/releases/#sourcegraph-releases) page for more information or reach out at [help.khulnasoft.com](https://help.khulnasoft.com)._
 
-            - [Changelog](https://sourcegraph.com/docs/CHANGELOG#${changelog_version})
-            - [Update](https://sourcegraph.com/docs/admin/updates)
-            - [Release post](https://sourcegraph.com/blog/release/${month_name}-${current_year})
+            - [Changelog](https://khulnasoft.com/docs/CHANGELOG#${changelog_version})
+            - [Update](https://khulnasoft.com/docs/admin/updates)
+            - [Release post](https://khulnasoft.com/blog/release/${month_name}-${current_year})
           EndOfText
 
-          bazel run //dev/tools:gh -- release create ${version} --latest --verify-tag -t "Sourcegraph ${tag}" --notes "${releasepost}"
+          bazel run //dev/tools:gh -- release create ${version} --latest --verify-tag -t "Khulnasoft ${tag}" --notes "${releasepost}"
 
       # tag is usually in the format `5.3.2`
       # while version is usually the tag prepended with a v, `v5.3.2`
@@ -337,7 +337,7 @@ promoteToPublic:
           do
             body=$(wget --content-on-error -O- --header="Content-Type: application/json" --post-data '{
               "type": "mrkdwn",
-              "text": "*Sourcegraph {{tag}} has been published*\n\n• <https://sourcegraph.com/docs/CHANGELOG#${changelog_version} | Changelog>\n• <https://github.com/khulnasoft/khulnasoft/releases/tag/{{version}} | GitHub release>"
+              "text": "*Khulnasoft {{tag}} has been published*\n\n• <https://khulnasoft.com/docs/CHANGELOG#${changelog_version} | Changelog>\n• <https://github.com/khulnasoft/khulnasoft/releases/tag/{{version}} | GitHub release>"
             }' "$webhook")
             exit_code=$?
 

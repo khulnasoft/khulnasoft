@@ -1,7 +1,7 @@
 A little program to check how many rows we could save by merging tries inside our
 `codeintel_scip_symbol_names` table.
 
-Upload an index to your local Sourcegraph instance and run:
+Upload an index to your local Khulnasoft instance and run:
 
 ```
 psql --no-psqlrc --csv --dbname=sourcegraph --command="select * from codeintel_scip_symbol_names where upload_id = (select max(upload_id) from codeintel_scip_symbol_names)" | cargo run --release

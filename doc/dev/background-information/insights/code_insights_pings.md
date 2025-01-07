@@ -16,7 +16,7 @@ TEMPLATE
 **Other considerations:** Anything worth noting.
 
 - Aggregation: e.g. total, weekly
-- Event Code: link to a Sourcegraph search of this event code name
+- Event Code: link to a Khulnasoft search of this event code name
 - **Version added:** (link to PR)
 - **Version(s) broken:** (only add if required, link to fix PR)
 -->
@@ -39,7 +39,7 @@ TEMPLATE
 **Other considerations:** N/A
 
 - Aggregation: By week 
-- Event Code: [InsightAddition](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightAddition%27&patternType=literal), [InsightEdit](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightEdit%27&patternType=literal), [InsightRemoval](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightRemoval%27&patternType=literal)
+- Event Code: [InsightAddition](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightAddition%27&patternType=literal), [InsightEdit](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightEdit%27&patternType=literal), [InsightRemoval](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightRemoval%27&patternType=literal)
 - PRs: [#17805](https://github.com/khulnasoft/khulnasoft/pull/17805/files)
 - **Version Added:** 3.25
 - **Version(s) broken:**  3.31-3.35.0 (does not count backend insights) ([fix PR](https://github.com/khulnasoft/khulnasoft/pull/25317))
@@ -55,7 +55,7 @@ TEMPLATE
 **Other considerations:** N/A
 
 - Aggregation: By week 
-- Event Code: [InsightHover](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightHover%27&patternType=literal) 
+- Event Code: [InsightHover](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightHover%27&patternType=literal) 
 - PRs: [#17805](https://github.com/khulnasoft/khulnasoft/pull/17805/files)
 - **Version Added:** 3.25
 <!-- - **Known versions broken:** N/A -->
@@ -71,7 +71,7 @@ TEMPLATE
 **Other considerations:** N/A
 
 - Aggregation: By week 
-- Event Code: [InsightUICustomization](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightUICustomization%27&patternType=literal) 
+- Event Code: [InsightUICustomization](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightUICustomization%27&patternType=literal) 
 - PRs: [#17805](https://github.com/khulnasoft/khulnasoft/pull/17805/files)
 - **Version Added:** 3.25
 <!-- - **Known versions broken:** N/A -->
@@ -88,7 +88,7 @@ TEMPLATE
 
 - Aggregation: By week 
 - Event Code: [InsightDataPointClick](
-https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightDataPointClick%27&patternType=literal) 
+https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightDataPointClick%27&patternType=literal) 
 - PRs: [#17805](https://github.com/khulnasoft/khulnasoft/pull/17805/files)
 - **Version Added:** 3.25
 <!-- - **Known versions broken:** N/A -->
@@ -104,7 +104,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** As we add new insights pages it's important to make sure we're adding pages to this counter. 
 
 - Aggregation: By week 
-- Event Code: [ViewInsights](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+ViewInsights&patternType=regexp), [StandaloneInsightPageViewed](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+StandaloneInsightPageViewed&patternType=regexp)
+- Event Code: [ViewInsights](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+ViewInsights&patternType=regexp), [StandaloneInsightPageViewed](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+StandaloneInsightPageViewed&patternType=regexp)
 - PRs: [#17805](https://github.com/khulnasoft/khulnasoft/pull/17805/files)
 - **Version Added:** 3.25
 - **Version(s) broken:** 3.25-3.26 (not weekly)([fix PR](https://github.com/khulnasoft/khulnasoft/pull/20070/files)), 3.30 (broken when switching to dashboard pages, didn't track dashboard views)([fix PR](https://github.com/khulnasoft/khulnasoft/pull/24129/files))
@@ -120,7 +120,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** As we add new insights pages it's important to make sure we're adding pages to this counter. 
 
 - Aggregation: By week 
-- Event Code: [InsightsUniquePageView](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsUniquePageView&patternType=regexp) 
+- Event Code: [InsightsUniquePageView](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsUniquePageView&patternType=regexp) 
 - PRs: [#17805](https://github.com/khulnasoft/khulnasoft/pull/17805/files)
 - **Version Added:** 3.25
 - **Version(s) broken:** 3.25-3.26 (not weekly)([fix PR](https://github.com/khulnasoft/khulnasoft/pull/20070/files)), 3.30 (broken when switching to dashboard pages, didn't track dashboard views)([fix PR](https://github.com/khulnasoft/khulnasoft/pull/24129/files))
@@ -136,7 +136,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: By week
-- Event Code: [InsightFiltersChange](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightFiltersChange%27&patternType=literal)
+- Event Code: [InsightFiltersChange](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27InsightFiltersChange%27&patternType=literal)
 - PRs: [#37521](https://github.com/khulnasoft/khulnasoft/pull/37521)
 - **Version Added:** 3.41
 
@@ -151,7 +151,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: By week
-- Event Code: [StandaloneInsightDashboardClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27StandaloneInsightDashboardClick%27&patternType=literal)
+- Event Code: [StandaloneInsightDashboardClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27StandaloneInsightDashboardClick%27&patternType=literal)
 - PRs: [#37521](https://github.com/khulnasoft/khulnasoft/pull/37521)
 - **Version Added:** 3.41
 
@@ -166,7 +166,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: By week
-- Event Code: [StandaloneInsightPageEditClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27StandaloneInsightPageEditClick%27&patternType=literal)
+- Event Code: [StandaloneInsightPageEditClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%27StandaloneInsightPageEditClick%27&patternType=literal)
 - PRs: [#37521](https://github.com/khulnasoft/khulnasoft/pull/37521)
 - **Version Added:** 3.41
 
@@ -180,14 +180,14 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 
 - Aggregation: By week
 - Event Codes: 
-   - [InsightsGetStartedPage](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedPage&patternType=regexp) to track how many unique users are viewing get started page
-   - [InsightsGetStartedPageQueryModification](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedPageQueryModification&patternType=regexp) to track how many users change their live insight example query field value
-   - [InsightsGetStartedPageRepositoriesModification](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedPageRepositoriesModification&patternType=regexp) to track how many users change their live insight example repositories field value
-   - [InsightsGetStartedPrimaryCTAClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedPrimaryCTAClick&patternType=regexp) to track how many users click "Create your first insight" (call to action) button
-   - [InsightsGetStartedTabClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedTabClick&patternType=regexp) to track how many users browse different template tabs on the in-product landing page, it sends selected tab `title` in event's payload data.
-   - [InsightGetStartedTemplateClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightGetStartedTemplateClick&patternType=regexp) to track how many users click on the explore/use template button.
-   - [InsightsGetStartedTabMoreClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedTabMoreClick&patternType=regexp) to track how many users expand to full template section, it sends selected tab `title` in event's payload data.
-   - [InsightsGetStartedDocsClicks](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedDocsClicks&patternType=regexp) to track clicks over the in-product page's documentation links.
+   - [InsightsGetStartedPage](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedPage&patternType=regexp) to track how many unique users are viewing get started page
+   - [InsightsGetStartedPageQueryModification](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedPageQueryModification&patternType=regexp) to track how many users change their live insight example query field value
+   - [InsightsGetStartedPageRepositoriesModification](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedPageRepositoriesModification&patternType=regexp) to track how many users change their live insight example repositories field value
+   - [InsightsGetStartedPrimaryCTAClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedPrimaryCTAClick&patternType=regexp) to track how many users click "Create your first insight" (call to action) button
+   - [InsightsGetStartedTabClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedTabClick&patternType=regexp) to track how many users browse different template tabs on the in-product landing page, it sends selected tab `title` in event's payload data.
+   - [InsightGetStartedTemplateClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightGetStartedTemplateClick&patternType=regexp) to track how many users click on the explore/use template button.
+   - [InsightsGetStartedTabMoreClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedTabMoreClick&patternType=regexp) to track how many users expand to full template section, it sends selected tab `title` in event's payload data.
+   - [InsightsGetStartedDocsClicks](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsGetStartedDocsClicks&patternType=regexp) to track clicks over the in-product page's documentation links.
 - PRs: [#31048](https://github.com/khulnasoft/khulnasoft/pull/31048)
 - **Version Added:** 3.37
 
@@ -202,7 +202,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: total time, by insight type
-- Event Code: [InsightOrgVisible](https://sourcegraph.com/search?q=context:global+insightorgvisible+r:sourcegraph/sourcegraph%24&patternType=literal)
+- Event Code: [InsightOrgVisible](https://khulnasoft.com/search?q=context:global+insightorgvisible+r:sourcegraph/sourcegraph%24&patternType=literal)
 - PRs: [#21671](https://github.com/khulnasoft/khulnasoft/pull/21671/files)
 - **Version Added:** 3.29
 - **Version(s) broken:** 3.31-3.35.0 (doesn't handle backend insights) [fix PR](https://github.com/khulnasoft/khulnasoft/pull/28425)
@@ -218,7 +218,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** TODO does this ping include creators who create via the API? 
 
 - Aggregation: By week
-- Event Code: [WeeklyFirstTimeInsightCreators](https://sourcegraph.com/search?q=context:global+WeeklyFirstTimeInsightCreators+r:sourcegraph/sourcegraph%24&patternType=regexp)
+- Event Code: [WeeklyFirstTimeInsightCreators](https://khulnasoft.com/search?q=context:global+WeeklyFirstTimeInsightCreators+r:sourcegraph/sourcegraph%24&patternType=regexp)
 - **Version Added:** 3.25
 - **Version(s) broken:** 3.31-3.35.0 (doesn't handle backend insights, other bugs)
 
@@ -233,7 +233,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: total 
-- Event Code: [InsightTimeIntervals](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightTimeIntervals&patternType=literal)
+- Event Code: [InsightTimeIntervals](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightTimeIntervals&patternType=literal)
 - **Version added:** 3.29
 - **Version(s) broken:** 3.31-3.35.0 [fix PR](https://github.com/khulnasoft/khulnasoft/pull/28425)
 
@@ -249,8 +249,8 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 
 - Aggregation: By week
 - Event Code:
-   - For the "search insight" funnel: (1) [ViewCodeInsightsCreationPage](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+ViewCodeInsightsCreationPage&patternType=regexp), (2) [CodeInsightCreateSearchBasedInsightClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+CodeInsightsCreateSearchBasedInsightClick&patternType=regexp), (3) [ViewSearchBasedCreationPage](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+SearchBasedCreationPage&patternType=regexp), (4.1) [SearchBasedCreationPageSubmitClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+SearchBasedCreationPageSubmit&patternType=regexp) OR (4.2) [SearchBasedCreationPageCancelClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+SearchBasedCreationPageCancelClick&patternType=regexp)
-   - For the "language stats insight" funnel: (1) [ViewCodeInsightsCreationPage](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+ViewCodeInsightsCreationPage&patternType=regexp), (2) [CodeInsightsCreateCodeStatsInsightClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+CodeInsightsCreateCodeStatsInsightClick&patternType=regexp), (3) [ViewCodeInsightsCodeStatsCreationPage](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+CodeInsightsCodeStatsCreationPage&patternType=regexp), (4.1) [CodeInsightsCodeStatsCreationPageSubmitClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+CodeInsightsCodeStatsCreationPageSubmitClick&patternType=regexp) OR (4.2) [CodeInsightsCodeStatsCreationPageCancelClick](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+CodeInsightsCodeStatsCreationPageCancelClick&patternType=regexp)
+   - For the "search insight" funnel: (1) [ViewCodeInsightsCreationPage](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+ViewCodeInsightsCreationPage&patternType=regexp), (2) [CodeInsightCreateSearchBasedInsightClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+CodeInsightsCreateSearchBasedInsightClick&patternType=regexp), (3) [ViewSearchBasedCreationPage](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+SearchBasedCreationPage&patternType=regexp), (4.1) [SearchBasedCreationPageSubmitClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+SearchBasedCreationPageSubmit&patternType=regexp) OR (4.2) [SearchBasedCreationPageCancelClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+SearchBasedCreationPageCancelClick&patternType=regexp)
+   - For the "language stats insight" funnel: (1) [ViewCodeInsightsCreationPage](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+ViewCodeInsightsCreationPage&patternType=regexp), (2) [CodeInsightsCreateCodeStatsInsightClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+CodeInsightsCreateCodeStatsInsightClick&patternType=regexp), (3) [ViewCodeInsightsCodeStatsCreationPage](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+CodeInsightsCodeStatsCreationPage&patternType=regexp), (4.1) [CodeInsightsCodeStatsCreationPageSubmitClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+CodeInsightsCodeStatsCreationPageSubmitClick&patternType=regexp) OR (4.2) [CodeInsightsCodeStatsCreationPageCancelClick](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+CodeInsightsCodeStatsCreationPageCancelClick&patternType=regexp)
 - **Version added:** 3.29
 <!-- - **Version(s) broken:**  -->
 
@@ -265,7 +265,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: total 
-- Event Code: [ViewSeriesCounts](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+ViewSeriesCounts&patternType=literal)
+- Event Code: [ViewSeriesCounts](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+ViewSeriesCounts&patternType=literal)
 - **Version added:** 3.34
 <!-- - **Version(s) broken:**  -->
 
@@ -280,7 +280,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: total 
-- Event Code: [SeriesCounts](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+SeriesCounts&patternType=literal)
+- Event Code: [SeriesCounts](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+SeriesCounts&patternType=literal)
 - **Version added:** 3.34
 <!-- - **Version(s) broken:**  -->
 
@@ -290,12 +290,12 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 
 **Intended purpose:** To track the number of insight views, grouped by presentation type.
 
-**Functional implementation:** This is calculated using the `insight_view` table. Unlike critical telemetry which only [shows the number of unlocked insights](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/insights/background/pings/insights_ping_aggregators.go?L286) for customers without full access, this ping [shows the total number that are locked or unlocked](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/insights/background/pings/insights_ping_aggregators.go?L243-247) (and may have been created during a trial or free beta phase).  
+**Functional implementation:** This is calculated using the `insight_view` table. Unlike critical telemetry which only [shows the number of unlocked insights](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/insights/background/pings/insights_ping_aggregators.go?L286) for customers without full access, this ping [shows the total number that are locked or unlocked](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/insights/background/pings/insights_ping_aggregators.go?L243-247) (and may have been created during a trial or free beta phase).  
 
 **Other considerations:** N/A
 
 - Aggregation: total 
-- Event Code: [ViewCounts](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+ViewCounts&patternType=literal)
+- Event Code: [ViewCounts](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+ViewCounts&patternType=literal)
 - **Version added:** 3.34
 <!-- - **Version(s) broken:**  -->
 
@@ -310,7 +310,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: total 
-- Event Code: [TotalOrgsWithDashboard](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+TotalOrgsWithDashboard&patternType=literal)
+- Event Code: [TotalOrgsWithDashboard](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+TotalOrgsWithDashboard&patternType=literal)
 - **Version added:** 3.38
 <!-- - **Version(s) broken:**  -->
 
@@ -325,7 +325,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: total 
-- Event Code: [TotalDashboardCount](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+TotalDashboardCount&patternType=literal)
+- Event Code: [TotalDashboardCount](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+TotalDashboardCount&patternType=literal)
 - **Version added:** 3.38
 <!-- - **Version(s) broken:**  -->
 
@@ -340,7 +340,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: total 
-- Event Code: [InsightsPerDashboard](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsPerDashboard&patternType=literal)
+- Event Code: [InsightsPerDashboard](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+InsightsPerDashboard&patternType=literal)
 - **Version added:** 3.38
 <!-- - **Version(s) broken:**  -->
 
@@ -355,7 +355,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** N/A
 
 - Aggregation: weekly
-- Event Code: [WeeklySeriesBackfillTime](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+WeeklySeriesBackfillTime&patternType=standard)
+- Event Code: [WeeklySeriesBackfillTime](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+WeeklySeriesBackfillTime&patternType=standard)
 - **Version added:** 4.1
 
 ### Data export requests
@@ -369,7 +369,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Other considerations:** The ping name contains `click` but this does indeed also record events from the CLI.
 
 - Aggregation: weekly
-- Event Code: [WeeklyDataExportClicks](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+WeeklyDataExportClicks&patternType=standard), `InsightsDataExportRequest` in `event_logs`
+- Event Code: [WeeklyDataExportClicks](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+WeeklyDataExportClicks&patternType=standard), `InsightsDataExportRequest` in `event_logs`
 - **Version added:** 5.0
 
 ## Search results aggregations metrics
@@ -383,7 +383,7 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Functional implementation:** This ping works by firing a telemetry evente on the client when a user hovers over the information icon.
 
 - Aggregation: weekly
-- Event Code: [WeeklyGroupResultsInfoIconHover](https://sourcegraph.com/search?q=context:%40sourcegraph/all+GroupResultsInfoIconHover&patternType=lucky)
+- Event Code: [WeeklyGroupResultsInfoIconHover](https://khulnasoft.com/search?q=context:%40sourcegraph/all+GroupResultsInfoIconHover&patternType=lucky)
 - **Version added:** 4.0 ([#40977](https://github.com/khulnasoft/khulnasoft/pull/40977))
 
 
@@ -399,10 +399,10 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 
 - Aggregation: weekly
 - Event Codes:
-  - [WeeklyGroupResultsOpenSection](https://sourcegraph.com/search?q=context:%40sourcegraph/all+GroupResultsOpenSection&patternType=lucky)
-  - [WeeklyGroupResultsCollapseSection](https://sourcegraph.com/search?q=context:%40sourcegraph/all+GroupResultsCollapseSection&patternType=lucky)
-  - [WeeklyGroupResultsExpandedViewOpen](https://sourcegraph.com/search?q=context:%40sourcegraph/all+GroupResultsExpandedViewOpen&patternType=lucky)
-  - [WeeklyGroupResultsExpandedViewCollapse](https://sourcegraph.com/search?q=context:%40sourcegraph/all+GroupResultsExpandedViewCollapse&patternType=lucky)
+  - [WeeklyGroupResultsOpenSection](https://khulnasoft.com/search?q=context:%40sourcegraph/all+GroupResultsOpenSection&patternType=lucky)
+  - [WeeklyGroupResultsCollapseSection](https://khulnasoft.com/search?q=context:%40sourcegraph/all+GroupResultsCollapseSection&patternType=lucky)
+  - [WeeklyGroupResultsExpandedViewOpen](https://khulnasoft.com/search?q=context:%40sourcegraph/all+GroupResultsExpandedViewOpen&patternType=lucky)
+  - [WeeklyGroupResultsExpandedViewCollapse](https://khulnasoft.com/search?q=context:%40sourcegraph/all+GroupResultsExpandedViewCollapse&patternType=lucky)
 - **Version added:** 4.0 ([#40977](https://github.com/khulnasoft/khulnasoft/pull/40977))
 
 ### Aggregation modes clicks and hovers
@@ -417,8 +417,8 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 
 - Aggregation: weekly
 - Event Codes: 
-  - [WeeklyGroupResultsAggregationModeClicked](https://sourcegraph.com/search?q=context:%40sourcegraph/all+WeeklyGroupResultsAggregationModeClicked%7CGroupAggregationModeClicked&patternType=regexp)
-  - [WeeklyGroupResultsAggregationModeDisabledHover](https://sourcegraph.com/search?q=context:%40sourcegraph/all+WeeklyGroupResultsAggregationModeDisabledHover%7CGroupAggregationModeDisabledHover&patternType=regexp)
+  - [WeeklyGroupResultsAggregationModeClicked](https://khulnasoft.com/search?q=context:%40sourcegraph/all+WeeklyGroupResultsAggregationModeClicked%7CGroupAggregationModeClicked&patternType=regexp)
+  - [WeeklyGroupResultsAggregationModeDisabledHover](https://khulnasoft.com/search?q=context:%40sourcegraph/all+WeeklyGroupResultsAggregationModeDisabledHover%7CGroupAggregationModeDisabledHover&patternType=regexp)
 - **Version added:** 4.0 ([#40997](https://github.com/khulnasoft/khulnasoft/pull/40997))
 
 ### Aggregation chart clicks and hovers 
@@ -433,8 +433,8 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 
 - Aggregation: weekly
 - Event Codes:
-  - [WeeklyGroupResultsChartBarClick](https://sourcegraph.com/search?q=context:%40sourcegraph/all+GroupResultsChartBarClick&patternType=regexp)
-  - [WeeklyGroupResultsChartBarHover](https://sourcegraph.com/search?q=context:%40sourcegraph/all+GroupResultsChartBarHover&patternType=regexp)
+  - [WeeklyGroupResultsChartBarClick](https://khulnasoft.com/search?q=context:%40sourcegraph/all+GroupResultsChartBarClick&patternType=regexp)
+  - [WeeklyGroupResultsChartBarHover](https://khulnasoft.com/search?q=context:%40sourcegraph/all+GroupResultsChartBarHover&patternType=regexp)
 - **Version added:** 4.0 ([#40977](https://github.com/khulnasoft/khulnasoft/pull/40977))
 
 ### Search mode (proactive/extended) success rate
@@ -446,5 +446,5 @@ https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegrap
 **Functional implementation:** These pings fire a telemetry event when an aggregation search completes or times out.
 
 - Aggregation: weekly
-- Event Code: [WeeklyGroupResultsSearches](https://sourcegraph.com/search?q=context:%40sourcegraph/all+WeeklyGroupResultsSearches&patternType=lucky)
+- Event Code: [WeeklyGroupResultsSearches](https://khulnasoft.com/search?q=context:%40sourcegraph/all+WeeklyGroupResultsSearches&patternType=lucky)
 - **Version added:** 4.1 ([#42554](https://github.com/khulnasoft/khulnasoft/pull/42554))

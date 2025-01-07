@@ -19,14 +19,14 @@ actions.
 
 ## Starting up your environment
 
-To run it locally you need to start Sourcegraph:
+To run it locally you need to start Khulnasoft:
 
 ```bash
 sg start # which defaults to `sg start enterprise`
 ```
 
 Code monitoring is still experimental which means you have to enable it in the
-settings to be visible in the UI. Open your local instance of Sourcegraph and go
+settings to be visible in the UI. Open your local instance of Khulnasoft and go
 to `settings > User account > settings`.
 
 ```json
@@ -125,7 +125,7 @@ utilize our `internal/workerutil` framework to [run as background jobs on
 
 1. A good start is to [visualize the GraphQL
    schema](https://github.com/stefanhengl/sg-voyager) and interact with it [via
-   the UI Console](https://sourcegraph.com/api/console). Start from the node
+   the UI Console](https://khulnasoft.com/api/console). Start from the node
    `user` and go to `monitors` from there.
 2. Check out the [interfaces and stub
    resolvers](https://github.com/khulnasoft/khulnasoft/blob/main/cmd/frontend/graphqlbackend/code_monitors.go)
@@ -136,7 +136,7 @@ utilize our `internal/workerutil` framework to [run as background jobs on
 4. Take a look at the [background
    workers](https://github.com/khulnasoft/khulnasoft/blob/main/internal/codemonitors/background/background.go)
    and look through each of the jobs that run in the background.
-5. Start up Sourcegraph locally, connect to your local db instance, create a
+5. Start up Khulnasoft locally, connect to your local db instance, create a
    code monitor from the UI and follow its life cycle in the db. Start by
    looking at `cm_queries` and `cm_trigger_jobs`. Depending on the search query
    you defined you might have to wait a long time before the first action is

@@ -2,24 +2,24 @@
 
 > WARNING: This is a guide intended for development reference.
 >
-> To learn more about telemetry export, refer to the [Sourcegraph adminstrator documentation on telemetry](../../../admin/telemetry/index.md).
+> To learn more about telemetry export, refer to the [Khulnasoft adminstrator documentation on telemetry](../../../admin/telemetry/index.md).
 
-Telemetry describes the logging of user events, such as a page view or search, from various components of the Sourcegraph and Cody applications.
+Telemetry describes the logging of user events, such as a page view or search, from various components of the Khulnasoft and Cody applications.
 There are currently two ways to log product telemetry:
 
 - legacy mechanisms outlined in [DEPRECATED: Telemetry](deprecated.md), including writing directly to the `event_logs` database table or using `mutation { logEvent }`.
-- the new telemetry framework introduced in Sourcegraph 5.2 and later (documented on this page)
+- the new telemetry framework introduced in Khulnasoft 5.2 and later (documented on this page)
 
 All usages of old telemetry mechanisms should be migrated to the new framework.
 
-> WARNING: This page primarily pertains to the new system introduced in Sourcegraph 5.2.1 - refer to [DEPRECATED: Telemetry](deprecated.md) for the legacy system which may still be in use if a callsite has not been migrated yet.
+> WARNING: This page primarily pertains to the new system introduced in Khulnasoft 5.2.1 - refer to [DEPRECATED: Telemetry](deprecated.md) for the legacy system which may still be in use if a callsite has not been migrated yet.
 
 - [Why a new framework and APIs?](#why-a-new-framework-and-apis)
 - [Event lifecycle](#event-lifecycle)
 - [Recording events](#recording-events)
   - [Clients](#clients)
     - [VS Code](#vs-code)
-    - [Sourcegraph web app](#sourcegraph-web-app)
+    - [Khulnasoft web app](#sourcegraph-web-app)
   - [Backend services](#backend-services)
 - [Exported events](#exported-events)
   - [Exported event schema](#exported-event-schema)
@@ -38,7 +38,7 @@ Events recorded in the new framework and APIs are still translated into the exis
 
 ## Event lifecycle
 
-All events stay in the instance that events are recording in until they get exported - users of standalone Sourcegraph instances should no longer report any telemetry directly to the [Sourcegraph.com](https://sourcegraph.com/search) deployment, and should instead report events to their own Sourcegraph instance.
+All events stay in the instance that events are recording in until they get exported - users of standalone Khulnasoft instances should no longer report any telemetry directly to the [Khulnasoft.com](https://khulnasoft.com/search) deployment, and should instead report events to their own Khulnasoft instance.
 
 In general, the lifecycle of an event in the new system looks like this:
 
@@ -64,7 +64,7 @@ Note that:
 
 ### Clients
 
-Clients (web apps, extensions, etc) should use [`@sourcegraph/telemetry`](https://github.com/sourcegraph/telemetry), providing client-specific metadata and implementation for exporting to a Sourcegraph instance's `mutation { telemetry { recordEvent(...) }}` GraphQL mutation.
+Clients (web apps, extensions, etc) should use [`@sourcegraph/telemetry`](https://github.com/sourcegraph/telemetry), providing client-specific metadata and implementation for exporting to a Khulnasoft instance's `mutation { telemetry { recordEvent(...) }}` GraphQL mutation.
 [sourcegraph/cody#1192](https://github.com/sourcegraph/cody/pull/1192) is a pull request demonstrating how to integrate `@sourcegraph/telemetry` into a client by extending specific classes and providing backing implementations for various interfaces.
 
 #### Cody extensions
@@ -77,7 +77,7 @@ Event-recording development documentation for the VS Code extension is available
 
 > WARNING: Not yet available, coming soon!
 
-#### Sourcegraph web app
+#### Khulnasoft web app
 
 A shared event recorder for web app components is available in the platform context type, under `(PlatformContext).telemetryRecorder`:
 
@@ -145,16 +145,16 @@ The full event schema that ends up getting exported is defined in [`telemetrygat
 
 A detailed schema is available in [the Telemetry Gateway protocol documentation](./protocol.md), which also has more details about what kind of data gets exported and what components are generally pruned - also see [sensitive attributes](#sensitive-attributes) above.
 
-> NOTE: In the Sourcegraph application, the new events being exported using `internal/telemetry` are sometimes loosely referred to as "V2", as it supersedes the existing mechanisms of writing directly to the `event_logs` database table.
+> NOTE: In the Khulnasoft application, the new events being exported using `internal/telemetry` are sometimes loosely referred to as "V2", as it supersedes the existing mechanisms of writing directly to the `event_logs` database table.
 > The *Telemetry Gateway* schema, however, is `telemetrygateway/v1`, as it is the first iteration of the service's API.
 
 ### Sensitive attributes
 
-There are two core attributes in events that are considered potentially sensitive, and thus not exported from individual Sourcegraph instances:
+There are two core attributes in events that are considered potentially sensitive, and thus not exported from individual Khulnasoft instances:
 
 - `parameters.privateMetadata`: this fields allows the recording of arbitrarily shaped metadata, as opposed to the integer values supported in `parameters.metadata`. Due to the risk of sensitive data and PII exposure, we do not export this field by default
   - Certain events may be allowlisted to have this field exported - this is defined in [`internal/telemetry/sensitiviemetadataallowlist`](https://github.com/khulnasoft/khulnasoft/blob/main/internal/telemetry/sensitivemetadataallowlist/sensitiviemetadataallowlist.go). Adding events to this list requires review and approval from Legal.
-- `marketingTracking`: this field tracks a lot of properties around URLs visited and marketing tracking that may contain sensitive data. This is only exported from the [Sourcegraph.com](https://sourcegraph.com/search) instance.
+- `marketingTracking`: this field tracks a lot of properties around URLs visited and marketing tracking that may contain sensitive data. This is only exported from the [Khulnasoft.com](https://khulnasoft.com/search) instance.
 
 ## Testing events
 

@@ -1,6 +1,6 @@
 package config
 
-func (sg *Sourcegraph) SetLocalDevMode() {
+func (sg *Khulnasoft) SetLocalDevMode() {
 	sg.Spec.Blobstore.ContainerConfig = setBestEffortQOSOnContainer(sg.Spec.Blobstore.ContainerConfig, "blobstore")
 	sg.Spec.Cadvisor.ContainerConfig = setBestEffortQOSOnContainer(sg.Spec.Cadvisor.ContainerConfig, "cadvisor")
 

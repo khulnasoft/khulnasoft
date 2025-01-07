@@ -1,6 +1,6 @@
 # Indexed ranking
 
-This document describes the current strategies used in Sourcegraph to rank results. Currently, ranking only
+This document describes the current strategies used in Khulnasoft to rank results. Currently, ranking only
 applies to indexed (Zoekt-based) search. When a search is unindexed, for example when searching at an old
 revision, the results are not ranked.
 
@@ -29,7 +29,7 @@ Larger values give a more stable ranking, but searches can take longer to return
 There are two main components to a search result's rank: the strength of the query's match with the file, and static signals
 representing the file's importance.
 
-Zoekt creates a [match score for a query](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/zoekt%24+matchScore&patternType=literal) based on a few heuristics. In order of importance:
+Zoekt creates a [match score for a query](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/zoekt%24+matchScore&patternType=literal) based on a few heuristics. In order of importance:
 
 - It matches a symbol, such as an exact match on the name of a class.
 - The match is at the start or end of a symbol. For example if you search for `Indexed`, then a class called `IndexedRepo` will score more highly than one named `NonIndexedRepo`.
@@ -50,7 +50,7 @@ of inbound links from other authoritative sites. See [this guide](./precise-rank
 When creating indexes, we lay out the files such that we search more important files and repositories first. This means when streaming we're more likely to encounter important candidates first, leading to a better set of ranked results.
 
 Zoekt indexes are partitioned by repository. The search proceeds through each repository in order of their priority.
-The [repository priority](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+stars+reporank&patternType=regexp) is the number of stars a repository has received. Admins can manually adjust the priority of a repository through a [site configuration option](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+repoRankFromConfig&patternType=regexp).
+The [repository priority](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+stars+reporank&patternType=regexp) is the number of stars a repository has received. Admins can manually adjust the priority of a repository through a [site configuration option](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+repoRankFromConfig&patternType=regexp).
 
 Within each repository, files are ordered in terms of importance:
 - Down rank generated code. This code is usually the least interesting in results.

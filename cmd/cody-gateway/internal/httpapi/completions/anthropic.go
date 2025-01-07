@@ -31,7 +31,7 @@ func NewAnthropicHandler(baseLogger log.Logger, eventLogger events.Logger, rs li
 
 	// Anthropic primarily uses concurrent requests to rate-limit spikes
 	// in requests, so set a default retry-after that is likely to be
-	// acceptable for Sourcegraph clients to retry (the default
+	// acceptable for Khulnasoft clients to retry (the default
 	// SRC_HTTP_CLI_EXTERNAL_RETRY_AFTER_MAX_DURATION) since we might be
 	// able to circumvent concurrents limits without raising an error to the
 	// user.
@@ -157,7 +157,7 @@ func (a *AnthropicHandlerMethods) getRequestMetadata(body anthropicRequest) (mod
 
 func (a *AnthropicHandlerMethods) transformRequest(downstreamRequest, upstreamRequest *http.Request) {
 	// Mimic headers set by the official Anthropic client:
-	// https://sourcegraph.com/github.com/anthropics/anthropic-sdk-typescript@493075d70f50f1568a276ed0cb177e297f5fef9f/-/blob/src/index.ts
+	// https://khulnasoft.com/github.com/anthropics/anthropic-sdk-typescript@493075d70f50f1568a276ed0cb177e297f5fef9f/-/blob/src/index.ts
 	upstreamRequest.Header.Set("Cache-Control", "no-cache")
 	upstreamRequest.Header.Set("Accept", "application/json")
 	upstreamRequest.Header.Set("Content-Type", "application/json")

@@ -42,7 +42,7 @@ import (
 )
 
 // Command is the 'sg msp' toolchain for the Managed Services Platform:
-// https://handbook.sourcegraph.com/departments/engineering/teams/core-services/managed-services/platform
+// https://handbook.khulnasoft.com/departments/engineering/teams/core-services/managed-services/platform
 var Command = &cli.Command{
 	Name:    "managed-services-platform",
 	Aliases: []string{"msp"},

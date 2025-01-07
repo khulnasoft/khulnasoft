@@ -40,17 +40,17 @@ func TestSanitizeEventURL(t *testing.T) {
 		externalURL string
 		output      string
 	}{{
-		input:       "https://sourcegraph.com/test", // CI:URL_OK
-		externalURL: "https://sourcegraph.com",
-		output:      "https://sourcegraph.com/test", // CI:URL_OK
+		input:       "https://khulnasoft.com/test", // CI:URL_OK
+		externalURL: "https://khulnasoft.com",
+		output:      "https://khulnasoft.com/test", // CI:URL_OK
 	}, {
-		input:       "https://test.sourcegraph.com/test",
-		externalURL: "https://sourcegraph.com",
-		output:      "https://test.sourcegraph.com/test",
+		input:       "https://test.khulnasoft.com/test",
+		externalURL: "https://khulnasoft.com",
+		output:      "https://test.khulnasoft.com/test",
 	}, {
-		input:       "https://test.sourcegraph.com/test",
+		input:       "https://test.khulnasoft.com/test",
 		externalURL: "https://customerinstance.com",
-		output:      "https://test.sourcegraph.com/test",
+		output:      "https://test.khulnasoft.com/test",
 	}, {
 		input:       "",
 		externalURL: "https://customerinstance.com",
@@ -61,11 +61,11 @@ func TestSanitizeEventURL(t *testing.T) {
 		output:      "",
 	}, {
 		input:       "https://github.com/my-private-info",
-		externalURL: "https://sourcegraph.com",
+		externalURL: "https://khulnasoft.com",
 		output:      "",
 	}, {
 		input:       "invalid url",
-		externalURL: "https://sourcegraph.com",
+		externalURL: "https://khulnasoft.com",
 		output:      "",
 	}}
 
@@ -98,22 +98,22 @@ func TestEventLogs_ValidInfo(t *testing.T) {
 	}{
 		{
 			name:  "EmptyName",
-			event: &Event{UserID: 1, URL: "http://sourcegraph.com", Source: "WEB"},
+			event: &Event{UserID: 1, URL: "http://khulnasoft.com", Source: "WEB"},
 			err:   `inserter.Flush: ERROR: new row for relation "event_logs" violates check constraint "event_logs_check_name_not_empty" (SQLSTATE 23514)`,
 		},
 		{
 			name:  "InvalidUser",
-			event: &Event{Name: "test_event", URL: "http://sourcegraph.com", Source: "WEB"},
+			event: &Event{Name: "test_event", URL: "http://khulnasoft.com", Source: "WEB"},
 			err:   `inserter.Flush: ERROR: new row for relation "event_logs" violates check constraint "event_logs_check_has_user" (SQLSTATE 23514)`,
 		},
 		{
 			name:  "EmptySource",
-			event: &Event{Name: "test_event", URL: "http://sourcegraph.com", UserID: 1},
+			event: &Event{Name: "test_event", URL: "http://khulnasoft.com", UserID: 1},
 			err:   `inserter.Flush: ERROR: new row for relation "event_logs" violates check constraint "event_logs_check_source_not_empty" (SQLSTATE 23514)`,
 		},
 		{
 			name:  "ValidInsert",
-			event: &Event{Name: "test_event", UserID: 1, URL: "http://sourcegraph.com", Source: "WEB"},
+			event: &Event{Name: "test_event", UserID: 1, URL: "http://khulnasoft.com", Source: "WEB"},
 			err:   "<nil>",
 		},
 	}
@@ -207,10 +207,10 @@ func TestEventLogs_SiteUsageMultiplePeriods(t *testing.T) {
 	db := NewDB(logger, dbtest.NewDB(t))
 	ctx := context.Background()
 
-	// Several of the events will belong to Sourcegraph employee admin user and Sourcegraph Operator user account
+	// Several of the events will belong to Khulnasoft employee admin user and Khulnasoft Operator user account
 	sgAdmin, err := db.Users().Create(ctx, NewUser{Username: "sourcegraph-admin"})
 	require.NoError(t, err)
-	err = db.UserEmails().Add(ctx, sgAdmin.ID, "admin@sourcegraph.com", nil)
+	err = db.UserEmails().Add(ctx, sgAdmin.ID, "admin@khulnasoft.com", nil)
 	require.NoError(t, err)
 	soLoganID, err := db.Users().CreateWithExternalAccount(
 		ctx,
@@ -238,7 +238,7 @@ func TestEventLogs_SiteUsageMultiplePeriods(t *testing.T) {
 	secondDay := startDate.Add(time.Hour * 24)
 	thirdDay := startDate.Add(time.Hour * 24 * 2)
 
-	soPublicArgument := json.RawMessage(fmt.Sprintf(`{"%s": true}`, EventLogsSourcegraphOperatorKey))
+	soPublicArgument := json.RawMessage(fmt.Sprintf(`{"%s": true}`, EventLogsKhulnasoftOperatorKey))
 	events := []*Event{
 		makeTestEvent(&Event{UserID: uint32(sgAdmin.ID), Timestamp: startDate}),
 		makeTestEvent(&Event{UserID: uint32(sgAdmin.ID), Timestamp: startDate}),
@@ -273,7 +273,7 @@ func TestEventLogs_SiteUsageMultiplePeriods(t *testing.T) {
 	assertUsageValue(t, values.DAUs[1], startDate.Add(time.Hour*24), 4, 4, 0, 0)
 	assertUsageValue(t, values.DAUs[2], startDate, 3, 3, 0, 0)
 
-	values, err = db.EventLogs().SiteUsageMultiplePeriods(ctx, now, 3, 0, 0, &CountUniqueUsersOptions{CommonUsageOptions{ExcludeSourcegraphAdmins: true, ExcludeSourcegraphOperators: true}, nil})
+	values, err = db.EventLogs().SiteUsageMultiplePeriods(ctx, now, 3, 0, 0, &CountUniqueUsersOptions{CommonUsageOptions{ExcludeKhulnasoftAdmins: true, ExcludeKhulnasoftOperators: true}, nil})
 	require.NoError(t, err)
 
 	assertUsageValue(t, values.DAUs[0], startDate.Add(time.Hour*24*2), 4, 4, 0, 0)
@@ -307,7 +307,7 @@ func TestEventLogs_UsersUsageCounts(t *testing.T) {
 					e := &Event{
 						UserID:    user,
 						Name:      name,
-						URL:       "http://sourcegraph.com",
+						URL:       "http://khulnasoft.com",
 						Source:    "test",
 						Timestamp: day.Add(time.Minute * time.Duration(rand.Intn(60*12))),
 					}
@@ -405,7 +405,7 @@ func TestEventLogs_SiteUsage(t *testing.T) {
 						e := &Event{
 							UserID: user,
 							Name:   name,
-							URL:    "http://sourcegraph.com",
+							URL:    "http://khulnasoft.com",
 							Source: source,
 							// Jitter current time +/- 30 minutes
 							Timestamp: day.Add(time.Minute * time.Duration(rand.Intn(60)-30)),
@@ -454,7 +454,7 @@ func TestEventLogs_SiteUsage(t *testing.T) {
 	}
 }
 
-func TestEventLogs_SiteUsage_ExcludeSourcegraphAdmins(t *testing.T) {
+func TestEventLogs_SiteUsage_ExcludeKhulnasoftAdmins(t *testing.T) {
 	if testing.Short() {
 		t.Skip()
 	}
@@ -468,10 +468,10 @@ func TestEventLogs_SiteUsage_ExcludeSourcegraphAdmins(t *testing.T) {
 	// time that falls too near the edge of a week.
 	now := time.Unix(1589581800, 0).UTC()
 
-	// Several of the events will belong to Sourcegraph employee admin user and Sourcegraph Operator user account
+	// Several of the events will belong to Khulnasoft employee admin user and Khulnasoft Operator user account
 	sgAdmin, err := db.Users().Create(ctx, NewUser{Username: "sourcegraph-admin"})
 	require.NoError(t, err)
-	err = db.UserEmails().Add(ctx, sgAdmin.ID, "admin@sourcegraph.com", nil)
+	err = db.UserEmails().Add(ctx, sgAdmin.ID, "admin@khulnasoft.com", nil)
 	require.NoError(t, err)
 	soLogan, err := db.Users().CreateWithExternalAccount(
 		ctx,
@@ -533,14 +533,14 @@ func TestEventLogs_SiteUsage_ExcludeSourcegraphAdmins(t *testing.T) {
 						e := &Event{
 							UserID: userID,
 							Name:   name,
-							URL:    "http://sourcegraph.com",
+							URL:    "http://khulnasoft.com",
 							Source: source,
 							// Jitter current time +/- 30 minutes
 							Timestamp: day.Add(time.Minute * time.Duration(rand.Intn(60)-30)),
 						}
 
 						if userID == uint32(soLogan.ID) {
-							e.PublicArgument = json.RawMessage(fmt.Sprintf(`{"%s": true}`, EventLogsSourcegraphOperatorKey))
+							e.PublicArgument = json.RawMessage(fmt.Sprintf(`{"%s": true}`, EventLogsKhulnasoftOperatorKey))
 						}
 
 						//lint:ignore SA1019 existing usage of deprecated functionality. Use EventRecorder from internal/telemetryrecorder instead.
@@ -553,7 +553,7 @@ func TestEventLogs_SiteUsage_ExcludeSourcegraphAdmins(t *testing.T) {
 	}
 
 	el := &eventLogStore{Store: basestore.NewWithHandle(db.Handle())}
-	summary, err := el.siteUsageCurrentPeriods(ctx, now, &SiteUsageOptions{CommonUsageOptions{ExcludeSourcegraphAdmins: false}})
+	summary, err := el.siteUsageCurrentPeriods(ctx, now, &SiteUsageOptions{CommonUsageOptions{ExcludeKhulnasoftAdmins: false}})
 	require.NoError(t, err)
 
 	expectedSummary := types.SiteUsageSummary{
@@ -576,7 +576,7 @@ func TestEventLogs_SiteUsage_ExcludeSourcegraphAdmins(t *testing.T) {
 	}
 	assert.Equal(t, expectedSummary, summary)
 
-	summary, err = el.siteUsageCurrentPeriods(ctx, now, &SiteUsageOptions{CommonUsageOptions{ExcludeSourcegraphAdmins: true, ExcludeSourcegraphOperators: true}})
+	summary, err = el.siteUsageCurrentPeriods(ctx, now, &SiteUsageOptions{CommonUsageOptions{ExcludeKhulnasoftAdmins: true, ExcludeKhulnasoftOperators: true}})
 	require.NoError(t, err)
 
 	expectedSummary = types.SiteUsageSummary{
@@ -622,7 +622,7 @@ func TestEventLogs_codeIntelligenceWeeklyUsersCount(t *testing.T) {
 			e := &Event{
 				UserID: user,
 				Name:   name,
-				URL:    "http://sourcegraph.com",
+				URL:    "http://khulnasoft.com",
 				Source: "test",
 				// This week; jitter current time +/- 30 minutes
 				Timestamp: now.Add(-time.Hour * 24 * 3).Add(time.Minute * time.Duration(rand.Intn(60)-30)),
@@ -637,7 +637,7 @@ func TestEventLogs_codeIntelligenceWeeklyUsersCount(t *testing.T) {
 			e := &Event{
 				UserID: user,
 				Name:   name,
-				URL:    "http://sourcegraph.com",
+				URL:    "http://khulnasoft.com",
 				Source: "test",
 				// This month: jitter current time +/- 30 minutes
 				Timestamp: now.Add(-time.Hour * 24 * 12).Add(time.Minute * time.Duration(rand.Intn(60)-30)),
@@ -849,7 +849,7 @@ func TestEventLogs_CodeIntelligenceSettingsPageViewCounts(t *testing.T) {
 				e := &Event{
 					UserID:   1,
 					Name:     name,
-					URL:      "http://sourcegraph.com",
+					URL:      "http://khulnasoft.com",
 					Source:   "test",
 					Argument: json.RawMessage(fmt.Sprintf(`{"languageId": "lang-%02d"}`, (i%3)+1)),
 					// Jitter current time +/- 30 minutes
@@ -914,7 +914,7 @@ func TestEventLogs_AggregatedCodeIntelEvents(t *testing.T) {
 					e := &Event{
 						UserID:   user,
 						Name:     name,
-						URL:      "http://sourcegraph.com",
+						URL:      "http://khulnasoft.com",
 						Source:   "test",
 						Argument: json.RawMessage(fmt.Sprintf(`{"languageId": "lang-%02d"}`, (i%3)+1)),
 						// Jitter current time +/- 30 minutes
@@ -978,7 +978,7 @@ func TestEventLogs_AggregatedSparseCodeIntelEvents(t *testing.T) {
 		e := &Event{
 			UserID:    1,
 			Name:      "codeintel.searchReferences.xrepo",
-			URL:       "http://sourcegraph.com",
+			URL:       "http://khulnasoft.com",
 			Source:    "test",
 			Argument:  json.RawMessage(fmt.Sprintf(`{"languageId": "lang-%02d"}`, (i%3)+1)),
 			Timestamp: now.Add(-time.Hour * 24 * 3), // This week
@@ -1054,7 +1054,7 @@ func TestEventLogs_AggregatedCodeIntelInvestigationEvents(t *testing.T) {
 					e := &Event{
 						UserID: user,
 						Name:   name,
-						URL:    "http://sourcegraph.com",
+						URL:    "http://khulnasoft.com",
 						Source: "test",
 						// Jitter current time +/- 30 minutes
 						Timestamp: day.Add(time.Minute * time.Duration(rand.Intn(60)-30)),
@@ -1110,7 +1110,7 @@ func TestEventLogs_AggregatedSparseSearchEvents(t *testing.T) {
 		e := &Event{
 			UserID: 1,
 			Name:   "search.latencies.structural",
-			URL:    "http://sourcegraph.com",
+			URL:    "http://khulnasoft.com",
 			Source: "test",
 			// Make durations non-uniform to test percent_cont. The values
 			// in this test were hand-checked before being added to the assertion.
@@ -1194,7 +1194,7 @@ func TestEventLogs_AggregatedSearchEvents(t *testing.T) {
 						e := &Event{
 							UserID: user,
 							Name:   name,
-							URL:    "http://sourcegraph.com",
+							URL:    "http://khulnasoft.com",
 							Source: "test",
 							// Make durations non-uniform to test percent_cont. The values
 							// in this test were hand-checked before being added to the assertion.
@@ -1218,7 +1218,7 @@ func TestEventLogs_AggregatedSearchEvents(t *testing.T) {
 	e := &Event{
 		UserID: 3,
 		Name:   "SearchResultsQueried",
-		URL:    "http://sourcegraph.com",
+		URL:    "http://khulnasoft.com",
 		Source: "test",
 		Argument: json.RawMessage(`
 {
@@ -1367,7 +1367,7 @@ func TestEventLogs_AggregatedCodyUsage(t *testing.T) {
 				e := &Event{
 					UserID: users[0],
 					Name:   name,
-					URL:    "http://sourcegraph.com",
+					URL:    "http://khulnasoft.com",
 					Source: "test",
 					Client: &clients[0],
 					// Jitter current time +/- 30 minutes
@@ -1385,7 +1385,7 @@ func TestEventLogs_AggregatedCodyUsage(t *testing.T) {
 				e := &Event{
 					UserID: users[1],
 					Name:   name,
-					URL:    "http://sourcegraph.com",
+					URL:    "http://khulnasoft.com",
 					Source: "test",
 					Client: &clients[1],
 					// Jitter current time +/- 30 minutes
@@ -1451,28 +1451,28 @@ func TestEventLogs_ListAll(t *testing.T) {
 		{
 			UserID:    1,
 			Name:      "SearchResultsQueried",
-			URL:       "http://sourcegraph.com",
+			URL:       "http://khulnasoft.com",
 			Source:    "test",
 			Timestamp: startDate,
 		},
 		{
 			UserID:    2,
 			Name:      "codeintel",
-			URL:       "http://sourcegraph.com",
+			URL:       "http://khulnasoft.com",
 			Source:    "test",
 			Timestamp: startDate,
 		},
 		{
 			UserID:    42,
 			Name:      "ViewRepository",
-			URL:       "http://sourcegraph.com",
+			URL:       "http://khulnasoft.com",
 			Source:    "test",
 			Timestamp: startDate,
 		},
 		{
 			UserID:    3,
 			Name:      "SearchResultsQueried",
-			URL:       "http://sourcegraph.com",
+			URL:       "http://khulnasoft.com",
 			Source:    "test",
 			Timestamp: startDate,
 		},
@@ -1561,7 +1561,7 @@ func TestEventLogs_LatestPing(t *testing.T) {
 			{
 				UserID:          0,
 				Name:            "ping",
-				URL:             "http://sourcegraph.com",
+				URL:             "http://khulnasoft.com",
 				AnonymousUserID: "test",
 				Source:          "test",
 				Timestamp:       timestamp,
@@ -1572,7 +1572,7 @@ func TestEventLogs_LatestPing(t *testing.T) {
 			}, {
 				UserID:          0,
 				Name:            "ping",
-				URL:             "http://sourcegraph.com",
+				URL:             "http://khulnasoft.com",
 				AnonymousUserID: "test",
 				Source:          "test",
 				Timestamp:       timestamp,
@@ -1620,7 +1620,7 @@ func makeTestEvent(e *Event) *Event {
 		e.UserID = 1
 	}
 	e.Name = "foo"
-	e.URL = "http://sourcegraph.com"
+	e.URL = "http://khulnasoft.com"
 	e.Source = "WEB"
 	e.Timestamp = e.Timestamp.Add(time.Minute * time.Duration(rand.Intn(60*12)))
 	return e
@@ -2188,7 +2188,7 @@ func TestEventLogs_ID_INT64(t *testing.T) {
 			ID:        int64(math.MaxInt64),
 			UserID:    1,
 			Name:      "SearchResultsQueried",
-			URL:       "http://sourcegraph.com",
+			URL:       "http://khulnasoft.com",
 			Source:    "test",
 			Timestamp: startDate,
 		},
@@ -2197,7 +2197,7 @@ func TestEventLogs_ID_INT64(t *testing.T) {
 			ID:        2524326457,
 			UserID:    2,
 			Name:      "SearchResultsQueried",
-			URL:       "http://sourcegraph.com",
+			URL:       "http://khulnasoft.com",
 			Source:    "test",
 			Timestamp: startDate,
 		},
@@ -2205,7 +2205,7 @@ func TestEventLogs_ID_INT64(t *testing.T) {
 			ID:        int64(math.MinInt64),
 			UserID:    3,
 			Name:      "SearchResultsQueried",
-			URL:       "http://sourcegraph.com",
+			URL:       "http://khulnasoft.com",
 			Source:    "test",
 			Timestamp: startDate,
 		},

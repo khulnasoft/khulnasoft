@@ -2,9 +2,9 @@
  * All Khulnasoft Cloud related links
  * MAIN
  */
-export const VSCE_LINK_DOTCOM = 'https://sourcegraph.com'
+export const VSCE_LINK_DOTCOM = 'https://khulnasoft.com'
 export const VSCE_LINK_TOKEN_CALLBACK =
-    'https://sourcegraph.com/sign-in?returnTo=user/settings/tokens/new/callback?requestFrom=VSCEAUTH'
+    'https://khulnasoft.com/sign-in?returnTo=user/settings/tokens/new/callback?requestFrom=VSCEAUTH'
 export const VSCE_LINK_TOKEN_CALLBACK_TEST =
     'https://sourcegraph.test:3443/sign-in?returnTo=user/settings/tokens/new/callback?requestFrom=VSCEAUTH'
 /**
@@ -33,17 +33,17 @@ const VSCE_LINK_PARAMS_UTM_SIDEBAR = {
 // MISC
 export const VSCE_LINK_MARKETPLACE = 'https://marketplace.visualstudio.com/items?itemName=sourcegraph.sourcegraph'
 export const VSCE_LINK_USER_DOCS =
-    'https://docs.sourcegraph.com/cli/how-tos/creating_an_access_token' + VSCE_SIDEBAR_PARAMS
-export const VSCE_LINK_FEEDBACK = 'https://community.sourcegraph.com'
+    'https://docs.khulnasoft.com/cli/how-tos/creating_an_access_token' + VSCE_SIDEBAR_PARAMS
+export const VSCE_LINK_FEEDBACK = 'https://community.khulnasoft.com'
 export const VSCE_LINK_ISSUES =
     'https://github.com/khulnasoft/khulnasoft/issues/new?labels=team/integrations,vscode-extension&title=VSCode+Bug+report:+&projects=Integrations%20Project%20Board'
 export const VSCE_LINK_TROUBLESHOOT =
-    'https://docs.sourcegraph.com/admin/how-to/troubleshoot-sg-extension#vs-code-extension'
+    'https://docs.khulnasoft.com/admin/how-to/troubleshoot-sg-extension#vs-code-extension'
 export const VSCE_SG_LOGOMARK_LIGHT =
-    'https://raw.githubusercontent.com/sourcegraph/sourcegraph/fd431743e811ba756490e5e7bd88aa2362b6453e/client/vscode/images/logomark_light.svg'
+    'https://raw.githubusercontent.com/khulnasoft/khulnasoft/fd431743e811ba756490e5e7bd88aa2362b6453e/client/vscode/images/logomark_light.svg'
 export const VSCE_SG_LOGOMARK_DARK =
-    'https://raw.githubusercontent.com/sourcegraph/sourcegraph/2636c64c9f323d78281a68dd4bdf432d9a97835a/client/vscode/images/logomark_dark.svg'
-export const VSCE_LINK_SIGNUP = 'https://about.sourcegraph.com/get-started/cloud' + VSCE_SIDEBAR_PARAMS
+    'https://raw.githubusercontent.com/khulnasoft/khulnasoft/2636c64c9f323d78281a68dd4bdf432d9a97835a/client/vscode/images/logomark_dark.svg'
+export const VSCE_LINK_SIGNUP = 'https://about.khulnasoft.com/get-started/cloud' + VSCE_SIDEBAR_PARAMS
 
 // Generate sign-in and sign-up links using the above params
 export const VSCE_LINK_AUTH = (mode: 'sign-in' | 'sign-up'): string => {

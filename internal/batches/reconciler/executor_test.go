@@ -830,7 +830,7 @@ func TestExecutor_ExecutePlan(t *testing.T) {
 			}
 
 			if rcs != nil {
-				if !strings.Contains(rcs.Body, "Created by Sourcegraph batch change") {
+				if !strings.Contains(rcs.Body, "Created by Khulnasoft batch change") {
 					t.Errorf("did not find backlink in body: %q", rcs.Body)
 				}
 			}
@@ -1080,7 +1080,7 @@ func TestExecutor_UserCredentialsForGitserver(t *testing.T) {
 			repo:       bbsRepo,
 			credential: &auth.BasicAuth{Username: "fredwoard johnssen", Password: "my-secret-bbs-token"},
 			wantPushConfig: &gitprotocol.PushConfig{
-				RemoteURL: "https://fredwoard%20johnssen:my-secret-bbs-token@bitbucket.sourcegraph.com/scm/" + string(bbsRepo.Name),
+				RemoteURL: "https://fredwoard%20johnssen:my-secret-bbs-token@bitbucket.khulnasoft.com/scm/" + string(bbsRepo.Name),
 			},
 		},
 		{
@@ -1223,7 +1223,7 @@ func TestDecorateChangesetBody(t *testing.T) {
 
 	cs := bt.BuildChangeset(bt.TestChangesetOpts{OwnedByBatchChange: 1234})
 
-	wantLink := "[_Created by Sourcegraph batch change `my-user/reconciler-test-batch-change`._](https://sourcegraph.test/users/my-user/batch-changes/reconciler-test-batch-change)"
+	wantLink := "[_Created by Khulnasoft batch change `my-user/reconciler-test-batch-change`._](https://sourcegraph.test/users/my-user/batch-changes/reconciler-test-batch-change)"
 
 	for name, tc := range map[string]struct {
 		body string

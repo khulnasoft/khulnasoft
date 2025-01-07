@@ -37,7 +37,7 @@ export const SubscriptionDetails: React.FC<SubscriptionDetailsProps> = props => 
     const [isErrorVisible, setIsErrorVisible] = useState(false)
 
     const errorMessage = updateCurrentSubscriptionMutation.isError
-        ? 'An error occurred while updating your subscription status. Please try again. If the problem persists, contact support at support@sourcegraph.com.'
+        ? 'An error occurred while updating your subscription status. Please try again. If the problem persists, contact support at support@khulnasoft.com.'
         : ''
 
     useEffect(

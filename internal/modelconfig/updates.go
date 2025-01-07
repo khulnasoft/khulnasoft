@@ -69,7 +69,7 @@ func ApplyModelOverride(mod *types.Model, modelOverrides types.ModelOverride) er
 	updateIfNonZero(&mod.DisplayName, modelOverrides.DisplayName)
 
 	// The following code overlaps with ApplyDefaultModelConfig, since both allow
-	// a Sourcegraph admin to replace a Model's metadata.
+	// a Khulnasoft admin to replace a Model's metadata.
 	if len(modelOverrides.Capabilities) > 0 {
 		mod.Capabilities = modelOverrides.Capabilities
 	}

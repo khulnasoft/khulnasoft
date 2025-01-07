@@ -152,7 +152,7 @@ func TestAuthzProvidersFromConfig(t *testing.T) {
 					Token: "asdf",
 				},
 			},
-			expSeriousProblems: []string{"Did not find authentication provider matching \"https://gitlab.mine\". Check the [**site configuration**](/site-admin/configuration) to verify an entry in [`auth.providers`](https://sourcegraph.com/docs/admin/auth) exists for https://gitlab.mine."},
+			expSeriousProblems: []string{"Did not find authentication provider matching \"https://gitlab.mine\". Check the [**site configuration**](/site-admin/configuration) to verify an entry in [`auth.providers`](https://khulnasoft.com/docs/admin/auth) exists for https://gitlab.mine."},
 		},
 		{
 			description: "1 GitLab connection with authz enabled, no GitLab auth provider",
@@ -172,7 +172,7 @@ func TestAuthzProvidersFromConfig(t *testing.T) {
 					Token: "asdf",
 				},
 			},
-			expSeriousProblems: []string{"Did not find authentication provider matching \"https://gitlab.mine\". Check the [**site configuration**](/site-admin/configuration) to verify an entry in [`auth.providers`](https://sourcegraph.com/docs/admin/auth) exists for https://gitlab.mine."},
+			expSeriousProblems: []string{"Did not find authentication provider matching \"https://gitlab.mine\". Check the [**site configuration**](/site-admin/configuration) to verify an entry in [`auth.providers`](https://khulnasoft.com/docs/admin/auth) exists for https://gitlab.mine."},
 		},
 		{
 			description: "Two GitLab connections with authz enabled, two matching GitLab auth providers",
@@ -352,7 +352,7 @@ func TestAuthzProvidersFromConfig(t *testing.T) {
 			},
 		},
 
-		// For Sourcegraph authz provider
+		// For Khulnasoft authz provider
 		{
 			description: "Explicit permissions can be enabled alongside synced permissions",
 			cfg: conf.Unified{
@@ -596,7 +596,7 @@ func TestAuthzProvidersEnabledACLsDisabled(t *testing.T) {
 					P4User:        "admin",
 					P4Passwd:      "pa$$word",
 					Depots: []string{
-						"//Sourcegraph",
+						"//Khulnasoft",
 						"//Engineering/Cloud",
 					},
 				},
@@ -1659,7 +1659,7 @@ func TestValidateExternalServiceConfig(t *testing.T) {
 				"authorization": { "identityProvider": { "type": "oauth" } }
 			}
 			`,
-			assert: includes("Did not find authentication provider matching \"https://gitlab.foo.bar\". Check the [**site configuration**](/site-admin/configuration) to verify an entry in [`auth.providers`](https://sourcegraph.com/docs/admin/auth) exists for https://gitlab.foo.bar."),
+			assert: includes("Did not find authentication provider matching \"https://gitlab.foo.bar\". Check the [**site configuration**](/site-admin/configuration) to verify an entry in [`auth.providers`](https://khulnasoft.com/docs/admin/auth) exists for https://gitlab.foo.bar."),
 		},
 		{
 			kind: extsvc.KindGitLab,
@@ -1673,7 +1673,7 @@ func TestValidateExternalServiceConfig(t *testing.T) {
 			ps: []schema.AuthProviders{
 				{Gitlab: &schema.GitLabAuthProvider{Url: "https://gitlab.foo.bar"}},
 			},
-			assert: excludes("Did not find authentication provider matching \"https://gitlab.foo.bar\". Check the [**site configuration**](/site-admin/configuration) to verify an entry in [`auth.providers`](https://sourcegraph.com/docs/admin/auth) exists for https://gitlab.foo.bar."),
+			assert: excludes("Did not find authentication provider matching \"https://gitlab.foo.bar\". Check the [**site configuration**](/site-admin/configuration) to verify an entry in [`auth.providers`](https://khulnasoft.com/docs/admin/auth) exists for https://gitlab.foo.bar."),
 		},
 		{
 			kind: extsvc.KindGitLab,

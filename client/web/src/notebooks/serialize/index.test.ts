@@ -5,33 +5,31 @@ import { SymbolKind } from '../../graphql-operations'
 
 import { parseLineRange, serializeBlockInput, serializeLineRange } from '.'
 
-const SOURCEGRAPH_URL = 'https://sourcegraph.com'
+const KHULNASOFT_URL = 'https://khulnasoft.com'
 
 describe('serialize', () => {
     it('should serialize empty markdown text', async () => {
-        const serialized = await lastValueFrom(
-            serializeBlockInput({ type: 'md', input: { text: '' } }, SOURCEGRAPH_URL)
-        )
+        const serialized = await lastValueFrom(serializeBlockInput({ type: 'md', input: { text: '' } }, KHULNASOFT_URL))
         expect(serialized).toStrictEqual('')
     })
 
     it('should serialize markdown text', async () => {
         const serialized = await lastValueFrom(
-            serializeBlockInput({ type: 'md', input: { text: '# Title' } }, SOURCEGRAPH_URL)
+            serializeBlockInput({ type: 'md', input: { text: '# Title' } }, KHULNASOFT_URL)
         )
         expect(serialized).toStrictEqual('# Title')
     })
 
     it('should serialize empty query', async () => {
         const serialized = await lastValueFrom(
-            serializeBlockInput({ type: 'query', input: { query: '' } }, SOURCEGRAPH_URL)
+            serializeBlockInput({ type: 'query', input: { query: '' } }, KHULNASOFT_URL)
         )
         expect(serialized).toStrictEqual('')
     })
 
     it('should serialize a query', async () => {
         const serialized = await lastValueFrom(
-            serializeBlockInput({ type: 'query', input: { query: 'repo:a b' } }, SOURCEGRAPH_URL)
+            serializeBlockInput({ type: 'query', input: { query: 'repo:a b' } }, KHULNASOFT_URL)
         )
         expect(serialized).toStrictEqual('repo:a b')
     })
@@ -42,18 +40,18 @@ describe('serialize', () => {
                 {
                     type: 'file',
                     input: {
-                        repositoryName: 'github.com/sourcegraph/sourcegraph',
+                        repositoryName: 'github.com/khulnasoft/khulnasoft',
                         revision: 'feature',
                         filePath: 'client/web/index.ts',
                         lineRange: null,
                     },
                 },
-                SOURCEGRAPH_URL
+                KHULNASOFT_URL
             )
         )
 
         expect(serialized).toStrictEqual(
-            `${SOURCEGRAPH_URL}/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts`
+            `${KHULNASOFT_URL}/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts`
         )
     })
 
@@ -63,7 +61,7 @@ describe('serialize', () => {
                 {
                     type: 'file',
                     input: {
-                        repositoryName: 'github.com/sourcegraph/sourcegraph',
+                        repositoryName: 'github.com/khulnasoft/khulnasoft',
                         revision: 'feature',
                         filePath: 'client/web/index.ts',
                         lineRange: {
@@ -72,12 +70,12 @@ describe('serialize', () => {
                         },
                     },
                 },
-                SOURCEGRAPH_URL
+                KHULNASOFT_URL
             )
         )
 
         expect(serialized).toStrictEqual(
-            `${SOURCEGRAPH_URL}/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts?L101-123`
+            `${KHULNASOFT_URL}/github.com/sourcegraph/sourcegraph@feature/-/blob/client/web/index.ts?L101-123`
         )
     })
 
@@ -87,7 +85,7 @@ describe('serialize', () => {
                 {
                     type: 'symbol',
                     input: {
-                        repositoryName: 'github.com/sourcegraph/sourcegraph',
+                        repositoryName: 'github.com/khulnasoft/khulnasoft',
                         revision: 'feature',
                         filePath: 'client/web/index.ts',
                         symbolName: 'func a',
@@ -107,12 +105,12 @@ describe('serialize', () => {
                         highlightedLines: [],
                     }),
                 },
-                SOURCEGRAPH_URL
+                KHULNASOFT_URL
             )
         )
 
         expect(serialized).toStrictEqual(
-            `${SOURCEGRAPH_URL}/github.com/sourcegraph/sourcegraph@effective-feature/-/blob/client/web/index.ts?L1:1-1:3#symbolName=func+a&symbolContainerName=class&symbolKind=FUNCTION&lineContext=3`
+            `${KHULNASOFT_URL}/github.com/sourcegraph/sourcegraph@effective-feature/-/blob/client/web/index.ts?L1:1-1:3#symbolName=func+a&symbolContainerName=class&symbolKind=FUNCTION&lineContext=3`
         )
     })
 

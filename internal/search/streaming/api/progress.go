@@ -153,7 +153,7 @@ func shardMatchLimitHandler(resultsResolver ProgressStats) (Skipped, bool) {
 	return Skipped{
 		Reason:    ShardMatchLimit,
 		Title:     "result limit hit",
-		Message:   "Not all results have been returned due to hitting a match limit. Sourcegraph has limits for the number of results returned from a line, document and repository.",
+		Message:   "Not all results have been returned due to hitting a match limit. Khulnasoft has limits for the number of results returned from a line, document and repository.",
 		Severity:  SeverityInfo,
 		Suggested: suggest,
 	}, true

@@ -30,7 +30,7 @@ func TestTeams_CreateUpdateDelete(t *testing.T) {
 
 	team := &types.Team{
 		Name:        "own",
-		DisplayName: "Sourcegraph Own",
+		DisplayName: "Khulnasoft Own",
 		ReadOnly:    true,
 		CreatorID:   user.ID,
 	}

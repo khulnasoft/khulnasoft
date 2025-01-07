@@ -1,7 +1,7 @@
 import type { GitCommitMock } from '$testing/graphql-type-mocks'
 import { expect, test } from '$testing/integration'
 
-const repoName = 'github.com/sourcegraph/sourcegraph'
+const repoName = 'github.com/khulnasoft/khulnasoft'
 const url = `/${repoName}/-/commits`
 
 test.beforeEach(async ({ sg }) => {

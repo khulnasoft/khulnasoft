@@ -8,7 +8,7 @@ import { dark } from './theme-snapshots/dark'
 import { light } from './theme-snapshots/light'
 
 /* Set these to connect to a different server */
-const instanceURL = 'https://sourcegraph.com/'
+const instanceURL = 'https://khulnasoft.com/'
 const accessToken = null
 
 let isDarkTheme = false
@@ -17,7 +17,7 @@ const savedSearchFromLocalStorage = localStorage.getItem('savedSearch')
 let savedSearch: Search = savedSearchFromLocalStorage
     ? (JSON.parse(savedSearchFromLocalStorage) as Search)
     : {
-          query: 'r:github.com/sourcegraph/sourcegraph jetbrains',
+          query: 'r:github.com/khulnasoft/khulnasoft jetbrains',
           caseSensitive: false,
           patternType: SearchPatternType.literal,
           selectedSearchContextSpec: 'global',

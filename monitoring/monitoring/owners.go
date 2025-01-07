@@ -10,7 +10,7 @@ import (
 )
 
 // ObservableOwner denotes a team that owns an Observable. The current teams are described in
-// the handbook: https://handbook.sourcegraph.com/departments/engineering/
+// the handbook: https://handbook.khulnasoft.com/departments/engineering/
 type ObservableOwner struct {
 	// opsgenieTeam is the team's name on OpsGenie and is used for routing alerts.
 	opsgenieTeam string
@@ -24,7 +24,7 @@ type ObservableOwner struct {
 
 var (
 	// ObservableOwnerInfraOrg represents the shared infra-org rotation which
-	// currently manages Sourcegraph.com.
+	// currently manages Khulnasoft.com.
 	ObservableOwnerInfraOrg = registerObservableOwner(ObservableOwner{
 		opsgenieTeam:     "infra-support",
 		handbookBasePath: "/departments/engineering",
@@ -110,7 +110,7 @@ func (o ObservableOwner) validate() error {
 
 // toMarkdown returns a Markdown string that also links to the owner's team page in the handbook.
 func (o ObservableOwner) toMarkdown() string {
-	return fmt.Sprintf("[Sourcegraph %s team](%s)",
+	return fmt.Sprintf("[Khulnasoft %s team](%s)",
 		o.teamName, o.getHandbookPageURL())
 }
 
@@ -120,7 +120,7 @@ func (o ObservableOwner) getHandbookPageURL() string {
 	if o.handbookBasePath != "" {
 		basePath = o.handbookBasePath
 	}
-	return "https://" + path.Join("handbook.sourcegraph.com", basePath, o.handbookSlug)
+	return "https://" + path.Join("handbook.khulnasoft.com", basePath, o.handbookSlug)
 }
 
 // allKnownOwners is used for testing, mapping all known observable owner names

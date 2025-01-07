@@ -59,7 +59,7 @@ export const Install: React.FC = () => {
                 console.error('Failed to fetch versions:', error)
 
                 // Very basic fallback for when release registry is down:
-                // hardcode a particular version of Sourcegraph, which is the
+                // hardcode a particular version of Khulnasoft, which is the
                 // latest at the time of writing.
                 // This could be replaced with a fallback to a release registry
                 // response fixture that appliance-frontend has access to on the
@@ -98,7 +98,7 @@ export const Install: React.FC = () => {
     return (
         // Render a version selection box followed by a database configuration screen, then an install prompt
         <div className="install">
-            <Typography variant="h5">Setup Sourcegraph</Typography>
+            <Typography variant="h5">Setup Khulnasoft</Typography>
             <Paper elevation={3} sx={{ p: 4 }}>
                 {installState === 'select-version' ? (
                     <Stack direction="column" spacing={2} sx={{ alignItems: 'center' }}>
@@ -127,7 +127,7 @@ export const Install: React.FC = () => {
                 ) : installState === 'select-db-type' ? (
                     <Stack direction="column" spacing={2} alignItems={'center'}>
                         <FormControl>
-                            <FormLabel>Configure Sourcegraph Databases</FormLabel>
+                            <FormLabel>Configure Khulnasoft Databases</FormLabel>
                             <FormGroup>
                                 <RadioGroup value={dbType} onChange={handleDbSelect} defaultValue="built-in">
                                     <FormControlLabel value="built-in" control={<Radio />} label="built-in DBs" />

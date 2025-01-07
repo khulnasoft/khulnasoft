@@ -26,7 +26,7 @@ type Service interface {
 // SnippetAttributions is holds the collection of attributions for a snippet.
 type SnippetAttributions struct {
 	// RepositoryNames is the list of repository names. We intend on mixing
-	// names from both the local instance as well as from sourcegraph.com. So
+	// names from both the local instance as well as from khulnasoft.com. So
 	// we intentionally use a string since the name may not represent a
 	// repository available on this instance.
 	//

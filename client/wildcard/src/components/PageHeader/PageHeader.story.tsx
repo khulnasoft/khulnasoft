@@ -62,7 +62,7 @@ BasicHeader.parameters = {
 
 export const ComplexHeader: StoryFn = () => (
     <PageHeader
-        annotation={<FeedbackBadge status="experimental" feedback={{ mailto: 'support@sourcegraph.com' }} />}
+        annotation={<FeedbackBadge status="experimental" feedback={{ mailto: 'support@khulnasoft.com' }} />}
         byline={
             <>
                 Created by <Link to="/page">user</Link> 3 months ago

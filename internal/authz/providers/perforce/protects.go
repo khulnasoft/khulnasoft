@@ -21,7 +21,7 @@ type p4ProtectLine struct {
 	level      string // e.g. read
 	entityType string // e.g. user
 	name       string // e.g. alice
-	match      string // raw match, e.g. //Sourcegraph/, trimmed of leading '-' for exclusion
+	match      string // raw match, e.g. //Khulnasoft/, trimmed of leading '-' for exclusion
 	host       string
 
 	// isExclusion is whether the match is an exclusion or inclusion (had a leading '-' or not)
@@ -294,7 +294,7 @@ func repoIncludesExcludesScanner(perms *authz.ExternalUserPermissions) *protects
 	}
 }
 
-// fullRepoPermsScanner converts `p4 protects` to a 1:1 implementation of Sourcegraph
+// fullRepoPermsScanner converts `p4 protects` to a 1:1 implementation of Khulnasoft
 // authorization, including sub-repo perms and exact depot-as-repo matches.
 func fullRepoPermsScanner(logger log.Logger, perms *authz.ExternalUserPermissions, configuredDepots []extsvc.RepoID) *protectsScanner {
 	logger = logger.Scoped("fullRepoPermsScanner")

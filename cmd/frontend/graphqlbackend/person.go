@@ -92,7 +92,7 @@ func unicodeToAscii(input string) string {
 }
 
 func (r *PersonResolver) Email(ctx context.Context) (string, error) {
-	if !dotcom.SourcegraphDotComMode() {
+	if !dotcom.KhulnasoftDotComMode() {
 		return r.email, nil
 	}
 
@@ -113,7 +113,7 @@ func (r *PersonResolver) Email(ctx context.Context) (string, error) {
 
 	cleanedName := strings.ReplaceAll(strings.ToLower(name), " ", "")
 
-	return url.PathEscape(unicodeToAscii(cleanedName)) + "@noreply.sourcegraph.com", nil
+	return url.PathEscape(unicodeToAscii(cleanedName)) + "@noreply.khulnasoft.com", nil
 }
 
 func (r *PersonResolver) DisplayName(ctx context.Context) (string, error) {

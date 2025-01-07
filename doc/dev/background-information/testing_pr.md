@@ -1,6 +1,6 @@
 # Testing a pull request 
 
-When submitting a pull request to Sourcegraph, there are a few tests you'll need to pass before the request can be reviewed. These tests run logical tests that we author to make sure our code runs as expected.
+When submitting a pull request to Khulnasoft, there are a few tests you'll need to pass before the request can be reviewed. These tests run logical tests that we author to make sure our code runs as expected.
 
 ## What are the tests?
 - **Prettier** is responsible for mostly visual choices like if we have a line of code that's longer than 70 characters, it will fail. This has nothing to do with the correctness of the code, more of a stylistic choice we make as a team to make sure we all use the same standard.
@@ -14,4 +14,4 @@ If you don't want to wait for CI to find out whether you've made a mistake, you 
 1. `pnpm format` : applies prettier to your code (takes about 30s to run)
 1. `pnpm format:check`: checks if your code is passing the prettier checks (takes about 30s to run)
 1. `pnpm eslint`: checks if your code is passing the eslint checks (takes about 2s to run)
-1. `sg lint`: can run any prettier and lint checks. ([complete docs](https://docs.sourcegraph.com/dev/background-information/sg/reference#sg-lint)) The benefit is that it runs them the same way that CI runs them (On Buildkite, it’s called “Linters and static analysis” → “Run sg lint”). It’s also fast. The downside might be that it doesn’t necessarily run on all files, e.g. Prettier skipped `client/jetbrains` during some testing.
+1. `sg lint`: can run any prettier and lint checks. ([complete docs](https://docs.khulnasoft.com/dev/background-information/sg/reference#sg-lint)) The benefit is that it runs them the same way that CI runs them (On Buildkite, it’s called “Linters and static analysis” → “Run sg lint”). It’s also fast. The downside might be that it doesn’t necessarily run on all files, e.g. Prettier skipped `client/jetbrains` during some testing.

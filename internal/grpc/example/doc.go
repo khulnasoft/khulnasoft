@@ -6,7 +6,7 @@
 // - Implementing a gRPC server (with proper separation of concerns)
 // - Implementing a gRPC client
 // - Some known footguns (non-utf8 strings, huge messages, etc.)
-// - Some Sourcegraph specific helper packages and patterns (grpc/defaults, grpc/streamio, etc.)
+// - Some Khulnasoft specific helper packages and patterns (grpc/defaults, grpc/streamio, etc.)
 //
 //	The service is a simple weather-reporting service that allows you to query the current weather, send updated weather
 //	location for a given sensor, receive severe weather alerts and more.

@@ -17,7 +17,7 @@ export const LicenseGenerationKeyWarning: React.FunctionComponent<React.PropsWit
     window.context?.debug ? (
         <Alert className={className} variant="warning">
             License keys generated in dev mode are <strong>NOT VALID</strong>.{' '}
-            <Link to="https://sourcegraph.com/site-admin/dotcom/product/subscriptions">
+            <Link to="https://khulnasoft.com/site-admin/dotcom/product/subscriptions">
                 Use Khulnasoft.com to generate valid license keys.
             </Link>
         </Alert>

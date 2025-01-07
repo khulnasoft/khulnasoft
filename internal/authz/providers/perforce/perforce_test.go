@@ -197,110 +197,110 @@ func TestProvider_FetchUserPerms(t *testing.T) {
 		{
 			name: "include only",
 			protects: testParseP4ProtectsRaw(t, strings.NewReader(`
-list user alice * //Sourcegraph/Security/... ## "list" can't grant read access
-read user alice * //Sourcegraph/Engineering/...
-owner user alice * //Sourcegraph/Engineering/Backend/...
-open user alice * //Sourcegraph/Engineering/Frontend/...
-review user alice * //Sourcegraph/Handbook/...
-review user alice * //Sourcegraph/*/Handbook/...
-review user alice * //Sourcegraph/.../Handbook/...
+list user alice * //Khulnasoft/Security/... ## "list" can't grant read access
+read user alice * //Khulnasoft/Engineering/...
+owner user alice * //Khulnasoft/Engineering/Backend/...
+open user alice * //Khulnasoft/Engineering/Frontend/...
+review user alice * //Khulnasoft/Handbook/...
+review user alice * //Khulnasoft/*/Handbook/...
+review user alice * //Khulnasoft/.../Handbook/...
 `)),
 			wantPerms: &authz.ExternalUserPermissions{
 				IncludeContains: []extsvc.RepoID{
-					"//Sourcegraph/Engineering/%",
-					"//Sourcegraph/Engineering/Backend/%",
-					"//Sourcegraph/Engineering/Frontend/%",
-					"//Sourcegraph/Handbook/%",
-					"//Sourcegraph/[^/]+/Handbook/%",
-					"//Sourcegraph/%/Handbook/%",
+					"//Khulnasoft/Engineering/%",
+					"//Khulnasoft/Engineering/Backend/%",
+					"//Khulnasoft/Engineering/Frontend/%",
+					"//Khulnasoft/Handbook/%",
+					"//Khulnasoft/[^/]+/Handbook/%",
+					"//Khulnasoft/%/Handbook/%",
 				},
 			},
 		},
 		{
 			name: "exclude only",
 			protects: testParseP4ProtectsRaw(t, strings.NewReader(`
-list user alice * -//Sourcegraph/Security/...
-read user alice * -//Sourcegraph/Engineering/...
-owner user alice * -//Sourcegraph/Engineering/Backend/...
-open user alice * -//Sourcegraph/Engineering/Frontend/...
-review user alice * -//Sourcegraph/Handbook/...
-review user alice * -//Sourcegraph/*/Handbook/...
-review user alice * -//Sourcegraph/.../Handbook/...
+list user alice * -//Khulnasoft/Security/...
+read user alice * -//Khulnasoft/Engineering/...
+owner user alice * -//Khulnasoft/Engineering/Backend/...
+open user alice * -//Khulnasoft/Engineering/Frontend/...
+review user alice * -//Khulnasoft/Handbook/...
+review user alice * -//Khulnasoft/*/Handbook/...
+review user alice * -//Khulnasoft/.../Handbook/...
 `)), wantPerms: &authz.ExternalUserPermissions{
 				ExcludeContains: []extsvc.RepoID{
-					"//Sourcegraph/[^/]+/Handbook/%",
-					"//Sourcegraph/%/Handbook/%",
+					"//Khulnasoft/[^/]+/Handbook/%",
+					"//Khulnasoft/%/Handbook/%",
 				},
 			},
 		},
 		{
 			name: "include and exclude",
 			protects: testParseP4ProtectsRaw(t, strings.NewReader(`
-read user alice * //Sourcegraph/Security/...
-read user alice * //Sourcegraph/Engineering/...
-owner user alice * //Sourcegraph/Engineering/Backend/...
-open user alice * //Sourcegraph/Engineering/Frontend/...
-review user alice * //Sourcegraph/Handbook/...
-open user alice * //Sourcegraph/Engineering/.../Frontend/...
-open user alice * //Sourcegraph/.../Handbook/...  ## wildcard A
+read user alice * //Khulnasoft/Security/...
+read user alice * //Khulnasoft/Engineering/...
+owner user alice * //Khulnasoft/Engineering/Backend/...
+open user alice * //Khulnasoft/Engineering/Frontend/...
+review user alice * //Khulnasoft/Handbook/...
+open user alice * //Khulnasoft/Engineering/.../Frontend/...
+open user alice * //Khulnasoft/.../Handbook/...  ## wildcard A
 
-list user alice * -//Sourcegraph/Security/...                        ## "list" can revoke read access
-=read user alice * -//Sourcegraph/Engineering/Frontend/...           ## exact match of a previous include
-open user alice * -//Sourcegraph/Engineering/Backend/Credentials/... ## sub-match of a previous include
-open user alice * -//Sourcegraph/Engineering/*/Frontend/Folder/...   ## sub-match of a previous include
-open user alice * -//Sourcegraph/*/Handbook/...                      ## sub-match of wildcard A include
+list user alice * -//Khulnasoft/Security/...                        ## "list" can revoke read access
+=read user alice * -//Khulnasoft/Engineering/Frontend/...           ## exact match of a previous include
+open user alice * -//Khulnasoft/Engineering/Backend/Credentials/... ## sub-match of a previous include
+open user alice * -//Khulnasoft/Engineering/*/Frontend/Folder/...   ## sub-match of a previous include
+open user alice * -//Khulnasoft/*/Handbook/...                      ## sub-match of wildcard A include
 `)),
 			wantPerms: &authz.ExternalUserPermissions{
 				IncludeContains: []extsvc.RepoID{
-					"//Sourcegraph/Engineering/%",
-					"//Sourcegraph/Engineering/Backend/%",
-					"//Sourcegraph/Engineering/Frontend/%",
-					"//Sourcegraph/Handbook/%",
-					"//Sourcegraph/Engineering/%/Frontend/%",
-					"//Sourcegraph/%/Handbook/%",
+					"//Khulnasoft/Engineering/%",
+					"//Khulnasoft/Engineering/Backend/%",
+					"//Khulnasoft/Engineering/Frontend/%",
+					"//Khulnasoft/Handbook/%",
+					"//Khulnasoft/Engineering/%/Frontend/%",
+					"//Khulnasoft/%/Handbook/%",
 				},
 				ExcludeContains: []extsvc.RepoID{
-					"//Sourcegraph/Engineering/Frontend/%",
-					"//Sourcegraph/Engineering/Backend/Credentials/%",
-					"//Sourcegraph/Engineering/[^/]+/Frontend/Folder/%",
-					"//Sourcegraph/[^/]+/Handbook/%",
+					"//Khulnasoft/Engineering/Frontend/%",
+					"//Khulnasoft/Engineering/Backend/Credentials/%",
+					"//Khulnasoft/Engineering/[^/]+/Frontend/Folder/%",
+					"//Khulnasoft/[^/]+/Handbook/%",
 				},
 			},
 		},
 		{
 			name: "include and exclude, then include again",
 			protects: testParseP4ProtectsRaw(t, strings.NewReader(`
-read user alice * //Sourcegraph/Security/...
-read user alice * //Sourcegraph/Engineering/...
-owner user alice * //Sourcegraph/Engineering/Backend/...
-open user alice * //Sourcegraph/Engineering/Frontend/...
-review user alice * //Sourcegraph/Handbook/...
-open user alice * //Sourcegraph/Engineering/.../Frontend/...
-open user alice * //Sourcegraph/.../Handbook/...  ## wildcard A
+read user alice * //Khulnasoft/Security/...
+read user alice * //Khulnasoft/Engineering/...
+owner user alice * //Khulnasoft/Engineering/Backend/...
+open user alice * //Khulnasoft/Engineering/Frontend/...
+review user alice * //Khulnasoft/Handbook/...
+open user alice * //Khulnasoft/Engineering/.../Frontend/...
+open user alice * //Khulnasoft/.../Handbook/...  ## wildcard A
 
-list user alice * -//Sourcegraph/Security/...                        ## "list" can revoke read access
-=read user alice * -//Sourcegraph/Engineering/Frontend/...           ## exact match of a previous include
-open user alice * -//Sourcegraph/Engineering/Backend/Credentials/... ## sub-match of a previous include
-open user alice * -//Sourcegraph/Engineering/*/Frontend/Folder/...   ## sub-match of a previous include
-open user alice * -//Sourcegraph/*/Handbook/...                      ## sub-match of wildcard A include
+list user alice * -//Khulnasoft/Security/...                        ## "list" can revoke read access
+=read user alice * -//Khulnasoft/Engineering/Frontend/...           ## exact match of a previous include
+open user alice * -//Khulnasoft/Engineering/Backend/Credentials/... ## sub-match of a previous include
+open user alice * -//Khulnasoft/Engineering/*/Frontend/Folder/...   ## sub-match of a previous include
+open user alice * -//Khulnasoft/*/Handbook/...                      ## sub-match of wildcard A include
 
-read user alice * //Sourcegraph/Security/... 						 ## give access to alice again after revoking
+read user alice * //Khulnasoft/Security/... 						 ## give access to alice again after revoking
 `)),
 			wantPerms: &authz.ExternalUserPermissions{
 				IncludeContains: []extsvc.RepoID{
-					"//Sourcegraph/Engineering/%",
-					"//Sourcegraph/Engineering/Backend/%",
-					"//Sourcegraph/Engineering/Frontend/%",
-					"//Sourcegraph/Handbook/%",
-					"//Sourcegraph/Engineering/%/Frontend/%",
-					"//Sourcegraph/%/Handbook/%",
-					"//Sourcegraph/Security/%",
+					"//Khulnasoft/Engineering/%",
+					"//Khulnasoft/Engineering/Backend/%",
+					"//Khulnasoft/Engineering/Frontend/%",
+					"//Khulnasoft/Handbook/%",
+					"//Khulnasoft/Engineering/%/Frontend/%",
+					"//Khulnasoft/%/Handbook/%",
+					"//Khulnasoft/Security/%",
 				},
 				ExcludeContains: []extsvc.RepoID{
-					"//Sourcegraph/Engineering/Frontend/%",
-					"//Sourcegraph/Engineering/Backend/Credentials/%",
-					"//Sourcegraph/Engineering/[^/]+/Frontend/Folder/%",
-					"//Sourcegraph/[^/]+/Handbook/%",
+					"//Khulnasoft/Engineering/Frontend/%",
+					"//Khulnasoft/Engineering/Backend/Credentials/%",
+					"//Khulnasoft/Engineering/[^/]+/Frontend/Folder/%",
+					"//Khulnasoft/[^/]+/Handbook/%",
 				},
 			},
 		},
@@ -344,13 +344,13 @@ read user alice * //Sourcegraph/Security/... 						 ## give access to alice agai
 			{
 				name: "normal",
 				input: []*p4types.Protect{
-					{Level: "read", EntityType: "user", EntityName: "alice", Host: "*", Match: "//Sourcegraph/Engineering/..."},
-					{Level: "read", EntityType: "user", EntityName: "alice", Host: "*", Match: "//Sourcegraph/Security/...", IsExclusion: true},
+					{Level: "read", EntityType: "user", EntityName: "alice", Host: "*", Match: "//Khulnasoft/Engineering/..."},
+					{Level: "read", EntityType: "user", EntityName: "alice", Host: "*", Match: "//Khulnasoft/Security/...", IsExclusion: true},
 				},
 				expected: &authz.ExternalUserPermissions{
-					Exacts: []extsvc.RepoID{"//Sourcegraph/"},
+					Exacts: []extsvc.RepoID{"//Khulnasoft/"},
 					SubRepoPermissions: map[extsvc.RepoID]*authz.SubRepoPermissionsWithIPs{
-						"//Sourcegraph/": {
+						"//Khulnasoft/": {
 							Paths: []authz.PathWithIP{
 								{Path: mustGlobPattern(t, "/Engineering/..."), IP: "*"},
 								{Path: mustGlobPattern(t, "-/Security/..."), IP: "*"},
@@ -363,13 +363,13 @@ read user alice * //Sourcegraph/Security/... 						 ## give access to alice agai
 				name: "with ips",
 
 				input: []*p4types.Protect{
-					{Level: "read", EntityType: "user", EntityName: "alice", Host: "1.2.3.6", Match: "//Sourcegraph/Engineering/..."},
-					{Level: "read", EntityType: "user", EntityName: "alice", Host: "1.2.3.4", Match: "//Sourcegraph/Security/...", IsExclusion: true},
+					{Level: "read", EntityType: "user", EntityName: "alice", Host: "1.2.3.6", Match: "//Khulnasoft/Engineering/..."},
+					{Level: "read", EntityType: "user", EntityName: "alice", Host: "1.2.3.4", Match: "//Khulnasoft/Security/...", IsExclusion: true},
 				},
 				expected: &authz.ExternalUserPermissions{
-					Exacts: []extsvc.RepoID{"//Sourcegraph/"},
+					Exacts: []extsvc.RepoID{"//Khulnasoft/"},
 					SubRepoPermissions: map[extsvc.RepoID]*authz.SubRepoPermissionsWithIPs{
-						"//Sourcegraph/": {
+						"//Khulnasoft/": {
 							Paths: []authz.PathWithIP{
 								{Path: mustGlobPattern(t, "/Engineering/..."), IP: "1.2.3.6"},
 								{Path: mustGlobPattern(t, "-/Security/..."), IP: "1.2.3.4"},
@@ -388,7 +388,7 @@ read user alice * //Sourcegraph/Security/... 						 ## give access to alice agai
 				gitserverClient.PerforceProtectsForUserFunc.SetDefaultReturn(test.input, nil)
 
 				p := NewProvider(logger, db, gitserverClient, "", "ssl:111.222.333.444:1666", "admin", "password", []extsvc.RepoID{}, false)
-				p.depots = append(p.depots, "//Sourcegraph/")
+				p.depots = append(p.depots, "//Khulnasoft/")
 
 				got, err := p.FetchUserPerms(ctx,
 					&extsvc.Account{
@@ -468,12 +468,12 @@ func TestProvider_FetchRepoPerms(t *testing.T) {
 	})
 	gitserverClient.PerforceProtectsForDepotFunc.SetDefaultReturn([]*p4types.Protect{
 		{Level: "list", EntityType: "user", EntityName: "*", Host: "*", Match: "//...", IsExclusion: true},
-		{Level: "write", EntityType: "user", EntityName: "alice", Host: "*", Match: "//Sourcegraph/..."},
-		{Level: "write", EntityType: "user", EntityName: "bob", Host: "*", Match: "//Sourcegraph/..."},
-		{Level: "admin", EntityType: "group", EntityName: "Backend", Host: "*", Match: "//Sourcegraph/..."},                     // includes "alice" and "cindy"
-		{Level: "admin", EntityType: "group", EntityName: "Frontend", Host: "*", Match: "//Sourcegraph/...", IsExclusion: true}, // excludes "bob", "david" and "frank"
-		{Level: "read", EntityType: "user", EntityName: "cindy", Host: "*", Match: "//Sourcegraph/...", IsExclusion: true},
-		{Level: "list", EntityType: "user", EntityName: "david", Host: "*", Match: "//Sourcegraph/..."}, // "list" can't grant read access
+		{Level: "write", EntityType: "user", EntityName: "alice", Host: "*", Match: "//Khulnasoft/..."},
+		{Level: "write", EntityType: "user", EntityName: "bob", Host: "*", Match: "//Khulnasoft/..."},
+		{Level: "admin", EntityType: "group", EntityName: "Backend", Host: "*", Match: "//Khulnasoft/..."},                     // includes "alice" and "cindy"
+		{Level: "admin", EntityType: "group", EntityName: "Frontend", Host: "*", Match: "//Khulnasoft/...", IsExclusion: true}, // excludes "bob", "david" and "frank"
+		{Level: "read", EntityType: "user", EntityName: "cindy", Host: "*", Match: "//Khulnasoft/...", IsExclusion: true},
+		{Level: "list", EntityType: "user", EntityName: "david", Host: "*", Match: "//Khulnasoft/..."}, // "list" can't grant read access
 	}, nil)
 
 	p := NewProvider(logger, db, gitserverClient, "", "ssl:111.222.333.444:1666", "admin", "password", []extsvc.RepoID{}, false)

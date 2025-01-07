@@ -2,7 +2,7 @@
 
 We disallow use of error packages — including the stdlib [`errors`](https://golang.org/pkg/errors/) package — (enforced by a lint pass in CI) other than our internal `github.com/khulnasoft/khulnasoft/lib/errors` package.
 
-We also require the use of `errors.Newf` over the use of `fmt.Errorf`, which also constructs an error type. This is to ensure that each error constructed by Sourcegraph is tagged with a stack depth and allows redaction of content within user-visible strings.
+We also require the use of `errors.Newf` over the use of `fmt.Errorf`, which also constructs an error type. This is to ensure that each error constructed by Khulnasoft is tagged with a stack depth and allows redaction of content within user-visible strings.
 
 ## Use of `errors.New`
 
@@ -177,7 +177,7 @@ The `MultiError` type:
 - prints all errors within in a multi-line list format on `(MultiError).Error()`
 - acts like a single error if the bag only contains a single error (notably for printing and introspection behaviours)
 
-Check out the source code for the `MultiError` implementation in [`lib/errors`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/lib/errors).
+Check out the source code for the `MultiError` implementation in [`lib/errors`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/tree/lib/errors).
 
 ## Printing errors
 

@@ -648,7 +648,7 @@ func scanCount(rows *sql.Rows, queryErr error) (value int, err error) {
 // younger than the provided lag will not be deleted, but its timestamp will be modified as if the sibling method
 // UpdateSourcedCommits was called instead. This configurable parameter enables support for remote code hosts
 // that are not the source of truth; if we deleted all pending records without resolvable commits introduce races
-// between the customer's Sourcegraph instance and their CI (and their CI will usually win).
+// between the customer's Khulnasoft instance and their CI (and their CI will usually win).
 func (s *store) DeleteSourcedCommits(ctx context.Context, repositoryID int, commit string, maximumCommitLag time.Duration, now time.Time) (
 	uploadsUpdated, uploadsDeleted int,
 	err error,

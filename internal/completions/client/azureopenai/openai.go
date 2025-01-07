@@ -85,7 +85,7 @@ func GetAPIClient(endpoint, accessToken string) (CompletionsClient, error) {
 	if accessToken != "" {
 		var credential *azcore.KeyCredential
 		// Note: HTTP connection can be useful if customers need to run e.g. an auth proxy
-		// between Sourcegraph and their Azure OpenAI endpoint.
+		// between Khulnasoft and their Azure OpenAI endpoint.
 		// The Azure client will prohibit sending HTTP requests if the request would contain
 		// credentials, so we remove credentials if the admin's intention is to send HTTP
 		// and not HTTPS.

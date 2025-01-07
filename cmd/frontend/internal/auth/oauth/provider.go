@@ -99,7 +99,7 @@ func (p *Provider) ExternalAccountInfo(ctx context.Context, account extsvc.Accou
 		return azuredevops.GetPublicExternalAccountData(ctx, &account.AccountData)
 	}
 
-	return nil, errors.Errorf("Sourcegraph currently only supports Azure DevOps, Bitbucket Cloud, GitHub, GitLab as OAuth providers")
+	return nil, errors.Errorf("Khulnasoft currently only supports Azure DevOps, Bitbucket Cloud, GitHub, GitLab as OAuth providers")
 }
 
 type ProviderOp struct {

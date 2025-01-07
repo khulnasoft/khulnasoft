@@ -12165,7 +12165,7 @@
     },
     {
       "Name": "executor_heartbeats",
-      "Comment": "Tracks the most recent activity of executors attached to this Sourcegraph instance.",
+      "Comment": "Tracks the most recent activity of executors attached to this Khulnasoft instance.",
       "Columns": [
         {
           "Name": "architecture",
@@ -16495,7 +16495,7 @@
     },
     {
       "Name": "insights_query_runner_jobs",
-      "Comment": "See [internal/insights/background/queryrunner/worker.go:Job](https://sourcegraph.com/search?q=repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:internal/insights/background/queryrunner/worker.go+type+Job\u0026patternType=literal)",
+      "Comment": "See [internal/insights/background/queryrunner/worker.go:Job](https://khulnasoft.com/search?q=repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:internal/insights/background/queryrunner/worker.go+type+Job\u0026patternType=literal)",
       "Columns": [
         {
           "Name": "cancel",
@@ -18165,7 +18165,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "The raw user-supplied [configuration](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/autoindex/config/types.go#L3:6) (encoded in JSONC)."
+          "Comment": "The raw user-supplied [configuration](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/autoindex/config/types.go#L3:6) (encoded in JSONC)."
         },
         {
           "Name": "id",
@@ -18281,7 +18281,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "An array of pre-index [steps](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/stores/dbstore/docker_step.go#L9:6) to run."
+          "Comment": "An array of pre-index [steps](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/stores/dbstore/docker_step.go#L9:6) to run."
         },
         {
           "Name": "enqueuer_user_id",
@@ -18307,7 +18307,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "An array of [log entries](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/internal/workerutil/store.go#L48:6) (encoded as JSON) from the most recent execution."
+          "Comment": "An array of [log entries](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/internal/workerutil/store.go#L48:6) (encoded as JSON) from the most recent execution."
         },
         {
           "Name": "failure_message",
@@ -21858,7 +21858,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "The lowest Sourcegraph version (major component) that assumes the migration has completed."
+          "Comment": "The lowest Khulnasoft version (major component) that assumes the migration has completed."
         },
         {
           "Name": "deprecated_version_minor",
@@ -21871,7 +21871,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "The lowest Sourcegraph version (minor component) that assumes the migration has completed."
+          "Comment": "The lowest Khulnasoft version (minor component) that assumes the migration has completed."
         },
         {
           "Name": "description",
@@ -21897,7 +21897,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "A globally unique primary key for this migration. The same key is used consistently across all Sourcegraph instances for the same migration."
+          "Comment": "A globally unique primary key for this migration. The same key is used consistently across all Khulnasoft instances for the same migration."
         },
         {
           "Name": "introduced_version_major",
@@ -21910,7 +21910,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "The Sourcegraph version (major component) in which this migration was first introduced."
+          "Comment": "The Khulnasoft version (major component) in which this migration was first introduced."
         },
         {
           "Name": "introduced_version_minor",
@@ -21923,7 +21923,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "The Sourcegraph version (minor component) in which this migration was first introduced."
+          "Comment": "The Khulnasoft version (minor component) in which this migration was first introduced."
         },
         {
           "Name": "is_enterprise",
@@ -21975,7 +21975,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "Whether or not this migration alters data so it can no longer be read by the previous Sourcegraph instance."
+          "Comment": "Whether or not this migration alters data so it can no longer be read by the previous Khulnasoft instance."
         },
         {
           "Name": "progress",
@@ -28614,7 +28614,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "This column is unused as of Sourcegraph 3.34. Do not refer to it anymore. It will be dropped in a future version."
+          "Comment": "This column is unused as of Khulnasoft 3.34. Do not refer to it anymore. It will be dropped in a future version."
         },
         {
           "Name": "description",
@@ -28924,7 +28924,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "The URL within the Sourcegraph app which generated the event."
+          "Comment": "The URL within the Khulnasoft app which generated the event."
         },
         {
           "Name": "user_id",
@@ -28950,7 +28950,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "The version of Sourcegraph which generated the event."
+          "Comment": "The version of Khulnasoft which generated the event."
         }
       ],
       "Indexes": [
@@ -29573,7 +29573,7 @@
           "IdentityGeneration": "",
           "IsGenerated": "NEVER",
           "GenerationExpression": "",
-          "Comment": "An array of [log entries](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/internal/workerutil/store.go#L48:6) (encoded as JSON) from the most recent execution."
+          "Comment": "An array of [log entries](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/internal/workerutil/store.go#L48:6) (encoded as JSON) from the most recent execution."
         },
         {
           "Name": "failure_message",
@@ -33222,7 +33222,7 @@
     },
     {
       "Name": "webhooks",
-      "Comment": "Webhooks registered in Sourcegraph instance.",
+      "Comment": "Webhooks registered in Khulnasoft instance.",
       "Columns": [
         {
           "Name": "code_host_kind",

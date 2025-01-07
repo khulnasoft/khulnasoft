@@ -14,7 +14,7 @@ import (
 )
 
 // Init initializes the given enterpriseServices to include the required
-// resolvers for Sourcegraph Own.
+// resolvers for Khulnasoft Own.
 func Init(
 	_ context.Context,
 	observationCtx *observation.Context,

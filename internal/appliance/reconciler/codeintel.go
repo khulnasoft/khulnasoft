@@ -21,7 +21,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/pointers"
 )
 
-func (r *Reconciler) reconcileCodeIntel(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeIntel(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileCodeIntelStatefulSet(ctx, sg, owner); err != nil {
 		return err
 	}
@@ -43,7 +43,7 @@ func (r *Reconciler) reconcileCodeIntel(ctx context.Context, sg *config.Sourcegr
 	return nil
 }
 
-func (r *Reconciler) reconcileCodeIntelStatefulSet(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeIntelStatefulSet(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.CodeIntel
 	name := "codeintel-db"
 
@@ -186,7 +186,7 @@ func (r *Reconciler) reconcileCodeIntelStatefulSet(ctx context.Context, sg *conf
 	return reconcileObject(ctx, r, sg.Spec.CodeIntel, &sset, &appsv1.StatefulSet{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCodeIntelPersistentVolumeClaim(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeIntelPersistentVolumeClaim(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.CodeIntel
 	p, err := pvc.NewPersistentVolumeClaim("codeintel-db", sg.Namespace, cfg)
 	if err != nil {
@@ -195,14 +195,14 @@ func (r *Reconciler) reconcileCodeIntelPersistentVolumeClaim(ctx context.Context
 	return reconcileObject(ctx, r, sg.Spec.CodeIntel, &p, &corev1.PersistentVolumeClaim{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCodeIntelConfigMap(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeIntelConfigMap(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cm := configmap.NewConfigMap("codeintel-db-conf", sg.Namespace)
 	cm.Data = map[string]string{"postgresql.conf": string(config.CodeIntelConfig)}
 
 	return reconcileObject(ctx, r, sg.Spec.CodeIntel, &cm, &corev1.ConfigMap{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCodeIntelSecret(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeIntelSecret(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	scrt := secret.NewSecret("codeintel-db-auth", sg.Namespace, sg.Spec.RequestedVersion)
 
 	cn := sg.Spec.CodeIntel.DatabaseConnection
@@ -217,7 +217,7 @@ func (r *Reconciler) reconcileCodeIntelSecret(ctx context.Context, sg *config.So
 	return reconcileObject(ctx, r, sg.Spec.CodeIntel, &scrt, &corev1.Secret{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCodeIntelService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeIntelService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	svc := service.NewService("codeintel-db", sg.Namespace, sg.Spec.CodeIntel)
 	svc.Spec.Ports = []corev1.ServicePort{{Name: "pgsql", TargetPort: intstr.FromString("pgsql"), Port: 5432}}
 	svc.Spec.Selector = map[string]string{"app": "codeintel-db"}
@@ -225,7 +225,7 @@ func (r *Reconciler) reconcileCodeIntelService(ctx context.Context, sg *config.S
 	return reconcileObject(ctx, r, sg.Spec.CodeIntel, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileCodeIntelServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileCodeIntelServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.CodeIntel
 	sa := serviceaccount.NewServiceAccount("codeintel-db", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, sg.Spec.CodeIntel, &sa, &corev1.ServiceAccount{}, sg, owner)

@@ -23,8 +23,8 @@ import (
 	"github.com/khulnasoft/khulnasoft/internal/version"
 )
 
-// pubSubDotComEventsTopicID is the topic ID of the topic that forwards messages to Sourcegraph.com events' pub/sub subscribers.
-var pubSubDotComEventsTopicID = env.Get("PUBSUB_DOTCOM_EVENTS_TOPIC_ID", "", "Pub/sub dotcom events topic ID is the pub/sub topic id where Sourcegraph.com events are published.")
+// pubSubDotComEventsTopicID is the topic ID of the topic that forwards messages to Khulnasoft.com events' pub/sub subscribers.
+var pubSubDotComEventsTopicID = env.Get("PUBSUB_DOTCOM_EVENTS_TOPIC_ID", "", "Pub/sub dotcom events topic ID is the pub/sub topic id where Khulnasoft.com events are published.")
 
 // Event represents a request to log telemetry.
 type Event struct {
@@ -68,14 +68,14 @@ type Event struct {
 // LogBackendEvent is a convenience function for logging backend events.
 //
 // Deprecated: Use EventRecorder from internal/telemetryrecorder instead.
-// Learn more: https://docs-legacy.sourcegraph.com/dev/background-information/telemetry
+// Learn more: https://docs-legacy.khulnasoft.com/dev/background-information/telemetry
 func LogBackendEvent(db database.DB, userID int32, deviceID, eventName string, argument, publicArgument json.RawMessage, evaluatedFlagSet featureflag.EvaluatedFlagSet, cohortID *string) error {
 	insertID, _ := uuid.NewRandom()
 	insertIDFinal := insertID.String()
 	eventID := int32(rand.Int())
 
 	client := "SERVER_BACKEND"
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		client = "DOTCOM_BACKEND"
 	}
 
@@ -106,7 +106,7 @@ func LogBackendEvent(db database.DB, userID int32, deviceID, eventName string, a
 // LogEvent logs an event.
 //
 // Deprecated: Use EventRecorder from internal/telemetryrecorder instead.
-// Learn more: https://docs-legacy.sourcegraph.com/dev/background-information/telemetry
+// Learn more: https://docs-legacy.khulnasoft.com/dev/background-information/telemetry
 func LogEvent(ctx context.Context, db database.DB, args Event) error {
 	//lint:ignore SA1019 existing usage of deprecated functionality.
 	return LogEvents(ctx, db, []Event{args})
@@ -115,16 +115,16 @@ func LogEvent(ctx context.Context, db database.DB, args Event) error {
 // LogEvents logs a batch of events.
 //
 // Deprecated: Use EventRecorder from internal/telemetryrecorder instead.
-// Learn more: https://docs-legacy.sourcegraph.com/dev/background-information/telemetry
+// Learn more: https://docs-legacy.khulnasoft.com/dev/background-information/telemetry
 func LogEvents(ctx context.Context, db database.DB, events []Event) error {
 	if !conf.EventLoggingEnabled() {
 		return nil
 	}
 
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		go func() {
-			if err := publishSourcegraphDotComEvents(events); err != nil {
-				log15.Error("publishSourcegraphDotComEvents failed", "err", err)
+			if err := publishKhulnasoftDotComEvents(events); err != nil {
+				log15.Error("publishKhulnasoftDotComEvents failed", "err", err)
 			}
 		}()
 	}
@@ -169,9 +169,9 @@ var (
 	pubsubClientErr  error
 )
 
-// publishSourcegraphDotComEvents publishes Sourcegraph.com events to BigQuery.
-func publishSourcegraphDotComEvents(events []Event) error {
-	if !dotcom.SourcegraphDotComMode() || pubSubDotComEventsTopicID == "" {
+// publishKhulnasoftDotComEvents publishes Khulnasoft.com events to BigQuery.
+func publishKhulnasoftDotComEvents(events []Event) error {
+	if !dotcom.KhulnasoftDotComMode() || pubSubDotComEventsTopicID == "" {
 		return nil
 	}
 	pubsubClientOnce.Do(func() {
@@ -181,14 +181,14 @@ func publishSourcegraphDotComEvents(events []Event) error {
 		return pubsubClientErr
 	}
 
-	pubsubEvents, err := serializePublishSourcegraphDotComEvents(events)
+	pubsubEvents, err := serializePublishKhulnasoftDotComEvents(events)
 	if err != nil {
 		return err
 	}
 	return pubsubClient.Publish(context.Background(), pubsubEvents...)
 }
 
-func serializePublishSourcegraphDotComEvents(events []Event) ([][]byte, error) {
+func serializePublishKhulnasoftDotComEvents(events []Event) ([][]byte, error) {
 	pubsubEvents := make([][]byte, 0, len(events))
 	for _, event := range events {
 		firstSourceURL := ""
@@ -327,14 +327,14 @@ func serializeLocalEvents(events []Event) ([]*database.Event, error) {
 }
 
 // redactSensitiveInfoFromCloudURL redacts portions of URLs that
-// may contain sensitive info on Sourcegraph Cloud. We replace all paths,
+// may contain sensitive info on Khulnasoft Cloud. We replace all paths,
 // and only maintain query parameters in a specified allowlist,
-// which are known to be essential for marketing analytics on Sourcegraph Cloud.
+// which are known to be essential for marketing analytics on Khulnasoft Cloud.
 
 func redactSensitiveInfoFromCloudURL(rawURL string) (string, error) {
-	// Because Sourcegraph.com only contains public code, URLs do not contain sensitive information.
+	// Because Khulnasoft.com only contains public code, URLs do not contain sensitive information.
 	// Redaction is only used for URLs from cloud and self-hosted instance telemetry.
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		return rawURL, nil
 	}
 

@@ -27,7 +27,7 @@ var buildNumberFlag = cli.StringFlag{
 
 var referenceUriFlag = cli.StringFlag{
 	Name:     "uri",
-	Usage:    "A reference url that contains approved CVEs. Often a link to a handbook page eg: https://handbook.sourcegraph.com/departments/security/tooling/trivy/4-2-0/.",
+	Usage:    "A reference url that contains approved CVEs. Often a link to a handbook page eg: https://handbook.khulnasoft.com/departments/security/tooling/trivy/4-2-0/.",
 	Required: true,
 	Aliases:  []string{"u"},
 }

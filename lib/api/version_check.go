@@ -6,10 +6,10 @@ import (
 	"github.com/Masterminds/semver"
 )
 
-// BuildDateRegex matches the build date in a Sourcegraph version string.
+// BuildDateRegex matches the build date in a Khulnasoft version string.
 var BuildDateRegex = regexp.MustCompile(`\d+_(\d{4}-\d{2}-\d{2})_(\d+\.\d+)?-?[a-z0-9]{7,}(_patch)?$`)
 
-// CheckSourcegraphVersion checks if the given version satisfies the given constraint.
+// CheckKhulnasoftVersion checks if the given version satisfies the given constraint.
 // NOTE: A version with a prerelease suffix (e.g. the "-rc.3" of "3.35.1-rc.3") is not
 // considered by semver to satisfy a constraint without a prerelease suffix, regardless of
 // whether or not the major/minor/patch version is greater than or equal to that of the
@@ -21,15 +21,15 @@ var BuildDateRegex = regexp.MustCompile(`\d+_(\d{4}-\d{2}-\d{2})_(\d+\.\d+)?-?[a
 // constraint with a minimum prerelease version suffix attached if comparisons to
 // prerelease versions are ever expected. See
 // https://github.com/Masterminds/semver#working-with-prerelease-versions for more.
-func CheckSourcegraphVersion(version, constraint, minDate string) (bool, error) {
+func CheckKhulnasoftVersion(version, constraint, minDate string) (bool, error) {
 	if version == "dev" || version == "0.0.0+dev" {
 		return true, nil
 	}
 
 	// Since we don't actually care about the abbreviated commit hash at the end of the
-	// version string, we match on 7 or more characters. Currently, the Sourcegraph version
+	// version string, we match on 7 or more characters. Currently, the Khulnasoft version
 	// is expected to return 12:
-	// https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/dev/ci/internal/ci/config.go?L96.
+	// https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/dev/ci/internal/ci/config.go?L96.
 	matches := BuildDateRegex.FindStringSubmatch(version)
 	if len(matches) > 1 {
 		return matches[1] >= minDate, nil

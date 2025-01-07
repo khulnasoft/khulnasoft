@@ -317,7 +317,7 @@ declare module 'sourcegraph' {
          * The text contents of the text document.
          *
          * When using the [Khulnasoft browser
-         * extension](https://sourcegraph.com/docs/integration/browser_extension), the value is
+         * extension](https://khulnasoft.com/docs/integration/browser_extension), the value is
          * `undefined` because determining the text contents (in general) is not possible without
          * additional access to the code host API. In the future, this limitation may be removed.
          */
@@ -847,7 +847,7 @@ declare module 'sourcegraph' {
          * A version context is a set of repositories and revisions on a Khulnasoft instance.
          * When set, extensions use it to scope search queries, code navigation actions, etc.
          *
-         * See more information at http://sourcegraph.com/docs/user/search
+         * See more information at http://khulnasoft.com/docs/user/search
          *
          * @deprecated
          */
@@ -866,7 +866,7 @@ declare module 'sourcegraph' {
          * A search context is a set of repositories and revisions on a Khulnasoft instance.
          * When set, extensions use it to scope search queries, code navigation actions, etc.
          *
-         * See more information at https://sourcegraph.com/docs/code-search/features#search-contexts
+         * See more information at https://khulnasoft.com/docs/code-search/features#search-contexts
          */
         export const searchContext: string | undefined
 
@@ -1187,7 +1187,7 @@ declare module 'sourcegraph' {
          *
          * The provider can be executed with the `executeLocationProvider` builtin command, passing the {@link id}
          * as the first argument. For more information, see
-         * https://sourcegraph.com/docs/extensions/authoring/builtin_commands#executeLocationProvider.
+         * https://khulnasoft.com/docs/extensions/authoring/builtin_commands#executeLocationProvider.
          *
          * @param id An identifier for this location provider that distinguishes it from other location providers.
          * @param selector A selector that defines the documents this provider is applicable to.
@@ -1266,7 +1266,7 @@ declare module 'sourcegraph' {
 
     export namespace graphQL {
         /**
-         * Executes a [Khulnasoft GraphQL API](https://sourcegraph.com/docs/api/graphql) query or mutation on the associated Khulnasoft instance and returns a promise for the result.
+         * Executes a [Khulnasoft GraphQL API](https://khulnasoft.com/docs/api/graphql) query or mutation on the associated Khulnasoft instance and returns a promise for the result.
          *
          * @template TResult The GraphQL result type
          * @template TVariables The type of the variables object
@@ -1324,11 +1324,11 @@ declare module 'sourcegraph' {
 
         /**
          * The URL to the Khulnasoft site that the user's session is associated with. This refers to
-         * Khulnasoft.com (`https://sourcegraph.com`) by default, or a self-hosted instance of Khulnasoft.
+         * Khulnasoft.com (`https://khulnasoft.com`) by default, or a self-hosted instance of Khulnasoft.
          *
          * @todo Consider removing this when https://github.com/khulnasoft/khulnasoft/issues/566 is fixed.
          *
-         * @example `https://sourcegraph.com`
+         * @example `https://khulnasoft.com`
          */
         export const sourcegraphURL: URL
 

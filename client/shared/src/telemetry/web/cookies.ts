@@ -30,7 +30,7 @@ export const userCookieSettings: CookieAttributes = {
     // However, we do need it on page redirects when users sign up via OAuth, hence using the Lax policy.
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
     sameSite: 'Lax',
-    // Specify the Domain attribute to ensure subdomains (sourcegraph.com) can receive this cookie.
+    // Specify the Domain attribute to ensure subdomains (khulnasoft.com) can receive this cookie.
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#define_where_cookies_are_sent
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -46,7 +46,7 @@ export const deviceSessionCookieSettings: CookieAttributes = {
     // However, we do need it on page redirects when users sign up via OAuth, hence using the Lax policy.
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
     sameSite: 'Lax',
-    // Specify the Domain attribute to ensure subdomains (sourcegraph.com) can receive this cookie.
+    // Specify the Domain attribute to ensure subdomains (khulnasoft.com) can receive this cookie.
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#define_where_cookies_are_sent
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore

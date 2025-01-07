@@ -31,7 +31,7 @@ func TestRedactEvent(t *testing.T) {
 				},
 			},
 			MarketingTracking: &telemetrygatewayv1.EventMarketingTracking{
-				Url: pointers.Ptr("sourcegraph.com"),
+				Url: pointers.Ptr("khulnasoft.com"),
 			},
 		}
 	}

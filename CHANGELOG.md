@@ -13,7 +13,7 @@ for instructions on how to write changelog entries in your PR description.
 
 # Changelog
 
-All notable changes to Sourcegraph are documented in this file.
+All notable changes to Khulnasoft are documented in this file.
 
 <!-- START CHANGELOG -->
 
@@ -21,8 +21,8 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Added
 
-- Basic support for rendering Jupyter notebooks in the Sourcegraph web app. ([#59685](https://github.com/khulnasoft/khulnasoft/pull/59685))
-- Mermaid diagrams in Markdown are now rendered in the Sourcegraph web app ([#62678](https://github.com/khulnasoft/khulnasoft/pull/62678))
+- Basic support for rendering Jupyter notebooks in the Khulnasoft web app. ([#59685](https://github.com/khulnasoft/khulnasoft/pull/59685))
+- Mermaid diagrams in Markdown are now rendered in the Khulnasoft web app ([#62678](https://github.com/khulnasoft/khulnasoft/pull/62678))
 - A feature flag for Cody, `completions.smartContextWindow` is added and set to "enabled" by default. It allows clients to adjust the context window based on the name of the chat model. When smartContextWindow is enabled, the `completions.chatModelMaxTokens` value is ignored. ([#62802](https://github.com/khulnasoft/khulnasoft/pull/62802))
 - Code Insights: When facing the "incomplete datapoints" warning, you can now use GraphQL to discover which repositories had problems. The schemas for `TimeoutDatapointAlert` and `GenericIncompleteDatapointAlert` now contain an additional `repositories` field. ([#62756](https://github.com/khulnasoft/khulnasoft/pull/62756)).
 - Users will now be presented with a modal that reminds them to connect any external code host accounts that's required for permissions. Without these accounts connected, users may be unable to view repositories that they otherwise have access to. [#62983](https://github.com/khulnasoft/khulnasoft/pull/62983)
@@ -38,12 +38,12 @@ All notable changes to Sourcegraph are documented in this file.
 - The default and recommended chat model for Anthropic and Cody Gateway configurations is now `claude-3-sonnet-20240229`. [#62757](https://github.com/khulnasoft/khulnasoft/pull/62757)
 - The default and recommended autocomplete model for Cody Gateway configurations is now `fireworks/starcoder`. [#62757](https://github.com/khulnasoft/khulnasoft/pull/62757)
 - Code Insights: Language Stats Insights performance improved by another 70-90%. It's now able to handle repositories above 40 GB. [#62946](https://github.com/khulnasoft/khulnasoft/pull/62946)
-- The keyword search toggle has been removed from the search results page. [Keyword search](https://sourcegraph.com/docs/code-search/queries#keyword-search-default) is now enabled by default for all searches in the Sourcegraph web app. [#63584](https://github.com/khulnasoft/khulnasoft/pull/63584)
+- The keyword search toggle has been removed from the search results page. [Keyword search](https://khulnasoft.com/docs/code-search/queries#keyword-search-default) is now enabled by default for all searches in the Khulnasoft web app. [#63584](https://github.com/khulnasoft/khulnasoft/pull/63584)
 
 ### Fixed
 
 - Pressing the numpad `Enter` key will now cycle through in-file search results [#62665](https://github.com/khulnasoft/khulnasoft/pull/62665)
-- Providing an access token via the [`SRC_ACCESS_TOKEN`](https://sourcegraph.com/docs/cli/how-tos/creating_an_access_token) environment variable is now mandatory for uploading SCIP indexes using [src-cli](https://sourcegraph.com/docs/cli). [#62573](https://github.com/khulnasoft/khulnasoft/pull/62573)
+- Providing an access token via the [`SRC_ACCESS_TOKEN`](https://khulnasoft.com/docs/cli/how-tos/creating_an_access_token) environment variable is now mandatory for uploading SCIP indexes using [src-cli](https://khulnasoft.com/docs/cli). [#62573](https://github.com/khulnasoft/khulnasoft/pull/62573)
 - Fixed several conditions that could cause a repository being incorrectly marked as modified during code host syncing. For these cases, unnecessary git fetches were triggered. [#62837](https://github.com/khulnasoft/khulnasoft/pull/62837)
 - Fixed usernames getting random suffixes added during SCIM provisioning. [#63122](https://github.com/khulnasoft/khulnasoft/pull/63122)
 - Removed experimental pattern type "lucky" from the list of supported default pattern types. [#63486](https://github.com/khulnasoft/khulnasoft/pull/63486)
@@ -93,7 +93,7 @@ All notable changes to Sourcegraph are documented in this file.
 - Pinned code intel popovers and popovers opened via the keyboard are properly shown again. [#61966](https://github.com/khulnasoft/khulnasoft/pull/61966)
 - Syntax highlighting works correctly for JSX files. [#62027](https://github.com/khulnasoft/khulnasoft/pull/62027)
 - Changesets with a skipped CI check now have their CI status correctly displayed in the Batch Changes UI. [#62204](https://github.com/khulnasoft/khulnasoft/pull/62204)
-- Fixed the Sourcegraph login page auto-redirecting to the single auth provider when request access is enabled. [#62376](https://github.com/khulnasoft/khulnasoft/pull/62376)
+- Fixed the Khulnasoft login page auto-redirecting to the single auth provider when request access is enabled. [#62376](https://github.com/khulnasoft/khulnasoft/pull/62376)
 - Fixed bug for Python classes with decorators and C# classes with attributes that prevented symbol search (`type:symbol`) and the symbol sidebar from detecting them properly: [#62345](https://github.com/khulnasoft/khulnasoft/pull/62345)
 
 ## 5.3.12303
@@ -132,10 +132,10 @@ All notable changes to Sourcegraph are documented in this file.
 - Search Jobs now supports diff, commit and path searches. Before, only file searches were supported. [#60883](https://github.com/khulnasoft/khulnasoft/pull/60883)
 - Auth providers now support a `noSignIn` option that, when set to true, will hide the auth provider from the sign in page, but still allow users to connect the external account from their Account Security page for permissions syncing. [#60722](https://github.com/khulnasoft/khulnasoft/pull/60722)
 - Added a "Commits" button to the folders in repos that shows commits for the items in that folder. [#60909](https://github.com/khulnasoft/khulnasoft/pull/60909)
-- The frontend Grafana dashboard has a new Prometheus metric that tracks the rate of requests that Sourcegraph issues to external services. [#61348](https://github.com/khulnasoft/khulnasoft/pull/61348)
-- Added support for the `gitURLType` setting for Gerrit, Sourcegraph now supports cloning from Gerrit via SSH. Note: Not on Cloud yet, like for all code hosts. [#61537](https://github.com/khulnasoft/khulnasoft/pull/61537)
+- The frontend Grafana dashboard has a new Prometheus metric that tracks the rate of requests that Khulnasoft issues to external services. [#61348](https://github.com/khulnasoft/khulnasoft/pull/61348)
+- Added support for the `gitURLType` setting for Gerrit, Khulnasoft now supports cloning from Gerrit via SSH. Note: Not on Cloud yet, like for all code hosts. [#61537](https://github.com/khulnasoft/khulnasoft/pull/61537)
 - Support for OpenAI chat models for enterprise customers. [#61539](https://github.com/khulnasoft/khulnasoft/pull/61539)
-- Added support for explicitly enumerating repositories to sync from Bitbucket Cloud. Previously, Sourcegraph would automatically sync all repositories from a Bitbucket Cloud workspace. [#61536](https://github.com/khulnasoft/khulnasoft/pull/61536)
+- Added support for explicitly enumerating repositories to sync from Bitbucket Cloud. Previously, Khulnasoft would automatically sync all repositories from a Bitbucket Cloud workspace. [#61536](https://github.com/khulnasoft/khulnasoft/pull/61536)
 
 ### Changed
 
@@ -151,7 +151,7 @@ All notable changes to Sourcegraph are documented in this file.
 - Fixed a bug where clicking "Exclude Repo" on Azure DevOps or Gerrit repositories would not work. [#60509](https://github.com/khulnasoft/khulnasoft/pull/60509)
 - Links in codeintel popovers respect the revision from the URL. [#60545](https://github.com/khulnasoft/khulnasoft/pull/60545)
 - Fixed an issue where repositories with a name ending in `.git` failed to clone. [#60627](https://github.com/khulnasoft/khulnasoft/pull/60627)
-- Fixed an issue where Sourcegraph could lose track of repositories on gitserver, leaving behind unnecessary data and inconsistent clone status in the UI. [#60627](https://github.com/khulnasoft/khulnasoft/pull/60627)
+- Fixed an issue where Khulnasoft could lose track of repositories on gitserver, leaving behind unnecessary data and inconsistent clone status in the UI. [#60627](https://github.com/khulnasoft/khulnasoft/pull/60627)
 - The "Commits" button in repository and folder pages links to commits in the current revision instead of in the default branch. [#61408](https://github.com/khulnasoft/khulnasoft/pull/61408)
 - Fixed an issue where code insights queries would fail if there are more than 65535 restricted repositories and regular expressions. [#61580](https://github.com/khulnasoft/khulnasoft/pull/61580)
 - The "Commits" button in repository and folder pages uses Perforce language and links to `/-/changelists` for Perforce depots when the experimental feature `perforceChangelistMapping` is enabled. [#61408](https://github.com/khulnasoft/khulnasoft/pull/61408)
@@ -185,7 +185,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 - A bug in search that could trigger a panic
 - An unintentional change to the search results when using the LineMatch API which would include surrounding lines with no matches
-- Autoupgrade only looks for open db connections from the Sourcegraph application services, and disregards other applications connected to the postgres instance. [#60771](https://github.com/khulnasoft/khulnasoft/pull/60771)
+- Autoupgrade only looks for open db connections from the Khulnasoft application services, and disregards other applications connected to the postgres instance. [#60771](https://github.com/khulnasoft/khulnasoft/pull/60771)
 - Fixes a bug where hovers would not show up in C++ headers with the `.hxx` extension. [#60662](https://github.com/khulnasoft/khulnasoft/pull/60662)
 
 ## 5.3.1
@@ -215,7 +215,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Changed
 
-- `cody.restrictUsersFeatureFlag` has been deprecated and replaced by role based access control instead. Until the old configuration value is removed from your site config, it will be respected just as before but with a warning displayed at the top of Sourcegraph. Once removed, the old feature flag will not be respected and instead the Cody access will be managed via role based access controls, see [the docs](https://docs.sourcegraph.com/cody/overview/enable-cody-enterprise#enable-cody-only-for-some-users) for more information. [#58831](https://github.com/khulnasoft/khulnasoft/pull/58831)
+- `cody.restrictUsersFeatureFlag` has been deprecated and replaced by role based access control instead. Until the old configuration value is removed from your site config, it will be respected just as before but with a warning displayed at the top of Khulnasoft. Once removed, the old feature flag will not be respected and instead the Cody access will be managed via role based access controls, see [the docs](https://docs.khulnasoft.com/cody/overview/enable-cody-enterprise#enable-cody-only-for-some-users) for more information. [#58831](https://github.com/khulnasoft/khulnasoft/pull/58831)
 - The setting `experimentalFeatures.searchQueryInput` now refers to the new query input as `v2` (not `experimental`). <!-- NOTE: If v2 becomes the default before this release is cut, then update this entry to mention that instead of adding a separate entry. -->
 - Search-based code intel doesn't include the currently selected search context anymore. It was possible to get into a situation where search-based code intel wouldn't find any information due to being restricted by the current search context. [#58010](https://github.com/khulnasoft/khulnasoft/pull/58010)
 - The last commit which changed a file/directory is now shown in the files panel on the repo and file pages. To avoid duplicating information and confusion, the commits panel was removed. [58328](https://github.com/khulnasoft/khulnasoft/pull/58328)
@@ -227,9 +227,9 @@ All notable changes to Sourcegraph are documented in this file.
   - For `size` the supported units are `B`, `b`, `kB`, `KB`, `kiB`, `KiB`, `MiB`, `MB`, `GiB`, `GB`. No decimals points are supported.
 - Structural Search is now disabled by default. To enable it, set `experimentalFeatures.structuralSearch: "enabled"` in the site configuration. [#57584](https://github.com/khulnasoft/khulnasoft/pull/57584)
 - Search Jobs switches the format of downloaded results from CSV to JSON. [#59619](https://github.com/khulnasoft/khulnasoft/pull/59619)
-- [Search Jobs](https://docs.sourcegraph.com/code_search/how-to/search-jobs) is now in beta and enabled by default. It can be disabled in the site configuration by setting `experimentalFeatures.searchJobs: false`.
+- [Search Jobs](https://docs.khulnasoft.com/code_search/how-to/search-jobs) is now in beta and enabled by default. It can be disabled in the site configuration by setting `experimentalFeatures.searchJobs: false`.
 - The search input on the search homepage is now automatically focused when the page loads.
-- gRPC is now the only method for our internal APIs, and can not be disabled. All of corresponding the REST implementations have been removed. The vast majority of customers upgrading to 5.3 don't need to take any action - the change should be invisible. However, if you have restrictions on Sourcegraph’s internal (service to service) traffic, some firewall or security configurations may be necessary. You can downgrade to Sourcegraph 5.2 and disable gRPC while you troubleshoot / reach out to our customer support team. See [https://sourcegraph.com/docs/admin/updates/grpc](https://sourcegraph.com/docs/admin/updates/grpc) for more details. [#59093](https://github.com/khulnasoft/khulnasoft/pull/59093)
+- gRPC is now the only method for our internal APIs, and can not be disabled. All of corresponding the REST implementations have been removed. The vast majority of customers upgrading to 5.3 don't need to take any action - the change should be invisible. However, if you have restrictions on Khulnasoft’s internal (service to service) traffic, some firewall or security configurations may be necessary. You can downgrade to Khulnasoft 5.2 and disable gRPC while you troubleshoot / reach out to our customer support team. See [https://khulnasoft.com/docs/admin/updates/grpc](https://khulnasoft.com/docs/admin/updates/grpc) for more details. [#59093](https://github.com/khulnasoft/khulnasoft/pull/59093)
 - The default `count:` for search has been increased to 10000, significantly increasing the number of searches that are exhaustive by default. [#60114](https://github.com/khulnasoft/khulnasoft/pull/60114)
 
 ### Fixed
@@ -253,7 +253,7 @@ All notable changes to Sourcegraph are documented in this file.
 - The following experimental settings in site-configuration are now deprecated and will not be read anymore: `maxReorderQueueSize`, `maxQueueMatchCount`, `maxReorderDurationMS`. [#57468](https://github.com/khulnasoft/khulnasoft/pull/57468)
 - The feature-flag `search-ranking`, which allowed to disable the improved ranking introduced in 5.1, is now deprecated and will not be read anymore. [#57468](https://github.com/khulnasoft/khulnasoft/pull/57468)
 - The GitHub Proxy service is no longer required and has been removed from deployment options. [#55290](https://github.com/khulnasoft/khulnasoft/issues/55290)
-- The VSCode search extension "Sourcegraph for VS Code" has been sunset and removed from Sourcegraph
+- The VSCode search extension "Khulnasoft for VS Code" has been sunset and removed from Khulnasoft
   repository. [#58023](https://github.com/khulnasoft/khulnasoft/pull/58023)
 - The `rateLimit` configuration for Perforce code host connections has been removed to avoid confusion, it was unused. [#58188](https://github.com/khulnasoft/khulnasoft/pull/58188)
 - The feature flag `search-ranking` is now completely removed. [#58156](https://github.com/khulnasoft/khulnasoft/pull/58156)
@@ -312,8 +312,8 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Added
 
-- Added configurable GraphQL query cost limitations to prevent unintended resource exhaustion. Default values are now provided and enforced, replacing the previously unlimited behaviour. For more information, please refer to: [GraphQL Cost Limits Documentation](https://docs.sourcegraph.com/api/graphql#cost-limits). See details at [#58346](https://github.com/khulnasoft/khulnasoft/pull/58346).
-- Sourcegraph now supports connecting to Bitbucket Cloud using Workspace Access Tokens. [#58465](https://github.com/khulnasoft/khulnasoft/pull/58465).
+- Added configurable GraphQL query cost limitations to prevent unintended resource exhaustion. Default values are now provided and enforced, replacing the previously unlimited behaviour. For more information, please refer to: [GraphQL Cost Limits Documentation](https://docs.khulnasoft.com/api/graphql#cost-limits). See details at [#58346](https://github.com/khulnasoft/khulnasoft/pull/58346).
+- Khulnasoft now supports connecting to Bitbucket Cloud using Workspace Access Tokens. [#58465](https://github.com/khulnasoft/khulnasoft/pull/58465).
 
 ### Fixed
 
@@ -337,9 +337,9 @@ All notable changes to Sourcegraph are documented in this file.
 - Added two new authorization configuration options to GitHub code host connections: "markInternalReposAsPublic" and "syncInternalRepoPermissions". Setting "markInternalReposAsPublic" to true is useful for organizations that have a large amount of internal repositories that everyone on the instance should be able to access, removing the need to have permissions to access these repositories. Setting "syncInternalRepoPermissions" to true adds an additional step to user permission syncs that explicitly checks for internal repositories. However, this could lead to longer user permission sync times. [#56677](https://github.com/khulnasoft/khulnasoft/pull/56677)
 - Fixed an issue with Code Monitors that could cause users to be notified multiple times for the same commit [#57546](https://github.com/khulnasoft/khulnasoft/pull/57546)
 - Fixed an issue with Code Monitors that could prevent a new code monitor from being created if it targeted multiple repos [#57546](https://github.com/khulnasoft/khulnasoft/pull/57546)
-- Sourcegraph instances will now emit a limited set of [telemetry events](https://docs.sourcegraph.com/admin/telemetry) in the background by default ([#57605](https://github.com/khulnasoft/khulnasoft/pull/57605)). Enablement will be based on the following conditions:
+- Khulnasoft instances will now emit a limited set of [telemetry events](https://docs.khulnasoft.com/admin/telemetry) in the background by default ([#57605](https://github.com/khulnasoft/khulnasoft/pull/57605)). Enablement will be based on the following conditions:
   - Customers with a license key created after October 3, 2023, or do not have a valid license key configured, will export all telemetry events recorded in the new system.
-  - Customers with a license key created before October 3, 2023 will export only Cody-related events recorded in the new system, as covered by the [Cody Usage and Privacy Notice](https://about.sourcegraph.com/terms/cody-notice).
+  - Customers with a license key created before October 3, 2023 will export only Cody-related events recorded in the new system, as covered by the [Cody Usage and Privacy Notice](https://about.khulnasoft.com/terms/cody-notice).
   - If you have a previous agreement regarding telemetry sharing, you account representative will reach out with more details.
 
 ### Fixed
@@ -356,19 +356,19 @@ All notable changes to Sourcegraph are documented in this file.
 ### Added
 
 - Experimental support for AWS Bedrock Claude for the completions provider has been added. [#56321](https://github.com/khulnasoft/khulnasoft/pull/56321)
-- Recorded command logs can now be viewed for Git operations performed by Sourcegraph. This provides auditing and debugging capabilities. [#54997](https://github.com/khulnasoft/khulnasoft/issues/54997)
+- Recorded command logs can now be viewed for Git operations performed by Khulnasoft. This provides auditing and debugging capabilities. [#54997](https://github.com/khulnasoft/khulnasoft/issues/54997)
 - Disk usage metrics for gitservers are now displayed on the site admin Git Servers page, showing free/total disk space. This helps site admins monitor storage capacity on GitServers. [#55958](https://github.com/khulnasoft/khulnasoft/issues/55958)
 - Overhauled Admin Onboarding UI for enhanced user experience, introducing a license key modal with validation, automated navigation to Site Configuration Page, an interactive onboarding checklist button, and direct documentation links for SMTP and user authentication setup. [56366](https://github.com/khulnasoft/khulnasoft/pull/56366)
-- New experimental feature "Search Jobs". Search Jobs allows you to run search queries across your organization's codebase (all repositories, branches, and revisions) at scale. It enhances the existing Khulnasoft's search capabilities, enabling you to run searches without query timeouts or incomplete results. Please refer to the [documentation](https://docs.sourcegraph.com/code_search/how-to/search-jobs) for more information.
+- New experimental feature "Search Jobs". Search Jobs allows you to run search queries across your organization's codebase (all repositories, branches, and revisions) at scale. It enhances the existing Khulnasoft's search capabilities, enabling you to run searches without query timeouts or incomplete results. Please refer to the [documentation](https://docs.khulnasoft.com/code_search/how-to/search-jobs) for more information.
 
 ### Changed
 
 - OpenTelemetry Collector has been upgraded to v0.81, and OpenTelemetry packages have been upgraded to v1.16. [#54969](https://github.com/khulnasoft/khulnasoft/pull/54969), [#54999](https://github.com/khulnasoft/khulnasoft/pull/54999)
 - Bitbucket Cloud code host connections no longer automatically syncs the repository of the username used. The appropriate workspace name will have to be added to the `teams` list if repositories for that account need to be synced. [#55095](https://github.com/khulnasoft/khulnasoft/pull/55095)
-- Newly created access tokens are now hidden by default in the Sourcegraph UI. To view a token, click "show" button next to the token. [#56481](https://github.com/khulnasoft/khulnasoft/pull/56481)
+- Newly created access tokens are now hidden by default in the Khulnasoft UI. To view a token, click "show" button next to the token. [#56481](https://github.com/khulnasoft/khulnasoft/pull/56481)
 - The GitHub proxy service has been removed and is no longer required. You can safely remove it from your deployment. [#55290](https://github.com/khulnasoft/khulnasoft/issues/55290)
 - On startup, Zoekt indexserver will now delete the `<DATA_DIR>/.indexserver.tmp` directory to remove leftover repository clones, possibly causing a brief delay. Due to a bug, this directory wasn't previously cleaned up and could cause unnecessary disk usage. [zoekt#646](https://github.com/sourcegraph/zoekt/pull/646).
-- gRPC is now used by default for all internal (service to service) communication. This change should be invisible to most customers. However, if you're running in an environment that places restrictions on Khulnasoft's internal traffic, some prior configuration might be required. See the ["Sourcegraph 5.2 gRPC Configuration Guide"](https://docs.sourcegraph.com/admin/updates/grpc) for more information. [#56738](https://github.com/khulnasoft/khulnasoft/pull/56738)
+- gRPC is now used by default for all internal (service to service) communication. This change should be invisible to most customers. However, if you're running in an environment that places restrictions on Khulnasoft's internal traffic, some prior configuration might be required. See the ["Khulnasoft 5.2 gRPC Configuration Guide"](https://docs.khulnasoft.com/admin/updates/grpc) for more information. [#56738](https://github.com/khulnasoft/khulnasoft/pull/56738)
 
 ### Fixed
 
@@ -377,7 +377,7 @@ All notable changes to Sourcegraph are documented in this file.
 ### Removed
 
 - indexed-search has removed the deprecated environment variable ZOEKT_ENABLE_LAZY_DOC_SECTIONS [zoekt#620](https://github.com/sourcegraph/zoekt/pull/620)
-- The federation feature that could redirect users from their own Sourcegraph instance to public repositories on Sourcegraph.com has been removed. It allowed users to open a repository URL on their own Sourcegraph instance and, if the repository wasn't found on that instance, the user would be redirect to the repository on Sourcegraph.com, where it was possibly found. The feature has been broken for over a year though and we don't know that it was used. If you want to use it, please open a feature-request issue and tag the `@sourcegraph/source` team. [#55161](https://github.com/khulnasoft/khulnasoft/pull/55161)
+- The federation feature that could redirect users from their own Khulnasoft instance to public repositories on Khulnasoft.com has been removed. It allowed users to open a repository URL on their own Khulnasoft instance and, if the repository wasn't found on that instance, the user would be redirect to the repository on Khulnasoft.com, where it was possibly found. The feature has been broken for over a year though and we don't know that it was used. If you want to use it, please open a feature-request issue and tag the `@sourcegraph/source` team. [#55161](https://github.com/khulnasoft/khulnasoft/pull/55161)
 - The `applySearchQuerySuggestionOnEnter` experimental feature flag in user settings was removed, and this behavior is now always enabled. Previously, this behavior was on by default, but it was possible to disable it.
 - The feature-flag `search-hybrid`, which allowed to disable the performance improvements for unindexed search in 4.3, is now deprecated and will not be read anymore. [#56470](https://github.com/khulnasoft/khulnasoft/pull/56470)
 
@@ -393,7 +393,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Fixed
 
-- Fixed an issue where the "gitLabProjectVisibilityExperimental" feature flag would not be respected by the permissions syncer. This meant that users on Sourcegraph that have signed in with GitLab would not see GitLab internal repositories that should be accessible to everyone on the GitLab instance, even though the feature flag was enabled [#56492](https://github.com/khulnasoft/khulnasoft/pull/56492)
+- Fixed an issue where the "gitLabProjectVisibilityExperimental" feature flag would not be respected by the permissions syncer. This meant that users on Khulnasoft that have signed in with GitLab would not see GitLab internal repositories that should be accessible to everyone on the GitLab instance, even though the feature flag was enabled [#56492](https://github.com/khulnasoft/khulnasoft/pull/56492)
 - Fixed a bug when syncing repository lists from GitHub that could lead to 404 errors showing up when running into GitHub rate limits [#56478](https://github.com/khulnasoft/khulnasoft/pull/56478)
 
 ## 5.1.8
@@ -416,7 +416,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Fixed
 
-- Fixed a bug in the `deploy-sourcegraph-helm` deployment of Sourcegraph, for sufficiantly large scip indexes uploads will fail when the precise-code-intel worker attempts to write to `/tmp` and doesn't have a volume mounted for this purpose. See [kubernetes release notes](./admin/updates/kubernetes.md#v516-➔-v517) for more details [#342](https://github.com/sourcegraph/deploy-sourcegraph-helm/pull/343)
+- Fixed a bug in the `deploy-sourcegraph-helm` deployment of Khulnasoft, for sufficiantly large scip indexes uploads will fail when the precise-code-intel worker attempts to write to `/tmp` and doesn't have a volume mounted for this purpose. See [kubernetes release notes](./admin/updates/kubernetes.md#v516-➔-v517) for more details [#342](https://github.com/sourcegraph/deploy-sourcegraph-helm/pull/343)
 
 ## 5.1.6
 
@@ -448,7 +448,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Known Issues
 
-- Standard and multi-version upgrades are not currently working from Sourcegraph versions 5.0.X to 5.1.5. As a temporary workaround, please upgrade 5.0.X to 5.1.0, then 5.1.0 to 5.1.5.
+- Standard and multi-version upgrades are not currently working from Khulnasoft versions 5.0.X to 5.1.5. As a temporary workaround, please upgrade 5.0.X to 5.1.0, then 5.1.0 to 5.1.5.
 
 ### Fixed
 
@@ -482,7 +482,7 @@ All notable changes to Sourcegraph are documented in this file.
 ### Changed
 
 - The UI for license keys now displays more information about license validity. [#54990](https://github.com/khulnasoft/khulnasoft/pull/54990)
-- Sourcegraph now supports more than one auth provider per URL. [#54289](https://github.com/khulnasoft/khulnasoft/pull/54289)
+- Khulnasoft now supports more than one auth provider per URL. [#54289](https://github.com/khulnasoft/khulnasoft/pull/54289)
 - Site-admins can now list, view and edit all code monitors. [#54981](https://github.com/khulnasoft/khulnasoft/pull/54981)
 
 ## 5.1.3
@@ -490,7 +490,7 @@ All notable changes to Sourcegraph are documented in this file.
 ### Changed
 
 - Cody source code (for the VS Code extension, CLI, and client shared libraries) has been moved to the [sourcegraph/cody repository](https://github.com/sourcegraph/cody).
-- `golang.org/x/net/trace` instrumentation, previously available under `/debug/requests` and `/debug/events`, has been removed entirely from core Sourcegraph services. It remains available for Zoekt. [#53795](https://github.com/khulnasoft/khulnasoft/pull/53795)
+- `golang.org/x/net/trace` instrumentation, previously available under `/debug/requests` and `/debug/events`, has been removed entirely from core Khulnasoft services. It remains available for Zoekt. [#53795](https://github.com/khulnasoft/khulnasoft/pull/53795)
 
 ### Fixed
 
@@ -514,13 +514,13 @@ All notable changes to Sourcegraph are documented in this file.
 
 ## 5.1.0
 
-> **Note**: As of 5.1.0, the limited OSS subset of Sourcegraph has been removed, and code search OSS code has been relicensed going forward. See https://github.com/khulnasoft/khulnasoft/issues/53528#issuecomment-1594967818 for more information (blog post coming soon).
+> **Note**: As of 5.1.0, the limited OSS subset of Khulnasoft has been removed, and code search OSS code has been relicensed going forward. See https://github.com/khulnasoft/khulnasoft/issues/53528#issuecomment-1594967818 for more information (blog post coming soon).
 
-> **Note**: As of 5.1.0, the `rsa-sha` signature algorithm is no longer supported when connecting to code hosts over SSH. If you encounter the error `sign_and_send_pubkey: no mutual signature supported` when syncing repositories, see [Repository authentication](https://docs.sourcegraph.com/admin/repo/auth#error-sign_and_send_pubkey-no-mutual-signature-supported) for more information and steps to resolve the issue.
+> **Note**: As of 5.1.0, the `rsa-sha` signature algorithm is no longer supported when connecting to code hosts over SSH. If you encounter the error `sign_and_send_pubkey: no mutual signature supported` when syncing repositories, see [Repository authentication](https://docs.khulnasoft.com/admin/repo/auth#error-sign_and_send_pubkey-no-mutual-signature-supported) for more information and steps to resolve the issue.
 
 ### [Known issues](KNOWN-ISSUES.md)
 
-- There is an issue with Sourcegraph instances configured to use explicit permissions using permissions.userMapping in Site configuration, where repository permissions are not enforced. Customers using the explicit permissions API are advised to upgrade to v5.1.1 directly.
+- There is an issue with Khulnasoft instances configured to use explicit permissions using permissions.userMapping in Site configuration, where repository permissions are not enforced. Customers using the explicit permissions API are advised to upgrade to v5.1.1 directly.
 - There is an issue with creating and updating existing Bitbucket.org (Cloud) code host connections due to problem with JSON schema validation which prevents the JSON editor from loading and surfaces as an error in the UI.
 
 ### Added
@@ -531,7 +531,7 @@ All notable changes to Sourcegraph are documented in this file.
 - The LLM completions endpoint is now exposed through a GraphQL query in addition to the streaming endpoint [#50455](https://github.com/khulnasoft/khulnasoft/pull/50455)
 - Permissions center statistics pane is added. Stats include numbers of queued jobs, users/repos with failed jobs, no permissions, and outdated permissions. [#50535](https://github.com/khulnasoft/khulnasoft/pull/50535)
 - SCIM user provisioning support for Deactivate/Reactivation of users. [#50533](https://github.com/khulnasoft/khulnasoft/pull/50533)
-- Login form can now be configured with ordering and limit of auth providers. [See docs](https://docs.sourcegraph.com/admin/auth/login_form). [#50586](https://github.com/khulnasoft/khulnasoft/pull/50586), [50284](https://github.com/khulnasoft/khulnasoft/pull/50284) and [#50705](https://github.com/khulnasoft/khulnasoft/pull/50705)
+- Login form can now be configured with ordering and limit of auth providers. [See docs](https://docs.khulnasoft.com/admin/auth/login_form). [#50586](https://github.com/khulnasoft/khulnasoft/pull/50586), [50284](https://github.com/khulnasoft/khulnasoft/pull/50284) and [#50705](https://github.com/khulnasoft/khulnasoft/pull/50705)
 - OOM reaper events affecting `p4-fusion` jobs on `gitserver` are better detected and handled. Error (non-zero) exit status is used, and the resource (CPU, memory) usage of the job process is appended to the job output so that admins can infer possible OOM activity and take steps to address it. [#51284](https://github.com/khulnasoft/khulnasoft/pull/51284)
 - When creating a new batch change, spaces are automatically replaced with dashes in the name field. [#50825](https://github.com/khulnasoft/khulnasoft/pull/50825) and [51071](https://github.com/khulnasoft/khulnasoft/pull/51071)
 - Support for custom HTML injection behind an environment variable (`ENABLE_INJECT_HTML`). This allows users to enable or disable HTML customization as needed, which is now disabled by default. [#51400](https://github.com/khulnasoft/khulnasoft/pull/51400)
@@ -553,35 +553,35 @@ All notable changes to Sourcegraph are documented in this file.
 - Added history of changes to the site configuration page. Site admins can now see information about changes made to the site configuration, by whom and when. [#49842](https://github.com/khulnasoft/khulnasoft/pull/49842)
 - For Perforce depots, users will now see the changelist ID (CL) instead of Git commit SHAs when visiting a depot or the view changelists page [#51195](https://github.com/khulnasoft/khulnasoft/pull/51195)
 - Visiting a specific CL will now use the CL ID in the URL instead of the commit SHA. Other areas affected by this change are browsing files at a specific CL, viewing a specific file changed as part of a specific CL. To enable this behaviour, site admins should set `"perforceChangelistMapping": "enabled"` under experimentalFeatures in the site configuration. Note that currently we process only one perforce depot at a time to map the commit SHAs to their CL IDs in the backend. In a subsequent release we will add support to process multiple depots in parallel. Other areas where currently commit SHAs are used will be updated in future releases. [#53253](https://github.com/khulnasoft/khulnasoft/pull/53253) [#53608](https://github.com/khulnasoft/khulnasoft/pull/53608) [#54051](https://github.com/khulnasoft/khulnasoft/pull/54051)
-- Added autoupgrading to automatically perform multi-version upgrades, without manual `migrator` invocations, through the `frontend` deployment. Please see the [documentation](https://docs.sourcegraph.com/admin/updates/automatic) for details. [#52242](https://github.com/khulnasoft/khulnasoft/pull/52242) [#53196](https://github.com/khulnasoft/khulnasoft/pull/53196)
+- Added autoupgrading to automatically perform multi-version upgrades, without manual `migrator` invocations, through the `frontend` deployment. Please see the [documentation](https://docs.khulnasoft.com/admin/updates/automatic) for details. [#52242](https://github.com/khulnasoft/khulnasoft/pull/52242) [#53196](https://github.com/khulnasoft/khulnasoft/pull/53196)
 
 ### Changed
 
 - Access tokens now begin with the prefix `sgp_` to make them identifiable as secrets. You can also prepend `sgp_` to previously generated access tokens, although they will continue to work as-is without that prefix.
 - The commit message defined in a batch spec will now be quoted when git is invoked, i.e. `git commit -m "commit message"`, to improve how the message is interpreted by the shell in certain edge cases, such as when the commit message begins with a dash. This may mean that previous escaping strategies will behave differently.
-- 429 errors from external services Sourcegraph talks to are only retried automatically if the Retry-After header doesn't indicate that a retry would be useless. The time grace period can be configured using `SRC_HTTP_CLI_EXTERNAL_RETRY_AFTER_MAX_DURATION` and `SRC_HTTP_CLI_INTERNAL_RETRY_AFTER_MAX_DURATION`. [#51743](https://github.com/khulnasoft/khulnasoft/pull/51743)
-- Security Events NO LONGER write to database by default - instead, they will be written in the [audit log format](https://docs.sourcegraph.com/admin/audit_log) to console. There is a new site config setting `log.securityEventLogs` that can be used to configure security event logs to write to database if the old behaviour is desired. This new default will significantly improve performance for large instances. In addition, the old environment variable `SRC_DISABLE_LOG_PRIVATE_REPO_ACCESS` no longer does anything. [#51686](https://github.com/khulnasoft/khulnasoft/pull/51686)
+- 429 errors from external services Khulnasoft talks to are only retried automatically if the Retry-After header doesn't indicate that a retry would be useless. The time grace period can be configured using `SRC_HTTP_CLI_EXTERNAL_RETRY_AFTER_MAX_DURATION` and `SRC_HTTP_CLI_INTERNAL_RETRY_AFTER_MAX_DURATION`. [#51743](https://github.com/khulnasoft/khulnasoft/pull/51743)
+- Security Events NO LONGER write to database by default - instead, they will be written in the [audit log format](https://docs.khulnasoft.com/admin/audit_log) to console. There is a new site config setting `log.securityEventLogs` that can be used to configure security event logs to write to database if the old behaviour is desired. This new default will significantly improve performance for large instances. In addition, the old environment variable `SRC_DISABLE_LOG_PRIVATE_REPO_ACCESS` no longer does anything. [#51686](https://github.com/khulnasoft/khulnasoft/pull/51686)
 - Audit Logs & Security Events are written with the same severity level as `SRC_LOG_LEVEL`. This prevents a misconfiguration
   issue when `log.AuditLogs.SeverityLevel` was set below the overall instance log level. `log.AuditLogs.SeverityLevel` has
   been marked as deprecated and will be removed in a future release [#52566](https://github.com/khulnasoft/khulnasoft/pull/52566)
 - Update minimum supported Redis version to 6.2 [#52248](https://github.com/khulnasoft/khulnasoft/pull/52248)
-- The batch spec properties [`transformChanges`](https://docs.sourcegraph.com/batch_changes/references/batch_spec_yaml_reference#transformchanges) and [`workspaces`](https://docs.sourcegraph.com/batch_changes/references/batch_spec_yaml_reference#workspaces) are now generally available.
-- Cody feature flags have been simplified [#52919](https://github.com/khulnasoft/khulnasoft/pull/52919) See [the docs page for complete setup details](https://docs.sourcegraph.com/cody/explanations/enabling_cody_enterprise)
+- The batch spec properties [`transformChanges`](https://docs.khulnasoft.com/batch_changes/references/batch_spec_yaml_reference#transformchanges) and [`workspaces`](https://docs.khulnasoft.com/batch_changes/references/batch_spec_yaml_reference#workspaces) are now generally available.
+- Cody feature flags have been simplified [#52919](https://github.com/khulnasoft/khulnasoft/pull/52919) See [the docs page for complete setup details](https://docs.khulnasoft.com/cody/explanations/enabling_cody_enterprise)
   - `cody.enabled` in site-config now controls whether Cody is on/off, default `false`.
-  - When `cody.enabled` is set and no specific configuration for `completions` and `embeddings` are given, Cody will by default talk to the `sourcegraph` provider, Sourcegraphs Cody Gateway which allows access to chat completions and embeddings.
+  - When `cody.enabled` is set and no specific configuration for `completions` and `embeddings` are given, Cody will by default talk to the `sourcegraph` provider, Khulnasofts Cody Gateway which allows access to chat completions and embeddings.
   - Enabling Cody now requires `cody.enabled` set to `true` and `completions` to be set.
   - `cody.restrictUsersFeatureFlag` replaces `experimentalFeatures.CodyRestrictUsersFeatureFlag` in site-config, default `false`.
   - `completions.enabled` has been deprecated, replaced by `cody.enabled`.
   - The feature flags for Cody in web features have been removed and the single source of truth is now `cody.enabled`.
   - The embeddings configuration now requires a `provider` field to be set.
   - Ping data now reflects whether `cody.enabled` and `completions` are set.
-- If a Sourcegraph request is traced, its trace ID and span ID are now set to the `X-Trace` and `X-Trace-Span` response headers respectively. The trace URL (if a template is configured in `observability.tracing.urlTemplate`) is now set to `X-Trace-URL` - previously, the URL was set to `X-Trace`. [#53259](https://github.com/khulnasoft/khulnasoft/pull/53259)
-- For users using the single-container server image with the default built-in database, the database must be reindexed. This process can take up to a few hours on systems with large datasets. See [Migrating to Sourcegraph 5.1.x](https://docs.sourcegraph.com/admin/migration/5_1) for full details. [#53256](https://github.com/khulnasoft/khulnasoft/pull/53256)
-- [Sourcegraph Own](https://docs.sourcegraph.com/own) is now available as a beta enterprise feature. `search-ownership` feature flag is removed and doesn't need to be used.
+- If a Khulnasoft request is traced, its trace ID and span ID are now set to the `X-Trace` and `X-Trace-Span` response headers respectively. The trace URL (if a template is configured in `observability.tracing.urlTemplate`) is now set to `X-Trace-URL` - previously, the URL was set to `X-Trace`. [#53259](https://github.com/khulnasoft/khulnasoft/pull/53259)
+- For users using the single-container server image with the default built-in database, the database must be reindexed. This process can take up to a few hours on systems with large datasets. See [Migrating to Khulnasoft 5.1.x](https://docs.khulnasoft.com/admin/migration/5_1) for full details. [#53256](https://github.com/khulnasoft/khulnasoft/pull/53256)
+- [Khulnasoft Own](https://docs.khulnasoft.com/own) is now available as a beta enterprise feature. `search-ownership` feature flag is removed and doesn't need to be used.
 - Update Jaeger to 1.45.0, and Opentelemetry-Collector to 0.75.0 [#54000](https://github.com/khulnasoft/khulnasoft/pull/54000)
 - Switched container OS to Wolfi for hardened containers [#47182](https://github.com/khulnasoft/khulnasoft/pull/47182), [#47368](https://github.com/khulnasoft/khulnasoft/pull/47368)
 - Batches changes now supports for CODEOWNERS for Github. Pull requests requiring CODEOWNERS approval, will no longer show as approved unless explicitly approved by a CODEOWNER. https://github.com/khulnasoft/khulnasoft/pull/53601
-- The insecure `rsa-sha` signature algorithm is no longer supported when connecting to code hosts over SSH. See the [Repository authentication](https://docs.sourcegraph.com/admin/repo/auth#error-sign_and_send_pubkey-no-mutual-signature-supported) page for further details.
+- The insecure `rsa-sha` signature algorithm is no longer supported when connecting to code hosts over SSH. See the [Repository authentication](https://docs.khulnasoft.com/admin/repo/auth#error-sign_and_send_pubkey-no-mutual-signature-supported) page for further details.
 
 ### Fixed
 
@@ -708,28 +708,28 @@ All notable changes to Sourcegraph are documented in this file.
 ### Added
 
 - The environment variable `TELEMETRY_HTTP_PROXY` can be set on the `sourcegraph-frontend` service, to use an HTTP proxy for telemetry and update check requests. [#47466](https://github.com/khulnasoft/khulnasoft/pull/47466)
-- Kubernetes Deployments: Introduced a new Kubernetes deployment option ([deploy-sourcegraph-k8s](https://github.com/sourcegraph/deploy-sourcegraph-k8s)) to deploy Sourcegraph with Kustomize. [#46755](https://github.com/khulnasoft/khulnasoft/issues/46755)
-- Kubernetes Deployments: The new Kustomize deployment ([deploy-sourcegraph-k8s](https://github.com/sourcegraph/deploy-sourcegraph-k8s)) introduces a new base cluster that runs all Sourcegraph services as non-root users with limited privileges and eliminates the need to create RBAC resources. [#4213](https://github.com/sourcegraph/deploy-sourcegraph/pull/4213)
-- Added the `other.exclude` setting to [Other external service config](https://docs.sourcegraph.com/admin/code_hosts/other#configuration). It can be configured to exclude mirroring of repositories matching a pattern similar to other external services. This is useful when you want to exclude repositories discovered via `src serve-git`. [#48168](https://github.com/khulnasoft/khulnasoft/pull/48168)
+- Kubernetes Deployments: Introduced a new Kubernetes deployment option ([deploy-sourcegraph-k8s](https://github.com/sourcegraph/deploy-sourcegraph-k8s)) to deploy Khulnasoft with Kustomize. [#46755](https://github.com/khulnasoft/khulnasoft/issues/46755)
+- Kubernetes Deployments: The new Kustomize deployment ([deploy-sourcegraph-k8s](https://github.com/sourcegraph/deploy-sourcegraph-k8s)) introduces a new base cluster that runs all Khulnasoft services as non-root users with limited privileges and eliminates the need to create RBAC resources. [#4213](https://github.com/sourcegraph/deploy-sourcegraph/pull/4213)
+- Added the `other.exclude` setting to [Other external service config](https://docs.khulnasoft.com/admin/code_hosts/other#configuration). It can be configured to exclude mirroring of repositories matching a pattern similar to other external services. This is useful when you want to exclude repositories discovered via `src serve-git`. [#48168](https://github.com/khulnasoft/khulnasoft/pull/48168)
 - The **Site admin > Updates** page displays the upgrade readiness information about schema drift and out-of-band migrations. [#48046](https://github.com/khulnasoft/khulnasoft/pull/48046)
 - Pings now contain ownership search and file-view activity counts. [#47062](https://github.com/khulnasoft/khulnasoft/47062)
 - Greatly improves keyboard handling and accessibility of the files and symbol tree on the repository pages. [#12916](https://github.com/khulnasoft/khulnasoft/issues/12916)
 - The file tree on the repository page now automatically expands into single-child directories. [#47117](https://github.com/khulnasoft/khulnasoft/pull/47117)
-- When encountering GitHub rate limits, Sourcegraph will now wait the recommended amount of time and retry the request. This prevents sync jobs from failing prematurely due to external rate limits. [#48423](https://github.com/khulnasoft/khulnasoft/pull/48423)
+- When encountering GitHub rate limits, Khulnasoft will now wait the recommended amount of time and retry the request. This prevents sync jobs from failing prematurely due to external rate limits. [#48423](https://github.com/khulnasoft/khulnasoft/pull/48423)
 - Added a dashboard with information about user and repository background permissions sync jobs. [#46317](https://github.com/khulnasoft/khulnasoft/issues/46317)
-- When encountering GitHub or GitLab rate limits, Sourcegraph will now wait the recommended amount of time and retry the request. This prevents sync jobs from failing prematurely due to external rate limits. [#48423](https://github.com/khulnasoft/khulnasoft/pull/48423), [#48616](https://github.com/khulnasoft/khulnasoft/pull/48616)
+- When encountering GitHub or GitLab rate limits, Khulnasoft will now wait the recommended amount of time and retry the request. This prevents sync jobs from failing prematurely due to external rate limits. [#48423](https://github.com/khulnasoft/khulnasoft/pull/48423), [#48616](https://github.com/khulnasoft/khulnasoft/pull/48616)
 - Switching between code editor, files and symbols trees using keyboard shortcuts (currently under the experimental feature flag: `blob-page-switch-areas-shortcuts`). [#46829](https://github.com/khulnasoft/khulnasoft/pull/46829).
 - Added "SCIM" badges for SCIM-controlled users on the User admin page. [#48727](https://github.com/khulnasoft/khulnasoft/pull/48727)
 - Added Azure DevOps Services as a Tier 1 Code Host, including: repository syncing, permissions syncing, and Batch Changes support. [#46265](https://github.com/khulnasoft/khulnasoft/issues/46265)
 - Added feature to disable some fields on user profiles for SCIM-controlled users. [#48816](https://github.com/khulnasoft/khulnasoft/pull/48816)
 - Native support for ingesting and searching GitHub topics with `repo:has.topic()` [#48875](https://github.com/khulnasoft/khulnasoft/pull/48875)
-- [Role-based Access Control](https://docs.sourcegraph.com/admin/access_control) is now available as an enterprise feature (in Beta). It is currently only supported for Batch Changes functionality. [#43276](https://github.com/khulnasoft/khulnasoft/issues/43276)
-- Site admins can now [restrict creation of batch changes to certain users](https://docs.sourcegraph.com/admin/access_control/batch_changes) by tailoring their roles and the permissions granted to those roles. [#34491](https://github.com/khulnasoft/khulnasoft/issues/34491)
-- Site admins can now [configure outgoing webhooks](https://docs.sourcegraph.com/admin/config/webhooks/outgoing) for Batch Changes to inform external tools of events related to Sourcegraph batch changes and their changesets. [#38278](https://github.com/khulnasoft/khulnasoft/issues/38278)
-- [Sourcegraph Own](https://docs.sourcegraph.com/own) is now available as an experimental enterprise feature. Enable the `search-ownership` feature flag to use it.
+- [Role-based Access Control](https://docs.khulnasoft.com/admin/access_control) is now available as an enterprise feature (in Beta). It is currently only supported for Batch Changes functionality. [#43276](https://github.com/khulnasoft/khulnasoft/issues/43276)
+- Site admins can now [restrict creation of batch changes to certain users](https://docs.khulnasoft.com/admin/access_control/batch_changes) by tailoring their roles and the permissions granted to those roles. [#34491](https://github.com/khulnasoft/khulnasoft/issues/34491)
+- Site admins can now [configure outgoing webhooks](https://docs.khulnasoft.com/admin/config/webhooks/outgoing) for Batch Changes to inform external tools of events related to Khulnasoft batch changes and their changesets. [#38278](https://github.com/khulnasoft/khulnasoft/issues/38278)
+- [Khulnasoft Own](https://docs.khulnasoft.com/own) is now available as an experimental enterprise feature. Enable the `search-ownership` feature flag to use it.
 - Gitserver supports a new `COURSIER_CACHE_DIR` env var to configure the cache location for coursier JVM package repos.
-- Pings now emit a histogram of repository sizes cloned by Sourcegraph [48211](https://github.com/khulnasoft/khulnasoft/pull/48211).
-- The search input has been redesigned to greatly improve usability. New contextual suggestions help users learn the Sourcegraph query language as they search. Suggestions have been unified across contexts and filters, and the history mode has been integrated into the input. Improved and expanded keyboard shortcuts also make navigation much easier. This functionality is in beta, and can be disabled in the user menu.
+- Pings now emit a histogram of repository sizes cloned by Khulnasoft [48211](https://github.com/khulnasoft/khulnasoft/pull/48211).
+- The search input has been redesigned to greatly improve usability. New contextual suggestions help users learn the Khulnasoft query language as they search. Suggestions have been unified across contexts and filters, and the history mode has been integrated into the input. Improved and expanded keyboard shortcuts also make navigation much easier. This functionality is in beta, and can be disabled in the user menu.
 
 ### Changed
 
@@ -743,7 +743,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Fixed
 
-- The symbols service `CACHE_DIR` and `MAX_TOTAL_PATHS_LENGTH` were renamed to have a `SYMBOLS_` prefix in the last version of Sourcegraph; this version fixes a bug where the old names without the `SYMBOLS_` prefix were not respected correctly. Both names now work.
+- The symbols service `CACHE_DIR` and `MAX_TOTAL_PATHS_LENGTH` were renamed to have a `SYMBOLS_` prefix in the last version of Khulnasoft; this version fixes a bug where the old names without the `SYMBOLS_` prefix were not respected correctly. Both names now work.
 - Fixed issues with propagating tracing configuration throughout the application. [#47428](https://github.com/khulnasoft/khulnasoft/pull/47428)
 - Enable `auto gc` on fetch when `SRC_ENABLE_GC_AUTO` is set to `true`. [#47852](https://github.com/khulnasoft/khulnasoft/pull/47852)
 - Fixes syntax highlighting and line number issues in the code preview rendered inside the references panel. [#48107](https://github.com/khulnasoft/khulnasoft/pull/48107)
@@ -771,8 +771,8 @@ All notable changes to Sourcegraph are documented in this file.
 - Endpoint environment variables (`SEARCHER_URL`, `SYMBOLS_URL`, `INDEXED_SEARCH_SERVERS`, `SRC_GIT_SERVERS`) now can be set to replica count values in Kubernetes, Kustomize, Helm and Docker Compose environments. This avoids the need to use service discovery or generating the respective list of addresses in those environments. [#45862](https://github.com/khulnasoft/khulnasoft/pull/45862)
 - The default author and email for changesets will now be pulled from user account details when possible. [#46385](https://github.com/khulnasoft/khulnasoft/pull/46385)
 - Code Insights has a new display option: "Max number of series points to display". This setting controls the number of data points you see per series on an insight. [#46653](https://github.com/khulnasoft/khulnasoft/pull/46653)
-- Added out-of-band migration that will migrate all existing data from LSIF to SCIP (see additional [migration documentation](https://docs.sourcegraph.com/admin/how-to/lsif_scip_migration)). [#45106](https://github.com/khulnasoft/khulnasoft/pull/45106)
-- Code Insights has a new search-powered repositories field that allows you to select repositories with Sourcegraph search syntax. [#45687](https://github.com/khulnasoft/khulnasoft/pull/45687)
+- Added out-of-band migration that will migrate all existing data from LSIF to SCIP (see additional [migration documentation](https://docs.khulnasoft.com/admin/how-to/lsif_scip_migration)). [#45106](https://github.com/khulnasoft/khulnasoft/pull/45106)
+- Code Insights has a new search-powered repositories field that allows you to select repositories with Khulnasoft search syntax. [#45687](https://github.com/khulnasoft/khulnasoft/pull/45687)
 - You can now export all data for a Code Insight from the card menu or the standalone page. [#46795](https://github.com/khulnasoft/khulnasoft/pull/46795), [#46694](https://github.com/khulnasoft/khulnasoft/pull/46694)
 - Added Gerrit as an officially supported code host with permissions syncing. [#46763](https://github.com/khulnasoft/khulnasoft/pull/46763)
 - Markdown files now support `<picture>` and `<video>` elements in the rendered view. [#47074](https://github.com/khulnasoft/khulnasoft/pull/47074)
@@ -780,7 +780,7 @@ All notable changes to Sourcegraph are documented in this file.
 - Monitoring: the searcher dashboard now contains more detailed request metrics as well as information on interactions with the local cache (via gitserver). [#47654](https://github.com/khulnasoft/khulnasoft/pull/47654)
 - Renders GitHub pull request references in the commit list. [#47593](https://github.com/khulnasoft/khulnasoft/pull/47593)
 - Added a new background permissions syncer & scheduler which is backed by database, unlike the old one that was based on an in-memory processing queue. The new system is enabled by default, but can be disabled. Revert to the in-memory processing queue by setting the feature flag `database-permission-sync-worker` to `false`. [#47783](https://github.com/khulnasoft/khulnasoft/pull/47783)
-- Zoekt introduces a new opt-in feature, "shard merging". Shard merging consolidates small index files into larger ones, which reduces Zoekt-webserver's memory footprint [documentation](https://docs.sourcegraph.com/code_search/explanations/search_details#shard-merging)
+- Zoekt introduces a new opt-in feature, "shard merging". Shard merging consolidates small index files into larger ones, which reduces Zoekt-webserver's memory footprint [documentation](https://docs.khulnasoft.com/code_search/explanations/search_details#shard-merging)
 - Blob viewer is now backed by the CodeMirror editor. Previous table-based blob viewer can be re-enabled by setting `experimentalFeatures.enableCodeMirrorFileView` to `false`. [#47563](https://github.com/khulnasoft/khulnasoft/pull/47563)
 - Code folding support for the CodeMirror blob viewer. [#47266](https://github.com/khulnasoft/khulnasoft/pull/47266)
 - CodeMirror blob keyboard navigation as experimental feature. Can be enabled in settings by setting `experimentalFeatures.codeNavigation` to `selection-driven`. [#44698](https://github.com/khulnasoft/khulnasoft/pull/44698)
@@ -789,16 +789,16 @@ All notable changes to Sourcegraph are documented in this file.
 
 - Archived and deleted changesets are no longer counted towards the completion percentage shown in the Batch Changes UI. [#46831](https://github.com/khulnasoft/khulnasoft/pull/46831)
 - Code Insights has a new UI for the "Add or remove insights" view, which now allows you to search code insights by series label in addition to insight title. [#46538](https://github.com/khulnasoft/khulnasoft/pull/46538)
-- When SMTP is configured, users created by site admins via the "Create user" page will no longer have their email verified by default - users must verify their emails by using the "Set password" link they get sent, or have their emails verified by a site admin via the "Emails" tab in user settings or the `setUserEmailVerified` mutation. The `createUser` mutation retains the old behaviour of automatically marking emails as verified. To learn more, refer to the [SMTP and email delivery](https://docs.sourcegraph.com/admin/config/email) documentation. [#46187](https://github.com/khulnasoft/khulnasoft/pull/46187)
+- When SMTP is configured, users created by site admins via the "Create user" page will no longer have their email verified by default - users must verify their emails by using the "Set password" link they get sent, or have their emails verified by a site admin via the "Emails" tab in user settings or the `setUserEmailVerified` mutation. The `createUser` mutation retains the old behaviour of automatically marking emails as verified. To learn more, refer to the [SMTP and email delivery](https://docs.khulnasoft.com/admin/config/email) documentation. [#46187](https://github.com/khulnasoft/khulnasoft/pull/46187)
 - Connection checks for code host connections have been changed to talk to code host APIs directly via HTTP instead of doing DNS lookup and TCP dial. That makes them more resistant in environments where proxies are used. [#46918](https://github.com/khulnasoft/khulnasoft/pull/46918)
 - Expiration of licenses is now handled differently. When a license is expired promotion to site-admin is disabled, license-specific features are disabled (exceptions being SSO & permission syncing), grace period has been replaced with a 7-day-before-expiration warning. [#47251](https://github.com/khulnasoft/khulnasoft/pull/47251)
 - Searcher will now timeout searches in 2 hours instead of 10 minutes. This timeout was raised for batch use cases (such as code insights) searching old revisions in very large repositories. This limit can be tuned with the environment variable `PROCESSING_TIMEOUT`. [#47469](https://github.com/khulnasoft/khulnasoft/pull/47469)
 - Zoekt now bypasses the regex engine for queries that are common in the context of search-based code intelligence, such as `\bLITERAL\b case:yes`. This can lead to a significant speed-up for "Find references" and "Find implementations" if precise code intelligence is not available. [zoekt#526](https://github.com/sourcegraph/zoekt/pull/526)
-- The Sourcegraph Free license has undergone a number of changes. Please contact support@sourcegraph.com with any questions or concerns. [#46504](https://github.com/khulnasoft/khulnasoft/pull/46504)
+- The Khulnasoft Free license has undergone a number of changes. Please contact support@khulnasoft.com with any questions or concerns. [#46504](https://github.com/khulnasoft/khulnasoft/pull/46504)
   - The Free license allows for only a single private repository on the instance.
   - The Free license does not support SSO of any kind.
   - The Free license does not offer mirroring of code host user permissions.
-- Expired Sourcegraph licenses no longer allow continued use of the product. [#47251](https://github.com/khulnasoft/khulnasoft/pull/47251)
+- Expired Khulnasoft licenses no longer allow continued use of the product. [#47251](https://github.com/khulnasoft/khulnasoft/pull/47251)
   - Licensed features are disabled once a license expires.
   - Users can no longer be promoted to Site Admins once a license expires.
 
@@ -818,7 +818,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 - The Code insights "run over all repositories" mode has been replaced with search-powered repositories filed syntax. [#45687](https://github.com/khulnasoft/khulnasoft/pull/45687)
 - The settings `search.repositoryGroups`, `codeInsightsGqlApi`, `codeInsightsAllRepos`, `experimentalFeatures.copyQueryButton`,, `experimentalFeatures.showRepogroupHomepage`, `experimentalFeatures.showOnboardingTour`, `experimentalFeatures.showSearchContextManagement` and `codeIntelligence.autoIndexRepositoryGroups` have been removed as they were deprecated and unsued. [#47481](https://github.com/khulnasoft/khulnasoft/pull/47481)
-- The site config `enableLegacyExtensions` setting was removed. It is no longer possible to enable legacy Sourcegraph extension API functionality in this version.
+- The site config `enableLegacyExtensions` setting was removed. It is no longer possible to enable legacy Khulnasoft extension API functionality in this version.
 
 ## 4.4.2
 
@@ -839,7 +839,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 - Added a button "Reindex now" to the index status page. Admins can now force an immediate reindex of a repository. [#45533](https://github.com/khulnasoft/khulnasoft/pull/45533)
 - Added an option "Unlock user" to the actions dropdown on the Site Admin Users page. Admins can unlock user accounts that wer locked after too many sign-in attempts. [#45650](https://github.com/khulnasoft/khulnasoft/pull/45650)
-- Templates for certain emails sent by Sourcegraph are now configurable via `email.templates` in site configuration. [#45671](https://github.com/khulnasoft/khulnasoft/pull/45671), [#46085](https://github.com/khulnasoft/khulnasoft/pull/46085)
+- Templates for certain emails sent by Khulnasoft are now configurable via `email.templates` in site configuration. [#45671](https://github.com/khulnasoft/khulnasoft/pull/45671), [#46085](https://github.com/khulnasoft/khulnasoft/pull/46085)
 - Keyboard navigation for search results is now enabled by default. Use Arrow Up/Down keys to navigate between search results, Arrow Left/Right to collapse and expand file matches, Enter to open the search result in the current tab, Ctrl/Cmd+Enter to open the result in a separate tab, / to refocus the search input, and Ctrl/Cmd+Arrow Down to jump from the search input to the first result. Arrow Left/Down/Up/Right in previous examples can be substituted with h/j/k/l for Vim-style bindings. Keyboard navigation can be disabled by creating the `search-results-keyboard-navigation` feature flag and setting it to false. [#45890](https://github.com/khulnasoft/khulnasoft/pull/45890)
 - Added support for receiving GitLab webhook `push` events. [#45856](https://github.com/khulnasoft/khulnasoft/pull/45856)
 - Added support for receiving Bitbucket Server / Datacenter webhook `push` events. [#45909](https://github.com/khulnasoft/khulnasoft/pull/45909)
@@ -851,7 +851,7 @@ All notable changes to Sourcegraph are documented in this file.
 - When setting and resetting passwords, if the user's primary email address is not yet verified, using the password reset link sent via email will now also verify the email address. [#46307](https://github.com/khulnasoft/khulnasoft/pull/46307)
 - Added new code host details and updated edit code host pages in site admin area. [#46327](https://github.com/khulnasoft/khulnasoft/pull/46327)
 - If the experimental setting `insightsDataRetention` is enabled, the number of Code Insights data points that can be viewed will be limited by the site configuration setting `insights.maximumSampleSize`, set to 30 by default. Older points beyond that number will be periodically archived. [#46206](https://github.com/khulnasoft/khulnasoft/pull/46206), [#46440](https://github.com/khulnasoft/khulnasoft/pull/46440)
-- Bitbucket Cloud can now be added as an authentication provider on Sourcegraph. [#46309](https://github.com/khulnasoft/khulnasoft/pull/46309)
+- Bitbucket Cloud can now be added as an authentication provider on Khulnasoft. [#46309](https://github.com/khulnasoft/khulnasoft/pull/46309)
 - Bitbucket Cloud code host connections now support permissions syncing. [#46312](https://github.com/khulnasoft/khulnasoft/pull/46312)
 - Keep a log of corruption events that happen on repositories as they are detected. The Admin repositories page will now show when a repository has been detected as being corrupt and they'll also be able to see a history log of the corruption for that repository. [#46004](https://github.com/khulnasoft/khulnasoft/pull/46004)
 - Added corrupted statistic as part of the global repositories statistics. [46412](https://github.com/khulnasoft/khulnasoft/pull/46412)
@@ -864,7 +864,7 @@ All notable changes to Sourcegraph are documented in this file.
 - GitHub code host configuration: The error message for non-existent organizations has been clarified to indicate that the organization is one that the user manually specified in their code host configuration. [#45918](https://github.com/khulnasoft/khulnasoft/pull/45918)
 - Git blame view got a user-interface overhaul and now shows data in a more structured way with additional visual hints. [#44397](https://github.com/khulnasoft/khulnasoft/issues/44397)
 - User emails marked as unverified will no longer receive code monitors and account update emails - unverified emails can be verified from the user settings page to continue receiving these emails. [#46184](https://github.com/khulnasoft/khulnasoft/pull/46184)
-- Zoekt by default eagerly unmarshals the symbol index into memory. Previously we would unmarshal on every request for the purposes of symbol searches or ranking. This lead to pressure on the Go garbage collector. On sourcegraph.com we have noticed time spent in the garbage collector halved. In the unlikely event this leads to more OOMs in zoekt-webserver, you can disable by setting the environment variable `ZOEKT_ENABLE_LAZY_DOC_SECTIONS=t`. [zoekt#503](https://github.com/sourcegraph/zoekt/pull/503)
+- Zoekt by default eagerly unmarshals the symbol index into memory. Previously we would unmarshal on every request for the purposes of symbol searches or ranking. This lead to pressure on the Go garbage collector. On khulnasoft.com we have noticed time spent in the garbage collector halved. In the unlikely event this leads to more OOMs in zoekt-webserver, you can disable by setting the environment variable `ZOEKT_ENABLE_LAZY_DOC_SECTIONS=t`. [zoekt#503](https://github.com/sourcegraph/zoekt/pull/503)
 - Removes the right side action sidebar that is shown on the code view page and moves the icons into the top nav. [#46339](https://github.com/khulnasoft/khulnasoft/pull/46339)
 - The `sourcegraph/prometheus` image no longer starts with `--web.enable-lifecycle --web.enable-admin-api` by default - these flags can be re-enabled by configuring `PROMETHEUS_ADDITIONAL_FLAGS` on the container. [#46393](https://github.com/khulnasoft/khulnasoft/pull/46393)
 - The experimental setting `authz.syncJobsRecordsTTL` has been changed to `authz.syncJobsRecordsLimit` - records are no longer retained based on age, but based on this size cap. [#46676](https://github.com/khulnasoft/khulnasoft/pull/46676)
@@ -895,7 +895,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Changed
 
-- A bug that broke the site-admin page when no repositories have been added to the Sourcegraph instance has been fixed. [#46123](https://github.com/khulnasoft/khulnasoft/pull/46123)
+- A bug that broke the site-admin page when no repositories have been added to the Khulnasoft instance has been fixed. [#46123](https://github.com/khulnasoft/khulnasoft/pull/46123)
 
 ## 4.3.0
 
@@ -911,11 +911,11 @@ All notable changes to Sourcegraph are documented in this file.
 - More complete stack traces for Outbound request log [#45151](https://github.com/khulnasoft/khulnasoft/pull/45151)
 - A new status message now reports how many repositories have already been indexed for search. [#45246](https://github.com/khulnasoft/khulnasoft/pull/45246)
 - Search contexts can now be starred (favorited) in the search context management page. Starred search contexts will appear before other contexts in the context dropdown menu next to the search box. [#45230](https://github.com/khulnasoft/khulnasoft/pull/45230)
-- Search contexts now let you set a context as your default. The default will be selected every time you open Sourcegraph and will appear near the top in the context dropdown menu next to the search box. [#45387](https://github.com/khulnasoft/khulnasoft/pull/45387)
-- [search.largeFiles](https://docs.sourcegraph.com/admin/config/site_config#search-largeFiles) accepts an optional prefix `!` to negate a pattern. The order of the patterns within search.largeFiles is honored such that the last pattern matching overrides preceding patterns. For patterns that begin with a literal `!` prefix with a backslash, for example, `\!fileNameStartsWithExcl!.txt`. Previously indexed files that become excluded due to this change will remain in the index until the next reindex [#45318](https://github.com/khulnasoft/khulnasoft/pull/45318)
-- [Webhooks](https://docs.sourcegraph.com/admin/config/webhooks/incoming) have been overhauled completely and can now be found under **Site admin > Repositories > Incoming webhooks**. Webhooks that were added via code host configuration are [deprecated](https://docs.sourcegraph.com/admin/config/webhooks/incoming#deprecation-notice) and will be removed in 5.1.0.
-- Added support for receiving webhook `push` events from GitHub which will trigger Sourcegraph to fetch the latest commit rather than relying on polling.
-- Added support for private container registries in Sourcegraph executors. [Using private registries](https://docs.sourcegraph.com/admin/deploy_executors#using-private-registries)
+- Search contexts now let you set a context as your default. The default will be selected every time you open Khulnasoft and will appear near the top in the context dropdown menu next to the search box. [#45387](https://github.com/khulnasoft/khulnasoft/pull/45387)
+- [search.largeFiles](https://docs.khulnasoft.com/admin/config/site_config#search-largeFiles) accepts an optional prefix `!` to negate a pattern. The order of the patterns within search.largeFiles is honored such that the last pattern matching overrides preceding patterns. For patterns that begin with a literal `!` prefix with a backslash, for example, `\!fileNameStartsWithExcl!.txt`. Previously indexed files that become excluded due to this change will remain in the index until the next reindex [#45318](https://github.com/khulnasoft/khulnasoft/pull/45318)
+- [Webhooks](https://docs.khulnasoft.com/admin/config/webhooks/incoming) have been overhauled completely and can now be found under **Site admin > Repositories > Incoming webhooks**. Webhooks that were added via code host configuration are [deprecated](https://docs.khulnasoft.com/admin/config/webhooks/incoming#deprecation-notice) and will be removed in 5.1.0.
+- Added support for receiving webhook `push` events from GitHub which will trigger Khulnasoft to fetch the latest commit rather than relying on polling.
+- Added support for private container registries in Khulnasoft executors. [Using private registries](https://docs.khulnasoft.com/admin/deploy_executors#using-private-registries)
 
 ### Changed
 
@@ -929,7 +929,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 - The Code Insights commit indexer no longer errors when fetching commits from empty repositories when sub-repo permissions are enabled. [#44558](https://github.com/khulnasoft/khulnasoft/pull/44558)
 - Unintended newline characters that could appear in diff view rendering have been fixed. [#44805](https://github.com/khulnasoft/khulnasoft/pull/44805)
-- Signing out doesn't immediately log the user back in when there's only one OAuth provider enabled. It now redirects the user to the Sourcegraph login page. [#44803](https://github.com/khulnasoft/khulnasoft/pull/44803)
+- Signing out doesn't immediately log the user back in when there's only one OAuth provider enabled. It now redirects the user to the Khulnasoft login page. [#44803](https://github.com/khulnasoft/khulnasoft/pull/44803)
 - An issue causing certain kinds of queries to behave inconsistently in Code Insights. [#44917](https://github.com/khulnasoft/khulnasoft/pull/44917)
 - When the setting `batchChanges.enforceForks` is enabled, Batch Changes will now prefix the name of the fork repo it creates with the original repo's namespace name in order to prevent repo name collisions. [#43681](https://github.com/khulnasoft/khulnasoft/pull/43681), [#44458](https://github.com/khulnasoft/khulnasoft/pull/44458), [#44548](https://github.com/khulnasoft/khulnasoft/pull/44548), [#44924](https://github.com/khulnasoft/khulnasoft/pull/44924)
 - Code Insights: fixed an issue where certain queries matching sequential whitespace characters would overcount. [#44969](https://github.com/khulnasoft/khulnasoft/pull/44969)
@@ -945,7 +945,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ## 4.2.1
 
-- `minio` has been replaced with `blobstore`. Please see the update notes here: https://docs.sourcegraph.com/admin/how-to/blobstore_update_notes
+- `minio` has been replaced with `blobstore`. Please see the update notes here: https://docs.khulnasoft.com/admin/how-to/blobstore_update_notes
 
 ## 4.2.0
 
@@ -954,9 +954,9 @@ All notable changes to Sourcegraph are documented in this file.
 - Creating access tokens is now tracked in the security events. [#43226](https://github.com/khulnasoft/khulnasoft/pull/43226)
 - Added `codeIntelAutoIndexing.indexerMap` to site-config that allows users to update the indexers used when inferring precise code intelligence auto-indexing jobs (without having to overwrite the entire inference scripts). For example, `"codeIntelAutoIndexing.indexerMap": {"go": "my.registry/sourcegraph/lsif-go"}` will cause Go projects to use the specified container (in a alternative Docker registry). [#43199](https://github.com/khulnasoft/khulnasoft/pull/43199)
 - Code Insights data points that do not contain any results will display zero instead of being omitted from the visualization. Only applies to insight data created after 4.2. [#43166](https://github.com/khulnasoft/khulnasoft/pull/43166)
-- Sourcegraph ships with node-exporter, a Prometheus tool that provides hardware / OS metrics that helps Sourcegraph scale your deployment. See your deployment update for more information:
-  - [Kubernetes](https://docs.sourcegraph.com/admin/updates/kubernetes)
-  - [Docker Compose](https://docs.sourcegraph.com/admin/updates/docker_compose)
+- Khulnasoft ships with node-exporter, a Prometheus tool that provides hardware / OS metrics that helps Khulnasoft scale your deployment. See your deployment update for more information:
+  - [Kubernetes](https://docs.khulnasoft.com/admin/updates/kubernetes)
+  - [Docker Compose](https://docs.khulnasoft.com/admin/updates/docker_compose)
 - A structural search diagnostic to warn users when a language filter is not set. [#43835](https://github.com/khulnasoft/khulnasoft/pull/43835)
 - GitHub/GitLab OAuth success/fail attempts are now a part of the audit log. [#43886](https://github.com/khulnasoft/khulnasoft/pull/43886)
 - When rendering a file which is backed by Git LFS, we show a page informing the file is LFS and linking to the file on the codehost. Previously we rendered the LFS pointer. [#43686](https://github.com/khulnasoft/khulnasoft/pull/43686)
@@ -1058,20 +1058,20 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Added
 
-- A new look for Sourcegraph, previously in beta as "Simple UI", is now permanently enabled. [#41021](https://github.com/khulnasoft/khulnasoft/pull/41021)
-- A new [multi-version upgrade](https://docs.sourcegraph.com/admin/updates#multi-version-upgrades) process now allows Sourcegraph instances to upgrade more than a single minor version. Instances at version 3.20 or later can now jump directly to 4.0. [#40628](https://github.com/khulnasoft/khulnasoft/pull/40628)
+- A new look for Khulnasoft, previously in beta as "Simple UI", is now permanently enabled. [#41021](https://github.com/khulnasoft/khulnasoft/pull/41021)
+- A new [multi-version upgrade](https://docs.khulnasoft.com/admin/updates#multi-version-upgrades) process now allows Khulnasoft instances to upgrade more than a single minor version. Instances at version 3.20 or later can now jump directly to 4.0. [#40628](https://github.com/khulnasoft/khulnasoft/pull/40628)
 - Matching ranges in file paths are now highlighted for path results and content results. Matching paths in repository names are now highlighted for repository results. [#41296](https://github.com/khulnasoft/khulnasoft/pull/41296) [#41385](https://github.com/khulnasoft/khulnasoft/pull/41385) [#41470](https://github.com/khulnasoft/khulnasoft/pull/41470)
 - Aggregations by repository, file, author, and capture group are now provided for search results. [#39643](https://github.com/khulnasoft/khulnasoft/issues/39643)
 - Blob views and search results are now lazily syntax highlighted for better performance. [#39563](https://github.com/khulnasoft/khulnasoft/pull/39563) [#40263](https://github.com/khulnasoft/khulnasoft/pull/40263)
 - File links in both the search results and the blob sidebar and now prefetched on hover or focus. [#40354](https://github.com/khulnasoft/khulnasoft/pull/40354) [#41420](https://github.com/khulnasoft/khulnasoft/pull/41420)
 - Negation support for the search predicates `-repo:has.path()` and `-repo:has.content()`. [#40283](https://github.com/khulnasoft/khulnasoft/pull/40283)
-- Experimental clientside OpenTelemetry can now be enabled with `"observability.client": { "openTelemetry": "/-/debug/otlp" }`, which sends OpenTelemetry to the new [bundled OpenTelemetry Collector](https://docs.sourcegraph.com/admin/observability/opentelemetry). [#37907](https://github.com/khulnasoft/khulnasoft/issues/37907)
+- Experimental clientside OpenTelemetry can now be enabled with `"observability.client": { "openTelemetry": "/-/debug/otlp" }`, which sends OpenTelemetry to the new [bundled OpenTelemetry Collector](https://docs.khulnasoft.com/admin/observability/opentelemetry). [#37907](https://github.com/khulnasoft/khulnasoft/issues/37907)
 - File diff stats are now characterized by 2 figures: lines added and lines removed. Previously, a 3rd figure for lines modified was also used. This is represented by the fields on the `DiffStat` type on the GraphQL API. [#40454](https://github.com/khulnasoft/khulnasoft/pull/40454)
 
 ### Changed
 
-- [Sourcegraph with Kubernetes (without Helm)](https://docs.sourcegraph.com/admin/deploy/kubernetes): The `jaeger-agent` sidecar has been replaced by an [OpenTelemetry Collector](https://docs.sourcegraph.com/admin/observability/opentelemetry) DaemonSet + Deployment configuration. The bundled Jaeger instance is now disabled by default, instead of enabled. [#40456](https://github.com/khulnasoft/khulnasoft/issues/40456)
-- [Sourcegraph with Docker Compose](https://docs.sourcegraph.com/admin/deploy/docker-compose): The `jaeger` service has been replaced by an [OpenTelemetry Collector](https://docs.sourcegraph.com/admin/observability/opentelemetry) service. The bundled Jaeger instance is now disabled by default, instead of enabled. [#40455](https://github.com/khulnasoft/khulnasoft/issues/40455)
+- [Khulnasoft with Kubernetes (without Helm)](https://docs.khulnasoft.com/admin/deploy/kubernetes): The `jaeger-agent` sidecar has been replaced by an [OpenTelemetry Collector](https://docs.khulnasoft.com/admin/observability/opentelemetry) DaemonSet + Deployment configuration. The bundled Jaeger instance is now disabled by default, instead of enabled. [#40456](https://github.com/khulnasoft/khulnasoft/issues/40456)
+- [Khulnasoft with Docker Compose](https://docs.khulnasoft.com/admin/deploy/docker-compose): The `jaeger` service has been replaced by an [OpenTelemetry Collector](https://docs.khulnasoft.com/admin/observability/opentelemetry) service. The bundled Jaeger instance is now disabled by default, instead of enabled. [#40455](https://github.com/khulnasoft/khulnasoft/issues/40455)
 - `"observability.tracing": { "type": "opentelemetry" }` is now the default tracer type. To revert to existing behaviour, set `"type": "jaeger"` instead. The legacy values `"type": "opentracing"` and `"type": "datadog"` have been removed. [#41242](https://github.com/khulnasoft/khulnasoft/pull/41242)
 - `"observability.tracing": { "urlTemplate": "" }` is now the default, and if `"urlTemplate"` is left empty, no trace URLs are generated. To revert to existing behaviour, set `"urlTemplate": "{{ .ExternalURL }}/-/debug/jaeger/trace/{{ .TraceID }}"` instead. [#41242](https://github.com/khulnasoft/khulnasoft/pull/41242)
 - Code host connection tokens are no longer supported as a fallback method for syncing changesets in Batch Changes. [#25394](https://github.com/khulnasoft/khulnasoft/issues/25394)
@@ -1119,14 +1119,14 @@ All notable changes to Sourcegraph are documented in this file.
 - Enforce 5-changeset limit for batch changes run server-side on an unlicensed instance. [#37834](https://github.com/khulnasoft/khulnasoft/issues/37834)
 - Changesets that are not associated with any batch changes can have a retention period set using the site configuration `batchChanges.changesetsRetention`. [#36188](https://github.com/khulnasoft/khulnasoft/pull/36188)
 - Added experimental support for exporting traces to an OpenTelemetry collector with `"observability.tracing": { "type": "opentelemetry" }` [#37984](https://github.com/khulnasoft/khulnasoft/pull/37984)
-- Added `ROCKSKIP_MIN_REPO_SIZE_MB` to automatically use [Rockskip](https://docs.sourcegraph.com/code_intelligence/explanations/rockskip) for repositories over a certain size. [#38192](https://github.com/khulnasoft/khulnasoft/pull/38192)
+- Added `ROCKSKIP_MIN_REPO_SIZE_MB` to automatically use [Rockskip](https://docs.khulnasoft.com/code_intelligence/explanations/rockskip) for repositories over a certain size. [#38192](https://github.com/khulnasoft/khulnasoft/pull/38192)
 - `"observability.tracing": { "urlTemplate": "..." }` can now be set to configure generated trace URLs (for example those generated via `&trace=1`). [#39765](https://github.com/khulnasoft/khulnasoft/pull/39765)
 
 ### Changed
 
 - **IMPORTANT: Search queries with patterns surrounded by** `/.../` **will now be interpreted as regular expressions.** Existing search links or code monitors are unaffected. In the rare event where older links rely on the literal meaning of `/.../`, the string will be automatically quoted it in a `content` filter, preserving the original meaning. If you happen to use an existing older link and want `/.../` to work as a regular expression, add `patterntype:standard` to the query. New queries and code monitors will interpret `/.../` as regular expressions. [#38141](https://github.com/khulnasoft/khulnasoft/pull/38141).
 - The password policy has been updated and is now part of the standard featureset configurable by site-admins. [#39213](https://github.com/khulnasoft/khulnasoft/pull/39213).
-- Replaced the `ALLOW_DECRYPT_MIGRATION` envvar with `ALLOW_DECRYPTION`. See [updated documentation](https://docs.sourcegraph.com/admin/config/encryption). [#39984](https://github.com/khulnasoft/khulnasoft/pull/39984)
+- Replaced the `ALLOW_DECRYPT_MIGRATION` envvar with `ALLOW_DECRYPTION`. See [updated documentation](https://docs.khulnasoft.com/admin/config/encryption). [#39984](https://github.com/khulnasoft/khulnasoft/pull/39984)
 - Compute-powered insight now supports only one series custom colors for compute series bars [40038](https://github.com/khulnasoft/khulnasoft/pull/40038)
 
 ### Fixed
@@ -1168,7 +1168,7 @@ All notable changes to Sourcegraph are documented in this file.
 - Gitserver endpoint access logs can now be enabled by adding `"log": { "gitserver.accessLogs": true }` to the site config. [#38798](https://github.com/khulnasoft/khulnasoft/pull/38798)
 - Code Insights supports a new type of insight—compute-powered insight, currently under the experimental feature flag: `codeInsightsCompute` [#37857](https://github.com/khulnasoft/khulnasoft/issues/37857)
 - Cache execution result when mounting files in a batch spec. [sourcegraph/src-cli#795](https://github.com/sourcegraph/src-cli/pull/795)
-- Batch Changes changesets open on archived repositories will now move into a [Read-Only state](https://docs.sourcegraph.com/batch_changes/references/faq#why-is-my-changeset-read-only). [#26820](https://github.com/khulnasoft/khulnasoft/issues/26820)
+- Batch Changes changesets open on archived repositories will now move into a [Read-Only state](https://docs.khulnasoft.com/batch_changes/references/faq#why-is-my-changeset-read-only). [#26820](https://github.com/khulnasoft/khulnasoft/issues/26820)
 
 ### Changed
 
@@ -1177,9 +1177,9 @@ All notable changes to Sourcegraph are documented in this file.
 - Rewrite resource estimator using the latest metrics [#37869](https://github.com/khulnasoft/khulnasoft/pull/37869)
 - Selecting a line multiple times in the file view will only add a single browser history entry [#38204](https://github.com/khulnasoft/khulnasoft/pull/38204)
 - The panels on the homepage (recent searches, etc) are now turned off by default. They can be re-enabled by setting `experimentalFeatures.showEnterpriseHomePanels` to true. [#38431](https://github.com/khulnasoft/khulnasoft/pull/38431)
-- Log sampling is now enabled by default for Sourcegraph components that use the [new internal logging library](https://github.com/sourcegraph/log)—the first 100 identical log entries per second will always be output, but thereafter only every 100th identical message will be output. It can be configured for each service using the environment variables `SRC_LOG_SAMPLING_INITIAL` and `SRC_LOG_SAMPLING_THEREAFTER`, and if `SRC_LOG_SAMPLING_INITIAL` is set to `0` or `-1` the sampling will be disabled entirely. [#38451](https://github.com/khulnasoft/khulnasoft/pull/38451)
+- Log sampling is now enabled by default for Khulnasoft components that use the [new internal logging library](https://github.com/sourcegraph/log)—the first 100 identical log entries per second will always be output, but thereafter only every 100th identical message will be output. It can be configured for each service using the environment variables `SRC_LOG_SAMPLING_INITIAL` and `SRC_LOG_SAMPLING_THEREAFTER`, and if `SRC_LOG_SAMPLING_INITIAL` is set to `0` or `-1` the sampling will be disabled entirely. [#38451](https://github.com/khulnasoft/khulnasoft/pull/38451)
 - Deprecated `experimentalFeatures.enableGitServerCommandExecFilter`. Setting this value has no effect on the code any longer and the code to guard against unknown commands is always enabled.
-- Zoekt now runs with GOGC=25 by default, helping to reduce the memory consumption of Sourcegraph. Previously it ran with GOGC=50, but we noticed a regression when we switched to go 1.18 which contained significant changes to the go garbage collector. [#38708](https://github.com/khulnasoft/khulnasoft/issues/38708)
+- Zoekt now runs with GOGC=25 by default, helping to reduce the memory consumption of Khulnasoft. Previously it ran with GOGC=50, but we noticed a regression when we switched to go 1.18 which contained significant changes to the go garbage collector. [#38708](https://github.com/khulnasoft/khulnasoft/issues/38708)
 - Hide `Publish` action when working with imported changesets. [#37882](https://github.com/khulnasoft/khulnasoft/issues/37882)
 
 ### Fixed
@@ -1232,16 +1232,16 @@ All notable changes to Sourcegraph are documented in this file.
 
 - Code Insights: Added toggle display of data series in line charts
 - Code Insights: Added dashboard pills for the standalone insight page [#36341](https://github.com/khulnasoft/khulnasoft/pull/36341)
-- Extensions: Added site config parameter `extensions.allowOnlySourcegraphAuthoredExtensions`. When enabled only extensions authored by Sourcegraph will be able to be viewed and installed. For more information check out the [docs](https://docs.sourcegraph.com/admin/extensions##allow-only-extensions-authored-by-sourcegraph). [#35054](https://github.com/khulnasoft/khulnasoft/pull/35054)
+- Extensions: Added site config parameter `extensions.allowOnlyKhulnasoftAuthoredExtensions`. When enabled only extensions authored by Khulnasoft will be able to be viewed and installed. For more information check out the [docs](https://docs.khulnasoft.com/admin/extensions##allow-only-extensions-authored-by-sourcegraph). [#35054](https://github.com/khulnasoft/khulnasoft/pull/35054)
 - Batch Changes Credentials can now be manually validated. [#35948](https://github.com/khulnasoft/khulnasoft/pull/35948)
 - Zoekt-indexserver has a new debug landing page, `/debug`, which now exposes information about the queue, the list of indexed repositories, and the list of assigned repositories. Admins can reach the debug landing page by selecting Instrumentation > indexed-search-indexer from the site admin view. The debug page is linked at the top. [#346](https://github.com/sourcegraph/zoekt/pull/346)
-- Extensions: Added `enableExtensionsDecorationsColumnView` user setting as [experimental feature](https://docs.sourcegraph.com/admin/beta_and_experimental_features#experimental-features). When enabled decorations of the extensions supporting column decorations (currently only git-extras extension does: [sourcegraph-git-extras/pull/276](https://github.com/sourcegraph/sourcegraph-git-extras/pull/276)) will be displayed in separate columns on the blob page. [#36007](https://github.com/khulnasoft/khulnasoft/pull/36007)
+- Extensions: Added `enableExtensionsDecorationsColumnView` user setting as [experimental feature](https://docs.khulnasoft.com/admin/beta_and_experimental_features#experimental-features). When enabled decorations of the extensions supporting column decorations (currently only git-extras extension does: [sourcegraph-git-extras/pull/276](https://github.com/sourcegraph/sourcegraph-git-extras/pull/276)) will be displayed in separate columns on the blob page. [#36007](https://github.com/khulnasoft/khulnasoft/pull/36007)
 - SAML authentication provider has a new site configuration `allowGroups` that allows filtering users by group membership. [#36555](https://github.com/khulnasoft/khulnasoft/pull/36555)
-- A new [templating](https://docs.sourcegraph.com/batch_changes/references/batch_spec_templating) variable, `batch_change_link` has been added for more control over where the "Created by Sourcegraph batch change ..." message appears in the published changeset description. [#491](https://github.com/khulnasoft/khulnasoft/pull/35319)
-- Batch specs can now mount local files in the Docker container when using [Sourcegraph CLI](https://docs.sourcegraph.com/cli). [#31790](https://github.com/khulnasoft/khulnasoft/issues/31790)
+- A new [templating](https://docs.khulnasoft.com/batch_changes/references/batch_spec_templating) variable, `batch_change_link` has been added for more control over where the "Created by Khulnasoft batch change ..." message appears in the published changeset description. [#491](https://github.com/khulnasoft/khulnasoft/pull/35319)
+- Batch specs can now mount local files in the Docker container when using [Khulnasoft CLI](https://docs.khulnasoft.com/cli). [#31790](https://github.com/khulnasoft/khulnasoft/issues/31790)
 - Code Monitoring: Notifications via Slack and generic webhooks are now enabled for everyone by default as a beta feature. [#37037](https://github.com/khulnasoft/khulnasoft/pull/37037)
 - Code Insights: Sort and limit filters have been added to capture group insights. This gives users more control over which series are displayed. [#34611](https://github.com/khulnasoft/khulnasoft/pull/34611)
-- [Running batch changes server-side](https://docs.sourcegraph.com/batch_changes/explanations/server_side) is now in beta! In addition to using src-cli to run batch changes locally, you can now run them server-side as well. This requires installing executors. While running server-side unlocks a new and improved UI experience, you can still use src-cli just like before.
+- [Running batch changes server-side](https://docs.khulnasoft.com/batch_changes/explanations/server_side) is now in beta! In addition to using src-cli to run batch changes locally, you can now run them server-side as well. This requires installing executors. While running server-side unlocks a new and improved UI experience, you can still use src-cli just like before.
 - Code Monitoring: pings for new action types [#37288](https://github.com/khulnasoft/khulnasoft/pull/37288)
 - Better search-based code navigation for Java using tree-sitter [#34875](https://github.com/khulnasoft/khulnasoft/pull/34875)
 
@@ -1256,7 +1256,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Fixed
 
-- Unable to send emails through [Google SMTP relay](https://docs.sourcegraph.com/admin/config/email#configuring-sourcegraph-to-send-email-via-google-workspace-gmail) with mysterious error "EOF". [#35943](https://github.com/khulnasoft/khulnasoft/issues/35943)
+- Unable to send emails through [Google SMTP relay](https://docs.khulnasoft.com/admin/config/email#configuring-sourcegraph-to-send-email-via-google-workspace-gmail) with mysterious error "EOF". [#35943](https://github.com/khulnasoft/khulnasoft/issues/35943)
 - A common source of searcher evictions on kubernetes when running large structural searches. [#34828](https://github.com/khulnasoft/khulnasoft/issues/34828)
 - An issue with permissions evaluation for saved searches
 - An authorization check while Redis is down will now result in an internal server error, instead of clearing a valid session from the user's cookies. [#37016](https://github.com/khulnasoft/khulnasoft/issues/37016)
@@ -1289,9 +1289,9 @@ All notable changes to Sourcegraph are documented in this file.
 - Search: `-language` is a valid filter, but the web app displays it as invalid. The web app is fixed to reflect validity. [#34949](https://github.com/khulnasoft/khulnasoft/pull/34949)
 - Search-based code intelligence now recognizes local variables in Python, Java, JavaScript, TypeScript, C/C++, C#, Go, and Ruby. [#33689](https://github.com/khulnasoft/khulnasoft/pull/33689)
 - GraphQL API: Added support for async external service deletion. This should be used to delete an external service which cannot be deleted within 75 seconds timeout due to a large number of repos. Usage: add `async` boolean field to `deleteExternalService` mutation. Example: `mutation deleteExternalService(externalService: "id", async: true) { alwaysNil }`
-- [search.largeFiles](https://docs.sourcegraph.com/admin/config/site_config#search-largeFiles) now supports recursive globs. For example, it is now possible to specify a pattern like `**/*.lock` to match a lock file anywhere in a repository. [#35411](https://github.com/khulnasoft/khulnasoft/pull/35411)
-- Permissions: The `setRepositoryPermissionsUnrestricted` mutation was added, which allows explicitly marking a repo as available to all Sourcegraph users. [#35378](https://github.com/khulnasoft/khulnasoft/pull/35378)
-- The `repo:deps(...)` predicate can now search through the [Python dependencies of your repositories](https://docs.sourcegraph.com/code_search/how-to/dependencies_search). [#32659](https://github.com/khulnasoft/khulnasoft/issues/32659)
+- [search.largeFiles](https://docs.khulnasoft.com/admin/config/site_config#search-largeFiles) now supports recursive globs. For example, it is now possible to specify a pattern like `**/*.lock` to match a lock file anywhere in a repository. [#35411](https://github.com/khulnasoft/khulnasoft/pull/35411)
+- Permissions: The `setRepositoryPermissionsUnrestricted` mutation was added, which allows explicitly marking a repo as available to all Khulnasoft users. [#35378](https://github.com/khulnasoft/khulnasoft/pull/35378)
+- The `repo:deps(...)` predicate can now search through the [Python dependencies of your repositories](https://docs.khulnasoft.com/code_search/how-to/dependencies_search). [#32659](https://github.com/khulnasoft/khulnasoft/issues/32659)
 - Batch Changes are now supported on [Bitbucket Cloud](https://bitbucket.org/). [#24199](https://github.com/khulnasoft/khulnasoft/issues/24199)
 - Pings for server-side batch changes [#34308](https://github.com/khulnasoft/khulnasoft/pull/34308)
 - Indexed search will detect when it is misconfigured and has multiple replicas writing to the same directory. [#35513](https://github.com/khulnasoft/khulnasoft/pull/35513)
@@ -1301,7 +1301,7 @@ All notable changes to Sourcegraph are documented in this file.
 ### Changed
 
 - Khulnasoft's docker images are now based on Alpine Linux 3.14. [#34508](https://github.com/khulnasoft/khulnasoft/pull/34508)
-- Sourcegraph is now built with Go 1.18. [#34899](https://github.com/khulnasoft/khulnasoft/pull/34899)
+- Khulnasoft is now built with Go 1.18. [#34899](https://github.com/khulnasoft/khulnasoft/pull/34899)
 - Capture group Code Insights now use the Compute streaming endpoint. [#34905](https://github.com/khulnasoft/khulnasoft/pull/34905)
 - Code Insights will now automatically generate queries with a default value of `fork:no` and `archived:no` if these fields are not specified by the user. This removes the need to manually add these fields to have consistent behavior from historical to non-historical results. [#30204](https://github.com/khulnasoft/khulnasoft/issues/30204)
 - Search Code Insights now use the Search streaming endpoint. [#35286](https://github.com/khulnasoft/khulnasoft/pull/35286)
@@ -1338,7 +1338,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Added
 
-- Added support for LSIF upload authentication against GitLab.com on Sourcegraph Cloud. [#33254](https://github.com/khulnasoft/khulnasoft/pull/33254)
+- Added support for LSIF upload authentication against GitLab.com on Khulnasoft Cloud. [#33254](https://github.com/khulnasoft/khulnasoft/pull/33254)
 - Add "getting started/quick start checklist for authenticated users" [#32882](https://github.com/khulnasoft/khulnasoft/pull/32882)
 - A redesigned repository page is now available under the `new-repo-page` feature flag. [#33319](https://github.com/khulnasoft/khulnasoft/pull/33319)
 - Pings now include notebooks usage metrics. [#30087](https://github.com/khulnasoft/khulnasoft/issues/30087)
@@ -1347,7 +1347,7 @@ All notable changes to Sourcegraph are documented in this file.
 - The Code Insights commit indexer can now index commits in smaller batches. Set the number of days per batch in the site setting `insights.commit.indexer.windowDuration`. A value of 0 (default) will disable batching. [#33666](https://github.com/khulnasoft/khulnasoft/pull/33666)
 - Support account lockout after consecutive failed sign-in attempts for builtin authentication provider (i.e. username and password), new config options are added to the site configuration under `"auth.lockout"` to customize the threshold, length of lockout and consecutive periods. [#33999](https://github.com/khulnasoft/khulnasoft/pull/33999)
 - pgsql-exporter for Code Insights has been added to docker-compose and Kubernetes deployments to gather database-level metrics. [#780](https://github.com/sourcegraph/deploy-sourcegraph-docker/pull/780), [#4111](https://github.com/sourcegraph/deploy-sourcegraph/pull/4111)
-- `repo:dependencies(...)` predicate can now search through the [Go dependencies of your repositories](https://docs.sourcegraph.com/code_search/how-to/dependencies_search). [#32658](https://github.com/khulnasoft/khulnasoft/issues/32658)
+- `repo:dependencies(...)` predicate can now search through the [Go dependencies of your repositories](https://docs.khulnasoft.com/code_search/how-to/dependencies_search). [#32658](https://github.com/khulnasoft/khulnasoft/issues/32658)
 - Added a site config value `defaultRateLimit` to optionally configure a global default rate limit for external services.
 
 ### Changed
@@ -1365,7 +1365,7 @@ All notable changes to Sourcegraph are documented in this file.
 ### Fixed
 
 - Fixed create insight button being erroneously disabled.
-- Fixed an issue where a `Warning: Sourcegraph cannot send emails!` banner would appear for all users instead of just site admins (introduced in v3.38).
+- Fixed an issue where a `Warning: Khulnasoft cannot send emails!` banner would appear for all users instead of just site admins (introduced in v3.38).
 - Fixed reading search pattern type from settings [#32989](https://github.com/khulnasoft/khulnasoft/issues/32989)
 - Display a tooltip and truncate the title of a search result when content overflows [#32904](https://github.com/khulnasoft/khulnasoft/pull/32904)
 - Search patterns containing `and` and `not` expressions are now optimized to evaluate natively on the Zoekt backend for indexed code content and symbol search wherever possible. These kinds of queries are now typically an order of magnitude faster. Previous cases where no results were returned for expensive search expressions should now work and return results quickly. [#33308](https://github.com/khulnasoft/khulnasoft/pull/33308)
@@ -1387,7 +1387,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Added
 
-- Added new "Getting started onboarding tour" for not authenticated users on Sourcegraph.com instead of "Search onboarding tour" [#32263](https://github.com/khulnasoft/khulnasoft/pull/32263)
+- Added new "Getting started onboarding tour" for not authenticated users on Khulnasoft.com instead of "Search onboarding tour" [#32263](https://github.com/khulnasoft/khulnasoft/pull/32263)
 - Pings now include code host integration usage metrics [#31379](https://github.com/khulnasoft/khulnasoft/pull/31379)
 - Added `PRECISE_CODE_INTEL_UPLOAD_AWS_USE_EC2_ROLE_CREDENTIALS` environment variable to enable EC2 metadata API authentication to an external S3 bucket storing precise code intelligence uploads. [#31820](https://github.com/khulnasoft/khulnasoft/pull/31820)
 - LSIF upload pages now include a section listing the reasons and retention policies resulting in an upload being retained and not expired. [#30864](https://github.com/khulnasoft/khulnasoft/pull/30864)
@@ -1396,11 +1396,11 @@ All notable changes to Sourcegraph are documented in this file.
 - Notebooks from private enterprise instances can now be embedded in external sites by enabling the `enable-embed-route` feature flag. [#31628](https://github.com/khulnasoft/khulnasoft/issues/31628)
 - Pings now include IDE extensions usage metrics [#32000](https://github.com/khulnasoft/khulnasoft/pull/32000)
 - New EventSource type: `IDEEXTENSION` for IDE extensions-related events [#32000](https://github.com/khulnasoft/khulnasoft/pull/32000)
-- Code Monitoring now has a Logs tab enabled as a [beta feature](https://docs.sourcegraph.com/admin/beta_and_experimental_features). This lets you see recent runs of your code monitors and determine if any notifications were sent or if there were any errors during the run. [#32292](https://github.com/khulnasoft/khulnasoft/pull/32292)
+- Code Monitoring now has a Logs tab enabled as a [beta feature](https://docs.khulnasoft.com/admin/beta_and_experimental_features). This lets you see recent runs of your code monitors and determine if any notifications were sent or if there were any errors during the run. [#32292](https://github.com/khulnasoft/khulnasoft/pull/32292)
 - Code Monitoring creation and editing now supports syntax highlighting and autocomplete on the search box. [#32536](https://github.com/khulnasoft/khulnasoft/pull/32536)
-- New `repo:dependencies(...)` predicate allows you to [search through the dependencies of your repositories](https://docs.sourcegraph.com/code_search/how-to/dependencies_search). This feature is currently in beta and only npm package repositories are supported with dependencies from `package-lock.json` and `yarn.lock` files. [#32405](https://github.com/khulnasoft/khulnasoft/issues/32405)
+- New `repo:dependencies(...)` predicate allows you to [search through the dependencies of your repositories](https://docs.khulnasoft.com/code_search/how-to/dependencies_search). This feature is currently in beta and only npm package repositories are supported with dependencies from `package-lock.json` and `yarn.lock` files. [#32405](https://github.com/khulnasoft/khulnasoft/issues/32405)
 - Site config has a new _experimental_ feature called `gitServerPinnedRepos` that allows admins to pin specific repositories to particular gitserver instances. [#32831](https://github.com/khulnasoft/khulnasoft/pull/32831).
-- Added [Rockskip](https://docs.sourcegraph.com/code_intelligence/explanations/rockskip), a scalable symbol service backend for a fast symbol sidebar and search-based code intelligence on monorepos.
+- Added [Rockskip](https://docs.khulnasoft.com/code_intelligence/explanations/rockskip), a scalable symbol service backend for a fast symbol sidebar and search-based code intelligence on monorepos.
 - Code monitor email notifications can now optionally include the content of new search results. This is disabled by default but can be enabled by editing the code monitor's email action and toggling on "Include search results in sent message". [#32097](https://github.com/khulnasoft/khulnasoft/pull/32097)
 
 ### Changed
@@ -1413,7 +1413,7 @@ All notable changes to Sourcegraph are documented in this file.
 - The Phabricator integration with Gitolite code hosts has been deprecated, the fields have been kept to not break existing systems, but the integration does not work anymore
 - The SSH library used to push Batch Change branches to code hosts has been updated to prevent issues pushing to github.com or GitHub Enterprise releases after March 15, 2022. [#32641](https://github.com/khulnasoft/khulnasoft/issues/32641)
 - Bumped the minimum supported version of Docker Compose from `1.22.0` to `1.29.0`. [#32631](https://github.com/khulnasoft/khulnasoft/pull/32631)
-- [Code host API rate limit configuration](https://docs.sourcegraph.com/admin/repo/update_frequency#code-host-api-rate-limiting) no longer based on code host URLs but only takes effect on each individual external services. To enforce API rate limit, please add configuration to all external services that are intended to be rate limited. [#32768](https://github.com/khulnasoft/khulnasoft/pull/32768)
+- [Code host API rate limit configuration](https://docs.khulnasoft.com/admin/repo/update_frequency#code-host-api-rate-limiting) no longer based on code host URLs but only takes effect on each individual external services. To enforce API rate limit, please add configuration to all external services that are intended to be rate limited. [#32768](https://github.com/khulnasoft/khulnasoft/pull/32768)
 
 ### Fixed
 
@@ -1433,13 +1433,13 @@ All notable changes to Sourcegraph are documented in this file.
 
 - Code in search results is now selectable (e.g. for copying). Just clicking on the code continues to open the corresponding file as it did before. [#30033](https://github.com/khulnasoft/khulnasoft/pull/30033)
 - Search Notebooks now support importing and exporting Markdown-formatted files. [#28586](https://github.com/khulnasoft/khulnasoft/issues/28586)
-- Added standalone migrator service that can be used to run database migrations independently of an upgrade. For more detail see the [standalone migrator docs](https://docs.sourcegraph.com/admin/how-to/manual_database_migrations) and the [docker-compose](https://docs.sourcegraph.com/admin/install/docker-compose/operations#database-migrations) or [kubernetes](https://docs.sourcegraph.com/admin/install/kubernetes/update#database-migrations) upgrade docs.
+- Added standalone migrator service that can be used to run database migrations independently of an upgrade. For more detail see the [standalone migrator docs](https://docs.khulnasoft.com/admin/how-to/manual_database_migrations) and the [docker-compose](https://docs.khulnasoft.com/admin/install/docker-compose/operations#database-migrations) or [kubernetes](https://docs.khulnasoft.com/admin/install/kubernetes/update#database-migrations) upgrade docs.
 
 ### Changed
 
 - Syntax highlighting for JSON now uses a distinct color for strings in object key positions. [#30105](https://github.com/khulnasoft/khulnasoft/pull/30105)
 - GraphQL API: The order of events returned by `MonitorTriggerEventConnection` has been reversed so newer events are returned first. The `after` parameter has been modified accordingly to return events older the one specified, to allow for pagination. [31219](https://github.com/khulnasoft/khulnasoft/pull/31219)
-- [Query based search contexts](https://docs.sourcegraph.com/code_search/how-to/search_contexts#beta-query-based-search-contexts) are now enabled by default as a [beta feature](https://docs.sourcegraph.com/admin/beta_and_experimental_features). [#30888](https://github.com/khulnasoft/khulnasoft/pull/30888)
+- [Query based search contexts](https://docs.khulnasoft.com/code_search/how-to/search_contexts#beta-query-based-search-contexts) are now enabled by default as a [beta feature](https://docs.khulnasoft.com/admin/beta_and_experimental_features). [#30888](https://github.com/khulnasoft/khulnasoft/pull/30888)
 - The symbols sidebar loads much faster on old commits (after processing it) when scoped to a subdirectory in a big repository. [#31300](https://github.com/khulnasoft/khulnasoft/pull/31300)
 
 ### Fixed
@@ -1468,7 +1468,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Removed
 
-- The TOS consent screen which would appear for all users upon signing into Sourcegraph. We had some internal miscommunication on this onboarding flow and it didn’t turn out the way we intended, this effectively reverts that change. ![#30192](https://github.com/khulnasoft/khulnasoft/issues/30192)
+- The TOS consent screen which would appear for all users upon signing into Khulnasoft. We had some internal miscommunication on this onboarding flow and it didn’t turn out the way we intended, this effectively reverts that change. ![#30192](https://github.com/khulnasoft/khulnasoft/issues/30192)
 
 ## 3.36.1
 
@@ -1481,7 +1481,7 @@ All notable changes to Sourcegraph are documented in this file.
 ### Added
 
 - Search contexts can now be defined with a restricted search query as an alternative to a specific list of repositories and revisions. This feature is _beta_ and may change in the following releases. Allowed filters: `repo`, `rev`, `file`, `lang`, `case`, `fork`, `visibility`. `OR`, `AND` expressions are also allowed. To enable this feature to all users, set `experimentalFeatures.searchContextsQuery` to true in global settings. You'll then see a "Create context" button from the search results page and a "Query" input field in the search contexts form. If you want revisions specified in these query based search contexts to be indexed, set `experimentalFeatures.search.index.query.contexts` to true in site configuration. [#29327](https://github.com/khulnasoft/khulnasoft/pull/29327)
-- More explicit Terms of Service and Privacy Policy consent has been added to Sourcegraph Server. [#28716](https://github.com/khulnasoft/khulnasoft/issues/28716)
+- More explicit Terms of Service and Privacy Policy consent has been added to Khulnasoft Server. [#28716](https://github.com/khulnasoft/khulnasoft/issues/28716)
 - Batch changes will be created on forks of the upstream repository if the new `batchChanges.enforceForks` site setting is enabled. [#17879](https://github.com/khulnasoft/khulnasoft/issues/17879)
 - Symbolic links are now searchable. Previously it was possible to navigate to symbolic links in the repository tree view, however the symbolic links were ignored during searches. [#29567](https://github.com/khulnasoft/khulnasoft/pull/29567), [#237](https://github.com/sourcegraph/zoekt/pull/237)
 - Maximum number of references/definitions shown in panel can be adjusted in settings with `codeIntelligence.maxPanelResults`. If not set, a hardcoded limit of 500 was used. [#29629](https://github.com/khulnasoft/khulnasoft/29629)
@@ -1495,8 +1495,8 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Changed
 
-- Khulnasoft's API (streaming search, GraphQL, etc.) may now be used from any domain when using an access token for authentication, or with no authentication in the case of Sourcegraph.com. [#28775](https://github.com/khulnasoft/khulnasoft/pull/28775)
-- The endpoint `/search/stream` will be retired in favor of `/.api/search/stream`. This requires no action unless you have developed custom code against `/search/stream`. We will support both endpoints for a short period of time before removing `/search/stream`. Please refer to the [documentation](https://docs.sourcegraph.com/api/stream_api) for more information.
+- Khulnasoft's API (streaming search, GraphQL, etc.) may now be used from any domain when using an access token for authentication, or with no authentication in the case of Khulnasoft.com. [#28775](https://github.com/khulnasoft/khulnasoft/pull/28775)
+- The endpoint `/search/stream` will be retired in favor of `/.api/search/stream`. This requires no action unless you have developed custom code against `/search/stream`. We will support both endpoints for a short period of time before removing `/search/stream`. Please refer to the [documentation](https://docs.khulnasoft.com/api/stream_api) for more information.
 - When displaying the content of symbolic links in the repository tree view, we will show the relative path to the link's target instead of the target's content. This behavior is consistent with how we display symbolic links in search results. [#29687](https://github.com/khulnasoft/khulnasoft/pull/29687)
 - A new janitor job, "sg maintenance" was added to gitserver. The new job replaces "garbage collect" with the goal to optimize the performance of git operations for large repositories. You can choose to enable "garbage collect" again by setting the environment variables "SRC_ENABLE_GC_AUTO" to "true" and "SRC_ENABLE_SG_MAINTENANCE" to "false" for gitserver. Note that you must not enable both options at the same time. [#28224](https://github.com/khulnasoft/khulnasoft/pull/28224).
 - Search results across repositories are now ordered by repository rank by default. By default the rank is the number of stars a repository has. An administrator can inflate the rank of a repository via `experimentalFeatures.ranking.repoScores`. If you notice increased latency in results, you can disable this feature by setting `experimentalFeatures.ranking.maxReorderQueueSize` to 0. [#29856](https://github.com/khulnasoft/khulnasoft/pull/29856)
@@ -1508,7 +1508,7 @@ All notable changes to Sourcegraph are documented in this file.
 - Issue preventing searches from completing when certain patterns contain `@`. [#29489](https://github.com/khulnasoft/khulnasoft/pull/29489)
 - The grafana dashboard for "successful search request duration" reports the time for streaming search which is used by the browser. Previously it reported the GraphQL time which the browser no longer uses. [#29625](https://github.com/khulnasoft/khulnasoft/pull/29625)
 - A regression introduced in 3.35 causing Code Insights that are run over all repositories to not query against repositories that have permissions enabled. (Restricted repositories are and remain filtered based on user permissions when a user views a chart, not at query time.) This may cause global Insights to undercount for data points generated after upgrading to 3.35 and before upgrading to 3.36. [](https://github.com/khulnasoft/khulnasoft/pull/29725)
-- Renaming repositories now removes the old indexes on Zoekt's disks. This did not affect search results, only wasted disk space. This was a regression introduced in Sourcegraph 3.33. [#29685](https://github.com/khulnasoft/khulnasoft/issues/29685)
+- Renaming repositories now removes the old indexes on Zoekt's disks. This did not affect search results, only wasted disk space. This was a regression introduced in Khulnasoft 3.33. [#29685](https://github.com/khulnasoft/khulnasoft/issues/29685)
 
 ### Removed
 
@@ -1535,11 +1535,11 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Added
 
-- Individual batch changes can publish multiple changesets to the same repository by specifying multiple target branches using the [`on.branches`](https://docs.sourcegraph.com/batch_changes/references/batch_spec_yaml_reference#on-repository) attribute. [#25228](https://github.com/khulnasoft/khulnasoft/issues/25228)
+- Individual batch changes can publish multiple changesets to the same repository by specifying multiple target branches using the [`on.branches`](https://docs.khulnasoft.com/batch_changes/references/batch_spec_yaml_reference#on-repository) attribute. [#25228](https://github.com/khulnasoft/khulnasoft/issues/25228)
 - Low resource overlay added. NOTE: this is designed for internal-use only. Customers can use the `minikube` overlay to achieve similar results.[#4012](https://github.com/sourcegraph/deploy-sourcegraph/pull/4012)
-- Code Insights has a new insight `Detect and Track` which will generate unique time series from the matches of a pattern specified as a regular expression capture group. This is currently limited to insights scoped to specific repositories. [docs](https://docs.sourcegraph.com/code_insights/explanations/automatically_generated_data_series)
+- Code Insights has a new insight `Detect and Track` which will generate unique time series from the matches of a pattern specified as a regular expression capture group. This is currently limited to insights scoped to specific repositories. [docs](https://docs.khulnasoft.com/code_insights/explanations/automatically_generated_data_series)
 - Code Insights is persisted entirely in the `codeinsights-db` database. A migration will automatically be performed to move any defined insights and dashboards from your user, org, or global settings files.
-- The GraphQL API for Code Insights has entered beta. [docs](https://docs.sourcegraph.com/code_insights/references/code_insights_graphql_api)
+- The GraphQL API for Code Insights has entered beta. [docs](https://docs.khulnasoft.com/code_insights/references/code_insights_graphql_api)
 - The `SRC_GIT_SERVICE_MAX_EGRESS_BYTES_PER_SECOND` environment variable to control the egress throughput of gitserver's git service (e.g. used by zoekt-index-server to clone repos to index). Set to -1 for no limit. [#29197](https://github.com/khulnasoft/khulnasoft/pull/29197)
 - Search suggestions via the GraphQL API were deprecated last release and are now no longer available. Suggestions now work only with the search streaming API. [#29283](https://github.com/khulnasoft/khulnasoft/pull/29283)
 - Clicking on a token will now jump to its definition. [#28520](https://github.com/khulnasoft/khulnasoft/pull/28520)
@@ -1548,7 +1548,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 - The `ALLOW_DECRYPT_MIGRATION` environment variable is now read by the `worker` service, not the `frontend` service as in previous versions.
 - External services will stop syncing if they exceed the user / site level limit for total number of repositories added. It will only continue syncing if the extra repositories are removed or the corresponding limit is increased, otherwise it will stop syncing for the very first repository each time the syncer attempts to sync the external service again. [#28674](https://github.com/khulnasoft/khulnasoft/pull/28674)
-- Sourcegraph services now listen to SIGTERM signals. This allows smoother rollouts in kubernetes deployments. [#27958](https://github.com/khulnasoft/khulnasoft/pull/27958)
+- Khulnasoft services now listen to SIGTERM signals. This allows smoother rollouts in kubernetes deployments. [#27958](https://github.com/khulnasoft/khulnasoft/pull/27958)
 - The sourcegraph-frontend ingress now uses the networking.k8s.io/v1 api. This adds support for k8s v1.22 and later, and deprecates support for versions older than v1.18.x [#4029](https://github.com/sourcegraph/deploy-sourcegraph/pull/4029)
 - Non-bare repositories found on gitserver will be removed by a janitor job. [#28895](https://github.com/khulnasoft/khulnasoft/pull/28895)
 - The search bar is no longer auto-focused when navigating between files. This change means that the keyboard shortcut Cmd+LeftArrow (or Ctrl-LeftArrow) now goes back to the browser's previous page instead of moving the cursor position to the first position of the search bar. [#28943](https://github.com/khulnasoft/khulnasoft/pull/28943)
@@ -1596,7 +1596,7 @@ All notable changes to Sourcegraph are documented in this file.
 - Added monitoring page for Redis databases [#26967](https://github.com/khulnasoft/khulnasoft/issues/26967)
 - The search indexer only polls repositories that have been marked as changed. This reduces a large source of load in installations with a large number of repositories. If you notice index staleness, you can try disabling by setting the environment variable `SRC_SEARCH_INDEXER_EFFICIENT_POLLING_DISABLED` on `sourcegraph-frontend`. [#27058](https://github.com/khulnasoft/khulnasoft/issues/27058)
 - Pings include instance wide total counts of Code Insights grouped by presentation type, series type, and presentation-series type. [#27602](https://github.com/khulnasoft/khulnasoft/pull/27602)
-- Added logging of incoming Batch Changes webhooks, which can be viewed by site admins. By default, sites without encryption will log webhooks for three days, while sites with encryption will not log webhooks without explicit configuration. [See the documentation for more details](https://docs.sourcegraph.com/admin/config/batch_changes#incoming-webhooks). [#26669](https://github.com/khulnasoft/khulnasoft/issues/26669)
+- Added logging of incoming Batch Changes webhooks, which can be viewed by site admins. By default, sites without encryption will log webhooks for three days, while sites with encryption will not log webhooks without explicit configuration. [See the documentation for more details](https://docs.khulnasoft.com/admin/config/batch_changes#incoming-webhooks). [#26669](https://github.com/khulnasoft/khulnasoft/issues/26669)
 - Added support for finding implementations of interfaces and methods. [#24854](https://github.com/khulnasoft/khulnasoft/pull/24854)
 
 ### Changed
@@ -1614,14 +1614,14 @@ All notable changes to Sourcegraph are documented in this file.
 - Improve detection for Docker running in non-linux
   environments. [#23477](https://github.com/khulnasoft/khulnasoft/issues/23477)
 - Fixed the cache size calculation used for Kubernetes deployments. Previously, the calculated value was too high and would exceed the ephemeral storage request limit. #[26283](https://github.com/khulnasoft/khulnasoft/issues/26283)
-- Fixed a regression that was introduced in 3.27 and broke SSH-based authentication for managing Batch Changes changesets on code hosts. SSH keys generated by Sourcegraph were not used for authentication and authenticating with the code host would fail if no SSH key with write-access had been added to `gitserver`. [#27491](https://github.com/khulnasoft/khulnasoft/pull/27491)
+- Fixed a regression that was introduced in 3.27 and broke SSH-based authentication for managing Batch Changes changesets on code hosts. SSH keys generated by Khulnasoft were not used for authentication and authenticating with the code host would fail if no SSH key with write-access had been added to `gitserver`. [#27491](https://github.com/khulnasoft/khulnasoft/pull/27491)
 - Private repositories matching `-repo:` expressions are now excluded. This was a regression introduced in 3.33.0. [#27044](https://github.com/khulnasoft/khulnasoft/issues/27044)
 
 ### Removed
 
 - All version contexts functionality (deprecated in 3.33) is now removed. [#26267](https://github.com/khulnasoft/khulnasoft/issues/26267)
 - Query filter `repogroup` (deprecated in 3.33) is now removed. [#24277](https://github.com/khulnasoft/khulnasoft/issues/24277)
-- Sourcegraph no longer uses CSRF security tokens/cookies to prevent CSRF attacks. Instead, Sourcegraph now relies solely on browser's CORS policies (which were already in place.) In practice, this is just as safe and leads to a simpler CSRF threat model which reduces security risks associated with our threat model complexity. [#7658](https://github.com/khulnasoft/khulnasoft/pull/7658)
+- Khulnasoft no longer uses CSRF security tokens/cookies to prevent CSRF attacks. Instead, Khulnasoft now relies solely on browser's CORS policies (which were already in place.) In practice, this is just as safe and leads to a simpler CSRF threat model which reduces security risks associated with our threat model complexity. [#7658](https://github.com/khulnasoft/khulnasoft/pull/7658)
 - Notifications for saved searches (deprecated in v3.31.0) have been removed [#27912](https://github.com/khulnasoft/khulnasoft/pull/27912/files)
 
 ## 3.33.2
@@ -1635,7 +1635,7 @@ All notable changes to Sourcegraph are documented in this file.
 ### Fixed
 
 - Private repositories matching `-repo:` expressions are now excluded. This was a regression introduced in 3.33.0. [#27044](https://github.com/khulnasoft/khulnasoft/issues/27044)
-- Fixed a regression that was introduced in 3.27 and broke SSH-based authentication for managing Batch Changes changesets on code hosts. SSH keys generated by Sourcegraph were not used for authentication and authenticating with the code host would fail if no SSH key with write-access had been added to `gitserver`. [#27491](https://github.com/khulnasoft/khulnasoft/pull/27491)
+- Fixed a regression that was introduced in 3.27 and broke SSH-based authentication for managing Batch Changes changesets on code hosts. SSH keys generated by Khulnasoft were not used for authentication and authenticating with the code host would fail if no SSH key with write-access had been added to `gitserver`. [#27491](https://github.com/khulnasoft/khulnasoft/pull/27491)
 
 ## 3.33.0
 
@@ -1649,11 +1649,11 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Changed
 
-- Search context management pages are now only available in the Sourcegraph enterprise version. Search context dropdown is disabled in the OSS version. [#25147](https://github.com/khulnasoft/khulnasoft/pull/25147)
-- Search contexts GQL API is now only available in the Sourcegraph enterprise version. [#25281](https://github.com/khulnasoft/khulnasoft/pull/25281)
-- When running a commit or diff query, the accepted values of `before` and `after` have changed from "whatever git accepts" to a [slightly more strict subset](https://docs.sourcegraph.com/code_search/reference/language#before) of that. [#25414](https://github.com/khulnasoft/khulnasoft/pull/25414)
-- Repogroups and version contexts are deprecated in favor of search contexts. Read more about the deprecation and how to migrate to search contexts in the [blog post](https://about.sourcegraph.com/blog/introducing-search-contexts). [#25676](https://github.com/khulnasoft/khulnasoft/pull/25676)
-- Search contexts are now enabled by default in the Sourcegraph enterprise version. [#25674](https://github.com/khulnasoft/khulnasoft/pull/25674)
+- Search context management pages are now only available in the Khulnasoft enterprise version. Search context dropdown is disabled in the OSS version. [#25147](https://github.com/khulnasoft/khulnasoft/pull/25147)
+- Search contexts GQL API is now only available in the Khulnasoft enterprise version. [#25281](https://github.com/khulnasoft/khulnasoft/pull/25281)
+- When running a commit or diff query, the accepted values of `before` and `after` have changed from "whatever git accepts" to a [slightly more strict subset](https://docs.khulnasoft.com/code_search/reference/language#before) of that. [#25414](https://github.com/khulnasoft/khulnasoft/pull/25414)
+- Repogroups and version contexts are deprecated in favor of search contexts. Read more about the deprecation and how to migrate to search contexts in the [blog post](https://about.khulnasoft.com/blog/introducing-search-contexts). [#25676](https://github.com/khulnasoft/khulnasoft/pull/25676)
+- Search contexts are now enabled by default in the Khulnasoft enterprise version. [#25674](https://github.com/khulnasoft/khulnasoft/pull/25674)
 - Code Insights background queries will now retry a maximum of 10 times (down from 100). [#26057](https://github.com/khulnasoft/khulnasoft/pull/26057)
 - Our `sourcegraph/cadvisor` Docker image has been upgraded to cadvisor version `v0.42.0`. [#26126](https://github.com/khulnasoft/khulnasoft/pull/26126)
 - Our `jaeger` version in the `sourcegraph/sourcegraph` Docker image has been upgraded to `1.24.0`. [#26215](https://github.com/khulnasoft/khulnasoft/pull/26215)
@@ -1678,14 +1678,14 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Removed
 
-- Batch Changes changeset specs stored the raw JSON used when creating them, which is no longer used and is not exposed in the API. This column has been removed, thereby saving space in the Sourcegraph database. [#25453](https://github.com/khulnasoft/khulnasoft/issues/25453)
+- Batch Changes changeset specs stored the raw JSON used when creating them, which is no longer used and is not exposed in the API. This column has been removed, thereby saving space in the Khulnasoft database. [#25453](https://github.com/khulnasoft/khulnasoft/issues/25453)
 - The query builder page experimental feature, which was disabled in 3.21, is now removed. The setting `{ "experimentalFeatures": { "showQueryBuilder": true } }` now has no effect. [#26125](https://github.com/khulnasoft/khulnasoft/pull/26125)
 
 ## 3.32.1
 
 ### Fixed
 
-- Fixed a regression that was introduced in 3.27 and broke SSH-based authentication for managing Batch Changes changesets on code hosts. SSH keys generated by Sourcegraph were not used for authentication and authenticating with the code host would fail if no SSH key with write-access had been added to `gitserver`. [#27491](https://github.com/khulnasoft/khulnasoft/pull/27491)
+- Fixed a regression that was introduced in 3.27 and broke SSH-based authentication for managing Batch Changes changesets on code hosts. SSH keys generated by Khulnasoft were not used for authentication and authenticating with the code host would fail if no SSH key with write-access had been added to `gitserver`. [#27491](https://github.com/khulnasoft/khulnasoft/pull/27491)
 
 ## 3.32.0
 
@@ -1693,7 +1693,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 - The search sidebar shows a revisions section if all search results are from a single repository. This makes it easier to search in and switch between different revisions. [#23835](https://github.com/khulnasoft/khulnasoft/pull/23835)
 - The various alerts overview panels in Grafana can now be clicked to go directly to the relevant panels and dashboards. [#24920](https://github.com/khulnasoft/khulnasoft/pull/24920)
-- Added a `Documentation` tab to the Site Admin Maintenance panel that links to the official Sourcegraph documentation. [#24917](https://github.com/khulnasoft/khulnasoft/pull/24917)
+- Added a `Documentation` tab to the Site Admin Maintenance panel that links to the official Khulnasoft documentation. [#24917](https://github.com/khulnasoft/khulnasoft/pull/24917)
 - Code Insights that run over all repositories now generate a moving daily snapshot between time points. [#24804](https://github.com/khulnasoft/khulnasoft/pull/24804)
 - The Code Insights GraphQL API now restricts the results to user, org, and globally scoped insights. Insights will be synced to the database with access associated to the user or org setting containing the insight definition. [#25017](https://github.com/khulnasoft/khulnasoft/pull/25017)
 - The timeout for long-running Git commands can be customized via `gitLongCommandTimeout` in the site config. [#25080](https://github.com/khulnasoft/khulnasoft/pull/25080)
@@ -1702,9 +1702,9 @@ All notable changes to Sourcegraph are documented in this file.
 
 - `allowGroupsPermissionsSync` in the GitHub authorization provider is now required to enable the experimental GitHub teams and organization permissions caching. [#24561](https://github.com/khulnasoft/khulnasoft/pull/24561)
 - GitHub external code hosts now validate if a corresponding authorization provider is set, and emits a warning if not. [#24526](https://github.com/khulnasoft/khulnasoft/pull/24526)
-- Sourcegraph is now built with Go 1.17. [#24566](https://github.com/khulnasoft/khulnasoft/pull/24566)
-- Code Insights is now available only in the Sourcegraph enterprise. [#24741](https://github.com/khulnasoft/khulnasoft/pull/24741)
-- Prometheus in Sourcegraph with Docker Compose now scrapes Postgres and Redis instances for metrics. [deploy-sourcegraph-docker#580](https://github.com/sourcegraph/deploy-sourcegraph-docker/pull/580)
+- Khulnasoft is now built with Go 1.17. [#24566](https://github.com/khulnasoft/khulnasoft/pull/24566)
+- Code Insights is now available only in the Khulnasoft enterprise. [#24741](https://github.com/khulnasoft/khulnasoft/pull/24741)
+- Prometheus in Khulnasoft with Docker Compose now scrapes Postgres and Redis instances for metrics. [deploy-sourcegraph-docker#580](https://github.com/sourcegraph/deploy-sourcegraph-docker/pull/580)
 - Symbol suggestions now leverage optimizations for global searches. [#24943](https://github.com/khulnasoft/khulnasoft/pull/24943)
 
 ### Fixed
@@ -1749,7 +1749,7 @@ All notable changes to Sourcegraph are documented in this file.
 - Code Insights will do a one-time reset of ephemeral insights specific database tables to clean up stale and invalid data. Insight data will regenerate automatically. [23791](https://github.com/khulnasoft/khulnasoft/pull/23791)
 - Perforce: added basic support for Perforce permission table path wildcards. [#23755](https://github.com/khulnasoft/khulnasoft/pull/23755)
 - Added autocompletion and search filtering of branch/tag/commit revisions to the repository compare page. [#23977](https://github.com/khulnasoft/khulnasoft/pull/23977)
-- Batch Changes changesets can now be [set to published when previewing new or updated batch changes](https://docs.sourcegraph.com/batch_changes/how-tos/publishing_changesets#within-the-ui). [#22912](https://github.com/khulnasoft/khulnasoft/issues/22912)
+- Batch Changes changesets can now be [set to published when previewing new or updated batch changes](https://docs.khulnasoft.com/batch_changes/how-tos/publishing_changesets#within-the-ui). [#22912](https://github.com/khulnasoft/khulnasoft/issues/22912)
 - Added Python3 to server and gitserver images to enable git-p4 support. [#24204](https://github.com/khulnasoft/khulnasoft/pull/24204)
 - Code Insights drill-down filters now allow filtering insights data on the dashboard page using repo: filters. [#23186](https://github.com/khulnasoft/khulnasoft/issues/23186)
 - GitHub repository permissions can now leverage caching of team and organization permissions for user permissions syncing. Caching behaviour can be enabled via the `authorization.groupsCacheTTL` field in the code host config. This can significantly reduce the amount of time it takes to perform a full permissions sync due to reduced instances of being rate limited by the code host. [#23978](https://github.com/khulnasoft/khulnasoft/pull/23978)
@@ -1769,7 +1769,7 @@ All notable changes to Sourcegraph are documented in this file.
 - Khulnasoft's Prometheus dependency has been upgraded to v2.28.1. [23663](https://github.com/khulnasoft/khulnasoft/pull/23663)
 - Khulnasoft's Alertmanager dependency has been upgraded to v0.22.2. [23663](https://github.com/khulnasoft/khulnasoft/pull/23714)
 - Code Insights will now schedule sample recordings for the first of the next month after creation or a previous recording. [#23799](https://github.com/khulnasoft/khulnasoft/pull/23799)
-- Code Insights now stores data in a new format. Data points will store complete vectors for all repositories even if the underlying Sourcegraph queries were compressed. [#23768](https://github.com/khulnasoft/khulnasoft/pull/23768)
+- Code Insights now stores data in a new format. Data points will store complete vectors for all repositories even if the underlying Khulnasoft queries were compressed. [#23768](https://github.com/khulnasoft/khulnasoft/pull/23768)
 - Code Insights rate limit values have been tuned for a more reasonable performance. [#23860](https://github.com/khulnasoft/khulnasoft/pull/23860)
 - Code Insights will now generate historical data once per month on the first of the month, up to the configured `insights.historical.frames` number of frames. [#23768](https://github.com/khulnasoft/khulnasoft/pull/23768)
 - Code Insights will now schedule recordings for the first of the next calendar month after an insight is created or recorded. [#23799](https://github.com/khulnasoft/khulnasoft/pull/23799)
@@ -1780,7 +1780,7 @@ All notable changes to Sourcegraph are documented in this file.
 - The `sourcegraph-frontend.Role` in Kubernetes deployments was updated to permit statefulsets access in the Kubernetes API. This is needed to better support stable service discovery for stateful sets during deployments, which isn't currently possible by using service endpoints. [#3670](https://github.com/sourcegraph/deploy-sourcegraph/pull/3670) [#23889](https://github.com/khulnasoft/khulnasoft/pull/23889)
 - For Docker-Compose and Kubernetes users, the built-in main Postgres and codeintel databases have switched to an alpine Docker image. This requires re-indexing the entire database. This process can take up to a few hours on systems with large datasets. [#23697](https://github.com/khulnasoft/khulnasoft/pull/23697)
 - Results are now streamed from searcher by default, improving memory usage and latency for large, unindexed searches. [#23754](https://github.com/khulnasoft/khulnasoft/pull/23754)
-- [`deploy-sourcegraph` overlays](https://docs.sourcegraph.com/admin/install/kubernetes/configure#overlays) now use `resources:` instead of the [deprecated `bases:` field](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/bases/) for referencing Kustomize bases. [deploy-sourcegraph#3606](https://github.com/sourcegraph/deploy-sourcegraph/pull/3606)
+- [`deploy-sourcegraph` overlays](https://docs.khulnasoft.com/admin/install/kubernetes/configure#overlays) now use `resources:` instead of the [deprecated `bases:` field](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/bases/) for referencing Kustomize bases. [deploy-sourcegraph#3606](https://github.com/sourcegraph/deploy-sourcegraph/pull/3606)
 - The `deploy-sourcegraph-docker` Pure Docker deployment scripts and configuration has been moved to the `./pure-docker` subdirectory. [deploy-sourcegraph-docker#454](https://github.com/sourcegraph/deploy-sourcegraph-docker/pull/454)
 - In Kubernetes deployments, setting the `SRC_GIT_SERVERS` environment variable explicitly is no longer needed. Addresses of the gitserver pods will be discovered automatically and in the same numerical order as with the static list. Unset the env var in your `frontend.Deployment.yaml` to make use of this feature. [#24094](https://github.com/khulnasoft/khulnasoft/pull/24094)
 - The consistent hashing scheme used to distribute repositories across indexed-search replicas has changed to improve distribution and reduce load discrepancies. In the next upgrade, indexed-search pods will re-index the majority of repositories since the repo to replica assignments will change. This can take a few hours in large instances, but searches should succeed during that time since a replica will only delete a repo once it has been indexed in the new replica that owns it. You can monitor this process in the Zoekt Index Server Grafana dashboard—the "assigned" repos in "Total number of repos" will spike and then reduce until it becomes the same as "indexed". As a fail-safe, the old consistent hashing scheme can be enabled by setting the `SRC_ENDPOINTS_CONSISTENT_HASH` env var to `consistent(crc32ieee)` in the `sourcegraph-frontend` deployment. [#23921](https://github.com/khulnasoft/khulnasoft/pull/23921)
@@ -1819,11 +1819,11 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Changed
 
-- Postgres has been upgraded to `12.8` in the single-server Sourcegraph image [#23999](https://github.com/khulnasoft/khulnasoft/pull/23999)
+- Postgres has been upgraded to `12.8` in the single-server Khulnasoft image [#23999](https://github.com/khulnasoft/khulnasoft/pull/23999)
 
 ## 3.30.3
 
-**⚠️ Users on 3.29.x are advised to upgrade directly to 3.30.3**. If you have already upgraded to 3.30.0, 3.30.1, or 3.30.2 please follow [this migration guide](https://docs.sourcegraph.com/admin/migration/3_30).
+**⚠️ Users on 3.29.x are advised to upgrade directly to 3.30.3**. If you have already upgraded to 3.30.0, 3.30.1, or 3.30.2 please follow [this migration guide](https://docs.khulnasoft.com/admin/migration/3_30).
 
 ### Fixed
 
@@ -1831,7 +1831,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ## 3.30.2
 
-**⚠️ Users on 3.29.x are advised to upgrade directly to 3.30.3**. If you have already upgraded to 3.30.0, 3.30.1, or 3.30.2 please follow [this migration guide](https://docs.sourcegraph.com/admin/migration/3_30).
+**⚠️ Users on 3.29.x are advised to upgrade directly to 3.30.3**. If you have already upgraded to 3.30.0, 3.30.1, or 3.30.2 please follow [this migration guide](https://docs.khulnasoft.com/admin/migration/3_30).
 
 ### Fixed
 
@@ -1839,7 +1839,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ## 3.30.1
 
-**⚠️ Users on 3.29.x are advised to upgrade directly to 3.30.3**. If you have already upgraded to 3.30.0, 3.30.1, or 3.30.2 please follow [this migration guide](https://docs.sourcegraph.com/admin/migration/3_30).
+**⚠️ Users on 3.29.x are advised to upgrade directly to 3.30.3**. If you have already upgraded to 3.30.0, 3.30.1, or 3.30.2 please follow [this migration guide](https://docs.khulnasoft.com/admin/migration/3_30).
 
 ### Fixed
 
@@ -1851,7 +1851,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ## 3.30.0
 
-**⚠️ Users on 3.29.x are advised to upgrade directly to 3.30.3**. If you have already upgraded to 3.30.0, 3.30.1, or 3.30.2 please follow [this migration guide](https://docs.sourcegraph.com/admin/migration/3_30).
+**⚠️ Users on 3.29.x are advised to upgrade directly to 3.30.3**. If you have already upgraded to 3.30.0, 3.30.1, or 3.30.2 please follow [this migration guide](https://docs.khulnasoft.com/admin/migration/3_30).
 
 ### Added
 
@@ -1863,11 +1863,11 @@ All notable changes to Sourcegraph are documented in this file.
 - Added support for highlighting .frugal files as Thrift syntax.
 - Added `file:contains.content(regexp)` predicate, which filters only to files that contain matches of the given pattern. [#22666](https://github.com/khulnasoft/khulnasoft/pull/22666)
 - Repository syncing is now done in streaming mode by default. Customers with many repositories should notice code host updates much faster, with repo-updater consuming less memory. Using the previous batch mode can be done by setting the `ENABLE_STREAMING_REPOS_SYNCER` environment variable to `false` in `repo-updater`. That environment variable will be deleted in the next release. [#22756](https://github.com/khulnasoft/khulnasoft/pull/22756)
-- Enabled the ability to query Batch Changes changesets, changesets stats, and file diff stats for an individual repository via the Sourcegraph GraphQL API. [#22744](https://github.com/khulnasoft/khulnasoft/pull/22744/)
+- Enabled the ability to query Batch Changes changesets, changesets stats, and file diff stats for an individual repository via the Khulnasoft GraphQL API. [#22744](https://github.com/khulnasoft/khulnasoft/pull/22744/)
 - Added "Groovy" to the initial `lang:` filter suggestions in the search bar. [#22755](https://github.com/khulnasoft/khulnasoft/pull/22755)
 - The `lang:` filter suggestions now show all supported, matching languages as the user types a language name. [#22765](https://github.com/khulnasoft/khulnasoft/pull/22765)
 - Code Insights can now be grouped into dashboards. [#22215](https://github.com/khulnasoft/khulnasoft/issues/22215)
-- Batch Changes changesets can now be [published from the Sourcegraph UI](https://docs.sourcegraph.com/batch_changes/how-tos/publishing_changesets#within-the-ui). [#18277](https://github.com/khulnasoft/khulnasoft/issues/18277)
+- Batch Changes changesets can now be [published from the Khulnasoft UI](https://docs.khulnasoft.com/batch_changes/how-tos/publishing_changesets#within-the-ui). [#18277](https://github.com/khulnasoft/khulnasoft/issues/18277)
 - The repository page now has a new button to view batch change changesets created in that specific repository, with a badge indicating how many changesets are currently open. [#22804](https://github.com/khulnasoft/khulnasoft/pull/22804)
 - Experimental: Search-based code insights can run over all repositories on the instance. To enable, use the feature flag `"experimentalFeatures": { "codeInsightsAllRepos": true }` and tick the checkbox in the insight creation/edit UI. [#22759](https://github.com/khulnasoft/khulnasoft/issues/22759)
 - Search References is a new search sidebar section to simplify learning about the available search filters directly where they are used. [#21539](https://github.com/khulnasoft/khulnasoft/issues/21539)
@@ -1885,7 +1885,7 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### Fixed
 
-- The Batch Changes user and site credential encryption migrators added in Sourcegraph 3.28 could report zero progress when encryption was disabled, even though they had nothing to do. This has been fixed, and progress will now be correctly reported. [#22277](https://github.com/khulnasoft/khulnasoft/issues/22277)
+- The Batch Changes user and site credential encryption migrators added in Khulnasoft 3.28 could report zero progress when encryption was disabled, even though they had nothing to do. This has been fixed, and progress will now be correctly reported. [#22277](https://github.com/khulnasoft/khulnasoft/issues/22277)
 - Listing Github Entreprise org repos now returns internal repos as well. [#22339](https://github.com/khulnasoft/khulnasoft/pull/22339)
 - Jaeger works in Docker-compose deployments again. [#22691](https://github.com/khulnasoft/khulnasoft/pull/22691)
 - A bug where the pattern `)` makes the browser unresponsive. [#22738](https://github.com/khulnasoft/khulnasoft/pull/22738)
@@ -1906,9 +1906,9 @@ All notable changes to Sourcegraph are documented in this file.
 
 ### API docs (experimental)
 
-API docs is a new experimental feature of Sourcegraph ([learn more](https://docs.sourcegraph.com/code_intelligence/apidocs)). It is enabled by default in Sourcegraph 3.30.0.
+API docs is a new experimental feature of Khulnasoft ([learn more](https://docs.khulnasoft.com/code_intelligence/apidocs)). It is enabled by default in Khulnasoft 3.30.0.
 
-- API docs is enabled by default in Sourcegraph 3.30.0. It can be disabled by adding `"apiDocs": false` to the `experimentalFeatures` section of user settings.
+- API docs is enabled by default in Khulnasoft 3.30.0. It can be disabled by adding `"apiDocs": false` to the `experimentalFeatures` section of user settings.
 - The API docs landing page now indicates what API docs are and provide more info.
 - The API docs landing page now represents the code in the repository root, instead of an empty page.
 - Pages now correctly indicate it is an experimental feature, and include a feedback widget.
@@ -1923,7 +1923,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - Go blank identifier assignments `var _ = ...` are no longer incorrectly included.
 - Go symbols defined within functions, e.g. a `var` inside a `func` scope are no longer incorrectly included.
 - `Functions`, `Variables`, and other top-level sections are no longer rendered empty if there are none in that section.
-- A new test suite for LSIF indexers implementing the Sourcegraph documentation extension to LSIF [is available](https://github.com/sourcegraph/lsif-static-doc).
+- A new test suite for LSIF indexers implementing the Khulnasoft documentation extension to LSIF [is available](https://github.com/sourcegraph/lsif-static-doc).
 - We now emit the LSIF data needed to in the future support "Jump to API docs" from code views, "View code" from API docs, usage examples in API docs, and search indexing.
 - Various UI style issues, color contrast issues, etc. have been fixed.
 - Major improvements to the GraphQL APIs for API documentation.
@@ -1939,7 +1939,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - The Code Insights creation UI now shows autosuggestions for the repository field. [#21699](https://github.com/khulnasoft/khulnasoft/pull/21699)
 - A new bulk operation to retry many changesets at once has been added to Batch Changes. [#21173](https://github.com/khulnasoft/khulnasoft/pull/21173)
 - A `security_event_logs` database table has been added in support of upcoming security-related efforts. [#21949](https://github.com/khulnasoft/khulnasoft/pull/21949)
-- Added featured Sourcegraph extensions query to the GraphQL API, as well as a section in the extension registry to display featured extensions. [#21665](https://github.com/khulnasoft/khulnasoft/pull/21665)
+- Added featured Khulnasoft extensions query to the GraphQL API, as well as a section in the extension registry to display featured extensions. [#21665](https://github.com/khulnasoft/khulnasoft/pull/21665)
 - The search page now has a `create insight` button to create search-based insight based on your search query [#21943](https://github.com/khulnasoft/khulnasoft/pull/21943)
 - Added support for Terraform syntax highlighting. [#22040](https://github.com/khulnasoft/khulnasoft/pull/22040)
 - A new bulk operation to merge many changesets at once has been added to Batch Changes. [#21959](https://github.com/khulnasoft/khulnasoft/pull/21959)
@@ -1947,17 +1947,17 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - Search-based insight creation UI now supports `count:` filter in data series query input. [#22049](https://github.com/khulnasoft/khulnasoft/pull/22049)
 - Code Insights background workers will now index commits in a new table `commit_index` for future optimization efforts. [#21994](https://github.com/khulnasoft/khulnasoft/pull/21994)
 - The creation UI for search-based insights now supports the `count:` filter in the data series query input. [#22049](https://github.com/khulnasoft/khulnasoft/pull/22049)
-- A new service, `worker`, has been introduced to run background jobs that were previously run in the frontend. See the [deployment documentation](https://docs.sourcegraph.com/admin/workers) for additional details. [#21768](https://github.com/khulnasoft/khulnasoft/pull/21768)
+- A new service, `worker`, has been introduced to run background jobs that were previously run in the frontend. See the [deployment documentation](https://docs.khulnasoft.com/admin/workers) for additional details. [#21768](https://github.com/khulnasoft/khulnasoft/pull/21768)
 
 ### Changed
 
-- SSH public keys generated to access code hosts with batch changes now include a comment indicating they originated from Sourcegraph. [#20523](https://github.com/khulnasoft/khulnasoft/issues/20523)
+- SSH public keys generated to access code hosts with batch changes now include a comment indicating they originated from Khulnasoft. [#20523](https://github.com/khulnasoft/khulnasoft/issues/20523)
 - The copy query button is now permanently enabled and `experimentalFeatures.copyQueryButton` setting has been deprecated. [#21364](https://github.com/khulnasoft/khulnasoft/pull/21364)
 - Search streaming is now permanently enabled and `experimentalFeatures.searchStreaming` setting has been deprecated. [#21522](https://github.com/khulnasoft/khulnasoft/pull/21522)
 - Pings removes the collection of aggregate search filter usage counts and adds a smaller set of aggregate usage counts for query operators, predicates, and pattern counts. [#21320](https://github.com/khulnasoft/khulnasoft/pull/21320)
-- Sourcegraph will now refuse to start if there are unfinished [out-of-band-migrations](https://docs.sourcegraph.com/admin/migrations) that are deprecated in the current version. See the [upgrade documentation](https://docs.sourcegraph.com/admin/updates) for changes to the upgrade process. [#20967](https://github.com/khulnasoft/khulnasoft/pull/20967)
+- Khulnasoft will now refuse to start if there are unfinished [out-of-band-migrations](https://docs.khulnasoft.com/admin/migrations) that are deprecated in the current version. See the [upgrade documentation](https://docs.khulnasoft.com/admin/updates) for changes to the upgrade process. [#20967](https://github.com/khulnasoft/khulnasoft/pull/20967)
 - Code Insight pages now have new URLs [#21856](https://github.com/khulnasoft/khulnasoft/pull/21856)
-- We are proud to bring you [an entirely new visual design for the Sourcegraph UI](https://about.sourcegraph.com/blog/introducing-sourcegraphs-new-ui/). We think you’ll find this new design improves your experience and sets the stage for some incredible features to come. Some of the highlights include:
+- We are proud to bring you [an entirely new visual design for the Khulnasoft UI](https://about.khulnasoft.com/blog/introducing-sourcegraphs-new-ui/). We think you’ll find this new design improves your experience and sets the stage for some incredible features to come. Some of the highlights include:
 
   - **Refined search results:** The redesigned search bar provides more space for expressive queries, and the new results sidebar helps to discover search syntax without referencing documentation.
   - **Improved focus on code:** We’ve reduced non-essential UI elements to provide greater focus on the code itself, and positioned the most important items so they’re unobtrusive and located exactly where they are needed.
@@ -1996,7 +1996,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 ### Changed
 
 - User and site credentials used in Batch Changes are now encrypted in the database if encryption is enabled with the `encryption.keys` config. [#19570](https://github.com/khulnasoft/khulnasoft/issues/19570)
-- All Sourcegraph images within [deploy-sourcegraph](https://github.com/sourcegraph/deploy-sourcegraph) now specify the registry. Thanks! @k24dizzle [#2901](https://github.com/sourcegraph/deploy-sourcegraph/pull/2901).
+- All Khulnasoft images within [deploy-sourcegraph](https://github.com/sourcegraph/deploy-sourcegraph) now specify the registry. Thanks! @k24dizzle [#2901](https://github.com/sourcegraph/deploy-sourcegraph/pull/2901).
 - Default reviewers are now added to Bitbucket Server PRs opened by Batch Changes. [#20551](https://github.com/khulnasoft/khulnasoft/pull/20551)
 - The default memory requirements for the `redis-*` containers have been raised by 1GB (to a new total of 7GB). This change allows Redis to properly run its key-eviction routines (when under memory pressure) without getting killed by the host machine. This affects both the docker-compose and Kubernetes deployments. [sourcegraph/deploy-sourcegraph-docker#373](https://github.com/sourcegraph/deploy-sourcegraph-docker/pull/373) and [sourcegraph/deploy-sourcegraph#2898](https://github.com/sourcegraph/deploy-sourcegraph/pull/2898)
 - Only site admins can now list users on an instance. [#20619](https://github.com/khulnasoft/khulnasoft/pull/20619)
@@ -2069,13 +2069,13 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - Side-by-side diff for commit visualization. [#19553](https://github.com/khulnasoft/khulnasoft/pull/19553)
 - The site configuration now supports defining batch change rollout windows, which can be used to slow or disable pushing changesets at particular times of day or days of the week. [#19796](https://github.com/khulnasoft/khulnasoft/pull/19796), [#19797](https://github.com/khulnasoft/khulnasoft/pull/19797), and [#19951](https://github.com/khulnasoft/khulnasoft/pull/19951).
 - Search functionality via built-in `contains` predicate: `repo:contains(...)`, `repo:contains.file(...)`, `repo:contains.content(...)`, repo:contains.commit.after(...)`. [#18584](https://github.com/khulnasoft/khulnasoft/issues/18584)
-- Database encryption, external service config & user auth data can now be encrypted in the database using the `encryption.keys` config. See [the docs](https://docs.sourcegraph.com/admin/encryption) for more info.
+- Database encryption, external service config & user auth data can now be encrypted in the database using the `encryption.keys` config. See [the docs](https://docs.khulnasoft.com/admin/encryption) for more info.
 - Repositories that gitserver fails to clone or fetch are now gradually moved to the back of the background update queue instead of remaining at the front. [#20204](https://github.com/khulnasoft/khulnasoft/pull/20204)
 - The new `disableAutoCodeHostSyncs` setting allows site admins to disable any periodic background syncing of configured code host connections. That includes syncing of repository metadata (i.e. not git updates, use `disableAutoGitUpdates` for that), permissions and batch changes changesets, but may include other data we'd sync from the code host API in the future.
 
 ### Changed
 
-- Bumped the minimum supported version of Postgres from `9.6` to `12`. The upgrade procedure is mostly automated for existing deployments, but may require action if using the single-container deployment or an external database. See the [upgrade documentation](https://docs.sourcegraph.com/admin/updates) for your deployment type for detailed instructions.
+- Bumped the minimum supported version of Postgres from `9.6` to `12`. The upgrade procedure is mostly automated for existing deployments, but may require action if using the single-container deployment or an external database. See the [upgrade documentation](https://docs.khulnasoft.com/admin/updates) for your deployment type for detailed instructions.
 - Changesets in batch changes will now be marked as archived instead of being detached when a new batch spec that doesn't include the changesets is applied. Once they're archived users can manually detach them in the UI. [#19527](https://github.com/khulnasoft/khulnasoft/pull/19527)
 - The default replica count on `sourcegraph-frontend` and `precise-code-intel-worker` for Kubernetes has changed from `1` -> `2`.
 - Changes to code monitor trigger search queries [#19680](https://github.com/khulnasoft/khulnasoft/pull/19680)
@@ -2083,7 +2083,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
   - A `patternType` filter is no longer required. `patternType:literal` will be added to a code monitor query if not specified.
   - Added a new checklist UI to make it more intuitive to create code monitor trigger queries.
 - Deprecated the GraphQL `icon` field on `GenericSearchResultInterface`. It will be removed in a future release. [#20028](https://github.com/khulnasoft/khulnasoft/pull/20028/files)
-- Creating changesets through Batch Changes as a site-admin without configured Batch Changes credentials has been deprecated. Please configure user or global credentials before Sourcegraph 3.29 to not experience any interruptions in changeset creation. [#20143](https://github.com/khulnasoft/khulnasoft/pull/20143)
+- Creating changesets through Batch Changes as a site-admin without configured Batch Changes credentials has been deprecated. Please configure user or global credentials before Khulnasoft 3.29 to not experience any interruptions in changeset creation. [#20143](https://github.com/khulnasoft/khulnasoft/pull/20143)
 - Deprecated the GraphQL `limitHit` field on `LineMatch`. It will be removed in a future release. [#20164](https://github.com/khulnasoft/khulnasoft/pull/20164)
 
 ### Fixed
@@ -2111,8 +2111,8 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 ### Added
 
-- Experimental: Sync permissions of Perforce depots through the Sourcegraph UI. To enable, use the feature flag `"experimentalFeatures": { "perforce": "enabled" }`. For more information, see [how to enable permissions for your Perforce depots](https://docs.sourcegraph.com/admin/repo/perforce). [#16705](https://github.com/khulnasoft/khulnasoft/issues/16705)
-- Added support for user email headers in the HTTP auth proxy. See [HTTP Auth Proxy docs](https://docs.sourcegraph.com/admin/auth#http-authentication-proxies) for more information.
+- Experimental: Sync permissions of Perforce depots through the Khulnasoft UI. To enable, use the feature flag `"experimentalFeatures": { "perforce": "enabled" }`. For more information, see [how to enable permissions for your Perforce depots](https://docs.khulnasoft.com/admin/repo/perforce). [#16705](https://github.com/khulnasoft/khulnasoft/issues/16705)
+- Added support for user email headers in the HTTP auth proxy. See [HTTP Auth Proxy docs](https://docs.khulnasoft.com/admin/auth#http-authentication-proxies) for more information.
 - Ignore locked and disabled GitHub Enterprise repositories. [#19500](https://github.com/khulnasoft/khulnasoft/pull/19500)
 - Remote code host git operations (such as `clone` or `ls-remote`) can now be rate limited beyond concurrency (which was already possible with `gitMaxConcurrentClones`). Set `gitMaxCodehostRequestsPerSecond` in site config to control the maximum rate of these operations per git-server instance. [#19504](https://github.com/khulnasoft/khulnasoft/pull/19504)
 
@@ -2135,7 +2135,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 ### Added
 
-- Searches are streamed into Sourcegraph by default. [#19300](https://github.com/khulnasoft/khulnasoft/pull/19300)
+- Searches are streamed into Khulnasoft by default. [#19300](https://github.com/khulnasoft/khulnasoft/pull/19300)
   - This gives a faster time to first result.
   - Several heuristics around result limits have been improved. You should see more consistent result counts now.
   - Can be disabled with the setting `experimentalFeatures.streamingSearch`.
@@ -2146,7 +2146,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - `BUILD.in` files are now highlighted as Bazel/Starlark build files. Thanks to @jjwon0 [#19282](https://github.com/khulnasoft/khulnasoft/pull/19282)
 - `*.pyst` and `*.pyst-include` are now highlighted as Python files. Thanks to @jjwon0 [#19282](https://github.com/khulnasoft/khulnasoft/pull/19282)
 - The code monitoring feature flag is now enabled by default. [#19295](https://github.com/khulnasoft/khulnasoft/pull/19295)
-- New query field `select` enables returning only results of the desired type. See [documentation](https://docs.sourcegraph.com/code_search/reference/language#select) for details. [#19236](https://github.com/khulnasoft/khulnasoft/pull/19236)
+- New query field `select` enables returning only results of the desired type. See [documentation](https://docs.khulnasoft.com/code_search/reference/language#select) for details. [#19236](https://github.com/khulnasoft/khulnasoft/pull/19236)
 - Syntax highlighting for Elixer, Elm, REG, Julia, Move, Nix, Puppet, VimL thanks to @rvantonder
 - `BUILD.in` files are now highlighted as Bazel/Starlark build files. Thanks to @jjwon0
 - `*.pyst` and `*.pyst-include` are now highlighted as Python files. Thanks to @jjwon0
@@ -2155,7 +2155,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 ### Changed
 
 - Campaigns have been renamed to Batch Changes! See [#18771](https://github.com/khulnasoft/khulnasoft/issues/18771) for a detailed log on what has been renamed.
-  - A new [Sourcegraph CLI](https://docs.sourcegraph.com/cli) version will use `src batch [preview|apply]` commands, while keeping the old ones working to be used with older Sourcegraph versions.
+  - A new [Khulnasoft CLI](https://docs.khulnasoft.com/cli) version will use `src batch [preview|apply]` commands, while keeping the old ones working to be used with older Khulnasoft versions.
   - Old URLs in the application and in the documentation will redirect.
   - GraphQL API entities with "campaign" in their name have been deprecated and have new Batch Changes counterparts:
     - Deprecated GraphQL entities: `CampaignState`, `Campaign`, `CampaignSpec`, `CampaignConnection`, `CampaignsCodeHostConnection`, `CampaignsCodeHost`, `CampaignsCredential`, `CampaignDescription`
@@ -2165,7 +2165,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - A repository's `remote.origin.url` is not stored on gitserver disk anymore. Note: if you use the experimental feature `customGitFetch` your setting may need to be updated to specify the remote URL. [#18535](https://github.com/khulnasoft/khulnasoft/pull/18535)
 - Repositories and files containing spaces will now render with escaped spaces in the query bar rather than being
   quoted. [#18642](https://github.com/khulnasoft/khulnasoft/pull/18642)
-- Sourcegraph is now built with Go 1.16. [#18447](https://github.com/khulnasoft/khulnasoft/pull/18447)
+- Khulnasoft is now built with Go 1.16. [#18447](https://github.com/khulnasoft/khulnasoft/pull/18447)
 - Cursor hover information in the search query bar will now display after 150ms (previously 0ms). [#18916](https://github.com/khulnasoft/khulnasoft/pull/18916)
 - The `repo.cloned` column is deprecated in favour of `gitserver_repos.clone_status`. It will be removed in a subsequent release.
 - Precision class indicators have been improved for code intelligence results in both the hover overlay as well as the definition and references locations panel. [#18843](https://github.com/khulnasoft/khulnasoft/pull/18843)
@@ -2195,11 +2195,11 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 ### Added
 
-- Experimental: Sync Perforce depots directly through the Sourcegraph UI. To enable, use the feature flag `"experimentalFeatures": { "perforce": "enabled" }`. For more information, see [how to add your Perforce depots](https://docs.sourcegraph.com/admin/repo/perforce). [#16703](https://github.com/khulnasoft/khulnasoft/issues/16703)
+- Experimental: Sync Perforce depots directly through the Khulnasoft UI. To enable, use the feature flag `"experimentalFeatures": { "perforce": "enabled" }`. For more information, see [how to add your Perforce depots](https://docs.khulnasoft.com/admin/repo/perforce). [#16703](https://github.com/khulnasoft/khulnasoft/issues/16703)
 
 ## 3.25.0
 
-**IMPORTANT** Sourcegraph now uses Go 1.15. This may break AWS RDS database connections with older x509 certificates. Please follow the Amazon [docs](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL-certificate-rotation.html) to rotate your certificate.
+**IMPORTANT** Khulnasoft now uses Go 1.15. This may break AWS RDS database connections with older x509 certificates. Please follow the Amazon [docs](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL-certificate-rotation.html) to rotate your certificate.
 
 ### Added
 
@@ -2210,20 +2210,20 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - Experimental: The webapp can now stream search results to the client, improving search performance. To enable it, add `{ "experimentalFeatures": { "searchStreaming": true } }` in user settings. [#16097](https://github.com/khulnasoft/khulnasoft/pull/16097)
 - New product research sign-up page. This can be accessed by all users in their user settings. [#17945](https://github.com/khulnasoft/khulnasoft/pull/17945)
 - New site config option `productResearchPage.enabled` to disable access to the product research sign-up page. [#17945](https://github.com/khulnasoft/khulnasoft/pull/17945)
-- Pings now contain Sourcegraph extension activation statistics. [#16421](https://github.com/khulnasoft/khulnasoft/pull/16421)
-- Pings now contain aggregate Sourcegraph extension activation statistics: the number of users and number of activations per (public) extension per week, and the number of total extension users per week and average extensions activated per user. [#16421](https://github.com/khulnasoft/khulnasoft/pull/16421)
+- Pings now contain Khulnasoft extension activation statistics. [#16421](https://github.com/khulnasoft/khulnasoft/pull/16421)
+- Pings now contain aggregate Khulnasoft extension activation statistics: the number of users and number of activations per (public) extension per week, and the number of total extension users per week and average extensions activated per user. [#16421](https://github.com/khulnasoft/khulnasoft/pull/16421)
 - Pings now contain aggregate code insights usage data: total insight views, interactions, edits, creations, removals, and counts of unique users that view and create insights. [#16421](https://github.com/khulnasoft/khulnasoft/pull/17805)
 - When previewing a campaign spec, changesets can be filtered by current state or the action(s) to be performed. [#16960](https://github.com/khulnasoft/khulnasoft/issues/16960)
 
 ### Changed
 
-- Alert solutions links included in [monitoring alerts](https://docs.sourcegraph.com/admin/observability/alerting) now link to the relevant documentation version. [#17828](https://github.com/khulnasoft/khulnasoft/pull/17828)
+- Alert solutions links included in [monitoring alerts](https://docs.khulnasoft.com/admin/observability/alerting) now link to the relevant documentation version. [#17828](https://github.com/khulnasoft/khulnasoft/pull/17828)
 - Secrets (such as access tokens and passwords) will now appear as REDACTED when editing external service config, and in graphql API responses. [#17261](https://github.com/khulnasoft/khulnasoft/issues/17261)
-- Sourcegraph is now built with Go 1.15
-  - Go `1.15` introduced changes to SSL/TLS connection validation which requires certificates to include a `SAN`. This field was not included in older certificates and clients relied on the `CN` field. You might see an error like `x509: certificate relies on legacy Common Name field`. We recommend that customers using Sourcegraph with an external database and connecting to it using SSL/TLS check whether the certificate is up to date.
+- Khulnasoft is now built with Go 1.15
+  - Go `1.15` introduced changes to SSL/TLS connection validation which requires certificates to include a `SAN`. This field was not included in older certificates and clients relied on the `CN` field. You might see an error like `x509: certificate relies on legacy Common Name field`. We recommend that customers using Khulnasoft with an external database and connecting to it using SSL/TLS check whether the certificate is up to date.
   - RDS Customers please reference [AWS' documentation on updating the SSL/TLS certificate](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL-certificate-rotation.html).
 - Search results on `.rs` files now recommend `lang:rust` instead of `lang:renderscript` as a filter. [#18316](https://github.com/khulnasoft/khulnasoft/pull/18316)
-- Campaigns users creating Personal Access Tokens on GitHub are now asked to request the `user:email` scope in addition to the [previous scopes](https://docs.sourcegraph.com/@3.24/admin/code_hosts/github#github-api-token-and-access). This will be used in a future Sourcegraph release to display more fine-grained information on the progress of pull requests. [#17555](https://github.com/khulnasoft/khulnasoft/issues/17555)
+- Campaigns users creating Personal Access Tokens on GitHub are now asked to request the `user:email` scope in addition to the [previous scopes](https://docs.khulnasoft.com/@3.24/admin/code_hosts/github#github-api-token-and-access). This will be used in a future Khulnasoft release to display more fine-grained information on the progress of pull requests. [#17555](https://github.com/khulnasoft/khulnasoft/issues/17555)
 
 ### Fixed
 
@@ -2249,26 +2249,26 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 ### Added
 
-- Panels in the [Khulnasoft monitoring dashboards](https://docs.sourcegraph.com/admin/observability/metrics#grafana) now:
-  - include links to relevant alerts documentation and the new [monitoring dashboards reference](https://docs.sourcegraph.com/admin/observability/dashboards). [#16939](https://github.com/khulnasoft/khulnasoft/pull/16939)
+- Panels in the [Khulnasoft monitoring dashboards](https://docs.khulnasoft.com/admin/observability/metrics#grafana) now:
+  - include links to relevant alerts documentation and the new [monitoring dashboards reference](https://docs.khulnasoft.com/admin/observability/dashboards). [#16939](https://github.com/khulnasoft/khulnasoft/pull/16939)
   - include alert events and version changes annotations that can be enabled from the top of each service dashboard. [#17198](https://github.com/khulnasoft/khulnasoft/pull/17198)
 - Suggested filters in the search results page can now be scrolled. [#17097](https://github.com/khulnasoft/khulnasoft/pull/17097)
 - Structural search queries can now be used in saved searches by adding `patternType:structural`. [#17265](https://github.com/khulnasoft/khulnasoft/pull/17265)
 
 ### Changed
 
-- Dashboard links included in [monitoring alerts](https://docs.sourcegraph.com/admin/observability/alerting) now:
+- Dashboard links included in [monitoring alerts](https://docs.khulnasoft.com/admin/observability/alerting) now:
   - link directly to the relevant Grafana panel, instead of just the service dashboard. [#17014](https://github.com/khulnasoft/khulnasoft/pull/17014)
   - link to a time frame relevant to the alert, instead of just the past few hours. [#17034](https://github.com/khulnasoft/khulnasoft/pull/17034)
 - Added `serviceKind` field of the `ExternalServiceKind` type to `Repository.externalURLs` GraphQL API, `serviceType` field is deprecated and will be removed in the future releases. [#14979](https://github.com/khulnasoft/khulnasoft/issues/14979)
 - Deprecated the GraphQL fields `SearchResults.repositoriesSearched` and `SearchResults.indexedRepositoriesSearched`.
-- The minimum Kubernetes version required to use the [Kubernetes deployment option](https://docs.sourcegraph.com/admin/install/kubernetes) is now [v1.15 (released June 2019)](https://kubernetes.io/blog/2019/06/19/kubernetes-1-15-release-announcement/).
+- The minimum Kubernetes version required to use the [Kubernetes deployment option](https://docs.khulnasoft.com/admin/install/kubernetes) is now [v1.15 (released June 2019)](https://kubernetes.io/blog/2019/06/19/kubernetes-1-15-release-announcement/).
 
 ### Fixed
 
 - Imported changesets acquired an extra button to download the "generated diff", which did nothing, since imported changesets don't have a generated diff. This button has been removed. [#16778](https://github.com/khulnasoft/khulnasoft/issues/16778)
 - Quoted global filter values (case, patterntype) are now properly extracted and set in URL parameters. [#16186](https://github.com/khulnasoft/khulnasoft/issues/16186)
-- The endpoint for "Open in Sourcegraph" functionality in editor extensions now uses code host connection information to resolve the repository, which makes it more correct and respect the `repositoryPathPattern` setting. [#16846](https://github.com/khulnasoft/khulnasoft/pull/16846)
+- The endpoint for "Open in Khulnasoft" functionality in editor extensions now uses code host connection information to resolve the repository, which makes it more correct and respect the `repositoryPathPattern` setting. [#16846](https://github.com/khulnasoft/khulnasoft/pull/16846)
 - Fixed an issue that prevented search expressions of the form `repo:foo (rev:a or rev:b)` from evaluating all revisions [#16873](https://github.com/khulnasoft/khulnasoft/pull/16873)
 - Updated language detection library. Includes language detection for `lang:starlark`. [#16900](https://github.com/khulnasoft/khulnasoft/pull/16900)
 - Fixed retrieving status for indexed tags and deduplicated main branches in the indexing settings page. [#13787](https://github.com/khulnasoft/khulnasoft/issues/13787)
@@ -2290,25 +2290,25 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 ### Added
 
 - Password reset link expiration can be customized via `auth.passwordResetLinkExpiry` in the site config. [#13999](https://github.com/khulnasoft/khulnasoft/issues/13999)
-- Campaign steps may now include environment variables from outside of the campaign spec using [array syntax](http://docs.sourcegraph.com/campaigns/references/campaign_spec_yaml_reference#environment-array). [#15822](https://github.com/khulnasoft/khulnasoft/issues/15822)
+- Campaign steps may now include environment variables from outside of the campaign spec using [array syntax](http://docs.khulnasoft.com/campaigns/references/campaign_spec_yaml_reference#environment-array). [#15822](https://github.com/khulnasoft/khulnasoft/issues/15822)
 - The total size of all Git repositories and the lines of code for indexed branches are displayed in the site admin overview. [#15125](https://github.com/khulnasoft/khulnasoft/issues/15125)
 - Extensions can now add decorations to files on the sidebar tree view and tree page through the experimental `FileDecoration` API. [#15833](https://github.com/khulnasoft/khulnasoft/pull/15833)
-- Extensions can now easily query the Sourcegraph GraphQL API through a dedicated API method. [#15566](https://github.com/khulnasoft/khulnasoft/pull/15566)
+- Extensions can now easily query the Khulnasoft GraphQL API through a dedicated API method. [#15566](https://github.com/khulnasoft/khulnasoft/pull/15566)
 - Individual changesets can now be downloaded as a diff. [#16098](https://github.com/khulnasoft/khulnasoft/issues/16098)
 - The campaigns preview page is much more detailed now, especially when updating existing campaigns. [#16240](https://github.com/khulnasoft/khulnasoft/pull/16240)
 - When a newer version of a campaign spec is uploaded, a message is now displayed when viewing the campaign or an outdated campaign spec. [#14532](https://github.com/khulnasoft/khulnasoft/issues/14532)
 - Changesets in a campaign can now be searched by title and repository name. [#15781](https://github.com/khulnasoft/khulnasoft/issues/15781)
-- Experimental: [`transformChanges` in campaign specs](https://docs.sourcegraph.com/campaigns/references/campaign_spec_yaml_reference#transformchanges) is now available as a feature preview to allow users to create multiple changesets in a single repository. [#16235](https://github.com/khulnasoft/khulnasoft/pull/16235)
+- Experimental: [`transformChanges` in campaign specs](https://docs.khulnasoft.com/campaigns/references/campaign_spec_yaml_reference#transformchanges) is now available as a feature preview to allow users to create multiple changesets in a single repository. [#16235](https://github.com/khulnasoft/khulnasoft/pull/16235)
 - The `gitUpdateInterval` site setting was added to allow custom git update intervals based on repository names. [#16765](https://github.com/khulnasoft/khulnasoft/pull/16765)
 - Various additions to syntax highlighting and hover tooltips in the search query bar (e.g., regular expressions). Can be disabled with `{ "experimentalFeatures": { "enableSmartQuery": false } }` in case of unlikely adverse effects. [#16742](https://github.com/khulnasoft/khulnasoft/pull/16742)
-- Search queries may now scope subexpressions across repositories and files, and also allow greater freedom for combining search filters. See the updated documentation on [search subexpressions](https://docs.sourcegraph.com/code_search/tutorials/search_subexpressions) to learn more. [#16866](https://github.com/khulnasoft/khulnasoft/pull/16866)
+- Search queries may now scope subexpressions across repositories and files, and also allow greater freedom for combining search filters. See the updated documentation on [search subexpressions](https://docs.khulnasoft.com/code_search/tutorials/search_subexpressions) to learn more. [#16866](https://github.com/khulnasoft/khulnasoft/pull/16866)
 
 ### Changed
 
 - Search indexer tuned to wait longer before assuming a deadlock has occurred. Previously if the indexserver had many cores (40+) and indexed a monorepo it could give up. [#16110](https://github.com/khulnasoft/khulnasoft/pull/16110)
 - The total size of all Git repositories and the lines of code for indexed branches will be sent back in pings as part of critical telemetry. [#16188](https://github.com/khulnasoft/khulnasoft/pull/16188)
 - The `gitserver` container now has a dependency on Postgres. This does not require any additional configuration unless access to Postgres requires a sidecar proxy / firewall rules. [#16121](https://github.com/khulnasoft/khulnasoft/pull/16121)
-- Licensing is now enforced for campaigns: creating a campaign with more than five changesets requires a valid license. Please [contact Sourcegraph with any licensing questions](https://about.sourcegraph.com/contact/sales/). [#15715](https://github.com/khulnasoft/khulnasoft/issues/15715)
+- Licensing is now enforced for campaigns: creating a campaign with more than five changesets requires a valid license. Please [contact Khulnasoft with any licensing questions](https://about.khulnasoft.com/contact/sales/). [#15715](https://github.com/khulnasoft/khulnasoft/issues/15715)
 
 ### Fixed
 
@@ -2335,14 +2335,14 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - GraphQL and TOML syntax highlighting is now back (special thanks to @rvantonder) [#13935](https://github.com/khulnasoft/khulnasoft/issues/13935)
 - Zig and DreamMaker syntax highlighting.
 - Campaigns now support publishing GitHub draft PRs and GitLab WIP MRs. [#7998](https://github.com/khulnasoft/khulnasoft/issues/7998)
-- `indexed-searcher`'s watchdog can be configured and has additional instrumentation. This is useful when diagnosing [zoekt-webserver is restarting due to watchdog](https://docs.sourcegraph.com/admin/observability/troubleshooting#scenario-zoekt-webserver-is-restarting-due-to-watchdog). [#15148](https://github.com/khulnasoft/khulnasoft/pull/15148)
+- `indexed-searcher`'s watchdog can be configured and has additional instrumentation. This is useful when diagnosing [zoekt-webserver is restarting due to watchdog](https://docs.khulnasoft.com/admin/observability/troubleshooting#scenario-zoekt-webserver-is-restarting-due-to-watchdog). [#15148](https://github.com/khulnasoft/khulnasoft/pull/15148)
 - Pings now contain Redis & Postgres server versions. [14405](https://github.com/khulnasoft/khulnasoft/14405)
 - Aggregated usage data of the search onboarding tour is now included in pings. The data tracked are: total number of views of the onboarding tour, total number of views of each step in the onboarding tour, total number of tours closed. [#15113](https://github.com/khulnasoft/khulnasoft/pull/15113)
 - Users can now specify credentials for code hosts to enable campaigns for non site-admin users. [#15506](https://github.com/khulnasoft/khulnasoft/pull/15506)
 - A `campaigns.restrictToAdmins` site configuration option has been added to prevent non site-admin users from using campaigns. [#15785](https://github.com/khulnasoft/khulnasoft/pull/15785)
 - Number of page views on campaign apply page, page views on campaign details page after create/update, closed campaigns, created campaign specs and changesets specs and the sum of changeset diff stats will be sent back in pings. [#15279](https://github.com/khulnasoft/khulnasoft/pull/15279)
 - Users can now explicitly set their primary email address. [#15683](https://github.com/khulnasoft/khulnasoft/pull/15683)
-- "[Why code search is still needed for monorepos](https://docs.sourcegraph.com/adopt/code_search_in_monorepos)" doc page
+- "[Why code search is still needed for monorepos](https://docs.khulnasoft.com/adopt/code_search_in_monorepos)" doc page
 
 ### Changed
 
@@ -2377,7 +2377,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 ## 3.21.2
 
-:warning: WARNING :warning: For users of single-image Sourcegraph instance, please delete the secret key file `/var/lib/sourcegraph/token` inside the container before attempting to upgrade to 3.21.x.
+:warning: WARNING :warning: For users of single-image Khulnasoft instance, please delete the secret key file `/var/lib/sourcegraph/token` inside the container before attempting to upgrade to 3.21.x.
 
 ### Fixed
 
@@ -2385,7 +2385,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 ## 3.21.1
 
-:warning: WARNING :warning: For users of single-image Sourcegraph instance, please delete the secret key file `/var/lib/sourcegraph/token` inside the container before attempting to upgrade to 3.21.x.
+:warning: WARNING :warning: For users of single-image Khulnasoft instance, please delete the secret key file `/var/lib/sourcegraph/token` inside the container before attempting to upgrade to 3.21.x.
 
 ### Fixed
 
@@ -2398,7 +2398,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 ## 3.21.0
 
-:warning: WARNING :warning: For users of single-image Sourcegraph instance, please delete the secret key file `/var/lib/sourcegraph/token` inside the container before attempting to upgrade to 3.21.x.
+:warning: WARNING :warning: For users of single-image Khulnasoft instance, please delete the secret key file `/var/lib/sourcegraph/token` inside the container before attempting to upgrade to 3.21.x.
 
 ### Added
 
@@ -2406,23 +2406,23 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - Changesets created by campaigns will now include a link back to the campaign in their body text. [#14033](https://github.com/khulnasoft/khulnasoft/issues/14033)
 - Users can now preview commits that are going to be created in their repositories in the campaign preview UI. [#14181](https://github.com/khulnasoft/khulnasoft/pull/14181)
 - If emails are configured, the user will be sent an email when important account information is changed. This currently encompasses changing/resetting the password, adding/removing emails, and adding/removing access tokens. [#14320](https://github.com/khulnasoft/khulnasoft/pull/14320)
-- A subset of changesets can now be published by setting the `published` flag in campaign specs [to an array](https://docs.sourcegraph.com/@main/campaigns/campaign_spec_yaml_reference#publishing-only-specific-changesets), which allows only specific changesets within a campaign to be published based on the repository name. [#13476](https://github.com/khulnasoft/khulnasoft/pull/13476)
+- A subset of changesets can now be published by setting the `published` flag in campaign specs [to an array](https://docs.khulnasoft.com/@main/campaigns/campaign_spec_yaml_reference#publishing-only-specific-changesets), which allows only specific changesets within a campaign to be published based on the repository name. [#13476](https://github.com/khulnasoft/khulnasoft/pull/13476)
 - Homepage panels are now enabled by default. [#14287](https://github.com/khulnasoft/khulnasoft/issues/14287)
 - The most recent ping data is now available to site admins via the Site-admin > Pings page. [#13956](https://github.com/khulnasoft/khulnasoft/issues/13956)
 - Homepage panel engagement metrics will be sent back in pings. [#14589](https://github.com/khulnasoft/khulnasoft/pull/14589)
 - Homepage now has a footer with links to different extensibility features. [#14638](https://github.com/khulnasoft/khulnasoft/issues/14638)
-- Added an onboarding tour of Sourcegraph for new users. It can be enabled in user settings with `experimentalFeatures.showOnboardingTour` [#14636](https://github.com/khulnasoft/khulnasoft/pull/14636)
-- Added an onboarding tour of Sourcegraph for new users. [#14636](https://github.com/khulnasoft/khulnasoft/pull/14636)
+- Added an onboarding tour of Khulnasoft for new users. It can be enabled in user settings with `experimentalFeatures.showOnboardingTour` [#14636](https://github.com/khulnasoft/khulnasoft/pull/14636)
+- Added an onboarding tour of Khulnasoft for new users. [#14636](https://github.com/khulnasoft/khulnasoft/pull/14636)
 - Repository GraphQL queries now support an `after` parameter that permits cursor-based pagination. [#13715](https://github.com/khulnasoft/khulnasoft/issues/13715)
 - Searches in the Recent Searches panel and other places are now syntax highlighted. [#14443](https://github.com/khulnasoft/khulnasoft/issues/14443)
 
 ### Changed
 
 - Interactive search mode is now disabled by default because the new plain text search input is smarter. To reenable it, add `{ "experimentalFeatures": { "splitSearchModes": true } }` in user settings.
-- The extension registry has been redesigned to make it easier to find non-default Sourcegraph extensions.
+- The extension registry has been redesigned to make it easier to find non-default Khulnasoft extensions.
 - Tokens and similar sensitive information included in the userinfo portion of remote repository URLs will no longer be visible on the Mirroring settings page. [#14153](https://github.com/khulnasoft/khulnasoft/pull/14153)
 - The sign in and sign up forms have been redesigned with better input validation.
-- Kubernetes admins mounting [configuration files](https://docs.sourcegraph.com/admin/config/advanced_config_file#kubernetes-configmap) are encouraged to change how the ConfigMap is mounted. See the new documentation. Previously our documentation suggested using subPath. However, this lead to Kubernetes not automatically updating the files on configuration change. [#14297](https://github.com/khulnasoft/khulnasoft/pull/14297)
+- Kubernetes admins mounting [configuration files](https://docs.khulnasoft.com/admin/config/advanced_config_file#kubernetes-configmap) are encouraged to change how the ConfigMap is mounted. See the new documentation. Previously our documentation suggested using subPath. However, this lead to Kubernetes not automatically updating the files on configuration change. [#14297](https://github.com/khulnasoft/khulnasoft/pull/14297)
 - The precise code intel bundle manager will now expire any converted LSIF data that is older than `PRECISE_CODE_INTEL_MAX_DATA_AGE` (30 days by default) that is also not visible from the tip of the default branch.
 - `SRC_LOG_LEVEL=warn` is now the default in Docker Compose and Kubernetes deployments, reducing the amount of uninformative log spam. [#14458](https://github.com/khulnasoft/khulnasoft/pull/14458)
 - Permissions data that were stored in deprecated binary format are abandoned. Downgrade from 3.21 to 3.20 is OK, but to 3.19 or prior versions might experience missing/incomplete state of permissions for a short period of time. [#13740](https://github.com/khulnasoft/khulnasoft/issues/13740)
@@ -2437,7 +2437,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - GitLab pipelines are now parsed correctly and show their current status in campaign changesets. [#14129](https://github.com/khulnasoft/khulnasoft/pull/14129)
 - Fixed an issue where specifying any repogroups would effectively search all repositories for all repogroups. [#14190](https://github.com/khulnasoft/khulnasoft/pull/14190)
 - Changesets that were previously closed after being detached from a campaign are now reopened when being reattached. [#14099](https://github.com/khulnasoft/khulnasoft/pull/14099)
-- Previously large files that match the site configuration [search.largeFiles](https://docs.sourcegraph.com/admin/config/site_config#search-largeFiles) would not be indexed if they contained a large number of unique trigrams. We now index those files as well. Note: files matching the glob still need to be valid utf-8. [#12443](https://github.com/khulnasoft/khulnasoft/issues/12443)
+- Previously large files that match the site configuration [search.largeFiles](https://docs.khulnasoft.com/admin/config/site_config#search-largeFiles) would not be indexed if they contained a large number of unique trigrams. We now index those files as well. Note: files matching the glob still need to be valid utf-8. [#12443](https://github.com/khulnasoft/khulnasoft/issues/12443)
 - Git tags without a `creatordate` value will no longer break tag search within a repository. [#5453](https://github.com/khulnasoft/khulnasoft/issues/5453)
 - Campaigns pages now work properly on small viewports. [#14292](https://github.com/khulnasoft/khulnasoft/pull/14292)
 - Fix an issue with viewing repositories that have spaces in the repository name [#2867](https://github.com/khulnasoft/khulnasoft/issues/2867)
@@ -2446,7 +2446,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 - Syntax highlighting for GraphQL, INI, TOML, and Perforce files has been removed [due to incompatible/absent licenses](https://github.com/khulnasoft/khulnasoft/issues/13933). We plan to [add it back in the future](https://github.com/khulnasoft/khulnasoft/issues?q=is%3Aissue+is%3Aopen+add+syntax+highlighting+for+develop+a+).
 - Search scope pages (`/search/scope/:id`) were removed.
-- User-defined search scopes are no longer shown below the search bar on the homepage. Use the [`quicklinks`](https://docs.sourcegraph.com/user/personalization/quick_links) setting instead to display links there.
+- User-defined search scopes are no longer shown below the search bar on the homepage. Use the [`quicklinks`](https://docs.khulnasoft.com/user/personalization/quick_links) setting instead to display links there.
 - The explore page (`/explore`) was removed.
 - The sign out page was removed.
 - The unused GraphQL types `DiffSearchResult` and `DeploymentConfiguration` were removed.
@@ -2467,13 +2467,13 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 ### Added
 
 - Site admins can now force a specific user to re-authenticate on their next request or visit. [#13647](https://github.com/khulnasoft/khulnasoft/pull/13647)
-- Sourcegraph now watches its [configuration files](https://docs.sourcegraph.com/admin/config/advanced_config_file) (when using external files) and automatically applies the changes to Khulnasoft's configuration when they change. For example, this allows Sourcegraph to detect when a Kubernetes ConfigMap changes. [#13646](https://github.com/khulnasoft/khulnasoft/pull/13646)
+- Khulnasoft now watches its [configuration files](https://docs.khulnasoft.com/admin/config/advanced_config_file) (when using external files) and automatically applies the changes to Khulnasoft's configuration when they change. For example, this allows Khulnasoft to detect when a Kubernetes ConfigMap changes. [#13646](https://github.com/khulnasoft/khulnasoft/pull/13646)
 - To define repository groups (`search.repositoryGroups` in global, org, or user settings), you can now specify regular expressions in addition to single repository names. [#13730](https://github.com/khulnasoft/khulnasoft/pull/13730)
 - The new site configuration property `search.limits` configures the maximum search timeout and the maximum number of repositories to search for various types of searches. [#13448](https://github.com/khulnasoft/khulnasoft/pull/13448)
 - Files and directories can now be excluded from search by adding the file `.sourcegraph/ignore` to the root directory of a repository. Each line in the _ignore_ file is interpreted as a globbing pattern. [#13690](https://github.com/khulnasoft/khulnasoft/pull/13690)
-- Structural search syntax now allows regular expressions in patterns. Also, `...` can now be used in place of `:[_]`. See the [documentation](https://docs.sourcegraph.com/@main/code_search/reference/structural) for example syntax. [#13809](https://github.com/khulnasoft/khulnasoft/pull/13809)
+- Structural search syntax now allows regular expressions in patterns. Also, `...` can now be used in place of `:[_]`. See the [documentation](https://docs.khulnasoft.com/@main/code_search/reference/structural) for example syntax. [#13809](https://github.com/khulnasoft/khulnasoft/pull/13809)
 - The total size of all Git repositories and the lines of code for indexed branches will be sent back in pings. [#13764](https://github.com/khulnasoft/khulnasoft/pull/13764)
-- Experimental: A new homepage UI for Sourcegraph Server shows the user their recent searches, repositories, files, and saved searches. It can be enabled with `experimentalFeatures.showEnterpriseHomePanels`. [#13407](https://github.com/khulnasoft/khulnasoft/issues/13407)
+- Experimental: A new homepage UI for Khulnasoft Server shows the user their recent searches, repositories, files, and saved searches. It can be enabled with `experimentalFeatures.showEnterpriseHomePanels`. [#13407](https://github.com/khulnasoft/khulnasoft/issues/13407)
 
 ### Changed
 
@@ -2525,7 +2525,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - Saved search emails now include a link to the user's saved searches page. [#11651](https://github.com/khulnasoft/khulnasoft/pull/11651)
 - Campaigns can now be synced using GitLab webhooks. [#12139](https://github.com/khulnasoft/khulnasoft/pull/12139)
 - Configured `observability.alerts` can now be tested using a GraphQL endpoint, `triggerObservabilityTestAlert`. [#12532](https://github.com/khulnasoft/khulnasoft/pull/12532)
-- The Sourcegraph CLI can now serve local repositories for Sourcegraph to clone. This was previously in a command called `src-expose`. See [serving local repositories](https://docs.sourcegraph.com/admin/code_hosts/src_serve_git) in our documentation to find out more. [#12363](https://github.com/khulnasoft/khulnasoft/issues/12363)
+- The Khulnasoft CLI can now serve local repositories for Khulnasoft to clone. This was previously in a command called `src-expose`. See [serving local repositories](https://docs.khulnasoft.com/admin/code_hosts/src_serve_git) in our documentation to find out more. [#12363](https://github.com/khulnasoft/khulnasoft/issues/12363)
 - The count of retained, churned, resurrected, new and deleted users will be sent back in pings. [#12136](https://github.com/khulnasoft/khulnasoft/pull/12136)
 - Saved search usage will be sent back in pings. [#12956](https://github.com/khulnasoft/khulnasoft/pull/12956)
 - Any request with `?trace=1` as a URL query parameter will enable Jaeger tracing (if Jaeger is enabled). [#12291](https://github.com/khulnasoft/khulnasoft/pull/12291)
@@ -2536,14 +2536,14 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 ### Changed
 
-- Repository permissions are now always checked and updated asynchronously ([background permissions syncing](https://docs.sourcegraph.com/admin/repo/permissions#background-permissions-syncing)) instead of blocking each operation. The site config option `permissions.backgroundSync` (which enabled this behavior in previous versions) is now a no-op and is deprecated.
-- [Background permissions syncing](https://docs.sourcegraph.com/admin/repo/permissions#background-permissions-syncing) (`permissions.backgroundSync`) has become the only option for mirroring repository permissions from code hosts. All relevant site configurations are deprecated.
+- Repository permissions are now always checked and updated asynchronously ([background permissions syncing](https://docs.khulnasoft.com/admin/repo/permissions#background-permissions-syncing)) instead of blocking each operation. The site config option `permissions.backgroundSync` (which enabled this behavior in previous versions) is now a no-op and is deprecated.
+- [Background permissions syncing](https://docs.khulnasoft.com/admin/repo/permissions#background-permissions-syncing) (`permissions.backgroundSync`) has become the only option for mirroring repository permissions from code hosts. All relevant site configurations are deprecated.
 
 ### Fixed
 
 - Fixed site admins are getting errors when visiting user settings page in OSS version. [#12313](https://github.com/khulnasoft/khulnasoft/pull/12313)
 - `github-proxy` now respects the environment variables `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` (or the lowercase versions thereof). Other services already respect these variables, but this was missed. If you need a proxy to access github.com set the environment variable for the github-proxy container. [#12377](https://github.com/khulnasoft/khulnasoft/issues/12377)
-- `sourcegraph-frontend` now respects the `tls.external` experimental setting as well as the proxy environment variables. In proxy environments this allows Sourcegraph to fetch extensions. [#12633](https://github.com/khulnasoft/khulnasoft/issues/12633)
+- `sourcegraph-frontend` now respects the `tls.external` experimental setting as well as the proxy environment variables. In proxy environments this allows Khulnasoft to fetch extensions. [#12633](https://github.com/khulnasoft/khulnasoft/issues/12633)
 - Fixed a bug that would sometimes cause trailing parentheses to be removed from search queries upon page load. [#12960](https://github.com/khulnasoft/khulnasoft/issues/12690)
 - Indexed search will no longer stall if a specific index job stalls. Additionally at scale many corner cases causing indexing to stall have been fixed. [#12502](https://github.com/khulnasoft/khulnasoft/pull/12502)
 - Indexed search will quickly recover from rebalancing / roll outs. When a indexed search shard goes down, its repositories are re-indexed by other shards. This takes a while and during a rollout leads to effectively re-indexing all repositories. We now avoid indexing the redistributed repositories once a shard comes back online. [#12474](https://github.com/khulnasoft/khulnasoft/pull/12474)
@@ -2577,7 +2577,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - Revisions listed in `experimentalFeatures.versionContext` or `experimentalFeatures.search.index.branches` will be indexed for faster searching. This is the first support towards indexing non-default branches. [#6728](https://github.com/khulnasoft/khulnasoft/issues/6728)
 - Campaigns are now supported on GitLab.
 - Campaigns now support GitLab and allow users to create, update and track merge requests on GitLab instances.
-- Added a new section on the search homepage on Sourcegraph.com. It is currently feature flagged behind `experimentalFeatures.showRepogroupHomepage` in settings.
+- Added a new section on the search homepage on Khulnasoft.com. It is currently feature flagged behind `experimentalFeatures.showRepogroupHomepage` in settings.
 - Added new repository group pages.
 
 ### Changed
@@ -2596,7 +2596,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - An issue where the sourcegraph/server Jaeger config was invalid. [#11661](https://github.com/khulnasoft/khulnasoft/pull/11661)
 - An issue where valid search queries were improperly hinted as being invalid in the search field. [#11688](https://github.com/khulnasoft/khulnasoft/pull/11688)
 - Reduce frontend memory spikes by limiting the number of goroutines launched by our GraphQL resolvers. [#11736](https://github.com/khulnasoft/khulnasoft/pull/11736)
-- Fixed a bug affecting Sourcegraph icon display in our Phabricator native integration [#11825](https://github.com/khulnasoft/khulnasoft/pull/11825).
+- Fixed a bug affecting Khulnasoft icon display in our Phabricator native integration [#11825](https://github.com/khulnasoft/khulnasoft/pull/11825).
 - Improve performance of site-admin repositories status page. [#11932](https://github.com/khulnasoft/khulnasoft/pull/11932)
 - An issue where search autocomplete for files didn't add the right path. [#12241](https://github.com/khulnasoft/khulnasoft/pull/12241)
 
@@ -2643,16 +2643,16 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 - The search results page now shows a small UI notification if either repository forks or archives are excluded, when `fork` or `archived` options are not explicitly set. [#10624](https://github.com/khulnasoft/khulnasoft/pull/10624)
 - Prometheus metric `src_gitserver_repos_removed_disk_pressure` which is incremented everytime we remove a repository due to disk pressure. [#10900](https://github.com/khulnasoft/khulnasoft/pull/10900)
-- `gitolite.exclude` setting in [Gitolite external service config](https://docs.sourcegraph.com/admin/code_hosts/gitolite#configuration) now supports a regular expression via the `pattern` field. This is consistent with how we exclude in other external services. Additionally this is a replacement for the deprecated `blacklist` configuration. [#11403](https://github.com/khulnasoft/khulnasoft/pull/11403)
-- Notifications about Sourcegraph being out of date will now be shown to site admins and users (depending on how out-of-date it is).
-- Alerts are now configured using `observability.alerts` in the site configuration, instead of via the Grafana web UI. This does not yet support all Grafana notification channel types, and is not yet supported on `sourcegraph/server` ([#11473](https://github.com/khulnasoft/khulnasoft/issues/11473)). For more details, please refer to the [Sourcegraph alerting guide](https://docs.sourcegraph.com/admin/observability/alerting).
-- Experimental basic support for detecting if your Sourcegraph instance is over or under-provisioned has been added through a set of dashboards and warning-level alerts based on container utilization.
-- Query [operators](https://docs.sourcegraph.com/code_search/reference/queries#boolean-operators) `and` and `or` are now enabled by default in all search modes for searching file content. [#11521](https://github.com/khulnasoft/khulnasoft/pull/11521)
+- `gitolite.exclude` setting in [Gitolite external service config](https://docs.khulnasoft.com/admin/code_hosts/gitolite#configuration) now supports a regular expression via the `pattern` field. This is consistent with how we exclude in other external services. Additionally this is a replacement for the deprecated `blacklist` configuration. [#11403](https://github.com/khulnasoft/khulnasoft/pull/11403)
+- Notifications about Khulnasoft being out of date will now be shown to site admins and users (depending on how out-of-date it is).
+- Alerts are now configured using `observability.alerts` in the site configuration, instead of via the Grafana web UI. This does not yet support all Grafana notification channel types, and is not yet supported on `sourcegraph/server` ([#11473](https://github.com/khulnasoft/khulnasoft/issues/11473)). For more details, please refer to the [Khulnasoft alerting guide](https://docs.khulnasoft.com/admin/observability/alerting).
+- Experimental basic support for detecting if your Khulnasoft instance is over or under-provisioned has been added through a set of dashboards and warning-level alerts based on container utilization.
+- Query [operators](https://docs.khulnasoft.com/code_search/reference/queries#boolean-operators) `and` and `or` are now enabled by default in all search modes for searching file content. [#11521](https://github.com/khulnasoft/khulnasoft/pull/11521)
 
 ### Changed
 
 - Repository search within a version context will link to the revision in the version context. [#10860](https://github.com/khulnasoft/khulnasoft/pull/10860)
-- Background permissions syncing becomes the default method to sync permissions from code hosts. Please [read our documentation for things to keep in mind before upgrading](https://docs.sourcegraph.com/admin/repo/permissions#background-permissions-syncing). [#10972](https://github.com/khulnasoft/khulnasoft/pull/10972)
+- Background permissions syncing becomes the default method to sync permissions from code hosts. Please [read our documentation for things to keep in mind before upgrading](https://docs.khulnasoft.com/admin/repo/permissions#background-permissions-syncing). [#10972](https://github.com/khulnasoft/khulnasoft/pull/10972)
 - The styling of the hover overlay was overhauled to never have badges or the close button overlap content while also always indicating whether the overlay is currently pinned. The styling on code hosts was also improved. [#10956](https://github.com/khulnasoft/khulnasoft/pull/10956)
 - Previously, it was required to quote most patterns in structural search. This is no longer a restriction and single and double quotes in structural search patterns are interpreted literally. Note: you may still use `content:"structural-pattern"` if the pattern without quotes conflicts with other syntax. [#11481](https://github.com/khulnasoft/khulnasoft/pull/11481)
 
@@ -2666,7 +2666,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - The Site-admin > Pings page no longer incorrectly indicates that pings are disabled when they aren't. [#11229](https://github.com/khulnasoft/khulnasoft/pull/11229)
 - Match counts are now accurately reported for indexed search. [#11242](https://github.com/khulnasoft/khulnasoft/pull/11242)
 - When background permissions syncing is enabled, it is now possible to only enforce permissions for repositories from selected code hosts (instead of enforcing permissions for repositories from all code hosts). [#11336](https://github.com/khulnasoft/khulnasoft/pull/11336)
-- When more than 200+ repository revisions in a search are unindexed (very rare), the remaining repositories are reported as missing instead of Sourcegraph issuing e.g. several thousand unindexed search requests which causes system slowness and ultimately times out—ensuring searches are still fast even if there are indexing issues on a deployment of Sourcegraph. This does not apply if `index:no` is present in the query.
+- When more than 200+ repository revisions in a search are unindexed (very rare), the remaining repositories are reported as missing instead of Khulnasoft issuing e.g. several thousand unindexed search requests which causes system slowness and ultimately times out—ensuring searches are still fast even if there are indexing issues on a deployment of Khulnasoft. This does not apply if `index:no` is present in the query.
 
 ### Removed
 
@@ -2686,7 +2686,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 - Fix repo not found error for patches [#11021](https://github.com/khulnasoft/khulnasoft/pull/11021).
 - Show expired license screen [#10951](https://github.com/khulnasoft/khulnasoft/pull/10951).
-- Sourcegraph is now built with Go 1.14.3, fixing issues running Sourcegraph onUbuntu 19 and 20. [#10447](https://github.com/khulnasoft/khulnasoft/issues/10447)
+- Khulnasoft is now built with Go 1.14.3, fixing issues running Khulnasoft onUbuntu 19 and 20. [#10447](https://github.com/khulnasoft/khulnasoft/issues/10447)
 
 ## 3.16.0
 
@@ -2696,8 +2696,8 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - If the experimental feature flag `codeInsights` is enabled, extensions can contribute content to directory pages through the experimental `ViewProvider` API. [#10236](https://github.com/khulnasoft/khulnasoft/pull/10236)
   - Directory pages are then represented as an experimental `DirectoryViewer` in the `visibleViewComponents` of the extension API. **Note: This may break extensions that were assuming `visibleViewComponents` were always `CodeEditor`s and did not check the `type` property.** Extensions checking the `type` property will continue to work. [#10236](https://github.com/khulnasoft/khulnasoft/pull/10236)
 - [Major syntax highlighting improvements](https://github.com/sourcegraph/syntect_server/pull/29), including:
-  - 228 commits / 1 year of improvements to the syntax highlighter library Sourcegraph uses ([syntect](https://github.com/trishume/syntect)).
-  - 432 commits / 1 year of improvements to the base syntax definitions for ~36 languages Sourcegraph uses ([sublimehq/Packages](https://github.com/sublimehq/Packages)).
+  - 228 commits / 1 year of improvements to the syntax highlighter library Khulnasoft uses ([syntect](https://github.com/trishume/syntect)).
+  - 432 commits / 1 year of improvements to the base syntax definitions for ~36 languages Khulnasoft uses ([sublimehq/Packages](https://github.com/sublimehq/Packages)).
   - 30 new file extensions/names now detected.
   - Likely fixes other major instability and language support issues. #9557
   - Added [Smarty](#2885), [Ethereum / Solidity / Vyper)](#2440), [Cuda](#5907), [COBOL](#10154), [vb.NET](#4901), and [ASP.NET](#4262) syntax highlighting.
@@ -2707,7 +2707,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - A new dropdown for choosing version contexts appears on the left of the query input when version contexts are specified in `experimentalFeatures.versionContext` in site configuration. Version contexts allow you to scope your search to specific sets of repos at revisions.
 - Campaign changeset usage counts including changesets created, added and merged will be sent back in pings. [#10591](https://github.com/khulnasoft/khulnasoft/pull/10591)
 - Diff views now feature syntax highlighting and can be properly copy-pasted. [#10437](https://github.com/khulnasoft/khulnasoft/pull/10437)
-- Admins can now download an anonymized usage statistics ZIP archive in the **Site admin > Usage stats**. Opting to share this archive with the Sourcegraph team helps us make the product even better. [#10475](https://github.com/khulnasoft/khulnasoft/pull/10475)
+- Admins can now download an anonymized usage statistics ZIP archive in the **Site admin > Usage stats**. Opting to share this archive with the Khulnasoft team helps us make the product even better. [#10475](https://github.com/khulnasoft/khulnasoft/pull/10475)
 - Extension API: There is now a field `versionContext` and subscribable `versionContextChanges` in `Workspace` to allow extensions to respect the instance's version context.
 - The smart search field, providing syntax highlighting, hover tooltips, and validation on filters in search queries, is now activated by default. It can be disabled by setting `{ "experimentalFeatures": { "smartSearchField": false } }` in global settings.
 
@@ -2716,11 +2716,11 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - The `userID` and `orgID` fields in the SavedSearch type in the GraphQL API have been replaced with a `namespace` field. To get the ID of the user or org that owns the saved search, use `namespace.id`. [#5327](https://github.com/khulnasoft/khulnasoft/pull/5327)
 - Tree pages now redirect to blob pages if the path is not a tree and vice versa. [#10193](https://github.com/khulnasoft/khulnasoft/pull/10193)
 - Files and directories that are not found now return a 404 status code. [#10193](https://github.com/khulnasoft/khulnasoft/pull/10193)
-- The site admin flag `disableNonCriticalTelemetry` now allows Sourcegraph admins to disable most anonymous telemetry. Visit https://docs.sourcegraph.com/admin/pings to learn more. [#10402](https://github.com/khulnasoft/khulnasoft/pull/10402)
+- The site admin flag `disableNonCriticalTelemetry` now allows Khulnasoft admins to disable most anonymous telemetry. Visit https://docs.khulnasoft.com/admin/pings to learn more. [#10402](https://github.com/khulnasoft/khulnasoft/pull/10402)
 
 ### Fixed
 
-- In the OSS version of Sourcegraph, authorization providers are properly initialized and GraphQL APIs are no longer blocked. [#3487](https://github.com/khulnasoft/khulnasoft/issues/3487)
+- In the OSS version of Khulnasoft, authorization providers are properly initialized and GraphQL APIs are no longer blocked. [#3487](https://github.com/khulnasoft/khulnasoft/issues/3487)
 - Previously, GitLab repository paths containing certain characters could not be excluded (slashes and periods in parts of the paths). These characters are now allowed, so the repository paths can be excluded. [#10096](https://github.com/khulnasoft/khulnasoft/issues/10096)
 - Symbols for indexed commits in languages Haskell, JSONNet, Kotlin, Scala, Swift, Thrift, and TypeScript will show up again. Previously our symbol indexer would not know how to extract symbols for those languages even though our unindexed symbol service did. [#10357](https://github.com/khulnasoft/khulnasoft/issues/10357)
 - When periodically re-cloning a repository it will still be available. [#10663](https://github.com/khulnasoft/khulnasoft/pull/10663)
@@ -2741,7 +2741,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 ### Fixed
 
 - A potential security vulnerability with in the authentication workflow has been fixed. [#10167](https://github.com/khulnasoft/khulnasoft/pull/10167)
-- An issue where `sourcegraph/postgres-11.4:3.15.0` was incorrectly an older version of the image incompatible with non-root Kubernetes deployments. `sourcegraph/postgres-11.4:3.15.1` now matches the same image version found in Sourcegraph 3.14.3 (`20-04-07_56b20163`).
+- An issue where `sourcegraph/postgres-11.4:3.15.0` was incorrectly an older version of the image incompatible with non-root Kubernetes deployments. `sourcegraph/postgres-11.4:3.15.1` now matches the same image version found in Khulnasoft 3.14.3 (`20-04-07_56b20163`).
 - An issue that caused the search result type tabs to be overlapped in Safari. [#10191](https://github.com/khulnasoft/khulnasoft/pull/10191)
 
 ## 3.15.0
@@ -2750,11 +2750,11 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 - Users and site administrators can now view a log of their actions/events in the user settings. [#9141](https://github.com/khulnasoft/khulnasoft/pull/9141)
 - With the new `visibility:` filter search results can now be filtered based on a repository's visibility (possible filter values: `any`, `public` or `private`). [#8344](https://github.com/khulnasoft/khulnasoft/issues/8344)
-- [`sourcegraph/git-extras`](https://sourcegraph.com/extensions/sourcegraph/git-extras) is now enabled by default on new instances [#3501](https://github.com/khulnasoft/khulnasoft/issues/3501)
-- The Sourcegraph Docker image will now copy `/etc/sourcegraph/gitconfig` to `$HOME/.gitconfig`. This is a convenience similiar to what we provide for [repositories that need HTTP(S) or SSH authentication](https://docs.sourcegraph.com/admin/repo/auth). [#658](https://github.com/khulnasoft/khulnasoft/issues/658)
+- [`sourcegraph/git-extras`](https://khulnasoft.com/extensions/sourcegraph/git-extras) is now enabled by default on new instances [#3501](https://github.com/khulnasoft/khulnasoft/issues/3501)
+- The Khulnasoft Docker image will now copy `/etc/sourcegraph/gitconfig` to `$HOME/.gitconfig`. This is a convenience similiar to what we provide for [repositories that need HTTP(S) or SSH authentication](https://docs.khulnasoft.com/admin/repo/auth). [#658](https://github.com/khulnasoft/khulnasoft/issues/658)
 - Permissions background syncing is now supported for GitHub via site configuration `"permissions.backgroundSync": {"enabled": true}`. [#8890](https://github.com/khulnasoft/khulnasoft/issues/8890)
-- Search: Adding `stable:true` to a query ensures a deterministic search result order. This is an experimental parameter. It applies only to file contents, and is limited to at max 5,000 results (consider using [the paginated search API](https://docs.sourcegraph.com/api/graphql/search#sourcegraph-3-9-experimental-paginated-search) if you need more than that.). [#9681](https://github.com/khulnasoft/khulnasoft/pull/9681).
-- After completing the Sourcegraph user feedback survey, a button may appear for tweeting this feedback at [@sourcegraph](https://twitter.com/sourcegraph). [#9728](https://github.com/khulnasoft/khulnasoft/pull/9728)
+- Search: Adding `stable:true` to a query ensures a deterministic search result order. This is an experimental parameter. It applies only to file contents, and is limited to at max 5,000 results (consider using [the paginated search API](https://docs.khulnasoft.com/api/graphql/search#sourcegraph-3-9-experimental-paginated-search) if you need more than that.). [#9681](https://github.com/khulnasoft/khulnasoft/pull/9681).
+- After completing the Khulnasoft user feedback survey, a button may appear for tweeting this feedback at [@sourcegraph](https://twitter.com/sourcegraph). [#9728](https://github.com/khulnasoft/khulnasoft/pull/9728)
 - `git fetch` and `git clone` now inherit the parent process environment variables. This allows site admins to set `HTTPS_PROXY` or [git http configurations](https://git-scm.com/docs/git-config/2.26.0#Documentation/git-config.txt-httpproxy) via environment variables. For cluster environments site admins should set this on the gitserver container. [#250](https://github.com/khulnasoft/khulnasoft/issues/250)
 - Experimental: Search for file contents using `and`- and `or`-expressions in queries. Enabled via the global settings value `{"experimentalFeatures": {"andOrQuery": "enabled"}}`. [#8567](https://github.com/khulnasoft/khulnasoft/issues/8567)
 - Always include forks or archived repositories in searches via the global/org/user settings with `"search.includeForks": true` or `"search.includeArchived": true` respectively. [#9927](https://github.com/khulnasoft/khulnasoft/issues/9927)
@@ -2765,13 +2765,13 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
   - Frontend dasbhoard: Search error types are now broken into distinct panels for improved visibility/legibility.
     - **IMPORTANT**: If you have previously configured alerting on any of these panels or on "hard search errors", you will need to reconfigure it after upgrading.
   - Frontend dasbhoard: Search error and latency are now broken down by type: Browser requests, search-based code intel requests, and API requests.
-- observability (debugging): **Distributed tracing is a powerful tool for investigating performance issues.** The following changes have been made with the goal of making it easier to use distributed tracing with Sourcegraph:
+- observability (debugging): **Distributed tracing is a powerful tool for investigating performance issues.** The following changes have been made with the goal of making it easier to use distributed tracing with Khulnasoft:
 
   - The site configuration field `"observability.tracing": { "sampling": "..." }` allows a site admin to control which requests generate tracing data.
     - `"all"` will trace all requests.
-    - `"selective"` (recommended) will trace all requests initiated from an end-user URL with `?trace=1`. Non-end-user-initiated requests can set a HTTP header `X-Sourcegraph-Should-Trace: true`. This is the recommended setting, as `"all"` can generate large amounts of tracing data that may cause network and memory resource contention in the Sourcegraph instance.
+    - `"selective"` (recommended) will trace all requests initiated from an end-user URL with `?trace=1`. Non-end-user-initiated requests can set a HTTP header `X-Khulnasoft-Should-Trace: true`. This is the recommended setting, as `"all"` can generate large amounts of tracing data that may cause network and memory resource contention in the Khulnasoft instance.
     - `"none"` (default) turns off tracing.
-  - Jaeger is now the officially supported distributed tracer. The following is the recommended site configuration to connect Sourcegraph to a Jaeger agent (which must be deployed on the same host and listening on the default ports):
+  - Jaeger is now the officially supported distributed tracer. The following is the recommended site configuration to connect Khulnasoft to a Jaeger agent (which must be deployed on the same host and listening on the default ports):
 
     ```
     "observability.tracing": {
@@ -2779,9 +2779,9 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
     }
     ```
 
-  - Jaeger is now included in the Sourcegraph deployment configuration by default if you are using Kubernetes, Docker Compose, or the pure Docker cluster deployment model. (It is not yet included in the single Docker container distribution.) It will be included as part of upgrading to 3.15 in these deployment models, unless disabled.
+  - Jaeger is now included in the Khulnasoft deployment configuration by default if you are using Kubernetes, Docker Compose, or the pure Docker cluster deployment model. (It is not yet included in the single Docker container distribution.) It will be included as part of upgrading to 3.15 in these deployment models, unless disabled.
   - The site configuration field, `useJaeger`, is deprecated in favor of `observability.tracing`.
-  - Support for configuring Lightstep as a distributed tracer is deprecated and will be removed in a subsequent release. Instances that use Lightstep with Sourcegraph are encouraged to migrate to Jaeger (directions for running Jaeger alongside Sourcegraph are included in the installation instructions).
+  - Support for configuring Lightstep as a distributed tracer is deprecated and will be removed in a subsequent release. Instances that use Lightstep with Khulnasoft are encouraged to migrate to Jaeger (directions for running Jaeger alongside Khulnasoft are included in the installation instructions).
 
 ### Changed
 
@@ -2862,7 +2862,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 
 - Site-Admin/Instrumentation is now available in the Kubernetes cluster deployment [8805](https://github.com/khulnasoft/khulnasoft/pull/8805).
 - Extensions can now specify a `baseUri` in the `DocumentFilter` when registering providers.
-- Admins can now exclude GitHub forks and/or archived repositories from the set of repositories being mirrored in Sourcegraph with the `"exclude": [{"forks": true}]` or `"exclude": [{"archived": true}]` GitHub external service configuration. [#8974](https://github.com/khulnasoft/khulnasoft/pull/8974)
+- Admins can now exclude GitHub forks and/or archived repositories from the set of repositories being mirrored in Khulnasoft with the `"exclude": [{"forks": true}]` or `"exclude": [{"archived": true}]` GitHub external service configuration. [#8974](https://github.com/khulnasoft/khulnasoft/pull/8974)
 - Campaign changesets can be filtered by State, Review State and Check State. [#8848](https://github.com/khulnasoft/khulnasoft/pull/8848)
 - Counts of users of and searches conducted with interactive and plain text search modes will be sent back in pings, aggregated daily, weekly, and monthly.
 - Aggregated counts of daily, weekly, and monthly active users of search will be sent back in pings.
@@ -2888,13 +2888,13 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
   [migration step](https://github.com/sourcegraph/deploy-sourcegraph/blob/master/docs/migrate.md) when upgrading
   past commit [821032e2ee45f21f701](https://github.com/sourcegraph/deploy-sourcegraph/commit/821032e2ee45f21f701caac624e4f090c59fd259) or when upgrading to 3.14.
   New installations starting with the mentioned commit or with 3.14 do not need this migration step.
-- Aggregated search latencies (in ms) of search queries are now included in [pings](https://docs.sourcegraph.com/admin/pings).
+- Aggregated search latencies (in ms) of search queries are now included in [pings](https://docs.khulnasoft.com/admin/pings).
 - The [Kubernetes deployment](https://github.com/sourcegraph/deploy-sourcegraph) frontend role has added services as a resource to watch/listen/get.
   This change does not affect the newly-introduced, restricted Kubernetes config files.
 - Archived repositories are excluded from search by default. Adding `archived:yes` includes archived repositories.
 - Forked repositories are excluded from search by default. Adding `fork:yes` includes forked repositories.
-- CSRF and session cookies now set `SameSite=None` when Sourcegraph is running behind HTTPS and `SameSite=Lax` when Sourcegraph is running behind HTTP in order to comply with a [recent IETF proposal](https://web.dev/samesite-cookies-explained/#samesitenone-must-be-secure). As a side effect, the Sourcegraph browser extension and GitLab/Bitbucket native integrations can only connect to private instances that have HTTPS configured. If your private instance is only running behind HTTP, please configure your instance to use HTTPS in order to continue using these.
-- The Bitbucket Server rate limit that Sourcegraph self-imposes has been raised from 120 req/min to 480 req/min to account for Sourcegraph instances that make use of Sourcegraphs' Bitbucket Server repository permissions and campaigns at the same time (which require a larger number of API requests against Bitbucket Server). The new number is based on Sourcegraph consuming roughly 8% the average API request rate of a large customers' Bitbucket Server instance. [#9048](https://github.com/khulnasoft/khulnasoft/pull/9048/files)
+- CSRF and session cookies now set `SameSite=None` when Khulnasoft is running behind HTTPS and `SameSite=Lax` when Khulnasoft is running behind HTTP in order to comply with a [recent IETF proposal](https://web.dev/samesite-cookies-explained/#samesitenone-must-be-secure). As a side effect, the Khulnasoft browser extension and GitLab/Bitbucket native integrations can only connect to private instances that have HTTPS configured. If your private instance is only running behind HTTP, please configure your instance to use HTTPS in order to continue using these.
+- The Bitbucket Server rate limit that Khulnasoft self-imposes has been raised from 120 req/min to 480 req/min to account for Khulnasoft instances that make use of Khulnasofts' Bitbucket Server repository permissions and campaigns at the same time (which require a larger number of API requests against Bitbucket Server). The new number is based on Khulnasoft consuming roughly 8% the average API request rate of a large customers' Bitbucket Server instance. [#9048](https://github.com/khulnasoft/khulnasoft/pull/9048/files)
 - If a single, unambiguous commit SHA is used in a search query (e.g., `repo@c98f56`) and a search index exists at this commit (i.e., it is the `HEAD` commit), then the query is searched using the index. Prior to this change, unindexed search was performed for any query containing an `@commit` specifier.
 
 ### Fixed
@@ -2902,20 +2902,20 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - Zoekt's watchdog ensures the service is down upto 3 times before exiting. The watchdog would misfire on startup on resource constrained systems, with the retries this should make a false positive far less likely. [#7867](https://github.com/khulnasoft/khulnasoft/issues/7867)
 - A regression in repo-updater was fixed that lead to every repository's git clone being updated every time the list of repositories was synced from the code host. [#8501](https://github.com/khulnasoft/khulnasoft/issues/8501)
 - The default timeout of indexed search has been increased. Previously indexed search would always return within 3s. This lead to broken behaviour on new instances which had yet to tune resource allocations. [#8720](https://github.com/khulnasoft/khulnasoft/pull/8720)
-- Bitbucket Server older than 5.13 failed to sync since Sourcegraph 3.12. This was due to us querying for the `archived` label, but Bitbucket Server 5.13 does not support labels. [#8883](https://github.com/khulnasoft/khulnasoft/issues/8883)
+- Bitbucket Server older than 5.13 failed to sync since Khulnasoft 3.12. This was due to us querying for the `archived` label, but Bitbucket Server 5.13 does not support labels. [#8883](https://github.com/khulnasoft/khulnasoft/issues/8883)
 - monitoring: firing alerts are now ordered at the top of the list in dashboards by default for better visibility.
 - monitoring: fixed an issue where some alerts would fail to report in for the "Total alerts defined" panel in the overview dashboard.
 
 ### Removed
 
-- The v3.11 migration to merge critical and site configuration has been removed. If you are still making use of the deprecated `CRITICAL_CONFIG_FILE`, your instance may not start up. See the [migration notes for Sourcegraph 3.11](https://docs.sourcegraph.com/admin/migration/3_11) for more information.
+- The v3.11 migration to merge critical and site configuration has been removed. If you are still making use of the deprecated `CRITICAL_CONFIG_FILE`, your instance may not start up. See the [migration notes for Khulnasoft 3.11](https://docs.khulnasoft.com/admin/migration/3_11) for more information.
 
 ## 3.13.2
 
 ### Fixed
 
 - The default timeout of indexed search has been increased. Previously indexed search would always return within 3s. This lead to broken behaviour on new instances which had yet to tune resource allocations. [#8720](https://github.com/khulnasoft/khulnasoft/pull/8720)
-- Bitbucket Server older than 5.13 failed to sync since Sourcegraph 3.12. This was due to us querying for the `archived` label, but Bitbucket Server 5.13 does not support labels. [#8883](https://github.com/khulnasoft/khulnasoft/issues/8883)
+- Bitbucket Server older than 5.13 failed to sync since Khulnasoft 3.12. This was due to us querying for the `archived` label, but Bitbucket Server 5.13 does not support labels. [#8883](https://github.com/khulnasoft/khulnasoft/issues/8883)
 - A regression in repo-updater was fixed that lead to every repository's git clone being updated every time the list of repositories was synced from the code host. [#8501](https://github.com/khulnasoft/khulnasoft/issues/8501)
 
 ## 3.13.1
@@ -2923,7 +2923,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 ### Fixed
 
 - To reduce the chance of users running into "502 Bad Gateway" errors an internal timeout has been increased from 60 seconds to 10 minutes so that long running requests are cut short by the proxy in front of `sourcegraph-frontend` and correctly reported as "504 Gateway Timeout". [#8606](https://github.com/khulnasoft/khulnasoft/pull/8606)
-- Sourcegraph instances that are not connected to the internet will no longer display errors when users submit NPS survey responses (the responses will continue to be stored locally). Rather, an error will be printed to the frontend logs. [#8598](https://github.com/khulnasoft/khulnasoft/issues/8598)
+- Khulnasoft instances that are not connected to the internet will no longer display errors when users submit NPS survey responses (the responses will continue to be stored locally). Rather, an error will be printed to the frontend logs. [#8598](https://github.com/khulnasoft/khulnasoft/issues/8598)
 - Showing `head>` in the search results if the first line of the file is shown [#8619](https://github.com/khulnasoft/khulnasoft/issues/8619)
 
 ## 3.13.0
@@ -2933,7 +2933,7 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - Experimental: Added new field `experimentalFeatures.customGitFetch` that allows defining custom git fetch commands for code hosts and repositories with special settings. [#8435](https://github.com/khulnasoft/khulnasoft/pull/8435)
 - Experimental: the search query input now provides syntax highlighting, hover tooltips, and diagnostics on filters in search queries. Requires the global settings value `{ "experimentalFeatures": { "smartSearchField": true } }`.
 - Added a setting `search.hideSuggestions`, which when set to `true`, will hide search suggestions in the search bar. [#8059](https://github.com/khulnasoft/khulnasoft/pull/8059)
-- Experimental: A tool, [src-expose](https://docs.sourcegraph.com/admin/code_hosts/other#experimental-src-expose), can be used to import code from any code host.
+- Experimental: A tool, [src-expose](https://docs.khulnasoft.com/admin/code_hosts/other#experimental-src-expose), can be used to import code from any code host.
 - Experimental: Added new field `certificates` as in `{ "experimentalFeatures" { "tls.external": { "certificates": ["<CERT>"] } } }`. This allows you to add certificates to trust when communicating with a code host (via API or git+http). We expect this to be useful for adding internal certificate authorities/self-signed certificates. [#71](https://github.com/khulnasoft/khulnasoft/issues/71)
 - Added a setting `auth.minPasswordLength`, which when set, causes a minimum password length to be enforced when users sign up or change passwords. [#7521](https://github.com/khulnasoft/khulnasoft/issues/7521)
 - GitHub labels associated with code change campaigns are now displayed. [#8115](https://github.com/khulnasoft/khulnasoft/pull/8115)
@@ -2941,23 +2941,23 @@ API docs is a new experimental feature of Sourcegraph ([learn more](https://docs
 - When creating a campaign, users can now specify the branch name that will be used on code host. This is also a breaking change for users of the GraphQL API since the `branch` attribute is now required in `CreateCampaignInput` when a `plan` is also specified. [#7646](https://github.com/khulnasoft/khulnasoft/issues/7646)
 - Added an optional `content:` parameter for specifying a search pattern. This parameter overrides any other search patterns in a query. Useful for unambiguously specifying what to search for when search strings clash with other query syntax. [#6490](https://github.com/khulnasoft/khulnasoft/issues/6490)
 - Interactive search mode, which helps users construct queries using UI elements, is now made available to users by default. A dropdown to the left of the search bar allows users to toggle between interactive and plain text modes. The option to use interactive search mode can be disabled by adding `{ "experimentalFeatures": { "splitSearchModes": false } }` in global settings. [#8461](https://github.com/khulnasoft/khulnasoft/pull/8461)
-- Our [upgrade policy](https://docs.sourcegraph.com/#upgrading-sourcegraph) is now enforced by the `sourcegraph-frontend` on startup to prevent admins from mistakenly jumping too many versions. [#8157](https://github.com/khulnasoft/khulnasoft/pull/8157) [#7702](https://github.com/khulnasoft/khulnasoft/issues/7702)
+- Our [upgrade policy](https://docs.khulnasoft.com/#upgrading-sourcegraph) is now enforced by the `sourcegraph-frontend` on startup to prevent admins from mistakenly jumping too many versions. [#8157](https://github.com/khulnasoft/khulnasoft/pull/8157) [#7702](https://github.com/khulnasoft/khulnasoft/issues/7702)
 - Repositories with bad object packs or bad objects are automatically repaired. We now detect suspect output of git commands to mark a repository for repair. [#6676](https://github.com/khulnasoft/khulnasoft/issues/6676)
 - Hover tooltips for Scala and Perl files now have syntax highlighting. [#8456](https://github.com/khulnasoft/khulnasoft/pull/8456) [#8307](https://github.com/khulnasoft/khulnasoft/issues/8307)
 
 ### Changed
 
 - `experimentalFeatures.splitSearchModes` was removed as a site configuration option. It should be set in global/org/user settings.
-- Sourcegraph now waits for `90s` instead of `5s` for Redis to be available before quitting. This duration is configurable with the new `SRC_REDIS_WAIT_FOR` environment variable.
+- Khulnasoft now waits for `90s` instead of `5s` for Redis to be available before quitting. This duration is configurable with the new `SRC_REDIS_WAIT_FOR` environment variable.
 - Code intelligence usage statistics will be sent back via pings by default. Aggregated event counts can be disabled via the site admin flag `disableNonCriticalTelemetry`.
-- The Sourcegraph Docker image optimized its use of Redis to make start-up significantly faster in certain scenarios (e.g when container restarts were frequent). ([#3300](https://github.com/khulnasoft/khulnasoft/issues/3300), [#2904](https://github.com/khulnasoft/khulnasoft/issues/2904))
-- Upgrading Sourcegraph is officially supported for one minor version increment (e.g., 3.12 -> 3.13). Previously, upgrades from 2 minor versions previous were supported. Please reach out to support@sourcegraph.com if you would like assistance upgrading from a much older version of Sourcegraph.
+- The Khulnasoft Docker image optimized its use of Redis to make start-up significantly faster in certain scenarios (e.g when container restarts were frequent). ([#3300](https://github.com/khulnasoft/khulnasoft/issues/3300), [#2904](https://github.com/khulnasoft/khulnasoft/issues/2904))
+- Upgrading Khulnasoft is officially supported for one minor version increment (e.g., 3.12 -> 3.13). Previously, upgrades from 2 minor versions previous were supported. Please reach out to support@khulnasoft.com if you would like assistance upgrading from a much older version of Khulnasoft.
 - The GraphQL mutation `previewCampaignPlan` has been renamed to `createCampaignPlan`. This mutation is part of campaigns, which is still in beta and behind a feature flag and thus subject to possible breaking changes while we still work on it.
 - The GraphQL mutation `previewCampaignPlan` has been renamed to `createCampaignPlan`. This mutation is part of the campaigns feature, which is still in beta and behind a feature flag and thus subject to possible breaking changes while we still work on it.
 - The GraphQL field `CampaignPlan.changesets` has been deprecated and will be removed in 3.15. A new field called `CampaignPlan.changesetPlans` has been introduced to make the naming more consistent with the `Campaign.changesetPlans` field. Please use that instead. [#7966](https://github.com/khulnasoft/khulnasoft/pull/7966)
 - Long lines (>2000 bytes) are no longer highlighted, in order to prevent performance issues in browser rendering. [#6489](https://github.com/khulnasoft/khulnasoft/issues/6489)
 - No longer requires `read:org` permissions for GitHub OAuth if `allowOrgs` is not enabled in the site configuration. [#8163](https://github.com/khulnasoft/khulnasoft/issues/8163)
-- [Documentation](https://github.com/sourcegraph/deploy-sourcegraph/blob/master/configure/jaeger/README.md) in github.com/sourcegraph/deploy-sourcegraph for deploying Jaeger in Kubernetes clusters running Sourcegraph has been updated to use the [Jaeger Operator](https://www.jaegertracing.io/docs/1.16/operator/), the recommended standard way of deploying Jaeger in a Kubernetes cluster. We recommend existing customers that use Jaeger adopt this new method of deployment. Please reach out to support@sourcegraph.com if you'd like assistance updating.
+- [Documentation](https://github.com/sourcegraph/deploy-sourcegraph/blob/master/configure/jaeger/README.md) in github.com/sourcegraph/deploy-sourcegraph for deploying Jaeger in Kubernetes clusters running Khulnasoft has been updated to use the [Jaeger Operator](https://www.jaegertracing.io/docs/1.16/operator/), the recommended standard way of deploying Jaeger in a Kubernetes cluster. We recommend existing customers that use Jaeger adopt this new method of deployment. Please reach out to support@khulnasoft.com if you'd like assistance updating.
 
 ### Fixed
 
@@ -2985,7 +2985,7 @@ This release backports the fixes released in `3.13.2` for customers still on `3.
 ### Fixed
 
 - The default timeout of indexed search has been increased. Previously indexed search would always return within 3s. This lead to broken behaviour on new instances which had yet to tune resource allocations. [#8720](https://github.com/khulnasoft/khulnasoft/pull/8720)
-- Bitbucket Server older than 5.13 failed to sync since Sourcegraph 3.12. This was due to us querying for the `archived` label, but Bitbucket Server 5.13 does not support labels. [#8883](https://github.com/khulnasoft/khulnasoft/issues/8883)
+- Bitbucket Server older than 5.13 failed to sync since Khulnasoft 3.12. This was due to us querying for the `archived` label, but Bitbucket Server 5.13 does not support labels. [#8883](https://github.com/khulnasoft/khulnasoft/issues/8883)
 - A regression in repo-updater was fixed that lead to every repository's git clone being updated every time the list of repositories was synced from the code host. [#8501](https://github.com/khulnasoft/khulnasoft/issues/8501)
 
 ## 3.12.9
@@ -3037,7 +3037,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Fixed
 
-- A regression in 3.12.0 which caused [find-leaked-credentials campaigns](https://docs.sourcegraph.com/user/campaigns#finding-leaked-credentials) to not return any results for private repositories. [#7914](https://github.com/khulnasoft/khulnasoft/issues/7914)
+- A regression in 3.12.0 which caused [find-leaked-credentials campaigns](https://docs.khulnasoft.com/user/campaigns#finding-leaked-credentials) to not return any results for private repositories. [#7914](https://github.com/khulnasoft/khulnasoft/issues/7914)
 - Experimental: The site configuration field `campaigns.readAccess.enabled` allows site-admins to give read-only access for campaigns to non-site-admins. This is a setting for the experimental campaigns feature and will only have an effect when campaigns is enabled under `experimentalFeatures`. [#8013](https://github.com/khulnasoft/khulnasoft/issues/8013)
 
 ### Fixed
@@ -3060,15 +3060,15 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Added
 
-- Bitbucket Server repositories with the label `archived` can be excluded from search with `archived:no` [syntax](https://docs.sourcegraph.com/code_search/reference/queries). [#5494](https://github.com/khulnasoft/khulnasoft/issues/5494)
+- Bitbucket Server repositories with the label `archived` can be excluded from search with `archived:no` [syntax](https://docs.khulnasoft.com/code_search/reference/queries). [#5494](https://github.com/khulnasoft/khulnasoft/issues/5494)
 - Add button to download file in code view. [#5478](https://github.com/khulnasoft/khulnasoft/issues/5478)
 - The new `allowOrgs` site config setting in GitHub `auth.providers` enables admins to restrict GitHub logins to members of specific GitHub organizations. [#4195](https://github.com/khulnasoft/khulnasoft/issues/4195)
 - Support case field in repository search. [#7671](https://github.com/khulnasoft/khulnasoft/issues/7671)
 - Skip LFS content when cloning git repositories. [#7322](https://github.com/khulnasoft/khulnasoft/issues/7322)
 - Hover tooltips and _Find Reference_ results now display a badge to indicate when a result is search-based. These indicators can be disabled by adding `{ "experimentalFeatures": { "showBadgeAttachments": false } }` in global settings.
 - Campaigns can now be created as drafts, which can be shared and updated without creating changesets (pull requests) on code hosts. When ready, a draft can then be published, either completely or changeset by changeset, to create changesets on the code host. [#7659](https://github.com/khulnasoft/khulnasoft/pull/7659)
-- Experimental: feature flag `BitbucketServerFastPerm` can be enabled to speed up fetching ACL data from Bitbucket Server instances. This requires [Bitbucket Server Sourcegraph plugin](https://github.com/sourcegraph/bitbucket-server-plugin) to be installed.
-- Experimental: A site configuration field `{ "experimentalFeatures" { "tls.external": { "insecureSkipVerify": true } } }` which allows you to configure SSL/TLS settings for Sourcegraph contacting your code hosts. Currently just supports turning off TLS/SSL verification. [#71](https://github.com/khulnasoft/khulnasoft/issues/71)
+- Experimental: feature flag `BitbucketServerFastPerm` can be enabled to speed up fetching ACL data from Bitbucket Server instances. This requires [Bitbucket Server Khulnasoft plugin](https://github.com/sourcegraph/bitbucket-server-plugin) to be installed.
+- Experimental: A site configuration field `{ "experimentalFeatures" { "tls.external": { "insecureSkipVerify": true } } }` which allows you to configure SSL/TLS settings for Khulnasoft contacting your code hosts. Currently just supports turning off TLS/SSL verification. [#71](https://github.com/khulnasoft/khulnasoft/issues/71)
 - Experimental: To search across multiple revisions of the same repository, list multiple branch names (or other revspecs) separated by `:` in your query, as in `repo:myrepo@branch1:branch2:branch2`. To search all branches, use `repo:myrepo@*refs/heads/`. Requires the site configuration value `{ "experimentalFeatures": { "searchMultipleRevisionsPerRepository": true } }`. Previously this was only supported for diff and commit searches.
 - Experimental: interactive search mode, which helps users construct queries using UI elements. Requires the site configuration value `{ "experimentalFeatures": { "splitSearchModes": true } }`. The existing plain text search format is still available via the dropdown menu on the left of the search bar.
 - A case sensitivity toggle now appears in the search bar.
@@ -3080,7 +3080,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 - The search query builder now lives on its own page at `/search/query-builder`. The home search page has a link to it.
 - User passwords when using builtin auth are limited to 256 characters. Existing passwords longer than 256 characters will continue to work.
 - GraphQL API: Campaign.changesetCreationStatus has been renamed to Campaign.status to be aligned with CampaignPlan. [#7654](https://github.com/khulnasoft/khulnasoft/pull/7654)
-- When using GitHub as an authentication provider, `read:org` scope is now required. This is used to support the new `allowOrgs` site config setting in the GitHub `auth.providers` configuration, which enables site admins to restrict GitHub logins to members of a specific GitHub organization. This for example allows having a Sourcegraph instance with GitHub sign in configured be exposed to the public internet without allowing everyone with a GitHub account access to your Sourcegraph instance.
+- When using GitHub as an authentication provider, `read:org` scope is now required. This is used to support the new `allowOrgs` site config setting in the GitHub `auth.providers` configuration, which enables site admins to restrict GitHub logins to members of a specific GitHub organization. This for example allows having a Khulnasoft instance with GitHub sign in configured be exposed to the public internet without allowing everyone with a GitHub account access to your Khulnasoft instance.
 
 ### Fixed
 
@@ -3112,23 +3112,23 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ## 3.11.0
 
-**Important:** If you use `SITE_CONFIG_FILE` or `CRITICAL_CONFIG_FILE`, please be sure to follow the steps in: [migration notes for Sourcegraph v3.11+](https://docs.sourcegraph.com/admin/migration/3_11.md) after upgrading.
+**Important:** If you use `SITE_CONFIG_FILE` or `CRITICAL_CONFIG_FILE`, please be sure to follow the steps in: [migration notes for Khulnasoft v3.11+](https://docs.khulnasoft.com/admin/migration/3_11.md) after upgrading.
 
 ### Added
 
 - Language statistics by commit are available via the API. [#6737](https://github.com/khulnasoft/khulnasoft/pull/6737)
-- Added a new page that shows [language statistics for the results of a search query](https://docs.sourcegraph.com/user/search#statistics).
+- Added a new page that shows [language statistics for the results of a search query](https://docs.khulnasoft.com/user/search#statistics).
 - Global settings can be configured from a local file using the environment variable `GLOBAL_SETTINGS_FILE`.
 - High-level health metrics and dashboards have been added to Khulnasoft's monitoring (found under the **Site admin** -> **Monitoring** area). [#7216](https://github.com/khulnasoft/khulnasoft/pull/7216)
-- Logging for GraphQL API requests not issued by Sourcegraph is now much more verbose, allowing for easier debugging of problematic queries and where they originate from. [#5706](https://github.com/khulnasoft/khulnasoft/issues/5706)
+- Logging for GraphQL API requests not issued by Khulnasoft is now much more verbose, allowing for easier debugging of problematic queries and where they originate from. [#5706](https://github.com/khulnasoft/khulnasoft/issues/5706)
 - A new campaign type finds and removes leaked npm credentials. [#6893](https://github.com/khulnasoft/khulnasoft/pull/6893)
 - Campaigns can now be retried to create failed changesets due to ephemeral errors (e.g. network problems when creating a pull request on GitHub). [#6718](https://github.com/khulnasoft/khulnasoft/issues/6718)
-- The initial release of [structural code search](https://docs.sourcegraph.com/code_search/reference/structural).
+- The initial release of [structural code search](https://docs.khulnasoft.com/code_search/reference/structural).
 
 ### Changed
 
 - `repohascommitafter:` search filter uses a more efficient git command to determine inclusion. [#6739](https://github.com/khulnasoft/khulnasoft/pull/6739)
-- `NODE_NAME` can be specified instead of `HOSTNAME` for zoekt-indexserver. `HOSTNAME` was a confusing configuration to use in [Pure-Docker Sourcegraph deployments](https://github.com/sourcegraph/deploy-sourcegraph-docker). [#6846](https://github.com/khulnasoft/khulnasoft/issues/6846)
+- `NODE_NAME` can be specified instead of `HOSTNAME` for zoekt-indexserver. `HOSTNAME` was a confusing configuration to use in [Pure-Docker Khulnasoft deployments](https://github.com/sourcegraph/deploy-sourcegraph-docker). [#6846](https://github.com/khulnasoft/khulnasoft/issues/6846)
 - The feedback toast now requests feedback every 60 days of usage (was previously only once on the 3rd day of use). [#7165](https://github.com/khulnasoft/khulnasoft/pull/7165)
 - The lsif-server container now only has a dependency on Postgres, whereas before it also relied on Redis. [#6880](https://github.com/khulnasoft/khulnasoft/pull/6880)
 - Renamed the GraphQL API `LanguageStatistics` fields to `name`, `totalBytes`, and `totalLines` (previously the field names started with an uppercase letter, which was inconsistent).
@@ -3148,7 +3148,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Removed
 
-- The management console has been removed. All critical configuration previously stored in the management console will be automatically migrated to your site configuration. For more information about this change, or if you use `SITE_CONFIG_FILE` / `CRITICAL_CONFIG_FILE`, please see the [migration notes for Sourcegraph v3.11+](https://docs.sourcegraph.com/admin/migration/3_11.md).
+- The management console has been removed. All critical configuration previously stored in the management console will be automatically migrated to your site configuration. For more information about this change, or if you use `SITE_CONFIG_FILE` / `CRITICAL_CONFIG_FILE`, please see the [migration notes for Khulnasoft v3.11+](https://docs.khulnasoft.com/admin/migration/3_11.md).
 
 ## 3.10.4
 
@@ -3196,16 +3196,16 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 - `sourcegraph/server` Docker deployments now support the environment variable `IGNORE_PROCESS_DEATH`. If set to true the container will keep running, even if a subprocess has died. This is useful when manually fixing problems in the container which the container refuses to start. For example a bad database migration.
 - Search input now offers filter type suggestions [#6105](https://github.com/khulnasoft/khulnasoft/pull/6105).
 - The keyboard shortcut <kbd>Ctrl</kbd>+<kbd>Space</kbd> in the search input shows a list of available filter types.
-- Sourcegraph Kubernetes cluster site admins can configure PostgreSQL by specifying `postgresql.conf` via ConfigMap. [sourcegraph/deploy-sourcegraph#447](https://github.com/sourcegraph/deploy-sourcegraph/pull/447)
+- Khulnasoft Kubernetes cluster site admins can configure PostgreSQL by specifying `postgresql.conf` via ConfigMap. [sourcegraph/deploy-sourcegraph#447](https://github.com/sourcegraph/deploy-sourcegraph/pull/447)
 
 ### Changed
 
-- **Required Kubernetes Migration:** The [Kubernetes deployment](https://github.com/sourcegraph/deploy-sourcegraph) manifest for indexed-search services has changed from a Normal Service to a Headless Service. This is to enable Sourcegraph to individually resolve indexed-search pods. Services are immutable, so please follow the [migration guide](https://github.com/sourcegraph/deploy-sourcegraph/blob/master/docs/migrate.md#310).
+- **Required Kubernetes Migration:** The [Kubernetes deployment](https://github.com/sourcegraph/deploy-sourcegraph) manifest for indexed-search services has changed from a Normal Service to a Headless Service. This is to enable Khulnasoft to individually resolve indexed-search pods. Services are immutable, so please follow the [migration guide](https://github.com/sourcegraph/deploy-sourcegraph/blob/master/docs/migrate.md#310).
 - Fields of type `String` in our GraphQL API that contain [JSONC](https://komkom.github.io/) now have the custom scalar type `JSONCString`. [#6209](https://github.com/khulnasoft/khulnasoft/pull/6209)
 - `ZOEKT_HOST` environment variable has been deprecated. Please use `INDEXED_SEARCH_SERVERS` instead. `ZOEKT_HOST` will be removed in 3.12.
 - Directory names on the repository tree page are now shown in bold to improve readability.
-- Added support for Bitbucket Server pull request activity to the [campaign](https://about.sourcegraph.com/product/code-change-management/) burndown chart. When used, this feature leads to more requests being sent to Bitbucket Server, since Sourcegraph needs to keep track of how a pull request's state changes over time. With [the instance scoped webhooks](https://docs.google.com/document/d/1I3Aq1WSUh42BP8KvKr6AlmuCfo8tXYtJu40WzdNT6go/edit) in our [Bitbucket Server plugin](https://github.com/sourcegraph/bitbucket-server-plugin/pull/10) as well as up-coming [heuristical syncing changes](#6389), this additional load will be significantly reduced in the future.
-- Added support for Bitbucket Server pull request activity to the campaign burndown chart. When used, this feature leads to more requests being sent to Bitbucket Server, since Sourcegraph needs to keep track of how a pull request's state changes over time. With [the instance scoped webhooks](https://docs.google.com/document/d/1I3Aq1WSUh42BP8KvKr6AlmuCfo8tXYtJu40WzdNT6go/edit) in our [Bitbucket Server plugin](https://github.com/sourcegraph/bitbucket-server-plugin/pull/10) as well as up-coming [heuristical syncing changes](#6389), this additional load will be significantly reduced in the future.
+- Added support for Bitbucket Server pull request activity to the [campaign](https://about.khulnasoft.com/product/code-change-management/) burndown chart. When used, this feature leads to more requests being sent to Bitbucket Server, since Khulnasoft needs to keep track of how a pull request's state changes over time. With [the instance scoped webhooks](https://docs.google.com/document/d/1I3Aq1WSUh42BP8KvKr6AlmuCfo8tXYtJu40WzdNT6go/edit) in our [Bitbucket Server plugin](https://github.com/sourcegraph/bitbucket-server-plugin/pull/10) as well as up-coming [heuristical syncing changes](#6389), this additional load will be significantly reduced in the future.
+- Added support for Bitbucket Server pull request activity to the campaign burndown chart. When used, this feature leads to more requests being sent to Bitbucket Server, since Khulnasoft needs to keep track of how a pull request's state changes over time. With [the instance scoped webhooks](https://docs.google.com/document/d/1I3Aq1WSUh42BP8KvKr6AlmuCfo8tXYtJu40WzdNT6go/edit) in our [Bitbucket Server plugin](https://github.com/sourcegraph/bitbucket-server-plugin/pull/10) as well as up-coming [heuristical syncing changes](#6389), this additional load will be significantly reduced in the future.
 
 ### Fixed
 
@@ -3233,7 +3233,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Changed
 
-- Sourcegraph is now built using Go 1.13.3 [#6200](https://github.com/khulnasoft/khulnasoft/pull/6200).
+- Khulnasoft is now built using Go 1.13.3 [#6200](https://github.com/khulnasoft/khulnasoft/pull/6200).
 
 ## 3.9.2
 
@@ -3252,17 +3252,17 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Added
 
-- Our external service syncing model will stream in new repositories to Sourcegraph. Previously we could only add a repository to our database and clone it once we had synced all information from all external services (to detect deletions and renames). Now adding a repository to an external service configuration should be reflected much sooner, even on large instances. [#5145](https://github.com/khulnasoft/khulnasoft/issues/5145)
+- Our external service syncing model will stream in new repositories to Khulnasoft. Previously we could only add a repository to our database and clone it once we had synced all information from all external services (to detect deletions and renames). Now adding a repository to an external service configuration should be reflected much sooner, even on large instances. [#5145](https://github.com/khulnasoft/khulnasoft/issues/5145)
 - There is now an easy way for site admins to view and export settings and configuration when reporting a bug. The page for doing so is at /site-admin/report-bug, linked to from the site admin side panel under "Report a bug".
-- An experimental search pagination API to enable better programmatic consumption of search results is now available to try. For more details and known limitations see [the documentation](https://docs.sourcegraph.com/api/graphql/search).
+- An experimental search pagination API to enable better programmatic consumption of search results is now available to try. For more details and known limitations see [the documentation](https://docs.khulnasoft.com/api/graphql/search).
 - Search queries can now be interpreted literally.
   - There is now a dot-star icon in the search input bar to toggle the pattern type of a query between regexp and literal.
   - There is a new `search.defaultPatternType` setting to configure the default pattern type, regexp or literal, for searches.
   - There is a new `patternType:` search token which overrides the `search.defaultPatternType` setting, and the active state of the dot-star icon in determining the pattern type of the query.
   - Old URLs without a patternType URL parameter will be redirected to the same URL with
     patternType=regexp appended to preserve intended behavior.
-- Added support for GitHub organization webhooks to enable faster updates of metadata used by [campaigns](https://about.sourcegraph.com/product/code-change-management/), such as pull requests or issue comments. See the [GitHub webhook documentation](https://docs.sourcegraph.com/admin/code_hosts/github#webhooks) for instructions on how to enable webhooks.
-- Added support for GitHub organization webhooks to enable faster updates of changeset metadata used by campaigns. See the [GitHub webhook documentation](https://docs.sourcegraph.com/admin/code_hosts/github#webhooks) for instructions on how to enable webhooks.
+- Added support for GitHub organization webhooks to enable faster updates of metadata used by [campaigns](https://about.khulnasoft.com/product/code-change-management/), such as pull requests or issue comments. See the [GitHub webhook documentation](https://docs.khulnasoft.com/admin/code_hosts/github#webhooks) for instructions on how to enable webhooks.
+- Added support for GitHub organization webhooks to enable faster updates of changeset metadata used by campaigns. See the [GitHub webhook documentation](https://docs.khulnasoft.com/admin/code_hosts/github#webhooks) for instructions on how to enable webhooks.
 - Added burndown chart to visualize progress of campaigns.
 - Added ability to edit campaign titles and descriptions.
 
@@ -3283,7 +3283,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 - Fixed an issue that rendered the search filter `repohascommitafter` unusable in the presence of an empty repository. [#5149](https://github.com/khulnasoft/khulnasoft/issues/5149)
 - An issue where `externalURL` not being configured in the management console could go unnoticed. [#3899](https://github.com/khulnasoft/khulnasoft/issues/3899)
 - Listing branches and refs now falls back to a fast path if there are a large number of branches. Previously we would time out. [#4581](https://github.com/khulnasoft/khulnasoft/issues/4581)
-- Sourcegraph will now ignore the ambiguous ref HEAD if a repository contains it. [#5291](https://github.com/khulnasoft/khulnasoft/issues/5291)
+- Khulnasoft will now ignore the ambiguous ref HEAD if a repository contains it. [#5291](https://github.com/khulnasoft/khulnasoft/issues/5291)
 
 ### Removed
 
@@ -3291,13 +3291,13 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Fixed
 
-- Sourcegraph cluster deployments now run a more stable syntax highlighting server which can self-recover from rarer failure cases such as getting stuck at high CPU usage when highlighting some specific files. [#5406](https://github.com/khulnasoft/khulnasoft/issues/5406) This will be ported to single-container deployments [at a later date](https://github.com/khulnasoft/khulnasoft/issues/5841).
+- Khulnasoft cluster deployments now run a more stable syntax highlighting server which can self-recover from rarer failure cases such as getting stuck at high CPU usage when highlighting some specific files. [#5406](https://github.com/khulnasoft/khulnasoft/issues/5406) This will be ported to single-container deployments [at a later date](https://github.com/khulnasoft/khulnasoft/issues/5841).
 
 ## 3.8.1
 
 ### Added
 
-- Add `nameTransformations` setting to GitLab external service to help transform repository name that shows up in the Sourcegraph UI.
+- Add `nameTransformations` setting to GitLab external service to help transform repository name that shows up in the Khulnasoft UI.
 
 ## 3.8.0
 
@@ -3308,25 +3308,25 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Changed
 
-- A `hardTTL` setting was added to the [Bitbucket Server `authorization` config](https://docs.sourcegraph.com/admin/code_hosts/bitbucketserver#configuration). This setting specifies a duration after which a user's cached permissions must be updated before any user action is authorized. This contrasts with the already existing `ttl` setting which defines a duration after which a user's cached permissions will get updated in the background, but the previously cached (and now stale) permissions are used to authorize any user action occuring before the update concludes. If your previous `ttl` value is larger than the default of the new `hardTTL` setting (i.e. **3 days**), you must change the `ttl` to be smaller or, `hardTTL` to be larger.
+- A `hardTTL` setting was added to the [Bitbucket Server `authorization` config](https://docs.khulnasoft.com/admin/code_hosts/bitbucketserver#configuration). This setting specifies a duration after which a user's cached permissions must be updated before any user action is authorized. This contrasts with the already existing `ttl` setting which defines a duration after which a user's cached permissions will get updated in the background, but the previously cached (and now stale) permissions are used to authorize any user action occuring before the update concludes. If your previous `ttl` value is larger than the default of the new `hardTTL` setting (i.e. **3 days**), you must change the `ttl` to be smaller or, `hardTTL` to be larger.
 
 ### Fixed
 
 ### Removed
 
 - The `statusIndicator` feature flag has been removed from the site configuration's `experimentalFeatures` section. The status indicator has been enabled by default since 3.6.0 and you can now safely remove the feature flag from your configuration.
-- Public usage is now only available on Sourcegraph.com. Because many core features rely on persisted user settings, anonymous usage leads to a degraded experience for most users. As a result, for self-hosted private instances it is preferable for all users to have accounts. But on sourcegraph.com, users will continue to have to opt-in to accounts, despite the degraded UX.
+- Public usage is now only available on Khulnasoft.com. Because many core features rely on persisted user settings, anonymous usage leads to a degraded experience for most users. As a result, for self-hosted private instances it is preferable for all users to have accounts. But on khulnasoft.com, users will continue to have to opt-in to accounts, despite the degraded UX.
 
 ## 3.7.2
 
 ### Added
 
-- A [migration guide for Sourcegraph v3.7+](https://docs.sourcegraph.com/admin/migration/3_7.md).
+- A [migration guide for Khulnasoft v3.7+](https://docs.khulnasoft.com/admin/migration/3_7.md).
 
 ### Fixed
 
 - Fixed an issue where some repositories with very long symbol names would fail to index after v3.7.
-- We now retain one prior search index version after an upgrade, meaning upgrading AND downgrading from v3.6.2 <-> v3.7.2 is now 100% seamless and involves no downtime or negated search performance while repositories reindex. Please refer to the [v3.7+ migration guide](https://docs.sourcegraph.com/admin/migration/3_7.md) for details.
+- We now retain one prior search index version after an upgrade, meaning upgrading AND downgrading from v3.6.2 <-> v3.7.2 is now 100% seamless and involves no downtime or negated search performance while repositories reindex. Please refer to the [v3.7+ migration guide](https://docs.khulnasoft.com/admin/migration/3_7.md) for details.
 
 ## 3.7.1
 
@@ -3342,16 +3342,16 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 - Indexed search now supports symbol queries. This feature will require re-indexing all repositories. This will increase the disk and memory usage of indexed search by roughly 10%. You can disable the feature with the configuration `search.index.symbols.enabled`. [#3534](https://github.com/khulnasoft/khulnasoft/issues/3534)
 - Multi-line search now works for non-indexed search. [#4518](https://github.com/khulnasoft/khulnasoft/issues/4518)
-- When using `SITE_CONFIG_FILE` and `EXTSVC_CONFIG_FILE`, you [may now also specify e.g. `SITE_CONFIG_ALLOW_EDITS=true`](https://docs.sourcegraph.com/admin/config/advanced_config_file) to allow edits to be made to the config in the application which will be overwritten on the next process restart. [#4912](https://github.com/khulnasoft/khulnasoft/issues/4912)
+- When using `SITE_CONFIG_FILE` and `EXTSVC_CONFIG_FILE`, you [may now also specify e.g. `SITE_CONFIG_ALLOW_EDITS=true`](https://docs.khulnasoft.com/admin/config/advanced_config_file) to allow edits to be made to the config in the application which will be overwritten on the next process restart. [#4912](https://github.com/khulnasoft/khulnasoft/issues/4912)
 
 ### Changed
 
-- In the [GitHub external service config](https://docs.sourcegraph.com/admin/code_hosts/github#configuration) it's now possible to specify `orgs` without specifying `repositoryQuery` or `repos` too.
+- In the [GitHub external service config](https://docs.khulnasoft.com/admin/code_hosts/github#configuration) it's now possible to specify `orgs` without specifying `repositoryQuery` or `repos` too.
 - Out-of-the-box TypeScript code intelligence is much better with an updated ctags version with a built-in TypeScript parser.
-- Sourcegraph uses Git protocol version 2 for increased efficiency and performance when fetching data from compatible code hosts.
+- Khulnasoft uses Git protocol version 2 for increased efficiency and performance when fetching data from compatible code hosts.
 - Searches with `repohasfile:` are faster at finding repository matches. [#4833](https://github.com/khulnasoft/khulnasoft/issues/4833).
-- Zoekt now runs with GOGC=50 by default, helping to reduce the memory consumption of Sourcegraph. [#3792](https://github.com/khulnasoft/khulnasoft/issues/3792)
-- Upgraded the version of Go in use, which improves security for publicly accessible Sourcegraph instances.
+- Zoekt now runs with GOGC=50 by default, helping to reduce the memory consumption of Khulnasoft. [#3792](https://github.com/khulnasoft/khulnasoft/issues/3792)
+- Upgraded the version of Go in use, which improves security for publicly accessible Khulnasoft instances.
 
 ### Fixed
 
@@ -3371,23 +3371,23 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Added
 
-- New site config option `branding.brandName` configures the brand name to display in the Sourcegraph \<title\> element.
+- New site config option `branding.brandName` configures the brand name to display in the Khulnasoft \<title\> element.
 - `repositoryPathPattern` option added to the "Other" external service type for repository name customization.
 
 ## 3.6.0
 
 ### Added
 
-- The `github.exclude` setting in [GitHub external service config](https://docs.sourcegraph.com/admin/code_hosts/github#configuration) additionally allows you to specify regular expressions with `{"pattern": "regex"}`.
-- A new [`quicklinks` setting](https://docs.sourcegraph.com/user/personalization/quick_links) allows adding links to be displayed on the homepage and search page for all users (or users in an organization).
-- Compatibility with the [Sourcegraph for Bitbucket Server](https://github.com/sourcegraph/bitbucket-server-plugin) plugin.
+- The `github.exclude` setting in [GitHub external service config](https://docs.khulnasoft.com/admin/code_hosts/github#configuration) additionally allows you to specify regular expressions with `{"pattern": "regex"}`.
+- A new [`quicklinks` setting](https://docs.khulnasoft.com/user/personalization/quick_links) allows adding links to be displayed on the homepage and search page for all users (or users in an organization).
+- Compatibility with the [Khulnasoft for Bitbucket Server](https://github.com/sourcegraph/bitbucket-server-plugin) plugin.
 - Support for [Bitbucket Cloud](https://bitbucket.org) as an external service.
 
 ### Changed
 
 - Updating or creating an external service will no longer block until the service is synced.
 - The GraphQL fields `Repository.createdAt` and `Repository.updatedAt` are deprecated and will be removed in 3.8. Now `createdAt` is always the current time and updatedAt is always null.
-- In the [GitHub external service config](https://docs.sourcegraph.com/admin/code_hosts/github#configuration) and [Bitbucket Server external service config](https://docs.sourcegraph.com/admin/code_hosts/bitbucket_server#permissions) `repositoryQuery` is now only required if `repos` is not set.
+- In the [GitHub external service config](https://docs.khulnasoft.com/admin/code_hosts/github#configuration) and [Bitbucket Server external service config](https://docs.khulnasoft.com/admin/code_hosts/bitbucket_server#permissions) `repositoryQuery` is now only required if `repos` is not set.
 - Log messages from query-runner when saved searches fail now include the raw query as part of the message.
 - The status indicator in the navigation bar is now enabled by default
 - Usernames and org names can now contain the `.` character. [#4674](https://github.com/khulnasoft/khulnasoft/issues/4674)
@@ -3424,7 +3424,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Added
 
-- A new [`quicklinks` setting](https://docs.sourcegraph.com/user/personalization/quick_links) allows adding links to be displayed on the homepage and search page for all users (or users in an organization).
+- A new [`quicklinks` setting](https://docs.khulnasoft.com/user/personalization/quick_links) allows adding links to be displayed on the homepage and search page for all users (or users in an organization).
 - Site admins can prevent the icon in the top-left corner of the screen from spinning on hovers by setting `"branding": { "disableSymbolSpin": true }` in their site configuration.
 
 ### Fixed
@@ -3436,9 +3436,9 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 ### Added
 
 - Indexed search now supports matching consecutive literal newlines, with queries like e.g. `foo\nbar.*` to search over multiple lines. [#4138](https://github.com/khulnasoft/khulnasoft/issues/4138)
-- The `orgs` setting in [GitHub external service config](https://docs.sourcegraph.com/admin/code_hosts/github) allows admins to select all repositories from the specified organizations to be synced.
+- The `orgs` setting in [GitHub external service config](https://docs.khulnasoft.com/admin/code_hosts/github) allows admins to select all repositories from the specified organizations to be synced.
 - A new experimental search filter `repohascommitafter:"30 days ago"` allows users to exclude stale repositories that don't contain commits (to the branch being searched over) past a specified date from their search query.
-- The `authorization` setting in the [Bitbucket Server external service config](https://docs.sourcegraph.com/admin/code_hosts/bitbucket_server#permissions) enables Sourcegraph to enforce the repository permissions defined in Bitbucket Server.
+- The `authorization` setting in the [Bitbucket Server external service config](https://docs.khulnasoft.com/admin/code_hosts/bitbucket_server#permissions) enables Khulnasoft to enforce the repository permissions defined in Bitbucket Server.
 - A new, experimental status indicator in the navigation bar allows admins to quickly see whether the configured repositories are up to date or how many are currently being updated in the background. You can enable the status indicator with the following site configuration: `"experimentalFeatures": { "statusIndicator": "enabled" }`.
 - A new search filter `repohasfile` allows users to filter results to just repositories containing a matching file. For example `ubuntu file:Dockerfile repohasfile:\.py$` would find Dockerfiles mentioning Ubuntu in repositories that contain Python files. [#4501](https://github.com/khulnasoft/khulnasoft/pull/4501)
 
@@ -3477,7 +3477,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 - Improved performance of the /site-admin/repositories page significantly (prevents timeouts). [#4063](https://github.com/khulnasoft/khulnasoft/issues/4063)
 - Fixed an issue where Gitolite repositories would be inaccessible to non-admin users after upgrading to 3.3.0+ from an older version. [#4263](https://github.com/khulnasoft/khulnasoft/issues/4263)
 - Repository names are now treated as case-sensitive, fixing an issue where users saw `pq: duplicate key value violates unique constraint \"repo_name_unique\"` [#4283](https://github.com/khulnasoft/khulnasoft/issues/4283)
-- Repositories containing submodules not on Sourcegraph will now load without error [#2947](https://github.com/khulnasoft/khulnasoft/issues/2947)
+- Repositories containing submodules not on Khulnasoft will now load without error [#2947](https://github.com/khulnasoft/khulnasoft/issues/2947)
 - HTTP metrics in Prometheus/Grafana now distinguish between different types of GraphQL requests.
 
 ## 3.4.2
@@ -3502,7 +3502,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 ### Fixed
 
 - Fixed an issue where `EXTSVC_CONFIG_FILE` being specified would incorrectly cause a panic.
-- Fixed an issue where user/org/global settings from old Sourcegraph versions (2.x) could incorrectly be null, leading to various errors.
+- Fixed an issue where user/org/global settings from old Khulnasoft versions (2.x) could incorrectly be null, leading to various errors.
 - Fixed an issue where an ephemeral infrastructure error (`tar/archive: invalid tar header`) would fail a search.
 
 ## 3.4.0
@@ -3511,22 +3511,22 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 - When `repositoryPathPattern` is configured, paths from the full long name will redirect to the configured name. Extensions will function with the configured name. `repositoryPathPattern` allows administrators to configure "nice names". For example `sourcegraph.example.com/github.com/foo/bar` can configured to be `sourcegraph.example.com/gh/foo/bar` with `"repositoryPathPattern": "gh/{nameWithOwner}"`. (#462)
 - Admins can now turn off site alerts for patch version release updates using the `alerts.showPatchUpdates` setting. Alerts will still be shown for major and minor version updates.
-- The new `gitolite.exclude` setting in [Gitolite external service config](https://docs.sourcegraph.com/admin/code_hosts/gitolite#configuration) allows you to exclude specific repositories by their Gitolite name so that they won't be mirrored. Upon upgrading, previously "disabled" repositories will be automatically migrated to this exclusion list.
-- The new `aws_codecommit.exclude` setting in [AWS CodeCommit external service config](https://docs.sourcegraph.com/admin/code_hosts/aws_codecommit#configuration) allows you to exclude specific repositories by their AWS name or ID so that they won't be synced. Upon upgrading, previously "disabled" repositories will be automatically migrated to this exclusion list.
-- Added a new, _required_ `aws_codecommit.gitCredentials` setting to the [AWS CodeCommit external service config](https://docs.sourcegraph.com/admin/code_hosts/aws_codecommit#configuration). These Git credentials are required to create long-lived authenticated clone URLs for AWS CodeCommit repositories. For more information about Git credentials, see the AWS CodeCommit documentation: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_ssh-keys.html#git-credentials-code-commit. For detailed instructions on how to create the credentials in IAM, see this page: https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html
-- Added support for specifying a URL formatted `gitolite.host` setting in [Gitolite external service config](https://docs.sourcegraph.com/admin/code_hosts/gitolite#configuration) (e.g. `ssh://git@gitolite.example.org:2222/`), in addition to the already supported SCP like format (e.g `git@gitolite.example.org`)
+- The new `gitolite.exclude` setting in [Gitolite external service config](https://docs.khulnasoft.com/admin/code_hosts/gitolite#configuration) allows you to exclude specific repositories by their Gitolite name so that they won't be mirrored. Upon upgrading, previously "disabled" repositories will be automatically migrated to this exclusion list.
+- The new `aws_codecommit.exclude` setting in [AWS CodeCommit external service config](https://docs.khulnasoft.com/admin/code_hosts/aws_codecommit#configuration) allows you to exclude specific repositories by their AWS name or ID so that they won't be synced. Upon upgrading, previously "disabled" repositories will be automatically migrated to this exclusion list.
+- Added a new, _required_ `aws_codecommit.gitCredentials` setting to the [AWS CodeCommit external service config](https://docs.khulnasoft.com/admin/code_hosts/aws_codecommit#configuration). These Git credentials are required to create long-lived authenticated clone URLs for AWS CodeCommit repositories. For more information about Git credentials, see the AWS CodeCommit documentation: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_ssh-keys.html#git-credentials-code-commit. For detailed instructions on how to create the credentials in IAM, see this page: https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html
+- Added support for specifying a URL formatted `gitolite.host` setting in [Gitolite external service config](https://docs.khulnasoft.com/admin/code_hosts/gitolite#configuration) (e.g. `ssh://git@gitolite.example.org:2222/`), in addition to the already supported SCP like format (e.g `git@gitolite.example.org`)
 - Added support for overriding critical, site, and external service configurations via files. Specify `CRITICAL_CONFIG_FILE=critical.json`, `SITE_CONFIG_FILE=site.json`, and/or `EXTSVC_CONFIG_FILE=extsvc.json` on the `frontend` container to do this.
 
 ### Changed
 
-- Kinds of external services in use are now included in [server pings](https://docs.sourcegraph.com/admin/pings).
+- Kinds of external services in use are now included in [server pings](https://docs.khulnasoft.com/admin/pings).
 - Bitbucket Server: An actual Bitbucket icon is now used for the jump-to-bitbucket action on repository pages instead of the previously generic icon.
 - Default config for GitHub, GitHub Enterprise, GitLab, Bitbucket Server, and AWS Code Commit external services has been revised to make it easier for first time admins.
 
 ### Removed
 
 - Fields related to Repository enablement have been deprecated. Mutations are now NOOPs, and for repositories returned the value is always true for Enabled. The enabled field and mutations will be removed in 3.6. Mutations: `setRepositoryEnabled`, `setAllRepositoriesEnabled`, `updateAllMirrorRepositories`, `deleteRepository`. Query parameters: `repositories.enabled`, `repositories.disabled`. Field: `Repository.enabled`.
-- Global saved searches are now deprecated. Any existing global saved searches have been assigned to the Sourcegraph instance's first site admin's user account.
+- Global saved searches are now deprecated. Any existing global saved searches have been assigned to the Khulnasoft instance's first site admin's user account.
 - The `search.savedQueries` configuration option is now deprecated. Existing entries remain in user and org settings for backward compatibility, but are unused as saved searches are now stored in the database.
 
 ### Fixed
@@ -3554,13 +3554,13 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 - Fully resolved the search performance regression in v3.2.0, restoring performance of search back to the same levels it was before changes made in v3.2.0.
 - Fixed an issue where files that fail syntax highlighting would incorrectly render an error instead of gracefully falling back to their plaintext form.
-- Fixed an issue introduced in v3.3 where Sourcegraph would under specific circumstances incorrectly have to re-clone and re-index repositories from Bitbucket Server and AWS CodeCommit.
+- Fixed an issue introduced in v3.3 where Khulnasoft would under specific circumstances incorrectly have to re-clone and re-index repositories from Bitbucket Server and AWS CodeCommit.
 
 ## 3.3.7
 
 ### Added
 
-- The `bitbucketserver.exclude` setting in [Bitbucket Server external service config](https://docs.sourcegraph.com/admin/code_hosts/bitbucketserver#configuration) additionally allows you to exclude repositories matched by a regular expression (so that they won't be synced).
+- The `bitbucketserver.exclude` setting in [Bitbucket Server external service config](https://docs.khulnasoft.com/admin/code_hosts/bitbucketserver#configuration) additionally allows you to exclude repositories matched by a regular expression (so that they won't be synced).
 
 ### Changed
 
@@ -3569,8 +3569,8 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 ### Fixed
 
 - Fixed a major indexed search performance regression that occurred in v3.2.0. (#3685)
-- Fixed an issue where Sourcegraph would fail to update repositories on some instances (`pq: duplicate key value violates unique constraint "repo_external_service_unique_idx"`) (#3680)
-- Fixed an issue where Sourcegraph would not exclude unavailable Bitbucket Server repositories. (#3772)
+- Fixed an issue where Khulnasoft would fail to update repositories on some instances (`pq: duplicate key value violates unique constraint "repo_external_service_unique_idx"`) (#3680)
+- Fixed an issue where Khulnasoft would not exclude unavailable Bitbucket Server repositories. (#3772)
 
 ## 3.3.6
 
@@ -3598,7 +3598,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Fixed
 
-- Fixed bundling of the Phabricator integration assets in the Sourcegraph docker image.
+- Fixed bundling of the Phabricator integration assets in the Khulnasoft docker image.
 
 ## 3.3.3
 
@@ -3610,10 +3610,10 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Fixed
 
-- Fixed an issue where the default `bitbucketserver.repositoryQuery` would not be created on migration from older Sourcegraph versions. https://github.com/khulnasoft/khulnasoft/issues/3591
-- Fixed an issue where Sourcegraph would add deleted repositories to the external service configuration. https://github.com/khulnasoft/khulnasoft/issues/3588
+- Fixed an issue where the default `bitbucketserver.repositoryQuery` would not be created on migration from older Khulnasoft versions. https://github.com/khulnasoft/khulnasoft/issues/3591
+- Fixed an issue where Khulnasoft would add deleted repositories to the external service configuration. https://github.com/khulnasoft/khulnasoft/issues/3588
 - Fixed an issue where a repo-updater migration would hit code host rate limits. https://github.com/khulnasoft/khulnasoft/issues/3582
-- The required `bitbucketserver.username` field of a [Bitbucket Server external service configuration](https://docs.sourcegraph.com/admin/code_hosts/bitbucketserver#configuration), if unset or empty, is automatically migrated to match the user part of the `url` (if defined). https://github.com/khulnasoft/khulnasoft/issues/3592
+- The required `bitbucketserver.username` field of a [Bitbucket Server external service configuration](https://docs.khulnasoft.com/admin/code_hosts/bitbucketserver#configuration), if unset or empty, is automatically migrated to match the user part of the `url` (if defined). https://github.com/khulnasoft/khulnasoft/issues/3592
 - Fixed a panic that would occur in indexed search / the frontend when a search error ocurred. https://github.com/khulnasoft/khulnasoft/issues/3579
 - Fixed an issue where the repo-updater service could become deadlocked while performing a migration. https://github.com/khulnasoft/khulnasoft/issues/3590
 
@@ -3630,11 +3630,11 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 - In search queries, treat `foo(` as `foo\(` and `bar[` as `bar\[` rather than failing with an error message.
 - Enterprise admins can now customize the appearance of the homepage and search icon.
 - A new settings property `notices` allows showing custom informational messages on the homepage and at the top of each page. The `motd` property is deprecated and its value is automatically migrated to the new `notices` property.
-- The new `gitlab.exclude` setting in [GitLab external service config](https://docs.sourcegraph.com/admin/code_hosts/gitlab#configuration) allows you to exclude specific repositories matched by `gitlab.projectQuery` and `gitlab.projects` (so that they won't be synced). Upon upgrading, previously "disabled" repositories will be automatically migrated to this exclusion list.
-- The new `gitlab.projects` setting in [GitLab external service config](https://docs.sourcegraph.com/admin/code_hosts/gitlab#configuration) allows you to select specific repositories to be synced.
-- The new `bitbucketserver.exclude` setting in [Bitbucket Server external service config](https://docs.sourcegraph.com/admin/code_hosts/bitbucketserver#configuration) allows you to exclude specific repositories matched by `bitbucketserver.repositoryQuery` and `bitbucketserver.repos` (so that they won't be synced). Upon upgrading, previously "disabled" repositories will be automatically migrated to this exclusion list.
-- The new `bitbucketserver.repos` setting in [Bitbucket Server external service config](https://docs.sourcegraph.com/admin/code_hosts/bitbucketserver#configuration) allows you to select specific repositories to be synced.
-- The new required `bitbucketserver.repositoryQuery` setting in [Bitbucket Server external service configuration](https://docs.sourcegraph.com/admin/code_hosts/bitbucketserver#configuration) allows you to use Bitbucket API repository search queries to select repos to be synced. Existing configurations will be migrate to have it set to `["?visibility=public", "?visibility=private"]` which is equivalent to the previous implicit behaviour that this setting supersedes.
+- The new `gitlab.exclude` setting in [GitLab external service config](https://docs.khulnasoft.com/admin/code_hosts/gitlab#configuration) allows you to exclude specific repositories matched by `gitlab.projectQuery` and `gitlab.projects` (so that they won't be synced). Upon upgrading, previously "disabled" repositories will be automatically migrated to this exclusion list.
+- The new `gitlab.projects` setting in [GitLab external service config](https://docs.khulnasoft.com/admin/code_hosts/gitlab#configuration) allows you to select specific repositories to be synced.
+- The new `bitbucketserver.exclude` setting in [Bitbucket Server external service config](https://docs.khulnasoft.com/admin/code_hosts/bitbucketserver#configuration) allows you to exclude specific repositories matched by `bitbucketserver.repositoryQuery` and `bitbucketserver.repos` (so that they won't be synced). Upon upgrading, previously "disabled" repositories will be automatically migrated to this exclusion list.
+- The new `bitbucketserver.repos` setting in [Bitbucket Server external service config](https://docs.khulnasoft.com/admin/code_hosts/bitbucketserver#configuration) allows you to select specific repositories to be synced.
+- The new required `bitbucketserver.repositoryQuery` setting in [Bitbucket Server external service configuration](https://docs.khulnasoft.com/admin/code_hosts/bitbucketserver#configuration) allows you to use Bitbucket API repository search queries to select repos to be synced. Existing configurations will be migrate to have it set to `["?visibility=public", "?visibility=private"]` which is equivalent to the previous implicit behaviour that this setting supersedes.
 - "Quick configure" buttons for common actions have been added to the config editor for all external services.
 - "Quick configure" buttons for common actions have been added to the management console.
 - Site-admins now receive an alert every day for the seven days before their license key expires.
@@ -3647,17 +3647,17 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 - Indexed searches that time out more consistently report a timeout instead of erroneously saying "No results."
 - The symbols sidebar now only shows symbols defined in the current file or directory.
 - The dynamic filters on search results pages will now display `lang:` instead of `file:` filters for language/file-extension filter suggestions.
-- The default `github.repositoryQuery` of a [GitHub external service configuration](https://docs.sourcegraph.com/admin/code_hosts/github#configuration) has been changed to `["none"]`. Existing configurations that had this field unset will be migrated to have the previous default explicitly set (`["affiliated", "public"]`).
-- The default `gitlab.projectQuery` of a [GitLab external service configuration](https://docs.sourcegraph.com/admin/code_hosts/gitlab#configuration) has been changed to `["none"]`. Existing configurations that had this field unset will be migrated to have the previous default explicitly set (`["?membership=true"]`).
+- The default `github.repositoryQuery` of a [GitHub external service configuration](https://docs.khulnasoft.com/admin/code_hosts/github#configuration) has been changed to `["none"]`. Existing configurations that had this field unset will be migrated to have the previous default explicitly set (`["affiliated", "public"]`).
+- The default `gitlab.projectQuery` of a [GitLab external service configuration](https://docs.khulnasoft.com/admin/code_hosts/gitlab#configuration) has been changed to `["none"]`. Existing configurations that had this field unset will be migrated to have the previous default explicitly set (`["?membership=true"]`).
 - The default value of `maxReposToSearch` is now unlimited (was 500).
-- The default `github.repositoryQuery` of a [GitHub external service configuration](https://docs.sourcegraph.com/admin/code_hosts/github#configuration) has been changed to `["none"]` and is now a required field. Existing configurations that had this field unset will be migrated to have the previous default explicitly set (`["affiliated", "public"]`).
-- The default `gitlab.projectQuery` of a [GitLab external service configuration](https://docs.sourcegraph.com/admin/code_hosts/gitlab#configuration) has been changed to `["none"]` and is now a required field. Existing configurations that had this field unset will be migrated to have the previous default explicitly set (`["?membership=true"]`).
-- The `bitbucketserver.username` field of a [Bitbucket Server external service configuration](https://docs.sourcegraph.com/admin/code_hosts/bitbucketserver#configuration) is now **required**. This field is necessary to authenticate with the Bitbucket Server API with either `password` or `token`.
+- The default `github.repositoryQuery` of a [GitHub external service configuration](https://docs.khulnasoft.com/admin/code_hosts/github#configuration) has been changed to `["none"]` and is now a required field. Existing configurations that had this field unset will be migrated to have the previous default explicitly set (`["affiliated", "public"]`).
+- The default `gitlab.projectQuery` of a [GitLab external service configuration](https://docs.khulnasoft.com/admin/code_hosts/gitlab#configuration) has been changed to `["none"]` and is now a required field. Existing configurations that had this field unset will be migrated to have the previous default explicitly set (`["?membership=true"]`).
+- The `bitbucketserver.username` field of a [Bitbucket Server external service configuration](https://docs.khulnasoft.com/admin/code_hosts/bitbucketserver#configuration) is now **required**. This field is necessary to authenticate with the Bitbucket Server API with either `password` or `token`.
 - The settings and account pages for users and organizations are now combined into a single tab.
 
 ### Removed
 
-- Removed the option to show saved searches on the Sourcegraph homepage.
+- Removed the option to show saved searches on the Khulnasoft homepage.
 
 ### Fixed
 
@@ -3680,7 +3680,7 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Fixed
 
-- Fixed bundling of the Phabricator integration assets in the Sourcegraph docker image.
+- Fixed bundling of the Phabricator integration assets in the Khulnasoft docker image.
 
 ## 3.2.3
 
@@ -3707,16 +3707,16 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Added
 
-- Sourcegraph can now automatically use the system's theme.
+- Khulnasoft can now automatically use the system's theme.
   To enable, open the user menu in the top right and make sure the theme dropdown is set to "System".
   This is currently supported on macOS Mojave with Safari Technology Preview 68 and later.
-- The `github.exclude` setting was added to the [GitHub external service config](https://docs.sourcegraph.com/admin/code_hosts/github#configuration) to allow excluding repositories yielded by `github.repos` or `github.repositoryQuery` from being synced.
+- The `github.exclude` setting was added to the [GitHub external service config](https://docs.khulnasoft.com/admin/code_hosts/github#configuration) to allow excluding repositories yielded by `github.repos` or `github.repositoryQuery` from being synced.
 
 ### Changed
 
 - Symbols search is much faster now. After the initial indexing, you can expect code intelligence to be nearly instant no matter the size of your repository.
-- Massively reduced the number of code host API requests Sourcegraph performs, which caused rate limiting issues such as slow search result loading to appear.
-- The [`corsOrigin`](https://docs.sourcegraph.com/admin/config/site_config) site config property is no longer needed for integration with GitHub, GitLab, etc., via the [Sourcegraph browser extension](https://docs.sourcegraph.com/integration/browser_extension). Only the [Phabricator extension](https://github.com/sourcegraph/phabricator-extension) requires it.
+- Massively reduced the number of code host API requests Khulnasoft performs, which caused rate limiting issues such as slow search result loading to appear.
+- The [`corsOrigin`](https://docs.khulnasoft.com/admin/config/site_config) site config property is no longer needed for integration with GitHub, GitLab, etc., via the [Khulnasoft browser extension](https://docs.khulnasoft.com/integration/browser_extension). Only the [Phabricator extension](https://github.com/sourcegraph/phabricator-extension) requires it.
 
 ### Fixed
 
@@ -3735,8 +3735,8 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Changed
 
-- Massively reduced the number of code host API requests Sourcegraph performs, which caused rate limiting issues such as slow search result loading to appear.
-- Improved logging in various situations where Sourcegraph would potentially hit code host API rate limits.
+- Massively reduced the number of code host API requests Khulnasoft performs, which caused rate limiting issues such as slow search result loading to appear.
+- Improved logging in various situations where Khulnasoft would potentially hit code host API rate limits.
 
 ### Fixed
 
@@ -3756,21 +3756,21 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 
 ### Added
 
-- Added Docker-specific help text when running the Sourcegraph docker image in an environment with an sufficient open file descriptor limit.
+- Added Docker-specific help text when running the Khulnasoft docker image in an environment with an sufficient open file descriptor limit.
 - Added syntax highlighting for Kotlin and Dart.
-- Added a management console environment variable to disable HTTPS, see [the docs](https://docs.sourcegraph.com/admin/management_console.md#can-i-disable-https-on-the-management-console) for more information.
+- Added a management console environment variable to disable HTTPS, see [the docs](https://docs.khulnasoft.com/admin/management_console.md#can-i-disable-https-on-the-management-console) for more information.
 - Added `auth.disableUsernameChanges` to critical configuration to prevent users from changing their usernames.
 - Site admins can query a user by email address or username from the GraphQL API.
 - Added a search query builder to the main search page. Click "Use search query builder" to open the query builder, which is a form with separate inputs for commonly used search keywords.
 
 ### Changed
 
-- File match search results now show full repository name if there are results from mirrors on different code hosts (e.g. github.com/sourcegraph/sourcegraph and gitlab.com/sourcegraph/sourcegraph)
+- File match search results now show full repository name if there are results from mirrors on different code hosts (e.g. github.com/khulnasoft/khulnasoft and gitlab.com/sourcegraph/sourcegraph)
 - Search queries now use "smart case" by default. Searches are case insensitive unless you use uppercase letters. To explicitly set the case, you can still use the `case` field (e.g. `case:yes`, `case:no`). To explicitly set smart case, use `case:auto`.
 
 ### Fixed
 
-- Fixed an issue where the management console would improperly regenerate the TLS cert/key unless `CUSTOM_TLS=true` was set. See the documentation for [how to use your own TLS certificate with the management console](https://docs.sourcegraph.com/admin/management_console.md#how-can-i-use-my-own-tls-certificates-with-the-management-console).
+- Fixed an issue where the management console would improperly regenerate the TLS cert/key unless `CUSTOM_TLS=true` was set. See the documentation for [how to use your own TLS certificate with the management console](https://docs.khulnasoft.com/admin/management_console.md#how-can-i-use-my-own-tls-certificates-with-the-management-console).
 
 ## 3.0.1
 
@@ -3781,22 +3781,22 @@ This is `3.12.8` release with internal infrastructure fixes to publish the docke
 ### Changed
 
 - Significantly optimized how file search suggestions are provided when using indexed search (cluster deployments).
-- Both the `sourcegraph/server` image and the [Kubernetes deployment](https://github.com/sourcegraph/deploy-sourcegraph) manifests ship with Postgres `11.1`. For maximum compatibility, however, the minimum supported version remains `9.6`. The upgrade procedure is mostly automated for existing deployments. Please refer to [this page](https://docs.sourcegraph.com/admin/postgres) for detailed instructions.
+- Both the `sourcegraph/server` image and the [Kubernetes deployment](https://github.com/sourcegraph/deploy-sourcegraph) manifests ship with Postgres `11.1`. For maximum compatibility, however, the minimum supported version remains `9.6`. The upgrade procedure is mostly automated for existing deployments. Please refer to [this page](https://docs.khulnasoft.com/admin/postgres) for detailed instructions.
 
 ### Removed
 
 - The deprecated `auth.disableAccessTokens` site config property was removed. Use `auth.accessTokens` instead.
-- The `disableBrowserExtension` site config property was removed. [Configure nginx](https://docs.sourcegraph.com/admin/nginx) instead to block clients (if needed).
+- The `disableBrowserExtension` site config property was removed. [Configure nginx](https://docs.khulnasoft.com/admin/nginx) instead to block clients (if needed).
 
 ## 3.0.0
 
-See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sourcegraph.com/admin/migration/3_0.md) upgrade guide if you are upgrading from 2.x.
+See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.khulnasoft.com/admin/migration/3_0.md) upgrade guide if you are upgrading from 2.x.
 
 ## 3.0.0-beta.4
 
 ### Added
 
-- Basic code intelligence for the top 10 programming languages works out of the box without any configuration. [TypeScript/JavaScript](https://sourcegraph.com/extensions/sourcegraph/typescript), [Python](https://sourcegraph.com/extensions/sourcegraph/python), [Java](https://sourcegraph.com/extensions/sourcegraph/java), [Go](https://sourcegraph.com/extensions/sourcegraph/go), [C/C++](https://sourcegraph.com/extensions/sourcegraph/cpp), [Ruby](https://sourcegraph.com/extensions/sourcegraph/ruby), [PHP](https://sourcegraph.com/extensions/sourcegraph/php), [C#](https://sourcegraph.com/extensions/sourcegraph/csharp), [Shell](https://sourcegraph.com/extensions/sourcegraph/shell), and [Scala](https://sourcegraph.com/extensions/sourcegraph/scala) are enabled by default, and you can find more in the [extension registry](https://sourcegraph.com/extensions?query=category%3A"Programming+languages").
+- Basic code intelligence for the top 10 programming languages works out of the box without any configuration. [TypeScript/JavaScript](https://khulnasoft.com/extensions/sourcegraph/typescript), [Python](https://khulnasoft.com/extensions/sourcegraph/python), [Java](https://khulnasoft.com/extensions/sourcegraph/java), [Go](https://khulnasoft.com/extensions/sourcegraph/go), [C/C++](https://khulnasoft.com/extensions/sourcegraph/cpp), [Ruby](https://khulnasoft.com/extensions/sourcegraph/ruby), [PHP](https://khulnasoft.com/extensions/sourcegraph/php), [C#](https://khulnasoft.com/extensions/sourcegraph/csharp), [Shell](https://khulnasoft.com/extensions/sourcegraph/shell), and [Scala](https://khulnasoft.com/extensions/sourcegraph/scala) are enabled by default, and you can find more in the [extension registry](https://khulnasoft.com/extensions?query=category%3A"Programming+languages").
 
 ## 3.0.0-beta.3
 
@@ -3808,14 +3808,14 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 - Repositories can now be queried by a git clone URL through the GraphQL API.
 - A new Explore area is linked from the top navigation bar (when the `localStorage.explore=true;location.reload()` feature flag is enabled).
-- Authentication via GitHub is now supported. To enable, add an item to the `auth.providers` list with `type: "github"`. By default, GitHub identities must be linked to an existing Sourcegraph user account. To enable new account creation via GitHub, use the `allowSignup` option in the `GitHubConnection` config.
+- Authentication via GitHub is now supported. To enable, add an item to the `auth.providers` list with `type: "github"`. By default, GitHub identities must be linked to an existing Khulnasoft user account. To enable new account creation via GitHub, use the `allowSignup` option in the `GitHubConnection` config.
 - Authentication via GitLab is now supported. To enable, add an item to the `auth.providers` list with `type: "gitlab"`.
 - GitHub repository permissions are supported if authentication via GitHub is enabled. See the
   documentation for the `authorization` field of the `GitHubConnection` configuration.
 - The repository settings mirroring page now shows when a repo is next scheduled for an update (requires experiment `"updateScheduler2": "enabled"`).
 - Configured repositories are periodically scheduled for updates using a new algorithm. You can disable the new algorithm with the following site configuration: `"experimentalFeatures": { "updateScheduler2": "disabled" }`. If you do so, please file a public issue to describe why you needed to disable it.
-- When using HTTP header authentication, [`stripUsernameHeaderPrefix`](https://docs.sourcegraph.com/admin/auth/#username-header-prefixes) field lets an admin specify a prefix to strip from the HTTP auth header when converting the header value to a username.
-- Sourcegraph extensions whose package.json contains `"wip": true` are considered [work-in-progress extensions](https://docs.sourcegraph.com/extensions/authoring/publishing#wip-extensions) and are indicated as such to avoid users accidentally using them.
+- When using HTTP header authentication, [`stripUsernameHeaderPrefix`](https://docs.khulnasoft.com/admin/auth/#username-header-prefixes) field lets an admin specify a prefix to strip from the HTTP auth header when converting the header value to a username.
+- Khulnasoft extensions whose package.json contains `"wip": true` are considered [work-in-progress extensions](https://docs.khulnasoft.com/extensions/authoring/publishing#wip-extensions) and are indicated as such to avoid users accidentally using them.
 - Information about user survey submissions and a chart showing weekly active users is now displayed on the site admin Overview page.
 - A new GraphQL API field `UserEmail.isPrimary` was added that indicates whether an email is the user's primary email.
 - The filters bar in the search results page can now display filters from extensions.
@@ -3827,10 +3827,10 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 ### Changed
 
-- The Postgres database backing Sourcegraph has been upgraded from 9.4 to 11.1. Existing Sourcegraph users must conduct an [upgrade procedure](https://docs.sourcegraph.com/admin/postgres_upgrade)
-- Code host configuration has moved out of the site config JSON into the "External services" area of the site admin web UI. Sourcegraph instances will automatically perform a one time migration of existing data in the site config JSON. After the migration these keys can be safely deleted from the site config JSON: `awsCodeCommit`, `bitbucketServer`, `github`, `gitlab`, `gitolite`, and `phabricator`.
+- The Postgres database backing Khulnasoft has been upgraded from 9.4 to 11.1. Existing Khulnasoft users must conduct an [upgrade procedure](https://docs.khulnasoft.com/admin/postgres_upgrade)
+- Code host configuration has moved out of the site config JSON into the "External services" area of the site admin web UI. Khulnasoft instances will automatically perform a one time migration of existing data in the site config JSON. After the migration these keys can be safely deleted from the site config JSON: `awsCodeCommit`, `bitbucketServer`, `github`, `gitlab`, `gitolite`, and `phabricator`.
 - Site and user usage statistics are now visible to all users. Previously only site admins (and users, for their own usage statistics) could view this information. The information consists of aggregate counts of actions such as searches, page views, etc.
-- The Git blame information shown at the end of a line is now provided by the [Git extras extension](https://sourcegraph.com/extensions/sourcegraph/git-extras). You must add that extension to continue using this feature.
+- The Git blame information shown at the end of a line is now provided by the [Git extras extension](https://khulnasoft.com/extensions/sourcegraph/git-extras). You must add that extension to continue using this feature.
 - The `appURL` site configuration option was renamed to `externalURL`.
 - The repository and directory pages now show all entries together instead of showing files and (sub)directories separately.
 - Extensions no longer can specify titles (in the `title` property in the `package.json` extension manifest). Their extension ID (such as `alice/myextension`) is used.
@@ -3840,7 +3840,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 - Fixed an issue where the site admin License page showed a count of current users, rather than the max number of users over the life of the license.
 - Fixed number formatting issues on site admin Overview and Survey Response pages.
 - Fixed resolving of git clone URLs with `git+` prefix through the GraphQL API
-- Fixed an issue where the graphql Repositories endpoint would order by a field which was not indexed. Times on Sourcegraph.com went from 10s to 200ms.
+- Fixed an issue where the graphql Repositories endpoint would order by a field which was not indexed. Times on Khulnasoft.com went from 10s to 200ms.
 - Fixed an issue where whitespace was not handled properly in environment variable lists (`SYMBOLS_URL`, `SEARCHER_URL`).
 - Fixed an issue where clicking inside the repository popover or clicking "Show more" would dismiss the popover.
 
@@ -3850,22 +3850,22 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 - The **Info** panel was removed. The information it presented can be viewed in the hover.
 - The top-level `repos.list` site configuration was removed in favour of each code-host's equivalent options,
   now configured via the new _External Services UI_ available at `/site-admin/external-services`. Equivalent options in code hosts configuration:
-  - GitHub via [`github.repos`](https://docs.sourcegraph.com/admin/site_config/all#repos-array)
-  - Gitlab via [`gitlab.projectQuery`](https://docs.sourcegraph.com/admin/site_config/all#projectquery-array)
-  - Phabricator via [`phabricator.repos`](https://docs.sourcegraph.com/admin/site_config/all#phabricator-array)
-  - [Other external services](https://docs.sourcegraph.com/admin/repo/add_from_other_external_services)
-- Removed the `httpStrictTransportSecurity` site configuration option. Use [nginx configuration](https://docs.sourcegraph.com/admin/nginx) for this instead.
-- Removed the `tls.letsencrypt` site configuration option. Use [nginx configuration](https://docs.sourcegraph.com/admin/nginx) for this instead.
-- Removed the `tls.cert` and `tls.key` site configuration options. Use [nginx configuration](https://docs.sourcegraph.com/admin/nginx) for this instead.
-- Removed the `httpToHttpsRedirect` and `experimentalFeatures.canonicalURLRedireect` site configuration options. Use [nginx configuration](https://docs.sourcegraph.com/admin/nginx) for these instead.
-- Sourcegraph no longer requires access to `/var/run/docker.sock`.
+  - GitHub via [`github.repos`](https://docs.khulnasoft.com/admin/site_config/all#repos-array)
+  - Gitlab via [`gitlab.projectQuery`](https://docs.khulnasoft.com/admin/site_config/all#projectquery-array)
+  - Phabricator via [`phabricator.repos`](https://docs.khulnasoft.com/admin/site_config/all#phabricator-array)
+  - [Other external services](https://docs.khulnasoft.com/admin/repo/add_from_other_external_services)
+- Removed the `httpStrictTransportSecurity` site configuration option. Use [nginx configuration](https://docs.khulnasoft.com/admin/nginx) for this instead.
+- Removed the `tls.letsencrypt` site configuration option. Use [nginx configuration](https://docs.khulnasoft.com/admin/nginx) for this instead.
+- Removed the `tls.cert` and `tls.key` site configuration options. Use [nginx configuration](https://docs.khulnasoft.com/admin/nginx) for this instead.
+- Removed the `httpToHttpsRedirect` and `experimentalFeatures.canonicalURLRedireect` site configuration options. Use [nginx configuration](https://docs.khulnasoft.com/admin/nginx) for these instead.
+- Khulnasoft no longer requires access to `/var/run/docker.sock`.
 
 ## 2.13.6
 
 ### Added
 
 - The `/-/editor` endpoint now accepts a `hostname_patterns` URL parameter, which specifies a JSON
-  object mapping from hostname to repository name pattern. This serves as a hint to Sourcegraph when
+  object mapping from hostname to repository name pattern. This serves as a hint to Khulnasoft when
   resolving git clone URLs to repository names. The name pattern is the same style as is used in
   code host configurations. The default value is `{hostname}/{path}`.
 
@@ -3873,7 +3873,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 ### Fixed
 
-- Fixed another issue where Sourcegraph would try to fetch more than the allowed number of repositories from AWS CodeCommit.
+- Fixed another issue where Khulnasoft would try to fetch more than the allowed number of repositories from AWS CodeCommit.
 
 ## 2.13.4
 
@@ -3886,14 +3886,14 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 ### Fixed
 
 - Fixed an issue that would cause the frontend health check endpoint `/healthz` to not respond. This only impacts Kubernetes deployments.
-- Fixed a CORS policy issue that caused requests to be rejected when they come from origins not in our [manifest.json](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/browser/src/extension/manifest.spec.json#L72) (i.e. requested via optional permissions by the user).
+- Fixed a CORS policy issue that caused requests to be rejected when they come from origins not in our [manifest.json](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/browser/src/extension/manifest.spec.json#L72) (i.e. requested via optional permissions by the user).
 - Fixed an issue that prevented `repositoryQuery` from working correctly on GitHub enterprise instances.
 
 ## 2.13.2
 
 ### Fixed
 
-- Fixed an issue where Sourcegraph would try to fetch more than the allowed number of repositories from AWS CodeCommit.
+- Fixed an issue where Khulnasoft would try to fetch more than the allowed number of repositories from AWS CodeCommit.
 
 ## 2.13.1
 
@@ -3907,14 +3907,14 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 ### Added
 
 - A new site config option `search.index.enabled` allows toggling on indexed search.
-- Search now uses [Sourcegraph extensions](https://docs.sourcegraph.com/extensions) that register `queryTransformer`s.
+- Search now uses [Khulnasoft extensions](https://docs.khulnasoft.com/extensions) that register `queryTransformer`s.
 - GitLab repository permissions are now supported. To enable this, you will need to set the `authz`
   field in the `GitLabConnection` configuration object and ensure that the access token set in the
   `token` field has both `sudo` and `api` scope.
 
 ### Changed
 
-- When the `DEPLOY_TYPE` environment variable is incorrectly specified, Sourcegraph now shuts down and logs an error message.
+- When the `DEPLOY_TYPE` environment variable is incorrectly specified, Khulnasoft now shuts down and logs an error message.
 - The `experimentalFeatures.canonicalURLRedirect` site config property now defaults to `enabled`. Set it to `disabled` to disable redirection to the `appURL` from other hosts.
 - Updating `maxReposToSearch` site config no longer requires a server restart to take effect.
 - The update check page no longer shows an error if you are using an insiders build. Insiders builds will now notify site administrators that updates are available 40 days after the release date of the installed build.
@@ -3969,18 +3969,18 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 ### Changed
 
 - Reduced the size of in-memory data structured used for storing search results. This should reduce the backend memory usage of large result sets.
-- Code intelligence is now provided by [Sourcegraph extensions](https://docs.sourcegraph.com/extensions). The extension for each language in the site configuration `langservers` property is automatically enabled.
-- Support for multiple authentication providers is now enabled by default. To disable it, set the `experimentalFeatures.multipleAuthProviders` site config option to `"disabled"`. This only applies to Sourcegraph Enterprise.
+- Code intelligence is now provided by [Khulnasoft extensions](https://docs.khulnasoft.com/extensions). The extension for each language in the site configuration `langservers` property is automatically enabled.
+- Support for multiple authentication providers is now enabled by default. To disable it, set the `experimentalFeatures.multipleAuthProviders` site config option to `"disabled"`. This only applies to Khulnasoft Enterprise.
 - When using the `http-header` auth provider, valid auth cookies (from other auth providers that are currently configured or were previously configured) are now respected and will be used for authentication. These auth cookies also take precedence over the `http-header` auth. Previously, the `http-header` auth took precedence.
 - Bitbucket Server username configuration is now used to clone repositories if the Bitbucket Server API does not set a username.
-- Code discussions: On Sourcegraph.com / when `discussions.abuseProtection` is enabled in the site config, rate limits to thread creation, comment creation, and @mentions are now applied.
+- Code discussions: On Khulnasoft.com / when `discussions.abuseProtection` is enabled in the site config, rate limits to thread creation, comment creation, and @mentions are now applied.
 
 ### Added
 
 - Search syntax for filtering archived repositories. `archived:no` will exclude archived repositories from search results, `archived:only` will search over archived repositories only. This applies for GitHub and GitLab repositories.
-- A Bitbucket Server option to exclude personal repositories in the event that you decide to give an admin-level Bitbucket access token to Sourcegraph and do not want to create a bot account. See https://docs.sourcegraph.com/integration/bitbucket_server#excluding-personal-repositories for more information.
-- Site admins can now see when users of their Sourcegraph instance last used it via a code host integration (e.g. Sourcegraph browser extensions). Visit the site admin Analytics page (e.g. https://sourcegraph.example.com/site-admin/analytics) to view this information.
-- A new site config option `extensions.allowRemoteExtensions` lets you explicitly specify the remote extensions (from, e.g., Sourcegraph.com) that are allowed.
+- A Bitbucket Server option to exclude personal repositories in the event that you decide to give an admin-level Bitbucket access token to Khulnasoft and do not want to create a bot account. See https://docs.khulnasoft.com/integration/bitbucket_server#excluding-personal-repositories for more information.
+- Site admins can now see when users of their Khulnasoft instance last used it via a code host integration (e.g. Khulnasoft browser extensions). Visit the site admin Analytics page (e.g. https://sourcegraph.example.com/site-admin/analytics) to view this information.
+- A new site config option `extensions.allowRemoteExtensions` lets you explicitly specify the remote extensions (from, e.g., Khulnasoft.com) that are allowed.
 - Pings now include a total count of user accounts.
 
 ### Fixed
@@ -3993,13 +3993,13 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 ### Removed
 
-- The deprecated environment variables `SRC_SESSION_STORE_REDIS` and `REDIS_MASTER_ENDPOINT` are no longer used to configure alternative redis endpoints. For more information, see "[using external services with Sourcegraph](https://docs.sourcegraph.com/admin/external_services)".
+- The deprecated environment variables `SRC_SESSION_STORE_REDIS` and `REDIS_MASTER_ENDPOINT` are no longer used to configure alternative redis endpoints. For more information, see "[using external services with Khulnasoft](https://docs.khulnasoft.com/admin/external_services)".
 
 ## 2.11.1
 
 ### Added
 
-- A new site config option `git.cloneURLToRepositoryName` specifies manual mapping from Git clone URLs to Sourcegraph repository names. This is useful, for example, for Git submodules that have local clone URLs.
+- A new site config option `git.cloneURLToRepositoryName` specifies manual mapping from Git clone URLs to Khulnasoft repository names. This is useful, for example, for Git submodules that have local clone URLs.
 
 ### Fixed
 
@@ -4011,12 +4011,12 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 ### Added
 
-- Support for ACME "tls-alpn-01" challenges to obtain LetsEncrypt certificates. Previously Sourcegraph only supported ACME "http-01" challenges which required port 80 to be accessible.
+- Support for ACME "tls-alpn-01" challenges to obtain LetsEncrypt certificates. Previously Khulnasoft only supported ACME "http-01" challenges which required port 80 to be accessible.
 - gitserver periodically removes stale lock files that git can leave behind.
 - Commits with empty trees no longer return 404.
 - Clients (browser/editor extensions) can now query configuration details from the `ClientConfiguration` GraphQL API.
 - The config field `auth.accessTokens.allow` allows or restricts use of access tokens. It can be set to one of three values: "all-users-create" (the default), "none" (all access tokens are disabled), and "site-admin-create" (access tokens are enabled, but only site admins can create new access tokens). The field `auth.disableAccessTokens` is now deprecated in favor of this new field.
-- A webhook endpoint now exists to trigger repository updates. For example, `curl -XPOST -H 'Authorization: token $ACCESS_TOKEN' $SOURCEGRAPH_ORIGIN/.api/repos/$REPO_URI/-/refresh`.
+- A webhook endpoint now exists to trigger repository updates. For example, `curl -XPOST -H 'Authorization: token $ACCESS_TOKEN' $KHULNASOFT_ORIGIN/.api/repos/$REPO_URI/-/refresh`.
 - Git submodules entries in the file tree now link to the submodule repository.
 
 ### Fixed
@@ -4088,14 +4088,14 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 - A once-off migration will run changing the layout of cloned repos on disk. This should only affect installations created January 2018 or before. There should be no user visible changes.
 - Experimental feature flag "updateScheduler" enables a smarter and less spammy algorithm for automatic repository updates.
 - It is no longer possible to disable code intelligence by unsetting the LSP_PROXY environment variable. Instead, code intelligence can be disabled per language on the site admin page (e.g. https://sourcegraph.example.com/site-admin/code-intelligence).
-- Bitbucket API requests made by Sourcegraph are now under a self-enforced API rate limit (since Bitbucket Server does not have a concept of rate limiting yet). This will reduce any chance of Sourcegraph slowing down or causing trouble for Bitbucket Server instances connected to it. The limits are: 7,200 total requests/hr, with a bucket size / maximum burst size of 500 requests.
+- Bitbucket API requests made by Khulnasoft are now under a self-enforced API rate limit (since Bitbucket Server does not have a concept of rate limiting yet). This will reduce any chance of Khulnasoft slowing down or causing trouble for Bitbucket Server instances connected to it. The limits are: 7,200 total requests/hr, with a bucket size / maximum burst size of 500 requests.
 - Global, org, and user settings are now validated against the schema, so invalid settings will be shown in the settings editor with a red squiggly line.
 - The `http-header` auth provider now supports being used with other auth providers (still only when `experimentalFeatures.multipleAuthProviders` is `true`).
 - Periodic fetches of Gitolite-hosted repositories are now handled internally by repo-updater.
 
 ### Added
 
-- The `log.sentry.dsn` field in the site config makes Sourcegraph log application errors to a Sentry instance.
+- The `log.sentry.dsn` field in the site config makes Khulnasoft log application errors to a Sentry instance.
 - Two new repository page hotkeys were added: <kbd>r</kbd> to open the repositories menu and <kbd>v</kbd> to open the revision selector.
 - Repositories are periodically (~45 days) recloned from the codehost. The codehost can be relied on to give an efficient packing. This is an alternative to running a memory and CPU intensive git gc and git prune.
 - The `auth.sessionExpiry` field sets the session expiration age in seconds (defaults to 90 days).
@@ -4113,7 +4113,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 ### Removed
 
-- `SOURCEGRAPH_CONFIG` environment variable has been removed. Site configuration is always read from and written to disk. You can configure the location by providing `SOURCEGRAPH_CONFIG_FILE`. The default path is `/etc/sourcegraph/config.json`.
+- `KHULNASOFT_CONFIG` environment variable has been removed. Site configuration is always read from and written to disk. You can configure the location by providing `KHULNASOFT_CONFIG_FILE`. The default path is `/etc/sourcegraph/config.json`.
 
 ## 2.9.3
 
@@ -4121,7 +4121,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 - The search results page will merge duplicated lines of context.
 - The following deprecated site configuration properties have been removed: `github[].preemptivelyClone`, `gitOriginMap`, `phabricatorURL`, `githubPersonalAccessToken`, `githubEnterpriseURL`, `githubEnterpriseCert`, and `githubEnterpriseAccessToken`.
-- The `settings` field in the site config file is deprecated and will not be supported in a future release. Site admins should move those settings (if any) to global settings (in the site admin UI). Global settings are preferred to site config file settings because the former can be applied without needing to restart/redeploy the Sourcegraph server or cluster.
+- The `settings` field in the site config file is deprecated and will not be supported in a future release. Site admins should move those settings (if any) to global settings (in the site admin UI). Global settings are preferred to site config file settings because the former can be applied without needing to restart/redeploy the Khulnasoft server or cluster.
 
 ### Fixed
 
@@ -4146,15 +4146,15 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 ### Added
 
-- The site admin code intelligence page now displays an error or reason whenever language servers are unable to be managed from the UI or Sourcegraph API.
+- The site admin code intelligence page now displays an error or reason whenever language servers are unable to be managed from the UI or Khulnasoft API.
 - The ability to directly specify the root import path of a repository via `.sourcegraph/config.json` in the repo root, instead of relying on the heuristics of the Go language server to detect it.
 
 ### Fixed
 
-- Configuring Bitbucket Server now correctly suppresses the the toast message "Configure repositories and code hosts to add to Sourcegraph."
+- Configuring Bitbucket Server now correctly suppresses the the toast message "Configure repositories and code hosts to add to Khulnasoft."
 - A bug where canonical import path comments would not be detected by the Go language server's heuristics under `cmd/` folders.
 - Fixed an issue where a repository would only be refreshed on demand by certain user actions (such as a page reload) and would otherwise not be updated when expected.
-- If a code host returned a repository-not-found or unauthorized error (to `repo-updater`) for a repository that previously was known to Sourcegraph, then in some cases a misleading "Empty repository" screen was shown. Now the repository is displayed as though it still existed, using cached data; site admins must explicitly delete repositories on Sourcegraph after they have been deleted on the code host.
+- If a code host returned a repository-not-found or unauthorized error (to `repo-updater`) for a repository that previously was known to Khulnasoft, then in some cases a misleading "Empty repository" screen was shown. Now the repository is displayed as though it still existed, using cached data; site admins must explicitly delete repositories on Khulnasoft after they have been deleted on the code host.
 - Improved handling of GitHub API rate limit exhaustion cases. Cached repository metadata and Git data will be used to provide full functionality during this time, and log messages are more informative. Previously, in some cases, repositories would become inaccessible.
 - Fixed an issue where indexed search would sometimes not indicate that there were more results to show for a given file.
 - Fixed an issue where the code intelligence admin page would never finish loading language servers.
@@ -4182,7 +4182,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 - The `sourcegraph/server` container now emits the most recent log message when redis terminates to make it easier to debug why redis stopped.
 - Organization invites (which allow users to invite other users to join organizations) are significantly improved. A new accept-invitation page was added.
-- The new help popover allows users to easily file issues in the Sourcegraph public issue tracker and view documentation.
+- The new help popover allows users to easily file issues in the Khulnasoft public issue tracker and view documentation.
 - An issue where Java files would be highlighted incorrectly if they contained JavaDoc blocks with an uneven number of opening/closing `*`s.
 
 ### Removed
@@ -4230,12 +4230,12 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 ### Fixed
 
 - Fixed an issue where the search results page would not update its title.
-- The session cookie name is now `sgs` (not `sg-session`) so that Sourcegraph 2.7 and Sourcegraph 2.8 can be run side-by-side temporarily during a rolling update without clearing each other's session cookies.
+- The session cookie name is now `sgs` (not `sg-session`) so that Khulnasoft 2.7 and Khulnasoft 2.8 can be run side-by-side temporarily during a rolling update without clearing each other's session cookies.
 - Fixed the default hostnames of the C# and R language servers
 - Fixed an issue where deleting an organization prevented the creation of organizations with the name of the deleted organization.
 - Non-UTF8 encoded files (e.g. ISO-8859-1/Latin1, UTF16, etc) are now displayed as text properly rather than being detected as binary files.
 - Improved error message when lsp-proxy's initalize timeout occurs
-- Fixed compatibility issues and added [instructions for using Microsoft ADFS 2.1 and 3.0 for SAML authentication](https://docs.sourcegraph.com/admin/auth/saml_with_microsoft_adfs).
+- Fixed compatibility issues and added [instructions for using Microsoft ADFS 2.1 and 3.0 for SAML authentication](https://docs.khulnasoft.com/admin/auth/saml_with_microsoft_adfs).
 - Fixed an issue where external accounts associated with deleted user accounts would still be returned by the GraphQL API. This caused the site admin external accounts page to fail to render in some cases.
 - Significantly reduced the number of code host requests for non github.com or gitlab.com repositories.
 
@@ -4253,14 +4253,14 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 - `gitMaxConcurrentClones` now also limits the concurrency of updates to repos in addition to the initial clone.
 - In the GraphQL API, `site.users` has been renamed to `users`, `site.orgs` has been renamed to `organizations`, and `site.repositories` has been renamed to `repositories`.
-- An authentication provider must be set in site configuration (see [authentication provider documentation](https://docs.sourcegraph.com/admin/auth)). Previously the server defaulted to builtin auth if none was set.
-- If a process dies inside the Sourcegraph container the whole container will shut down. We suggest operators configure a [Docker Restart Policy](https://docs.docker.com/config/containers/start-containers-automatically/#restart-policy-details) or a [Kubernetes Restart Policy](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy). Previously the container would operate in a degraded mode if a process died.
+- An authentication provider must be set in site configuration (see [authentication provider documentation](https://docs.khulnasoft.com/admin/auth)). Previously the server defaulted to builtin auth if none was set.
+- If a process dies inside the Khulnasoft container the whole container will shut down. We suggest operators configure a [Docker Restart Policy](https://docs.docker.com/config/containers/start-containers-automatically/#restart-policy-details) or a [Kubernetes Restart Policy](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy). Previously the container would operate in a degraded mode if a process died.
 - Changes to the `auth.public` site config are applied immediately in `sourcegraph/server` (no restart needed).
 - The new search timeout behavior is now enabled by default. Set `"experimentalFeatures": {"searchTimeoutParameter": "disabled"}` in site config to disable it.
 - Search includes files up to 1MB (previous limit was 512KB for unindexed search and 128KB for indexed search).
-- Usernames and email addresses reported by OpenID Connect and SAML auth providers are now trusted, and users will sign into existing Sourcegraph accounts that match on the auth provider's reported username or email.
+- Usernames and email addresses reported by OpenID Connect and SAML auth providers are now trusted, and users will sign into existing Khulnasoft accounts that match on the auth provider's reported username or email.
 - The repository sidebar file tree is much, much faster on massive repositories (200,000+ files)
-- The SAML authentication provider was significantly improved. Users who were signed in using SAML previously will need to reauthenticate via SAML next time they visit Sourcegraph.
+- The SAML authentication provider was significantly improved. Users who were signed in using SAML previously will need to reauthenticate via SAML next time they visit Khulnasoft.
 - The SAML `serviceProviderCertificate` and `serviceProviderPrivateKey` site config properties are now optional.
 
 ### Fixed
@@ -4269,11 +4269,11 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 - User data on the site admin Analytics page is now paginated, filterable by a user's recent activity, and searchable.
 - The link to the root of a repository in the repository header now preserves the revision you're currently viewing.
 - When using the `http-header` auth provider, signin/signup/signout links are now hidden.
-- Repository paths beginning with `go/` are no longer reservered by Sourcegraph.
+- Repository paths beginning with `go/` are no longer reservered by Khulnasoft.
 - Interpret `X-Forwarded-Proto` HTTP header when `httpToHttpsRedirect` is set to `load-balanced`.
 - Deleting a user account no longer prevents the creation of a new user account with the same username and/or association with authentication provider account (SAML/OpenID/etc.)
 - It is now possible for a user to verify an email address that was previously associated with now-deleted user account.
-- Diff searches over empty repositories no longer fail (this was not an issue for Sourcegraph cluster deployments).
+- Diff searches over empty repositories no longer fail (this was not an issue for Khulnasoft cluster deployments).
 - Stray `tmp_pack_*` files from interrupted fetches should now go away.
 - When multiple `repo:` tokens match the same repo, process @revspec requirements from all of them, not just the first one in the search.
 
@@ -4281,7 +4281,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 - The `ssoUserHeader` site config property (deprecated since January 2018) has been removed. The functionality was moved to the `http-header` authentication provider.
 - The experiment flag `showMissingReposEnabled`, which defaulted to enabled, has been removed so it is no longer possible to disable this feature.
-- Event-level telemetry has been completely removed from self-hosted Sourcegraph instances. As a result, the `disableTelemetry` site configuration option has been deprecated. The new site-admin Pings page clarifies the only high-level telemetry being sent to Sourcegraph.com.
+- Event-level telemetry has been completely removed from self-hosted Khulnasoft instances. As a result, the `disableTelemetry` site configuration option has been deprecated. The new site-admin Pings page clarifies the only high-level telemetry being sent to Khulnasoft.com.
 - The deprecated `adminUsernames` site config property (deprecated since January 2018) has been removed because it is no longer necessary. Site admins can designate other users as site admins in the site admin area, and the first user to sign into a new instance always becomes a site admin (even when using an external authentication provider).
 
 ### Added
@@ -4295,14 +4295,14 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 - There is now a code intelligence status indicator when viewing files. It contains information about the capabailities of the language server that is providing code intelligence for the file.
 - Java code intelligence can now be enabled for repositories that aren't automatically supported using a
   `javaconfig.json` file. For Gradle plugins, this file can be generated using
-  the [Javaconfig Gradle plugin](https://docs.sourcegraph.com/extensions/language_servers/java#gradle-execution).
+  the [Javaconfig Gradle plugin](https://docs.khulnasoft.com/extensions/language_servers/java#gradle-execution).
 - The new `auth.providers` site config is an array of authentication provider objects. Currently only 1 auth provider is supported. The singular `auth.provider` is deprecated.
-- Users authenticated with OpenID Connect are now able to sign out of Sourcegraph (if the provider supports token revocation or the end-session endpoint).
+- Users authenticated with OpenID Connect are now able to sign out of Khulnasoft (if the provider supports token revocation or the end-session endpoint).
 - Users can now specify the number of days, weeks, and months of site activity to query through the GraphQL API.
 - Added 14 new experimental language servers on the code intelligence admin page.
 - Added `httpStrictTransportSecurity` site configuration option to customize the Strict-Transport-Security HTTP header. It defaults to `max-age=31536000` (one year).
 - Added `nameIDFormat` in the `saml` auth provider to set the SAML NameID format. The default changed from transient to persistent.
-- (This feature has been removed.) Experimental env var expansion in site config JSON: set `SOURCEGRAPH_EXPAND_CONFIG_VARS=1` to replace `${var}` or `$var` (based on environment variables) in any string value in site config JSON (except for JSON object property names).
+- (This feature has been removed.) Experimental env var expansion in site config JSON: set `KHULNASOFT_EXPAND_CONFIG_VARS=1` to replace `${var}` or `$var` (based on environment variables) in any string value in site config JSON (except for JSON object property names).
 - The new (optional) SAML `serviceProviderIssuer` site config property (in an `auth.providers` array entry with `{"type":"saml", ...}`) allows customizing the SAML Service Provider issuer name.
 - The site admin area now has an "Auth" section that shows the enabled authentication provider(s) and users' external accounts.
 
@@ -4316,7 +4316,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 ### Changed
 
-- When deploying Sourcegraph to Kubernetes, RBAC is now used by default. Most Kubernetes clusters require it. See the Kubernetes installation instructions for more information (including disabling if needed).
+- When deploying Khulnasoft to Kubernetes, RBAC is now used by default. Most Kubernetes clusters require it. See the Kubernetes installation instructions for more information (including disabling if needed).
 - Increased git ssh connection timeout to 30s from 7s.
 - The Phabricator integration no longer requires staging areas, but using them is still recommended because it improves performance.
 
@@ -4335,7 +4335,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 - More detailed progress information is displayed on pages that are waiting for repositories to clone.
 - Admins can now see charts with daily, weekly, and monthly unique user counts by visiting the site-admin Analytics page.
-- Admins can now host and see results from Sourcegraph user satisfaction surveys locally by setting the `"experimentalFeatures": { "hostSurveysLocally": "enabled"}` site config option. This feature will be enabled for all instances once stable.
+- Admins can now host and see results from Khulnasoft user satisfaction surveys locally by setting the `"experimentalFeatures": { "hostSurveysLocally": "enabled"}` site config option. This feature will be enabled for all instances once stable.
 - Access tokens are now supported for all authentication providers (including OpenID Connect and SAML, which were previously not supported).
 - The new `motd` setting (in global, organization, and user settings) displays specified messages at the top of all pages.
 - Site admins may now view all access tokens site-wide (for all users) and revoke tokens from the new access tokens page in the site admin area.
@@ -4368,22 +4368,22 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 - Users (and site admins) may now create and manage access tokens to authenticate API clients. The site config `auth.disableAccessTokens` (renamed to `auth.accessTokens` in 2.11) disables this new feature. Access tokens are currently only supported when using the `builtin` and `http-header` authentication providers (not OpenID Connect or SAML).
 - User and site admin management capabilities for user email addresses are improved.
 - The user and organization management UI has been greatly improved. Site admins may now administer all organizations (even those they aren't a member of) and may edit profile info and configuration for all users.
-- If SSO is enabled (via OpenID Connect or SAML) and the SSO system provides user avatar images and/or display names, those are now used by Sourcegraph.
+- If SSO is enabled (via OpenID Connect or SAML) and the SSO system provides user avatar images and/or display names, those are now used by Khulnasoft.
 - Enable new search timeout behavior by setting `"experimentalFeatures": { "searchTimeoutParameter": "enabled"}` in your site config.
   - Adds a new `timeout:` parameter to customize the timeout for searches. It defaults to 10s and may not be set higher than 1m.
   - The value of the `timeout:` parameter is a string that can be parsed by [time.Duration](https://golang.org/pkg/time/#ParseDuration) (e.g. "100ms", "2s").
   - When `timeout:` is not provided, search optimizes for retuning results as soon as possible and will include slower kinds of results (e.g. symbols) only if they are found quickly.
   - When `timeout:` is provided, all result kinds are given the full timeout to complete.
-- A new user settings tokens page was added that allows users to obtain a token that they can use to authenticate to the Sourcegraph API.
+- A new user settings tokens page was added that allows users to obtain a token that they can use to authenticate to the Khulnasoft API.
 - Code intelligence indexes are now built for all repositories in the background, regardless of whether or not they are visited directly by a user.
 - Language servers are now automatically enabled when visiting a repository. For example, visiting a Go repository will now automatically download and run the relevant Docker container for Go code intelligence.
-  - This change only affects when Sourcegraph is deployed using the `sourcegraph/server` Docker image (not using Kubernetes).
-  - You will need to use the new `docker run` command at https://docs.sourcegraph.com/#quick-install in order for this feature to be enabled. Otherwise, you will receive errors in the log about `/var/run/docker.sock` and things will work just as they did before. See https://docs.sourcegraph.com/extensions/language_servers for more information.
-- The site admin Analytics page will now display the number of "Code Intelligence" actions each user has made, including hovers, jump to definitions, and find references, on the Sourcegraph webapp or in a code host integration or extension.
-- An experimental cross repository jump to definition which consults the OSS index on Sourcegraph.com. This is disabled by default; use `"experimentalFeatures": { "jumpToDefOSSIndex": "enabled" }` in your site configuration to enable it.
-- Users can now view Git branches, tags, and commits, and compare Git branches and revisions on Sourcegraph. (The code host icon in the header takes you to the commit on the code host.)
+  - This change only affects when Khulnasoft is deployed using the `sourcegraph/server` Docker image (not using Kubernetes).
+  - You will need to use the new `docker run` command at https://docs.khulnasoft.com/#quick-install in order for this feature to be enabled. Otherwise, you will receive errors in the log about `/var/run/docker.sock` and things will work just as they did before. See https://docs.khulnasoft.com/extensions/language_servers for more information.
+- The site admin Analytics page will now display the number of "Code Intelligence" actions each user has made, including hovers, jump to definitions, and find references, on the Khulnasoft webapp or in a code host integration or extension.
+- An experimental cross repository jump to definition which consults the OSS index on Khulnasoft.com. This is disabled by default; use `"experimentalFeatures": { "jumpToDefOSSIndex": "enabled" }` in your site configuration to enable it.
+- Users can now view Git branches, tags, and commits, and compare Git branches and revisions on Khulnasoft. (The code host icon in the header takes you to the commit on the code host.)
 - A new admin panel allows you to view and manage language servers. For Docker deployments, it allows you to enable/disable/update/restart language servers at the click of a button. For cluster deployments, it shows the current status of language servers.
-- Users can now tweet their feedback about Sourcegraph when clicking on the feedback smiley located in the navbar and filling out a Twitter feedback form.
+- Users can now tweet their feedback about Khulnasoft when clicking on the feedback smiley located in the navbar and filling out a Twitter feedback form.
 - A new button in the repository header toggles on/off the Git history panel for the current file.
 
 ## 2.6.8
@@ -4414,7 +4414,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 ### Behavior changes
 
-- Read-only forks on GitHub are no longer synced by default. If you want to add a readonly fork, navigate directly to the repository page on Sourcegraph to add it (e.g. https://sourcegraph.mycompany.internal/github.com/owner/repo). This prevents your repositories list from being cluttered with a large number of private forks of a private repository that you have access to. One notable example is https://github.com/EpicGames/UnrealEngine.
+- Read-only forks on GitHub are no longer synced by default. If you want to add a readonly fork, navigate directly to the repository page on Khulnasoft to add it (e.g. https://sourcegraph.mycompany.internal/github.com/owner/repo). This prevents your repositories list from being cluttered with a large number of private forks of a private repository that you have access to. One notable example is https://github.com/EpicGames/UnrealEngine.
 - SAML cookies now expire after 90 days. The previous behavior was every 1 hour, which was unintentionally low.
 
 ## 2.6.4
@@ -4460,9 +4460,9 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 - The new search filter `lang:` filters results by programming language (example: `foo lang:go` or `foo -lang:clojure`).
 - Dynamic filters: filters generated from your search results to help refine your results.
 - Search queries that consist only of `file:` now show files whose path matches the filters (instead of no results).
-- Sourcegraph now automatically detects basic `$GOPATH` configurations found in `.envrc` files in the root of repositories.
+- Khulnasoft now automatically detects basic `$GOPATH` configurations found in `.envrc` files in the root of repositories.
 - You can now configure the effective `$GOPATH`s of a repository by adding a `.sourcegraph/config.json` file to your repository with the contents `{"go": {"GOPATH": ["mygopath"]}}`.
-- A new `"blacklistGoGet": ["mydomain.org,myseconddomain.com"]` offers users a quick escape hatch in the event that Sourcegraph is making unwanted `go get` or `git clone` requests to their website due to incorrectly-configured monorepos. Most users will never use this option.
+- A new `"blacklistGoGet": ["mydomain.org,myseconddomain.com"]` offers users a quick escape hatch in the event that Khulnasoft is making unwanted `go get` or `git clone` requests to their website due to incorrectly-configured monorepos. Most users will never use this option.
 - Search suggestions and results now include symbol results. The new filter `type:symbol` causes only symbol results to be shown.
   Additionally, symbols for a repository can be browsed in the new symbols sidebar.
 - You can now expand and collapse all items on a search results page or selectively expand and collapse individual items.
@@ -4495,7 +4495,7 @@ See the changelog entries for 3.0.0 beta releases and our [3.0](https://docs.sou
 
 ### Bug fixes
 
-- Fixed issue where a Sourcegraph cluster would incorrectly show "An update is available".
+- Fixed issue where a Khulnasoft cluster would incorrectly show "An update is available".
 - Fixed Phabricator links to repositories
 - Searches over a single repository are now less likely to immediately time out the first time they are searched.
 - Fixed a bug where `auth.provider == "http-header"` would incorrectly require builtin authentication / block site access when `auth.public == "false"`.
@@ -4512,10 +4512,10 @@ You may now optionally provide the SAML Identity Provider metadata XML file cont
 
 ### Improvements to builtin authentication
 
-When using `auth.provider == "builtin"`, two new important changes mean that a Sourcegraph server will be locked down and only accessible to users who are invited by an admin user (previously, we advised users to place their own auth proxy in front of Sourcegraph servers).
+When using `auth.provider == "builtin"`, two new important changes mean that a Khulnasoft server will be locked down and only accessible to users who are invited by an admin user (previously, we advised users to place their own auth proxy in front of Khulnasoft servers).
 
-1.  When `auth.provider == "builtin"` Sourcegraph will now by default require an admin to invite users instead of allowing anyone who can visit the site to sign up. Set `auth.allowSignup == true` to retain the old behavior of allowing anyone who can access the site to signup.
-2.  When `auth.provider == "builtin"`, Sourcegraph will now respects a new `auth.public` site configuration option (default value: `false`). When `auth.public == false`, Sourcegraph will not allow anyone to access the site unless they have an account and are signed in.
+1.  When `auth.provider == "builtin"` Khulnasoft will now by default require an admin to invite users instead of allowing anyone who can visit the site to sign up. Set `auth.allowSignup == true` to retain the old behavior of allowing anyone who can access the site to signup.
+2.  When `auth.provider == "builtin"`, Khulnasoft will now respects a new `auth.public` site configuration option (default value: `false`). When `auth.public == false`, Khulnasoft will not allow anyone to access the site unless they have an account and are signed in.
 
 ## 2.4.3
 
@@ -4594,7 +4594,7 @@ When using `auth.provider == "builtin"`, two new important changes mean that a S
 
 ### Changed
 
-- We optionally read `SOURCEGRAPH_CONFIG` from `$DATA_DIR/config.json`.
+- We optionally read `KHULNASOFT_CONFIG` from `$DATA_DIR/config.json`.
 - SSH key required to clone repositories from GitHub Enterprise when using a self-signed certificate.
 
 ## 0.3 - 13 December 2017

@@ -42,7 +42,7 @@
       }
     },
     "gitURLType": {
-      "description": "The type of Git URLs to use for cloning and fetching Git repositories.\n\nIf \"http\", Sourcegraph will access repositories using Git URLs of the form http(s)://dev.azure.com/myrepo.git.\n\nIf \"ssh\", Sourcegraph will access repositories using Git URLs of the form git@ssh.dev.azure.com:v3/myrepo. See the documentation for how to provide SSH private keys and known_hosts: https://sourcegraph.com/docs/admin/repo/auth.",
+      "description": "The type of Git URLs to use for cloning and fetching Git repositories.\n\nIf \"http\", Khulnasoft will access repositories using Git URLs of the form http(s)://dev.azure.com/myrepo.git.\n\nIf \"ssh\", Khulnasoft will access repositories using Git URLs of the form git@ssh.dev.azure.com:v3/myrepo. See the documentation for how to provide SSH private keys and known_hosts: https://khulnasoft.com/docs/admin/repo/auth.",
       "type": "string",
       "enum": ["http", "ssh"],
       "default": "http"
@@ -63,13 +63,13 @@
       "minLength": 1
     },
     "projects": {
-      "description": "An array of projects \"org/project\" strings specifying which Azure DevOps projects' repositories should be mirrored on Sourcegraph.",
+      "description": "An array of projects \"org/project\" strings specifying which Azure DevOps projects' repositories should be mirrored on Khulnasoft.",
       "type": "array",
       "items": { "type": "string", "pattern": "^[\\w-]+/[\\w.-]+([ ]*[\\w.-]+)*$" },
       "examples": [["org/project"]]
     },
     "orgs": {
-      "description": "An array of organization names identifying Azure DevOps organizations whose repositories should be mirrored on Sourcegraph.",
+      "description": "An array of organization names identifying Azure DevOps organizations whose repositories should be mirrored on Khulnasoft.",
       "type": "array",
       "items": { "type": "string", "pattern": "^[\\w-]+$" },
       "examples": [["name"], ["kubernetes", "golang", "facebook"]]

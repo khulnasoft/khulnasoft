@@ -81,8 +81,8 @@ func TestCheckForUpcomingLicenseExpirations(t *testing.T) {
 	checkForUpcomingLicenseExpirations(logtest.Scoped(t), db, clock, client)
 
 	wantPayloads := []*slack.Payload{
-		{Text: "The license for user `alice` <https://sourcegraph.com/site-admin/dotcom/product/subscriptions/e9450fb2-87c7-47ae-a713-a376c4618faa|will expire *in the next 24 hours*> :rotating_light:"},
-		{Text: "The license for user `alice` <https://sourcegraph.com/site-admin/dotcom/product/subscriptions/26136564-b319-4be4-98ff-7b8710abf4af|will expire *in 7 days*>"},
+		{Text: "The license for user `alice` <https://khulnasoft.com/site-admin/dotcom/product/subscriptions/e9450fb2-87c7-47ae-a713-a376c4618faa|will expire *in the next 24 hours*> :rotating_light:"},
+		{Text: "The license for user `alice` <https://khulnasoft.com/site-admin/dotcom/product/subscriptions/26136564-b319-4be4-98ff-7b8710abf4af|will expire *in 7 days*>"},
 	}
 	if diff := cmp.Diff(wantPayloads, client.payloads); diff != "" {
 		t.Fatalf("Payloads mismatch (-want +got):\n%s", diff)

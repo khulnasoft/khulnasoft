@@ -159,7 +159,7 @@ func TestClient_IsRepoCloneableGRPC(t *testing.T) {
 	testCases := []test{
 		{
 			name: "cloneable",
-			repo: "github.com/sourcegraph/sourcegraph",
+			repo: "github.com/khulnasoft/khulnasoft",
 			mockResponse: &protocol.IsRepoCloneableResponse{
 				Cloneable: true,
 			},
@@ -176,7 +176,7 @@ func TestClient_IsRepoCloneableGRPC(t *testing.T) {
 		},
 		{
 			name: "other error",
-			repo: "github.com/sourcegraph/sourcegraph",
+			repo: "github.com/khulnasoft/khulnasoft",
 			mockResponse: &protocol.IsRepoCloneableResponse{
 				Cloneable: false,
 				Reason:    "some other error",

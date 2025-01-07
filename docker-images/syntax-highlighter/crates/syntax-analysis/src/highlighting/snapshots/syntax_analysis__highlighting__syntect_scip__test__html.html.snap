@@ -20,7 +20,7 @@ expression: "snapshot_sciptect_documents(&document, &contents)"
 //^ PunctuationBracket punctuation.definition.tag.begin.html
 // ^^^^ Identifier entity.name.tag.structure.any.html
 //     ^ PunctuationBracket punctuation.definition.tag.end.html
-    <title>Sourcegraph</title>
+    <title>Khulnasoft</title>
 //  ^ PunctuationBracket punctuation.definition.tag.begin.html
 //   ^^^^^ Identifier entity.name.tag.inline.any.html
 //        ^ PunctuationBracket punctuation.definition.tag.end.html

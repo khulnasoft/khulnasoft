@@ -77,11 +77,11 @@ type RankingService interface {
 // via a shared username and password.
 type NewExecutorProxyHandler func() http.Handler
 
-// NewGitHubAppSetupHandler creates a new handler for the Sourcegraph
+// NewGitHubAppSetupHandler creates a new handler for the Khulnasoft
 // GitHub App setup URL endpoint (Cloud and on-prem).
 type NewGitHubAppSetupHandler func() http.Handler
 
-// NewComputeStreamHandler creates a new handler for the Sourcegraph Compute streaming endpoint.
+// NewComputeStreamHandler creates a new handler for the Khulnasoft Compute streaming endpoint.
 type NewComputeStreamHandler func() http.Handler
 
 // NewChatCompletionsStreamHandler creates a new handler for the completions streaming endpoint.
@@ -113,7 +113,7 @@ func DefaultServices() Services {
 		NewCodeIntelUploadHandler:       func(_ bool) http.Handler { return makeNotFoundHandler("code intel upload") },
 		RankingService:                  stubRankingService{},
 		NewExecutorProxyHandler:         func() http.Handler { return makeNotFoundHandler("executor proxy") },
-		NewGitHubAppSetupHandler:        func() http.Handler { return makeNotFoundHandler("Sourcegraph GitHub App setup") },
+		NewGitHubAppSetupHandler:        func() http.Handler { return makeNotFoundHandler("Khulnasoft GitHub App setup") },
 		NewComputeStreamHandler:         func() http.Handler { return makeNotFoundHandler("compute streaming endpoint") },
 		CodeInsightsDataExportHandler:   makeNotFoundHandler("code insights data export handler"),
 		NewDotcomLicenseCheckHandler:    func() http.Handler { return makeNotFoundHandler("dotcom license check handler") },

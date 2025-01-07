@@ -49,7 +49,7 @@ type SubscriptionsServiceClient interface {
 	CreateEnterpriseSubscriptionLicense(ctx context.Context, in *CreateEnterpriseSubscriptionLicenseRequest, opts ...grpc.CallOption) (*CreateEnterpriseSubscriptionLicenseResponse, error)
 	// RevokeEnterpriseSubscriptionLicense revokes an existing license for an
 	// Enterprise subscription, permanently disabling its use for features
-	// managed by Sourcegraph. Revocation cannot be undone.
+	// managed by Khulnasoft. Revocation cannot be undone.
 	RevokeEnterpriseSubscriptionLicense(ctx context.Context, in *RevokeEnterpriseSubscriptionLicenseRequest, opts ...grpc.CallOption) (*RevokeEnterpriseSubscriptionLicenseResponse, error)
 	// UpdateEnterpriseSubscription updates an existing enterprise subscription.
 	UpdateEnterpriseSubscription(ctx context.Context, in *UpdateEnterpriseSubscriptionRequest, opts ...grpc.CallOption) (*UpdateEnterpriseSubscriptionResponse, error)
@@ -174,7 +174,7 @@ type SubscriptionsServiceServer interface {
 	CreateEnterpriseSubscriptionLicense(context.Context, *CreateEnterpriseSubscriptionLicenseRequest) (*CreateEnterpriseSubscriptionLicenseResponse, error)
 	// RevokeEnterpriseSubscriptionLicense revokes an existing license for an
 	// Enterprise subscription, permanently disabling its use for features
-	// managed by Sourcegraph. Revocation cannot be undone.
+	// managed by Khulnasoft. Revocation cannot be undone.
 	RevokeEnterpriseSubscriptionLicense(context.Context, *RevokeEnterpriseSubscriptionLicenseRequest) (*RevokeEnterpriseSubscriptionLicenseResponse, error)
 	// UpdateEnterpriseSubscription updates an existing enterprise subscription.
 	UpdateEnterpriseSubscription(context.Context, *UpdateEnterpriseSubscriptionRequest) (*UpdateEnterpriseSubscriptionResponse, error)

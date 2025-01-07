@@ -141,7 +141,7 @@ func (c *Client) LocalCodeIntel(ctx context.Context, path types.RepoCommitPath) 
 	if err != nil {
 		if status.Code(err) == codes.Unimplemented {
 			// This ignores errors from LocalCodeIntel to match the behavior found here:
-			// https://sourcegraph.com/github.com/sourcegraph/sourcegraph@a1631d58604815917096acc3356447c55baebf22/-/blob/cmd/symbols/squirrel/http_handlers.go?L57-57
+			// https://khulnasoft.com/github.com/sourcegraph/sourcegraph@a1631d58604815917096acc3356447c55baebf22/-/blob/cmd/symbols/squirrel/http_handlers.go?L57-57
 			//
 			// This is weird, and maybe not intentional, but things break if we return an error.
 			return nil, nil
@@ -159,7 +159,7 @@ func (c *Client) LocalCodeIntel(ctx context.Context, path types.RepoCommitPath) 
 
 			if status.Code(err) == codes.Unimplemented {
 				// This ignores errors from LocalCodeIntel to match the behavior found here:
-				// https://sourcegraph.com/github.com/sourcegraph/sourcegraph@a1631d58604815917096acc3356447c55baebf22/-/blob/cmd/symbols/squirrel/http_handlers.go?L57-57
+				// https://khulnasoft.com/github.com/sourcegraph/sourcegraph@a1631d58604815917096acc3356447c55baebf22/-/blob/cmd/symbols/squirrel/http_handlers.go?L57-57
 				//
 				// This is weird, and maybe not intentional, but things break if we return an error.
 				return nil, nil
@@ -219,7 +219,7 @@ func (c *Client) symbolInfoGRPC(ctx context.Context, args types.RepoCommitPathPo
 	if err != nil {
 		if status.Code(err) == codes.Unimplemented {
 			// This ignores unimplemented errors from SymbolInfo to match the behavior here:
-			// https://sourcegraph.com/github.com/sourcegraph/sourcegraph@b039aa70fbd155b5b1eddc4b5deede739626a978/-/blob/cmd/symbols/squirrel/http_handlers.go?L114-114
+			// https://khulnasoft.com/github.com/sourcegraph/sourcegraph@b039aa70fbd155b5b1eddc4b5deede739626a978/-/blob/cmd/symbols/squirrel/http_handlers.go?L114-114
 			return nil, nil
 		}
 		return nil, translateGRPCError(err)

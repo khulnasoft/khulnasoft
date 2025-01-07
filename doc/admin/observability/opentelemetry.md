@@ -1,16 +1,16 @@
 # OpenTelemetry
 
-<span class="badge badge-note">Sourcegraph 4.0+</span>
+<span class="badge badge-note">Khulnasoft 4.0+</span>
 
-> WARNING: Sourcegraph is actively working on implementing [OpenTelemetry](https://opentelemetry.io/) for all observability data. **The first—and currently only—[signal](https://opentelemetry.io/docs/concepts/signals/) to be fully integrated is [tracing](./tracing.md)**.
+> WARNING: Khulnasoft is actively working on implementing [OpenTelemetry](https://opentelemetry.io/) for all observability data. **The first—and currently only—[signal](https://opentelemetry.io/docs/concepts/signals/) to be fully integrated is [tracing](./tracing.md)**.
 
-Sourcegraph exports OpenTelemetry data to a bundled [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) instance.
+Khulnasoft exports OpenTelemetry data to a bundled [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) instance.
 This service can be configured to ingest, process, and then export observability data to an observability backend of choice.
 This approach offers a great deal of flexibility.
 
 ## Configuration
 
-Khulnasoft's OpenTelemetry Collector is deployed with a [custom image, `sourcegraph/opentelemetry-collector`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/docker-images/opentelemetry-collector), and is configured with a configuration YAML file.
+Khulnasoft's OpenTelemetry Collector is deployed with a [custom image, `sourcegraph/opentelemetry-collector`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/tree/docker-images/opentelemetry-collector), and is configured with a configuration YAML file.
 By default, `sourcegraph/opentelemetry-collector` is configured to not do anything with the data it receives, but [exporters to various backends](#exporters) can be configured for each signal we currently support—**currently, only [traces data](#tracing) is supported**.
 
 Refer to the [documentation](https://opentelemetry.io/docs/collector/configuration/) for an in-depth explanation of the parts that compose a full collector pipeline.
@@ -23,8 +23,8 @@ For more details on configuring the OpenTelemetry collector for your deployment 
 
 ## Tracing
 
-Sourcegraph traces are exported in OpenTelemetry format to the bundled OpenTelemetry collector.
-To learn more about Sourcegraph traces in general, refer to our [tracing documentation](tracing.md).
+Khulnasoft traces are exported in OpenTelemetry format to the bundled OpenTelemetry collector.
+To learn more about Khulnasoft traces in general, refer to our [tracing documentation](tracing.md).
 
 `sourcegraph/opentelemetry-collector` includes the following exporters that support traces:
 
@@ -35,7 +35,7 @@ To learn more about Sourcegraph traces in general, refer to our [tracing documen
 > NOTE: In case you require an additional exporter from the [`opentelemetry-collector-contrib` repository](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter), please [open an issue](https://github.com/khulnasoft/khulnasoft/issues).
 
 Basic configuration for each tracing backend type is described below. Note that just adding a backend to the `exporters` block does not enable it—it must also be added to the `service` block.
-Refer to the next snippet for a basic but complete example, which is the [default out-of-the-box configuration](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/docker-images/opentelemetry-collector/configs/logging.yaml):
+Refer to the next snippet for a basic but complete example, which is the [default out-of-the-box configuration](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/docker-images/opentelemetry-collector/configs/logging.yaml):
 
 ```yaml
 receivers:
@@ -61,7 +61,7 @@ service:
 
 ### Sampling traces
 
-To reduce the volume of traces being exported, the collector can be configured to apply sampling to the exported traces. Sourcegraph bundles the [probabilistic sampler](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/probabilisticsamplerprocessor) and the [tail sampler](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/README.md) as part of it's default collector container image.
+To reduce the volume of traces being exported, the collector can be configured to apply sampling to the exported traces. Khulnasoft bundles the [probabilistic sampler](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/probabilisticsamplerprocessor) and the [tail sampler](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/README.md) as part of it's default collector container image.
 
 If enabled, this sampling mechanism will be applied to all traces, regardless if a request was explictly marked as to be traced.
 
@@ -111,7 +111,7 @@ processors:
     # Expected number of new traces (helps in allocating data structures)
     expected_new_traces_per_sec: 10 # default value = 0
     # Recommended reading to understand how the policies are applied:
-    # https://sourcegraph.com/github.com/open-telemetry/opentelemetry-collector-contrib@71dd19d2e59cd1f8aa9844461089d5c17efaa0ca/-/blob/processor/tailsamplingprocessor/processor.go?L214
+    # https://khulnasoft.com/github.com/open-telemetry/opentelemetry-collector-contrib@71dd19d2e59cd1f8aa9844461089d5c17efaa0ca/-/blob/processor/tailsamplingprocessor/processor.go?L214
     policies:
       [
           {
@@ -138,7 +138,7 @@ service:
 
 ### Filtering traces
 
-As part of the default container image Sourcegraph bundles the [filter processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/filterprocessor/README.md). By configuring a pipeline to have a filter processor one is able to include or exclude (depending on configuration!) on whether a trace should be allowed through the pipeline and be exported.
+As part of the default container image Khulnasoft bundles the [filter processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/filterprocessor/README.md). By configuring a pipeline to have a filter processor one is able to include or exclude (depending on configuration!) on whether a trace should be allowed through the pipeline and be exported.
 
 Refer to the following snippet where a filter processor is configured to only allow traces with the service name "foobar" to continue through the pipeline. All other traces that do not have this service name will be dropped.
 
@@ -209,13 +209,13 @@ exporters:
 
 Refer to the [`jaeger` exporter documentation](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/jaegerexporter/README.md) for all options.
 
-Most Sourcegraph deployment methods still ship with an opt-in Jaeger instance—to set this up, follow the relevant deployment guides, which will also set up the appropriate configuration for you:
+Most Khulnasoft deployment methods still ship with an opt-in Jaeger instance—to set this up, follow the relevant deployment guides, which will also set up the appropriate configuration for you:
 
 - [Kubernetes with Kustomize](../deploy/kubernetes/configure.md#deploy-opentelemetry-collector-with-jaeger-as-tracing-backend)
 - [Kubernetes with Helm](../deploy/kubernetes/helm.md#enable-the-bundled-jaeger-deployment)
 - [Docker Compose](../deploy/docker-compose/operations.md#enable-the-bundled-jaeger-deployment)
 
-If you wish to do additional configuration or connect to your own Jaeger instance, the deployed Collector image is bundled with a [basic configuration with Jaeger exporting](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/docker-images/opentelemetry-collector/configs/jaeger.yaml).
+If you wish to do additional configuration or connect to your own Jaeger instance, the deployed Collector image is bundled with a [basic configuration with Jaeger exporting](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/docker-images/opentelemetry-collector/configs/jaeger.yaml).
 If this configuration serves your needs, you do not have to provide a separate config—the Collector startup command can be set to `/bin/otelcol-sourcegraph --config=/etc/otel-collector/configs/jaeger.yaml`. Note that this requires the environment variable `$JAEGER_HOST` to be set on the Collector instance (i.e. the container in Kubernetes or Docker Compose):
 
 ```yaml
@@ -231,7 +231,7 @@ exporters:
 
 Refer to the [`googlecloud` exporter documentation](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/googlecloudexporter/README.md) for all available options.
 
-If you run Sourcegraph on a GCP workload, all requests will be authenticated automatically. The documentation describes other authentication methods.
+If you run Khulnasoft on a GCP workload, all requests will be authenticated automatically. The documentation describes other authentication methods.
 
 ```yaml
 exporters:

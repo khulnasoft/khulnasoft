@@ -62,7 +62,7 @@ func SignOut(w http.ResponseWriter, r *http.Request, sessionKey string, getProvi
 
 	// If we are in dotcom mode and this is a SAMS provider, we try to revoke the
 	// session on the SAMS instance as well.
-	if !dotcom.SourcegraphDotComMode() || !strings.HasPrefix(p.config.ClientID, "sams_cid_") {
+	if !dotcom.KhulnasoftDotComMode() || !strings.HasPrefix(p.config.ClientID, "sams_cid_") {
 		return endSessionEndpoint, nil
 	}
 

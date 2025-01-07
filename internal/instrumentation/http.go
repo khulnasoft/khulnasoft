@@ -16,7 +16,7 @@ import (
 )
 
 // defaultOTELHTTPOptions is a set of options shared between instrumetned HTTP middleware
-// and HTTP clients for consistent Sourcegraph-preferred behaviour.
+// and HTTP clients for consistent Khulnasoft-preferred behaviour.
 var defaultOTELHTTPOptions = []otelhttp.Option{
 	// Supplemental trace policy management - our core trace policy management
 	// is implemented in internal/tracer.
@@ -45,7 +45,7 @@ var defaultOTELHTTPOptions = []otelhttp.Option{
 
 // HTTPMiddleware wraps the handler with the following:
 //
-//   - If the HTTP header, X-Sourcegraph-Should-Trace, is set to a truthy value, set the
+//   - If the HTTP header, X-Khulnasoft-Should-Trace, is set to a truthy value, set the
 //     shouldTraceKey context.Context value to true
 //   - go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp, which applies the
 //     desired instrumentation, including picking up traces propagated in the request headers

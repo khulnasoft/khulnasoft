@@ -35,7 +35,7 @@ const CONTEXTS_GQL_MOCKS: MockedResponse<GetSearchContextsResult> = {
                         __typename: 'SearchContext',
                         id: '001',
                         spec: 'global',
-                        query: 'repo:github.com/sourcegraph/sourcegraph',
+                        query: 'repo:github.com/khulnasoft/khulnasoft',
                         description: 'Hello this is mee, your friend context',
                     },
                     {

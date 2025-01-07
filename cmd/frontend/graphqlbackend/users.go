@@ -23,15 +23,15 @@ type usersArgs struct {
 }
 
 func (r *schemaResolver) Users(ctx context.Context, args *usersArgs) (*userConnectionResolver, error) {
-	// 🚨 SECURITY: Only site admins can list all users on sourcegraph.com.
-	if dotcom.SourcegraphDotComMode() {
+	// 🚨 SECURITY: Only site admins can list all users on khulnasoft.com.
+	if dotcom.KhulnasoftDotComMode() {
 		if err := auth.CheckCurrentUserIsSiteAdmin(ctx, r.db); err != nil {
 			return nil, err
 		}
 	}
 
 	opt := database.UsersListOptions{
-		ExcludeSourcegraphOperators: true,
+		ExcludeKhulnasoftOperators: true,
 	}
 	if args.Query != nil {
 		opt.Query = *args.Query

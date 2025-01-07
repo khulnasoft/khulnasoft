@@ -157,7 +157,7 @@ interface NegatableFilterDefinition extends Omit<BaseFilterDefinition, 'descript
 
 type FilterDefinition = BaseFilterDefinition | NegatableFilterDefinition
 
-const SOURCEGRAPH_DOT_COM_REPO_COMPLETION: Completion[] = [
+const KHULNASOFT_DOT_COM_REPO_COMPLETION: Completion[] = [
     {
         label: 'Search a GitHub organization',
         // eslint-disable-next-line no-template-curly-in-string
@@ -288,7 +288,7 @@ export const FILTERS: Record<NegatableFilter, NegatableFilterDefinition> &
         alias: 'r',
         negatable: true,
         discreteValues: (_value, isKhulnasoftDotCom) => [
-            ...(isKhulnasoftDotCom === true ? SOURCEGRAPH_DOT_COM_REPO_COMPLETION : []),
+            ...(isKhulnasoftDotCom === true ? KHULNASOFT_DOT_COM_REPO_COMPLETION : []),
         ],
         description: negated =>
             `${negated ? 'Exclude' : 'Include only'} results from repositories matching the given search pattern.`,

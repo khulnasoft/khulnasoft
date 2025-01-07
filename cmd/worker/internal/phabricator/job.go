@@ -18,7 +18,7 @@ func NewPhabricatorRepoSyncerJob() job.Job {
 }
 
 func (o *phabricatorRepoSyncerJob) Description() string {
-	return "Periodically syncs repositories from Phabricator to Sourcegraph"
+	return "Periodically syncs repositories from Phabricator to Khulnasoft"
 }
 
 func (o *phabricatorRepoSyncerJob) Config() []env.Config {

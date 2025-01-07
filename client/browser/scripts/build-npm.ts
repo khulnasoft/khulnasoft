@@ -36,7 +36,7 @@ export async function buildNpm(bumpVersion?: boolean): Promise<void> {
         license: 'Apache-2.0',
         repository: {
             type: 'git',
-            url: 'https://github.com/sourcegraph/sourcegraph',
+            url: 'https://github.com/khulnasoft/khulnasoft',
             directory: 'browser',
         },
     }

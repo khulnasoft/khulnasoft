@@ -40,7 +40,7 @@ func TestSmokeTestApplianceInstallation(t *testing.T) {
 		defer cleanup()
 	}
 
-	defaultConfig := config.SourcegraphSpec{
+	defaultConfig := config.KhulnasoftSpec{
 		RequestedVersion: "5.3.9104",
 	}
 	createConfigMap(t, namespace, k8sClient, defaultConfig)
@@ -65,8 +65,8 @@ func srcValidate(t *testing.T, namespace string) {
 	require.NoError(t, cmd.Run())
 }
 
-func createConfigMap(t *testing.T, namespace string, k8sClient *kubernetes.Clientset, cfg config.SourcegraphSpec) {
-	sg := &config.Sourcegraph{
+func createConfigMap(t *testing.T, namespace string, k8sClient *kubernetes.Clientset, cfg config.KhulnasoftSpec) {
+	sg := &config.Khulnasoft{
 		Spec: cfg,
 	}
 	sg.SetLocalDevMode()
@@ -77,7 +77,7 @@ func createConfigMap(t *testing.T, namespace string, k8sClient *kubernetes.Clien
 		"spec": string(cfgBytes),
 	}
 	cfgMap.SetAnnotations(map[string]string{
-		"appliance.sourcegraph.com/managed": "true",
+		"appliance.khulnasoft.com/managed": "true",
 	})
 	_, err = k8sClient.CoreV1().ConfigMaps(namespace).Create(context.Background(), &cfgMap, metav1.CreateOptions{})
 	require.NoError(t, err)

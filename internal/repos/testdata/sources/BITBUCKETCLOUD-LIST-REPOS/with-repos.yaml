@@ -24,14 +24,14 @@ interactions:
       {"name": "ssh", "href": "git@bitbucket.org:sourcegraph-testing/src-cli.git"}],
       "hooks": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/hooks"}},
       "name": "src-cli", "slug": "src-cli", "description": "", "scm": "git", "website":
-      null, "owner": {"display_name": "Sourcegraph Testing", "links": {"self": {"href":
+      null, "owner": {"display_name": "Khulnasoft Testing", "links": {"self": {"href":
       "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"}},
       "type": "user", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}", "account_id":
-      "623316f53fbb880068413f6b", "nickname": "Sourcegraph Testing"}, "workspace":
+      "623316f53fbb880068413f6b", "nickname": "Khulnasoft Testing"}, "workspace":
       {"type": "workspace", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}", "name":
-      "Sourcegraph Testing", "slug": "sourcegraph-testing", "links": {"avatar": {"href":
+      "Khulnasoft Testing", "slug": "sourcegraph-testing", "links": {"avatar": {"href":
       "https://bitbucket.org/workspaces/sourcegraph-testing/avatar/?ts=1647515473"},
       "html": {"href": "https://bitbucket.org/sourcegraph-testing/"}, "self": {"href":
       "https://api.bitbucket.org/2.0/workspaces/sourcegraph-testing"}}}, "is_private":

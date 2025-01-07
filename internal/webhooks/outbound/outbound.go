@@ -72,7 +72,7 @@ func (m *mockResolver) LookupHost(hostname string) ([]string, error) {
 		return []string{"127.0.0.1"}, nil
 	case "localhost": // (CI:LOCALHOST_OK)
 		return []string{"127.0.0.1"}, nil
-	case "sourcegraph.com":
+	case "khulnasoft.com":
 		return []string{"1.2.3.4"}, nil
 	default:
 		return []string{}, errors.Newf("no such host: %s", hostname)

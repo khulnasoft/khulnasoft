@@ -1,5 +1,5 @@
 // Command prom-wrapper provides a wrapper command for Prometheus that
-// also handles Sourcegraph configuration changes and making changes to Prometheus.
+// also handles Khulnasoft configuration changes and making changes to Prometheus.
 //
 // See https://docs-legacy.khulnasoft.com/dev/background-information/observability/prometheus
 package main
@@ -28,7 +28,7 @@ import (
 
 // prom-wrapper configuration options
 var (
-	noConfig       = os.Getenv("DISABLE_SOURCEGRAPH_CONFIG")
+	noConfig       = os.Getenv("DISABLE_KHULNASOFT_CONFIG")
 	noAlertmanager = os.Getenv("DISABLE_ALERTMANAGER")
 	exportPort     = env.Get("EXPORT_PORT", "9090", "port that should be used to reverse-proxy Prometheus and custom endpoints externally")
 
@@ -53,10 +53,10 @@ func main() {
 	ctx := context.Background()
 
 	disableAlertmanager := noAlertmanager == "true"
-	disableSourcegraphConfig := noConfig == "true"
+	disableKhulnasoftConfig := noConfig == "true"
 	logger.Info("starting prom-wrapper",
 		log.Bool("disableAlertmanager", disableAlertmanager),
-		log.Bool("disableSourcegraphConfig", disableSourcegraphConfig))
+		log.Bool("disableKhulnasoftConfig", disableKhulnasoftConfig))
 
 	// spin up prometheus and alertmanager
 	procErrs := make(chan error)
@@ -94,8 +94,8 @@ func main() {
 		logger.Debug("detected alertmanager ready")
 
 		// subscribe to configuration
-		if disableSourcegraphConfig {
-			logger.Info("DISABLE_SOURCEGRAPH_CONFIG=true; configuration syncing is disabled")
+		if disableKhulnasoftConfig {
+			logger.Info("DISABLE_KHULNASOFT_CONFIG=true; configuration syncing is disabled")
 		} else {
 			logger.Info("initializing configuration")
 			subscriber := NewSiteConfigSubscriber(logger.Scoped("siteconfig"), alertmanager)

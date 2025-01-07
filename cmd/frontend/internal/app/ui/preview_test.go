@@ -34,7 +34,7 @@ func TestFindLineRangeInQueryParameters(t *testing.T) {
 }
 
 func TestGetBlobPreviewImageURL(t *testing.T) {
-	previewServiceURL := "https://preview.sourcegraph.com"
+	previewServiceURL := "https://preview.khulnasoft.com"
 	blobURLPath := "/github.com/khulnasoft/khulnasoft/-/blob/client/browser/src/end-to-end/github.test.ts"
 	tests := []struct {
 		name      string

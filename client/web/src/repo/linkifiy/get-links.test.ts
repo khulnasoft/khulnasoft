@@ -5,22 +5,22 @@ import { ExternalServiceKind } from '../../graphql-operations'
 import { getLinksFromString } from './get-links'
 
 const externalURL: { url: string; serviceKind: ExternalServiceKind | null } = {
-    url: 'https://github.com/sourcegraph/sourcegraph',
+    url: 'https://github.com/khulnasoft/khulnasoft',
     serviceKind: ExternalServiceKind.GITHUB,
 }
 
 describe('get-links', () => {
     test('parses urls and GitHub issues', () => {
-        const example = 'This contains a url https://sourcegraph.com. This contains a GH issue #1234'
+        const example = 'This contains a url https://khulnasoft.com. This contains a GH issue #1234'
         const result = getLinksFromString({ input: example, externalURLs: [externalURL] })
         expect(result).toMatchInlineSnapshot(`
             Array [
               Object {
                 "end": 43,
-                "href": "https://sourcegraph.com",
+                "href": "https://khulnasoft.com",
                 "start": 20,
                 "type": "url",
-                "value": "https://sourcegraph.com",
+                "value": "https://khulnasoft.com",
               },
               Object {
                 "end": 75,
@@ -34,7 +34,7 @@ describe('get-links', () => {
     })
 
     test('parses overlapping URLs and GitHub issues', () => {
-        const example = 'This contains a URL that could be mistaken for a GH issue https://sourcegraph.com/(#1234)'
+        const example = 'This contains a URL that could be mistaken for a GH issue https://khulnasoft.com/(#1234)'
         const result = getLinksFromString({
             input: example,
             externalURLs: [externalURL],
@@ -43,10 +43,10 @@ describe('get-links', () => {
             Array [
               Object {
                 "end": 89,
-                "href": "https://sourcegraph.com/(#1234)",
+                "href": "https://khulnasoft.com/(#1234)",
                 "start": 58,
                 "type": "url",
-                "value": "https://sourcegraph.com/(#1234)",
+                "value": "https://khulnasoft.com/(#1234)",
               },
             ]
         `)

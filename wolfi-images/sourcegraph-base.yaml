@@ -1,4 +1,4 @@
-# Base image containing a basic set of packages used by Sourcegraph.
+# Base image containing a basic set of packages used by Khulnasoft.
 # Designed to be used as a base image for other images with no specific dependencies.
 
 include: ./sourcegraph-template.yaml

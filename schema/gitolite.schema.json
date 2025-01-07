@@ -9,7 +9,7 @@
   "required": ["prefix", "host"],
   "properties": {
     "prefix": {
-      "description": "Repository name prefix that will map to this Gitolite host. This should likely end with a trailing slash. E.g., \"gitolite.example.com/\".\n\nIt is important that the Sourcegraph repository name generated with this prefix be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.",
+      "description": "Repository name prefix that will map to this Gitolite host. This should likely end with a trailing slash. E.g., \"gitolite.example.com/\".\n\nIt is important that the Khulnasoft repository name generated with this prefix be unique to this code host. If different code hosts generate repository names that collide, Khulnasoft's behavior is undefined.",
       "not": {
         "type": "string",
         "pattern": "example\\.com"

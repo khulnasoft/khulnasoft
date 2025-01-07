@@ -32,7 +32,7 @@
   "author": {
    "user": {
     "name": "thorsten",
-    "emailAddress": "thorsten@sourcegraph.com",
+    "emailAddress": "thorsten@khulnasoft.com",
     "id": 104,
     "displayName": "thorsten",
     "active": true,
@@ -47,7 +47,7 @@
    {
     "user": {
      "name": "batch-change-buddy",
-     "emailAddress": "batch-changes@sourcegraph.com",
+     "emailAddress": "batch-changes@khulnasoft.com",
      "id": 403,
      "displayName": "Batch Change Buddy",
      "active": true,

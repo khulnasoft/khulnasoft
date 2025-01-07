@@ -1,7 +1,7 @@
-# Sourcegraph uses CODENOTIFY to make individuals or groups aware of changes that are happening in code they care about,
+# Khulnasoft uses CODENOTIFY to make individuals or groups aware of changes that are happening in code they care about,
 # without explicitly requiring those engineers to "own" the code.
 # This is a test CODEOWNERS file generated from all the CODENOTIFY files in this repository. It is not intended as a
-# move to use CODEOWNERS again, but rather to dogfood our Own product within Sourcegraph (hence the `.test` naming)
+# move to use CODEOWNERS again, but rather to dogfood our Own product within Khulnasoft (hence the `.test` naming)
 
 /.github/workflows/codenotify.yml @unknwon
 /.github/workflows/licenses-check.yml          @bobheadxi

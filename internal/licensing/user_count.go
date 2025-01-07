@@ -36,7 +36,7 @@ func getMaxUsers(kv redispool.KeyValue, signature string) (int, string, error) {
 }
 
 // ActualUserCount returns the actual max number of users that have had accounts on the
-// Sourcegraph instance, under the current license.
+// Khulnasoft instance, under the current license.
 func ActualUserCount(ctx context.Context, kv redispool.KeyValue) (int32, error) {
 	_, signature, err := GetConfiguredProductLicenseInfoWithSignature()
 	if err != nil || signature == "" {
@@ -48,7 +48,7 @@ func ActualUserCount(ctx context.Context, kv redispool.KeyValue) (int32, error) 
 }
 
 // ActualUserCountDate returns the timestamp when the actual max number of users that have
-// had accounts on the Sourcegraph instance, under the current license, was reached.
+// had accounts on the Khulnasoft instance, under the current license, was reached.
 func ActualUserCountDate(ctx context.Context, kv redispool.KeyValue) (string, error) {
 	_, signature, err := GetConfiguredProductLicenseInfoWithSignature()
 	if err != nil || signature == "" {

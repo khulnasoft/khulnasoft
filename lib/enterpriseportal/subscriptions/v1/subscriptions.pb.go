@@ -22,7 +22,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// EnterpriseSubscriptionInstanceType describes what kind of Sourcegraph
+// EnterpriseSubscriptionInstanceType describes what kind of Khulnasoft
 // instance an Enterprise Subscription is designated for.
 type EnterpriseSubscriptionInstanceType int32
 
@@ -32,7 +32,7 @@ const (
 	EnterpriseSubscriptionInstanceType_ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_PRIMARY EnterpriseSubscriptionInstanceType = 1
 	// Represents a secondary (e.g. dev or testing) instance.
 	EnterpriseSubscriptionInstanceType_ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_SECONDARY EnterpriseSubscriptionInstanceType = 2
-	// Represents a Sourcegraph-internal instance.
+	// Represents a Khulnasoft-internal instance.
 	EnterpriseSubscriptionInstanceType_ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_INTERNAL EnterpriseSubscriptionInstanceType = 3
 )
 
@@ -85,12 +85,12 @@ type EnterpriseSubscriptionLicenseType int32
 
 const (
 	EnterpriseSubscriptionLicenseType_ENTERPRISE_SUBSCRIPTION_LICENSE_TYPE_UNSPECIFIED EnterpriseSubscriptionLicenseType = 0
-	// The 'license key' type is the classic licensing mechanism that Sourcegraph
+	// The 'license key' type is the classic licensing mechanism that Khulnasoft
 	// has always had. They are signed by a private key and offline-validated by
-	// a public key that ships with all Sourcegraph builds.
+	// a public key that ships with all Khulnasoft builds.
 	//
-	// Each Subscription is expected to have at most one active Sourcegraph classic
-	// license used by a Sourcegraph instance at a time.
+	// Each Subscription is expected to have at most one active Khulnasoft classic
+	// license used by a Khulnasoft instance at a time.
 	EnterpriseSubscriptionLicenseType_ENTERPRISE_SUBSCRIPTION_LICENSE_TYPE_KEY EnterpriseSubscriptionLicenseType = 1
 )
 
@@ -339,7 +339,7 @@ const (
 	EnterpriseSubscriptionLicenseCondition_STATUS_CREATED EnterpriseSubscriptionLicenseCondition_Status = 1
 	// License revocation status, i.e. 'is_revoked'
 	EnterpriseSubscriptionLicenseCondition_STATUS_REVOKED EnterpriseSubscriptionLicenseCondition_Status = 2
-	// License usage from a Sourcegraph instance was detected.
+	// License usage from a Khulnasoft instance was detected.
 	EnterpriseSubscriptionLicenseCondition_STATUS_INSTANCE_USAGE_DETECTED EnterpriseSubscriptionLicenseCondition_Status = 3
 )
 
@@ -500,7 +500,7 @@ func (x *EnterpriseSubscriptionSalesforceMetadata) GetSubscriptionId() string {
 	return ""
 }
 
-// EnterpriseSubscription represents a Sourcegraph Enterprise subscription.
+// EnterpriseSubscription represents a Khulnasoft Enterprise subscription.
 type EnterpriseSubscription struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -595,7 +595,7 @@ func (x *EnterpriseSubscription) GetInstanceType() EnterpriseSubscriptionInstanc
 	return EnterpriseSubscriptionInstanceType_ENTERPRISE_SUBSCRIPTION_INSTANCE_TYPE_UNSPECIFIED
 }
 
-// EnterpriseSubscriptionLicenseKey is the classic offline Sourcegraph license
+// EnterpriseSubscriptionLicenseKey is the classic offline Khulnasoft license
 // key, and corresponds to ENTERPRISE_SUBSCRIPTION_LICENSE_TYPE_KEY.
 type EnterpriseSubscriptionLicenseKey struct {
 	state         protoimpl.MessageState
@@ -741,7 +741,7 @@ func (x *EnterpriseSubscriptionLicenseCondition) GetMessage() string {
 	return ""
 }
 
-// EnterpriseSubscriptionLicense represents a license for a Sourcegraph
+// EnterpriseSubscriptionLicense represents a license for a Khulnasoft
 // Enterprise product. Multiple licenses are associated with a single
 // subscription, typically a series of licenses with the most recent one being
 // a subscription's active license.

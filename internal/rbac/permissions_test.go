@@ -24,7 +24,7 @@ func TestComparePermissions(t *testing.T) {
 	}
 
 	t.Run("no changes to permissions", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, false)
+		dotcom.MockKhulnasoftDotComMode(t, false)
 
 		schemaPerms := Schema{
 			Namespaces: []Namespace{
@@ -130,7 +130,7 @@ func TestComparePermissions(t *testing.T) {
 	})
 
 	t.Run("dotcom permission added", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		schemaPerms := Schema{
 			Namespaces: []Namespace{

@@ -28,7 +28,7 @@ Because we need to create state buckets as code, we also need to store the state
 
 ### Bucket
 
-State for all Sourcegraph resources is stored in [sourcegraph-tfstate bucket](https://github.com/sourcegraph/infrastructure/tree/master/terraform-state).
+State for all Khulnasoft resources is stored in [sourcegraph-tfstate bucket](https://github.com/sourcegraph/infrastructure/tree/master/terraform-state).
 
 Managed instances resources will be stored on a per customer bucket following the pattern: `sourcegraph-managed-${NAME}`.
 

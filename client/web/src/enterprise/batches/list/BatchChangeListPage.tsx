@@ -165,7 +165,7 @@ export const BatchChangeListPage: React.FunctionComponent<React.PropsWithChildre
                     isKhulnasoftDotCom ? (
                         <Button
                             as={Link}
-                            to="https://sourcegraph.com"
+                            to="https://khulnasoft.com"
                             variant="primary"
                             onClick={() => {
                                 EVENT_LOGGER.log('ClickedOnEnterpriseCTA', { location: 'TryBatchChanges' })

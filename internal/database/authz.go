@@ -44,7 +44,7 @@ type RevokeUserPermissionsArgs struct {
 	// The user ID that will be used to revoke effective permissions.
 	UserID int32
 	// The list of external accounts related to the user. This is list because a user could have
-	// multiple external accounts, including ones from code hosts and/or Sourcegraph authz provider.
+	// multiple external accounts, including ones from code hosts and/or Khulnasoft authz provider.
 	Accounts []*extsvc.Accounts
 }
 
@@ -139,8 +139,8 @@ func (s *authzStore) GrantPendingPermissions(ctx context.Context, args *GrantPen
 		for i := range emails {
 			perms = append(perms, &authz.UserGrantPermissions{
 				UserID:      args.UserID,
-				ServiceType: authz.SourcegraphServiceType,
-				ServiceID:   authz.SourcegraphServiceID,
+				ServiceType: authz.KhulnasoftServiceType,
+				ServiceID:   authz.KhulnasoftServiceID,
 				AccountID:   emails[i].Email,
 			})
 		}
@@ -152,8 +152,8 @@ func (s *authzStore) GrantPendingPermissions(ctx context.Context, args *GrantPen
 		}
 		perms = append(perms, &authz.UserGrantPermissions{
 			UserID:      args.UserID,
-			ServiceType: authz.SourcegraphServiceType,
-			ServiceID:   authz.SourcegraphServiceID,
+			ServiceType: authz.KhulnasoftServiceType,
+			ServiceID:   authz.KhulnasoftServiceID,
 			AccountID:   user.Username,
 		})
 

@@ -6,7 +6,7 @@ We use Go modules to manage Go dependencies in this repository.
 
 ## Codegen
 
-The Sourcegraph repository relies on code generation triggered by `go generate`. Code generation is used for a variety of tasks:
+The Khulnasoft repository relies on code generation triggered by `go generate`. Code generation is used for a variety of tasks:
 
 - generating code for mocking interfaces
 - generate wrappers for interfaces (e.g., `./server/internal/middleware/*` packages)

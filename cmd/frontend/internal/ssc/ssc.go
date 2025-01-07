@@ -131,7 +131,7 @@ func getSSCBaseURL() string {
 	siteConfig := config.SiteConfig()
 	baseURL := siteConfig.SscApiBaseUrl
 	if baseURL == "" {
-		baseURL = "https://accounts.sourcegraph.com/cody/api"
+		baseURL = "https://accounts.khulnasoft.com/cody/api"
 	}
 
 	return baseURL
@@ -156,7 +156,7 @@ func GetSAMSServiceID() string {
 	sgconf := config.SiteConfig()
 	if sgconf.SscSamsHostName == "" {
 		// If unset, default to the production hostname.
-		return "https://accounts.sourcegraph.com"
+		return "https://accounts.khulnasoft.com"
 	}
 	return fmt.Sprintf("https://%s", sgconf.SscSamsHostName)
 }

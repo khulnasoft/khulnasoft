@@ -7,7 +7,7 @@ commandTests:
       - key: "SANITY_CHECK"
         value: "true"
 
-  # Sourcegraph binaries, run as a single test case to keep test case count short.
+  # Khulnasoft binaries, run as a single test case to keep test case count short.
   - name: "sourcegraph binaries are runnable"
     command: "/opt/image_tests/test_services.sh"
 

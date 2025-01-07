@@ -22,26 +22,26 @@ go_test(
     # Executing tests from //internal/security:security_test
     # -----------------------------------------------------------------------------
     # --- FAIL: TestAddrValidation (0.00s)
-    #     --- FAIL: TestAddrValidation/sourcegraph.com (0.00s)
+    #     --- FAIL: TestAddrValidation/khulnasoft.com (0.00s)
     #         security_test.go:159:
     #                 Error Trace:	/mnt/ephemeral/output/__main__/sandbox/linux-sandbox/5365/execroot/__main__/bazel-out/k8-fastbuild/bin/internal/security/security_test_/security_test.runfiles/__main__/internal/security/security_test.go:159
     #                 Error:      	Should be true
-    #                 Test:       	TestAddrValidation/sourcegraph.com
-    #     --- FAIL: TestAddrValidation/sourcegraph.com:443 (0.00s)
+    #                 Test:       	TestAddrValidation/khulnasoft.com
+    #     --- FAIL: TestAddrValidation/khulnasoft.com:443 (0.00s)
     #         security_test.go:159:
     #                 Error Trace:	/mnt/ephemeral/output/__main__/sandbox/linux-sandbox/5365/execroot/__main__/bazel-out/k8-fastbuild/bin/internal/security/security_test_/security_test.runfiles/__main__/internal/security/security_test.go:159
     #                 Error:      	Should be true
-    #                 Test:       	TestAddrValidation/sourcegraph.com:443
-    #     --- FAIL: TestAddrValidation/git123@sourcegraph.com (0.00s)
+    #                 Test:       	TestAddrValidation/khulnasoft.com:443
+    #     --- FAIL: TestAddrValidation/git123@khulnasoft.com (0.00s)
     #         security_test.go:159:
     #                 Error Trace:	/mnt/ephemeral/output/__main__/sandbox/linux-sandbox/5365/execroot/__main__/bazel-out/k8-fastbuild/bin/internal/security/security_test_/security_test.runfiles/__main__/internal/security/security_test.go:159
     #                 Error:      	Should be true
-    #                 Test:       	TestAddrValidation/git123@sourcegraph.com
-    #     --- FAIL: TestAddrValidation/git@sourcegraph.com (0.00s)
+    #                 Test:       	TestAddrValidation/git123@khulnasoft.com
+    #     --- FAIL: TestAddrValidation/git@khulnasoft.com (0.00s)
     #         security_test.go:159:
     #                 Error Trace:	/mnt/ephemeral/output/__main__/sandbox/linux-sandbox/5365/execroot/__main__/bazel-out/k8-fastbuild/bin/internal/security/security_test_/security_test.runfiles/__main__/internal/security/security_test.go:159
     #                 Error:      	Should be true
-    #                 Test:       	TestAddrValidation/git@sourcegraph.com
+    #                 Test:       	TestAddrValidation/git@khulnasoft.com
     # FAIL
     # TODO(bazel): fix test; failing on CI only
     # TODO(JH): those are making external network calls.

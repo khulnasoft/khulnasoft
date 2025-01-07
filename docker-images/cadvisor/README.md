@@ -1,6 +1,6 @@
-# Sourcegraph cAdvisor
+# Khulnasoft cAdvisor
 
-Learn more about the Sourcegraph cAdvisor distribution in the [cAdvisor documentation](https://docs-legacy.khulnasoft.com/dev/background-information/observability/cadvisor).
+Learn more about the Khulnasoft cAdvisor distribution in the [cAdvisor documentation](https://docs-legacy.khulnasoft.com/dev/background-information/observability/cadvisor).
 
 ## Updating the image
 

@@ -114,7 +114,7 @@ interface MetaFilterSeparator extends BaseMetaToken {
 /**
  * A token that is labeled and interpreted as repository revision syntax in Khulnasoft. Note: there
  * are syntactic differences from pure Git ref syntax.
- * See https://sourcegraph.com/docs/code_search/reference/queries#repository-revisions.
+ * See https://khulnasoft.com/docs/code_search/reference/queries#repository-revisions.
  */
 export interface MetaRevision extends BaseMetaToken {
     type: 'metaRevision'

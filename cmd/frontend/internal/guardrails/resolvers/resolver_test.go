@@ -116,7 +116,7 @@ func TestSuccessfulAttribution(t *testing.T) {
 	})
 
 	t.Run("search bounds are zero on dotcom", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		// even if there would have been search results for short snippet.
 		attributionService.searchResult = []string{"repo1", "repo2"}

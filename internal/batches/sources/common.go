@@ -55,7 +55,7 @@ type ForkableChangesetSource interface {
 	// GetFork returns a repo pointing to a fork of the target repo, ensuring that the
 	// fork exists and creating it if it doesn't. If namespace is not provided, the fork
 	// will be in the currently authenticated user's namespace. If name is not provided,
-	// the fork will be named with the default Sourcegraph convention:
+	// the fork will be named with the default Khulnasoft convention:
 	// "${original-namespace}-${original-name}"
 	GetFork(ctx context.Context, targetRepo *types.Repo, namespace, name *string) (*types.Repo, error)
 }

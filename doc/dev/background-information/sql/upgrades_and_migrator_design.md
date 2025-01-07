@@ -14,22 +14,22 @@ Khulnasoft's databases (`pgsql` (*also referred to as frontend*), `codeintel-db`
 and `codeinsights-db`), and running schema migrations during startup and upgrades.
 
 Its design accounts for  various unique characteristics of
-versioning and database management at Sourcegraph. Specifically graphical
+versioning and database management at Khulnasoft. Specifically graphical
 schema migrations, out-of-band migrations, and periodic schema migration squashing.
 
-Sourcegraph utilizes a [directed acyclic graph](https://github.com/khulnasoft/khulnasoft/pull/30664)
+Khulnasoft utilizes a [directed acyclic graph](https://github.com/khulnasoft/khulnasoft/pull/30664)
 of migration definitions, rather than a linear chain. In Khulnasoft's early days when schema migrations
 were applied linearly, schema changes were frequent enough that schema changes generally conflicted with
 the master branch by the time a PR passed CI. Moving to a graph of migrations means, devs won't need to
 worry about other teammates concurrent schema changes unless they are working on the same table.
 
 Similarly [squashing](#squashing-migrations) of schema migrations into a root definition reduced the number of migrations run on startup,
-alleviating a common issue in which frequent transaction locks caused failed migration on Sourcegraph startup.
+alleviating a common issue in which frequent transaction locks caused failed migration on Khulnasoft startup.
 You can learn more in our [migrations overview docs](/migrations_overview#in-band-migrations).
 Information on out of bound migrations can also be found there.
 
 
-Migrator with its relevant artifacts in the sourcegraph/sourcegraph repo can be viewed as an orchestrator with two special functions --
+Migrator with its relevant artifacts in the khulnasoft/khulnasoft repo can be viewed as an orchestrator with two special functions --
 
 1.  Migrator constructs migration plans given version ranges and a table
     of migrations which have been successfully applied (each schema has
@@ -42,9 +42,9 @@ Migrator with its relevant artifacts in the sourcegraph/sourcegraph repo can be 
     that must be run within specific schema boundaries. Running OOB
     migrations at/after the deprecated version is unsupported. Migrator
     ensures that the necessary OOB migrations are run at [stopping
-    points](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/oobmigration/upgrade.go?L32-42)
+    points](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/oobmigration/upgrade.go?L32-42)
     in a multiversion upgrade -- learn more
-    [here](https://about.sourcegraph.com/blog/introducing-migrator-service).
+    [here](https://about.khulnasoft.com/blog/introducing-migrator-service).
 
 ### CLI design
 
@@ -54,7 +54,7 @@ design was initially implemented as a tool for TS team members to assist
 in multiversion upgrades and because it could easily be included over
 multiple deployment methods as a containerized process run separately
 from the frontend during startup ([which originally caused
-issues](https://about.sourcegraph.com/blog/introducing-migrator-service)).
+issues](https://about.khulnasoft.com/blog/introducing-migrator-service)).
 This replaced earlier go/migrate based strategies which ran in the
 frontend on startup. While the migrator can operate as a CLI tool, it's
 containerized as if it was another application which allows it to be run
@@ -76,7 +76,7 @@ The most important migrator commands are `up` and `upgrade`, with a notable ment
     ensures that ALL migrations required by the frontend will be successfully applied prior to boot.
     This is a syntactic sugar over a more internal `upto` command.
 -   **Upgrade**: `upgrade` runs all migrations defined between two minor versions
-    of Sourcegraph and requires that other services which may access the
+    of Khulnasoft and requires that other services which may access the
     database are brought down. Before running, the database is checked
     for and schema drifts in order to prevent a failure while attempting
     a migration. `upgrade` relies on `stitched-migration-graph.json`.
@@ -90,7 +90,7 @@ In general, the `up` command can be thought of as a **standard** upgrade
 enables **multiversion** upgrades. In part, `up` was designed to maintain
 our previous upgrade policy and is thus run as an initContainer (or
 initContainer-like mechanism) of the frontend, i.e. between two versions
-of Sourcegraph, the antecedent Sourcegraph services will continue to
+of Khulnasoft, the antecedent Khulnasoft services will continue to
 work after the consequent version's migrations have been applied.
 
 ## Current Startup Dependency
@@ -107,14 +107,14 @@ version in question have been run.
 
 In docker-compose (*see diagram)*, this is accomplished via a chain of
 `depends_on` clauses in the docker-compose.yaml
-([link](https://sourcegraph.com/github.com/sourcegraph/deploy-sourcegraph-docker/-/blob/docker-compose/docker-compose.yaml?L217-223)).
+([link](https://khulnasoft.com/github.com/sourcegraph/deploy-sourcegraph-docker/-/blob/docker-compose/docker-compose.yaml?L217-223)).
 
 **For our k8s based deployments (including the AMIs) migrator is run as
 an initContainer within the frontend utilizing the up command on the
 given pods startup.**
 
--   [Helm Ex](https://sourcegraph.com/github.com/sourcegraph/deploy-sourcegraph-helm/-/blob/charts/sourcegraph/templates/frontend/sourcegraph-frontend.Deployment.yaml?L49-76)
--   [Kustomize Ex](https://sourcegraph.com/github.com/sourcegraph/deploy-sourcegraph-k8s/-/blob/base/sourcegraph/frontend/sourcegraph-frontend.Deployment.yaml?L30-48)
+-   [Helm Ex](https://khulnasoft.com/github.com/sourcegraph/deploy-sourcegraph-helm/-/blob/charts/sourcegraph/templates/frontend/sourcegraph-frontend.Deployment.yaml?L49-76)
+-   [Kustomize Ex](https://khulnasoft.com/github.com/sourcegraph/deploy-sourcegraph-k8s/-/blob/base/sourcegraph/frontend/sourcegraph-frontend.Deployment.yaml?L30-48)
 
 
 ## Auto-upgrade
@@ -122,38 +122,38 @@ given pods startup.**
 Migrator has been incrementally improved over the last year in an
 attempt to get closer and closer to auto-upgrades. After migrator v5.0.0
 logic was added to the `pgsql` database and `frontend`/`frontend-internal` service to
-attempt an automatic upgrade to the latest version of Sourcegraph on the startup of the frontend.
+attempt an automatic upgrade to the latest version of Khulnasoft on the startup of the frontend.
 
 For more information about how this works see the
-[docs](https://docs.sourcegraph.com/admin/updates/automatic#automatic-multi-version-upgrades).
+[docs](https://docs.khulnasoft.com/admin/updates/automatic#automatic-multi-version-upgrades).
 Some notable points:
 
 -   The upgrade operations in this case are
-    [triggered](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@cf85b5803d32a91425f243930a4f50364625bcd2/-/blob/cmd/frontend/internal/cli/serve_cmd.go?L94-96)
+    [triggered](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@cf85b5803d32a91425f243930a4f50364625bcd2/-/blob/cmd/frontend/internal/cli/serve_cmd.go?L94-96)
     and
-    [run](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@cf85b5803d32a91425f243930a4f50364625bcd2/-/blob/cmd/frontend/internal/cli/autoupgrade.go?L37-145)
+    [run](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@cf85b5803d32a91425f243930a4f50364625bcd2/-/blob/cmd/frontend/internal/cli/autoupgrade.go?L37-145)
     by the frontend container.
 
 -   Migrator [looks
-    for](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@cf85b5803d32a91425f243930a4f50364625bcd2/-/blob/internal/database/migration/cliutil/up.go?L125-128)
+    for](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@cf85b5803d32a91425f243930a4f50364625bcd2/-/blob/internal/database/migration/cliutil/up.go?L125-128)
     the existence of the env var SRC_AUTOUPGRADE=true on services
     `sourcegraph-frontend`, `sourcegraph-frontend-internal`, and `migrator`.
     Otherwise it [looks in the frontend
-    db](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@cf85b5803d32a91425f243930a4f50364625bcd2/-/blob/internal/database/migration/cliutil/up.go?L120-123)
+    db](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@cf85b5803d32a91425f243930a4f50364625bcd2/-/blob/internal/database/migration/cliutil/up.go?L120-123)
     for the value of the autoupgrade column. These checks are performed
     with either the up or upgrade commands defined on the migrator.
 
 -   The internal connections package to the DB now uses a special
     [sentinel
-    value](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/database/dbconn/connect.go?L31-37)
+    value](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/database/dbconn/connect.go?L31-37)
     to make connection attempts sleep if migrations are in progress.
 
 -   A limited frontend is
-    [served](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@cf85b5803d32a91425f243930a4f50364625bcd2/-/blob/cmd/frontend/internal/cli/autoupgrade.go?L78-88)
+    [served](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@cf85b5803d32a91425f243930a4f50364625bcd2/-/blob/cmd/frontend/internal/cli/autoupgrade.go?L78-88)
     by the frontend during an autoupgrade, displaying progress of the
     upgrade and any drift encountered.
 
--   All autoupgrades hit the multiversion upgrade endpoint and assume downtime for all Sourcegraph services besides the migrator and dbs.
+-   All autoupgrades hit the multiversion upgrade endpoint and assume downtime for all Khulnasoft services besides the migrator and dbs.
 
 ## Migrator Release Artifacts
 
@@ -163,7 +163,7 @@ generated depending on the release type --
 
 -   **Major**
 
-    -   [lastMinorVersionInMajorRelease](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/oobmigration/version.go?L84-87):
+    -   [lastMinorVersionInMajorRelease](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/oobmigration/version.go?L84-87):
         Used to evaluate what oobmigrations must run, must be updated
         every major release. This essentially tells us when a minor
         version becomes a major version. *It may be useful elsewhere at
@@ -171,7 +171,7 @@ generated depending on the release type --
 
 -   **Minor**
 
-    -   [maxVersionString](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@5851edf/-/blob/internal/database/migration/shared/data/cmd/generator/consts.go?L12I):
+    -   [maxVersionString](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@5851edf/-/blob/internal/database/migration/shared/data/cmd/generator/consts.go?L12I):
         Defined in `consts.go` this string is used to tell migrator the
         latest **minor** version targetable for MVU and oobmigrations.
         [If not
@@ -180,36 +180,36 @@ generated depending on the release type --
         this is used to determine how many versions should be included
         in the `stitched-migration-graph.json` file.*
 
-    -   [Stitched-migration.json](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@v5.2.0/-/blob/internal/database/migration/shared/data/stitched-migration-graph.json):
+    -   [Stitched-migration.json](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@v5.2.0/-/blob/internal/database/migration/shared/data/stitched-migration-graph.json):
         Used by multiversion upgrades to unsquash migrations. Generated
         during release
-        [here](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/dev/release/src/release.ts?L1101-1110).
+        [here](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/dev/release/src/release.ts?L1101-1110).
         Learn more below.
 
 -   **Patch**
 
-    -   [Git_versions](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/migrator/generate.sh?L69-79):
+    -   [Git_versions](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/migrator/generate.sh?L69-79):
         Defined in `generate.sh` this string array contains versions of
-        Sourcegraph whose schemas should be embedded in migrator during a
+        Khulnasoft whose schemas should be embedded in migrator during a
         migrator build to enable drift detection without having to pull them
         directly from GitHub or, for older versions, from a pre-prepared GCS
         bucket (this is necessary in air gapped environments). This should
         be kept up to date with maxVersionString. [Learn
         more](https://github.com/khulnasoft/khulnasoft/issues/49813).
 
-    -   [Squashed.sql](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@v5.2.0/-/blob/migrations/frontend/squashed.sql):
+    -   [Squashed.sql](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@v5.2.0/-/blob/migrations/frontend/squashed.sql):
         for each database we
-        [generate](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/database/gen.sh?L18-20)
+        [generate](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/database/gen.sh?L18-20)
         a new squashed.sql file. It is
-        [used](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@v5.2.0/-/blob/internal/database/migration/drift/util_search.go?L12-31)
+        [used](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@v5.2.0/-/blob/internal/database/migration/drift/util_search.go?L12-31)
         to help suggest fixes for certain types of database drift. For
         example for a missing database column [this
-        search](https://sourcegraph.com/search?patternType=regexp&q=repo%3A%5Egithub%5C.com%2Fsourcegraph%2Fsourcegraph%24%40v5.0.6+file%3A%5Emigrations%2Ffrontend%2Fsquashed%5C.sql%24+%28%5E%7C%5Cb%29CREATE%5CsTABLE%5Csexternal_service_sync_jobs%28%24%7C%5Cb%29+OR+%28%5E%7C%5Cb%29ALTER%5CsTABLE%5CsONLY%5Csexternal_service_sync_jobs%28%24%7C%5Cb%29&groupBy=path)
+        search](https://khulnasoft.com/search?patternType=regexp&q=repo%3A%5Egithub%5C.com%2Fsourcegraph%2Fsourcegraph%24%40v5.0.6+file%3A%5Emigrations%2Ffrontend%2Fsquashed%5C.sql%24+%28%5E%7C%5Cb%29CREATE%5CsTABLE%5Csexternal_service_sync_jobs%28%24%7C%5Cb%29+OR+%28%5E%7C%5Cb%29ALTER%5CsTABLE%5CsONLY%5Csexternal_service_sync_jobs%28%24%7C%5Cb%29&groupBy=path)
         is used to suggest a definition.
     -   [Schema
-        descriptions](https://raw.githubusercontent.com/sourcegraph/sourcegraph/v5.2.0/internal/database/schema.json):
+        descriptions](https://raw.githubusercontent.com/khulnasoft/khulnasoft/v5.2.0/internal/database/schema.json):
         schema descriptions are
-        [embedded](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@v5.2.0/-/blob/cmd/migrator/generate.sh?L64-66)
+        [embedded](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@v5.2.0/-/blob/cmd/migrator/generate.sh?L64-66)
         in migrator on each new build as a reference for the expected schema
         state during drift checking.
 
@@ -230,13 +230,13 @@ image is built with a set of definitions embedded that doesn't reflect
 the definition set in older versions. For multiversion upgrades this
 presents a problem. To get around this, on minor releases we generate a
 `stitched-migration-graph.json` file. Reference links:
-[Bazel](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/dev/release/src/util.ts?L293-327),
-[Embed](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/database/migration/shared/embed.go?L15-22),
-[Generator](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/database/migration/shared/data/cmd/generator/main.go)
+[Bazel](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/dev/release/src/util.ts?L293-327),
+[Embed](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/database/migration/shared/embed.go?L15-22),
+[Generator](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/database/migration/shared/data/cmd/generator/main.go)
 
 ####  Stitched Migration Graph
 
-`stitched-migrations-graph.json` [stitches](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@v5.2.0/-/blob/internal/database/migration/stitch/stitch.go) (you can think of this as unsquashing) historic migrations using git magic, enabling the migrator to have a reference of older migrations. This serves a few purposes:
+`stitched-migrations-graph.json` [stitches](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@v5.2.0/-/blob/internal/database/migration/stitch/stitch.go) (you can think of this as unsquashing) historic migrations using git magic, enabling the migrator to have a reference of older migrations. This serves a few purposes:
 
 1.  When jumping across multiple versions we do not have access to a
     full record of migration definitions on migrator disk because some
@@ -254,13 +254,13 @@ presents a problem. To get around this, on minor releases we generate a
 
 In standard/`up` upgrades `stitched-migrations.json` isn't necessary. This
 is because `up` determines migrations to run by [comparing
-migrations](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/internal/database/migration/definition/definition.go?L214-244)
+migrations](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/internal/database/migration/definition/definition.go?L214-244)
 listed as already run in the relevant db's `migration_logs` table directly
 to those migration definitions
-[embedded](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/migrations/embed.go)
+[embedded](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/migrations/embed.go)
 in the migrator disk at build time for the current version, and running
 any which haven't been run. We never squash away the previous minor
-version of Sourcegraph, in this way we can guarantee the `migration_logs`
+version of Khulnasoft, in this way we can guarantee the `migration_logs`
 table migrations always has migrations in common with the migration
 definitions on disk.
 
@@ -282,7 +282,7 @@ release process:
     the up command will cause the set of *successfully applied
     migrations* to be between two versions, where drift is well-defined.
 -   **Site Admins Error:** Errors in git-ops like deploying to
-    production on the wrong version of Sourcegraph manifests have
+    production on the wrong version of Khulnasoft manifests have
     introduced drift. Another source is the incorrect procedure in
     downgrading.
 -   **Historic Bugs**: We, at one point, [too eagerly backfilled
@@ -305,23 +305,23 @@ before starting unless the `--skip-drift-check argument` is supplied.
 #### Versions & Runner
 
 On startup the migrator service creates a
-[runner](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@30d4d1dd457cde87c863a6d05cbcc0444025ed96/-/blob/cmd/migrator/shared/main.go?L31-36).
+[runner](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@30d4d1dd457cde87c863a6d05cbcc0444025ed96/-/blob/cmd/migrator/shared/main.go?L31-36).
 
 The `runner` is responsible for connecting to the given databases and
-[running](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@4728edb797bc9affdbac940821c9e98c3fde2430/-/blob/internal/database/migration/runner/run.go)
+[running](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@4728edb797bc9affdbac940821c9e98c3fde2430/-/blob/internal/database/migration/runner/run.go)
 any schema migrations defined in the embedded `migrations` directory
 via the `up` entry command.
 
-A `runner` [infers](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@4728edb797bc9affdbac940821c9e98c3fde2430/-/blob/internal/database/migration/schemas/schemas.go) the expected state of the database from schema definitions
-[embeded in migrator](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@30d4d1dd457cde87c863a6d05cbcc0444025ed96/-/blob/migrations/embed.go)
+A `runner` [infers](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@4728edb797bc9affdbac940821c9e98c3fde2430/-/blob/internal/database/migration/schemas/schemas.go) the expected state of the database from schema definitions
+[embeded in migrator](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@30d4d1dd457cde87c863a6d05cbcc0444025ed96/-/blob/migrations/embed.go)
 when a migrator image is compiled. What this means is that migrator's concept of version,
  is the set of migrations defined in the `migrations` at compile time. In this way the `up` command easily facilitates dev versions of database schemas.
 
-This "version" definition at compile time also tightly binds migrators concept of "version" to a given tag of Sourcegraph.
-**The `up` command will only initialize a version of Sourcegraph, when the `migrator`
-used to run `up` is the tagged version associated with the desired Sourcegraph version.**
+This "version" definition at compile time also tightly binds migrators concept of "version" to a given tag of Khulnasoft.
+**The `up` command will only initialize a version of Khulnasoft, when the `migrator`
+used to run `up` is the tagged version associated with the desired Khulnasoft version.**
 For this reason a later version of `migrator` cannot be used to initialize an earlier
-version of Sourcegraph.
+version of Khulnasoft.
 
 For example, you use the latest migrator release `v5.6.9` to run the `upgrade` command bringing your databases from
 `v4.2.0` to `v5.6.3`, rather than `v5.6.9`. Your security team hasn't approved images past this point. The upgrade command will have applied OOB migrations and schema migrations defined up to `v5.6.0`, the last minor release. To start your image you'll need to run migrator
@@ -332,7 +332,7 @@ For example, you use the latest migrator release `v5.6.9` to run the `upgrade` c
 While the `up` command's concept of version is a set of embedded definitions --
 the `upgrade` command does have a concept of schema migrations associated to
 version. This is the `stitched-migration-graph.json`. This file is generated on
-minor releases of Sourcegraph, and defines migrations expected to have been run
+minor releases of Khulnasoft, and defines migrations expected to have been run
 at each minor version. This is necessary for two reasons --
 
 1.  The root migration defined in the `migration` directory is a squashed
@@ -346,7 +346,7 @@ must stop and wait for OOB migrations to complete. To do this it needs to
 know which migrations should have run at a given stopping point, which may have been
 obscured by a subsequent squashing operation. This is where the `stitched-migration-graph.json`
 file comes into play. It defines the set of migrations that should have been run at
-a given minor version. Helping to construct a "[migration plan](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@4728edb797bc9affdbac940821c9e98c3fde2430/-/blob/internal/database/migration/multiversion/plan.go)" or path for `runner` to traverse.
+a given minor version. Helping to construct a "[migration plan](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@4728edb797bc9affdbac940821c9e98c3fde2430/-/blob/internal/database/migration/multiversion/plan.go)" or path for `runner` to traverse.
 
-The `stitched-migration.json` file is [generated](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@4728edb797bc9affdbac940821c9e98c3fde2430/-/blob/internal/database/migration/stitch/stitch.go) on every minor release, and is informed
+The `stitched-migration.json` file is [generated](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@4728edb797bc9affdbac940821c9e98c3fde2430/-/blob/internal/database/migration/stitch/stitch.go) on every minor release, and is informed
 by the state of the acyclic graph of migrations defined in the `migration` directory.

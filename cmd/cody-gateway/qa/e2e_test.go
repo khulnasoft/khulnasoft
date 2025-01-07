@@ -36,7 +36,7 @@ func Test_Completions(t *testing.T) {
 							u := *gatewayURL
 							t.Parallel()
 							req := &http.Request{URL: &u, Header: make(http.Header)}
-							req.Header.Set("X-Sourcegraph-Feature", string(f))
+							req.Header.Set("X-Khulnasoft-Feature", string(f))
 							req.Header.Set("Authorization", "Bearer "+gatewayToken)
 							req, err := p.GetRequest(f, req, stream)
 							if errors.Is(err, errNotImplemented) {
@@ -74,7 +74,7 @@ func Test_Embeddings_OpenAI(t *testing.T) {
 	} {
 		req, err := http.NewRequest("POST", gatewayURL.String(), strings.NewReader(fmt.Sprintf(`{"input": ["Pls embed"],"model": "%s"}`, model.name)))
 		assert.NoError(t, err)
-		req.Header.Set("X-Sourcegraph-Feature", string(codygateway.FeatureEmbeddings))
+		req.Header.Set("X-Khulnasoft-Feature", string(codygateway.FeatureEmbeddings))
 		req.Header.Set("Authorization", "Bearer "+gatewayToken)
 		resp, err := http.DefaultClient.Do(req)
 		assert.NoError(t, err)
@@ -118,7 +118,7 @@ func Test_Finetuned_Fireworks_Completions(t *testing.T) {
 				t.Run(l.language, func(t *testing.T) {
 					u := *gatewayURL
 					req := &http.Request{URL: &u, Header: make(http.Header)}
-					req.Header.Set("X-Sourcegraph-Feature", string(codygateway.FeatureCodeCompletions))
+					req.Header.Set("X-Khulnasoft-Feature", string(codygateway.FeatureCodeCompletions))
 					req.Header.Set("Authorization", "Bearer "+gatewayToken)
 					reqBody := fmt.Sprintf(`{
 			"prompt":"def bubble_sort(arr):\n>",

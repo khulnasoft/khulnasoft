@@ -1,6 +1,6 @@
 # Dependencies 
 
-The Sourcegraph codebase requires a few dependencies to be installed in order to run locally. We recommend and support a default approach that is suited for everyone, regardless of their familiarity with the topic.
+The Khulnasoft codebase requires a few dependencies to be installed in order to run locally. We recommend and support a default approach that is suited for everyone, regardless of their familiarity with the topic.
 
 ## Databases
 
@@ -65,10 +65,10 @@ Instructions:
 1. `asdf plugin add yarn`
 1. `asdf plugin add nodejs`
 1. We now need to be in the sourcegraph repository folder
-1. `cd WHERE_THE_SOURCEGRAPH_FOLDER_IS`
+1. `cd WHERE_THE_KHULNASOFT_FOLDER_IS`
   - if you are not comfortable with the shell:
     1. Type `cd` in the terminal
-    1. Drag and drop the folder containing Sourcegraph code from the Finder to the terminal window.
+    1. Drag and drop the folder containing Khulnasoft code from the Finder to the terminal window.
     1. Type Enter
 1. `asdf install` 
 1. `pushd ..`
@@ -88,7 +88,7 @@ It's common for frontend developers to prefer using [`nvm`](https://github.com/n
 1. `sh /tmp/install-nvm.sh`
 1. `export NVM_DIR="$HOME/.nvm"`
 1. `[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"`
-1. `cd WHERE_THE_SOURCEGRAPH_FOLDER_IS`
+1. `cd WHERE_THE_KHULNASOFT_FOLDER_IS`
 1. `nvm install`
 1. `nvm use --delete-prefix`
 

@@ -8,7 +8,7 @@ import { buildSearchURLQuery } from '@sourcegraph/shared/src/util/url'
 import { SearchPatternType } from '../../graphql-operations'
 import { createSuggestionFetcher } from '../backend/search'
 import { createPlatformContext } from '../platform/context'
-import { observeKhulnasoftURL, getAssetsURL, DEFAULT_SOURCEGRAPH_URL, getPlatformName } from '../util/context'
+import { observeKhulnasoftURL, getAssetsURL, DEFAULT_KHULNASOFT_URL, getPlatformName } from '../util/context'
 
 const isURL = /^https?:\/\//
 const IS_EXTENSION = true // This feature is only supported in browser extension
@@ -115,7 +115,7 @@ export class SearchCommand {
 
                 const platformContext = createPlatformContext(
                     { urlToFile: undefined },
-                    { sourcegraphURL, assetsURL: getAssetsURL(DEFAULT_SOURCEGRAPH_URL) },
+                    { sourcegraphURL, assetsURL: getAssetsURL(DEFAULT_KHULNASOFT_URL) },
                     IS_EXTENSION
                 )
 

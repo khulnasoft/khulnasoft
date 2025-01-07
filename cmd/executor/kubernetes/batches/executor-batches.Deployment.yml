@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: EXECUTOR_FRONTEND_URL
-              # For development purposes. We usually run Sourcegraph in Docker.
+              # For development purposes. We usually run Khulnasoft in Docker.
               value: http://host.docker.internal:3082
             - name: EXECUTOR_FRONTEND_PASSWORD
               valueFrom:

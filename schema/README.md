@@ -1,8 +1,8 @@
-# Sourcegraph JSON Schemas
+# Khulnasoft JSON Schemas
 
 [JSON Schema](http://json-schema.org/) is a way to define the structure of a JSON document. It enables typechecking and code intelligence on JSON documents.
 
-Sourcegraph uses the following JSON Schemas:
+Khulnasoft uses the following JSON Schemas:
 
 - [`settings.schema.json`](./settings.schema.json)
 - [`critical.schema.json`](./critical.schema.json)
@@ -17,4 +17,4 @@ Sourcegraph uses the following JSON Schemas:
 
 ## Known issues
 
-- The JSON Schema IDs (URIs) are of the form `https://sourcegraph.com/v1/*.schema.json#`, but these are not actually valid URLs. This means you generally need to supply them to JSON Schema validation libraries manually instead of having the validator fetch the schema from the web.
+- The JSON Schema IDs (URIs) are of the form `https://khulnasoft.com/v1/*.schema.json#`, but these are not actually valid URLs. This means you generally need to supply them to JSON Schema validation libraries manually instead of having the validator fetch the schema from the web.

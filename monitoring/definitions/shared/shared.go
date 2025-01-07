@@ -19,7 +19,7 @@
 //     If you have a need for this, it is a strong signal you should NOT be using the shared definition
 //     anymore and should instead copy it and apply your modifications.
 //
-// Learn more about monitoring in https://handbook.sourcegraph.com/engineering/observability/monitoring_pillars
+// Learn more about monitoring in https://handbook.khulnasoft.com/engineering/observability/monitoring_pillars
 package shared
 
 import (
@@ -115,7 +115,7 @@ func NoAlertsOption(interpretation string) ObservableOption {
 }
 
 // MultiInstanceOption creates an ObservableOption that opts-in this panel to
-// Sourcegraph Cloud's centralized observability multi-instance dashboard.
+// Khulnasoft Cloud's centralized observability multi-instance dashboard.
 func MultiInstanceOption() ObservableOption {
 	return func(observable Observable) Observable {
 		observable.MultiInstance = true
@@ -135,7 +135,7 @@ func CadvisorContainerNameMatcher(containerName string) string {
 	// In Kubernetes:
 	// - a `metric_relabel_configs` generates a `name` with the format `CONTAINERNAME-PODNAME`,
 	//   because cAdvisor does not consistently generate a name in all container runtimes.
-	//   See https://sourcegraph.com/search?q=repo:%5Egithub%5C.com/sourcegraph/deploy-sourcegraph%24+target_label:+name&patternType=literal
+	//   See https://khulnasoft.com/search?q=repo:%5Egithub%5C.com/sourcegraph/deploy-sourcegraph%24+target_label:+name&patternType=literal
 	// - because of above, suffix could be pod name in Kubernetes
 	return fmt.Sprintf(`name=~"^%s.*"`, containerName)
 }

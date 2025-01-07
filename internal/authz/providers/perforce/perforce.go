@@ -57,7 +57,7 @@ func cacheIsUpToDate(lastUpdate time.Time) bool {
 
 // NewProvider returns a new Perforce authorization provider that uses the given
 // host, user and password to talk to a Perforce Server that is the source of
-// truth for permissions. It assumes emails of Sourcegraph accounts match 1-1
+// truth for permissions. It assumes emails of Khulnasoft accounts match 1-1
 // with emails of Perforce Server users.
 func NewProvider(logger log.Logger, db database.DB, gitserverClient gitserver.Client, urn, host, user, password string, depots []extsvc.RepoID, ignoreRulesWithHost bool) *Provider {
 	baseURL, _ := url.Parse(host)

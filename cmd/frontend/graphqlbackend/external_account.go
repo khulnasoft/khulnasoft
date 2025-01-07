@@ -58,8 +58,8 @@ func (r *externalAccountResolver) AccountID() string   { return r.account.Accoun
 
 // TEMPORARY: This resolver is temporary to help us debug the #inc-284-plg-users-paying-for-and-being-billed-for-pro-without-being-upgrade.
 func (r *externalAccountResolver) CodySubscription(ctx context.Context) (*CodySubscriptionResolver, error) {
-	if !dotcom.SourcegraphDotComMode() {
-		return nil, errors.New("this feature is only available on sourcegraph.com")
+	if !dotcom.KhulnasoftDotComMode() {
+		return nil, errors.New("this feature is only available on khulnasoft.com")
 	}
 
 	if r.account.ServiceType != "openidconnect" || r.account.ServiceID != ssc.GetSAMSServiceID() {

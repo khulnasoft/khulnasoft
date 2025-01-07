@@ -30,7 +30,7 @@ type packagesSource interface {
 	// field from the site-admin interface.
 	// For example: "react@1.2.0" or "com.google.guava:guava:30.0-jre".
 	ParseVersionedPackageFromConfiguration(dep string) (reposource.VersionedPackage, error)
-	// ParsePackageFromRepoName parses a Sourcegraph repository name of the package.
+	// ParsePackageFromRepoName parses a Khulnasoft repository name of the package.
 	// For example: "npm/react" or "maven/com.google.guava/guava".
 	ParsePackageFromRepoName(repoName api.RepoName) (reposource.Package, error)
 	// ParsePackageFromName parses a package from the name of the package, as accepted by the ecosystem's package manager.

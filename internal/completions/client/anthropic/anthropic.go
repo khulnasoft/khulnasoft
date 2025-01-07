@@ -200,7 +200,7 @@ func (a *anthropicClient) makeRequest(ctx context.Context, request types.Complet
 	}
 
 	// Mimic headers set by the official Anthropic client:
-	// https://sourcegraph.com/github.com/anthropics/anthropic-sdk-typescript@493075d70f50f1568a276ed0cb177e297f5fef9f/-/blob/src/index.ts
+	// https://khulnasoft.com/github.com/anthropics/anthropic-sdk-typescript@493075d70f50f1568a276ed0cb177e297f5fef9f/-/blob/src/index.ts
 	req.Header.Set("Cache-Control", "no-cache")
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/json")

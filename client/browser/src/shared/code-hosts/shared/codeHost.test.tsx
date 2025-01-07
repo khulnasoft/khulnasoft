@@ -24,7 +24,7 @@ import { integrationTestContext } from '@sourcegraph/shared/src/testing/testHelp
 import { toPrettyBlobURL } from '@sourcegraph/shared/src/util/url'
 
 import type { ResolveRepoResult } from '../../../graphql-operations'
-import { DEFAULT_SOURCEGRAPH_URL } from '../../util/context'
+import { DEFAULT_KHULNASOFT_URL } from '../../util/context'
 import type { MutationRecordLike } from '../../util/dom'
 
 import {
@@ -81,7 +81,7 @@ const commonArguments = () =>
     subtypeOf<Partial<HandleCodeHostOptions>>()({
         mutations: of([{ addedNodes: [document.body], removedNodes: [] }]),
         platformContext: createMockPlatformContext(),
-        sourcegraphURL: DEFAULT_SOURCEGRAPH_URL,
+        sourcegraphURL: DEFAULT_KHULNASOFT_URL,
         telemetryService: NOOP_TELEMETRY_SERVICE,
         telemetryRecorder: noOpTelemetryRecorder,
         render: RENDER,

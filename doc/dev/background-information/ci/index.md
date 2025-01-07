@@ -2,9 +2,9 @@
 
 <span class="badge badge-note">SOC2/GN-105</span> <span class="badge badge-note">SOC2/GN-106</span>
 
-Sourcegraph uses a continuous integration (CI) and delivery tool, [Buildkite](#buildkite-pipelines), to help ensure a [consistent](#pipeline-health) build, test and deploy process. Software changes are systematically required to complete all steps within the continuous integration tool workflow prior to production deployment, in addition to being [peer reviewed](../pull_request_reviews.md).
+Khulnasoft uses a continuous integration (CI) and delivery tool, [Buildkite](#buildkite-pipelines), to help ensure a [consistent](#pipeline-health) build, test and deploy process. Software changes are systematically required to complete all steps within the continuous integration tool workflow prior to production deployment, in addition to being [peer reviewed](../pull_request_reviews.md).
 
-Sourcegraph also maintains a variety of tooling on [GitHub Actions](#github-actions) for continuous integration and repository maintainence purposes.
+Khulnasoft also maintains a variety of tooling on [GitHub Actions](#github-actions) for continuous integration and repository maintainence purposes.
 
 > NOTE: To learn more about testing in particular, see our [testing principles](../testing_principles.md).
 
@@ -28,7 +28,7 @@ Run `sg ci docs` to see documentation about the CI pipeline steps.
 ## Buildkite pipelines
 
 [Tests](../../how-to/testing.md) are automatically run in our [various Buildkite pipelines](https://buildkite.com/sourcegraph) when you push your changes (i.e. when you run `git push`) to the `sourcegraph/sourcegraph` GitHub repository.
-Pipeline steps are generated on the fly using the [pipeline generator](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/tree/dev/ci) - a complete reference of all available pipeline types and steps is available from `sg ci docs`. To keep the repository tidy, consider deleting the branch after the pipeline has completed. The build results will be available even after the branch is deleted.
+Pipeline steps are generated on the fly using the [pipeline generator](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@main/-/tree/dev/ci) - a complete reference of all available pipeline types and steps is available from `sg ci docs`. To keep the repository tidy, consider deleting the branch after the pipeline has completed. The build results will be available even after the branch is deleted.
 
 To see what checks will get run against your current branch, use [`sg`](../../setup/quickstart.md):
 
@@ -59,15 +59,15 @@ In the Buildkite UI, soft failures currently look like the following, with a _tr
 We use soft failures for the following reasons only:
 
 - Steps that determine whether a subsequent step should run, where soft failures are the only technical way to communicate that a later step should be skipped in this manner using Buildkite.
-  - Examples: [hash comparison steps that determine if a build should run](https://sourcegraph.com/search?q=context:%40sourcegraph/all+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:%5Edev/ci/internal/ci/operations%5C.go+compare-hash.sh&patternType=literal)
+  - Examples: [hash comparison steps that determine if a build should run](https://khulnasoft.com/search?q=context:%40sourcegraph/all+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:%5Edev/ci/internal/ci/operations%5C.go+compare-hash.sh&patternType=literal)
 - Regular analysis tasks, where soft failures serve as an monitoring indicator to warn the team responsible for fixing issues.
   - Examples: [image vulnerability scanning](#image-vulnerability-scanning), linting tasks for catching deprecation warnings
 - Temporary exceptions to accommodate experimental or in-progress work.
 
-You can find all usages of soft failures [with the following queries](https://sourcegraph.com/notebooks/Tm90ZWJvb2s6NTc=):
+You can find all usages of soft failures [with the following queries](https://khulnasoft.com/notebooks/Tm90ZWJvb2s6NTc=):
 
-- [Soft failures in the Sourcegraph pipeline generator](https://sourcegraph.com/search?q=repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%7B...bk.SoftFail...%7D+OR+%28...bk.SoftFail...%29+count:all&patternType=structural)
-- [Soft failures in Buildkite YAML pipelines](https://sourcegraph.com/search?q=repo:%5Egithub%5C.com/sourcegraph/.*+soft_fail+lang:yaml+count:all&patternType=literal)
+- [Soft failures in the Khulnasoft pipeline generator](https://khulnasoft.com/search?q=repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+%7B...bk.SoftFail...%7D+OR+%28...bk.SoftFail...%29+count:all&patternType=structural)
+- [Soft failures in Buildkite YAML pipelines](https://khulnasoft.com/search?q=repo:%5Egithub%5C.com/sourcegraph/.*+soft_fail+lang:yaml+count:all&patternType=literal)
 
 All other failures are hard failures.
 
@@ -83,23 +83,23 @@ If there are any `HIGH` or `CRITICAL` severities in a Docker image that have a k
 
 > NOTE: Our vulnerability management process (including this workflow) is under active development and in its early stages. All of the above is subject to change. See [https://github.com/khulnasoft/khulnasoft/pull/25756](https://github.com/khulnasoft/khulnasoft/pull/25756) for more context.
 
-We also run [separate vulnerability scans for our infrastructure](https://handbook.sourcegraph.com/departments/product-engineering/engineering/cloud/security/checkov).
+We also run [separate vulnerability scans for our infrastructure](https://handbook.khulnasoft.com/departments/product-engineering/engineering/cloud/security/checkov).
 
 ### Pipeline health
 
-Maintaining [Buildkite pipeline](#buildkite-pipelines) health is a critical part of ensuring we ship a stable product—changes that make it to the `main` branch may be deployed to various Sourcegraph instances, and having a reliable and predictable pipeline is crucial to ensuring bugs do not make it to production environments.
+Maintaining [Buildkite pipeline](#buildkite-pipelines) health is a critical part of ensuring we ship a stable product—changes that make it to the `main` branch may be deployed to various Khulnasoft instances, and having a reliable and predictable pipeline is crucial to ensuring bugs do not make it to production environments.
 
 To enable this, we [address flakes as they arise](#flakes) and mitigate the impacts of pipeline instability with [branch locks](#branch-locks).
 
-> NOTE: Sourcegraph teammates should refer to the [CI incidents playbook](https://handbook.sourcegraph.com/departments/product-engineering/engineering/process/incidents/playbooks/ci#scenarios) for help managing issues with pipeline health.
+> NOTE: Khulnasoft teammates should refer to the [CI incidents playbook](https://handbook.khulnasoft.com/departments/product-engineering/engineering/process/incidents/playbooks/ci#scenarios) for help managing issues with pipeline health.
 
 #### Branch locks
 
 > WARNING: **A red `main` build is not okay and must be fixed.** Learn more about our `main` branch policy in [Testing principles: Failures on the `main` branch](../testing_principles.md#failures-on-the-main-branch).
 
-[`buildchecker`](#buildchecker) is a tool responding to periods of consecutive build failures on the `main` branch Sourcegraph Buildkite pipeline. If it detects a series of failures on the `main` branch, merges to `main` will be restricted to members of the Sourcegraph team who authored the failing commits until the issue is resolved—this is referred to as a "branch lock". When a build passes on `main` again, `buildchecker` will automatically unlock the branch.
+[`buildchecker`](#buildchecker) is a tool responding to periods of consecutive build failures on the `main` branch Khulnasoft Buildkite pipeline. If it detects a series of failures on the `main` branch, merges to `main` will be restricted to members of the Khulnasoft team who authored the failing commits until the issue is resolved—this is referred to as a "branch lock". When a build passes on `main` again, `buildchecker` will automatically unlock the branch.
 
-**Authors of the most recent failed builds are responsible for investigating failures.** Please refer to the [Continuous integration playbook](https://handbook.sourcegraph.com/departments/product-engineering/engineering/process/incidents/playbooks/ci#build-has-failed-on-the-main-branch) for step-by-step guides on what to do in various scenarios.
+**Authors of the most recent failed builds are responsible for investigating failures.** Please refer to the [Continuous integration playbook](https://handbook.khulnasoft.com/departments/product-engineering/engineering/process/incidents/playbooks/ci#build-has-failed-on-the-main-branch) for step-by-step guides on what to do in various scenarios.
 
 #### Flakes
 
@@ -158,13 +158,13 @@ See more information on how to assess flaky client steps [here](../../how-to/tes
 
 ##### Flaky infrastructure
 
-If the [build or test infrastructure itself is flaky](https://handbook.sourcegraph.com/departments/product-engineering/engineering/enablement/dev-experience#build-pipeline-support), then [open an issue with the `team/devx` label](https://github.com/khulnasoft/khulnasoft/issues/new?labels=team/devx) and notify the [Developer Experience team](https://handbook.sourcegraph.com/departments/product-engineering/engineering/enablement/dev-experience#contact).
+If the [build or test infrastructure itself is flaky](https://handbook.khulnasoft.com/departments/product-engineering/engineering/enablement/dev-experience#build-pipeline-support), then [open an issue with the `team/devx` label](https://github.com/khulnasoft/khulnasoft/issues/new?labels=team/devx) and notify the [Developer Experience team](https://handbook.khulnasoft.com/departments/product-engineering/engineering/enablement/dev-experience#contact).
 
 Also see [Buildkite infrastructure](#buildkite-infrastructure).
 
 ##### Flaky linters
 
-Linters are all run through [`sg lint`], with linters defined in [`dev/sg/linters`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/dev/sg/linters).
+Linters are all run through [`sg lint`], with linters defined in [`dev/sg/linters`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/tree/dev/sg/linters).
 If a linter is flaky, you can modify the `dev/sg/linters` package to disable the specific linter (or entire category of linters) with the `Enabled: disabled(...)` helper:
 
 ```diff

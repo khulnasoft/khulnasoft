@@ -48,7 +48,7 @@ function computeIndentLevel(line: string, tabSize: number): number {
 /**
  * Computes foldable ranges based on lines indentation.
  *
- * Implements similar to [VSCode indent-based folding](https://sourcegraph.com/github.com/microsoft/vscode@e3d73a5a2fd03412d83887a073c9c71bad38e964/-/blob/src/vs/editor/contrib/folding/browser/indentRangeProvider.ts?L126-200) logic.
+ * Implements similar to [VSCode indent-based folding](https://khulnasoft.com/github.com/microsoft/vscode@e3d73a5a2fd03412d83887a073c9c71bad38e964/-/blob/src/vs/editor/contrib/folding/browser/indentRangeProvider.ts?L126-200) logic.
  */
 function computeFoldableRanges(state: EditorState): Map<number, number> {
     const ranges = new Map<number, number>()

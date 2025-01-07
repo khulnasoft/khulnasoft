@@ -84,7 +84,7 @@ func getGitServiceMaxEgressBytesPerSecond(logger log.Logger) int64 {
 // flowrateWriter limits the write rate of w to 1 Gbps.
 //
 // We are cloning repositories from within the same network from another
-// Sourcegraph service (zoekt-indexserver). This can end up being so fast that
+// Khulnasoft service (zoekt-indexserver). This can end up being so fast that
 // we harm our own network connectivity. In the case of zoekt-indexserver and
 // gitserver running on the same host machine, we can even reach up to ~100
 // Gbps and effectively DoS the Docker network, temporarily disrupting other

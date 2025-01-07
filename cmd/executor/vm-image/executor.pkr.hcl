@@ -76,7 +76,7 @@ source "googlecompute" "gcp" {
     image_licenses          = ["projects/vm-options/global/licenses/enable-vmx"]
     disk_type               = "pd-ssd"
     image_name              = var.name
-    image_description       = "Convenience image to run Sourcegraph executors. See github.com/sourcegraph/terraform-google-executors for how to use it."
+    image_description       = "Convenience image to run Khulnasoft executors. See github.com/sourcegraph/terraform-google-executors for how to use it."
     image_storage_locations = ["us"]
     tags                    = ["packer"]
     account_file            = "builder-sa-key.json"
@@ -84,7 +84,7 @@ source "googlecompute" "gcp" {
 
 source "amazon-ebs" "aws" {
     ami_name        = var.name
-    ami_description = "Convenience image to run Sourcegraph executors. See github.com/sourcegraph/terraform-aws-executors for how to use it."
+    ami_description = "Convenience image to run Khulnasoft executors. See github.com/sourcegraph/terraform-aws-executors for how to use it."
     ssh_username    = "ubuntu"
     instance_type   = "t3.micro"
 

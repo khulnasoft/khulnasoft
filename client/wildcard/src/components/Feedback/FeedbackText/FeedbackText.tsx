@@ -26,8 +26,8 @@ export const FeedbackText: React.FunctionComponent<React.PropsWithChildren<Feedb
             @sourcegraph
         </Link>{' '}
         or{' '}
-        <Link to="mailto:support@sourcegraph.com" target="_blank" rel="noopener noreferrer">
-            support@sourcegraph.com
+        <Link to="mailto:support@khulnasoft.com" target="_blank" rel="noopener noreferrer">
+            support@khulnasoft.com
         </Link>
         , or file issues on our{' '}
         <Link to="https://github.com/sourcegraph/issues/issues" target="_blank" rel="noopener noreferrer">

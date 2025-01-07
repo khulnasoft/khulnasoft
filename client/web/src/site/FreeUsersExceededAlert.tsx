@@ -26,7 +26,7 @@ export const FreeUsersExceededAlert: React.FunctionComponent<React.PropsWithChil
             This Khulnasoft instance has reached{' '}
             {noLicenseWarningUserCount === null ? 'the limit for' : noLicenseWarningUserCount} free users, and an admin
             must{' '}
-            <Link className="site-alert__link" to="https://sourcegraph.com/contact/sales" onClick={onClickCTA}>
+            <Link className="site-alert__link" to="https://khulnasoft.com/contact/sales" onClick={onClickCTA}>
                 <span className="underline">contact Khulnasoft to start a free trial or purchase a license</span>
             </Link>{' '}
             to add more

@@ -23,7 +23,7 @@ function RepositoriesCombobox() {
 
       <ComboboxPopover>
         <ComboboxList>
-          <ComboboxOption value="github.com/sourcegraph/sourcegraph" />
+          <ComboboxOption value="github.com/khulnasoft/khulnasoft" />
           <ComboboxOption value="github.com/sourcegraph/about" />
           <ComboboxOption value="github.com/sourcegraph/deploy" />
           <ComboboxOption value="github.com/sourcegraph/handbook" />

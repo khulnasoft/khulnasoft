@@ -554,19 +554,19 @@ func Test_addRepoFilter(t *testing.T) {
 		{
 			name:  "no initial repo filter",
 			input: "myquery",
-			repo:  "github.com/sourcegraph/sourcegraph",
+			repo:  "github.com/khulnasoft/khulnasoft",
 			want:  autogold.Expect(BasicQuery("repo:^github\\.com/sourcegraph/sourcegraph$ myquery")),
 		},
 		{
 			name:  "one initial repo filter",
 			input: "myquery repo:supergreat",
-			repo:  "github.com/sourcegraph/sourcegraph",
+			repo:  "github.com/khulnasoft/khulnasoft",
 			want:  autogold.Expect(BasicQuery("repo:supergreat repo:^github\\.com/sourcegraph/sourcegraph$ myquery")),
 		},
 		{
 			name:  "compound query adding repo",
 			input: "(myquery repo:supergreat) or (big repo:asdf)",
-			repo:  "github.com/sourcegraph/sourcegraph",
+			repo:  "github.com/khulnasoft/khulnasoft",
 			want:  autogold.Expect(BasicQuery("(repo:supergreat repo:^github\\.com/sourcegraph/sourcegraph$ myquery OR repo:asdf repo:^github\\.com/sourcegraph/sourcegraph$ big)")),
 		},
 	}
@@ -817,7 +817,7 @@ func TestPointDiffQuery(t *testing.T) {
 			PointDiffQueryOpts{
 				Before:      before,
 				After:       &after,
-				RepoList:    []string{"github.com/sourcegraph/sourcegraph", "github.com/sourcegraph/about"},
+				RepoList:    []string{"github.com/khulnasoft/khulnasoft", "github.com/sourcegraph/about"},
 				SearchQuery: BasicQuery("insights"),
 			},
 			autogold.Expect(BasicQuery("repo:^(github\\.com/sourcegraph/sourcegraph|github\\.com/sourcegraph/about)$ after:2022-01-01T01:01:00Z before:2022-02-01T01:01:00Z type:diff insights")),
@@ -943,7 +943,7 @@ func TestPointTimeQuery(t *testing.T) {
 			PointDiffQueryOpts{
 				Before:      before,
 				After:       &after,
-				RepoList:    []string{"github.com/sourcegraph/sourcegraph", "github.com/sourcegraph/about"},
+				RepoList:    []string{"github.com/khulnasoft/khulnasoft", "github.com/sourcegraph/about"},
 				SearchQuery: BasicQuery("insights"),
 			},
 			autogold.Expect(BasicQuery("repo:^(github\\.com/sourcegraph/sourcegraph|github\\.com/sourcegraph/about)$ rev:at.time(2022-02-01T01:01:00Z) insights")),

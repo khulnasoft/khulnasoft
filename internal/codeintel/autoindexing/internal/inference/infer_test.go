@@ -16,10 +16,10 @@ func TestInferRepositoryAndRevision(t *testing.T) {
 			{
 				pkg: dependencies.MinimialVersionedPackageRepo{
 					Scheme:  "gomod",
-					Name:    "https://github.com/sourcegraph/sourcegraph",
+					Name:    "https://github.com/khulnasoft/khulnasoft",
 					Version: "v2.3.2",
 				},
-				repoName: "github.com/sourcegraph/sourcegraph",
+				repoName: "github.com/khulnasoft/khulnasoft",
 				revision: "v2.3.2",
 			},
 			{
@@ -34,10 +34,10 @@ func TestInferRepositoryAndRevision(t *testing.T) {
 			{
 				pkg: dependencies.MinimialVersionedPackageRepo{
 					Scheme:  "gomod",
-					Name:    "https://github.com/sourcegraph/sourcegraph",
+					Name:    "https://github.com/khulnasoft/khulnasoft",
 					Version: "v0.0.0-de0123456789",
 				},
-				repoName: "github.com/sourcegraph/sourcegraph",
+				repoName: "github.com/khulnasoft/khulnasoft",
 				revision: "de0123456789",
 			},
 			{

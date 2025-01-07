@@ -23,7 +23,7 @@ const (
 	PlanFree0 Plan = "free-0"
 
 	// PlanFree1 is the default plan if no license key is set from 4.5 onwards.
-	// Do not issue licenses for this plan directly, Sourcegraph auto-applies this
+	// Do not issue licenses for this plan directly, Khulnasoft auto-applies this
 	// plan.
 	PlanFree1 Plan = "free-1"
 
@@ -68,7 +68,7 @@ const (
 	// setting repository permissions.
 	FeatureExplicitPermissionsAPI BasicFeature = "explicit-permissions-api"
 
-	// FeatureCodeInsights is whether Code Insights on this Sourcegraph instance has been purchased.
+	// FeatureCodeInsights is whether Code Insights on this Khulnasoft instance has been purchased.
 	FeatureCodeInsights BasicFeature = "code-insights"
 
 	// FeatureSCIM is whether SCIM User Management has been purchased on this instance.
@@ -80,13 +80,13 @@ const (
 	// FeatureAllowAirGapped is whether or not air gapped mode is allowed on this instance.
 	FeatureAllowAirGapped BasicFeature = "allow-air-gapped"
 
-	// FeatureCodeMonitors is whether code monitors is allowed on this Sourcegraph instance.
+	// FeatureCodeMonitors is whether code monitors is allowed on this Khulnasoft instance.
 	FeatureCodeMonitors BasicFeature = "code-monitors"
 
-	// FeatureNotebooks is whether the notebooks feature is allowed on this Sourcegraph instance.
+	// FeatureNotebooks is whether the notebooks feature is allowed on this Khulnasoft instance.
 	FeatureNotebooks BasicFeature = "notebooks"
 
-	// FeatureCodeSearch is whether the code search feature suite is allowed on this Sourcegraph instance.
+	// FeatureCodeSearch is whether the code search feature suite is allowed on this Khulnasoft instance.
 	FeatureCodeSearch BasicFeature = "code-search"
 )
 
@@ -99,7 +99,7 @@ type PlanDetails struct {
 // planDetails defines the features that are enabled for each plan.
 var planDetails = map[Plan]PlanDetails{
 	PlanOldEnterprise: {
-		DisplayName: "Sourcegraph Enterprise",
+		DisplayName: "Khulnasoft Enterprise",
 		Deprecated:  true,
 		Features: []Feature{
 			FeatureSSO,
@@ -115,7 +115,7 @@ var planDetails = map[Plan]PlanDetails{
 		},
 	},
 	PlanTeam0: {
-		DisplayName: "Sourcegraph Team",
+		DisplayName: "Khulnasoft Team",
 		Deprecated:  true,
 		Features: []Feature{
 			FeatureACLs,
@@ -129,7 +129,7 @@ var planDetails = map[Plan]PlanDetails{
 		},
 	},
 	PlanEnterprise0: {
-		DisplayName: "Sourcegraph Enterprise",
+		DisplayName: "Khulnasoft Enterprise",
 		Features: []Feature{
 			FeatureACLs,
 			FeatureExplicitPermissionsAPI,
@@ -161,7 +161,7 @@ var planDetails = map[Plan]PlanDetails{
 		},
 	},
 	PlanFree0: {
-		DisplayName: "Sourcegraph Free",
+		DisplayName: "Khulnasoft Free",
 		Deprecated:  true,
 		Features: []Feature{
 			FeatureSSO,
@@ -173,7 +173,7 @@ var planDetails = map[Plan]PlanDetails{
 		},
 	},
 	PlanFree1: {
-		DisplayName: "Sourcegraph Free",
+		DisplayName: "Khulnasoft Free",
 		Features: []Feature{
 			&FeatureBatchChanges{MaxNumChangesets: 10},
 			&FeaturePrivateRepositories{MaxNumPrivateRepos: 1},
@@ -183,7 +183,7 @@ var planDetails = map[Plan]PlanDetails{
 		},
 	},
 	PlanAirGappedEnterprise: {
-		DisplayName: "Sourcegraph Enterprise",
+		DisplayName: "Khulnasoft Enterprise",
 		Deprecated:  true,
 		Features: []Feature{
 			FeatureACLs,

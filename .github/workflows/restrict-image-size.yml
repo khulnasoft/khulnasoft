@@ -35,7 +35,7 @@ jobs:
             for file in "${oversized_files[@]}"; do
               echo "- $file"
             done
-            echo "Please move these images to google cloud storage according to https://docs.sourcegraph.com/dev/how-to/documentation_implementation#adding-images-to-the-documentation."
+            echo "Please move these images to google cloud storage according to https://docs.khulnasoft.com/dev/how-to/documentation_implementation#adding-images-to-the-documentation."
             exit 1
           fi
         shell: bash

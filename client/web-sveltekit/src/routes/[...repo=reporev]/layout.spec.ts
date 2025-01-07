@@ -1,7 +1,7 @@
 import { ExternalServiceKind } from '$testing/graphql-type-mocks'
 import { test, expect } from '$testing/integration'
 
-const repoName = 'github.com/sourcegraph/sourcegraph'
+const repoName = 'github.com/khulnasoft/khulnasoft'
 
 test.beforeEach(({ sg }) => {
     sg.fixture([
@@ -112,7 +112,7 @@ test.describe('repo menu', () => {
                     externalURLs: [
                         {
                             serviceKind: ExternalServiceKind.GITHUB,
-                            url: 'https://github.com/sourcegraph/sourcegraph',
+                            url: 'https://github.com/khulnasoft/khulnasoft',
                         },
                     ],
                 },

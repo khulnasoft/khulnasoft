@@ -450,7 +450,7 @@ func TestHandlerV1_UpdateEnterpriseSubscription(t *testing.T) {
 			update: &subscriptionsv1.UpdateEnterpriseSubscriptionRequest{
 				Subscription: &subscriptionsv1.EnterpriseSubscription{
 					Id:             mockSubscriptionID,
-					InstanceDomain: "s1.sourcegraph.com",
+					InstanceDomain: "s1.khulnasoft.com",
 					DisplayName:    "My Test Subscription",
 				},
 				UpdateMask: nil,
@@ -458,7 +458,7 @@ func TestHandlerV1_UpdateEnterpriseSubscription(t *testing.T) {
 			// All non-zero values should be included in update
 			wantUpdateOpts: autogold.Expect(subscriptions.UpsertSubscriptionOptions{
 				InstanceDomain: &sql.NullString{
-					String: "s1.sourcegraph.com",
+					String: "s1.khulnasoft.com",
 					Valid:  true,
 				},
 				DisplayName: &sql.NullString{
@@ -472,7 +472,7 @@ func TestHandlerV1_UpdateEnterpriseSubscription(t *testing.T) {
 			update: &subscriptionsv1.UpdateEnterpriseSubscriptionRequest{
 				Subscription: &subscriptionsv1.EnterpriseSubscription{
 					Id:             mockSubscriptionID,
-					InstanceDomain: "s1.sourcegraph.com",
+					InstanceDomain: "s1.khulnasoft.com",
 					DisplayName:    "My Test Subscription",
 				},
 				UpdateMask: &fieldmaskpb.FieldMask{Paths: []string{"asdfasdf"}},
@@ -484,7 +484,7 @@ func TestHandlerV1_UpdateEnterpriseSubscription(t *testing.T) {
 			update: &subscriptionsv1.UpdateEnterpriseSubscriptionRequest{
 				Subscription: &subscriptionsv1.EnterpriseSubscription{
 					Id:             mockSubscriptionID,
-					InstanceDomain: "s1.sourcegraph.com",
+					InstanceDomain: "s1.khulnasoft.com",
 					// Should not be included, as only instance_domain is in
 					// the field mask.
 					DisplayName: "My Test Subscription",
@@ -492,7 +492,7 @@ func TestHandlerV1_UpdateEnterpriseSubscription(t *testing.T) {
 				UpdateMask: &fieldmaskpb.FieldMask{Paths: []string{"instance_domain"}},
 			},
 			wantUpdateOpts: autogold.Expect(subscriptions.UpsertSubscriptionOptions{InstanceDomain: &sql.NullString{
-				String: "s1.sourcegraph.com",
+				String: "s1.khulnasoft.com",
 				Valid:  true,
 			}}),
 		},
@@ -1017,7 +1017,7 @@ func TestHandlerV1_RevokeEnterpriseSubscriptionLicense(t *testing.T) {
 func TestHandlerV1_UpdateEnterpriseSubscriptionMembership(t *testing.T) {
 	const (
 		subscriptionID = "80ca12e2-54b4-448c-a61a-390b1a9c1224"
-		instanceDomain = "s1.sourcegraph.com"
+		instanceDomain = "s1.khulnasoft.com"
 	)
 
 	type assertIAMWrite struct {
@@ -1113,7 +1113,7 @@ func TestHandlerV1_UpdateEnterpriseSubscriptionMembership(t *testing.T) {
 			name: "deletes preexisting roles",
 			req: &subscriptionsv1.UpdateEnterpriseSubscriptionMembershipRequest{
 				Membership: &subscriptionsv1.EnterpriseSubscriptionMembership{
-					InstanceDomain:      "s1.sourcegraph.com",
+					InstanceDomain:      "s1.khulnasoft.com",
 					MemberSamsAccountId: "018d21f2-04a6-7aaf-9f6f-6fc58c4187b9",
 					MemberRoles:         []subscriptionsv1.Role{},
 				},

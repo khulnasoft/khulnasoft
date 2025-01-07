@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	adminEmail    = "sourcegraph@sourcegraph.com"
+	adminEmail    = "sourcegraph@khulnasoft.com"
 	adminUsername = "sourcegraph"
 	adminPassword = "sourcegraphsourcegraph"
 )

@@ -47,7 +47,7 @@ const mockRepositoryGitCommitsQuery: MockedResponse<RepositoryGitCommitsResult, 
                 sourceType: RepositoryType.GIT_REPOSITORY,
                 externalURLs: [
                     {
-                        url: 'https://github.com/sourcegraph/sourcegraph',
+                        url: 'https://github.com/khulnasoft/khulnasoft',
                         serviceKind: ExternalServiceKind.GITHUB,
                         __typename: 'ExternalLink',
                     },
@@ -332,8 +332,8 @@ const mockRepositoryPerforceChangelistsQuery: MockedResponse<
 
 const gitRepo: RepositoryFields = {
     id: 'repo-id',
-    name: 'github.com/sourcegraph/sourcegraph',
-    url: 'https://github.com/sourcegraph/sourcegraph',
+    name: 'github.com/khulnasoft/khulnasoft',
+    url: 'https://github.com/khulnasoft/khulnasoft',
     sourceType: RepositoryType.GIT_REPOSITORY,
     description: '',
     viewerCanAdminister: false,
@@ -377,8 +377,8 @@ GitCommitsInPathStory.storyName = 'Git commits in a path'
 
 const perforceRepo: RepositoryFields = {
     id: 'repo-id',
-    name: 'github.com/sourcegraph/sourcegraph',
-    url: 'https://github.com/sourcegraph/sourcegraph',
+    name: 'github.com/khulnasoft/khulnasoft',
+    url: 'https://github.com/khulnasoft/khulnasoft',
     sourceType: RepositoryType.PERFORCE_DEPOT,
     description: '',
     viewerCanAdminister: false,

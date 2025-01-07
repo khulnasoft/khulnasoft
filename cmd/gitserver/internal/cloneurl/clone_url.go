@@ -262,7 +262,7 @@ func gerritCloneURL(project *gerrit.Project, cfg *schema.GerritConnection) (stri
 		return project.SSHURLToRepo, nil // SSH authentication must be provided out-of-band
 	}
 
-	// TODO: Backcompat. Remove this branch in Sourcegraph 5.5.
+	// TODO: Backcompat. Remove this branch in Khulnasoft 5.5.
 	if project.HTTPURLToRepo == "" {
 		u, err := url.Parse(cfg.Url)
 		if err != nil {
@@ -287,7 +287,7 @@ func gerritCloneURL(project *gerrit.Project, cfg *schema.GerritConnection) (stri
 
 // perforceCloneURL composes a clone URL for a Perforce depot based on
 // given information. e.g.
-// perforce://admin:password@ssl:111.222.333.444:1666//Sourcegraph/
+// perforce://admin:password@ssl:111.222.333.444:1666//Khulnasoft/
 func perforceCloneURL(depot *perforce.Depot, cfg *schema.PerforceConnection) string {
 	cloneURL := url.URL{
 		Scheme: "perforce",

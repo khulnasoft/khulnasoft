@@ -62,7 +62,7 @@ func (r *schemaResolver) siteByGQLID(_ context.Context, id graphql.ID) (Node, er
 
 func marshalSiteGQLID(siteID string) graphql.ID { return relay.MarshalID("Site", siteID) }
 
-// SiteGQLID is the GraphQL ID of the Sourcegraph site. It is a constant across all Sourcegraph
+// SiteGQLID is the GraphQL ID of the Khulnasoft site. It is a constant across all Khulnasoft
 // instances.
 func SiteGQLID() graphql.ID { return (&siteResolver{gqlID: singletonSiteGQLID}).ID() }
 
@@ -327,7 +327,7 @@ func (r *schemaResolver) UpdateSiteConfiguration(ctx context.Context, args *stru
 	}
 
 	cloudSiteConfig := cloud.SiteConfig()
-	if cloudSiteConfig.SiteConfigAllowlistEnabled() && !actor.FromContext(ctx).SourcegraphOperator {
+	if cloudSiteConfig.SiteConfigAllowlistEnabled() && !actor.FromContext(ctx).KhulnasoftOperator {
 		if p, ok := allowEdit(prev.Site, unredacted, cloudSiteConfig.SiteConfigAllowlist.Paths); !ok {
 			return false, cloudSiteConfig.SiteConfigAllowlistOnError(p)
 		}
@@ -614,7 +614,7 @@ func (r *siteResolver) PerUserCodeCompletionsQuota() *int32 {
 
 func (r *siteResolver) RequiresVerifiedEmailForCody(ctx context.Context) bool {
 	// We only require this on dotcom
-	if !dotcom.SourcegraphDotComMode() {
+	if !dotcom.KhulnasoftDotComMode() {
 		return false
 	}
 

@@ -80,7 +80,7 @@ func TestIsLiteralPrefix(t *testing.T) {
 func TestSearch(t *testing.T) {
 	repo, repoDir := gitserver.MakeGitRepositoryAndReturnDir(t)
 	// Needed in CI
-	gitRun(t, repoDir, "config", "user.email", "test@sourcegraph.com")
+	gitRun(t, repoDir, "config", "user.email", "test@khulnasoft.com")
 
 	git, err := newSubprocessGit(t, repoDir)
 	require.NoError(t, err)
@@ -313,7 +313,7 @@ func TestSearch(t *testing.T) {
 func TestSearchResultLimiting(t *testing.T) {
 	repo, repoDir := gitserver.MakeGitRepositoryAndReturnDir(t)
 	// Needed in CI
-	gitRun(t, repoDir, "config", "user.email", "test@sourcegraph.com")
+	gitRun(t, repoDir, "config", "user.email", "test@khulnasoft.com")
 
 	git, err := newSubprocessGit(t, repoDir)
 	require.NoError(t, err)

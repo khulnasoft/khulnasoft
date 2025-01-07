@@ -2,7 +2,7 @@ package writer
 
 import "github.com/khulnasoft/khulnasoft/lib/codeintel/lsif/protocol"
 
-// This file contains emitters for the Sourcegraph documentation LSIF extension.
+// This file contains emitters for the Khulnasoft documentation LSIF extension.
 
 // EmitDocumentationResultEdge emits a "documentationResult" edge, see protocol.DocumentationResultEdge for info.
 func (e *Emitter) EmitDocumentationResultEdge(inV, outV uint64) uint64 {

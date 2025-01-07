@@ -49,7 +49,7 @@ export function getIndexHTML(options: GetHTMLPageOptions): string {
         <meta name="color-scheme" content="light dark"/>
         <link rel="stylesheet" href="${assetPathPrefix}/${mainCSS}">
         ${
-            ENVIRONMENT_CONFIG.SOURCEGRAPHDOTCOM_MODE
+            ENVIRONMENT_CONFIG.KHULNASOFTDOTCOM_MODE
                 ? '<script src="https://js.sentry-cdn.com/ae2f74442b154faf90b5ff0f7cd1c618.min.js" crossorigin="anonymous"></script>'
                 : ''
         }

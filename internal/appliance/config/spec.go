@@ -7,11 +7,11 @@ import (
 type ManagementStateType string
 
 const (
-	// ManagementStateManaged denotes that Sourcegraph should be reconciled
+	// ManagementStateManaged denotes that Khulnasoft should be reconciled
 	// by the operator.
 	ManagementStateManaged ManagementStateType = "Managed"
 
-	// ManagementStateUnmanaged denotes that Sourcegraph should not be reconciled
+	// ManagementStateUnmanaged denotes that Khulnasoft should not be reconciled
 	// by the operator.
 	ManagementStateUnmanaged ManagementStateType = "Unmanaged"
 )
@@ -56,7 +56,7 @@ type FrontendSpec struct {
 	// Default: 2
 	Replicas int32 `json:"replicas,omitempty"`
 
-	// Ingress allows for changes to the custom Sourcegraph ingress.
+	// Ingress allows for changes to the custom Khulnasoft ingress.
 	Ingress *IngressSpec `json:"ingress,omitempty"`
 }
 
@@ -100,7 +100,7 @@ type OtelCollectorSpec struct {
 	StandardConfig
 
 	// Read how to configure sampling in the [OpenTelemetry
-	// documentation](https://docs.sourcegraph.com/admin/observability/opentelemetry#sampling-traces)
+	// documentation](https://docs.khulnasoft.com/admin/observability/opentelemetry#sampling-traces)
 	Processors map[string]any `json:"processors,omitempty"`
 
 	// Read how to configure different backends in the [OpenTelemetry
@@ -206,15 +206,15 @@ type StorageClassSpec struct {
 	Parameters map[string]string `json:"parameters,omitempty"`
 }
 
-// SourcegraphSpec defines the desired state of Sourcegraph
-type SourcegraphSpec struct {
-	// RequestedVersion is the user-requested version of Sourcegraph to deploy.
+// KhulnasoftSpec defines the desired state of Khulnasoft
+type KhulnasoftSpec struct {
+	// RequestedVersion is the user-requested version of Khulnasoft to deploy.
 	RequestedVersion string `json:"requestedVersion,omitempty"`
 
 	// ImageRepository overrides the default image repository.
 	ImageRepository string `json:"imageRepository,omitempty"`
 
-	// ManagementState defines if Sourcegraph should be managed by the operator or not.
+	// ManagementState defines if Khulnasoft should be managed by the operator or not.
 	// Default is managed.
 	ManagementState ManagementStateType `json:"managementState,omitempty"`
 
@@ -233,7 +233,7 @@ type SourcegraphSpec struct {
 	// CodeIntel defines the desired state of the Code Intel service.
 	CodeIntel CodeDBSpec `json:"codeIntel,omitempty"`
 
-	// Frontend defines the desired state of the Sourcegraph Frontend.
+	// Frontend defines the desired state of the Khulnasoft Frontend.
 	Frontend FrontendSpec `json:"frontend,omitempty"`
 
 	// GitServer defines the desired state of the GitServer service.
@@ -287,8 +287,8 @@ type SourcegraphSpec struct {
 	StorageClass StorageClassSpec `json:"storageClass,omitempty"`
 }
 
-// SourcegraphServicesToReconcile is a list of all Sourcegraph services that will be reconciled by appliance.
-var SourcegraphServicesToReconcile = []string{
+// KhulnasoftServicesToReconcile is a list of all Khulnasoft services that will be reconciled by appliance.
+var KhulnasoftServicesToReconcile = []string{
 	"blobstore",
 	"cadvisor",
 	"code-insights-db",
@@ -311,24 +311,24 @@ var SourcegraphServicesToReconcile = []string{
 	"worker",
 }
 
-// SourcegraphStatus defines the observed state of Sourcegraph
-type SourcegraphStatus struct {
-	// CurrentVersion is the version of Sourcegraph currently running.
+// KhulnasoftStatus defines the observed state of Khulnasoft
+type KhulnasoftStatus struct {
+	// CurrentVersion is the version of Khulnasoft currently running.
 	CurrentVersion string `json:"currentVersion"`
 }
 
-// Sourcegraph is the Schema for the Sourcegraph API
-type Sourcegraph struct {
+// Khulnasoft is the Schema for the Khulnasoft API
+type Khulnasoft struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   SourcegraphSpec   `json:"spec,omitempty"`
-	Status SourcegraphStatus `json:"status,omitempty"`
+	Spec   KhulnasoftSpec   `json:"spec,omitempty"`
+	Status KhulnasoftStatus `json:"status,omitempty"`
 }
 
-// SourcegraphList contains a list of Sourcegraph
-type SourcegraphList struct {
+// KhulnasoftList contains a list of Khulnasoft
+type KhulnasoftList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Sourcegraph `json:"items"`
+	Items           []Khulnasoft `json:"items"`
 }

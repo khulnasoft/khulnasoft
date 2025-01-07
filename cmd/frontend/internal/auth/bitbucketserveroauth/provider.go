@@ -38,7 +38,7 @@ func parseProvider(logger log.Logger, p *schema.BitbucketServerAuthProvider, db 
 
 	extURL, err := url.Parse(conf.ExternalURL())
 	if err != nil {
-		messages = append(messages, fmt.Sprintf("Could not parse Sourcegraph external URL %q.", conf.ExternalURL()))
+		messages = append(messages, fmt.Sprintf("Could not parse Khulnasoft external URL %q.", conf.ExternalURL()))
 		return nil, messages
 	}
 

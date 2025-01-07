@@ -66,10 +66,10 @@ func (c *BatchChange) State() BatchChangeState {
 }
 
 func (c *BatchChange) URL(ctx context.Context, namespaceName string) (string, error) {
-	// To build the absolute URL, we need to know where Sourcegraph is!
+	// To build the absolute URL, we need to know where Khulnasoft is!
 	extURL, err := url.Parse(conf.Get().ExternalURL)
 	if err != nil {
-		return "", errors.Wrap(err, "parsing external Sourcegraph URL")
+		return "", errors.Wrap(err, "parsing external Khulnasoft URL")
 	}
 
 	// This needs to be kept consistent with resolvers.batchChangeURL().

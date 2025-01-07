@@ -126,7 +126,7 @@ func newTokenRequest(oauthCtx OAuthContext, refreshToken string, authStyle AuthS
 	// back to using oauth2.Config, we can use the Exchange method instead and pass the custom args
 	// as oauth2.AuthCodeOption values. See the implementation of the azuredevops auth provider
 	// which already does this to exchange the auth_code for an access token the first time a user
-	// connects their ADO account with Sourcegraph.
+	// connects their ADO account with Khulnasoft.
 	for key, value := range oauthCtx.CustomQueryParams {
 		v.Set(key, value)
 	}

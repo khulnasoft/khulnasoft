@@ -23,7 +23,7 @@ func (e Environment) MarshalJSON() ([]byte, error) {
 		return []byte(`{}`), nil
 	}
 
-	// For compatibility with older versions of Sourcegraph, if all environment
+	// For compatibility with older versions of Khulnasoft, if all environment
 	// variables have static values defined, we'll encode to the object variant.
 	if e.IsStatic() {
 		vars := make(map[string]string, len(e.vars))

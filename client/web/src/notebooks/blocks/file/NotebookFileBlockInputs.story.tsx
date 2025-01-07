@@ -18,7 +18,7 @@ export default config
 
 const defaultProps = {
     id: 'block-id',
-    repositoryName: 'github.com/sourcegraph/sourcegraph',
+    repositoryName: 'github.com/khulnasoft/khulnasoft',
     revision: 'main',
     filePath: 'client/web/file.tsx',
     lineRangeInput: '123-321',

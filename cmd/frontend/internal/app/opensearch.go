@@ -32,10 +32,10 @@ func openSearch(w http.ResponseWriter, r *http.Request) {
 		BaseURL:   externalURLStr,
 		SearchURL: externalURLStr + "/search?q={searchTerms}",
 	}
-	if externalURLStr == "https://sourcegraph.com" {
-		data.SiteName = "Sourcegraph"
+	if externalURLStr == "https://khulnasoft.com" {
+		data.SiteName = "Khulnasoft"
 	} else {
-		data.SiteName = "Sourcegraph (" + externalURL.Host + ")"
+		data.SiteName = "Khulnasoft (" + externalURL.Host + ")"
 	}
 
 	var buf bytes.Buffer

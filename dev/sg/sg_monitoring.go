@@ -19,12 +19,12 @@ import (
 var monitoringCommand = &cli.Command{
 	Name:  "monitoring",
 	Usage: "Khulnasoft's monitoring generator (dashboards, alerts, etc)",
-	Description: `Learn more about the Khulnasoft monitoring generator here: https://docs-legacy.sourcegraph.com/dev/background-information/observability/monitoring-generator
+	Description: `Learn more about the Khulnasoft monitoring generator here: https://docs-legacy.khulnasoft.com/dev/background-information/observability/monitoring-generator
 
 Also refer to the generated reference documentation available for site admins:
 
-- https://docs.sourcegraph.com/admin/observability/dashboards
-- https://docs.sourcegraph.com/admin/observability/alerts
+- https://docs.khulnasoft.com/admin/observability/dashboards
+- https://docs.khulnasoft.com/admin/observability/alerts
 `,
 	Category: category.Dev,
 	Subcommands: []*cli.Command{

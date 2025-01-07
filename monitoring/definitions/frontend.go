@@ -70,7 +70,7 @@ func Frontend() *monitoring.Dashboard {
 				OptionsLabelValues: monitoring.ContainerVariableOptionsLabelValues{
 					Query:         "src_http_client_external_request_count",
 					LabelName:     "host",
-					ExampleOption: "pings.sourcegraph.com",
+					ExampleOption: "pings.khulnasoft.com",
 				},
 				Multi: true,
 			},
@@ -169,9 +169,9 @@ func Frontend() *monitoring.Dashboard {
 							Panel:       monitoring.Panel().LegendFormat("latency").Unit(monitoring.Seconds),
 							Owner:       monitoring.ObservableOwnerSource,
 							NextSteps: `
-								- Confirm that the Sourcegraph frontend has enough CPU/memory using the provisioning panels.
+								- Confirm that the Khulnasoft frontend has enough CPU/memory using the provisioning panels.
 								- Investigate potential sources of latency by selecting Explore and modifying the 'sum by(le)' section to include additional labels: for example, 'sum by(le, job)' or 'sum by (le, instance)'.
-								- Trace a request to see what the slowest part is: https://sourcegraph.com/docs/admin/observability/tracing
+								- Trace a request to see what the slowest part is: https://khulnasoft.com/docs/admin/observability/tracing
 							`,
 						},
 					},
@@ -255,7 +255,7 @@ func Frontend() *monitoring.Dashboard {
 							Panel:   monitoring.Panel().LegendFormat("{{alert_type}}").Unit(monitoring.Percentage),
 							Owner:   monitoring.ObservableOwnerSearch,
 							NextSteps: `
-								- This indicates a bug in Sourcegraph, please [open an issue](https://github.com/khulnasoft/khulnasoft/issues/new/choose).
+								- This indicates a bug in Khulnasoft, please [open an issue](https://github.com/khulnasoft/khulnasoft/issues/new/choose).
 							`,
 						},
 					},
@@ -659,7 +659,7 @@ func Frontend() *monitoring.Dashboard {
 								With(monitoring.PanelOptions.LegendOnRight()),
 							Owner: monitoring.ObservableOwnerSource,
 							Interpretation: strings.TrimSpace(`
-							Shows the rate of external HTTP requests made by Sourcegraph to other services, broken down by host.
+							Shows the rate of external HTTP requests made by Khulnasoft to other services, broken down by host.
 `),
 						},
 					},
@@ -674,7 +674,7 @@ func Frontend() *monitoring.Dashboard {
 								With(monitoring.PanelOptions.LegendOnRight()),
 							Owner: monitoring.ObservableOwnerSource,
 							Interpretation: strings.TrimSpace(`
-							Shows the rate of external HTTP requests made by Sourcegraph to other services, broken down by host and response code.
+							Shows the rate of external HTTP requests made by Khulnasoft to other services, broken down by host and response code.
 `),
 						},
 					},
@@ -873,7 +873,7 @@ func Frontend() *monitoring.Dashboard {
 				}},
 			},
 			{
-				Title:  "Sentinel queries (only on sourcegraph.com)",
+				Title:  "Sentinel queries (only on khulnasoft.com)",
 				Hidden: true,
 				Rows: []monitoring.Row{
 					{
@@ -1106,7 +1106,7 @@ func Frontend() *monitoring.Dashboard {
 
 							Increases in response time can point to too much load on the database to keep up with the incoming requests.
 
-							See this documentation page for more details on webhook requests: (https://sourcegraph.com/docs/admin/config/webhooks/incoming)`,
+							See this documentation page for more details on webhook requests: (https://khulnasoft.com/docs/admin/config/webhooks/incoming)`,
 						},
 					},
 				},

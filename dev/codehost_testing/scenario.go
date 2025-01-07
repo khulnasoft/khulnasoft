@@ -263,7 +263,7 @@ func (s *GitHubScenario) CreateOrg(name string) *Org {
 }
 
 // CreateUser adds an action to the scenario that will create a GitHub user with the given name. The username of the
-// user will have the following format `user-{name}-{scenario id}` and email `test-user-e2e@sourcegraph.com`.
+// user will have the following format `user-{name}-{scenario id}` and email `test-user-e2e@khulnasoft.com`.
 func (s *GitHubScenario) CreateUser(name string) *User {
 	baseUser := &User{
 		s:    s,
@@ -275,7 +275,7 @@ func (s *GitHubScenario) CreateUser(name string) *User {
 		Apply: func(ctx context.Context) error {
 			name := fmt.Sprintf("user-%s-%s", name, s.id)
 			emailID := md5.Sum([]byte(s.id + time.Now().String()))
-			email := fmt.Sprintf("test-user-e2e-%s@sourcegraph.com", hex.EncodeToString(emailID[:]))
+			email := fmt.Sprintf("test-user-e2e-%s@khulnasoft.com", hex.EncodeToString(emailID[:]))
 			user, err := s.client.CreateUser(ctx, name, email)
 			if err != nil {
 				return err

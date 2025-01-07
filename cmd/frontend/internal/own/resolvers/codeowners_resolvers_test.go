@@ -74,14 +74,14 @@ func TestCodeownersIngestionGuarding(t *testing.T) {
 	}
 	for path, query := range pathToQueries {
 		t.Run("dotcom guarding is respected for "+path, func(t *testing.T) {
-			dotcom.MockSourcegraphDotComMode(t, true)
+			dotcom.MockKhulnasoftDotComMode(t, true)
 			graphqlbackend.RunTest(t, &graphqlbackend.Test{
 				Schema:         schema,
 				Context:        ctx,
 				Query:          query,
 				ExpectedResult: nullOrAlwaysNil(t, path),
 				ExpectedErrors: []*errors.QueryError{
-					{Message: "codeownership ingestion is not available on sourcegraph.com", Path: []any{path}},
+					{Message: "codeownership ingestion is not available on khulnasoft.com", Path: []any{path}},
 				},
 			})
 		})

@@ -584,9 +584,9 @@ func NewKubernetesSingleJob(
 			fmt.Sprintf("git -C %s config --local gc.auto 0; ", repoDir) +
 			fmt.Sprintf("git -C %s "+
 				"-c http.extraHeader=\"Authorization:Bearer $TOKEN\" "+
-				"-c http.extraHeader=X-Sourcegraph-Actor-UID:internal "+
-				"-c http.extraHeader=X-Sourcegraph-Job-ID:%d "+
-				"-c http.extraHeader=X-Sourcegraph-Executor-Name:%s "+
+				"-c http.extraHeader=X-Khulnasoft-Actor-UID:internal "+
+				"-c http.extraHeader=X-Khulnasoft-Job-ID:%d "+
+				"-c http.extraHeader=X-Khulnasoft-Executor-Name:%s "+
 				"-c protocol.version=2 "+
 				"fetch --progress --no-recurse-submodules --no-tags --depth=1 origin %s; ", repoDir, repoOptions.JobID, options.CloneOptions.ExecutorName, repoOptions.Commit) +
 			fmt.Sprintf("git -C %s checkout --progress --force %s; ", repoDir, repoOptions.Commit) +

@@ -23,11 +23,11 @@ func TestGitCLIBackend_Blame(t *testing.T) {
 	backend := BackendWithRepoCommands(t,
 		"echo 'hello\nworld\nfrom\nblame\n' > foo.txt",
 		"git add foo.txt",
-		"git commit -m foo --author='Foo Author <foo@sourcegraph.com>'",
+		"git commit -m foo --author='Foo Author <foo@khulnasoft.com>'",
 		// Add a second commit with a different author.
 		"echo 'hello\nworld\nfrom\nthe best blame\n' > foo.txt",
 		"git add foo.txt",
-		"git commit -m bar --author='Bar Author <bar@sourcegraph.com>'",
+		"git commit -m bar --author='Bar Author <bar@khulnasoft.com>'",
 	)
 
 	ctx := context.Background()
@@ -60,7 +60,7 @@ func TestGitCLIBackend_Blame(t *testing.T) {
 			},
 			Author: gitdomain.Signature{
 				Name:  "Bar Author",
-				Email: "bar@sourcegraph.com",
+				Email: "bar@khulnasoft.com",
 				Date:  h.Author.Date, // Hard to compare.
 			},
 			Message:  "bar",
@@ -76,7 +76,7 @@ func TestGitCLIBackend_Blame(t *testing.T) {
 			CommitID:  "51f8be07ed2090b76e77b096c9d0737fc8ac70f4",
 			Author: gitdomain.Signature{
 				Name:  "Foo Author",
-				Email: "foo@sourcegraph.com",
+				Email: "foo@khulnasoft.com",
 				Date:  h.Author.Date, // Hard to compare.
 			},
 			Message:  "foo",
@@ -92,7 +92,7 @@ func TestGitCLIBackend_Blame(t *testing.T) {
 			CommitID:  "51f8be07ed2090b76e77b096c9d0737fc8ac70f4",
 			Author: gitdomain.Signature{
 				Name:  "Foo Author",
-				Email: "foo@sourcegraph.com",
+				Email: "foo@khulnasoft.com",
 				Date:  h.Author.Date, // Hard to compare.
 			},
 			Message:  "foo",
@@ -204,7 +204,7 @@ previous e6e03e850770dd0ba745f0fa4b23127e9d72ad30 release.sh
 filename release.sh
 fbb98e0b7ff0752798463d9f49d922858a4188f6 5 5 10
 author Adam Harvey
-author-mail <aharvey@sourcegraph.com>
+author-mail <aharvey@khulnasoft.com>
 author-time 1602630694
 author-tz -0700
 committer GitHub
@@ -323,7 +323,7 @@ var testGitBlameOutputHunks = []*gitdomain.Hunk{
 		},
 		Author: gitdomain.Signature{
 			Name:  "Adam Harvey",
-			Email: "aharvey@sourcegraph.com",
+			Email: "aharvey@khulnasoft.com",
 			Date:  mustParseTime(time.RFC3339, "2020-10-13T23:11:34Z"),
 		},
 		Message:  "release: add a prompt about DEVELOPMENT.md (#349)",
@@ -464,11 +464,11 @@ func TestBlameHunkReader(t *testing.T) {
 
 var testGitBlameMovedFile = `9b3fbcf3fd859a4fa7f97e6056138307c57fb949 39 39 1
 author Petri-Johan Last
-author-mail <petri.last@sourcegraph.com>
+author-mail <petri.last@khulnasoft.com>
 author-time 1712302218
 author-tz +0200
 committer Petri-Johan Last
-committer-mail <petri.last@sourcegraph.com>
+committer-mail <petri.last@khulnasoft.com>
 committer-time 1712302218
 committer-tz +0200
 summary Move commit
@@ -485,11 +485,11 @@ previous bae93ddeeba0cc0099c322e2e46f60ad368c6e37 blame_test.go
 filename another_test.go
 bae93ddeeba0cc0099c322e2e46f60ad368c6e37 1 1 38
 author Petri-Johan Last
-author-mail <petri.last@sourcegraph.com>
+author-mail <petri.last@khulnasoft.com>
 author-time 1712302156
 author-tz +0200
 committer Petri-Johan Last
-committer-mail <petri.last@sourcegraph.com>
+committer-mail <petri.last@khulnasoft.com>
 committer-time 1712302156
 committer-tz +0200
 summary Initial commit
@@ -514,7 +514,7 @@ var testGitBlameMovedFileHunks = []*gitdomain.Hunk{
 		},
 		Author: gitdomain.Signature{
 			Name:  "Petri-Johan Last",
-			Email: "petri.last@sourcegraph.com",
+			Email: "petri.last@khulnasoft.com",
 			Date:  time.Unix(1712302218, 0),
 		},
 		Message:  "Move commit",
@@ -529,7 +529,7 @@ var testGitBlameMovedFileHunks = []*gitdomain.Hunk{
 		},
 		Author: gitdomain.Signature{
 			Name:  "Petri-Johan Last",
-			Email: "petri.last@sourcegraph.com",
+			Email: "petri.last@khulnasoft.com",
 			Date:  time.Unix(1712302218, 0),
 		},
 		Message:  "Move commit",
@@ -544,7 +544,7 @@ var testGitBlameMovedFileHunks = []*gitdomain.Hunk{
 		},
 		Author: gitdomain.Signature{
 			Name:  "Petri-Johan Last",
-			Email: "petri.last@sourcegraph.com",
+			Email: "petri.last@khulnasoft.com",
 			Date:  time.Unix(1712302218, 0),
 		},
 		Message:  "Move commit",
@@ -559,7 +559,7 @@ var testGitBlameMovedFileHunks = []*gitdomain.Hunk{
 		},
 		Author: gitdomain.Signature{
 			Name:  "Petri-Johan Last",
-			Email: "petri.last@sourcegraph.com",
+			Email: "petri.last@khulnasoft.com",
 			Date:  time.Unix(1712302218, 0),
 		},
 		Message:  "Move commit",
@@ -570,7 +570,7 @@ var testGitBlameMovedFileHunks = []*gitdomain.Hunk{
 		CommitID: "bae93ddeeba0cc0099c322e2e46f60ad368c6e37",
 		Author: gitdomain.Signature{
 			Name:  "Petri-Johan Last",
-			Email: "petri.last@sourcegraph.com",
+			Email: "petri.last@khulnasoft.com",
 			Date:  time.Unix(1712302156, 0),
 		},
 		Message:  "Initial commit",
@@ -581,7 +581,7 @@ var testGitBlameMovedFileHunks = []*gitdomain.Hunk{
 		CommitID: "bae93ddeeba0cc0099c322e2e46f60ad368c6e37",
 		Author: gitdomain.Signature{
 			Name:  "Petri-Johan Last",
-			Email: "petri.last@sourcegraph.com",
+			Email: "petri.last@khulnasoft.com",
 			Date:  time.Unix(1712302156, 0),
 		},
 		Message:  "Initial commit",
@@ -592,7 +592,7 @@ var testGitBlameMovedFileHunks = []*gitdomain.Hunk{
 		CommitID: "bae93ddeeba0cc0099c322e2e46f60ad368c6e37",
 		Author: gitdomain.Signature{
 			Name:  "Petri-Johan Last",
-			Email: "petri.last@sourcegraph.com",
+			Email: "petri.last@khulnasoft.com",
 			Date:  time.Unix(1712302156, 0),
 		},
 		Message:  "Initial commit",
@@ -603,7 +603,7 @@ var testGitBlameMovedFileHunks = []*gitdomain.Hunk{
 		CommitID: "bae93ddeeba0cc0099c322e2e46f60ad368c6e37",
 		Author: gitdomain.Signature{
 			Name:  "Petri-Johan Last",
-			Email: "petri.last@sourcegraph.com",
+			Email: "petri.last@khulnasoft.com",
 			Date:  time.Unix(1712302156, 0),
 		},
 		Message:  "Initial commit",
@@ -614,7 +614,7 @@ var testGitBlameMovedFileHunks = []*gitdomain.Hunk{
 		CommitID: "bae93ddeeba0cc0099c322e2e46f60ad368c6e37",
 		Author: gitdomain.Signature{
 			Name:  "Petri-Johan Last",
-			Email: "petri.last@sourcegraph.com",
+			Email: "petri.last@khulnasoft.com",
 			Date:  time.Unix(1712302156, 0),
 		},
 		Message:  "Initial commit",

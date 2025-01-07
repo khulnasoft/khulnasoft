@@ -62,7 +62,7 @@ func TestCodyGatewayDotcomUserResolver(t *testing.T) {
 	require.NoError(t, err)
 
 	// Unverified User with default rate limits
-	unverifiedUser, err := db.Users().Create(ctx, database.NewUser{Username: "unverified", EmailIsVerified: false, Email: "christopher.warwick@sourcegraph.com", EmailVerificationCode: "CODE"})
+	unverifiedUser, err := db.Users().Create(ctx, database.NewUser{Username: "unverified", EmailIsVerified: false, Email: "christopher.warwick@khulnasoft.com", EmailVerificationCode: "CODE"})
 	require.NoError(t, err)
 
 	// User with rate limit overrides

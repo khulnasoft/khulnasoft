@@ -55,7 +55,7 @@ eb-bundle.zip
 /conf/private
 
 /provision/kubernetes/gen
-/deploy/sourcegraph.com/src
+/deploy/khulnasoft.com/src
 /deploy/sourcegraph/src
 
 # Sublime

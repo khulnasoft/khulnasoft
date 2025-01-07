@@ -23,7 +23,7 @@ import (
 )
 
 // An AWSCodeCommitSource yields repositories from a single AWS Code Commit
-// connection configured in Sourcegraph via the external services
+// connection configured in Khulnasoft via the external services
 // configuration.
 type AWSCodeCommitSource struct {
 	svc    *types.ExternalService
@@ -121,7 +121,7 @@ func (s *AWSCodeCommitSource) CheckConnection(ctx context.Context) error {
 }
 
 // ListRepos returns all AWS Code Commit repositories accessible to all
-// connections configured in Sourcegraph via the external services
+// connections configured in Khulnasoft via the external services
 // configuration.
 func (s *AWSCodeCommitSource) ListRepos(ctx context.Context, results chan SourceResult) {
 	s.listAllRepositories(ctx, results)

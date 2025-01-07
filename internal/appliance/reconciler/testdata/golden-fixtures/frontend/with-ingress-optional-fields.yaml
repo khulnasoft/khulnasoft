@@ -3,7 +3,7 @@ resources:
     kind: Deployment
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: c0cbf7fe1f7e4042a42aefd275ab15334b25954c53cb531eaa11f65e28a5d8f7
+        appliance.khulnasoft.com/configHash: c0cbf7fe1f7e4042a42aefd275ab15334b25954c53cb531eaa11f65e28a5d8f7
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
       labels:
@@ -385,8 +385,8 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/currentVersion: 5.3.9104
-        appliance.sourcegraph.com/managed: "true"
+        appliance.khulnasoft.com/currentVersion: 5.3.9104
+        appliance.khulnasoft.com/managed: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
       name: sg
       namespace: NORMALIZED_FOR_TESTING
@@ -396,7 +396,7 @@ resources:
     kind: Role
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 7caff941f7756c1a8aa77fb1604c7c1d191868889bbe1ca514eac63a4c1aafc8
+        appliance.khulnasoft.com/configHash: 7caff941f7756c1a8aa77fb1604c7c1d191868889bbe1ca514eac63a4c1aafc8
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -433,7 +433,7 @@ resources:
     kind: RoleBinding
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 7caff941f7756c1a8aa77fb1604c7c1d191868889bbe1ca514eac63a4c1aafc8
+        appliance.khulnasoft.com/configHash: 7caff941f7756c1a8aa77fb1604c7c1d191868889bbe1ca514eac63a4c1aafc8
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -460,7 +460,7 @@ resources:
     kind: ServiceAccount
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 7caff941f7756c1a8aa77fb1604c7c1d191868889bbe1ca514eac63a4c1aafc8
+        appliance.khulnasoft.com/configHash: 7caff941f7756c1a8aa77fb1604c7c1d191868889bbe1ca514eac63a4c1aafc8
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -479,8 +479,8 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/adopted: "true"
-        appliance.sourcegraph.com/configHash: 7caff941f7756c1a8aa77fb1604c7c1d191868889bbe1ca514eac63a4c1aafc8
+        appliance.khulnasoft.com/adopted: "true"
+        appliance.khulnasoft.com/configHash: 7caff941f7756c1a8aa77fb1604c7c1d191868889bbe1ca514eac63a4c1aafc8
         prometheus.io/port: "6060"
         sourcegraph.prometheus/scrape: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
@@ -522,7 +522,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 7caff941f7756c1a8aa77fb1604c7c1d191868889bbe1ca514eac63a4c1aafc8
+        appliance.khulnasoft.com/configHash: 7caff941f7756c1a8aa77fb1604c7c1d191868889bbe1ca514eac63a4c1aafc8
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app: sourcegraph-frontend-internal
@@ -562,8 +562,8 @@ resources:
     kind: Ingress
     metadata:
       annotations:
-        appliance.sourcegraph.com/adopted: "true"
-        appliance.sourcegraph.com/configHash: f7d0ef6a7aa5f52fdd5bcf934843ccc4f023ec7eef42fa22a1a58ace16a2fa70
+        appliance.khulnasoft.com/adopted: "true"
+        appliance.khulnasoft.com/configHash: f7d0ef6a7aa5f52fdd5bcf934843ccc4f023ec7eef42fa22a1a58ace16a2fa70
         foo: bar
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1

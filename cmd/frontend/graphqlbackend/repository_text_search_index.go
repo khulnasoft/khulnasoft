@@ -252,7 +252,7 @@ func (r *skippedIndexedResolver) Count(ctx context.Context) (BigInt, error) {
 			TotalMaxMatchCount: 10_000_000,
 
 			// We don't read the matches, but we want to consistently always
-			// ask for ChunkMatches from Sourcegraph.
+			// ask for ChunkMatches from Khulnasoft.
 			ChunkMatches: true,
 		},
 		zoekt.SenderFunc(func(sr *zoekt.SearchResult) {

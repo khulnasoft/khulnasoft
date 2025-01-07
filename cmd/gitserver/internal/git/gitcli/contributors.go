@@ -69,7 +69,7 @@ func parseShortLog(stdout io.Reader) ([]*gitdomain.ContributorCount, error) {
 		if len(line) == 0 {
 			continue
 		}
-		// example line: "1125\tJane Doe <jane@sourcegraph.com>"
+		// example line: "1125\tJane Doe <jane@khulnasoft.com>"
 		count, author, found := bytes.Cut(line, []byte("\t"))
 		if !found {
 			return nil, errors.Newf("invalid git shortlog line: %q", line)

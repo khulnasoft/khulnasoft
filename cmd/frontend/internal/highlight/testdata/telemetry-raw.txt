@@ -59,7 +59,7 @@ export class TelemetryEmitter {
                 repositoryId: this.repoID,
             })
         } catch {
-            // Older version of Sourcegraph may have not registered this
+            // Older version of Khulnasoft may have not registered this
             // command, causing the promise to reject. We can safely ignore
             // this condition.
         }

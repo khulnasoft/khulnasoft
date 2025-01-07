@@ -1,6 +1,6 @@
 import { expect, test } from '$testing/integration'
 
-const repoName = 'github.com/sourcegraph/sourcegraph'
+const repoName = 'github.com/khulnasoft/khulnasoft'
 const url = `/${repoName}/-/branches`
 
 test.beforeEach(async ({ sg }) => {

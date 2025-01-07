@@ -48,13 +48,13 @@ func TestIsBinary(t *testing.T) {
 		},
 		{
 			name: "binary WAV audio",
-			// https://sourcegraph.com/github.com/golang/go@a4330ed694c588d495f7c72a9cbb0cd39dde31e8/-/blob/src/net/http/sniff_test.go#L45
+			// https://khulnasoft.com/github.com/golang/go@a4330ed694c588d495f7c72a9cbb0cd39dde31e8/-/blob/src/net/http/sniff_test.go#L45
 			input: []byte("RIFFb\xb8\x00\x00WAVEfmt \x12\x00\x00\x00\x06"),
 			want:  true,
 		},
 		{
 			name: "binary MP4 video",
-			// https://sourcegraph.com/github.com/golang/go@a4330ed694c588d495f7c72a9cbb0cd39dde31e8/-/blob/src/net/http/sniff_test.go#L55
+			// https://khulnasoft.com/github.com/golang/go@a4330ed694c588d495f7c72a9cbb0cd39dde31e8/-/blob/src/net/http/sniff_test.go#L55
 			input: []byte("\x00\x00\x00\x18ftypmp42\x00\x00\x00\x00mp42isom<\x06t\xbfmdat"),
 			want:  true,
 		},

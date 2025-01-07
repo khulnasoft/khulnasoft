@@ -9,16 +9,16 @@ import (
 )
 
 // CheckNameAllowedForUserOrOrganization returns a non-nil error if the desired username or
-// organization name is suspicious and the currently running site is Sourcegraph.com.
+// organization name is suspicious and the currently running site is Khulnasoft.com.
 //
-// It is intended to prevent users/organizations on Sourcegraph.com from changing their name to a
+// It is intended to prevent users/organizations on Khulnasoft.com from changing their name to a
 // name that is likely to be confused with an admin or official account (such as "admin", "root",
 // etc.).
 //
 // 🚨 SECURITY: This is not foolproof; users may choose a name like `secur1ty` that might be
 // confused with a name like "security", or they might find another synonym that we didn't think of.
 func CheckNameAllowedForUserOrOrganization(desiredName string) error {
-	if dotcom.SourcegraphDotComMode() && isSuspicious(desiredName) {
+	if dotcom.KhulnasoftDotComMode() && isSuspicious(desiredName) {
 		return errors.Errorf("rejected suspicious name %q", desiredName)
 	}
 	return nil

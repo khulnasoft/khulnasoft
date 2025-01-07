@@ -1,6 +1,6 @@
 # batcheshelper
 
-`batcheshelper` is a helper script for Sourcegraph Batch Changes that is run in a workspace container before and after a
+`batcheshelper` is a helper script for Khulnasoft Batch Changes that is run in a workspace container before and after a
 step is executed.
 
 It is designed to replace Khulnasoft's `src` CLI for use in Executors.

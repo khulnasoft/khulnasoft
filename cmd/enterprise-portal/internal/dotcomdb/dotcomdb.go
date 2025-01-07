@@ -1,5 +1,5 @@
-// Package dotcomdb provides a read-only shim over the Sourcegraph.com database
-// and aims to provide values as they behave in Sourcegraph.com API today for
+// Package dotcomdb provides a read-only shim over the Khulnasoft.com database
+// and aims to provide values as they behave in Khulnasoft.com API today for
 // Enterprise Portal to serve through its new API.
 //
 // 👷 This package is intended to be a short-lived mechanism, and should be
@@ -34,7 +34,7 @@ type ReaderOptions struct {
 	DevOnly bool
 }
 
-// NewReader wraps a direct connection to the Sourcegraph.com database. It
+// NewReader wraps a direct connection to the Khulnasoft.com database. It
 // ONLY executes read queries, so the connection can (and should) be
 // authenticated by a read-only user.
 //

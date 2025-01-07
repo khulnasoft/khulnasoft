@@ -924,7 +924,7 @@ CREATE TABLE executor_heartbeats (
     last_seen_at timestamp with time zone DEFAULT now() NOT NULL
 );
 
-COMMENT ON TABLE executor_heartbeats IS 'Tracks the most recent activity of executors attached to this Sourcegraph instance.';
+COMMENT ON TABLE executor_heartbeats IS 'Tracks the most recent activity of executors attached to this Khulnasoft instance.';
 
 COMMENT ON COLUMN executor_heartbeats.hostname IS 'The uniquely identifying name of the executor.';
 
@@ -1166,7 +1166,7 @@ CREATE TABLE insights_query_runner_jobs (
     queued_at timestamp with time zone DEFAULT now()
 );
 
-COMMENT ON TABLE insights_query_runner_jobs IS 'See [internal/insights/background/queryrunner/worker.go:Job](https://sourcegraph.com/search?q=repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:internal/insights/background/queryrunner/worker.go+type+Job&patternType=literal)';
+COMMENT ON TABLE insights_query_runner_jobs IS 'See [internal/insights/background/queryrunner/worker.go:Job](https://khulnasoft.com/search?q=repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+file:internal/insights/background/queryrunner/worker.go+type+Job&patternType=literal)';
 
 COMMENT ON COLUMN insights_query_runner_jobs.priority IS 'Integer representing a category of priority for this query. Priority in this context is ambiguously defined for consumers to decide an interpretation.';
 
@@ -1513,7 +1513,7 @@ CREATE TABLE lsif_index_configuration (
 
 COMMENT ON TABLE lsif_index_configuration IS 'Stores the configuration used for code intel index jobs for a repository.';
 
-COMMENT ON COLUMN lsif_index_configuration.data IS 'The raw user-supplied [configuration](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/autoindex/config/types.go#L3:6) (encoded in JSONC).';
+COMMENT ON COLUMN lsif_index_configuration.data IS 'The raw user-supplied [configuration](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/autoindex/config/types.go#L3:6) (encoded in JSONC).';
 
 COMMENT ON COLUMN lsif_index_configuration.autoindex_enabled IS 'Whether or not auto-indexing should be attempted on this repo. Index jobs may be inferred from the repository contents if data is empty.';
 
@@ -1556,7 +1556,7 @@ COMMENT ON TABLE lsif_indexes IS 'Stores metadata about a code intel index job.'
 
 COMMENT ON COLUMN lsif_indexes.commit IS 'A 40-char revhash. Note that this commit may not be resolvable in the future.';
 
-COMMENT ON COLUMN lsif_indexes.docker_steps IS 'An array of pre-index [steps](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/stores/dbstore/docker_step.go#L9:6) to run.';
+COMMENT ON COLUMN lsif_indexes.docker_steps IS 'An array of pre-index [steps](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/stores/dbstore/docker_step.go#L9:6) to run.';
 
 COMMENT ON COLUMN lsif_indexes.root IS 'The working directory of the indexer image relative to the repository root.';
 
@@ -1568,7 +1568,7 @@ COMMENT ON COLUMN lsif_indexes.outfile IS 'The path to the index file produced b
 
 COMMENT ON COLUMN lsif_indexes.log_contents IS '**Column deprecated in favor of execution_logs.**';
 
-COMMENT ON COLUMN lsif_indexes.execution_logs IS 'An array of [log entries](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/internal/workerutil/store.go#L48:6) (encoded as JSON) from the most recent execution.';
+COMMENT ON COLUMN lsif_indexes.execution_logs IS 'An array of [log entries](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/internal/workerutil/store.go#L48:6) (encoded as JSON) from the most recent execution.';
 
 COMMENT ON COLUMN lsif_indexes.local_steps IS 'A list of commands to run inside the indexer image prior to running the indexer command.';
 
@@ -1695,7 +1695,7 @@ COMMENT ON COLUMN lsif_references.name IS 'The package name.';
 
 COMMENT ON COLUMN lsif_references.version IS 'The package version.';
 
-COMMENT ON COLUMN lsif_references.filter IS 'A [bloom filter](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/bloomfilter/bloom_filter.go#L27:6) encoded as gzipped JSON. This bloom filter stores the set of identifiers imported from the package.';
+COMMENT ON COLUMN lsif_references.filter IS 'A [bloom filter](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@3.23/-/blob/enterprise/internal/codeintel/bloomfilter/bloom_filter.go#L27:6) encoded as gzipped JSON. This bloom filter stores the set of identifiers imported from the package.';
 
 COMMENT ON COLUMN lsif_references.dump_id IS 'The identifier of the upload that references the package.';
 
@@ -1921,7 +1921,7 @@ CREATE TABLE out_of_band_migrations (
 
 COMMENT ON TABLE out_of_band_migrations IS 'Stores metadata and progress about an out-of-band migration routine.';
 
-COMMENT ON COLUMN out_of_band_migrations.id IS 'A globally unique primary key for this migration. The same key is used consistently across all Sourcegraph instances for the same migration.';
+COMMENT ON COLUMN out_of_band_migrations.id IS 'A globally unique primary key for this migration. The same key is used consistently across all Khulnasoft instances for the same migration.';
 
 COMMENT ON COLUMN out_of_band_migrations.team IS 'The name of the engineering team responsible for the migration.';
 
@@ -1935,19 +1935,19 @@ COMMENT ON COLUMN out_of_band_migrations.created IS 'The date and time the migra
 
 COMMENT ON COLUMN out_of_band_migrations.last_updated IS 'The date and time the migration was last updated.';
 
-COMMENT ON COLUMN out_of_band_migrations.non_destructive IS 'Whether or not this migration alters data so it can no longer be read by the previous Sourcegraph instance.';
+COMMENT ON COLUMN out_of_band_migrations.non_destructive IS 'Whether or not this migration alters data so it can no longer be read by the previous Khulnasoft instance.';
 
 COMMENT ON COLUMN out_of_band_migrations.apply_reverse IS 'Whether this migration should run in the opposite direction (to support an upcoming downgrade).';
 
 COMMENT ON COLUMN out_of_band_migrations.is_enterprise IS 'When true, these migrations are invisible to OSS mode.';
 
-COMMENT ON COLUMN out_of_band_migrations.introduced_version_major IS 'The Sourcegraph version (major component) in which this migration was first introduced.';
+COMMENT ON COLUMN out_of_band_migrations.introduced_version_major IS 'The Khulnasoft version (major component) in which this migration was first introduced.';
 
-COMMENT ON COLUMN out_of_band_migrations.introduced_version_minor IS 'The Sourcegraph version (minor component) in which this migration was first introduced.';
+COMMENT ON COLUMN out_of_band_migrations.introduced_version_minor IS 'The Khulnasoft version (minor component) in which this migration was first introduced.';
 
-COMMENT ON COLUMN out_of_band_migrations.deprecated_version_major IS 'The lowest Sourcegraph version (major component) that assumes the migration has completed.';
+COMMENT ON COLUMN out_of_band_migrations.deprecated_version_major IS 'The lowest Khulnasoft version (major component) that assumes the migration has completed.';
 
-COMMENT ON COLUMN out_of_band_migrations.deprecated_version_minor IS 'The lowest Sourcegraph version (minor component) that assumes the migration has completed.';
+COMMENT ON COLUMN out_of_band_migrations.deprecated_version_minor IS 'The lowest Khulnasoft version (minor component) that assumes the migration has completed.';
 
 CREATE TABLE out_of_band_migrations_errors (
     id integer NOT NULL,
@@ -2216,7 +2216,7 @@ CREATE TABLE search_contexts (
     CONSTRAINT search_contexts_has_one_or_no_namespace CHECK (((namespace_user_id IS NULL) OR (namespace_org_id IS NULL)))
 );
 
-COMMENT ON COLUMN search_contexts.deleted_at IS 'This column is unused as of Sourcegraph 3.34. Do not refer to it anymore. It will be dropped in a future version.';
+COMMENT ON COLUMN search_contexts.deleted_at IS 'This column is unused as of Khulnasoft 3.34. Do not refer to it anymore. It will be dropped in a future version.';
 
 CREATE SEQUENCE search_contexts_id_seq
     START WITH 1
@@ -2247,7 +2247,7 @@ COMMENT ON TABLE security_event_logs IS 'Contains security-relevant events with 
 
 COMMENT ON COLUMN security_event_logs.name IS 'The event name as a CAPITALIZED_SNAKE_CASE string.';
 
-COMMENT ON COLUMN security_event_logs.url IS 'The URL within the Sourcegraph app which generated the event.';
+COMMENT ON COLUMN security_event_logs.url IS 'The URL within the Khulnasoft app which generated the event.';
 
 COMMENT ON COLUMN security_event_logs.user_id IS 'The ID of the actor associated with the event.';
 
@@ -2257,7 +2257,7 @@ COMMENT ON COLUMN security_event_logs.source IS 'The site section (WEB, BACKEND,
 
 COMMENT ON COLUMN security_event_logs.argument IS 'An arbitrary JSON blob containing event data.';
 
-COMMENT ON COLUMN security_event_logs.version IS 'The version of Sourcegraph which generated the event.';
+COMMENT ON COLUMN security_event_logs.version IS 'The version of Khulnasoft which generated the event.';
 
 CREATE SEQUENCE security_event_logs_id_seq
     START WITH 1

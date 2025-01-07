@@ -93,7 +93,7 @@ func getOrCreateUser(ctx context.Context, db database.DB, allowSignup bool, info
 
 	username, err := auth.NormalizeUsername(info.unnormalizedUsername)
 	if err != nil {
-		return false, nil, fmt.Sprintf("Error normalizing the username %q. See https://sourcegraph.com/docs/admin/auth/#username-normalization.", info.unnormalizedUsername), err
+		return false, nil, fmt.Sprintf("Error normalizing the username %q. See https://khulnasoft.com/docs/admin/auth/#username-normalization.", info.unnormalizedUsername), err
 	}
 
 	recorder := telemetryrecorder.New(db)

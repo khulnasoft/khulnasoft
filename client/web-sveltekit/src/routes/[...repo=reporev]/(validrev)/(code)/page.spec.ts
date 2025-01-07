@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '$testing/integration'
 
-const repoName = 'github.com/sourcegraph/sourcegraph'
+const repoName = 'github.com/khulnasoft/khulnasoft'
 
 test.beforeEach(({ sg }) => {
     sg.fixture([

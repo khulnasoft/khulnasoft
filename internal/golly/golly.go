@@ -37,7 +37,7 @@ type Golly struct {
 
 func (g *Golly) DotcomCredentials() *TestingCredentials {
 	for _, cred := range g.Credentials {
-		if cred.Endpoint == "https://sourcegraph.com" {
+		if cred.Endpoint == "https://khulnasoft.com" {
 			return &cred
 		}
 	}
@@ -164,7 +164,7 @@ func NewGollyDoer(t *testing.T, doer httpcli.Doer) *Golly {
 
 func DotcomTestingCredentials() TestingCredentials {
 	return TestingCredentials{
-		Endpoint:    "https://sourcegraph.com",
+		Endpoint:    "https://khulnasoft.com",
 		AccessToken: DotcomAccessToken,
 	}
 }

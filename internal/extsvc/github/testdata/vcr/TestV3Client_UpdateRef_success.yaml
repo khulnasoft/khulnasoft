@@ -2,9 +2,9 @@
 version: 1
 interactions:
 - request:
-    body: '{"message":"New commit from VCR test!","tree":"9398082230ccd0ea7249b601d364e518dcd89271","parents":["58dd8da9d9099a823c814c528b29b72c9b2ac98b"],"author":{"name":"Sourcegraph
-      VCR Test","email":"dev@sourcegraph.com","date":"2023-06-01T12:00:00Z"},"committer":{"name":"Sourcegraph
-      VCR Test","email":"dev@sourcegraph.com","date":"2023-06-01T12:00:00Z"}}'
+    body: '{"message":"New commit from VCR test!","tree":"9398082230ccd0ea7249b601d364e518dcd89271","parents":["58dd8da9d9099a823c814c528b29b72c9b2ac98b"],"author":{"name":"Khulnasoft
+      VCR Test","email":"dev@khulnasoft.com","date":"2023-06-01T12:00:00Z"},"committer":{"name":"Khulnasoft
+      VCR Test","email":"dev@khulnasoft.com","date":"2023-06-01T12:00:00Z"}}'
     form: {}
     headers:
       Accept:
@@ -17,9 +17,9 @@ interactions:
     url: https://api.github.com/repos/sourcegraph/automation-testing/git/commits
     method: POST
   response:
-    body: '{"sha":"58377a8785c955d5f61293dda65657afddbc8dfc","node_id":"C_kwDODS5xedoAKDU4Mzc3YTg3ODVjOTU1ZDVmNjEyOTNkZGE2NTY1N2FmZGRiYzhkZmM","url":"https://api.github.com/repos/sourcegraph/automation-testing/git/commits/58377a8785c955d5f61293dda65657afddbc8dfc","html_url":"https://github.com/sourcegraph/automation-testing/commit/58377a8785c955d5f61293dda65657afddbc8dfc","author":{"name":"Sourcegraph
-      VCR Test","email":"dev@sourcegraph.com","date":"2023-06-01T12:00:00Z"},"committer":{"name":"Sourcegraph
-      VCR Test","email":"dev@sourcegraph.com","date":"2023-06-01T12:00:00Z"},"tree":{"sha":"9398082230ccd0ea7249b601d364e518dcd89271","url":"https://api.github.com/repos/sourcegraph/automation-testing/git/trees/9398082230ccd0ea7249b601d364e518dcd89271"},"message":"New
+    body: '{"sha":"58377a8785c955d5f61293dda65657afddbc8dfc","node_id":"C_kwDODS5xedoAKDU4Mzc3YTg3ODVjOTU1ZDVmNjEyOTNkZGE2NTY1N2FmZGRiYzhkZmM","url":"https://api.github.com/repos/sourcegraph/automation-testing/git/commits/58377a8785c955d5f61293dda65657afddbc8dfc","html_url":"https://github.com/sourcegraph/automation-testing/commit/58377a8785c955d5f61293dda65657afddbc8dfc","author":{"name":"Khulnasoft
+      VCR Test","email":"dev@khulnasoft.com","date":"2023-06-01T12:00:00Z"},"committer":{"name":"Khulnasoft
+      VCR Test","email":"dev@khulnasoft.com","date":"2023-06-01T12:00:00Z"},"tree":{"sha":"9398082230ccd0ea7249b601d364e518dcd89271","url":"https://api.github.com/repos/sourcegraph/automation-testing/git/trees/9398082230ccd0ea7249b601d364e518dcd89271"},"message":"New
       commit from VCR test!","parents":[{"sha":"58dd8da9d9099a823c814c528b29b72c9b2ac98b","url":"https://api.github.com/repos/sourcegraph/automation-testing/git/commits/58dd8da9d9099a823c814c528b29b72c9b2ac98b","html_url":"https://github.com/sourcegraph/automation-testing/commit/58dd8da9d9099a823c814c528b29b72c9b2ac98b"}],"verification":{"verified":false,"reason":"unsigned","signature":null,"payload":null}}'
     headers:
       Access-Control-Allow-Origin:

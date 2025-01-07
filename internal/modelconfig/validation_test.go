@@ -76,7 +76,7 @@ func TestValidationMethods(t *testing.T) {
 			// we treat this as OK.
 			//
 			// The real fix here is to introduce new form of Provider that
-			// doesn't have that field. e.g. a "SourcegraphProvider", i.e. where
+			// doesn't have that field. e.g. a "KhulnasoftProvider", i.e. where
 			// the provider by definition an implementation detail specific to Sg
 			// and not for the local Sg instance's admin.
 			{
@@ -229,8 +229,8 @@ func TestValidateSiteConfig(t *testing.T) {
 	// that is valid. So tests can start with something and introduce problems as needed.
 	getValidSiteConfiguration := func() *types.SiteModelConfiguration {
 		return &types.SiteModelConfiguration{
-			SourcegraphModelConfig: &types.SourcegraphModelConfig{
-				Endpoint: pointers.Ptr("https://cody-gateway.sourcegraph.com/current-models.json"),
+			KhulnasoftModelConfig: &types.KhulnasoftModelConfig{
+				Endpoint: pointers.Ptr("https://cody-gateway.khulnasoft.com/current-models.json"),
 				ModelFilters: &types.ModelFilters{
 					StatusFilter: []string{string(types.ModelStatusStable)},
 					Allow:        []string{"openai::*", "anthropic::*"},
@@ -291,7 +291,7 @@ func TestValidateSiteConfig(t *testing.T) {
 					},
 				},
 				// As an example, this will just replace the DisplayName of an existing
-				// LLM model that we expect to have been provided by Sourcegraph.
+				// LLM model that we expect to have been provided by Khulnasoft.
 				{
 					ModelRef:    "openai::2024-02-01::gpt-3.5-turbo",
 					DisplayName: "GPT 3.5 Turbo (Not much Turbo)",
@@ -324,10 +324,10 @@ func TestValidateSiteConfig(t *testing.T) {
 		}
 	}
 
-	t.Run("SourcegraphModelConfig", func(t *testing.T) {
+	t.Run("KhulnasoftModelConfig", func(t *testing.T) {
 		t.Run("Endpoint", func(t *testing.T) {
 			siteConfig := getValidSiteConfiguration()
-			siteConfig.SourcegraphModelConfig.Endpoint = pointers.Ptr("not a valid URL")
+			siteConfig.KhulnasoftModelConfig.Endpoint = pointers.Ptr("not a valid URL")
 			err := ValidateSiteConfig(siteConfig)
 			assert.ErrorContains(t, err, "sourcegraph config: invalid endpoint URL")
 		})
@@ -335,7 +335,7 @@ func TestValidateSiteConfig(t *testing.T) {
 			// Add a bogus value into the Allow list.
 			{
 				siteConfig := getValidSiteConfiguration()
-				siteConfig.SourcegraphModelConfig.ModelFilters.Allow = []string{
+				siteConfig.KhulnasoftModelConfig.ModelFilters.Allow = []string{
 					"valid", "invalid * because asterisks must be on ends", "valid",
 				}
 				err := ValidateSiteConfig(siteConfig)
@@ -344,7 +344,7 @@ func TestValidateSiteConfig(t *testing.T) {
 			// Add a bogus value into the Deny list.
 			{
 				siteConfig := getValidSiteConfiguration()
-				siteConfig.SourcegraphModelConfig.ModelFilters.Deny = []string{
+				siteConfig.KhulnasoftModelConfig.ModelFilters.Deny = []string{
 					"valid", "invalid * because asterisks must be on ends", "valid",
 				}
 				err := ValidateSiteConfig(siteConfig)

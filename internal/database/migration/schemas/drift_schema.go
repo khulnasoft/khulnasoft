@@ -49,15 +49,15 @@ var (
 	allPatterns              = []NamedRegexp{versionBranchPattern, tagPattern, commitPattern, abbreviatedCommitPattern}
 )
 
-// GitHubExpectedSchemaFactory reads schema definitions from the sourcegraph/sourcegraph repository via GitHub's API.
+// GitHubExpectedSchemaFactory reads schema definitions from the khulnasoft/khulnasoft repository via GitHub's API.
 var GitHubExpectedSchemaFactory = NewExpectedSchemaFactory("GitHub", allPatterns, GithubExpectedSchemaPath, fetchSchema)
 
 func GithubExpectedSchemaPath(filename, version string) string {
-	return fmt.Sprintf("https://raw.githubusercontent.com/sourcegraph/sourcegraph/%s/%s", version, filename)
+	return fmt.Sprintf("https://raw.githubusercontent.com/khulnasoft/khulnasoft/%s/%s", version, filename)
 }
 
 // GCSExpectedSchemaFactory reads schema definitions from a public GCS bucket that contains schema definitions for
-// a version of Sourcegraph that did not yet contain the squashed schema description file in-tree. These files have
+// a version of Khulnasoft that did not yet contain the squashed schema description file in-tree. These files have
 // been backfilled to this bucket by hand.
 //
 // See the ./drift-schemas directory for more details on how this data was generated.

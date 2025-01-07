@@ -3,7 +3,7 @@ resources:
     kind: DaemonSet
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
+        appliance.khulnasoft.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
         deprecated.daemonset.template.generation: "1"
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
@@ -204,8 +204,8 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/currentVersion: 5.3.9104
-        appliance.sourcegraph.com/managed: "true"
+        appliance.khulnasoft.com/currentVersion: 5.3.9104
+        appliance.khulnasoft.com/managed: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
       name: sg
       namespace: NORMALIZED_FOR_TESTING
@@ -215,7 +215,7 @@ resources:
     kind: Role
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
+        appliance.khulnasoft.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -243,7 +243,7 @@ resources:
     kind: RoleBinding
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
+        appliance.khulnasoft.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -270,7 +270,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
+        appliance.khulnasoft.com/configHash: c84ac276e60e85a888146303bb5d592cb42507dc290a515051c6ecedc03d6f4c
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app: node-exporter

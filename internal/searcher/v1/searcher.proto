@@ -23,7 +23,7 @@ message SearchRequest {
   // repo is the name of the repo to search (e.g. "github.com/gorilla/mux")
   string repo = 1;
 
-  // repo_id is the Sourcegraph repository ID of the repo to search
+  // repo_id is the Khulnasoft repository ID of the repo to search
   uint32 repo_id = 2;
 
   // commit_oid is the 40-character commit hash for the commit to be searched.

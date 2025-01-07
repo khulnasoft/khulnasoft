@@ -9,14 +9,14 @@ interactions:
     method: GET
   response:
     body: '{"username": "sourcegraph-testing", "has_2fa_enabled": null, "display_name":
-      "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b", "links": {"hooks":
+      "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b", "links": {"hooks":
       {"href": "https://api.bitbucket.org/2.0/workspaces/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/hooks"},
       "self": {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "repositories": {"href": "https://api.bitbucket.org/2.0/repositories/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"},
       "snippets": {"href": "https://api.bitbucket.org/2.0/snippets/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"}},
-      "nickname": "Sourcegraph Testing", "created_on": "2022-03-17T11:11:13.234825+00:00",
+      "nickname": "Khulnasoft Testing", "created_on": "2022-03-17T11:11:13.234825+00:00",
       "is_staff": false, "location": null, "account_status": "active", "type": "user",
       "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}"}'
     headers:

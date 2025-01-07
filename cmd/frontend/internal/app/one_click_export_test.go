@@ -56,7 +56,7 @@ func TestOneClickExportHandler(t *testing.T) {
 		}
 
 		contentDisposition := rec.Header().Get("Content-Disposition")
-		if have, want := contentDisposition, "attachment; filename=\"SourcegraphDataExport.zip\""; have != want {
+		if have, want := contentDisposition, "attachment; filename=\"KhulnasoftDataExport.zip\""; have != want {
 			t.Errorf("Content-Disposition: have %q, want %q", have, want)
 		}
 

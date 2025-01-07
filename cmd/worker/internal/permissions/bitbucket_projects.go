@@ -108,7 +108,7 @@ func (h *bitbucketProjectPermissionsHandler) Handle(ctx context.Context, logger 
 	projectKey := workerJob.ProjectKey
 
 	// These repos are fetched from Bitbucket, therefore their IDs are Bitbucket IDs
-	// and we need to search for these repos in frontend DB to get Sourcegraph internal IDs
+	// and we need to search for these repos in frontend DB to get Khulnasoft internal IDs
 	bitbucketRepos, err := client.ProjectRepos(ctx, projectKey)
 	if err != nil {
 		return errors.Wrapf(err, "failed to list repositories of Bitbucket Project %q", projectKey)
@@ -315,8 +315,8 @@ func (h *bitbucketProjectPermissionsHandler) setRepoPermissions(ctx context.Cont
 	defer func() { err = txs.Done(err) }()
 
 	accounts := &extsvc.Accounts{
-		ServiceType: authz.SourcegraphServiceType,
-		ServiceID:   authz.SourcegraphServiceID,
+		ServiceType: authz.KhulnasoftServiceType,
+		ServiceID:   authz.KhulnasoftServiceID,
 		AccountIDs:  pendingBindIDs,
 	}
 
@@ -371,7 +371,7 @@ func newBitbucketProjectPermissionsWorker(ctx context.Context, observationCtx *o
 }
 
 // newBitbucketProjectPermissionsResetter implements resetter for the explicit_permissions_bitbucket_projects_jobs table.
-// See resetter documentation for more details. https://docs-legacy.sourcegraph.com/dev/background-information/workers#dequeueing-and-resetting-jobs
+// See resetter documentation for more details. https://docs-legacy.khulnasoft.com/dev/background-information/workers#dequeueing-and-resetting-jobs
 func newBitbucketProjectPermissionsResetter(observationCtx *observation.Context, db database.DB, cfg *config, metrics bitbucketProjectPermissionsMetrics) *dbworker.Resetter[*types.BitbucketProjectPermissionJob] {
 	observationCtx = observation.ContextWithLogger(observationCtx.Logger.Scoped("BitbucketProjectPermissionsResetter"), observationCtx)
 

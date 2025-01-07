@@ -64,7 +64,7 @@ func postRepoFetchActions(
 	return errs
 }
 
-// gitSetAutoGC will set the value of gc.auto. If GC is managed by Sourcegraph
+// gitSetAutoGC will set the value of gc.auto. If GC is managed by Khulnasoft
 // the value will be 0 (disabled), otherwise if managed by git we will unset
 // it to rely on default (on) or global config.
 //

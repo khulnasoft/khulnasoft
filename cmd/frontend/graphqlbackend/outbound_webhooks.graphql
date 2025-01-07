@@ -1,6 +1,6 @@
 extend type Query {
     """
-    Returns the outbound webhooks registered within Sourcegraph, optionally filtered by
+    Returns the outbound webhooks registered within Khulnasoft, optionally filtered by
     event type and scope. To filter by scope, event type is also required. If the event
     type and scope are both omitted, all webhooks are returned.
 
@@ -40,7 +40,7 @@ extend type Mutation {
 }
 
 """
-An outbound webhook registered within Sourcegraph.
+An outbound webhook registered within Khulnasoft.
 """
 type OutboundWebhook implements Node {
     """

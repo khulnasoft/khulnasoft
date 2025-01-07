@@ -14,8 +14,8 @@
 | `-insecure-skip-verify` | Skip validation of TLS certificates against trusted chains | `false` |
 | `-n` | Alias for -namespace. |  |
 | `-namespace` | The user or organization namespace to place the batch change within. Default is the currently authenticated user. |  |
-| `-trace` | Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing | `false` |
-| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph | `true` |
+| `-trace` | Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing | `false` |
+| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft | `true` |
 
 
 ## Usage
@@ -41,10 +41,10 @@ Usage of 'src batch remote':
   -namespace string
     	The user or organization namespace to place the batch change within. Default is the currently authenticated user.
   -trace
-    	Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing
+    	Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing
   -user-agent-telemetry
-    	Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph (default true)
-'src batch remote' runs a batch spec on the Sourcegraph instance.
+    	Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft (default true)
+'src batch remote' runs a batch spec on the Khulnasoft instance.
 
 Usage:
 

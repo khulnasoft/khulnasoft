@@ -125,7 +125,7 @@ func (r *schemaResolver) LogEvents(ctx context.Context, args *EventBatch) (*Empt
 
 	userID := actor.FromContext(ctx).UID
 	userPrimaryEmail := ""
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 		userPrimaryEmail, _, _ = r.db.UserEmails().GetPrimaryEmail(ctx, userID)
 	}
 
@@ -156,9 +156,9 @@ func (r *schemaResolver) LogEvents(ctx context.Context, args *EventBatch) (*Empt
 			continue
 		}
 
-		// On Sourcegraph.com only, log a HubSpot event indicating when the user installed a Cody client.
-		// if  dotcom.SourcegraphDotComMode() && args.Event == "CodyInstalled" && userID != 0 && userPrimaryEmail != "" {
-		if dotcom.SourcegraphDotComMode() && args.Event == "CodyInstalled" {
+		// On Khulnasoft.com only, log a HubSpot event indicating when the user installed a Cody client.
+		// if  dotcom.KhulnasoftDotComMode() && args.Event == "CodyInstalled" && userID != 0 && userPrimaryEmail != "" {
+		if dotcom.KhulnasoftDotComMode() && args.Event == "CodyInstalled" {
 			emailsEnabled := false
 
 			ide := getIdeFromEvent(&args)

@@ -39,7 +39,7 @@ func TestCheckEmailAbuse(t *testing.T) {
 		conf.Mock(cfg)
 	}()
 
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	now := time.Now()
 

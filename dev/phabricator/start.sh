@@ -51,7 +51,7 @@ docker run -d --name $app_container -p 80:80 -p 443:443 \
   --volume $app_volume:/bitnami \
   -e PHABRICATOR_USERNAME=admin \
   -e PHABRICATOR_PASSWORD=sourcegraph \
-  -e PHABRICATOR_EMAIL=phabricator@sourcegraph.com \
+  -e PHABRICATOR_EMAIL=phabricator@khulnasoft.com \
   -e MARIADB_HOST=$db_container \
   bitnami/phabricator:"${version}"
 

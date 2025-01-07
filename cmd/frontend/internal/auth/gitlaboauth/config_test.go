@@ -119,7 +119,7 @@ func TestParseConfig(t *testing.T) {
 			},
 		},
 		{
-			name:   "1 GitLab.com config, Sourcegraph.com",
+			name:   "1 GitLab.com config, Khulnasoft.com",
 			dotcom: true,
 			args: args{cfg: &conf.Unified{SiteConfiguration: schema.SiteConfiguration{
 				ExternalURL: "https://sourcegraph.example.com",
@@ -331,7 +331,7 @@ func TestParseConfig(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			dotcom.MockSourcegraphDotComMode(t, tt.dotcom)
+			dotcom.MockKhulnasoftDotComMode(t, tt.dotcom)
 
 			gotProviders, gotProblems := parseConfig(logtest.Scoped(t), tt.args.cfg, db)
 			gotConfigs := make([]oauth2.Config, len(gotProviders))

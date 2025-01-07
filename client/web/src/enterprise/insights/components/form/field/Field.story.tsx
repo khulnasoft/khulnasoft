@@ -24,15 +24,15 @@ export const SimpleField = () => (
     <div className="d-flex flex-column" style={{ gap: '2rem', width: 400 }}>
         <Field queryState={{ query: '' }} placeholder="Example: type:diff repo:sourcegraph/* " />
 
-        <Field queryState={{ query: 'repo:github.com/sourcegraph/sourcegraph' }} />
+        <Field queryState={{ query: 'repo:github.com/khulnasoft/khulnasoft' }} />
 
         <Field queryState={{ query: MULTI_LINE_VALUE }} />
 
-        <Field queryState={{ query: 'repo:github.com/sourcegraph/sourcegraph' }} className="is-valid" />
+        <Field queryState={{ query: 'repo:github.com/khulnasoft/khulnasoft' }} className="is-valid" />
 
-        <Field queryState={{ query: 'repo:github.com/sourcegraph/sourcegraph' }} className="is-invalid" />
+        <Field queryState={{ query: 'repo:github.com/khulnasoft/khulnasoft' }} className="is-invalid" />
 
-        <Field queryState={{ query: 'repo:github.com/sourcegraph/sourcegraph' }} className="is-invalid" />
+        <Field queryState={{ query: 'repo:github.com/khulnasoft/khulnasoft' }} className="is-invalid" />
 
         <FocusContainer>
             <Field queryState={{ query: '' }} placeholder="Example: type:diff repo:sourcegraph/* " />
@@ -44,7 +44,7 @@ export const SimpleField = () => (
         </FocusContainer>
 
         <FocusContainer>
-            <Field queryState={{ query: 'repo:github.com/sourcegraph/sourcegraph' }} />
+            <Field queryState={{ query: 'repo:github.com/khulnasoft/khulnasoft' }} />
             <Tooltip content="Regular expression is the only pattern type usable with capture groups and it’s enabled by default for this search input.">
                 <Button variant="icon" disabled={true}>
                     <Icon svgPath={mdiRegex} aria-hidden={true} inline={false} height={21} width={21} />
@@ -53,7 +53,7 @@ export const SimpleField = () => (
         </FocusContainer>
 
         <FocusContainer>
-            <Field queryState={{ query: 'repo:github.com/sourcegraph/sourcegraph' }} className="is-valid" />
+            <Field queryState={{ query: 'repo:github.com/khulnasoft/khulnasoft' }} className="is-valid" />
             <Tooltip content="Regular expression is the only pattern type usable with capture groups and it’s enabled by default for this search input.">
                 <Button variant="icon" disabled={true}>
                     <Icon svgPath={mdiRegex} aria-hidden={true} inline={false} height={21} width={21} />
@@ -62,7 +62,7 @@ export const SimpleField = () => (
         </FocusContainer>
 
         <FocusContainer>
-            <Field queryState={{ query: 'repo:github.com/sourcegraph/sourcegraph' }} className="is-invalid" />
+            <Field queryState={{ query: 'repo:github.com/khulnasoft/khulnasoft' }} className="is-invalid" />
             <Tooltip content="Regular expression is the only pattern type usable with capture groups and it’s enabled by default for this search input.">
                 <Button variant="icon" disabled={true}>
                     <Icon svgPath={mdiRegex} aria-hidden={true} inline={false} height={21} width={21} />

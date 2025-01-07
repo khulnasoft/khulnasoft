@@ -59,7 +59,7 @@ func TestGenerate(t *testing.T) {
 		assert.NoError(t, err)
 	})
 
-	// Emulate Sourcegraph Cloud centralized observability use cases
+	// Emulate Khulnasoft Cloud centralized observability use cases
 	t.Run("Cloud use cases", func(t *testing.T) {
 		// This emulates the case for per-instance dashboards
 		t.Run("with grafana folder and inject labels", func(t *testing.T) {

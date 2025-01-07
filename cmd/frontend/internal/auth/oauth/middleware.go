@@ -85,7 +85,7 @@ func newOAuthFlowHandler(serviceType string) http.Handler {
 		id := r.URL.Query().Get("pc")
 		p := GetProvider(serviceType, id)
 		if p == nil {
-			// NOTE: Within the Sourcegraph application, we have been using both the
+			// NOTE: Within the Khulnasoft application, we have been using both the
 			// "redirect" and "returnTo" query parameters inconsistently, and some of the
 			// usages are also on the client side (Cody clients). If we ever settle on one
 			// and updated all usages on both server and client side, we need to make sure

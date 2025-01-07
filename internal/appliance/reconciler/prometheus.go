@@ -26,7 +26,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-func (r *Reconciler) reconcilePrometheus(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePrometheus(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcilePrometheusDeployment(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling Deployment")
 	}
@@ -58,7 +58,7 @@ func (r *Reconciler) reconcilePrometheus(ctx context.Context, sg *config.Sourceg
 	return nil
 }
 
-func (r *Reconciler) reconcilePrometheusDeployment(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePrometheusDeployment(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "prometheus"
 	cfg := sg.Spec.Prometheus
 
@@ -117,7 +117,7 @@ func (r *Reconciler) reconcilePrometheusDeployment(ctx context.Context, sg *conf
 	return reconcileObject(ctx, r, cfg, &dep, &appsv1.Deployment{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePrometheusService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePrometheusService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "prometheus"
 	cfg := sg.Spec.Prometheus
 
@@ -132,13 +132,13 @@ func (r *Reconciler) reconcilePrometheusService(ctx context.Context, sg *config.
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePrometheusServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePrometheusServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Prometheus
 	sa := serviceaccount.NewServiceAccount("prometheus", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePrometheusConfigMap(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePrometheusConfigMap(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Prometheus
 	if cfg.ExistingConfigMap != "" {
 		return nil
@@ -163,7 +163,7 @@ func (r *Reconciler) reconcilePrometheusConfigMap(ctx context.Context, sg *confi
 	return reconcileObject(ctx, r, cfg, &cm, &corev1.ConfigMap{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePrometheusRole(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePrometheusRole(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "prometheus"
 	cfg := sg.Spec.Prometheus
 
@@ -212,7 +212,7 @@ func (r *Reconciler) reconcilePrometheusRole(ctx context.Context, sg *config.Sou
 	return reconcileObject(ctx, r, cfg, &role, &rbacv1.Role{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePrometheusRoleBinding(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePrometheusRoleBinding(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "prometheus"
 	binding := rolebinding.NewRoleBinding(name, sg.Namespace)
 	binding.RoleRef = rbacv1.RoleRef{
@@ -229,7 +229,7 @@ func (r *Reconciler) reconcilePrometheusRoleBinding(ctx context.Context, sg *con
 	return reconcileObject(ctx, r, sg.Spec.Prometheus, &binding, &rbacv1.RoleBinding{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePrometheusClusterRoleBinding(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePrometheusClusterRoleBinding(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	// Make resource name sg-specific since this is a non-namespaced
 	// (cluster-scoped) object
 	name := fmt.Sprintf("%s-%s", sg.Namespace, "prometheus")
@@ -248,7 +248,7 @@ func (r *Reconciler) reconcilePrometheusClusterRoleBinding(ctx context.Context, 
 	return reconcileObject(ctx, r, sg.Spec.Prometheus, &binding, &rbacv1.ClusterRoleBinding{}, sg, owner)
 }
 
-func (r *Reconciler) reconcilePrometheusPVC(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcilePrometheusPVC(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "prometheus"
 	cfg := sg.Spec.Prometheus
 	pvc, err := pvc.NewPersistentVolumeClaim(name, sg.Namespace, cfg)

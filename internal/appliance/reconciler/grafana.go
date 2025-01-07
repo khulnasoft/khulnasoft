@@ -23,7 +23,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/pointers"
 )
 
-func (r *Reconciler) reconcileGrafana(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileGrafana(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileGrafanaStatefulSet(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling StatefulSet")
 	}
@@ -39,7 +39,7 @@ func (r *Reconciler) reconcileGrafana(ctx context.Context, sg *config.Sourcegrap
 	return nil
 }
 
-func (r *Reconciler) reconcileGrafanaStatefulSet(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileGrafanaStatefulSet(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "grafana"
 	cfg := sg.Spec.Grafana
 
@@ -106,7 +106,7 @@ func (r *Reconciler) reconcileGrafanaStatefulSet(ctx context.Context, sg *config
 	return reconcileObject(ctx, r, cfg, &sset, &appsv1.StatefulSet{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileGrafanaService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileGrafanaService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "grafana"
 	cfg := sg.Spec.Grafana
 	svc := service.NewService(name, sg.Namespace, cfg)
@@ -120,13 +120,13 @@ func (r *Reconciler) reconcileGrafanaService(ctx context.Context, sg *config.Sou
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileGrafanaServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileGrafanaServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Grafana
 	sa := serviceaccount.NewServiceAccount("grafana", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileGrafanaConfigMap(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileGrafanaConfigMap(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Grafana
 	if cfg.ExistingConfigMap != "" {
 		return nil

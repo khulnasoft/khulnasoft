@@ -20,7 +20,7 @@ import (
 
 // maxRequestDuration clamps any compute queries to run for at most 1 minute.
 // It's possible to trigger longer-running queries with expensive operations,
-// and this is best avoided on large instances like Sourcegraph.com
+// and this is best avoided on large instances like Khulnasoft.com
 const maxRequestDuration = time.Minute
 
 // NewComputeStreamHandler is an http handler which streams back compute results.
@@ -156,7 +156,7 @@ LOOP:
 	if err := ctx.Err(); errors.Is(err, context.DeadlineExceeded) {
 		_ = eventWriter.Event("alert", streamhttp.EventAlert{
 			Title:       "Incomplete data",
-			Description: "This data is incomplete! We ran this query for 1 minute and we'd need more time to compute all the results. This isn't supported yet, so please reach out to support@sourcegraph.com if you're interested in running longer queries.",
+			Description: "This data is incomplete! We ran this query for 1 minute and we'd need more time to compute all the results. This isn't supported yet, so please reach out to support@khulnasoft.com if you're interested in running longer queries.",
 		})
 	}
 	if alert != nil {

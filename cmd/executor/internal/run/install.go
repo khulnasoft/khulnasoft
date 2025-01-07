@@ -231,7 +231,7 @@ func installSrc(cliCtx *cli.Context, logger log.Logger, config *config.Config) e
 			logger.Warn("Failed to fetch latest src version, falling back to minimum version required by this executor", log.Error(err))
 		}
 	} else {
-		logger.Warn("Sourcegraph instance endpoint not configured, using minimum src-cli version instead of recommended version")
+		logger.Warn("Khulnasoft instance endpoint not configured, using minimum src-cli version instead of recommended version")
 	}
 
 	return download.ArchivedExecutable(cliCtx.Context, fmt.Sprintf("https://github.com/sourcegraph/src-cli/releases/download/%s/src-cli_%s_%s_%s.tar.gz", srcVersion, srcVersion, runtime.GOOS, runtime.GOARCH), path.Join(binDir, "src"), "src")

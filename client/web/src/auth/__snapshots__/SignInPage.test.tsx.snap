@@ -489,7 +489,7 @@ exports[`SignInPage > renders sign in page (dotcom) 1`] = `
          To use Khulnasoft on private repositories, 
         <a
           class="anchorLink"
-          href="https://sourcegraph.com/get-started?t=enterprise"
+          href="https://khulnasoft.com/get-started?t=enterprise"
         >
           consider Khulnasoft Enterprise
         </a>

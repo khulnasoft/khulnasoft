@@ -39,7 +39,7 @@ const mocks = new WildcardMockLink([
                                 url: 'https://github.com/khulnasoft/khulnasoft/pull/1',
                             },
                             repository: {
-                                name: 'github.com/sourcegraph/sourcegraph',
+                                name: 'github.com/khulnasoft/khulnasoft',
                             },
                         },
                     ],

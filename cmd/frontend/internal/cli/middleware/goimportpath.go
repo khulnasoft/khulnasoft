@@ -31,8 +31,8 @@ type goImportMetaTag struct {
 // goImportMetaTagTemplate is an HTML template for rendering a blank page with a go-import meta tag.
 var goImportMetaTagTemplate = template.Must(template.New("").Parse(`<html><head><meta name="go-import" content="{{.ImportPrefix}} {{.VCS}} {{.RepoRoot}}"></head><body></body></html>`))
 
-// SourcegraphComGoGetHandler is middleware for serving go-import meta tags for requests with ?go-get=1 query
-// on sourcegraph.com.
+// KhulnasoftComGoGetHandler is middleware for serving go-import meta tags for requests with ?go-get=1 query
+// on khulnasoft.com.
 //
 // It implements the following mapping:
 //
@@ -42,7 +42,7 @@ var goImportMetaTagTemplate = template.Must(template.New("").Parse(`<html><head>
 //
 // 🚨 SECURITY: This handler is served to all clients, even on private servers to clients who have
 // not authenticated. It must not reveal any sensitive information.
-func SourcegraphComGoGetHandler(next http.Handler) http.Handler {
+func KhulnasoftComGoGetHandler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		if req.URL.Query().Get("go-get") != "1" {
 			next.ServeHTTP(w, req)
@@ -57,7 +57,7 @@ func SourcegraphComGoGetHandler(next http.Handler) http.Handler {
 			return
 		}
 
-		// Handle "go get sourcegraph.com/{sourcegraph,sqs}/*" for all non-hosted repositories.
+		// Handle "go get khulnasoft.com/{sourcegraph,sqs}/*" for all non-hosted repositories.
 		// It's a vanity import path that maps to "github.com/{sourcegraph,sqs}/*" clone URLs.
 		pathElements := strings.Split(req.URL.Path[1:], "/")
 		if len(pathElements) >= 2 && (pathElements[0] == "khulnasoft" || pathElements[0] == "sqs") {

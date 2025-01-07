@@ -2,7 +2,7 @@
 
 The upgradetest folder contains the code for release tooling intended used to asses the stability of a new migrator and frontend build before tagging a new release.
 The tooling takes the form of a cli interface and is intended to orchestrate a psuedo-release and upgrade using bazel built images. The tests are invocations of our services relevant to schema migrations and versioning.
-This test does not test Sourcegraph features, only the basic operations of database and frontend version upgrades and schema coherence.
+This test does not test Khulnasoft features, only the basic operations of database and frontend version upgrades and schema coherence.
 
 Commands are intended to be invoked through Bazel, with each command executing tests intended to be run in CI. The CI tests treat the current repo branch of `khulnasoft/khulnasoft` as a prospective release.
 
@@ -11,7 +11,7 @@ and additionally requires a `VERSION` env var to be set with a semantic version 
 
 The general idea of the tests is to verify that a given upgrade process works as expected in a containerized end to end test.
 
-We initialize the three primary Sourcegraph databases (frontend, codeintel-db, and codeinsights-db) from a historic version. Then use candidate builds of `frontend` and `migrator` to conduct a series of upgrades and validations, ensuring expected state between steps.
+We initialize the three primary Khulnasoft databases (frontend, codeintel-db, and codeinsights-db) from a historic version. Then use candidate builds of `frontend` and `migrator` to conduct a series of upgrades and validations, ensuring expected state between steps.
 
 We conduct multiversion upgrades, and standard upgrades, based on their respective upgrade policies, only using MVU for versions in which it is necessary.
 

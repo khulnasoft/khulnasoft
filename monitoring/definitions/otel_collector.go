@@ -13,7 +13,7 @@ func OtelCollector() *monitoring.Dashboard {
 	return &monitoring.Dashboard{
 		Name:        containerName,
 		Title:       "OpenTelemetry Collector",
-		Description: "The OpenTelemetry collector ingests OpenTelemetry data from Sourcegraph and exports it to the configured backends.",
+		Description: "The OpenTelemetry collector ingests OpenTelemetry data from Khulnasoft and exports it to the configured backends.",
 		Groups: []monitoring.Group{
 			{
 				Title:  "Receivers",

@@ -20,7 +20,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/pointers"
 )
 
-func (r *Reconciler) reconcileNodeExporter(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileNodeExporter(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileNodeExporterRole(ctx, sg, owner); err != nil {
 		return err
 	}
@@ -37,7 +37,7 @@ func (r *Reconciler) reconcileNodeExporter(ctx context.Context, sg *config.Sourc
 	return nil
 }
 
-func (r *Reconciler) reconcileNodeExporterDaemonSet(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileNodeExporterDaemonSet(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "node-exporter"
 	cfg := sg.Spec.NodeExporter
 
@@ -116,7 +116,7 @@ func (r *Reconciler) reconcileNodeExporterDaemonSet(ctx context.Context, sg *con
 	return reconcileObject(ctx, r, sg.Spec.NodeExporter, &ds, &appsv1.DaemonSet{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileNodeExporterService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileNodeExporterService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	svc := service.NewService("node-exporter", sg.Namespace, sg.Spec.NodeExporter)
 	svc.Spec.Ports = []corev1.ServicePort{
 		{Name: "metrics", TargetPort: intstr.FromString("metrics"), Port: 9100},
@@ -126,7 +126,7 @@ func (r *Reconciler) reconcileNodeExporterService(ctx context.Context, sg *confi
 	return reconcileObject(ctx, r, sg.Spec.NodeExporter, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileNodeExporterRole(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileNodeExporterRole(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "node-exporter"
 	cfg := sg.Spec.NodeExporter
 
@@ -145,7 +145,7 @@ func (r *Reconciler) reconcileNodeExporterRole(ctx context.Context, sg *config.S
 	return reconcileObject(ctx, r, cfg, &role, &rbacv1.Role{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileNodeExporterRoleBinding(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileNodeExporterRoleBinding(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "node-exporter"
 	binding := rolebinding.NewRoleBinding(name, sg.Namespace)
 	binding.RoleRef = rbacv1.RoleRef{

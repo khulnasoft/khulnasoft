@@ -33,7 +33,7 @@ func createAnalyzer() *analysis.Analyzer {
 	})
 }
 
-// runWithLinters is copied from https://sourcegraph.com/github.com/go-critic/go-critic@3f8d719ce34bb78eacfdb8fef52228aff8cbdb10/-/blob/checkers/analyzer/run.go?L27
+// runWithLinters is copied from https://khulnasoft.com/github.com/go-critic/go-critic@3f8d719ce34bb78eacfdb8fef52228aff8cbdb10/-/blob/checkers/analyzer/run.go?L27
 // modifications: manually specify the checkers instead of parsing it from command line args
 func runWithLinters(enabledLinters []*linter.CheckerInfo) func(*analysis.Pass) (interface{}, error) {
 	return func(pass *analysis.Pass) (interface{}, error) {

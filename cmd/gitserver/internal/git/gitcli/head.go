@@ -15,7 +15,7 @@ import (
 )
 
 func (g *gitCLIBackend) SymbolicRefHead(ctx context.Context, short bool) (refName string, err error) {
-	// TODO: implement refs_shorten_unambiguous_ref from git: https://sourcegraph.com/github.com/git/git/-/blob/refs.c?L1376,
+	// TODO: implement refs_shorten_unambiguous_ref from git: https://khulnasoft.com/github.com/git/git/-/blob/refs.c?L1376,
 	// so QuickSymbolicRefHead can also be used when short=true.
 	if !short {
 		refName, err = quickSymbolicRefHead(g.dir)

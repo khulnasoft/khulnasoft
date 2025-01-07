@@ -82,7 +82,7 @@ export function initializeInstanceVersionNumber(
                 if (version) {
                     if (isOlderThan(version, { major: 3, minor: 32 })) {
                         displayWarning(
-                            'Your Khulnasoft instance version is not fully compatible with the Khulnasoft extension. Please ask your site admin to upgrade to version 3.32.0 or above. Read more about version support in our [troubleshooting docs](https://docs.sourcegraph.com/admin/how-to/troubleshoot-sg-extension#unsupported-features-by-sourcegraph-version).'
+                            'Your Khulnasoft instance version is not fully compatible with the Khulnasoft extension. Please ask your site admin to upgrade to version 3.32.0 or above. Read more about version support in our [troubleshooting docs](https://docs.khulnasoft.com/admin/how-to/troubleshoot-sg-extension#unsupported-features-by-sourcegraph-version).'
                         ).catch(() => {})
                     }
                     await localStorageService.setValue(INSTANCE_VERSION_NUMBER_KEY, version)

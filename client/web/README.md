@@ -11,7 +11,7 @@ Our local development server runs by starting both a [Caddy](https://caddyserver
 Environment variables important for the web server:
 
 1. `WEB_BUILDER_SERVE_INDEX` should be set to `true` to enable serving of an index page.
-2. `SOURCEGRAPH_API_URL` is used as a proxied API url. By default it points to the [https://k8s.sgdev.org](https://k8s.sgdev.org).
+2. `KHULNASOFT_API_URL` is used as a proxied API url. By default it points to the [https://k8s.sgdev.org](https://k8s.sgdev.org).
 
 It's possible to overwrite these variables by creating `sg.config.overwrite.yaml` in the root folder and adjusting the `env` section of the relevant command.
 
@@ -26,7 +26,7 @@ sg start web-standalone
 To use a public API that doesn't require authentication for most of the functionality:
 
 ```sh
-SOURCEGRAPH_API_URL=https://sourcegraph.com sg start web-standalone
+KHULNASOFT_API_URL=https://khulnasoft.com sg start web-standalone
 ```
 
 ### Production server
@@ -35,10 +35,10 @@ SOURCEGRAPH_API_URL=https://sourcegraph.com sg start web-standalone
 sg start web-standalone-prod
 ```
 
-Web app should be available at `https://${SOURCEGRAPH_HTTPS_DOMAIN}:${SOURCEGRAPH_HTTPS_PORT}`. Build artifacts will be served from `<rootRepoPath>/client/web/dist`.
+Web app should be available at `https://${KHULNASOFT_HTTPS_DOMAIN}:${KHULNASOFT_HTTPS_PORT}`. Build artifacts will be served from `<rootRepoPath>/client/web/dist`.
 
-Note: If you are unable to use the above commands (e.g. you can't install Caddy), you can use `sg run web-standalone-http` instead. This will start a development server using only Node, and will be available at `http://localhost:${SOURCEGRAPH_HTTP_PORT}`.
+Note: If you are unable to use the above commands (e.g. you can't install Caddy), you can use `sg run web-standalone-http` instead. This will start a development server using only Node, and will be available at `http://localhost:${KHULNASOFT_HTTP_PORT}`.
 
 ### API proxy
 
-In both environments, server proxies API requests to `SOURCEGRAPH_API_URL` provided as the `.env` variable.
+In both environments, server proxies API requests to `KHULNASOFT_API_URL` provided as the `.env` variable.

@@ -69,8 +69,8 @@ commands:
       fi
     env:
       CADDY_VERSION: 2.4.5
-      SOURCEGRAPH_HTTPS_DOMAIN: sourcegraph.test
-      SOURCEGRAPH_HTTPS_PORT: 3443
+      KHULNASOFT_HTTPS_DOMAIN: sourcegraph.test
+      KHULNASOFT_HTTPS_PORT: 3443
 
   web:
     cmd: pnpm --filter @sourcegraph/web dev
@@ -103,7 +103,7 @@ commandsets:
       - gitserver
       - web
     env:
-      SOURCEGRAPHDOTCOM_MODE: true
+      KHULNASOFTDOTCOM_MODE: true
 
 tests:
   # These can be run with `sg test [name]`
@@ -116,5 +116,5 @@ tests:
       # These are defaults. They can be overwritten by setting the env vars when
       # running the command.
       BASE_URL: 'http://localhost:3080'
-      EMAIL: 'joe@sourcegraph.com'
+      EMAIL: 'joe@khulnasoft.com'
       PASSWORD: '12345'

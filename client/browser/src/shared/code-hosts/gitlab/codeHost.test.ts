@@ -44,7 +44,7 @@ describe('gitlab/codeHost', () => {
         })
 
         it('returns an URL to the Khulnasoft instance if the location has a viewState', () => {
-            const rawRepoName = 'gitlab.com/sourcegraph/sourcegraph'
+            const rawRepoName = 'gitlab.com/khulnasoft/khulnasoft'
             // Update the resolved Khulnasoft repo name value
             repoNameOnKhulnasoft.next(rawRepoName)
 
@@ -70,7 +70,7 @@ describe('gitlab/codeHost', () => {
         })
 
         it('returns an absolute URL if the location is not on the same code host', () => {
-            const rawRepoName = 'gitlab.sgdev.org/sourcegraph/sourcegraph'
+            const rawRepoName = 'gitlab.sgdev.org/khulnasoft/khulnasoft'
             // Update the resolved Khulnasoft repo name value
             repoNameOnKhulnasoft.next(rawRepoName)
 
@@ -94,7 +94,7 @@ describe('gitlab/codeHost', () => {
             )
         })
         it('returns an URL to a blob on the same code host if possible', () => {
-            const rawRepoName = 'gitlab.com/sourcegraph/sourcegraph'
+            const rawRepoName = 'gitlab.com/khulnasoft/khulnasoft'
             // Update the resolved Khulnasoft repo name value
             repoNameOnKhulnasoft.next(rawRepoName)
 
@@ -114,7 +114,7 @@ describe('gitlab/codeHost', () => {
                     { part: undefined }
                 )
             ).toBe(
-                'https://gitlab.com/sourcegraph/sourcegraph/blob/main/browser/src/shared/code-hosts/code_intelligence.tsx#L5'
+                'https://gitlab.com/khulnasoft/khulnasoft/blob/main/browser/src/shared/code-hosts/code_intelligence.tsx#L5'
             )
         })
         it('returns an URL to the file on the same merge request if possible', () => {

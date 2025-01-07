@@ -17,7 +17,7 @@ func TestEmail(t *testing.T) {
 
 	conf.Mock(&conf.Unified{
 		SiteConfiguration: schema.SiteConfiguration{
-			ExternalURL: "https://www.sourcegraph.com",
+			ExternalURL: "https://www.khulnasoft.com",
 		},
 	})
 	defer conf.Mock(nil)
@@ -43,15 +43,15 @@ func TestEmail(t *testing.T) {
 			var buf bytes.Buffer
 			err := template.Subj.Execute(&buf, templateData)
 			require.NoError(t, err)
-			require.Equal(t, "Test: Sourcegraph code monitor My test monitor detected 1 new result", buf.String())
+			require.Equal(t, "Test: Khulnasoft code monitor My test monitor detected 1 new result", buf.String())
 		})
 	})
 
 	t.Run("one result", func(t *testing.T) {
 		templateData := &TemplateDataNewSearchResults{
 			Priority:         "",
-			CodeMonitorURL:   "https://sourcegraph.com/your/code/monitor",
-			SearchURL:        "https://sourcegraph.com/search",
+			CodeMonitorURL:   "https://khulnasoft.com/your/code/monitor",
+			SearchURL:        "https://khulnasoft.com/search",
 			Description:      "My test monitor",
 			TotalCount:       1,
 			ResultPluralized: "result",
@@ -76,15 +76,15 @@ func TestEmail(t *testing.T) {
 			var buf bytes.Buffer
 			err := template.Subj.Execute(&buf, templateData)
 			require.NoError(t, err)
-			require.Equal(t, "Sourcegraph code monitor My test monitor detected 1 new result", buf.String())
+			require.Equal(t, "Khulnasoft code monitor My test monitor detected 1 new result", buf.String())
 		})
 	})
 
 	t.Run("multiple results", func(t *testing.T) {
 		templateData := &TemplateDataNewSearchResults{
 			Priority:         "",
-			CodeMonitorURL:   "https://sourcegraph.com/your/code/monitor",
-			SearchURL:        "https://sourcegraph.com/search",
+			CodeMonitorURL:   "https://khulnasoft.com/your/code/monitor",
+			SearchURL:        "https://khulnasoft.com/search",
 			Description:      "My test monitor",
 			TotalCount:       2,
 			ResultPluralized: "results",
@@ -117,8 +117,8 @@ func TestEmail(t *testing.T) {
 	t.Run("one result with results", func(t *testing.T) {
 		templateData := &TemplateDataNewSearchResults{
 			Priority:                  "",
-			CodeMonitorURL:            "https://sourcegraph.com/your/code/monitor",
-			SearchURL:                 "https://sourcegraph.com/search",
+			CodeMonitorURL:            "https://khulnasoft.com/your/code/monitor",
+			SearchURL:                 "https://khulnasoft.com/search",
 			Description:               "My test monitor",
 			TotalCount:                1,
 			ResultPluralized:          "result",
@@ -147,15 +147,15 @@ func TestEmail(t *testing.T) {
 			var buf bytes.Buffer
 			err := template.Subj.Execute(&buf, templateData)
 			require.NoError(t, err)
-			require.Equal(t, "Sourcegraph code monitor My test monitor detected 1 new result", buf.String())
+			require.Equal(t, "Khulnasoft code monitor My test monitor detected 1 new result", buf.String())
 		})
 	})
 
 	t.Run("multiple results with results", func(t *testing.T) {
 		templateData := &TemplateDataNewSearchResults{
 			Priority:                  "",
-			CodeMonitorURL:            "https://sourcegraph.com/your/code/monitor",
-			SearchURL:                 "https://sourcegraph.com/search",
+			CodeMonitorURL:            "https://khulnasoft.com/your/code/monitor",
+			SearchURL:                 "https://khulnasoft.com/search",
 			Description:               "My test monitor",
 			TotalCount:                6,
 			TruncatedCount:            1,
@@ -184,7 +184,7 @@ func TestEmail(t *testing.T) {
 			var buf bytes.Buffer
 			err := template.Subj.Execute(&buf, templateData)
 			require.NoError(t, err)
-			require.Equal(t, "Sourcegraph code monitor My test monitor detected 6 new results", buf.String())
+			require.Equal(t, "Khulnasoft code monitor My test monitor detected 6 new results", buf.String())
 		})
 	})
 

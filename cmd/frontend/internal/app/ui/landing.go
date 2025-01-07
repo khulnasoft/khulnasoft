@@ -20,8 +20,8 @@ import (
 
 var goSymbolReg = lazyregexp.New("/info/GoPackage/(.+)$")
 
-// serveRepoLanding simply redirects the old (sourcegraph.com/<repo>/-/info) repo landing page
-// URLs directly to the repo itself (sourcegraph.com/<repo>).
+// serveRepoLanding simply redirects the old (khulnasoft.com/<repo>/-/info) repo landing page
+// URLs directly to the repo itself (khulnasoft.com/<repo>).
 func serveRepoLanding(db database.DB) func(http.ResponseWriter, *http.Request) error {
 	logger := log.Scoped("serveRepoLanding")
 	return func(w http.ResponseWriter, r *http.Request) error {

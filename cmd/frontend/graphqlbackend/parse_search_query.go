@@ -106,7 +106,7 @@ func outputJobTree(
 		PatternType:         searchType,
 		Protocol:            search.Streaming,
 		Features:            client.ToFeatures(featureflag.FromContext(ctx), logger),
-		OnSourcegraphDotCom: dotcom.SourcegraphDotComMode(),
+		OnKhulnasoftDotCom: dotcom.KhulnasoftDotComMode(),
 	}
 	j, err := jobutil.NewPlanJob(inputs, plan)
 	if err != nil {

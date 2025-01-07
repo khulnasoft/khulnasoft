@@ -126,15 +126,15 @@ func getCodeCompletionModelFn() getModelFn {
 			legacyMRef legacyModelRef          = legacyModelRef(requestParams.RequestedModel)
 		)
 
-		// BUG: When we have the ability within the site config to rely on Sourcegraph
+		// BUG: When we have the ability within the site config to rely on Khulnasoft
 		// supplied models, we can remove this step and rely on the data embedded in
-		// the binary. (This requires us updating the site configuration for Sourcegraph.com,
+		// the binary. (This requires us updating the site configuration for Khulnasoft.com,
 		// and specifying the "modelconfig.khulnasoft" section, so the static siteconfig
 		// will be used.)
 		//
 		// BUG: A side effect of this, until we make that change, Cody Pro users _cannot_ specify models
 		// using the newer MRef syntax. As this check only looks for older "provider/model" names.
-		if dotcom.SourcegraphDotComMode() {
+		if dotcom.KhulnasoftDotComMode() {
 			if isAllowedCodyProCompletionModel(toLegacyMRef(mref)) {
 				return mref, nil
 			}
@@ -156,7 +156,7 @@ func getCodeCompletionModelFn() getModelFn {
 			// match the ProviderID and ModelID. (Likely, but may not be the case.)
 			//
 			// e.g. in order to support "fireworks/star-coder", we require that the
-			// Sourcegraph instance has ap rovider named "fireworks" and a model with ID
+			// Khulnasoft instance has ap rovider named "fireworks" and a model with ID
 			// "star-coder".
 			if legacyMRef.EqualToIgnoringAPIVersion(supportedModel.ModelRef) {
 				return supportedModel.ModelRef, nil
@@ -190,8 +190,8 @@ func getChatModelFn(db database.DB) getModelFn {
 		// models depend on the caller's subscription status.
 		//
 		// Like mentioned in a comment above, this logic is required until we update
-		// the Sourcegraph.com site configuration to rely on staticly embedded data.
-		if dotcom.SourcegraphDotComMode() {
+		// the Khulnasoft.com site configuration to rely on staticly embedded data.
+		if dotcom.KhulnasoftDotComMode() {
 			actor := sgactor.FromContext(ctx)
 			user, err := actor.User(ctx, db.Users())
 			if err != nil {
@@ -235,7 +235,7 @@ func getChatModelFn(db database.DB) getModelFn {
 			// match the ProviderID and ModelID. (Likely, but may not be the case.)
 			//
 			// e.g. in order to support "fireworks/star-coder", we require that the
-			// Sourcegraph instance has ap rovider named "fireworks" and a model with ID
+			// Khulnasoft instance has ap rovider named "fireworks" and a model with ID
 			// "star-coder".
 			if legacyMRef.EqualToIgnoringAPIVersion(supportedModel.ModelRef) {
 				return supportedModel.ModelRef, nil
@@ -254,9 +254,9 @@ func getChatModelFn(db database.DB) getModelFn {
 // is required as we transition to using server-side LLM model configuration.
 //
 // BUG: This is temporary, and will be replaced when we support the site configuration
-// allowing a Sourcegraph instance to fall back to "Sourcegraph supplied" LLM models.
+// allowing a Khulnasoft instance to fall back to "Khulnasoft supplied" LLM models.
 //
-// For now, because that isn't possible, all a Sourcegraph instance can use to determine
+// For now, because that isn't possible, all a Khulnasoft instance can use to determine
 // which models are supported are the 3x that are put into the site's "completions config".
 func isAllowedCodyProCompletionModel(model legacyModelRef) bool {
 	switch model {
@@ -305,9 +305,9 @@ func isAllowedCodyProCompletionModel(model legacyModelRef) bool {
 // Returns whether or not the supplied model is available to Cody Pro users.
 //
 // BUG: This is temporary, and will be replaced when we support the site configuration
-// allowing a Sourcegraph instance to fall back to "Sourcegraph supplied" LLM models.
+// allowing a Khulnasoft instance to fall back to "Khulnasoft supplied" LLM models.
 //
-// For now, because that isn't possible, all a Sourcegraph instance can use to determine
+// For now, because that isn't possible, all a Khulnasoft instance can use to determine
 // which models are supported are the 3x that are put into the site's "completions config".
 func isAllowedCodyProChatModel(model legacyModelRef, isProUser bool) bool {
 	// When updating these two lists, make sure you also update `allowedModels` in codygateway_dotcom_user.go.
@@ -389,11 +389,11 @@ func isAllowedCodyProChatModel(model legacyModelRef, isProUser bool) bool {
 	return false
 }
 
-// virutalizedModelRefLookup is a super-lame hack that we can remove once Sourcegraph.com is only serving
-// Sourcegraph-supplied LLM models. And we no longer have the hard-coded lists like `isAllowedCodyProChatModel`.
+// virutalizedModelRefLookup is a super-lame hack that we can remove once Khulnasoft.com is only serving
+// Khulnasoft-supplied LLM models. And we no longer have the hard-coded lists like `isAllowedCodyProChatModel`.
 // See dotcom_models.go.
 //
-// Until then, we have a problem: the Sourcegraph-supplied models have a few instances where the ModelID and
+// Until then, we have a problem: the Khulnasoft-supplied models have a few instances where the ModelID and
 // ModelName do not match. This is a good thing. But makes it a little tricky when for in the dotcom case the
 // exact list of supported models is a bit murkier.
 var virutalizedModelRefLookup = map[string]string{
@@ -429,10 +429,10 @@ func resolveRequestedModel(
 	//
 	// So unfortunately we have to syntesize the Provider and Model objects dynamically. (And rely on the
 	// Cody Gateway completion provider to not get fancy and look for any client-side configuration data.)
-	if dotcom.SourcegraphDotComMode() {
+	if dotcom.KhulnasoftDotComMode() {
 
 		modelName := string(mref.ModelID())
-		// Hack around Sourcegraph supplied models using "claude-3-sonnet" instead of "claude-3-sonnet-20240229".
+		// Hack around Khulnasoft supplied models using "claude-3-sonnet" instead of "claude-3-sonnet-20240229".
 		if devirtualizedModelName, ok := virutalizedModelRefLookup[modelName]; ok {
 			modelName = devirtualizedModelName
 		}

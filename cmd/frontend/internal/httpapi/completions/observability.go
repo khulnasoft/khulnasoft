@@ -61,7 +61,7 @@ func (t *traceBuilder) WithErrorP(err *error) *traceBuilder {
 // WithRequest captures information about the http request r.
 func (t *traceBuilder) WithRequest(r *http.Request) *traceBuilder {
 	if ev := t.event; ev != nil {
-		// This is the header which is useful for client IP on sourcegraph.com
+		// This is the header which is useful for client IP on khulnasoft.com
 		ev.AddField("connecting_ip", r.Header.Get("Cf-Connecting-Ip"))
 		ev.AddField("ip_country", r.Header.Get("Cf-Ipcountry"))
 	}

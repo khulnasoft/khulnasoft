@@ -12,8 +12,8 @@ import (
 	"go.opentelemetry.io/otel/trace"
 )
 
-// NewClient returns a new GraphQL client for the Sourcegraph.com API authenticated
-// with the given Sourcegraph access token.
+// NewClient returns a new GraphQL client for the Khulnasoft.com API authenticated
+// with the given Khulnasoft access token.
 //
 // To use, add a query or mutation to operations.graphql and use the generated
 // functions and types with the client, for example:
@@ -73,7 +73,7 @@ func (tc *tracedClient) MakeRequest(
 }
 
 // tokenAuthTransport adds token header authentication to requests and sets headers used to help identify Cody Gateway
-// in Cloudflare / sourcegraph.com
+// in Cloudflare / khulnasoft.com
 type tokenAuthTransport struct {
 	token       string
 	clientID    string
@@ -89,7 +89,7 @@ func (t *tokenAuthTransport) RoundTrip(req *http.Request) (*http.Response, error
 
 	req.Header.Set("Authorization", fmt.Sprintf("token %s", t.token))
 	if t.clientID != "" {
-		req.Header.Set("X-Sourcegraph-Client-ID", t.clientID)
+		req.Header.Set("X-Khulnasoft-Client-ID", t.clientID)
 	}
 	req.Header.Set("User-Agent", fmt.Sprintf("Cody-Gateway/%s %s", t.environment, version.Version()))
 	return t.wrapped.RoundTrip(req)

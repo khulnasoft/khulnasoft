@@ -1,5 +1,5 @@
 // Package markdown is slightly modified copy-pasta from
-// https://sourcegraph.sourcegraph.com/github.com/sourcegraph/controller/-/tree/internal/markdown
+// https://sourcegraph.khulnasoft.com/github.com/sourcegraph/controller/-/tree/internal/markdown
 package markdown
 
 import (

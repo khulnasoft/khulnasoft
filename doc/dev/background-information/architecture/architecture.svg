@@ -10,7 +10,7 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 1104.4)">
 <title>architecture</title>
 <polygon fill="white" stroke="transparent" points="-14.4,14.4 -14.4,-1104.4 1022.4,-1104.4 1022.4,14.4 -14.4,14.4"/>
-<text text-anchor="middle" x="504" y="-34.4" font-family="Source Code Pro, monospace" font-size="12.00">Sourcegraph Architecture Overview</text>
+<text text-anchor="middle" x="504" y="-34.4" font-family="Source Code Pro, monospace" font-size="12.00">Khulnasoft Architecture Overview</text>
 <text text-anchor="middle" x="504" y="-7.4" font-family="Source Code Pro, monospace" font-size="12.00">Box =&gt; horizontally scalable service, Rectangle =&gt; singleton service</text>
 <g id="clust1" class="cluster">
 <title>cluster_clients</title>

@@ -101,9 +101,9 @@ export const Frame: React.FC = () => {
         <div id="frame">
             <AppBar color="secondary">
                 <div className="product">
-                    <img id="logo" src={logo} alt={'Sourcegraph logo'} />
+                    <img id="logo" src={logo} alt={'Khulnasoft logo'} />
                     <Typography className={`title-${theme.palette.mode}`} variant="h6">
-                        Sourcegraph Appliance
+                        Khulnasoft Appliance
                     </Typography>
                 </div>
                 <div className="spacer" />

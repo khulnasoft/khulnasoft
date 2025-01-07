@@ -22,7 +22,7 @@ import (
 )
 
 var (
-	EnterprisePortalProd  = mustParseURL("https://enterprise-portal.sourcegraph.com")
+	EnterprisePortalProd  = mustParseURL("https://enterprise-portal.khulnasoft.com")
 	EnterprisePortalDev   = mustParseURL("https://enterprise-portal.sgdev.org")
 	EnterprisePortalLocal = mustParseURL("http://127.0.0.1:6081")
 )
@@ -41,12 +41,12 @@ type SAMSConfig struct {
 
 var _ http.Handler = (*SiteAdminProxy)(nil)
 
-// NewSiteAdminProxy allows Sourcegraph.com to proxy requests to Enterprise Portal
+// NewSiteAdminProxy allows Khulnasoft.com to proxy requests to Enterprise Portal
 // on behalf of site admins.
 //
 // When https://linear.app/sourcegraph/project/kr-p1-streamlined-role-assignment-via-sams-and-entitle-2f118b3f9d4c/overview
 // is shipped, we will be able to use SAMS as the source-of-truth for who is
-// a site admin in Sourcegraph.com. Then, we can allow Enterprise Portal to
+// a site admin in Khulnasoft.com. Then, we can allow Enterprise Portal to
 // accept SAMS cookie auth directly, and remove this proxy.
 func NewSiteAdminProxy(
 	logger log.Logger,

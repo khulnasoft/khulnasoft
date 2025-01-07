@@ -6,7 +6,7 @@ interactions:
     form: {}
     headers:
       User-Agent:
-      - sourcegraph-rubygems-syncer (sourcegraph.com)
+      - sourcegraph-rubygems-syncer (khulnasoft.com)
     url: https://rubygems.org/gems/hola-0.1.0.gem
     method: GET
   response:

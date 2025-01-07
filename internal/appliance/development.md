@@ -6,13 +6,13 @@ in early development.
 
 ## Architecture overview
 
-The appliance frontend and reconciler backend communicate via the Sourcegraph
+The appliance frontend and reconciler backend communicate via the Khulnasoft
 ConfigMap. The frontend drives the reconciler via changes to that ConfigMap.
 
 ## Adding a new service
 
 Note: the term "service" is overloaded. In this context, it refers to a
-Sourcegraph component, e.g. blobstore, or repo-updater. Sometimes you will see
+Khulnasoft component, e.g. blobstore, or repo-updater. Sometimes you will see
 the word "component" used instead.
 
 The next 4 sections aim to act as a rough quickstart. Please also look at recent
@@ -24,7 +24,7 @@ and forth between the two.
 
 ### Config
 
-First, add a config element to SourcegraphSpec in spec.go (or modify an existing
+First, add a config element to KhulnasoftSpec in spec.go (or modify an existing
 one). Consider "how unique" this service is, and whether it could benefit from
 embedding StandardConfig. Take a look at this struct, and the corresponding
 StandardComponent interface, in the `config` subpackage.

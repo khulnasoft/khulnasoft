@@ -79,7 +79,7 @@ func TestAccessTokenAuthMiddleware(t *testing.T) {
 	}
 
 	t.Run("license check bypasses handler in dotcom mode", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		req, _ := http.NewRequest("GET", "/.api/license/check", nil)
 		req.Header.Set("Authorization", "Bearer sometoken")
@@ -234,7 +234,7 @@ func TestAccessTokenAuthMiddleware(t *testing.T) {
 		mockrequire.Called(t, securityEventLogs.LogSecurityEventFunc)
 	})
 
-	t.Run("valid sudo token as a Sourcegraph operator", func(t *testing.T) {
+	t.Run("valid sudo token as a Khulnasoft operator", func(t *testing.T) {
 		req, _ := http.NewRequest("GET", "/", nil)
 		req.Header.Set("Authorization", `token-sudo token="abcdef",user="alice"`)
 
@@ -268,7 +268,7 @@ func TestAccessTokenAuthMiddleware(t *testing.T) {
 
 		securityEventLogsStore := dbmocks.NewMockSecurityEventLogsStore()
 		securityEventLogsStore.LogSecurityEventFunc.SetDefaultHook(func(ctx context.Context, eventName database.SecurityEventName, url string, userID uint32, anonymousUserID string, source string, arguments any) error {
-			require.True(t, sgactor.FromContext(ctx).SourcegraphOperator, "the actor should be a Sourcegraph operator")
+			require.True(t, sgactor.FromContext(ctx).KhulnasoftOperator, "the actor should be a Khulnasoft operator")
 			return nil
 		})
 

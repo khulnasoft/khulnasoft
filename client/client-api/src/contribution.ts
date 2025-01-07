@@ -57,11 +57,11 @@ export interface ActionContribution {
      * a noop.
      *
      * See "[Builtin commands](../../../../doc/extensions/authoring/builtin_commands.md)" (online at
-     * https://sourcegraph.com/docs/extensions/authoring/builtin_commands) for documentation on
+     * https://khulnasoft.com/docs/extensions/authoring/builtin_commands) for documentation on
      * builtin client commands.
      *
      * Extensions: The command must be registered (unless it is a builtin command). Extensions can
-     * register commands using {@link sourcegraph.commands.registerCommand}.
+     * register commands using {@link khulnasoft.commands.registerCommand}.
      *
      * Clients: All clients must implement the builtin commands as specified in the documentation
      * above. If the command is undefined (which means the action is a noop), the action should be

@@ -38,7 +38,7 @@ export const AuthSidebarView: React.FunctionComponent<React.PropsWithChildren<Au
     const [hostname, setHostname] = useState(instanceHostname)
     const [accessToken, setAccessToken] = useState<string | undefined>('initial')
     const [endpointUrl, setEndpointUrl] = useState(instanceURL)
-    const sourcegraphDotCom = 'https://www.sourcegraph.com'
+    const sourcegraphDotCom = 'https://www.khulnasoft.com'
 
     useEffect(() => {
         // Get access token from setting

@@ -112,8 +112,8 @@ func TestDeleteUser(t *testing.T) {
 				AccountIDs:  []string{"alice_gitlab"},
 			},
 			{
-				ServiceType: authz.SourcegraphServiceType,
-				ServiceID:   authz.SourcegraphServiceID,
+				ServiceType: authz.KhulnasoftServiceType,
+				ServiceID:   authz.KhulnasoftServiceID,
 				AccountIDs:  []string{"alice@example.com", "alice"},
 			},
 		}
@@ -220,7 +220,7 @@ func TestDeleteUser(t *testing.T) {
 						// delete target is a SOAP user
 						return []*extsvc.Account{{
 							AccountSpec: extsvc.AccountSpec{
-								ServiceType: auth.SourcegraphOperatorProviderType,
+								ServiceType: auth.KhulnasoftOperatorProviderType,
 								ServiceID:   "soap",
 								AccountID:   "alice_soap",
 							},
@@ -244,7 +244,7 @@ func TestDeleteUser(t *testing.T) {
 						{
 							Path: []any{"deleteUser"},
 							Message: fmt.Sprintf("%[1]q user %d cannot be deleted by a non-%[1]q user",
-								auth.SourcegraphOperatorProviderType, aliceUID),
+								auth.KhulnasoftOperatorProviderType, aliceUID),
 						},
 					},
 				},
@@ -260,7 +260,7 @@ func TestDeleteUser(t *testing.T) {
 						// delete target is a SOAP user
 						return []*extsvc.Account{{
 							AccountSpec: extsvc.AccountSpec{
-								ServiceType: auth.SourcegraphOperatorProviderType,
+								ServiceType: auth.KhulnasoftOperatorProviderType,
 								ServiceID:   "soap",
 								AccountID:   "alice_soap",
 							},
@@ -273,7 +273,7 @@ func TestDeleteUser(t *testing.T) {
 				{
 					Schema: mustParseGraphQLSchema(t, db),
 					Context: actor.WithActor(context.Background(),
-						&actor.Actor{UID: 1, SourcegraphOperator: true}),
+						&actor.Actor{UID: 1, KhulnasoftOperator: true}),
 					Query: `
 				mutation {
 					deleteUser(user: "VXNlcjo2") {

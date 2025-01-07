@@ -54,7 +54,7 @@ func Init(
 
 		return []*graphqlbackend.Alert{{
 			TypeValue:    graphqlbackend.AlertTypeError,
-			MessageValue: fmt.Sprintf("The Sourcegraph license key is invalid. Reason: %s. To continue using Sourcegraph, a site admin must renew the Sourcegraph license (or downgrade to only using Sourcegraph Free features). Update the license key in the [**site configuration**](/site-admin/configuration). Please contact Sourcegraph support for more information.", reason),
+			MessageValue: fmt.Sprintf("The Khulnasoft license key is invalid. Reason: %s. To continue using Khulnasoft, a site admin must renew the Khulnasoft license (or downgrade to only using Khulnasoft Free features). Update the license key in the [**site configuration**](/site-admin/configuration). Please contact Khulnasoft support for more information.", reason),
 		}}
 	})
 
@@ -96,7 +96,7 @@ func Init(
 
 		return []*graphqlbackend.Alert{{
 			TypeValue:    graphqlbackend.AlertTypeError,
-			MessageValue: fmt.Sprintf("A Sourcegraph license is required to enable repository permissions for the following code hosts: %s. [**Get a license.**](/site-admin/license)", strings.Join(authzNames, ", ")),
+			MessageValue: fmt.Sprintf("A Khulnasoft license is required to enable repository permissions for the following code hosts: %s. [**Get a license.**](/site-admin/license)", strings.Join(authzNames, ", ")),
 		}}
 	})
 
@@ -110,22 +110,22 @@ func Init(
 
 		info, err := licensing.GetConfiguredProductLicenseInfo()
 		if err != nil {
-			observationCtx.Logger.Error("Error reading license key for Sourcegraph subscription.", log.Error(err))
+			observationCtx.Logger.Error("Error reading license key for Khulnasoft subscription.", log.Error(err))
 			return []*graphqlbackend.Alert{{
 				TypeValue:    graphqlbackend.AlertTypeError,
-				MessageValue: "Error reading Sourcegraph license key. Check the logs for more information, or update the license key in the [**site configuration**](/site-admin/configuration).",
+				MessageValue: "Error reading Khulnasoft license key. Check the logs for more information, or update the license key in the [**site configuration**](/site-admin/configuration).",
 			}}
 		}
 		if info != nil && info.IsExpired() {
 			return []*graphqlbackend.Alert{{
 				TypeValue:    graphqlbackend.AlertTypeError,
-				MessageValue: "Sourcegraph license expired! All non-admin users are locked out of Sourcegraph. Update the license key in the [**site configuration**](/site-admin/configuration) or downgrade to only using Sourcegraph Free features.",
+				MessageValue: "Khulnasoft license expired! All non-admin users are locked out of Khulnasoft. Update the license key in the [**site configuration**](/site-admin/configuration) or downgrade to only using Khulnasoft Free features.",
 			}}
 		}
 		if info != nil && info.IsExpiringSoon() {
 			return []*graphqlbackend.Alert{{
 				TypeValue:    graphqlbackend.AlertTypeWarning,
-				MessageValue: fmt.Sprintf("Sourcegraph license will expire soon! Expires on: %s. Update the license key in the [**site configuration**](/site-admin/configuration) or downgrade to only using Sourcegraph Free features.", info.ExpiresAt.UTC().Truncate(time.Hour).Format(time.UnixDate)),
+				MessageValue: fmt.Sprintf("Khulnasoft license will expire soon! Expires on: %s. Update the license key in the [**site configuration**](/site-admin/configuration) or downgrade to only using Khulnasoft Free features.", info.ExpiresAt.UTC().Truncate(time.Hour).Format(time.UnixDate)),
 			}}
 		}
 		return nil

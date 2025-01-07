@@ -252,23 +252,23 @@ describe('util/url', () => {
             commitID: '24fca303ac6da784b9e8269f724ddeb0b2eea5e7',
             filePath: 'mux.go',
         }
-        const sourcegraphUrl = 'https://sourcegraph.com'
+        const sourcegraphUrl = 'https://khulnasoft.com'
 
         test('default sourcegraph URL, default context', () => {
             expect(toAbsoluteBlobURL(sourcegraphUrl, target)).toBe(
-                'https://sourcegraph.com/github.com/gorilla/mux/-/blob/mux.go'
+                'https://khulnasoft.com/github.com/gorilla/mux/-/blob/mux.go'
             )
         })
 
         test('default sourcegraph URL, specified revision', () => {
             expect(toAbsoluteBlobURL(sourcegraphUrl, { ...target, revision: 'branch' })).toBe(
-                'https://sourcegraph.com/github.com/gorilla/mux@branch/-/blob/mux.go'
+                'https://khulnasoft.com/github.com/gorilla/mux@branch/-/blob/mux.go'
             )
         })
 
         test('default sourcegraph URL, with position', () => {
             expect(toAbsoluteBlobURL(sourcegraphUrl, { ...target, position: { line: 1, character: 1 } })).toBe(
-                'https://sourcegraph.com/github.com/gorilla/mux/-/blob/mux.go?L1:1'
+                'https://khulnasoft.com/github.com/gorilla/mux/-/blob/mux.go?L1:1'
             )
         })
     })
@@ -385,13 +385,13 @@ describe('isExternalLink', () => {
     })
     it('returns true for a different site', () => {
         const windowLocation = new URL('https://github.com/here')
-        expect(isExternalLink('https://sourcegraph.com/here', windowLocation)).toBe(true)
+        expect(isExternalLink('https://khulnasoft.com/here', windowLocation)).toBe(true)
     })
 })
 
 describe('toRepoURL', () => {
     it('generates absolute repo URL without a rev', () => {
-        expect(toRepoURL({ repoName: 'sourcegraph/sourcegraph' })).toBe('/sourcegraph/sourcegraph')
+        expect(toRepoURL({ repoName: 'sourcegraph/sourcegraph' })).toBe('/khulnasoft/khulnasoft')
     })
 
     it('generates absolute repo URL with a rev', () => {

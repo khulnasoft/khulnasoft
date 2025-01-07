@@ -112,7 +112,7 @@ ListOfBatchChanges.argTypes = {
         control: { type: 'boolean' },
     },
     isDotCom: {
-        name: 'is sourcegraph.com',
+        name: 'is khulnasoft.com',
         control: { type: 'boolean' },
     },
 }

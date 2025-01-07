@@ -18,7 +18,7 @@ export interface GettingStartedProps extends TelemetryV2Props {
     className?: string
 }
 
-const productPageUrl = 'https://sourcegraph.com/batch-changes'
+const productPageUrl = 'https://khulnasoft.com/batch-changes'
 
 export const GettingStarted: React.FunctionComponent<React.PropsWithChildren<GettingStartedProps>> = ({
     isKhulnasoftDotCom,

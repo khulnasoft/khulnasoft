@@ -110,7 +110,7 @@ delete_perforce_client() {
 
 # ensure that user is logged into the Perforce server
 if ! p4 login -s &>/dev/null; then
-  handbook_link="https://handbook.sourcegraph.com/departments/ce-support/support/process/p4-enablement/#generate-a-session-ticket"
+  handbook_link="https://handbook.khulnasoft.com/departments/ce-support/support/process/p4-enablement/#generate-a-session-ticket"
   address="${P4USER}:${P4PORT}"
 
   cat <<END

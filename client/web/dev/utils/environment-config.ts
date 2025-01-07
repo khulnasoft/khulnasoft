@@ -61,7 +61,7 @@ export const ENVIRONMENT_CONFIG = {
      * Application features configuration.
      * ----------------------------------------
      */
-    SOURCEGRAPHDOTCOM_MODE: getEnvironmentBoolean('SOURCEGRAPHDOTCOM_MODE'),
+    KHULNASOFTDOTCOM_MODE: getEnvironmentBoolean('KHULNASOFTDOTCOM_MODE'),
 
     // Is reporting to Sentry enabled.
     ENABLE_SENTRY: getEnvironmentBoolean('ENABLE_SENTRY'),
@@ -73,19 +73,19 @@ export const ENVIRONMENT_CONFIG = {
      * Local environment configuration.
      * ----------------------------------------
      */
-    SOURCEGRAPH_API_URL: process.env.SOURCEGRAPH_API_URL,
-    SOURCEGRAPH_HTTPS_DOMAIN: process.env.SOURCEGRAPH_HTTPS_DOMAIN || 'sourcegraph.test',
-    SOURCEGRAPH_HTTPS_PORT: Number(process.env.SOURCEGRAPH_HTTPS_PORT) || 3443,
-    SOURCEGRAPH_HTTP_PORT: Number(process.env.SOURCEGRAPH_HTTP_PORT) || 3080,
+    KHULNASOFT_API_URL: process.env.KHULNASOFT_API_URL,
+    KHULNASOFT_HTTPS_DOMAIN: process.env.KHULNASOFT_HTTPS_DOMAIN || 'sourcegraph.test',
+    KHULNASOFT_HTTPS_PORT: Number(process.env.KHULNASOFT_HTTPS_PORT) || 3443,
+    KHULNASOFT_HTTP_PORT: Number(process.env.KHULNASOFT_HTTP_PORT) || 3080,
     SITE_CONFIG_PATH: process.env.SITE_CONFIG_PATH || DEFAULT_SITE_CONFIG_PATH,
     CLIENT_OTEL_EXPORTER_OTLP_ENDPOINT: process.env.CLIENT_OTEL_EXPORTER_OTLP_ENDPOINT || '-/debug/otlp',
 }
 
 export type EnvironmentConfig = typeof ENVIRONMENT_CONFIG
 
-const { SOURCEGRAPH_HTTPS_DOMAIN, SOURCEGRAPH_HTTPS_PORT, SOURCEGRAPH_HTTP_PORT } = ENVIRONMENT_CONFIG
+const { KHULNASOFT_HTTPS_DOMAIN, KHULNASOFT_HTTPS_PORT, KHULNASOFT_HTTP_PORT } = ENVIRONMENT_CONFIG
 
-export const HTTPS_WEB_SERVER_URL = `https://${SOURCEGRAPH_HTTPS_DOMAIN}:${SOURCEGRAPH_HTTPS_PORT}`
-export const HTTP_WEB_SERVER_URL = `http://localhost:${SOURCEGRAPH_HTTP_PORT}`
+export const HTTPS_WEB_SERVER_URL = `https://${KHULNASOFT_HTTPS_DOMAIN}:${KHULNASOFT_HTTPS_PORT}`
+export const HTTP_WEB_SERVER_URL = `http://localhost:${KHULNASOFT_HTTP_PORT}`
 
 export const STATIC_INDEX_PATH = path.resolve(ENVIRONMENT_CONFIG.STATIC_ASSETS_PATH, 'index.html')

@@ -11,7 +11,7 @@ import { retry } from '@sourcegraph/shared/src/testing/utils'
 import type { PhabricatorMapping } from '../browser-extension/web-extension-api/types'
 
 // By default, these tests run against a local Phabricator instance and a local Khulnasoft instance.
-// To run them against phabricator.sgdev.org and umami.sgdev.org, set the below env vars in addition to SOURCEGRAPH_BASE_URL.
+// To run them against phabricator.sgdev.org and umami.sgdev.org, set the below env vars in addition to KHULNASOFT_BASE_URL.
 
 const PHABRICATOR_BASE_URL = process.env.PHABRICATOR_BASE_URL || 'http://127.0.0.1'
 const PHABRICATOR_USERNAME = process.env.PHABRICATOR_USERNAME || 'admin'
@@ -97,7 +97,7 @@ async function configureKhulnasoftIntegration(driver: Driver): Promise<void> {
         await driver.page.waitForSelector('a[href="/config/group/sourcegraph/"]', { timeout: 2000 })
     } catch {
         throw new Error(
-            `The Khulnasoft native integration is not installed on ${PHABRICATOR_BASE_URL}. Please see https://docs-legacy.sourcegraph.com/dev/how-to/configure_phabricator_gitolite#install-the-sourcegraph-phabricator-extension`
+            `The Khulnasoft native integration is not installed on ${PHABRICATOR_BASE_URL}. Please see https://docs-legacy.khulnasoft.com/dev/how-to/configure_phabricator_gitolite#install-the-sourcegraph-phabricator-extension`
         )
     }
 

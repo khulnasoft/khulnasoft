@@ -165,7 +165,7 @@ func TestOverrides(t *testing.T) {
 				}
 				req = req.WithContext(actor.WithActor(context.Background(), act))
 				if tc.Header != nil {
-					req.Header["X-Sourcegraph-Override-Feature"] = tc.Header
+					req.Header["X-Khulnasoft-Override-Feature"] = tc.Header
 				}
 
 				w := httptest.NewRecorder()

@@ -18,17 +18,17 @@ const (
 
 	// MediaTypeHeaderName is the name of the HTTP response header whose value the client expects to
 	// equal MediaType.
-	MediaTypeHeaderName = "X-Sourcegraph-Media-Type"
+	MediaTypeHeaderName = "X-Khulnasoft-Media-Type"
 
 	// MediaType is the client's expected value for the MediaTypeHeaderName HTTP response header.
 	MediaType = "sourcegraph.v" + APIVersion + "; format=json"
 )
 
-// HandleRegistry serves the external HTTP API for the extension registry for Sourcegraph.com
+// HandleRegistry serves the external HTTP API for the extension registry for Khulnasoft.com
 // only. All other extension registries have been removed. See
 // https://docs.google.com/document/d/10vtoe-kpNvVZ8Etrx34bSCoTaCCHxX8o3ncCmuErPZo/edit.
 func HandleRegistry(w http.ResponseWriter, r *http.Request) (err error) {
-	if !dotcom.SourcegraphDotComMode() {
+	if !dotcom.KhulnasoftDotComMode() {
 		http.Error(w, "no local extension registry exists", http.StatusNotFound)
 		return nil
 	}

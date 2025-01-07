@@ -36,7 +36,7 @@ const MANUAL_JOBS_MOCK_DATA = JOBS_MOCK_DATA.filter(job => job.reason.group === 
 const SCHEDULE_JOBS_MOCK_DATA = JOBS_MOCK_DATA.filter(
     job => job.reason.group === PermissionsSyncJobReasonGroup.SCHEDULE
 )
-const SG_JOBS_MOCK_DATA = JOBS_MOCK_DATA.filter(job => job.reason.group === PermissionsSyncJobReasonGroup.SOURCEGRAPH)
+const SG_JOBS_MOCK_DATA = JOBS_MOCK_DATA.filter(job => job.reason.group === PermissionsSyncJobReasonGroup.KHULNASOFT)
 const WEBHOOK_JOBS_MOCK_DATA = JOBS_MOCK_DATA.filter(job => job.reason.group === PermissionsSyncJobReasonGroup.WEBHOOK)
 
 const CANCELED_JOBS_MOCK_DATA = JOBS_MOCK_DATA.filter(job => job.state === PermissionsSyncJobState.CANCELED)
@@ -58,7 +58,7 @@ export const SixSyncJobsFound: StoryFn = () => (
                         generateResponse(null, null, JOBS_MOCK_DATA, 20),
                         generateResponse(null, PermissionsSyncJobReasonGroup.MANUAL, MANUAL_JOBS_MOCK_DATA, 6),
                         generateResponse(null, PermissionsSyncJobReasonGroup.SCHEDULE, SCHEDULE_JOBS_MOCK_DATA, 6),
-                        generateResponse(null, PermissionsSyncJobReasonGroup.SOURCEGRAPH, SG_JOBS_MOCK_DATA, 3),
+                        generateResponse(null, PermissionsSyncJobReasonGroup.KHULNASOFT, SG_JOBS_MOCK_DATA, 3),
                         generateResponse(null, PermissionsSyncJobReasonGroup.WEBHOOK, WEBHOOK_JOBS_MOCK_DATA, 8),
                         generateResponse(PermissionsSyncJobState.CANCELED, null, CANCELED_JOBS_MOCK_DATA, 4),
                         generateResponse(PermissionsSyncJobState.COMPLETED, null, COMPLETED_JOBS_MOCK_DATA, 2),
@@ -180,7 +180,7 @@ function getSyncJobs(): PermissionsSyncJob[] {
             default: {
                 state = PermissionsSyncJobState.QUEUED
                 reason = {
-                    group: PermissionsSyncJobReasonGroup.SOURCEGRAPH,
+                    group: PermissionsSyncJobReasonGroup.KHULNASOFT,
                     reason: PermissionsSyncJobReason.REASON_USER_EMAIL_VERIFIED,
                 }
                 break
@@ -204,7 +204,7 @@ function getSyncJobs(): PermissionsSyncJob[] {
                       id: index.toString(),
                       username: `username-${index}`,
                       displayName: 'Test User',
-                      email: 'example@sourcegraph.com',
+                      email: 'example@khulnasoft.com',
                       avatarURL: null,
                   }
 

@@ -9,12 +9,12 @@ issue or generating a high-quality issue report.
    any do, follow the instructions in the subsection.
 1. Scan through [General scenarios](#general-scenarios) to find which scenario(s) applies to you. If any do,
    follow the instructions to update your instance or collect information for the issue report.
-1. If you cannot resolve the issue on your own, file an issue on the [Sourcegraph issue
+1. If you cannot resolve the issue on your own, file an issue on the [Khulnasoft issue
    tracker](https://github.com/khulnasoft/khulnasoft/issues) with the collected
    information. Enterprise customers may alternatively file a support ticket or email
-   support@sourcegraph.com.
+   support@khulnasoft.com.
 
-> NOTE: This guide assumes you have site admin privileges on the Sourcegraph instance. If you are
+> NOTE: This guide assumes you have site admin privileges on the Khulnasoft instance. If you are
 > non-admin user, report your error the site admin and have them walk through this guide.
 
 ## Specific scenarios
@@ -24,23 +24,23 @@ issue or generating a high-quality issue report.
 If this is the case, this could indicate high gitserver load. To confirm, take the following steps:
 
 1. [Open Grafana](metrics.md#grafana).
-1. **If using Sourcegraph 3.14**: Simply check if either of these alerts are firing:
+1. **If using Khulnasoft 3.14**: Simply check if either of these alerts are firing:
     - `gitserver: 50+ concurrent command executions (abnormally high load)`
     - `gitserver: echo command execution duration exceeding 1s`
-1. **If using an older version of Sourcegraph:**
-    - Go to the Sourcegraph Internal > Gitserver rev2 dashboard.
+1. **If using an older version of Khulnasoft:**
+    - Go to the Khulnasoft Internal > Gitserver rev2 dashboard.
     - Examine the "Echo Duration Seconds" dashboard (tracks the `src_gitserver_echo_duration_seconds`
       metric) and "Commands running concurrently" dashboard (tracks the `src_gitserver_exec_running`
       metric). If either of these is high (> 1s echo duration or 100s simultaneous execs), then this
       indicates gitserver is under heavy load and likely the bottleneck.
 1. Confirm your gitserver is not under-provisioned, by e.g. comparing its allocated resources with what the [resource estimator](../deploy/resource_estimator.md) shows.
 
-Solution: set `USE_ENHANCED_LANGUAGE_DETECTION=false` in the Sourcegraph runtime
+Solution: set `USE_ENHANCED_LANGUAGE_DETECTION=false` in the Khulnasoft runtime
 environment.
 
 #### Scenario: no cloning, syncing, updating or deleting is happening
 
-Observed state: Sourcegraph instance does not react to any updates to code hosts and no cloning is happening.
+Observed state: Khulnasoft instance does not react to any updates to code hosts and no cloning is happening.
 The cause of this state could be repo-updater queries that are too large for the limits of the running Postgres DB.
 One symptom is seeing a line like the one below in the repo-updater logs: 
 
@@ -70,7 +70,7 @@ Record the following information in the issue report:
 1. A screenshot of the error page or error message
 1. The [output of the browser developer console](#check-browser-console)
 1. [Log output](#examine-logs) while reproducing the issue
-1. [Sourcegraph configuration](#copy-configuration)
+1. [Khulnasoft configuration](#copy-configuration)
 1. When was the most recent update or deployment change applied?
 
 #### Scenario: the issue is NOT performance-related, but it is hard to reproduce.
@@ -91,7 +91,7 @@ find a repro if possible. If that isn't possible, file an issue with the followi
 1. Note any pattern in the issue reports. E.g., did users encountering the issue all visit the same
    repository or belong to the same organization. Do site admins encounter the issue or only
    non-admin users?
-1. [Sourcegraph configuration](#copy-configuration)
+1. [Khulnasoft configuration](#copy-configuration)
 1. When was the most recent update or deployment change applied?
 
 #### Scenario: the issue is performance-related and there is a consistent reproduction
@@ -106,12 +106,12 @@ find a repro if possible. If that isn't possible, file an issue with the followi
 1. Open the [browser developer network panel](#check-browser-network-panel) and identify slow
    requests.
 1. [Use Jaeger](#collect-a-jaeger-trace) to drill down into slow requests and understand which
-   components of the request are slow. Remember that many Sourcegraph API requests identify the
+   components of the request are slow. Remember that many Khulnasoft API requests identify the
    Jaeger trace ID in the `x-trace` HTTP response header, which makes it easy to look up the trace
    corresponding to a particular request.
    1. If Jaeger is unavailable or unreliable, you can collect trace data from [the Go net/trace
    endpoint](#examine-go-net-trace).
-1. Copy the [Sourcegraph configuration](#copy-configuration) to the error report.
+1. Copy the [Khulnasoft configuration](#copy-configuration) to the error report.
 
 #### Scenario: the issue is performance-related and there is NOT a consistent reproduction
 
@@ -132,12 +132,12 @@ find a repro if possible. If that isn't possible, try the following:
 1. If tracing points to a specific service as the source of high latency, [examine the
    logs](#examine-logs) and [net/trace info](#examine-go-net-trace) for that service.
 
-#### Scenario: multiple actions are slow or Sourcegraph as a whole feels sluggish
+#### Scenario: multiple actions are slow or Khulnasoft as a whole feels sluggish
 
-If Sourcegraph feels sluggish overall, the likely culprit is resource allocation.
+If Khulnasoft feels sluggish overall, the likely culprit is resource allocation.
 
 > NOTE: some of these recommendations involve increasing the replica or shard count of individual
-> services. This is only possible when Sourcegraph is deployed into a Kubernetes cluster.
+> services. This is only possible when Khulnasoft is deployed into a Kubernetes cluster.
 
 1. [Examine memory, CPU, and disk usage metrics](#check-resource-usage).
 1. If the metrics indicate high resource consumption, adjust the resource allocation higher.
@@ -145,7 +145,7 @@ If Sourcegraph feels sluggish overall, the likely culprit is resource allocation
    slowness and the services that are usually the culprit:
    1. Global search (i.e., no repository scope is specified) results page takes a long time to load.
      1. Increase indexed-search memory limit or CPU limit. The number of indexed-search
-        shards can also be increased if using Sourcegraph on Kubernetes.
+        shards can also be increased if using Khulnasoft on Kubernetes.
    1. Search results show up quickly, but code snippets take awhile to populate. File contents take
       awhile to load.
      1. Increase gitserver memory usage. Gitserver memory may be the bottleneck, especially if there
@@ -167,11 +167,11 @@ If Sourcegraph feels sluggish overall, the likely culprit is resource allocation
    1. Alternatively, you can use the [Go net/trace endpoint](#examine-go-net-trace) to pull trace
       data.
 
-#### Scenario: Prometheus scraping metrics outside Sourcegraph Kubernetes namespace 
+#### Scenario: Prometheus scraping metrics outside Khulnasoft Kubernetes namespace 
 
-If you are seeing cAdvisor metrics from a namespace outside of the one Sourcegraph is currently deployed into. 
+If you are seeing cAdvisor metrics from a namespace outside of the one Khulnasoft is currently deployed into. 
 
-1. Uncomment our namespaced Prometheus [cAdvisor configuration](https://sourcegraph.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/deploy-sourcegraph%24+cAdvisor-specific+customization+&patternType=literal)
+1. Uncomment our namespaced Prometheus [cAdvisor configuration](https://khulnasoft.com/search?q=context:global+repo:%5Egithub%5C.com/sourcegraph/deploy-sourcegraph%24+cAdvisor-specific+customization+&patternType=literal)
 2. Apply this configuration and restart Prometheus
 
 _Note:_ This is unneeded if you are using the 'namespaced' overlay
@@ -189,7 +189,7 @@ If your users are experiencing search timeouts or search performance issues, ple
 
 #### Scenario: zoekt-webserver is in a `CrashloopBackOff` and `err cannot allocate memory`
 
-Sourcegraph uses a mmap to store its indices. The default operating system limits on mmap counts may to be too low, which may result in out of memory exceptions.
+Khulnasoft uses a mmap to store its indices. The default operating system limits on mmap counts may to be too low, which may result in out of memory exceptions.
 If you are seeing this error on large scale deployments with a lot repos to be indexed, please use the following steps to verify the source of the errors:
 
 1. Ensure pods are not actually running out of allocated memory and being OOMKilled by running (if they are, then you should give them more memory and the below will not help you):
@@ -222,7 +222,7 @@ zoekt-webserver has a built in watchdog which ensures it can respond to search r
 
 By default the watchdog runs every 30s. If the watchdog fails 3 consecutive times (with a 30s sleep in-between) it will trigger the panic. This is usually indicative a server which is consistently overloaded. It is recommended to increase the CPU quota assigned to it or horizontally scale to more replicas.
 
-From Sourcegraph 3.22 you can configure the watchdog via environment variables:
+From Khulnasoft 3.22 you can configure the watchdog via environment variables:
 
 - `ZOEKT_WATCHDOG_TICK` :: Duration of how often it runs. (default 30s)
 - `ZOEKT_WATCHDOG_ERRORS` :: Consecutive error count before exit. (default 3)
@@ -241,7 +241,7 @@ You can further diagnose an overloaded zoekt-webserver via watchdog logs or metr
 
 ## Actions
 
-This section contains various actions that can be taken to collect information or update Sourcegraph
+This section contains various actions that can be taken to collect information or update Khulnasoft
 in order to resolve an error or performance issue. You should typically not read this section
 directly, but start with the [General scenarios](#general-scenarios) section to determine which actions are
 appropriate.
@@ -288,7 +288,7 @@ Network panel](https://developers.google.com/web/tools/chrome-devtools/network).
 Go to `/site-admin/usage-statistics` to view daily, weekly, and monthly user statistics.
 
 To drill down (e.g., into sub-daily traffic, visits per page type, latencies, etc.), [access
-Grafana](metrics.md#grafana) and visit the Sourcegraph Internal > HTTP dashboard page, which
+Grafana](metrics.md#grafana) and visit the Khulnasoft Internal > HTTP dashboard page, which
 includes the following panels:
 
 * QPS by Status Code
@@ -303,10 +303,10 @@ title > Edit > copying the expression in the Metrics field.
 
 [Access Grafana](metrics.md#grafana) and view the following charts:
 
-* Folder: Sourcegraph Internal > Dashboard: HTTP > Chart: QPS by Status Code
+* Folder: Khulnasoft Internal > Dashboard: HTTP > Chart: QPS by Status Code
   * This shows request rates by HTTP status code for end-user requests.
 * Folder: General
-  * This contains dashboards for each core service in Sourcegraph. Examine each for high-level
+  * This contains dashboards for each core service in Khulnasoft. Examine each for high-level
     metrics important to the health of each service.
 
 ### Collect a Jaeger trace
@@ -354,7 +354,7 @@ To access this data,
   * You can filter to traces by duration or error state.
   * You can show histograms of durations by minute, hour, or in total (since the process started)
 
-On older versions of Sourcegraph on Kubernetes, the `/-/debug` URL path may be inaccessible. If this
+On older versions of Khulnasoft on Kubernetes, the `/-/debug` URL path may be inaccessible. If this
 is the case, you'll need to forward port 6060 on the main container of a given pod to access its
 traces. For example, to access to traces of the first gitserver shard,
 
@@ -363,7 +363,7 @@ traces. For example, to access to traces of the first gitserver shard,
 
 ### Copy configuration
 
-Go the the URL path `/site-admin/report-bug` to obtain an all-in-one text box of all Sourcegraph
+Go the the URL path `/site-admin/report-bug` to obtain an all-in-one text box of all Khulnasoft
 configuration (which includes site configuration, code host configuration, and global
 settings). This lets you easily copy all configuration to an issue report (NOTE: remember to redact
 any secrets).

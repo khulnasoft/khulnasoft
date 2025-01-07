@@ -90,7 +90,7 @@ func main() {
 }
 
 func downloadRemoteTaggedVersions(_ context.Context, versions []semver.Version) ([]*schemaDescription, error) {
-	urlFmt := "https://raw.githubusercontent.com/sourcegraph/sourcegraph/v%s/internal/database/%s"
+	urlFmt := "https://raw.githubusercontent.com/khulnasoft/khulnasoft/v%s/internal/database/%s"
 
 	p := pool.NewWithResults[*schemaDescription]().WithMaxGoroutines(5).WithErrors()
 
@@ -198,8 +198,8 @@ func listRemoteTaggedVersions(ctx context.Context, currentVersion *semver.Versio
 		page = resp.NextPage
 
 		for _, tag := range tags {
-			// If the tag is not a Sourcegraph release, like an old tag for App, we skip it.
-			if !isTagSourcegraphRelease(tag.GetName()) {
+			// If the tag is not a Khulnasoft release, like an old tag for App, we skip it.
+			if !isTagKhulnasoftRelease(tag.GetName()) {
 				continue
 			}
 
@@ -229,8 +229,8 @@ func listRemoteTaggedVersions(ctx context.Context, currentVersion *semver.Versio
 
 var versionRegexp = regexp.MustCompile(`^v\d+\.\d+\.\d+$`)
 
-// isTagSourcegraphRelease returns true if the tag we're looking at is a Sourcegraph release.
-func isTagSourcegraphRelease(tag string) bool {
+// isTagKhulnasoftRelease returns true if the tag we're looking at is a Khulnasoft release.
+func isTagKhulnasoftRelease(tag string) bool {
 	return versionRegexp.MatchString(tag)
 }
 

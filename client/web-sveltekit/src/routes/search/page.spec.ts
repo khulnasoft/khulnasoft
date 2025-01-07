@@ -73,7 +73,7 @@ test.describe('page.spec.ts', () => {
 
         sg.mockTypes({
             SearchResults: () => ({
-                repositories: [{ name: 'github.com/sourcegraph/sourcegraph' }],
+                repositories: [{ name: 'github.com/khulnasoft/khulnasoft' }],
                 results: [
                     {
                         __typename: 'FileMatch',
@@ -92,7 +92,7 @@ test.describe('page.spec.ts', () => {
         await expect(page.getByLabel('Files')).toBeVisible()
 
         // Fills suggestion
-        await page.getByText('github.com/sourcegraph/sourcegraph').click()
+        await page.getByText('github.com/khulnasoft/khulnasoft').click()
         await expect(searchInput).toHaveText('repo:^github\\.com/sourcegraph/sourcegraph$ ')
     })
 

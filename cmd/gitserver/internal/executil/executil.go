@@ -151,7 +151,7 @@ func configureRemoteGitCommand(cmd *exec.Cmd, remoteURL *vcs.URL, tlsConf *tlsCo
 
 	// Identify HTTP requests with a user agent. Please keep the git/ prefix because GitHub breaks the protocol v2
 	// negotiation of clone URLs without a `.git` suffix (which we use) without it. Don't ask.
-	cmd.Env = append(cmd.Env, "GIT_HTTP_USER_AGENT=git/Sourcegraph-Bot")
+	cmd.Env = append(cmd.Env, "GIT_HTTP_USER_AGENT=git/Khulnasoft-Bot")
 
 	if tlsConf.SSLNoVerify {
 		cmd.Env = append(cmd.Env, "GIT_SSL_NO_VERIFY=true")

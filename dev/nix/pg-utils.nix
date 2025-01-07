@@ -88,7 +88,7 @@ stdenv.mkDerivation rec {
     "--without-zlib"
   ];
 
-  # some patches taken from https://sourcegraph.com/github.com/NixOS/nixpkgs/-/blob/pkgs/servers/sql/postgresql/generic.nix,
+  # some patches taken from https://khulnasoft.com/github.com/NixOS/nixpkgs/-/blob/pkgs/servers/sql/postgresql/generic.nix,
   # only removed those obviously not needed, but haven't vetted the rest.
   patches = [
     "${path}/pkgs/servers/sql/postgresql/patches/disable-resolve_symlinks.patch"

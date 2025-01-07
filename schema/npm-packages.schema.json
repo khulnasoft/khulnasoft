@@ -44,7 +44,7 @@
       }
     },
     "dependencies": {
-      "description": "An array of \"(@scope/)?packageName@version\" strings specifying which npm packages to mirror on Sourcegraph.",
+      "description": "An array of \"(@scope/)?packageName@version\" strings specifying which npm packages to mirror on Khulnasoft.",
       "type": "array",
       "items": {
         "type": "string",

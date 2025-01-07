@@ -84,7 +84,7 @@ func TestAddCodeMonitorHook(t *testing.T) {
 				PatternType:         query.SearchTypeLiteral,
 				Protocol:            search.Streaming,
 				Features:            &search.Features{},
-				OnSourcegraphDotCom: true,
+				OnKhulnasoftDotCom: true,
 			}
 			j, err := jobutil.NewPlanJob(inputs, plan)
 			require.NoError(t, err)

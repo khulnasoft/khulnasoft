@@ -127,7 +127,7 @@ func (pkg *NpmPackageName) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// RepoName provides a name that is "globally unique" for a Sourcegraph instance.
+// RepoName provides a name that is "globally unique" for a Khulnasoft instance.
 //
 // The returned value is used for repo:... in queries.
 func (pkg *NpmPackageName) RepoName() api.RepoName {
@@ -180,7 +180,7 @@ type NpmVersionedPackage struct {
 // but we only support exact versions for now.
 //
 // Some packages have names containing multiple '/' characters.
-// (https://sourcegraph.com/search?q=context:global+file:package.json%24+%22name%22:+%22%40%5B%5E%5Cn/%5D%2B/%5B%5E%5Cn/%5D%2B/%5B%5E%5Cn%5D%2B%5C%22&patternType=regexp)
+// (https://khulnasoft.com/search?q=context:global+file:package.json%24+%22name%22:+%22%40%5B%5E%5Cn/%5D%2B/%5B%5E%5Cn/%5D%2B/%5B%5E%5Cn%5D%2B%5C%22&patternType=regexp)
 // So it is possible for indexes to reference packages by that name,
 // but such names are not supported by recent npm versions, so we don't
 // allow those here.
@@ -192,7 +192,7 @@ func ParseNpmVersionedPackage(dependency string) (*NpmVersionedPackage, error) {
 	// However, there don't seem to be any such packages in practice (I searched
 	// 100k+ packages and got 0 hits). The web frontend relies on using '@' to
 	// split between the package and rev-like part of the URL, such as
-	// https://sourcegraph.com/github.com/golang/go@master, so avoiding '@' is
+	// https://khulnasoft.com/github.com/golang/go@master, so avoiding '@' is
 	// important.
 	//
 	// Scope names follow the same rules as package names.

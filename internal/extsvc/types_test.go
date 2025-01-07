@@ -430,7 +430,7 @@ func TestUniqueCodeHostIdentifier(t *testing.T) {
 
 func TestWebhookURL(t *testing.T) {
 	const externalServiceID = 42
-	const externalURL = "https://sourcegraph.com"
+	const externalURL = "https://khulnasoft.com"
 
 	t.Run("unknown kind", func(t *testing.T) {
 		u, err := WebhookURL(KindOther, externalServiceID, nil, externalURL)

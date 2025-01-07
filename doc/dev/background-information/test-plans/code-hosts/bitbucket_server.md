@@ -1,12 +1,12 @@
 # Bitbucket server
 
-> NOTE: While this document is publicly accessible, it is meant as an internal resource. The test plans contain links to internal systems, documents and other information that will not be useful for people outside of Sourcegraph.
+> NOTE: While this document is publicly accessible, it is meant as an internal resource. The test plans contain links to internal systems, documents and other information that will not be useful for people outside of Khulnasoft.
 
-This test plan serves the purpose of manually testing if critical functionality of Sourcegraph works with bitbucket server.
+This test plan serves the purpose of manually testing if critical functionality of Khulnasoft works with bitbucket server.
 
 ## Prerequisites
 
-1. Sourcegraph instance running
+1. Khulnasoft instance running
 1. Site admin account created and functional
 1. No prior bitbucket server code host connection setup
     a. If you already have one, delete it before running this test plan
@@ -60,7 +60,7 @@ This test plan serves the purpose of manually testing if critical functionality 
 
 1. Go to `/site-admin/users`
 1. Click on *Create user*
-1. For username, type in `engineers`, for email type in your own email with some +suffix, e.g. `milan.freml+bitbucket_server_engineers_user@sourcegraph.com`
+1. For username, type in `engineers`, for email type in your own email with some +suffix, e.g. `milan.freml+bitbucket_server_engineers_user@khulnasoft.com`
 1. Click on *Create account and generate password reset link* button at the bottom of the form
 1. You should see a message *Account created for engineers*.
 1. Click on *Copy* button to copy the reset password URL.
@@ -70,7 +70,7 @@ This test plan serves the purpose of manually testing if critical functionality 
 1. Go to `/search?q=context:global+repo:SGDEMO&patternType=standard&sm=1&groupBy=repo`
 1. Make sure that you see the 3 repositories in the search result list. 
 
-> NOTE: The code host connection does not enforce permissions, so every Sourcegraph user should be able to see the repositories and code within.
+> NOTE: The code host connection does not enforce permissions, so every Khulnasoft user should be able to see the repositories and code within.
 
 ## T2.2: Permission enforcement works correctly
 

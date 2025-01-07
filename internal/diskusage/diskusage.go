@@ -1,4 +1,4 @@
-// Copied from https://sourcegraph.com/github.com/ricochet2200/go-disk-usage
+// Copied from https://khulnasoft.com/github.com/ricochet2200/go-disk-usage
 package diskusage
 
 import "syscall"

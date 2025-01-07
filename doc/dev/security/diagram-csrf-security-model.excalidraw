@@ -253,7 +253,7 @@
       "boundElementIds": [],
       "fontSize": 20,
       "fontFamily": 3,
-      "text": "* Sourcegraph JS code\n* Editor extensions\n* Browser extensions\n* Code host integrations\n* src-cli\n* curl\n* attacker.com\n* partner.com\n* legit-but-unknown-api-consumer.com",
+      "text": "* Khulnasoft JS code\n* Editor extensions\n* Browser extensions\n* Code host integrations\n* src-cli\n* curl\n* attacker.com\n* partner.com\n* legit-but-unknown-api-consumer.com",
       "baseline": 216,
       "textAlign": "left",
       "verticalAlign": "top"
@@ -1243,7 +1243,7 @@
       ],
       "fontSize": 16,
       "fontFamily": 3,
-      "text": "`X-Requested-With: Sourcegraph`\n\n* Request is from trusted origin\n* OR client does not respect CORS\n  policies (e.g. curl)",
+      "text": "`X-Requested-With: Khulnasoft`\n\n* Request is from trusted origin\n* OR client does not respect CORS\n  policies (e.g. curl)",
       "baseline": 94,
       "textAlign": "left",
       "verticalAlign": "top"

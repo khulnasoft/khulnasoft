@@ -249,7 +249,7 @@ const SignUpNotice: React.FunctionComponent<SignUpNoticeProps> = ({
     const dotcomCTAs = (
         <>
             <Link
-                to="https://sourcegraph.com/get-started?t=enterprise"
+                to="https://khulnasoft.com/get-started?t=enterprise"
                 onClick={() => {
                     EVENT_LOGGER.log('ClickedOnEnterpriseCTA', { location: 'SignInPage' })
                     telemetryRecorder.recordEvent('auth.enterpriseCTA', 'click')

@@ -51,14 +51,14 @@ func Test_isAuthorized(t *testing.T) {
 			enabled:       true,
 			reqRemoteAddr: "10.0.0.1:1234",
 			userIps:       []string{"100.100.100.0"},
-			wantErr:       autogold.Expect(`You are not allowed to access this Sourcegraph instance: "10.0.0.1"`),
+			wantErr:       autogold.Expect(`You are not allowed to access this Khulnasoft instance: "10.0.0.1"`),
 		},
 		{
 			name:          "unauthorized - ip allow list does not contain client ip",
 			enabled:       true,
 			reqRemoteAddr: "10.0.0.1:1234",
 			userIps:       []string{"100.100.100.0/25"},
-			wantErr:       autogold.Expect(`You are not allowed to access this Sourcegraph instance: "10.0.0.1"`),
+			wantErr:       autogold.Expect(`You are not allowed to access this Khulnasoft instance: "10.0.0.1"`),
 		},
 		{
 			name:          "unauthorized - ip allow list does not contain client ip from x-forwarded-for headers",
@@ -69,7 +69,7 @@ func Test_isAuthorized(t *testing.T) {
 			},
 			userHeaders: []string{"X-Forwarded-For"},
 			userIps:     []string{"100.100.100.0/25"},
-			wantErr:     autogold.Expect(`You are not allowed to access this Sourcegraph instance: "1.2.3.4"`),
+			wantErr:     autogold.Expect(`You are not allowed to access this Khulnasoft instance: "1.2.3.4"`),
 		},
 		{
 			name:          "unauthorized - ip allow list does not contain client ip from x-forwarded-for headers but fallback to remote add",
@@ -80,7 +80,7 @@ func Test_isAuthorized(t *testing.T) {
 			},
 			userHeaders: []string{"X-Forwarded-For"},
 			userIps:     []string{"100.100.100.0/25"},
-			wantErr:     autogold.Expect(`You are not allowed to access this Sourcegraph instance: "10.0.0.1"`),
+			wantErr:     autogold.Expect(`You are not allowed to access this Khulnasoft instance: "10.0.0.1"`),
 		},
 		{
 			name:          "authorized - ip allow list contains client ip from secondaryheaders",
@@ -119,7 +119,7 @@ func Test_isAuthorized(t *testing.T) {
 			reqRemoteAddr: "10.0.0.1:1234",
 			userIps:       []string{"100.100.100.0"},
 			tmpl:          template.Must(template.New("").Parse("my IP is {{.UserIP}}; my custom error message is {{.Error}}")),
-			wantErr:       autogold.Expect(`my IP is 10.0.0.1; my custom error message is You are not allowed to access this Sourcegraph instance: "10.0.0.1"`),
+			wantErr:       autogold.Expect(`my IP is 10.0.0.1; my custom error message is You are not allowed to access this Khulnasoft instance: "10.0.0.1"`),
 		},
 	}
 

@@ -71,7 +71,7 @@ export const REPO_MATCH_RESULTS_WITH_METADATA: RepositoryMatch[] = [
     },
     {
         type: 'repo',
-        repository: 'github.com/sourcegraph/sourcegraph',
+        repository: 'github.com/khulnasoft/khulnasoft',
         description: 'Universtal code search',
         repoStars: 123,
         repoLastFetched: '2017-01-01T00:00:00Z',

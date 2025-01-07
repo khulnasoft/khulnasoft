@@ -14,7 +14,7 @@ describe('<ViewOnKhulnasoftButton />', () => {
                     <ViewOnKhulnasoftButton
                         codeHostType="test-codehost"
                         sourcegraphURL="https://test.com"
-                        userSettingsURL="https://sourcegraph.com/users/john.doe/settings/repositories/manage"
+                        userSettingsURL="https://khulnasoft.com/users/john.doe/settings/repositories/manage"
                         context={{ rawRepoName: 'test', privateRepository: false }}
                         className="test"
                         repoExistsOrError={true}
@@ -30,7 +30,7 @@ describe('<ViewOnKhulnasoftButton />', () => {
                     <ViewOnKhulnasoftButton
                         codeHostType="test-codehost"
                         sourcegraphURL="https://test.com"
-                        userSettingsURL="https://sourcegraph.com/users/john.doe/settings/repositories/manage"
+                        userSettingsURL="https://khulnasoft.com/users/john.doe/settings/repositories/manage"
                         context={{ rawRepoName: 'test', privateRepository: false }}
                         className="test"
                         repoExistsOrError={true}
@@ -46,7 +46,7 @@ describe('<ViewOnKhulnasoftButton />', () => {
                     <ViewOnKhulnasoftButton
                         codeHostType="test-codehost"
                         sourcegraphURL="https://test.com"
-                        userSettingsURL="https://sourcegraph.com/users/john.doe/settings/repositories/manage"
+                        userSettingsURL="https://khulnasoft.com/users/john.doe/settings/repositories/manage"
                         context={{
                             rawRepoName: 'test',
                             revision: 'test',
@@ -62,13 +62,13 @@ describe('<ViewOnKhulnasoftButton />', () => {
     })
 
     describe('repository does not exist on the instance', () => {
-        it('renders "Configure Khulnasoft" button when pointing at sourcegraph.com', () => {
+        it('renders "Configure Khulnasoft" button when pointing at khulnasoft.com', () => {
             expect(
                 render(
                     <ViewOnKhulnasoftButton
                         codeHostType="test-codehost"
-                        sourcegraphURL="https://sourcegraph.com"
-                        userSettingsURL="https://sourcegraph.com/users/john.doe/settings/repositories/manage"
+                        sourcegraphURL="https://khulnasoft.com"
+                        userSettingsURL="https://khulnasoft.com/users/john.doe/settings/repositories/manage"
                         context={{
                             rawRepoName: 'test',
                             revision: 'test',
@@ -83,13 +83,13 @@ describe('<ViewOnKhulnasoftButton />', () => {
             ).toMatchSnapshot()
         })
 
-        it('renders a "Repository not found" button when not pointing at sourcegraph.com', () => {
+        it('renders a "Repository not found" button when not pointing at khulnasoft.com', () => {
             expect(
                 render(
                     <ViewOnKhulnasoftButton
                         codeHostType="test-codehost"
                         sourcegraphURL="https://sourcegraph.test"
-                        userSettingsURL="https://sourcegraph.com/users/john.doe/settings/repositories/manage"
+                        userSettingsURL="https://khulnasoft.com/users/john.doe/settings/repositories/manage"
                         context={{
                             rawRepoName: 'test',
                             revision: 'test',
@@ -115,7 +115,7 @@ describe('<ViewOnKhulnasoftButton />', () => {
                                 <ViewOnKhulnasoftButton
                                     codeHostType="test-codehost"
                                     sourcegraphURL="https://test.com"
-                                    userSettingsURL="https://sourcegraph.com/users/john.doe/settings/repositories/manage"
+                                    userSettingsURL="https://khulnasoft.com/users/john.doe/settings/repositories/manage"
                                     context={{
                                         rawRepoName: 'test',
                                         revision: 'test',
@@ -140,7 +140,7 @@ describe('<ViewOnKhulnasoftButton />', () => {
                         <ViewOnKhulnasoftButton
                             codeHostType="test-codehost"
                             sourcegraphURL="https://test.com"
-                            userSettingsURL="https://sourcegraph.com/users/john.doe/settings/repositories/manage"
+                            userSettingsURL="https://khulnasoft.com/users/john.doe/settings/repositories/manage"
                             context={{
                                 rawRepoName: 'test',
                                 revision: 'test',

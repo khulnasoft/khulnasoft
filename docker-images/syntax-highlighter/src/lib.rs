@@ -26,7 +26,7 @@ pub fn list_features() {
 ///
 /// Keep in sync with that struct.
 #[derive(Deserialize, Default, Debug)]
-pub struct SourcegraphQuery {
+pub struct KhulnasoftQuery {
     // Deprecated field with a default empty string value, kept for backwards
     // compatability with old clients.
     //
@@ -50,7 +50,7 @@ pub struct SourcegraphQuery {
     pub line_length_limit: Option<usize>,
 }
 
-impl SourcegraphQuery {
+impl KhulnasoftQuery {
     fn file_info(&self) -> FileInfo<'_> {
         if self.filepath.is_empty() {
             FileInfo::new_from_extension(&self.extension, &self.code, self.filetype.as_deref())
@@ -111,7 +111,7 @@ pub fn jsonify_err(e: impl Display) -> JsonValue {
     json!({"error": format!("{:#}", e)})
 }
 
-pub fn syntect_highlight(q: SourcegraphQuery) -> Result<JsonValue, JsonValue> {
+pub fn syntect_highlight(q: KhulnasoftQuery) -> Result<JsonValue, JsonValue> {
     SYNTAX_SET.with(|syntax_set| {
         let backend = HighlightingBackend::SyntectHtml {
             syntax_set,
@@ -126,7 +126,7 @@ pub fn syntect_highlight(q: SourcegraphQuery) -> Result<JsonValue, JsonValue> {
 
 // TODO(cleanup_lsif): Remove this when we remove /lsif endpoint
 // Currently left unchanged
-pub fn lsif_highlight(q: SourcegraphQuery) -> Result<JsonValue, JsonValue> {
+pub fn lsif_highlight(q: KhulnasoftQuery) -> Result<JsonValue, JsonValue> {
     let output = HighlightingBackend::TreeSitter {
         include_locals: false,
     }

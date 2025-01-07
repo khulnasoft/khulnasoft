@@ -3,13 +3,13 @@
   "sha": "9f815d128eae9f1066353ca41c297cdc0ef94662",
   "node_id": "C_kwDODS5xedoAKDlmODE1ZDEyOGVhZTlmMTA2NjM1M2NhNDFjMjk3Y2RjMGVmOTQ2NjI",
   "author": {
-   "name": "Sourcegraph VCR Test",
-   "email": "dev@sourcegraph.com",
+   "name": "Khulnasoft VCR Test",
+   "email": "dev@khulnasoft.com",
    "date": "2023-06-01T12:00:00Z"
   },
   "committer": {
-   "name": "Sourcegraph VCR Test",
-   "email": "dev@sourcegraph.com",
+   "name": "Khulnasoft VCR Test",
+   "email": "dev@khulnasoft.com",
    "date": "2023-06-01T12:00:00Z"
   },
   "message": "I'm a new commit from a VCR test!",

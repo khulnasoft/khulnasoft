@@ -21,7 +21,7 @@ You can also use `kubectl port-forward --address 0.0.0.0` if you need to expose 
 
 ###  CI
 
-We also have CI test for this [here](https://sourcegraph.com/github.com/sourcegraph/sourcegraph@main/-/blob/dev/check/no-localhost-guard.sh)
+We also have CI test for this [here](https://khulnasoft.com/github.com/sourcegraph/sourcegraph@main/-/blob/dev/check/no-localhost-guard.sh)
 
 ### References
 

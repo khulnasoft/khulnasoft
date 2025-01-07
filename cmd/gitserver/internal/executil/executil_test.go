@@ -73,7 +73,7 @@ func TestConfigureRemoteGitCommand(t *testing.T) {
 	expectedEnv := []string{
 		"GIT_ASKPASS=true",
 		"GIT_SSH_COMMAND=ssh -o BatchMode=yes -o ConnectTimeout=30",
-		"GIT_HTTP_USER_AGENT=git/Sourcegraph-Bot",
+		"GIT_HTTP_USER_AGENT=git/Khulnasoft-Bot",
 	}
 	remoteURL, err := vcs.ParseURL("https://foo:bar@example.com/foo.git")
 	require.NoError(t, err)
@@ -149,7 +149,7 @@ func TestConfigureRemoteP4FusionCommandWithoutCArgs(t *testing.T) {
 	expectedEnv := []string{
 		"GIT_ASKPASS=true",
 		"GIT_SSH_COMMAND=ssh -o BatchMode=yes -o ConnectTimeout=30",
-		"GIT_HTTP_USER_AGENT=git/Sourcegraph-Bot",
+		"GIT_HTTP_USER_AGENT=git/Khulnasoft-Bot",
 	}
 	input := exec.Command("p4-fusion", "--path", "some_path", "--client", "some_client", "--user", "some_user")
 	expectedArgs := []string{"p4-fusion", "--path", "some_path", "--client", "some_client", "--user", "some_user"}
@@ -216,7 +216,7 @@ func TestConfigureRemoteGitCommand_tls(t *testing.T) {
 	baseEnv := []string{
 		"GIT_ASKPASS=true",
 		"GIT_SSH_COMMAND=ssh -o BatchMode=yes -o ConnectTimeout=30",
-		"GIT_HTTP_USER_AGENT=git/Sourcegraph-Bot",
+		"GIT_HTTP_USER_AGENT=git/Khulnasoft-Bot",
 	}
 
 	cases := []struct {

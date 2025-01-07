@@ -1,5 +1,5 @@
 // Package telemetry implements "Telemetry V2", which supercedes event_logs
-// as the mechanism for reporting telemetry from all Sourcegraph instances to
+// as the mechanism for reporting telemetry from all Khulnasoft instances to
 // Sourcergraph.
 package telemetry
 
@@ -22,7 +22,7 @@ type constString string
 // constant string.
 //
 // 🚨 SECURITY: Use with care, as variable strings can accidentally contain data
-// sensitive to standalone Sourcegraph instances.
+// sensitive to standalone Khulnasoft instances.
 func SafeMetadataKey(key string) constString { return constString(key) }
 
 // EventMetadata is secure, PII-free metadata that can be attached to events.
@@ -102,7 +102,7 @@ func NewEventRecorder(store EventsStore) *EventRecorder {
 	return &EventRecorder{store: store}
 }
 
-// Record records a single telemetry event with the context's Sourcegraph
+// Record records a single telemetry event with the context's Khulnasoft
 // actor. Parameters are optional - everything else is required.
 func (r *EventRecorder) Record(ctx context.Context, feature eventFeature, action eventAction, parameters *EventParameters) error {
 	if ctx == nil {
@@ -126,7 +126,7 @@ type Event struct {
 }
 
 // BatchRecord records a set of telemetry events with the context's
-// Sourcegraph actor.
+// Khulnasoft actor.
 func (r *EventRecorder) BatchRecord(ctx context.Context, events ...Event) error {
 	if len(events) == 0 {
 		return nil

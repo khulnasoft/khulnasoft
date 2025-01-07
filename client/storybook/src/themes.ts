@@ -12,7 +12,7 @@ const common: Pick<
     colorPrimary: openColor.blue[6],
     colorSecondary: openColor.blue[6],
     brandTitle: 'Khulnasoft Wildcard design system',
-    brandUrl: 'https://sourcegraph.com',
+    brandUrl: 'https://khulnasoft.com',
     brandImage: '/img/wildcard-design-system.svg',
     fontBase:
         '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',

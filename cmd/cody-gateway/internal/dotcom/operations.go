@@ -13,12 +13,12 @@ import (
 // CheckDotcomUserAccessTokenDotcomDotcomQuery includes the requested fields of the GraphQL type DotcomQuery.
 // The GraphQL type's documentation follows.
 //
-// Mutations that are only used on Sourcegraph.com.
+// Mutations that are only used on Khulnasoft.com.
 // FOR INTERNAL USE ONLY.
 type CheckDotcomUserAccessTokenDotcomDotcomQuery struct {
 	// A dotcom user for purposes of connecting to the Cody Gateway.
-	// Only Sourcegraph.com site admins or service accounts may perform this query.
-	// Token is a Cody Gateway token, not a Sourcegraph instance access token.
+	// Only Khulnasoft.com site admins or service accounts may perform this query.
+	// Token is a Cody Gateway token, not a Khulnasoft instance access token.
 	// FOR INTERNAL USE ONLY.
 	CodyGatewayDotcomUserByToken *CheckDotcomUserAccessTokenDotcomDotcomQueryCodyGatewayDotcomUserByTokenCodyGatewayDotcomUser `json:"codyGatewayDotcomUserByToken"`
 }
@@ -104,7 +104,7 @@ func (v *CheckDotcomUserAccessTokenDotcomDotcomQueryCodyGatewayDotcomUserByToken
 
 // CheckDotcomUserAccessTokenResponse is returned by CheckDotcomUserAccessToken on success.
 type CheckDotcomUserAccessTokenResponse struct {
-	// Queries that are only used on Sourcegraph.com.
+	// Queries that are only used on Khulnasoft.com.
 	//
 	// FOR INTERNAL USE ONLY.
 	Dotcom CheckDotcomUserAccessTokenDotcomDotcomQuery `json:"dotcom"`
@@ -608,7 +608,7 @@ type SnippetAttributionSnippetAttributionSnippetAttributionConnectionNodesSnippe
 	//
 	// Note: we do not return a type Repository since repositoryName may
 	// represent a repository not on this instance. eg a match from the
-	// sourcegraph.com open source corpus.
+	// khulnasoft.com open source corpus.
 	RepositoryName string `json:"repositoryName"`
 }
 

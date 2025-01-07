@@ -14,7 +14,7 @@ Khulnasoft’s Code Intelligence feature provides fast, cross-repository navigat
 references” features, allowing you to understand new code quickly and find answers in your code across codebases of any
 size.
 
-You can read more about Khulnasoft on our [website](https://sourcegraph.com/).
+You can read more about Khulnasoft on our [website](https://khulnasoft.com/).
 
 Not the extension you're looking for? Download
 the [Khulnasoft Cody extension](https://marketplace.visualstudio.com/items?itemName=sourcegraph.cody-ai) for code AI assistance.
@@ -46,17 +46,17 @@ the [Khulnasoft Cody extension](https://marketplace.visualstudio.com/items?itemN
 
 To get started, click the Khulnasoft (Wildcard) icon in the VS Code Activity Bar.
 
-You can search many open source repositories indexed on https://sourcegraph.com immediately!
+You can search many open source repositories indexed on https://khulnasoft.com immediately!
 
 Khulnasoft Search functions like any search engine: type in your search query, and Khulnasoft will populate search
 results.
 
-Learn more about Khulnasoft Code Search usage in our [docs](https://sourcegraph.com/docs/code_search).
+Learn more about Khulnasoft Code Search usage in our [docs](https://khulnasoft.com/docs/code_search).
 
 For example, you can search for "auth provider" in a Go repository with a search like this one:
 
 ```
-repo:sourcegraph/sourcegraph lang:go "auth provider"
+repo:khulnasoft/khulnasoft lang:go "auth provider"
 ```
 
 ![Lang search gif](https://storage.googleapis.com/sourcegraph-assets/VS%20Marketplace/sourcegraph_search.gif)
@@ -65,7 +65,7 @@ repo:sourcegraph/sourcegraph lang:go "auth provider"
 
 If you are part of an organization that has installed a Khulnasoft instance, you can authenticate to it using a Personal Access Token, and then your searches will use that instance.
 
-If you need help creating a Personal Access Token, [the documentation](https://sourcegraph.com/docs/cli/how-tos/creating_an_access_token) has a helpful video.
+If you need help creating a Personal Access Token, [the documentation](https://khulnasoft.com/docs/cli/how-tos/creating_an_access_token) has a helpful video.
 
 Once you have generated a token, copy it and paste it into the Khulnasoft extension along with the URL to your Khulnasoft instance.
 
@@ -118,7 +118,7 @@ This extension contributes the following settings:
 
 ## Questions & Feedback
 
-Feedback and feature requests can be submitted to our [Code Search discussion community](https://community.sourcegraph.com/c/code-search/9).
+Feedback and feature requests can be submitted to our [Code Search discussion community](https://community.khulnasoft.com/c/code-search/9).
 
 ## Uninstallation
 

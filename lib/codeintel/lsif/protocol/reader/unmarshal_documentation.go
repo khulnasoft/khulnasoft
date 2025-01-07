@@ -2,15 +2,15 @@ package reader
 
 import "github.com/khulnasoft/khulnasoft/lib/codeintel/lsif/protocol"
 
-// This file contains code for the Sourcegraph documentation LSIF extension.
+// This file contains code for the Khulnasoft documentation LSIF extension.
 
 func init() {
 	// Vertex unmarshalers
-	vertexUnmarshalers[string(protocol.VertexSourcegraphDocumentationResult)] = unmarshalDocumentationResult
-	vertexUnmarshalers[string(protocol.VertexSourcegraphDocumentationString)] = unmarshalDocumentationString
+	vertexUnmarshalers[string(protocol.VertexKhulnasoftDocumentationResult)] = unmarshalDocumentationResult
+	vertexUnmarshalers[string(protocol.VertexKhulnasoftDocumentationString)] = unmarshalDocumentationString
 
 	// Edge unmarshalers
-	edgeUnmarshalers[string(protocol.EdgeSourcegraphDocumentationString)] = unmarshalDocumentationStringEdge
+	edgeUnmarshalers[string(protocol.EdgeKhulnasoftDocumentationString)] = unmarshalDocumentationStringEdge
 }
 
 func unmarshalDocumentationResult(line []byte) (any, error) {

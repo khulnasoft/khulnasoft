@@ -27,7 +27,7 @@ func main() {
 
 	app := &cli.App{
 		Name:  "upgrade-test",
-		Usage: "Upgrade test is a tool for testing the migrator services creation of upgrade paths and application of upgrade paths.\nWhen run relevant upgrade paths are tested for each version relevant to a given upgrade type, initializing Sourcegraph databases and frontend services for each version, and attempting to generate and apply an upgrade path to your current branches head.",
+		Usage: "Upgrade test is a tool for testing the migrator services creation of upgrade paths and application of upgrade paths.\nWhen run relevant upgrade paths are tested for each version relevant to a given upgrade type, initializing Khulnasoft databases and frontend services for each version, and attempting to generate and apply an upgrade path to your current branches head.",
 		Commands: []*cli.Command{
 			{
 				Name:    "all-types",

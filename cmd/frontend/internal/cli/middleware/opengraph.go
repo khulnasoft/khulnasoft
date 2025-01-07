@@ -52,7 +52,7 @@ func displayRepoName(repoName string) string {
 }
 
 func canServeOpenGraphMetadata(req *http.Request) bool {
-	return !dotcom.SourcegraphDotComMode() && !actor.FromContext(req.Context()).IsAuthenticated() && isValidOpenGraphRequesterUserAgent(req.UserAgent())
+	return !dotcom.KhulnasoftDotComMode() && !actor.FromContext(req.Context()).IsAuthenticated() && isValidOpenGraphRequesterUserAgent(req.UserAgent())
 }
 
 func getOpenGraphTemplateData(req *http.Request, ffs featureFlagStore) *openGraphTemplateData {
@@ -63,7 +63,7 @@ func getOpenGraphTemplateData(req *http.Request, ffs featureFlagStore) *openGrap
 	globalFeatureFlags, _ := ffs.GetGlobalFeatureFlags(req.Context())
 	if !globalFeatureFlags["enable-link-previews"] {
 		// If link previews are not enabled, return default OpenGraph metadata content to avoid showing the "Sign in" page metadata.
-		return &openGraphTemplateData{Title: "View on Sourcegraph", Description: "Sourcegraph is a web-based code search and navigation tool for dev teams. Search, navigate, and review code. Find answers."}
+		return &openGraphTemplateData{Title: "View on Khulnasoft", Description: "Khulnasoft is a web-based code search and navigation tool for dev teams. Search, navigate, and review code. Find answers."}
 	}
 
 	// The requested route should match the UI portion of the router (repo, blob, search, etc.), so that we don't
@@ -81,7 +81,7 @@ func getOpenGraphTemplateData(req *http.Request, ffs featureFlagStore) *openGrap
 	switch uiRouterMatch.Route.GetName() {
 	case "repo":
 		repoName := displayRepoName(uiRouterMatch.Vars["Repo"])
-		return &openGraphTemplateData{Title: repoName, Description: fmt.Sprintf("Explore %s repository on Sourcegraph", repoName)}
+		return &openGraphTemplateData{Title: repoName, Description: fmt.Sprintf("Explore %s repository on Khulnasoft", repoName)}
 	case "blob":
 		path := strings.TrimPrefix(uiRouterMatch.Vars["Path"], "/")
 		templateData := &openGraphTemplateData{Title: path, Description: displayRepoName(uiRouterMatch.Vars["Repo"])}
@@ -95,7 +95,7 @@ func getOpenGraphTemplateData(req *http.Request, ffs featureFlagStore) *openGrap
 		return templateData
 	case "search":
 		query := req.URL.Query().Get("q")
-		return &openGraphTemplateData{Title: query, Description: "Sourcegraph search query"}
+		return &openGraphTemplateData{Title: query, Description: "Khulnasoft search query"}
 	}
 
 	return nil
@@ -103,7 +103,7 @@ func getOpenGraphTemplateData(req *http.Request, ffs featureFlagStore) *openGrap
 
 // OpenGraphMetadataMiddleware serves a separate template with OpenGraph metadata meant for unauthenticated requests to private instances from
 // social bots (e.g. Slackbot). Instead of redirecting the bots to the sign-in page, they can parse the OpenGraph metadata and
-// produce a nicer link preview for a subset of Sourcegraph app routes.
+// produce a nicer link preview for a subset of Khulnasoft app routes.
 func OpenGraphMetadataMiddleware(ffs featureFlagStore, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 		if templateData := getOpenGraphTemplateData(req, ffs); templateData != nil {

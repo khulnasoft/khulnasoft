@@ -21,7 +21,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-func (r *Reconciler) reconcileOtelCollector(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileOtelCollector(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileOtelCollectorDeployment(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling Deployment")
 	}
@@ -37,7 +37,7 @@ func (r *Reconciler) reconcileOtelCollector(ctx context.Context, sg *config.Sour
 	return nil
 }
 
-func (r *Reconciler) reconcileOtelCollectorDeployment(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileOtelCollectorDeployment(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "otel-collector"
 	cfg := sg.Spec.OtelCollector
 
@@ -121,7 +121,7 @@ func (r *Reconciler) reconcileOtelCollectorDeployment(ctx context.Context, sg *c
 	return reconcileObject(ctx, r, cfg, &dep, &appsv1.Deployment{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileOtelCollectorService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileOtelCollectorService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	svc := service.NewService("otel-collector", sg.Namespace, sg.Spec.OtelCollector)
 	svc.Spec.Ports = []corev1.ServicePort{
 		{Name: "otlp-grpc", TargetPort: intstr.FromInt(4317), Port: 4317},
@@ -135,13 +135,13 @@ func (r *Reconciler) reconcileOtelCollectorService(ctx context.Context, sg *conf
 	return reconcileObject(ctx, r, sg.Spec.OtelCollector, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileOtelCollectorServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileOtelCollectorServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.OtelCollector
 	sa := serviceaccount.NewServiceAccount("otel-collector", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, sg.Spec.OtelCollector, &sa, &corev1.ServiceAccount{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileOtelCollectorConfigMap(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileOtelCollectorConfigMap(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "otel-collector"
 	cfg := sg.Spec.OtelCollector
 

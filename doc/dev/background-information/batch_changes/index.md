@@ -10,22 +10,22 @@ Welcome, new batch change developer! This section will give you a rough overview
 
 Before diving into the technical part of batch changes, make sure to read up on what batch changes are, what they're not and what we want them to be:
 
-1. Look at the [batch changes product page](https://sourcegraph.com).
+1. Look at the [batch changes product page](https://khulnasoft.com).
 1. Watch the 2min [demo video](https://www.youtube.com/watch?v=GKyHYqH6ggY)
 
 Next: **create your first batch change!**
 
 ### Creating a batch change locally
 
-> NOTE: **Make sure your local development environment is set up** by going through the "[Getting started](https://docs.sourcegraph.com/dev/getting-started)" guide.
+> NOTE: **Make sure your local development environment is set up** by going through the "[Getting started](https://docs.khulnasoft.com/dev/getting-started)" guide.
 
 1. Since Batch Changes is an enterprise-only feature, make sure to start your local environment with `sg start` (which defaults to `sg start enterprise`).
-1. Go through the [Quickstart for Batch Changes](https://docs.sourcegraph.com/batch_changes/quickstart) to create a batch change in your local environment. See "[Testing repositories](#testing-repositories)" for a list of repositories in which you can safely publish changesets.
+1. Go through the [Quickstart for Batch Changes](https://docs.khulnasoft.com/batch_changes/quickstart) to create a batch change in your local environment. See "[Testing repositories](#testing-repositories)" for a list of repositories in which you can safely publish changesets.
 1. Now combine what you just did with some background information by reading the following:
 
-- [Batch Changes architecture overview](https://docs.sourcegraph.com/dev/background-information/architecture#batch-changes)
-- [How src executes a batch spec](https://docs.sourcegraph.com/batch_changes/explanations/how_src_executes_a_batch_spec)
-- [Batch Changes design](https://docs.sourcegraph.com/batch_changes/explanations/batch_changes_design)
+- [Batch Changes architecture overview](https://docs.khulnasoft.com/dev/background-information/architecture#batch-changes)
+- [How src executes a batch spec](https://docs.khulnasoft.com/batch_changes/explanations/how_src_executes_a_batch_spec)
+- [Batch Changes design](https://docs.khulnasoft.com/batch_changes/explanations/batch_changes_design)
 
 ### Code walkthrough
 
@@ -39,9 +39,9 @@ It starts in [`src-cli`](https://github.com/sourcegraph/src-cli):
 
 1. `src batch preview` starts [the "preview" command in `src-cli`](https://github.com/sourcegraph/src-cli/blob/6cbaba6d47761b5f5041ed285aea686bf5b266c3/cmd/src/batch_preview.go)
 1. That executes your batch spec, which means it [parses it, validates it, resolves the namespace, prepares the docker images, and checks which workspaces are required](https://github.com/sourcegraph/src-cli/blob/6cbaba6d47761b5f5041ed285aea686bf5b266c3/cmd/src/batch_common.go#L187:6)
-1. Then, for each repository (or [workspace in each repository](https://docs.sourcegraph.com/batch_changes/how-tos/creating_changesets_per_project_in_monorepos)), it [runs the `steps` in the batch spec](https://github.com/sourcegraph/src-cli/blob/6cbaba6d47761b5f5041ed285aea686bf5b266c3/internal/batches/run_steps.go#L54) by downloading a repository archive, creating a workspace in which to execute the `steps`, and then starting the Docker containers.
-1. If changes were produced in a repository, these changes are turned into a `ChangesetSpec` (a specification of what a changeset should look like on the code host—title, body, commit, etc.) and [uploaded to the Sourcegraph instance](https://github.com/sourcegraph/src-cli/blob/6cbaba6d47761b5f5041ed285aea686bf5b266c3/cmd/src/batch_common.go#L297-L324)
-1. `src batch preview`'s last step is then to [create a `BatchSpec` on the Sourcegraph instance](https://github.com/sourcegraph/src-cli/blob/6cbaba6d47761b5f5041ed285aea686bf5b266c3/cmd/src/batch_common.go#L331-L336), which is a collection of the `ChangesetSpec`s that you can then preview or apply
+1. Then, for each repository (or [workspace in each repository](https://docs.khulnasoft.com/batch_changes/how-tos/creating_changesets_per_project_in_monorepos)), it [runs the `steps` in the batch spec](https://github.com/sourcegraph/src-cli/blob/6cbaba6d47761b5f5041ed285aea686bf5b266c3/internal/batches/run_steps.go#L54) by downloading a repository archive, creating a workspace in which to execute the `steps`, and then starting the Docker containers.
+1. If changes were produced in a repository, these changes are turned into a `ChangesetSpec` (a specification of what a changeset should look like on the code host—title, body, commit, etc.) and [uploaded to the Khulnasoft instance](https://github.com/sourcegraph/src-cli/blob/6cbaba6d47761b5f5041ed285aea686bf5b266c3/cmd/src/batch_common.go#L297-L324)
+1. `src batch preview`'s last step is then to [create a `BatchSpec` on the Khulnasoft instance](https://github.com/sourcegraph/src-cli/blob/6cbaba6d47761b5f5041ed285aea686bf5b266c3/cmd/src/batch_common.go#L331-L336), which is a collection of the `ChangesetSpec`s that you can then preview or apply
 
 When you then click the "Preview the batch change" link that `src-cli` printed, you'll land on the preview page in the web frontend:
 
@@ -63,7 +63,7 @@ After that you can look at your new batch change in the UI while the rest happen
 1. Once a `changeset` has been rewired to a new `changeset_spec` and reset, this worker, called the [`Reconciler`](https://github.com/khulnasoft/khulnasoft/blob/e7f26c0d7bc965892669a5fc9835ec65211943aa/enterprise/internal/batches/reconciler/reconciler.go#L24:6), fetches the changeset from the database and "reconciles" its current state (not published yet) with its desired state ("published on code host X, with this diff, that title and this body")
 1. To do that, the `Reconciler` looks at the changeset's current and previous `ChangesetSpec` [to determine a plan](https://github.com/khulnasoft/khulnasoft/blob/e7f26c0d7bc965892669a5fc9835ec65211943aa/enterprise/internal/batches/reconciler/reconciler.go#L65-L68) for what it should do ("publish", "push a commit", "update title", etc.)
 1. Once it has the plan, it hands over to the [`Executor`](https://github.com/khulnasoft/khulnasoft/blob/e7f26c0d7bc965892669a5fc9835ec65211943aa/enterprise/internal/batches/reconciler/executor.go#L28:6) which executes the plan.
-1. To push a commit to the code host, the `Executor` [sends a request](https://github.com/khulnasoft/khulnasoft/blob/e7f26c0d7bc965892669a5fc9835ec65211943aa/enterprise/internal/batches/reconciler/executor.go#L462:20) to the [`gitserver` service](https://docs.sourcegraph.com/dev/background-information/architecture#code-syncing)
+1. To push a commit to the code host, the `Executor` [sends a request](https://github.com/khulnasoft/khulnasoft/blob/e7f26c0d7bc965892669a5fc9835ec65211943aa/enterprise/internal/batches/reconciler/executor.go#L462:20) to the [`gitserver` service](https://docs.khulnasoft.com/dev/background-information/architecture#code-syncing)
 1. To create or update a pull request or merge request on the code host it [builds a `ChangesetSource`](https://github.com/khulnasoft/khulnasoft/blob/e7f26c0d7bc965892669a5fc9835ec65211943aa/enterprise/internal/batches/reconciler/executor.go#L149) which is a wrapper around the GitHub, Bitbucket Server, Bitbucket Data Center and GitLab HTTP clients.
 
 While that is going on in the background the [`BatchChangeDetailsPage` component is polling the GraphQL](https://github.com/khulnasoft/khulnasoft/blob/e7f26c0d7bc965892669a5fc9835ec65211943aa/client/web/src/enterprise/batches/detail/BatchChangeDetailsPage.tsx#L87-L90) to get the current state of the Batch Change and its changesets.
@@ -107,7 +107,7 @@ The following is a list of Go packages in the [`sourcegraph/sourcegraph`](https:
     Parsing text-field input for changeset searches and turning them into database-queryable structures.
 - `enterprise/internal/batches/search/syntax`:
 
-    The old Sourcegraph-search-query parser we inherited from the search team a week or two back (the plan is _not_ to keep it, but switch to the new one when we have time)
+    The old Khulnasoft-search-query parser we inherited from the search team a week or two back (the plan is _not_ to keep it, but switch to the new one when we have time)
 - `cmd/frontend/internal/batches/resolvers`:
 
     The GraphQL resolvers that are injected into the `enterprise/frontend` in `cmd/frontend/internal/batches/init.go`. They mostly concern themselves with input/argument parsing/validation, (bulk-)reading (and paginating) from the database via the `batches/store`, but delegate most business logic to `batches/service`.
@@ -134,12 +134,12 @@ The following is a list of Go packages in the [`sourcegraph/sourcegraph`](https:
     This is the batch changes `Store` that takes `enterprise/internal/batches/types` types and writes/reads them to/from the database. This contains everything related to SQL and database persistence, even some complex business logic queries.
 - `enterprise/internal/batches/sources`:
 
-    This package contains the abstraction layer of code host APIs that live in [`internal/extsvc/*`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/internal/extsvc). It provides a generalized interface [`ChangesetSource`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/enterprise/internal/batches/sources/common.go#L40:6) and implementations for each of our supported code hosts.
+    This package contains the abstraction layer of code host APIs that live in [`internal/extsvc/*`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/tree/internal/extsvc). It provides a generalized interface [`ChangesetSource`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/enterprise/internal/batches/sources/common.go#L40:6) and implementations for each of our supported code hosts.
 
 ## Diving into the code as a backend developer
 
-1. Read through [`./cmd/frontend/graphqlbackend/batches.go`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/frontend/graphqlbackend/batches.go) to get an overview of the batch changes GraphQL API.
-1. Read through [`./enterprise/internal/batches/types/*.go`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/tree/enterprise/internal/batches/types) to see all batch changes related type definitions.
+1. Read through [`./cmd/frontend/graphqlbackend/batches.go`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/frontend/graphqlbackend/batches.go) to get an overview of the batch changes GraphQL API.
+1. Read through [`./enterprise/internal/batches/types/*.go`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/tree/enterprise/internal/batches/types) to see all batch changes related type definitions.
 1. Compare that with the GraphQL definitions in `./cmd/frontend/graphqlbackend/batches.graphql`.
 1. Start reading through `./enterprise/internal/batches/resolvers/resolver.go` to see how the main mutations are implemented (look at `CreateBatchChange` and `ApplyBatchChange` to see how the two main operations are implemented).
 1. Then start from the other end, `enterprise/cmd/repo-updater/main.go`. `enterpriseInit()` creates two sets of batch change goroutines:
@@ -183,7 +183,7 @@ Take a look at the following links to see some examples of batch changes and the
 
 - [sourcegraph/batch-change-examples](https://github.com/sourcegraph/batch-change-examples)
 - [k8s.sgdev.org/batch-changes](https://k8s.sgdev.org/batch-changes)
-- [Batch Changes tutorials](https://docs.sourcegraph.com/batch_changes/tutorials)
+- [Batch Changes tutorials](https://docs.khulnasoft.com/batch_changes/tutorials)
 
 ## Server-side execution
 

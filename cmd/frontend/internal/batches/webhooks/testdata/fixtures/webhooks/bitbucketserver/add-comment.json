@@ -6,7 +6,7 @@
           "createdDate": "2020-04-29T2:13:01+0000",
           "user": {
             "name": "milton",
-            "emailAddress": "dev@sourcegraph.com",
+            "emailAddress": "dev@khulnasoft.com",
             "id": 1,
             "displayName": "milton woof",
             "active": true,
@@ -121,7 +121,7 @@
             "author": {
               "user": {
                 "name": "milton",
-                "emailAddress": "dev@sourcegraph.com",
+                "emailAddress": "dev@khulnasoft.com",
                 "id": 1,
                 "displayName": "milton woof",
                 "active": true,
@@ -155,7 +155,7 @@
             "createdDate": 1588169581133,
             "user": {
               "name": "milton",
-              "emailAddress": "dev@sourcegraph.com",
+              "emailAddress": "dev@khulnasoft.com",
               "id": 1,
               "displayName": "milton woof",
               "active": true,
@@ -181,7 +181,7 @@
               "text": "A comment",
               "author": {
                 "name": "milton",
-                "emailAddress": "dev@sourcegraph.com",
+                "emailAddress": "dev@khulnasoft.com",
                 "id": 1,
                 "displayName": "milton woof",
                 "active": true,
@@ -222,7 +222,7 @@
           "createdDate": 1588169581133,
           "user": {
             "name": "milton",
-            "emailAddress": "dev@sourcegraph.com",
+            "emailAddress": "dev@khulnasoft.com",
             "id": 1,
             "displayName": "milton woof",
             "active": true,
@@ -237,7 +237,7 @@
             "text": "A comment",
             "author": {
               "name": "milton",
-              "emailAddress": "dev@sourcegraph.com",
+              "emailAddress": "dev@khulnasoft.com",
               "id": 1,
               "displayName": "milton woof",
               "active": true,

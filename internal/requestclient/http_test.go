@@ -46,17 +46,17 @@ func TestHTTP(t *testing.T) {
 		{
 			name: "client with user-agent sets forwarded-for-user-agent",
 			requestClient: &Client{
-				UserAgent: "Sourcegraph-Bot",
+				UserAgent: "Khulnasoft-Bot",
 			},
-			wantClient: autogold.Expect(&Client{IP: "192.0.2.1", ForwardedForUserAgent: "Sourcegraph-Bot"}),
+			wantClient: autogold.Expect(&Client{IP: "192.0.2.1", ForwardedForUserAgent: "Khulnasoft-Bot"}),
 		},
 		{
 			name: "client with forwarded-for-user-agent drops the current user-agent",
 			requestClient: &Client{
-				UserAgent:             "Not-Sourcegraph-Bot",
-				ForwardedForUserAgent: "Sourcegraph-Bot",
+				UserAgent:             "Not-Khulnasoft-Bot",
+				ForwardedForUserAgent: "Khulnasoft-Bot",
 			},
-			wantClient: autogold.Expect(&Client{IP: "192.0.2.1", ForwardedForUserAgent: "Sourcegraph-Bot"}),
+			wantClient: autogold.Expect(&Client{IP: "192.0.2.1", ForwardedForUserAgent: "Khulnasoft-Bot"}),
 		},
 	}
 	for _, test := range tests {

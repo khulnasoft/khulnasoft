@@ -64,7 +64,7 @@ func ValidateRemoteAddr(raddr string) bool {
 }
 
 // maxPasswordRunes is the maximum number of UTF-8 runes that a password can contain.
-// This safety limit is to protect us from a DDOS attack caused by hashing very large passwords on Sourcegraph.com.
+// This safety limit is to protect us from a DDOS attack caused by hashing very large passwords on Khulnasoft.com.
 const maxPasswordRunes = 256
 
 // ValidatePassword: Validates that a password meets the required criteria

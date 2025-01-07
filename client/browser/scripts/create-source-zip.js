@@ -57,12 +57,12 @@ shelljs.rm('-f', 'sourcegraph.zip')
 shelljs.rm('-rf', rootDirectoryNameForZip)
 shelljs.rm('-rf', `sourcegraph-${commitId}/`)
 
-signale.await(`Downloading sourcegraph/sourcegraph at revision ${commitId}`)
+signale.await(`Downloading khulnasoft/khulnasoft at revision ${commitId}`)
 shelljs.exec(`curl -Ls https://github.com/khulnasoft/khulnasoft/archive/${commitId}.zip -o sourcegraph-downloaded.zip`)
 shelljs.exec('unzip -q sourcegraph-downloaded.zip')
 shelljs.rm('-f', 'sourcegraph-downloaded.zip')
 shelljs.mv(`sourcegraph-${commitId}`, rootDirectoryNameForZip)
-signale.success('Downloaded and unzipped sourcegraph/sourcegraph repository')
+signale.success('Downloaded and unzipped khulnasoft/khulnasoft repository')
 
 if (includeCodeIntelExtensions) {
   shelljs.pushd(rootDirectoryNameForZip)

@@ -55,10 +55,10 @@ export const AfterInstallPageContent: React.FC<AfterInstallPageContentProps> = p
     return (
         <div className="after-install-page-content" data-testid="after-install-page-content">
             <div className="d-flex w-100 p-3 justify-content-between align-items-center">
-                <Link to="https://sourcegraph.com/search" target="_blank" rel="noopener">
+                <Link to="https://khulnasoft.com/search" target="_blank" rel="noopener">
                     <KhulnasoftLogo className={styles.sourcegraphLogo} />
                 </Link>
-                <Link to="https://sourcegraph.com/docs/integration/browser_extension" target="_blank" rel="noopener">
+                <Link to="https://khulnasoft.com/docs/integration/browser_extension" target="_blank" rel="noopener">
                     Browser extension docs <Icon aria-hidden={true} svgPath={mdiOpenInNew} />
                 </Link>
             </div>
@@ -183,7 +183,7 @@ export const AfterInstallPageContent: React.FC<AfterInstallPageContentProps> = p
                                     <li>
                                         <strong>Install Khulnasoft</strong> (
                                         <Link
-                                            to="https://sourcegraph.com/docs/admin/install"
+                                            to="https://khulnasoft.com/docs/admin/install"
                                             target="_blank"
                                             rel="noopener"
                                         >
@@ -223,7 +223,7 @@ export const AfterInstallPageContent: React.FC<AfterInstallPageContentProps> = p
                         <Text className="m-0 ml-3">
                             Read the{' '}
                             <Link
-                                to="https://sourcegraph.com/docs/integration/browser_extension"
+                                to="https://khulnasoft.com/docs/integration/browser_extension"
                                 rel="noopener"
                                 target="_blank"
                             >

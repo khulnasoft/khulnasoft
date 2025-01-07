@@ -55,7 +55,7 @@ var emailQueries = sqlf.Sprintf(`all_primary_emails AS (
 primary_emails AS (
 	SELECT user_id, primary_email FROM all_primary_emails GROUP BY 1, 2)`)
 
-// errSubscriptionNotFound occurs when a database operation expects a specific Sourcegraph
+// errSubscriptionNotFound occurs when a database operation expects a specific Khulnasoft
 // license to exist but it does not exist.
 var errSubscriptionNotFound = errors.New("product subscription not found")
 

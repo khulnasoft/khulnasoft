@@ -18,7 +18,7 @@ var Analyzer = nolint.Wrap(analyzer.NewAnalyzer())
 
 // patterns the patterns forbigigo should ban if they match.
 // JSON based off the pattern struct:
-// https://sourcegraph.com/github.com/ashanbrown/forbidigo@57bf5a72a4f5c3c28dce5a8aebb37a9be36bece7/-/blob/forbidigo/patterns.go?L13-29
+// https://khulnasoft.com/github.com/ashanbrown/forbidigo@57bf5a72a4f5c3c28dce5a8aebb37a9be36bece7/-/blob/forbidigo/patterns.go?L13-29
 var patterns = []struct {
 	Pattern     string
 	ExcludeFile func(path string) bool

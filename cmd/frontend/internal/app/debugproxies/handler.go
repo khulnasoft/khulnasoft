@@ -149,8 +149,8 @@ func AdminOnly(db database.DB, next http.Handler) http.Handler {
 		if err == nil {
 			hide, _ := ff.EvaluateGlobal()
 			a := actor.FromContext(r.Context())
-			if hide && !a.SourcegraphOperator {
-				http.Error(w, "Only Sourcegraph operators are allowed", http.StatusForbidden)
+			if hide && !a.KhulnasoftOperator {
+				http.Error(w, "Only Khulnasoft operators are allowed", http.StatusForbidden)
 				return
 			}
 		} else if err != nil && err != sql.ErrNoRows {

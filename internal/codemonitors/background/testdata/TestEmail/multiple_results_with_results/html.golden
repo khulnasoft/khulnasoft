@@ -3,12 +3,12 @@
   <body>
 
     <h1 style="font-size: 18px; line-height: 24px">
-      Your Sourcegraph code monitor, <b>My test monitor</b>, detected <b>6</b> new results.
+      Your Khulnasoft code monitor, <b>My test monitor</b>, detected <b>6</b> new results.
     </h1>
 
     <ul style="list-style-type: none; padding-left: 0;">
       <li>
-        Diff match: <a href="https://www.sourcegraph.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email" >github.com/test/test@7815187</a>
+        Diff match: <a href="https://www.khulnasoft.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email" >github.com/test/test@7815187</a>
         <pre style="background-color: #e6ebf2; padding: 8px; border-radius: 4px;">file1.go file2.go
 @@ -97,5 &#43;97,5 @@ func Test() {
  leading context
@@ -18,7 +18,7 @@
 </pre>
       </li>
       <li>
-        Message match: <a href="https://www.sourcegraph.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email" >github.com/test/test@7815187</a>
+        Message match: <a href="https://www.khulnasoft.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email" >github.com/test/test@7815187</a>
         <pre style="background-color: #e6ebf2; padding: 8px; border-radius: 4px;">summary line
 
 very
@@ -33,7 +33,7 @@ ten
 </pre>
       </li>
       <li>
-        Diff match: <a href="https://www.sourcegraph.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email" >github.com/test/test@7815187</a>
+        Diff match: <a href="https://www.khulnasoft.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email" >github.com/test/test@7815187</a>
         <pre style="background-color: #e6ebf2; padding: 8px; border-radius: 4px;">file1.go file2.go
 @@ -97,5 &#43;97,5 @@ func Test() {
  leading context
@@ -45,7 +45,7 @@ ten
     </ul>
 
     <p style="font-size: 16px; line-height: 24px">
-      <a href="https://sourcegraph.com/search" >
+      <a href="https://khulnasoft.com/search" >
         ...and 1 more result.
       </a>
     </p>
@@ -54,15 +54,15 @@ ten
       You are receiving this notification because you are a recipient on a code monitor.
     </p>
     <p style="font-size: 14px; line-height: 24px">
-      <a href="https://sourcegraph.com/your/code/monitor" >
+      <a href="https://khulnasoft.com/your/code/monitor" >
         View code monitor
       </a>
     </p>
     <p style="font-size: 12px; line-height: 24px; margin-bottom: 24px">
       Search results may contain confidential data. To protect your privacy and
-      security, Sourcegraph limits what information is contained in this
+      security, Khulnasoft limits what information is contained in this
       notification.
     </p>
-    <img src="https://sourcegraph.com/sourcegraph-logo-small.png" width="106" height="20" alt="Sourcegraph logo" />
+    <img src="https://khulnasoft.com/sourcegraph-logo-small.png" width="106" height="20" alt="Khulnasoft logo" />
   </body>
 </html>

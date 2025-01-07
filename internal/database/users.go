@@ -60,7 +60,7 @@ type UserStore interface {
 	Count(context.Context, *UsersListOptions) (int, error)
 	CountForSCIM(context.Context, *UsersListOptions) (int, error)
 	Create(context.Context, NewUser) (*types.User, error)
-	// CreateWithExternalAccount is used to create a new Sourcegraph user account from an external account
+	// CreateWithExternalAccount is used to create a new Khulnasoft user account from an external account
 	// (e.g., "signup from SAML").
 	//
 	// It creates a new user and associates it with the specified external account. If the user to
@@ -436,7 +436,7 @@ func (u *userStore) CreateInTransaction(ctx context.Context, info NewUser, spec 
 	{
 		// Assign roles to the created user. We do this in here to ensure role assign occurs in the same transaction as user creation occurs.
 		// This ensures we don't have "zombie" users (users with no role assigned to them).
-		// All users on a Sourcegraph instance must have the `USER` role, however depending on the value of user.SiteAdmin,
+		// All users on a Khulnasoft instance must have the `USER` role, however depending on the value of user.SiteAdmin,
 		// we assign them the `SITE_ADMINISTRATOR` role.
 		roles := []types.SystemRole{types.UserSystemRole}
 		if user.SiteAdmin {
@@ -1096,14 +1096,14 @@ type UsersListOptions struct {
 	// `timestamp` greater-than-or-equal to the given timestamp.
 	InactiveSince time.Time
 
-	// Filter out users with a known Sourcegraph admin username
+	// Filter out users with a known Khulnasoft admin username
 	//
-	// Deprecated: Use ExcludeSourcegraphOperators instead. If you have to use this,
+	// Deprecated: Use ExcludeKhulnasoftOperators instead. If you have to use this,
 	// then set both fields with the same value at the same time.
-	ExcludeSourcegraphAdmins bool
-	// ExcludeSourcegraphOperators indicates whether to exclude Sourcegraph Operator
+	ExcludeKhulnasoftAdmins bool
+	// ExcludeKhulnasoftOperators indicates whether to exclude Khulnasoft Operator
 	// user accounts.
-	ExcludeSourcegraphOperators bool
+	ExcludeKhulnasoftOperators bool
 	// includeDeleted indicates whether to include soft deleted user accounts.
 	//
 	// The intention is that external consumers should not need to interact with soft deleted users but
@@ -1272,9 +1272,9 @@ func (*userStore) listSQL(opt UsersListOptions) (conds []*sqlf.Query) {
 
 	// NOTE: This is a hack which should be replaced when we have proper user types.
 	// However, for billing purposes and more accurate ping data, we need a way to
-	// exclude Sourcegraph (employee) admins when counting users. The following
+	// exclude Khulnasoft (employee) admins when counting users. The following
 	// username patterns, in conjunction with the presence of a corresponding
-	// "@sourcegraph.com" email address, are used to filter out Sourcegraph admins:
+	// "@khulnasoft.com" email address, are used to filter out Khulnasoft admins:
 	//
 	// - managed-*
 	// - sourcegraph-management-*
@@ -1285,11 +1285,11 @@ func (*userStore) listSQL(opt UsersListOptions) (conds []*sqlf.Query) {
 	// acknowledge this risk as we would prefer to undercount rather than overcount.
 	//
 	// TODO(jchen): This hack will be removed as part of https://github.com/sourcegraph/customer/issues/1531
-	if opt.ExcludeSourcegraphAdmins {
+	if opt.ExcludeKhulnasoftAdmins {
 		conds = append(conds, sqlf.Sprintf(`
 -- The user does not...
 NOT(
-	-- ...have a known Sourcegraph admin username pattern
+	-- ...have a known Khulnasoft admin username pattern
 	(u.username ILIKE 'managed-%%'
 		OR u.username ILIKE 'sourcegraph-management-%%'
 		OR u.username = 'sourcegraph-admin')
@@ -1299,12 +1299,12 @@ NOT(
 			1 FROM user_emails
 		WHERE
 			user_emails.user_id = u.id
-			AND user_emails.email ILIKE '%%@sourcegraph.com')
+			AND user_emails.email ILIKE '%%@khulnasoft.com')
 )
 `))
 	}
 
-	if opt.ExcludeSourcegraphOperators {
+	if opt.ExcludeKhulnasoftOperators {
 		conds = append(conds, sqlf.Sprintf(`
 NOT EXISTS (
 	SELECT FROM user_external_accounts

@@ -405,19 +405,19 @@ func testBasicConfiguration(t *testing.T, infra *apiProviderTestInfra) {
 // completionsRequestTestData bundles the test data we wish to validate when exercising one of our
 // completion APIs. Tests are of the form:
 //
-// 1. Configure the local Sourcegraph instance to reflect the provided `SiteConfig`.
+// 1. Configure the local Khulnasoft instance to reflect the provided `SiteConfig`.
 // 2. Invoke the UserCompletionRequest, with the `GetModelFn` returning the supplied string.
 // 3. Verify that the outbound `WantRequestToLLMProvider` matches what is provided.
 // 4. Simulate `ResponseFromLLMProvider` being returned.
 // 5. Verify the completions handler returned the `WantCompletionsResponse` payload.
 type completionsRequestTestData struct {
-	// SiteConfig of the Sourcegraph instance.
+	// SiteConfig of the Khulnasoft instance.
 	SiteConfig schema.SiteConfiguration
 
 	// HTTP request the user sent to invoke the completions endpoint.
 	UserCompletionRequest types.CodyCompletionRequestParameters
 
-	// RequestToLLMProvider is the HTTP request that Sourcegraph will send to the
+	// RequestToLLMProvider is the HTTP request that Khulnasoft will send to the
 	// 3rd party LLM Provider. e.g. AWS Bedrock, Fireworks, or even Cody Gateway.
 	//
 	// BUG: We describe this as a map[string]any instead of a generic type because in
@@ -429,7 +429,7 @@ type completionsRequestTestData struct {
 	// ResponseFromLLMProvider is the HTTP response sent from the 3rd party LLM Provider.
 	ResponseFromLLMProvider map[string]any
 
-	// WantCompletionsResponse is the result we expect the Sourcegraph Completions API to
+	// WantCompletionsResponse is the result we expect the Khulnasoft Completions API to
 	// return.
 	WantCompletionResponse types.CompletionResponse
 }

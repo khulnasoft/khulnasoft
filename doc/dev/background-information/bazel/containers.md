@@ -5,7 +5,7 @@ You'll find a lot of mentions of [OCI](https://opencontainers.org/) throughout t
 
 We use [`rules_oci`](https://github.com/bazel-contrib/rules_oci) and [Wolfi](https://github.com/wolfi-dev) to produce the container images.
 
-See [Bazel at Sourcegraph](./index) for general bazel info/setup.
+See [Bazel at Khulnasoft](./index) for general bazel info/setup.
 
 ## Why using Bazel to build containers
 
@@ -23,7 +23,7 @@ This results in more reliable and faster builds, fast enough that we can afford 
 
 Containers are composed of multiple layers (conceptually, not talking about container layers):
 
-- Sourcegraph Base Image
+- Khulnasoft Base Image
   - Distroless base, powered by Wolfi
   - Packages common to all services.
 - Per Service Base Image
@@ -98,7 +98,7 @@ oci_image(
 
 💡 Convention: we define environment variables on the the `oci_image` rule. We could hypothetically define some of them in the base image, on the Wolfi layer, but we much prefer to have everything easily readable in the Buildfile of a given service.
 
-The definition for `@wolfi_base` (and other images) is located in [`dev/oci_deps.bzl`](https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/dev/oci_deps.bzl).
+The definition for `@wolfi_base` (and other images) is located in [`dev/oci_deps.bzl`](https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/dev/oci_deps.bzl).
 
 Once we have an image being defined, we need an additional rule to turn it into a tarball that can be fed to `docker load` and later on be published. It defines the default tags for that image. Example:
 
@@ -144,7 +144,7 @@ commandTests:
     setup: [["wget", "https://github.com/sourcegraph/sg/releases/download/2024-05-23-19-04-d485d76e/sg_linux_amd64", "-O", "sg"], ["chmod", "+x", "sg"]]
     command: "./sg"
     args: ["--help"]
-    expectedOutput: ["The Sourcegraph developer tool"]
+    expectedOutput: ["The Khulnasoft developer tool"]
 ```
 
 We can now build this image _locally_ and run those tests as well.

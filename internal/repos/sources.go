@@ -89,7 +89,7 @@ func NewSource(ctx context.Context, logger log.Logger, db database.DB, svc *type
 	}
 }
 
-// A Source yields repositories to be stored and analysed by Sourcegraph.
+// A Source yields repositories to be stored and analysed by Khulnasoft.
 // Successive calls to its ListRepos method may yield different results.
 type Source interface {
 	// ListRepos sends all the repos a source yields over the passed in channel
@@ -104,7 +104,7 @@ type Source interface {
 }
 
 // RepoGetter captures the optional GetRepo method of a Source. It's used on
-// sourcegraph.com to lazily sync individual repos and to lazily sync dependency
+// khulnasoft.com to lazily sync individual repos and to lazily sync dependency
 // repos on any customer instance.
 type RepoGetter interface {
 	GetRepo(context.Context, string) (*types.Repo, error)

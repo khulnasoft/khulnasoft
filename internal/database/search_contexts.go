@@ -84,7 +84,7 @@ const searchContextQueryFmtStr = `
 	SELECT -- The global context is not in the database, it needs to be added here for the sake of pagination.
 		0 as id, -- All other contexts have a non-zero ID.
 		'global' as context_name,
-		'All repositories on Sourcegraph' as description,
+		'All repositories on Khulnasoft' as description,
 		true as public,
 		true as autodefined,
 		NULL as namespace_user_id,

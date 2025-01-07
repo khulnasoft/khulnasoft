@@ -1,7 +1,7 @@
 // 🔔 IMPORTANT: Be VERY careful not to introduce breaking changes to this
 // spec - raw protocol buffer wire format messages are persisted to database
-// as a cache, and Sourcegraph instances rely on this format to emit telemetry
-// to the managed Sourcegraph Telemetry Gateway service.
+// as a cache, and Khulnasoft instances rely on this format to emit telemetry
+// to the managed Khulnasoft Telemetry Gateway service.
 //
 // Tests in ./internal/telemetrygateway/backcompat_test.go can be used to
 // assert compatibility with snapshots created by older versions of this spec.
@@ -23,7 +23,7 @@ service TelemeteryGatewayService {
   // This is the preferred mechanism for exporting large volumes of events in
   // bulk.
   //
-  // 🚨 SECURITY: Callers exporting for single-tenant Sourcegraph should check
+  // 🚨 SECURITY: Callers exporting for single-tenant Khulnasoft should check
   // the attributes of the Event type to ensure that only the appropriate fields
   // are exported, as some fields should only be exported on an allowlist basis.
   rpc RecordEvents(stream RecordEventsRequest) returns (stream RecordEventsResponse) {}
@@ -36,7 +36,7 @@ service TelemeteryGatewayService {
   // use cases should implement a batching mechanism and use the RecordEvents
   // RPC instead.
   //
-  // 🚨 SECURITY: Callers exporting for single-tenant Sourcegraph should check
+  // 🚨 SECURITY: Callers exporting for single-tenant Khulnasoft should check
   // the attributes of the Event type to ensure that only the appropriate fields
   // are exported, as some fields should only be exported on an allowlist basis.
   rpc RecordEvent(RecordEventRequest) returns (RecordEventResponse) {}
@@ -44,16 +44,16 @@ service TelemeteryGatewayService {
 
 message Identifier {
   message LicensedInstanceIdentifier {
-    // License key configured in the Sourcegraph instance emitting the event.
+    // License key configured in the Khulnasoft instance emitting the event.
     string license_key = 1;
-    // Self-reported Sourcegraph instance identifier.
+    // Self-reported Khulnasoft instance identifier.
     string instance_id = 2;
     // Instance external URL defined in the instance site configuration.
     string external_url = 3;
   }
 
   message UnlicensedInstanceIdentifier {
-    // Self-reported Sourcegraph instance identifier.
+    // Self-reported Khulnasoft instance identifier.
     string instance_id = 1;
     // Instance external URL defined in the instance site configuration.
     string external_url = 2;
@@ -67,12 +67,12 @@ message Identifier {
   }
 
   oneof identifier {
-    // A licensed Sourcegraph instance.
+    // A licensed Khulnasoft instance.
     LicensedInstanceIdentifier licensed_instance = 1;
-    // An unlicensed Sourcegraph instance.
+    // An unlicensed Khulnasoft instance.
     UnlicensedInstanceIdentifier unlicensed_instance = 2;
-    // A service operated and managed by the Sourcegraph team, for example
-    // a service deployed by MSP: https://handbook.sourcegraph.com/departments/engineering/teams/core-services/managed-services/platform/
+    // A service operated and managed by the Khulnasoft team, for example
+    // a service deployed by MSP: https://handbook.khulnasoft.com/departments/engineering/teams/core-services/managed-services/platform/
     //
     // Valid SAMS client credentials are required to publish events under a
     // managed service identifier. The required scope is
@@ -85,7 +85,7 @@ message Identifier {
 message RecordEventsRequestMetadata {
   // Client-provided request identifier for diagnostics purposes.
   string request_id = 1;
-  // Telemetry publisher self-identification - for example, a Sourcegraph
+  // Telemetry publisher self-identification - for example, a Khulnasoft
   // instance of some other kind of service.
   Identifier identifier = 2;
 }
@@ -138,16 +138,16 @@ message Event {
   EventParameters parameters = 6;
   // Optional user associated with the event.
   //
-  // This field should be hydrated by the Sourcegraph server, and not provided
+  // This field should be hydrated by the Khulnasoft server, and not provided
   // by clients.
   optional EventUser user = 7;
   // Optional feature flags configured in the context of the event.
   optional EventFeatureFlags feature_flags = 8;
   // Optional marketing campaign tracking parameters.
   //
-  // 🚨 SECURITY: This metadata is NEVER exported from single-tenant Sourcegraph
+  // 🚨 SECURITY: This metadata is NEVER exported from single-tenant Khulnasoft
   // instances, and is only exported for events tracked in the public
-  // Sourcegraph.com instance and managed services.
+  // Khulnasoft.com instance and managed services.
   optional EventMarketingTracking marketing_tracking = 9;
   // Optional metadata identifying the interaction that generated the event.
   optional EventInteraction interaction = 10;
@@ -157,8 +157,8 @@ message EventSource {
   message Server {
     // Version of the server emitting the event, corresponding to
     // RecordEventsRequestMetadata.Identifier. For example, if the Identifier
-    // indicates the publisher is a Sourcegraph instance, the version represents
-    // the version of the Sourcegraph server.
+    // indicates the publisher is a Khulnasoft instance, the version represents
+    // the version of the Khulnasoft server.
     string version = 1;
   }
   message Client {
@@ -215,10 +215,10 @@ message EventBillingMetadata {
 }
 
 message EventUser {
-  // Sourcegraph instance database user ID of the user. User IDs are specific to
-  // a Sourcegraph instance, and are not universal across Sourcegraph instances.
+  // Khulnasoft instance database user ID of the user. User IDs are specific to
+  // a Khulnasoft instance, and are not universal across Khulnasoft instances.
   //
-  // We use an int64 as an ID because in Sourcegraph, database user IDs are
+  // We use an int64 as an ID because in Khulnasoft, database user IDs are
   // always integers.
   optional int64 user_id = 1;
   // Randomized unique identifier representing the user (typically stored in
@@ -226,12 +226,12 @@ message EventUser {
   // often used for unauthenticated users, but can persist to authenticated
   // users as well.
   optional string anonymous_user_id = 2;
-  // Sourcegraph Accounts Management System (SAMS) account associated with the
+  // Khulnasoft Accounts Management System (SAMS) account associated with the
   // user, represented by a SAMS external user ID in a UUID format. This is only
   // valid for services leveraging SAMS as an identity provider - in other words,
-  // traditional Sourcegraph instances will not provide this.
+  // traditional Khulnasoft instances will not provide this.
   //
-  // Learn more about SAMS: https://handbook.sourcegraph.com/departments/engineering/teams/core-services/sams
+  // Learn more about SAMS: https://handbook.khulnasoft.com/departments/engineering/teams/core-services/sams
   optional string sams_external_id = 3;
 }
 
@@ -240,16 +240,16 @@ message EventFeatureFlags {
   // feature flags, but in the API we allow arbitrary string values for future
   // extensibility.
   //
-  // This field should be hydrated by the Sourcegraph server, and not provided
+  // This field should be hydrated by the Khulnasoft server, and not provided
   // by clients.
   map<string, string> flags = 1;
 }
 
 // Marketing campaign tracking metadata.
 //
-// 🚨 SECURITY: This metadata is NEVER exported from single-tenant Sourcegraph
+// 🚨 SECURITY: This metadata is NEVER exported from single-tenant Khulnasoft
 // instances, and is only exported for events tracked in the public
-// Sourcegraph.com instance and managed services.
+// Khulnasoft.com instance and managed services.
 message EventMarketingTracking {
   // URL the event occurred on.
   optional string url = 1;
@@ -257,7 +257,7 @@ message EventMarketingTracking {
   optional string first_source_url = 2;
   // Cohort ID to identify the user as part of a specific A/B test.
   optional string cohort_id = 3;
-  // Referrer URL that refers the user to Sourcegraph.
+  // Referrer URL that refers the user to Khulnasoft.
   optional string referrer = 4;
   // Last source URL visited by the user.
   optional string last_source_url = 5;

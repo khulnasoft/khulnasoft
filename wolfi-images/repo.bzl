@@ -17,7 +17,7 @@ def apko_translate_locks():
 # For each lockfile we need to do the following:
 #   - Create a repository that translates the lockfile into a rules_apko internal representations
 #       - This representation is a macro that creates 3 more repositories to fetch the keyrings, packages and package index
-#       - Implementation:https://sourcegraph.com/github.com/chainguard-dev/rules_apko@v1.2.3/-/blob/apko/translate_lock.bzl
+#       - Implementation:https://khulnasoft.com/github.com/chainguard-dev/rules_apko@v1.2.3/-/blob/apko/translate_lock.bzl
 #   - Load the macro from the newly overarching repository
 #   - Call the macro to instantiate the 3 repositories and make them available to apko_image rule targets
 #

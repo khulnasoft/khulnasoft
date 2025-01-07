@@ -26,7 +26,7 @@ type LabelExtractor struct {
 }
 
 type Config struct {
-	// Name of the metric with '/' namespace, e.g. msp.sourcegraph.com/my_metric
+	// Name of the metric with '/' namespace, e.g. msp.khulnasoft.com/my_metric
 	Name string
 
 	// LogFilters for matching log messages - see https://cloud.google.com/logging/docs/view/logging-query-language

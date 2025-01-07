@@ -29,7 +29,7 @@ type SearchRequest struct {
 
 	// repo is the name of the repo to search (e.g. "github.com/gorilla/mux")
 	Repo string `protobuf:"bytes,1,opt,name=repo,proto3" json:"repo,omitempty"`
-	// repo_id is the Sourcegraph repository ID of the repo to search
+	// repo_id is the Khulnasoft repository ID of the repo to search
 	RepoId uint32 `protobuf:"varint,2,opt,name=repo_id,json=repoId,proto3" json:"repo_id,omitempty"`
 	// commit_oid is the 40-character commit hash for the commit to be searched.
 	// It is required to be resolved, not a ref like HEAD or master.

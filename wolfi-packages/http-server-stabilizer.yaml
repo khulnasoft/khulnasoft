@@ -1,4 +1,4 @@
-# Melange-based replacement for https://sourcegraph.sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/docker-images/syntax-highlighter/Dockerfile?L16
+# Melange-based replacement for https://sourcegraph.khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/docker-images/syntax-highlighter/Dockerfile?L16
 
 package:
   name: http-server-stabilizer
@@ -10,7 +10,7 @@ package:
   copyright:
     - paths:
       - "*"
-      attestation: 'Copyright 2018 Sourcegraph, Inc.'
+      attestation: 'Copyright 2018 Khulnasoft, Inc.'
       license: 'Apache License 2.0'
   dependencies:
     runtime:

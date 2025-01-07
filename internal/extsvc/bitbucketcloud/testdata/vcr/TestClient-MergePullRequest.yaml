@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"message":"This is a merge commit from Sourcegraph''s test suite.","close_source_branch":true,"merge_strategy":"squash"}'
+    body: '{"message":"This is a merge commit from Khulnasoft''s test suite.","close_source_branch":true,"merge_strategy":"squash"}'
     form: {}
     headers:
       Content-Type:
@@ -64,7 +64,7 @@ interactions:
     code: 404
     duration: ""
 - request:
-    body: '{"message":"This is a merge commit from Sourcegraph''s test suite.","close_source_branch":true,"merge_strategy":"squash"}'
+    body: '{"message":"This is a merge commit from Khulnasoft''s test suite.","close_source_branch":true,"merge_strategy":"squash"}'
     form: {}
     headers:
       Content-Type:
@@ -110,21 +110,21 @@ interactions:
       2\r\n\r\n‌", "reason": "", "task_count": 0, "merge_commit": {"hash": "b70b4c18ed5c9a34896aed92e56688057859a68f",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/repositories/sourcegraph-testing/src-cli/commit/b70b4c18ed5c9a34896aed92e56688057859a68f"},
       "html": {"href": "https://bitbucket.org/sourcegraph-testing/src-cli/commits/b70b4c18ed5c9a34896aed92e56688057859a68f"}},
-      "author": {"raw": "Adam Harvey <aharvey@sourcegraph.com>", "type": "author",
+      "author": {"raw": "Adam Harvey <aharvey@khulnasoft.com>", "type": "author",
       "user": {"display_name": "Adam Harvey", "uuid": "{39a35a46-ae0c-4017-91ec-1562988daa73}",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B39a35a46-ae0c-4017-91ec-1562988daa73%7D"},
       "html": {"href": "https://bitbucket.org/%7B39a35a46-ae0c-4017-91ec-1562988daa73%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/94883264abf62a96cbe120877ab0f087?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAH-2.png"}},
       "type": "user", "nickname": "Adam Harvey", "account_id": "70121:96070aaa-b19c-4c9e-82fe-cfdd7dca533e"}},
-      "summary": {"raw": "This is a merge commit from Sourcegraph''s test suite.",
-      "markup": "markdown", "html": "<p>This is a merge commit from Sourcegraph''s
+      "summary": {"raw": "This is a merge commit from Khulnasoft''s test suite.",
+      "markup": "markdown", "html": "<p>This is a merge commit from Khulnasoft''s
       test suite.</p>", "type": "rendered"}, "date": "2022-04-06T17:10:31+00:00",
-      "message": "This is a merge commit from Sourcegraph''s test suite.", "type":
-      "commit"}, "closed_by": {"display_name": "Sourcegraph Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
+      "message": "This is a merge commit from Khulnasoft''s test suite.", "type":
+      "commit"}, "closed_by": {"display_name": "Khulnasoft Testing", "uuid": "{4b85b785-1433-4092-8512-20302f4a03be}",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B4b85b785-1433-4092-8512-20302f4a03be%7D"},
       "html": {"href": "https://bitbucket.org/%7B4b85b785-1433-4092-8512-20302f4a03be%7D/"},
       "avatar": {"href": "https://secure.gravatar.com/avatar/f964dc31564db8243e952bdaeabbe884?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FST-2.png"}},
-      "type": "user", "nickname": "Sourcegraph Testing", "account_id": "623316f53fbb880068413f6b"},
+      "type": "user", "nickname": "Khulnasoft Testing", "account_id": "623316f53fbb880068413f6b"},
       "author": {"display_name": "Adam Harvey", "uuid": "{39a35a46-ae0c-4017-91ec-1562988daa73}",
       "links": {"self": {"href": "https://api.bitbucket.org/2.0/users/%7B39a35a46-ae0c-4017-91ec-1562988daa73%7D"},
       "html": {"href": "https://bitbucket.org/%7B39a35a46-ae0c-4017-91ec-1562988daa73%7D/"},
@@ -185,7 +185,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"message":"This is a merge commit from Sourcegraph''s test suite.","close_source_branch":true,"merge_strategy":"squash"}'
+    body: '{"message":"This is a merge commit from Khulnasoft''s test suite.","close_source_branch":true,"merge_strategy":"squash"}'
     form: {}
     headers:
       Content-Type:

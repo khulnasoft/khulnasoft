@@ -139,7 +139,7 @@ func (cl Changelog) ToSlackMessage(cli *SlackClient, bucket *storage.BucketHandl
 		for _, c := range cs {
 			var slackUserID string
 
-			if strings.HasSuffix(c.GitCommit.Author.Email, "@sourcegraph.com") {
+			if strings.HasSuffix(c.GitCommit.Author.Email, "@khulnasoft.com") {
 				user, err := cli.GetUserByEmail(c.GitCommit.Author.Email)
 				if err != nil {
 					log.Printf("slack.GetUserByEmail(%q): %v", c.GitCommit.Author.Email, err)

@@ -94,7 +94,7 @@ type SubscriptionsServiceClient interface {
 	CreateEnterpriseSubscriptionLicense(context.Context, *connect.Request[v1.CreateEnterpriseSubscriptionLicenseRequest]) (*connect.Response[v1.CreateEnterpriseSubscriptionLicenseResponse], error)
 	// RevokeEnterpriseSubscriptionLicense revokes an existing license for an
 	// Enterprise subscription, permanently disabling its use for features
-	// managed by Sourcegraph. Revocation cannot be undone.
+	// managed by Khulnasoft. Revocation cannot be undone.
 	RevokeEnterpriseSubscriptionLicense(context.Context, *connect.Request[v1.RevokeEnterpriseSubscriptionLicenseRequest]) (*connect.Response[v1.RevokeEnterpriseSubscriptionLicenseResponse], error)
 	// UpdateEnterpriseSubscription updates an existing enterprise subscription.
 	UpdateEnterpriseSubscription(context.Context, *connect.Request[v1.UpdateEnterpriseSubscriptionRequest]) (*connect.Response[v1.UpdateEnterpriseSubscriptionResponse], error)
@@ -271,7 +271,7 @@ type SubscriptionsServiceHandler interface {
 	CreateEnterpriseSubscriptionLicense(context.Context, *connect.Request[v1.CreateEnterpriseSubscriptionLicenseRequest]) (*connect.Response[v1.CreateEnterpriseSubscriptionLicenseResponse], error)
 	// RevokeEnterpriseSubscriptionLicense revokes an existing license for an
 	// Enterprise subscription, permanently disabling its use for features
-	// managed by Sourcegraph. Revocation cannot be undone.
+	// managed by Khulnasoft. Revocation cannot be undone.
 	RevokeEnterpriseSubscriptionLicense(context.Context, *connect.Request[v1.RevokeEnterpriseSubscriptionLicenseRequest]) (*connect.Response[v1.RevokeEnterpriseSubscriptionLicenseResponse], error)
 	// UpdateEnterpriseSubscription updates an existing enterprise subscription.
 	UpdateEnterpriseSubscription(context.Context, *connect.Request[v1.UpdateEnterpriseSubscriptionRequest]) (*connect.Response[v1.UpdateEnterpriseSubscriptionResponse], error)

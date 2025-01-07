@@ -563,7 +563,7 @@ type directoryFinder interface {
 }
 
 // findWorkspaces matches the given repos to the workspace configs and
-// searches, via the Sourcegraph instance, the locations of the workspaces in
+// searches, via the Khulnasoft instance, the locations of the workspaces in
 // each repository.
 // The repositories that were matched by a workspace config and all repos that didn't
 // match a config are returned as workspaces.

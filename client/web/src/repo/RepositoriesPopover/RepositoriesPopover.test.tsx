@@ -11,7 +11,7 @@ import { MOCK_REQUESTS } from './RepositoriesPopover.mocks'
 
 const repo = {
     id: 'some-repo-id',
-    name: '/github.com/sourcegraph/sourcegraph',
+    name: '/github.com/khulnasoft/khulnasoft',
 }
 
 describe('RevisionsPopover', () => {

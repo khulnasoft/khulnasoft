@@ -130,7 +130,7 @@ sg db reset-pg
 			{
 				Name:        "add-user",
 				Usage:       "Create an admin sourcegraph user",
-				Description: `Run 'sg db add-user -username bob' to create an admin user whose email is bob@sourcegraph.com. The password will be printed if the operation succeeds`,
+				Description: `Run 'sg db add-user -username bob' to create an admin user whose email is bob@khulnasoft.com. The password will be printed if the operation succeeds`,
 				Flags: []cli.Flag{
 					&cli.StringFlag{
 						Name:  "username",
@@ -203,7 +203,7 @@ func dbAddUserAction(cmd *cli.Context) error {
 		password := cmd.String("password")
 
 		// Create the user, generating an email based on the username.
-		email := fmt.Sprintf("%s@sourcegraph.com", username)
+		email := fmt.Sprintf("%s@khulnasoft.com", username)
 		user, err := tx.Users().Create(ctx, database.NewUser{
 			Username:        username,
 			Email:           email,
@@ -308,7 +308,7 @@ func dbDefaultSiteAdmin(cmd *cli.Context) error {
 	return db.WithTransact(cmd.Context, func(tx database.DB) error {
 		user, err := tx.Users().Create(cmd.Context, database.NewUser{
 			Username:        username,
-			Email:           "sourcegraph@sourcegraph.com",
+			Email:           "sourcegraph@khulnasoft.com",
 			EmailIsVerified: true,
 			Password:        password,
 		})

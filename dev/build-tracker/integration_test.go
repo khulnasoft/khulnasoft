@@ -60,7 +60,7 @@ func TestLargeAmountOfFailures(t *testing.T) {
 		BuildNumber:        num,
 		ConsecutiveFailure: 0,
 		PipelineName:       pipelineID,
-		AuthorName:         "william.bezuidenhout@sourcegraph.com",
+		AuthorName:         "william.bezuidenhout@khulnasoft.com",
 		Message:            msg,
 		Commit:             commit,
 		BuildURL:           url,
@@ -161,7 +161,7 @@ func TestGetTeammateFromBuild(t *testing.T) {
 				Commit: &commit,
 				Author: &buildkite.Author{
 					Name:  "William Bezuidenhout",
-					Email: "william.bezuidenhout@sourcegraph.com",
+					Email: "william.bezuidenhout@khulnasoft.com",
 				},
 			},
 			Pipeline: &build.Pipeline{Pipeline: buildkite.Pipeline{
@@ -190,7 +190,7 @@ func TestGetTeammateFromBuild(t *testing.T) {
 				Commit: &commit,
 				Author: &buildkite.Author{
 					Name:  "William Bezuidenhout",
-					Email: "william.bezuidenhout@sourcegraph.com",
+					Email: "william.bezuidenhout@khulnasoft.com",
 				},
 			},
 			Pipeline: &build.Pipeline{Pipeline: buildkite.Pipeline{
@@ -234,7 +234,7 @@ func TestSlackNotification(t *testing.T) {
 			},
 			Author: &buildkite.Author{
 				Name:  "William Bezuidenhout",
-				Email: "william.bezuidenhout@sourcegraph.com",
+				Email: "william.bezuidenhout@khulnasoft.com",
 			},
 			Number: &buildNumber,
 			URL:    &url,
@@ -457,7 +457,7 @@ func TestServerNotify(t *testing.T) {
 			},
 			Author: &buildkite.Author{
 				Name:  "William Bezuidenhout",
-				Email: "william.bezuidenhout@sourcegraph.com",
+				Email: "william.bezuidenhout@khulnasoft.com",
 			},
 			Number: &num,
 			URL:    &url,

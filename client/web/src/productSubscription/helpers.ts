@@ -29,8 +29,8 @@ export function formatRelativeExpirationDate(date: string | number | Date): stri
 }
 
 /**
- * Returns a mailto:sales@sourcegraph.com URL with an optional subject.
+ * Returns a mailto:sales@khulnasoft.com URL with an optional subject.
  */
 export function mailtoSales(args: { subject?: string }): string {
-    return `mailto:sales@sourcegraph.com?subject=${encodeURIComponent(args.subject || '')}`
+    return `mailto:sales@khulnasoft.com?subject=${encodeURIComponent(args.subject || '')}`
 }

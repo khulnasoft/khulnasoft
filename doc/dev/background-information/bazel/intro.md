@@ -2,7 +2,7 @@
 
 ## Why do we need a build system?
 
-Building Sourcegraph is a non-trivial task, as it not only ships a frontend and a backend, but also a variety of third parties and components that makes the building process complicated, not only locally but also in CI. Historically, this always have been solved with ad-hoc solutions, such as shell scripts, and caching in various point of the process.
+Building Khulnasoft is a non-trivial task, as it not only ships a frontend and a backend, but also a variety of third parties and components that makes the building process complicated, not only locally but also in CI. Historically, this always have been solved with ad-hoc solutions, such as shell scripts, and caching in various point of the process.
 
 But we're using languages that traditionally don't require their own build systems right? Go and Typescript have their own ecosystem and solve those problems each with their own way right? Yes indeed, but this also means they are never aware of each other and anything linking them requires to be implemented manually, which what we've done so far. Because the way our app is built, as a monolith, it's not trivial to detect things such as the need to rebuild a given Docker image because a change was made in another package, because there is nothing enforcing this structurally in the codebase. So we have to rebuild things, because there is doubt.
 

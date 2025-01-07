@@ -12,7 +12,7 @@ import (
 
 func TestServeHelp(t *testing.T) {
 	t.Run("unreleased dev version", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, false)
+		dotcom.MockKhulnasoftDotComMode(t, false)
 
 		{
 			orig := version.Version()
@@ -34,7 +34,7 @@ func TestServeHelp(t *testing.T) {
 	})
 
 	t.Run("released version", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, false)
+		dotcom.MockKhulnasoftDotComMode(t, false)
 
 		{
 			orig := version.Version()
@@ -49,13 +49,13 @@ func TestServeHelp(t *testing.T) {
 		if want := http.StatusTemporaryRedirect; rw.Code != want {
 			t.Errorf("got %d, want %d", rw.Code, want)
 		}
-		if got, want := rw.Header().Get("Location"), "https://sourcegraph.com/docs/v/3.39/dev"; got != want {
+		if got, want := rw.Header().Get("Location"), "https://khulnasoft.com/docs/v/3.39/dev"; got != want {
 			t.Errorf("got %q, want %q", got, want)
 		}
 	})
 
-	t.Run("Sourcegraph.com", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true)
+	t.Run("Khulnasoft.com", func(t *testing.T) {
+		dotcom.MockKhulnasoftDotComMode(t, true)
 
 		rw := httptest.NewRecorder()
 		req, _ := http.NewRequest("GET", "/help/foo/bar", nil)
@@ -64,7 +64,7 @@ func TestServeHelp(t *testing.T) {
 		if want := http.StatusTemporaryRedirect; rw.Code != want {
 			t.Errorf("got %d, want %d", rw.Code, want)
 		}
-		if got, want := rw.Header().Get("Location"), "https://sourcegraph.com/docs/foo/bar"; got != want {
+		if got, want := rw.Header().Get("Location"), "https://khulnasoft.com/docs/foo/bar"; got != want {
 			t.Errorf("got %q, want %q", got, want)
 		}
 	})

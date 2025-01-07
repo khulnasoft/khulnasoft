@@ -133,7 +133,7 @@ func TestExternalAccounts_UpsertSCIMData(t *testing.T) {
 		ctx,
 		user.ID,
 		"theuser",
-		extsvc.AccountData{Data: extsvc.NewUnencryptedData(json.RawMessage(`{"login": "user@sourcegraph.com"}`))},
+		extsvc.AccountData{Data: extsvc.NewUnencryptedData(json.RawMessage(`{"login": "user@khulnasoft.com"}`))},
 	)
 	require.NoError(t, err)
 	all, err := db.UserExternalAccounts().List(ctx, ExternalAccountsListOptions{})
@@ -158,7 +158,7 @@ func TestExternalAccounts_UpsertSCIMData(t *testing.T) {
 		ctx,
 		user.ID,
 		"theuser",
-		extsvc.AccountData{Data: extsvc.NewUnencryptedData(json.RawMessage(`{"login": "user2@sourcegraph.com"}`))},
+		extsvc.AccountData{Data: extsvc.NewUnencryptedData(json.RawMessage(`{"login": "user2@khulnasoft.com"}`))},
 	)
 	require.NoError(t, err)
 	all, err = db.UserExternalAccounts().List(ctx, ExternalAccountsListOptions{})
@@ -186,7 +186,7 @@ func TestExternalAccounts_UpsertSCIMData(t *testing.T) {
 		ctx,
 		user.ID,
 		"theuser",
-		extsvc.AccountData{Data: extsvc.NewUnencryptedData(json.RawMessage(`{"login": "user@sourcegraph.com"}`))},
+		extsvc.AccountData{Data: extsvc.NewUnencryptedData(json.RawMessage(`{"login": "user@khulnasoft.com"}`))},
 	)
 	require.NoError(t, err)
 	all, err = db.UserExternalAccounts().List(ctx, ExternalAccountsListOptions{})

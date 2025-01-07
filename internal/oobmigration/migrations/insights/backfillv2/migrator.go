@@ -223,7 +223,7 @@ func insightsIsEnabled() bool {
 	if v, _ := strconv.ParseBool(os.Getenv("DISABLE_CODE_INSIGHTS")); v {
 		// Code insights can always be disabled. This can be a helpful escape hatch if e.g. there
 		// are issues with (or connecting to) the codeinsights-db deployment and it is preventing
-		// the Sourcegraph frontend or repo-updater from starting.
+		// the Khulnasoft frontend or repo-updater from starting.
 		//
 		// It is also useful in dev environments if you do not wish to spend resources running Code
 		// Insights.

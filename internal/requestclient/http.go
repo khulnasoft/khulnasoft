@@ -10,8 +10,8 @@ import (
 var useCloudflareHeaders = env.MustGetBool("SRC_USE_CLOUDFLARE_HEADERS", false, "Use Cloudflare headers for request metadata")
 
 const (
-	// Sourcegraph-specific client IP header key
-	headerKeyClientIP = "X-Sourcegraph-Client-IP"
+	// Khulnasoft-specific client IP header key
+	headerKeyClientIP = "X-Khulnasoft-Client-IP"
 	// De-facto standard for identifying original IP address of a client:
 	// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For
 	headerKeyForwardedFor = "X-Forwarded-For"
@@ -78,12 +78,12 @@ func InternalHTTPMiddleware(next http.Handler) http.Handler {
 // httpMiddleware wraps the given handle func and attaches client IP data indicated in
 // incoming requests to the request header.
 //
-// In Sourcegraph.com and Sourcegraph Cloud, we have a more reliable headers from
+// In Khulnasoft.com and Khulnasoft Cloud, we have a more reliable headers from
 // Cloudflare via Cloudflare WAF, so environments that use Cloudflare can opt-in
 // to Cloudflare-provided headers on external handlers. We have a debug endpoint
 // that lets you confirm the presence of various headers:
 //
-//	curl --silent https://sourcegraph.com/-/debug/headers | grep Cf-
+//	curl --silent https://khulnasoft.com/-/debug/headers | grep Cf-
 //
 // Documentation for available Cloudflare headers is available at
 // https://developers.cloudflare.com/fundamentals/reference/http-request-headers

@@ -478,10 +478,10 @@ func TestBitbucketServerSource_ListByProjectKeyAuthentic(t *testing.T) {
 			// This project has 2 repositories in it. that's why we expect 2
 			// repos further down.
 			// As soon as more repositories are added to the
-			// "SOURCEGRAPH" project, we need to update this condition.
+			// "KHULNASOFT" project, we need to update this condition.
 			wantNumRepos := 2
 			s.config.ProjectKeys = []string{
-				"SOURCEGRAPH",
+				"KHULNASOFT",
 			}
 
 			ctxWithTimeOut, cancel := context.WithTimeout(context.Background(), 5*time.Second)
@@ -572,7 +572,7 @@ func VerifyData(t *testing.T, ctx context.Context, numExpectedResults int, resul
 		"SG/python-langserver-fork": {},
 		"~KEEGAN/rgp":               {},
 		"~KEEGAN/rgp-unavailable":   {},
-		"SOURCEGRAPH/jsonrpc2":      {},
+		"KHULNASOFT/jsonrpc2":      {},
 	}
 
 	for {

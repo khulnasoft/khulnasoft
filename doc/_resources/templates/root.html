@@ -7,8 +7,8 @@
 	<html lang="en">
 
 		<head>
-			<title>{{block "title" .}}Home{{end}} - Sourcegraph docs</title>
-            <link rel="icon" type="image/png" href="https://sourcegraph.com/sourcegraph-mark.png" />
+			<title>{{block "title" .}}Home{{end}} - Khulnasoft docs</title>
+            <link rel="icon" type="image/png" href="https://khulnasoft.com/sourcegraph-mark.png" />
             {{if .ContentVersion}}
                 <link rel="stylesheet" type="text/css" href="{{assetsFromVersion .ContentVersion "docsite.css" }}" />
                 <script src="{{assetsFromVersion .ContentVersion "docsite.js" }}"></script>
@@ -50,7 +50,7 @@
         <!-- Default to light theme if no JavaScript -->
 		<body class="theme-light">
              <nav class="notice" style="display: flex; flex-direction: row; width: 100%; position: fixed; z-index: 9999; background: #ec624d; padding: 0.5rem; text-align: center; margin: 0 auto .5rem; color: black;">
-                    <p style="text-align: center; display: flex; margin: 0 auto; align-items: center;">⚠️ You're viewing our old docs, which we no longer maintain. For all the new updates, read our <a style="background: black; padding: 0.2rem 0.6rem; border-radius: 5px; margin-left: 0.5rem; color: white;" href="https://sourcegraph.com/docs" id="latest-docs-redirect">Latest Docs »</a></p>
+                    <p style="text-align: center; display: flex; margin: 0 auto; align-items: center;">⚠️ You're viewing our old docs, which we no longer maintain. For all the new updates, read our <a style="background: black; padding: 0.2rem 0.6rem; border-radius: 5px; margin-left: 0.5rem; color: white;" href="https://khulnasoft.com/docs" id="latest-docs-redirect">Latest Docs »</a></p>
             </nav>
             <script>
                 // If dark theme is requested, set it immediately to avoid flashing.
@@ -141,7 +141,7 @@
                     return label
                 };
 
-                const promptTemplate = `You are a very enthusiastic company representative from Sourcegraph who loves to help people! Below is a list of context sections separated by three dashes ('---'). They consist of a section id, which corresponds to the file from which the section is in, followed by the actual section content, in Markdown format.
+                const promptTemplate = `You are a very enthusiastic company representative from Khulnasoft who loves to help people! Below is a list of context sections separated by three dashes ('---'). They consist of a section id, which corresponds to the file from which the section is in, followed by the actual section content, in Markdown format.
 
 In the content, you may find relative links in Markdown format. Some examples are [Step 1](#step1), [Writing an indexer](explanations/writing_an_indexer.md), [Home](/docs/index.md). If you encounter such a link, you need to reconstruct the full path. Here is how you should do it:
 - First, transform the section id to an absolute URL path, and remove the "/doc" prefix. For instance, "/doc/code_navigation/step-1.md" should be turned into "/code_navigation/step-1". Note that filenames like "index.md" corresponding to a root path, so for instance, "/doc/code_navigation/index.md" becomes "/doc/code_navigation".
@@ -194,13 +194,13 @@ Answer (including related code snippets if available):`
                 <header>
 				    <h1 id="logo"><a href="/">
                     {{if .ContentVersion}}
-                        <img src="{{assetsFromVersion .ContentVersion "logo-theme-light.svg" }}" class="theme-light" alt="Sourcegraph docs"/>
-                        <img src="{{assetsFromVersion .ContentVersion "logo-theme-dark.svg" }}" class="theme-dark" alt="Sourcegraph docs"/>
+                        <img src="{{assetsFromVersion .ContentVersion "logo-theme-light.svg" }}" class="theme-light" alt="Khulnasoft docs"/>
+                        <img src="{{assetsFromVersion .ContentVersion "logo-theme-dark.svg" }}" class="theme-dark" alt="Khulnasoft docs"/>
                     {{else}}
-                        <img src="{{asset "logo-theme-light.svg" }}" class="theme-light" alt="Sourcegraph docs"/>
-                        <img src="{{asset "logo-theme-dark.svg" }}" class="theme-dark" alt="Sourcegraph docs"/>
+                        <img src="{{asset "logo-theme-light.svg" }}" class="theme-light" alt="Khulnasoft docs"/>
+                        <img src="{{asset "logo-theme-dark.svg" }}" class="theme-dark" alt="Khulnasoft docs"/>
                     {{end}}
-                        <span class="sr-only">Sourcegraph Docs</span>
+                        <span class="sr-only">Khulnasoft Docs</span>
                     </a></h1>
                     <div class="markprompt-search-container">
                         <form id="search-form" method="get" action="/search">
@@ -253,7 +253,7 @@ Answer (including related code snippets if available):`
                     <div class="nav-section">
                         <h2 class="sr-only">External</h2>
                         <ul>
-                            <li class="external"><a href="https://sourcegraph.com">Sourcegraph.com</a></li>
+                            <li class="external"><a href="https://khulnasoft.com">Khulnasoft.com</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -277,11 +277,11 @@ Answer (including related code snippets if available):`
                 <footer>
                     <nav class="links external">
                         <ul>
-                            <li><a href="https://sourcegraph.com">Sourcegraph.com</a></li>
-                            <li><a href="https://github.com/sourcegraph/sourcegraph">Code (GitHub)</a></li>
-                            <li><a href="https://sourcegraph.com/terms">Terms</a></li>
-                            <li><a href="https://sourcegraph.com/security">Security</a></li>
-                            <li><a href="https://sourcegraph.com/privacy">Privacy</a></li>
+                            <li><a href="https://khulnasoft.com">Khulnasoft.com</a></li>
+                            <li><a href="https://github.com/khulnasoft/khulnasoft">Code (GitHub)</a></li>
+                            <li><a href="https://khulnasoft.com/terms">Terms</a></li>
+                            <li><a href="https://khulnasoft.com/security">Security</a></li>
+                            <li><a href="https://khulnasoft.com/privacy">Privacy</a></li>
                         </ul>
                     </nav>
                 </footer>

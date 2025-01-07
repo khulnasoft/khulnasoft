@@ -89,8 +89,8 @@ export const AllStates: StoryFn = args => {
                                         : [],
                                     repository: {
                                         id: 'repoid',
-                                        name: 'github.com/sourcegraph/sourcegraph',
-                                        url: 'http://test.test/sourcegraph/sourcegraph',
+                                        name: 'github.com/khulnasoft/khulnasoft',
+                                        url: 'http://test.test/khulnasoft/khulnasoft',
                                     },
                                     reviewState: ChangesetReviewState.COMMENTED,
                                     currentSpec: {
@@ -174,8 +174,8 @@ export const Unpublished: StoryFn = args => {
                         ],
                         repository: {
                             id: 'repoid',
-                            name: 'github.com/sourcegraph/sourcegraph',
-                            url: 'http://test.test/sourcegraph/sourcegraph',
+                            name: 'github.com/khulnasoft/khulnasoft',
+                            url: 'http://test.test/khulnasoft/khulnasoft',
                         },
                         reviewState: null,
                         currentSpec: {
@@ -246,8 +246,8 @@ export const Importing: StoryFn = args => {
                         ],
                         repository: {
                             id: 'repoid',
-                            name: 'github.com/sourcegraph/sourcegraph',
-                            url: 'http://test.test/sourcegraph/sourcegraph',
+                            name: 'github.com/khulnasoft/khulnasoft',
+                            url: 'http://test.test/khulnasoft/khulnasoft',
                         },
                         reviewState: null,
                         currentSpec: null,
@@ -309,8 +309,8 @@ export const ImportingFailed: StoryFn = args => {
                         ],
                         repository: {
                             id: 'repoid',
-                            name: 'github.com/sourcegraph/sourcegraph',
-                            url: 'http://test.test/sourcegraph/sourcegraph',
+                            name: 'github.com/khulnasoft/khulnasoft',
+                            url: 'http://test.test/khulnasoft/khulnasoft',
                         },
                         reviewState: null,
                         currentSpec: null,
@@ -364,8 +364,8 @@ export const SyncFailed: StoryFn = args => {
                         ],
                         repository: {
                             id: 'repoid',
-                            name: 'github.com/sourcegraph/sourcegraph',
-                            url: 'http://test.test/sourcegraph/sourcegraph',
+                            name: 'github.com/khulnasoft/khulnasoft',
+                            url: 'http://test.test/khulnasoft/khulnasoft',
                         },
                         reviewState: null,
                         currentSpec: null,

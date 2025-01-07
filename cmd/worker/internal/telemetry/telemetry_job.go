@@ -43,7 +43,7 @@ func NewTelemetryJob() *telemetryJob {
 }
 
 func (t *telemetryJob) Description() string {
-	return "A background routine that exports usage telemetry to Sourcegraph"
+	return "A background routine that exports usage telemetry to Khulnasoft"
 }
 
 func (t *telemetryJob) Config() []env.Config {
@@ -293,7 +293,7 @@ const (
 )
 
 var (
-	enabled, _  = strconv.ParseBool(env.Get(enabledEnvVar, "false", "Export usage data from this Sourcegraph instance to centralized Sourcegraph analytics (requires restart)."))
+	enabled, _  = strconv.ParseBool(env.Get(enabledEnvVar, "false", "Export usage data from this Khulnasoft instance to centralized Khulnasoft analytics (requires restart)."))
 	topicName   = env.Get(topicNameEnvVar, "", "GCP pubsub topic name for event level data usage exporter")
 	projectName = env.Get(projectNameEnvVar, "", "GCP project name for pubsub topic for event level data usage exporter")
 )

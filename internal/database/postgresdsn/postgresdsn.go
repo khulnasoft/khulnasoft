@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// New parses Sourcegraph database service environment variables to construct a Postgres DSN
+// New parses Khulnasoft database service environment variables to construct a Postgres DSN
 func New(prefix, currentUser string, getenv func(string) string) string {
 	if prefix == "frontend" {
 		prefix = ""
@@ -33,7 +33,7 @@ func New(prefix, currentUser string, getenv func(string) string) string {
 	}
 
 	// TODO match logic in lib/pq
-	// https://sourcegraph.com/github.com/lib/pq@d6156e141ac6c06345c7c73f450987a9ed4b751f/-/blob/connector.go#L42
+	// https://khulnasoft.com/github.com/lib/pq@d6156e141ac6c06345c7c73f450987a9ed4b751f/-/blob/connector.go#L42
 	dsn := &url.URL{
 		Scheme: "postgres",
 		Host:   "127.0.0.1:5432",

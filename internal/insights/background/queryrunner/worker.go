@@ -446,7 +446,7 @@ type Job struct {
 	Priority int
 	// Standard/required dbworker fields. If enqueuing a job, these may all be zero values except State.
 	//
-	// See https://sourcegraph.com/github.com/sourcegraph/sourcegraph@cd0b3904c674ee3568eb2ef5d7953395b6432d20/-/blob/internal/workerutil/dbworker/store/store.go#L114-134
+	// See https://khulnasoft.com/github.com/sourcegraph/sourcegraph@cd0b3904c674ee3568eb2ef5d7953395b6432d20/-/blob/internal/workerutil/dbworker/store/store.go#L114-134
 	ID             int
 	State          string // If enqueing a job, set to "queued"
 	FailureMessage *string

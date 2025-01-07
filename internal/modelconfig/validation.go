@@ -13,7 +13,7 @@ import (
 // IMPORTANT: Validation MUST be backwards-compatible.
 //
 // We can NEVER "relax" any validation checks we perform. Because that would lead to older
-// Sourcegraph instances failing to accept newer versions of the configuration data.
+// Khulnasoft instances failing to accept newer versions of the configuration data.
 
 const (
 	maxDisplayNameLength = 128
@@ -71,7 +71,7 @@ func validateProvider(p types.Provider) error {
 	// be used. However, we don't expect the Provider data exposed from
 	// the embedded binary or Cody Gateway to actually contain that
 	// server-side config because it doesn't make sense. So part of the
-	// rendering of data needs to fall back to using the Sourcegraph
+	// rendering of data needs to fall back to using the Khulnasoft
 	// instance and its access token, etc.
 
 	return nil
@@ -115,7 +115,7 @@ func validateModel(m types.Model) error {
 	}
 
 	// We intentionally do not validate any of the enum metadata fields, because
-	// older Sourcegraph instances wouldn't be able to recognize any newer values.
+	// older Khulnasoft instances wouldn't be able to recognize any newer values.
 
 	return nil
 }
@@ -186,7 +186,7 @@ func isValidRule(rule string) bool {
 	return true
 }
 
-func verifySourcegraphSiteConfig(sgConfig *types.SourcegraphModelConfig) error {
+func verifyKhulnasoftSiteConfig(sgConfig *types.KhulnasoftModelConfig) error {
 	if sgConfig == nil {
 		return nil
 	}
@@ -250,7 +250,7 @@ func validateModelOverrides(overrides []types.ModelOverride) error {
 
 // ValidateSiteConfig validates that the site configuration data expressed is valid.
 func ValidateSiteConfig(doc *types.SiteModelConfiguration) error {
-	if err := verifySourcegraphSiteConfig(doc.SourcegraphModelConfig); err != nil {
+	if err := verifyKhulnasoftSiteConfig(doc.KhulnasoftModelConfig); err != nil {
 		return errors.Wrap(err, "sourcegraph config")
 	}
 	if err := validateProviderOverrides(doc.ProviderOverrides); err != nil {
@@ -262,7 +262,7 @@ func ValidateSiteConfig(doc *types.SiteModelConfiguration) error {
 
 	// When verifying default models, we expect it to be OK to default to
 	// a model NOT explicitly defined in the site config. e.g. using something
-	// that we expect to be supplied by Sourcegraph. So we just check if they
+	// that we expect to be supplied by Khulnasoft. So we just check if they
 	// are valid ModelRefs.
 	if defModels := doc.DefaultModels; defModels != nil {
 		if err := ValidateModelRef(defModels.Chat); defModels.Chat != "" && err != nil {

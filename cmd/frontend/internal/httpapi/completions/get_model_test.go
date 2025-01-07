@@ -248,8 +248,8 @@ func TestCodyProModelAllowlists(t *testing.T) {
 		}
 	})
 
-	// Confirm that all Sourcegraph-supplied LLM models resolve to the correct models.
-	t.Run("SourcegraphSuppliedModels", func(t *testing.T) {
+	// Confirm that all Khulnasoft-supplied LLM models resolve to the correct models.
+	t.Run("KhulnasoftSuppliedModels", func(t *testing.T) {
 		staticConfig, err := embedded.GetCodyGatewayModelConfig()
 		require.NoError(t, err)
 
@@ -273,7 +273,7 @@ func TestCodyProModelAllowlists(t *testing.T) {
 		}
 	})
 
-	// Confirm that every Sourcegraph-supplied LLM model with a virtualized ID is
+	// Confirm that every Khulnasoft-supplied LLM model with a virtualized ID is
 	// found in our lookup.
 	t.Run("VirutalizedModels", func(t *testing.T) {
 		staticConfig, err := embedded.GetCodyGatewayModelConfig()

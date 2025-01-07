@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const Endpoint = "https://releaseregistry.sourcegraph.com/v1/"
+const Endpoint = "https://releaseregistry.khulnasoft.com/v1/"
 
 type ReleaseInfo struct {
 	ID            int32      `json:"id"`

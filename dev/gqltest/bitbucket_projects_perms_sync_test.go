@@ -14,9 +14,9 @@ import (
 )
 
 const (
-	projectKey      = "SOURCEGRAPH"
-	clonedRepoName1 = "bbs/SOURCEGRAPH/jsonrpc2"
-	clonedRepoName2 = "bbs/SOURCEGRAPH/empty-repo-1"
+	projectKey      = "KHULNASOFT"
+	clonedRepoName1 = "bbs/KHULNASOFT/jsonrpc2"
+	clonedRepoName2 = "bbs/KHULNASOFT/empty-repo-1"
 )
 
 func TestBitbucketProjectsPermsSync_SetUnrestrictedPermissions(t *testing.T) {
@@ -80,7 +80,7 @@ func TestBitbucketProjectsPermsSync_FromRestrictedToUnrestrictedPermissions(t *t
 	err = client.SetRepositoryPermissionsForBitbucketProject(gqltestutil.BitbucketProjectPermsSyncArgs{
 		ProjectKey:      projectKey,
 		CodeHost:        esID,
-		UserPermissions: []types.UserPermission{{BindID: "gqltest@sourcegraph.com", Permission: "READ"}},
+		UserPermissions: []types.UserPermission{{BindID: "gqltest@khulnasoft.com", Permission: "READ"}},
 		Unrestricted:    &unrestricted,
 	})
 	if err != nil {
@@ -209,7 +209,7 @@ func TestBitbucketProjectsPermsSync_SetPendingPermissions_ExistentAndNonExistent
 		CodeHost:   esID,
 		UserPermissions: []types.UserPermission{
 			{
-				BindID:     "gqltest@sourcegraph.com", // existing user
+				BindID:     "gqltest@khulnasoft.com", // existing user
 				Permission: "READ",
 			},
 			{
@@ -285,7 +285,7 @@ func waitForSyncJobToFinish() error {
 func setUpExternalService(t *testing.T) (esID string, err error) {
 	t.Helper()
 	// Set up external service.
-	// It is configured to clone only "SOURCEGRAPH/jsonrpc2" repo, but this project
+	// It is configured to clone only "KHULNASOFT/jsonrpc2" repo, but this project
 	// also has another repo "empty-repo-1"
 	esID, err = client.AddExternalService(gqltestutil.AddExternalServiceInput{
 		Kind:        extsvc.KindBitbucketServer,
@@ -300,7 +300,7 @@ func setUpExternalService(t *testing.T) (esID string, err error) {
 			URL:                   *bbsURL,
 			Token:                 *bbsToken,
 			Username:              *bbsUsername,
-			Repos:                 []string{"SOURCEGRAPH/jsonrpc2", "SOURCEGRAPH/empty-repo-1"},
+			Repos:                 []string{"KHULNASOFT/jsonrpc2", "KHULNASOFT/empty-repo-1"},
 			RepositoryPathPattern: "bbs/{projectKey}/{repositorySlug}",
 		}),
 	})

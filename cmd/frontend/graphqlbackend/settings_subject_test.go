@@ -114,7 +114,7 @@ func TestSettingsSubjectForNodeAndCheckAccess(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			dotcom.MockSourcegraphDotComMode(t, tc.isDotcom)
+			dotcom.MockKhulnasoftDotComMode(t, tc.isDotcom)
 
 			actorUser, err := tc.actor.User(context.Background(), nil)
 			if err != nil {

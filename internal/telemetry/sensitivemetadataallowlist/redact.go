@@ -23,7 +23,7 @@ const (
 )
 
 // 🚨 SECURITY: Be very careful with the redaction mechanisms here, as it impacts
-// what data we export from customer Sourcegraph instances.
+// what data we export from customer Khulnasoft instances.
 func redactEvent(event *telemetrygatewayv1.Event, mode redactMode, allowedPrivateMetadataKeys []string) redactMode {
 	// redactNothing (generally only in dotcom)
 	if mode >= redactNothing {

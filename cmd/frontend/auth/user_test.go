@@ -358,7 +358,7 @@ func TestGetAndSaveUser(t *testing.T) {
 			innerCases: []innerCase{{
 				op:                         getOneUserOp,
 				createIfNotExistIrrelevant: true,
-				expSafeErr:                 "Unexpected error looking up the Sourcegraph user account associated with the external account. Ask a site admin for help.",
+				expSafeErr:                 "Unexpected error looking up the Khulnasoft user account associated with the external account. Ask a site admin for help.",
 				expErr:                     unexpectedErr,
 			}},
 		},
@@ -379,7 +379,7 @@ func TestGetAndSaveUser(t *testing.T) {
 					ExternalAccount: ext("st1", "s1", "c1", "nonexistent"),
 					UserProps:       userProps("u1", "u1@example.com"),
 				},
-				expSafeErr: "Unexpected error associating the external account with your Sourcegraph user. The most likely cause for this problem is that another Sourcegraph user is already linked with this external account. A site admin or the other user can unlink the account to fix this problem.",
+				expSafeErr: "Unexpected error associating the external account with your Khulnasoft user. The most likely cause for this problem is that another Khulnasoft user is already linked with this external account. A site admin or the other user can unlink the account to fix this problem.",
 				expErr:     unexpectedErr,
 			}},
 		},
@@ -392,7 +392,7 @@ func TestGetAndSaveUser(t *testing.T) {
 					UserProps:       userProps("u1", "u1@example.com"),
 				},
 				createIfNotExistIrrelevant: true,
-				expSafeErr:                 "Unexpected error looking up the Sourcegraph user by verified email. Ask a site admin for help.",
+				expSafeErr:                 "Unexpected error looking up the Khulnasoft user by verified email. Ask a site admin for help.",
 				expErr:                     unexpectedErr,
 			}},
 		},
@@ -405,7 +405,7 @@ func TestGetAndSaveUser(t *testing.T) {
 					UserProps:       userProps("u1", "u1@example.com"),
 				},
 				createIfNotExistIrrelevant: true,
-				expSafeErr:                 "Unexpected error getting the Sourcegraph user account. Ask a site admin for help.",
+				expSafeErr:                 "Unexpected error getting the Khulnasoft user account. Ask a site admin for help.",
 				expErr:                     unexpectedErr,
 			}},
 		},
@@ -423,7 +423,7 @@ func TestGetAndSaveUser(t *testing.T) {
 					},
 				},
 				createIfNotExistIrrelevant: true,
-				expSafeErr:                 "Unexpected error updating the Sourcegraph user account with new user profile information from the external account. Ask a site admin for help.",
+				expSafeErr:                 "Unexpected error updating the Khulnasoft user account with new user profile information from the external account. Ask a site admin for help.",
 				expErr:                     unexpectedErr,
 			}},
 		},
@@ -550,7 +550,7 @@ func TestGetAndSaveUser(t *testing.T) {
 		})
 	}
 
-	t.Run("Sourcegraph operator actor should be propagated", func(t *testing.T) {
+	t.Run("Khulnasoft operator actor should be propagated", func(t *testing.T) {
 		ctx := context.Background()
 
 		errNotFound := &errcode.Mock{
@@ -561,14 +561,14 @@ func TestGetAndSaveUser(t *testing.T) {
 		usersStore := dbmocks.NewMockUserStore()
 		usersStore.GetByVerifiedEmailFunc.SetDefaultReturn(nil, errNotFound)
 		usersStore.CreateWithExternalAccountFunc.SetDefaultHook(func(ctx context.Context, _ database.NewUser, _ *extsvc.Account) (*types.User, error) {
-			require.True(t, actor.FromContext(ctx).SourcegraphOperator, "the actor should be a Sourcegraph operator")
+			require.True(t, actor.FromContext(ctx).KhulnasoftOperator, "the actor should be a Khulnasoft operator")
 			return &types.User{ID: 1}, nil
 		})
 		externalAccountsStore := dbmocks.NewMockUserExternalAccountsStore()
 		externalAccountsStore.UpdateFunc.SetDefaultReturn(nil, errNotFound)
 		eventLogsStore := dbmocks.NewMockEventLogStore()
 		eventLogsStore.BulkInsertFunc.SetDefaultHook(func(ctx context.Context, _ []*database.Event) error {
-			require.True(t, actor.FromContext(ctx).SourcegraphOperator, "the actor should be a Sourcegraph operator")
+			require.True(t, actor.FromContext(ctx).KhulnasoftOperator, "the actor should be a Khulnasoft operator")
 			return nil
 		})
 		permsSyncJobsStore := dbmocks.NewMockPermissionSyncJobStore()
@@ -593,7 +593,7 @@ func TestGetAndSaveUser(t *testing.T) {
 					EmailIsVerified: true,
 				},
 				ExternalAccount: extsvc.AccountSpec{
-					ServiceType: auth.SourcegraphOperatorProviderType,
+					ServiceType: auth.KhulnasoftOperatorProviderType,
 				},
 				ExternalAccountData: extsvc.AccountData{},
 				CreateIfNotExist:    true,

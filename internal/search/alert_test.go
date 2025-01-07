@@ -62,12 +62,12 @@ func TestSearchPatternForSuggestion(t *testing.T) {
 				ProposedQueries: []*QueryDescription{
 					{
 						Description: "Some query description",
-						Query:       "repo:github.com/sourcegraph/sourcegraph",
+						Query:       "repo:github.com/khulnasoft/khulnasoft",
 						PatternType: query.SearchTypeRegex,
 					},
 				},
 			},
-			Want: "repo:github.com/sourcegraph/sourcegraph patternType:regexp",
+			Want: "repo:github.com/khulnasoft/khulnasoft patternType:regexp",
 		},
 		{
 			Name: "with_structural_suggestion",
@@ -77,12 +77,12 @@ func TestSearchPatternForSuggestion(t *testing.T) {
 				ProposedQueries: []*QueryDescription{
 					{
 						Description: "Some query description",
-						Query:       "repo:github.com/sourcegraph/sourcegraph",
+						Query:       "repo:github.com/khulnasoft/khulnasoft",
 						PatternType: query.SearchTypeStructural,
 					},
 				},
 			},
-			Want: "repo:github.com/sourcegraph/sourcegraph patternType:structural",
+			Want: "repo:github.com/khulnasoft/khulnasoft patternType:structural",
 		},
 	}
 

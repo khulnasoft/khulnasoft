@@ -37,7 +37,7 @@ func TestUpdatePermissions(t *testing.T) {
 	})
 
 	t.Run("dotcom", func(t *testing.T) {
-		dotcom.MockSourcegraphDotComMode(t, true) // helper registers cleanup
+		dotcom.MockKhulnasoftDotComMode(t, true) // helper registers cleanup
 
 		testUpdatePermissionsForCase(t, db, testUpdatePermissionsCase{
 			expectedUserPerms: defaultUserPerms,

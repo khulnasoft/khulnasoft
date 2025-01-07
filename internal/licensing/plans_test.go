@@ -65,7 +65,7 @@ func TestInfo_hasUnknownPlan(t *testing.T) {
 		{tags: []string{"foo", PlanTeam0.Tag()}},
 		{tags: []string{"foo", PlanEnterprise0.Tag()}},
 
-		{tags: []string{"foo", "plan:xyz"}, wantErr: `The license has an unrecognizable plan in tag "plan:xyz", please contact Sourcegraph support.`},
+		{tags: []string{"foo", "plan:xyz"}, wantErr: `The license has an unrecognizable plan in tag "plan:xyz", please contact Khulnasoft support.`},
 	}
 	for _, test := range tests {
 		t.Run(fmt.Sprintf("tags: %v", test.tags), func(t *testing.T) {

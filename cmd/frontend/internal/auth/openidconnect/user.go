@@ -46,12 +46,12 @@ func getOrCreateUser(
 	hubSpotProps *hubspot.ContactProperties,
 ) (newUserCreated bool, _ *actor.Actor, safeErrMsg string, err error) {
 	if userInfo.Email == "" {
-		return false, nil, "Only users with an email address may authenticate to Sourcegraph.", errors.New("no email address in claims")
+		return false, nil, "Only users with an email address may authenticate to Khulnasoft.", errors.New("no email address in claims")
 	}
 	if unverifiedEmail := claims.EmailVerified != nil && !*claims.EmailVerified; unverifiedEmail {
 		// If the OP explicitly reports `"email_verified": false`, then reject the authentication
 		// attempt. If undefined or true, then it will be allowed.
-		return false, nil, fmt.Sprintf("Only users with verified email addresses may authenticate to Sourcegraph. The email address %q is not verified on the external authentication provider.", userInfo.Email), errors.Errorf("refusing unverified user email address %q", userInfo.Email)
+		return false, nil, fmt.Sprintf("Only users with verified email addresses may authenticate to Khulnasoft. The email address %q is not verified on the external authentication provider.", userInfo.Email), errors.Errorf("refusing unverified user email address %q", userInfo.Email)
 	}
 
 	login := getLogin(claims, userInfo)
@@ -64,7 +64,7 @@ func getOrCreateUser(
 	login, err = auth.NormalizeUsername(login)
 	if err != nil {
 		return false, nil,
-			fmt.Sprintf("Error normalizing the username %q. See https://sourcegraph.com/docs/admin/auth/#username-normalization.", login),
+			fmt.Sprintf("Error normalizing the username %q. See https://khulnasoft.com/docs/admin/auth/#username-normalization.", login),
 			errors.Wrap(err, "normalize username")
 	}
 

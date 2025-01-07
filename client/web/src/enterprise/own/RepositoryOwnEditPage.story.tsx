@@ -28,8 +28,8 @@ export default config
 
 const repo: RepositoryFields = {
     id: '1',
-    name: 'github.com/sourcegraph/sourcegraph',
-    url: '/github.com/sourcegraph/sourcegraph',
+    name: 'github.com/khulnasoft/khulnasoft',
+    url: '/github.com/khulnasoft/khulnasoft',
     description: 'Code intelligence platform',
     externalRepository: {
         serviceID: '2',
@@ -37,7 +37,7 @@ const repo: RepositoryFields = {
     },
     externalURLs: [
         {
-            url: 'https://github.com/sourcegraph/sourcegraph',
+            url: 'https://github.com/khulnasoft/khulnasoft',
             serviceKind: ExternalServiceKind.GITHUB,
         },
     ],

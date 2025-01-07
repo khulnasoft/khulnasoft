@@ -37,7 +37,7 @@ func SetGitAttributes(dir common.GitDir) error {
 
 	_, err := fileutil.UpdateFileIfDifferent(
 		filepath.Join(infoDir, "attributes"),
-		[]byte(`# Managed by Sourcegraph gitserver.
+		[]byte(`# Managed by Khulnasoft gitserver.
 
 # We want every file to be present in git archive.
 * -export-ignore

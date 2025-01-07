@@ -30,7 +30,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/strategicpatch"
 )
 
-func (r *Reconciler) reconcileFrontend(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileFrontend(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileFrontendDeployment(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling Deployment")
 	}
@@ -55,7 +55,7 @@ func (r *Reconciler) reconcileFrontend(ctx context.Context, sg *config.Sourcegra
 	return nil
 }
 
-func (r *Reconciler) reconcileFrontendDeployment(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileFrontendDeployment(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "frontend"
 	cfg := sg.Spec.Frontend
 
@@ -180,7 +180,7 @@ func (r *Reconciler) reconcileFrontendDeployment(ctx context.Context, sg *config
 	return reconcileObject(ctx, r, ifChanged, &dep, &appsv1.Deployment{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileFrontendService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileFrontendService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "sourcegraph-frontend"
 	cfg := sg.Spec.Frontend
 	logger := log.FromContext(ctx).WithValues("kind", "from ingress creation")
@@ -223,7 +223,7 @@ func (r *Reconciler) reconcileFrontendService(ctx context.Context, sg *config.So
 	return reconcileObject(ctx, r, sg.Spec.Frontend, newSvc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileFrontendServiceInternal(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileFrontendServiceInternal(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Frontend
 
 	svc := service.NewService("sourcegraph-frontend-internal", sg.Namespace, nil)
@@ -237,7 +237,7 @@ func (r *Reconciler) reconcileFrontendServiceInternal(ctx context.Context, sg *c
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileFrontendRole(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileFrontendRole(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "sourcegraph-frontend"
 	cfg := sg.Spec.Frontend
 
@@ -260,13 +260,13 @@ func (r *Reconciler) reconcileFrontendRole(ctx context.Context, sg *config.Sourc
 	return reconcileObject(ctx, r, cfg, &role, &rbacv1.Role{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileFrontendServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileFrontendServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Frontend
 	sa := serviceaccount.NewServiceAccount("sourcegraph-frontend", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileFrontendRoleBinding(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileFrontendRoleBinding(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "sourcegraph-frontend"
 	binding := rolebinding.NewRoleBinding(name, sg.Namespace)
 	binding.RoleRef = rbacv1.RoleRef{
@@ -283,7 +283,7 @@ func (r *Reconciler) reconcileFrontendRoleBinding(ctx context.Context, sg *confi
 	return reconcileObject(ctx, r, sg.Spec.Frontend, &binding, &rbacv1.RoleBinding{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileFrontendIngress(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileFrontendIngress(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "sourcegraph-frontend"
 	cfg := sg.Spec.Frontend
 	logger := log.FromContext(ctx).WithValues("kind", "from ingress creation")
@@ -357,7 +357,7 @@ func (r *Reconciler) reconcileFrontendIngress(ctx context.Context, sg *config.So
 	return reconcileObject(ctx, r, sg.Spec.Frontend, newObjAsIngress, &netv1.Ingress{}, sg, owner)
 }
 
-func frontendEnvVars(sg *config.Sourcegraph) []corev1.EnvVar {
+func frontendEnvVars(sg *config.Khulnasoft) []corev1.EnvVar {
 	vars := []corev1.EnvVar{
 		{Name: "DEPLOY_TYPE", Value: "appliance"},
 	}

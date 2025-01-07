@@ -18,15 +18,15 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-// All Sourcegraph Operator endpoints are under this path prefix.
-const authPrefix = auth.AuthURLPrefix + "/" + internalauth.SourcegraphOperatorProviderType
+// All Khulnasoft Operator endpoints are under this path prefix.
+const authPrefix = auth.AuthURLPrefix + "/" + internalauth.KhulnasoftOperatorProviderType
 
-// Middleware is middleware for Sourcegraph Operator authentication, adding
+// Middleware is middleware for Khulnasoft Operator authentication, adding
 // endpoints under the auth path prefix ("/.auth") to enable the login flow and
 // requiring login for all other endpoints.
 //
 // 🚨SECURITY: See docstring of the openidconnect.Middleware for security details
-// because the Sourcegraph Operator authentication provider is a wrapper of the
+// because the Khulnasoft Operator authentication provider is a wrapper of the
 // OpenID Connect authentication provider.
 func Middleware(db database.DB) *auth.Middleware {
 	return &auth.Middleware{
@@ -36,7 +36,7 @@ func Middleware(db database.DB) *auth.Middleware {
 		},
 		App: func(next http.Handler) http.Handler {
 			return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-				// Delegate to the Sourcegraph Operator authentication handler.
+				// Delegate to the Khulnasoft Operator authentication handler.
 				if strings.HasPrefix(r.URL.Path, authPrefix+"/") {
 					authHandler(db)(w, r)
 					return
@@ -49,13 +49,13 @@ func Middleware(db database.DB) *auth.Middleware {
 }
 
 // SessionKey is the key of the key-value pair in a user session for the
-// Sourcegraph Operator authentication provider.
+// Khulnasoft Operator authentication provider.
 const SessionKey = "soap@0"
 
 const usernamePrefix = "sourcegraph-operator-"
 
 func authHandler(db database.DB) func(w http.ResponseWriter, r *http.Request) {
-	logger := log.Scoped(internalauth.SourcegraphOperatorProviderType + ".authHandler")
+	logger := log.Scoped(internalauth.KhulnasoftOperatorProviderType + ".authHandler")
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch strings.TrimPrefix(r.URL.Path, authPrefix) {
 		case "/login": // Endpoint that starts the Authentication Request Code Flow.
@@ -71,21 +71,21 @@ func authHandler(db database.DB) func(w http.ResponseWriter, r *http.Request) {
 		case "/callback": // Endpoint for the OIDC Authorization Response, see http://openid.net/specs/openid-connect-core-1_0.html#AuthResponse.
 			result, safeErrMsg, errStatus, err := openidconnect.AuthCallback(logger, db, r, usernamePrefix, GetOIDCProvider)
 			if err != nil {
-				logger.Error("failed to authenticate with Sourcegraph Operator", log.Error(err))
+				logger.Error("failed to authenticate with Khulnasoft Operator", log.Error(err))
 				http.Error(w, safeErrMsg, errStatus)
 				return
 			}
 
 			p, ok := providers.GetProviderByConfigID(
 				providers.ConfigID{
-					Type: internalauth.SourcegraphOperatorProviderType,
-					ID:   internalauth.SourcegraphOperatorProviderType,
+					Type: internalauth.KhulnasoftOperatorProviderType,
+					ID:   internalauth.KhulnasoftOperatorProviderType,
 				},
 			).(*provider)
 			if !ok {
 				logger.Error(
-					"failed to get Sourcegraph Operator authentication provider",
-					log.Error(errors.Errorf("no authentication provider found with ID %q", internalauth.SourcegraphOperatorProviderType)),
+					"failed to get Khulnasoft Operator authentication provider",
+					log.Error(errors.Errorf("no authentication provider found with ID %q", internalauth.KhulnasoftOperatorProviderType)),
 				)
 				http.Error(w, "Misconfigured authentication provider.", http.StatusInternalServerError)
 				return
@@ -108,17 +108,17 @@ func authHandler(db database.DB) func(w http.ResponseWriter, r *http.Request) {
 
 			var expiry time.Duration
 			// If the "sourcegraph-operator" (SOAP) is the only external account associated
-			// with the user, that means the user is a pure Sourcegraph Operator which should
+			// with the user, that means the user is a pure Khulnasoft Operator which should
 			// have designated and aggressive session expiry - unless that account is designated
 			// as a service account. However, because service accounts are not "real" users and
 			// cannot log in through the user interface (instead, we provision access entirely
 			// via API tokens), we do not add special handling here to avoid deleting service
 			// accounts.
-			if len(extAccts) == 1 && extAccts[0].ServiceType == internalauth.SourcegraphOperatorProviderType {
+			if len(extAccts) == 1 && extAccts[0].ServiceType == internalauth.KhulnasoftOperatorProviderType {
 				// The user session will only live at most for the remaining duration from the
 				// "users.created_at" compared to the current time.
 				//
-				// For example, if a Sourcegraph operator user account is created at
+				// For example, if a Khulnasoft operator user account is created at
 				// "2022-10-10T10:10:10Z" and the configured lifecycle duration is one hour, this
 				// account will be deleted as early as "2022-10-10T11:10:10Z", which means:
 				//   - Upon creation of an account, the session lives for an hour.
@@ -128,11 +128,11 @@ func authHandler(db database.DB) func(w http.ResponseWriter, r *http.Request) {
 				if expiry <= 0 {
 					// Let's do a proactive hard delete since the background worker hasn't caught up
 
-					// Help exclude Sourcegraph operator related events from analytics
+					// Help exclude Khulnasoft operator related events from analytics
 					ctx := actor.WithActor(
 						r.Context(),
 						&actor.Actor{
-							SourcegraphOperator: true,
+							KhulnasoftOperator: true,
 						},
 					)
 					err = db.Users().HardDelete(ctx, result.User.ID)
@@ -147,11 +147,11 @@ func authHandler(db database.DB) func(w http.ResponseWriter, r *http.Request) {
 
 			act := &actor.Actor{
 				UID:                 result.User.ID,
-				SourcegraphOperator: true,
+				KhulnasoftOperator: true,
 			}
 			err = session.SetActor(w, r, act, expiry, result.User.CreatedAt)
 			if err != nil {
-				logger.Error("failed to authenticate with Sourcegraph Operator", log.Error(errors.Wrap(err, "initiate session")))
+				logger.Error("failed to authenticate with Khulnasoft Operator", log.Error(errors.Wrap(err, "initiate session")))
 				http.Error(w, "Authentication failed. Try signing in again (and clearing cookies for the current site). The error was: could not initiate session.", http.StatusInternalServerError)
 				return
 			}
@@ -165,8 +165,8 @@ func authHandler(db database.DB) func(w http.ResponseWriter, r *http.Request) {
 				// It's not fatal if this fails. It just means we won't be able to sign the user
 				// out of the OP.
 				logger.Warn(
-					"failed to set Sourcegraph Operator session data",
-					log.String("message", "The session is still secure, but Sourcegraph will be unable to revoke the user's token or redirect the user to the end-session endpoint after the user signs out of Sourcegraph."),
+					"failed to set Khulnasoft Operator session data",
+					log.String("message", "The session is still secure, but Khulnasoft will be unable to revoke the user's token or redirect the user to the end-session endpoint after the user signs out of Khulnasoft."),
 					log.Error(err),
 				)
 			} else {
@@ -181,7 +181,7 @@ func authHandler(db database.DB) func(w http.ResponseWriter, r *http.Request) {
 			if !result.User.SiteAdmin {
 				err = db.Users().SetIsSiteAdmin(ctx, result.User.ID, true)
 				if err != nil {
-					logger.Error("failed to update Sourcegraph Operator as site admin", log.Error(err))
+					logger.Error("failed to update Khulnasoft Operator as site admin", log.Error(err))
 					http.Error(w, "Authentication failed. Try signing in again (and clearing cookies for the current site). The error was: could not set as site admin.", http.StatusInternalServerError)
 					return
 				}

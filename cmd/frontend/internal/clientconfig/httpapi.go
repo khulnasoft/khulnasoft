@@ -10,7 +10,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/internal/database"
 )
 
-// HTTP handlers for interacting with this Sourcegraph instance's
+// HTTP handlers for interacting with this Khulnasoft instance's
 // Cody client configuration. These handlers perform auth checks.
 type HTTPHandlers struct {
 	db     database.DB
@@ -24,7 +24,7 @@ func NewHandlers(db database.DB, logger log.Logger) *HTTPHandlers {
 	}
 }
 
-// GetClientConfigHandler returns the current Sourcegraph instance's Cody client configuration
+// GetClientConfigHandler returns the current Khulnasoft instance's Cody client configuration
 // data as JSON. Requires that the calling user is an authenticated.
 func (h *HTTPHandlers) GetClientConfigHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()

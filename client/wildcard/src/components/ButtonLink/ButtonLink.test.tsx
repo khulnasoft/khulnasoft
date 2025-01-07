@@ -35,7 +35,7 @@ describe('<ButtonLink />', () => {
     test('renders correctly anchor attributes', () => {
         const { asFragment } = renderWithBrandedContext(
             <ButtonLink
-                to="https://sourcegraph.com"
+                to="https://khulnasoft.com"
                 variant="secondary"
                 size="lg"
                 target="_blank"

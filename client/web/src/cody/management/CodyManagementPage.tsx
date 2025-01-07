@@ -182,7 +182,7 @@ export const CodyManagementPage: React.FunctionComponent<CodyManagementPageProps
                     <div className="d-flex flex-column flex-gap-2">
                         {pageHeaderLink}
                         <Link
-                            to="https://help.sourcegraph.com"
+                            to="https://help.khulnasoft.com"
                             target="_blank"
                             rel="noreferrer"
                             className="text-muted text-center text-sm"

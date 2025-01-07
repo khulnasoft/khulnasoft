@@ -35,7 +35,7 @@ const FrontendInternalHost = "127.0.0.1:3090"
 // If it is modified by an external package, it must be modified immediately on startup,
 // before `shared.Main` is called.
 var DefaultEnv = map[string]string{
-	// Sourcegraph services running in this container
+	// Khulnasoft services running in this container
 	"SRC_GIT_SERVERS":       "127.0.0.1:3178",
 	"SEARCHER_URL":          "http://127.0.0.1:3181",
 	"REPO_UPDATER_URL":      "http://127.0.0.1:3182",
@@ -72,7 +72,7 @@ var DefaultEnv = map[string]string{
 // on github.com/khulnasoft/khulnasoft/internal/env).
 var verbose = os.Getenv("SRC_LOG_LEVEL") == "dbug" || os.Getenv("SRC_LOG_LEVEL") == "info"
 
-// Main is the main server command function which is shared between Sourcegraph
+// Main is the main server command function which is shared between Khulnasoft
 // server's open-source and enterprise variant.
 func Main() {
 	flag.Parse()
@@ -317,13 +317,13 @@ func shouldPostgresReindex() bool {
 func runPostgresReindex() {
 	fmt.Printf("Starting Postgres reindex process\n")
 
-	performMigration := os.Getenv("SOURCEGRAPH_5_1_DB_MIGRATION")
+	performMigration := os.Getenv("KHULNASOFT_5_1_DB_MIGRATION")
 	if performMigration != "true" {
 		fmt.Printf("\n**************** MIGRATION REQUIRED **************\n\n")
-		fmt.Printf("Upgrading to Sourcegraph 5.1 or later from an earlier release requires a database reindex.\n\n")
+		fmt.Printf("Upgrading to Khulnasoft 5.1 or later from an earlier release requires a database reindex.\n\n")
 		fmt.Printf("This process may take several hours, depending on the size of your database.\n\n")
-		fmt.Printf("If you do not wish to perform the reindex process now, you should switch back to a release before Sourcegraph 5.1.\n\n")
-		fmt.Printf("To perform the reindexing process now, please review the instructions at https://sourcegraph.com/docs/admin/migration/5_1 and restart the container with the environment variable `SOURCEGRAPH_5_1_DB_MIGRATION=true` set.\n")
+		fmt.Printf("If you do not wish to perform the reindex process now, you should switch back to a release before Khulnasoft 5.1.\n\n")
+		fmt.Printf("To perform the reindexing process now, please review the instructions at https://khulnasoft.com/docs/admin/migration/5_1 and restart the container with the environment variable `KHULNASOFT_5_1_DB_MIGRATION=true` set.\n")
 		fmt.Printf("\n**************** MIGRATION REQUIRED **************\n\n")
 
 		os.Exit(101)

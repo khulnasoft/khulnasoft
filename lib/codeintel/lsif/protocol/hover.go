@@ -37,7 +37,7 @@ const (
 )
 
 type MarkupContent struct {
-	Kind  MarkupKind `json:"kind"` // currently unused outside of Sourcegraph documentation LSIF extension
+	Kind  MarkupKind `json:"kind"` // currently unused outside of Khulnasoft documentation LSIF extension
 	Value string     `json:"value"`
 }
 

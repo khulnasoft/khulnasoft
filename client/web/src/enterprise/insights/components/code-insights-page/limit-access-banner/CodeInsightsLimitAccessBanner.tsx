@@ -16,7 +16,7 @@ export const CodeInsightsLimitAccessBanner: React.FunctionComponent<
             <Badge className={classNames('mb-2', styles.badge)}>LIMITED ACCESS</Badge>
             <Text className="m-0">
                 Contact your admin or{' '}
-                <Link to="mailto:support@sourcegraph.com" target="_blank" rel="noopener noreferrer">
+                <Link to="mailto:support@khulnasoft.com" target="_blank" rel="noopener noreferrer">
                     reach out to us
                 </Link>{' '}
                 to upgrade your Khulnasoft license to unlock Code Insights for unlimited insights and dashboards.{' '}

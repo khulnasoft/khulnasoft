@@ -16,7 +16,7 @@ function buildSettings(props: EditorSettings = {}): EditorSettings {
 
 describe('buildRepoBaseNameAndPath tests', () => {
     it('builds the correct string for "repositoryPathPattern": "{nameWithOwner}" config', () => {
-        const url = 'https://sourcegraph.com/sourcegraph/sourcegraph/-/blob/tsconfig.json'
+        const url = 'https://khulnasoft.com/khulnasoft/khulnasoft/-/blob/tsconfig.json'
         const { repoName, filePath } = parseBrowserRepoURL(url)
 
         const result = buildRepoBaseNameAndPath(repoName, ExternalServiceKind.GITHUB, filePath)
@@ -25,7 +25,7 @@ describe('buildRepoBaseNameAndPath tests', () => {
     })
 
     it('builds the correct string for GitHub URLs', () => {
-        const url = 'https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/tsconfig.json'
+        const url = 'https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/tsconfig.json'
         const { repoName, filePath } = parseBrowserRepoURL(url)
 
         const result = buildRepoBaseNameAndPath(repoName, ExternalServiceKind.GITHUB, filePath)
@@ -43,7 +43,7 @@ describe('buildRepoBaseNameAndPath tests', () => {
     })
 
     it('builds the correct string for GitLab URLs', () => {
-        const url = 'https://sourcegraph.com/gitlab.com/gitlab-org/gitlab-foss/-/blob/.eslintignore'
+        const url = 'https://khulnasoft.com/gitlab.com/gitlab-org/gitlab-foss/-/blob/.eslintignore'
         const { repoName, filePath } = parseBrowserRepoURL(url)
 
         const result = buildRepoBaseNameAndPath(repoName, ExternalServiceKind.GITLAB, filePath)
@@ -62,7 +62,7 @@ describe('buildRepoBaseNameAndPath tests', () => {
     })
 
     it('builds the correct string for Bitbucket Cloud URLs', () => {
-        const url = 'https://sourcegraph.com/bitbucket.org/atlassian/stash-example-plugin/src/master/README.md'
+        const url = 'https://khulnasoft.com/bitbucket.org/atlassian/stash-example-plugin/src/master/README.md'
         const { repoName, filePath } = parseBrowserRepoURL(url)
 
         const result = buildRepoBaseNameAndPath(repoName, 'bitbucketCloud', filePath)
@@ -81,7 +81,7 @@ describe('buildRepoBaseNameAndPath tests', () => {
     })
 
     it('builds the correct string for other URLs', () => {
-        const url = 'https://sourcegraph.com/maven/com.esotericsoftware.minlog/minlog/-/blob/lsif-java.json'
+        const url = 'https://khulnasoft.com/maven/com.esotericsoftware.minlog/minlog/-/blob/lsif-java.json'
         const { repoName, filePath } = parseBrowserRepoURL(url)
 
         const result = buildRepoBaseNameAndPath(repoName, ExternalServiceKind.OTHER, filePath)
@@ -93,7 +93,7 @@ describe('buildRepoBaseNameAndPath tests', () => {
 describe('buildEditorUrl tests', () => {
     const defaultPosition = { line: 43, character: 0 }
     const defaultPath = 'sourcegraph/.gitignore'
-    const baseUrl = 'https://sourcegraph.com'
+    const baseUrl = 'https://khulnasoft.com'
     describe('happy paths', () => {
         it('builds the correct URL for some basic settings and VS Code', () => {
             const url = buildEditorUrl(defaultPath, defaultPosition, buildSettings(), baseUrl)

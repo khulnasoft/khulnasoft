@@ -118,7 +118,7 @@
   "searchInsights.insight.extensionBasedInsights": {
     "title": "extension based 'insights'",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -134,7 +134,7 @@
   "searchInsights.insight.campaignsExtension": {
     "title": "campaigns extension",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -175,7 +175,7 @@
   "searchInsights.insight.commitsOverTime": {
     "title": "Commits over time",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {
@@ -201,7 +201,7 @@
   "searchInsights.insight.test435": {
     "title": "test435",
     "repositories": [
-      "github.com/sourcegraph/sourcegraph"
+      "github.com/khulnasoft/khulnasoft"
     ],
     "series": [
       {

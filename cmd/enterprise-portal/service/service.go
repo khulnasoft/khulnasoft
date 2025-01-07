@@ -41,7 +41,7 @@ func (Service) Name() string    { return "enterprise-portal" }
 func (Service) Version() string { return version.Version() }
 
 func (Service) Initialize(ctx context.Context, logger log.Logger, contract runtime.ServiceContract, config Config) (background.Routine, error) {
-	// We use Sourcegraph tracing code, so explicitly configure a trace policy
+	// We use Khulnasoft tracing code, so explicitly configure a trace policy
 	policy.SetTracePolicy(policy.TraceAll)
 
 	redisClient, err := newRedisClient(contract.MSP, contract.RedisEndpoint)
@@ -77,7 +77,7 @@ func (Service) Initialize(ctx context.Context, logger log.Logger, contract runti
 		},
 	)
 	if err != nil {
-		return nil, errors.Wrap(err, "create Sourcegraph Accounts client")
+		return nil, errors.Wrap(err, "create Khulnasoft Accounts client")
 	}
 
 	iamClient, closeIAMClient, err := newIAMClient(ctx, logger, contract.Contract, redisClient)

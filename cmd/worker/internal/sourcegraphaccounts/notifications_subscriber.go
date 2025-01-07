@@ -26,7 +26,7 @@ import (
 var _ job.Job = (*notificationsSubscriber)(nil)
 
 // notificationsSubscriber is a worker responsible for receiving notifications
-// from Sourcegraph Accounts.
+// from Khulnasoft Accounts.
 type notificationsSubscriber struct {
 	config *notificationsSubscriberConfig
 }
@@ -38,7 +38,7 @@ func NewNotificationsSubscriber() job.Job {
 }
 
 func (s *notificationsSubscriber) Description() string {
-	return "Receives notifications from Sourcegraph Accounts."
+	return "Receives notifications from Khulnasoft Accounts."
 }
 
 func (s *notificationsSubscriber) Config() []env.Config {
@@ -46,13 +46,13 @@ func (s *notificationsSubscriber) Config() []env.Config {
 }
 
 func (s *notificationsSubscriber) Routines(ctx context.Context, observationCtx *observation.Context) ([]goroutine.BackgroundRoutine, error) {
-	if !dotcom.SourcegraphDotComMode() {
+	if !dotcom.KhulnasoftDotComMode() {
 		return nil, nil // Not relevant
 	}
 
 	logger := observationCtx.Logger
 	if s.config.GCP.CredentialsFile == "" {
-		logger.Info("worker disabled because SOURCEGRAPH_ACCOUNTS_CREDENTIALS_FILE is not set")
+		logger.Info("worker disabled because KHULNASOFT_ACCOUNTS_CREDENTIALS_FILE is not set")
 		return nil, nil
 	}
 
@@ -144,7 +144,7 @@ type notificationsSubscriberConfig struct {
 }
 
 func (c *notificationsSubscriberConfig) Load() {
-	c.GCP.CredentialsFile = c.Get("SOURCEGRAPH_ACCOUNTS_CREDENTIALS_FILE", "", "Path to the Google Cloud credentials file")
-	c.GCP.ProjectID = c.Get("SOURCEGRAPH_ACCOUNTS_NOTIFICATIONS_PROJECT", "sourcegraph-dev", "The GCP project that the service is running in")
-	c.GCP.SubscriptionID = c.Get("SOURCEGRAPH_ACCOUNTS_NOTIFICATIONS_SUBSCRIPTION", "sams-notifications", "GCP Pub/Sub subscription ID to receive SAMS notifications from")
+	c.GCP.CredentialsFile = c.Get("KHULNASOFT_ACCOUNTS_CREDENTIALS_FILE", "", "Path to the Google Cloud credentials file")
+	c.GCP.ProjectID = c.Get("KHULNASOFT_ACCOUNTS_NOTIFICATIONS_PROJECT", "sourcegraph-dev", "The GCP project that the service is running in")
+	c.GCP.SubscriptionID = c.Get("KHULNASOFT_ACCOUNTS_NOTIFICATIONS_SUBSCRIPTION", "sams-notifications", "GCP Pub/Sub subscription ID to receive SAMS notifications from")
 }

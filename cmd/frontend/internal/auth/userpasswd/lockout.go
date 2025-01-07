@@ -241,18 +241,18 @@ func (s *lockoutStore) Reset(userID int32) {
 }
 
 var emailTemplates = txemail.MustValidate(txtypes.Templates{
-	Subject: `Unlock your Sourcegraph Cloud account`,
+	Subject: `Unlock your Khulnasoft Cloud account`,
 	Text: `
-You are receiving this email because your Sourcegraph account got locked after too many sign in attempts.
+You are receiving this email because your Khulnasoft account got locked after too many sign in attempts.
 
 Please, visit this link in your browser to unlock the account and try to sign in again: {{.UnlockAccountUrl}}
 
 This link will expire in {{.ExpiryTime}}.
 
-To see our Terms of Service, please visit this link: https://sourcegraph.com/terms
-To see our Privacy Policy, please visit this link: https://sourcegraph.com/privacy
+To see our Terms of Service, please visit this link: https://khulnasoft.com/terms
+To see our Privacy Policy, please visit this link: https://khulnasoft.com/privacy
 
-Sourcegraph, 981 Mission St, San Francisco, CA 94103, USA
+Khulnasoft, 981 Mission St, San Francisco, CA 94103, USA
 `,
 	HTML: `
 <html>
@@ -274,9 +274,9 @@ Sourcegraph, 981 Mission St, San Francisco, CA 94103, USA
   </style>
 </head>
 <body style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;">
-  <img class="logo" src="https://storage.googleapis.com/sourcegraph-assets/sourcegraph-logo-light-small.png" alt="Sourcegraph logo">
+  <img class="logo" src="https://storage.googleapis.com/sourcegraph-assets/sourcegraph-logo-light-small.png" alt="Khulnasoft logo">
   <p>
-  	You are receiving this email because your Sourcegraph account got locked after too many sign in attempts..
+  	You are receiving this email because your Khulnasoft account got locked after too many sign in attempts..
   </p>
   <p class="mtxl">
     Please, follow this link in your browser to unlock your account and try to sign in again: <a class="btn mtm" href="{{.UnlockAccountUrl}}">Unlock your Account</a>
@@ -287,10 +287,10 @@ Sourcegraph, 981 Mission St, San Francisco, CA 94103, USA
     This link will expire in {{.ExpiryTime}}.
   </p>
   <p class="mtl">
-    <a href="https://sourcegraph.com/terms">Terms</a>&nbsp;&#8226;&nbsp;
-    <a href="https://sourcegraph.com/privacy">Privacy</a>
+    <a href="https://khulnasoft.com/terms">Terms</a>&nbsp;&#8226;&nbsp;
+    <a href="https://khulnasoft.com/privacy">Privacy</a>
   </p>
-  <p>Sourcegraph, 981 Mission St, San Francisco, CA 94103, USA</p>
+  <p>Khulnasoft, 981 Mission St, San Francisco, CA 94103, USA</p>
   </small>
 </body>
 </html>

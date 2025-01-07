@@ -59,8 +59,8 @@ func getSchema(name string) (*schemas.Schema, bool) {
 var tablesWithoutTenant = map[string]map[string]struct{}{
 	"frontend": {
 		"tenants":                  {}, // The tenant table itself, it cannot link to itself.
-		"migration_logs":           {}, // Maintained by migrator and not part of Sourcegraph proper.
-		"versions":                 {}, // Maintained by migrator and not part of Sourcegraph proper.
+		"migration_logs":           {}, // Maintained by migrator and not part of Khulnasoft proper.
+		"versions":                 {}, // Maintained by migrator and not part of Khulnasoft proper.
 		"critical_and_site_config": {}, // Site config is global to the instance so it does not have a tenant.
 
 		// Excluding lsif_* since we are not targetting code-intel initially
@@ -89,11 +89,11 @@ var tablesWithoutTenant = map[string]map[string]struct{}{
 	},
 	"codeintel": {
 		"tenants":        {}, // The tenant table itself, it cannot link to itself.
-		"migration_logs": {}, // Maintained by migrator and not part of Sourcegraph proper.
+		"migration_logs": {}, // Maintained by migrator and not part of Khulnasoft proper.
 	},
 	"codeinsights": {
 		"tenants":        {}, // The tenant table itself, it cannot link to itself.
-		"migration_logs": {}, // Maintained by migrator and not part of Sourcegraph proper.
+		"migration_logs": {}, // Maintained by migrator and not part of Khulnasoft proper.
 	},
 }
 

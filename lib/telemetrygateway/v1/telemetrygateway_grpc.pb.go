@@ -1,7 +1,7 @@
 // 🔔 IMPORTANT: Be VERY careful not to introduce breaking changes to this
 // spec - raw protocol buffer wire format messages are persisted to database
-// as a cache, and Sourcegraph instances rely on this format to emit telemetry
-// to the managed Sourcegraph Telemetry Gateway service.
+// as a cache, and Khulnasoft instances rely on this format to emit telemetry
+// to the managed Khulnasoft Telemetry Gateway service.
 //
 // Tests in ./internal/telemetrygateway/backcompat_test.go can be used to
 // assert compatibility with snapshots created by older versions of this spec.
@@ -42,7 +42,7 @@ type TelemeteryGatewayServiceClient interface {
 	// This is the preferred mechanism for exporting large volumes of events in
 	// bulk.
 	//
-	// 🚨 SECURITY: Callers exporting for single-tenant Sourcegraph should check
+	// 🚨 SECURITY: Callers exporting for single-tenant Khulnasoft should check
 	// the attributes of the Event type to ensure that only the appropriate fields
 	// are exported, as some fields should only be exported on an allowlist basis.
 	RecordEvents(ctx context.Context, opts ...grpc.CallOption) (TelemeteryGatewayService_RecordEventsClient, error)
@@ -54,7 +54,7 @@ type TelemeteryGatewayServiceClient interface {
 	// use cases should implement a batching mechanism and use the RecordEvents
 	// RPC instead.
 	//
-	// 🚨 SECURITY: Callers exporting for single-tenant Sourcegraph should check
+	// 🚨 SECURITY: Callers exporting for single-tenant Khulnasoft should check
 	// the attributes of the Event type to ensure that only the appropriate fields
 	// are exported, as some fields should only be exported on an allowlist basis.
 	RecordEvent(ctx context.Context, in *RecordEventRequest, opts ...grpc.CallOption) (*RecordEventResponse, error)
@@ -119,7 +119,7 @@ type TelemeteryGatewayServiceServer interface {
 	// This is the preferred mechanism for exporting large volumes of events in
 	// bulk.
 	//
-	// 🚨 SECURITY: Callers exporting for single-tenant Sourcegraph should check
+	// 🚨 SECURITY: Callers exporting for single-tenant Khulnasoft should check
 	// the attributes of the Event type to ensure that only the appropriate fields
 	// are exported, as some fields should only be exported on an allowlist basis.
 	RecordEvents(TelemeteryGatewayService_RecordEventsServer) error
@@ -131,7 +131,7 @@ type TelemeteryGatewayServiceServer interface {
 	// use cases should implement a batching mechanism and use the RecordEvents
 	// RPC instead.
 	//
-	// 🚨 SECURITY: Callers exporting for single-tenant Sourcegraph should check
+	// 🚨 SECURITY: Callers exporting for single-tenant Khulnasoft should check
 	// the attributes of the Event type to ensure that only the appropriate fields
 	// are exported, as some fields should only be exported on an allowlist basis.
 	RecordEvent(context.Context, *RecordEventRequest) (*RecordEventResponse, error)

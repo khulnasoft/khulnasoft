@@ -846,12 +846,12 @@
       "locked": false,
       "fontSize": 28,
       "fontFamily": 3,
-      "text": "\"Frontend\" service\n(Sourcegraph monolith)",
+      "text": "\"Frontend\" service\n(Khulnasoft monolith)",
       "baseline": 62,
       "textAlign": "center",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "\"Frontend\" service\n(Sourcegraph monolith)"
+      "originalText": "\"Frontend\" service\n(Khulnasoft monolith)"
     },
     {
       "type": "rectangle",
@@ -1153,12 +1153,12 @@
       "locked": false,
       "fontSize": 28,
       "fontFamily": 3,
-      "text": "\"worker\" service\n(Sourcegraph background workers for adding new insight points)",
+      "text": "\"worker\" service\n(Khulnasoft background workers for adding new insight points)",
       "baseline": 61,
       "textAlign": "center",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "\"worker\" service\n(Sourcegraph background workers for adding new insight points)"
+      "originalText": "\"worker\" service\n(Khulnasoft background workers for adding new insight points)"
     },
     {
       "type": "rectangle",
@@ -3563,12 +3563,12 @@
       "locked": false,
       "fontSize": 28,
       "fontFamily": 3,
-      "text": "\"worker\" service\n(Sourcegraph background workers for backfilling an insight)",
+      "text": "\"worker\" service\n(Khulnasoft background workers for backfilling an insight)",
       "baseline": 61,
       "textAlign": "center",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "\"worker\" service\n(Sourcegraph background workers for backfilling an insight)"
+      "originalText": "\"worker\" service\n(Khulnasoft background workers for backfilling an insight)"
     },
     {
       "type": "rectangle",

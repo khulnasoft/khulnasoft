@@ -3,7 +3,7 @@ resources:
     kind: Deployment
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 24debcd57654ec9bad2bc69454c6c9eb407fa072782198b3410f88874cd2eb25
+        appliance.khulnasoft.com/configHash: 24debcd57654ec9bad2bc69454c6c9eb407fa072782198b3410f88874cd2eb25
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
       labels:
@@ -196,8 +196,8 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/currentVersion: 5.3.9104
-        appliance.sourcegraph.com/managed: "true"
+        appliance.khulnasoft.com/currentVersion: 5.3.9104
+        appliance.khulnasoft.com/managed: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
       name: sg
       namespace: NORMALIZED_FOR_TESTING
@@ -207,7 +207,7 @@ resources:
     kind: ServiceAccount
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 24debcd57654ec9bad2bc69454c6c9eb407fa072782198b3410f88874cd2eb25
+        appliance.khulnasoft.com/configHash: 24debcd57654ec9bad2bc69454c6c9eb407fa072782198b3410f88874cd2eb25
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -226,7 +226,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 24debcd57654ec9bad2bc69454c6c9eb407fa072782198b3410f88874cd2eb25
+        appliance.khulnasoft.com/configHash: 24debcd57654ec9bad2bc69454c6c9eb407fa072782198b3410f88874cd2eb25
         prometheus.io/port: "6060"
         sourcegraph.prometheus/scrape: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
@@ -272,7 +272,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 24debcd57654ec9bad2bc69454c6c9eb407fa072782198b3410f88874cd2eb25
+        appliance.khulnasoft.com/configHash: 24debcd57654ec9bad2bc69454c6c9eb407fa072782198b3410f88874cd2eb25
         prometheus.io/port: "6996"
         sourcegraph.prometheus/scrape: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"

@@ -19,7 +19,7 @@
 , zip
 }:
 let
-  # yoinked from https://sourcegraph.com/github.com/NixOS/nixpkgs/-/blob/pkgs/development/tools/build-managers/bazel/bazel_7/default.nix?L77-120
+  # yoinked from https://khulnasoft.com/github.com/NixOS/nixpkgs/-/blob/pkgs/development/tools/build-managers/bazel/bazel_7/default.nix?L77-120
   defaultShellUtils = [
     bash
     coreutils

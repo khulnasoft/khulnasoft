@@ -11,8 +11,8 @@
 | `-key` | The name of the  metadata key to add (required) |  |
 | `-repo` | The ID of the repo to add the key-value pair metadata to (required if -repo-name is not specified) |  |
 | `-repo-name` | The name of the repo to add the key-value pair metadata to (required if -repo is not specified) |  |
-| `-trace` | Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing | `false` |
-| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph | `true` |
+| `-trace` | Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing | `false` |
+| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft | `true` |
 | `-value` | The  metadata value associated with the  metadata key. Defaults to null. |  |
 
 
@@ -33,9 +33,9 @@ Usage of 'src repos add-metadata':
   -repo-name string
     	The name of the repo to add the key-value pair metadata to (required if -repo is not specified)
   -trace
-    	Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing
+    	Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing
   -user-agent-telemetry
-    	Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph (default true)
+    	Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft (default true)
   -value string
     	The  metadata value associated with the  metadata key. Defaults to null.
 

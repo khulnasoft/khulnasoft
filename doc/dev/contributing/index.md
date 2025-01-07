@@ -8,6 +8,6 @@
 - For [frontend issues](frontend_contribution.md).
 - For [backend issues](../setup/index.md).
 
-## For Sourcegraph team
+## For Khulnasoft team
 
 - Accepting an external contribution [guide](./accepting_contribution.md).

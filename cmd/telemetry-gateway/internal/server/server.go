@@ -228,7 +228,7 @@ func (s *APIServer) RecordEvent(ctx context.Context, req *telemetrygatewayv1.Rec
 			log.String("eventAction", event.GetAction()))
 
 	// We only allow a limited set of identifiers to use this RPC for now, as
-	// Sourcegraph instances should only use RecordEvents.
+	// Khulnasoft instances should only use RecordEvents.
 	switch metadata.GetIdentifier().GetIdentifier().(type) {
 	case *telemetrygatewayv1.Identifier_ManagedService:
 		identifier := metadata.Identifier.GetManagedService()

@@ -148,7 +148,7 @@ func ParseMavenPackageFromName(name PackageName) (*MavenVersionedPackage, error)
 
 // jdkModule returns the module for the Java standard library (JDK). This module
 // is technically not a "maven module" because the JDK is not published as a
-// Maven library. The only difference that's relevant for Sourcegraph is that we
+// Maven library. The only difference that's relevant for Khulnasoft is that we
 // use a different coursier command to download JDK sources compared to normal
 // maven modules:
 // - JDK sources: `coursier java-home --jvm VERSION`

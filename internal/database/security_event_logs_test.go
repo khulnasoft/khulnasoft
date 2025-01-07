@@ -44,12 +44,12 @@ func TestSecurityEventLogs_ValidInfo(t *testing.T) {
 	}{
 		{
 			name:  "EmptyName",
-			event: &SecurityEvent{UserID: 1, URL: "http://sourcegraph.com", Source: "WEB"},
+			event: &SecurityEvent{UserID: 1, URL: "http://khulnasoft.com", Source: "WEB"},
 			err:   `INSERT: ERROR: new row for relation "security_event_logs" violates check constraint "security_event_logs_check_name_not_empty" (SQLSTATE 23514)`,
 		},
 		{
 			name: "InvalidUser",
-			event: &SecurityEvent{Name: "test_event", URL: "http://sourcegraph.com", Source: "WEB",
+			event: &SecurityEvent{Name: "test_event", URL: "http://khulnasoft.com", Source: "WEB",
 				// a UserID or AnonymousUserID is required to identify a user, unless internal
 				UserID: 0, AnonymousUserID: ""},
 			err: `INSERT: ERROR: new row for relation "security_event_logs" violates check constraint "security_event_logs_check_has_user" (SQLSTATE 23514)`,
@@ -57,37 +57,37 @@ func TestSecurityEventLogs_ValidInfo(t *testing.T) {
 		{
 			name:  "InternalActor",
 			actor: &actor.Actor{Internal: true},
-			event: &SecurityEvent{Name: "test_event", URL: "http://sourcegraph.com", Source: "WEB",
+			event: &SecurityEvent{Name: "test_event", URL: "http://khulnasoft.com", Source: "WEB",
 				// unset UserID and AnonymousUserID will error in other scenarios
 				UserID: 0, AnonymousUserID: ""},
 			err: "<nil>",
 		},
 		{
 			name:  "EmptySource",
-			event: &SecurityEvent{Name: "test_event", URL: "http://sourcegraph.com", UserID: 1},
+			event: &SecurityEvent{Name: "test_event", URL: "http://khulnasoft.com", UserID: 1},
 			err:   `INSERT: ERROR: new row for relation "security_event_logs" violates check constraint "security_event_logs_check_source_not_empty" (SQLSTATE 23514)`,
 		},
 		{
 			name:  "UserAndAnonymousMissing",
-			event: &SecurityEvent{Name: "test_event", URL: "http://sourcegraph.com", Source: "WEB", UserID: 0, AnonymousUserID: ""},
+			event: &SecurityEvent{Name: "test_event", URL: "http://khulnasoft.com", Source: "WEB", UserID: 0, AnonymousUserID: ""},
 			err:   `INSERT: ERROR: new row for relation "security_event_logs" violates check constraint "security_event_logs_check_has_user" (SQLSTATE 23514)`,
 		},
 		{
 			name:  "JustUser",
 			actor: &actor.Actor{UID: 1}, // if we have a userID, we should have a valid actor UID
-			event: &SecurityEvent{Name: "test_event", URL: "http://sourcegraph.com", Source: "Web", UserID: 1, AnonymousUserID: ""},
+			event: &SecurityEvent{Name: "test_event", URL: "http://khulnasoft.com", Source: "Web", UserID: 1, AnonymousUserID: ""},
 			err:   "<nil>",
 		},
 		{
 			name:  "JustAnonymous",
 			actor: &actor.Actor{AnonymousUID: "blah"},
-			event: &SecurityEvent{Name: "test_event", URL: "http://sourcegraph.com", Source: "Web", UserID: 0, AnonymousUserID: "blah"},
+			event: &SecurityEvent{Name: "test_event", URL: "http://khulnasoft.com", Source: "Web", UserID: 0, AnonymousUserID: "blah"},
 			err:   "<nil>",
 		},
 		{
 			name:  "ValidInsert",
 			actor: &actor.Actor{UID: 1}, // if we have a userID, we should have a valid actor UID
-			event: &SecurityEvent{Name: "test_event", UserID: 1, URL: "http://sourcegraph.com", Source: "WEB"},
+			event: &SecurityEvent{Name: "test_event", UserID: 1, URL: "http://khulnasoft.com", Source: "WEB"},
 			err:   "<nil>",
 		},
 	}
@@ -151,18 +151,18 @@ func TestLogSecurityEvent1(t *testing.T) {
 	db := NewDB(logger, dbtest.NewDB(t))
 
 	t.Run("valid event", func(t *testing.T) {
-		err := db.SecurityEventLogs().LogSecurityEvent(ctx, SecurityEventAccessTokenCreated, "http://sourcegraph.com", 123, "AnonymousUserID", "source", nil)
+		err := db.SecurityEventLogs().LogSecurityEvent(ctx, SecurityEventAccessTokenCreated, "http://khulnasoft.com", 123, "AnonymousUserID", "source", nil)
 		require.NoError(t, err)
 	})
 
 	t.Run("invalid arguments", func(t *testing.T) {
-		err := db.SecurityEventLogs().LogSecurityEvent(ctx, SecurityEventAccessTokenCreated, "http://sourcegraph.com", 123, "AnonymousUserID", "source", make(chan int))
+		err := db.SecurityEventLogs().LogSecurityEvent(ctx, SecurityEventAccessTokenCreated, "http://khulnasoft.com", 123, "AnonymousUserID", "source", make(chan int))
 		require.Error(t, err)
 	})
 
 	t.Run("sourcegraph operator", func(t *testing.T) {
-		ctx = actor.WithActor(context.Background(), &actor.Actor{UID: 123, SourcegraphOperator: true})
-		err := db.SecurityEventLogs().LogSecurityEvent(ctx, SecurityEventAccessTokenCreated, "http://sourcegraph.com", 123, "AnonymousUserID", "source", nil)
+		ctx = actor.WithActor(context.Background(), &actor.Actor{UID: 123, KhulnasoftOperator: true})
+		err := db.SecurityEventLogs().LogSecurityEvent(ctx, SecurityEventAccessTokenCreated, "http://khulnasoft.com", 123, "AnonymousUserID", "source", nil)
 		require.NoError(t, err)
 
 		logs := exportLogs()

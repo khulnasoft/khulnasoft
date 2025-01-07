@@ -28,12 +28,12 @@ import (
 )
 
 // APIProxyHandler is an HTTP handler that essentially proxies API requests from the
-// current Sourcegraph instance to the SSC backend, but exchanging the credentials
-// of the calling Sourcegraph user with an access token for their SAMS identity.
+// current Khulnasoft instance to the SSC backend, but exchanging the credentials
+// of the calling Khulnasoft user with an access token for their SAMS identity.
 //
-// This way we can transparently serve an HTTP API from Sourcegraph.com, when in
+// This way we can transparently serve an HTTP API from Khulnasoft.com, when in
 // actuality it is processed by a different service all together. (And thereby
-// allowing us to decouple Cody Pro-specifc functionality from the Sourcegraph
+// allowing us to decouple Cody Pro-specifc functionality from the Khulnasoft
 // Enterprise instance.)
 //
 // The API Proxy simply handles the credential exchange and verification. But
@@ -49,7 +49,7 @@ type APIProxyHandler struct {
 	URLPrefix string
 
 	// SAMSOAuthContext is the metadata necessary for contacting SAMS. Used
-	// when we notice a Sourcegraph account's SAMS identity has an expired
+	// when we notice a Khulnasoft account's SAMS identity has an expired
 	// access token.
 	SAMSOAuthContext *oauthutil.OAuthContext
 }
@@ -57,7 +57,7 @@ type APIProxyHandler struct {
 var _ http.Handler = (*APIProxyHandler)(nil)
 
 // GetSAMSOAuthContext returns the OAuthContext object to describe the SAMS
-// IdP registered to the current Sourcegraph instance. (As identified by
+// IdP registered to the current Khulnasoft instance. (As identified by
 // `GETSAMSServiceID()`)
 func GetSAMSOAuthContext() (*oauthutil.OAuthContext, error) {
 	for _, provider := range conf.Get().AuthProviders {
@@ -81,16 +81,16 @@ func GetSAMSOAuthContext() (*oauthutil.OAuthContext, error) {
 	return nil, errors.New("no SAMS configuration found")
 }
 
-// getUserIDFromRequest extracts the Sourcegraph User ID from the incoming request,
+// getUserIDFromRequest extracts the Khulnasoft User ID from the incoming request,
 // or returns an error suitable for sending to the end user.
 func (p *APIProxyHandler) getUserIDFromContext(ctx context.Context) (int32, error) {
 	callingActor := actor.FromContext(ctx)
 	if callingActor == nil || !callingActor.IsAuthenticated() {
-		p.Logger.Warn("rejecting request made by unauthenticated Sourcegraph user")
+		p.Logger.Warn("rejecting request made by unauthenticated Khulnasoft user")
 		return 0, errors.New("no credentials available")
 	}
-	if callingActor.IsInternal() || callingActor.SourcegraphOperator {
-		p.Logger.Warn("rejecting request made by internal service / Sourcegraph Operator")
+	if callingActor.IsInternal() || callingActor.KhulnasoftOperator {
+		p.Logger.Warn("rejecting request made by internal service / Khulnasoft Operator")
 		return 0, errors.New("request not made on behalf of a user")
 	}
 	return callingActor.UID, nil
@@ -141,11 +141,11 @@ func (p *APIProxyHandler) buildProxyRequest(sourceReq *http.Request, token strin
 	return proxyReq, nil
 }
 
-// getSAMSCredentialsForUser fetches the SAMS identity for the the given Sourcegraph user ID, and
+// getSAMSCredentialsForUser fetches the SAMS identity for the the given Khulnasoft user ID, and
 // decrypts the OAuth token stored within.
 func (p *APIProxyHandler) getSAMSCredentialsForUser(ctx context.Context, userID int32) (
 	*extsvc.Account, *oauth2.Token, error) {
-	// NOTE: It's possible for a user to have multiple SAMS identities attached to the same Sourcegraph
+	// NOTE: It's possible for a user to have multiple SAMS identities attached to the same Khulnasoft
 	// user account. The underlying implementation provides a stable result sorting by ID, so we
 	// just return the first SAMS identity found.
 	//
@@ -158,7 +158,7 @@ func (p *APIProxyHandler) getSAMSCredentialsForUser(ctx context.Context, userID 
 		UserID:      userID,
 		ServiceType: "openidconnect",
 		// We expect the SAMS backend origin to match the registered identity provider,
-		// e.g. "https://accounts.sourcegraph.com" or "http://localhost:9992".
+		// e.g. "https://accounts.khulnasoft.com" or "http://localhost:9992".
 		ServiceID:      p.CodyProConfig.SamsBackendOrigin,
 		ExcludeExpired: true,
 	})
@@ -247,8 +247,8 @@ func (p *APIProxyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// SAMS credentials have a shorter lifetime than the Sourcegraph session.
-	// So it's likely that even though the user is still logged into sourcegraph.com,
+	// SAMS credentials have a shorter lifetime than the Khulnasoft session.
+	// So it's likely that even though the user is still logged into khulnasoft.com,
 	// the request to the SSC backend will fail because the OAuth credentials
 	// associated with their SAMS login has expired.
 	//
@@ -266,7 +266,7 @@ func (p *APIProxyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 			// Just fail here since there is nothing we can do. We know the token is invalid,
 			// and we were unable to create a new one.
-			http.Error(w, "Sourcegraph Accounts identity has expired", http.StatusUnauthorized)
+			http.Error(w, "Khulnasoft Accounts identity has expired", http.StatusUnauthorized)
 			return
 		}
 		accessToken = newToken
@@ -303,7 +303,7 @@ func (p *APIProxyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	// For any SSC 5xx errors, surface that as a 502 from this Sourcegraph instance,
+	// For any SSC 5xx errors, surface that as a 502 from this Khulnasoft instance,
 	// to make it clear that the underlying error didn't happen "here".
 	if proxyResponse.StatusCode >= 500 {
 		p.Logger.Error(

@@ -40,7 +40,7 @@ type Config struct {
 	EmbeddingsAllowedModels     []string
 	AutoFlushStreamingResponses bool
 	EnableAttributionSearch     bool
-	Sourcegraph                 config.SourcegraphConfig
+	Khulnasoft                 config.KhulnasoftConfig
 	IdentifiersToLogFor         collections.Set[string]
 }
 
@@ -163,8 +163,8 @@ func NewHandler(
 
 		factoryMap := embeddings.ModelFactoryMap{
 			embeddings.ModelNameOpenAIAda:              embeddings.NewOpenAIClient(httpClient, config.OpenAI.AccessToken),
-			embeddings.ModelNameSourcegraphSTMultiQA:   embeddings.NewSourcegraphClient(httpClient, config.Sourcegraph.EmbeddingsAPIURL, config.Sourcegraph.EmbeddingsAPIToken),
-			embeddings.ModelNameSourcegraphMetadataGen: embeddings.NewSourcegraphClient(httpClient, config.Sourcegraph.EmbeddingsAPIURL, config.Sourcegraph.EmbeddingsAPIToken),
+			embeddings.ModelNameKhulnasoftSTMultiQA:   embeddings.NewKhulnasoftClient(httpClient, config.Khulnasoft.EmbeddingsAPIURL, config.Khulnasoft.EmbeddingsAPIToken),
+			embeddings.ModelNameKhulnasoftMetadataGen: embeddings.NewKhulnasoftClient(httpClient, config.Khulnasoft.EmbeddingsAPIURL, config.Khulnasoft.EmbeddingsAPIToken),
 		}
 
 		fireworksClient := fireworks.NewClient(httpcli.UncachedExternalDoer, "https://api.fireworks.ai/inference/v1/chat/completions", config.Fireworks.AccessToken)

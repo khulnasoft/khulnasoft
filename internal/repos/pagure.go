@@ -18,7 +18,7 @@ import (
 )
 
 // A PagureSource yields repositories from a single Pagure connection configured
-// in Sourcegraph via the external services configuration.
+// in Khulnasoft via the external services configuration.
 type PagureSource struct {
 	svc       *types.ExternalService
 	cli       *pagure.Client

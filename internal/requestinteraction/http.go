@@ -5,8 +5,8 @@ import (
 )
 
 const (
-	// Sourcegraph-specific header key for propagating an interaction ID.
-	headerKeyInteractionID = "X-Sourcegraph-Interaction-ID"
+	// Khulnasoft-specific header key for propagating an interaction ID.
+	headerKeyInteractionID = "X-Khulnasoft-Interaction-ID"
 )
 
 // TODO(@bobheadxi): Migrate to httpcli.Doer and httpcli.Middleware

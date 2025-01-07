@@ -153,7 +153,7 @@ export const OptionsPage: React.FunctionComponent<React.PropsWithChildren<Option
 
             <section className={styles.section}>
                 <Link
-                    to="https://sourcegraph.com/docs/integration/browser_extension#privacy"
+                    to="https://khulnasoft.com/docs/integration/browser_extension#privacy"
                     {...NEW_TAB_LINK_PROPS}
                     className="d-block mb-1"
                 >
@@ -183,13 +183,13 @@ export const OptionsPage: React.FunctionComponent<React.PropsWithChildren<Option
             </section>
             <section className="d-flex">
                 <div className={styles.splitSectionPart}>
-                    <Link to="https://sourcegraph.com/search" {...NEW_TAB_LINK_PROPS}>
+                    <Link to="https://khulnasoft.com/search" {...NEW_TAB_LINK_PROPS}>
                         <Icon className="mr-2" aria-hidden={true} svgPath={mdiEarth} />
                         Khulnasoft.com
                     </Link>
                 </div>
                 <div className={styles.splitSectionPart}>
-                    <Link to="https://sourcegraph.com/docs" {...NEW_TAB_LINK_PROPS}>
+                    <Link to="https://khulnasoft.com/docs" {...NEW_TAB_LINK_PROPS}>
                         <Icon className="mr-2" aria-hidden={true} svgPath={mdiBookOpenPageVariant} />
                         Documentation
                     </Link>
@@ -247,7 +247,7 @@ const RepoSyncErrorAlert: React.FunctionComponent<
                         You need to setup a{' '}
                         <Link
                             to={
-                                createURLWithUTM(new URL('https://sourcegraph.com/docs/'), {
+                                createURLWithUTM(new URL('https://khulnasoft.com/docs/'), {
                                     utm_source: getPlatformName(),
                                     utm_campaign: 'sync-private-repo-with-cloud',
                                 }).href
@@ -262,7 +262,7 @@ const RepoSyncErrorAlert: React.FunctionComponent<
                     <>
                         <Link
                             to={
-                                createURLWithUTM(new URL('admin/repo/add', 'https://sourcegraph.com/docs/'), {
+                                createURLWithUTM(new URL('admin/repo/add', 'https://khulnasoft.com/docs/'), {
                                     utm_source: getPlatformName(),
                                     utm_campaign: 'add-repo-to-instance',
                                 }).href
@@ -287,7 +287,7 @@ const KhulnasoftComAlert: React.FunctionComponent<React.PropsWithChildren<unknow
             <Icon aria-hidden={true} className="mr-2" svgPath={mdiCheckCircleOutline} />
             You're on Khulnasoft.com
         </H4>
-        <Text>Naturally, the browser extension is not necessary to browse public code on sourcegraph.com.</Text>
+        <Text>Naturally, the browser extension is not necessary to browse public code on khulnasoft.com.</Text>
     </section>
 )
 

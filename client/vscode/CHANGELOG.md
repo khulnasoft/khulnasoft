@@ -16,7 +16,7 @@ The Khulnasoft extension uses major.EVEN_NUMBER.patch (eg. 2.0.1) for release ve
 - Change the extension name from "Khulnasoft" to "Search by
   Khulnasoft" [#51790](https://github.com/khulnasoft/khulnasoft/pull/51790)
 - Remove the URL and Access Token settings because authentication is managed in the extension now. [#63559](https://github.com/khulnasoft/khulnasoft/pull/63559)
-- Remove the signup link for sourcegraph.com because sourcegraph.com no longer hosts private code. [#63558](https://github.com/khulnasoft/khulnasoft/pull/63558)
+- Remove the signup link for khulnasoft.com because khulnasoft.com no longer hosts private code. [#63558](https://github.com/khulnasoft/khulnasoft/pull/63558)
 
 ### Fixes
 

@@ -18,7 +18,7 @@ import (
 const (
 	// Use a real service and environment to help validate links actually work
 	// in our golden tests (TestRender).
-	// https://handbook.sourcegraph.com/departments/engineering/managed-services/msp-testbed#test
+	// https://handbook.khulnasoft.com/departments/engineering/managed-services/msp-testbed#test
 	testServiceID            = "msp-testbed"
 	testServiceEnvironment   = "test"
 	testProjectID            = "msp-testbed-test-77589aae45d0"
@@ -149,7 +149,7 @@ func TestRender(t *testing.T) {
 					Type: "manual",
 				},
 			}},
-			README: []byte(`This service does X, Y, Z. Refer to [here](sourcegraph.com) for more information.
+			README: []byte(`This service does X, Y, Z. Refer to [here](khulnasoft.com) for more information.
 
 ## Additional operations
 

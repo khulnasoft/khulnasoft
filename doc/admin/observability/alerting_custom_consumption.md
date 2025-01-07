@@ -1,12 +1,12 @@
-# Custom consumption of Sourcegraph alerts
+# Custom consumption of Khulnasoft alerts
 
 If Khulnasoft's builtin [alerting](alerting.md) (which can notify you via email, Slack, PagerDuty, webhook, and more) is not sufficient for you, or if you just prefer to consume the alerts programatically for some reason, then this page is for you.
 
-For more information about Sourcegraph alerts, see [high level alerting metrics](metrics.md#high-level-alerting-metrics).
+For more information about Khulnasoft alerts, see [high level alerting metrics](metrics.md#high-level-alerting-metrics).
 
 ## Prometheus queries
 
-Below are examples of how to query alerts that are being monitored or are currently firing in Sourcegraph. If you do wish to query warning alerts, too, then simply replace `critical` with `warning` in any of the below query examples.
+Below are examples of how to query alerts that are being monitored or are currently firing in Khulnasoft. If you do wish to query warning alerts, too, then simply replace `critical` with `warning` in any of the below query examples.
 
 ### "How many critical alerts were firing in the last minute?"
 
@@ -42,7 +42,7 @@ Example response:
 }
 ```
 
-This only ever returns a single result, representing the maximum number of critical alerts firing across all Sourcegraph services in the last minute (relative to the time the query executed / the returned unix timestamp `1585250319.243`). The above shows that `"0"` alerts were firing, and if the number was non-zero, it would represent the max number of alerts firing across all services in the last minute.
+This only ever returns a single result, representing the maximum number of critical alerts firing across all Khulnasoft services in the last minute (relative to the time the query executed / the returned unix timestamp `1585250319.243`). The above shows that `"0"` alerts were firing, and if the number was non-zero, it would represent the max number of alerts firing across all services in the last minute.
 
 ### "How many critical alerts were firing in the last minute, per service?"
 
@@ -90,7 +90,7 @@ Example response:
 }
 ```
 
-This returns a `result` for each service of Sourcegraph where at least one critical alert is defined and being monitored. For example, the first result (`frontend`) indicates that in the last minute (relative to the time the query executed / the returned unix timestamp `1585250083.874`) that `"0"` alerts for the `frontend` service were firing. If the number was non-zero, it would represent the max number of alerts firing on that service in the last minute.
+This returns a `result` for each service of Khulnasoft where at least one critical alert is defined and being monitored. For example, the first result (`frontend`) indicates that in the last minute (relative to the time the query executed / the returned unix timestamp `1585250083.874`) that `"0"` alerts for the `frontend` service were firing. If the number was non-zero, it would represent the max number of alerts firing on that service in the last minute.
 
 ### "How many critical alerts were firing in the last minute, per defined alert?"
 
@@ -142,4 +142,4 @@ Example response:
 }
 ```
 
-This returns a `result` for each defined critical alert that Sourcegraph is monitoring. For example, the first result (`high_concurrent_execs`) indicates that in the last minute (relative to the time the query executed / the returned unix timestamp `1585249844.475`) that `"0"` alerts were firing. Any value >= 1 here, would indicate that alert has fired in the last minute.
+This returns a `result` for each defined critical alert that Khulnasoft is monitoring. For example, the first result (`high_concurrent_execs`) indicates that in the last minute (relative to the time the query executed / the returned unix timestamp `1585249844.475`) that `"0"` alerts were firing. Any value >= 1 here, would indicate that alert has fired in the last minute.

@@ -22,7 +22,7 @@ var (
 	long = flag.Bool("long", false, "Enable the integration tests to run. Required flag, otherwise tests are skipped.")
 
 	baseURL  = flag.String("base-url", "http://127.0.0.1:7080", "The base URL of the Khulnasoft instance")
-	email    = flag.String("email", "gqltest@sourcegraph.com", "The email of the admin user")
+	email    = flag.String("email", "gqltest@khulnasoft.com", "The email of the admin user")
 	username = flag.String("username", "gqltest-admin", "The username of the admin user")
 	password = flag.String("password", "supersecurepassword", "The password of the admin user")
 
@@ -82,7 +82,7 @@ func TestMain(m *testing.M) {
 		log.Println("Site admin authenticated:", *username)
 	}
 
-	licenseKey := os.Getenv("SOURCEGRAPH_LICENSE_KEY")
+	licenseKey := os.Getenv("KHULNASOFT_LICENSE_KEY")
 	if licenseKey != "" {
 		siteConfig, lastID, err := client.SiteConfiguration()
 		if err != nil {

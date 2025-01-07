@@ -57,7 +57,7 @@ export const GlobalAlerts: React.FunctionComponent<Props> = ({ authenticatedUser
         if (settings?.motd && Array.isArray(settings.motd)) {
             telemetryRecorder.recordEvent('alert.motd', 'view')
         }
-        if (process.env.SOURCEGRAPH_API_URL) {
+        if (process.env.KHULNASOFT_API_URL) {
             telemetryRecorder.recordEvent('alert.proxyAPI', 'view')
         }
     }, [settings?.motd, telemetryRecorder])
@@ -125,7 +125,7 @@ export const GlobalAlerts: React.FunctionComponent<Props> = ({ authenticatedUser
                         <Markdown dangerousInnerHTML={renderMarkdown(motd)} />
                     </DismissibleAlert>
                 ))}
-            {process.env.SOURCEGRAPH_API_URL && (
+            {process.env.KHULNASOFT_API_URL && (
                 <DismissibleAlert
                     key="dev-web-server-alert"
                     partialStorageKey="dev-web-server-alert"
@@ -134,8 +134,8 @@ export const GlobalAlerts: React.FunctionComponent<Props> = ({ authenticatedUser
                 >
                     <div>
                         <strong>Warning!</strong> This build uses data from the proxied API:{' '}
-                        <Link className={styles.proxyLink} target="__blank" to={process.env.SOURCEGRAPH_API_URL}>
-                            {process.env.SOURCEGRAPH_API_URL}
+                        <Link className={styles.proxyLink} target="__blank" to={process.env.KHULNASOFT_API_URL}>
+                            {process.env.KHULNASOFT_API_URL}
                         </Link>
                     </div>
                     .

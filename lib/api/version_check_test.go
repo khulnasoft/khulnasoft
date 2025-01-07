@@ -9,7 +9,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-func TestCheckSourcegraphVersion(t *testing.T) {
+func TestCheckKhulnasoftVersion(t *testing.T) {
 	tests := []struct {
 		name           string
 		currentVersion string
@@ -155,7 +155,7 @@ func TestCheckSourcegraphVersion(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			actual, err := CheckSourcegraphVersion(test.currentVersion, test.constraint, test.minDate)
+			actual, err := CheckKhulnasoftVersion(test.currentVersion, test.constraint, test.minDate)
 
 			if test.expectedErr != nil {
 				require.Error(t, err)

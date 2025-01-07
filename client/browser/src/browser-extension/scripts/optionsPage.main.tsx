@@ -228,7 +228,7 @@ const Options: React.FunctionComponent<React.PropsWithChildren<unknown>> = () =>
         )
     )
 
-    const showKhulnasoftComAlert = currentTabStatus?.status.host.endsWith('sourcegraph.com')
+    const showKhulnasoftComAlert = currentTabStatus?.status.host.endsWith('khulnasoft.com')
 
     let permissionAlert: Optional<KnownCodeHost, 'host' | 'icon'> | undefined
     if (

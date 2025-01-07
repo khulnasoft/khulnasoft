@@ -133,14 +133,14 @@ func NewWorker(observationCtx *observation.Context, nameSet *janitor.NameSet, op
 	return workerutil.NewWorker[types.Job](context.Background(), queueClient, h, options.WorkerOptions), nil
 }
 
-// connectToFrontend will ping the configured Sourcegraph instance until it receives a 200 response.
+// connectToFrontend will ping the configured Khulnasoft instance until it receives a 200 response.
 // For the first minute, "connection refused" errors will not be emitted. This is to stop log spam
 // in dev environments where the executor may start up before the frontend. This method returns true
 // after a ping is successful and returns false if a user signal is received.
 func connectToFrontend(logger log.Logger, queueClient *queue.Client, options Options) bool {
 	start := time.Now()
 	logger = logger.With(log.String("url", options.QueueOptions.BaseClientOptions.EndpointOptions.URL))
-	logger.Debug("Connecting to Sourcegraph instance")
+	logger.Debug("Connecting to Khulnasoft instance")
 
 	ticker := time.NewTicker(time.Second)
 	defer ticker.Stop()
@@ -152,7 +152,7 @@ func connectToFrontend(logger log.Logger, queueClient *queue.Client, options Opt
 	for {
 		err := queueClient.Ping(context.Background())
 		if err == nil {
-			logger.Debug("Connected to Sourcegraph instance")
+			logger.Debug("Connected to Khulnasoft instance")
 			return true
 		}
 
@@ -162,13 +162,13 @@ func connectToFrontend(logger log.Logger, queueClient *queue.Client, options Opt
 			// Logs occurring one minute after startup or later are not filtered, nor are non-expected
 			// connection errors during app startup.
 		} else {
-			logger.Error("Failed to connect to Sourcegraph instance", log.Error(err))
+			logger.Error("Failed to connect to Khulnasoft instance", log.Error(err))
 		}
 
 		select {
 		case <-ticker.C:
 		case sig := <-signals:
-			logger.Error("Signal received while connecting to Sourcegraph", log.String("signal", sig.String()))
+			logger.Error("Signal received while connecting to Khulnasoft", log.String("signal", sig.String()))
 			return false
 		}
 	}

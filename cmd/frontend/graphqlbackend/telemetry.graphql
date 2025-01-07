@@ -94,7 +94,7 @@ input TelemetryEventInput {
     generated when the server receives the event, but this does not guarantee
     consistent ordering or accuracy.
 
-    This parameter is only available in Sourcegraph 5.2.5 and later.
+    This parameter is only available in Khulnasoft 5.2.5 and later.
     """
     timestamp: DateTime
 
@@ -127,8 +127,8 @@ input TelemetryEventInput {
     """
     Optional marketing campaign tracking parameters.
 
-    🚨 SECURITY: This metadata is NEVER exported from private Sourcegraph instances,
-    and is only exported for events tracked in the public Sourcegraph.com instance.
+    🚨 SECURITY: This metadata is NEVER exported from private Khulnasoft instances,
+    and is only exported for events tracked in the public Khulnasoft.com instance.
     """
     marketingTracking: TelemetryEventMarketingTrackingInput
 }
@@ -175,10 +175,10 @@ input TelemetryEventParametersInput {
     billingMetadata: TelemetryEventBillingMetadataInput
     """
     Optional interaction ID that can be provided to indicate the interaction
-    this event belongs to. It overrides the X-Sourcegraph-Interaction-ID header
+    this event belongs to. It overrides the X-Khulnasoft-Interaction-ID header
     if one is set on the request recording the event.
 
-    This parameter is only available in Sourcegraph 5.2.4 and later.
+    This parameter is only available in Khulnasoft 5.2.4 and later.
     """
     interactionID: String
 }
@@ -225,8 +225,8 @@ input TelemetryEventBillingMetadataInput {
 """
 Marketing campaign tracking parameters for a telemetry V2 event.
 
-🚨 SECURITY: This metadata is NEVER exported from private Sourcegraph instances,
-and is only exported for events tracked in the public Sourcegraph.com instance.
+🚨 SECURITY: This metadata is NEVER exported from private Khulnasoft instances,
+and is only exported for events tracked in the public Khulnasoft.com instance.
 """
 input TelemetryEventMarketingTrackingInput {
     """
@@ -242,7 +242,7 @@ input TelemetryEventMarketingTrackingInput {
     """
     cohortID: String
     """
-    Referrer URL that refers the user to Sourcegraph.
+    Referrer URL that refers the user to Khulnasoft.
     """
     referrer: String
     """

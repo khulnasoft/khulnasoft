@@ -22,7 +22,7 @@ import (
 
 var app = &cli.App{
 	Usage:       "Edit repository settings in bulk",
-	Description: "https://handbook.sourcegraph.com/departments/engineering/dev/tools/scaletesting/",
+	Description: "https://handbook.khulnasoft.com/departments/engineering/dev/tools/scaletesting/",
 	Compiled:    time.Now(),
 	Flags: []cli.Flag{
 		&cli.StringFlag{

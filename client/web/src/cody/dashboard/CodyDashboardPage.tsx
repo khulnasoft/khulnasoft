@@ -36,13 +36,13 @@ const setupOptions: SetupOption[] = [
         icon: <VSCodeIcon className={styles.linkSelectorIcon} />,
         maker: 'Microsoft',
         name: 'VS Code',
-        setupLink: 'https://sourcegraph.com/docs/cody/clients/install-vscode',
+        setupLink: 'https://khulnasoft.com/docs/cody/clients/install-vscode',
     },
     {
         icon: <IntelliJIcon className={styles.linkSelectorIcon} />,
         maker: 'JetBrains',
         name: 'IntelliJ',
-        setupLink: 'https://sourcegraph.com/docs/cody/clients/install-jetbrains',
+        setupLink: 'https://khulnasoft.com/docs/cody/clients/install-jetbrains',
     },
 ]
 
@@ -53,7 +53,7 @@ export const CodyDashboardPage: FC<CodyDashboardPageProps> = ({ telemetryRecorde
         telemetryRecorder.recordEvent('cody.dashboard', 'view')
     }, [telemetryRecorder])
 
-    const codySetupLink = 'https://sourcegraph.com/docs/cody'
+    const codySetupLink = 'https://khulnasoft.com/docs/cody'
     return !window.context?.codyEnabledOnInstance ? (
         // This page should not be linked from anywhere if Cody is disabled on the instance, but add
         // a check here just in case to avoid confusing users if they find their way here.

@@ -53,7 +53,7 @@ func TestDependencyIndexingSchedulerHandler(t *testing.T) {
 
 	indexEnqueuer := NewMockIndexEnqueuer()
 
-	dotcom.MockSourcegraphDotComMode(t, false)
+	dotcom.MockKhulnasoftDotComMode(t, false)
 
 	handler := &dependencyIndexingSchedulerHandler{
 		uploadsSvc:         mockUploadsSvc,
@@ -141,7 +141,7 @@ func TestDependencyIndexingSchedulerHandlerRequeueNotCloned(t *testing.T) {
 
 	indexEnqueuer := NewMockIndexEnqueuer()
 
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	handler := &dependencyIndexingSchedulerHandler{
 		uploadsSvc:         mockUploadsSvc,
@@ -187,7 +187,7 @@ func TestDependencyIndexingSchedulerHandlerShouldSkipRepository(t *testing.T) {
 
 	indexEnqueuer := NewMockIndexEnqueuer()
 
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	handler := &dependencyIndexingSchedulerHandler{
 		uploadsSvc:         mockUploadsSvc,
@@ -235,7 +235,7 @@ func TestDependencyIndexingSchedulerHandlerNoExtsvc(t *testing.T) {
 
 	indexEnqueuer := NewMockIndexEnqueuer()
 
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	handler := &dependencyIndexingSchedulerHandler{
 		uploadsSvc:         mockUploadsSvc,

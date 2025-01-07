@@ -11,7 +11,7 @@ import (
 )
 
 func TestHandleRegistry(t *testing.T) {
-	dotcom.MockSourcegraphDotComMode(t, true)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	t.Run("list", func(t *testing.T) {
 		rr := httptest.NewRecorder()

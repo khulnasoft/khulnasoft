@@ -46,7 +46,7 @@ exports[`SiteAdminGenerateProductLicenseForSubscriptionForm > renders 1`] = `
                
               <a
                 class="anchorLink"
-                href="https://handbook.sourcegraph.com/ce/license_keys#how-to-create-a-license-key-for-a-new-prospect-or-new-customer"
+                href="https://handbook.khulnasoft.com/ce/license_keys#how-to-create-a-license-key-for-a-new-prospect-or-new-customer"
                 rel="noopener"
                 target="_blank"
               >

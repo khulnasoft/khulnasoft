@@ -67,7 +67,7 @@ def mocha_test(name, tests, deps = [], args = [], data = [], env = {}, **kwargs)
     # doesn't let us rename them without attempting to do analysis-time
     # variable substitution, which causes analysis-time errors if the variables
     # are not declared.
-    # - SOURCEGRAPH_BASE_URL
+    # - KHULNASOFT_BASE_URL
     # - GH_TOKEN
     # - DISPLAY
     # - HEADLESS
@@ -77,9 +77,9 @@ def mocha_test(name, tests, deps = [], args = [], data = [], env = {}, **kwargs)
         "MOCHA_FILE": "$$XML_OUTPUT_FILE",
 
         # TODO(bazel): e2e test environment
-        "TEST_USER_EMAIL": "test@sourcegraph.com",
+        "TEST_USER_EMAIL": "test@khulnasoft.com",
         "TEST_USER_PASSWORD": "supersecurepassword",
-        "SOURCEGRAPH_SUDO_TOKEN": "fake-sg-token",
+        "KHULNASOFT_SUDO_TOKEN": "fake-sg-token",
         "NO_CLEANUP": "false",
         "KEEP_BROWSER": "false",
         "DEVTOOLS": "false",

@@ -19,7 +19,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/pointers"
 )
 
-func (r *Reconciler) reconcileWorker(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileWorker(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileWorkerDeployment(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling Deployment")
 	}
@@ -35,7 +35,7 @@ func (r *Reconciler) reconcileWorker(ctx context.Context, sg *config.Sourcegraph
 	return nil
 }
 
-func (r *Reconciler) reconcileWorkerDeployment(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileWorkerDeployment(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "worker"
 	cfg := sg.Spec.Worker
 
@@ -118,7 +118,7 @@ func (r *Reconciler) reconcileWorkerDeployment(ctx context.Context, sg *config.S
 	return reconcileObject(ctx, r, ifChanged, &dep, &appsv1.Deployment{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileWorkerService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileWorkerService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "worker"
 	cfg := sg.Spec.Worker
 
@@ -134,7 +134,7 @@ func (r *Reconciler) reconcileWorkerService(ctx context.Context, sg *config.Sour
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileWorkerExecutorsService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileWorkerExecutorsService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Worker
 
 	svc := service.NewService("worker-executors", sg.Namespace, nil)
@@ -152,7 +152,7 @@ func (r *Reconciler) reconcileWorkerExecutorsService(ctx context.Context, sg *co
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileWorkerServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileWorkerServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Worker
 	sa := serviceaccount.NewServiceAccount("worker", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)

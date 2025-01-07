@@ -27,7 +27,7 @@ body.theme-dark .markdown-body ul li:before {
 }
 </style>
 
-<p class="subtitle">Working on Sourcegraph code on your local machine</p>
+<p class="subtitle">Working on Khulnasoft code on your local machine</p>
 
 <div class="cta-group">
 <a class="btn btn-primary" href="quickstart">★ Quickstart with <code>sg</code></a>
@@ -38,7 +38,7 @@ body.theme-dark .markdown-body ul li:before {
 
 ## Quickstart
 
-In order to run the Sourcegraph locally, the following pages will guide you from zero to having a local environment up and running, ready for contributions for the the most common use cases.
+In order to run the Khulnasoft locally, the following pages will guide you from zero to having a local environment up and running, ready for contributions for the the most common use cases.
 
 - [**Quickstart with `sg`**](quickstart.md)
 

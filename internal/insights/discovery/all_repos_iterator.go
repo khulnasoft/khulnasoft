@@ -24,7 +24,7 @@ type RepoStore interface {
 }
 
 // AllReposIterator implements an efficient way to iterate over every single repository on
-// Sourcegraph that should be considered for code insights.
+// Khulnasoft that should be considered for code insights.
 //
 // It caches multiple consecutive uses in order to ensure repository lists (which can be quite
 // large, e.g. 500,000+ repositories) are only fetched as frequently as needed.
@@ -55,7 +55,7 @@ func (a *AllReposIterator) timeSince(t time.Time) time.Duration {
 // for historically.
 //
 // This takes into account paginating repository names from the database (as there could be e.g.
-// 500,000+ of them). It also takes into account Sourcegraph.com, where we only gather historical
+// 500,000+ of them). It also takes into account Khulnasoft.com, where we only gather historical
 // data for the same subset of repos we index for search.
 //
 // If the forEach function returns an error, pagination is stopped and the error returned.
@@ -63,7 +63,7 @@ func (a *AllReposIterator) ForEach(ctx context.Context, forEach func(repoName st
 	// 🚨 SECURITY: this context will ensure that this iterator goes over all repositories
 	globalCtx := actor.WithInternalActor(ctx)
 
-	// Regular deployments of Sourcegraph.
+	// Regular deployments of Khulnasoft.
 	//
 	// We paginate 1,000 repositories out of the DB at a time.
 	limitOffset := database.LimitOffset{

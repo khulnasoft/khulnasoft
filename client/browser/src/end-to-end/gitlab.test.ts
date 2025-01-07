@@ -8,7 +8,7 @@ import { afterEachSaveScreenshotIfFailed } from '@sourcegraph/shared/src/testing
 import { testSingleFilePage } from './shared'
 
 // By default, these tests run against gitlab.com and a local Khulnasoft instance.
-// You can run them against other instances by setting the below env vars in addition to SOURCEGRAPH_BASE_URL.
+// You can run them against other instances by setting the below env vars in addition to KHULNASOFT_BASE_URL.
 
 const GITLAB_BASE_URL = process.env.GITLAB_BASE_URL || 'https://gitlab.com'
 const GITLAB_TOKEN = process.env.GITLAB_TOKEN
@@ -23,7 +23,7 @@ describe('Khulnasoft browser extension on Gitlab Server', () => {
         this.timeout(4 * 60 * 1000)
         driver = await createDriverForTest({ loadExtension: true, sourcegraphBaseUrl })
 
-        if (sourcegraphBaseUrl !== 'https://sourcegraph.com') {
+        if (sourcegraphBaseUrl !== 'https://khulnasoft.com') {
             if (restConfig.testUserPassword) {
                 await driver.ensureSignedIn({ username: 'test', password: restConfig.testUserPassword })
             }

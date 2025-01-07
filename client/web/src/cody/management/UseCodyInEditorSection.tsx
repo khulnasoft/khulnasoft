@@ -215,7 +215,7 @@ const OTHER_CLIENTS: {
     },
     {
         name: 'Cody CLI',
-        url: 'https://sourcegraph.com/github.com/sourcegraph/cody@main/-/blob/cli/README.md',
+        url: 'https://khulnasoft.com/github.com/sourcegraph/cody@main/-/blob/cli/README.md',
         telemetryMetadataKey: 'cli',
         releaseStage: 'Experimental',
     },

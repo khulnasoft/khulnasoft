@@ -90,12 +90,12 @@ var codyContextSchema string
 //go:embed rbac.graphql
 var rbacSchema string
 
-// ownSchema is the Sourcegraph Own raw graqhql schema.
+// ownSchema is the Khulnasoft Own raw graqhql schema.
 //
 //go:embed own.graphql
 var ownSchema string
 
-// completionSchema is the Sourcegraph Completions raw graqhql schema.
+// completionSchema is the Khulnasoft Completions raw graqhql schema.
 //
 //go:embed completions.graphql
 var completionSchema string
@@ -105,22 +105,22 @@ var completionSchema string
 //go:embed githubapps.graphql
 var gitHubAppsSchema string
 
-// guardrailsSchema is the Sourcegraph Guardrails raw graphql schema.
+// guardrailsSchema is the Khulnasoft Guardrails raw graphql schema.
 //
 //go:embed guardrails.graphql
 var guardrailsSchema string
 
-// contentLibrary is the Sourcegraph Content Library raw graphql schema.
+// contentLibrary is the Khulnasoft Content Library raw graphql schema.
 //
 //go:embed content_library.graphql
 var contentLibrary string
 
-// searchJobSchema is the Sourcegraph Search Job raw graphql schema.
+// searchJobSchema is the Khulnasoft Search Job raw graphql schema.
 //
 //go:embed search_jobs.graphql
 var searchJobSchema string
 
-// telemetrySchema is the Sourcegraph Telemetry V2 raw graphql schema.
+// telemetrySchema is the Khulnasoft Telemetry V2 raw graphql schema.
 //
 //go:embed telemetry.graphql
 var telemetrySchema string

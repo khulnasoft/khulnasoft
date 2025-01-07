@@ -1,4 +1,4 @@
-# Developing the Sourcegraph GraphQL API
+# Developing the Khulnasoft GraphQL API
 
 ## Internal comments vs external documentation
 

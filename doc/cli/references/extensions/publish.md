@@ -12,9 +12,9 @@
 | `-git-head` | Override the current git commit for the bundle. (default: uses `git rev-parse head`) |  |
 | `-insecure-skip-verify` | Skip validation of TLS certificates against trusted chains | `false` |
 | `-manifest` | The extension manifest file. | `package.json` |
-| `-trace` | Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing | `false` |
+| `-trace` | Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing | `false` |
 | `-url` | Override the URL for the bundle. (example: set to http://localhost:1234/myext.js for local dev with parcel) |  |
-| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph | `true` |
+| `-user-agent-telemetry` | Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft | `true` |
 
 
 ## Usage
@@ -36,13 +36,13 @@ Usage of 'src extensions publish':
   -manifest string
     	The extension manifest file. (default "package.json")
   -trace
-    	Log the trace ID for requests. See https://docs.sourcegraph.com/admin/observability/tracing
+    	Log the trace ID for requests. See https://docs.khulnasoft.com/admin/observability/tracing
   -url string
     	Override the URL for the bundle. (example: set to http://localhost:1234/myext.js for local dev with parcel)
   -user-agent-telemetry
-    	Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph (default true)
+    	Include the operating system and architecture in the User-Agent sent with requests to Khulnasoft (default true)
 
-Publish an extension to Sourcegraph, creating it (if necessary).
+Publish an extension to Khulnasoft, creating it (if necessary).
 
 Examples:
 

@@ -12,8 +12,8 @@ import (
 )
 
 const (
-	canonicalAlertDocsURL      = "https://docs.sourcegraph.com/admin/observability/alerts"
-	canonicalDashboardsDocsURL = "https://docs.sourcegraph.com/admin/observability/dashboards"
+	canonicalAlertDocsURL      = "https://docs.khulnasoft.com/admin/observability/alerts"
+	canonicalDashboardsDocsURL = "https://docs.khulnasoft.com/admin/observability/dashboards"
 
 	alertsDocsFile     = "alerts.md"
 	dashboardsDocsFile = "dashboards.md"
@@ -24,9 +24,9 @@ const alertsReferenceHeader = `# Alerts reference
 <!-- DO NOT EDIT: generated via: bazel run //doc/admin/observability:write_monitoring_docs -->
 
 This document contains a complete reference of all alerts in Khulnasoft's monitoring, and next steps for when you find alerts that are firing.
-If your alert isn't mentioned here, or if the next steps don't help, [contact us](mailto:support@sourcegraph.com) for assistance.
+If your alert isn't mentioned here, or if the next steps don't help, [contact us](mailto:support@khulnasoft.com) for assistance.
 
-To learn more about Khulnasoft's alerting and how to set up alerts, see [our alerting guide](https://docs.sourcegraph.com/admin/observability/alerting).
+To learn more about Khulnasoft's alerting and how to set up alerts, see [our alerting guide](https://docs.khulnasoft.com/admin/observability/alerting).
 
 `
 
@@ -36,7 +36,7 @@ const dashboardsHeader = `# Dashboards reference
 
 This document contains a complete reference on Khulnasoft's available dashboards, as well as details on how to interpret the panels and metrics.
 
-To learn more about Khulnasoft's metrics and how to view these dashboards, see [our metrics guide](https://sourcegraph.com/docs/admin/observability/metrics).
+To learn more about Khulnasoft's metrics and how to view these dashboards, see [our metrics guide](https://khulnasoft.com/docs/admin/observability/metrics).
 
 `
 
@@ -89,7 +89,7 @@ func renderDocumentation(containers []*Dashboard) (*documentation, error) {
 	for _, c := range containers {
 		fmt.Fprintf(&docs.dashboards, "## %s\n\n", c.Title)
 		fprintSubtitle(&docs.dashboards, c.Description)
-		fmt.Fprintf(&docs.dashboards, "To see this dashboard, visit `/-/debug/grafana/d/%[1]s/%[1]s` on your Sourcegraph instance.\n\n", c.Name)
+		fmt.Fprintf(&docs.dashboards, "To see this dashboard, visit `/-/debug/grafana/d/%[1]s/%[1]s` on your Khulnasoft instance.\n\n", c.Name)
 
 		for gIndex, g := range c.Groups {
 			// the "General" group is top-level
@@ -215,7 +215,7 @@ func (d *documentation) renderDashboardPanelEntry(c *Dashboard, o Observable, pa
 	}
 
 	// how to get to this panel
-	fmt.Fprintf(&d.dashboards, "To see this panel, visit `/-/debug/grafana/d/%[1]s/%[1]s?viewPanel=%[2]d` on your Sourcegraph instance.\n\n",
+	fmt.Fprintf(&d.dashboards, "To see this panel, visit `/-/debug/grafana/d/%[1]s/%[1]s?viewPanel=%[2]d` on your Khulnasoft instance.\n\n",
 		c.Name, panelID)
 
 	if o.Owner.opsgenieTeam != "" {

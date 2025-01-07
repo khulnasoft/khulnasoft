@@ -59,7 +59,7 @@ const authUser: AuthenticatedUser = {
     hasVerifiedEmail: true,
     databaseID: 0,
     tosAccepted: true,
-    emails: [{ email: 'alice@sourcegraph.com', isPrimary: true, verified: true }],
+    emails: [{ email: 'alice@khulnasoft.com', isPrimary: true, verified: true }],
     latestSettings: null,
     permissions: { nodes: [] },
 }

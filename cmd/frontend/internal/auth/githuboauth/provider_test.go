@@ -54,7 +54,7 @@ func TestRequestedScopes(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run("", func(t *testing.T) {
-			dotcom.MockSourcegraphDotComMode(t, test.dotComMode)
+			dotcom.MockKhulnasoftDotComMode(t, test.dotComMode)
 			scopes := requestedScopes(test.schema)
 			sort.Strings(scopes)
 			if diff := cmp.Diff(test.expScopes, scopes); diff != "" {

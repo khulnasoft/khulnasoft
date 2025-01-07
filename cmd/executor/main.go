@@ -46,9 +46,9 @@ func main() {
 	app := &cli.App{
 		Version: version.Version(),
 		// TODO: More info, link to docs, some inline documentation etc.
-		Description:    "The Sourcegraph untrusted jobs runner. See https://sourcegraph.com/docs/admin/executors to learn more about setup, how it works and how to configure features that depend on it.",
+		Description:    "The Khulnasoft untrusted jobs runner. See https://khulnasoft.com/docs/admin/executors to learn more about setup, how it works and how to configure features that depend on it.",
 		Name:           "executor",
-		Usage:          "The Sourcegraph untrusted jobs runner.",
+		Usage:          "The Khulnasoft untrusted jobs runner.",
 		DefaultCommand: "run",
 		CommandNotFound: func(ctx *cli.Context, s string) {
 			fmt.Printf("Unknown command %s. Use %s help to learn more.\n", s, ctx.App.HelpName)

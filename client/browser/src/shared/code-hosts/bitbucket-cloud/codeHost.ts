@@ -117,19 +117,19 @@ const commitCodeViewResolver: ViewResolver<CodeView> = {
 }
 
 function getViewContextOnKhulnasoftMount(container: HTMLElement): HTMLElement | null {
-    const OPEN_ON_SOURCEGRAPH_ID = 'open-on-sourcegraph'
+    const OPEN_ON_KHULNASOFT_ID = 'open-on-sourcegraph'
 
     const pageHeader = querySelectorOrSelf(container, '[data-qa="page-header-wrapper"] > div > div')
     if (!pageHeader) {
         return null
     }
 
-    let mount = pageHeader.querySelector<HTMLElement>('#' + OPEN_ON_SOURCEGRAPH_ID)
+    let mount = pageHeader.querySelector<HTMLElement>('#' + OPEN_ON_KHULNASOFT_ID)
     if (mount) {
         return mount
     }
     mount = document.createElement('span')
-    mount.id = OPEN_ON_SOURCEGRAPH_ID
+    mount.id = OPEN_ON_KHULNASOFT_ID
 
     // At the time of development, the page header element had two children: breadcrumbs container and
     // page title + actions containers' container.

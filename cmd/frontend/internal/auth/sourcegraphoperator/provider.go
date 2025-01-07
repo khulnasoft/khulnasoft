@@ -12,24 +12,24 @@ import (
 	"github.com/khulnasoft/khulnasoft/schema"
 )
 
-// provider is an implementation of providers.Provider for the Sourcegraph
+// provider is an implementation of providers.Provider for the Khulnasoft
 // Operator authentication, also referred to as "SOAP". There can only ever be
 // one provider of this type, and it can only be provisioned through Cloud site
 // configuration (see github.com/khulnasoft/khulnasoft/internal/cloud)
 //
-// SOAP is used to provision accounts for Sourcegraph teammates in Sourcegraph
+// SOAP is used to provision accounts for Khulnasoft teammates in Khulnasoft
 // Cloud - for more details, refer to
-// https://handbook.sourcegraph.com/departments/cloud/technical-docs/oidc_site_admin/#faq
+// https://handbook.khulnasoft.com/departments/cloud/technical-docs/oidc_site_admin/#faq
 type provider struct {
-	config cloud.SchemaAuthProviderSourcegraphOperator
+	config cloud.SchemaAuthProviderKhulnasoftOperator
 	*openidconnect.Provider
 }
 
 var _ providers.Provider = (*provider)(nil)
 
-// NewProvider creates and returns a new Sourcegraph Operator authentication
+// NewProvider creates and returns a new Khulnasoft Operator authentication
 // provider using the given config.
-func NewProvider(config cloud.SchemaAuthProviderSourcegraphOperator, httpClient *http.Client) *provider {
+func NewProvider(config cloud.SchemaAuthProviderKhulnasoftOperator, httpClient *http.Client) *provider {
 	allowSignUp := true
 	return &provider{
 		config: config,
@@ -38,11 +38,11 @@ func NewProvider(config cloud.SchemaAuthProviderSourcegraphOperator, httpClient 
 				AllowSignup:        &allowSignUp,
 				ClientID:           config.ClientID,
 				ClientSecret:       config.ClientSecret,
-				ConfigID:           auth.SourcegraphOperatorProviderType,
-				DisplayName:        "Sourcegraph Operators",
+				ConfigID:           auth.KhulnasoftOperatorProviderType,
+				DisplayName:        "Khulnasoft Operators",
 				Issuer:             config.Issuer,
-				RequireEmailDomain: "sourcegraph.com",
-				Type:               auth.SourcegraphOperatorProviderType,
+				RequireEmailDomain: "khulnasoft.com",
+				Type:               auth.KhulnasoftOperatorProviderType,
 			},
 			authPrefix,
 			path.Join(feAuth.AuthURLPrefix, "sourcegraph-operator", "callback"),
@@ -56,11 +56,11 @@ func (p *provider) Config() schema.AuthProviders {
 	// NOTE: Intentionally omitting rest of the information unless absolutely
 	// necessary because this provider is configured at the infrastructure level, and
 	// those fields may expose sensitive information should not be visible to
-	// non-Sourcegraph employees.
+	// non-Khulnasoft employees.
 	return schema.AuthProviders{
 		Openidconnect: &schema.OpenIDConnectAuthProvider{
-			ConfigID:    auth.SourcegraphOperatorProviderType,
-			DisplayName: "Sourcegraph Operators",
+			ConfigID:    auth.KhulnasoftOperatorProviderType,
+			DisplayName: "Khulnasoft Operators",
 		},
 	}
 }

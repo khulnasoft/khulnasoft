@@ -91,8 +91,8 @@ expression: dumped
 //            ^^^^^ definition(EnumMember) scip-ctags `Longer.Namespace`/Class#Swag#Pants.
           }
   
-          public Swag SourcegraphSwag;
-//                    ^^^^^^^^^^^^^^^ definition(Field) scip-ctags `Longer.Namespace`/Class#SourcegraphSwag.
+          public Swag KhulnasoftSwag;
+//                    ^^^^^^^^^^^^^^^ definition(Field) scip-ctags `Longer.Namespace`/Class#KhulnasoftSwag.
   
           [Flags]
           public enum ZigFeatureSet

@@ -110,7 +110,7 @@ func GetAndSaveUser(
 			return extsvcAcct.UserID, false, true, "", nil
 		}
 		if !errcode.IsNotFound(lookupByExternalErr) {
-			return 0, false, false, "Unexpected error looking up the Sourcegraph user account associated with the external account. Ask a site admin for help.", lookupByExternalErr
+			return 0, false, false, "Unexpected error looking up the Khulnasoft user account associated with the external account. Ask a site admin for help.", lookupByExternalErr
 		}
 
 		if op.LookUpByUsername {
@@ -119,7 +119,7 @@ func GetAndSaveUser(
 				return user.ID, false, false, "", nil
 			}
 			if !errcode.IsNotFound(getByUsernameErr) {
-				return 0, false, false, "Unexpected error looking up the Sourcegraph user by username. Ask a site admin for help.", getByUsernameErr
+				return 0, false, false, "Unexpected error looking up the Khulnasoft user by username. Ask a site admin for help.", getByUsernameErr
 			}
 			if !op.CreateIfNotExist {
 				return 0, false, false, fmt.Sprintf("User account with username %q does not exist. Ask a site admin to create your account.", op.UserProps.Username), getByUsernameErr
@@ -130,7 +130,7 @@ func GetAndSaveUser(
 				return user.ID, false, false, "", nil
 			}
 			if !errcode.IsNotFound(getByVerifiedEmailErr) {
-				return 0, false, false, "Unexpected error looking up the Sourcegraph user by verified email. Ask a site admin for help.", getByVerifiedEmailErr
+				return 0, false, false, "Unexpected error looking up the Khulnasoft user by verified email. Ask a site admin for help.", getByVerifiedEmailErr
 			}
 			if !op.CreateIfNotExist {
 				return 0, false, false, fmt.Sprintf("User account with verified email %q does not exist. Ask a site admin to create your account and then verify your email.", op.UserProps.Email), getByVerifiedEmailErr
@@ -139,7 +139,7 @@ func GetAndSaveUser(
 
 		// Third, return an error here if creating new users is disabled.
 		if !op.CreateIfNotExist {
-			return 0, false, false, "It looks like this is your first time signing in with this external identity. Sourcegraph couldn't link it to an existing user, because no verified email was provided. Ask your site admin to configure the auth provider to include the user's verified email on sign-in.", lookupByExternalErr
+			return 0, false, false, "It looks like this is your first time signing in with this external identity. Khulnasoft couldn't link it to an existing user, because no verified email was provided. Ask your site admin to configure the auth provider to include the user's verified email on sign-in.", lookupByExternalErr
 		}
 
 		// Fourth and finally, create a new user account and return it.
@@ -148,10 +148,10 @@ func GetAndSaveUser(
 		// email was verified or not.
 		//
 		// NOTE: It is important to propagate the correct context that carries the
-		// information of the actor, especially whether the actor is a Sourcegraph
+		// information of the actor, especially whether the actor is a Khulnasoft
 		// operator or not.
 		act := &sgactor.Actor{
-			SourcegraphOperator: acct.AccountSpec.ServiceType == auth.SourcegraphOperatorProviderType,
+			KhulnasoftOperator: acct.AccountSpec.ServiceType == auth.KhulnasoftOperatorProviderType,
 		}
 		ctx = sgactor.WithActor(ctx, act)
 		user, err := users.CreateWithExternalAccount(ctx, op.UserProps, acct)
@@ -220,7 +220,7 @@ func GetAndSaveUser(
 		}
 
 		// NOTE: It is important to propagate the correct context that carries the
-		// information of the actor, especially whether the actor is a Sourcegraph
+		// information of the actor, especially whether the actor is a Khulnasoft
 		// operator or not.
 		//
 		// TODO: Use EventRecorder from internal/telemetryrecorder instead.
@@ -352,10 +352,10 @@ func GetAndSaveUser(
 	// Update user properties, if they've changed
 	if !newUserSaved {
 		// Update user in our DB if their profile info changed on the issuer. (Except username and
-		// email, which the user is somewhat likely to want to control separately on Sourcegraph.)
+		// email, which the user is somewhat likely to want to control separately on Khulnasoft.)
 		user, err := db.Users().GetByID(ctx, userID)
 		if err != nil {
-			return newUserSaved, 0, "Unexpected error getting the Sourcegraph user account. Ask a site admin for help.", err
+			return newUserSaved, 0, "Unexpected error getting the Khulnasoft user account. Ask a site admin for help.", err
 		}
 		var userUpdate database.UserUpdate
 		if user.DisplayName == "" && op.UserProps.DisplayName != "" {
@@ -366,7 +366,7 @@ func GetAndSaveUser(
 		}
 		if userUpdate != (database.UserUpdate{}) {
 			if err := db.Users().Update(ctx, user.ID, userUpdate); err != nil {
-				return newUserSaved, 0, "Unexpected error updating the Sourcegraph user account with new user profile information from the external account. Ask a site admin for help.", err
+				return newUserSaved, 0, "Unexpected error updating the Khulnasoft user account with new user profile information from the external account. Ask a site admin for help.", err
 			}
 		}
 	}
@@ -376,7 +376,7 @@ func GetAndSaveUser(
 		acct.UserID = userID
 		_, err := externalAccountsStore.Upsert(ctx, acct)
 		if err != nil {
-			return newUserSaved, 0, "Unexpected error associating the external account with your Sourcegraph user. The most likely cause for this problem is that another Sourcegraph user is already linked with this external account. A site admin or the other user can unlink the account to fix this problem.", err
+			return newUserSaved, 0, "Unexpected error associating the external account with your Khulnasoft user. The most likely cause for this problem is that another Khulnasoft user is already linked with this external account. A site admin or the other user can unlink the account to fix this problem.", err
 		}
 
 		// Schedule a permission sync, since this is probably a new external account for the user

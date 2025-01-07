@@ -1,6 +1,6 @@
-Your Sourcegraph code monitor, My test monitor, detected 6 new results.
+Your Khulnasoft code monitor, My test monitor, detected 6 new results.
 
-- Diff match: https://www.sourcegraph.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email from github.com/test/test@7815187
+- Diff match: https://www.khulnasoft.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email from github.com/test/test@7815187
 file1.go file2.go
 @@ -97,5 +97,5 @@ func Test() {
  leading context
@@ -9,7 +9,7 @@ file1.go file2.go
  trailing context
 
 
-- Message match: https://www.sourcegraph.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email from github.com/test/test@7815187
+- Message match: https://www.khulnasoft.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email from github.com/test/test@7815187
 summary line
 
 very
@@ -23,7 +23,7 @@ ten
 ...
 
 
-- Diff match: https://www.sourcegraph.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email from github.com/test/test@7815187
+- Diff match: https://www.khulnasoft.com/github.com/test/test/-/commit/7815187511872asbasdfgasd?utm_source=code-monitoring-email from github.com/test/test@7815187
 file1.go file2.go
 @@ -97,5 +97,5 @@ func Test() {
  leading context
@@ -32,12 +32,12 @@ file1.go file2.go
  trailing context
 
 
-...and 1 more result: https://sourcegraph.com/search
+...and 1 more result: https://khulnasoft.com/search
 
 __
 You are receiving this notification because you are a recipient on a code monitor.
 
-View code monitor: https://sourcegraph.com/your/code/monitor
+View code monitor: https://khulnasoft.com/your/code/monitor
 
 Search results may contain confidential data. To protect your privacy and security,
-Sourcegraph limits what information is contained in this notification.
+Khulnasoft limits what information is contained in this notification.

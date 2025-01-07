@@ -3,7 +3,7 @@ resources:
     kind: Deployment
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
+        appliance.khulnasoft.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
       creationTimestamp: "2024-04-19T00:00:00Z"
       generation: 1
       labels:
@@ -114,7 +114,7 @@ resources:
               path_prefix: /alertmanager
             # Uncomment the following to have alerts delivered to additional Alertmanagers discovered
             # in the cluster. This configuration is not required if you use Khulnasoft's built-in alerting:
-            # https://docs.sourcegraph.com/admin/observability/alerting
+            # https://docs.khulnasoft.com/admin/observability/alerting
             # - kubernetes_sd_configs:
             #  - role: endpoints
             #  relabel_configs:
@@ -186,27 +186,27 @@ resources:
             regex: __meta_kubernetes_service_label_(.+)
           - source_labels: [__meta_kubernetes_namespace]
             action: replace
-            # Sourcegraph specific customization. We want a more convenient to type label.
+            # Khulnasoft specific customization. We want a more convenient to type label.
             # target_label: kubernetes_namespace
             target_label: ns
           - source_labels: [__meta_kubernetes_service_name]
             action: replace
             target_label: kubernetes_name
-          # Sourcegraph specific customization. We want a nicer name for job
+          # Khulnasoft specific customization. We want a nicer name for job
           - source_labels: [app]
             action: replace
             target_label: job
-          # Sourcegraph specific customization. We want a nicer name for instance
+          # Khulnasoft specific customization. We want a nicer name for instance
           - source_labels: [__meta_kubernetes_pod_name]
             action: replace
             target_label: instance
-          # Sourcegraph specific customization. We want to add a label to every
+          # Khulnasoft specific customization. We want to add a label to every
           # metric that indicates the node it came from.
           - source_labels: [__meta_kubernetes_endpoint_node_name]
             action: replace
             target_label: nodename
           metric_relabel_configs:
-          # Sourcegraph specific customization. Drop metrics with empty nodename responses from the k8s API
+          # Khulnasoft specific customization. Drop metrics with empty nodename responses from the k8s API
           - source_labels: [nodename]
             regex: ^$
             action: drop
@@ -239,7 +239,7 @@ resources:
           - action: labelmap
             regex: __meta_kubernetes_service_label_(.+)
           - source_labels: [__meta_kubernetes_service_namespace]
-            # Sourcegraph specific customization. We want a more convenient to type label.
+            # Khulnasoft specific customization. We want a more convenient to type label.
             # target_label: kubernetes_namespace
             target_label: ns
           - source_labels: [__meta_kubernetes_service_name]
@@ -276,12 +276,12 @@ resources:
           - source_labels: [__meta_kubernetes_pod_name]
             action: replace
             target_label: kubernetes_pod_name
-          # Sourcegraph specific customization. We want a more convenient to type label.
+          # Khulnasoft specific customization. We want a more convenient to type label.
           # target_label: kubernetes_namespace
           - source_labels: [__meta_kubernetes_namespace]
             action: replace
             target_label: ns
-          # Sourcegraph specific customization. We want to add a label to every
+          # Khulnasoft specific customization. We want to add a label to every
           # metric that indicates the node it came from.
           - source_labels: [__meta_kubernetes_pod_node_name]
             action: replace
@@ -289,10 +289,10 @@ resources:
 
           metric_relabel_configs:
           # cAdvisor-specific customization. Drop container metrics exported by cAdvisor
-          # not in the same namespace as Sourcegraph.
+          # not in the same namespace as Khulnasoft.
           # Uncomment this if you have problems with certain dashboards or cAdvisor itself
-          # picking up non-Sourcegraph services. Ensure all Sourcegraph services are running
-          # within the Sourcegraph namespace you have defined.
+          # picking up non-Khulnasoft services. Ensure all Khulnasoft services are running
+          # within the Khulnasoft namespace you have defined.
           # The regex must keep matches on '^$' (empty string) to ensure other metrics do not
           # get dropped.
           - source_labels: [container_label_io_kubernetes_pod_namespace]
@@ -306,7 +306,7 @@ resources:
             action: replace
             target_label: name
             separator: '-'
-          # Sourcegraph specific customization. Drop metrics with empty nodename responses from the k8s API
+          # Khulnasoft specific customization. Drop metrics with empty nodename responses from the k8s API
           - source_labels: [nodename]
             regex: ^$
             action: drop
@@ -327,7 +327,7 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
+        appliance.khulnasoft.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -412,8 +412,8 @@ resources:
     kind: ConfigMap
     metadata:
       annotations:
-        appliance.sourcegraph.com/currentVersion: 5.3.9104
-        appliance.sourcegraph.com/managed: "true"
+        appliance.khulnasoft.com/currentVersion: 5.3.9104
+        appliance.khulnasoft.com/managed: "true"
       creationTimestamp: "2024-04-19T00:00:00Z"
       name: sg
       namespace: NORMALIZED_FOR_TESTING
@@ -423,7 +423,7 @@ resources:
     kind: PersistentVolumeClaim
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
+        appliance.khulnasoft.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
       creationTimestamp: "2024-04-19T00:00:00Z"
       finalizers:
         - kubernetes.io/pvc-protection
@@ -453,7 +453,7 @@ resources:
     kind: Role
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
+        appliance.khulnasoft.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -489,7 +489,7 @@ resources:
     kind: RoleBinding
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
+        appliance.khulnasoft.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -516,7 +516,7 @@ resources:
     kind: ServiceAccount
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
+        appliance.khulnasoft.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         deploy: sourcegraph
@@ -535,7 +535,7 @@ resources:
     kind: Service
     metadata:
       annotations:
-        appliance.sourcegraph.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
+        appliance.khulnasoft.com/configHash: 0d793282aafb84217a72f4943c126870b047084dea6cd77eeebbcdb9929a1477
       creationTimestamp: "2024-04-19T00:00:00Z"
       labels:
         app: prometheus

@@ -3,9 +3,9 @@
 <!-- DO NOT EDIT: generated via: bazel run //doc/admin/observability:write_monitoring_docs -->
 
 This document contains a complete reference of all alerts in Khulnasoft's monitoring, and next steps for when you find alerts that are firing.
-If your alert isn't mentioned here, or if the next steps don't help, [contact us](mailto:support@sourcegraph.com) for assistance.
+If your alert isn't mentioned here, or if the next steps don't help, [contact us](mailto:support@khulnasoft.com) for assistance.
 
-To learn more about Khulnasoft's alerting and how to set up alerts, see [our alerting guide](https://docs.sourcegraph.com/admin/observability/alerting).
+To learn more about Khulnasoft's alerting and how to set up alerts, see [our alerting guide](https://docs.khulnasoft.com/admin/observability/alerting).
 
 ## frontend: 99th_percentile_search_request_duration
 
@@ -30,7 +30,7 @@ To learn more about Khulnasoft's alerting and how to set up alerts, see [our ale
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -64,7 +64,7 @@ Generated query for warning alert: `max((histogram_quantile(0.99, sum by (le) (r
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -94,7 +94,7 @@ Generated query for warning alert: `max((histogram_quantile(0.9, sum by (le) (ra
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -124,7 +124,7 @@ Generated query for warning alert: `max(((sum(increase(src_graphql_search_respon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -154,7 +154,7 @@ Generated query for warning alert: `max((sum by (status) (increase(src_graphql_s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -185,7 +185,7 @@ Generated query for warning alert: `max((sum by (status) (increase(src_graphql_s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -206,9 +206,9 @@ Generated query for warning alert: `max((sum by (alert_type) (increase(src_graph
 
 **Next steps**
 
-- Confirm that the Sourcegraph frontend has enough CPU/memory using the provisioning panels.
+- Confirm that the Khulnasoft frontend has enough CPU/memory using the provisioning panels.
 - Investigate potential sources of latency by selecting Explore and modifying the `sum by(le)` section to include additional labels: for example, `sum by(le, job)` or `sum by (le, instance)`.
-- Trace a request to see what the slowest part is: https://sourcegraph.com/docs/admin/observability/tracing
+- Trace a request to see what the slowest part is: https://khulnasoft.com/docs/admin/observability/tracing
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#frontend-page-load-latency).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -218,7 +218,7 @@ Generated query for warning alert: `max((sum by (alert_type) (increase(src_graph
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -253,7 +253,7 @@ Generated query for warning alert: `max((histogram_quantile(0.9, sum by (le) (ra
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -288,7 +288,7 @@ Generated query for warning alert: `max((histogram_quantile(0.99, sum by (le) (r
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -318,7 +318,7 @@ Generated query for warning alert: `max((histogram_quantile(0.9, sum by (le) (ra
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -348,7 +348,7 @@ Generated query for warning alert: `max(((sum(increase(src_graphql_search_respon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -378,7 +378,7 @@ Generated query for warning alert: `max((sum by (status) (increase(src_graphql_s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -399,7 +399,7 @@ Generated query for warning alert: `max((sum by (status) (increase(src_graphql_s
 
 **Next steps**
 
-- This indicates a bug in Sourcegraph, please [open an issue](https://github.com/khulnasoft/khulnasoft/issues/new/choose).
+- This indicates a bug in Khulnasoft, please [open an issue](https://github.com/khulnasoft/khulnasoft/issues/new/choose).
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#frontend-search-codeintel-alert-user-suggestions).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -409,7 +409,7 @@ Generated query for warning alert: `max((sum by (status) (increase(src_graphql_s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -443,7 +443,7 @@ Generated query for warning alert: `max((sum by (alert_type) (increase(src_graph
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -477,7 +477,7 @@ Generated query for warning alert: `max((histogram_quantile(0.99, sum by (le) (r
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -507,7 +507,7 @@ Generated query for warning alert: `max((histogram_quantile(0.9, sum by (le) (ra
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -537,7 +537,7 @@ Generated query for warning alert: `max((sum by (status) (increase(src_graphql_s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -568,7 +568,7 @@ Generated query for warning alert: `max((sum(increase(src_graphql_search_respons
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -600,7 +600,7 @@ Generated query for warning alert: `max((sum by (alert_type) (increase(src_graph
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -631,7 +631,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -662,7 +662,7 @@ Generated query for warning alert: `max((sum by (code) (increase(src_zoekt_reque
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -692,7 +692,7 @@ Generated query for warning alert: `max((sum by (code) (increase(searcher_servic
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -722,7 +722,7 @@ Generated query for warning alert: `max((histogram_quantile(0.99, sum by (le, ca
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -753,7 +753,7 @@ Generated query for warning alert: `max((sum by (category) (increase(src_gitserv
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -784,7 +784,7 @@ Generated query for warning alert: `max((max by (owner) (observability_test_metr
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -817,7 +817,7 @@ Generated query for critical alert: `max((max by (owner) (observability_test_met
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -842,7 +842,7 @@ Generated query for critical alert: `max((sum(increase(src_cloudkms_cryptographi
 **Next steps**
 
 - Increase SRC_PGSQL_MAX_OPEN together with giving more memory to the database if needed
-- Scale up Postgres memory/cpus - [see our scaling guide](https://sourcegraph.com/docs/admin/config/postgres-conf)
+- Scale up Postgres memory/cpus - [see our scaling guide](https://khulnasoft.com/docs/admin/config/postgres-conf)
 - If using GCP Cloud SQL, check for high lock waits or CPU usage in query insights
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#frontend-mean-blocked-seconds-per-conn-request).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -854,7 +854,7 @@ Generated query for critical alert: `max((sum(increase(src_cloudkms_cryptographi
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -888,7 +888,7 @@ Generated query for critical alert: `max((sum by (app_name, db_name) (increase(s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -920,7 +920,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -952,7 +952,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -984,7 +984,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1016,7 +1016,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1048,7 +1048,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1080,7 +1080,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1110,7 +1110,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1140,7 +1140,7 @@ Generated query for warning alert: `max((max by (instance) (go_goroutines{job=~"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1172,7 +1172,7 @@ Generated query for warning alert: `max((max by (instance) (go_gc_duration_secon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1208,7 +1208,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*(frontend|sou
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1245,7 +1245,7 @@ Generated query for critical alert: `max((sum(increase(src_email_send{success="f
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1282,7 +1282,7 @@ Generated query for critical alert: `max((sum(rate(src_search_response_latency_s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1319,7 +1319,7 @@ Generated query for critical alert: `max((sum(rate(src_search_streaming_latency_
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1356,7 +1356,7 @@ Generated query for critical alert: `max((histogram_quantile(0.9, sum by (le) (l
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1391,7 +1391,7 @@ Generated query for critical alert: `max((histogram_quantile(0.9, sum by (le) (l
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1427,7 +1427,7 @@ Generated query for critical alert: `max((sum by (container_label_io_kubernetes_
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1453,7 +1453,7 @@ Generated query for critical alert: `min(((src_gitserver_disk_space_available / 
 
 - **Check if the problem may be an intermittent and temporary peak** using the "Container monitoring" section at the bottom of the Git Server dashboard.
 - **Single container deployments:** Consider upgrading to a [Docker Compose deployment](../deploy/docker-compose/migrate.md) which offers better scalability and resource isolation.
-- **Kubernetes and Docker Compose:** Check that you are running a similar number of git server replicas and that their CPU/memory limits are allocated according to what is shown in the [Sourcegraph resource estimator](../deploy/resource_estimator.md).
+- **Kubernetes and Docker Compose:** Check that you are running a similar number of git server replicas and that their CPU/memory limits are allocated according to what is shown in the [Khulnasoft resource estimator](../deploy/resource_estimator.md).
 - More help interpreting this metric is available in the [dashboards reference](./dashboards.md#gitserver-running-git-commands).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -1464,7 +1464,7 @@ Generated query for critical alert: `min(((src_gitserver_disk_space_available / 
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1488,7 +1488,7 @@ Generated query for critical alert: `max((sum by (instance, cmd) (src_gitserver_
 **Next steps**
 
 - **Single container deployments:** Upgrade to a [Docker Compose deployment](../deploy/docker-compose/migrate.md) which offers better scalability and resource isolation.
-- **Kubernetes and Docker Compose:** Check that you are running a similar number of git server replicas and that their CPU/memory limits are allocated according to what is shown in the [Sourcegraph resource estimator](../deploy/resource_estimator.md).
+- **Kubernetes and Docker Compose:** Check that you are running a similar number of git server replicas and that their CPU/memory limits are allocated according to what is shown in the [Khulnasoft resource estimator](../deploy/resource_estimator.md).
 - If your persistent volume is slow, you may want to provision more IOPS, usually by increasing the volume size.
 - More help interpreting this metric is available in the [dashboards reference](./dashboards.md#gitserver-echo-command-duration-test).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -1499,7 +1499,7 @@ Generated query for critical alert: `max((sum by (instance, cmd) (src_gitserver_
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1530,7 +1530,7 @@ Generated query for warning alert: `max((max(src_gitserver_echo_duration_seconds
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1562,7 +1562,7 @@ Generated query for critical alert: `max((sum(rate(src_gitserver_repo_corrupted[
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1594,7 +1594,7 @@ Generated query for warning alert: `max((sum(src_gitserver_clone_queue)) >= 25)`
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1617,7 +1617,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 **Next steps**
 
 - Increase SRC_PGSQL_MAX_OPEN together with giving more memory to the database if needed
-- Scale up Postgres memory/cpus - [see our scaling guide](https://sourcegraph.com/docs/admin/config/postgres-conf)
+- Scale up Postgres memory/cpus - [see our scaling guide](https://khulnasoft.com/docs/admin/config/postgres-conf)
 - If using GCP Cloud SQL, check for high lock waits or CPU usage in query insights
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#gitserver-mean-blocked-seconds-per-conn-request).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -1629,7 +1629,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1663,7 +1663,7 @@ Generated query for critical alert: `max((sum by (app_name, db_name) (increase(s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1695,7 +1695,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1727,7 +1727,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1759,7 +1759,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1791,7 +1791,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1821,7 +1821,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1851,7 +1851,7 @@ Generated query for warning alert: `max((max by (instance) (go_goroutines{job=~"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1883,7 +1883,7 @@ Generated query for warning alert: `max((max by (instance) (go_gc_duration_secon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1913,7 +1913,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*gitserver"}) 
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1935,7 +1935,7 @@ Generated query for warning alert: `min((sum by (job) (pg_stat_activity_count{da
 
 **Next steps**
 
-- Consider increasing [max_connections](https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-MAX-CONNECTIONS) of the database instance, [learn more](https://sourcegraph.com/docs/admin/config/postgres-conf)
+- Consider increasing [max_connections](https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-MAX-CONNECTIONS) of the database instance, [learn more](https://khulnasoft.com/docs/admin/config/postgres-conf)
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#postgres-usage-connections-percentage).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -1946,7 +1946,7 @@ Generated query for warning alert: `min((sum by (job) (pg_stat_activity_count{da
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -1978,7 +1978,7 @@ Generated query for critical alert: `max((sum by (job) (pg_stat_activity_count) 
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2018,7 +2018,7 @@ Generated query for warning alert: `max((sum by (job) (pg_stat_activity_max_tx_d
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2039,7 +2039,7 @@ Generated query for critical alert: `min((pg_up) <= 0)`
 
 **Next steps**
 
-- Drop and re-create the invalid trigger - please contact Sourcegraph to supply the trigger definition.
+- Drop and re-create the invalid trigger - please contact Khulnasoft to supply the trigger definition.
 - More help interpreting this metric is available in the [dashboards reference](./dashboards.md#postgres-invalid-indexes).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -2049,7 +2049,7 @@ Generated query for critical alert: `min((pg_up) <= 0)`
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2080,7 +2080,7 @@ Generated query for critical alert: `sum((max by (relname) (pg_invalid_index_cou
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2101,7 +2101,7 @@ Generated query for warning alert: `max((pg_exporter_last_scrape_error) >= 1)`
 
 **Next steps**
 
-- The database migration has been in progress for 5 or more minutes - please contact Sourcegraph if this persists.
+- The database migration has been in progress for 5 or more minutes - please contact Khulnasoft if this persists.
 - More help interpreting this metric is available in the [dashboards reference](./dashboards.md#postgres-migration-in-progress).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -2111,7 +2111,7 @@ Generated query for warning alert: `max((pg_exporter_last_scrape_error) >= 1)`
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2143,7 +2143,7 @@ Generated query for critical alert: `max((pg_sg_migration_status) >= 1)`
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2175,7 +2175,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2207,7 +2207,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2239,7 +2239,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2271,7 +2271,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2303,7 +2303,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2336,7 +2336,7 @@ count being required for the volume of uploads.
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2359,7 +2359,7 @@ Generated query for warning alert: `max((max(src_codeintel_upload_queued_duratio
 **Next steps**
 
 - Increase SRC_PGSQL_MAX_OPEN together with giving more memory to the database if needed
-- Scale up Postgres memory/cpus - [see our scaling guide](https://sourcegraph.com/docs/admin/config/postgres-conf)
+- Scale up Postgres memory/cpus - [see our scaling guide](https://khulnasoft.com/docs/admin/config/postgres-conf)
 - If using GCP Cloud SQL, check for high lock waits or CPU usage in query insights
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#precise-code-intel-worker-mean-blocked-seconds-per-conn-request).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -2371,7 +2371,7 @@ Generated query for warning alert: `max((max(src_codeintel_upload_queued_duratio
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2405,7 +2405,7 @@ Generated query for critical alert: `max((sum by (app_name, db_name) (increase(s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2437,7 +2437,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2469,7 +2469,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2501,7 +2501,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2533,7 +2533,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2565,7 +2565,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2597,7 +2597,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2627,7 +2627,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2657,7 +2657,7 @@ Generated query for warning alert: `max((max by (instance) (go_goroutines{job=~"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2689,7 +2689,7 @@ Generated query for warning alert: `max((max by (instance) (go_gc_duration_secon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2720,7 +2720,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*precise-code-
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2751,7 +2751,7 @@ Generated query for critical alert: `min((redis_up{app="redis-store"}) < 1)`
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2783,7 +2783,7 @@ Generated query for critical alert: `min((redis_up{app="redis-cache"}) < 1)`
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2815,7 +2815,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2847,7 +2847,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2879,7 +2879,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2911,7 +2911,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2943,7 +2943,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -2975,7 +2975,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3007,7 +3007,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3039,7 +3039,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3071,7 +3071,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3103,7 +3103,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3135,7 +3135,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*redis-cache"}
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3171,7 +3171,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*redis-store"}
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3209,7 +3209,7 @@ Generated query for critical alert: `(min((sum(src_worker_jobs{job=~"^worker.*",
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3247,7 +3247,7 @@ Generated query for critical alert: `(min((sum(src_worker_jobs{job=~"^worker.*",
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3281,7 +3281,7 @@ an underprovisioned main postgres instance.
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3303,7 +3303,7 @@ Generated query for warning alert: `max((max(src_codeintel_commit_graph_queued_d
 **Next steps**
 
 - **Enabled permissions for the first time:** Wait for few minutes and see if the number goes down.
-- **Otherwise:** Increase the API rate limit to [GitHub](https://sourcegraph.com/docs/admin/code_hosts/github#github-com-rate-limits), [GitLab](https://sourcegraph.com/docs/admin/code_hosts/gitlab#internal-rate-limits) or [Bitbucket Server](https://sourcegraph.com/docs/admin/code_hosts/bitbucket_server#internal-rate-limits).
+- **Otherwise:** Increase the API rate limit to [GitHub](https://khulnasoft.com/docs/admin/code_hosts/github#github-com-rate-limits), [GitLab](https://khulnasoft.com/docs/admin/code_hosts/gitlab#internal-rate-limits) or [Bitbucket Server](https://khulnasoft.com/docs/admin/code_hosts/bitbucket_server#internal-rate-limits).
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#worker-perms-syncer-outdated-perms).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -3313,7 +3313,7 @@ Generated query for warning alert: `max((max(src_codeintel_commit_graph_queued_d
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3334,7 +3334,7 @@ Generated query for warning alert: `max((max by (type) (src_repo_perms_syncer_ou
 
 **Next steps**
 
-- Check the network latency is reasonable (<50ms) between the Sourcegraph and the code host.
+- Check the network latency is reasonable (<50ms) between the Khulnasoft and the code host.
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#worker-perms-syncer-sync-duration).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -3344,7 +3344,7 @@ Generated query for warning alert: `max((max by (type) (src_repo_perms_syncer_ou
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3365,7 +3365,7 @@ Generated query for warning alert: `max((histogram_quantile(0.95, max by (le, ty
 
 **Next steps**
 
-- Check the network connectivity the Sourcegraph and the code host.
+- Check the network connectivity the Khulnasoft and the code host.
 - Check if API rate limit quota is exhausted on the code host.
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#worker-perms-syncer-sync-errors).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -3376,7 +3376,7 @@ Generated query for warning alert: `max((histogram_quantile(0.95, max by (le, ty
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3407,7 +3407,7 @@ Generated query for critical alert: `max((max by (type) (ceil(rate(src_repo_perm
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code Search team](https://handbook.sourcegraph.com/departments/engineering/teams/code-search).*</sub>
+<sub>*Managed by the [Khulnasoft Code Search team](https://handbook.khulnasoft.com/departments/engineering/teams/code-search).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3430,7 +3430,7 @@ Generated query for warning alert: `max((max(src_query_runner_worker_total{job=~
 **Next steps**
 
 - Increase SRC_PGSQL_MAX_OPEN together with giving more memory to the database if needed
-- Scale up Postgres memory/cpus - [see our scaling guide](https://sourcegraph.com/docs/admin/config/postgres-conf)
+- Scale up Postgres memory/cpus - [see our scaling guide](https://khulnasoft.com/docs/admin/config/postgres-conf)
 - If using GCP Cloud SQL, check for high lock waits or CPU usage in query insights
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#worker-mean-blocked-seconds-per-conn-request).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -3442,7 +3442,7 @@ Generated query for warning alert: `max((max(src_query_runner_worker_total{job=~
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3476,7 +3476,7 @@ Generated query for critical alert: `max((sum by (app_name, db_name) (increase(s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3508,7 +3508,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3540,7 +3540,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3572,7 +3572,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3604,7 +3604,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3636,7 +3636,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3668,7 +3668,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3698,7 +3698,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3728,7 +3728,7 @@ Generated query for warning alert: `max((max by (instance) (go_goroutines{job=~"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3760,7 +3760,7 @@ Generated query for warning alert: `max((max by (instance) (go_gc_duration_secon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3792,7 +3792,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*worker"}) / c
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3815,7 +3815,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 
 - An alert here indicates that no code host connections have synced in at least 9h0m0s. This indicates that there could be a configuration issue
 with your code hosts connections or networking issues affecting communication with your code hosts.
-- Check the code host status indicator (cloud icon in top right of Sourcegraph homepage) for errors.
+- Check the code host status indicator (cloud icon in top right of Khulnasoft homepage) for errors.
 - Make sure external services do not have invalid tokens by navigating to them in the web UI and clicking save. If there are no errors, they are valid.
 - Check the repo-updater logs for errors about syncing.
 - Confirm that outbound network connections are allowed where repo-updater is deployed.
@@ -3829,7 +3829,7 @@ with your code hosts connections or networking issues affecting communication wi
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3853,7 +3853,7 @@ Generated query for critical alert: `max((max(src_repoupdater_max_sync_backoff))
 
 - An alert here indicates errors syncing site level repo metadata with code hosts. This indicates that there could be a configuration issue
 with your code hosts connections or networking issues affecting communication with your code hosts.
-- Check the code host status indicator (cloud icon in top right of Sourcegraph homepage) for errors.
+- Check the code host status indicator (cloud icon in top right of Khulnasoft homepage) for errors.
 - Make sure external services do not have invalid tokens by navigating to them in the web UI and clicking save. If there are no errors, they are valid.
 - Check the repo-updater logs for errors about syncing.
 - Confirm that outbound network connections are allowed where repo-updater is deployed.
@@ -3868,7 +3868,7 @@ with your code hosts connections or networking issues affecting communication wi
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3901,7 +3901,7 @@ Generated query for critical alert: `max((max by (family) (rate(src_repoupdater_
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3922,7 +3922,7 @@ Generated query for warning alert: `min((max by (family) (rate(src_repoupdater_s
 
 **Next steps**
 
-- Check the network latency is reasonable (<50ms) between the Sourcegraph and the code host
+- Check the network latency is reasonable (<50ms) between the Khulnasoft and the code host
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#repo-updater-syncer-sync-duration).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -3932,7 +3932,7 @@ Generated query for warning alert: `min((max by (family) (rate(src_repoupdater_s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3953,7 +3953,7 @@ Generated query for warning alert: `max((histogram_quantile(0.95, max by (le, fa
 
 **Next steps**
 
-- Check the network latency is reasonable (<50ms) between the Sourcegraph and the code host
+- Check the network latency is reasonable (<50ms) between the Khulnasoft and the code host
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#repo-updater-source-duration).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -3963,7 +3963,7 @@ Generated query for warning alert: `max((histogram_quantile(0.95, max by (le, fa
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -3994,7 +3994,7 @@ Generated query for warning alert: `max((histogram_quantile(0.95, max by (le) (r
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4025,7 +4025,7 @@ Generated query for warning alert: `max((max(rate(src_repoupdater_syncer_synced_
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4056,7 +4056,7 @@ Generated query for warning alert: `min((max(rate(src_repoupdater_source_repos_t
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4087,7 +4087,7 @@ Generated query for warning alert: `max((max(rate(src_repoupdater_purge_failed[1
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4118,7 +4118,7 @@ Generated query for warning alert: `min((max(rate(src_repoupdater_sched_auto_fet
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4149,7 +4149,7 @@ Generated query for warning alert: `min((max(src_repoupdater_sched_known_repos))
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4180,7 +4180,7 @@ Generated query for critical alert: `max((max(deriv(src_repoupdater_sched_update
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4212,7 +4212,7 @@ Generated query for warning alert: `min((max(rate(src_repoupdater_sched_loops[1m
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4243,7 +4243,7 @@ Generated query for warning alert: `max((max(src_repoupdater_stale_repos)) >= 1)
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4274,7 +4274,7 @@ Generated query for critical alert: `max((max(rate(src_repoupdater_sched_error[1
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4306,7 +4306,7 @@ Generated query for critical alert: `max((max(src_repoupdater_external_services_
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4337,7 +4337,7 @@ Generated query for warning alert: `max((max(src_repoupdater_queued_sync_jobs_to
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4368,7 +4368,7 @@ Generated query for warning alert: `max((max(src_repoupdater_completed_sync_jobs
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4399,7 +4399,7 @@ Generated query for warning alert: `max((max(src_repoupdater_errored_sync_jobs_p
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4430,7 +4430,7 @@ Generated query for warning alert: `min((max by (name) (src_github_rate_limit_re
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4461,7 +4461,7 @@ Generated query for warning alert: `min((max by (name) (src_github_rate_limit_re
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4492,7 +4492,7 @@ Generated query for warning alert: `min((max by (name) (src_github_rate_limit_re
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4524,7 +4524,7 @@ Generated query for critical alert: `min((max by (name) (src_gitlab_rate_limit_r
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4547,7 +4547,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 **Next steps**
 
 - Increase SRC_PGSQL_MAX_OPEN together with giving more memory to the database if needed
-- Scale up Postgres memory/cpus - [see our scaling guide](https://sourcegraph.com/docs/admin/config/postgres-conf)
+- Scale up Postgres memory/cpus - [see our scaling guide](https://khulnasoft.com/docs/admin/config/postgres-conf)
 - If using GCP Cloud SQL, check for high lock waits or CPU usage in query insights
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#repo-updater-mean-blocked-seconds-per-conn-request).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -4559,7 +4559,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4593,7 +4593,7 @@ Generated query for critical alert: `max((sum by (app_name, db_name) (increase(s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4625,7 +4625,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4657,7 +4657,7 @@ Generated query for critical alert: `max((cadvisor_container_memory_usage_percen
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4689,7 +4689,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4721,7 +4721,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4753,7 +4753,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4785,7 +4785,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4815,7 +4815,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4845,7 +4845,7 @@ Generated query for warning alert: `max((max by (instance) (go_goroutines{job=~"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4877,7 +4877,7 @@ Generated query for warning alert: `max((max by (instance) (go_gc_duration_secon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Source team](https://handbook.sourcegraph.com/departments/engineering/teams/source).*</sub>
+<sub>*Managed by the [Khulnasoft Source team](https://handbook.khulnasoft.com/departments/engineering/teams/source).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4907,7 +4907,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*repo-updater"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4937,7 +4937,7 @@ Generated query for warning alert: `max((sum by (instance) (rate(searcher_servic
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4969,7 +4969,7 @@ Generated query for warning alert: `max((sum by (code) (increase(searcher_servic
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -4992,7 +4992,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 **Next steps**
 
 - Increase SRC_PGSQL_MAX_OPEN together with giving more memory to the database if needed
-- Scale up Postgres memory/cpus - [see our scaling guide](https://sourcegraph.com/docs/admin/config/postgres-conf)
+- Scale up Postgres memory/cpus - [see our scaling guide](https://khulnasoft.com/docs/admin/config/postgres-conf)
 - If using GCP Cloud SQL, check for high lock waits or CPU usage in query insights
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#searcher-mean-blocked-seconds-per-conn-request).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -5004,7 +5004,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5038,7 +5038,7 @@ Generated query for critical alert: `max((sum by (app_name, db_name) (increase(s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5070,7 +5070,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5102,7 +5102,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5134,7 +5134,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5166,7 +5166,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5198,7 +5198,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5230,7 +5230,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5260,7 +5260,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5290,7 +5290,7 @@ Generated query for warning alert: `max((max by (instance) (go_goroutines{job=~"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5322,7 +5322,7 @@ Generated query for warning alert: `max((max by (instance) (go_gc_duration_secon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5354,7 +5354,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*searcher"}) /
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5377,7 +5377,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 **Next steps**
 
 - Increase SRC_PGSQL_MAX_OPEN together with giving more memory to the database if needed
-- Scale up Postgres memory/cpus - [see our scaling guide](https://sourcegraph.com/docs/admin/config/postgres-conf)
+- Scale up Postgres memory/cpus - [see our scaling guide](https://khulnasoft.com/docs/admin/config/postgres-conf)
 - If using GCP Cloud SQL, check for high lock waits or CPU usage in query insights
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#symbols-mean-blocked-seconds-per-conn-request).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -5389,7 +5389,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5423,7 +5423,7 @@ Generated query for critical alert: `max((sum by (app_name, db_name) (increase(s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5455,7 +5455,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5487,7 +5487,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5519,7 +5519,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5551,7 +5551,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5583,7 +5583,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5615,7 +5615,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5645,7 +5645,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5675,7 +5675,7 @@ Generated query for warning alert: `max((max by (instance) (go_goroutines{job=~"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5707,7 +5707,7 @@ Generated query for warning alert: `max((max by (instance) (go_gc_duration_secon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5739,7 +5739,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*symbols"}) / 
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5771,7 +5771,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5803,7 +5803,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5835,7 +5835,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5867,7 +5867,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5899,7 +5899,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5931,7 +5931,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5963,7 +5963,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -5993,7 +5993,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*syntect-serve
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6017,7 +6017,7 @@ Generated query for warning alert: `max((sum(rate(resolve_revision_seconds_sum[5
 
 - View error rates on gitserver and frontend to identify root cause.
 - Rollback frontend/gitserver deployment if due to a bad code change.
-- View error logs for `getIndexOptions` via net/trace debug interface. For example click on a `indexed-search-indexer-` on https://sourcegraph.com/-/debug/. Then click on Traces. Replace sourcegraph.com with your instance address.
+- View error logs for `getIndexOptions` via net/trace debug interface. For example click on a `indexed-search-indexer-` on https://khulnasoft.com/-/debug/. Then click on Traces. Replace khulnasoft.com with your instance address.
 - More help interpreting this metric is available in the [dashboards reference](./dashboards.md#zoekt-get-index-options-error-increase).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -6028,7 +6028,7 @@ Generated query for warning alert: `max((sum(rate(resolve_revision_seconds_sum[5
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6060,7 +6060,7 @@ Generated query for critical alert: `max((sum(increase(get_index_options_error_t
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6086,7 +6086,7 @@ Generated query for warning alert: `max((sum by (code) (increase(src_zoekt_reque
 
     - Enabling shard merging for Zoekt: Set SRC_ENABLE_SHARD_MERGING="1" for zoekt-indexserver. Use this option
 if your corpus of repositories has a high percentage of small, rarely updated repositories. See
-[documentation](https://sourcegraph.com/docs/code-search/features#shard-merging).
+[documentation](https://khulnasoft.com/docs/code-search/features#shard-merging).
     - Creating additional Zoekt replicas: This spreads all the shards out amongst more replicas, which
 means that each _individual_ replica will have fewer shards. This, in turn, decreases the
 amount of memory map areas that a _single_ replica can create (in order to load the shards into memory).
@@ -6105,7 +6105,7 @@ on your environment. See https://kernel.org/doc/Documentation/sysctl/vm.txt for 
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6139,7 +6139,7 @@ Generated query for critical alert: `max(((proc_metrics_memory_map_current_count
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6171,7 +6171,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6203,7 +6203,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6235,7 +6235,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6267,7 +6267,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6299,7 +6299,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6331,7 +6331,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6363,7 +6363,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6395,7 +6395,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6427,7 +6427,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6459,7 +6459,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6491,7 +6491,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6523,7 +6523,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6555,7 +6555,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6585,7 +6585,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6615,7 +6615,7 @@ Generated query for warning alert: `max((max by (instance) (go_goroutines{job=~"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6645,7 +6645,7 @@ Generated query for warning alert: `max((max by (instance) (go_gc_duration_secon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6675,7 +6675,7 @@ Generated query for warning alert: `max((max by (instance) (go_goroutines{job=~"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6707,7 +6707,7 @@ Generated query for warning alert: `max((max by (instance) (go_gc_duration_secon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Search Platform team](https://handbook.sourcegraph.com/departments/engineering/teams/search/core).*</sub>
+<sub>*Managed by the [Khulnasoft Search Platform team](https://handbook.khulnasoft.com/departments/engineering/teams/search/core).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6740,7 +6740,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*indexed-searc
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6773,7 +6773,7 @@ Generated query for warning alert: `max((sum by (rule_group) (avg_over_time(prom
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6795,7 +6795,7 @@ Generated query for warning alert: `max((sum by (rule_group) (rate(prometheus_ru
 **Next steps**
 
 - Check the Container monitoring (not available on server) panels and try increasing resources for Prometheus if necessary.
-- Ensure that your [`observability.alerts` configuration](https://sourcegraph.com/docs/admin/observability/alerting#setting-up-alerting) (in site configuration) is valid.
+- Ensure that your [`observability.alerts` configuration](https://khulnasoft.com/docs/admin/observability/alerting#setting-up-alerting) (in site configuration) is valid.
 - Check if the relevant alert integration service is experiencing downtime or issues.
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#prometheus-alertmanager-notification-latency).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -6806,7 +6806,7 @@ Generated query for warning alert: `max((sum by (rule_group) (rate(prometheus_ru
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6827,7 +6827,7 @@ Generated query for warning alert: `max((sum by (integration) (rate(alertmanager
 
 **Next steps**
 
-- Ensure that your [`observability.alerts` configuration](https://sourcegraph.com/docs/admin/observability/alerting#setting-up-alerting) (in site configuration) is valid.
+- Ensure that your [`observability.alerts` configuration](https://khulnasoft.com/docs/admin/observability/alerting#setting-up-alerting) (in site configuration) is valid.
 - Check if the relevant alert integration service is experiencing downtime or issues.
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#prometheus-alertmanager-notification-failures).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -6838,7 +6838,7 @@ Generated query for warning alert: `max((sum by (integration) (rate(alertmanager
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6860,7 +6860,7 @@ Generated query for warning alert: `max((sum by (integration) (rate(alertmanager
 **Next steps**
 
 - Check Prometheus logs for messages related to configuration loading.
-- Ensure any [custom configuration you have provided Prometheus](https://sourcegraph.com/docs/admin/observability/metrics#prometheus-configuration) is valid.
+- Ensure any [custom configuration you have provided Prometheus](https://khulnasoft.com/docs/admin/observability/metrics#prometheus-configuration) is valid.
 - More help interpreting this metric is available in the [dashboards reference](./dashboards.md#prometheus-prometheus-config-status).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -6870,7 +6870,7 @@ Generated query for warning alert: `max((sum by (integration) (rate(alertmanager
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6891,7 +6891,7 @@ Generated query for warning alert: `min((prometheus_config_last_reload_successfu
 
 **Next steps**
 
-- Ensure that your [`observability.alerts` configuration](https://sourcegraph.com/docs/admin/observability/alerting#setting-up-alerting) (in site configuration) is valid.
+- Ensure that your [`observability.alerts` configuration](https://khulnasoft.com/docs/admin/observability/alerting#setting-up-alerting) (in site configuration) is valid.
 - More help interpreting this metric is available in the [dashboards reference](./dashboards.md#prometheus-alertmanager-config-status).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -6901,7 +6901,7 @@ Generated query for warning alert: `min((prometheus_config_last_reload_successfu
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6932,7 +6932,7 @@ Generated query for warning alert: `min((alertmanager_config_last_reload_success
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6963,7 +6963,7 @@ Generated query for warning alert: `max((increase(label_replace({__name__=~"prom
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -6994,7 +6994,7 @@ Generated query for warning alert: `max((increase(prometheus_target_scrapes_exce
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7026,7 +7026,7 @@ Generated query for warning alert: `max((increase(prometheus_target_scrapes_samp
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7058,7 +7058,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7090,7 +7090,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7122,7 +7122,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7154,7 +7154,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7186,7 +7186,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7218,7 +7218,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7250,7 +7250,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7283,7 +7283,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*prometheus"})
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7317,7 +7317,7 @@ problem is not know to be resolved until jobs start succeeding again.
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7347,7 +7347,7 @@ Custom query for warning alert: `max((last_over_time(sum(increase(src_executor_p
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7377,7 +7377,7 @@ Generated query for warning alert: `max((max by (sg_instance) (go_goroutines{sg_
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7409,7 +7409,7 @@ an underprovisioned main postgres instance.
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Code intelligence team](https://handbook.sourcegraph.com/departments/engineering/teams/code-intelligence).*</sub>
+<sub>*Managed by the [Khulnasoft Code intelligence team](https://handbook.khulnasoft.com/departments/engineering/teams/code-intelligence).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7434,7 +7434,7 @@ Generated query for warning alert: `max((max(src_codeintel_commit_graph_queued_d
 - Check the "number of events exported per batch over 30m" dashboard panel to see if export throughput is at saturation.
 - Increase `TELEMETRY_GATEWAY_EXPORTER_EXPORT_BATCH_SIZE` to export more events per batch.
 - Reduce `TELEMETRY_GATEWAY_EXPORTER_EXPORT_INTERVAL` to schedule more export jobs.
-- See worker logs in the `worker.telemetrygateway-exporter` log scope for more details to see if any export errors are occuring - if logs only indicate that exports failed, reach out to Sourcegraph with relevant log entries, as this may be an issue in Sourcegraph`s Telemetry Gateway service.
+- See worker logs in the `worker.telemetrygateway-exporter` log scope for more details to see if any export errors are occuring - if logs only indicate that exports failed, reach out to Khulnasoft with relevant log entries, as this may be an issue in Khulnasoft`s Telemetry Gateway service.
 - More help interpreting this metric is available in the [dashboards reference](./dashboards.md#telemetry-telemetry-gateway-exporter-queue-growth).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -7445,7 +7445,7 @@ Generated query for warning alert: `max((max(src_codeintel_commit_graph_queued_d
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Data & Analytics team](https://handbook.sourcegraph.com/departments/engineering/teams/data-analytics).*</sub>
+<sub>*Managed by the [Khulnasoft Data & Analytics team](https://handbook.khulnasoft.com/departments/engineering/teams/data-analytics).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7468,8 +7468,8 @@ Generated query for critical alert: `max((max(deriv(src_telemetrygatewayexporter
 
 **Next steps**
 
-- Failures indicate that exporting of telemetry events from Sourcegraph are failing. This may affect the performance of the database as the backlog grows.
-- See worker logs in the `worker.telemetrygateway-exporter` log scope for more details. If logs only indicate that exports failed, reach out to Sourcegraph with relevant log entries, as this may be an issue in Sourcegraph`s Telemetry Gateway service.
+- Failures indicate that exporting of telemetry events from Khulnasoft are failing. This may affect the performance of the database as the backlog grows.
+- See worker logs in the `worker.telemetrygateway-exporter` log scope for more details. If logs only indicate that exports failed, reach out to Khulnasoft with relevant log entries, as this may be an issue in Khulnasoft`s Telemetry Gateway service.
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#telemetry-telemetrygatewayexporter-exporter-errors-total).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
 
@@ -7479,7 +7479,7 @@ Generated query for critical alert: `max((max(deriv(src_telemetrygatewayexporter
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Data & Analytics team](https://handbook.sourcegraph.com/departments/engineering/teams/data-analytics).*</sub>
+<sub>*Managed by the [Khulnasoft Data & Analytics team](https://handbook.khulnasoft.com/departments/engineering/teams/data-analytics).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7511,7 +7511,7 @@ Generated query for warning alert: `max((sum(increase(src_telemetrygatewayexport
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Data & Analytics team](https://handbook.sourcegraph.com/departments/engineering/teams/data-analytics).*</sub>
+<sub>*Managed by the [Khulnasoft Data & Analytics team](https://handbook.khulnasoft.com/departments/engineering/teams/data-analytics).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7543,7 +7543,7 @@ Generated query for warning alert: `max((sum(increase(src_telemetrygatewayexport
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Data & Analytics team](https://handbook.sourcegraph.com/departments/engineering/teams/data-analytics).*</sub>
+<sub>*Managed by the [Khulnasoft Data & Analytics team](https://handbook.khulnasoft.com/departments/engineering/teams/data-analytics).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7574,7 +7574,7 @@ Generated query for warning alert: `max((sum(increase(src_telemetrygatewayexport
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Data & Analytics team](https://handbook.sourcegraph.com/departments/engineering/teams/data-analytics).*</sub>
+<sub>*Managed by the [Khulnasoft Data & Analytics team](https://handbook.khulnasoft.com/departments/engineering/teams/data-analytics).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7605,7 +7605,7 @@ Generated query for warning alert: `max((sum by (op) (increase(src_telemetry_job
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Data & Analytics team](https://handbook.sourcegraph.com/departments/engineering/teams/data-analytics).*</sub>
+<sub>*Managed by the [Khulnasoft Data & Analytics team](https://handbook.khulnasoft.com/departments/engineering/teams/data-analytics).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7636,7 +7636,7 @@ Generated query for warning alert: `max((rate(src_telemetry_job_total{op="SendEv
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7667,7 +7667,7 @@ Generated query for warning alert: `max((sum by (receiver) (rate(otelcol_receive
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7698,7 +7698,7 @@ Generated query for warning alert: `max((sum by (exporter) (rate(otelcol_exporte
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7729,7 +7729,7 @@ Generated query for warning alert: `max((sum by (exporter) (rate(otelcol_exporte
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7761,7 +7761,7 @@ Generated query for warning alert: `max((sum by (processor) (rate(otelcol_proces
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7793,7 +7793,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7825,7 +7825,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7857,7 +7857,7 @@ Generated query for critical alert: `min((sum by (app) (up{app=~".*otel-collecto
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Infrastructure Org team](https://handbook.sourcegraph.com/departments/engineering/infrastructure).*</sub>
+<sub>*Managed by the [Khulnasoft Infrastructure Org team](https://handbook.khulnasoft.com/departments/engineering/infrastructure).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7880,7 +7880,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 **Next steps**
 
 - Increase SRC_PGSQL_MAX_OPEN together with giving more memory to the database if needed
-- Scale up Postgres memory/cpus - [see our scaling guide](https://sourcegraph.com/docs/admin/config/postgres-conf)
+- Scale up Postgres memory/cpus - [see our scaling guide](https://khulnasoft.com/docs/admin/config/postgres-conf)
 - If using GCP Cloud SQL, check for high lock waits or CPU usage in query insights
 - Learn more about the related dashboard panel in the [dashboards reference](./dashboards.md#embeddings-mean-blocked-seconds-per-conn-request).
 - **Silence this alert:** If you are aware of this alert and want to silence notifications for it, add the following to your site configuration and set a reminder to re-evaluate the alert:
@@ -7892,7 +7892,7 @@ Generated query for critical alert: `max((max(max_over_time(src_conf_client_time
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7926,7 +7926,7 @@ Generated query for critical alert: `max((sum by (app_name, db_name) (increase(s
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7958,7 +7958,7 @@ Generated query for warning alert: `max((cadvisor_container_cpu_usage_percentage
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -7990,7 +7990,7 @@ Generated query for warning alert: `max((cadvisor_container_memory_usage_percent
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -8022,7 +8022,7 @@ Generated query for warning alert: `max((quantile_over_time(0.9, cadvisor_contai
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -8054,7 +8054,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -8086,7 +8086,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_cpu_us
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -8118,7 +8118,7 @@ Generated query for warning alert: `max((max_over_time(cadvisor_container_memory
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -8148,7 +8148,7 @@ Generated query for warning alert: `max((max by (name) (container_oom_events_tot
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -8178,7 +8178,7 @@ Generated query for warning alert: `max((max by (instance) (go_goroutines{job=~"
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>
@@ -8210,7 +8210,7 @@ Generated query for warning alert: `max((max by (instance) (go_gc_duration_secon
 ]
 ```
 
-<sub>*Managed by the [Sourcegraph Cody team](https://handbook.sourcegraph.com/departments/engineering/teams/cody).*</sub>
+<sub>*Managed by the [Khulnasoft Cody team](https://handbook.khulnasoft.com/departments/engineering/teams/cody).*</sub>
 
 <details>
 <summary>Technical details</summary>

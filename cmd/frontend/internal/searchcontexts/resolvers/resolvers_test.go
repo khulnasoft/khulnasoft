@@ -82,8 +82,8 @@ func TestSearchContexts(t *testing.T) {
 }
 
 func TestSearchContextsStarDefaultPermissions(t *testing.T) {
-	// Note: this test can't do t.Parallel since it mutates global state (MockSourcegraphDotComMode)
-	dotcom.MockSourcegraphDotComMode(t, true)
+	// Note: this test can't do t.Parallel since it mutates global state (MockKhulnasoftDotComMode)
+	dotcom.MockKhulnasoftDotComMode(t, true)
 
 	userID := int32(1)
 	graphqlUserID := graphqlbackend.MarshalUserID(userID)

@@ -14,13 +14,13 @@ import (
 )
 
 // Actor represents an agent that accesses resources. It can represent an anonymous user, an
-// authenticated user, or an internal Sourcegraph service.
+// authenticated user, or an internal Khulnasoft service.
 //
 // Actor can be propagated across services by using actor.HTTPTransport (used by
 // httpcli.InternalClientFactory) and actor.HTTPMiddleware. Before assuming this, ensure
 // that actor propagation is enabled on both ends of the request.
 //
-// To learn more about actor propagation, see: https://sourcegraph.com/notebooks/Tm90ZWJvb2s6OTI=
+// To learn more about actor propagation, see: https://khulnasoft.com/notebooks/Tm90ZWJvb2s6OTI=
 //
 // At most one of UID, AnonymousUID, or Internal must be set.
 type Actor struct {
@@ -29,19 +29,19 @@ type Actor struct {
 	UID int32 `json:",omitempty"`
 
 	// AnonymousUID is the user's semi-stable anonymousID from the request cookie
-	// or the 'X-Sourcegraph-Actor-Anonymous-UID' request header. This may be
+	// or the 'X-Khulnasoft-Actor-Anonymous-UID' request header. This may be
 	// set even if the actor is authenticated, to maintain a consistent mapping.
 	//
 	// 🚨 SECURITY:  When deciding how to handle anonymous vs authenticated users,
 	// ALWAYS check the UID field first.
 	AnonymousUID string `json:",omitempty"`
 
-	// Internal is true if the actor represents an internal Sourcegraph service (and is therefore
+	// Internal is true if the actor represents an internal Khulnasoft service (and is therefore
 	// not tied to a specific user).
 	Internal bool `json:",omitempty"`
 
-	// SourcegraphOperator indicates whether the actor is a Sourcegraph operator user account.
-	SourcegraphOperator bool `json:",omitempty"`
+	// KhulnasoftOperator indicates whether the actor is a Khulnasoft operator user account.
+	KhulnasoftOperator bool `json:",omitempty"`
 
 	// FromSessionCookie is whether a session cookie was used to authenticate the actor. It is used
 	// to selectively display a logout link. (If the actor wasn't authenticated with a session

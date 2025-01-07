@@ -13,7 +13,7 @@ CREATE TABLE webhooks (
       encryption_key_id text
 );
 
-COMMENT ON TABLE webhooks IS 'Webhooks registered in Sourcegraph instance.';
+COMMENT ON TABLE webhooks IS 'Webhooks registered in Khulnasoft instance.';
 
 COMMENT ON COLUMN webhooks.code_host_kind IS 'Kind of an external service for which webhooks are registered.';
 

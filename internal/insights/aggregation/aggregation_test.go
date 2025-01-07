@@ -508,7 +508,7 @@ func TestCaptureGroupAggregation(t *testing.T) {
 			streaming.SearchEvent{
 				Results: []result.Match{contentMatch("myRepo", "file.go", 1, "Python.7 PyThoN2.7")},
 			},
-			`repo:^github\.com/sourcegraph/sourcegraph python([0-9]\.[0-9]) case:no`,
+			`repo:^github\.com/khulnasoft/khulnasoft python([0-9]\.[0-9]) case:no`,
 			autogold.Expect(map[string]int{"2.7": 1}),
 		},
 		{
@@ -517,7 +517,7 @@ func TestCaptureGroupAggregation(t *testing.T) {
 			streaming.SearchEvent{
 				Results: []result.Match{contentMatch("myRepo", "file.go", 1, "Python.7 PyThoN2.7")},
 			},
-			`repo:^github\.com/sourcegraph/sourcegraph python([0-9]\.[0-9]) case:yes`,
+			`repo:^github\.com/khulnasoft/khulnasoft python([0-9]\.[0-9]) case:yes`,
 			autogold.Expect(map[string]int{}),
 		},
 		{

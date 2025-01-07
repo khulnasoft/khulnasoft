@@ -153,7 +153,7 @@ export class KhulnasoftUri {
     }
 
     // Debt: refactor and use shared functions. Below is based on parseBrowserRepoURL
-    // https://sourcegraph.com/github.com/sourcegraph/sourcegraph@56dfaaa3e3172f9afd4a29a4780a7f1a34198238/-/blob/client/shared/src/util/url.ts?L287
+    // https://khulnasoft.com/github.com/sourcegraph/sourcegraph@56dfaaa3e3172f9afd4a29a4780a7f1a34198238/-/blob/client/shared/src/util/url.ts?L287
     // In the browser, pass in window.URL. When we use the shared implementation, pass in the URL module from Node.
     public static parse(uri: string, URLModule = URL): KhulnasoftUri {
         uri = uri.replace('https://', 'sourcegraph://')

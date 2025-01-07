@@ -21,7 +21,7 @@ import (
 	"github.com/khulnasoft/khulnasoft/lib/errors"
 )
 
-func (r *Reconciler) reconcileSearcher(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSearcher(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	if err := r.reconcileSearcherStatefulSet(ctx, sg, owner); err != nil {
 		return errors.Wrap(err, "reconciling StatefulSet")
 	}
@@ -34,7 +34,7 @@ func (r *Reconciler) reconcileSearcher(ctx context.Context, sg *config.Sourcegra
 	return nil
 }
 
-func (r *Reconciler) reconcileSearcherStatefulSet(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSearcherStatefulSet(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "searcher"
 	cfg := sg.Spec.Searcher
 
@@ -128,7 +128,7 @@ func (r *Reconciler) reconcileSearcherStatefulSet(ctx context.Context, sg *confi
 	return reconcileObject(ctx, r, ifChanged, &sset, &appsv1.StatefulSet{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileSearcherService(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSearcherService(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	name := "searcher"
 	cfg := sg.Spec.Searcher
 	svc := service.NewService(name, sg.Namespace, cfg)
@@ -142,7 +142,7 @@ func (r *Reconciler) reconcileSearcherService(ctx context.Context, sg *config.So
 	return reconcileObject(ctx, r, cfg, &svc, &corev1.Service{}, sg, owner)
 }
 
-func (r *Reconciler) reconcileSearcherServiceAccount(ctx context.Context, sg *config.Sourcegraph, owner client.Object) error {
+func (r *Reconciler) reconcileSearcherServiceAccount(ctx context.Context, sg *config.Khulnasoft, owner client.Object) error {
 	cfg := sg.Spec.Searcher
 	sa := serviceaccount.NewServiceAccount("searcher", sg.Namespace, cfg)
 	return reconcileObject(ctx, r, cfg, &sa, &corev1.ServiceAccount{}, sg, owner)

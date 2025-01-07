@@ -108,7 +108,7 @@ export async function getConfigAlwaysFulfill(): Promise<PluginConfig> {
     } catch (error) {
         console.error(`Failed to get config: ${(error as Error).message}`)
         return {
-            instanceURL: 'https://sourcegraph.com/',
+            instanceURL: 'https://khulnasoft.com/',
             accessToken: null,
             customRequestHeadersAsString: null,
             pluginVersion: '0.0.0',

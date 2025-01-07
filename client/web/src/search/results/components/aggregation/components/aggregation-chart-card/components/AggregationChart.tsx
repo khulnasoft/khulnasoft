@@ -107,7 +107,7 @@ const getTruncatedTickFromTheEnd =
  *
  * ```
  * github.com/sourcegraph/about -> ...sourcegraph/about
- * github.com/sourcegraph/sourcegraph -> ...urcegraph/sourcegraph
+ * github.com/khulnasoft/khulnasoft -> ...urcegraph/sourcegraph
  * ```
  */
 const getTruncationFormatter = (

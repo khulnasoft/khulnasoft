@@ -347,7 +347,7 @@ function formatStackFrameLine(line: string): React.ReactNode {
 
 function buildKhulnasoftUrl(fileName: string, lineIndex: number): string {
     const revision = parseProductReference(window.context.version)
-    return `https://sourcegraph.com/github.com/sourcegraph/sourcegraph@${revision}/-/blob/${fileName}?L${lineIndex}`
+    return `https://khulnasoft.com/github.com/sourcegraph/sourcegraph@${revision}/-/blob/${fileName}?L${lineIndex}`
 }
 
 const SimplePopover: React.FunctionComponent<{ label: string; children: ReactNode }> = ({ label, children }) => {

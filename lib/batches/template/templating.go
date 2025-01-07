@@ -188,7 +188,7 @@ type StepContext struct {
 	// PreviousStep is the result of the previous step. Empty when there is no
 	// previous step.
 	PreviousStep execution.AfterStepResult
-	// Repository is the Sourcegraph repository in which the steps are executed.
+	// Repository is the Khulnasoft repository in which the steps are executed.
 	Repository Repository
 }
 

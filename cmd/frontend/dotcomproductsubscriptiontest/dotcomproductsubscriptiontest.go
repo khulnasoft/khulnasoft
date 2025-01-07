@@ -4,7 +4,7 @@
 //
 // 👷 This package is intended to be a short-lived mechanism, and should be
 // removed as part of https://linear.app/sourcegraph/project/12f1d5047bd2/overview.
-// It needs to exist so that we can TEST reading data from the Sourcegraph.com
+// It needs to exist so that we can TEST reading data from the Khulnasoft.com
 // database from Enterprise Portal. No other code should import this package.
 package dotcomproductsubscriptiontest
 

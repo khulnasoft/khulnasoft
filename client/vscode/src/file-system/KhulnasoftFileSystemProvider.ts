@@ -68,7 +68,7 @@ export class KhulnasoftFileSystemProvider implements vscode.FileSystemProvider {
     }
 
     public emptyFileUri(): string {
-        return 'sourcegraph://sourcegraph.com/empty-file.txt'
+        return 'sourcegraph://khulnasoft.com/empty-file.txt'
     }
 
     public async readFile(vscodeUri: vscode.Uri): Promise<Uint8Array> {

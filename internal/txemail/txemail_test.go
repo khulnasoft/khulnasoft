@@ -12,11 +12,11 @@ import (
 )
 
 func TestRender(t *testing.T) {
-	replyTo := "admin@sourcegraph.com"
+	replyTo := "admin@khulnasoft.com"
 	messageID := "1"
 
 	msg := Message{
-		To:         []string{"bar1@sourcegraph.com", "bar2@sourcegraph.com"},
+		To:         []string{"bar1@khulnasoft.com", "bar2@khulnasoft.com"},
 		ReplyTo:    &replyTo,
 		MessageID:  &messageID,
 		References: []string{"ref1", "ref2"},
@@ -39,12 +39,12 @@ func TestRender(t *testing.T) {
 	}
 
 	t.Run("only email", func(t *testing.T) {
-		got, err := render("foo@sourcegraph.com", "", msg)
+		got, err := render("foo@khulnasoft.com", "", msg)
 		require.NoError(t, err)
 		if diff := cmp.Diff(&email.Email{
 			ReplyTo: []string{replyTo},
-			From:    "<foo@sourcegraph.com>",
-			To:      []string{"bar1@sourcegraph.com", "bar2@sourcegraph.com"},
+			From:    "<foo@khulnasoft.com>",
+			To:      []string{"bar1@khulnasoft.com", "bar2@khulnasoft.com"},
 			Subject: "a subject <b>",
 			Text:    []byte("a text body <b>"),
 			HTML:    []byte(`a html body <span class="&lt;b&gt;" />`),
@@ -58,12 +58,12 @@ func TestRender(t *testing.T) {
 	})
 
 	t.Run("email and sender name", func(t *testing.T) {
-		got, err := render("foo@sourcegraph.com", "foo", msg)
+		got, err := render("foo@khulnasoft.com", "foo", msg)
 		require.NoError(t, err)
 		if diff := cmp.Diff(&email.Email{
 			ReplyTo: []string{replyTo},
-			From:    `"foo" <foo@sourcegraph.com>`,
-			To:      []string{"bar1@sourcegraph.com", "bar2@sourcegraph.com"},
+			From:    `"foo" <foo@khulnasoft.com>`,
+			To:      []string{"bar1@khulnasoft.com", "bar2@khulnasoft.com"},
 			Subject: "a subject <b>",
 			Text:    []byte("a text body <b>"),
 			HTML:    []byte(`a html body <span class="&lt;b&gt;" />`),

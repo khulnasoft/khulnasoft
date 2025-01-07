@@ -176,7 +176,7 @@ func multiversionUpgradeTest(ctx context.Context, initVersion, targetVersion, la
 
 // Logic in tryAutoUpgrade is not compatible with dev builds. The autoUpgrade test must be run with a stamp version
 //
-// Without this in place autoupgrade fails and exits while trying to make an oobmigration comparison here: https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/frontend/internal/cli/autoupgrade.go?L67-76
+// Without this in place autoupgrade fails and exits while trying to make an oobmigration comparison here: https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/cmd/frontend/internal/cli/autoupgrade.go?L67-76
 // {"SeverityText":"WARN","Timestamp":1706721478276103721,"InstrumentationScope":"frontend","Caller":"cli/autoupgrade.go:73","Function":"github.com/khulnasoft/khulnasoft/cmd/frontend/internal/cli.tryAutoUpgrade","Body":"unexpected string for desired instance schema version, skipping auto-upgrade","Resource":{"service.name":"frontend","service.version":"devVersion","service.instance.id":"487754e1c54a"},"Attributes":{"version":"devVersion"}}
 func autoUpgradeTest(ctx context.Context, initVersion, targetVersion, latestStableVersion *semver.Version) Test {
 	postRelease := strings.TrimPrefix(ctx.Value(postReleaseKey{}).(string), "v") // Post release version string

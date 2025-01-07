@@ -15,10 +15,10 @@ import {
     getIndexHTML,
 } from '../utils'
 
-const { SOURCEGRAPH_API_URL, SOURCEGRAPH_HTTP_PORT, STATIC_ASSETS_PATH } = ENVIRONMENT_CONFIG
+const { KHULNASOFT_API_URL, KHULNASOFT_HTTP_PORT, STATIC_ASSETS_PATH } = ENVIRONMENT_CONFIG
 
 function startProductionServer(): void {
-    if (!SOURCEGRAPH_API_URL) {
+    if (!KHULNASOFT_API_URL) {
         throw new Error('production.server.ts only supports *web-standalone* usage')
     }
 
@@ -40,7 +40,7 @@ function startProductionServer(): void {
     )
 
     const { proxyRoutes, ...proxyConfig } = getAPIProxySettings({
-        apiURL: SOURCEGRAPH_API_URL,
+        apiURL: KHULNASOFT_API_URL,
         ...(ENVIRONMENT_CONFIG.WEB_BUILDER_SERVE_INDEX && {
             getLocalIndexHTML(jsContextScript) {
                 const manifestFile = getWebBuildManifest()
@@ -49,13 +49,13 @@ function startProductionServer(): void {
         }),
     })
 
-    // Proxy API requests to the `process.env.SOURCEGRAPH_API_URL`.
+    // Proxy API requests to the `process.env.KHULNASOFT_API_URL`.
     app.use(proxyRoutes, createProxyMiddleware(proxyConfig))
 
     // Redirect remaining routes to index.html
     app.get('/*', (_request, response) => response.sendFile(STATIC_INDEX_PATH))
 
-    app.listen(SOURCEGRAPH_HTTP_PORT, () => {
+    app.listen(KHULNASOFT_HTTP_PORT, () => {
         signale.info(`Production HTTP server is ready at ${chalk.blue.bold(HTTP_WEB_SERVER_URL)}`)
         signale.success(`Production HTTPS server is ready at ${chalk.blue.bold(HTTPS_WEB_SERVER_URL)}`)
     })

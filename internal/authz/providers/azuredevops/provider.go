@@ -192,7 +192,7 @@ func (p *Provider) FetchUserPerms(ctx context.Context, account *extsvc.Account, 
 		// of a hard failure.
 		if len(parts) != 2 {
 			logger.Warn(
-				"Unexpected project name found in Azure DevOps authorization provider (this likely means a misconfigured item in the `projects` key of one of the Azure DevOps code host connections, please check the code host config). Permissions syncing for this user will not be 100% complete and they may not have access to some repos on Sourcegraph that they can access on Azure DevOps.",
+				"Unexpected project name found in Azure DevOps authorization provider (this likely means a misconfigured item in the `projects` key of one of the Azure DevOps code host connections, please check the code host config). Permissions syncing for this user will not be 100% complete and they may not have access to some repos on Khulnasoft that they can access on Azure DevOps.",
 				log.String("project", project), log.String("user", profile.EmailAddress),
 			)
 			continue

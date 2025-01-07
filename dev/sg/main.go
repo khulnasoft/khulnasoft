@@ -94,7 +94,7 @@ const sgBugReportTemplate = "https://github.com/khulnasoft/khulnasoft/issues/new
 // sg is the main sg CLI application.
 var sg = &cli.App{
 	Usage:       "The Khulnasoft developer tool!",
-	Description: "Learn more: https://sourcegraph.com/github.com/khulnasoft/khulnasoft/-/blob/doc/dev/background-information/sg/index.md",
+	Description: "Learn more: https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/doc/dev/background-information/sg/index.md",
 	Version:     ReleaseName, // use friendly name as version
 	Compiled:    time.Now(),
 	Flags: []cli.Flag{
@@ -225,8 +225,8 @@ var sg = &cli.App{
 					msg = "The problem occured while trying to get a secret via Google. Below is the error:\n"
 					msg += fmt.Sprintf("\n```%v```\n", err)
 					msg += "\nPossible fixes:\n"
-					msg += "- You should be in the `gcp-engineering@sourcegraph.com` group. Ask #ask-it-tech-ops or #discuss-dev-infra to check that\n"
-					msg += "- Ensure you're currently authenticated with your sourcegraph.com account by running `gcloud auth list`\n"
+					msg += "- You should be in the `gcp-engineering@khulnasoft.com` group. Ask #ask-it-tech-ops or #discuss-dev-infra to check that\n"
+					msg += "- Ensure you're currently authenticated with your khulnasoft.com account by running `gcloud auth list`\n"
 					msg += "- Ensure you're authenticated with gcloud by running `gcloud auth application-default login`\n"
 				} else {
 					msg = fmt.Sprintf("The problem occured while trying to persist analytics. Below is the error:\n```%v```\n", err)

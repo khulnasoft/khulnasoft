@@ -262,7 +262,7 @@ type usersQueryTest struct {
 
 func runUsersQuery(t *testing.T, schema *graphql.Schema, want usersQueryTest) {
 	t.Helper()
-	dotcom.MockSourcegraphDotComMode(t, want.dotcom)
+	dotcom.MockKhulnasoftDotComMode(t, want.dotcom)
 
 	type node struct {
 		Username string `json:"username"`

@@ -81,8 +81,8 @@ env:
   CODEINTEL_PG_ALLOW_SINGLE_DB: true
 
   # Required for `frontend` and `web` commands
-  SOURCEGRAPH_HTTPS_DOMAIN: sourcegraph.test
-  SOURCEGRAPH_HTTPS_PORT: 3443
+  KHULNASOFT_HTTPS_DOMAIN: sourcegraph.test
+  KHULNASOFT_HTTPS_PORT: 3443
 
   # Required for `web` commands
   NODE_OPTIONS: '--max_old_space_size=8192'
@@ -156,7 +156,7 @@ commands:
     description: Frontend
     cmd: |
       # TODO: This should be fixed
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       # If EXTSVC_CONFIG_FILE is *unset*, set a default.
       export EXTSVC_CONFIG_FILE=${EXTSVC_CONFIG_FILE-'../dev-private/enterprise/dev/external-services-config.json'}
 
@@ -217,7 +217,7 @@ commands:
 
   repo-updater:
     cmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       .bin/repo-updater
     install: |
       if [ -n "$DELVE" ]; then
@@ -257,7 +257,7 @@ commands:
 
   embeddings:
     cmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       .bin/embeddings
     install: |
       if [ -n "$DELVE" ]; then
@@ -274,7 +274,7 @@ commands:
 
   worker:
     cmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       .bin/worker
     install: |
       if [ -n "$DELVE" ]; then
@@ -302,7 +302,7 @@ commands:
       # Enables metrics in dev via debugserver
       SRC_PROF_HTTP: '127.0.0.1:6098'
       # Set in 'sg.config.overwrite.yaml' if you want to test local Cody Gateway:
-      # https://docs-legacy.sourcegraph.com/dev/how-to/cody_gateway
+      # https://docs-legacy.khulnasoft.com/dev/how-to/cody_gateway
       CODY_GATEWAY_DOTCOM_ACCESS_TOKEN: ''
       CODY_GATEWAY_DOTCOM_API_URL: https://sourcegraph.test:3443/.api/graphql
       CODY_GATEWAY_ALLOW_ANONYMOUS: true
@@ -314,7 +314,7 @@ commands:
       CODY_GATEWAY_ANTHROPIC_ACCESS_TOKEN: sekret
       CODY_GATEWAY_OPENAI_ACCESS_TOKEN: sekret
       CODY_GATEWAY_FIREWORKS_ACCESS_TOKEN: sekret
-      CODY_GATEWAY_SOURCEGRAPH_EMBEDDINGS_API_TOKEN: sekret
+      CODY_GATEWAY_KHULNASOFT_EMBEDDINGS_API_TOKEN: sekret
       CODY_GATEWAY_GOOGLE_ACCESS_TOKEN: sekret
       # Connect to services that require SAMS M2M http://go/sams-m2m
       SAMS_URL: https://accounts.sgdev.org
@@ -345,7 +345,7 @@ commands:
       CODY_GATEWAY_DIAGNOSTICS_SECRET: sekret
       # Default site-admin user's token, created by `sg db default-site-admin`
       CODY_GATEWAY_DOTCOM_ACCESS_TOKEN: 'sgp_local_f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0'
-      CODY_GATEWAY_SOURCEGRAPH_EMBEDDINGS_API_TOKEN: sgp_local_f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0
+      CODY_GATEWAY_KHULNASOFT_EMBEDDINGS_API_TOKEN: sgp_local_f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0
       CODY_GATEWAY_DOTCOM_API_URL: https://sourcegraph.test:3443/.api/graphql
 
       # Connect to services that require SAMS M2M http://go/sams-m2m
@@ -384,7 +384,7 @@ commands:
   telemetry-gateway:
     cmd: |
       # Telemetry Gateway needs this to parse and validate incoming license keys.
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       .bin/telemetry-gateway
     install: |
       if [ -n "$DELVE" ]; then
@@ -400,7 +400,7 @@ commands:
       GRPC_WEB_UI_ENABLED: true
       # Set for convenience - use real values in sg.config.overwrite.yaml if you
       # are interacting with RPCs that enforce SAMS M2M auth. See
-      # https://github.com/sourcegraph/accounts.sourcegraph.com/wiki/Operators-Cheat-Sheet#create-a-new-idp-client
+      # https://github.com/sourcegraph/accounts.khulnasoft.com/wiki/Operators-Cheat-Sheet#create-a-new-idp-client
       TELEMETRY_GATEWAY_SAMS_CLIENT_ID: 'foo'
       TELEMETRY_GATEWAY_SAMS_CLIENT_SECRET: 'bar'
     watch:
@@ -457,7 +457,7 @@ commands:
       # have dotcom database tables.
       export DOTCOM_PGDSN_OVERRIDE="postgres://$PGUSER:$PGPASSWORD@$PGHOST:$PGPORT/$PGDATABASE?sslmode=$PGSSLMODE"
       # Enterprise Portal is responsible for generating license keys.
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       .bin/enterprise-portal
     install: |
       if [ -n "$DELVE" ]; then
@@ -552,7 +552,7 @@ commands:
       pnpm run generate
     env:
       WEB_BUILDER_SERVE_INDEX: true
-      SOURCEGRAPH_API_URL: https://sourcegraph.sourcegraph.com
+      KHULNASOFT_API_URL: https://sourcegraph.khulnasoft.com
 
   web-integration-build:
     description: Build development web application for integration tests
@@ -664,7 +664,7 @@ commands:
 
   codeintel-worker:
     cmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       .bin/codeintel-worker
     install: |
       if [ -n "$DELVE" ]; then
@@ -680,7 +680,7 @@ commands:
 
   syntactic-codeintel-worker-template: &syntactic_codeintel_worker_template
     cmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       .bin/syntactic-code-intel-worker
     install: |
       if [ -n "$DELVE" ]; then
@@ -711,7 +711,7 @@ commands:
   syntactic-code-intel-worker-1:
     <<: *syntactic_codeintel_worker_template
     cmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       .bin/syntactic-code-intel-worker
     env:
       SYNTACTIC_CODE_INTEL_WORKER_ADDR: 127.0.0.1:6076
@@ -956,7 +956,7 @@ commands:
         -v "${PROMETHEUS_DISK}":/prometheus \
         -v "$(pwd)/${CONFIG_DIR}":/sg_prometheus_add_ons \
         -e SRC_FRONTEND_INTERNAL="${SRC_FRONTEND_INTERNAL}" \
-        -e DISABLE_SOURCEGRAPH_CONFIG="${DISABLE_SOURCEGRAPH_CONFIG:-""}" \
+        -e DISABLE_KHULNASOFT_CONFIG="${DISABLE_KHULNASOFT_CONFIG:-""}" \
         -e DISABLE_ALERTMANAGER="${DISABLE_ALERTMANAGER:-""}" \
         -e PROMETHEUS_ADDITIONAL_FLAGS="--web.enable-lifecycle --web.enable-admin-api" \
         ${IMAGE} >"${PROMETHEUS_LOG_FILE}" 2>&1
@@ -986,7 +986,7 @@ commands:
       PROM_TARGETS: dev/prometheus/all/prometheus_targets.yml
       SRC_FRONTEND_INTERNAL: host.docker.internal:3090
       ADD_HOST_FLAG: ''
-      DISABLE_SOURCEGRAPH_CONFIG: false
+      DISABLE_KHULNASOFT_CONFIG: false
 
   postgres_exporter:
     cmd: |
@@ -1087,7 +1087,7 @@ commands:
 
   sourcegraph:
     preamble: &sourcegraph-preamble |
-      💡 You are running the single-program distribution of Sourcegraph, which is way faster to work against when
+      💡 You are running the single-program distribution of Khulnasoft, which is way faster to work against when
       iterating locally, but it doesn't boot all services.
 
       Included:
@@ -1104,7 +1104,7 @@ commands:
         - embeddings
     description: Single-program distribution (dev only)
     cmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       .bin/sourcegraph
     install: |
       if [ -n "$DELVE" ]; then
@@ -1249,7 +1249,7 @@ bazelCommands:
   sourcegraph:
     preamble: *sourcegraph-preamble
     precmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
     target: //cmd/sourcegraph
     env:
       CONFIGURATION_MODE: server
@@ -1292,7 +1292,7 @@ bazelCommands:
     description: Enterprise frontend
     target: //cmd/frontend
     precmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
       # If EXTSVC_CONFIG_FILE is *unset*, set a default.
       export EXTSVC_CONFIG_FILE=${EXTSVC_CONFIG_FILE-'../dev-private/enterprise/dev/external-services-config.json'}
     env:
@@ -1305,11 +1305,11 @@ bazelCommands:
   worker:
     target: //cmd/worker
     precmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
   repo-updater:
     target: //cmd/repo-updater
     precmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
   symbols:
     target: //cmd/symbols
     checkBinary: .bin/symbols
@@ -1346,12 +1346,12 @@ bazelCommands:
 
   precise-codeintel-worker:
     precmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
     target: //cmd/precise-code-intel-worker
 
   syntactic-codeintel-worker:
     precmd: |
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(cat ../dev-private/enterprise/dev/test-license-generation-key.pem)
     target: //cmd/syntactic-code-intel-worker
 
   executor-template: &executor_template_bazel
@@ -1501,7 +1501,7 @@ dockerCommands:
       SRC_FRONTEND_INTERNAL: host.docker.internal:3090
       SRC_LOG_LEVEL: info
       SRC_DEVELOPMENT: true
-      DISABLE_SOURCEGRAPH_CONFIG: false
+      DISABLE_KHULNASOFT_CONFIG: false
       DISABLE_ALERTMANAGER: false
       PROMETHEUS_ADDITIONAL_FLAGS: '--web.enable-lifecycle --web.enable-admin-api'
 
@@ -1608,7 +1608,7 @@ commandsets:
       DISABLE_CODE_INSIGHTS: false
       CADDY_FILE: dev/Caddyfile-sveltekit
       # Proxy to the local server
-      SOURCEGRAPH_API_URL: http://localhost:3080
+      KHULNASOFT_API_URL: http://localhost:3080
 
   enterprise-e2e:
     <<: *enterprise_set
@@ -1644,7 +1644,7 @@ commandsets:
       - cody-gateway
       - enterprise-portal # required by Cody Gateway
     env:
-      SOURCEGRAPHDOTCOM_MODE: true
+      KHULNASOFTDOTCOM_MODE: true
 
   dotcom-cody-e2e:
     <<: *dotcom-defaults
@@ -2021,7 +2021,7 @@ commandsets:
       "single-program-experimental-blame-sqs" has been renamed to "minimal"
       👉 Please run "sg start minimal" instead.
 
-  # NOTE: This is an experimental way of running a subset of Sourcegraph. See
+  # NOTE: This is an experimental way of running a subset of Khulnasoft. See
   # cmd/sourcegraph/README.md.
   minimal:
     checks:
@@ -2089,8 +2089,8 @@ tests:
       export PERFORCE_USER=$(gcloud secrets versions access latest --secret=PERFORCE_USER --quiet --project=sourcegraph-ci)
       export PERFORCE_PORT=$(gcloud secrets versions access latest --secret=PERFORCE_PORT --quiet --project=sourcegraph-ci)
 
-      export SOURCEGRAPH_LICENSE_KEY=$(gcloud secrets versions access latest --secret=SOURCEGRAPH_LICENSE_KEY --quiet --project=sourcegraph-ci)
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(gcloud secrets versions access latest --secret=SOURCEGRAPH_LICENSE_GENERATION_KEY --quiet --project=sourcegraph-ci)
+      export KHULNASOFT_LICENSE_KEY=$(gcloud secrets versions access latest --secret=KHULNASOFT_LICENSE_KEY --quiet --project=sourcegraph-ci)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(gcloud secrets versions access latest --secret=KHULNASOFT_LICENSE_GENERATION_KEY --quiet --project=sourcegraph-ci)
 
       bazel test //testing:backend_integration_test --verbose_failures --sandbox_debug
 
@@ -2098,15 +2098,15 @@ tests:
     cmd: |
       export GHE_GITHUB_TOKEN=$(gcloud secrets versions access latest --secret=GHE_GITHUB_TOKEN --quiet --project=sourcegraph-ci)
       export GH_TOKEN=$(gcloud secrets versions access latest --secret=GITHUB_TOKEN --quiet --project=sourcegraph-ci)
-      export SOURCEGRAPH_LICENSE_KEY=$(gcloud secrets versions access latest --secret=SOURCEGRAPH_LICENSE_KEY --quiet --project=sourcegraph-ci)
-      export SOURCEGRAPH_LICENSE_GENERATION_KEY=$(gcloud secrets versions access latest --secret=SOURCEGRAPH_LICENSE_GENERATION_KEY --quiet --project=sourcegraph-ci)
+      export KHULNASOFT_LICENSE_KEY=$(gcloud secrets versions access latest --secret=KHULNASOFT_LICENSE_KEY --quiet --project=sourcegraph-ci)
+      export KHULNASOFT_LICENSE_GENERATION_KEY=$(gcloud secrets versions access latest --secret=KHULNASOFT_LICENSE_GENERATION_KEY --quiet --project=sourcegraph-ci)
 
-      bazel test //testing:e2e_test --test_env=HEADLESS=false --test_env=SOURCEGRAPH_BASE_URL="http://localhost:7080" --test_env=GHE_GITHUB_TOKEN=$GHE_GITHUB_TOKEN --test_env=GH_TOKEN=$GH_TOKEN --test_env=DISPLAY=$DISPLAY
+      bazel test //testing:e2e_test --test_env=HEADLESS=false --test_env=KHULNASOFT_BASE_URL="http://localhost:7080" --test_env=GHE_GITHUB_TOKEN=$GHE_GITHUB_TOKEN --test_env=GH_TOKEN=$GH_TOKEN --test_env=DISPLAY=$DISPLAY
 
   bazel-web-integration:
     cmd: |
       export GH_TOKEN=$(gcloud secrets versions access latest --secret=GITHUB_TOKEN --quiet --project=sourcegraph-ci)
-      bazel test //client/web/src/integration:integration-tests --test_env=HEADLESS=false --test_env=SOURCEGRAPH_BASE_URL="http://localhost:7080" --test_env=GH_TOKEN=$GH_TOKEN --test_env=DISPLAY=$DISPLAY
+      bazel test //client/web/src/integration:integration-tests --test_env=HEADLESS=false --test_env=KHULNASOFT_BASE_URL="http://localhost:7080" --test_env=GH_TOKEN=$GH_TOKEN --test_env=DISPLAY=$DISPLAY
 
   backend-integration:
     cmd: cd dev/gqltest && go test -long -base-url $BASE_URL -email $EMAIL -username $USERNAME -password $PASSWORD ./gqltest
@@ -2114,7 +2114,7 @@ tests:
       # These are defaults. They can be overwritten by setting the env vars when
       # running the command.
       BASE_URL: 'http://localhost:3080'
-      EMAIL: 'joe@sourcegraph.com'
+      EMAIL: 'joe@khulnasoft.com'
       PASSWORD: '12345'
 
   bext:
@@ -2129,7 +2129,7 @@ tests:
   bext-e2e:
     cmd: pnpm --filter @sourcegraph/browser mocha ./src/end-to-end/github.test.ts ./src/end-to-end/gitlab.test.ts
     env:
-      SOURCEGRAPH_BASE_URL: https://sourcegraph.com
+      KHULNASOFT_BASE_URL: https://khulnasoft.com
 
   client:
     cmd: pnpm run test
@@ -2141,15 +2141,15 @@ tests:
 
   web-e2e:
     preamble: |
-      A Sourcegraph instance must be already running for these tests to work, most
+      A Khulnasoft instance must be already running for these tests to work, most
       commonly with: `sg start enterprise-e2e`
 
-      See more details: https://docs-legacy.sourcegraph.com/dev/how-to/testing#running-end-to-end-tests
+      See more details: https://docs-legacy.khulnasoft.com/dev/how-to/testing#running-end-to-end-tests
     cmd: pnpm test-e2e
     env:
-      TEST_USER_EMAIL: test@sourcegraph.com
+      TEST_USER_EMAIL: test@khulnasoft.com
       TEST_USER_PASSWORD: supersecurepassword
-      SOURCEGRAPH_BASE_URL: https://sourcegraph.test:3443
+      KHULNASOFT_BASE_URL: https://sourcegraph.test:3443
       BROWSER: chrome
     externalSecrets:
       GH_TOKEN:
@@ -2158,15 +2158,15 @@ tests:
 
   web-regression:
     preamble: |
-      A Sourcegraph instance must be already running for these tests to work, most
+      A Khulnasoft instance must be already running for these tests to work, most
       commonly with: `sg start enterprise-e2e`
 
-      See more details: https://docs-legacy.sourcegraph.com/dev/how-to/testing#running-regression-tests
+      See more details: https://docs-legacy.khulnasoft.com/dev/how-to/testing#running-regression-tests
 
     cmd: pnpm test-regression
     env:
-      SOURCEGRAPH_SUDO_USER: test
-      SOURCEGRAPH_BASE_URL: https://sourcegraph.test:3443
+      KHULNASOFT_SUDO_USER: test
+      KHULNASOFT_BASE_URL: https://sourcegraph.test:3443
       TEST_USER_PASSWORD: supersecurepassword
       BROWSER: chrome
 
@@ -2175,16 +2175,16 @@ tests:
       A web application should be built for these tests to work, most
       commonly with: `sg run web-integration-build` or `sg run web-integration-build-prod` for production build.
 
-      See more details: https://docs-legacy.sourcegraph.com/dev/how-to/testing#running-integration-tests
+      See more details: https://docs-legacy.khulnasoft.com/dev/how-to/testing#running-integration-tests
 
     cmd: pnpm test-integration
 
   web-integration:debug:
     preamble: |
-      A Sourcegraph instance must be already running for these tests to work, most
+      A Khulnasoft instance must be already running for these tests to work, most
       commonly with: `sg start web-standalone`
 
-      See more details: https://docs-legacy.sourcegraph.com/dev/how-to/testing#running-integration-tests
+      See more details: https://docs-legacy.khulnasoft.com/dev/how-to/testing#running-integration-tests
 
     cmd: pnpm test-integration:debug
 

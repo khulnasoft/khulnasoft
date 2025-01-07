@@ -113,7 +113,7 @@ func demoProgressWithBars(out *output.Output, duration time.Duration) {
 		{Label: "Running steps", Max: 1.0},
 	}, []*output.StatusBar{
 		output.NewStatusBarWithLabel("github.com/sourcegraph/src-cli"),
-		output.NewStatusBarWithLabel("github.com/sourcegraph/sourcegraph"),
+		output.NewStatusBarWithLabel("github.com/khulnasoft/khulnasoft"),
 	}, nil)
 
 	wg.Add(1)

@@ -227,7 +227,7 @@ func (s *SyncRegistry) handlePriorityItems() {
 	}
 }
 
-// syncCodeHosts fetches the list of currently active code hosts on the Sourcegraph instance.
+// syncCodeHosts fetches the list of currently active code hosts on the Khulnasoft instance.
 // The running syncers will then be matched against those and missing ones are spawned and
 // excess ones are stopped.
 func (s *SyncRegistry) syncCodeHosts(ctx context.Context) error {
