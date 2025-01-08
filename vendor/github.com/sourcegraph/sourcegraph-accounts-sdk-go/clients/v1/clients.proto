@@ -1,0 +1,291 @@
+syntax = "proto3";
+
+package clients.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/sourcegraph/sourcegraph-accounts-sdk-go/clients/v1;clientsv1";
+
+extend google.protobuf.MethodOptions {
+  // The SAMS scopes required to use this RPC.
+  //
+  // The range 50000-99999 is reserved for internal use within individual organizations
+  // so you can use numbers in this range freely for in-house applications.
+  repeated string sams_required_scopes = 50001;
+}
+
+service UsersService {
+  // GetUser returns the SAMS user with the given query. It returns connect.CodeNotFound
+  // if no such user exists.
+  //
+  // Required scope: profile
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    option (sams_required_scopes) = "profile";
+  };
+  // GetUsers returns the list of SAMS users matching the provided IDs.
+  //
+  // NOTE: It silently ignores any invalid user IDs, i.e. the length of the return
+  // slice may be less than the length of the input slice.
+  //
+  // Required scopes: profile
+  rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
+    option (sams_required_scopes) = "profile";
+  };
+  // GetUserRoles returns all roles that have been assigned to the SAMS user
+  // with the given ID and scoped by the service.
+  //
+  // Required scopes: sams::user.roles::read
+  rpc GetUserRoles(GetUserRolesRequest) returns (GetUserRolesResponse) {
+    option (sams_required_scopes) = "sams::user.roles::read";
+  };
+  // GetUserMetadata retrieves metadata for a SAMS user.
+  //
+  // Required scopes: 'sams::user.metadata::read' or metadata-namespace-specific
+  // variant scope, such as 'sams::user.metadata.dotcom::read'
+  rpc GetUserMetadata(GetUserMetadataRequest) returns (GetUserMetadataResponse) {
+    // Cannot use 'sams_required_scopes' due to metadata-namespace-specific scopes.
+    // See docstring for required scopes.
+  }
+  // UpdateUserMetadata updates the metadata of a SAMS user.
+  //
+  // Required scopes: 'sams::user.metadata::write' or metadata-namespace-specific
+  // variant scope, such as 'sams::user.metadata.dotcom::write'
+  rpc UpdateUserMetadata(UpdateUserMetadataRequest) returns (UpdateUserMetadataResponse) {
+    // Cannot use 'sams_required_scopes' due to metadata-namespace-specific scopes.
+    // See docstring for required scopes.
+  }
+}
+
+// Exactly one attribute can be set.
+message GetUserRequest {
+  // The user's external ID.
+  string id = 1;
+  // The user's verified email address.
+  string email = 2;
+}
+
+message User {
+  // The external ID.
+  string id = 1;
+  // The display name.
+  string name = 2;
+  // The primary email address.
+  string email = 3;
+  // Whether the email address has been verified.
+  bool email_verified = 4;
+  // The profile avatar URL.
+  string avatar_url = 5;
+  // The time the user was created.
+  google.protobuf.Timestamp created_at = 6;
+  // The time the user information was last updated.
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message GetUsersRequest {
+  // The user's external IDs.
+  repeated string ids = 1;
+}
+
+message GetUsersResponse {
+  repeated User users = 1;
+}
+
+message GetUserRolesRequest {
+  // The user's external ID.
+  string id = 1;
+  // The service slug.
+  string service = 2;
+}
+
+message GetUserRolesResponse {
+  repeated string roles = 1 [deprecated = true];
+  repeated Role user_roles = 2;
+}
+
+message Role {
+  // The fully qualified role name e.g. `dotcom::site_admin`
+  string role_id = 1;
+  // The service the role is scoped to.
+  string service = 2;
+  // If the role applies to a resource this is the ID of the resource.
+  optional string resource_id = 3;
+  // If the role applies to a resource the is the ResourceType of the resource.
+  optional string resource_type = 4;
+}
+
+message GetUserMetadataRequest {
+  // The user's external ID.
+  string id = 1;
+  // The list of namespace to filter the metadata. "*" can be used to return
+  // metadata for all namespaces.
+  //
+  // Requires the scope for the requested namespace(s); for example:
+  // - namespaces: ['*'] requires 'sams::user.metadata::read'
+  // - namespaces: ['dotcom'] requires 'sams::user.metadata.dotcom::read'.
+  repeated string namespaces = 2;
+}
+
+// The metadata associated with a user for a specific namespace.
+message UserServiceMetadata {
+  // The user's external ID.
+  //
+  // Behaviour: IDENTIFIER
+  string user_id = 1;
+  // The metadata namespace.
+  //
+  // Behaviour: IDENTIFIER
+  string namespace = 2;
+  // Metadata associated with this user for the specified namespace.
+  google.protobuf.Struct metadata = 3;
+}
+
+message GetUserMetadataResponse {
+  // The requested metadata for the user.
+  repeated UserServiceMetadata metadata = 1;
+}
+
+message UpdateUserMetadataRequest {
+  // The following fields are used to identify the workspace to update:
+  // - user_id
+  // - namespace
+  // Both user_id and namespace are required to apply an update.
+  //
+  // An update requires the scope for the requested namespace(s); for example
+  // namespaces: ['dotcom'] requires 'sams::user.metadata.dotcom::write' or the wildcard 'sams::user.metadata::write'.
+  //
+  // The wildcard '*' namespace is not allowed in an update.
+  UserServiceMetadata metadata = 1;
+}
+
+message UpdateUserMetadataResponse {
+  // The updated user metadata.
+  UserServiceMetadata metadata = 1;
+}
+
+service SessionsService {
+  // GetSession returns the SAMS session with the given ID. It returns
+  // connect.CodeNotFound if no such session exists. The session's `User` field is
+  // populated if the session is authenticated by a user.
+  //
+  // Required scope: sams::session::read
+  rpc GetSession(GetSessionRequest) returns (GetSessionResponse) {
+    option (sams_required_scopes) = "sams::session::read";
+  };
+  // SignOutSession revokes the authenticated state of the session with the given
+  // ID for the given user. It does not return error if the session does not exist
+  // or is not authenticated. It returns clientsv1.ErrorRecordMismatch in the
+  // error detail if the session is authenticated by a different user than the
+  // given user.
+  //
+  // Required scope: sams::session::write
+  rpc SignOutSession(SignOutSessionRequest) returns (SignOutSessionResponse) {
+    option (sams_required_scopes) = "sams::session::write";
+  };
+}
+
+message GetSessionRequest {
+  // The session's ID.
+  string id = 1;
+}
+
+message Session {
+  // The session's ID.
+  string id = 1;
+  // When not empty, the authenticated user.
+  optional User user = 2;
+}
+
+message GetSessionResponse {
+  Session session = 1;
+}
+
+message SignOutSessionRequest {
+  // The session's ID.
+  string id = 1;
+  // The user's external ID.
+  string user_id = 2;
+}
+
+message SignOutSessionResponse {}
+
+// ErrorRecordMismatch is returned in the error details when the record does not match the expected record,
+// e.g. the desired user ID does not match the actual user ID.
+message ErrorRecordMismatch {}
+
+service TokensService {
+  // IntrospectToken takes a SAMS access token and returns relevant metadata.
+  //
+  // 🚨SECURITY: SAMS will return a successful result if the token is valid, but
+  // is no longer active. It is critical that the caller not honor tokens where
+  // `.Active == false`.
+  rpc IntrospectToken(IntrospectTokenRequest) returns (IntrospectTokenResponse);
+}
+
+message IntrospectTokenRequest {
+  // The access token to introspect.
+  string token = 1;
+}
+
+message IntrospectTokenResponse {
+  // Active indicates whether the token is currently active. The value is "true"
+  // if the token has been issued by the SAMS instance, has not been revoked, and
+  // has not expired.
+  bool active = 1;
+  // Scopes is the list of scopes granted by the token.
+  repeated string scopes = 2;
+  // ClientID is the identifier of the SAMS client that the token was issued to.
+  string client_id = 3;
+  // ExpiresAt indicates when the token expires.
+  google.protobuf.Timestamp expires_at = 4;
+}
+
+service RolesService {
+  // RegisterRoleResources registers resources with SAMS.
+  // 
+  // Only one client can register resources at a time for a particular resource type.
+  // If another client is currently registering resources for the same resource type 
+  // this request will return an Aborted error.
+  rpc RegisterRoleResources (stream RegisterRoleResourcesRequest) returns (RegisterRoleResourcesResponse) {
+    option (sams_required_scopes) = "sams::roles.resources::write";
+  };
+}
+message RegisterRoleResourcesRequestMetadata {
+  // Client-provided revision identifier.
+  // Upon completing the streaming request, any `resource_type` resources with a different revision will be removed.
+  string revision = 1;
+  // The type of resources being registered.
+  // Should be a valid resource type as defined in the `roles` package:
+  // https://github.com/sourcegraph/sourcegraph-accounts-sdk-go/blob/main/roles/
+  string resource_type = 2;
+}
+message RegisterRoleResourcesRequest {
+  message Resources {
+    repeated RoleResource resources = 1;
+  }
+  oneof payload {
+    // Metadata about the resources being registered.
+    // It is expected that a metadata payload is sent only once per request and before any resources are sent.
+    RegisterRoleResourcesRequestMetadata metadata = 1;
+    // Batch of resources to register in a single request. Clients should aim to
+    // batch a large number of resources into a series of smaller requests in the
+    // RegisterRoleResources stream.
+    Resources resources = 2;
+  }
+}
+
+message RegisterRoleResourcesResponse {
+  uint64 resource_count = 1;
+}
+
+message RoleResource {
+  // A unique identifier for the resource
+  string resource_id = 1;
+  // A human readable name for the resource
+  string display_name = 2;
+}
