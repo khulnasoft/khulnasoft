@@ -51,7 +51,7 @@ jobs:
       # - uses: wolfi-dev/actions/install-wolfictl@main
 
       # Run wolfictl update
-      # Ideally we would use actions/checkout to clone sourcegraph/sourcegraph, but this isn't properly supported by wolfictl
+      # Ideally we would use actions/checkout to clone khulnasoft/khulnasoft, but this isn't properly supported by wolfictl
       - name: wolfictl update
         run: |
           wolfictl update \

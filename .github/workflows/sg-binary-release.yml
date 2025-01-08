@@ -26,7 +26,7 @@ env:
 
 jobs:
   touch_sg:
-    if: github.repository == 'sourcegraph/sourcegraph'
+    if: github.repository == 'khulnasoft/khulnasoft'
     name: Touch sourcegraph/sg
     runs-on: ubuntu-latest
     steps:
@@ -141,5 +141,5 @@ jobs:
   report_failure:
     needs: build
     if: ${{ failure() }}
-    uses: sourcegraph/sourcegraph/.github/workflows/report-job-failure.yml@main
+    uses: khulnasoft/khulnasoft/.github/workflows/report-job-failure.yml@Infrastructure
     secrets: inherit

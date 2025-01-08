@@ -1,5 +1,5 @@
 {
-  "name": "@khulnasoft/schema",
+  "name": "@sourcegraph/schema",
   "description": "Schema files",
   "version": "0.0.1",
   "private": true

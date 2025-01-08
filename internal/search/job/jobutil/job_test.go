@@ -209,7 +209,7 @@ func TestNewPlanJob(t *testing.T) {
                   (indexed . false))))
             (REPOSEARCH
               (repoOpts.repoFilters . [khulnasoft/khulnasoft foo])
-              (repoNamePatterns . ["(?i)sourcegraph/sourcegraph","(?i)foo"])))
+              (repoNamePatterns . ["(?i)khulnasoft/khulnasoft","(?i)foo"])))
           NOOP
           (REPOSCOMPUTEEXCLUDED
             (repoOpts.repoFilters . [sourcegraph/sourcegraph]))

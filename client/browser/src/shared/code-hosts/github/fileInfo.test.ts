@@ -34,7 +34,7 @@ describe('github/fileInfo', () => {
             },
             {
                 url: 'https://github.com/khulnasoft/khulnasoft/blob/khulnasoft/khulnasoft/client/browser/src/browser-extension/browser-action-icon.ts',
-                rev: 'sourcegraph/sourcegraph',
+                rev: 'khulnasoft/khulnasoft',
                 filePath: 'client/browser/src/browser-extension/browser-action-icon.ts',
             },
         ]

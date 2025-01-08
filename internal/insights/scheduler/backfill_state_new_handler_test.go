@@ -111,7 +111,7 @@ func Test_MovesBackfillFromNewToProcessing_ScopedInsight(t *testing.T) {
 	permStore := store.NewInsightPermissionStore(dbmocks.NewMockDB())
 	seriesStore := store.New(insightsDB, permStore)
 	repoQueryExecutor := NewMockRepoQueryExecutor()
-	repoQueryExecutor.ExecuteRepoListFunc.SetDefaultReturn([]itypes.MinimalRepo{{Name: "sourcegraph/sourcegraph", ID: 1}}, nil)
+	repoQueryExecutor.ExecuteRepoListFunc.SetDefaultReturn([]itypes.MinimalRepo{{Name: "khulnasoft/khulnasoft", ID: 1}}, nil)
 
 	config := JobMonitorConfig{
 		InsightsDB:        insightsDB,

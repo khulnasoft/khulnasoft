@@ -1,4 +1,4 @@
-package sourcegraphaccounts
+package khulnasoftaccounts
 
 import (
 	"context"

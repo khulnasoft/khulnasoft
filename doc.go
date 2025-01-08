@@ -3,4 +3,4 @@
 //
 // See https://khulnasoft.com and the README.md file for more
 // information.
-package sourcegraph // import "github.com/khulnasoft/khulnasoft"
+package khulnasoft // import "github.com/khulnasoft/khulnasoft"

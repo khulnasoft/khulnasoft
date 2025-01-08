@@ -112,7 +112,7 @@ func TestGetCloneURL(t *testing.T) {
 				URI:     "github.com/khulnasoft/khulnasoft",
 				Sources: sources,
 				Metadata: &github.Repository{
-					NameWithOwner: "sourcegraph/sourcegraph",
+					NameWithOwner: "khulnasoft/khulnasoft",
 					URL:           "https://github.com/khulnasoft/khulnasoft",
 				},
 			}
@@ -247,7 +247,7 @@ func TestGitserverPushConfig(t *testing.T) {
 		},
 		{
 			name:                "GitLab HTTPS with authenticator",
-			repoName:            "sourcegraph/sourcegraph",
+			repoName:            "khulnasoft/khulnasoft",
 			externalServiceType: extsvc.TypeGitLab,
 			cloneURLs:           []string{"https://gitlab.com/khulnasoft/khulnasoft"},
 			authenticator:       &oauthHTTPSAuthenticator,
@@ -257,7 +257,7 @@ func TestGitserverPushConfig(t *testing.T) {
 		},
 		{
 			name:                "GitLab SSH with authenticator",
-			repoName:            "sourcegraph/sourcegraph",
+			repoName:            "khulnasoft/khulnasoft",
 			externalServiceType: extsvc.TypeGitLab,
 			cloneURLs:           []string{"git@gitlab.com:sourcegraph/sourcegraph.git"},
 			authenticator:       &oauthSSHAuthenticator,
@@ -342,7 +342,7 @@ func TestSourcer_ForChangeset(t *testing.T) {
 		ID:          1,
 		Kind:        extsvc.KindGitHub,
 		DisplayName: "GitHub.com",
-		Config:      extsvc.NewUnencryptedConfig(`{"url": "https://github.com/", "repos": ["sourcegraph/sourcegraph"], "token": "secret"}`),
+		Config:      extsvc.NewUnencryptedConfig(`{"url": "https://github.com/", "repos": ["khulnasoft/khulnasoft"], "token": "secret"}`),
 	}
 	cfg, err := es.Configuration(ctx)
 	if err != nil {

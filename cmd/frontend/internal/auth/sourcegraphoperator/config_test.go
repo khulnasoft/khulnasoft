@@ -1,4 +1,4 @@
-package sourcegraphoperator
+package khulnasoftoperator
 
 import (
 	"testing"

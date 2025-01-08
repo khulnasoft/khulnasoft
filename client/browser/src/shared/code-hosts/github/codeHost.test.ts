@@ -101,7 +101,7 @@ describe('github/codeHost', () => {
                     urlToFile(
                         sourcegraphURL,
                         {
-                            repoName: 'sourcegraph/sourcegraph',
+                            repoName: 'khulnasoft/khulnasoft',
                             rawRepoName: 'github.com/khulnasoft/khulnasoft',
                             revision: 'main',
                             filePath: 'browser/src/shared/code-hosts/code_intelligence.tsx',
@@ -123,7 +123,7 @@ describe('github/codeHost', () => {
                     urlToFile(
                         sourcegraphURL,
                         {
-                            repoName: 'sourcegraph/sourcegraph',
+                            repoName: 'khulnasoft/khulnasoft',
                             rawRepoName: 'ghe.sgdev.org/khulnasoft/khulnasoft',
                             revision: 'main',
                             filePath: 'browser/src/shared/code-hosts/code_intelligence.tsx',
@@ -143,7 +143,7 @@ describe('github/codeHost', () => {
                     urlToFile(
                         sourcegraphURL,
                         {
-                            repoName: 'sourcegraph/sourcegraph',
+                            repoName: 'khulnasoft/khulnasoft',
                             rawRepoName: 'github.com/khulnasoft/khulnasoft',
                             revision: 'main',
                             filePath: 'browser/src/shared/code-hosts/code_intelligence.tsx',
@@ -172,7 +172,7 @@ describe('github/codeHost', () => {
                     urlToFile(
                         sourcegraphURL,
                         {
-                            repoName: 'sourcegraph/sourcegraph',
+                            repoName: 'khulnasoft/khulnasoft',
                             rawRepoName: 'github.com/khulnasoft/khulnasoft',
                             revision: 'core/gitserver-tracing',
                             filePath: 'cmd/gitserver/server/server.go',

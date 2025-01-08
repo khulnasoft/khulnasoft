@@ -391,11 +391,11 @@ describe('isExternalLink', () => {
 
 describe('toRepoURL', () => {
     it('generates absolute repo URL without a rev', () => {
-        expect(toRepoURL({ repoName: 'sourcegraph/sourcegraph' })).toBe('/khulnasoft/khulnasoft')
+        expect(toRepoURL({ repoName: 'khulnasoft/khulnasoft' })).toBe('/khulnasoft/khulnasoft')
     })
 
     it('generates absolute repo URL with a rev', () => {
-        expect(toRepoURL({ repoName: 'sourcegraph/sourcegraph', revision: 'main' })).toBe(
+        expect(toRepoURL({ repoName: 'khulnasoft/khulnasoft', revision: 'main' })).toBe(
             '/sourcegraph/sourcegraph@main'
         )
     })

@@ -22,7 +22,7 @@ describe('search/index', () => {
         expect(
             parseSearchURL('q=TEST+repo:sourcegraph/sourcegraph+case:yes&patternType=standard&case=yes')
         ).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph',
+            query: 'TEST repo:khulnasoft/khulnasoft',
             patternType: SearchPatternType.standard,
             caseSensitive: true,
             searchMode: SearchMode.Precise,
@@ -31,7 +31,7 @@ describe('search/index', () => {
         expect(
             parseSearchURL('q=TEST+repo:sourcegraph/sourcegraph+case:no&patternType=standard&case=yes')
         ).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph',
+            query: 'TEST repo:khulnasoft/khulnasoft',
             patternType: SearchPatternType.standard,
             caseSensitive: false,
             searchMode: SearchMode.Precise,
@@ -40,14 +40,14 @@ describe('search/index', () => {
         expect(
             parseSearchURL('q=TEST+repo:sourcegraph/sourcegraph+patternType:regexp&patternType=literal&case=yes')
         ).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph',
+            query: 'TEST repo:khulnasoft/khulnasoft',
             patternType: SearchPatternType.regexp,
             caseSensitive: true,
             searchMode: SearchMode.Precise,
         })
 
         expect(parseSearchURL('q=TEST+repo:sourcegraph/sourcegraph+case:yes&patternType=standard')).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph',
+            query: 'TEST repo:khulnasoft/khulnasoft',
             patternType: SearchPatternType.standard,
             caseSensitive: true,
             searchMode: SearchMode.Precise,
@@ -58,14 +58,14 @@ describe('search/index', () => {
                 'q=TEST+repo:sourcegraph/sourcegraph+case:no+patternType:regexp&patternType=literal&case=yes'
             )
         ).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph',
+            query: 'TEST repo:khulnasoft/khulnasoft',
             patternType: SearchPatternType.regexp,
             caseSensitive: false,
             searchMode: SearchMode.Precise,
         })
 
         expect(parseSearchURL('q=TEST+repo:sourcegraph/sourcegraph&patternType=standard')).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph',
+            query: 'TEST repo:khulnasoft/khulnasoft',
             patternType: SearchPatternType.standard,
             caseSensitive: false,
             searchMode: SearchMode.Precise,
@@ -89,7 +89,7 @@ describe('search/index', () => {
                 appendCaseFilter: true,
             })
         ).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph',
+            query: 'TEST repo:khulnasoft/khulnasoft',
             patternType: SearchPatternType.standard,
             caseSensitive: false,
             searchMode: SearchMode.Precise,
@@ -123,7 +123,7 @@ describe('search/index', () => {
                 { appendCaseFilter: true }
             )
         ).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph',
+            query: 'TEST repo:khulnasoft/khulnasoft',
             patternType: SearchPatternType.regexp,
             caseSensitive: false,
             searchMode: SearchMode.Precise,
@@ -132,7 +132,7 @@ describe('search/index', () => {
         expect(
             parseSearchURL('q=TEST+repo:sourcegraph/sourcegraph&patternType=standard', { appendCaseFilter: true })
         ).toStrictEqual({
-            query: 'TEST repo:sourcegraph/sourcegraph',
+            query: 'TEST repo:khulnasoft/khulnasoft',
             patternType: SearchPatternType.standard,
             caseSensitive: false,
             searchMode: SearchMode.Precise,

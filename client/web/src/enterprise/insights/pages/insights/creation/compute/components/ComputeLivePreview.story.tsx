@@ -32,7 +32,7 @@ const mock: MockedResponse<GetInsightPreviewResult> = {
                         groupBy: GroupByField.AUTHOR,
                     },
                 ],
-                repositoryScope: { repositories: ['sourcegraph/sourcegraph'] },
+                repositoryScope: { repositories: ['khulnasoft/khulnasoft'] },
                 timeScope: { stepInterval: { unit: TimeIntervalStepUnit.DAY, value: 1 } },
             },
         },
@@ -90,7 +90,7 @@ export const ComputeLivePreview: StoryFn = () => (
         <div className="m-3 px-4 py-5 bg-white">
             <ComputeLivePreviewComponent
                 disabled={false}
-                repositories={['sourcegraph/sourcegraph']}
+                repositories={['khulnasoft/khulnasoft']}
                 series={MOCK_SERIES}
                 groupBy={GroupByField.AUTHOR}
             />

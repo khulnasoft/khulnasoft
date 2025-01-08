@@ -1,9 +1,8 @@
 {
   "name": "@sourcegraph/web",
-  "description": "The Khulnasoft web app",
+  "description": "The KhulnaSoft web app",
   "version": "1.10.1",
   "dependencies": {
-    "@khulnasoft/schema": "0.0.1",
     "@sourcegraph/branded": "1.0.0",
     "@sourcegraph/client-api": "0.0.1",
     "@sourcegraph/codeintellify": "0.0.1",
@@ -12,10 +11,12 @@
     "@sourcegraph/common": "0.0.1",
     "@sourcegraph/http-client": "0.0.1",
     "@sourcegraph/observability-client": "0.0.1",
+    "@sourcegraph/schema": "0.0.1",
     "@sourcegraph/shared": "1.0.0",
     "@sourcegraph/telemetry": "^0.16.0",
     "@sourcegraph/wildcard": "0.0.1",
-    "mermaid": "11.4.1"
+    "mermaid": "11.4.1",
+    "webext-permission-toggle": "^5.1.0"
   },
   "devDependencies": {
     "@bazel/concatjs": "^5.8.1",

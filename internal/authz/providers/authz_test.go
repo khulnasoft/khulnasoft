@@ -1083,7 +1083,7 @@ func TestValidateExternalServiceConfig(t *testing.T) {
 				"url": "https://bitbucket.org/",
 				"username": "admin",
 				"token": "secret-token",
-				"repos": ["sourcegraph/sourcegraph"]
+				"repos": ["khulnasoft/khulnasoft"]
 			}`,
 			assert: equals("<nil>"),
 		},
@@ -1381,7 +1381,7 @@ func TestValidateExternalServiceConfig(t *testing.T) {
 			{
 				"url": "https://github.corp.com",
 				"token": "very-secret-token",
-				"repos": ["sourcegraph/sourcegraph"],
+				"repos": ["khulnasoft/khulnasoft"],
 			}`,
 			assert: equals(`<nil>`),
 		},

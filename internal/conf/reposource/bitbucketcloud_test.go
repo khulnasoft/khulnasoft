@@ -72,24 +72,24 @@ func TestBitbucketCloudRepoName(t *testing.T) {
 		expected              api.RepoName
 	}{
 		{
-			name:                  "empty repositoryPathPattern: repositoryPathPattern='', host='bitbucket.org', nameWithOwner='sourcegraph/sourcegraph'",
+			name:                  "empty repositoryPathPattern: repositoryPathPattern='', host='bitbucket.org', nameWithOwner='khulnasoft/khulnasoft'",
 			repositoryPathPattern: "",
 			host:                  "bitbucket.org",
-			nameWithOwner:         "sourcegraph/sourcegraph",
+			nameWithOwner:         "khulnasoft/khulnasoft",
 			expected:              "bitbucket.org/khulnasoft/khulnasoft",
 		},
 		{
-			name:                  "not empty repositoryPathPattern: repositoryPathPattern='{host}/{nameWithOwner}', host='bitbucket.org', nameWithOwner='sourcegraph/sourcegraph'",
+			name:                  "not empty repositoryPathPattern: repositoryPathPattern='{host}/{nameWithOwner}', host='bitbucket.org', nameWithOwner='khulnasoft/khulnasoft'",
 			repositoryPathPattern: "{host}/{nameWithOwner}",
 			host:                  "bitbucket.org",
-			nameWithOwner:         "sourcegraph/sourcegraph",
+			nameWithOwner:         "khulnasoft/khulnasoft",
 			expected:              "bitbucket.org/khulnasoft/khulnasoft",
 		},
 		{
-			name:                  "repositoryPathPattern with https: repositoryPathPattern='https://{host}/{nameWithOwner}', host='bitbucket.org', nameWithOwner='sourcegraph/sourcegraph'",
+			name:                  "repositoryPathPattern with https: repositoryPathPattern='https://{host}/{nameWithOwner}', host='bitbucket.org', nameWithOwner='khulnasoft/khulnasoft'",
 			repositoryPathPattern: "https://{host}/{nameWithOwner}",
 			host:                  "bitbucket.org",
-			nameWithOwner:         "sourcegraph/sourcegraph",
+			nameWithOwner:         "khulnasoft/khulnasoft",
 			expected:              "https://bitbucket.org/khulnasoft/khulnasoft",
 		},
 	}

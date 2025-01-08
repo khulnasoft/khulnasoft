@@ -442,8 +442,8 @@ func TestGithubSource_LoadChangeset(t *testing.T) {
 		{
 			name: "found",
 			cs: &Changeset{
-				RemoteRepo: &types.Repo{Metadata: &github.Repository{NameWithOwner: "sourcegraph/sourcegraph"}},
-				TargetRepo: &types.Repo{Metadata: &github.Repository{NameWithOwner: "sourcegraph/sourcegraph"}},
+				RemoteRepo: &types.Repo{Metadata: &github.Repository{NameWithOwner: "khulnasoft/khulnasoft"}},
+				TargetRepo: &types.Repo{Metadata: &github.Repository{NameWithOwner: "khulnasoft/khulnasoft"}},
 				Changeset:  &btypes.Changeset{ExternalID: "5550"},
 			},
 			err: "<nil>",
@@ -451,8 +451,8 @@ func TestGithubSource_LoadChangeset(t *testing.T) {
 		{
 			name: "not-found",
 			cs: &Changeset{
-				RemoteRepo: &types.Repo{Metadata: &github.Repository{NameWithOwner: "sourcegraph/sourcegraph"}},
-				TargetRepo: &types.Repo{Metadata: &github.Repository{NameWithOwner: "sourcegraph/sourcegraph"}},
+				RemoteRepo: &types.Repo{Metadata: &github.Repository{NameWithOwner: "khulnasoft/khulnasoft"}},
+				TargetRepo: &types.Repo{Metadata: &github.Repository{NameWithOwner: "khulnasoft/khulnasoft"}},
 				Changeset:  &btypes.Changeset{ExternalID: "100000"},
 			},
 			err: "Changeset with external ID 100000 not found",

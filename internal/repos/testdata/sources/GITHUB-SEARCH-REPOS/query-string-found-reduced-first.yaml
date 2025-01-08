@@ -18,7 +18,7 @@ interactions:
     url: https://api.github.com/graphql
     method: POST
   response:
-    body: '{"data":{"search":{"repositoryCount":465,"pageInfo":{"hasNextPage":true,"endCursor":"Y3Vyc29yOjE="},"nodes":[{"id":"MDEwOlJlcG9zaXRvcnk0MTI4ODcwOA==","databaseId":41288708,"nameWithOwner":"sourcegraph/sourcegraph","description":"Code
+    body: '{"data":{"search":{"repositoryCount":465,"pageInfo":{"hasNextPage":true,"endCursor":"Y3Vyc29yOjE="},"nodes":[{"id":"MDEwOlJlcG9zaXRvcnk0MTI4ODcwOA==","databaseId":41288708,"nameWithOwner":"khulnasoft/khulnasoft","description":"Code
       Intelligence Platform","url":"https://github.com/khulnasoft/khulnasoft","isPrivate":false,"isFork":false,"isArchived":false,"isLocked":false,"isDisabled":false,"viewerPermission":"WRITE","stargazerCount":7390,"forkCount":895}]}}}'
     headers:
       Access-Control-Allow-Origin:

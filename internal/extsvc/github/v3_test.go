@@ -503,7 +503,7 @@ func TestGetRepository(t *testing.T) {
 				t.Fatal("expected repo, but got nil")
 			}
 
-			want := "sourcegraph/sourcegraph"
+			want := "khulnasoft/khulnasoft"
 			if repo.NameWithOwner != want {
 				t.Fatalf("expected NameWithOwner %s, but got %s", want, repo.NameWithOwner)
 			}
@@ -523,7 +523,7 @@ func TestGetRepository(t *testing.T) {
 				t.Fatal("expected repo, but got nil")
 			}
 
-			want := "sourcegraph/sourcegraph"
+			want := "khulnasoft/khulnasoft"
 			if repo.NameWithOwner != want {
 				t.Fatalf("expected NameWithOwner %s, but got %s", want, repo.NameWithOwner)
 			}

@@ -298,7 +298,7 @@ func TestExternalServicesStore_Update(t *testing.T) {
 	esOther := &types.ExternalService{
 		Kind:          extsvc.KindOther,
 		DisplayName:   "Other",
-		Config:        extsvc.NewUnencryptedConfig(`{"url": "https://github.com", "repos": [ "sourcegraph/sourcegraph" ] }`),
+		Config:        extsvc.NewUnencryptedConfig(`{"url": "https://github.com", "repos": [ "khulnasoft/khulnasoft" ] }`),
 		LastUpdaterID: &user.ID,
 	}
 	err = db.ExternalServices().Create(ctx, confGet, esOther)
@@ -417,7 +417,7 @@ func TestExternalServicesStore_Update(t *testing.T) {
 			esID: esOther.ID,
 			update: &ExternalServiceUpdate{
 				DisplayName: pointers.Ptr("Other (updated)"),
-				Config:      pointers.Ptr(`{"url": "https://github.com", "repos": [ "sourcegraph/sourcegraph", "sourcegraph/cody" ]}`),
+				Config:      pointers.Ptr(`{"url": "https://github.com", "repos": [ "khulnasoft/khulnasoft", "sourcegraph/cody" ]}`),
 				LastSyncAt:  pointers.Ptr(now),
 				NextSyncAt:  pointers.Ptr(now),
 			},

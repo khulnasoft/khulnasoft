@@ -1,6 +1,6 @@
 import { test, expect } from '$testing/integration'
 
-const repoName = 'sourcegraph/sourcegraph'
+const repoName = 'khulnasoft/khulnasoft'
 
 test.beforeEach(async ({ sg }) => {
     sg.mockOperations({

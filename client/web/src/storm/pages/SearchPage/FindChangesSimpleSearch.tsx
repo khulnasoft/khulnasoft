@@ -243,7 +243,7 @@ export const FindChangesSimpleSearch: FC<SimpleSearchProps> = ({ onSimpleSearchU
                                 <Input
                                     id="repoName"
                                     name="repoName"
-                                    placeholder="sourcegraph/sourcegraph"
+                                    placeholder="khulnasoft/khulnasoft"
                                     type="text"
                                     onChange={event => setRepoNames(event.target.value)}
                                 />

@@ -71,4 +71,4 @@ export GITHUB_TOKEN="$BUILDKITE_GITHUBDOTCOM_TOKEN"
 "$_gh" pr create \
   --reviewer MaedahBatool \
   --title "🤖 Sync generated docs from khulnasoft/khulnasoft (${_current_date})" \
-  --body "This is an automated pull request, created by //doc:generated:push on sourcegraph/sourcegraph"
+  --body "This is an automated pull request, created by //doc:generated:push on khulnasoft/khulnasoft"

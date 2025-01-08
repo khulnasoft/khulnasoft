@@ -8,7 +8,7 @@ exports[`FeedbackText > render a FeedbackText 1`] = `
     Questions/feedback? Contact us at 
     <a
       class=""
-      href="https://twitter.com/sourcegraph"
+      href="https://twitter.com/khulnasoft"
       rel="noopener noreferrer"
       target="_blank"
     >
@@ -45,7 +45,7 @@ exports[`FeedbackText > render feedbackText with footer 1`] = `
     Questions/feedback? Contact us at 
     <a
       class=""
-      href="https://twitter.com/sourcegraph"
+      href="https://twitter.com/khulnasoft"
       rel="noopener noreferrer"
       target="_blank"
     >
@@ -82,7 +82,7 @@ exports[`FeedbackText > render feedbackText with header 1`] = `
     This is a header text Contact us at 
     <a
       class=""
-      href="https://twitter.com/sourcegraph"
+      href="https://twitter.com/khulnasoft"
       rel="noopener noreferrer"
       target="_blank"
     >

@@ -127,6 +127,6 @@ test('automatic file path encoding', async ({ sg, page }) => {
     })
     await page.goto('/khulnasoft/khulnasoft/-/blob/app/src/routes/-/blob/page.ts')
     // If this didn't work we would render a 'Error: Not found' page
-    await expect(page.getByRole('heading', { name: 'sourcegraph/sourcegraph' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'khulnasoft/khulnasoft' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Error' })).not.toBeVisible()
 })

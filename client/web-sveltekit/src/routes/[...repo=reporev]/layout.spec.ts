@@ -33,7 +33,7 @@ test.describe('cloned repository', () => {
     })
 
     test('shows repo name in header', async ({ page }) => {
-        await expect(page.getByRole('heading', { name: 'sourcegraph/sourcegraph' })).toBeVisible()
+        await expect(page.getByRole('heading', { name: 'khulnasoft/khulnasoft' })).toBeVisible()
     })
 
     // TODO: Better test to ensure that we are testing the search input
@@ -59,7 +59,7 @@ test('clone in progress', async ({ sg, page }) => {
     await page.goto(`/${repoName}`)
 
     // Shows repo name
-    await expect(page.getByRole('heading', { name: 'sourcegraph/sourcegraph' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'khulnasoft/khulnasoft' })).toBeVisible()
     // Shows clone progress message
     await expect(page.getByText('Test clone message')).toBeVisible()
 })
@@ -81,7 +81,7 @@ test('not cloned', async ({ sg, page }) => {
     await page.goto(`/${repoName}`)
 
     // Shows repo name
-    await expect(page.getByRole('heading', { name: 'sourcegraph/sourcegraph' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'khulnasoft/khulnasoft' })).toBeVisible()
     // Shows queue message
     await expect(page.getByText('queued for cloning')).toBeVisible()
 })
@@ -122,19 +122,19 @@ test.describe('repo menu', () => {
     })
 
     test('click switch repo', async ({ page }) => {
-        await page.getByRole('heading', { name: 'sourcegraph/sourcegraph' }).click()
+        await page.getByRole('heading', { name: 'khulnasoft/khulnasoft' }).click()
         await page.getByRole('menuitem', { name: 'Switch repo' }).click()
         await expect(page.getByPlaceholder('Find repositories...')).toBeVisible()
     })
 
     test('settings url', async ({ page }) => {
-        await page.getByRole('heading', { name: 'sourcegraph/sourcegraph' }).click()
+        await page.getByRole('heading', { name: 'khulnasoft/khulnasoft' }).click()
         const url = await page.getByRole('menuitem', { name: 'Settings' }).getAttribute('href')
         expect(url).toEqual(`/${repoName}/-/settings`)
     })
 
     test('github url', async ({ page }) => {
-        await page.getByRole('heading', { name: 'sourcegraph/sourcegraph' }).click()
+        await page.getByRole('heading', { name: 'khulnasoft/khulnasoft' }).click()
         const url = await page.getByRole('menuitem', { name: 'Hosted on GitHub' }).getAttribute('href')
         expect(url).toEqual(`https://github.com/sourcegraph/sourcegraph`)
     })

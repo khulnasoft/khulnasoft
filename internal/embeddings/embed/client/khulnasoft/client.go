@@ -1,4 +1,4 @@
-package sourcegraph
+package khulnasoft
 
 import (
 	"bytes"

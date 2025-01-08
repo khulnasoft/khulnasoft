@@ -208,7 +208,7 @@ func TestGithubSource_GetRepo(t *testing.T) {
 		},
 		{
 			name:          "found",
-			nameWithOwner: "sourcegraph/sourcegraph",
+			nameWithOwner: "khulnasoft/khulnasoft",
 			assert: func(t *testing.T, have *types.Repo) {
 				t.Helper()
 
@@ -231,7 +231,7 @@ func TestGithubSource_GetRepo(t *testing.T) {
 					Metadata: &github.Repository{
 						ID:                 "MDEwOlJlcG9zaXRvcnk0MTI4ODcwOA==",
 						DatabaseID:         41288708,
-						NameWithOwner:      "sourcegraph/sourcegraph",
+						NameWithOwner:      "khulnasoft/khulnasoft",
 						Description:        "Code search and navigation tool (self-hosted)",
 						URL:                "https://github.com/khulnasoft/khulnasoft",
 						StargazerCount:     2220,
@@ -658,7 +658,7 @@ func TestGithubSource_ListRepos(t *testing.T) {
 				Token: os.Getenv("GITHUB_ACCESS_TOKEN"),
 				Repos: []string{
 					"sourcegraph/about",
-					"sourcegraph/sourcegraph",
+					"khulnasoft/khulnasoft",
 				},
 			},
 			err: "<nil>",
@@ -675,7 +675,7 @@ func TestGithubSource_ListRepos(t *testing.T) {
 				Token: os.Getenv("GITHUB_ACCESS_TOKEN"),
 				Repos: []string{
 					"sourcegraph/about",
-					"sourcegraph/sourcegraph",
+					"khulnasoft/khulnasoft",
 				},
 			},
 			err: "<nil>",

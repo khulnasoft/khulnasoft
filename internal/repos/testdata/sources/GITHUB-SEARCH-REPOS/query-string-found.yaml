@@ -18,7 +18,7 @@ interactions:
     url: https://api.github.com/graphql
     method: POST
   response:
-    body: '{"data":{"search":{"repositoryCount":465,"pageInfo":{"hasNextPage":true,"endCursor":"Y3Vyc29yOjU="},"nodes":[{"id":"MDEwOlJlcG9zaXRvcnk0MTI4ODcwOA==","databaseId":41288708,"nameWithOwner":"sourcegraph/sourcegraph","description":"Code
+    body: '{"data":{"search":{"repositoryCount":465,"pageInfo":{"hasNextPage":true,"endCursor":"Y3Vyc29yOjU="},"nodes":[{"id":"MDEwOlJlcG9zaXRvcnk0MTI4ODcwOA==","databaseId":41288708,"nameWithOwner":"khulnasoft/khulnasoft","description":"Code
       Intelligence Platform","url":"https://github.com/khulnasoft/khulnasoft","isPrivate":false,"isFork":false,"isArchived":false,"isLocked":false,"isDisabled":false,"viewerPermission":"WRITE","stargazerCount":7390,"forkCount":895},{"id":"MDEwOlJlcG9zaXRvcnkxNDk1MTg3ODM=","databaseId":149518783,"nameWithOwner":"sourcegraph/about","description":"Khulnasoft
       blog, feature announcements, and website (khulnasoft.com)","url":"https://github.com/sourcegraph/about","isPrivate":false,"isFork":false,"isArchived":false,"isLocked":false,"isDisabled":false,"viewerPermission":"WRITE","stargazerCount":81,"forkCount":160},{"id":"MDEwOlJlcG9zaXRvcnkxMzA3NzAwNTM=","databaseId":130770053,"nameWithOwner":"sourcegraph/src-cli","description":"Khulnasoft
       CLI","url":"https://github.com/sourcegraph/src-cli","isPrivate":false,"isFork":false,"isArchived":false,"isLocked":false,"isDisabled":false,"viewerPermission":"ADMIN","stargazerCount":208,"forkCount":55},{"id":"MDEwOlJlcG9zaXRvcnkxNTM4NDkxMDM=","databaseId":153849103,"nameWithOwner":"sourcegraph/deploy-sourcegraph-docker","description":"Khulnasoft

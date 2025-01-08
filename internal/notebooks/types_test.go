@@ -11,7 +11,7 @@ func TestNotebookBlockMarshalling(t *testing.T) {
 	queryBlockInput := NotebookQueryBlockInput{Text: "repo:a b"}
 	markdownBlockInput := NotebookMarkdownBlockInput{Text: "# Title"}
 	revision := "main"
-	fileBlockInput := NotebookFileBlockInput{RepositoryName: "sourcegraph/sourcegraph", FilePath: "a/b.ts", Revision: &revision, LineRange: &LineRange{1, 10}}
+	fileBlockInput := NotebookFileBlockInput{RepositoryName: "khulnasoft/khulnasoft", FilePath: "a/b.ts", Revision: &revision, LineRange: &LineRange{1, 10}}
 
 	tests := []struct {
 		block NotebookBlock
@@ -27,7 +27,7 @@ func TestNotebookBlockMarshalling(t *testing.T) {
 		},
 		{
 			block: NotebookBlock{ID: "id1", Type: NotebookFileBlockType, FileInput: &fileBlockInput},
-			want:  autogold.Expect(`{"id":"id1","type":"file","fileInput":{"repositoryName":"sourcegraph/sourcegraph","filePath":"a/b.ts","revision":"main","lineRange":{"startLine":1,"endLine":10}}}`),
+			want:  autogold.Expect(`{"id":"id1","type":"file","fileInput":{"repositoryName":"khulnasoft/khulnasoft","filePath":"a/b.ts","revision":"main","lineRange":{"startLine":1,"endLine":10}}}`),
 		},
 	}
 
@@ -44,7 +44,7 @@ func TestNotebookBlockUnmarshalling(t *testing.T) {
 	queryBlockInput := NotebookQueryBlockInput{Text: "repo:a b"}
 	markdownBlockInput := NotebookMarkdownBlockInput{Text: "# Title"}
 	revision := "main"
-	fileBlockInput := NotebookFileBlockInput{RepositoryName: "sourcegraph/sourcegraph", FilePath: "a/b.ts", Revision: &revision, LineRange: &LineRange{1, 10}}
+	fileBlockInput := NotebookFileBlockInput{RepositoryName: "khulnasoft/khulnasoft", FilePath: "a/b.ts", Revision: &revision, LineRange: &LineRange{1, 10}}
 
 	tests := []struct {
 		json string
@@ -59,7 +59,7 @@ func TestNotebookBlockUnmarshalling(t *testing.T) {
 			want: autogold.Expect(NotebookBlock{ID: "id1", Type: NotebookMarkdownBlockType, MarkdownInput: &markdownBlockInput}),
 		},
 		{
-			json: `{"id":"id1","type":"file","fileInput":{"repositoryName":"sourcegraph/sourcegraph","filePath":"a/b.ts","revision":"main","lineRange":{"startLine":1,"endLine":10}}}`,
+			json: `{"id":"id1","type":"file","fileInput":{"repositoryName":"khulnasoft/khulnasoft","filePath":"a/b.ts","revision":"main","lineRange":{"startLine":1,"endLine":10}}}`,
 			want: autogold.Expect(NotebookBlock{ID: "id1", Type: NotebookFileBlockType, FileInput: &fileBlockInput}),
 		},
 	}

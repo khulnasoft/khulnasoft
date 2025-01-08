@@ -6,7 +6,7 @@ on:
 
 jobs:
   update:
-    if: github.repository == 'sourcegraph/sourcegraph'
+    if: github.repository == 'khulnasoft/khulnasoft'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -61,5 +61,5 @@ jobs:
   report_failure:
     needs: update
     if: ${{ failure() }}
-    uses: sourcegraph/sourcegraph/.github/workflows/report-job-failure.yml@main
+    uses: khulnasoft/khulnasoft/.github/workflows/report-job-failure.yml@main
     secrets: inherit

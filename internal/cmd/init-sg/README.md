@@ -72,7 +72,7 @@ The format for the external service json file is as follows, multiple github ext
     "DisplayName": "Github repos",
     "Config": {
       "url": "https://github.com",
-      "repos": ["sourcegraph/sourcegraph", "sourcegraph/deploy-sourcegraph"]
+      "repos": ["khulnasoft/khulnasoft", "sourcegraph/deploy-sourcegraph"]
     }
   }
 ]

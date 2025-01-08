@@ -487,8 +487,8 @@ filegroup(
 )
     """,
     integrity = "sha256-Spx8LyM7k+dsGOlZ4TdAq+CNk5EzvYB/oxnY4zGpqPg=",
-    strip_prefix = "sourcegraph-extensions-bundles-5.0.1",
-    url = "https://github.com/sourcegraph/sourcegraph-extensions-bundles/archive/v5.0.1.zip",
+    strip_prefix = "khulnasoft-extensions-bundles-5.0.1",
+    url = "https://github.com/khulnasoft-lab/khulnasoft-extensions-bundles/archive/v5.0.1.zip",
 )
 
 load("//dev:schema_migrations.bzl", "schema_migrations")

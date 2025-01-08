@@ -522,7 +522,7 @@ describe('Repository', () => {
 
     describe('commits page', () => {
         it('loads commits of a repository', async () => {
-            const shortRepositoryName = 'sourcegraph/sourcegraph'
+            const shortRepositoryName = 'khulnasoft/khulnasoft'
             const repositoryName = `github.com/${shortRepositoryName}`
             testContext.overrideGraphQL({
                 ...commonWebGraphQlResults,
@@ -741,7 +741,7 @@ describe('Repository', () => {
     })
 
     describe('Accessibility', () => {
-        const shortRepositoryName = 'sourcegraph/sourcegraph'
+        const shortRepositoryName = 'khulnasoft/khulnasoft'
         const repositoryName = `github.com/${shortRepositoryName}`
 
         describe('Contributors page', () => {

@@ -271,7 +271,7 @@ test.describe('repo menu', () => {
         const url = `/${repoName}/-/blob/src/large-file-1.js`
         await page.goto(url)
 
-        await page.getByRole('heading', { name: 'sourcegraph/sourcegraph' }).click()
+        await page.getByRole('heading', { name: 'khulnasoft/khulnasoft' }).click()
         await page.getByRole('menuitem', { name: 'Go to repository root' }).click()
         await page.waitForURL(`/${repoName}`)
     })

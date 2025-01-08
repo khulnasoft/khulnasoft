@@ -63,7 +63,7 @@ const config = {
       },
     ],
   },
-  plugins: ['@sourcegraph/sourcegraph', 'monorepo', '@sourcegraph/wildcard', 'storybook'],
+  plugins: ['@khulnasoft/khulnasoft', 'monorepo', '@sourcegraph/wildcard', 'storybook'],
   rules: {
     // Rules that are specific to this repo
     // All other rules should go into https://github.com/sourcegraph/eslint-config

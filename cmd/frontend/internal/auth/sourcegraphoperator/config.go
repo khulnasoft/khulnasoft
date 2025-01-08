@@ -1,4 +1,4 @@
-package sourcegraphoperator
+package khulnasoftoperator
 
 import (
 	"github.com/khulnasoft/khulnasoft/cmd/frontend/internal/auth/openidconnect"

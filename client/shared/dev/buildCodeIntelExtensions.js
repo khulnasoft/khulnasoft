@@ -5,10 +5,10 @@ const path = require('path')
 const shelljs = require('shelljs')
 const signale = require('signale')
 
-const bundlesRepoName = 'sourcegraph-extensions-bundles'
+const bundlesRepoName = 'khulnasoft-extensions-bundles'
 
 /**
- * Clones https://github.com/sourcegraph/sourcegraph-extensions-bundles repo and copies programming languages
+ * Clones https://github.com/khulnasoft-lab/khulnasoft-extensions-bundles repo and copies programming languages
  * extensions bundles to the specified path. These bundles may be included into IDE/browser extensions bundles
  * in order not to require access to the extensions registry for the code intel features to work.
  */
@@ -35,14 +35,14 @@ function fetchAndBuildCodeIntelExtensions({ pathToExtensionBundles, revision }) 
     return
   }
 
-  // when repo archive is unpacked the leading 'v' from tag is trimmed: v1.0.0.zip => sourcegraph-extensions-bundles-1.0.0
+  // when repo archive is unpacked the leading 'v' from tag is trimmed: v1.0.0.zip => khulnasoft-extensions-bundles-1.0.0
   const bundlesRepoDirectoryName = `${bundlesRepoName}-${revision.replaceAll(/^v/g, '')}`
 
   // Remove existing repo and bundles directory in case of an interrupted process.
   shelljs.rm('-rf', bundlesRepoDirectoryName)
   shelljs.rm('-rf', pathToExtensionBundles)
 
-  // Unzip bundles repo archive, which creates a new directory: sourcegraph-extensions-bundles-{revision}
+  // Unzip bundles repo archive, which creates a new directory: khulnasoft-extensions-bundles-{revision}
   shelljs.exec(`unzip -q ${revision}.zip`)
   // Remove bundles repo archive
   shelljs.exec(`rm ${revision}.zip`)
@@ -56,7 +56,7 @@ function fetchAndBuildCodeIntelExtensions({ pathToExtensionBundles, revision }) 
   // Remove bundles repo directory and archive
   shelljs.exec(`rm -rf ${bundlesRepoDirectoryName}`)
 
-  // Save sourcegraph-extensions-bundles revision not to refetch it on the next calls if the revision doesn't change
+  // Save khulnasoft-extensions-bundles revision not to refetch it on the next calls if the revision doesn't change
   fs.writeFileSync(pathToDistributionRevisionFile, revision)
 }
 

@@ -1,7 +1,7 @@
 {
   "ID": "MDEwOlJlcG9zaXRvcnk0MTI4ODcwOA==",
   "DatabaseID": 41288708,
-  "NameWithOwner": "sourcegraph/sourcegraph",
+  "NameWithOwner": "khulnasoft/khulnasoft",
   "Description": "Code AI platform with Code Search \u0026 Cody",
   "URL": "https://github.com/khulnasoft/khulnasoft",
   "IsPrivate": false,

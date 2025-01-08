@@ -41,7 +41,7 @@
         }
       ],
       "filters": {
-        "includeRepoRegexp": "sourcegraph/sourcegraph",
+        "includeRepoRegexp": "khulnasoft/khulnasoft",
         "excludeRepoRegexp": ""
       }
     },

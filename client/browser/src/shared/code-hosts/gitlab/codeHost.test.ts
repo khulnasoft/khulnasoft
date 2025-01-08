@@ -52,7 +52,7 @@ describe('gitlab/codeHost', () => {
                 urlToFile(
                     sourcegraphURL,
                     {
-                        repoName: 'sourcegraph/sourcegraph',
+                        repoName: 'khulnasoft/khulnasoft',
                         rawRepoName,
                         revision: 'master',
                         filePath: 'browser/src/shared/code-hosts/code_intelligence.tsx',
@@ -78,7 +78,7 @@ describe('gitlab/codeHost', () => {
                 urlToFile(
                     sourcegraphURL,
                     {
-                        repoName: 'sourcegraph/sourcegraph',
+                        repoName: 'khulnasoft/khulnasoft',
                         rawRepoName,
                         revision: 'master',
                         filePath: 'browser/src/shared/code-hosts/code_intelligence.tsx',
@@ -102,7 +102,7 @@ describe('gitlab/codeHost', () => {
                 urlToFile(
                     sourcegraphURL,
                     {
-                        repoName: 'sourcegraph/sourcegraph',
+                        repoName: 'khulnasoft/khulnasoft',
                         rawRepoName,
                         revision: 'main',
                         filePath: 'browser/src/shared/code-hosts/code_intelligence.tsx',

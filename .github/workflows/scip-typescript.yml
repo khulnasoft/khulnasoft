@@ -8,7 +8,7 @@ on:
 
 jobs:
   scip-typescript:
-    if: github.repository == 'sourcegraph/sourcegraph'
+    if: github.repository == 'khulnasoft/khulnasoft'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

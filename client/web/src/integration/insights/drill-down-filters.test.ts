@@ -75,7 +75,7 @@ describe('Backend insight drill down filters', () => {
                         nodes: [
                             {
                                 __typename: 'SearchContext',
-                                spec: '@sourcegraph/sourcegraph',
+                                spec: '@khulnasoft/khulnasoft',
                                 query: 'repo:github.com/khulnasoft/khulnasoft',
                             },
                         ],
@@ -103,7 +103,7 @@ describe('Backend insight drill down filters', () => {
 
         // fill in the search context filter regexp
         await driver.page.click('button[aria-label="search context filter section"]')
-        await driver.page.type('[name="context"]', '@sourcegraph/sourcegraph')
+        await driver.page.type('[name="context"]', '@khulnasoft/khulnasoft')
 
         // Wait until async validation of the search context field is passed
         await delay(1000)
@@ -126,7 +126,7 @@ describe('Backend insight drill down filters', () => {
 
         assert.deepStrictEqual(variables.input.viewControls, {
             filters: {
-                searchContexts: ['@sourcegraph/sourcegraph'],
+                searchContexts: ['@khulnasoft/khulnasoft'],
                 includeRepoRegex: '',
                 excludeRepoRegex: 'github.com/khulnasoft/khulnasoft',
             },

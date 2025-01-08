@@ -9,14 +9,14 @@
 <p align="center">
     <a href="https://khulnasoft.com/docs">Docs</a> •
     <a href="https://khulnasoft.com/github.com/khulnasoft/khulnasoft/-/blob/CONTRIBUTING.md">Contributing</a> •
-    <a href="https://twitter.com/sourcegraph">Twitter</a> •
+    <a href="https://twitter.com/khulnasoft">Twitter</a> •
     <a href="https://discord.gg/s2qDtYGnAE">Discord</a>
     <br /><br />
     <a href="https://buildkite.com/khulnasoft/khulnasoft">
         <img src="https://badge.buildkite.com/00bbe6fa9986c78b8e8591cffeb0b0f2e8c4bb610d7e339ff6.svg?branch=main" alt="Build status" />
     </a>
     <a href="https://api.securityscorecards.dev/projects/github.com/khulnasoft/khulnasoft">
-        <img src="https://img.shields.io/ossf-scorecard/github.com/sourcegraph/sourcegraph?label=openssf%20scorecard" alt="Scorecard" />
+        <img src="https://img.shields.io/ossf-scorecard/github.com/khulnasoft/khulnasoft?label=openssf%20scorecard" alt="Scorecard" />
     </a>
     <a href="https://github.com/khulnasoft/khulnasoft/releases/">
         <img src="https://img.shields.io/github/release/sourcegraph/Khulnasoft.svg" alt="Latest release" />

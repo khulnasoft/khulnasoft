@@ -18,10 +18,10 @@ describe('RepoLink', () => {
 describe('displayRepoName', () => {
     const testCases = [
         { originalRepoName: 'gerrit.sgdev.org/a/gabe/test', repoDisplayName: 'a/gabe/test' },
-        { originalRepoName: 'github.com/khulnasoft/khulnasoft', repoDisplayName: 'sourcegraph/sourcegraph' },
+        { originalRepoName: 'github.com/khulnasoft/khulnasoft', repoDisplayName: 'khulnasoft/khulnasoft' },
         { originalRepoName: 'gerrit.sgdev.org/sourcegraph', repoDisplayName: 'sourcegraph' },
         { originalRepoName: 'sourcegraph', repoDisplayName: 'sourcegraph' },
-        { originalRepoName: 'sourcegraph/sourcegraph', repoDisplayName: 'sourcegraph/sourcegraph' },
+        { originalRepoName: 'khulnasoft/khulnasoft', repoDisplayName: 'khulnasoft/khulnasoft' },
         { originalRepoName: 'sg.exe/sourcegraph', repoDisplayName: 'sourcegraph' },
         { originalRepoName: 'org.scala-sbt:collections_2.12', repoDisplayName: 'org.scala-sbt:collections_2.12' },
     ]

@@ -2,7 +2,7 @@ export const isError = (value: unknown): value is Error => value instanceof Erro
 
 // Converts a git clone URL to the codebase name that includes the slash-separated code host, owner, and repository name
 // This should captures:
-// - "github:sourcegraph/sourcegraph" a common SSH host alias
+// - "github:khulnasoft/khulnasoft" a common SSH host alias
 // - "https://github.com/sourcegraph/deploy-sourcegraph-k8s.git"
 // - "git@github.com:sourcegraph/sourcegraph.git"
 export function convertGitCloneURLToCodebaseName(cloneURL: string): string | null {

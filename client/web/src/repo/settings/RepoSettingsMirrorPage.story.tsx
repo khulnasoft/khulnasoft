@@ -30,7 +30,7 @@ export default config
 const repo: SettingsAreaRepositoryFields = {
     externalServices: { __typename: 'ExternalServiceConnection', nodes: [] },
     id: 'github.com/khulnasoft/khulnasoft',
-    name: 'sourcegraph/sourcegraph',
+    name: 'khulnasoft/khulnasoft',
     isPrivate: false,
     metadata: [],
     url: 'github.com/khulnasoft/khulnasoft',
@@ -71,7 +71,7 @@ const FETCH_SETTINGS_AREA_REPOSITORY_MOCK: MockedResponse<
     request: {
         query: getDocumentNode(FETCH_SETTINGS_AREA_REPOSITORY_GQL),
         variables: {
-            name: 'sourcegraph/sourcegraph',
+            name: 'khulnasoft/khulnasoft',
         },
     },
     result: {

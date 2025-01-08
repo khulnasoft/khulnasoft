@@ -66,4 +66,4 @@ Stay in sync and get the latest news on Sourcegaph products, technologies, and c
 
 ## Join our Community
 
-If you have questions about anything related to Khulnasoft, you're always welcome to [ask our community](https://community.khulnasoft.com), [Discord](https://discord.gg/s2qDtYGnAE), and [X](https://twitter.com/sourcegraph).
+If you have questions about anything related to Khulnasoft, you're always welcome to [ask our community](https://community.khulnasoft.com), [Discord](https://discord.gg/s2qDtYGnAE), and [X](https://twitter.com/khulnasoft).

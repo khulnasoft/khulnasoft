@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 import { Link } from '../../Link'
 import { Text } from '../../Typography'
 
@@ -22,7 +21,7 @@ export const FeedbackText: React.FunctionComponent<React.PropsWithChildren<Feedb
 }) => (
     <Text className={className}>
         {headerText || 'Questions/feedback?'} Contact us at{' '}
-        <Link to="https://twitter.com/sourcegraph" target="_blank" rel="noopener noreferrer">
+        <Link to="https://twitter.com/khulnasoft" target="_blank" rel="noopener noreferrer">
             @sourcegraph
         </Link>{' '}
         or{' '}

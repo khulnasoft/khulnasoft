@@ -86,7 +86,7 @@ const onLifecyclePropsChange = (lifecycleProps: RepoHeaderContributionsLifecycle
             <CopyPermalinkAction
                 revision="main"
                 commitID="123"
-                repoName="sourcegraph/sourcegraph"
+                repoName="khulnasoft/khulnasoft"
                 actionType="nav"
                 telemetryService={NOOP_TELEMETRY_SERVICE}
                 telemetryRecorder={noOpTelemetryRecorder}
@@ -121,7 +121,7 @@ const createBreadcrumbs = (path: string) => [
                 <RepoRevisionContainerBreadcrumb
                     resolvedRevision={undefined}
                     revision="main"
-                    repoName="sourcegraph/sourcegraph"
+                    repoName="khulnasoft/khulnasoft"
                     repo={undefined}
                     telemetryRecorder={noOpTelemetryRecorder}
                 />
@@ -136,7 +136,7 @@ const createBreadcrumbs = (path: string) => [
             element: (
                 <FilePathBreadcrumbs
                     key="path"
-                    repoName="sourcegraph/sourcegraph"
+                    repoName="khulnasoft/khulnasoft"
                     revision="main"
                     filePath={path}
                     isDir={false}
@@ -151,7 +151,7 @@ const createBreadcrumbs = (path: string) => [
 
 const createProps = (path: string, forceWrap: boolean = false): React.ComponentProps<typeof RepoHeader> => ({
     breadcrumbs: createBreadcrumbs(path),
-    repoName: 'sourcegraph/sourcegraph',
+    repoName: 'khulnasoft/khulnasoft',
     revision: 'main',
     onLifecyclePropsChange,
     settingsCascade: EMPTY_SETTINGS_CASCADE,

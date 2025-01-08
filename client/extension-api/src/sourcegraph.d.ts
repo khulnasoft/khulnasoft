@@ -791,7 +791,7 @@ declare module 'sourcegraph' {
          *
          * @todo The format of this URI will be changed in the future. It must not be relied on.
          *
-         * @example git://github.com/sourcegraph/sourcegraph?sha#mydir1/mydir2
+         * @example git://github.com/khulnasoft/khulnasoft?sha#mydir1/mydir2
          */
         readonly uri: URL
     }

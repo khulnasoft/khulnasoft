@@ -15,7 +15,7 @@ load("@buildifier_prebuilt//:rules.bzl", "buildifier")
 # Gazelle config
 #
 # Tell gazelle what is our main module
-# gazelle:prefix github.com/sourcegraph/sourcegraph
+# gazelle:prefix github.com/khulnasoft/khulnasoft
 # gazelle:build_file_name BUILD.bazel
 # Disable some by default, only include configured BUILDs
 #

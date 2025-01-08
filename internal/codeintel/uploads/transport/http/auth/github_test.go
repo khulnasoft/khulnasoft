@@ -36,7 +36,7 @@ func TestCheckGitHubPermissions(t *testing.T) {
 	}
 
 	listInstallationRepositoriesHookMatchingRepository := func(ctx context.Context, page int) ([]*github.Repository, bool, int, error) {
-		return []*github.Repository{{NameWithOwner: "sourcegraph/sourcegraph"}}, false, 1, nil
+		return []*github.Repository{{NameWithOwner: "khulnasoft/khulnasoft"}}, false, 1, nil
 	}
 
 	listInstallationRepositoriesHookNonMatchingRepository := func(ctx context.Context, page int) ([]*github.Repository, bool, int, error) {

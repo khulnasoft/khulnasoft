@@ -27,9 +27,9 @@ const aggregationDefaultMock = (mode: SearchAggregationMode): GetSearchAggregati
             groups: [
                 {
                     __typename: 'AggregationGroup',
-                    label: 'sourcegraph/sourcegraph',
+                    label: 'khulnasoft/khulnasoft',
                     count: 100,
-                    query: 'context:global insights repo:sourcegraph/sourcegraph',
+                    query: 'context:global insights repo:khulnasoft/khulnasoft',
                 },
                 {
                     __typename: 'AggregationGroup',
@@ -326,7 +326,7 @@ describe('Search aggregation', () => {
             await driver.page.click('[aria-label="Sidebar search aggregation chart"] a')
 
             expect(removeContextFromQuery((await editor.getValue()) ?? '')).toStrictEqual(
-                'insights repo:sourcegraph/sourcegraph'
+                'insights repo:khulnasoft/khulnasoft'
             )
 
             await driver.page.waitForSelector('[data-testid="expand-aggregation-ui"]')

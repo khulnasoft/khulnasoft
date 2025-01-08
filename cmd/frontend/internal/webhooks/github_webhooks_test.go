@@ -164,7 +164,7 @@ func TestGithubWebhookExternalServices(t *testing.T) {
 			t.Errorf("Expected *gh.PublicEvent event, got %T", payload)
 		}
 		if evt.GetRepo().GetFullName() != "khulnasoft/khulnasoft" {
-			t.Errorf("Expected 'sourcegraph/sourcegraph', got %s", evt.GetRepo().GetFullName())
+			t.Errorf("Expected 'khulnasoft/khulnasoft', got %s", evt.GetRepo().GetFullName())
 		}
 		called = true
 		return nil

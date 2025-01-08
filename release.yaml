@@ -374,7 +374,7 @@ promoteToPublic:
           pr_url=$(./changelog \
             --github.token="$DEVX_SERVICE_GH_TOKEN" \
             update-as-pr \
-            --github.repo="sourcegraph/sourcegraph" \
+            --github.repo="khulnasoft/khulnasoft" \
             --output.repo="sourcegraph/docs" \
             --output.repo.base="main" \
             --output.changelog="docs/CHANGELOG.mdx" \

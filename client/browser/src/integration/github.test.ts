@@ -812,7 +812,7 @@ describe('GitHub', () => {
             }
 
             const globalSearchPage = 'https://github.com/search'
-            const repo = 'sourcegraph/sourcegraph'
+            const repo = 'khulnasoft/khulnasoft'
             const repoSearchPage = `https://github.com/${repo}/search`
 
             const pages = [

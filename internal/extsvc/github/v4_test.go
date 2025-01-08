@@ -317,16 +317,16 @@ func TestLoadPullRequest(t *testing.T) {
 		},
 		{
 			name: "non-existing-pr",
-			pr:   &PullRequest{RepoWithOwner: "sourcegraph/sourcegraph", Number: 0},
+			pr:   &PullRequest{RepoWithOwner: "khulnasoft/khulnasoft", Number: 0},
 			err:  "GitHub pull request not found: 0",
 		},
 		{
 			name: "success",
-			pr:   &PullRequest{RepoWithOwner: "sourcegraph/sourcegraph", Number: 5550},
+			pr:   &PullRequest{RepoWithOwner: "khulnasoft/khulnasoft", Number: 5550},
 		},
 		{
 			name: "with more than 250 events",
-			pr:   &PullRequest{RepoWithOwner: "sourcegraph/sourcegraph", Number: 596},
+			pr:   &PullRequest{RepoWithOwner: "khulnasoft/khulnasoft", Number: 596},
 		},
 	} {
 		tc := tc

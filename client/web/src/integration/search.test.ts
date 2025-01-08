@@ -494,7 +494,7 @@ describe('Search', () => {
                 )
             )
             expect(results).toEqual([
-                'sourcegraph/sourcegraph',
+                'khulnasoft/khulnasoft',
                 'khulnasoft/khulnasoft › stream.ts',
                 'sourcegraph/sourcegraph@abcd › stream.ts',
                 'sourcegraph/sourcegraph@test/branch › stream.ts',

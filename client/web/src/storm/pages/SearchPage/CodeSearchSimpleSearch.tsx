@@ -187,7 +187,7 @@ export const CodeSearchSimpleSearch: FC<SimpleSearchProps> = ({ onSimpleSearchUp
                             <div className="input-group">
                                 <Input
                                     id="repoName"
-                                    placeholder="sourcegraph/sourcegraph"
+                                    placeholder="khulnasoft/khulnasoft"
                                     type="text"
                                     onChange={event => setRepoNames(event.target.value)}
                                 />

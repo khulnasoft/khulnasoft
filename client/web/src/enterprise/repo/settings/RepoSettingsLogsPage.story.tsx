@@ -106,7 +106,7 @@ const REPOSITORY_RECORDED_COMMANDS_DISABLED_MOCK: MockedResponse<
 const repo: SettingsAreaRepositoryFields = {
     externalServices: { __typename: 'ExternalServiceConnection', nodes: [] },
     id: 'github.com/khulnasoft/khulnasoft',
-    name: 'sourcegraph/sourcegraph',
+    name: 'khulnasoft/khulnasoft',
     isPrivate: false,
     metadata: [],
     url: 'github.com/khulnasoft/khulnasoft',

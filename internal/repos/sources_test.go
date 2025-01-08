@@ -169,7 +169,7 @@ func TestSources_ListRepos_Excluded(t *testing.T) {
 					"user:tsenart in:name patrol", // yields only the tsenart/patrol repo
 				},
 				Repos: []string{
-					"sourcegraph/sourcegraph",
+					"khulnasoft/khulnasoft",
 					"keegancsmith/sqlf",
 					"tsenart/VEGETA",
 					"tsenart/go-tsz",     // fork
