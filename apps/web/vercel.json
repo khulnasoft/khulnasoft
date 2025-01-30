@@ -1,0 +1,90 @@
+{
+  "github": {
+    "silent": true
+  },
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/careers",
+      "destination": "https://khulnasoft.notion.site/Careers-at-KHULNASOFT-2163f176991f43f69b0984bf2a142920",
+      "permanent": true
+    },
+    {
+      "source": "/docs",
+      "has": [
+        {
+          "type": "query",
+          "key": "reason",
+          "value": "sdk-missing-api-key"
+        }
+      ],
+      "destination": "/docs?ref=sdk-missing-api-key&reason=",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.khulnasoft.com"
+        }
+      ],
+      "destination": "https://khulnasoft.com/blog",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.khulnasoft.com"
+        }
+      ],
+      "destination": "https://khulnasoft.com/blog/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/log/:path*",
+      "destination": "https://khulnasoft.com/blog/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/blog/log/:path*",
+      "destination": "https://khulnasoft.com/blog/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "changelog.khulnasoft.com"
+        }
+      ],
+      "destination": "https://khulnasoft.com/changelog",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.khulnasoft.com"
+        }
+      ],
+      "destination": "https://khulnasoft.com/docs",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.khulnasoft.com"
+        }
+      ],
+      "destination": "https://khulnasoft.com/docs/:path*",
+      "permanent": true
+    }
+  ]
+}

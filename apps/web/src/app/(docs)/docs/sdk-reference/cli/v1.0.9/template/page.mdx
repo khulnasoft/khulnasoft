@@ -1,0 +1,132 @@
+## khulnasoft template
+
+
+manage sandbox templates
+
+### Usage
+
+```bash
+khulnasoft template [options] [command]
+```
+## khulnasoft template build
+
+
+build sandbox template defined by ./khulnasoft.Dockerfile or ./Dockerfile in root directory. By default the root directory is the current working directory. This command also creates khulnasoft.toml config.
+
+### Usage
+
+```bash
+khulnasoft template build [options] [template]
+```
+
+### Options
+
+
+ - `-p, --path <path>: change root directory where command is executed to <path> directory `
+ - `-d, --dockerfile <file>: specify path to Dockerfile. By default KhulnaSoft tries to find khulnasoft.Dockerfile or Dockerfile in root directory. `
+ - `-n, --name <template-name>: specify sandbox template name. You can use the template name to start the sandbox with SDK. The template name must be lowercase and contain only letters, numbers, dashes and underscores. `
+ - `-c, --cmd <start-command>: specify command that will be executed when the sandbox is started. `
+ - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the KhulnaSoft dashboard (https://khulnasoft.com/dashboard?tab=team). `
+ - `--config <khulnasoft-toml>: specify path to the KhulnaSoft config toml. By default KhulnaSoft tries to find ./khulnasoft.toml in root directory. `
+ - `--cpu-count <cpu-count>: specify the number of CPUs that will be used to run the sandbox. The default value is 2. `
+ - `--memory-mb <memory-mb>: specify the amount of memory in megabytes that will be used to run the sandbox. Must be an even number. The default value is 512. `
+ - `--build-arg <args...>: specify additional build arguments for the build command. The format should be <varname>=<value>. `
+
+
+## khulnasoft template list
+
+
+list sandbox templates
+
+### Usage
+
+```bash
+khulnasoft template list [options]
+```
+
+### Options
+
+
+ - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the KhulnaSoft dashboard (https://khulnasoft.com/dashboard?tab=team). `
+
+
+## khulnasoft template init
+
+
+create basic KhulnaSoft Dockerfile (./khulnasoft.Dockerfile) in root directory. You can then run khulnasoft template build to build sandbox template from this Dockerfile
+
+### Usage
+
+```bash
+khulnasoft template init [options]
+```
+
+### Options
+
+
+ - `-p, --path <path>: change root directory where command is executed to <path> directory `
+
+
+## khulnasoft template delete
+
+
+delete sandbox template and khulnasoft.toml config
+
+### Usage
+
+```bash
+khulnasoft template delete [options] [template]
+```
+
+### Options
+
+
+ - `-p, --path <path>: change root directory where command is executed to <path> directory `
+ - `--config <khulnasoft-toml>: specify path to the KhulnaSoft config toml. By default KhulnaSoft tries to find ./khulnasoft.toml in root directory. `
+ - `-s, --select: select sandbox template from interactive list `
+ - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the KhulnaSoft dashboard (https://khulnasoft.com/dashboard?tab=team). `
+ - `-y, --yes: skip manual delete confirmation `
+
+
+## khulnasoft template publish
+
+
+publish sandbox template
+
+### Usage
+
+```bash
+khulnasoft template publish [options] [template]
+```
+
+### Options
+
+
+ - `-p, --path <path>: change root directory where command is executed to <path> directory `
+ - `--config <khulnasoft-toml>: specify path to the KhulnaSoft config toml. By default KhulnaSoft tries to find ./khulnasoft.toml in root directory. `
+ - `-s, --select: select sandbox template from interactive list `
+ - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the KhulnaSoft dashboard (https://khulnasoft.com/dashboard?tab=team). `
+ - `-y, --yes: skip manual publish confirmation `
+
+
+## khulnasoft template unpublish
+
+
+unpublish sandbox template
+
+### Usage
+
+```bash
+khulnasoft template unpublish [options] [template]
+```
+
+### Options
+
+
+ - `-p, --path <path>: change root directory where command is executed to <path> directory `
+ - `--config <khulnasoft-toml>: specify path to the KhulnaSoft config toml. By default KhulnaSoft tries to find ./khulnasoft.toml in root directory. `
+ - `-s, --select: select sandbox template from interactive list `
+ - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the KhulnaSoft dashboard (https://khulnasoft.com/dashboard?tab=team). `
+ - `-y, --yes: skip manual unpublish confirmation `
+
+
