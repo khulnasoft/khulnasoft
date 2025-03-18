@@ -24,7 +24,7 @@ const version = PACKAGE_VERSION;
 const cssHref = isDev
   ? 'http://localhost:4010/index.css'
   : previewLastCommitHash
-    ? `https://esm.sh/pkg.pr.new/khulnasoft/texthive/@khulnasoft/js@${previewLastCommitHash}/dist/index.css`
+    ? `https://esm.sh/pkg.pr.new/khulnasoft/khulnasoft/@khulnasoft/js@${previewLastCommitHash}/dist/index.css`
     : `https://cdn.jsdelivr.net/npm/@khulnasoft/js@${version}/dist/index.css`;
 
 export type KhulnasoftUIOptions = KhulnasoftProviderProps;

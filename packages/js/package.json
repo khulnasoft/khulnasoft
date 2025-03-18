@@ -1,7 +1,7 @@
 {
   "name": "@khulnasoft/js",
   "version": "2.6.6",
-  "repository": "https://github.com/khulnasoft/texthive",
+  "repository": "https://github.com/khulnasoft/khulnasoft",
   "description": "Khulnasoft JavaScript SDK for <Inbox />",
   "author": "",
   "license": "ISC",
