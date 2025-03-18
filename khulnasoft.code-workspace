@@ -1,0 +1,128 @@
+{
+    "folders": [
+      {
+        "name": "✨ khulnasoft root",
+        "path": ".",
+      },
+      {
+        "name": "🚀 @khulnasoft/api-service",
+        "path": "apps/api",
+      },
+      {
+        "name": "🚀 @khulnasoft/worker",
+        "path": "apps/worker",
+      },
+      {
+        "name": "🚀 @khulnasoft/web",
+        "path": "apps/web",
+      },
+      {
+        "name": "🚀 @khulnasoft/dashboard",
+        "path": "apps/dashboard",
+      },
+      {
+        "name": "🚀 @khulnasoft/ws",
+        "path": "apps/ws",
+      },
+      {
+        "name": "🚀 @khulnasoft/webhook",
+        "path": "apps/webhook",
+      },
+      {
+        "name": "🚀 @khulnasoft/widget",
+        "path": "apps/widget",
+      },
+      {
+        "name": "📦 @khulnasoft/dal",
+        "path": "libs/dal",
+      },
+      {
+        "name": "📦 @khulnasoft/design-system",
+        "path": "libs/design-system",
+      },
+      {
+        "name": "📦 @khulnasoft/embed",
+        "path": "libs/embed",
+      },
+      {
+        "name": "📦 @khulnasoft/khulnasofti",
+        "path": "libs/khulnasofti",
+      },
+      {
+        "name": "📦 khulnasoft",
+        "path": "packages/khulnasoft",
+      },
+      {
+        "name": "📦 @khulnasoft/client",
+        "path": "packages/client",
+      },
+      {
+        "name": "📦 @khulnasoft/headless",
+        "path": "packages/headless",
+      },
+      {
+        "name": "📦 @khulnasoft/shared",
+        "path": "packages/shared",
+      },
+      {
+        "name": "📦 @khulnasoft/testing",
+        "path": "libs/testing",
+      },
+      {
+        "name": "📦 @khulnasoft/application-generic",
+        "path": "libs/application-generic",
+      },
+      {
+        "name": "📦 @khulnasoft/stateless",
+        "path": "packages/stateless",
+      },
+      {
+        "name": "📦 @khulnasoft/node",
+        "path": "packages/node",
+      },
+      {
+        "name": "📦 @khulnasoft/notification-center",
+        "path": "packages/notification-center",
+      },
+      {
+        "name": "📦 @khulnasoft/notification-center-vue",
+        "path": "packages/notification-center-vue",
+      },
+      {
+        "name": "📦 @khulnasoft/notification-center-angular",
+        "path": "packages/notification-center-angular",
+      },
+      {
+        "name": "📦 @khulnasoft/react-native",
+        "path": "packages/react-native",
+      },
+      {
+        "name": "📦 @khulnasoft/js",
+        "path": "packages/js",
+      },
+      {
+        "name": "📦 @khulnasoft/react",
+        "path": "packages/react",
+      },
+      {
+        "name": "📦 @khulnasoft/nextjs",
+        "path": "packages/nextjs",
+      },
+      {
+        "name": "🎮 @khulnasoft/nextjs-playground",
+        "path": "playground/nextjs",
+      },
+    ],
+    "settings": {
+      "typescript.tsdk": "node_modules/typescript/lib",
+      "typescript.enablePromptUseWorkspaceTsdk": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true,
+      "editor.formatOnPaste": true,
+      "cSpell.words": ["Chainable", "usecases"],
+      "vsicons.presets.nestjs": true,
+    },
+    "extensions": {
+      "recommendations": ["folke.vscode-monorepo-workspace", "esbenp.prettier-vscode", "dbaeumer.vscode-eslint"],
+    },
+  }

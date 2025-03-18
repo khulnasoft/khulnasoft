@@ -1,0 +1,7 @@
+# package.json is formatted by package managers, so we ignore it here
+package.json
+apps/api/src/metadata.ts
+libs/internal-sdk
+
+/.turbo/cache
+/.turbo/*
