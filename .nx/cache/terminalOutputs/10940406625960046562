@@ -1,4 +1,0 @@
-
-> @khulnasoft/webhook@2.1.9 prebuild /workspaces/khulnasoft/apps/webhook
-> rimraf dist
-

@@ -1,4 +1,0 @@
-
-> @khulnasoft/shared@2.6.6 prebuild /workspaces/khulnasoft/packages/shared
-> rimraf dist
-

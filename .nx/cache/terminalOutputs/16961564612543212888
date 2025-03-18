@@ -1,4 +1,0 @@
-
-> @khulnasoft/client@2.6.6 prebuild /workspaces/khulnasoft/packages/client
-> rimraf dist
-
