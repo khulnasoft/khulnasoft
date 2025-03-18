@@ -16,7 +16,7 @@ on:
       - 'packages/shared/**'
       - 'libs/application-generic/**'
 env:
-  TF_WORKSPACE: novu-dev
+  TF_WORKSPACE: khulnasoft-dev
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
   #   uses: ./.github/workflows/reusable-api-e2e.yml
   #   with:
   #     ee: true
-  #     job-name: 'novu/api-ee'
+  #     job-name: 'khulnasoft/api-ee'
   #   secrets: inherit
 
   deploy_dev_api:
@@ -53,7 +53,7 @@ jobs:
           push: 'true'
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          docker_name: 'novu/api-ee'
+          docker_name: 'khulnasoft/api-ee'
           bullmq_secret: ${{ secrets.BULL_MQ_PRO_NPM_TOKEN }}
           environment: dev
 
@@ -79,11 +79,11 @@ jobs:
           terraform_wrapper: false
 
       - name: Terraform Init
-        working-directory: cloud-infra/terraform/novu/aws
+        working-directory: cloud-infra/terraform/khulnasoft/aws
         run: terraform init
 
       - name: Terraform get output
-        working-directory: cloud-infra/terraform/novu/aws
+        working-directory: cloud-infra/terraform/khulnasoft/aws
         id: terraform
         run: |
           echo "api_ecs_container_name=$(terraform output -json api_ecs_container_name | jq -r .)" >> $GITHUB_ENV
@@ -122,7 +122,7 @@ jobs:
         uses: getsentry/action-release@v1
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: novu-r9
+          SENTRY_ORG: khulnasoft-r9
           SENTRY_PROJECT: api
         with:
           version: ${{ steps.package-version.outputs.current-version}}
@@ -133,25 +133,25 @@ jobs:
           ignore_missing: true
           url_prefix: '~'
 
-  novu_sync:
+  khulnasoft_sync:
     runs-on: ubuntu-latest
-    name: Sync Novu State
+    name: Sync Khulnasoft State
     needs: deploy_dev_api
     environment: Development
     steps:
-      # https://github.com/khulnasoft/actions-novu-sync
-      - name: Sync State to Novu
-        uses: khulnasoft/actions-novu-sync@v2
+      # https://github.com/khulnasoft/actions-khulnasoft-sync
+      - name: Sync State to Khulnasoft
+        uses: khulnasoft/actions-khulnasoft-sync@v2
         with:
-          # The secret key used to authenticate with Novu Cloud
-          # To get the secret key, go to https://web.novu.co/api-keys.
+          # The secret key used to authenticate with Khulnasoft Cloud
+          # To get the secret key, go to https://web.khulnasoft.co/api-keys.
           # Required.
-          secret-key: ${{ secrets.NOVU_INTERNAL_SECRET_KEY }}
+          secret-key: ${{ secrets.KHULNASOFT_INTERNAL_SECRET_KEY }}
 
           # The publicly available endpoint hosting the bridge application
           # where notification entities (eg. workflows, topics) are defined.
           # Required.
-          bridge-url: https://api.novu-staging.co/v1/bridge/novu
+          bridge-url: https://api.khulnasoft-staging.co/v1/bridge/khulnasoft
 
   newrelic:
     runs-on: ubuntu-latest
