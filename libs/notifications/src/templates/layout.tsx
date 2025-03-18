@@ -15,7 +15,7 @@ export function EmailLayout({ previewText, children }: IBaseEmailLayoutProps) {
         <Body className="mx-auto my-auto bg-white px-2 font-sans">
           <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-solid border-[#eaeaea] p-[20px]">
             <Img
-              src={`https://dashboard.khulnasoft.co/static/images/khulnasoft-colored-text.png`}
+              src={`https://dashboard.khulnasoft.com/static/images/khulnasoft-colored-text.png`}
               width="100"
               height="37"
               alt="Khulnasoft"

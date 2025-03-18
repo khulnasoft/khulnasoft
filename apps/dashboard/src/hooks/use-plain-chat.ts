@@ -38,13 +38,13 @@ export const usePlainChat = () => {
             {
               icon: 'integration',
               text: 'Roadmap',
-              url: 'https://roadmap.khulnasoft.co/roadmap?utm_campaign=in_app_live_chat',
+              url: 'https://roadmap.khulnasoft.com/roadmap?utm_campaign=in_app_live_chat',
             },
-            { icon: 'link', text: 'Changelog', url: 'https://roadmap.khulnasoft.co/changelog?utm_campaign=in_app_live_chat' },
+            { icon: 'link', text: 'Changelog', url: 'https://roadmap.khulnasoft.com/changelog?utm_campaign=in_app_live_chat' },
             {
               icon: 'email',
               text: 'Contact Sales',
-              url: 'https://notify.khulnasoft.co/meetings/khulnasoft/khulnasoft-discovery-session-rr?utm_campaign=in_app_live_chat',
+              url: 'https://notify.khulnasoft.com/meetings/khulnasoft/khulnasoft-discovery-session-rr?utm_campaign=in_app_live_chat',
             },
           ],
           theme: 'light',
@@ -54,7 +54,7 @@ export const usePlainChat = () => {
             launcherIconColor: '#FFFFFF',
           },
           logo: {
-            url: 'https://dashboard.khulnasoft.co/static/images/khulnasoft.png',
+            url: 'https://dashboard.khulnasoft.com/static/images/khulnasoft.png',
             alt: 'Khulnasoft Logo',
           },
           chatButtons: [

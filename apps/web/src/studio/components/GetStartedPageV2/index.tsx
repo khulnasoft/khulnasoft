@@ -158,7 +158,7 @@ export const GetStartedPageV2 = ({ location }: { location: 'onboarding' | 'get-s
                     onClick={() => {
                       track('Main docs link clicked - [Workflows empty state]');
                     }}
-                    href="https://docs.khulnasoft.co/"
+                    href="https://docs.khulnasoft.com/"
                     target="_blank"
                   >
                     <HStack gap="25">
@@ -259,7 +259,7 @@ export const GetStartedPageV2 = ({ location }: { location: 'onboarding' | 'get-s
                 <BadgeButton
                   onClick={() => {
                     track('Examples link clicked - [Workflows empty state]');
-                    window.open('https://docs.khulnasoft.co/guides/workflows/introduction', '_blank');
+                    window.open('https://docs.khulnasoft.com/guides/workflows/introduction', '_blank');
                   }}
                   className={css({
                     marginBottom: '150',
@@ -351,7 +351,7 @@ export const GetStartedPageV2 = ({ location }: { location: 'onboarding' | 'get-s
                 <BadgeButton
                   onClick={() => {
                     track('Deployment docs link clicked - [Workflows empty state]');
-                    window.open('https://docs.khulnasoft.co/deployment/production', '_blank');
+                    window.open('https://docs.khulnasoft.com/deployment/production', '_blank');
                   }}
                   className={css({
                     marginBottom: '150',

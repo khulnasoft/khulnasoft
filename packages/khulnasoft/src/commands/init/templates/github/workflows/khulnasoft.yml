@@ -12,7 +12,7 @@ jobs:
         uses: khulnasoft/actions-khulnasoft-sync@v2
         with:
           # The secret key used to authenticate with Khulnasoft Cloud
-          # To get the secret key, go to https://dashboard.khulnasoft.co/api-keys.
+          # To get the secret key, go to https://dashboard.khulnasoft.com/api-keys.
           # Required.
           secret-key: ${{ secrets.KHULNASOFT_SECRET_KEY }}
 

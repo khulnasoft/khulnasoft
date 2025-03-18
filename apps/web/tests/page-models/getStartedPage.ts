@@ -139,7 +139,7 @@ export class GetStartedPage {
     await this.assertTabSelected(tabConfig.name);
     await this.assertTabTitle(tabConfig.title);
 
-    await this.ensureLinkWithAttributes('Learn about ', 'link', /docs.khulnasoft.co/, false);
+    await this.ensureLinkWithAttributes('Learn about ', 'link', /docs.khulnasoft.com/, false);
     await expect(this.page.locator('canvas')).toBeVisible();
 
     for (let index = 1; index <= tabConfig.steps; index += 1) {

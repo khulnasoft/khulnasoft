@@ -66,7 +66,7 @@ jobs:
         uses: khulnasoft/actions-khulnasoft-sync@v2
         with:
           # The secret key used to authenticate with Khulnasoft Cloud
-          # To get the secret key, go to https://web.khulnasoft.co/api-keys.
+          # To get the secret key, go to https://web.khulnasoft.com/api-keys.
           secret-key: \${{ secrets.KHULNASOFT_SECRET_KEY }}
 
           # The publicly available endpoint hosting the bridge application

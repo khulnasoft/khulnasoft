@@ -16,11 +16,11 @@ This library contains a wrapper for the Khulnasoft Notification Center web compo
 
 ## 📖 Client Installation
 
-For our client installation guide, visit our [Angular Client docs](https://docs.khulnasoft.co/notification-center/client/angular?utm_campaign=github-notificationcenter-angular-readme).
+For our client installation guide, visit our [Angular Client docs](https://docs.khulnasoft.com/notification-center/client/angular?utm_campaign=github-notificationcenter-angular-readme).
 
 ## 🏃‍♂️ Quickstart
 
-For a quickstart, visit our [Angular Quickstart docs](https://docs.khulnasoft.co/quickstarts/angular).
+For a quickstart, visit our [Angular Quickstart docs](https://docs.khulnasoft.com/quickstarts/angular).
 
 ## 💻 Need Help?
 

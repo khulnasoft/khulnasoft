@@ -45,7 +45,7 @@ export function PolishingBanner() {
     >
       We are polishing! This release is dedicated to bug fixes, UI improvements and performance optimizations.{' '}
       <a
-        href={'https://khulnasoft.co/polishing?utm_source=web&utm_medium=banner&utm_campaign=polishing'}
+        href={'https://khulnasoft.com/polishing?utm_source=web&utm_medium=banner&utm_campaign=polishing'}
         onClick={() => {
           segment.track('Polishing Banner Clicked');
         }}

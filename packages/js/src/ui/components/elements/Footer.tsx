@@ -11,7 +11,7 @@ export const Footer = () => {
     <Show when={!hideBranding()}>
       <div class="nt-flex nt-shrink-0 nt-justify-center nt-items-center nt-gap-1 nt-mt-auto nt-py-3 nt-text-foreground-alpha-400">
         <a
-          href={`https://go.khulnasoft.co/powered?ref=${getCurrentDomain()}`}
+          href={`https://go.khulnasoft.com/powered?ref=${getCurrentDomain()}`}
           target="_blank"
           class="nt-w-full nt-flex nt-items-center nt-gap-1 nt-justify-center"
         >

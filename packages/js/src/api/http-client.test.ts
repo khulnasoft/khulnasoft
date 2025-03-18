@@ -26,7 +26,7 @@ describe('HttpClient', () => {
   describe('Constructor', () => {
     it('should use default options when none provided', () => {
       const client = new HttpClient();
-      expect((client as any).apiUrl).toBe('https://api.khulnasoft.co/v1');
+      expect((client as any).apiUrl).toBe('https://api.khulnasoft.com/v1');
       expect((client as any).apiVersion).toBe('v1');
       expect((client as any).headers['User-Agent']).toBe(`${PACKAGE_NAME}@${PACKAGE_VERSION}`);
     });
@@ -69,7 +69,7 @@ describe('HttpClient', () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const [url, options] = mockFetch.mock.calls[0];
 
-      expect(url).toBe('https://api.khulnasoft.co/v1/test-path');
+      expect(url).toBe('https://api.khulnasoft.com/v1/test-path');
       expect(options.method).toBe('GET');
       expect(options.body).toBeUndefined();
     });
@@ -81,7 +81,7 @@ describe('HttpClient', () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const [url] = mockFetch.mock.calls[0];
 
-      expect(url).toBe('https://api.khulnasoft.co/v1/test-path?key=value');
+      expect(url).toBe('https://api.khulnasoft.com/v1/test-path?key=value');
     });
 
     it('should make a POST request with body', async () => {
@@ -91,7 +91,7 @@ describe('HttpClient', () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const [url, options] = mockFetch.mock.calls[0];
 
-      expect(url).toBe('https://api.khulnasoft.co/v1/test-path');
+      expect(url).toBe('https://api.khulnasoft.com/v1/test-path');
       expect(options.method).toBe('POST');
       expect(options.body).toBe(JSON.stringify(body));
     });
@@ -103,7 +103,7 @@ describe('HttpClient', () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const [url, options] = mockFetch.mock.calls[0];
 
-      expect(url).toBe('https://api.khulnasoft.co/v1/test-path');
+      expect(url).toBe('https://api.khulnasoft.com/v1/test-path');
       expect(options.method).toBe('PATCH');
       expect(options.body).toBe(JSON.stringify(body));
     });
@@ -115,7 +115,7 @@ describe('HttpClient', () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const [url, options] = mockFetch.mock.calls[0];
 
-      expect(url).toBe('https://api.khulnasoft.co/v1/test-path');
+      expect(url).toBe('https://api.khulnasoft.com/v1/test-path');
       expect(options.method).toBe('DELETE');
       expect(options.body).toBe(JSON.stringify(body));
     });
@@ -185,21 +185,21 @@ describe('HttpClient', () => {
       await httpClient.get('/test-path', searchParams);
 
       const [url] = mockFetch.mock.calls[0];
-      expect(url).toBe('https://api.khulnasoft.co/v1/test-path?limit=10&filter=active');
+      expect(url).toBe('https://api.khulnasoft.com/v1/test-path?limit=10&filter=active');
     });
 
     it('should handle paths with leading and trailing slashes', async () => {
       await httpClient.get('//test-path//');
 
       const [url] = mockFetch.mock.calls[0];
-      expect(url).toBe('https://api.khulnasoft.co/v1/test-path');
+      expect(url).toBe('https://api.khulnasoft.com/v1/test-path');
     });
 
     it('should handle empty path segments', async () => {
       await httpClient.get('test-path///nested');
 
       const [url] = mockFetch.mock.calls[0];
-      expect(url).toBe('https://api.khulnasoft.co/v1/test-path/nested');
+      expect(url).toBe('https://api.khulnasoft.com/v1/test-path/nested');
     });
   });
 });

@@ -116,10 +116,10 @@ export class Khulnasoft extends EventEmitter {
     const khulnasoftApiVersion = 'v1';
 
     if (!config?.backendUrl) {
-      return `https://api.khulnasoft.co/${khulnasoftApiVersion}`;
+      return `https://api.khulnasoft.com/${khulnasoftApiVersion}`;
     }
 
-    return config?.backendUrl.includes('khulnasoft.co/v')
+    return config?.backendUrl.includes('khulnasoft.com/v')
       ? config?.backendUrl
       : `${config?.backendUrl}/${khulnasoftApiVersion}`;
   }

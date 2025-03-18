@@ -105,7 +105,7 @@ export const EditBridgeUrlButton = () => {
               </div>
               <div className="flex items-center justify-between border-t border-neutral-200 px-5 py-3">
                 <a
-                  href="https://docs.khulnasoft.co/concepts/endpoint#bridge-endpoint"
+                  href="https://docs.khulnasoft.com/concepts/endpoint#bridge-endpoint"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs"

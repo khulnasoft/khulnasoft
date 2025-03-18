@@ -57,18 +57,18 @@ export function HeaderNav() {
             {
               icon: 'pencil',
               text: 'Roadmap',
-              url: 'https://roadmap.khulnasoft.co/roadmap?utm_campaign=in_app_live_chat',
+              url: 'https://roadmap.khulnasoft.com/roadmap?utm_campaign=in_app_live_chat',
             },
             {
               icon: 'support',
               text: 'Contact Sales',
-              url: 'https://notify.khulnasoft.co/meetings/khulnasoft/khulnasoft-discovery-session-rr?utm_campaign=in_app_live_chat',
+              url: 'https://notify.khulnasoft.com/meetings/khulnasoft/khulnasoft-discovery-session-rr?utm_campaign=in_app_live_chat',
             },
           ],
           entryPoint: 'default',
           theme: 'light',
           logo: {
-            url: 'https://dashboard.khulnasoft.co/static/images/khulnasoft.png',
+            url: 'https://dashboard.khulnasoft.com/static/images/khulnasoft.png',
             alt: 'Khulnasoft Logo',
           },
           customerDetails: {

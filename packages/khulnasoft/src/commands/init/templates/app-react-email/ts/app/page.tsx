@@ -142,7 +142,7 @@ export default function Home() {
                   </div>
 
                   <a
-                    href="https://docs.khulnasoft.co/workflows/introduction/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                    href="https://docs.khulnasoft.com/workflows/introduction/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                     target="_blank"
                     className={styles.link}
                   >
@@ -178,7 +178,7 @@ export default function Home() {
                     <p>
                       Check out the{" "}
                       <a
-                        href="https://docs.khulnasoft.co/notification-center/client/react/inbox-playground/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                        href="https://docs.khulnasoft.com/notification-center/client/react/inbox-playground/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                         target="_blank"
                         className="text-blue-500 hover:text-blue-600"
                       >
@@ -189,7 +189,7 @@ export default function Home() {
                     </p>
                   </div>
                   <a
-                    href="https://docs.khulnasoft.co/inbox/introduction/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                    href="https://docs.khulnasoft.com/inbox/introduction/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                     target="_blank"
                     className={styles.link}
                   >
@@ -226,7 +226,7 @@ export default function Home() {
                     </p>
                   </div>
                   <a
-                    href="https://docs.khulnasoft.co/workflows/digest/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                    href="https://docs.khulnasoft.com/workflows/digest/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                     target="_blank"
                     className={styles.link}
                   >
@@ -277,7 +277,7 @@ export default function Home() {
                   </ul>
 
                   <a
-                    href="https://docs.khulnasoft.co/workflow/delay/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                    href="https://docs.khulnasoft.com/workflow/delay/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                     target="_blank"
                     className={styles.link}
                   >
@@ -324,7 +324,7 @@ export default function Home() {
                   </ul>
 
                   <a
-                    href="https://docs.khulnasoft.co/concepts/preferences/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                    href="https://docs.khulnasoft.com/concepts/preferences/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                     target="_blank"
                     className={styles.link}
                   >
@@ -391,7 +391,7 @@ export default function Home() {
             <ul>
               <li>
                 <a
-                  href="https://docs.khulnasoft.co/getting-started/introduction/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                  href="https://docs.khulnasoft.com/getting-started/introduction/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                   target="_blank"
                 >
                   Documentation
@@ -399,7 +399,7 @@ export default function Home() {
               </li>
               <li>
                 <a
-                  href="https://docs.khulnasoft.co/api-reference/overview/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                  href="https://docs.khulnasoft.com/api-reference/overview/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                   target="_blank"
                 >
                   API Reference
@@ -407,7 +407,7 @@ export default function Home() {
               </li>
               <li>
                 <a
-                  href="https://khulnasoft.co/blog/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                  href="https://khulnasoft.com/blog/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                   target="_blank"
                 >
                   Blog
@@ -445,7 +445,7 @@ export default function Home() {
             <ul>
               <li>
                 <a
-                  href="https://khulnasoft.co/contact-us/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                  href="https://khulnasoft.com/contact-us/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                   target="_blank"
                 >
                   Contact
@@ -453,7 +453,7 @@ export default function Home() {
               </li>
               <li>
                 <a
-                  href="https://roadmap.khulnasoft.co/roadmap/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                  href="https://roadmap.khulnasoft.com/roadmap/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                   target="_blank"
                 >
                   Roadmap
@@ -461,7 +461,7 @@ export default function Home() {
               </li>
               <li>
                 <a
-                  href="https://roadmap.khulnasoft.co/changelog/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
+                  href="https://roadmap.khulnasoft.com/changelog/?utm_campaign=nextjs-starter&utm_source=nextjs-starter&utm_medium=nextjs"
                   target="_blank"
                 >
                   Changelog

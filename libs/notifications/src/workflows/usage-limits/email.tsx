@@ -29,7 +29,7 @@ export function UsageLimitsEmail({ percentage, organizationName, previewText }: 
       <Section className="mb-[32px] mt-[32px] text-center">
         <Button
           className="rounded bg-[#000000] px-5 py-3 text-center text-[12px] font-semibold text-white no-underline"
-          href={'https://dashboard.khulnasoft.co/settings/billing'}
+          href={'https://dashboard.khulnasoft.com/settings/billing'}
         >
           Upgrade Your Plan
         </Button>

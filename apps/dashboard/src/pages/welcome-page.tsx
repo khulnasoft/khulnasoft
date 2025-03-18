@@ -13,7 +13,7 @@ const helpfulResources: Resource[] = [
   {
     title: 'Documentation',
     image: 'blog.svg',
-    url: 'https://docs.khulnasoft.co/',
+    url: 'https://docs.khulnasoft.com/',
   },
   {
     title: 'Join our community on Discord',
@@ -28,7 +28,7 @@ const helpfulResources: Resource[] = [
   {
     title: 'Security & Compliance',
     image: 'security.svg',
-    url: 'https://trust.khulnasoft.co/',
+    url: 'https://trust.khulnasoft.com/',
   },
 ];
 
@@ -37,25 +37,25 @@ const learnResources: Resource[] = [
     title: 'Manage Subscribers',
     duration: '4m read',
     image: 'subscribers.svg',
-    url: 'https://docs.khulnasoft.co/concepts/subscribers?utm_source=khulnasoft.co&utm_medium=welcome-page',
+    url: 'https://docs.khulnasoft.com/concepts/subscribers?utm_source=khulnasoft.co&utm_medium=welcome-page',
   },
   {
     title: 'Topics',
     duration: '5m read',
     image: 'topics.svg',
-    url: 'https://docs.khulnasoft.co/concepts/topics?utm_source=khulnasoft.co&utm_medium=welcome-page',
+    url: 'https://docs.khulnasoft.com/concepts/topics?utm_source=khulnasoft.co&utm_medium=welcome-page',
   },
   {
     title: 'Code First Workflows',
     duration: '4m read',
     image: 'code-first.svg',
-    url: 'https://docs.khulnasoft.co/workflow/introduction?utm_source=khulnasoft.co&utm_medium=welcome-page',
+    url: 'https://docs.khulnasoft.com/workflow/introduction?utm_source=khulnasoft.co&utm_medium=welcome-page',
   },
   {
     title: 'Digest Engine',
     duration: '3m read',
     image: 'digest engine-1.svg',
-    url: 'https://docs.khulnasoft.co/workflow/digest?utm_source=khulnasoft.co&utm_medium=welcome-page',
+    url: 'https://docs.khulnasoft.com/workflow/digest?utm_source=khulnasoft.co&utm_medium=welcome-page',
   },
 ];
 

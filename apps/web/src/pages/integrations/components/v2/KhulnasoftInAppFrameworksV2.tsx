@@ -46,7 +46,7 @@ const frameworks = [
   {
     icon: JavaScriptLogo,
     name: 'Headless',
-    href: `https://docs.khulnasoft.co/inbox/introduction${UTM_CAMPAIGN_QUERY_PARAM}`,
+    href: `https://docs.khulnasoft.com/inbox/introduction${UTM_CAMPAIGN_QUERY_PARAM}`,
   },
 ];
 

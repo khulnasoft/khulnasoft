@@ -1,7 +1,7 @@
 # Khulnasoft's NextJS SDK for `<Inbox />`.
 
 Khulnasoft provides the `@khulnasoft/nextjs` library that helps to add a fully functioning `<Inbox />` to your web application in minutes.
-See full documentation [here](https://docs.khulnasoft.co/inbox/react/get-started).
+See full documentation [here](https://docs.khulnasoft.com/inbox/react/get-started).
 
 ## Installation
 

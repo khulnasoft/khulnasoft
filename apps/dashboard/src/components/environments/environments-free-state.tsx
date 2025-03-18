@@ -96,7 +96,7 @@ export function FreeTierState() {
           >
             Upgrade to Team Tier
           </Button>
-          <Link to={'https://docs.khulnasoft.co/concepts/environments'} target="_blank">
+          <Link to={'https://docs.khulnasoft.com/concepts/environments'} target="_blank">
             <LinkButton size="sm" leadingIcon={RiBookMarkedLine}>
               How does this help?
             </LinkButton>

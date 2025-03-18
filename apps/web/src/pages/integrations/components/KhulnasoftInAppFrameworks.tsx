@@ -47,12 +47,12 @@ const frameworks = [
   {
     icon: JavaScriptLogo,
     name: 'Web Component',
-    href: `https://docs.khulnasoft.co/notification-center/client/web-component${UTM_CAMPAIGN_QUERY_PARAM}`,
+    href: `https://docs.khulnasoft.com/notification-center/client/web-component${UTM_CAMPAIGN_QUERY_PARAM}`,
   },
   {
     icon: JavaScriptLogo,
     name: 'Headless',
-    href: `https://docs.khulnasoft.co/notification-center/client/headless/get-started${UTM_CAMPAIGN_QUERY_PARAM}`,
+    href: `https://docs.khulnasoft.com/notification-center/client/headless/get-started${UTM_CAMPAIGN_QUERY_PARAM}`,
   },
   { icon: VueLogo, name: 'Vue', frameworkEnum: FrameworkEnum.VUE },
   { icon: IframeLogo, name: 'iFrame', frameworkEnum: FrameworkEnum.JS },

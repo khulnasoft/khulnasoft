@@ -227,7 +227,7 @@ function Accept() {
       <span>I accept the </span>
       <a
         style={{ textDecoration: 'underline' }}
-        href={`https://khulnasoft.co/terms${UTM_CAMPAIGN_QUERY_PARAM}`}
+        href={`https://khulnasoft.com/terms${UTM_CAMPAIGN_QUERY_PARAM}`}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -236,7 +236,7 @@ function Accept() {
       <span> and have read the </span>
       <a
         style={{ textDecoration: 'underline' }}
-        href={`https://khulnasoft.co/privacy${UTM_CAMPAIGN_QUERY_PARAM}`}
+        href={`https://khulnasoft.com/privacy${UTM_CAMPAIGN_QUERY_PARAM}`}
         target="_blank"
         rel="noopener noreferrer"
       >

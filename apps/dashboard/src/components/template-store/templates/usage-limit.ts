@@ -17,7 +17,7 @@ export const usageLimitTemplate: WorkflowTemplate = {
         type: StepTypeEnum.IN_APP,
         controlValues: {
           body: "You've reached your {{payload.threshold_name}} usage limit.",
-          avatar: 'https://dashboard-v2.khulnasoft.co/images/warning.svg',
+          avatar: 'https://dashboard-v2.khulnasoft.com/images/warning.svg',
           subject: "Heads Up! You're Approaching Your Usage Limit",
           primaryAction: {
             label: 'Manage Usage',

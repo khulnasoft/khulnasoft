@@ -19,7 +19,7 @@ export const ConfigureStepTemplateIssuesContainer = (props: PropsWithChildren) =
         <ExternalLink
           variant="text"
           underline={false}
-          href="https://docs.khulnasoft.co/sdks/framework/typescript/steps/inApp"
+          href="https://docs.khulnasoft.com/sdks/framework/typescript/steps/inApp"
           className="text-xs"
         >
           <span>Help?</span>

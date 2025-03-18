@@ -54,7 +54,7 @@ export function KhulnasoftProviderBase({ onClose, senderInformation, channel }: 
           <InlineDiv>
             <span>Read more about Integrations in</span>
             <a
-              href={`https://docs.khulnasoft.co/channels-and-providers/integration-store${UTM_CAMPAIGN_QUERY_PARAM}`}
+              href={`https://docs.khulnasoft.com/channels-and-providers/integration-store${UTM_CAMPAIGN_QUERY_PARAM}`}
               target="_blank"
               rel="noreferrer"
               style={{ color: '#DD2476 ', textDecoration: 'underline' }}

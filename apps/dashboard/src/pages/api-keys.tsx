@@ -52,7 +52,7 @@ export function ApiKeysPage() {
                 {'<Inbox />'}
                 <p className="text-foreground-500 mt-1 text-xs font-normal">
                   {'Use the public application identifier in Khulnasoft <Inbox />. '}
-                  <ExternalLink href="https://docs.khulnasoft.co/inbox/overview" className="text-foreground-500">
+                  <ExternalLink href="https://docs.khulnasoft.com/inbox/overview" className="text-foreground-500">
                     Learn more
                   </ExternalLink>
                 </p>
@@ -73,7 +73,7 @@ export function ApiKeysPage() {
                 Secret Keys
                 <p className="text-foreground-500 mt-1 text-xs font-normal">
                   {'Use the secret key to authenticate your SDK requests. Keep it secure and never share it publicly. '}
-                  <ExternalLink href="https://docs.khulnasoft.co/sdks/overview" className="text-foreground-500">
+                  <ExternalLink href="https://docs.khulnasoft.com/sdks/overview" className="text-foreground-500">
                     Learn more
                   </ExternalLink>
                 </p>
@@ -96,7 +96,7 @@ export function ApiKeysPage() {
                 API URLs
                 <p className="text-foreground-500 mt-1 text-xs font-normal">
                   {`URLs for Khulnasoft Cloud in the ${region} region. `}
-                  <ExternalLink href="https://docs.khulnasoft.co/api-reference/overview" className="text-foreground-500">
+                  <ExternalLink href="https://docs.khulnasoft.com/api-reference/overview" className="text-foreground-500">
                     Learn more
                   </ExternalLink>
                 </p>

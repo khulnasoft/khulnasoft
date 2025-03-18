@@ -29260,14 +29260,14 @@
   },
   "info": {
     "title": "Khulnasoft API",
-    "description": "Khulnasoft REST API. Please see https://docs.khulnasoft.co/api-reference for more details.",
+    "description": "Khulnasoft REST API. Please see https://docs.khulnasoft.com/api-reference for more details.",
     "version": "1.0",
     "contact": {
       "name": "Khulnasoft Support",
       "url": "https://discord.gg/khulnasoft",
       "email": "support@khulnasoft.co"
     },
-    "termsOfService": "https://khulnasoft.co/terms",
+    "termsOfService": "https://khulnasoft.com/terms",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/license/mit"
@@ -29278,49 +29278,49 @@
       "name": "Events",
       "description": "Events represent a change in state of a subscriber. They are used to trigger workflows, and enable you to send notifications to subscribers based on their actions.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/workflows"
+        "url": "https://docs.khulnasoft.com/workflows"
       }
     },
     {
       "name": "Subscribers",
       "description": "A subscriber in Khulnasoft represents someone who should receive a message. A subscriber’s profile information contains important attributes about the subscriber that will be used in messages (name, email). The subscriber object can contain other key-value pairs that can be used to further personalize your messages.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/subscribers/subscribers"
+        "url": "https://docs.khulnasoft.com/subscribers/subscribers"
       }
     },
     {
       "name": "Topics",
       "description": "Topics are a way to group subscribers together so that they can be notified of events at once. A topic is identified by a custom key. This can be helpful for things like sending out marketing emails or notifying users of new features. Topics can also be used to send notifications to the subscribers who have been grouped together based on their interests, location, activities and much more.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/subscribers/topics"
+        "url": "https://docs.khulnasoft.com/subscribers/topics"
       }
     },
     {
       "name": "Notification",
       "description": "A notification conveys information from source to recipient, triggered by a workflow acting as a message blueprint. Notifications can be individual or bundled as digest for user-friendliness.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/getting-started/introduction"
+        "url": "https://docs.khulnasoft.com/getting-started/introduction"
       }
     },
     {
       "name": "Integrations",
       "description": "With the help of the Integration Store, you can easily integrate your favorite delivery provider. During the runtime of the API, the Integrations Store is responsible for storing the configurations of all the providers.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/channels-and-providers/integration-store"
+        "url": "https://docs.khulnasoft.com/channels-and-providers/integration-store"
       }
     },
     {
       "name": "Layouts",
       "description": "Khulnasoft allows the creation of layouts - a specific HTML design or structure to wrap content of email notifications. Layouts can be manipulated and assigned to new or existing workflows within the Khulnasoft platform, allowing users to create, manage, and assign these layouts to workflows, so they can be reused to structure the appearance of notifications sent through the platform.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/content-creation-design/layouts"
+        "url": "https://docs.khulnasoft.com/content-creation-design/layouts"
       }
     },
     {
       "name": "Workflows",
       "description": "All notifications are sent via a workflow. Each workflow acts as a container for the logic and blueprint that are associated with a type of notification in your system.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/workflows"
+        "url": "https://docs.khulnasoft.com/workflows"
       }
     },
     {
@@ -29335,56 +29335,56 @@
       "name": "Changes",
       "description": "Changes represent a change in state of an environment. They are analagous to a pending pull request in git, enabling you to test changes before they are applied to your environment and atomically apply them when you are ready.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/platform/environments#promoting-pending-changes-to-production"
+        "url": "https://docs.khulnasoft.com/platform/environments#promoting-pending-changes-to-production"
       }
     },
     {
       "name": "Environments",
       "description": "Khulnasoft uses the concept of environments to ensure logical separation of your data and configuration. This means that subscribers, and preferences created in one environment are never accessible to another.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/platform/environments"
+        "url": "https://docs.khulnasoft.com/platform/environments"
       }
     },
     {
       "name": "Inbound Parse",
       "description": "Inbound Webhook is a feature that allows processing of incoming emails for a domain or subdomain. The feature parses the contents of the email and POSTs the information to a specified URL in a multipart/form-data format.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/platform/inbound-parse-webhook"
+        "url": "https://docs.khulnasoft.com/platform/inbound-parse-webhook"
       }
     },
     {
       "name": "Feeds",
       "description": "Khulnasoft provides a notification activity feed that monitors every outgoing message associated with its relevant metadata. This can be used to monitor activity and discover potential issues with a specific provider or a channel type.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/activity-feed"
+        "url": "https://docs.khulnasoft.com/activity-feed"
       }
     },
     {
       "name": "Tenants",
       "description": "A tenant represents a group of users. As a developer, when your apps have organizations, they are referred to as tenants. Tenants in Khulnasoft provides the ability to tailor specific notification experiences to users of different groups or organizations.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/tenants"
+        "url": "https://docs.khulnasoft.com/tenants"
       }
     },
     {
       "name": "Messages",
       "description": "A message in Khulnasoft represents a notification delivered to a recipient on a particular channel. Messages contain information about the request that triggered its delivery, a view of the data sent to the recipient, and a timeline of its lifecycle events. Learn more about messages.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/workflows/messages"
+        "url": "https://docs.khulnasoft.com/workflows/messages"
       }
     },
     {
       "name": "Organizations",
       "description": "An organization serves as a separate entity within your Khulnasoft account. Each organization you create has its own separate integration store, workflows, subscribers, and API keys. This separation of resources allows you to manage multi-tenant environments and separate domains within a single account.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/platform/organizations"
+        "url": "https://docs.khulnasoft.com/platform/organizations"
       }
     },
     {
       "name": "Execution Details",
       "description": "Execution details are used to track the execution of a workflow. They provided detailed information on the execution of a workflow, including the status of each step, the input and output of each step, and the overall status of the execution.",
       "externalDocs": {
-        "url": "https://docs.khulnasoft.co/activity-feed"
+        "url": "https://docs.khulnasoft.com/activity-feed"
       }
     }
   ],
@@ -33105,7 +33105,7 @@
         "schema": {
           "type": "string"
         },
-        "example": "https://docs.khulnasoft.co/"
+        "example": "https://docs.khulnasoft.com/"
       }
     }
   },

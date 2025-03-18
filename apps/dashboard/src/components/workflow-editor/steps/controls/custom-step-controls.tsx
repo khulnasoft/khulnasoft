@@ -24,7 +24,7 @@ type CustomStepControlsProps = {
   className?: string;
 };
 
-const CONTROLS_DOCS_LINK = 'https://docs.khulnasoft.co/concepts/controls';
+const CONTROLS_DOCS_LINK = 'https://docs.khulnasoft.com/concepts/controls';
 
 export const CustomStepControls = (props: CustomStepControlsProps) => {
   const { className, dataSchema, origin } = props;

@@ -18,7 +18,7 @@ export function IntegrationSheetHeader({ provider, mode, onBack, step }: Integra
         <SheetTitle className="text-lg">Connect Integration</SheetTitle>
         <p className="text-foreground-400 text-xs">
           Select an integration to connect with your application.{' '}
-          <a href="https://docs.khulnasoft.co/docs/integrations" target="_blank" className="underline">
+          <a href="https://docs.khulnasoft.com/docs/integrations" target="_blank" className="underline">
             Learn More
           </a>
         </p>

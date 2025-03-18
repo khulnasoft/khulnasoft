@@ -38,7 +38,7 @@ program
   )
   .requiredOption(
     '-s, --secret-key <secret-key>',
-    'The Khulnasoft Secret Key. Obtainable at https://dashboard.khulnasoft.co/api-keys',
+    'The Khulnasoft Secret Key. Obtainable at https://dashboard.khulnasoft.com/api-keys',
     KHULNASOFT_SECRET_KEY || ''
   )
   .action(async (options) => {

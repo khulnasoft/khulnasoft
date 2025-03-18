@@ -70,7 +70,7 @@ export function ChangelogStack() {
 
   const handleChangelogClick = async (changelog: Changelog) => {
     track(TelemetryEvent.CHANGELOG_ITEM_CLICKED, { title: changelog.title });
-    window.open('https://roadmap.khulnasoft.co/changelog/' + changelog.id, '_blank');
+    window.open('https://roadmap.khulnasoft.com/changelog/' + changelog.id, '_blank');
 
     await updateDismissedChangelogs(changelog.id);
     setChangelogs((prev) => prev.filter((log) => log.id !== changelog.id));

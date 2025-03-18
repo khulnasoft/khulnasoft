@@ -320,7 +320,7 @@ export class UserSession {
       .put('/v1/organizations/branding')
       .send({
         color: '#2a9d8f',
-        logo: 'https://dashboard.khulnasoft.co/static/images/logo-light.png',
+        logo: 'https://dashboard.khulnasoft.com/static/images/logo-light.png',
         fontColor: '#214e49',
         contentBackground: '#c2cbd2',
         fontFamily: 'Montserrat',

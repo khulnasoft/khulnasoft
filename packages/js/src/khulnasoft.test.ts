@@ -46,7 +46,7 @@ describe('Khulnasoft', () => {
       };
 
       const khulnasoft = new Khulnasoft({ applicationIdentifier, subscriberId });
-      expect(fetch).toHaveBeenNthCalledWith(1, 'https://api.khulnasoft.co/v1/inbox/session', {
+      expect(fetch).toHaveBeenNthCalledWith(1, 'https://api.khulnasoft.com/v1/inbox/session', {
         method: 'POST',
         body: JSON.stringify({ applicationIdentifier, subscriberId }),
         headers: {
@@ -57,7 +57,7 @@ describe('Khulnasoft', () => {
       });
 
       const { data } = await khulnasoft.notifications.list(options);
-      expect(fetch).toHaveBeenNthCalledWith(2, 'https://api.khulnasoft.co/v1/inbox/notifications?limit=10', {
+      expect(fetch).toHaveBeenNthCalledWith(2, 'https://api.khulnasoft.com/v1/inbox/notifications?limit=10', {
         method: 'GET',
         body: undefined,
         headers: {

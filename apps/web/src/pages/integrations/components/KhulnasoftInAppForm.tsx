@@ -131,7 +131,7 @@ export const KhulnasoftInAppForm = ({
           <CircleArrowRightStyled
             onClick={() => {
               window.open(
-                `https://docs.khulnasoft.co/notification-center/client/iframe#enabling-hmac-encryption${UTM_CAMPAIGN_QUERY_PARAM}`
+                `https://docs.khulnasoft.com/notification-center/client/iframe#enabling-hmac-encryption${UTM_CAMPAIGN_QUERY_PARAM}`
               );
             }}
           />

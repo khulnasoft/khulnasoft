@@ -10,7 +10,7 @@ import { OnboardingUseCasesTabsEnum } from '../../consts/OnboardingUseCasesTabsE
 import { useSegment } from '../../../../../components/providers/SegmentProvider';
 import { useFrameworkTerminalScript } from '../../../../../hooks/useFrameworkTerminalScript';
 
-const link = 'https://docs.khulnasoft.co/framework/quickstart';
+const link = 'https://docs.khulnasoft.com/framework/quickstart';
 
 const COMMAND = 'npx khulnasoft@latest dev';
 

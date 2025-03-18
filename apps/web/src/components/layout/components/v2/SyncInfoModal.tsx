@@ -89,7 +89,7 @@ export const SyncInfoModal: FC<SyncInfoModalProps> = ({ isOpen, toggleOpen, refe
             For your changes to be visible on the cloud dashboard, you need to deploy your local khulnasoft application to a
             cloud provider and perform a Sync command with the cloud endpoint url. Learn more about syncing on{' '}
             <a
-              href="https://docs.khulnasoft.co/deployment/syncing"
+              href="https://docs.khulnasoft.com/deployment/syncing"
               target={'_blank'}
               className={css({
                 textDecoration: '!important underline',

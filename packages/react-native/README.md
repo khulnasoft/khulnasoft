@@ -1,7 +1,7 @@
 # Khulnasoft's React Native SDK for building custom inbox notification experiences.
 
 Khulnasoft provides the `@khulnasoft/react-native` a React library that helps to add a fully functioning Inbox to your mobile application in minutes. Let's do a quick recap on how you can easily use it in your application.
-See full documentation [here](https://docs.khulnasoft.co/inbox/react-native/quickstart).
+See full documentation [here](https://docs.khulnasoft.com/inbox/react-native/quickstart).
 
 ## Installation
 

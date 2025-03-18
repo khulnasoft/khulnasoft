@@ -30,7 +30,7 @@ The ultimate service for managing multi-channel notifications with a single API.
     <a href="https://twitter.com/khulnasoft">X</a>
     ·
     <a href="https://notifications.directory">Notifications Directory</a>.
-    <a href="https://khulnasoft.co/blog">Read our blog</a>
+    <a href="https://khulnasoft.com/blog">Read our blog</a>
   </p>
 
 ## ⭐️ Why
@@ -136,7 +136,7 @@ Khulnasoft provides a single API to manage providers across multiple channels wi
 
 #### 📱 In-App
 
-- [x] [Khulnasoft](https://docs.khulnasoft.co/notification-center/introduction?utm_campaign=node-sdk-readme)
+- [x] [Khulnasoft](https://docs.khulnasoft.com/notification-center/introduction?utm_campaign=node-sdk-readme)
 
 #### Other (Coming Soon...)
 
@@ -144,7 +144,7 @@ Khulnasoft provides a single API to manage providers across multiple channels wi
 
 ## 🔗 Links
 
-- [Home page](https://khulnasoft.co/)
+- [Home page](https://khulnasoft.com/)
 
 ## SDK Methods
 

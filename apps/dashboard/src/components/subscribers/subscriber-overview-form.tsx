@@ -222,7 +222,7 @@ export function SubscriberOverviewForm(props: SubscriberOverviewFormProps) {
                   </FormLabel>
                   <span className="ml-auto">
                     <Link
-                      to="https://docs.khulnasoft.co/concepts/subscribers"
+                      to="https://docs.khulnasoft.com/concepts/subscribers"
                       className="text-xs font-medium text-neutral-600 hover:underline"
                       target="_blank"
                     >

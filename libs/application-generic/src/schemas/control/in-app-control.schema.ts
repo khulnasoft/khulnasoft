@@ -71,7 +71,7 @@ export const inAppUiSchema: UiSchema = {
     },
     avatar: {
       component: UiComponentEnum.IN_APP_AVATAR,
-      placeholder: 'https://dashboard-v2.khulnasoft.co/images/info.svg',
+      placeholder: 'https://dashboard-v2.khulnasoft.com/images/info.svg',
     },
     subject: {
       component: UiComponentEnum.IN_APP_SUBJECT,

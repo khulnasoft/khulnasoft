@@ -74,7 +74,7 @@ function LearnMoreRef() {
 
   return (
     <a
-      href={`https://docs.khulnasoft.co/quickstarts/01-introduction${UTM_CAMPAIGN_QUERY_PARAM}`}
+      href={`https://docs.khulnasoft.com/quickstarts/01-introduction${UTM_CAMPAIGN_QUERY_PARAM}`}
       style={{ color: '#DD2476', textDecoration: 'underline', fontSize: '18px' }}
       onClick={() => handleOnClick}
       target="_blank"

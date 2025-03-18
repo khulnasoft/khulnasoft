@@ -1,6 +1,6 @@
 # Khulnasoft Bridge App
 
-This is a [Khulnasoft](https://khulnasoft.co/) bridge application bootstrapped with [`npx khulnasoft init`](https://www.npmjs.com/package/khulnasoft)
+This is a [Khulnasoft](https://khulnasoft.com/) bridge application bootstrapped with [`npx khulnasoft init`](https://www.npmjs.com/package/khulnasoft)
 
 ## Getting Started
 
@@ -26,6 +26,6 @@ Your first email workflow can be edited in `./app/khulnasoft/workflows.ts`. You 
 
 To learn more about Khulnasoft, take a look at the following resources:
 
-- [Khulnasoft](https://khulnasoft.co/)
+- [Khulnasoft](https://khulnasoft.com/)
 
 You can check out [Khulnasoft GitHub repository](https://github.com/khulnasoft/khulnasoft) - your feedback and contributions are welcome!

@@ -20,7 +20,7 @@ type IWorkflowFloatingMenuProps = CoreProps;
 
 export const WorkflowFloatingMenu: FC<IWorkflowFloatingMenuProps> = ({ className }) => {
   const handleClick = (pathToSet: string) => () => {
-    window.open(`https://docs.khulnasoft.co/sdks/framework/typescript/steps/${pathToSet}`, '_blank');
+    window.open(`https://docs.khulnasoft.com/sdks/framework/typescript/steps/${pathToSet}`, '_blank');
   };
 
   return (

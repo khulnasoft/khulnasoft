@@ -11,7 +11,7 @@ export const TranslationUseCaseConst: OnboardingUseCase = {
   description:
     'Upload translations to use them as variables or for auto-upload in the editor in a workflow. ' +
     'This feature is available for business and enterprise plan.',
-  useCaseLink: 'https://docs.khulnasoft.co/content-creation-design/translations?utm_campaign=inapp-usecase-translation',
+  useCaseLink: 'https://docs.khulnasoft.com/content-creation-design/translations?utm_campaign=inapp-usecase-translation',
   steps: [
     {
       title: 'Configure providers',

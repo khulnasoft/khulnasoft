@@ -34,7 +34,7 @@ export const collaborateSteps = [
         <img src={'/static/images/onboarding/collaborate-controls.png'} />
         <HStack gap="50" className={css({ color: 'typography.text.secondary', mt: '12px' })}>
           <IconOutlineMenuBook />
-          <a href="https://docs.khulnasoft.co/concepts/controls" target={'_blank'}>
+          <a href="https://docs.khulnasoft.com/concepts/controls" target={'_blank'}>
             Learn more on our docs
           </a>
         </HStack>

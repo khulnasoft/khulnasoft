@@ -27,7 +27,7 @@ export const ReactEmail = ({
           <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
             <Section className="mt-[32px]">
               <Img
-                src={'https://dashboard.khulnasoft.co/static/images/khulnasoft.png'}
+                src={'https://dashboard.khulnasoft.com/static/images/khulnasoft.png'}
                 width="40"
                 height="40"
                 alt="Khulnasoft"

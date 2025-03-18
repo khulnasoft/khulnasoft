@@ -92,7 +92,7 @@ export const useCreateOnboardingExperimentWorkflow = () => {
               contentType: 'customHtml',
               content:
                 // eslint-disable-next-line max-len
-                'It\'s that simple! <br/>Learn more about creating workflows <a href="https://docs.khulnasoft.co/workflows/notification-workflows">here</a>.',
+                'It\'s that simple! <br/>Learn more about creating workflows <a href="https://docs.khulnasoft.com/workflows/notification-workflows">here</a>.',
             },
             uuid: uuid4(),
             active: true,

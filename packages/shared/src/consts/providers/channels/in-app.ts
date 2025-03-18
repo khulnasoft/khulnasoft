@@ -9,7 +9,7 @@ export const inAppProviders: IProviderConfig[] = [
     displayName: 'Khulnasoft Inbox',
     channel: ChannelTypeEnum.IN_APP,
     credentials: khulnasoftInAppConfig,
-    docReference: `https://docs.khulnasoft.co/inbox/overview${UTM_CAMPAIGN_QUERY_PARAM}`,
+    docReference: `https://docs.khulnasoft.com/inbox/overview${UTM_CAMPAIGN_QUERY_PARAM}`,
     logoFileName: { light: 'khulnasoft.png', dark: 'khulnasoft.png' },
   },
 ];

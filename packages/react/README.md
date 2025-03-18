@@ -1,7 +1,7 @@
 # Khulnasoft's React SDK for building custom inbox notification experiences.
 
 Khulnasoft provides the `@khulnasoft/react` a React library that helps to add a fully functioning Inbox to your web application in minutes. Let's do a quick recap on how you can easily use it in your application.
-See full documentation [here](https://docs.khulnasoft.co/inbox/react/get-started).
+See full documentation [here](https://docs.khulnasoft.com/inbox/react/get-started).
 
 ## Installation
 

@@ -17,7 +17,7 @@ export const SubscriberListBlank = () => {
 
       <div className="flex items-center justify-center gap-6">
         <Link
-          to="https://docs.khulnasoft.co/api-reference/subscribers/subscribers-controller_create-subscriber"
+          to="https://docs.khulnasoft.com/api-reference/subscribers/subscribers-controller_create-subscriber"
           target="_blank"
         >
           <LinkButton variant="gray" trailingIcon={RiBookMarkedLine}>

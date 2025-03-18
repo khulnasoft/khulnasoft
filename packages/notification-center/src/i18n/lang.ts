@@ -171,7 +171,7 @@ export const TRANSLATIONS: Record<I18NLanguage, ITranslationEntry> = {
  * - For French use "fr"
  *
  * Any new language should also be added to the documentation
- * https://docs.khulnasoft.co/notification-center/client/react/customization#customize-the-ui-language
+ * https://docs.khulnasoft.com/notification-center/client/react/customization#customize-the-ui-language
  */
 export type I18NLanguage =
   | 'af'

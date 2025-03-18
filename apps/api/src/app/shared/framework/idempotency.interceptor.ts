@@ -33,7 +33,7 @@ enum ReqStatusEnum {
   ERROR = 'error',
 }
 
-export const DOCS_LINK = 'https://docs.khulnasoft.co/additional-resources/idempotency';
+export const DOCS_LINK = 'https://docs.khulnasoft.com/additional-resources/idempotency';
 export const ALLOWED_AUTH_SCHEMES = [ApiAuthSchemeEnum.API_KEY];
 const ALLOWED_METHODS = ['post', 'patch'];
 

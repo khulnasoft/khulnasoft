@@ -28,7 +28,7 @@
     "@khulnasoft/api": "workspace:*",
     "@khulnasoft/framework": "workspace:*",
     "@khulnasoft/js": "workspace:*",
-    "@khulnasoft/react": "https://pkg.pr.new/khulnasoft/khulnasoft/@khulnasoft/react@1e540b2",
+    "@khulnasoft/react": "workspace:*",
     "@khulnasoft/react-v2": "../packages/react",
     "@khulnasoft/shared": "workspace:*",
     "@radix-ui/react-accordion": "^1.2.1",

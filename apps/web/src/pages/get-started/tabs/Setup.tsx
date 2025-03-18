@@ -48,7 +48,7 @@ export const buildGuides = [
               Change the port in case your application is running on other than port 4000
               <HStack gap="50" className={css({ color: 'typography.text.secondary', mt: '12px' })}>
                 <IconOutlineMenuBook />
-                <a href="https://docs.khulnasoft.co/workflow/studio" target={'_blank'}>
+                <a href="https://docs.khulnasoft.com/workflow/studio" target={'_blank'}>
                   Learn more about Khulnasoft Studio
                 </a>
               </HStack>
@@ -227,7 +227,7 @@ export const testWorkflow = workflow('test-workflow', async ({ step, payload }) 
           />
           <HStack gap="50" className={css({ color: 'typography.text.secondary', mt: '12px' })}>
             <IconOutlineMenuBook />
-            <a href="https://docs.khulnasoft.co/workflow/introduction" target={'_blank'}>
+            <a href="https://docs.khulnasoft.com/workflow/introduction" target={'_blank'}>
               Learn more on building workflows
             </a>
           </HStack>
@@ -250,7 +250,7 @@ export const testWorkflow = workflow('test-workflow', async ({ step, payload }) 
           <CodeSnippet command={`npx khulnasoft@latest dev --port 4000`} />
           <HStack gap="50" className={css({ color: 'typography.text.secondary', mt: '12px' })}>
             <IconOutlineMenuBook />
-            <a href="https://docs.khulnasoft.co/workflow/studio" target={'_blank'}>
+            <a href="https://docs.khulnasoft.com/workflow/studio" target={'_blank'}>
               Learn more about Khulnasoft Studio
             </a>
           </HStack>

@@ -102,7 +102,7 @@ export const ProductLead = ({
               segment.track('Scheduled call clicked - [Product lead]', {
                 feature: id,
               });
-              window.open('https://notify.khulnasoft.co/meetings/khulnasoft/notifications-45min?utm_campaign=in-app');
+              window.open('https://notify.khulnasoft.com/meetings/khulnasoft/notifications-45min?utm_campaign=in-app');
             }}
             variant="outline"
           >

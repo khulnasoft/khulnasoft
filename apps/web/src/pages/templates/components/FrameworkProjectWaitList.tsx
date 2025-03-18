@@ -14,7 +14,7 @@ const segmentEventAction = {
 
 const handleFrameworkClick = (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => {
   event.preventDefault();
-  window.open('https://docs.khulnasoft.co/quickstart/overview', '_blank');
+  window.open('https://docs.khulnasoft.com/quickstart/overview', '_blank');
 };
 
 const NewBadge = (props) => {

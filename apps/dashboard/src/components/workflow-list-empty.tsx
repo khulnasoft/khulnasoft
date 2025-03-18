@@ -59,7 +59,7 @@ const WorkflowListEmptyProd = ({ switchToDev }: { switchToDev: () => void }) => 
     </div>
 
     <div className="flex items-center justify-center gap-6">
-      <Link to={'https://docs.khulnasoft.co/concepts/workflows'} target="_blank">
+      <Link to={'https://docs.khulnasoft.com/concepts/workflows'} target="_blank">
         <LinkButton trailingIcon={RiBookMarkedLine}>View docs</LinkButton>
       </Link>
 
@@ -86,7 +86,7 @@ const WorkflowListEmptyDev = () => {
       </div>
 
       <div className="flex items-center justify-center gap-6">
-        <Link to={'https://docs.khulnasoft.co/concepts/workflows'} target="_blank">
+        <Link to={'https://docs.khulnasoft.com/concepts/workflows'} target="_blank">
           <LinkButton variant="gray" trailingIcon={RiBookMarkedLine}>
             View docs
           </LinkButton>

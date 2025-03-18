@@ -2,7 +2,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const response = await fetch("https://api.khulnasoft.co/v1/telemetry/measure", {
+    const response = await fetch("https://api.khulnasoft.com/v1/telemetry/measure", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

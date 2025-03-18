@@ -12,7 +12,7 @@
 [![Version](https://img.shields.io/npm/v/@khulnasoft/providers.svg)](https://www.npmjs.org/package/@khulnasoft/providers)
 [![Downloads](https://img.shields.io/npm/dm/@khulnasoft/providers.svg)](https://www.npmjs.com/package/@khulnasoft/providers)
 
-A collection of stateless notification delivery providers, abstracting the underlying delivery provider implementation details. Independently usable, and additionally consumed by the [Khulnasoft Platform](https://khulnasoft.co/).
+A collection of stateless notification delivery providers, abstracting the underlying delivery provider implementation details. Independently usable, and additionally consumed by the [Khulnasoft Platform](https://khulnasoft.com/).
 
 ## Installation
 

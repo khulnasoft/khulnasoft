@@ -98,7 +98,7 @@ export const envValidators = {
     SENTRY_DSN: str({ default: '' }),
     VERCEL_CLIENT_ID: str({ default: '' }),
     VERCEL_CLIENT_SECRET: str({ default: '' }),
-    VERCEL_REDIRECT_URI: url({ default: 'https://dashboard.khulnasoft.co/auth/login' }),
+    VERCEL_REDIRECT_URI: url({ default: 'https://dashboard.khulnasoft.com/auth/login' }),
     VERCEL_BASE_URL: url({ default: 'https://api.vercel.com' }),
   }),
 } satisfies Record<string, ValidatorSpec<unknown>>;

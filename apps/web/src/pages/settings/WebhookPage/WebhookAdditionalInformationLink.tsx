@@ -12,7 +12,7 @@ export const WebhookAdditionalInformationLink: FC = () => {
         justifyContent: 'flex-start',
         gap: '50',
       })}
-      href="https://v0.x-docs.khulnasoft.co/platform/inbound-parse-webhook"
+      href="https://v0.x-docs.khulnasoft.com/platform/inbound-parse-webhook"
       target="_blank"
       rel="noopener noreferrer"
     >

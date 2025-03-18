@@ -16,7 +16,7 @@ export const InAppUseCaseConst: OnboardingUseCase = {
   description:
     "Utilize Khulnasoft's pre-built customizable in-app component. " +
     'Or opt for the headless library to create your own in-app notification center.',
-  useCaseLink: 'https://docs.khulnasoft.co/channels-and-providers/in-app/introduction?utm_campaign=inapp-usecase-inapp',
+  useCaseLink: 'https://docs.khulnasoft.com/channels-and-providers/in-app/introduction?utm_campaign=inapp-usecase-inapp',
   steps: [
     {
       title: 'Configure In-App provider',

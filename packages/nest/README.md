@@ -1,5 +1,5 @@
 > [!WARNING]  
-> `@khulnasoft/nest` package is no longer maintained and will be deprecated in the future. Please use [@khulnasoft/node](https://www.npmjs.com/package/@khulnasoft/node) directly. Read [this](https://docs.khulnasoft.co/quickstart/nestjs) guide to use [@khulnasoft/framework](https://www.npmjs.com/package/@khulnasoft/framework) with [NestJS](https://nestjs.com/)
+> `@khulnasoft/nest` package is no longer maintained and will be deprecated in the future. Please use [@khulnasoft/node](https://www.npmjs.com/package/@khulnasoft/node) directly. Read [this](https://docs.khulnasoft.com/quickstart/nestjs) guide to use [@khulnasoft/framework](https://www.npmjs.com/package/@khulnasoft/framework) with [NestJS](https://nestjs.com/)
 
 # NestJS Module Wrapper
 

@@ -13,7 +13,7 @@ A RESTful API for accessing the Khulnasoft platform, built using [NestJS](https:
 
 ## Running the API
 
-See the docs for [Run in Local Machine](https://docs.khulnasoft.co/community/run-in-local-machine?utm_campaign=github-api-readme) to get setup. Then run:
+See the docs for [Run in Local Machine](https://docs.khulnasoft.com/community/run-in-local-machine?utm_campaign=github-api-readme) to get setup. Then run:
 
 ```bash
 # Run the API in watch mode
@@ -31,7 +31,7 @@ $ npm run test
 
 ### E2E tests
 
-See the docs for [Running on Local Machine - API Tests](https://docs.khulnasoft.co/community/run-in-local-machine#api?utm_campaign=github-api-readme).
+See the docs for [Running on Local Machine - API Tests](https://docs.khulnasoft.com/community/run-in-local-machine#api?utm_campaign=github-api-readme).
 
 ## Adding a new Endpoint
 
@@ -59,7 +59,7 @@ See the docs for [Running on Local Machine - API Tests](https://docs.khulnasoft.
 
 The Khulnasoft API utilizes the [`@nestjs/swagger`](https://github.com/nestjs/swagger) package to generate up-to-date OpenAPI specifications.
 
-A web interface to browse the published endpoints is available during local development at [localhost:3000/openapi](https://localhost:3000/openapi). An OpenAPI specification can be retrieved at [api.khulnasoft.co/openapi.yaml](https://api.khulnasoft.co/openapi.yaml).
+A web interface to browse the published endpoints is available during local development at [localhost:3000/openapi](https://localhost:3000/openapi). An OpenAPI specification can be retrieved at [api.khulnasoft.com/openapi.yaml](https://api.khulnasoft.com/openapi.yaml).
 
 To maintain consistency and quality of OpenAPI documentation, Khulnasoft uses [Spectral](https://github.com/stoplightio/spectral) to validate the OpenAPI specification and enforce style. The OpenAPI specification is run through a Github action on pull request, and call also be run locally after starting the API with:
 

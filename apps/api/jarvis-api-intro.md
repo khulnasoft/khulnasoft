@@ -12,7 +12,7 @@ If that's the first time you want to contribute to Khulnasoft here are a few sim
 
 1. Fork the repository and clone your fork to your local machine.
 2. Install the dependencies using `npm run setup:project`.
-3. Create a new branch with the number of the issue, for example: `1454-fix-something-cool` and start contributing based on the [Contributing Guide](https://docs.khulnasoft.co/community/run-in-local-machine?utm_campaign=github-jarvis) or the short guide in the section below.
+3. Create a new branch with the number of the issue, for example: `1454-fix-something-cool` and start contributing based on the [Contributing Guide](https://docs.khulnasoft.com/community/run-in-local-machine?utm_campaign=github-jarvis) or the short guide in the section below.
 4. Create a Pull request and follow the template of creation
 </details>
 

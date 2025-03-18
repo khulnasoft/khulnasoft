@@ -21,7 +21,7 @@
     ·
   <a href="https://discord.khulnasoft.co">Join Our Discord</a>
     ·
-    <a href="https://roadmap.khulnasoft.co/">Roadmap</a>
+    <a href="https://roadmap.khulnasoft.com/">Roadmap</a>
     ·
     <a href="https://twitter.com/khulnasoft">X</a>
   </p>
@@ -108,7 +108,7 @@ Using the Khulnasoft API and admin panel you can easily add real-time notificati
 <div align="center">
 <img width="762" alt="notification-center-912bb96e009fb3a69bafec23bcde00b0" src="https://github.com/iampearceman/Design-assets/blob/main/Untitled%20design%20(8).gif?raw=true">
   
-  Read more about how to add a notification center to your app with the Khulnasoft API [here](https://docs.khulnasoft.co/notification-center/introduction?utm_campaign=inapp-cli-readme)
+  Read more about how to add a notification center to your app with the Khulnasoft API [here](https://docs.khulnasoft.com/notification-center/introduction?utm_campaign=inapp-cli-readme)
 
 </div>
 
@@ -159,7 +159,7 @@ Khulnasoft provides a single API to manage providers across multiple channels wi
 
 #### 📱 In-App
 
-- [x] [Khulnasoft](https://docs.khulnasoft.co/notification-center/introduction?utm_campaign=inapp-cli-readme)
+- [x] [Khulnasoft](https://docs.khulnasoft.com/notification-center/introduction?utm_campaign=inapp-cli-readme)
 
 #### Other (Coming Soon...)
 
@@ -173,4 +173,4 @@ Just <a href="https://discord.khulnasoft.co">Join Our Discord</a> server and ask
 
 ## 🔗 Links
 
-- [Home page](https://khulnasoft.co/)
+- [Home page](https://khulnasoft.com/)

@@ -9,50 +9,50 @@
   command = "cd apps/web && pnpm run envsetup && cd ../../ && pnpm run build:web --skip-nx-cache"
 
 [[redirects]]
-  from = "https://dev.web.khulnasoft.co/*"
+  from = "https://dev.web.khulnasoft.com/*"
   to = "https://dashboard.khulnasoft-staging.co/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://dev.web.khulnasoft.co/*"
+  from = "http://dev.web.khulnasoft.com/*"
   to = "http://dashboard.khulnasoft-staging.co/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://dev.dashboard.khulnasoft.co/*"
+  from = "https://dev.dashboard.khulnasoft.com/*"
   to = "https://dashboard.khulnasoft-staging.co/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://dev.dashboard.khulnasoft.co/*"
+  from = "http://dev.dashboard.khulnasoft.com/*"
   to = "http://dashboard.khulnasoft-staging.co/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://web.khulnasoft.co/*"
-  to = "https://dashboard.khulnasoft.co/:splat"
+  from = "https://web.khulnasoft.com/*"
+  to = "https://dashboard.khulnasoft.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://web.khulnasoft.co/*"
-  to = "http://dashboard.khulnasoft.co/:splat"
+  from = "http://web.khulnasoft.com/*"
+  to = "http://dashboard.khulnasoft.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://eu.web.khulnasoft.co/*"
-  to = "https://eu.dashboard.khulnasoft.co/:splat"
+  from = "https://eu.web.khulnasoft.com/*"
+  to = "https://eu.dashboard.khulnasoft.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://eu.web.khulnasoft.co/*"
-  to = "http://eu.dashboard.khulnasoft.co/:splat"
+  from = "http://eu.web.khulnasoft.com/*"
+  to = "http://eu.dashboard.khulnasoft.com/:splat"
   status = 301
   force = true
 

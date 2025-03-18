@@ -99,7 +99,7 @@ Khulnasoft provides a single API to manage providers across multiple channels wi
 
 #### 📱 In-App
 
-- [x] [Khulnasoft](https://docs.khulnasoft.co/notification-center/introduction?utm_source=github-stateless-readme)
+- [x] [Khulnasoft](https://docs.khulnasoft.com/notification-center/introduction?utm_source=github-stateless-readme)
 
 #### Other (Coming Soon...)
 
@@ -107,4 +107,4 @@ Khulnasoft provides a single API to manage providers across multiple channels wi
 
 ## 🔗 Links
 
-- [Home page](https://khulnasoft.co/)
+- [Home page](https://khulnasoft.com/)

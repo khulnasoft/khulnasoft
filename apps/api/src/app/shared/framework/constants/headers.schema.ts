@@ -64,6 +64,6 @@ export const RESPONSE_HEADER_CONFIG: Record<HttpResponseHeaderKeysEnum, HeaderOb
     required: false,
     description: 'A link to the documentation.',
     schema: { type: 'string' },
-    example: 'https://docs.khulnasoft.co/',
+    example: 'https://docs.khulnasoft.com/',
   },
 };

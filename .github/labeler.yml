@@ -1,0 +1,36 @@
+'@khulnasoft/api-service':
+  - apps/api/**/*
+'@khulnasoft/worker':
+  - apps/worker/**/*
+'@khulnasoft/web':
+  - apps/web/**/*
+'@khulnasoft/dashboard':
+  - apps/dashboard/**/*
+'@khulnasoft/ws':
+  - apps/ws/**/*
+'@khulnasoft/inbound-mail':
+  - apps/inbound-mail/**/*
+'@khulnasoft/webhook':
+  - apps/webhook/**/*
+'@khulnasoft/dal':
+  - libs/dal/**/*
+'@khulnasoft/design-system':
+  - libs/design-system/**/*
+'@khulnasoft/khulnasofti':
+  - libs/khulnasofti/**/*
+'@khulnasoft/shared':
+  - packages/shared/**/*
+'@khulnasoft/notification-center':
+  - packages/notification-center/**/*
+'@khulnasoft/notification-center-vue':
+  - packages/notification-center-vue/**/*
+'@khulnasoft/notification-center-angular':
+  - packages/notification-center-angular/**/*
+'providers':
+  - providers/**/*
+'CI/CD':
+  - .github/**/*
+'docker':
+  - docker/**/*
+'scripts':
+  - scripts/**/*

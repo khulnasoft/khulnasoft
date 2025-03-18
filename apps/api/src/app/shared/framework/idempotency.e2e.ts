@@ -8,7 +8,7 @@ import {
   IdempotencyTestingDto,
 } from '../../testing/dtos/idempotency.dto';
 
-const DOCS_LINK = 'https://docs.khulnasoft.co/additional-resources/idempotency';
+const DOCS_LINK = 'https://docs.khulnasoft.com/additional-resources/idempotency';
 // @ts-ignore
 process.env.LAUNCH_DARKLY_SDK_KEY = ''; // disable Launch Darkly to allow test to define FF state
 
