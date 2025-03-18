@@ -2,13 +2,13 @@
 
 ### 🚀 Features
 
-- **api-service:** system limits & update pricing pages ([#7718](https://github.com/khulnasoft/texthive/pull/7718))
-- **root:** add no only github action ([#7692](https://github.com/khulnasoft/texthive/pull/7692))
+- **api-service:** system limits & update pricing pages ([#7718](https://github.com/khulnasoft/khulnasoft/pull/7718))
+- **root:** add no only github action ([#7692](https://github.com/khulnasoft/khulnasoft/pull/7692))
 
 ### 🩹 Fixes
 
-- **root:** unhandled promise reject and undefined ff kind ([#7732](https://github.com/khulnasoft/texthive/pull/7732))
-- **api-service:** remove only on e2e ([#7691](https://github.com/khulnasoft/texthive/pull/7691))
+- **root:** unhandled promise reject and undefined ff kind ([#7732](https://github.com/khulnasoft/khulnasoft/pull/7732))
+- **api-service:** remove only on e2e ([#7691](https://github.com/khulnasoft/khulnasoft/pull/7691))
 
 ### 🧱 Updated Dependencies
 
@@ -38,14 +38,14 @@
 
 ### 🚀 Features
 
-- **dashboard:** Codemirror liquid filter support ([#7122](https://github.com/khulnasoft/texthive/pull/7122))
-- **root:** add support chat app ID to environment variables in d… ([#7120](https://github.com/khulnasoft/texthive/pull/7120))
-- **root:** Add base Dockerfile for GHCR with Node.js and dependencies ([#7100](https://github.com/khulnasoft/texthive/pull/7100))
+- **dashboard:** Codemirror liquid filter support ([#7122](https://github.com/khulnasoft/khulnasoft/pull/7122))
+- **root:** add support chat app ID to environment variables in d… ([#7120](https://github.com/khulnasoft/khulnasoft/pull/7120))
+- **root:** Add base Dockerfile for GHCR with Node.js and dependencies ([#7100](https://github.com/khulnasoft/khulnasoft/pull/7100))
 
 ### 🩹 Fixes
 
-- **api:** Migrate subscriber global preferences before workflow preferences ([#7118](https://github.com/khulnasoft/texthive/pull/7118))
-- **api, dal, framework:** fix the uneven and unused dependencies ([#7103](https://github.com/khulnasoft/texthive/pull/7103))
+- **api:** Migrate subscriber global preferences before workflow preferences ([#7118](https://github.com/khulnasoft/khulnasoft/pull/7118))
+- **api, dal, framework:** fix the uneven and unused dependencies ([#7103](https://github.com/khulnasoft/khulnasoft/pull/7103))
 
 ### 🧱 Updated Dependencies
 
@@ -61,8 +61,8 @@
 
 ### 🚀 Features
 
-- **framework:** CJS/ESM for framework ([#6707](https://github.com/khulnasoft/texthive/pull/6707))
-- **js:** Com 145 introduce khulnasoftnextjs ([#6647](https://github.com/khulnasoft/texthive/pull/6647))
+- **framework:** CJS/ESM for framework ([#6707](https://github.com/khulnasoft/khulnasoft/pull/6707))
+- **js:** Com 145 introduce khulnasoftnextjs ([#6647](https://github.com/khulnasoft/khulnasoft/pull/6647))
 
 ### ❤️  Thank You
 

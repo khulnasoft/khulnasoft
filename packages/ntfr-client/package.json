@@ -1,0 +1,56 @@
+{
+      "name": "@khulnasoft/ntfr-client",
+      "version": "0.0.4",
+      "description": "ntfr.dev client",
+      "license": "MIT",
+      "main": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "module": "./dist/index.mjs",
+      "publishConfig": {
+        "access": "public"
+      },
+      "files": [
+        "dist"
+      ],
+      "exports": {
+        ".": {
+          "import": {
+            "types": "./dist/index.d.mts",
+            "default": "./dist/index.mjs"
+          },
+          "require": "./dist/index.js",
+          "types": "./dist/index.d.ts"
+        },
+        "./package.json": "./package.json"
+      },
+      "sideEffects": false,
+      "scripts": {
+        "clean": "rimraf dist",
+        "build": "npm run clean && npm run build:tsup",
+        "build:tsup": "tsup --dts-resolve",
+        "typecheck": "tsc --noEmit",
+        "dima": "ts-node src/dima.ts"
+      },
+      "dependencies": {
+        "https": "^1.0.0",
+        "node-fetch": "^3.3.2",
+        "partysocket": "^0.0.17",
+        "proxy-agent": "^6.3.0",
+        "zod": "3.22.3",
+        "ws": "^8.11.0"
+      },
+      "devDependencies": {
+        "rimraf": "^5.0.7",
+        "@cloudflare/vitest-pool-workers": "^0.4.5",
+        "@cloudflare/workers-types": "^4.20240620.0",
+        "typescript": "^5.4.5",
+        "vitest": "1.5.0",
+        "wrangler": "^3.62.0",
+        "@types/ws": "^8.5.3",
+        "ts-node": "^10.9.2",
+        "tsup": "^8.0.1"
+      },
+      "engines": {
+        "node": ">=18.0.0"
+      }
+    }

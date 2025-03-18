@@ -2,13 +2,13 @@
 
 ### 🚀 Features
 
-- **api-service:** system limits & update pricing pages ([#7718](https://github.com/khulnasoft/texthive/pull/7718))
-- **root:** add no only github action ([#7692](https://github.com/khulnasoft/texthive/pull/7692))
+- **api-service:** system limits & update pricing pages ([#7718](https://github.com/khulnasoft/khulnasoft/pull/7718))
+- **root:** add no only github action ([#7692](https://github.com/khulnasoft/khulnasoft/pull/7692))
 
 ### 🩹 Fixes
 
-- **root:** unhandled promise reject and undefined ff kind ([#7732](https://github.com/khulnasoft/texthive/pull/7732))
-- **api-service:** remove only on e2e ([#7691](https://github.com/khulnasoft/texthive/pull/7691))
+- **root:** unhandled promise reject and undefined ff kind ([#7732](https://github.com/khulnasoft/khulnasoft/pull/7732))
+- **api-service:** remove only on e2e ([#7691](https://github.com/khulnasoft/khulnasoft/pull/7691))
 
 ### 🧱 Updated Dependencies
 
@@ -24,28 +24,28 @@
 
 ### 🚀 Features
 
-- Update README.md ([bb63172dd](https://github.com/khulnasoft/texthive/commit/bb63172dd))
-- **readme:** Update README.md ([955cbeab0](https://github.com/khulnasoft/texthive/commit/955cbeab0))
-- quick start updates readme ([88b3b6628](https://github.com/khulnasoft/texthive/commit/88b3b6628))
-- **readme:** update readme ([e5ea61812](https://github.com/khulnasoft/texthive/commit/e5ea61812))
-- **api-service:** add internal sdk ([#7599](https://github.com/khulnasoft/texthive/pull/7599))
-- **dashboard:** step conditions editor ui ([#7502](https://github.com/khulnasoft/texthive/pull/7502))
-- **api:** add query parser ([#7267](https://github.com/khulnasoft/texthive/pull/7267))
-- **api:** Nv 5033 additional removal cycle found unneeded elements ([#7283](https://github.com/khulnasoft/texthive/pull/7283))
-- **api:** Nv 4966 e2e testing happy path - messages ([#7248](https://github.com/khulnasoft/texthive/pull/7248))
-- **dashboard:** Implement email step editor & mini preview ([#7129](https://github.com/khulnasoft/texthive/pull/7129))
-- **api:** converted bulk trigger to use SDK ([#7166](https://github.com/khulnasoft/texthive/pull/7166))
-- **application-generic:** add SUBSCRIBER_WIDGET_JWT_EXPIRATION_TIME env variable ([#7105](https://github.com/khulnasoft/texthive/pull/7105))
+- Update README.md ([bb63172dd](https://github.com/khulnasoft/khulnasoft/commit/bb63172dd))
+- **readme:** Update README.md ([955cbeab0](https://github.com/khulnasoft/khulnasoft/commit/955cbeab0))
+- quick start updates readme ([88b3b6628](https://github.com/khulnasoft/khulnasoft/commit/88b3b6628))
+- **readme:** update readme ([e5ea61812](https://github.com/khulnasoft/khulnasoft/commit/e5ea61812))
+- **api-service:** add internal sdk ([#7599](https://github.com/khulnasoft/khulnasoft/pull/7599))
+- **dashboard:** step conditions editor ui ([#7502](https://github.com/khulnasoft/khulnasoft/pull/7502))
+- **api:** add query parser ([#7267](https://github.com/khulnasoft/khulnasoft/pull/7267))
+- **api:** Nv 5033 additional removal cycle found unneeded elements ([#7283](https://github.com/khulnasoft/khulnasoft/pull/7283))
+- **api:** Nv 4966 e2e testing happy path - messages ([#7248](https://github.com/khulnasoft/khulnasoft/pull/7248))
+- **dashboard:** Implement email step editor & mini preview ([#7129](https://github.com/khulnasoft/khulnasoft/pull/7129))
+- **api:** converted bulk trigger to use SDK ([#7166](https://github.com/khulnasoft/khulnasoft/pull/7166))
+- **application-generic:** add SUBSCRIBER_WIDGET_JWT_EXPIRATION_TIME env variable ([#7105](https://github.com/khulnasoft/khulnasoft/pull/7105))
 
 ### 🩹 Fixes
 
-- **js:** Await read action in Inbox ([#7653](https://github.com/khulnasoft/texthive/pull/7653))
-- **api:** duplicated subscribers created due to race condition ([#7646](https://github.com/khulnasoft/texthive/pull/7646))
-- **api-service:** add missing environment variable ([#7553](https://github.com/khulnasoft/texthive/pull/7553))
-- **api:** Fix failing API e2e tests ([78c385ec7](https://github.com/khulnasoft/texthive/commit/78c385ec7))
-- **api-service:** E2E improvements ([#7461](https://github.com/khulnasoft/texthive/pull/7461))
-- **khulnasoft:** automatically create indexes on startup ([#7431](https://github.com/khulnasoft/texthive/pull/7431))
-- **api:** @khulnasoft/api -> @khulnasoft/api-service ([#7348](https://github.com/khulnasoft/texthive/pull/7348))
+- **js:** Await read action in Inbox ([#7653](https://github.com/khulnasoft/khulnasoft/pull/7653))
+- **api:** duplicated subscribers created due to race condition ([#7646](https://github.com/khulnasoft/khulnasoft/pull/7646))
+- **api-service:** add missing environment variable ([#7553](https://github.com/khulnasoft/khulnasoft/pull/7553))
+- **api:** Fix failing API e2e tests ([78c385ec7](https://github.com/khulnasoft/khulnasoft/commit/78c385ec7))
+- **api-service:** E2E improvements ([#7461](https://github.com/khulnasoft/khulnasoft/pull/7461))
+- **khulnasoft:** automatically create indexes on startup ([#7431](https://github.com/khulnasoft/khulnasoft/pull/7431))
+- **api:** @khulnasoft/api -> @khulnasoft/api-service ([#7348](https://github.com/khulnasoft/khulnasoft/pull/7348))
 
 ### 🧱 Updated Dependencies
 
@@ -82,15 +82,15 @@
 
 ### 🚀 Features
 
-- **js:** Popover props ([#7112](https://github.com/khulnasoft/texthive/pull/7112))
-- **dashboard:** Codemirror liquid filter support ([#7122](https://github.com/khulnasoft/texthive/pull/7122))
-- **root:** add support chat app ID to environment variables in d… ([#7120](https://github.com/khulnasoft/texthive/pull/7120))
-- **root:** Add base Dockerfile for GHCR with Node.js and dependencies ([#7100](https://github.com/khulnasoft/texthive/pull/7100))
+- **js:** Popover props ([#7112](https://github.com/khulnasoft/khulnasoft/pull/7112))
+- **dashboard:** Codemirror liquid filter support ([#7122](https://github.com/khulnasoft/khulnasoft/pull/7122))
+- **root:** add support chat app ID to environment variables in d… ([#7120](https://github.com/khulnasoft/khulnasoft/pull/7120))
+- **root:** Add base Dockerfile for GHCR with Node.js and dependencies ([#7100](https://github.com/khulnasoft/khulnasoft/pull/7100))
 
 ### 🩹 Fixes
 
-- **api:** Migrate subscriber global preferences before workflow preferences ([#7118](https://github.com/khulnasoft/texthive/pull/7118))
-- **api, dal, framework:** fix the uneven and unused dependencies ([#7103](https://github.com/khulnasoft/texthive/pull/7103))
+- **api:** Migrate subscriber global preferences before workflow preferences ([#7118](https://github.com/khulnasoft/khulnasoft/pull/7118))
+- **api, dal, framework:** fix the uneven and unused dependencies ([#7103](https://github.com/khulnasoft/khulnasoft/pull/7103))
 
 ### 🧱 Updated Dependencies
 
@@ -107,27 +107,27 @@
 
 ### 🚀 Features
 
-- **framework:** CJS/ESM for framework ([#6707](https://github.com/khulnasoft/texthive/pull/6707))
-- **js:** Com 145 introduce khulnasoftnextjs ([#6647](https://github.com/khulnasoft/texthive/pull/6647))
-- **js:** Com 208 improve the dx of the khulnasoft on function to return the cleanup ([#6650](https://github.com/khulnasoft/texthive/pull/6650))
-- **react-native:** Add a react native npm package for hooks ([#6556](https://github.com/khulnasoft/texthive/pull/6556))
-- **js, react, shared:** user agents ([#6626](https://github.com/khulnasoft/texthive/pull/6626))
-- **js,react:** Export InboxContent component ([#6531](https://github.com/khulnasoft/texthive/pull/6531))
-- **js,react:** Expose dark theme ([#6530](https://github.com/khulnasoft/texthive/pull/6530))
-- **js,react:** inbox allow filtering preferences by tags ([#6519](https://github.com/khulnasoft/texthive/pull/6519))
-- **react:** Introduce hooks ([#6419](https://github.com/khulnasoft/texthive/pull/6419))
-- **js:** Include headers and tabs in separate components ([#6323](https://github.com/khulnasoft/texthive/pull/6323))
-- **js:** Use render props universally with a single argument ([#6341](https://github.com/khulnasoft/texthive/pull/6341))
-- **react:** readme ([#6272](https://github.com/khulnasoft/texthive/pull/6272))
-- **react:** Com 40 create the khulnasoftreact package ([#6167](https://github.com/khulnasoft/texthive/pull/6167))
+- **framework:** CJS/ESM for framework ([#6707](https://github.com/khulnasoft/khulnasoft/pull/6707))
+- **js:** Com 145 introduce khulnasoftnextjs ([#6647](https://github.com/khulnasoft/khulnasoft/pull/6647))
+- **js:** Com 208 improve the dx of the khulnasoft on function to return the cleanup ([#6650](https://github.com/khulnasoft/khulnasoft/pull/6650))
+- **react-native:** Add a react native npm package for hooks ([#6556](https://github.com/khulnasoft/khulnasoft/pull/6556))
+- **js, react, shared:** user agents ([#6626](https://github.com/khulnasoft/khulnasoft/pull/6626))
+- **js,react:** Export InboxContent component ([#6531](https://github.com/khulnasoft/khulnasoft/pull/6531))
+- **js,react:** Expose dark theme ([#6530](https://github.com/khulnasoft/khulnasoft/pull/6530))
+- **js,react:** inbox allow filtering preferences by tags ([#6519](https://github.com/khulnasoft/khulnasoft/pull/6519))
+- **react:** Introduce hooks ([#6419](https://github.com/khulnasoft/khulnasoft/pull/6419))
+- **js:** Include headers and tabs in separate components ([#6323](https://github.com/khulnasoft/khulnasoft/pull/6323))
+- **js:** Use render props universally with a single argument ([#6341](https://github.com/khulnasoft/khulnasoft/pull/6341))
+- **react:** readme ([#6272](https://github.com/khulnasoft/khulnasoft/pull/6272))
+- **react:** Com 40 create the khulnasoftreact package ([#6167](https://github.com/khulnasoft/khulnasoft/pull/6167))
 
 ### 🩹 Fixes
 
-- **root:** Build only public packages during preview deployments ([#6590](https://github.com/khulnasoft/texthive/pull/6590))
-- **react:** remove InboxChild and DefaultInbox exports ([#6566](https://github.com/khulnasoft/texthive/pull/6566))
-- **js,react:** inbox support custom navigate function for the relative redirect urls ([#6444](https://github.com/khulnasoft/texthive/pull/6444))
-- **js,react:** inbox custom bell unread count not updating ([#6362](https://github.com/khulnasoft/texthive/pull/6362))
-- **react:** fixed the sourcemaps ([485861181](https://github.com/khulnasoft/texthive/commit/485861181))
+- **root:** Build only public packages during preview deployments ([#6590](https://github.com/khulnasoft/khulnasoft/pull/6590))
+- **react:** remove InboxChild and DefaultInbox exports ([#6566](https://github.com/khulnasoft/khulnasoft/pull/6566))
+- **js,react:** inbox support custom navigate function for the relative redirect urls ([#6444](https://github.com/khulnasoft/khulnasoft/pull/6444))
+- **js,react:** inbox custom bell unread count not updating ([#6362](https://github.com/khulnasoft/khulnasoft/pull/6362))
+- **react:** fixed the sourcemaps ([485861181](https://github.com/khulnasoft/khulnasoft/commit/485861181))
 
 ### ❤️  Thank You
 

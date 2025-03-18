@@ -1,0 +1,27 @@
+name: Khulnasoft Sync
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/khulnasoft/actions-khulnasoft-sync
+      - name: Sync State to Khulnasoft
+        uses: khulnasoft/actions-khulnasoft-sync@v2
+        with:
+          # The secret key used to authenticate with Khulnasoft Cloud
+          # To get the secret key, go to https://dashboard.khulnasoft.co/api-keys.
+          # Required.
+          secret-key: ${{ secrets.KHULNASOFT_SECRET_KEY }}
+
+          # The publicly available endpoint hosting the bridge application
+          # where notification entities (eg. workflows, topics) are defined.
+          # Required.
+          bridge-url: ${{ secrets.KHULNASOFT_BRIDGE_URL }}
+
+          # The Khulnasoft Cloud API URL to sync with.
+          # Optional.
+          # Defaults to https://api.khulnasoft.co
+          api-url: https://api.khulnasoft.co
