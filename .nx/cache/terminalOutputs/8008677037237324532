@@ -1,0 +1,4 @@
+
+> @khulnasoft/node@2.6.6 prebuild /workspaces/khulnasoft/packages/node
+> rimraf build
+

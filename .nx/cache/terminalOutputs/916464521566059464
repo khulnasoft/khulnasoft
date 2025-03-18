@@ -1,0 +1,4 @@
+
+> @khulnasoft/notification-center@2.0.10 prebuild /workspaces/khulnasoft/packages/notification-center
+> rimraf dist
+

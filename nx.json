@@ -1,0 +1,76 @@
+{
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "cache": true
+    },
+    "test": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    },
+    "@nx/eslint:lint": {
+      "cache": true,
+      "inputs": ["default", "{workspaceRoot}/tools/eslint-rules/**/*"]
+    }
+  },
+  "extends": "@nx/workspace/presets/npm.json",
+  "release": {
+    "changelog": {
+      "workspaceChangelog": false,
+      "projectChangelogs": true
+    },
+    "projectsRelationship": "independent",
+    "conventionalCommits": true,
+    "groups": {
+      "apps": {
+        "projects": [
+          "@khulnasoft/api-service",
+          "@khulnasoft/dashboard",
+          "@khulnasoft/inbound-mail",
+          "@khulnasoft/web",
+          "@khulnasoft/webhook",
+          "@khulnasoft/widget",
+          "@khulnasoft/worker",
+          "@khulnasoft/ws"
+        ],
+        "projectsRelationship": "independent",
+        "version": {
+          "generatorOptions": {
+            "preserveLocalDependencyProtocols": true
+          }
+        }
+      },
+      "packages": {
+        "projects": [
+          "khulnasoft",
+          "@khulnasoft/client",
+          "@khulnasoft/framework",
+          "@khulnasoft/headless",
+          "@khulnasoft/js",
+          "@khulnasoft/react",
+          "@khulnasoft/react-native",
+          "@khulnasoft/nextjs",
+          "@khulnasoft/node",
+          "@khulnasoft/providers",
+          "@khulnasoft/shared",
+          "@khulnasoft/stateless"
+        ],
+        "projectsRelationship": "independent",
+        "version": {
+          "generatorOptions": {
+            "preserveLocalDependencyProtocols": true
+          }
+        }
+      }
+    }
+  },
+  "useInferencePlugins": false,
+  "defaultBase": "main",
+  "useLegacyCache": true,
+  "generatorOptions": {
+    "preserveLocalDependencyProtocols": true
+  },
+  "nxCloudId": "67d9703583f8dd52ce11292c"
+}

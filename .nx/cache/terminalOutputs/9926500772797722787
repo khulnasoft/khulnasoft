@@ -1,0 +1,15 @@
+
+> @khulnasoft/khulnasofti@2.0.1 prebuild /workspaces/khulnasoft/libs/khulnasofti
+> pnpm prepare:panda
+
+
+> @khulnasoft/khulnasofti@2.0.1 prepare:panda /workspaces/khulnasoft/libs/khulnasofti
+> pnpm panda codegen
+
+[32m[1m✔️[39m[22m [36m`styled-system/css`[39m: the css function to author styles
+[32m[1m✔️[39m[22m [36m`styled-system/tokens`[39m: the css variables and js function to query your tokens
+[32m[1m✔️[39m[22m [36m`styled-system/patterns`[39m: functions to implement and apply common layout patterns
+[32m[1m✔️[39m[22m [36m`styled-system/recipes`[39m: functions to create multi-variant styles
+[32m[1m✔️[39m[22m [36m`styled-system/jsx`[39m: styled jsx elements for react
+
+

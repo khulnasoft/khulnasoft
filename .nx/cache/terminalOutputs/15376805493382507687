@@ -1,0 +1,4 @@
+
+> @khulnasoft/worker@2.1.9 prebuild /workspaces/khulnasoft/apps/worker
+> rimraf dist
+

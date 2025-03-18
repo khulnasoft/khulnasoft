@@ -1,0 +1,4 @@
+
+> @khulnasoft/ee-dal@2.0.5 prebuild /workspaces/khulnasoft/enterprise/packages/dal
+> rimraf dist
+

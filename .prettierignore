@@ -3,5 +3,5 @@ package.json
 apps/api/src/metadata.ts
 libs/internal-sdk
 
-/.turbo/cache
-/.turbo/*
+/.nx/cache
+/.nx/workspace-data

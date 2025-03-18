@@ -1,0 +1,4 @@
+
+> @khulnasoft/testing@2.0.5 prebuild /workspaces/khulnasoft/libs/testing
+> rimraf dist
+

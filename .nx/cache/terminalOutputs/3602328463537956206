@@ -1,0 +1,4 @@
+
+> @khulnasoft/api-service@2.1.13 prebuild /workspaces/khulnasoft/apps/api
+> rimraf dist
+

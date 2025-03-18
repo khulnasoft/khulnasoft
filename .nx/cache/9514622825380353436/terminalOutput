@@ -1,0 +1,29 @@
+
+> @khulnasoft/shared@2.6.6 prebuild /workspaces/khulnasoft/packages/shared
+> rimraf dist
+
+
+> @khulnasoft/shared@2.6.6 build /workspaces/khulnasoft/packages/shared
+> npm run build:cjs && npm run build:esm
+
+
+> @khulnasoft/shared@2.6.6 build:cjs
+> tsc -p tsconfig.json
+
+
+> @khulnasoft/shared@2.6.6 build:esm
+> tsc -p tsconfig.esm.json
+
+
+> @khulnasoft/shared@2.6.6 postbuild /workspaces/khulnasoft/packages/shared
+> npm run check:circulars
+
+
+> @khulnasoft/shared@2.6.6 check:circulars
+> madge --circular --extensions ts ./src
+
+- Finding files
+Processed [1m212[22m files [2m(20.5s)[22m 
+
+[32m✔[39m [1mNo circular dependency found![22m
+

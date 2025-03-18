@@ -1,0 +1,263 @@
+{
+  "run": {
+    "command": "nx run-many --target=prebuild --all",
+    "startTime": "2025-03-18T15:38:31.348Z",
+    "endTime": "2025-03-18T15:39:01.705Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@khulnasoft/shared:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/shared",
+      "hash": "10360356669943532006",
+      "startTime": "2025-03-18T15:38:31.472Z",
+      "endTime": "2025-03-18T15:38:35.236Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/dal:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/dal",
+      "hash": "6399339750431858627",
+      "startTime": "2025-03-18T15:38:31.472Z",
+      "endTime": "2025-03-18T15:38:35.373Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/testing:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/testing",
+      "hash": "10773410748137290691",
+      "startTime": "2025-03-18T15:38:31.472Z",
+      "endTime": "2025-03-18T15:38:35.405Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/stateless:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/stateless",
+      "hash": "13038003548162649580",
+      "startTime": "2025-03-18T15:38:35.245Z",
+      "endTime": "2025-03-18T15:38:39.903Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/providers:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/providers",
+      "hash": "12331026965402297755",
+      "startTime": "2025-03-18T15:38:35.408Z",
+      "endTime": "2025-03-18T15:38:39.928Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/ee-dal:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/ee-dal",
+      "hash": "12791057450140560086",
+      "startTime": "2025-03-18T15:38:35.379Z",
+      "endTime": "2025-03-18T15:38:40.329Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/application-generic:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/application-generic",
+      "hash": "13860401516319881054",
+      "startTime": "2025-03-18T15:38:39.931Z",
+      "endTime": "2025-03-18T15:38:44.177Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/ee-shared-services:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/ee-shared-services",
+      "hash": "10121891000913603539",
+      "startTime": "2025-03-18T15:38:39.904Z",
+      "endTime": "2025-03-18T15:38:44.412Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/client:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/client",
+      "hash": "16961564612543212888",
+      "startTime": "2025-03-18T15:38:40.330Z",
+      "endTime": "2025-03-18T15:38:44.664Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/design-system:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/design-system",
+      "hash": "11831169184141910546",
+      "startTime": "2025-03-18T15:38:44.665Z",
+      "endTime": "2025-03-18T15:38:48.052Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "khulnasoft:prebuild",
+      "target": "prebuild",
+      "projectName": "khulnasoft",
+      "hash": "8053376565805832807",
+      "startTime": "2025-03-18T15:38:44.181Z",
+      "endTime": "2025-03-18T15:38:48.304Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/notification-center:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/notification-center",
+      "hash": "916464521566059464",
+      "startTime": "2025-03-18T15:38:44.414Z",
+      "endTime": "2025-03-18T15:38:48.734Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/web:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/web",
+      "hash": "11257352042463365809",
+      "startTime": "2025-03-18T15:38:48.305Z",
+      "endTime": "2025-03-18T15:38:51.194Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/ws:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/ws",
+      "hash": "8362028889721350270",
+      "startTime": "2025-03-18T15:38:48.738Z",
+      "endTime": "2025-03-18T15:38:51.508Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/widget:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/widget",
+      "hash": "15568557873561676156",
+      "startTime": "2025-03-18T15:38:51.509Z",
+      "endTime": "2025-03-18T15:38:54.164Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/embed:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/embed",
+      "hash": "2618073016097272109",
+      "startTime": "2025-03-18T15:38:51.195Z",
+      "endTime": "2025-03-18T15:38:54.226Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/inbound-mail:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/inbound-mail",
+      "hash": "2378432059923899904",
+      "startTime": "2025-03-18T15:38:54.227Z",
+      "endTime": "2025-03-18T15:38:56.814Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/nest:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/nest",
+      "hash": "17982448303090328942",
+      "startTime": "2025-03-18T15:38:54.166Z",
+      "endTime": "2025-03-18T15:38:57.347Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/khulnasofti:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/khulnasofti",
+      "hash": "12666889983292648940",
+      "startTime": "2025-03-18T15:38:48.053Z",
+      "endTime": "2025-03-18T15:38:58.747Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/node:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/node",
+      "hash": "8008677037237324532",
+      "startTime": "2025-03-18T15:38:56.814Z",
+      "endTime": "2025-03-18T15:39:00.225Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/webhook:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/webhook",
+      "hash": "10940406625960046562",
+      "startTime": "2025-03-18T15:38:57.349Z",
+      "endTime": "2025-03-18T15:39:00.335Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/worker:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/worker",
+      "hash": "984168815171524138",
+      "startTime": "2025-03-18T15:38:58.750Z",
+      "endTime": "2025-03-18T15:39:01.131Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@khulnasoft/api-service:prebuild",
+      "target": "prebuild",
+      "projectName": "@khulnasoft/api-service",
+      "hash": "13473543331980616072",
+      "startTime": "2025-03-18T15:39:00.225Z",
+      "endTime": "2025-03-18T15:39:01.704Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+
+> @khulnasoft/client@2.6.6 prebuild /workspaces/khulnasoft/packages/client
+> rimraf dist
+
+
+> @khulnasoft/client@2.6.6 build /workspaces/khulnasoft/packages/client
+> npm run build:cjs && npm run build:esm
+
+
+> @khulnasoft/client@2.6.6 build:cjs
+> cross-env node_modules/.bin/tsc -p tsconfig.build.json
+
+
+> @khulnasoft/client@2.6.6 build:esm
+> cross-env node_modules/.bin/tsc -p tsconfig.esm.json
+

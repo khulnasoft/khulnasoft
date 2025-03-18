@@ -1,0 +1,4 @@
+
+> @khulnasoft/ee-shared-services@2.0.5 prebuild /workspaces/khulnasoft/enterprise/packages/shared-services
+> rimraf build
+
