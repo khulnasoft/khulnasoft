@@ -1,4 +1,14 @@
 packages:
-  - "apps/*"
-  - "apps/api"
-  - "packages/*"
+  # all packages in subdirs of packages/ and components/
+  - 'packages/*'
+  # exclude notification-center angular and vue packages as they will be deprecated by the new Inbox
+  - '!packages/notification-center-angular'
+  - '!packages/notification-center-vue'
+  - 'apps/*'
+  - 'libs/*'
+  # exclude packages that are inside test directories
+  - '!**/test/**'
+  # all packages in enterprise modules
+  - 'enterprise/packages/*'
+  # playground apps
+  - 'playground/*'
