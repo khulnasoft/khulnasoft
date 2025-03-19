@@ -10,7 +10,7 @@ dependencies:
   '@khulnasoft/framework':
     specifier: 2.0.0
     version: 2.0.0(@nestjs/common@10.4.1)(@nestjs/core@10.4.1)(express@4.19.2)(reflect-metadata@0.2.2)(zod-to-json-schema@3.23.2)(zod@3.23.8)
-  '@khulnasoft/ntfr-client':
+  '@novu/ntfr-client':
     specifier: ^0.0.4
     version: 0.0.4
   '@react-email/components':
@@ -699,7 +699,7 @@ packages:
       - reflect-metadata
     dev: false
 
-  /@khulnasoft/ntfr-client@0.0.4:
+  /@novu/ntfr-client@0.0.4:
     resolution: {integrity: sha512-/9q+qGFHHFwMsuqoLwTADMjSx2JPagpJpm7jOZRzQZgSEDg9kwNAhADneRzVYhMyjdEXIQyjTmX/oP8ABAavFw==}
     engines: {node: '>=18.0.0'}
     dependencies:

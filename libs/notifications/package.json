@@ -1,42 +1,22 @@
 {
   "name": "@khulnasoft/notifications",
-  "version": "1.0.10",
   "description": "Khulnasoft notification templates and workflows",
-  "main": "build/main/index.js",
-  "typings": "build/main/index.d.ts",
-  "module": "build/module/index.js",
-  "private": true,
-  "license": "MIT",
-  "keywords": [],
-  "scripts": {
-    "build": "run-p build:*",
-    "build:main": "tsc -p tsconfig.json",
-    "build:module": "tsc -p tsconfig.module.json",
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.ts\" --write",
-    "fix:lint": "eslint src --ext .ts --fix",
-    "test": "echo 'Not tests available'",
-    "lint": "eslint src",
-    "test:watch": "echo 'Not tests available'",
-    "watch:build": "tsc -p tsconfig.json -w",
-    "reset-hard": "git clean -dfx && git reset --hard && pnpm install",
-    "start:studio": "khulnasoft dev --port 3000 --route /v1/bridge/khulnasoft"
-  },
+  "version": "1.0.10",
   "dependencies": {
-    "@react-email/components": "^0.0.15",
-    "@khulnasoft/framework": "workspace:*",
-    "@khulnasoft/shared": "workspace:*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "zod": "^3.23.8"
+    "@khulnasoft/framework": "2.6.6",
+    "@khulnasoft/shared": "2.6.6",
+    "@react-email/components": "0.0.15",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "zod": "3.23.8"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "typescript": "5.6.2",
-    "prettier": "~2.8.0",
-    "npm-run-all": "^4.1.5",
-    "khulnasoft": "workspace:*"
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "khulnasoft": "~2.6.6",
+    "npm-run-all": "~4.1.5",
+    "prettier": "~3.3.3",
+    "typescript": "~5.6.2"
   },
   "files": [
     "build/main",
@@ -46,5 +26,25 @@
     "CHANGELOG.md",
     "LICENSE",
     "README.md"
-  ]
+  ],
+  "keywords": [],
+  "license": "MIT",
+  "main": "build/main/index.js",
+  "module": "build/module/index.js",
+  "private": true,
+  "scripts": {
+    "build": "run-p build:*",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json",
+    "fix": "run-s fix:*",
+    "fix:lint": "eslint src --ext .ts --fix",
+    "fix:prettier": "prettier \"src/**/*.ts\" --write",
+    "lint": "eslint src",
+    "reset-hard": "git clean -dfx && git reset --hard && pnpm install",
+    "start:studio": "khulnasoft dev --port 3000 --route /v1/bridge/khulnasoft",
+    "test": "echo 'Not tests available'",
+    "test:watch": "echo 'Not tests available'",
+    "watch:build": "tsc -p tsconfig.json -w"
+  },
+  "typings": "build/main/index.d.ts"
 }

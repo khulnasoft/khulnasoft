@@ -1,29 +1,26 @@
 {
   "name": "@khulnasoft/shared",
-  "version": "2.6.6",
   "description": "",
-  "scripts": {
-    "start": "npm run start:dev",
-    "afterinstall": "pnpm build",
-    "prebuild": "rimraf dist",
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build:cjs": "tsc -p tsconfig.json",
-    "build:watch": "cross-env node_modules/.bin/tsc -p tsconfig.json -w --preserveWatchOutput",
-    "postbuild": "npm run check:circulars",
-    "start:dev": "pnpm build:watch",
-    "precommit": "lint-staged",
-    "lint": "eslint src",
-    "lint:fix": "pnpm lint -- --fix",
-    "test": "vitest",
-    "watch:test": "pnpm test --watch",
-    "check:circulars": "madge --circular --extensions ts ./src"
-  },
+  "version": "2.6.6",
   "author": "",
-  "license": "ISC",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/cjs/index.d.ts",
+  "devDependencies": {
+    "madge": "~8.0.0",
+    "rimraf": "~3.0.2",
+    "typescript": "~5.6.2",
+    "vitest": "~2.1.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.js",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./utils": {
+      "types": "./dist/esm/utils/index.d.js",
+      "import": "./dist/esm/utils/index.js",
+      "require": "./dist/cjs/utils/index.js"
+    }
+  },
   "files": [
     "dist/",
     "!**/*.spec.*",
@@ -32,27 +29,30 @@
     "LICENSE",
     "README.md"
   ],
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/esm/index.js",
-      "types": "./dist/esm/index.d.js"
-    },
-    "./utils": {
-      "require": "./dist/cjs/utils/index.js",
-      "import": "./dist/esm/utils/index.js",
-      "types": "./dist/esm/utils/index.d.js"
-    }
-  },
-  "devDependencies": {
-    "madge": "^8.0.0",
-    "rimraf": "^3.0.2",
-    "typescript": "5.6.2",
-    "vitest": "^2.0.5"
-  },
+  "license": "ISC",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "nx": {
     "tags": [
       "type:package"
     ]
-  }
+  },
+  "scripts": {
+    "afterinstall": "pnpm build",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:watch": "cross-env node_modules/.bin/tsc -p tsconfig.json -w --preserveWatchOutput",
+    "check:circulars": "madge --circular --extensions ts ./src",
+    "lint": "eslint src",
+    "lint:fix": "pnpm lint -- --fix",
+    "postbuild": "npm run check:circulars",
+    "prebuild": "rimraf dist",
+    "precommit": "lint-staged",
+    "start": "npm run start:dev",
+    "start:dev": "pnpm build:watch",
+    "test": "vitest",
+    "watch:test": "pnpm test --watch"
+  },
+  "types": "dist/cjs/index.d.ts"
 }

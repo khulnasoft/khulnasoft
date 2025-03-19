@@ -17,7 +17,7 @@ export const PACKAGE_JSON = `{
     "typescript": "^5.3.2",
     "zod": "^3.23.8",
     "ws": "^8.11.0",
-    "@khulnasoft/ntfr-client": "^0.0.4",
+    "@novu/ntfr-client": "^0.0.4",
     "zod-to-json-schema": "^3.23.2"
   },
   "devDependencies": {

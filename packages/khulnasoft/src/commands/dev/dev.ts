@@ -2,7 +2,7 @@ import ws from 'ws';
 import ora from 'ora';
 import open from 'open';
 import chalk from 'chalk';
-import { NtfrTunnel } from '@khulnasoft/ntfr-client';
+import { NtfrTunnel } from '@novu/ntfr-client';
 
 import { DevServer } from '../../dev-server';
 import { showWelcomeScreen } from '../shared';

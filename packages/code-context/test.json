@@ -1,0 +1,364 @@
+[
+  {
+    "id": 343454168,
+    "iid": 85,
+    "project_id": 47688817,
+    "title": "docs: logging",
+    "description": "## What\n<!--\nDescribe in detail what your merge request does.\nAre there any risks involved with the proposed change? \n-->\n\nUpdate https://docs.runway.gitlab.com/reference/observability/#logs and troubleshooting sections to include links for short-term logging solution.\n\n## Why\n<!--\nWhy is the change being made? Links to relevant issues are required for context.\n-->\n\nFor https://gitlab.slack.com/archives/C05G970PHSA/p1731575528378329?thread_ts=1731537924.818659&cid=C05G970PHSA.",
+    "state": "opened",
+    "created_at": "2024-11-16T00:23:14.054Z",
+    "updated_at": "2024-11-16T09:56:41.198Z",
+    "merged_by": null,
+    "merge_user": null,
+    "merged_at": null,
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "master",
+    "source_branch": "cfeick/logging",
+    "user_notes_count": 1,
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 12921622,
+      "username": "cfeick",
+      "name": "Chance Feick",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/12921622/avatar.png",
+      "web_url": "https://gitlab.com/cfeick"
+    },
+    "assignees": [
+      {
+        "id": 12921622,
+        "username": "cfeick",
+        "name": "Chance Feick",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/12921622/avatar.png",
+        "web_url": "https://gitlab.com/cfeick"
+      }
+    ],
+    "assignee": {
+      "id": 12921622,
+      "username": "cfeick",
+      "name": "Chance Feick",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/12921622/avatar.png",
+      "web_url": "https://gitlab.com/cfeick"
+    },
+    "reviewers": [
+      {
+        "id": 171554,
+        "username": "reprazent",
+        "name": "Bob Van Landuyt",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/171554/avatar.png",
+        "web_url": "https://gitlab.com/reprazent"
+      },
+      {
+        "id": 12643927,
+        "username": "shekharpatnaik",
+        "name": "Shekhar Patnaik",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/12643927/avatar.png",
+        "web_url": "https://gitlab.com/shekharpatnaik"
+      },
+      {
+        "id": 13594334,
+        "username": "swiskow",
+        "name": "Sam Wiskow",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/13594334/avatar.png",
+        "web_url": "https://gitlab.com/swiskow"
+      }
+    ],
+    "source_project_id": 47688817,
+    "target_project_id": 47688817,
+    "labels": ["type::maintenance"],
+    "draft": false,
+    "imported": false,
+    "imported_from": "none",
+    "work_in_progress": false,
+    "milestone": null,
+    "merge_when_pipeline_succeeds": false,
+    "merge_status": "can_be_merged",
+    "detailed_merge_status": "mergeable",
+    "merge_after": null,
+    "sha": "13f94d7de12cc7073cf07502bd0c7e6f560ab9c1",
+    "merge_commit_sha": null,
+    "squash_commit_sha": null,
+    "discussion_locked": null,
+    "should_remove_source_branch": null,
+    "force_remove_source_branch": true,
+    "prepared_at": "2024-11-16T00:23:19.570Z",
+    "reference": "!85",
+    "references": {
+      "short": "!85",
+      "relative": "!85",
+      "full": "gitlab-com/gl-infra/platform/runway/docs!85"
+    },
+    "web_url": "https://gitlab.com/gitlab-com/gl-infra/platform/runway/docs/-/merge_requests/85",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": false,
+    "squash_on_merge": false,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true,
+    "approvals_before_merge": null
+  },
+  {
+    "id": 333902102,
+    "iid": 9225,
+    "project_id": 42817607,
+    "title": "Add AI Context Abstraction Layer Design doc",
+    "description": "<!-- Before proceeding, please check if you need to apply a specific MR description template from the dropdown menu above next to `Description` (e.g. blog post, website bug report). -->\n\n## Why is this change being made?\n\nThis is the continuation of https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/8567+. As part of this design document we're trying to define the stable interface for consumers (teams) to use to interact with embeddings and potentially other context-related data.\n\nRendered version: https://gitlab.com/gitlab-com/content-sites/handbook/-/blob/gitlab-data-layer/content/handbook/engineering/architecture/design-documents/ai_context_abstraction_layer/_index.md\n\nBrainstorming board: https://www.figma.com/board/7ZukyJ4vtN8LbNPZOogv90/AI-Context-Abstraction-Layer?node-id=0-1&node-type=canvas&t=3Nmwh85wHIRHXEtT-0\n\n## Author and Reviewer Checklist\n\n**Please verify the check list and ensure to tick them off before the MR is merged.**\n\n- [ ] Provided a concise title for this [Merge Request (MR)][mr]\n- [ ] Added a description to this MR explaining the reasons for the proposed change, per [**say why, not just what**][say-why-not-just-what]\n  - Copy/paste the Slack conversation to document it for later, or upload screenshots. Verify that no confidential data is added, and the content is [SAFE][SAFE]\n- [ ] Assign reviewers for this MR to the correct [Directly Responsible Individual/s (DRI)][dri]\n    - If the DRI for the page/s being updated isn’t immediately clear, then assign it to one of the people listed in the `Maintained by` section on the page being edited\n    - If your manager does not have merge rights, please ask someone to merge it **AFTER** it has been approved by your manager in [#mr-buddies][mr-buddies-slack]\n    - The [when to get approval][when-to-get-approval] handbook section explains the workflow in more detail\n- [ ] For transparency, share this MR with the audience that will be impacted.\n   - [ ] Team: For changes that affect your direct team, share in your group Slack channel\n   - [ ] Department: If the update affects your department, share the MR in your department Slack channel\n   - [ ] Division: If the update affects your division, share the MR in your division Slack channel\n   - [ ] Company: If the update affects all (or the majority of) GitLab team members, post an update in [#whats-happening-at-gitlab][whats-happening-at-gitlab-slack] linking to this MR\n      - For high-priority company-wide announcements work with the [internal communications][internal-communications] team to post the update in [#company-fyi][company-fyi-slack] and align on a plan to circulate in additional channels like the [\"While You Were Iterating\" Newsletter][engagement-channels]\n\n## Commits\n\n%{all_commits}\n\n<!-- Quick actions for assignment, labels, review requests. Please update them as needed. -->\n\n<!-- Assign yourself -->\n\n<!-- Assign reviewer(s), following https://handbook.gitlab.com/handbook/about/handbook-usage/#when-to-get-approval. Remove the [HTML comment tags](https://www.w3schools.com/tags/tag_comment.asp) to enable. -->\n\n<!--\n/assign_reviewer @\n-->\n\n<!-- Apply labels: You can keep or remove `~\"Handbook::Content\"` as needed, add other relevant labels, or remove this line. -->\n\n---\n\n<!-- DO NOT REMOVE -->\n[transparency]: https://handbook.gitlab.com/handbook/values/#transparency\n[mr]: https://docs.gitlab.com/ee/user/project/merge_requests/\n[say-why-not-just-what]: https://handbook.gitlab.com/handbook/values/#say-why-not-just-what\n[dri]: https://handbook.gitlab.com/handbook/people-group/directly-responsible-individuals/\n[SAFE]: https://handbook.gitlab.com/handbook/legal/safe-framework/\n[when-to-get-approval]: https://handbook.gitlab.com/handbook/about/handbook-usage/#when-to-get-approval\n[internal-communications]: https://handbook.gitlab.com/handbook/people-group/employment-branding/people-communications/\n[mr-buddies-slack]: https://gitlab.slack.com/archives/CLM8K5LF4\n[company-fyi-slack]: https://gitlab.slack.com/archives/C010XFJFTHN\n[whats-happening-at-gitlab-slack]: https://gitlab.slack.com/archives/C0259241C\n[engagement-channels]: https://handbook.gitlab.com/handbook/people-group/employment-branding/people-communications/#people-communications--engagement-channels",
+    "state": "opened",
+    "created_at": "2024-10-14T12:14:42.193Z",
+    "updated_at": "2024-11-15T05:42:22.295Z",
+    "merged_by": null,
+    "merge_user": null,
+    "merged_at": null,
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "main",
+    "source_branch": "gitlab-data-layer",
+    "user_notes_count": 120,
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 5054237,
+      "username": "dgruzd",
+      "name": "Dmitry Gruzd",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5054237/avatar.png",
+      "web_url": "https://gitlab.com/dgruzd"
+    },
+    "assignees": [
+      {
+        "id": 5054237,
+        "username": "dgruzd",
+        "name": "Dmitry Gruzd",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5054237/avatar.png",
+        "web_url": "https://gitlab.com/dgruzd"
+      }
+    ],
+    "assignee": {
+      "id": 5054237,
+      "username": "dgruzd",
+      "name": "Dmitry Gruzd",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5054237/avatar.png",
+      "web_url": "https://gitlab.com/dgruzd"
+    },
+    "reviewers": [
+      {
+        "id": 120073,
+        "username": "DylanGriffith",
+        "name": "Dylan Griffith",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/120073/avatar.png",
+        "web_url": "https://gitlab.com/DylanGriffith"
+      },
+      {
+        "id": 12457737,
+        "username": "maddievn",
+        "name": "Madelein van Niekerk",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/12457737/avatar.png",
+        "web_url": "https://gitlab.com/maddievn"
+      },
+      {
+        "id": 12643927,
+        "username": "shekharpatnaik",
+        "name": "Shekhar Patnaik",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/12643927/avatar.png",
+        "web_url": "https://gitlab.com/shekharpatnaik"
+      }
+    ],
+    "source_project_id": 42817607,
+    "target_project_id": 42817607,
+    "labels": ["Handbook::Content", "devops::data stores", "group::global search", "section::core platform"],
+    "draft": false,
+    "imported": false,
+    "imported_from": "none",
+    "work_in_progress": false,
+    "milestone": {
+      "id": 4609577,
+      "iid": 1134,
+      "group_id": 6543,
+      "title": "17.6",
+      "description": "",
+      "state": "active",
+      "created_at": "2024-06-03T19:49:33.036Z",
+      "updated_at": "2024-10-25T18:25:05.262Z",
+      "due_date": "2024-11-15",
+      "start_date": "2024-10-12",
+      "expired": true,
+      "web_url": "https://gitlab.com/groups/gitlab-com/-/milestones/1134"
+    },
+    "merge_when_pipeline_succeeds": false,
+    "merge_status": "unchecked",
+    "detailed_merge_status": "unchecked",
+    "merge_after": null,
+    "sha": "a34e4aebbefff4242ab142ec80fcfb424283c3c2",
+    "merge_commit_sha": null,
+    "squash_commit_sha": null,
+    "discussion_locked": null,
+    "should_remove_source_branch": null,
+    "force_remove_source_branch": true,
+    "prepared_at": "2024-10-14T12:15:00.576Z",
+    "reference": "!9225",
+    "references": {
+      "short": "!9225",
+      "relative": "!9225",
+      "full": "gitlab-com/content-sites/handbook!9225"
+    },
+    "web_url": "https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/9225",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": true,
+    "squash_on_merge": true,
+    "task_completion_status": {
+      "count": 8,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": false,
+    "approvals_before_merge": null
+  },
+  {
+    "id": 341844862,
+    "iid": 1004,
+    "project_id": 46519181,
+    "title": "chore(deps): update dependency tree-sitter-bash to ^0.23.3",
+    "description": "This MR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n| [tree-sitter-bash](https://github.com/tree-sitter/tree-sitter-bash) | optionalDependencies | patch | [`^0.23.1` -> `^0.23.3`](https://renovatebot.com/diffs/npm/tree-sitter-bash/0.23.1/0.23.3) |\n\nMR created with the help of [gitlab-org/frontend/renovate-gitlab-bot](https://gitlab.com/gitlab-org/frontend/renovate-gitlab-bot)\n\n---\n\n### Release Notes\n\n<details>\n<summary>tree-sitter/tree-sitter-bash (tree-sitter-bash)</summary>\n\n### [`v0.23.3`](https://github.com/tree-sitter/tree-sitter-bash/releases/tag/v0.23.3)\n\n[Compare Source](https://github.com/tree-sitter/tree-sitter-bash/compare/v0.23.2...v0.23.3)\n\n**NOTE:** Download `tree-sitter-bash.tar.xz` for the *complete* source code.\n\n### [`v0.23.2`](https://github.com/tree-sitter/tree-sitter-bash/releases/tag/v0.23.2)\n\n[Compare Source](https://github.com/tree-sitter/tree-sitter-bash/compare/v0.23.1...v0.23.2)\n\n**NOTE:** Download `tree-sitter-bash.tar.xz` for the *complete* source code.\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n♻ **Rebasing**: Whenever MR becomes conflicted, or you tick the rebase/retry checkbox.\n\n🔕 **Ignore**: Close this MR and you won't be reminded about this update again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this MR, check this box\n\n---\n\nThis MR has been generated by [Renovate Bot](https://github.com/renovatebot/renovate).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzNy4yODcuMi03LWdiYTYyOWM4M2IiLCJ1cGRhdGVkSW5WZXIiOiIzNy4yODcuMi03LWdiYTYyOWM4M2IiLCJ0YXJnZXRCcmFuY2giOiJtYWluIiwibGFiZWxzIjpbImF1dG9tYXRpb246Ym90LWF1dGhvcmVkIiwiZGV2b3BzOjpjcmVhdGUiLCJncm91cDo6ZWRpdG9yIGV4dGVuc2lvbnMiLCJtYWludGVuYW5jZTo6ZGVwZW5kZW5jeSIsInNlY3Rpb246OmRldiIsInR5cGU6Om1haW50ZW5hbmNlIl19-->",
+    "state": "opened",
+    "created_at": "2024-11-10T19:18:27.629Z",
+    "updated_at": "2024-11-11T07:18:20.867Z",
+    "merged_by": null,
+    "merge_user": null,
+    "merged_at": null,
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "main",
+    "source_branch": "renovate/tree-sitter-bash-0.x",
+    "user_notes_count": 1,
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 8420142,
+      "username": "gitlab-dependency-update-bot",
+      "name": "GitLab Dependency Bot",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://secure.gravatar.com/avatar/f35d2c06528d928acb51568559ca0e2a742582eb6d7f1dbba810a757c7ca82ff?s=80&d=identicon",
+      "web_url": "https://gitlab.com/gitlab-dependency-update-bot"
+    },
+    "assignees": [
+      {
+        "id": 8420142,
+        "username": "gitlab-dependency-update-bot",
+        "name": "GitLab Dependency Bot",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://secure.gravatar.com/avatar/f35d2c06528d928acb51568559ca0e2a742582eb6d7f1dbba810a757c7ca82ff?s=80&d=identicon",
+        "web_url": "https://gitlab.com/gitlab-dependency-update-bot"
+      }
+    ],
+    "assignee": {
+      "id": 8420142,
+      "username": "gitlab-dependency-update-bot",
+      "name": "GitLab Dependency Bot",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://secure.gravatar.com/avatar/f35d2c06528d928acb51568559ca0e2a742582eb6d7f1dbba810a757c7ca82ff?s=80&d=identicon",
+      "web_url": "https://gitlab.com/gitlab-dependency-update-bot"
+    },
+    "reviewers": [
+      {
+        "id": 12643927,
+        "username": "shekharpatnaik",
+        "name": "Shekhar Patnaik",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/12643927/avatar.png",
+        "web_url": "https://gitlab.com/shekharpatnaik"
+      }
+    ],
+    "source_project_id": 56477207,
+    "target_project_id": 46519181,
+    "labels": [
+      "Category:Editor Extensions",
+      "automation:bot-authored",
+      "devops::create",
+      "group::editor extensions",
+      "maintenance::dependency",
+      "section::dev",
+      "type::maintenance"
+    ],
+    "draft": false,
+    "imported": false,
+    "imported_from": "none",
+    "work_in_progress": false,
+    "milestone": null,
+    "merge_when_pipeline_succeeds": false,
+    "merge_status": "unchecked",
+    "detailed_merge_status": "unchecked",
+    "merge_after": null,
+    "sha": "f70482b0601570896187216e99138825573bde38",
+    "merge_commit_sha": null,
+    "squash_commit_sha": null,
+    "discussion_locked": null,
+    "should_remove_source_branch": null,
+    "force_remove_source_branch": true,
+    "prepared_at": "2024-11-10T19:18:31.555Z",
+    "allow_collaboration": true,
+    "allow_maintainer_to_push": true,
+    "reference": "!1004",
+    "references": {
+      "short": "!1004",
+      "relative": "!1004",
+      "full": "gitlab-org/editor-extensions/gitlab-lsp!1004"
+    },
+    "web_url": "https://gitlab.com/gitlab-org/editor-extensions/gitlab-lsp/-/merge_requests/1004",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": false,
+    "squash_on_merge": false,
+    "task_completion_status": {
+      "count": 1,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true,
+    "approvals_before_merge": null
+  }
+]

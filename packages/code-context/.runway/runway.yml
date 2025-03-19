@@ -1,0 +1,28 @@
+# https://gitlab-com.gitlab.io/gl-infra/platform/runway/runwayctl/manifest.schema.html
+apiVersion: runway/v1
+kind: RunwayService
+metadata:
+  name: code-context
+  department: eng-dev
+  department_group: eng-dev-create-shared-infra
+  product_category: none
+  owner_email_handle: shekharpatnaik
+spec:
+  image: "$CI_REGISTRY_IMAGE/code-context:${CI_COMMIT_SHORT_SHA}"
+  regions:
+  - us-east1
+  request_timeout: 60
+  load_balancing:
+    external_load_balancer:
+      backend_protocol: HTTPS
+  network_policies:
+    cloudflare: false
+  scalability:
+    min_instances: 4
+    max_instances: 8
+    max_instance_request_concurrency: 200
+  resources:
+    startup_cpu_boost: true
+    limits:
+      cpu: 2000m
+      memory: 8G

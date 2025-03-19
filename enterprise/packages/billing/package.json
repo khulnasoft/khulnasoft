@@ -1,53 +1,53 @@
 {
   "name": "@khulnasoft/ee-billing",
   "version": "2.0.20",
-  "private": true,
+  "dependencies": {
+    "@date-fns/utc": "2.1.0",
+    "@khulnasoft/application-generic": "2.0.14",
+    "@khulnasoft/ee-auth": "2.0.14",
+    "@khulnasoft/ee-dal": "2.0.5",
+    "@khulnasoft/notifications": "1.0.10",
+    "@khulnasoft/shared": "2.6.6",
+    "class-transformer": "0.5.1",
+    "class-validator": "0.14.1",
+    "date-fns": "4.1.0",
+    "mongoose": "7.5.0",
+    "rxjs": "7.8.1",
+    "shortid": "2.2.16",
+    "stripe": "11.18.0",
+    "stripe-event-types": "3.1.0"
+  },
+  "devDependencies": {
+    "@types/chai": "~4.3.4",
+    "@types/mocha": "~10.0.8",
+    "@types/node": "~22.7.0",
+    "@types/sinon": "~9.0.0",
+    "chai": "~4.2.0",
+    "cross-env": "~7.0.3",
+    "mocha": "~10.2.0",
+    "sinon": "~9.2.4",
+    "ts-node": "~10.9.2",
+    "typescript": "~5.6.2"
+  },
   "main": "dist/index.js",
+  "peerDependencies": {
+    "@khulnasoft/dal": "^2.0.5",
+    "@nestjs/common": "^10.4.1",
+    "@nestjs/core": "^10.4.1",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/platform-express": "^10.4.1",
+    "@nestjs/swagger": "^7.4.0",
+    "@nestjs/throttler": "^6.2.1"
+  },
+  "private": true,
   "scripts": {
-    "start": "npm run build:watch",
     "build": "node ./check-ee.mjs",
     "build:esm": "node_modules/.bin/tsc -p tsconfig.json",
     "build:watch": "node_modules/.bin/tsc -w -p tsconfig.json",
-    "test": "echo 'skip test in the ci'",
     "lint": "eslint src --no-error-on-unmatched-pattern",
-    "test-ee": "cross-env TS_NODE_COMPILER_OPTIONS='{\"strictNullChecks\": false}' NODE_ENV=test mocha --timeout 10000 --require ts-node/register --exit --file tests/setup.ts src/**/**/*.spec.ts",
-    "start:proxy": "ngrok http http://localhost:3000"
-  },
-  "dependencies": {
-    "@date-fns/utc": "^2.1.0",
-    "@khulnasoft/application-generic": "workspace:*",
-    "@khulnasoft/ee-dal": "workspace:*",
-    "@khulnasoft/ee-auth": "workspace:*",
-    "@khulnasoft/shared": "workspace:*",
-    "@khulnasoft/notifications": "workspace:*",
-    "class-transformer": "0.5.1",
-    "class-validator": "0.14.1",
-    "date-fns": "^4.1.0",
-    "mongoose": "^7.5.0",
-    "rxjs": "7.8.1",
-    "shortid": "^2.2.16",
-    "stripe": "^11.18.0",
-    "stripe-event-types": "^3.1.0"
-  },
-  "devDependencies": {
-    "@types/chai": "^4.2.11",
-    "@types/mocha": "^8.0.1",
-    "@types/node": "^20.15.0",
-    "@types/sinon": "^9.0.0",
-    "chai": "^4.2.0",
-    "cross-env": "^7.0.3",
-    "mocha": "^8.1.1",
-    "sinon": "^9.2.4",
-    "ts-node": "~10.9.1",
-    "typescript": "5.6.2"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "10.4.1",
-    "@nestjs/core": "10.4.1",
-    "@nestjs/jwt": "10.2.0",
-    "@nestjs/platform-express": "10.4.1",
-    "@nestjs/swagger": "7.4.0",
-    "@nestjs/throttler": "6.2.1",
-    "@khulnasoft/dal": "workspace:*"
+    "start": "npm run build:watch",
+    "start:proxy": "ngrok http http://localhost:3000",
+    "test": "echo 'skip test in the ci'",
+    "test-ee": "cross-env TS_NODE_COMPILER_OPTIONS='{\"strictNullChecks\": false}' NODE_ENV=test mocha --timeout 10000 --require ts-node/register --exit --file tests/setup.ts src/**/**/*.spec.ts"
   }
 }

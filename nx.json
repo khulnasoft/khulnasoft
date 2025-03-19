@@ -66,11 +66,18 @@
       }
     }
   },
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "canTrackAnalytics": false
+      },
+      "runner": "nx-cloud"
+    }
+  },
   "useInferencePlugins": false,
   "defaultBase": "main",
   "useLegacyCache": true,
   "generatorOptions": {
     "preserveLocalDependencyProtocols": true
-  },
-  "nxCloudId": "67d9703583f8dd52ce11292c"
+  }
 }

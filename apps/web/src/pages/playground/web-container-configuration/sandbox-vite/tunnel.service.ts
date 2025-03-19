@@ -1,5 +1,5 @@
 export const TUNNEL = `import ws from "ws";
-import { NtfrTunnel } from "@khulnasoft/ntfr-client";
+import { NtfrTunnel } from "@novu/ntfr-client";
 
 const TUNNEL_URL = "https://khulnasoft.sh/api/tunnels";
 

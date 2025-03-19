@@ -1,21 +1,18 @@
 {
   "name": "@khulnasoft/react-native",
-  "version": "2.6.6",
-  "repository": "https://github.com/khulnasoft/khulnasoft",
   "description": "Khulnasoft's React Native SDK for building custom inbox notification experiences",
+  "version": "2.6.6",
   "author": "",
-  "license": "ISC",
-  "main": "dist/client/index.js",
-  "module": "dist/client/index.mjs",
-  "types": "dist/client/index.d.ts",
-  "files": [
-    "dist",
-    "dist/client/**/*"
-  ],
-  "sideEffects": false,
-  "private": false,
-  "publishConfig": {
-    "access": "public"
+  "dependencies": {
+    "@khulnasoft/react": "2.6.6"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "~0.17.4",
+    "@types/node": "~22.7.0",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "tsup": "~8.2.1",
+    "typescript": "~5.6.2"
   },
   "exports": {
     ".": {
@@ -29,30 +26,33 @@
       }
     }
   },
-  "scripts": {
-    "build:watch": "tsup --watch",
-    "build": "tsup && pnpm run check:exports",
-    "lint": "eslint src",
-    "check:exports": "attw --pack .",
-    "release:preview": "pnpx pkg-pr-new publish"
-  },
-  "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.4",
-    "@types/node": "^20.14.12",
-    "@types/react": "*",
-    "@types/react-dom": "*",
-    "tsup": "^8.2.1",
-    "typescript": "5.6.2"
-  },
-  "peerDependencies": {
-    "react": ">=17"
-  },
-  "dependencies": {
-    "@khulnasoft/react": "workspace:*"
-  },
+  "files": [
+    "dist",
+    "dist/client/**/*"
+  ],
+  "license": "ISC",
+  "main": "dist/client/index.js",
+  "module": "dist/client/index.mjs",
   "nx": {
     "tags": [
       "type:package"
     ]
-  }
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/khulnasoft/khulnasoft",
+  "scripts": {
+    "build": "tsup && pnpm run check:exports",
+    "build:watch": "tsup --watch",
+    "check:exports": "attw --pack .",
+    "lint": "eslint src",
+    "release:preview": "pnpx pkg-pr-new publish"
+  },
+  "sideEffects": false,
+  "types": "dist/client/index.d.ts"
 }

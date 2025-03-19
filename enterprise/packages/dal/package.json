@@ -1,36 +1,36 @@
 {
   "name": "@khulnasoft/ee-dal",
-  "version": "2.0.5",
   "description": "",
+  "version": "2.0.5",
+  "author": "",
+  "dependencies": {
+    "@khulnasoft/dal": "2.0.5",
+    "@khulnasoft/shared": "2.6.6",
+    "mongoose": "7.5.0",
+    "mongoose-delete": "1.0.1",
+    "rimraf": "3.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "~22.7.0",
+    "ts-node": "~10.9.2",
+    "tsconfig-paths": "~4.2.0",
+    "typescript": "~5.6.2"
+  },
+  "license": "ISC",
+  "main": "dist/index.js",
+  "peerDependencies": {
+    "@nestjs/common": "^10.4.1"
+  },
   "private": true,
   "scripts": {
-    "start": "npm run build:watch",
     "afterinstall": "pnpm build",
-    "prebuild": "rimraf dist",
     "build": "node ./check-ee.mjs",
     "build:esm": "cross-env node_modules/.bin/tsc -p tsconfig.build.json",
     "build:watch": "cross-env node_modules/.bin/tsc -p tsconfig.build.json -w --preserveWatchOutput",
+    "lint": "echo 'skip lint in the ci'",
+    "prebuild": "rimraf dist",
     "precommit": "lint-staged",
-    "test": "echo 'skip test in the ci'",
-    "lint": "echo 'skip lint in the ci'"
-  },
-  "author": "",
-  "license": "ISC",
-  "main": "dist/index.js",
-  "dependencies": {
-    "@khulnasoft/dal": "workspace:*",
-    "@khulnasoft/shared": "workspace:*",
-    "mongoose": "^7.5.0",
-    "mongoose-delete": "^1.0.1",
-    "rimraf": "^3.0.2"
-  },
-  "devDependencies": {
-    "@types/node": "^20.15.0",
-    "ts-node": "~10.9.1",
-    "tsconfig-paths": "~4.1.0",
-    "typescript": "5.6.2"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "10.4.1"
+    "start": "npm run build:watch",
+    "test": "echo 'skip test in the ci'"
   }
 }

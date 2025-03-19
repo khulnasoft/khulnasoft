@@ -1,18 +1,143 @@
 {
   "name": "@khulnasoft/framework",
-  "version": "2.6.6",
   "description": "The Code-First Notifications Workflow SDK.",
-  "main": "./dist/cjs/index.cjs",
-  "types": "./dist/cjs/index.d.cts",
-  "module": "./dist/esm/index.js",
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
+  "version": "2.6.6",
+  "author": "khulnasoft Team <engineering@khulnasoft.co>",
+  "dependencies": {
+    "ajv": "8.12.0",
+    "ajv-formats": "2.1.1",
+    "better-ajv-errors": "1.2.0",
+    "chalk": "5.3.0",
+    "cross-fetch": "4.0.0",
+    "json-schema-to-ts": "3.0.0",
+    "liquidjs": "10.20.0",
+    "sanitize-html": "2.13.0"
   },
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/khulnasoft/khulnasoft.git"
+  "devDependencies": {
+    "@apidevtools/json-schema-ref-parser": "~11.6.4",
+    "@arethetypeswrong/cli": "~0.17.4",
+    "@nestjs/common": "~10.4.1",
+    "@sveltejs/kit": "~1.27.3",
+    "@types/aws-lambda": "~8.10.141",
+    "@types/express": "~4.17.17",
+    "@types/node": "~22.7.0",
+    "@types/sanitize-html": "~2.11.0",
+    "@vercel/node": "~2.15.9",
+    "aws-lambda": "~1.0.7",
+    "express": "~5.0.1",
+    "h3": "~1.11.1",
+    "madge": "~8.0.0",
+    "next": "~15.2.2",
+    "prettier": "~3.3.3",
+    "ts-node": "~10.9.2",
+    "tsup": "~8.2.1",
+    "tsx": "~4.16.2",
+    "typescript": "~5.6.2",
+    "vitest": "~2.1.2",
+    "zod": "~3.23.8",
+    "zod-to-json-schema": "~3.23.3"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./express": {
+      "import": {
+        "types": "./dist/esm/servers/express.d.ts",
+        "default": "./dist/esm/servers/express.js"
+      },
+      "require": {
+        "types": "./dist/cjs/servers/express.d.cts",
+        "default": "./dist/cjs/servers/express.cjs"
+      }
+    },
+    "./nest": {
+      "import": {
+        "types": "./dist/esm/servers/nest.d.ts",
+        "default": "./dist/esm/servers/nest.js"
+      },
+      "require": {
+        "types": "./dist/cjs/servers/nest.d.cts",
+        "default": "./dist/cjs/servers/nest.cjs"
+      }
+    },
+    "./next": {
+      "import": {
+        "types": "./dist/esm/servers/next.d.ts",
+        "default": "./dist/esm/servers/next.js"
+      },
+      "require": {
+        "types": "./dist/cjs/servers/next.d.cts",
+        "default": "./dist/cjs/servers/next.cjs"
+      }
+    },
+    "./nuxt": {
+      "import": {
+        "types": "./dist/esm/servers/nuxt.d.ts",
+        "default": "./dist/esm/servers/nuxt.js"
+      },
+      "require": {
+        "types": "./dist/cjs/servers/nuxt.d.cts",
+        "default": "./dist/cjs/servers/nuxt.cjs"
+      }
+    },
+    "./h3": {
+      "import": {
+        "types": "./dist/esm/servers/h3.d.ts",
+        "default": "./dist/esm/servers/h3.js"
+      },
+      "require": {
+        "types": "./dist/cjs/servers/h3.d.cts",
+        "default": "./dist/cjs/servers/h3.cjs"
+      }
+    },
+    "./lambda": {
+      "import": {
+        "types": "./dist/esm/servers/lambda.d.ts",
+        "default": "./dist/esm/servers/lambda.js"
+      },
+      "require": {
+        "types": "./dist/cjs/servers/lambda.d.cts",
+        "default": "./dist/cjs/servers/lambda.cjs"
+      }
+    },
+    "./sveltekit": {
+      "import": {
+        "types": "./dist/esm/servers/sveltekit.d.ts",
+        "default": "./dist/esm/servers/sveltekit.js"
+      },
+      "require": {
+        "types": "./dist/cjs/servers/sveltekit.d.cts",
+        "default": "./dist/cjs/servers/sveltekit.cjs"
+      }
+    },
+    "./remix": {
+      "import": {
+        "types": "./dist/esm/servers/remix.d.ts",
+        "default": "./dist/esm/servers/remix.js"
+      },
+      "require": {
+        "types": "./dist/cjs/servers/remix.d.cts",
+        "default": "./dist/cjs/servers/remix.cjs"
+      }
+    },
+    "./internal": {
+      "import": {
+        "types": "./dist/esm/internal/index.d.ts",
+        "default": "./dist/esm/internal/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/internal/index.d.cts",
+        "default": "./dist/cjs/internal/index.cjs"
+      }
+    }
   },
   "files": [
     "dist",
@@ -27,152 +152,40 @@
     "sveltekit",
     "README.md"
   ],
-  "scripts": {
-    "test": "vitest --typecheck",
-    "test:watch": "vitest --typecheck --watch",
-    "lint": "eslint src",
-    "lint:fix": "pnpm lint -- --fix",
-    "format": "prettier --check --ignore-path .gitignore .",
-    "format:fix": "prettier --write --ignore-path .gitignore .",
-    "build": "NODE_ENV=production tsup",
-    "build:watch": "tsup --watch",
-    "postbuild": "pnpm run check:exports && pnpm check:circulars",
-    "check:exports": "attw --pack .",
-    "check:circulars": "madge --circular --extensions ts ./src",
-    "bump:prerelease": "npm version prerelease --preid=alpha & PID=$!; (sleep 1 && kill -9 $PID) & wait $PID",
-    "release:alpha": "pnpm bump:prerelease || pnpm build && npm publish",
-    "devtool": "tsx ./scripts/devtool.ts"
-  },
   "keywords": [
-    "khulnasoft",
     "code-first",
-    "workflows",
     "durable",
-    "sdk",
-    "notifications",
     "email",
-    "sms",
-    "push",
-    "webhooks",
-    "next",
-    "nuxt",
+    "express",
     "h3",
-    "express"
+    "khulnasoft",
+    "next",
+    "notifications",
+    "nuxt",
+    "push",
+    "sdk",
+    "sms",
+    "webhooks",
+    "workflows"
   ],
-  "author": "khulnasoft Team <engineering@khulnasoft.co>",
   "license": "ISC",
-  "exports": {
-    ".": {
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      },
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      }
-    },
-    "./express": {
-      "require": {
-        "types": "./dist/cjs/servers/express.d.cts",
-        "default": "./dist/cjs/servers/express.cjs"
-      },
-      "import": {
-        "types": "./dist/esm/servers/express.d.ts",
-        "default": "./dist/esm/servers/express.js"
-      }
-    },
-    "./nest": {
-      "require": {
-        "types": "./dist/cjs/servers/nest.d.cts",
-        "default": "./dist/cjs/servers/nest.cjs"
-      },
-      "import": {
-        "types": "./dist/esm/servers/nest.d.ts",
-        "default": "./dist/esm/servers/nest.js"
-      }
-    },
-    "./next": {
-      "require": {
-        "types": "./dist/cjs/servers/next.d.cts",
-        "default": "./dist/cjs/servers/next.cjs"
-      },
-      "import": {
-        "types": "./dist/esm/servers/next.d.ts",
-        "default": "./dist/esm/servers/next.js"
-      }
-    },
-    "./nuxt": {
-      "require": {
-        "types": "./dist/cjs/servers/nuxt.d.cts",
-        "default": "./dist/cjs/servers/nuxt.cjs"
-      },
-      "import": {
-        "types": "./dist/esm/servers/nuxt.d.ts",
-        "default": "./dist/esm/servers/nuxt.js"
-      }
-    },
-    "./h3": {
-      "require": {
-        "types": "./dist/cjs/servers/h3.d.cts",
-        "default": "./dist/cjs/servers/h3.cjs"
-      },
-      "import": {
-        "types": "./dist/esm/servers/h3.d.ts",
-        "default": "./dist/esm/servers/h3.js"
-      }
-    },
-    "./lambda": {
-      "require": {
-        "types": "./dist/cjs/servers/lambda.d.cts",
-        "default": "./dist/cjs/servers/lambda.cjs"
-      },
-      "import": {
-        "types": "./dist/esm/servers/lambda.d.ts",
-        "default": "./dist/esm/servers/lambda.js"
-      }
-    },
-    "./sveltekit": {
-      "require": {
-        "types": "./dist/cjs/servers/sveltekit.d.cts",
-        "default": "./dist/cjs/servers/sveltekit.cjs"
-      },
-      "import": {
-        "types": "./dist/esm/servers/sveltekit.d.ts",
-        "default": "./dist/esm/servers/sveltekit.js"
-      }
-    },
-    "./remix": {
-      "require": {
-        "types": "./dist/cjs/servers/remix.d.cts",
-        "default": "./dist/cjs/servers/remix.cjs"
-      },
-      "import": {
-        "types": "./dist/esm/servers/remix.d.ts",
-        "default": "./dist/esm/servers/remix.js"
-      }
-    },
-    "./internal": {
-      "require": {
-        "types": "./dist/cjs/internal/index.d.cts",
-        "default": "./dist/cjs/internal/index.cjs"
-      },
-      "import": {
-        "types": "./dist/esm/internal/index.d.ts",
-        "default": "./dist/esm/internal/index.js"
-      }
-    }
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "nx": {
+    "tags": [
+      "type:package"
+    ]
   },
   "peerDependencies": {
-    "@nestjs/common": ">=10.0.0",
-    "@sveltejs/kit": ">=1.27.3",
-    "@vercel/node": ">=2.15.9",
-    "aws-lambda": ">=1.0.7",
-    "express": ">=4.19.2",
-    "h3": ">=1.8.1",
-    "next": ">=12.0.0",
-    "zod": ">=3.0.0",
-    "zod-to-json-schema": ">=3.0.0"
+    "@nestjs/common": "^10.4.1",
+    "@sveltejs/kit": "^1.27.3",
+    "@vercel/node": "^2.15.9",
+    "aws-lambda": "^1.0.7",
+    "express": "^5.0.1",
+    "h3": "^1.11.1",
+    "next": "^15.2.2",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.23.3"
   },
   "peerDependenciesMeta": {
     "@nestjs/common": {
@@ -206,43 +219,27 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "@apidevtools/json-schema-ref-parser": "11.6.4",
-    "@arethetypeswrong/cli": "^0.17.4",
-    "@nestjs/common": "10.4.1",
-    "@sveltejs/kit": "^1.27.3",
-    "@types/aws-lambda": "^8.10.141",
-    "@types/express": "^4.17.13",
-    "@types/node": "^20.15.0",
-    "@types/sanitize-html": "2.11.0",
-    "@vercel/node": "^2.15.9",
-    "aws-lambda": "^1.0.7",
-    "express": "^4.19.2",
-    "h3": "^1.11.1",
-    "madge": "^8.0.0",
-    "next": "^13.5.4",
-    "prettier": "^3.2.5",
-    "ts-node": "^10.9.2",
-    "tsup": "^8.0.2",
-    "tsx": "4.16.2",
-    "typescript": "5.6.2",
-    "vitest": "^1.2.1",
-    "zod": "^3.23.8",
-    "zod-to-json-schema": "^3.23.3"
+  "private": false,
+  "publishConfig": {
+    "access": "public"
   },
-  "dependencies": {
-    "ajv": "^8.12.0",
-    "ajv-formats": "^2.1.1",
-    "better-ajv-errors": "^1.2.0",
-    "chalk": "^4.1.2",
-    "cross-fetch": "^4.0.0",
-    "json-schema-to-ts": "^3.0.0",
-    "liquidjs": "^10.13.1",
-    "sanitize-html": "^2.13.0"
+  "repository": "khulnasoft/khulnasoft.git",
+  "scripts": {
+    "build": "NODE_ENV=production tsup",
+    "build:watch": "tsup --watch",
+    "bump:prerelease": "npm version prerelease --preid=alpha & PID=$!; (sleep 1 && kill -9 $PID) & wait $PID",
+    "check:circulars": "madge --circular --extensions ts ./src",
+    "check:exports": "attw --pack .",
+    "devtool": "tsx ./scripts/devtool.ts",
+    "format": "prettier --check --ignore-path .gitignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore .",
+    "lint": "eslint src",
+    "lint:fix": "pnpm lint -- --fix",
+    "postbuild": "pnpm run check:exports && pnpm check:circulars",
+    "release:alpha": "pnpm bump:prerelease || pnpm build && npm publish",
+    "test": "vitest --typecheck",
+    "test:watch": "vitest --typecheck --watch"
   },
-  "nx": {
-    "tags": [
-      "type:package"
-    ]
-  }
+  "type": "module",
+  "types": "./dist/cjs/index.d.cts"
 }

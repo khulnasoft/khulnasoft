@@ -1,49 +1,49 @@
 {
   "name": "@khulnasoft/ee-shared-services",
-  "version": "2.0.5",
   "description": "Generic service used inside of Khulnasoft's different services - can not be depended on application-generic",
+  "version": "2.0.5",
+  "dependencies": {
+    "@handlebars/parser": "2.1.0",
+    "@khulnasoft/ee-dal": "2.0.5",
+    "@khulnasoft/shared": "2.6.6"
+  },
+  "devDependencies": {
+    "@types/node": "~22.7.0",
+    "cross-env": "~7.0.3",
+    "npm-run-all": "~4.1.5",
+    "sinon": "~9.2.4",
+    "ts-node": "~10.9.2",
+    "typescript": "~5.6.2"
+  },
+  "keywords": [],
+  "license": "MIT",
   "main": "build/main/index.js",
-  "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
+  "peerDependencies": {
+    "@khulnasoft/dal": "^2.0.5",
+    "@nestjs/common": "^10.4.1"
+  },
   "private": true,
   "repository": {
     "url": "https://github.com/khulnasoft/khulnasoft",
     "directory": "packages/nest"
   },
-  "license": "MIT",
-  "keywords": [],
   "scripts": {
-    "start": "npm run build:watch",
-    "prebuild": "rimraf build",
     "build": "node ./check-ee.mjs",
-    "build:main": "tsc -p tsconfig.json",
     "build:esm": "tsc -p tsconfig.json",
+    "build:main": "tsc -p tsconfig.json",
     "build:watch": "tsc -w -p tsconfig.json",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
-    "lint:fix": "eslint src --fix",
     "lint": "eslint src",
-    "watch:build": "tsc -p tsconfig.json -w",
-    "watch:test": "jest src --watch",
-    "reset-hard": "git clean -dfx && git reset --hard && pnpm install",
+    "lint:fix": "eslint src --fix",
+    "prebuild": "rimraf build",
     "prepare-release": "run-s reset-hard test",
-    "test-ee": "cross-env TS_NODE_COMPILER_OPTIONS='{\"strictNullChecks\": false}' NODE_ENV=test mocha --timeout 10000 --require ts-node/register --exit --file tests/setup.ts src/**/**/*.spec.ts"
+    "reset-hard": "git clean -dfx && git reset --hard && pnpm install",
+    "start": "npm run build:watch",
+    "test-ee": "cross-env TS_NODE_COMPILER_OPTIONS='{\"strictNullChecks\": false}' NODE_ENV=test mocha --timeout 10000 --require ts-node/register --exit --file tests/setup.ts src/**/**/*.spec.ts",
+    "watch:build": "tsc -p tsconfig.json -w",
+    "watch:test": "jest src --watch"
   },
-  "dependencies": {
-    "@handlebars/parser": "^2.1.0",
-    "@khulnasoft/ee-dal": "workspace:*",
-    "@khulnasoft/shared": "workspace:*"
-  },
-  "devDependencies": {
-    "@types/node": "^20.15.0",
-    "cross-env": "^7.0.3",
-    "npm-run-all": "^4.1.5",
-    "sinon": "^9.2.4",
-    "ts-node": "~10.9.1",
-    "typescript": "5.6.2"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "10.4.1",
-    "@khulnasoft/dal": "workspace:*"
-  }
+  "typings": "build/main/index.d.ts"
 }

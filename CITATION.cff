@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software in your academic work, please cite it as below."
+authors:
+  - family-names: "Sulaiman"
+    given-names: "Md"
+    orcid: "https://orcid.org/0000-0000-0000-0000"  # Replace with actual ORCID if available
+    affiliation: "Khulnasoft"
+    website: "https://github.com/gitworkflows"
+title: "Khulnasoft"
+version: 1.0.0  # Replace with actual version
+date-released: 2024-01-25  # Corrected month from 0 to 01
+url: "https://github.com/khulnasoft/khulnasoft"
+repository-code: "https://github.com/khulnasoft/khulnasoft"
+license: "MIT"  # Replace with actual license
+keywords:
+  - khulnasoft
+  - software
+abstract: "A brief description of what Khulnasoft does and its purpose."  # Add actual description

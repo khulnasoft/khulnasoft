@@ -31,5 +31,6 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "vsicons.presets.nestjs": true
+  "vsicons.presets.nestjs": true,
+  "nxConsole.nxWorkspacePath": ""
 }
