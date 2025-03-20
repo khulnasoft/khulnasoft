@@ -6,7 +6,7 @@
   "dependencies": {
     "@khulnasoft/dal": "2.0.5",
     "@khulnasoft/shared": "2.6.6",
-    "mongoose": "7.5.0",
+    "mongoose": "8.0.0",
     "mongoose-delete": "1.0.1",
     "rimraf": "3.0.2"
   },
